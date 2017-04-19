@@ -25,6 +25,17 @@
             </field>
         </record>
         
+        <record id="view_tax_template_form_mod340" model="ir.ui.view">
+            <field name="name">account.tax.template.form.mod340</field>
+            <field name="model">account.tax.template</field>
+            <field name="inherit_id" ref="account.view_account_tax_template_form"/>
+            <field name="arch" type="xml">
+                <field name="price_include" position="after">
+                    <field name="is_340_reserve_charge"/>
+                </field>
+            </field>
+        </record>
+        
         <record id="view_account_tax_form_mod340" model="ir.ui.view">
             <field name="name">account.tax.form.mod340</field>
             <field name="model">account.tax</field>
