@@ -39,7 +39,7 @@ class WizardUpdateChartsAccounts(models.TransientModel):
     def _is_different_tax(self, tax, tax_template, mapping_taxes,
                           mapping_tax_codes, mapping_accounts):
         notes = super(WizardUpdateChartsAccounts, self)._is_different_tax(
-            tax, tax_template, mapping_taxes, mapping_tax_codes, 
+            tax, tax_template, mapping_taxes, mapping_tax_codes,
             mapping_accounts)
         if tax.is_340_reserve_charge != tax_template.is_340_reserve_charge:
             notes += _("The field is 340 reverse charge is different.\n")
