@@ -1191,3 +1191,15 @@ msgstr "Emitida"
 msgid "open"
 msgstr "open"
 
+#. module: l10n_es_aeat_mod340
+#: field:account.tax.template,is_340_reserve_charge:0
+msgid "Include in mod340 as reserve charge"
+msgstr "Incluir en 340 como inversión del sujeto pasivo"
+
+#. module: l10n_es_aeat_mod340
+#: code:addons/l10n_es_aeat_mod340/wizard/wizard_update_charts_accounts.py:44
+#, python-format
+msgid "The field is 340 reverse charge is different.\n"
+""
+msgstr "El campo incluir en 340 como inversión del sujeto pasivo es diferente.\n"
+""
