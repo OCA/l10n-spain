@@ -44,6 +44,15 @@ class AccountTaxCode(orm.Model):
     }
 
 
+class AccountTaxTemplate(orm.Model):
+    _inherit = 'account.tax.template'
+
+    _columns = {
+        'is_340_reserve_charge': fields.boolean(
+            "Include in mod340 as reserve charge"),
+    }
+
+
 class AccountTax(orm.Model):
     _inherit = 'account.tax'
 
