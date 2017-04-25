@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record id="invoice_supplier_sii_form" model="ir.ui.view">
+			<field name="name">account.invoice.supplier.sii.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_supplier_form" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="AEAT" groups="account.group_account_manager">
+					    <group string="SII Information">
+					        <field name="refund_type" 
+					        attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+					    </group>
+						<group string="SII Result">
+							<field name="sii_sent" />
+							<field name="sii_return" />
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
+
+		<record id="invoice_sii_form" model="ir.ui.view">
+			<field name="name">account.invoice.sii.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<notebook position="inside">
+					<page string="AEAT" groups="account.group_account_manager">
+                        <group string="SII Information">
+                            <field name="refund_type" 
+                            attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                        </group>
+						<group string="SII Result">
+							<field name="sii_sent" />
+							<field name="sii_return" />
+						</group>
+					</page>
+				</notebook>
+			</field>
+		</record>
+
+	</data>
+</openerp>
