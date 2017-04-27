@@ -9,5 +9,14 @@
             <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'child_of', [user.company_id.id])]</field>
         </record>
 
+        <record id="ir_rule_aeat_mod347_company" model="ir.rule">
+            <field name="name">AEAT 347 Company Rule</field>
+            <field name="model_id" ref="model_l10n_es_aeat_mod347_report"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="domain_force">[('company_id','child_of',[user.company_id.id])]</field>
+        </record>
+
     </data>
 </openerp>

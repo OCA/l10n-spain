@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2017 Hugo Santos <hugo.santos@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<openerp>
+  <data>
+    <record id="ir_rule_aeat_mod111_company" model="ir.rule">
+        <field name="name">AEAT 111 Company Rule</field>
+        <field name="model_id" ref="model_l10n_es_aeat_mod111_report"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="domain_force">[('company_id','child_of',[user.company_id.id])]</field>
+    </record>
+  </data>
+</openerp>

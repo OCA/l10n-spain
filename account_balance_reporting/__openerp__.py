@@ -7,7 +7,7 @@
 
 {
     "name": "Account balance reporting engine",
-    "version": "8.0.1.2.0",
+    "version": "8.0.1.3.0",
     "author": "Pexego, "
               "AvanzOSC, "
               "Tecnativa, "
@@ -26,6 +26,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "security/ir_rule.xml",
         "views/account_account_view.xml",
         "views/account_balance_reporting_template_view.xml",
         "views/account_balance_reporting_report_view.xml",

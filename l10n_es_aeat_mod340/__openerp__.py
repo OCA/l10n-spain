@@ -56,6 +56,7 @@
         'views/account_invoice_view.xml',
         'views/account_view.xml',
         'data/taxes_data.xml',
+        'security/ir_rule.xml'
     ],
     'installable': True,
 }

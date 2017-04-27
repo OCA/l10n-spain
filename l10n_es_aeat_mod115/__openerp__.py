@@ -34,6 +34,7 @@
         'data/aeat_export_mod115_2017_data.xml',
         'wizard/export_mod115_to_boe.xml',
         'views/mod115_view.xml',
-        'security/ir.model.access.csv'],
+        'security/ir.model.access.csv',
+        'security/ir_rule.xml'],
     'installable': True,
 }
