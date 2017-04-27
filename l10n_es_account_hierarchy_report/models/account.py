@@ -11,7 +11,6 @@ class AccountAccount(models.Model):
     @api.multi
     def _compute_digits(self):
         for account in self:
-
             label_one = self.env['account.hierarchy.label'].search([
                 ('level', '=', 1), ('code', '=', account.code[0])])
             account.one_digit = '%s %s' % (

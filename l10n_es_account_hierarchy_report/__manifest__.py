@@ -19,7 +19,8 @@
     ],
     'data': [
         "security/ir.model.access.csv",
-        "data/account.xml",
+        "data/account.hierarchy.label.csv",
+        "views/account_hierarchy_label.xml",
         "views/account_views.xml",
         "reports/bi_reporting_account_hierarchy.xml",
     ],
@@ -27,6 +28,7 @@
     ],
     'qweb': [
     ],
+    'post_init_hook': 'post_init_hook',
     'installable': True,
     'application': False,
     'auto_install': False,

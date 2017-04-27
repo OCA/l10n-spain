@@ -2494,17 +2494,17 @@
         <field name="level">2</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_940">
-        <field name="name">Ingresos de...</field>
+        <field name="name">Ingresos de subvenciones oficiales de capital</field>
         <field name="code">940</field>
         <field name="level">3</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_941">
-        <field name="name">Ingresos de...</field>
+        <field name="name">Ingresos de donaciones y legados de capital</field>
         <field name="code">941</field>
         <field name="level">3</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_942">
-        <field name="name">Ingresos de...</field>
+        <field name="name">Ingresos de otras subvenciones, donaciones y legados</field>
         <field name="code">942</field>
         <field name="level">3</field>
     </record>
@@ -2536,8 +2536,7 @@
         <field name="level">3</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_962">
-        <field name="name">Transferencia de pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta
-        </field>
+        <field name="name">Transferencia de pérdidas en activos no corrientes y grupos enajenables de elementos mantenidos para la venta</field>
         <field name="code">962</field>
         <field name="level">3</field>
     </record>
@@ -2549,23 +2548,29 @@
         <field name="level">2</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_991">
-        <field name="name">Recuperación de ajustes valorativos negativos previos</field>
+        <field name="name">Recuperación de ajustes valorativos negativos previos, empresas del grupo</field>
         <field name="code">991</field>
         <field name="level">3</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_992">
-        <field name="name">Recuperación de ajustes valorativos negativos previos</field>
+        <field name="name">Recuperación de ajustes valorativos negativos previos, empresas asociadas</field>
         <field name="code">992</field>
         <field name="level">3</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_993">
-        <field name="name">Transferencia por deterioro de ajustes valorativos negativos previos</field>
+        <field name="name">Transferencia por deterioro de ajustes valorativos negativos previos, empresas del grupo</field>
         <field name="code">993</field>
         <field name="level">3</field>
     </record>
     <record model="account.hierarchy.label" id="level_3_code_994">
-        <field name="name">Transferencia por deterioro de ajustes valorativos negativos previos</field>
+        <field name="name">Transferencia por deterioro de ajustes valorativos negativos previos, empresas asociadas</field>
         <field name="code">994</field>
         <field name="level">3</field>
     </record>
+    <record model="account.hierarchy.label" id="level_3_code_994">
+        <field name="name">Pérdidas y ganancias no distribuídas</field>
+        <field name="code">999</field>
+        <field name="level">3</field>
+    </record>
+
 </data>

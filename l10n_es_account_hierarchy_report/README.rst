@@ -6,7 +6,7 @@ dicho modulo incluye:
 
 * Campos calculados a nivel de cuentas contables para extraer los digitos.
 * Etiquetas para los distintos niveles 1 digito, 2 digitos y 3 digitos.
-* Informe BI que por defecto presenta la informacion a 1,2,3 digitos.
+* Informe BI que por defecto presenta la informacion a 1, 2 y 3 digitos.
 * Posibilidad de filtrar por asientos asentados o borrados, y por aquellas
   cuentas que tengan el balance a 0.
 * Se incluyen grupos por empresa, diario, tipo de cuenta, moneda.
