@@ -102,6 +102,12 @@
             <field name="mod340" eval="True"/>
         </record>
         <!-- INVERSION DEL SUJETO PASIVO -->
+        <record id="l10n_es.account_tax_code_template_OCIDSPEAIBI" model="account.tax.code.template">
+            <field name="mod340" eval="False"/>
+        </record>
+        <record id="l10n_es.account_tax_code_template_ONSOCIDSPQOEDAD" model="account.tax.code.template">
+            <field name="mod340" eval="False"/>
+        </record>
         <record id="l10n_es.account_tax_code_template_VISP" model="account.tax.code.template">
             <field name="mod340" eval="True"/>
         </record>
