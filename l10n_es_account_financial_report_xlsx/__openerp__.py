@@ -10,6 +10,7 @@
     ],
     'license': "AGPL-3",
     'author': "RGB Consulting SL,"
+              "Tecnativa"
               "Odoo Community Association (OCA)",
     'website': "https://odoo-community.org/",
     'category': "Localisation/Accounting",

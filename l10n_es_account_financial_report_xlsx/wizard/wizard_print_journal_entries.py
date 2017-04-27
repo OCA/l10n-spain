@@ -11,7 +11,6 @@ class AccountJournalEntriesXlsx(models.TransientModel):
     @api.multi
     def print_report_xlsx(self):
         """Print report XLSX"""
-
         # Check data
         if not self._check_data():
             raise exceptions.Warning(
@@ -24,4 +23,6 @@ class AccountJournalEntriesXlsx(models.TransientModel):
         return {
             'type': 'ir.actions.report.xml',
             'report_name': report_name,
-            'datas': data}
+            'report_type': 'xlsx',
+            'datas': data,
+        }

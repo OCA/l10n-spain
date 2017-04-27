@@ -2,7 +2,10 @@
 # Copyright 2017 RGB Consulting S.L. (http://www.rgbconsulting.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp.addons.report_xlsx.report.report_xlsx import ReportXlsx
+try:
+    from openerp.addons.report_xlsx.report.report_xlsx import ReportXlsx
+except ImportError:
+    ReportXlsx = object
 from openerp.report import report_sxw
 from openerp import _
 
@@ -154,7 +157,7 @@ class JournalEntriesXlsx(ReportXlsx):
         if data:
             period_ids = data.get('period_ids', [])
             journal_ids = data.get('journal_ids', [])
-        else:
+        else:  # pragma: no cover
             journal_ids = []
             period_ids = []
             for jp in objects:
@@ -186,7 +189,8 @@ class JournalEntriesXlsx(ReportXlsx):
         self._generate_report_content(report_data)
 
 
-JournalEntriesXlsx(
-    'report.l10n_es_account_financial_report.journal_entries_xlsx',
-    'account.journal.period', parser=report_sxw.rml_parse
-)
+if ReportXlsx != object:
+    JournalEntriesXlsx(
+        'report.l10n_es_account_financial_report.journal_entries_xlsx',
+        'account.journal.period', parser=report_sxw.rml_parse
+    )
