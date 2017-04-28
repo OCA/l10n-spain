@@ -13,7 +13,9 @@ Incluye las siguientes posibilidades:
 * Exportación de facturas con varios tipos impositivos. Clave de operación C.
 * Facturas intracomunitarias, excepto las operaciones a las que hace
   referencia el artículo 66 del RIVA que tienen un tratamiento especial.
+* Facturas bienes de inversión.
 * Facturas rectificativas.
+* Facturas con recargo de equivalencia.
 * Facturas resumen de tiques.
 * Permite imprimir el libro de IVA, basado en la misma legislación.
 
@@ -48,11 +50,11 @@ Errores conocidos / Hoja de ruta
 ================================
 
 * Utilizar el patrón definido por la AEAT para el número de declaración.
-* Facturas bienes de inversión.
 * Facturas intracomunitarias. Operaciones a las que hace referencia el artículo
   66 del RIVA.
 * Asientos contables de resumen de tiques.
 * Exportación de asientos resumen de facturas.
+* Utilizar nuevo sistema de exportación del archivo BOE.
 
 Gestión de errores
 ==================
@@ -62,10 +64,7 @@ l10n-spain/issues>`_.
 En caso de problemas, compruebe por favor si su incidencia ha sido ya
 reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla proveyendo
 una detallada y bienvenida retroalimentación
-`aquí <https://github.com/OCA/
-l10n-spain/issues/new?body=m%f3dulo:%20
-l10n_es_aeat_mod340%0Aversi%f3n:%20
-8.0%0A%0A**Pasos%20para%20reproducirlo**%0A-%20...%0A%0A**Comportamiento%20actual**%0A%0A**Comportamiento%20esperado**>`_.
+`aquí <https://github.com/OCA/l10n-spain/issues/new>`_.
 
 Créditos
 ========
