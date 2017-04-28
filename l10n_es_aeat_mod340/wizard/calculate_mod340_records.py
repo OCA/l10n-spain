@@ -240,9 +240,9 @@ class L10nEsAeatMod340CalculateRecords(models.TransientModel):
             if tot_invoice != invoice.cc_amount_total:
                 values['total'] = tot_invoice
             if invoice.type in ['out_invoice', 'out_refund']:
-                invoices340.write(invoice_created)
+                invoice_created.write(values)
             if invoice.type in ['in_invoice', 'in_refund']:
-                invoices340_rec.write(invoice_created)
+                invoice_created.write(values)
             rec_tax_invoice = 0
             for surcharge in surcharge_taxes_lines:
                 rec_tax_percentage = round(surcharge.amount /
