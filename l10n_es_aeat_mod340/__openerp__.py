@@ -23,7 +23,7 @@
 
 {
     'name': 'Generación de fichero modelo 340 y libro de IVA',
-    'version': '8.0.2.4.1',
+    'version': '8.0.2.5.0',
     "author": "Spanish Localization Team,"
               # "Acysos S.L., "
               # "Ting, "
@@ -51,7 +51,6 @@
         'wizard/export_mod340_to_boe.xml',
         'views/mod340_view.xml',
         'security/ir.model.access.csv',
-        # 'views/res_partner_view.xml',
         'data/mod340_sequence.xml',
         'views/account_invoice_view.xml',
         'views/account_view.xml',
