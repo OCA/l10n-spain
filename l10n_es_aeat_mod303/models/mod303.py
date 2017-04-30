@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 # © 2013 - Guadaltech - Alberto Martín Cortada
 # © 2015 - AvanzOSC - Ainara Galdona
-# © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2014-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
@@ -11,33 +12,106 @@ class L10nEsAeatMod303Report(models.Model):
     _inherit = "l10n.es.aeat.report.tax.mapping"
     _name = "l10n.es.aeat.mod303.report"
     _description = "AEAT 303 Report"
-
-    def _get_export_conf(self):
-        try:
-            return self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_main_export_config').id
-        except ValueError:
-            return self.env['aeat.model.export.config']
+    _aeat_number = '303'
 
     def _default_counterpart_303(self):
-        return self.env['account.account'].search(
-            [('code', 'like', '4750%'), ('type', '!=', 'view')])[:1]
+        return self.env['account.account'].search([
+            ('code', 'like', '4750%'),
+        ])[:1]
+
+    company_partner_id = fields.Many2one(
+        comodel_name='res.partner', string="Partner",
+        relation='company_id.partner_id', store=True)
+    devolucion_mensual = fields.Boolean(
+        string="Montly Return", states={'done': [('readonly', True)]},
+        help="Registered in the Register of Monthly Return")
+    total_devengado = fields.Float(
+        string="[27] VAT payable", readonly=True, compute_sudo=True,
+        compute='_compute_total_devengado', store=True)
+    total_deducir = fields.Float(
+        string="[45] VAT receivable", readonly=True, compute_sudo=True,
+        compute='_compute_total_deducir', store=True)
+    casilla_46 = fields.Float(
+        string="[46] General scheme result", readonly=True, store=True,
+        help="(VAT payable - VAT receivable)", compute='_compute_casilla_46')
+    porcentaje_atribuible_estado = fields.Float(
+        string="[65] % attributable to State", default=100,
+        states={'done': [('readonly', True)]},
+        help="Taxpayers who pay jointly to the Central Government and "
+             "the Provincial Councils of the Basque Country or the "
+             "Autonomous Community of Navarra, will enter in this box the "
+             "percentage of volume operations in the common territory. "
+             "Other taxpayers will enter in this box 100%")
+    atribuible_estado = fields.Float(
+        string="[66] Attributable to the Administration", readonly=True,
+        compute='_compute_atribuible_estado', store=True)
+    cuota_compensar = fields.Float(
+        string="[67] Fees to compensate", default=0,
+        states={'done': [('readonly', True)]},
+        help="Fee to compensate for prior periods, in which his statement "
+             "was to return and compensation back option was chosen")
+    regularizacion_anual = fields.Float(
+        string="[68] Annual regularization",
+        states={'done': [('readonly', True)]},
+        help="In the last auto settlement of the year, shall be recorded "
+             "(the fourth period or 12th month), with the appropriate sign, "
+             "the result of the annual adjustment as have the laws by the "
+             "Economic Agreement approved between the State and the "
+             "Autonomous Community the Basque Country and the "
+             "Economic Agreement between the State and Navarre.")
+    casilla_69 = fields.Float(
+        string="[69] Result", readonly=True, compute='_compute_casilla_69',
+        help="[66] Attributable to the Administration - "
+             "[67] Fees to compensate + "
+             "[68] Annual regularization", store=True)
+    casilla_77 = fields.Float(
+        string="[77] VAT deferred (Settle by customs)",
+        help="Contributions of import tax included in the documents "
+             "evidencing the payment made by the Administration and received "
+             "in the settlement period. You can only complete this box "
+             "when the requirements of Article 74.1 of the Tax Regulations "
+             "Value Added are met.")
+    previous_result = fields.Float(
+        string="[70] To be deducted",
+        help="Result of the previous or prior statements of the same concept, "
+             "exercise and period",
+        states={'done': [('readonly', True)]})
+    resultado_liquidacion = fields.Float(
+        string="[71] Settlement result", readonly=True,
+        compute='_compute_resultado_liquidacion', store=True)
+    result_type = fields.Selection(
+        selection=[
+            ('I', 'To enter'),
+            ('D', 'To return'),
+            ('N', 'No activity/Zero result')
+        ], string="Result type", compute='_compute_result_type')
+    compensate = fields.Boolean(
+        string="Compensate", states={'done': [('readonly', True)]},
+        help="If checked, the return amount will be compensate in "
+             "future statements")
+    bank_account_id = fields.Many2one(
+        comodel_name="res.partner.bank", string="Bank account",
+        states={'done': [('readonly', True)]}, oldname='bank_account')
+    counterpart_account_id = fields.Many2one(
+        comodel_name='account.account', string="Counterpart account",
+        default=_default_counterpart_303, oldname='counterpart_account')
+    allow_posting = fields.Boolean(string="Allow posting", default=True)
 
     @api.multi
-    @api.depends('tax_lines', 'tax_lines.amount')
+    @api.depends('tax_line_ids', 'tax_line_ids.amount')
     def _compute_total_devengado(self):
         casillas_devengado = (3, 6, 9, 11, 13, 15, 18, 21, 24, 26)
         for report in self:
-            tax_lines = report.tax_lines.filtered(
+            tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in casillas_devengado)
             report.total_devengado = sum(tax_lines.mapped('amount'))
 
     @api.multi
-    @api.depends('tax_lines', 'tax_lines.amount')
+    @api.depends('tax_line_ids', 'tax_line_ids.amount')
     def _compute_total_deducir(self):
         casillas_deducir = (29, 31, 33, 35, 37, 39, 41, 42, 43, 44)
         for report in self:
-            tax_lines = report.tax_lines.filtered(
+            tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in casillas_deducir)
             report.total_deducir = sum(tax_lines.mapped('amount'))
 
@@ -52,7 +126,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _compute_atribuible_estado(self):
         for report in self:
             report.atribuible_estado = (
-                report.casilla_46 * report.porcentaje_atribuible_estado / 100)
+                report.casilla_46 * report.porcentaje_atribuible_estado / 100.)
 
     @api.multi
     @api.depends('atribuible_estado', 'cuota_compensar',
@@ -70,108 +144,23 @@ class L10nEsAeatMod303Report(models.Model):
             report.resultado_liquidacion = (
                 report.casilla_69 - report.previous_result)
 
-    currency_id = fields.Many2one(
-        comodel_name='res.currency', string='Currency',
-        related='company_id.currency_id', store=True, readonly=True)
-    number = fields.Char(default='303')
-    export_config = fields.Many2one(default=_get_export_conf)
-    company_partner_id = fields.Many2one('res.partner', string='Partner',
-                                         relation='company_id.partner_id',
-                                         store=True)
-    devolucion_mensual = fields.Boolean(
-        string="Devolución mensual", states={'done': [('readonly', True)]},
-        help="Inscrito en el Registro de Devolución Mensual")
-    total_devengado = fields.Float(
-        string="[27] IVA devengado", readonly=True,
-        compute="_compute_total_devengado", store=True)
-    total_deducir = fields.Float(
-        string="[45] IVA a deducir", readonly=True,
-        compute="_compute_total_deducir", store=True)
-    casilla_46 = fields.Float(
-        string="[46] Resultado régimen general", readonly=True, store=True,
-        help="(IVA devengado - IVA deducible)", compute="_compute_casilla_46")
-    porcentaje_atribuible_estado = fields.Float(
-        string="[65] % atribuible al Estado",
-        states={'done': [('readonly', True)]},
-        help="Los sujetos pasivos que tributen conjuntamente a la "
-             "Administración del Estado y a las Diputaciones Forales del País "
-             "Vasco o a la Comunidad Foral de Navarra, consignarán en esta "
-             "casilla el porcentaje del volumen de operaciones en territorio "
-             "común. Los demás sujetos pasivos consignarán en esta casilla el "
-             "100%", default=100)
-    atribuible_estado = fields.Float(
-        string="[66] Atribuible a la Administración", readonly=True,
-        compute="_compute_atribuible_estado", store=True)
-    cuota_compensar = fields.Float(
-        string="[67] Cuotas a compensar", default=0,
-        states={'done': [('readonly', True)]},
-        help="Cuota a compensar de periodos anteriores, en los que su "
-             "declaración fue a devolver y se escogió la opción de "
-             "compensación posterior")
-    regularizacion_anual = fields.Float(
-        string="[68] Regularización anual",
-        states={'done': [('readonly', True)]},
-        help="En la última autoliquidación del año (la del período 4T o mes "
-             "12) se hará constar, con el signo que corresponda, el resultado "
-             "de la regularización anual conforme disponen las Leyes por las "
-             "que se aprueban el Concierto Económico entre el Estado y la "
-             "Comunidad Autónoma del País Vasco y el Convenio Económico entre "
-             "el Estado y la Comunidad Foral de Navarra.""")
-    casilla_69 = fields.Float(
-        string="[69] Resultado", readonly=True, compute="_compute_casilla_69",
-        help="Atribuible a la Administración [66] - Cuotas a compensar [67] + "
-             "Regularización anual [68]""", store=True)
-    casilla_77 = fields.Float(
-        string="[77] Iva Diferido (Liquidado por aduana)",
-        help="Se hará constar el importe de las cuotas del Impuesto a la "
-             "importación incluidas en los documentos en los que conste la "
-             "liquidación practicada por la Administración recibidos en el "
-             "periodo de liquidación. Solamente podrá cumplimentarse esta "
-             "casilla cuando se cumplan los requisitos establecidos en el "
-             "artículo 74.1 del Reglamento del Impuesto sobre el Valor "
-             "Añadido. ")
-    previous_result = fields.Float(
-        string="[70] A deducir",
-        help="Resultado de la anterior o anteriores declaraciones del mismo "
-             "concepto, ejercicio y periodo",
-        states={'done': [('readonly', True)]})
-    resultado_liquidacion = fields.Float(
-        string="[71] Result. liquidación", readonly=True,
-        compute="_compute_resultado_liquidacion", store=True)
-    result_type = fields.Selection(
-        selection=[('I', 'A ingresar'),
-                   ('D', 'A devolver'),
-                   ('N', 'Sin actividad/Resultado cero')],
-        compute="_compute_result_type")
-    compensate = fields.Boolean(
-        string="Compensate", states={'done': [('readonly', True)]},
-        help="Si se marca, indicará que el importe a devolver se compensará "
-             "en posteriores declaraciones")
-    bank_account = fields.Many2one(
-        comodel_name="res.partner.bank", string="Bank account",
-        states={'done': [('readonly', True)]})
-    counterpart_account = fields.Many2one(default=_default_counterpart_303)
-    allow_posting = fields.Boolean(default=True)
-
-    def __init__(self, pool, cr):
-        self._aeat_number = '303'
-        super(L10nEsAeatMod303Report, self).__init__(pool, cr)
-
-    @api.one
+    @api.multi
     def _compute_allow_posting(self):
-        self.allow_posting = True
+        for report in self:
+            report.allow_posting = True
 
-    @api.one
+    @api.multi
     @api.depends('resultado_liquidacion')
     def _compute_result_type(self):
-        if self.resultado_liquidacion == 0:
-            self.result_type = 'N'
-        elif self.resultado_liquidacion > 0:
-            self.result_type = 'I'
-        else:
-            self.result_type = 'D'
+        for report in self:
+            if report.resultado_liquidacion == 0:
+                report.result_type = 'N'
+            elif report.resultado_liquidacion > 0:
+                report.result_type = 'I'
+            else:
+                report.result_type = 'D'
 
-    @api.onchange('period_type', 'fiscalyear_id')
+    @api.onchange('year', 'period_type')
     def onchange_period_type(self):
         super(L10nEsAeatMod303Report, self).onchange_period_type()
         if self.period_type not in ('4T', '12'):
@@ -184,7 +173,7 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.onchange('result_type')
     def onchange_result_type(self):
-        if self.result_type != 'B':
+        if self.result_type != 'D':
             self.compensate = False
 
     @api.multi
@@ -192,9 +181,9 @@ class L10nEsAeatMod303Report(models.Model):
         """Check records"""
         msg = ""
         for mod303 in self:
-            if mod303.result_type == 'I' and not mod303.bank_account:
+            if mod303.result_type == 'I' and not mod303.bank_account_id:
                 msg = _('Select an account for making the charge')
-            if mod303.result_type == 'B' and not not mod303.bank_account:
+            if mod303.result_type == 'D' and not mod303.bank_account_id:
                 msg = _('Select an account for receiving the money')
         if msg:
             # Don't raise error, because data is not used
