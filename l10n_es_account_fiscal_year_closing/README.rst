@@ -6,33 +6,26 @@
 Cierre de ejercicio fiscal para España
 ======================================
 
-Reemplaza el asistente por defecto de OpenERP para el cierre contable (del
-módulo *account*) por un asistente todo en uno más avanzado que permite:
+Incluye las plantillas de configuración para el sistema OCA de cierre de
+ejercicio fiscal.
 
- * Comprobar asientos descuadrados.
- * Comprobar fechas y periodos incorrectos de los apuntes.
- * Comprobar si hay asientos sin asentar en el ejercicio a cerrar.
- * Crear el asiento de pérdidas y ganancias.
- * Crear el asiento de pérdidas y ganancias de patrimonio neto.
- * Crear el asiento de cierre.
- * Crear el asiento de apertura.
 
-Permite configurar todos los parámetros para la realización de los asientos,
-aunque viene preconfigurado para el actual plan de cuentas español.
+Instalación
+===========
+
+Este módulo requiere de la instalación del módulo
+*account_fiscal_year_closing*, que se encuentra en
+https://github.com/OCA/account-closing.
 
 Uso
 ===
 
-Para la creación de los asientos, se tiene en cuenta el método de cierre
-definido en los tipos de cuenta (siempre que la cuenta no sea de tipo view):
-
- * Ninguno: No se realiza ningún cierre para esa cuenta.
- * Saldo: Crea un apunte para la cuenta con el saldo del ejercicio.
- * No conciliados: Crea un apunte por cada empresa con saldo para la cuenta.
- * Detalle: No soportado.
-
-También conserva el estado del cierre, por lo que el usuario puede cancelar y
-deshacer las operaciones fácilmente.
+#. Sigue las instrucciones de uso provistas en el módulo
+   *account_fiscal_year_closing*.
+#. Al seleccionar plantilla de cierre, si la compañía tiene uno de los planes
+   contables españoles, se podrá seleccionar la plantilla de cierre adecuada:
+   * España - PYMEs y ONGs
+   * España - Grandes empresas (PGCE completo)
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -46,11 +39,7 @@ Los errores/fallos se gestionan en `las incidencias de GitHub <https://github.co
 l10n-spain/issues>`_.
 En caso de problemas, compruebe por favor si su incidencia ha sido ya
 reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla indicando
-una detallada descripción
-`aquí <https://github.com/OCA/
-l10n-spain/issues/new?body=m%f3dulo:%20
-l10_es_fiscal_year_closing%0Aversi%f3n:%20
-9.0%0A%0A**Pasos%20para%20reproducirlo**%0A-%20...%0A%0A**Comportamiento%20actual**%0A%0A**Comportamiento%20esperado**>`_.
+una detallada descripción `aquí <https://github.com/OCA/l10n-spain/issues/new>`_.
 
 Créditos
 ========
