@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 03:23+0000\n"
+"POT-Creation-Date: 2017-03-18 03:28+0000\n"
 "PO-Revision-Date: 2015-05-23 16:32+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Polish (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/pl/)\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: pl\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #. module: l10n_es_account_financial_report
 #: model:ir.ui.menu,name:l10n_es_account_financial_report.menu_journal_entries_report
@@ -69,7 +69,7 @@ msgstr ""
 #: report:account.journal.entries.report.wzd:0
 #: report:account.journal.entries.report.wzd1:0
 msgid "Journal"
-msgstr ""
+msgstr "Dziennik"
 
 #. module: l10n_es_account_financial_report
 #: report:account.journal.entries.report.wzd:0

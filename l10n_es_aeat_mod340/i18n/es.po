@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-26 15:55+0000\n"
-"PO-Revision-Date: 2016-09-12 21:01+0000\n"
+"POT-Creation-Date: 2017-03-18 03:28+0000\n"
+"PO-Revision-Date: 2017-03-28 14:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod340.action_l10n_es_aeat_mod340_report
 msgid "AEAT model 340"
-msgstr ""
+msgstr "Declaración AEAT 340"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.issued:0 view:l10n.es.aeat.mod340.report:0
@@ -241,7 +241,7 @@ msgstr "Estado"
 #. module: l10n_es_aeat_mod340
 #: model:ir.ui.menu,name:l10n_es_aeat_mod340.menu_aeat_mod340_report
 msgid "AEAT 340 Model"
-msgstr ""
+msgstr "Declaración AEAT 340"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,amount_tax:0
@@ -262,7 +262,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.issued,date_invoice:0
 #: field:l10n.es.aeat.mod340.received,date_invoice:0
 msgid "Date Invoice"
-msgstr ""
+msgstr "Fecha de factura"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod340.report_mod340

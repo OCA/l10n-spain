@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-14 00:36+0000\n"
-"PO-Revision-Date: 2015-05-24 07:50+0000\n"
+"POT-Creation-Date: 2017-03-18 03:28+0000\n"
+"PO-Revision-Date: 2017-03-23 20:09+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -602,7 +602,7 @@ msgid "CIF/NIF"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:153
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:158
 #, python-format
 msgid ""
 "Invoice  %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on"
@@ -771,7 +771,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.report,total:0
 #: field:l10n.es.aeat.mod340.report,total_rec:0 reportvat book:0
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_account_tax_code_template

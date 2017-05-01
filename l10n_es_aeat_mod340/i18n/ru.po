@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 02:54+0000\n"
-"PO-Revision-Date: 2016-12-27 08:22+0000\n"
+"POT-Creation-Date: 2017-03-18 03:28+0000\n"
+"PO-Revision-Date: 2017-04-25 10:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: field:l10n.es.aeat.mod340.report,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Компания"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,number_records:0
@@ -400,7 +400,7 @@ msgstr ""
 #: view:l10n.es.aeat.mod340.report:0
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Черновик"
 
 #. module: l10n_es_aeat_mod340
 #: selection:res.partner,vat_type:0
@@ -771,7 +771,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.report,total:0
 #: field:l10n.es.aeat.mod340.report,total_rec:0 reportvat book:0
 msgid "Total"
-msgstr ""
+msgstr "Всего"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_account_tax_code_template

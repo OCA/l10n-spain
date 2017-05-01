@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-14 00:10+0000\n"
-"PO-Revision-Date: 2016-11-22 16:25+0000\n"
+"POT-Creation-Date: 2017-03-18 03:28+0000\n"
+"PO-Revision-Date: 2017-04-19 14:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "UserError"
 #: view:account.fiscalyear.closing:0
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear_closing
 msgid "Fiscal year closing"
-msgstr ""
+msgstr "Tancament d'exercici fiscal"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:202
@@ -129,7 +129,7 @@ msgstr "Execute FYC"
 #: view:account.fiscalyear.closing.cancel_wizard:0
 #: view:account.fiscalyear.closing.execute_wizard:0
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.cancel_wizard,delete_net_pyg:0
@@ -426,7 +426,7 @@ msgstr "Alguns assentaments estan en estat esborrany!"
 #: model:ir.actions.act_window,name:l10n_es_fiscal_year_closing.action_view_fyc_tree
 #: model:ir.ui.menu,name:l10n_es_fiscal_year_closing.menu_fyc_list
 msgid "Fiscal year closings"
-msgstr ""
+msgstr "Tancament d'exercicis fiscals"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
@@ -589,7 +589,7 @@ msgstr "S'han trobat un o més assentaments esborrany: \n%s"
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.ui.menu,name:l10n_es_fiscal_year_closing.menu_account_end_year_treatments_old
 msgid "Useless operations"
-msgstr ""
+msgstr "Operacions sense ús"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 03:23+0000\n"
-"PO-Revision-Date: 2017-01-10 08:59+0000\n"
+"POT-Creation-Date: 2017-03-18 03:28+0000\n"
+"PO-Revision-Date: 2017-04-25 10:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -337,7 +337,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,state:0
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear_closing_execute_wizard
@@ -529,7 +529,7 @@ msgstr ""
 #: field:account.fiscalyear.closing,nlp_journal_id:0
 #: field:account.fiscalyear.closing,o_journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Diário"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0

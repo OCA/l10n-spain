@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-21 03:53+0000\n"
-"PO-Revision-Date: 2017-02-01 11:20+0000\n"
+"POT-Creation-Date: 2017-03-18 03:28+0000\n"
+"PO-Revision-Date: 2017-04-25 10:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Bedrijf"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:186
@@ -322,7 +322,7 @@ msgstr ""
 #: view:account.fiscalyear.closing:0
 #: selection:account.fiscalyear.closing,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Concept"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
@@ -337,7 +337,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,state:0
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear_closing_execute_wizard
@@ -529,7 +529,7 @@ msgstr ""
 #: field:account.fiscalyear.closing,nlp_journal_id:0
 #: field:account.fiscalyear.closing,o_journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Dagboek"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:0
