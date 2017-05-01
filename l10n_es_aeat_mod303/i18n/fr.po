@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-23 16:39+0000\n"
-"PO-Revision-Date: 2017-02-23 16:39+0000\n"
+"POT-Creation-Date: 2017-04-19 17:14+0000\n"
+"PO-Revision-Date: 2017-04-19 17:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_bank_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_bank_id
 msgid "Bank account"
-msgstr ""
+msgstr "Compte bancaire"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_calculation_date
@@ -67,12 +67,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_id
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_bank_id
@@ -136,12 +136,12 @@ msgstr "Nom à afficher"
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Terminé"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_date_end
@@ -188,7 +188,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
@@ -223,7 +223,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_model_id
 msgid "Model"
-msgstr ""
+msgstr "Modèle"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_number
@@ -309,13 +309,13 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:186
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:185
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:188
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:187
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""

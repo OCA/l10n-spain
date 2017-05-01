@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-23 16:39+0000\n"
-"PO-Revision-Date: 2017-02-23 16:39+0000\n"
+"POT-Creation-Date: 2017-04-19 17:14+0000\n"
+"PO-Revision-Date: 2017-04-19 17:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgid "AEAT manager"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:244
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:254
 #, python-format
 msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
@@ -154,7 +154,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_partner_bank_id
 msgid "Bank account"
-msgstr ""
+msgstr "Compte bancaire"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,field_type:0
@@ -198,7 +198,7 @@ msgstr "Annuler"
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -215,7 +215,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_company_id
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Company"
-msgstr ""
+msgstr "Société"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_partner_bank_id
@@ -344,7 +344,7 @@ msgstr "Nom à afficher"
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Done"
-msgstr ""
+msgstr "Terminé"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -352,7 +352,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Brouillon"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -510,6 +510,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:194
+#, python-format
+msgid ""
+"If this declaration is complementary or substitutive, a previous declaration"
+" number should be provided."
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "In process"
 msgstr ""
@@ -534,7 +542,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_journal_id
@@ -627,7 +635,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_model
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_model_id
 msgid "Model"
-msgstr ""
+msgstr "Modèle"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_model_number
@@ -637,7 +645,7 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:382
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:392
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
@@ -694,7 +702,7 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:351
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:361
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""

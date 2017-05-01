@@ -11,12 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-04-19 17:14+0000\n"
 "PO-Revision-Date: 2017-04-19 17:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
+"Language-Team: Russian (https://www.transifex.com/oca/teams/23907/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: tr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_46
@@ -111,12 +111,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_create_uid
 msgid "Created by"
-msgstr "Oluşturan"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_create_date
 msgid "Created on"
-msgstr "Oluşturuldu"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_currency_id
@@ -141,7 +141,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,state:0
 msgid "Draft"
-msgstr "Taslak"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_date_end
@@ -168,7 +168,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
@@ -208,12 +208,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_write_uid
 msgid "Last Updated by"
-msgstr "Son güncelleyen"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_write_date
 msgid "Last Updated on"
-msgstr "Son güncelleme"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_representative_vat
@@ -223,7 +223,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_model_id
 msgid "Model"
-msgstr "Alan"
+msgstr "Модель"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_number
@@ -328,7 +328,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_state
 msgid "State"
-msgstr "Durum"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_type

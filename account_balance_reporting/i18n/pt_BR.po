@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-23 03:39+0000\n"
-"PO-Revision-Date: 2016-12-23 03:39+0000\n"
+"POT-Creation-Date: 2017-04-19 17:14+0000\n"
+"PO-Revision-Date: 2017-04-19 17:14+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_code
@@ -250,7 +250,7 @@ msgstr ""
 #: selection:account.balance.reporting,state:0
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Draft"
-msgstr ""
+msgstr "Rascunho"
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
@@ -328,7 +328,7 @@ msgid ""
 msgstr ""
 
 #. module: account_balance_reporting
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:424
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:430
 #, python-format
 msgid "Journal Items"
 msgstr ""
@@ -518,7 +518,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_css_class
@@ -531,7 +531,7 @@ msgid "System"
 msgstr ""
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3567
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3579
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr ""
@@ -544,7 +544,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: sql_constraint:account.balance.reporting.line:0
 #: sql_constraint:account.balance.reporting.template.line:0
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:178
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:184
 #: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:147
 #, python-format
 msgid "The code must be unique for this report!"
