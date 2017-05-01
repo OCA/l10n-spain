@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-23 16:46+0000\n"
-"PO-Revision-Date: 2017-02-23 16:46+0000\n"
+"POT-Creation-Date: 2017-04-13 17:36+0000\n"
+"PO-Revision-Date: 2017-04-13 17:36+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Portuguese (https://www.transifex.com/oca/teams/23907/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -241,7 +241,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_display_name
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -352,7 +352,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template___last_update
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Modificado a última vez por"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_write_uid
@@ -533,7 +533,7 @@ msgid "System"
 msgstr "Sistema"
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3663
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3708
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr "Modelo"

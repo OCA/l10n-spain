@@ -1,20 +1,22 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es
-#
+# * l10n_es
+# 
+# Translators:
+# Niki Waibel <niki.waibel@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 7.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 22:03+0000\n"
-"PO-Revision-Date: 2013-10-10 16:17+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-04-13 17:36+0000\n"
+"PO-Revision-Date: 2017-04-13 17:36+0000\n"
+"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-06-22 05:56+0000\n"
-"X-Generator: Launchpad (build 17058)\n"
+"Content-Transfer-Encoding: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_capital
@@ -42,9 +44,9 @@ msgid "Ingresos patrimonio neto"
 msgstr ""
 
 #. module: l10n_es
-#: model:account.account.type,name:l10n_es.account_type_inmo
-msgid "Inmovilizado"
-msgstr ""
+#: model:account.account.type,name:l10n_es.account_type_tax
+msgid "Tax"
+msgstr "Steuer"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_terceros
