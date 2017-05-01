@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 01:50+0000\n"
-"PO-Revision-Date: 2017-03-13 13:00+0000\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-25 10:43+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "AEAT 115 report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:109
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:117
 #, python-format
 msgid "Account Move Lines"
 msgstr ""
@@ -201,7 +201,7 @@ msgstr "Nom du fichier"
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr ""
+msgstr "Exercice fiscal"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,contact_name:0
@@ -320,7 +320,7 @@ msgstr "Téléphone"
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Comptabilisé"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,previous_number:0
@@ -345,6 +345,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:133
+#, python-format
+msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115

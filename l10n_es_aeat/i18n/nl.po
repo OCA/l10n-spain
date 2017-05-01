@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-23 13:09+0000\n"
-"PO-Revision-Date: 2017-02-01 11:20+0000\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-25 10:41+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:211
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:213
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr ""
@@ -185,7 +185,7 @@ msgstr "Sluiten"
 #: field:l10n.es.aeat.report,company_id:0
 #: field:l10n.es.aeat.report.tax.mapping,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Bedrijf"
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,partner_bank_id:0
@@ -307,7 +307,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Concept"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -491,7 +491,7 @@ msgstr ""
 #: field:l10n.es.aeat.report,journal_id:0
 #: field:l10n.es.aeat.report.tax.mapping,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Dagboek"
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,journal_id:0
@@ -690,7 +690,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Geboekt"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
@@ -893,7 +893,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:account.move.line:l10n_es_aeat.view_move_line_tree
 msgid "Total"
-msgstr ""
+msgstr "Totaal"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0

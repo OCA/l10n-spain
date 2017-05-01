@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-19 10:40+0000\n"
-"PO-Revision-Date: 2017-01-19 20:17+0000\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-28 16:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -262,6 +262,12 @@ msgid "DVD"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_search
+#: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_search
+msgid "Date"
+msgstr "Datum"
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,date_invoice:0
 #: field:l10n.es.aeat.mod340.investment,date_invoice:0
 #: field:l10n.es.aeat.mod340.issued,date_invoice:0
@@ -417,6 +423,12 @@ msgid "General"
 msgstr "Splošno"
 
 #. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_search
+#: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_search
+msgid "Group by"
+msgstr "Združi po"
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,id:0
 #: field:l10n.es.aeat.mod340.export_to_boe,id:0
 #: field:l10n.es.aeat.mod340.intracomunitarias,id:0
@@ -429,6 +441,12 @@ msgstr "Splošno"
 #: field:l10n.es.aeat.mod340.tax_summary,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_form
+#: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
+msgid "Identification"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
@@ -452,6 +470,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: field:account.tax,is_340_reserve_charge:0
+#: field:account.tax.template,is_340_reserve_charge:0
 msgid "Include in mod340 as reserve charge"
 msgstr ""
 
@@ -465,11 +484,11 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:388
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:296
 #, python-format
 msgid ""
-"Invoice  %s, Amount untaxed Lines %.2f do not  correspond to AmountUntaxed "
-"on Invoice %.2f"
+"Invoice %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on "
+"Invoice %.2f"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -499,14 +518,26 @@ msgid "Invoices invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.tax_summary,issue_ids:0
+msgid "Issue ids"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
+#: selection:l10n.es.aeat.mod340.tax_summary,summary_type:0
+msgid "Issued"
+msgstr "Izdano"
+
+#. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
 msgid "Issued invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:270
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_form
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
+#, python-format
 msgid "Issued invoices"
 msgstr ""
 
@@ -553,9 +584,9 @@ msgid "LIBRO REGISTRO FACTURAS RECIBIDAS"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:117
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:90
 #, python-format
-msgid "La siguiente empresa notiene un pais relacionado: %s"
+msgid "La siguiente empresa no tiene un pais relacionado: %s"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -738,10 +769,17 @@ msgstr ""
 #: model:ir.model,name:l10n_es_aeat_mod340.model_res_partner
 #: field:l10n.es.aeat.mod340.intracomunitarias,partner_id:0
 #: field:l10n.es.aeat.mod340.investment,partner_id:0
+#: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_search
 #: field:l10n.es.aeat.mod340.issued,partner_id:0
+#: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_search
 #: field:l10n.es.aeat.mod340.received,partner_id:0
 msgid "Partner"
 msgstr "Partner"
+
+#. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
+msgid "Payment"
+msgstr "Plačilo"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.intracomunitarias,payment_amount:0
@@ -779,7 +817,7 @@ msgstr "Telefon"
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Knjiženo"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,previous_number:0
@@ -808,9 +846,14 @@ msgid "RESUMEN FACTURAS RECIBIDAS"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340.tax_summary,type:0
+#: selection:l10n.es.aeat.mod340.tax_summary,summary_type:0
 msgid "Received"
 msgstr "Prejeto"
+
+#. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.tax_summary,received_ids:0
+msgid "Received ids"
+msgstr ""
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
@@ -818,9 +861,11 @@ msgid "Received invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:274
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
+#, python-format
 msgid "Received invoices"
 msgstr ""
 
@@ -859,6 +904,8 @@ msgid "Substitutive"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_form
+#: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
 msgid "Summary"
 msgstr ""
@@ -889,6 +936,11 @@ msgid "Summary taxes"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: field:l10n.es.aeat.mod340.tax_summary,summary_type:0
+msgid "Summary type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.received,supplier_invoice_number:0
 msgid "Supplier invoice number"
 msgstr ""
@@ -896,6 +948,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,support_type:0
 msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.tax_line_issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_tax_line_issued_form
+msgid "Surcharge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -971,6 +1028,14 @@ msgid "Tax surcharge percentage"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_form
+#: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
+#: view:l10n.es.aeat.mod340.tax_line_issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_tax_line_issued_form
+#: view:l10n.es.aeat.mod340.tax_line_received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_tax_line_received_form
+msgid "Taxes"
+msgstr "Davki"
+
+#. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,support_type:0
 msgid "Telematics"
 msgstr ""
@@ -981,22 +1046,20 @@ msgid "Teléfono de contacto:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: model:ir.model,name:l10n_es_aeat_mod340.model_account_tax_template
+msgid "Templates for Taxes"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: code:addons/l10n_es_aeat_mod340/wizard/wizard_update_charts_accounts.py:30
 #, python-format
 msgid "The 340 model field is different.\n"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: help:l10n.es.aeat.mod340.report,number_records:0
-#: help:l10n.es.aeat.mod340.report,total:0
-#: help:l10n.es.aeat.mod340.report,total_rec:0
-#: help:l10n.es.aeat.mod340.report,total_sharetax:0
-#: help:l10n.es.aeat.mod340.report,total_sharetax_rec:0
-#: help:l10n.es.aeat.mod340.report,total_taxable:0
-#: help:l10n.es.aeat.mod340.report,total_taxable_rec:0
-msgid ""
-"The declaration will include partners with the total of operations over this"
-" limit"
+#: code:addons/l10n_es_aeat_mod340/wizard/wizard_update_charts_accounts.py:45
+#, python-format
+msgid "The field is 340 reverse charge is different.\n"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
@@ -1033,7 +1096,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:70
+#: code:addons/l10n_es_aeat_mod340/wizard/calculate_mod340_records.py:54
 #, python-format
 msgid "This company doesn't have NIF"
 msgstr ""
@@ -1147,16 +1210,6 @@ msgid "get"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: selection:l10n.es.aeat.mod340.tax_summary,type:0
-msgid "issued"
-msgstr ""
-
-#. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.export_to_boe,state:0
 msgid "open"
 msgstr "odprtje"
-
-#. module: l10n_es_aeat_mod340
-#: field:l10n.es.aeat.mod340.tax_summary,type:0
-msgid "unknown"
-msgstr "neznano"

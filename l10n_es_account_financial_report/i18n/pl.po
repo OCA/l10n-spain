@@ -1,0 +1,194 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_financial_report
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-29 02:56+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Account"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Account name"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: selection:account.journal.entries.report,sort_selection:0
+msgid "By date"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: selection:account.journal.entries.report,sort_selection:0
+msgid "By entry number"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: selection:account.journal.entries.report,sort_selection:0
+msgid "By reference number"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
+msgid "Cancel"
+msgstr "Anuluj"
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,create_uid:0
+msgid "Created by"
+msgstr "Utworzone przez"
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,create_date:0
+msgid "Created on"
+msgstr "Utworzono"
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Credit"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Date"
+msgstr "Data"
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Debit"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Description"
+msgstr "Opis"
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,display_name:0
+#: field:report.l10n_es_account_financial_report.journal_entries,display_name:0
+msgid "Display Name"
+msgstr "Wyświetlana nazwa "
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,sort_selection:0
+msgid "Entries Sorted By"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Entry"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,id:0
+#: field:report.l10n_es_account_financial_report.journal_entries,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,journal_ids:0
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Journal"
+msgstr "Dziennik"
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Journal Ledger -"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: model:ir.ui.menu,name:l10n_es_account_financial_report.menu_journal_entries_report
+msgid "Journal by entries"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
+msgid "Journals"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,landscape:0
+msgid "Landscape mode"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,__last_update:0
+#: field:report.l10n_es_account_financial_report.journal_entries,__last_update:0
+msgid "Last Modified on"
+msgstr "Ostatnio modyfikowano"
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,write_uid:0
+msgid "Last Updated by"
+msgstr "Ostatnio modyfikowane przez"
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,write_date:0
+msgid "Last Updated on"
+msgstr "Ostatnia zmiana"
+
+#. module: l10n_es_account_financial_report
+#: code:addons/l10n_es_account_financial_report/wizard/wizard_print_journal_entries.py:58
+#, python-format
+msgid "No data available"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: code:addons/l10n_es_account_financial_report/wizard/wizard_print_journal_entries.py:59
+#, python-format
+msgid "No records found for your selection!"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_es_account_financial_report
+#: field:account.journal.entries.report,period_ids:0
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Period"
+msgstr "Okres"
+
+#. module: l10n_es_account_financial_report
+#: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
+msgid "Periods"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
+msgid "Print"
+msgstr "Drukuj"
+
+#. module: l10n_es_account_financial_report
+#: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
+#: model:ir.actions.act_window,name:l10n_es_account_financial_report.wizard_account_journal_entries_report_new
+#: model:ir.actions.report.xml,name:l10n_es_account_financial_report.account_journal_entries_report
+#: model:ir.model,name:l10n_es_account_financial_report.model_account_journal_entries_report
+msgid "Print journal by entries"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:website:l10n_es_account_financial_report.journal_entries
+msgid "Reference"
+msgstr ""
+
+#. module: l10n_es_account_financial_report
+#: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
+msgid "or"
+msgstr "lub"

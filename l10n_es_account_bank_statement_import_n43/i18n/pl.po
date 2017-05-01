@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_bank_statement_import_n43
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-25 10:43+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Polish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pl\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:131
+#, python-format
+msgid ""
+"Credit amount doesn't match with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: field:account.journal,n43_date_type:0
+msgid "Date type for N43 Import"
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:127
+#, python-format
+msgid ""
+"Debit amount doesn't match with the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:121
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:126
+#, python-format
+msgid "Error in C43 file"
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:140
+#, python-format
+msgid ""
+"Final balance amount = (initial balance + credit - debit) doesn't match with"
+" the defined in the last record of account."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: model:ir.model,name:l10n_es_account_bank_statement_import_n43.model_account_bank_statement_import
+msgid "Import Bank Statement"
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: model:ir.model,name:l10n_es_account_bank_statement_import_n43.model_account_journal
+msgid "Journal"
+msgstr "Dziennik"
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: view:account.journal:l10n_es_account_bank_statement_import_n43.view_account_journal_form_n43
+msgid "Norm 43 options"
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:122
+#, python-format
+msgid ""
+"Number of credit records doesn't match with the defined in the last record "
+"of account."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:117
+#, python-format
+msgid ""
+"Number of debit records doesn't match with the defined in the last record of"
+" account."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:154
+#, python-format
+msgid "Number of records doesn't match with the defined in the last record."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: selection:account.journal,n43_date_type:0
+msgid "Operation Date"
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:187
+#, python-format
+msgid "Record type %s is not valid."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: selection:account.journal,n43_date_type:0
+msgid "Value Date"
+msgstr ""

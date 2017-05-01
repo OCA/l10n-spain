@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 01:49+0000\n"
-"PO-Revision-Date: 2017-03-13 13:00+0000\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-25 23:05+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:211
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:213
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr ""
@@ -410,7 +410,7 @@ msgstr "Nom du fichier"
 #: field:l10n.es.aeat.report,fiscalyear_id:0
 #: field:l10n.es.aeat.report.tax.mapping,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr ""
+msgstr "Exercice fiscal"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,fixed_value:0
@@ -690,7 +690,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Comptabilisé"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
@@ -922,7 +922,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Avertissement"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:74
