@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_aeat_sii_map_admin,aeat.sii.map admin,model_aeat_sii_map,base.group_system,1,1,1,1
+access_model_aeat_sii_map_aeat,aeat.sii.map aeat,model_aeat_sii_map,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_sii_map_lines_admin,aeat.sii.map.lines admin,model_aeat_sii_map_lines,base.group_system,1,1,1,1
+access_model_aeat_sii_map_lines_aeat,aeat.sii.map.lines aeat,model_aeat_sii_map_lines,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_sii_mapping_registration_keys_admin,aeat.sii.mapping.registration.keys admin,model_aeat_sii_mapping_registration_keys,base.group_system,1,1,1,1
+access_model_aeat_sii_mapping_registration_keys_aeat,aeat.sii.mapping.registration.keys aeat,model_aeat_sii_mapping_registration_keys,l10n_es_aeat.group_account_aeat,1,0,0,0
