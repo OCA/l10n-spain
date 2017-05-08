@@ -54,14 +54,13 @@ de AEAT.
 Known issues / Roadmap
 ======================
 
-* Facturas de bienes de inversión
 * Comunicación de cobros y pagos
-* Determinadas facturas intracomunitarias
+* Determinadas facturas intracomunitarias (Articulo 66 RIVA)
 * Factura simplificada
 * Facturas No sujetas según el art 7.14 y no sujetas en el TAI
-* Asistente para consultar los documentos comunicados 
-* Carga directa del certificado desde Odoo (PR Enviado)
-* Control de longitud y tipo de datos
+* Asistente para consultar los documentos comunicados
+* Libro de bienes de inversión (Libro anual se crea un módulo aparte)
+* Regimenes especial de seguros y agencias de viaje
 * Usar modulo connector
 
 Bug Tracker
@@ -83,7 +82,9 @@ Images
 Contributors
 ------------
 
-* Ignacio Ibeas <ignacio@acysos.com>
+* Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>
+* Diagram Software S.L.
+* Ramon Guiu - Minorisa S.L. <ramon.guiu@minorisa.net> 
 
 Funders
 -------
