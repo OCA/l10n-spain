@@ -1,0 +1,420 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_aeat_sii
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-07 19:33+0000\n"
+"PO-Revision-Date: 2017-05-07 19:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+msgid "AEAT"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:res.company:l10n_es_aeat_sii.view_company_sii_form
+msgid "AEAT SII Configuration"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:l10n.es.aeat.sii,state:0
+msgid "Active"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys
+#: model:ir.model,name:l10n_es_aeat_sii.model_l10n_es_aeat_sii_mapping_registration_keys
+msgid "Aeat SII Invoice Registration Keys"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.map:l10n_es_aeat_sii.aeat_sii_map_view_form
+#: view:aeat.sii.map:l10n_es_aeat_sii.aeat_sii_map_view_tree
+#: view:aeat.sii.map.lines:l10n_es_aeat_sii.l10n_es_aeat_sii_map_lines_view_tree
+#: field:aeat.sii.map.lines,sii_map_id:0
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_mapping
+#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_map
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_map
+msgid "Aeat SII Map"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_map_lines
+msgid "Aeat SII Map Lines"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
+#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_tree
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_mapping_registration_keys
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_mapping_registration_keys
+msgid "Aeat SII Registration Keys"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,refund_type:0
+msgid "By differences"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,refund_type:0
+msgid "By substitution"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,chart_template_id:0
+msgid "Chart Template"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: help:res.company,use_connector:0
+msgid "Check it to use connector instead to send the invoice when it is validated"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map.lines,code:0
+#: field:aeat.sii.mapping.registration.keys,code:0
+msgid "Code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:res.company:l10n_es_aeat_sii.view_company_sii_form
+msgid "Configuration"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,create_uid:0
+#: field:aeat.sii.map.lines,create_uid:0
+#: field:aeat.sii.mapping.registration.keys,create_uid:0
+#: field:l10n.es.aeat.sii,create_uid:0
+#: field:l10n.es.aeat.sii.password,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,create_date:0
+#: field:aeat.sii.map.lines,create_date:0
+#: field:aeat.sii.mapping.registration.keys,create_date:0
+#: field:l10n.es.aeat.sii,create_date:0
+#: field:l10n.es.aeat.sii.password,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,date_from:0
+msgid "Date from"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,date_to:0
+msgid "Date to"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,display_name:0
+#: field:aeat.sii.map.lines,display_name:0
+#: field:aeat.sii.mapping.registration.keys,display_name:0
+#: field:l10n.es.aeat.sii,display_name:0
+#: field:l10n.es.aeat.sii.password,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:l10n.es.aeat.sii,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,date_end:0
+msgid "End Date"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/aeat_sii_map.py:38
+#, python-format
+msgid "Error! The dates of the record overlap with an existing record."
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,file:0
+msgid "File"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,folder:0
+msgid "Folder Name"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
+msgid "Group By..."
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,id:0
+#: field:aeat.sii.map.lines,id:0
+#: field:aeat.sii.mapping.registration.keys,id:0
+#: field:l10n.es.aeat.sii,id:0
+#: field:l10n.es.aeat.sii.password,id:0
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:28
+#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+#, python-format
+msgid "Insert Password"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,__last_update:0
+#: field:aeat.sii.map.lines,__last_update:0
+#: field:aeat.sii.mapping.registration.keys,__last_update:0
+#: field:l10n.es.aeat.sii,__last_update:0
+#: field:l10n.es.aeat.sii.password,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,write_uid:0
+#: field:aeat.sii.map.lines,write_uid:0
+#: field:aeat.sii.mapping.registration.keys,write_uid:0
+#: field:l10n.es.aeat.sii,write_uid:0
+#: field:l10n.es.aeat.sii.password,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,write_date:0
+#: field:aeat.sii.map.lines,write_date:0
+#: field:aeat.sii.mapping.registration.keys,write_date:0
+#: field:l10n.es.aeat.sii,write_date:0
+#: field:l10n.es.aeat.sii.password,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,map_lines:0
+msgid "Lines"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
+msgid "Load Certificate"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.map:l10n_es_aeat_sii.aeat_sii_map_view_form
+msgid "Mapping Lines"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,name:0
+msgid "Model"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map.lines,name:0
+#: field:aeat.sii.mapping.registration.keys,name:0
+#: field:l10n.es.aeat.sii,name:0
+msgid "Name"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
+#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+msgid "Obtain Keys"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/wizard/aeat_sii_password.py:65
+#, python-format
+msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii.password,password:0
+msgid "Password"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,private_key:0
+msgid "Private Key"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,public_key:0
+msgid "Public Key"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:aeat.sii.mapping.registration.keys,type:0
+msgid "Purchase"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,refund_type:0
+msgid "Refund Type"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,registration_key:0
+msgid "Registration key"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.l10n_es_sii_action
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_parent_menu
+msgid "SII"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_menu
+msgid "SII Certificate"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+msgid "SII Information"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+msgid "SII Result"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_return:0
+msgid "SII Return"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_sent:0
+msgid "SII Sent"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,sii_version:0
+msgid "SII Version"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:aeat.sii.mapping.registration.keys,type:0
+msgid "Sale"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,date_start:0
+msgid "Start Date"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,state:0
+msgid "State"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map.lines,taxes:0
+msgid "Taxes"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,sii_test:0
+msgid "Test Enviroment"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/res_company.py:17
+#, python-format
+msgid "The module \"Connector\" is not installed. You have to install it to activate this option"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
+msgid "To Active"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
+#: field:aeat.sii.mapping.registration.keys,type:0
+msgid "Type"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,use_connector:0
+msgid "Use connector"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_ic:0
+msgid "WSDL Intra-Community"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_in:0
+msgid "WSDL Invoice In"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_out:0
+msgid "WSDL Invoice Out"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_prm:0
+msgid "WSDL Money Payment Received"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_pr:0
+msgid "WSDL Payment Received"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_ps:0
+msgid "WSDL Payment Sent"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_pi:0
+msgid "WSDL Property Investment"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:356
+#, python-format
+msgid "You have to select what account chart template use this company."
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+msgid "or"
+msgstr ""
+
