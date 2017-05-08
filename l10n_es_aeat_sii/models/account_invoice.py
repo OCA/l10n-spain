@@ -2,23 +2,86 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 from requests import Session
 from zeep import Client
 from zeep.transports import Transport
 from zeep.plugins import HistoryPlugin
 from datetime import datetime
+from openerp.exceptions import Warning
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
-    
+
+    def _get_default_key(self):
+        sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
+        type = self._context.get('type')
+        if type in ['in_invoice', 'in_refund']:
+            key = sii_key_obj.search(
+                [('code', '=', '01'), ('type', '=', 'purchase')], limit=1)
+        else:
+            key = sii_key_obj.search(
+                [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
+        return key
+
     sii_sent = fields.Boolean('SII Sent')
     sii_return = fields.Text('SII Return')
     refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
         string="Refund Type")
-    
+    registration_key = fields.Many2one(
+        comodel_name='aeat.sii.mapping.registration.keys',
+        string="Registration key", required=True, default=_get_default_key)
+
+    @api.multi
+    def map_tax_template(self, tax_template, mapping_taxes):
+        # Adapted from account_chart_update module
+        """Adds a tax template -> tax id to the mapping."""
+        if not tax_template:
+            return self.env['account.tax']
+        if mapping_taxes.get(tax_template):
+            return mapping_taxes[tax_template]
+        # search inactive taxes too, to avoid re-creating
+        # taxes that have been deactivated before
+        tax_obj = self.env['account.tax'].with_context(active_test=False)
+        criteria = ['|',
+                    ('name', '=', tax_template.name),
+                    ('description', '=', tax_template.name)]
+        if tax_template.description:
+            criteria = ['|', '|'] + criteria
+            criteria += [('description', '=', tax_template.description),
+                         ('name', '=', tax_template.description)]
+        criteria += [('company_id', '=', self.company_id.id)]
+        taxes = tax_obj.search(criteria)
+        mapping_taxes[tax_template] = (
+            taxes and taxes[0] or self.env['account.tax'])
+        return mapping_taxes[tax_template]
+
+    @api.multi
+    def _get_taxes_map(self, codes, date):
+        # Return the codes that correspond to that sii map line codes
+        taxes = []
+        sii_map_obj = self.env['aeat.sii.map']
+        sii_map_line_obj = self.env['aeat.sii.map.lines']
+        sii_map = sii_map_obj.search(
+            ['|',
+             ('date_from', '<=', date),
+             ('date_from', '=', False),
+             '|',
+             ('date_to', '>=', date),
+             ('date_to', '=', False)], limit=1)
+        mapping_taxes = {}
+        for code in codes:
+            tax_templates = sii_map_line_obj.search(
+                [('code', '=', code), ('sii_map_id', '=', sii_map.id)],
+                limit=1).taxes
+            for tax_template in tax_templates:
+                tax = self.map_tax_template(tax_template, mapping_taxes)
+                if tax:
+                    taxes.append(tax)
+        return taxes
+
     @api.multi
     def _change_date_format(self, date):
         datetimeobject = datetime.strptime(date,'%Y-%m-%d')
@@ -39,12 +102,11 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_tax_line_req(self, tax_type, line, line_taxes):
         taxes = False
+        taxes_RE = self._get_taxes_map(
+            ['RE'], line.invoice_id.date_invoice)
         if len(line_taxes) > 1:
-            req_ids = line_taxes.search([('description', 'in', [
-                'P_REQ5.2', 'S_REQ52', 'P_REQ14', 'S_REQ14', 'P_REQ05',
-                'S_REQ05'])])
             for tax in line_taxes:
-                if tax in req_ids:
+                if tax in taxes_RE:
                     price = line.price_unit * (1 - (
                         line.discount or 0.0) / 100.0)
                     taxes = tax.compute_all(
@@ -106,19 +168,31 @@ class AccountInvoice(models.Model):
         taxes_sii = {}
         taxes_f = {}
         taxes_to = {}
+        taxes_SFESB = self._get_taxes_map(
+            ['SFESB'], invoice.date_invoice)
+#         taxes_SFESBE = self._get_taxes_map(
+#             ['SFESBE'], invoice.date_invoice)
+        taxes_SFESISP = self._get_taxes_map(
+            ['SFESISP'], invoice.date_invoice)
+#         taxes_SFESISPS = self._get_taxes_map(
+#             ['SFESISPS'], invoice.date_invoice)
+        taxes_SFENS = self._get_taxes_map(
+            ['SFENS'], invoice.date_invoice)
+        taxes_SFESS = self._get_taxes_map(
+            ['SFESS'], invoice.date_invoice)
+        taxes_SFESSE = self._get_taxes_map(
+            ['SFESSE'], invoice.date_invoice)
         for line in invoice.invoice_line:
             for tax_line in line.invoice_line_tax_id:
-                if tax_line.description in [
-                    'S_IVA21B', 'S_IVA10B', 'S_IVA4B', 'S_IVA0_ISP',
-                    'S_IVA_NS']:
+                if (tax_line in taxes_SFESB or tax_line in taxes_SFESISP or
+                    tax_line in taxes_SFENS):
                     if 'DesgloseFactura' not in taxes_sii:
                         taxes_sii['DesgloseFactura'] = {}
-                    if tax_line.description in [
-                        'S_IVA21B', 'S_IVA10B', 'S_IVA4B']:
+                    if tax_line in taxes_SFESB:
                         if 'Sujeta' not in taxes_sii['DesgloseFactura']:
                             taxes_sii['DesgloseFactura']['Sujeta'] = {}
 #                     TODO l10n_es no tiene impuesto exento de bienes corrientes
-#                         if tax_line.description in ['S_IVA0']:
+#                         if tax_line in taxes_SFESBE:
 #                             if 'Exenta' not in taxes_sii['DesgloseFactura'][
 #                                 'Sujeta']:
 #                                 taxes_sii['DesgloseFactura']['Sujeta'][
@@ -127,13 +201,12 @@ class AccountInvoice(models.Model):
 #                                 taxes_sii['DesgloseFactura']['Sujeta'][
 #                                     'Exenta']['BaseImponible'] += line.price_subtotal
 #                         TODO Facturas No sujetas
-                        if tax_line.description in [
-                            'S_IVA21B', 'S_IVA10B', 'S_IVA4B', 'S_IVA0_ISP']:
+                        if tax_line in taxes_SFESB or tax_line in taxes_SFESISP:
                             if 'NoExenta' not in taxes_sii['DesgloseFactura'][
                                 'Sujeta']:
                                 taxes_sii['DesgloseFactura']['Sujeta'][
                                     'NoExenta'] = {}
-                            if tax_line.description in ['S_IVA0_ISP']:
+                            if tax_line in taxes_SFESISP:
                                 TipoNoExenta = 'S2'
                             else:
                                 TipoNoExenta = 'S1'  
@@ -156,8 +229,7 @@ class AccountInvoice(models.Model):
                                     taxes_f, tax_line, line,
                                     line.invoice_line_tax_id,
                                     invoice)
-                if tax_line.description in [
-                    'S_IVA21S', 'S_IVA10S', 'S_IVA4S', 'S_IVA0']:
+                if tax_line in taxes_SFESS or tax_line in taxes_SFESSE:
                     if 'DesgloseTipoOperacion' not in taxes_sii:
                         taxes_sii['DesgloseTipoOperacion'] = {}
                     if 'PrestacionServicios' not in taxes_sii[
@@ -168,7 +240,7 @@ class AccountInvoice(models.Model):
                             'PrestacionServicios']:
                         taxes_sii['DesgloseTipoOperacion'][
                             'PrestacionServicios']['Sujeta'] = {}
-                    if tax_line.description in ['']:
+                    if tax_line in taxes_SFESSE:
                         if 'Exenta' not in taxes_sii['DesgloseFactura'][
                             'Sujeta']:
                             taxes_sii['DesgloseFactura']['Sujeta'][
@@ -178,14 +250,13 @@ class AccountInvoice(models.Model):
                             taxes_sii['DesgloseFactura']['Sujeta'][
                                 'Exenta']['BaeImponible'] += line.price_subtotal
 #                     TODO Facturas no sujetas
-                    if tax_line.description in [
-                        'S_IVA21S', 'S_IVA10S', 'S_IVA4S']:
+                    if tax_line in taxes_SFESS:
                         if 'NoExenta' not in taxes_sii['DesgloseTipoOperacion'][
                             'PrestacionServicios']['Sujeta']:
                             taxes_sii['DesgloseTipoOperacion'][
                             'PrestacionServicios']['Sujeta']['NoExenta'] = {}
 #                             TODO l10n_es_ no tiene impuesto ISP de servicios
-#                             if tax_line.description in ['S_IVA0S_ISP']:
+#                             if tax_line in taxes_SFESISPS:
 #                                 TipoNoExenta = 'S2'
 #                             else:
                             TipoNoExenta = 'S1'
@@ -229,14 +300,14 @@ class AccountInvoice(models.Model):
         taxes_sii = {}
         taxes_f = {}
         taxes_isp = {}
+        taxes_SFRS = self._get_taxes_map(
+            ['SFRS'], invoice.date_invoice)
+        taxes_SFRISP = self._get_taxes_map(
+            ['SFRISP'], invoice.date_invoice)
         for line in invoice.invoice_line:
             for tax_line in line.invoice_line_tax_id:
-                if tax_line.description in [
-                    'P_IVA21_BC', 'P_IVA21_SC', 'P_IVA21_ISP', 'P_IVA10_BC',
-                    'P_IVA10_SC', 'P_IVA10_ISP', 'P_IVA4_BC', 'P_IVA4_SC',
-                    'P_IVA4_ISP', 'P_IVA0_BC', 'P_IVA0_NS']:
-                    if tax_line.description in [
-                        'P_IVA21_ISP', 'P_IVA10_ISP', 'P_IVA4_ISP']:
+                if tax_line in taxes_SFRS or tax_line in taxes_SFRISP:
+                    if tax_line in taxes_SFRISP:
                         if 'InversionSujetoPasivo' not in taxes_sii:
                             taxes_sii['InversionSujetoPasivo'] = {}
                             taxes_sii['InversionSujetoPasivo'][
@@ -281,13 +352,17 @@ class AccountInvoice(models.Model):
             invoice.period_id.fiscalyear_id.date_start).year
         Periodo = '%02d' % fields.Date.from_string(
             invoice.period_id.date_start).month
-        
+        if not company.chart_template_id:
+            raise Warning(_(
+                'You have to select what account chart template use this'
+                ' company.'))
         if invoice.type in ['out_invoice', 'out_refund']:
             TipoFactura = 'F1'
 #           TODO Los 5 tipos de facturas rectificativas
             if invoice.type == 'out_refund':
                 TipoFactura = 'R4'
             TipoDesglose = self._get_sii_out_taxes(invoice)
+            key = invoice.registration_key.code
             invoices = {
                 "IDFactura":{
                     "IDEmisorFactura": {
@@ -301,7 +376,7 @@ class AccountInvoice(models.Model):
                     },
                 "FacturaExpedida": {
                     "TipoFactura": TipoFactura,
-                    "ClaveRegimenEspecialOTrascendencia": "01",
+                    "ClaveRegimenEspecialOTrascendencia": key,
                     "DescripcionOperacion": invoice.name,
                     "Contraparte": {
                         "NombreRazon": invoice.partner_id.name,
