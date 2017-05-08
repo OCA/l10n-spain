@@ -12,6 +12,7 @@
 					    <group string="SII Information">
 					        <field name="refund_type" 
 					        attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+					        <field name="registration_key" domain="[('type', '=', 'purchase')]"/>
 					    </group>
 						<group string="SII Result">
 							<field name="sii_sent" />
@@ -32,6 +33,7 @@
                         <group string="SII Information">
                             <field name="refund_type" 
                             attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                            <field name="registration_key" domain="[('type', '=', 'sale')]"/>
                         </group>
 						<group string="SII Result">
 							<field name="sii_sent" />
