@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
+<odoo>
+    <data noupdate="1">
+
+        <record id="payment_acquirer_redsys" model="payment.acquirer">
+            <field name="name">Redsys</field>
+            <field name="image" type="base64"
+                   file="payment_redsys/static/description/icon.png"/>
+            <field name="provider">redsys</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="redsys_acquirer_button"/>
+            <field name="environment">test</field>
+            <field name="redsys_merchant_name">Bussines name</field>
+            <field name="redsys_merchant_titular">Bussines titular</field>
+            <field name="redsys_merchant_code">8888888</field>
+            <field name="redsys_merchant_description">Bussines description</field>
+            <field name="redsys_secret_key">xxxxxxxxxxxx -- SHA256</field>
+            <field name="environment">test</field>
+            <field name="description" type="html">
+                <p>
+                    A payment gateway to accept online payments via credit cards.
+                </p>
+                <ul>
+                    <li><i class="fa fa-check"/>eCommerce</li>
+                </ul>
+            </field>
+            <field name="pre_msg"><![CDATA[
+<p>You will be redirected to the Redsys payment gateway after clicking on the payment button.</p>]]></field>
+        </record>
+
+    </data>
+</odoo>

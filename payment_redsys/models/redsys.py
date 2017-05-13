@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
+# © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import hashlib
 import hmac
 import base64
 import logging
 import json
 
-from openerp import models, fields, api, _
-from openerp.addons.payment.models.payment_acquirer import ValidationError
-from openerp.addons import decimal_precision as dp
-from openerp.tools.float_utils import float_compare
-from openerp import exceptions
+from odoo import models, fields, api, _
+from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.addons import decimal_precision as dp
+from odoo.tools.float_utils import float_compare
+from odoo import exceptions
+from odoo.http import request
+
 _logger = logging.getLogger(__name__)
 
 try:
@@ -35,14 +40,7 @@ class AcquirerRedsys(models.Model):
                 'https://sis-t.redsys.es:25443/sis/realizarPago/',
             }
 
-    @api.model
-    def _get_providers(self):
-        providers = super(AcquirerRedsys, self)._get_providers()
-        providers.append(['redsys', 'Redsys'])
-        return providers
-
-    redsys_merchant_url = fields.Char('Merchant URL',
-                                      required_if_provider='redsys')
+    provider = fields.Selection(selection_add=[('redsys', 'Redsys')])
     redsys_merchant_name = fields.Char('Merchant Name',
                                        required_if_provider='redsys')
     redsys_merchant_titular = fields.Char('Merchant Titular',
@@ -99,54 +97,64 @@ class AcquirerRedsys(models.Model):
             raise exceptions.Warning(
                 _('Partial payment percent must be between 0 and 100'))
 
-    def _prepare_merchant_parameters(self, acquirer, tx_values):
-        base_url = self.env['ir.config_parameter'].get_param('web.base.url')
-        sale_order = self.env['sale.order'].search(
-            [('name', '=', tx_values['reference'])])
+    @api.model
+    def _get_website_url(self, path=None):
+        website_id = self.env.context.get('website_id', False)
+        if website_id:
+            base_url = '%s://%s' % (
+                request.httprequest.environ['wsgi.url_scheme'],
+                self.env['website'].browse(website_id).domain
+            )
+        else:
+            base_url = self.env['ir.config_parameter'].get_param(
+                'web.base.url')
+        if path:
+            base_url = '%s%s' % (base_url, path)
+        return base_url
 
-        if acquirer.redsys_percent_partial > 0:
+    def _prepare_merchant_parameters(self, tx_values):
+        # Check multi-website
+        base_url = self.env['ir.config_parameter'].get_param(
+            'web.base.url')
+        if self.redsys_percent_partial > 0:
             amount = tx_values['amount']
             tx_values['amount'] = amount - (
-                amount * acquirer.redsys_percent_partial / 100)
-
+                amount * self.redsys_percent_partial / 100)
         values = {
             'Ds_Sermepa_Url': (
-                self._get_redsys_urls(acquirer.environment)[
+                self._get_redsys_urls(self.environment)[
                     'redsys_form_url']),
             'Ds_Merchant_Amount': str(int(round(tx_values['amount'] * 100))),
-            'Ds_Merchant_Currency': acquirer.redsys_currency or '978',
+            'Ds_Merchant_Currency': self.redsys_currency or '978',
             'Ds_Merchant_Order': (
                 tx_values['reference'] and tx_values['reference'][-12:] or
                 False),
             'Ds_Merchant_MerchantCode': (
-                acquirer.redsys_merchant_code and
-                acquirer.redsys_merchant_code[:9]),
-            'Ds_Merchant_Terminal': acquirer.redsys_terminal or '1',
+                self.redsys_merchant_code and
+                self.redsys_merchant_code[:9]),
+            'Ds_Merchant_Terminal': self.redsys_terminal or '1',
             'Ds_Merchant_TransactionType': (
-                acquirer.redsys_transaction_type or '0'),
+                self.redsys_transaction_type or '0'),
             'Ds_Merchant_Titular': (
-                acquirer.redsys_merchant_titular[:60] and
-                acquirer.redsys_merchant_titular[:60]),
+                self.redsys_merchant_titular[:60] and
+                self.redsys_merchant_titular[:60]),
             'Ds_Merchant_MerchantName': (
-                acquirer.redsys_merchant_name and
-                acquirer.redsys_merchant_name[:25]),
-            'Ds_Merchant_MerchantUrl': (
-                acquirer.redsys_merchant_url and
-                acquirer.redsys_merchant_url[:250] or ''),
-            'Ds_Merchant_MerchantData': acquirer.redsys_merchant_data or '',
+                self.redsys_merchant_name and
+                self.redsys_merchant_name[:25]),
+            'Ds_Merchant_MerchantUrl':
+                ('%s%s' % (base_url, '/payment/redsys/return'))[:250] or False,
+            'Ds_Merchant_MerchantData': self.redsys_merchant_data or '',
             'Ds_Merchant_ProductDescription': (
                 self._product_description(tx_values['reference']) or
-                acquirer.redsys_merchant_description and
-                acquirer.redsys_merchant_description[:125]),
+                self.redsys_merchant_description and
+                self.redsys_merchant_description[:125]),
             'Ds_Merchant_ConsumerLanguage': (
-                acquirer.redsys_merchant_lang or '001'),
+                self.redsys_merchant_lang or '001'),
             'Ds_Merchant_UrlOk':
-            '%s/payment/redsys/result/redsys_result_ok?order_id=%s' % (
-                base_url, sale_order.id),
+            '%s/payment/redsys/result/redsys_result_ok' % base_url,
             'Ds_Merchant_UrlKo':
-            '%s/payment/redsys/result/redsys_result_ko?order_id=%s' % (
-                base_url, sale_order.id),
-            'Ds_Merchant_Paymethods': acquirer.redsys_pay_method or 'T',
+            '%s/payment/redsys/result/redsys_result_ko' % base_url,
+            'Ds_Merchant_Paymethods': self.redsys_pay_method or 'T',
         }
         return self._url_encode64(json.dumps(values))
 
@@ -176,20 +184,18 @@ class AcquirerRedsys(models.Model):
             digestmod=hashlib.sha256).digest()
         return self._url_encode64(dig)
 
-    @api.model
-    def redsys_form_generate_values(self, id, partner_values, tx_values):
-        acquirer = self.browse(id)
-        redsys_tx_values = dict(tx_values)
-
-        merchant_parameters = self._prepare_merchant_parameters(
-            acquirer, tx_values)
-        redsys_tx_values.update({
-            'Ds_SignatureVersion': str(acquirer.redsys_signature_version),
+    @api.multi
+    def redsys_form_generate_values(self, values):
+        self.ensure_one()
+        redsys_values = dict(values)
+        merchant_parameters = self._prepare_merchant_parameters(values)
+        redsys_values.update({
+            'Ds_SignatureVersion': str(self.redsys_signature_version),
             'Ds_MerchantParameters': merchant_parameters,
             'Ds_Signature': self.sign_parameters(
-                acquirer.redsys_secret_key, merchant_parameters),
+                self.redsys_secret_key, merchant_parameters),
         })
-        return partner_values, redsys_tx_values
+        return redsys_values
 
     @api.multi
     def redsys_get_form_action_url(self):
@@ -206,6 +212,12 @@ class AcquirerRedsys(models.Model):
 
 class TxRedsys(models.Model):
     _inherit = 'payment.transaction'
+
+    # Redsys status
+    _redsys_valid_tx_status = list(range(0, 100))
+    _redsys_pending_tx_status = list(range(101, 203))
+    _redsys_cancel_tx_status = [912, 9912]
+    _redsys_error_tx_status = list(range(9064, 9095))
 
     redsys_txnid = fields.Char('Transaction ID')
 
@@ -255,46 +267,46 @@ class TxRedsys(models.Model):
             raise ValidationError(error_msg)
         return tx
 
-    @api.model
-    def _redsys_form_get_invalid_parameters(self, tx, data):
+    @api.multi
+    def _redsys_form_get_invalid_parameters(self, data):
         invalid_parameters = []
         parameters_dic = self.merchant_params_json2dict(data)
-        if (tx.acquirer_reference and
-                parameters_dic.get('Ds_Order')) != tx.acquirer_reference:
+        if (self.acquirer_reference and
+                parameters_dic.get('Ds_Order')) != self.acquirer_reference:
             invalid_parameters.append(
                 ('Transaction Id', parameters_dic.get('Ds_Order'),
-                 tx.acquirer_reference))
+                 self.acquirer_reference))
 
         # check what is buyed
-        if tx.acquirer_id.redsys_percent_partial > 0.0:
-            new_amount = tx.amount - (
-                tx.amount * tx.acquirer_id.redsys_percent_partial / 100)
-            tx.amount = new_amount
+        if self.acquirer_id.redsys_percent_partial > 0.0:
+            new_amount = self.amount - (
+                self.amount * self.acquirer_id.redsys_percent_partial / 100)
+            self.amount = new_amount
 
         if (float_compare(float(parameters_dic.get('Ds_Amount', '0.0')) / 100,
-                          tx.amount, 2) != 0):
+                          self.amount, 2) != 0):
             invalid_parameters.append(
                 ('Amount', parameters_dic.get('Ds_Amount'),
-                 '%.2f' % tx.amount))
+                 '%.2f' % self.amount))
         return invalid_parameters
 
-    @api.model
-    def _redsys_form_validate(self, tx, data):
+    @api.multi
+    def _redsys_form_validate(self, data):
         parameters_dic = self.merchant_params_json2dict(data)
         status_code = int(parameters_dic.get('Ds_Response', '29999'))
-        if (status_code >= 0) and (status_code <= 99):
-            tx.write({
+        if status_code in self._redsys_valid_tx_status:
+            self.write({
                 'state': 'done',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
                 'state_message': _('Ok: %s') % parameters_dic.get(
                     'Ds_Response'),
             })
-            if tx.acquirer_id.send_quotation:
-                tx.sale_order_id.force_quotation_send()
+            if self.acquirer_id.send_quotation:
+                self.sale_order_id.force_quotation_send()
             return True
-        if (status_code >= 101) and (status_code <= 202):
+        if status_code in self._redsys_pending_tx_status:
             # 'Payment error: code: %s.'
-            tx.write({
+            self.write({
                 'state': 'pending',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
                 'state_message': _('Error: %s (%s)') % (
@@ -303,9 +315,9 @@ class TxRedsys(models.Model):
                 ),
             })
             return True
-        if (status_code == 912) and (status_code == 9912):
+        if status_code in self._redsys_cancel_tx_status:
             # 'Payment error: bank unavailable.'
-            tx.write({
+            self.write({
                 'state': 'cancel',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
                 'state_message': _('Bank Error: %s (%s)') % (
@@ -320,7 +332,7 @@ class TxRedsys(models.Model):
                 parameters_dic.get('Ds_ErrorCode')
             )
             _logger.info(error)
-            tx.write({
+            self.write({
                 'state': 'error',
                 'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
                 'state_message': error,
