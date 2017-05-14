@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- © 2016 Sergio Teruel <sergio.teruel@tecnativa.com>
+<!-- © 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
 <odoo>
 
@@ -104,7 +104,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="mb8">
-                  <strong>Date:</strong> <span t-field="order.create_date" t-field-options='{"widget": "date"}'/>
+                  <strong>Date:</strong> <span t-field="order.create_date" t-options='{"widget": "date"}'/>
                 </div>
                     <div class='row'>
                 <div class="col-md-6">
@@ -112,7 +112,7 @@
                     <strong>Invoicing Address</strong>
                   </div>
                   <div>
-                    <address t-field="order.partner_invoice_id" t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                    <address t-field="order.partner_invoice_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
                   </div>
                 </div>
                 <div id="shipping_address" class="col-md-6">
@@ -120,7 +120,7 @@
                     <strong>Shipping Address</strong>
                   </div>
                   <div>
-                    <address t-field="order.partner_shipping_id" t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+                    <address t-field="order.partner_shipping_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
                   </div>
                 </div>
               </div>
@@ -155,7 +155,7 @@
                                     Untaxed Amount:
                                 </div>
                                 <div class="col-md-2 text-right">
-                                    <span t-field="order.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
+                                    <span t-field="order.amount_untaxed" t-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
                                 </div>
                             </div>
                             <div class="row">
@@ -163,7 +163,7 @@
                                     Taxes:
                                 </div>
                                 <div class="col-md-2 text-right">
-                                    <span t-field="order.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
+                                    <span t-field="order.amount_tax" t-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
                                 </div>
                             </div>
                             <div class="row">
@@ -171,7 +171,7 @@
                                     <strong>Total:</strong>
                                 </div>
                                 <div class="col-md-2 text-right">
-                                    <strong><span t-field="order.amount_total" t-field-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/></strong>
+                                    <strong><span t-field="order.amount_total" t-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/></strong>
                                 </div>
                             </div>
                         </div>
@@ -191,7 +191,7 @@
                     <span t-field="ol.product_id"/>
                 </div>
                 <div class="col-md-2 text-right">
-                    <span t-field="ol.price_unit" t-field-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
+                    <span t-field="ol.price_unit" t-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
                 </div>
                 <div class="col-md-2 text-right">
                     <t t-if="ol._name == 'sale.order.line'">
@@ -207,7 +207,7 @@
                     </div>
                 </t>
                 <div class="col-md-2 text-right">
-                    <span t-field="ol.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
+                    <span t-field="ol.price_subtotal" t-options='{"widget": "monetary", "display_currency": "order.pricelist_id.currency_id"}'/>
                 </div>
             </div>
         </t>

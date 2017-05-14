@@ -2,12 +2,14 @@
 
 {
     'name': 'Redsys Payment Acquirer',
-    'category': 'Hidden',
+    'category': 'Payment Acquirer',
     'summary': 'Payment Acquirer: Redsys Implementation',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'author': "Tecnativa,"
               "Odoo Community Association (OCA)",
-    'depends': ['payment'],
+    'depends': [
+        'website_portal_sale',
+    ],
     "external_dependencies": {
         "python": [
             "Crypto.Cipher.DES3",
