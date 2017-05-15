@@ -13,7 +13,6 @@ from odoo.addons.payment.models.payment_acquirer import ValidationError
 from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_compare
 from odoo import exceptions
-from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
@@ -96,21 +95,6 @@ class AcquirerRedsys(models.Model):
                 self.redsys_percent_partial > 100):
             raise exceptions.Warning(
                 _('Partial payment percent must be between 0 and 100'))
-
-    @api.model
-    def _get_website_url(self, path=None):
-        website_id = self.env.context.get('website_id', False)
-        if website_id:
-            base_url = '%s://%s' % (
-                request.httprequest.environ['wsgi.url_scheme'],
-                self.env['website'].browse(website_id).domain
-            )
-        else:
-            base_url = self.env['ir.config_parameter'].get_param(
-                'web.base.url')
-        if path:
-            base_url = '%s%s' % (base_url, path)
-        return base_url
 
     def _prepare_merchant_parameters(self, tx_values):
         # Check multi-website
@@ -366,17 +350,17 @@ class TxRedsys(models.Model):
                                 '<%s> transaction completed, confirming order '
                                 '%s (ID %s)', acquirer_name,
                                 tx.sale_order_id.name, tx.sale_order_id.id)
-                            self.env['sale.order'].sudo().browse(
-                                tx.sale_order_id.id).with_context(
-                                send_email=True).action_confirm()
+                            if not self.env.context.get('bypass_test', False):
+                                tx.sale_order_id.with_context(
+                                    send_email=True).action_confirm()
                         elif (tx.state != 'cancel' and
                                 tx.sale_order_id.state == 'draft'):
                             _logger.info('<%s> transaction pending, sending '
                                          'quote email for order %s (ID %s)',
                                          acquirer_name, tx.sale_order_id.name,
                                          tx.sale_order_id.id)
-                            self.env['sale.order'].sudo().browse(
-                                tx.sale_order_id.id).force_quotation_send()
+                            if not self.env.context.get('bypass_test', False):
+                                tx.sale_order_id.force_quotation_send()
                     else:
                         _logger.warning('<%s> transaction MISMATCH for order '
                                         '%s (ID %s)', acquirer_name,

@@ -42,6 +42,28 @@ class RedsysCommon(PaymentAcquirerCommon):
             'partner_id': self.buyer_id,
         }
         self.tx = self.env['payment.transaction'].create(self.vals_tx)
+        self.partner = self.env['res.partner'].create({
+            'name': 'Partner Test',
+        })
+        self.product = self.env['product.product'].create({
+            'name': 'Test Product',
+            'list_price': 100.50,
+        })
+        self.so = self.env['sale.order'].create({
+            'partner_id': self.partner.id,
+            'partner_invoice_id': self.partner.id,
+            'partner_shipping_id': self.partner.id,
+            'order_line': [
+                (0, 0, {
+                    'name': 'Test',
+                    'product_id': self.product.id,
+                    'product_uom_qty': 1,
+                    'product_uom': self.product.uom_id.id,
+                    'price_unit': self.product.list_price,
+                    'tax_id': [(6, 0, [])],
+                })],
+            'pricelist_id': self.env.ref('product.list0').id,
+        })
 
 
 class RedsysForm(RedsysCommon):
@@ -236,3 +258,49 @@ class RedsysForm(RedsysCommon):
         self.assertEqual(
             tx.state, 'error',
             'Redsys: validation did not put tx into error state')
+
+    def test_80_redsys_partial_payment(self):
+        # be sure not to do stupid thing
+        self.assertEqual(
+            self.redsys.environment, 'test', 'test without test environment')
+
+        self.redsys.redsys_percent_partial = 50
+        # Form values
+        values = self.redsys.redsys_form_generate_values(self.vals_tx)
+        Ds_MerchantParameters = self.redsys._url_decode64(
+            values['Ds_MerchantParameters'])
+        self.assertEqual(
+            Ds_MerchantParameters['Ds_Merchant_Amount'], '5025',
+            'Redsys: Partial amount failed')
+
+    def test_90_redsys_form_partial_payment(self):
+        # be sure not to do stupid thing
+        self.assertEqual(
+            self.redsys.environment, 'test', 'test without test environment')
+        self.redsys.redsys_percent_partial = 50
+        params = self.redsys_ds_parameters.copy()
+        params['Ds_Amount'] = '5025'
+        DS_parameters = self.redsys._url_encode64(json.dumps(params))
+
+        # typical data posted by redsys after client has successfully paid
+        redsys_post_data = {
+            'Ds_Signature': 'Glo50HlVTtkshKvr/eEYfQUggegbsoqHGw/AflqxN9M=',
+            'Ds_MerchantParameters': DS_parameters,
+            'Ds_SignatureVersion': u'HMAC_SHA256_V1',
+        }
+        # Get transaction
+        tx = self.tx._redsys_form_get_tx_from_data(redsys_post_data)
+        tx.sale_order_id = self.so.id
+
+        # validate it
+        self.tx.with_context(
+            bypass_test=True).form_feedback(redsys_post_data, 'redsys')
+
+        # check state
+        self.assertEqual(
+            self.tx.state, 'done',
+            'Redsys: validation did not put tx into done state')
+        self.assertEqual(
+            self.tx.redsys_txnid,
+            self.redsys_ds_parameters.get('Ds_AuthorisationCode'),
+            'Redsys: validation did not update tx payid')
