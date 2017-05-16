@@ -263,9 +263,9 @@ class AccountBalanceReportingLine(models.Model):
             if not accounts:
                 if acc_code[-1:] == '*':
                     acc_code = acc_code[:-1]
-                # Search for a subaccount ending with '0'
+                # Search for accounts with this prefix
                 accounts = account_obj.search(
-                    [('code', '=like', '%s%%0' % acc_code),
+                    [('code', '=like', '%s%%' % acc_code),
                      ('company_id', '=', company_id)])
             if not accounts:  # pragma: no cover
                 logger.warning("Account with code '%s' not found!", acc_code)
