@@ -38,6 +38,10 @@ class ResCompany(osv.Model):
             string='WSDL Money Payment Received', size=256),
         'wsdl_ps': fields.char(
             string='WSDL Payment Sent', size=256),
+
+        'chart_template_id': fields.many2one('account.chart.template', 'Chart Template',
+            required=True)
+
     }
 
     _defaults = {

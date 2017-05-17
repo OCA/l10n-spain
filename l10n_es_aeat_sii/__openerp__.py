@@ -15,12 +15,20 @@
                    "requests"],
     },
     "depends": [
-        "base",
-        "account"
+        "account",
+        "l10n_es_aeat",
+
     ],
     "data": [
         "data/ir_config_parameter.xml",
         "views/res_company_view.xml",
-        "views/account_invoice_view.xml"
+        "views/account_invoice_view.xml",
+        "views/aeat_sii_view.xml",
+        "views/aeat_sii_map_view.xml",
+        "views/aeat_sii_mapping_registration_keys_view.xml",
+        "wizard/aeat_sii_password_view.xml",
+
+        'data/aeat_sii_mapping_registration_keys_data.xml',
+        'data/aeat_sii_map_data.xml',
     ],
 }

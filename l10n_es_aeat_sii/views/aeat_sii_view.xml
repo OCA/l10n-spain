@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="l10n_es_sii_form_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.sii.form</field>
+            <field name="model">l10n.es.aeat.sii</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Load Certificate">
+
+                    <group colspan="4" col="4">
+                        <group colspan="2" col="2">
+                            <field name="name"/>
+                            <field name="file"/>
+                            <field name="path_folder"/>
+                            <field name="folder"/>
+
+                        </group>
+                        <group colspan="2" col="2">
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+
+                    <group colspan="4" col="4">
+                        <field name="private_key"/>
+                        <field name="public_key"/>
+                    </group>
+
+                    <group colspan="4" col="4">
+                        <button name="load_password_wizard" type="object" string="Obtain Keys"/>
+                        <button name="action_active" type="object" string="To Active"/>
+                        <field colspan="4" name="state" widget="statusbar" statusbar_visible="draft,active"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="l10n_es_sii_tree_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.sii.tree</field>
+            <field name="model">l10n.es.aeat.sii</field>
+            <field name="type">tree</field>
+
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="l10n_es_sii_action" model="ir.actions.act_window">
+            <field name="name">SII</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.aeat.sii</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="l10n_es_aeat_sii_parent_menu" name="SII"
+                  parent="base.menu_config" sequence="0" groups="account.group_account_invoice"/>
+
+        <menuitem id="l10n_es_aeat_sii_menu" name="SII Certificate" action="l10n_es_sii_action"
+                  parent="l10n_es_aeat_sii_parent_menu" sequence="0"/>
+
+    </data>
+</openerp>
