@@ -5,7 +5,7 @@
 
 import re
 import datetime
-from openerp import fields, _
+from openerp import _
 from openerp.addons.l10n_es_payment_order.wizard.log import Log
 from openerp.addons.l10n_es_payment_order.wizard.converter import \
     PaymentConverterSpain
@@ -160,8 +160,6 @@ class ConfirmingSabadell(object):
                 if len(num_factura) < 15:
                     relleno = 15 - len(num_factura)
                     num_factura += relleno * ' '
-            else:
-                num_factura
         text += num_factura
         # 67 - 81 Importe de la factura
         text += self.converter.convert(abs(line['amount']), 14)
@@ -302,7 +300,7 @@ class ConfirmingSabadell(object):
         # 192 - 251 Correo
         email_pro = line['partner_id']['email']
         if email_pro:
-            if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}\
+            if re.match(r'^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,15}\
                     $', email_pro.lower()):
                 if len(email_pro) < 60:
                     relleno = 60 - len(email_pro)

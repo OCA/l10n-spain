@@ -4,7 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 import datetime
-from openerp import fields, _
+from openerp import _
 from openerp.addons.l10n_es_payment_order.wizard.log import Log
 from openerp.addons.l10n_es_payment_order.wizard.converter import \
     PaymentConverterSpain
@@ -166,8 +166,6 @@ class ConfirmingBankia(object):
                 if len(num_factura) < 10:
                     relleno = 10 - len(num_factura)
                     num_factura += relleno * ' '
-            else:
-                num_factura
         text += num_factura
         # 259 - 266 Fecha Factura
         fecha_factura = '00000000'
@@ -224,4 +222,3 @@ class ConfirmingBankia(object):
         text = text.ljust(325)+'\r\n'
 
         return text
-        

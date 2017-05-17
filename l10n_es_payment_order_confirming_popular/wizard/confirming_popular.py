@@ -3,9 +3,8 @@
 # (c) 2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-import re
 import datetime
-from openerp import fields, _
+from openerp import _
 from openerp.addons.l10n_es_payment_order.wizard.log import Log
 from openerp.addons.l10n_es_payment_order.wizard.converter import \
     PaymentConverterSpain
@@ -19,7 +18,6 @@ class ConfirmingPopular(object):
     def create_file(self, order, lines):
         self.order = order
         self.num_records = 0
-        total_amount = 0
         if self.order.mode.type.code == 'conf_popular':
             txt_file = self._pop_cabecera()
             for line in lines:
