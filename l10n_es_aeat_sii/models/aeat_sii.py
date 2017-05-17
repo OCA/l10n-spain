@@ -61,6 +61,5 @@ class L10nEsAeatSii(osv.Model):
             other_configs = self.search(cr, uid, [('id', '!=', aeat_sii.id)])
             for config_id in self.browse(cr, uid, other_configs):
                 self.write(cr,uid,config_id.id,{'state': 'draft'})
-                config_id.state = 'draft'
-            self.write(cr, uid, aeat_sii.id, {'state': 'draft'})
+            self.write(cr, uid, aeat_sii.id, {'state': 'active'})
         return {'type': 'ir.actions.act_window_close'}
