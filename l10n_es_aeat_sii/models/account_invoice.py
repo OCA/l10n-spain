@@ -23,10 +23,10 @@ class AccountInvoice(osv.Model):
         type = context.get('type')
         if type in ['in_invoice', 'in_refund']:
             key = sii_key_obj.search(cr, uid,
-                [('code', '=', '01'), ('type', '=', 'purchase')], limit=1)
+                                     [('code', '=', '01'), ('type', '=', 'purchase')], limit=1)
         else:
             key = sii_key_obj.search(cr, uid,
-                [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
+                                     [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
         return key and key[0]
 
     _columns = {
@@ -80,13 +80,13 @@ class AccountInvoice(osv.Model):
         taxes = []
         sii_map_obj = self.pool['aeat.sii.map']
         sii_map_line_obj = self.pool['aeat.sii.map.lines']
-        sii_map = sii_map_obj.browse(cr,uid, sii_map_obj.search(cr, uid,
-                                     ['|',
-                                      ('date_from', '<=', date),
-                                      ('date_from', '=', False),
-                                      '|',
-                                      ('date_to', '>=', date),
-                                      ('date_to', '=', False)], limit=1)[0])
+        sii_map = sii_map_obj.browse(cr, uid, sii_map_obj.search(cr, uid,
+                                                                 ['|',
+                                                                  ('date_from', '<=', date),
+                                                                  ('date_from', '=', False),
+                                                                  '|',
+                                                                  ('date_to', '>=', date),
+                                                                  ('date_to', '=', False)], limit=1)[0])
         mapping_taxes = {}
         for code in codes:
             tax_templates = sii_map_line_obj.browse(cr, uid, sii_map_line_obj.search(cr, uid,
@@ -97,7 +97,7 @@ class AccountInvoice(osv.Model):
                 tax = self.map_tax_template(cr, uid, tax_template, mapping_taxes, invoice)
                 if tax:
                     taxes.append(tax)
-        return self.pool["account.tax"].browse(cr,uid, taxes)
+        return self.pool["account.tax"].browse(cr, uid, taxes)
 
     def _change_date_format(self, cr, uid, date):
         datetimeobject = datetime.strptime(date, '%Y-%m-%d')
@@ -124,8 +124,8 @@ class AccountInvoice(osv.Model):
                     price = line.price_unit * (1 - (
                         line.discount or 0.0) / 100.0)
                     taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax],
-                                                                         price, line.quantity, line.product_id,
-                                                                         line.invoice_id.partner_id)
+                                                                     price, line.quantity, line.product_id,
+                                                                     line.invoice_id.partner_id)
                     taxes['percentage'] = tax.amount
                     return taxes
         return taxes
@@ -207,7 +207,7 @@ class AccountInvoice(osv.Model):
                     if tax_line in taxes_SFESB:
                         if 'Sujeta' not in taxes_sii['DesgloseFactura']:
                             taxes_sii['DesgloseFactura']['Sujeta'] = {}
-                        #                     TODO l10n_es no tiene impuesto exento de bienes corrientes
+                        # TODO l10n_es no tiene impuesto exento de bienes corrientes
                         #                         if tax_line in taxes_SFESBE:
                         #                             if 'Exenta' not in taxes_sii['DesgloseFactura'][
                         #                                 'Sujeta']:
@@ -266,7 +266,7 @@ class AccountInvoice(osv.Model):
                         else:
                             taxes_sii['DesgloseFactura']['Sujeta'][
                                 'Exenta']['BaeImponible'] += line.price_subtotal
-                        #                     TODO Facturas no sujetas
+                            #                     TODO Facturas no sujetas
                     if tax_line in taxes_SFESS:
                         if 'NoExenta' not in taxes_sii['DesgloseTipoOperacion'][
                             'PrestacionServicios']['Sujeta']:

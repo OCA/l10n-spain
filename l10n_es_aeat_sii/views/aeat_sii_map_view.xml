@@ -51,9 +51,9 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Aeat SII Map" editable="bottom">
-                    <field name="code" />
-                    <field name="name" />
-                    <field name="taxes" />
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="taxes"/>
                 </tree>
             </field>
         </record>

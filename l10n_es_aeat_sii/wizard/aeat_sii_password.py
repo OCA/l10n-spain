@@ -55,11 +55,10 @@ class L10nEsAeatSiiPassword(osv.TransientModel):
         'password': fields.char(string="Password", size=64, required=True)
     }
 
-
-    def get_keys(self,cr,uid,ids,context={}):
+    def get_keys(self, cr, uid, ids, context={}):
         aeat_obj = self.pool['l10n.es.aeat.sii']
-        for wizard in self.browse(cr,uid,ids):
-            record = self.pool['l10n.es.aeat.sii'].browse(cr,uid,context.get('active_id'),context=context)
+        for wizard in self.browse(cr, uid, ids):
+            record = self.pool['l10n.es.aeat.sii'].browse(cr, uid, context.get('active_id'), context=context)
             directory = os.path.join(
                 os.path.abspath(record.path_folder), 'certificates', cr.dbname, record.folder)
             file = base64.decodestring(record.file)
