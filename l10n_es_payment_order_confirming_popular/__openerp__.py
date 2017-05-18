@@ -6,7 +6,7 @@
 {
     'name': 'Exportación de fichero bancario Confirming para Banco Popular',
     'version': '8.0.1.0.0',
-    'author': 'Soluntec'
+    'author': 'Soluntec, '
               'Odoo Community Association (OCA)',
     'contributors': [
         'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
