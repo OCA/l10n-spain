@@ -1,13 +1,26 @@
+
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
 Pasarela de pago Redsys
 =======================
 
 Este módulo añade la opción de pago a través de la pasarela de Redsys.
 
+Instalación
+===========
+
+Para utilizar este módulo, necesita la biblioteca `pycrypto
+<https://pypi.python.org/pypi/pycrypto>`_ instalada en su sistema::
+
+    pip install pycrypto
+
+Configuración
+=============
 
 Parámetros
 ----------
-
-* **Merchant URL**: http://[dominioweb]/payment/redsys/return
 
 * **Nombre del comercio**: Indicaremos el nombre del comercio.
 
@@ -51,10 +64,26 @@ con que base de datos procesar esta información.
 Por lo que hay que establecer los parametros **dbfilter** y **dbname** en
 **openerp-server.conf**.
 
-Instalación
------------
+Créditos
+========
 
-Para utilizar este módulo, necesita la biblioteca `pycrypto
-<https://pypi.python.org/pypi/pycrypto>`_ instalada en su sistema::
+Contribuidores
+--------------
 
-    pip install pycrypto
+* Sergio Teruel <sergio.teruel@tecnativa.com>
+* Carlos Dauden <carlos.dauden@tecnativa.com>
+
+Maintainer
+----------
+
+.. image:: http://odoo-community.org/logo.png
+   :alt: Odoo Community Association
+   :target: http://odoo-community.org
+
+This module is maintained by the OCA.
+
+OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.
+
+To contribute to this module, please visit http://odoo-community.org.
