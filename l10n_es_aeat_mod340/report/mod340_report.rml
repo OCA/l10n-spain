@@ -237,7 +237,7 @@
             <para style="P10">[[r.base_tax]]</para>
           </td>
           <td>
-            <para style="P10">[[r.amount_tax or '0']]</para>
+            <para style="P10">[[(r.amount_tax + r.rec_amount_tax) or '0']]</para>
           </td>
           <td>
             <para style="P10">[[r.total or '0']]</para>
