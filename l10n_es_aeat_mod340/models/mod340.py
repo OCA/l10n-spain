@@ -48,9 +48,10 @@ class L10nEsAeatMod340Report(orm.Model):
             for issue in model.issued:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
                 result[model.id]['total_taxable'] += issue.base_tax
-                result[model.id]['total_sharetax'] += issue.amount_tax
+                result[model.id]['total_sharetax'] += issue.amount_tax + \
+                    issue.rec_amount_tax
                 result[model.id]['total'] += issue.base_tax + \
-                    issue.amount_tax
+                    issue.amount_tax + issue.rec_amount_tax
             for issue in model.received:
                 result[model.id]['number_records'] += len(issue.tax_line_ids)
                 result[model.id]['total_taxable_rec'] += issue.base_tax

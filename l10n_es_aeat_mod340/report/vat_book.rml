@@ -224,7 +224,7 @@
       <font color="white"> </font>
     </para>
 
-    <blockTable colWidths="53.0,40.0,53.0,140.0,62.0,134.0" repeatRows="1" style="Taula3">
+    <blockTable colWidths="53.0,40.0,53.0,140.0,62.0,183.0" repeatRows="1" style="Taula3">
       <tr>
         <td>
           <para style="Table Heading">Fecha factura</para>
@@ -242,7 +242,7 @@
           <para style="Table Heading">NIF</para>
         </td>
         <td>
-            <blockTable colWidths="56.0,29.0,49.0" repeatRows="1" style="TablaInterna">
+            <blockTable colWidths="56.0,29.0,49.0,49.0" repeatRows="1" style="TablaInterna">
                 <tr>
                     <td>
                       <para style="Table Heading">Base</para>
@@ -252,6 +252,9 @@
                     </td>
                     <td>
                       <para style="Table Heading">Cuota</para>
+                    </td>
+                    <td>
+                      <para style="Table Heading">Recargo</para>
                     </td>
                  </tr>
              </blockTable>
@@ -264,7 +267,7 @@
     </para>
     <section>
       <para style="P6">[[repeatIn(o.issued,'r')]]</para>
-      <blockTable colWidths="53.0,40.0,53.0,140.0,62.0,134.0" repeatRows="1" style="Taula4">
+      <blockTable colWidths="53.0,40.0,53.0,140.0,62.0,183.0" repeatRows="1" style="Taula4">
         <tr>
           <td>
             <para style="P11">[[ formatLang(r.invoice_id.date_invoice,date=True) ]]</para>
@@ -283,7 +286,7 @@
           </td>
           <td>
             <para style="P6">[[repeatIn(r.tax_line_ids,'l')]]</para>
-                <blockTable colWidths="56.0,29.0,49.0" repeatRows="1" style="TablaInterna">
+                <blockTable colWidths="56.0,29.0,49.0,49.0" repeatRows="1" style="TablaInterna">
                 <tr>
                     <td>
                         <para style="P10">[[formatLang(l.base_amount)]]</para>
@@ -293,6 +296,9 @@
                       </td>
                       <td>
                         <para style="P10">[[formatLang(l.tax_amount) or '0']]</para>
+                      </td>
+                      <td>
+                        <para style="P10">[[formatLang(l.rec_tax_amount) or '0']]</para>
                       </td>
                   </tr>
                 </blockTable>
