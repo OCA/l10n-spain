@@ -15,8 +15,16 @@ class AccountHierarchy(models.Model):
     name = fields.Char(
         string='Name',
         readonly=True)
+    code = fields.Char(
+        string='Code',
+        readonly=True)
     move_date = fields.Date(
         string='Date',
+        readonly=True)
+    account_id = fields.Many2one(
+        string='Account',
+        comodel_name='account.account',
+        store=True,
         readonly=True)
     one_digit = fields.Char(
         string='1 Digit',
@@ -71,11 +79,13 @@ class AccountHierarchy(models.Model):
         self.env.cr.execute("""
         CREATE or REPLACE VIEW account_hierarchy as (
             SELECT move_line.id as id,
+                 account.code as code,
                  concat_ws(' ',account.code::text, account.name::text) as name,
                  sum(move_line.credit) as credit,
                  sum(move_line.debit) as debit,
                  sum(move_line.balance) as balance,
                  move_line.date as move_date,
+                 move_line.account_id as account_id,
                  move_line.company_id as company_id,
                  move_line.company_currency_id as company_currency_id,
                  move_line.journal_id as journal_id,
@@ -92,8 +102,10 @@ class AccountHierarchy(models.Model):
                     ON (move_line.move_id=move.id)
 
             GROUP BY move_line.id,
+                     account.code,
                      account.name,
                      move_line.date,
+                     move_line.account_id,
                      move_line.company_id,
                      move_line.journal_id,
                      move_line.user_type_id,
