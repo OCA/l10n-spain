@@ -15,16 +15,9 @@ class AccountHierarchy(models.Model):
     name = fields.Char(
         string='Name',
         readonly=True)
-    # code = fields.Char(
-    #     string='Code',
-    #     readonly=True)
     move_date = fields.Date(
         string='Date',
         readonly=True)
-    # account_id = fields.Many2one(
-    #     string='Account',
-    #     comodel_name='account.account',
-    #     readonly=True)
     one_digit = fields.Char(
         string='1 Digit',
         readonly=True)
@@ -99,7 +92,7 @@ class AccountHierarchy(models.Model):
                     ON (move_line.move_id=move.id)
 
             GROUP BY move_line.id,
-                     name,
+                     account.name,
                      move_line.date,
                      move_line.company_id,
                      move_line.journal_id,
