@@ -8,6 +8,7 @@ from odoo import models, fields, api
 class AccountAccount(models.Model):
     _inherit = 'account.account'
 
+    @api.depends('name', 'code', 'user_type_id', 'internal_type', 'reconcile')
     @api.multi
     def _compute_digits(self):
         for account in self:
