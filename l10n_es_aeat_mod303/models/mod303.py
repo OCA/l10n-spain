@@ -141,6 +141,7 @@ class L10nEsAeatMod303Report(models.Model):
     result_type = fields.Selection(
         selection=[('I', 'A ingresar'),
                    ('D', 'A devolver'),
+                   ('C', 'A compensar')
                    ('N', 'Sin actividad/Resultado cero')],
         compute="_compute_result_type")
     compensate = fields.Boolean(
@@ -169,7 +170,7 @@ class L10nEsAeatMod303Report(models.Model):
         elif self.resultado_liquidacion > 0:
             self.result_type = 'I'
         else:
-            self.result_type = 'D'
+            self.result_type = 'C'
 
     @api.onchange('period_type', 'fiscalyear_id')
     def onchange_period_type(self):
