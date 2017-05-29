@@ -12,7 +12,8 @@
 					<separator name="aeat_sii_config" string="AEAT SII Configuration" />
 					<group><field name="sii_enabled"/></group>
 					<group attrs="{'invisible': [('sii_enabled', '=', False)]}">
-						<field name="chart_template_id"/>
+						<field name="chart_template_id"
+							   attrs="{'required': [('sii_enabled', '=', True)]}"/>
 						<field name="use_connector" />
 						<field name="sii_test" />
 					</group>
