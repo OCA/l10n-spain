@@ -29,14 +29,17 @@
 			<field name="inherit_id" ref="account.invoice_form" />
 			<field name="arch" type="xml">
 				<notebook position="inside">
-					<page string="AEAT" groups="account.group_account_manager">
+					<page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
+                            <field name="sii_description"/>
                             <field name="refund_type" 
                             attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
                             <field name="registration_key" domain="[('type', '=', 'sale')]"/>
+                            <field name="sii_enabled" invisible="1"/>
                         </group>
 						<group string="SII Result">
 							<field name="sii_sent" />
+							<field name="sii_csv"/>
 							<field name="sii_return" />
 						</group>
 					</page>

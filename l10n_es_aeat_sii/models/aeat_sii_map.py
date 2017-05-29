@@ -57,4 +57,5 @@ class AeatSiiMapLines(models.Model):
         comodel_name='account.tax.template', string="Taxes")
     sii_map_id = fields.Many2one(
         comodel_name='aeat.sii.map',
-        string='Aeat SII Map')    
+        string='Aeat SII Map',
+        ondelete='cascade')    

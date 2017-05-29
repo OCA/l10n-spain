@@ -54,13 +54,13 @@ de AEAT.
 Known issues / Roadmap
 ======================
 
-* Facturas de bienes de inversión (Pendiente de una consulta con hacienda)
 * Comunicación de cobros y pagos
-* Determinadas facturas intracomunitarias (Pendiente de una consulta con hacienda)
+* Determinadas facturas intracomunitarias (Articulo 66 RIVA)
 * Factura simplificada
 * Facturas No sujetas según el art 7.14 y no sujetas en el TAI
 * Asistente para consultar los documentos comunicados
-* Control de longitud y tipo de datos
+* Libro de bienes de inversión (Libro anual se crea un módulo aparte)
+* Regimenes especial de seguros y agencias de viaje
 * Usar modulo connector
 
 Bug Tracker
