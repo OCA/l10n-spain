@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # (c) 2017 Diagram Software S.L.
-# Copyright (c) 2017-TODAY MINORISA <ramon.guiu@minorisa.net> 
+# Copyright (c) 2017-TODAY MINORISA <ramon.guiu@minorisa.net>
+# (c) 2017 Consultoría Informática Studio 73 S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "8.0.1.0.2",
+    "version": "8.0.1.1.0",
     "category": "Accounting & Finance",
     "website": "https://odoo-community.org/",
     "author": "Acysos S.L., Odoo Community Association (OCA)",
@@ -29,6 +30,7 @@
         "data/aeat_sii_mapping_registration_keys_data.xml",
         "views/aeat_sii_map_view.xml",
         "data/aeat_sii_map_data.xml",
-        "security/ir.model.access.csv"
+        "security/ir.model.access.csv",
+        "security/aeat_sii.xml"
     ],
 }
