@@ -25,14 +25,18 @@ class AccountInvoice(models.Model):
                 [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
         return key
 
-    sii_sent = fields.Boolean('SII Sent')
-    sii_return = fields.Text('SII Return')
+    sii_description = fields.Text(string='SII Description')
+    sii_sent = fields.Boolean(string='SII Sent')
+    sii_csv = fields.Char(string='SII CSV')
+    sii_return = fields.Text(string='SII Return')
     refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
         string="Refund Type")
     registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
         string="Registration key", required=True, default=_get_default_key)
+    sii_enabled = fields.Boolean(string='Enable SII',
+                                 related='company_id.sii_enabled')
 
     @api.multi
     def map_tax_template(self, tax_template, mapping_taxes):
@@ -90,10 +94,12 @@ class AccountInvoice(models.Model):
     
     @api.multi
     def _get_header(self, company, TipoComunicacion):
+        IDVersionSii = self.env['ir.config_parameter'].get_param(
+            'l10n_es_aeat_sii.version', False)
         header = {
-            "IDVersionSii": company.sii_version,
+            "IDVersionSii": IDVersionSii,
             "Titular": {
-                "NombreRazon": company.name,
+                "NombreRazon": company.name[0:120],
                 "NIF": company.vat[2:]},
             "TipoComunicacion": TipoComunicacion
         }
@@ -123,18 +129,16 @@ class AccountInvoice(models.Model):
         taxes = tax_line.compute_all(
             (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
             line.quantity, line.product_id, line.invoice_id.partner_id)
+        tax_sii = {
+            "TipoImpositivo":tax_type,
+            "BaseImponible":taxes['total']
+        }
         if tax_line_req:
             TipoRecargo = tax_line_req['percentage'] * 100
             CuotaRecargo = tax_line_req['taxes'][0]['amount']
-        else:
-            TipoRecargo = 0
-            CuotaRecargo = 0
-        tax_sii = {
-            "TipoImpositivo":tax_type,
-            "BaseImponible":taxes['total'],
-            "TipoRecargoEquivalencia":TipoRecargo,
-            "CuotaRecargoEquivalencia":CuotaRecargo
-        }
+            tax_sii['TipoRecargoEquivalencia'] = TipoRecargo
+            tax_sii['CuotaRecargoEquivalencia'] = CuotaRecargo
+
         if invoice.type in ['out_invoice', 'out_refund']:
             tax_sii['CuotaRepercutida'] = taxes['taxes'][0]['amount']
         if invoice.type in ['in_invoice', 'in_refund']:
@@ -151,12 +155,10 @@ class AccountInvoice(models.Model):
         if tax_line_req:
             TipoRecargo = tax_line_req['percentage'] * 100
             CuotaRecargo = tax_line_req['taxes'][0]['amount']
-        else:
-            TipoRecargoEquivalencia = 0
-            CuotaRecargoEquivalencia = 0
+            taxes[str(tax_type)]['TipoRecargoEquivalencia'] += TipoRecargo
+            taxes[str(tax_type)]['CuotaRecargoEquivalencia'] += CuotaRecargo
+
         taxes[str(tax_type)]['BaseImponible'] += taxes['total']
-        taxes[str(tax_type)]['TipoRecargoEquivalencia'] += TipoRecargo
-        taxes[str(tax_type)]['CuotaRecargoEquivalencia'] += CuotaRecargo
         if invoice.type in ['out_invoice', 'out_refund']:
             tax_sii['CuotaRepercutida'] += taxes['taxes'][0]['amount']
         if invoice.type in ['in_invoice', 'in_refund']:
@@ -170,8 +172,8 @@ class AccountInvoice(models.Model):
         taxes_to = {}
         taxes_SFESB = self._get_taxes_map(
             ['SFESB'], invoice.date_invoice)
-#         taxes_SFESBE = self._get_taxes_map(
-#             ['SFESBE'], invoice.date_invoice)
+        taxes_SFESBE = self._get_taxes_map(
+            ['SFESBE'], invoice.date_invoice)
         taxes_SFESISP = self._get_taxes_map(
             ['SFESISP'], invoice.date_invoice)
 #         taxes_SFESISPS = self._get_taxes_map(
@@ -191,16 +193,17 @@ class AccountInvoice(models.Model):
                     if tax_line in taxes_SFESB:
                         if 'Sujeta' not in taxes_sii['DesgloseFactura']:
                             taxes_sii['DesgloseFactura']['Sujeta'] = {}
-#                     TODO l10n_es no tiene impuesto exento de bienes corrientes
-#                         if tax_line in taxes_SFESBE:
-#                             if 'Exenta' not in taxes_sii['DesgloseFactura'][
-#                                 'Sujeta']:
-#                                 taxes_sii['DesgloseFactura']['Sujeta'][
-#                                     'Exenta'] = {'BaseImponible': line.price_subtotal}
-#                             else:
-#                                 taxes_sii['DesgloseFactura']['Sujeta'][
-#                                     'Exenta']['BaseImponible'] += line.price_subtotal
-#                         TODO Facturas No sujetas
+#                   TODO l10n_es no tiene impuesto exento de bienes corrientes
+#                   nacionales
+                        if tax_line in taxes_SFESBE:
+                            if 'Exenta' not in taxes_sii['DesgloseFactura'][
+                                'Sujeta']:
+                                taxes_sii['DesgloseFactura']['Sujeta'][
+                                    'Exenta'] = {'BaseImponible': line.price_subtotal}
+                            else:
+                                taxes_sii['DesgloseFactura']['Sujeta'][
+                                    'Exenta']['BaseImponible'] += line.price_subtotal
+#                   TODO Facturas No sujetas
                         if tax_line in taxes_SFESB or tax_line in taxes_SFESISP:
                             if 'NoExenta' not in taxes_sii['DesgloseFactura'][
                                 'Sujeta']:
@@ -368,7 +371,7 @@ class AccountInvoice(models.Model):
                     "IDEmisorFactura": {
                         "NIF": company.vat[2:]
                         },
-                    "NumSerieFacturaEmisor": invoice.number,
+                    "NumSerieFacturaEmisor": invoice.number[0:60],
                     "FechaExpedicionFacturaEmisor": invoice_date},
                 "PeriodoImpositivo": {
                     "Ejercicio": Ejercicio,
@@ -379,7 +382,7 @@ class AccountInvoice(models.Model):
                     "ClaveRegimenEspecialOTrascendencia": key,
                     "DescripcionOperacion": invoice.name,
                     "Contraparte": {
-                        "NombreRazon": invoice.partner_id.name,
+                        "NombreRazon": invoice.partner_id.name[0:120],
                         "NIF": invoice.partner_id.vat[2:]
                         },
                     "TipoDesglose": TipoDesglose
@@ -400,7 +403,8 @@ class AccountInvoice(models.Model):
                     "IDEmisorFactura": {
                         "NIF": invoice.partner_id.vat[2:]
                         },
-                    "NumSerieFacturaEmisor": invoice.supplier_invoice_number,
+                    "NumSerieFacturaEmisor": invoice.supplier_invoice_number[
+                        0:60],
                     "FechaExpedicionFacturaEmisor": invoice_date},
                 "PeriodoImpositivo": {
                     "Ejercicio": Ejercicio,
@@ -409,10 +413,10 @@ class AccountInvoice(models.Model):
                 "FacturaRecibida": {
                     "TipoFactura": TipoFactura,
                     "ClaveRegimenEspecialOTrascendencia": "01",
-                    "DescripcionOperacion": invoice.name,
+                    "DescripcionOperacion": invoice.sii_description[0:500],
                     "DesgloseFactura": DesgloseFactura,
                     "Contraparte": {
-                        "NombreRazon": invoice.partner_id.name,
+                        "NombreRazon": invoice.partner_id.name[0:120],
                         "NIF": invoice.partner_id.vat[2:]
                         },
                     "FechaRegContable": invoice_date,
@@ -446,31 +450,19 @@ class AccountInvoice(models.Model):
             company = invoice.company_id
             port_name = ''
             if invoice.type == 'out_invoice':
-                wsdl = company.wsdl_out
+                wsdl = self.env['ir.config_parameter'].get_param(
+                    'l10n_es_aeat_sii.wsdl_out', False)
                 client = self._connect_sii(wsdl)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type == 'in_invoice':
-                wsdl = company.wsdl_in
+                wsdl = self.env['ir.config_parameter'].get_param(
+                    'l10n_es_aeat_sii.wsdl_in', False)
                 client = self._connect_sii(wsdl)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
-                    port_name += 'Pruebas'
-#             TODO Property Investiment 
-#             elif invoice == 'Property Investiment':
-#                 wsdl = company.wsdl_pi
-#                 client = self._connect_sii(wsdl)
-#                 port_name = 'SuministroBienesInversion'
-#                 if company.sii_test:
-#                     port_name += 'Pruebas'
-            elif invoice.fiscal_position.id == self.env.ref(
-                'account.fp_intra').id:
-                wsdl = company.wsdl_ic
-                client = self._connect_sii(wsdl)
-                port_name = 'SuministroOpIntracomunitarias'
-                if company.sii_test:
-                    port_name += 'Pruebas'                
+                    port_name += 'Pruebas'               
             serv = client.bind('siiService', port_name)
             if not invoice.sii_sent:
                 TipoComunicacion = 'A0'
@@ -480,23 +472,22 @@ class AccountInvoice(models.Model):
             header = self._get_header(company, TipoComunicacion)
             invoices = self._get_invoices(company, invoice)
             try:
-                if invoice.type == 'out_invoice':
+                if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
                         header, invoices)
-                elif invoice.type == 'in_invoice':
+                elif invoice.type in ['in_invoice', 'in_refund']:
                     res = serv.SuministroLRFacturasRecibidas(
                         header, invoices)
-#                 TODO Factura Bienes de inversión
-#                 elif invoice == 'Property Investiment':
-#                     res = serv.SuministroLRBienesInversion(
-#                         header, invoices)
-#                 TODO Facturas intracomunitarias
+#                 TODO Facturas intracomunitarias 66 RIVA
 #                 elif invoice.fiscal_position.id == self.env.ref(
 #                     'account.fp_intra').id:
 #                     res = serv.SuministroLRDetOperacionIntracomunitaria(
 #                         header, invoices)
                 if res['EstadoEnvio'] == 'Correcto':
                     self.sii_sent = True
+                    self.sii_csv = res['CSV']
+                else:
+                    self.sii_sent = False
                 self.sii_return = res
             except Exception as fault:
                 self.sii_return = fault
@@ -505,10 +496,11 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         
-        if not self.company_id.use_connector:
-            self._send_invoice_to_sii()
-#         TODO 
-#         else:
-#             Use connector
+        if self.company_id.sii_enabled:
+            if not self.company_id.use_connector:
+                self._send_invoice_to_sii()
+#             TODO 
+#             else:
+#                 Use connector
         
         return res
