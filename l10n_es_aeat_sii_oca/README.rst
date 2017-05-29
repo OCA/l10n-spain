@@ -26,9 +26,7 @@ Para configurar este módulo necesitas:
 #. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
 Estas URLs pueden cambiar según comunidades
 #. Los certificados deben alojarse en una carpeta accesible por la instalación
-de Odoo. Las rutas de los certificados se pueden indicar en Configuración->
-Parámetros->Parametros del sistemas con las claves l10n_es_aeat_sii.publicCrt y
-l10n_es_aeat_sii.privateKey
+de Odoo.
 #. Preparar el certificado. El certificado enviado por la FMNT es en formato
 p12, este certificado no se puede usar directamente con Zeep. Se tiene que
 extraer la clave pública y la clave privada.
