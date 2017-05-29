@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 19:33+0000\n"
-"PO-Revision-Date: 2017-05-07 19:33+0000\n"
+"POT-Creation-Date: 2017-05-29 07:07+0000\n"
+"PO-Revision-Date: 2017-05-29 07:07+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_sii
-#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "AEAT"
 msgstr ""
@@ -142,6 +141,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: selection:l10n.es.aeat.sii,state:0
 msgid "Draft"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_enabled:0
+#: field:res.company,sii_enabled:0
+msgid "Enable SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -288,14 +293,25 @@ msgid "Registration key"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii.l10n_es_sii_action
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_parent_menu
 msgid "SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_csv:0
+msgid "SII CSV"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_menu
 msgid "SII Certificate"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_description:0
+msgid "SII Description"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -318,11 +334,6 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: field:account.invoice,sii_sent:0
 msgid "SII Sent"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,sii_version:0
-msgid "SII Version"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -373,42 +384,7 @@ msgid "Use connector"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_ic:0
-msgid "WSDL Intra-Community"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_in:0
-msgid "WSDL Invoice In"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_out:0
-msgid "WSDL Invoice Out"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_prm:0
-msgid "WSDL Money Payment Received"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_pr:0
-msgid "WSDL Payment Received"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_ps:0
-msgid "WSDL Payment Sent"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_pi:0
-msgid "WSDL Property Investment"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:356
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:359
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr ""

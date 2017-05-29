@@ -6,18 +6,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 19:34+0000\n"
-"PO-Revision-Date: 2017-05-07 21:41+0200\n"
+"POT-Creation-Date: 2017-05-29 07:08+0000\n"
+"PO-Revision-Date: 2017-05-29 09:11+0200\n"
 "Last-Translator: Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>\n"
-"Language-Team: Acysos S.L. <info@acysos.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
 "Language: es\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: l10n_es_aeat_sii
-#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "AEAT"
 msgstr "AEAT"
@@ -85,7 +85,7 @@ msgstr "Plantilla de cuentas"
 #. module: l10n_es_aeat_sii
 #: help:res.company,use_connector:0
 msgid "Check it to use connector instead to send the invoice when it is validated"
-msgstr "Pulse para usar el módulo connector en vez de enviar la factura cuando es validada"
+msgstr "Activar si se va usar el módulo connector en vez de enviar la factura cuando el validada"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map.lines,code:0
@@ -141,6 +141,11 @@ msgstr "Nombre"
 #: selection:l10n.es.aeat.sii,state:0
 msgid "Draft"
 msgstr "Borrador"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_enabled:0 field:res.company,sii_enabled:0
+msgid "Enable SII"
+msgstr "Activar SII"
 
 #. module: l10n_es_aeat_sii
 #: field:l10n.es.aeat.sii,date_end:0
@@ -248,7 +253,7 @@ msgstr "Obtener Claves"
 #: code:addons/l10n_es_aeat_sii/wizard/aeat_sii_password.py:65
 #, python-format
 msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
-msgstr "Versión de OpenSSL no soportada. Actualice a 0.15 o superior "
+msgstr "Versión de OpenSSL no soportada. Actualice a la 0.15 o superior."
 
 #. module: l10n_es_aeat_sii
 #: field:l10n.es.aeat.sii.password,password:0
@@ -281,15 +286,26 @@ msgid "Registration key"
 msgstr "Clave del registro"
 
 #. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii.l10n_es_sii_action
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_parent_menu
 msgid "SII"
 msgstr "SII"
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_csv:0
+msgid "SII CSV"
+msgstr "SII CSV"
+
+#. module: l10n_es_aeat_sii
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_menu
 msgid "SII Certificate"
 msgstr "Certificado SII"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_description:0
+msgid "SII Description"
+msgstr "Descripción SII"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
@@ -306,17 +322,12 @@ msgstr "Resultado SII"
 #. module: l10n_es_aeat_sii
 #: field:account.invoice,sii_return:0
 msgid "SII Return"
-msgstr "Retorno SII"
+msgstr "Respuesta SII"
 
 #. module: l10n_es_aeat_sii
 #: field:account.invoice,sii_sent:0
 msgid "SII Sent"
-msgstr "SII Enviado"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,sii_version:0
-msgid "SII Version"
-msgstr "Versión SII"
+msgstr "Enviado"
 
 #. module: l10n_es_aeat_sii
 #: selection:aeat.sii.mapping.registration.keys,type:0
@@ -347,12 +358,12 @@ msgstr "Entorno de pruebas"
 #: code:addons/l10n_es_aeat_sii/models/res_company.py:17
 #, python-format
 msgid "The module \"Connector\" is not installed. You have to install it to activate this option"
-msgstr "El módulo \"Connector\" no está instalado. Debe instalarlo para activar esta opción."
+msgstr "El módulo \"Connector\" no esta instalado. Tiene que instalarlo para activar esta opción."
 
 #. module: l10n_es_aeat_sii
 #: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
 msgid "To Active"
-msgstr "Para activar"
+msgstr "Activar"
 
 #. module: l10n_es_aeat_sii
 #: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
@@ -363,45 +374,10 @@ msgstr "Tipo"
 #. module: l10n_es_aeat_sii
 #: field:res.company,use_connector:0
 msgid "Use connector"
-msgstr "Usar connector"
+msgstr "Usar conector"
 
 #. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_ic:0
-msgid "WSDL Intra-Community"
-msgstr "WSDL Intracomunitarias"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_in:0
-msgid "WSDL Invoice In"
-msgstr "WSDL Factura recibidas"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_out:0
-msgid "WSDL Invoice Out"
-msgstr "WSDL Facturas emitidas"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_prm:0
-msgid "WSDL Money Payment Received"
-msgstr "WSDL Cobros en metálico recibidos"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_pr:0
-msgid "WSDL Payment Received"
-msgstr "WSDL Pagos recibidos"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_ps:0
-msgid "WSDL Payment Sent"
-msgstr "WSDL Pagos enviados"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_pi:0
-msgid "WSDL Property Investment"
-msgstr "WSDL Bienes de inversión"
-
-#. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:356
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:359
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar que plan contable utiliza esta compañía"
