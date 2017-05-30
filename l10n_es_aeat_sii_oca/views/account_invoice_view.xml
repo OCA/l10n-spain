@@ -7,17 +7,23 @@
 			<field name="model">account.invoice</field>
 			<field name="inherit_id" ref="account.invoice_supplier_form" />
 			<field name="arch" type="xml">
+			    <field name="supplier_invoice_number" position="attributes">
+			        <attribute name="required">True</attribute>
+			    </field>
 				<notebook position="inside">
-					<page string="AEAT" groups="account.group_account_manager">
-					    <group string="SII Information">
-					        <field name="refund_type" 
-					        attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
-					        <field name="registration_key" domain="[('type', '=', 'purchase')]"/>
-					    </group>
-						<group string="SII Result">
-							<field name="sii_sent" />
-							<field name="sii_return" />
-						</group>
+					<page string="SII" groups="account.group_account_manager">
+                        <group string="SII Information">
+                            <field name="sii_description"/>
+                            <field name="refund_type" 
+                            attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                            <field name="registration_key" domain="[('type', '=', 'sale')]"/>
+                            <field name="sii_enabled" invisible="1"/>
+                        </group>
+                        <group string="SII Result">
+                            <field name="sii_sent" />
+                            <field name="sii_csv"/>
+                            <field name="sii_return" />
+                        </group>
 						
 						<group string="Invoice Jobs">
 							<field name="invoice_jobs_ids" nolabel="1">
