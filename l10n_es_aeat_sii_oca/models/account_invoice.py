@@ -8,9 +8,23 @@ from requests import Session
 from zeep import Client
 from zeep.transports import Transport
 from zeep.plugins import HistoryPlugin
-from datetime import datetime
+from datetime import datetime,date
 from openerp.exceptions import Warning
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
+try:
+    from openerp.addons.connector.queue.job import job
+    from openerp.addons.connector.session import ConnectorSession
+except ImportError:
+    _logger.debug('Can not `import connector`.')
+    import functools
+
+    def empty_decorator_factory(*argv, **kwargs):
+        return functools.partial
+    job = empty_decorator_factory
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
@@ -38,6 +52,8 @@ class AccountInvoice(models.Model):
         string="Registration key", required=True, default=_get_default_key)
     sii_enabled = fields.Boolean(string='Enable SII',
                                  related='company_id.sii_enabled')
+    invoice_jobs_ids = fields.Many2many('queue.job','invoice_id','job_id',
+                                        string="Invoice Jobs")
 
     @api.multi
     def map_tax_template(self, tax_template, mapping_taxes):
@@ -507,12 +523,40 @@ class AccountInvoice(models.Model):
     @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
-        
         if self.company_id.sii_enabled:
             if not self.company_id.use_connector:
                 self._send_invoice_to_sii()
-#             TODO 
-#             else:
-#                 Use connector
+            else:
+
+                queue_obj = self.env['queue.job']        
+
+                for invoice in self:
+                    session = ConnectorSession.from_env(self.env)
+    
+                    new_delay =confirm_one_invoice.delay(session, 'account.invoice', invoice.id)
+                    queue_ids = queue_obj.search([('uuid','=', new_delay)],limit=1)
+                    invoice.invoice_jobs_ids |= queue_ids
         
         return res
+    @api.multi
+    def action_cancel(self):
+        
+        queue_job_obj = self.env['queue.job']
+        
+        for queue in self.invoice_jobs_ids:
+            if queue.state == 'started':
+                raise Warning(_(
+                'You can not cancel this invoice because'
+                ' there is a job running!'))
+            elif queue.state in ('pending','enqueued','failed'):
+                queue.write({'state':'done','date_done':date.today()})
+ 
+        return super(AccountInvoice,self).action_cancel()
+        
+@job(default_channel='root.invoice_validate_sii')
+def confirm_one_invoice(session, model_name, invoice_id):
+    model = session.env[model_name]
+    invoice = model.browse(invoice_id)
+
+    invoice._send_invoice_to_sii()
+    session.cr.commit()
