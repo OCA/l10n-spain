@@ -33,7 +33,30 @@ extraer la clave pública y la clave privada.
 El linux se pueden usar los siguientes comandos:
 - Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
 - Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out privateKey.pem -nodes"
+Connector:
 
+#. Ajustar variables de configuración:
+
+	ODOO_CONNECTOR_CHANNELS=root:4
+ 
+  o otro canal de configuración. Por defecto es root:1
+
+  Si xmlrpc_port no esta definido: ODOO_CONNECTOR_PORT=8069
+
+       Arranca odoo con --load=web,web_kanban,connector y --workers más grande que 1.
+
+Más información http://odoo-connector.com
+
+Usuando fichero de configuración:
+
+[options]
+(...)
+workers = 4
+server_wide_modules = web,web_kanban,connector
+
+(...)
+[options-connector]
+channels = root:4
 
 Usage
 =====

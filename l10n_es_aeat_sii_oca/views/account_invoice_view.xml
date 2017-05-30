@@ -18,6 +18,23 @@
 							<field name="sii_sent" />
 							<field name="sii_return" />
 						</group>
+						
+						<group string="Invoice Jobs">
+							<field name="invoice_jobs_ids" nolabel="1">
+								<tree editable="bottom">
+									<field name="name"/>
+                    				<field name="model_name"/>
+                    				<field name="state"/>
+                    				<field name="eta"/>
+                    				<field name="date_created"/>
+                    				<field name="date_done"/>
+                    				<field name="uuid"/>
+                    				<field name="channel"/>
+				                    <field name="company_id" groups="base.group_multi_company"/>
+				                    <button type="object" name="requeue" string="Requeue" class="oe_highlight" />
+								</tree>
+							</field>
+						</group>
 					</page>
 				</notebook>
 			</field>
@@ -41,6 +58,23 @@
 							<field name="sii_sent" />
 							<field name="sii_csv"/>
 							<field name="sii_return" />
+						</group>
+						
+						<group string="Invoice Jobs">
+							<field name="invoice_jobs_ids" nolabel="1">
+								<tree editable="bottom">
+									<field name="name"/>
+                    				<field name="model_name"/>
+                    				<field name="state"/>
+                    				<field name="eta"/>
+                    				<field name="date_created"/>
+                    				<field name="date_done"/>
+                    				<field name="uuid"/>
+                    				<field name="channel"/>
+				                    <field name="company_id" groups="base.group_multi_company"/>
+				                    <button type="object" name="requeue" string="Requeue" class="oe_highlight" />
+								</tree>
+							</field>
 						</group>
 					</page>
 				</notebook>
