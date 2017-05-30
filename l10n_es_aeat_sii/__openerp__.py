@@ -18,7 +18,8 @@
                    "requests"],
     },
     "depends": [
-        "l10n_es_aeat"
+        "l10n_es_aeat",
+        "connector",
     ],
     "data": [
         "data/ir_config_parameter.xml",
