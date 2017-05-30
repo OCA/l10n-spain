@@ -40,7 +40,7 @@ class AccountInvoice(models.Model):
                 [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
         return key
 
-    sii_description = fields.Text(string='SII Description')
+    sii_description = fields.Text(string='SII Description', default="/")
     sii_sent = fields.Boolean(string='SII Sent')
     sii_csv = fields.Char(string='SII CSV')
     sii_return = fields.Text(string='SII Return')
@@ -397,7 +397,7 @@ class AccountInvoice(models.Model):
                 "FacturaExpedida": {
                     "TipoFactura": TipoFactura,
                     "ClaveRegimenEspecialOTrascendencia": key,
-                    "DescripcionOperacion": invoice.name,
+                    "DescripcionOperacion": invoice.sii_description[0:500],
                     "Contraparte": {
                         "NombreRazon": invoice.partner_id.name[0:120],
                         "NIF": invoice.partner_id.vat[2:]
@@ -457,15 +457,20 @@ class AccountInvoice(models.Model):
              ('date_start', '<=', today),
              '|', ('date_end', '=', False),
              ('date_end', '>=', today),
-             ('active', '=', True)],
+             ('state', '=', 'active')],
             limit=1
         )
-        if not sii_config:
-            raise Warning(u'No hay un SII correctamente configurado para la '
-                          u'compañia %s' % self.company_id.name_get()[0][1])
+        if sii_config:
+            publicCrt = sii_config.public_key
+            privateKey = sii_config.private_key
+        else:
+            publicCrt = self.env['ir.config_parameter'].get_param(
+                'l10n_es_aeat_sii.publicCrt', False)
+            privateKey = self.env['ir.config_parameter'].get_param(
+                'l10n_es_aeat_sii.privateKey', False)
         
         session = Session()
-        session.cert = (sii_config.public_key, sii_config.private_key)
+        session.cert = (publicCrt, privateKey)
         transport = Transport(session=session)
 
         history = HistoryPlugin()
