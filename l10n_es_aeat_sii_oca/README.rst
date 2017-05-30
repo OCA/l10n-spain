@@ -82,7 +82,6 @@ Known issues / Roadmap
 * Asistente para consultar los documentos comunicados
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte)
 * Regimenes especial de seguros y agencias de viaje
-* Usar modulo connector
 
 Bug Tracker
 ===========
