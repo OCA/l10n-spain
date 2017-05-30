@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 07:08+0000\n"
-"PO-Revision-Date: 2017-05-29 09:11+0200\n"
+"POT-Creation-Date: 2017-05-30 17:10+0000\n"
+"PO-Revision-Date: 2017-05-30 19:18+0200\n"
 "Last-Translator: Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,11 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 "Language: es\n"
 "X-Generator: Poedit 1.8.7.1\n"
-
-#. module: l10n_es_aeat_sii
-#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
-msgid "AEAT"
-msgstr "AEAT"
 
 #. module: l10n_es_aeat_sii
 #: view:res.company:l10n_es_aeat_sii.view_company_sii_form
@@ -85,7 +80,7 @@ msgstr "Plantilla de cuentas"
 #. module: l10n_es_aeat_sii
 #: help:res.company,use_connector:0
 msgid "Check it to use connector instead to send the invoice when it is validated"
-msgstr "Activar si se va usar el módulo connector en vez de enviar la factura cuando el validada"
+msgstr "Pulsa para utilizar el connector en vez de enviar la factura cuando es validada"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map.lines,code:0
@@ -97,6 +92,11 @@ msgstr "Código"
 #: model:ir.model,name:l10n_es_aeat_sii.model_res_company
 msgid "Companies"
 msgstr "Compañías"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,company_id:0
+msgid "Compañía"
+msgstr "Compañía"
 
 #. module: l10n_es_aeat_sii
 #: view:res.company:l10n_es_aeat_sii.view_company_sii_form
@@ -181,16 +181,23 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:28
+#: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:35
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 #, python-format
 msgid "Insert Password"
-msgstr "Introduzca contraseña"
+msgstr "Introduzca Contraseña"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice
 msgid "Invoice"
 msgstr "Factura"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+#: field:account.invoice,invoice_jobs_ids:0
+msgid "Invoice Jobs"
+msgstr "Invoice Jobs"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map,__last_update:0 field:aeat.sii.map.lines,__last_update:0
@@ -253,7 +260,7 @@ msgstr "Obtener Claves"
 #: code:addons/l10n_es_aeat_sii/wizard/aeat_sii_password.py:65
 #, python-format
 msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
-msgstr "Versión de OpenSSL no soportada. Actualice a la 0.15 o superior."
+msgstr "Versión OpenSSL no esta soportada. Actualiza a la versión 0.15 o superior."
 
 #. module: l10n_es_aeat_sii
 #: field:l10n.es.aeat.sii.password,password:0
@@ -287,6 +294,13 @@ msgstr "Clave del registro"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+msgid "Requeue"
+msgstr "Re-encolar"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii.l10n_es_sii_action
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_parent_menu
 msgid "SII"
@@ -322,12 +336,12 @@ msgstr "Resultado SII"
 #. module: l10n_es_aeat_sii
 #: field:account.invoice,sii_return:0
 msgid "SII Return"
-msgstr "Respuesta SII"
+msgstr "Resultado SII"
 
 #. module: l10n_es_aeat_sii
 #: field:account.invoice,sii_sent:0
 msgid "SII Sent"
-msgstr "Enviado"
+msgstr "Enviado SII"
 
 #. module: l10n_es_aeat_sii
 #: selection:aeat.sii.mapping.registration.keys,type:0
@@ -355,7 +369,7 @@ msgid "Test Enviroment"
 msgstr "Entorno de pruebas"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/res_company.py:17
+#: code:addons/l10n_es_aeat_sii/models/res_company.py:18
 #, python-format
 msgid "The module \"Connector\" is not installed. You have to install it to activate this option"
 msgstr "El módulo \"Connector\" no esta instalado. Tiene que instalarlo para activar esta opción."
@@ -366,6 +380,11 @@ msgid "To Active"
 msgstr "Activar"
 
 #. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+msgid "True"
+msgstr "Verdadero"
+
+#. module: l10n_es_aeat_sii
 #: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
 #: field:aeat.sii.mapping.registration.keys,type:0
 msgid "Type"
@@ -374,10 +393,16 @@ msgstr "Tipo"
 #. module: l10n_es_aeat_sii
 #: field:res.company,use_connector:0
 msgid "Use connector"
-msgstr "Usar conector"
+msgstr "Usar connector"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:359
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:553
+#, python-format
+msgid "You can not cancel this invoice because there is a job running!"
+msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:376
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar que plan contable utiliza esta compañía"
