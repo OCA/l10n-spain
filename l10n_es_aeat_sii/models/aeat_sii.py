@@ -43,13 +43,8 @@ class l10nEsAeatSii(models.Model):
     @api.multi
     def action_active(self):
         self.ensure_one()
-        if self.public_key:
-            sii_crt = self.env.ref('l10n_es_aeat_sii.config_parameter_sii_crt')
-            sii_crt.value = self.public_key
-        if self.private_key:
-            sii_key = self.env.ref('l10n_es_aeat_sii.config_parameter_sii_key')
-            sii_key.value = self.private_key
-        other_configs = self.search([('id', '!=', self.id)])
+        other_configs = self.search([('id', '!=', self.id),
+                                     ('company_id', '=', self.company_id.id)])
         for config_id in other_configs:
             config_id.state = 'draft'
         self.state = 'active'
