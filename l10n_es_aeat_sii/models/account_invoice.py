@@ -440,7 +440,8 @@ class AccountInvoice(models.Model):
              '|', ('date_start', '=', False),
              ('date_start', '<=', today),
              '|', ('date_end', '=', False),
-             ('date_end', '>=', today)],
+             ('date_end', '>=', today),
+             ('active', '=', True)],
             limit=1
         )
         if not sii_config:
