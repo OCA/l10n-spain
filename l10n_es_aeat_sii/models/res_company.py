@@ -4,8 +4,8 @@
 # (c) 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import models, fields
 from datetime import datetime, timedelta
-from openerp import fields, models
 
 
 class ResCompany(models.Model):
@@ -22,8 +22,8 @@ class ResCompany(models.Model):
         help='By default the invoice send in validate process, with manual '
         'method, there a button to send the invoice.')
     use_connector = fields.Boolean(
-        string='Use connector',
-        help='Check it to use connector instead to send the invoice '
+        string='Async sending',
+        help='Check it to use queue_job instead to send the invoice '
         'when it is validated')
 
     send_mode = fields.Selection(string="Send mode",

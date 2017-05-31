@@ -107,6 +107,7 @@ Contributors
 * Ramon Guiu - Minorisa S.L. <ramon.guiu@minorisa.net>
 * Pablo Fuentes <pablo@studio73.es>
 * Jordi Tolsà <jordi@studio73.es>
+* Omar Castiñeira - Comunitea <omar@comunitea.com>
 
 Funders
 -------

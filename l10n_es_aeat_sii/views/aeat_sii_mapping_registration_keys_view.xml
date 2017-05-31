@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-    
-        <!-- Tree view -->
+<odoo>
+
+                <!-- Tree view -->
         <record id="aeat_sii_mapping_registration_keys_view_tree" model="ir.ui.view">
             <field name="name">aeat.sii.mapping.registration.keys.view.tree</field>
             <field name="model">aeat.sii.mapping.registration.keys</field>
@@ -30,18 +29,21 @@
                 </search>
             </field>
         </record>
-        
+
         <record model="ir.actions.act_window" id="action_aeat_sii_mapping_registration_keys">
             <field name="name">Aeat SII Registration Keys</field>
             <field name="res_model">aeat.sii.mapping.registration.keys</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+	
 
         <menuitem id="menu_aeat_sii_mapping_registration_keys"
                   parent="l10n_es_aeat.menu_l10n_es_aeat_config"
                   action="action_aeat_sii_mapping_registration_keys"
                   name="Aeat SII Registration Keys"/>
 
-    </data>
-</openerp>
+
+
+
+</odoo>

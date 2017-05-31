@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-07 09:21+0000\n"
-"PO-Revision-Date: 2017-06-07 09:21+0000\n"
+"POT-Creation-Date: 2017-05-31 16:34+0000\n"
+"PO-Revision-Date: 2017-05-31 16:34+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -92,6 +92,13 @@ msgstr "Check it to use connector instead to send the invoice when it is validat
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_code
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company_use_connector
+msgid "Check it to use queue_job instead to send the invoice when it is validated"
+msgstr "Márquelo para usar el módulo queue_job para enviar las facturas cuando se validan"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_code
 msgid "Code"
 msgstr "Código"
 
@@ -126,12 +133,12 @@ msgstr "Creado en"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_from
 msgid "Date from"
-msgstr "Fecha de"
+msgstr "Desde fecha"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_to
 msgid "Date to"
-msgstr "Fecha hasta"
+msgstr "Hasta fecha"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_delay_time
@@ -226,7 +233,7 @@ msgstr "Agrupar por..."
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr "ID"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:35
@@ -245,7 +252,7 @@ msgstr "Factura"
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_sii_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Invoice Jobs"
-msgstr "Trabajos Factura"
+msgstr "Trabajos facturas"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map___last_update
@@ -263,7 +270,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_write_date
@@ -285,6 +292,7 @@ msgid "Load Certificate"
 msgstr "Cargar Certificado"
 
 #. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_map_view_form
 #: selection:res.company,sii_method:0
 msgid "Manual"
 msgstr "Manual"
@@ -292,7 +300,7 @@ msgstr "Manual"
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_map_view_form
 msgid "Mapping Lines"
-msgstr "Líneas del mapeo"
+msgstr "Líneas de mapeo"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_method
@@ -325,6 +333,14 @@ msgstr "None"
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_form_view
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:124
+#, python-format
+msgid "No VAT configured for the company '{}'"
+msgstr "El nif no está configurado en la compañía '{}'"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_form_view
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "Obtain Keys"
 msgstr "Obtener Claves"
 
@@ -350,6 +366,7 @@ msgid "Private Key"
 msgstr "Clave privada"
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_public_key
 #: model:ir.model,name:l10n_es_aeat_sii.model_product_template
 msgid "Product Template"
 msgstr "Plantilla producto"
@@ -367,12 +384,12 @@ msgstr "Compras"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_refund_type
 msgid "Refund Type"
-msgstr "Tipo rectificativa"
+msgstr "Tipo de rectificación"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_registration_key
 msgid "Registration key"
-msgstr "Clave sii"
+msgstr "Clave de registro"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_sii_form
@@ -419,12 +436,12 @@ msgstr "Resultado SII"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_return
 msgid "SII Return"
-msgstr "Retorno SII"
+msgstr "Respuesta SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_sent
 msgid "SII Sent"
-msgstr "Enviar SII"
+msgstr "SII enviado"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -475,7 +492,7 @@ msgstr "Impuestos"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_test
 msgid "Test Enviroment"
-msgstr "Entorno de test"
+msgstr "Entorno de pruebas"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:410
@@ -508,7 +525,7 @@ msgstr "Con retardo"
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:651
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
-msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
+msgstr "¡No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:423
@@ -530,4 +547,3 @@ msgstr "l10n.es.aeat.sii.password"
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "or"
 msgstr "o"
-

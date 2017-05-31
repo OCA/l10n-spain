@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data noupdate="0">
-    
+<odoo>
+
         <record id="aeat_sii_mapping_registration_keys_01" model="aeat.sii.mapping.registration.keys">
             <field name="code">01</field>
             <field name="name">Operación de régimen general</field>
@@ -66,7 +65,7 @@
             <field name="code">13</field>
             <field name="name">Operaciones de arrendamiento de local de negocio sujetas y no sujetas a retención</field>
             <field name="type">sale</field>
-        </record> 
+        </record>
         <record id="aeat_sii_mapping_registration_keys_14" model="aeat.sii.mapping.registration.keys">
             <field name="code">14</field>
             <field name="name">Factura con IVA pendiente de devengo (certificaciones de obra cuyo destinatario sea una Administración Pública)</field>
@@ -131,7 +130,7 @@
             <field name="code">11</field>
             <field name="name">Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)</field>
             <field name="type">purchase</field>
-        </record> 
+        </record>
         <record id="aeat_sii_mapping_registration_keys_27" model="aeat.sii.mapping.registration.keys">
             <field name="code">12</field>
             <field name="name">Operaciones de arrendamiento de local de negocio</field>
@@ -142,5 +141,5 @@
             <field name="name">Factura correspondiente a una importación (informada sin asociar a un DUA)</field>
             <field name="type">purchase</field>
         </record>
-    </data>
-</openerp>
+
+</odoo>

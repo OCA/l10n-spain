@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="aeat_sii_map_view_tree" model="ir.ui.view">
             <field name="name">aeat.sii.map.view.tree</field>
@@ -31,7 +30,7 @@
             </field>
         </record>
     
-        <record model="ir.actions.act_window" id="action_aeat_sii_mapping">
+    	<record model="ir.actions.act_window" id="action_aeat_sii_mapping">
             <field name="name">Aeat SII Map</field>
             <field name="res_model">aeat.sii.map</field>
             <field name="view_type">form</field>
@@ -42,7 +41,7 @@
                   parent="l10n_es_aeat.menu_l10n_es_aeat_config"
                   action="action_aeat_sii_mapping"
                   name="Aeat SII Map"/>
-    
+
         <record id="l10n_es_aeat_sii_map_lines_view_tree" model="ir.ui.view">
             <field name="name">aeat.sii.map.lines.view.tree</field>
             <field name="model">aeat.sii.map.lines</field>
@@ -54,6 +53,5 @@
                 </tree>
             </field>
         </record>
-    
-    </data>
-</openerp>
+
+</odoo>

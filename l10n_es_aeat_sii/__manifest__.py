@@ -2,12 +2,11 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # (c) 2017 Diagram Software S.L.
 # Copyright (c) 2017-TODAY MINORISA <ramon.guiu@minorisa.net>
-# (c) 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
-# (c) 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
+# (c) 2017 Consultoría Informática Studio 73 S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "9.0.1.1.0",
+    "version": "10.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://odoo-community.org/",
     "author": "Acysos S.L., Odoo Community Association (OCA)",
@@ -19,9 +18,8 @@
                    "requests"],
     },
     "depends": [
-        "account_invoice_refund_link",
         "l10n_es_aeat",
-        "connector",
+        "queue_job",
     ],
     "data": [
         "data/ir_config_parameter.xml",
@@ -34,9 +32,6 @@
         "views/aeat_sii_map_view.xml",
         "data/aeat_sii_map_data.xml",
         "security/ir.model.access.csv",
-        "security/aeat_sii.xml",
-        "views/product_view.xml",
-        "views/account_view.xml"
+        "security/aeat_sii.xml"
     ],
-    "post_init_hook": "add_key_to_existing_invoices",
 }

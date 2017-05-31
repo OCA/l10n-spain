@@ -5,11 +5,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from datetime import datetime, date
+from odoo import models, fields, api, _
 from requests import Session
 
-from openerp import _, api, exceptions, fields, models
-from openerp.modules.registry import RegistryManager
+from datetime import datetime, date
+from odoo.exceptions import Warning
+
+import logging
 
 _logger = logging.getLogger(__name__)
 
@@ -20,11 +22,11 @@ try:
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
+
 try:
-    from openerp.addons.connector.queue.job import job
-    from openerp.addons.connector.session import ConnectorSession
+    from odoo.addons.queue_job.job import job
 except ImportError:
-    _logger.debug('Can not `import connector`.')
+    _logger.debug('Can not `import queue_job`.')
     import functools
 
     def empty_decorator_factory(*argv, **kwargs):
@@ -174,7 +176,7 @@ class AccountInvoice(models.Model):
                 if tax in taxes_re:
                     price = self._get_line_price_subtotal(line)
                     taxes = tax.compute_all(
-                        price, line.quantity, line.invoice_id.currency_id,
+                        price, line.invoice_id.currency_id, line.quantity,
                         line.product_id, line.invoice_id.partner_id)
                     taxes['percentage'] = tax.amount
                     return taxes
@@ -243,7 +245,6 @@ class AccountInvoice(models.Model):
         taxes_sii = {}
         taxes_f = {}
         taxes_to = {}
-
         taxes_sfesb = self._get_taxes_map(['SFESB'], self.date)
         taxes_sfesbe = self._get_taxes_map(['SFESBE'], self.date)
         taxes_sfesisp = self._get_taxes_map(['SFESISP'], self.date)
@@ -297,9 +298,11 @@ class AccountInvoice(models.Model):
                                     'NoExenta']['DesgloseIVA'] = {}
                                 inv_breakdown['Sujeta'][
                                     'NoExenta']['DesgloseIVA'][
-                                        'DetalleIVA'] = []
+                                    'DetalleIVA'] = []
                             tax_type = tax_line.amount
                             if str(tax_type) not in taxes_f:
+                                tax_type = tax_line.amount
+                            if tax_type not in taxes_f:
                                 taxes_f[str(tax_type)] = \
                                     self._get_sii_tax_line(
                                         tax_line, line,
@@ -352,12 +355,12 @@ class AccountInvoice(models.Model):
                                 'Sujeta']['NoExenta']:
                             type_breakdown[
                                 'PrestacionServicios']['Sujeta']['NoExenta'][
-                                    'DesgloseIVA'] = {}
+                                'DesgloseIVA'] = {}
                             type_breakdown[
                                 'PrestacionServicios']['Sujeta']['NoExenta'][
-                                    'DesgloseIVA']['DetalleIVA'] = []
+                                'DesgloseIVA']['DetalleIVA'] = []
                             tax_type = tax_line.amount
-                            if str(tax_type) not in taxes_to:
+                            if tax_type not in taxes_to:
                                 taxes_to[str(tax_type)] = \
                                     self._get_sii_tax_line(
                                         tax_line, line,
@@ -373,8 +376,8 @@ class AccountInvoice(models.Model):
         if len(taxes_to) > 0:
             for key, line in taxes_to.iteritems():
                 taxes_sii['DesgloseTipoOperacion']['PrestacionServicios'][
-                    'Sujeta']['NoExenta']['DesgloseIVA'][
-                        'DetalleIVA'].append(line)
+                    'Sujeta']['NoExenta']['DesgloseIVA']['DetalleIVA'].\
+                    append(line)
         return taxes_sii
 
     @api.multi
@@ -648,9 +651,7 @@ class AccountInvoice(models.Model):
                     invoice._send_invoice_to_sii()
                 else:
                     eta = company._get_sii_eta()
-                    session = ConnectorSession.from_env(self.env)
-                    new_delay = confirm_one_invoice.delay(
-                        session, 'account.invoice', invoice.id, eta=eta)
+                    new_delay = self.with_delay().confirm_one_invoice()
                     queue_ids = queue_obj.search([
                         ('uuid', '=', new_delay)
                     ], limit=1)
@@ -667,9 +668,7 @@ class AccountInvoice(models.Model):
                     invoice._send_invoice_to_sii()
                 else:
                     eta = company._get_sii_eta()
-                    session = ConnectorSession.from_env(self.env)
-                    new_delay = confirm_one_invoice.delay(
-                        session, 'account.invoice', invoice.id, eta=eta)
+                    new_delay = self.with_delay().confirm_one_invoice()
                     queue_ids = queue_obj.search([
                         ('uuid', '=', new_delay)
                     ], limit=1)
@@ -730,10 +729,7 @@ class AccountInvoice(models.Model):
         """
         return True
 
-@job(default_channel='root.invoice_validate_sii')
-def confirm_one_invoice(session, model_name, invoice_id):
-    model = session.env[model_name]
-    invoice = model.browse(invoice_id)
-
-    invoice._send_invoice_to_sii()
-    session.cr.commit()
+    @job
+    @api.multi
+    def confirm_one_invoice(self):
+        self._send_invoice_to_sii()
