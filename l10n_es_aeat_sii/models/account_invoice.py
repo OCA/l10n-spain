@@ -50,6 +50,7 @@ class AccountInvoice(models.Model):
     sii_return = fields.Text(string='SII Return')
     refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
+        default='I',
         string="Refund Type")
     registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
@@ -61,6 +62,16 @@ class AccountInvoice(models.Model):
         'invoice_id',
         'job_id',
         string="Invoice Jobs")
+
+    @api.onchange('refund_type')
+    def onchange_refund_type(self):
+        if self.refund_type == 'S' and not self.origin_invoices_ids:
+            self.refund_type = False
+            return {'warning':
+                {'message': 'Debes tener al menos una factura '
+                            'vinculada que sustituir'
+                 }
+            }
 
     @api.multi
     def map_tax_template(self, tax_template, mapping_taxes):
@@ -409,6 +420,17 @@ class AccountInvoice(models.Model):
                 invoices['FacturaExpedida'][
                     'TipoRectificativa'] = self.refund_type
 
+                if self.refund_type == 'S':
+                    base_rectificada = 0
+                    cuota_rectificada = 0
+                    for s in self.origin_invoices_ids:
+                        base_rectificada += s.amount_untaxed
+                        cuota_rectificada += s.amount_tax
+                    invoices['FacturaExpedida']['ImporteRectificacion'] = {
+                        'BaseRectificada': base_rectificada,
+                        'CuotaRectificada': cuota_rectificada
+                    }
+
         if self.type in ['in_invoice', 'in_refund']:
             # TODO Los 5 tipos de facturas rectificativas
             tipo_facturea = 'F1'
@@ -443,6 +465,18 @@ class AccountInvoice(models.Model):
             if self.type == 'in_refund':
                 invoices['FacturaRecibida'][
                     'TipoRectificativa'] = self.refund_type
+
+                if self.refund_type == 'S':
+                    base_rectificada = 0
+                    cuota_rectificada = 0
+                    for s in self.origin_invoices_ids:
+                        base_rectificada += s.amount_untaxed
+                        cuota_rectificada += s.amount_tax
+                    invoices['FacturaRecibida']['ImporteRectificacion'] = {
+                        'BaseRectificada': base_rectificada,
+                        'CuotaRectificada': cuota_rectificada
+                    }
+
         return invoices
 
     @api.multi
@@ -480,14 +514,14 @@ class AccountInvoice(models.Model):
         for invoice in self:
             company = invoice.company_id
             port_name = ''
-            if invoice.type == 'out_invoice':
+            if invoice.type in ['out_invoice', 'out_refund']:
                 wsdl = self.env['ir.config_parameter'].get_param(
                     'l10n_es_aeat_sii.wsdl_out', False)
                 client = self._connect_sii(wsdl)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
-            elif invoice.type == 'in_invoice':
+            elif invoice.type in ['in_invoice', 'in_refund']:
                 wsdl = self.env['ir.config_parameter'].get_param(
                     'l10n_es_aeat_sii.wsdl_in', False)
                 client = self._connect_sii(wsdl)
