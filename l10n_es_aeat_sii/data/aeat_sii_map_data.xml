@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-    <data noupdate="0">
+<odoo>
+
         <record id="aeat_sii_map" model="aeat.sii.map">
             <field name="name">SII</field>
         </record>
@@ -139,5 +139,5 @@
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFact Recargo Equivalencia</field>
         </record>
-    </data>
-</openerp>
+
+</odoo>

@@ -2,19 +2,17 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73>
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
-# Copyright 2017 Otherway - Pedro Rodríguez Gil
-# Copyright 2017 Tecnativa - Pedro M. Baeza
-# Copyright 2017 Comunitea - Omar Castiñeira <omar@comunitea.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
 
-from datetime import date
+from odoo import models, fields, api, _
 from requests import Session
 
-from openerp import _, api, exceptions, fields, models
-from openerp.modules.registry import RegistryManager
-from openerp.tools.float_utils import float_round
+from datetime import date
+from odoo.exceptions import Warning
+from odoo.modules.registry import RegistryManager
+from odoo.tools.float_utils import float_round
 
 _logger = logging.getLogger(__name__)
 
@@ -26,10 +24,9 @@ except (ImportError, IOError) as err:
     _logger.debug(err)
 
 try:
-    from openerp.addons.connector.queue.job import job
-    from openerp.addons.connector.session import ConnectorSession
+    from odoo.addons.queue_job.job import job
 except ImportError:
-    _logger.debug('Can not `import connector`.')
+    _logger.debug('Can not `import queue_job`.')
     import functools
 
     def empty_decorator_factory(*argv, **kwargs):
@@ -711,12 +708,11 @@ class AccountInvoice(models.Model):
                 invoice._send_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
-                new_delay = confirm_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
-                invoice.invoice_jobs_ids |= queue_obj.search(
-                    [('uuid', '=', new_delay)], limit=1,
-                )
+                new_delay = self.with_delay().confirm_one_invoice()
+                queue_ids = queue_obj.search([
+                    ('uuid', '=', new_delay)
+                ], limit=1)
+                invoice.invoice_jobs_ids |= queue_ids
 
     @api.multi
     def _send_invoice_to_sii(self):
@@ -887,9 +883,7 @@ class AccountInvoice(models.Model):
                 invoice._cancel_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
-                new_delay = cancel_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
+                new_delay = self.with_delay().cancel_one_invoice()
                 queue_ids = queue_obj.search([
                     ('uuid', '=', new_delay)
                 ], limit=1)
@@ -1186,17 +1180,12 @@ class AccountInvoiceLine(models.Model):
         tax_dict[tax_type][key] += taxes['taxes'][0]['amount']
 
 
-@job(default_channel='root.invoice_validate_sii')
-def confirm_one_invoice(session, model_name, invoice_id):
-    model = session.env[model_name]
-    invoice = model.browse(invoice_id)
-    if invoice.exists():
-        invoice._send_invoice_to_sii()
+    @job
+    @api.multi
+    def confirm_one_invoice(self):
+        self._send_invoice_to_sii()
 
-
-@job(default_channel='root.invoice_validate_sii')
-def cancel_one_invoice(session, model_name, invoice_id):
-    model = session.env[model_name]
-    invoice = model.browse(invoice_id)
-    if invoice.exists():
+    @job
+    @api.multi
+    def cancel_one_invoice(session, model_name, invoice_id):
         invoice._cancel_invoice_to_sii()
