@@ -3,7 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import api, models, fields, _
-from openerp.exceptions import ValidationError
+from openerp import exceptions
+
 
 class AeatSiiMap(models.Model):
     _name = 'aeat.sii.map'
@@ -50,7 +51,7 @@ class AeatSiiMap(models.Model):
 class AeatSiiMapLines(models.Model):
     _name = 'aeat.sii.map.lines'
     _description = 'Aeat SII Map Lines'
-    
+
     code = fields.Char(string='Code', required=True)
     name = fields.Char(string='Name')
     taxes = fields.Many2many(
@@ -58,4 +59,4 @@ class AeatSiiMapLines(models.Model):
     sii_map_id = fields.Many2one(
         comodel_name='aeat.sii.map',
         string='Aeat SII Map',
-        ondelete='cascade')    
+        ondelete='cascade')
