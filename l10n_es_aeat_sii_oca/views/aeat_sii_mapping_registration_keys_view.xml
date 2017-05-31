@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-        <!-- Tree view -->
+                <!-- Tree view -->
         <record id="aeat_sii_mapping_registration_keys_view_tree" model="ir.ui.view">
             <field name="name">aeat.sii.mapping.registration.keys.view.tree</field>
             <field name="model">aeat.sii.mapping.registration.keys</field>
@@ -13,7 +13,7 @@
                 </tree>
             </field>
         </record>
-
+        
         <!-- Search view -->
         <record id="aeat_sii_mapping_registration_keys_view_search" model="ir.ui.view">
             <field name="name">aeat.sii.mapping.registration.keys.view.search</field>
