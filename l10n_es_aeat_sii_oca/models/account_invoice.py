@@ -377,6 +377,10 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_invoices(self):
         self.ensure_one()
+        if not self.partner_id.vat:
+            raise Warning(_(
+                "The partner '{}' has not a VAT configured.").format(
+                    self.partner_id.name))
         invoice_date = self._change_date_format(self.date_invoice)
         company = self.company_id
         ejercicio = fields.Date.from_string(
