@@ -18,6 +18,7 @@
                    "requests"],
     },
     "depends": [
+        "account_refund_original",
         "l10n_es_aeat",
         "connector",
     ],
