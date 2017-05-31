@@ -3,7 +3,7 @@
 # (c) 2017 Consultoría Informática Studio 73 S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import api, models, fields, _
+from odoo import api, models, fields, _
 
 
 class L10nEsAeatSii(models.Model):
