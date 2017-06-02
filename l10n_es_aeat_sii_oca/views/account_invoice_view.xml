@@ -86,6 +86,21 @@
 				</notebook>
 			</field>
 		</record>
+		
+		<record id="view_account_invoice_filter_sii_inherit" model="ir.ui.view">
+            <field name="name">view.account.invoice.filter.sii.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <filter name="unpaid" position="after">
+                     <filter name="sii_sent" string="SII Sent" domain="[('sii_sent','=',True)]" help="SII Sent"/>
+                     <filter name="sii_not_sent" string="SII Not Sent" domain="[('sii_sent','=',False)]" help="SII Not Sent"/>
+                     
+
+                </filter>
+            </field>
+        </record>
 
 	</data>
 </openerp>
