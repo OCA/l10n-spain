@@ -104,7 +104,9 @@ Contributors
 
 * Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>
 * Diagram Software S.L.
-* Ramon Guiu - Minorisa S.L. <ramon.guiu@minorisa.net> 
+* Ramon Guiu - Minorisa S.L. <ramon.guiu@minorisa.net>
+* Pablo Fuentes <pablo@studio73.es>
+* Jordi Tolsà <jordi@studio73.es>
 
 Funders
 -------
