@@ -1,17 +1,20 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
-# (c) 2017 Consultoría Informática Studio 73 S.L.
+# (c) 2017 Studio73 - Pablo Fuentes <pablo@studio73>
+# (c) 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import logging
 
-from openerp import models, fields, api, _
+from datetime import datetime, date
 from requests import Session
+
 from zeep import Client
 from zeep.transports import Transport
 from zeep.plugins import HistoryPlugin
-from datetime import datetime, date
+
+from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
-import logging
 
 _logger = logging.getLogger(__name__)
 
@@ -570,9 +573,10 @@ class AccountInvoice(models.Model):
             else:
                 queue_obj = self.env['queue.job']
                 for invoice in self:
+                    eta = invoice.company_id._get_sii_eta()
                     session = ConnectorSession.from_env(self.env)
                     new_delay = confirm_one_invoice.delay(
-                        session, 'account.invoice', invoice.id)
+                        session, 'account.invoice', invoice.id, eta=eta)
                     queue_ids = queue_obj.search([
                         ('uuid', '=', new_delay)
                     ], limit=1)
