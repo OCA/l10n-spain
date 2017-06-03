@@ -10,12 +10,24 @@
 			<field name="arch" type="xml">
 				<page string="Configuration" position="inside">
 					<separator name="aeat_sii_config" string="AEAT SII Configuration" />
-					<group><field name="sii_enabled"/></group>
+					<group name="sii_enabled">
+						<field name="sii_enabled"/>
+					</group>
 					<group attrs="{'invisible': [('sii_enabled', '=', False)]}">
-						<field name="chart_template_id"
-							   attrs="{'required': [('sii_enabled', '=', True)]}"/>
-						<field name="use_connector" />
-						<field name="sii_test" />
+						<group name="sii_config">
+							<field name="chart_template_id"
+								   attrs="{'required': [('sii_enabled', '=', True)]}"/>
+							<field name="sii_test" />
+						</group>
+						<group name="sii_connector">
+							<field name="use_connector" />
+							<field name="send_mode"
+								   attrs="{'invisible': [('use_connector', '=', False)]}"/>
+							<field name='sent_time' widget='float_time'
+								   attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'fixed')]}"/>
+							<field name='delay_time' widget='float_time'
+								   attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'delayed')]}"/>
+						</group>
 					</group>
 				</page>
 			</field>
