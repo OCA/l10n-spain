@@ -2,7 +2,8 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # (c) 2017 Diagram Software S.L.
 # Copyright (c) 2017-TODAY MINORISA <ramon.guiu@minorisa.net>
-# (c) 2017 Consultoría Informática Studio 73 S.L.
+# (c) 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
+# (c) 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Suministro Inmediato de Información en el IVA",
