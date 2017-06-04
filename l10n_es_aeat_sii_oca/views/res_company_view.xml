@@ -18,6 +18,7 @@
 							<field name="chart_template_id"
 								   attrs="{'required': [('sii_enabled', '=', True)]}"/>
 							<field name="sii_test" />
+	                        <field name="sii_method"/>
 						</group>
 						<group name="sii_connector">
 							<field name="use_connector" />
