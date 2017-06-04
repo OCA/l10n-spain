@@ -7,11 +7,16 @@
 			<field name="model">account.invoice</field>
 			<field name="inherit_id" ref="account.invoice_supplier_form" />
 			<field name="arch" type="xml">
+                <button string="Re-Open" position="after">
+                    <button type="object" string="Send SII"
+                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                    states="open,paid"/>
+                </button>
 			    <field name="supplier_invoice_number" position="attributes">
 			        <attribute name="required">True</attribute>
 			    </field>
 				<notebook position="inside">
-					<page string="SII" groups="account.group_account_manager">
+					<page string="SII" groups="account.group_account_manager"  attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="refund_type" 
@@ -50,6 +55,11 @@
 			<field name="model">account.invoice</field>
 			<field name="inherit_id" ref="account.invoice_form" />
 			<field name="arch" type="xml">
+                <button string="Re-Open" position="after">
+                    <button type="object" string="Send SII"
+                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                    states="open,paid"/>
+                </button>
 				<notebook position="inside">
 					<page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
@@ -96,6 +106,18 @@
                      <filter name="sii_not_sent" string="SII Not Sent" domain="[('sii_sent','=',False)]" help="SII Not Sent"/>
                      
 
+                </filter>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_sii_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select.sii</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                <filter name="unpaid" position="after">
+                    <filter name="sii_not_sent" string="SII not send" domain="[('sii_sent','=',False)]"/>
+                    <filter name="sii_sent" string="SII send" domain="[('sii_sent','=',True)]"/>
                 </filter>
             </field>
         </record>
