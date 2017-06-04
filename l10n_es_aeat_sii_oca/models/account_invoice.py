@@ -53,7 +53,6 @@ class AccountInvoice(models.Model):
     sii_return = fields.Text(string='SII Return')
     refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
-        default='I',
         string="Refund Type")
     registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
@@ -567,13 +566,14 @@ class AccountInvoice(models.Model):
     @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
-        if self.company_id.sii_enabled:
-            if not self.company_id.use_connector:
-                self._send_invoice_to_sii()
-            else:
-                queue_obj = self.env['queue.job']
-                for invoice in self:
-                    eta = invoice.company_id._get_sii_eta()
+        queue_obj = self.env['queue.job']
+        for invoice in self:
+            company = invoice.company_id
+            if company.sii_enabled and company.sii_method == 'auto':
+                if not company.use_connector:
+                    invoice._send_invoice_to_sii()
+                else:
+                    eta = company._get_sii_eta()
                     session = ConnectorSession.from_env(self.env)
                     new_delay = confirm_one_invoice.delay(
                         session, 'account.invoice', invoice.id, eta=eta)
@@ -582,6 +582,24 @@ class AccountInvoice(models.Model):
                     ], limit=1)
                     invoice.invoice_jobs_ids |= queue_ids
         return res
+
+    @api.multi
+    def send_sii(self):
+        queue_obj = self.env['queue.job']
+        for invoice in self:
+            company = invoice.company_id
+            if company.sii_enabled:
+                if not company.use_connector:
+                    invoice._send_invoice_to_sii()
+                else:
+                    eta = company._get_sii_eta()
+                    session = ConnectorSession.from_env(self.env)
+                    new_delay = confirm_one_invoice.delay(
+                        session, 'account.invoice', invoice.id, eta=eta)
+                    queue_ids = queue_obj.search([
+                        ('uuid', '=', new_delay)
+                    ], limit=1)
+                    invoice.invoice_jobs_ids |= queue_ids
 
     @api.multi
     def action_cancel(self):
@@ -595,6 +613,17 @@ class AccountInvoice(models.Model):
                     'state': 'done',
                     'date_done': date.today()})
         return super(AccountInvoice, self).action_cancel()
+    
+    @api.one
+    def copy(self, default=None):
+        default = default or {}
+        default.update({
+            'sii_sent': False,
+            'sii_csv': None,
+            'sii_return': None
+        })
+
+        return super(AccountInvoice, self).copy(default)    
 
 
 @job(default_channel='root.invoice_validate_sii')
