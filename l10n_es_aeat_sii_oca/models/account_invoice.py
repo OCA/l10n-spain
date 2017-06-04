@@ -606,7 +606,8 @@ class AccountInvoice(models.Model):
         queue_obj = self.env['queue.job']
         for invoice in self:
             company = invoice.company_id
-            if company.sii_enabled and company.sii_method == 'auto':
+            if company.sii_enabled and company.sii_method == 'auto' and \
+                    invoice.is_sii_invoice():
                 if not company.use_connector:
                     invoice._send_invoice_to_sii()
                 else:
@@ -683,6 +684,15 @@ class AccountInvoice(models.Model):
             dic_ret = {"NIF": self.partner_id.vat[2:]}
         return dic_ret
 
+    def is_sii_invoice(self):
+        """ is_sii_invoice() -> bool
+            Hook method to be overridden in additional modules to verify
+            if the invoice must be sended trought SII system, for
+            special cases.
+            :param
+            :return: bool
+        """
+        return True
 
 @job(default_channel='root.invoice_validate_sii')
 def confirm_one_invoice(session, model_name, invoice_id):
