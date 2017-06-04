@@ -61,7 +61,7 @@ channels = root:4
 Usage
 =====
 
-Cuando se válida una factura actumáticamente envia la comunicación al servidor
+Cuando se valida una factura automáticamente envia la comunicación al servidor
 de AEAT.
 
 
