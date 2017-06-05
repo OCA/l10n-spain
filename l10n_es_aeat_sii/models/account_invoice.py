@@ -443,11 +443,14 @@ class AccountInvoice(models.Model):
                     "DescripcionOperacion": self.sii_description[0:500],
                     "Contraparte": {
                         "NombreRazon": self.partner_id.name[0:120],
-                        "NIF": self.partner_id.vat[2:]
                     },
-                    "TipoDesglose": tipo_desglose
+                    "TipoDesglose": tipo_desglose,
+                    "ImporteTotal": self.amount_total
                 }
             }
+            # Uso condicional de IDOtro/NIF
+            invoices['FacturaExpedida']['Contraparte'].update(
+                self._get_sii_identifier())
             if self.type == 'out_refund':
                 invoices['FacturaExpedida'][
                     'TipoRectificativa'] = self.refund_type
@@ -658,6 +661,27 @@ class AccountInvoice(models.Model):
         })
 
         return super(AccountInvoice, self).copy(default)    
+
+    @api.multi
+    def _get_sii_identifier(self):
+        self.ensure_one()
+        codPais = self.partner_id.vat[:2]
+        dic_ret = {}
+        if codPais != 'ES':
+            if self.fiscal_position.name == u'Régimen Intracomunitario':
+                idType = '02'
+            else:
+                idType = '04'
+            dic_ret = {
+                "IDOtro": {
+                    "CodigoPais": codPais,
+                    "IDType": idType,
+                    "ID": self.partner_id.vat
+                }
+            }
+        else:
+            dic_ret = {"NIF": self.partner_id.vat[2:]}
+        return dic_ret
 
 
 @job(default_channel='root.invoice_validate_sii')
