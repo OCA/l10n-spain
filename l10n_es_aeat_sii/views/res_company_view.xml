@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com> License AGPL-3.0 or 
+	later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+    <data>
+        <record id="view_company_sii_form" model="ir.ui.view">
+            <field name="name">res.company.sii.form</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <page string="Configuration" position="inside">
+                    <separator string="AEAT SII Configuration" />
+                    <group name="sii_enabled">
+                        <field name="sii_enabled"/>
+                    </group>
+                    <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <field name="chart_template_id"
+                               attrs="{'required': [('sii_enabled', '=', True)]}"/>
+                        <field name="sii_test" />
+                        <field name="sii_method"/>
+                    </group>
+                </page>
+            </field>
+        </record>
+    </data>
+</openerp>

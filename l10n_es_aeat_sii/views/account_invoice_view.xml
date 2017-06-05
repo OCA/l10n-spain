@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_supplier_sii_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.sii.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <button string="Re-Open" position="after">
+                    <button type="object" string="Send SII"
+                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                    states="open,paid"/>
+                </button>
+                <field name="reference" position="attributes">
+                    <attribute name="required">True</attribute>
+                </field>
+                <notebook position="inside">
+                    <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <separator string="SII Information" colspan="4"/>
+                        <field name="sii_description"/>
+                        <field name="refund_type" 
+                        attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                        <field name="registration_key" domain="[('type', '=', 'sale')]"/>
+                        <field name="sii_enabled" invisible="1"/>
+                        <separator string="SII Result" colspan="4"/>
+                        <field name="sii_sent" />
+                        <field name="sii_csv"/>
+                        <newline />
+                        <field name="sii_return" colspan="4"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+        <record id="invoice_sii_form" model="ir.ui.view">
+            <field name="name">account.invoice.sii.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <button string="Re-Open" position="after">
+                    <button type="object" string="Send SII"
+                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                    states="open,paid"/>
+                </button>
+                <notebook position="inside">
+                    <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <separator string="SII Information" colspan="4"/>
+                        <field name="sii_description"/>
+                        <field name="refund_type" 
+                        attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                        <field name="registration_key" domain="[('type', '=', 'sale')]"/>
+                        <field name="sii_enabled" invisible="1"/>
+                        <separator string="SII Result" colspan="4"/>
+                        <field name="sii_sent" />
+                        <field name="sii_csv"/>
+                        <newline />
+                        <field name="sii_return" colspan="4"/>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+
+    </data>
+</openerp>
