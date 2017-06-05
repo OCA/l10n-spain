@@ -86,7 +86,10 @@
                 ref('l10n_es.account_tax_template_p_iva21_ic_bc'),
                 ref('l10n_es.account_tax_template_p_iva4_ic_bi'),
                 ref('l10n_es.account_tax_template_p_iva10_ic_bi'),
-                ref('l10n_es.account_tax_template_p_iva21_ic_bi')
+                ref('l10n_es.account_tax_template_p_iva21_ic_bi'),
+                ref('l10n_es.account_tax_template_p_iva4_ibc'),
+                ref('l10n_es.account_tax_template_p_iva10_ibc'),
+                ref('l10n_es.account_tax_template_p_iva21_ibc')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas Sujetas</field>
