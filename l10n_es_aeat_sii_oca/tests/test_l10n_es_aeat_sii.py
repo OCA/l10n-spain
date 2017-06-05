@@ -93,8 +93,13 @@ class TestL10nEsAeatSii(common.TransactionCase):
         })
 
     def _open_invoice(self):
-        self.invoice.company_id.sii_enabled = True
-        self.invoice.company_id.use_connector = True
+        self.invoice.company_id.write({
+            'sii_enabled': True,
+            'use_connector': True,
+            'chart_template_id': self.env.ref(
+                'l10n_es.account_chart_template_pymes').id,
+            'vat': 'ESU2687761C',
+        })
         self.invoice.signal_workflow('invoice_open')
 
     def test_job_creation(self):
@@ -135,11 +140,23 @@ class TestL10nEsAeatSii(common.TransactionCase):
             })
         else:
             res[expedida_recibida].update({
-                "FechaRegContable": datetime.strptime(
+                "FechaRegContable":
+                    datetime.strptime(
                     self.invoice.date_invoice, '%Y-%m-%d')
                 .strftime('%d-%m-%Y'),
                 "DesgloseFactura": {},
                 "CuotaDeducible": self.invoice.amount_tax
+            })
+        if invoice_type == 'R4':
+            invoices = self.invoice.origin_invoices_ids
+            base_rectificada = sum(invoices.mapped('amount_untaxed'))
+            cuota_rectificada = sum(invoices.mapped('amount_tax'))
+            res[expedida_recibida].update({
+                'TipoRectificativa': 'S',
+                'ImporteRectificacion': {
+                    'BaseRectificada': base_rectificada,
+                    'CuotaRectificada': cuota_rectificada,
+                }
             })
         return res
 
@@ -153,37 +170,39 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.partner.vat = vat
 
         invoices = self.invoice._get_invoices()
-        test_out_inv = self._get_invoices_test('F1', '01')
-        self.assertDictEqual(
-            _deep_sort(invoices),
-            _deep_sort(test_out_inv))
+        test_out_inv = self._get_invoices_test('F1', u'01')
+        for key in invoices.keys():
+            self.assertDictEqual(
+                _deep_sort(invoices.get(key)),
+                _deep_sort(test_out_inv.get(key)))
 
         self.invoice.type = 'out_refund'
         self.invoice.refund_type = 'S'
         invoices = self.invoice._get_invoices()
-        test_out_refund = self._get_invoices_test('R4', '01')
-        test_out_refund['FacturaExpedida']['TipoRectificativa'] = 'S'
-        self.assertDictEqual(
-            _deep_sort(invoices),
-            _deep_sort(test_out_refund))
+        test_out_refund = self._get_invoices_test('R4', u'01')
+        for key in invoices.keys():
+            self.assertDictEqual(
+                _deep_sort(invoices.get(key)),
+                _deep_sort(test_out_refund.get(key)))
 
         self.invoice.type = 'in_invoice'
         self.invoice.supplier_invoice_number = 'sup0001'
         invoices = self.invoice._get_invoices()
-        test_in_invoice = self._get_invoices_test('F1', '01')
-        self.assertDictEqual(
-            _deep_sort(invoices),
-            _deep_sort(test_in_invoice))
+        test_in_invoice = self._get_invoices_test('F1', u'01')
+        for key in invoices.keys():
+            self.assertDictEqual(
+                _deep_sort(invoices.get(key)),
+                _deep_sort(test_in_invoice.get(key)))
 
         self.invoice.type = 'in_refund'
         self.invoice.refund_type = 'S'
         self.invoice.supplier_invoice_number = 'sup0001'
         invoices = self.invoice._get_invoices()
-        test_in_refund = self._get_invoices_test('R4', '01')
-        test_in_refund['FacturaRecibida']['TipoRectificativa'] = 'S'
-        self.assertDictEqual(
-            _deep_sort(invoices),
-            _deep_sort(test_in_refund))
+        test_in_refund = self._get_invoices_test('R4', u'01')
+        for key in invoices.keys():
+            self.assertDictEqual(
+                _deep_sort(invoices.get(key)),
+                _deep_sort(test_in_refund.get(key)))
 
     def test_action_cancel(self):
         self._open_invoice()
