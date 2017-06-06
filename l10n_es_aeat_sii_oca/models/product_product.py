@@ -18,19 +18,19 @@
 #
 ##############################################################################
 
-from openerp import api, models, fields, _
-from openerp.exceptions import ValidationError
+from openerp import fields, models
+
 
 class ProductTemplate(models.Model):
-    _inherit="product.template"
-    
-    sii_exempt_cause = fields.Selection(string="Exempt Cause",
-                                 selection=[('none','None'),
-                                            ('E1', 'E1'),
-                                            ('E2', 'E2'),
-                                            ('E3', 'E3'),
-                                            ('E4', 'E4'),
-                                            ('E5', 'E5'),
-                                            ('E6', 'E6'),                                                        
-                                            ],
-                                 default='none')
+    _inherit = "product.template"
+
+    sii_exempt_cause = fields.Selection(
+        string="Exempt Cause",
+        selection=[('none', 'None'),
+                   ('E1', 'E1'),
+                   ('E2', 'E2'),
+                   ('E3', 'E3'),
+                   ('E4', 'E4'),
+                   ('E5', 'E5'),
+                   ('E6', 'E6')],
+        default='none')
