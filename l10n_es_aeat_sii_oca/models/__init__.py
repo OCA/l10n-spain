@@ -6,4 +6,5 @@ from . import res_company
 from . import aeat_sii
 from . import aeat_sii_mapping_registration_keys
 from . import aeat_sii_map
+from . import product_product
 from . import account_invoice
