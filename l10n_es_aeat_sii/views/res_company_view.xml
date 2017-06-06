@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com> License AGPL-3.0 or 
+<!-- Copyright 2017 Alberto Martín - Guadaltech License AGPL-3.0 or
 	later (http://www.gnu.org/licenses/agpl). -->
 <openerp>
     <data>
@@ -9,21 +9,18 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                 <page string="Configuration" position="inside">
+                    <separator name="aeat_sii_config" string="AEAT SII Configuration"/>
+
                     <group colspan="4" col="4">
-                        <separator name="aeat_sii_config" string="AEAT SII Configuration"/>
-                        <group colspan="4" col="4">
-                            <field name="sii_version"/>
-                            <field name="wsdl_out"/>
-                            <field name="wsdl_in"/>
-                            <field name="wsdl_pi"/>
-                            <field name="wsdl_ic"/>
-                            <field name="wsdl_pr"/>
-                            <field name="wsdl_prm"/>
-                            <field name="wsdl_ps"/>
-                            <field name="use_connector"/>
-                            <field name="chart_template_id"/>
-                            <field name="sii_test"/>
-                        </group>
+                        <field name="sii_enabled"/>
+                    </group>
+                    <group colspan="4" col="4" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <field name="chart_template_id"
+                               attrs="{'required': [('sii_enabled', '=', True)]}"/>
+                        <!--<field name="use_connector" />-->
+                        <field name="sii_test"/>
+                        <field name="sii_method"/>
+
                     </group>
                 </page>
             </field>

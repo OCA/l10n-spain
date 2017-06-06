@@ -6,12 +6,52 @@
         <record id="config_parameter_sii_crt" model="ir.config_parameter" forcecreate="True">
             <field name="key">l10n_es_aeat_sii.publicCrt</field>
             <field name="value">/opt/certificates/publicCert.crt</field>
-            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]"/>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
         </record>
         <record id="config_parameter_sii_key" model="ir.config_parameter" forcecreate="True">
             <field name="key">l10n_es_aeat_sii.privateKey</field>
             <field name="value">/opt/certificates/privateKey.pem</field>
-            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]"/>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_version" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.version</field>
+            <field name="value">0.7</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_wsdl_out" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.wsdl_out</field>
+            <field name="value">http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_07/SuministroFactEmitidas.wsdl</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_wsdl_in" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.wsdl_in</field>
+            <field name="value">http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_07/SuministroFactRecibidas.wsdl</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_wsdl_pi" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.wsdl_pi</field>
+            <field name="value">http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_07/SuministroBienesInversion.wsdl</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_wsdl_ic" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.wsdl_ic</field>
+            <field name="value">http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_07/SuministroOpIntracomunitarias.wsdl</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_wsdl_pr" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.wsdl_pr</field>
+            <field name="value">http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_07/SuministroCobrosEmitidas.wsdl</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_wsdl_prm" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.wsdl_prm</field>
+            <field name="value">http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_07/SuministroCobrosMetalico.wsdl</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
+        </record>
+        <record id="config_parameter_sii_wsdl_ps" model="ir.config_parameter" forcecreate="True">
+            <field name="key">l10n_es_aeat_sii.wsdl_ps</field>
+            <field name="value">http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_07/SuministroPagosRecibidas.wsdl</field>
+            <field name="group_ids" eval="[(6, False, [ref('account.group_account_invoice')])]" />
         </record>
     </data>
 </openerp>

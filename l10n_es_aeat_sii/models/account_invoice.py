@@ -31,25 +31,43 @@ class AccountInvoice(osv.Model):
 
     _columns = {
 
+        'sii_description': fields.text(string='SII Description',
+                                       required=True),
         'sii_sent': fields.boolean(string='SII Sent'),
         'sii_return': fields.text(string='SII Return'),
         'refund_type': fields.selection(
             selection=[('S', 'By substitution'), ('I', 'By differences')],
             string="Refund Type"),
-        'registration_key': fields.many2one('aeat.sii.mapping.registration.keys', "Registration key", required=True)
+        'registration_key': fields.many2one('aeat.sii.mapping.registration.keys', "Registration key", required=True),
+        'sii_csv': fields.char(string='SII CSV', size=64),
+        'sii_enabled': fields.related('company_id', 'sii_enabled', type='boolean', string='Enable SII'),
 
     }
 
     _defaults = {
         'registration_key': _get_default_key,
+        'sii_description': '/',
     }
 
     def copy(self, cr, uid, id, default, context={}):
 
         default['sii_sent'] = False
         default['sii_return'] = None
+        default['sii_csv'] = None
 
         return super(AccountInvoice, self).copy(cr, uid, id, default, context=context)
+
+    def onchange_refund_type(self, cr, uid, ids, refund_type):
+        for invoice in self.browse(cr, uid, ids):
+            if refund_type == 'S' and not invoice.origin_invoices_ids:
+                return {'warning':
+                            {'message': 'Debes tener al menos una factura '
+                                        'vinculada que sustituir'
+                             },
+                        'values': {
+                            'refund_type':None,
+                        }
+                        }
 
     def map_tax_template(self, cr, uid, tax_template, mapping_taxes, invoice):
         # Adapted from account_chart_update module
@@ -89,10 +107,16 @@ class AccountInvoice(osv.Model):
                                                                   ('date_to', '=', False)], limit=1)[0])
         mapping_taxes = {}
         for code in codes:
-            tax_templates = sii_map_line_obj.browse(cr, uid, sii_map_line_obj.search(cr, uid,
-                                                                                     [('code', '=', code),
-                                                                                      ('sii_map_id', '=', sii_map.id)],
-                                                                                     limit=1)[0]).taxes
+            map_line = sii_map_line_obj.search(cr, uid, [('code', '=', code), ('sii_map_id', '=', sii_map.id)], limit=1)
+            if map_line:
+                map_line = map_line[0]
+            tax_templates = sii_map_line_obj.browse(cr, uid, map_line)
+
+            if tax_templates:
+                tax_templates = tax_templates.taxes
+            else:
+                continue
+
             for tax_template in tax_templates:
                 tax = self.map_tax_template(cr, uid, tax_template, mapping_taxes, invoice)
                 if tax:
@@ -105,8 +129,14 @@ class AccountInvoice(osv.Model):
         return new_date
 
     def _get_header(self, cr, uid, ids, company, TipoComunicacion):
+
+        if not company.vat:
+            raise exceptions.Warning(_(
+                "No VAT configured for the company '{}'").format(company.name))
+        id_version_sii = self.pool.get('ir.config_parameter').get_param(cr, uid,
+                                                                        'l10n_es_aeat_sii.version', False)
         header = {
-            "IDVersionSii": company.sii_version,
+            "IDVersionSii": id_version_sii,
             "Titular": {
                 "NombreRazon": company.name,
                 "NIF": company.vat[2:]},
@@ -138,20 +168,16 @@ class AccountInvoice(osv.Model):
             taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax],
                                                              (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
                                                              line.quantity, line.product_id, line.invoice_id.partner_id)
-        if tax_line_req:
-            TipoRecargo = tax_line_req['percentage'] * 100
-            CuotaRecargo = tax_line_req['taxes'][0]['amount']
-        else:
-            TipoRecargo = 0
-            CuotaRecargo = 0
+
         tax_sii = {
             "TipoImpositivo": tax_type,
             "BaseImponible": taxes['total'],
         }
-
-        if TipoRecargo or CuotaRecargo:
-            tax_sii["TipoRecargoEquivalencia"] = TipoRecargo
-            tax_sii["CuotaRecargoEquivalencia"] = CuotaRecargo
+        if tax_line_req:
+            tipo_recargo = tax_line_req['percentage'] * 100
+            cuota_recargo = tax_line_req['taxes'][0]['amount']
+            tax_sii['TipoRecargoEquivalencia'] = tipo_recargo
+            tax_sii['CuotaRecargoEquivalencia'] = cuota_recargo
 
         if invoice.type in ['out_invoice', 'out_refund']:
             tax_sii['CuotaRepercutida'] = taxes['taxes'][0]['amount']
@@ -159,21 +185,19 @@ class AccountInvoice(osv.Model):
             tax_sii['CuotaSoportada'] = taxes['taxes'][0]['amount']
         return tax_sii
 
-    def _update_sii_tax_line(self, cr, uid, taxes, tax_line, line, line_taxes, invoice):
+    def _update_sii_tax_line(self, cr, uid, tax_sii, tax_line, line, line_taxes, invoice):
         tax_type = tax_line.amount * 100
         tax_line_req = self._get_tax_line_req(cr, uid, tax_type, line, line_taxes)
         taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax_line.id],
                                                          (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
                                                          line.quantity, line.product_id, line.invoice_id.partner_id)
         if tax_line_req:
-            TipoRecargo = tax_line_req['percentage'] * 100
-            CuotaRecargo = tax_line_req['taxes'][0]['amount']
-        else:
-            TipoRecargoEquivalencia = 0
-            CuotaRecargoEquivalencia = 0
-        taxes[str(tax_type)]['BaseImponible'] += taxes['total']
-        taxes[str(tax_type)]['TipoRecargoEquivalencia'] += TipoRecargo
-        taxes[str(tax_type)]['CuotaRecargoEquivalencia'] += CuotaRecargo
+            tipo_recargo = tax_line_req['percentage'] * 100
+            cuota_recargo = tax_line_req['taxes'][0]['amount']
+            tax_sii[str(tax_type)]['TipoRecargoEquivalencia'] += tipo_recargo
+            tax_sii[str(tax_type)]['CuotaRecargoEquivalencia'] += cuota_recargo
+
+        tax_sii[str(tax_type)]['BaseImponible'] += taxes['total']
         if invoice.type in ['out_invoice', 'out_refund']:
             taxes[str(tax_type)]['CuotaRepercutida'] += taxes['taxes'][0]['amount']
         if invoice.type in ['in_invoice', 'in_refund']:
@@ -184,59 +208,62 @@ class AccountInvoice(osv.Model):
         taxes_sii = {}
         taxes_f = {}
         taxes_to = {}
-        taxes_SFESB = self._get_taxes_map(cr, uid,
+        taxes_sfesb = self._get_taxes_map(cr, uid,
                                           ['SFESB'], invoice.date_invoice, invoice)
-        #         taxes_SFESBE = self._get_taxes_map(cr, uid,
-        #             ['SFESBE'], invoice.date_invoice, invoice)
-        taxes_SFESISP = self._get_taxes_map(cr, uid,
+        taxes_sfesbe = self._get_taxes_map(cr, uid,
+                                           ['SFESBE'], invoice.date_invoice, invoice)
+        taxes_sfesisp = self._get_taxes_map(cr, uid,
                                             ['SFESISP'], invoice.date_invoice, invoice)
         #         taxes_SFESISPS = self._get_taxes_map(cr, uid,
         #             ['SFESISPS'], invoice.date_invoice, invoice)
-        taxes_SFENS = self._get_taxes_map(cr, uid,
+        taxes_sfens = self._get_taxes_map(cr, uid,
                                           ['SFENS'], invoice.date_invoice, invoice)
-        taxes_SFESS = self._get_taxes_map(cr, uid,
+        taxes_sfess = self._get_taxes_map(cr, uid,
                                           ['SFESS'], invoice.date_invoice, invoice)
-        taxes_SFESSE = self._get_taxes_map(cr, uid,
+        taxes_sfesse = self._get_taxes_map(cr, uid,
                                            ['SFESSE'], invoice.date_invoice, invoice)
         for line in invoice.invoice_line:
             for tax_line in line.invoice_line_tax_id:
-                if (tax_line in taxes_SFESB or tax_line in taxes_SFESISP or
-                            tax_line in taxes_SFENS):
+
+                if tax_line in taxes_sfesb or tax_line in taxes_sfesisp or \
+                                tax_line in taxes_sfens:
                     if 'DesgloseFactura' not in taxes_sii:
                         taxes_sii['DesgloseFactura'] = {}
-                    if tax_line in taxes_SFESB:
-                        if 'Sujeta' not in taxes_sii['DesgloseFactura']:
-                            taxes_sii['DesgloseFactura']['Sujeta'] = {}
-                        # TODO l10n_es no tiene impuesto exento de bienes corrientes
-                        #                         if tax_line in taxes_SFESBE:
-                        #                             if 'Exenta' not in taxes_sii['DesgloseFactura'][
-                        #                                 'Sujeta']:
-                        #                                 taxes_sii['DesgloseFactura']['Sujeta'][
-                        #                                     'Exenta'] = {'BaseImponible': line.price_subtotal}
-                        #                             else:
-                        #                                 taxes_sii['DesgloseFactura']['Sujeta'][
-                        #                                     'Exenta']['BaseImponible'] += line.price_subtotal
-                        #                         TODO Facturas No sujetas
-                        if tax_line in taxes_SFESB or tax_line in taxes_SFESISP:
-                            if 'NoExenta' not in taxes_sii['DesgloseFactura'][
-                                'Sujeta']:
-                                taxes_sii['DesgloseFactura']['Sujeta'][
-                                    'NoExenta'] = {}
-                            if tax_line in taxes_SFESISP:
-                                TipoNoExenta = 'S2'
+                    inv_breakdown = taxes_sii['DesgloseFactura']
+                    if tax_line in taxes_sfesb:
+                        if 'Sujeta' not in inv_breakdown:
+                            inv_breakdown['Sujeta'] = {}
+                        # TODO l10n_es no tiene impuesto exento de bienes
+                        # corrientes nacionales
+                        if tax_line in taxes_sfesbe:
+                            if 'Exenta' not in inv_breakdown['Sujeta']:
+                                inv_breakdown['Sujeta']['Exenta'] = {
+                                    'BaseImponible': line.price_subtotal}
                             else:
-                                TipoNoExenta = 'S1'
-                            taxes_sii['DesgloseFactura']['Sujeta']['NoExenta'][
-                                'TipoNoExenta'] = TipoNoExenta
+                                inv_breakdown['Sujeta']['Exenta'][
+                                    'BaseImponible'] += line.price_subtotal
+                        # TODO Facturas No sujetas
+                        if tax_line in taxes_sfesb or \
+                                        tax_line in taxes_sfesisp:
+                            if 'NoExenta' not in inv_breakdown[
+                                'Sujeta']:
+                                inv_breakdown['Sujeta'][
+                                    'NoExenta'] = {}
+                            if tax_line in taxes_sfesisp:
+                                tipo_no_exenta = 'S2'
+                            else:
+                                tipo_no_exenta = 'S1'
+                            inv_breakdown['Sujeta']['NoExenta'][
+                                'TipoNoExenta'] = tipo_no_exenta
                             if 'DesgloseIVA' not in taxes_sii[
                                 'DesgloseFactura']['Sujeta']['NoExenta']:
-                                taxes_sii['DesgloseFactura']['Sujeta'][
+                                inv_breakdown['Sujeta'][
                                     'NoExenta']['DesgloseIVA'] = {}
-                                taxes_sii['DesgloseFactura']['Sujeta'][
+                                inv_breakdown['Sujeta'][
                                     'NoExenta']['DesgloseIVA'][
                                     'DetalleIVA'] = []
                             tax_type = tax_line.amount * 100
-                            if tax_type not in taxes_f:
+                            if str(tax_type) not in taxes_f:
                                 taxes_f[str(tax_type)] = self._get_sii_tax_line(cr, uid,
                                                                                 tax_line, line,
                                                                                 line.invoice_line_tax_id,
@@ -246,51 +273,50 @@ class AccountInvoice(osv.Model):
                                                                     taxes_f, tax_line, line,
                                                                     line.invoice_line_tax_id,
                                                                     invoice)
-                if tax_line in taxes_SFESS or tax_line in taxes_SFESSE:
+
+                if tax_line in taxes_sfess or tax_line in taxes_sfesse:
                     if 'DesgloseTipoOperacion' not in taxes_sii:
                         taxes_sii['DesgloseTipoOperacion'] = {}
-                    if 'PrestacionServicios' not in taxes_sii[
-                        'DesgloseTipoOperacion']:
-                        taxes_sii['DesgloseTipoOperacion'][
-                            'PrestacionServicios'] = {}
-                    if 'Sujeta' not in taxes_sii['DesgloseTipoOperacion'][
-                        'PrestacionServicios']:
-                        taxes_sii['DesgloseTipoOperacion'][
-                            'PrestacionServicios']['Sujeta'] = {}
-                    if tax_line in taxes_SFESSE:
-                        if 'Exenta' not in taxes_sii['DesgloseFactura'][
-                            'Sujeta']:
-                            taxes_sii['DesgloseFactura']['Sujeta'][
-                                'Exenta'] = {
-                                'BaseImponible': line.price_subtotal}
-                        else:
-                            taxes_sii['DesgloseFactura']['Sujeta'][
-                                'Exenta']['BaeImponible'] += line.price_subtotal
-                            #                     TODO Facturas no sujetas
-                    if tax_line in taxes_SFESS:
-                        if 'NoExenta' not in taxes_sii['DesgloseTipoOperacion'][
+                    type_breakdown = taxes_sii['DesgloseTipoOperacion']
+                    if 'PrestacionServicios' not in type_breakdown:
+                        type_breakdown['PrestacionServicios'] = {}
+                    if 'Sujeta' not in type_breakdown['PrestacionServicios']:
+                        type_breakdown['PrestacionServicios']['Sujeta'] = {}
+                    if tax_line in taxes_sfesse:
+                        if 'Exenta' not in taxes_sii['DesgloseTipoOperacion'][
                             'PrestacionServicios']['Sujeta']:
                             taxes_sii['DesgloseTipoOperacion'][
-                                'PrestacionServicios']['Sujeta']['NoExenta'] = {}
-                            #                             TODO l10n_es_ no tiene impuesto ISP de servicios
-                            #                             if tax_line in taxes_SFESISPS:
-                            #                                 TipoNoExenta = 'S2'
-                            #                             else:
-                            TipoNoExenta = 'S1'
+                                'PrestacionServicios']['Sujeta']['Exenta'] = {
+                                'BaseImponible': line.price_subtotal}
+                        else:
                             taxes_sii['DesgloseTipoOperacion'][
-                                'PrestacionServicios']['Sujeta']['NoExenta'][
-                                'TipoNoExenta'] = TipoNoExenta
+                                'PrestacionServicios']['Sujeta']['Exenta'][
+                                'BaseImponible'] += line.price_subtotal
+                    # TODO Facturas no sujetas
+                    if tax_line in taxes_sfess:
+                        if 'NoExenta' not in type_breakdown[
+                            'PrestacionServicios']['Sujeta']:
+                            type_breakdown['PrestacionServicios'][
+                                'Sujeta']['NoExenta'] = {}
+                            # TODO l10n_es_ no tiene impuesto ISP de servicios
+                            # if tax_line in taxes_sfesisps:
+                            #     TipoNoExenta = 'S2'
+                            # else:
+                            tipo_no_exenta = 'S1'
+                            type_breakdown[
+                                'PrestacionServicios']['º']['NoExenta'][
+                                'TipoNoExenta'] = tipo_no_exenta
                         if 'DesgloseIVA' not in taxes_sii[
                             'DesgloseTipoOperacion']['PrestacionServicios'][
                             'Sujeta']['NoExenta']:
-                            taxes_sii['DesgloseTipoOperacion'][
+                            type_breakdown[
                                 'PrestacionServicios']['Sujeta']['NoExenta'][
                                 'DesgloseIVA'] = {}
-                            taxes_sii['DesgloseTipoOperacion'][
+                            type_breakdown[
                                 'PrestacionServicios']['Sujeta']['NoExenta'][
                                 'DesgloseIVA']['DetalleIVA'] = []
                             tax_type = tax_line.amount * 100
-                            if tax_type not in taxes_to:
+                            if str(tax_type) not in taxes_to:
                                 taxes_to[str(tax_type)] = self._get_sii_tax_line(cr, uid,
                                                                                  tax_line, line,
                                                                                  line.invoice_line_tax_id,
@@ -310,27 +336,26 @@ class AccountInvoice(osv.Model):
                 taxes_sii['DesgloseTipoOperacion']['PrestacionServicios'][
                     'Sujeta']['NoExenta']['DesgloseIVA'][
                     'DetalleIVA'].append(line)
-
         return taxes_sii
 
     def _get_sii_in_taxes(self, cr, uid, invoice):
         taxes_sii = {}
         taxes_f = {}
         taxes_isp = {}
-        taxes_SFRS = self._get_taxes_map(cr, uid,
+        taxes_sfrs = self._get_taxes_map(cr, uid,
                                          ['SFRS'], invoice.date_invoice, invoice)
-        taxes_SFRISP = self._get_taxes_map(cr, uid,
+        taxes_sfrisp = self._get_taxes_map(cr, uid,
                                            ['SFRISP'], invoice.date_invoice, invoice)
         for line in invoice.invoice_line:
             for tax_line in line.invoice_line_tax_id:
-                if tax_line in taxes_SFRS or tax_line in taxes_SFRISP:
-                    if tax_line in taxes_SFRISP:
+                if tax_line in taxes_sfrs or tax_line in taxes_sfrisp:
+                    if tax_line in taxes_sfrisp:
                         if 'InversionSujetoPasivo' not in taxes_sii:
                             taxes_sii['InversionSujetoPasivo'] = {}
                             taxes_sii['InversionSujetoPasivo'][
                                 'DetalleIVA'] = []
                         tax_type = tax_line.amount * 100
-                        if tax_type not in taxes_isp:
+                        if str(tax_type) not in taxes_isp:
                             taxes_isp[str(tax_type)] = self._get_sii_tax_line(cr, uid,
                                                                               tax_line, line, line.invoice_line_tax_id,
                                                                               invoice)
@@ -345,7 +370,7 @@ class AccountInvoice(osv.Model):
                             taxes_sii['DesgloseIVA'][
                                 'DetalleIVA'] = []
                         tax_type = tax_line.amount * 100
-                        if tax_type not in taxes_f:
+                        if str(tax_type) not in taxes_f:
                             taxes_f[str(tax_type)] = self._get_sii_tax_line(cr, uid,
                                                                             tax_line, line, line.invoice_line_tax_id,
                                                                             invoice)
@@ -361,70 +386,86 @@ class AccountInvoice(osv.Model):
             taxes_sii['InversionSujetoPasivo']['DetalleIVA'].append(line)
         return taxes_sii
 
-    def _get_invoices(self, cr, uid, company, invoice):
+    def _get_invoices(self, cr, uid, invoice):
         invoice_date = self._change_date_format(cr, uid, invoice.date_invoice)
-        Ejercicio = invoice.period_id.fiscalyear_id.date_start[0:4]
-        Periodo = invoice.period_id.date_start[5:7]
+        company = invoice.company_id
+        ejercicio = invoice.period_id.fiscalyear_id.date_start[0:4]
+        periodo = invoice.period_id.date_start[5:7]
+
         if not company.chart_template_id:
             raise exceptions.Warning(_(
                 'You have to select what account chart template use this'
                 ' company.'))
         if invoice.type in ['out_invoice', 'out_refund']:
-            TipoFactura = 'F1'
+            tipo_factura = 'F1'
             #           TODO Los 5 tipos de facturas rectificativas
             if invoice.type == 'out_refund':
-                TipoFactura = 'R4'
-            TipoDesglose = self._get_sii_out_taxes(cr, uid, invoice)
+                tipo_factura = 'R4'
+            tipo_desglose = self._get_sii_out_taxes(cr, uid, invoice)
             key = invoice.registration_key.code
-
             invoices = {
                 "IDFactura": {
                     "IDEmisorFactura": {
                         "NIF": company.vat[2:]
                     },
-                    "NumSerieFacturaEmisor": invoice.number,
+                    "NumSerieFacturaEmisor": invoice.number[0:60],
                     "FechaExpedicionFacturaEmisor": invoice_date},
                 "PeriodoImpositivo": {
-                    "Ejercicio": Ejercicio,
-                    "Periodo": Periodo
+                    "Ejercicio": ejercicio,
+                    "Periodo": periodo
                 },
                 "FacturaExpedida": {
-                    "TipoFactura": TipoFactura,
+                    "TipoFactura": tipo_factura,
                     "ClaveRegimenEspecialOTrascendencia": key,
-                    "DescripcionOperacion": invoice.name,
+                    "DescripcionOperacion": invoice.sii_description[0:500],
                     "Contraparte": {
-                        "NombreRazon": invoice.partner_id.name,
+                        "NombreRazon": invoice.partner_id.name[0:120],
                         "NIF": invoice.partner_id.vat[2:]
                     },
-                    "TipoDesglose": TipoDesglose
+                    "TipoDesglose": tipo_desglose
                 }
             }
+            # Uso condicional de IDOtro/NIF
+            invoices['FacturaExpedida']['Contraparte'].update(
+                self._get_sii_identifier(cr, uid, invoice))
+
             if invoice.type == 'out_refund':
                 invoices['FacturaExpedida'][
                     'TipoRectificativa'] = invoice.refund_type
 
+                if invoice.refund_type == 'S':
+                    base_rectificada = 0
+                    cuota_rectificada = 0
+                    for s in invoice.origin_invoices_ids:
+                        base_rectificada += s.amount_untaxed
+                        cuota_rectificada += s.amount_tax
+                    invoices['FacturaExpedida']['ImporteRectificacion'] = {
+                        'BaseRectificada': base_rectificada,
+                        'CuotaRectificada': cuota_rectificada
+                    }
+
         if invoice.type in ['in_invoice', 'in_refund']:
             #           TODO Los 5 tipos de facturas rectificativas
-            TipoFactura = 'F1'
+            tipo_factura = 'F1'
             if invoice.type == 'in_refund':
-                TipoFactura = 'R4'
-            DesgloseFactura = self._get_sii_in_taxes(cr, uid, invoice)
+                tipo_factura = 'R4'
+            desglose_factura = self._get_sii_in_taxes(cr, uid, invoice)
             invoices = {
                 "IDFactura": {
                     "IDEmisorFactura": {
                         "NIF": invoice.partner_id.vat[2:]
                     },
-                    "NumSerieFacturaEmisor": invoice.supplier_invoice_number,
+                    "NumSerieFacturaEmisor": invoice.reference,
                     "FechaExpedicionFacturaEmisor": invoice_date},
                 "PeriodoImpositivo": {
-                    "Ejercicio": Ejercicio,
-                    "Periodo": Periodo
+                    "Ejercicio": ejercicio,
+                    "Periodo": periodo
                 },
                 "FacturaRecibida": {
-                    "TipoFactura": TipoFactura,
+                    "TipoFactura": tipo_factura,
                     "ClaveRegimenEspecialOTrascendencia": "01",
-                    "DescripcionOperacion": invoice.name,
-                    "DesgloseFactura": DesgloseFactura,
+                    "DescripcionOperacion": invoice.sii_description[0:500],
+                    "DesgloseFactura": desglose_factura,
                     "Contraparte": {
                         "NombreRazon": invoice.partner_id.name,
                         "NIF": invoice.partner_id.vat[2:]
@@ -436,8 +477,16 @@ class AccountInvoice(osv.Model):
             if invoice.type == 'in_refund':
                 invoices['FacturaRecibida'][
                     'TipoRectificativa'] = invoice.refund_type
-
-        print invoices
+                if invoice.refund_type == 'S':
+                    base_rectificada = 0
+                    cuota_rectificada = 0
+                    for s in invoice.origin_invoices_ids:
+                        base_rectificada += s.amount_untaxed
+                        cuota_rectificada += s.amount_tax
+                    invoices['FacturaRecibida']['ImporteRectificacion'] = {
+                        'BaseRectificada': base_rectificada,
+                        'CuotaRectificada': cuota_rectificada
+                    }
         return invoices
 
     def _connect_sii(self, cr, uid, wsdl):
@@ -458,45 +507,27 @@ class AccountInvoice(osv.Model):
         for invoice in self.pool.get('account.invoice').browse(cr, uid, ids):
             company = invoice.company_id
             port_name = ''
-
-            fp_intra_id = self.pool.get('account.fiscal.position').search(cr, uid,
-                                                                          [('name', '=', 'Régimen Intracomunitario')])
-
             if invoice.type in ['out_invoice', 'out_refund']:
-                wsdl = company.wsdl_out
+                wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
+                                                                  'l10n_es_aeat_sii.wsdl_out', False)
                 client = self._connect_sii(cr, uid, wsdl)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type in ['in_invoice', 'in_refund']:
-                wsdl = company.wsdl_in
+                wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
+                                                                  'l10n_es_aeat_sii.wsdl_in', False)
                 client = self._connect_sii(cr, uid, wsdl)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
-                    #             TODO Property Investiment
-                    #             elif invoice == 'Property Investiment':
-                    #                 wsdl = company.wsdl_pi
-                    #                 client = self._connect_sii(wsdl)
-                    #                 port_name = 'SuministroBienesInversion'
-                    #                 if company.sii_test:
-                    #                     port_name += 'Pruebas'
-            elif invoice.fiscal_position.id == fp_intra_id:
-                wsdl = company.wsdl_ic
-                client = self._connect_sii(wsdl)
-                port_name = 'SuministroOpIntracomunitarias'
-                if company.sii_test:
-                    port_name += 'Pruebas'
-
             serv = client.bind('siiService', port_name)
-
             if not invoice.sii_sent:
-                TipoComunicacion = 'A0'
+                tipo_comunicacion = 'A0'
             else:
-                TipoComunicacion = 'A1'
-
-            header = self._get_header(cr, uid, invoice.id, company, TipoComunicacion)
-            invoices = self._get_invoices(cr, uid, company, invoice)
+                tipo_comunicacion = 'A1'
+            header = self._get_header(cr, uid, invoice.id, company, tipo_comunicacion)
+            invoices = self._get_invoices(cr, uid, invoice)
             try:
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
@@ -504,23 +535,63 @@ class AccountInvoice(osv.Model):
                 elif invoice.type in ['in_invoice', 'in_refund']:
                     res = serv.SuministroLRFacturasRecibidas(
                         header, invoices)
-                    #                 TODO Factura Bienes de inversión
-                    #                 elif invoice == 'Property Investiment':
-                    #                     res = serv.SuministroLRBienesInversion(
-                    #                         header, invoices)
-                    #                 TODO Facturas intracomunitarias
-                    #                 elif invoice.fiscal_position.id == self.env.ref(
-                    #                     'account.fp_intra').id:
-                    #                     res = serv.SuministroLRDetOperacionIntracomunitaria(
-                    #                         header, invoices)
+                # TODO Facturas intracomunitarias 66 RIVA
+                # elif invoice.fiscal_position.id == self.env.ref(
+                #     'account.fp_intra').id:
+                #     res = serv.SuministroLRDetOperacionIntracomunitaria(
+                #         header, invoices)
                 if res['EstadoEnvio'] == 'Correcto':
-                    self.write(cr, uid, invoice.id, {'sii_sent': True})
+                    self.write(cr, uid, invoice.id, {'sii_sent': True,
+                                                     'sii_csv': res['CSV']
+                                                     })
                 self.write(cr, uid, invoice.id, {'sii_return': res})
             except Exception as fault:
                 self.write(cr, uid, invoice.id, {'sii_return': fault})
 
     def action_number(self, cr, uid, ids, context=None):
         res = super(AccountInvoice, self).action_number(cr, uid, ids, context=context)
-        self._send_invoice_to_sii(cr, uid, ids)
+        for invoice in self.browse(cr, uid, ids):
+            company = invoice.company_id
+            if company.sii_enabled and company.sii_method == 'auto':
+                self._send_invoice_to_sii(cr, uid, [invoice.id])
 
         return res
+
+    def send_sii(self, cr, uid, ids, context=None):
+        for invoice in self.browse(cr, uid, ids, context):
+            company = invoice.company_id
+            if company.sii_enabled:
+                self._send_invoice_to_sii(cr, uid, [invoice.id])
+
+    # @api.multi
+    # def action_cancel(self):
+    #     for queue in self.invoice_jobs_ids:
+    #         if queue.state == 'started':
+    #             raise Warning(_(
+    #                 'You can not cancel this invoice because'
+    #                 ' there is a job running!'))
+    #         elif queue.state in ('pending', 'enqueued', 'failed'):
+    #             queue.write({
+    #                 'state': 'done',
+    #                 'date_done': date.today()})
+    #     return super(AccountInvoice, self).action_cancel()
+
+
+    def _get_sii_identifier(self, cr, uid, invoice):
+        codPais = invoice.partner_id.vat[:2]
+        dic_ret = {}
+        if codPais != 'ES':
+            if invoice.fiscal_position.name == u'Régimen Intracomunitario':
+                idType = '02'
+            else:
+                idType = '04'
+            dic_ret = {
+                "IDOtro": {
+                    "CodigoPais": codPais,
+                    "IDType": idType,
+                    "ID": invoice.partner_id.vat
+                }
+            }
+        else:
+            dic_ret = {"NIF": invoice.partner_id.vat[2:]}
+        return dic_ret

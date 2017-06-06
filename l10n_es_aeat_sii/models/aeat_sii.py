@@ -23,6 +23,9 @@ class L10nEsAeatSii(osv.Model):
         'date_end': fields.date(string="End Date"),
         'public_key': fields.char(string="Public Key", readonly=True, size=64),
         'private_key': fields.char(string="Private Key", readonly=True, size=64),
+        'company_id': fields.many2one("res.company", string="Compañia", required=True
+                                      )
+
     }
 
     _defaults = {

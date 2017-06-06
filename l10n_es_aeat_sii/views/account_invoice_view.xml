@@ -7,16 +7,28 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
+                <button string="Re-Open" position="after">
+                    <button type="object" string="Send SII"
+                            name="send_sii" groups="account.group_account_manager"
+                            states="open,paid"/>
+                </button>
+
+                <field name="reference" position="attributes">
+                    <attribute name="required">True</attribute>
+                </field>
                 <notebook position="inside">
-                    <page string="AEAT" groups="account.group_account_manager">
+                    <page string="SII" groups="account.group_account_manager"
+                          attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
+                            <field name="sii_description"/>
                             <field name="refund_type"
                                    attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
                             <field name="registration_key" domain="[('type', '=', 'purchase')]"/>
-
+                            <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
                             <field name="sii_sent"/>
+                            <field name="sii_csv"/>
                             <field name="sii_return"/>
                         </group>
                     </page>
@@ -29,20 +41,44 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
+                <button string="Re-Open" position="after">
+                    <button type="object" string="Send SII"
+                            name="send_sii" groups="account.group_account_manager"
+                            states="open,paid"/>
+                </button>
                 <notebook position="inside">
-                    <page string="AEAT" groups="account.group_account_manager">
+                    <page string="AEAT" groups="account.group_account_manager"
+                          attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
+                            <field name="sii_description"/>
                             <field name="refund_type"
                                    attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
                             <field name="registration_key" domain="[('type', '=', 'sale')]"/>
+                            <field name="sii_enabled" invisible="1"/>
 
                         </group>
                         <group string="SII Result">
+                            <field name="sii_enabled" invisible="True"/>
                             <field name="sii_sent"/>
+                            <field name="sii_csv"/>
                             <field name="sii_return"/>
                         </group>
                     </page>
                 </notebook>
+            </field>
+        </record>
+
+        <record id="view_account_invoice_filter_sii_inherit" model="ir.ui.view">
+            <field name="name">view.account.invoice.filter.sii.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="type">search</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <filter name="unpaid" position="after">
+                    <filter name="sii_sent" string="SII Sent" domain="[('sii_sent','=',True)]" help="SII Sent"/>
+                    <filter name="sii_not_sent" string="SII Not Sent" domain="[('sii_sent','=',False)]"
+                            help="SII Not Sent"/>
+                </filter>
             </field>
         </record>
 
