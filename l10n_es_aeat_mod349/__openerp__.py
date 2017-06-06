@@ -28,6 +28,7 @@
     "version": "8.0.2.2.0",
     "author": "Pexego, "
               "Top Consultant, "
+              "Praxya, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Antiun Ingeniería S.L.,"
               "Odoo Community Association (OCA)",
