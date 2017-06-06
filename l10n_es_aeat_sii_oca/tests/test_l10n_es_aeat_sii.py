@@ -118,7 +118,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
             'IDFactura': {
                 'FechaExpedicionFacturaEmisor': str_today,
                 'IDEmisorFactura': {
-                    'NIF': emisor.vat[-9:]},
+                    'NIF': emisor.vat[2:]},
                 'NumSerieFacturaEmisor': (
                     self.invoice.supplier_invoice_number or
                     self.invoice.number)},
@@ -126,9 +126,11 @@ class TestL10nEsAeatSii(common.TransactionCase):
                 'TipoFactura': invoice_type,
                 'Contraparte': {
                     'NombreRazon': contraparte.name,
-                    'NIF': contraparte.vat[-9:]},
+                    'NIF': contraparte.vat[2:],
+                },
                 'DescripcionOperacion': u'/',
-                'ClaveRegimenEspecialOTrascendencia': special_regime},
+                'ClaveRegimenEspecialOTrascendencia': special_regime,
+            },
             'PeriodoImpositivo': {
                 'Periodo': str(self.invoice.period_id.code[:2]),
                 'Ejercicio': int(self.invoice.period_id.code[-4:])
@@ -137,13 +139,14 @@ class TestL10nEsAeatSii(common.TransactionCase):
         if self.invoice.type in ['out_invoice', 'out_refund']:
             res[expedida_recibida].update({
                 'TipoDesglose': {},
+                'ImporteTotal': self.invoice.amount_total,
             })
         else:
             res[expedida_recibida].update({
                 "FechaRegContable":
                     datetime.strptime(
-                    self.invoice.date_invoice, '%Y-%m-%d')
-                .strftime('%d-%m-%Y'),
+                        self.invoice.date_invoice,
+                        '%Y-%m-%d').strftime('%d-%m-%Y'),
                 "DesgloseFactura": {},
                 "CuotaDeducible": self.invoice.amount_tax
             })
