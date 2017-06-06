@@ -16,6 +16,11 @@ class AccountJournalEntriesReport(models.TransientModel):
     def _default_journal_ids(self):
         return self.env['account.journal'].search([])
 
+    @api.model
+    def _default_period_ids(self):
+        return self.env['account.period'].search(
+            [('fiscalyear_id', '=', self.env['account.fiscalyear'].find())])
+
     journal_ids = fields.Many2many(
         comodel_name='account.journal',
         relation="account_journal_entries_report_journals_rel",
@@ -24,7 +29,7 @@ class AccountJournalEntriesReport(models.TransientModel):
     period_ids = fields.Many2many(
         comodel_name='account.period',
         relation="account_journal_entries_report_periods_rel",
-        string='Period'
+        string='Period', default=_default_period_ids
     )
     sort_selection = fields.Selection(
         [('date', 'By date'),
