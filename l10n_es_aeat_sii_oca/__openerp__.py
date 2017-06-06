@@ -34,6 +34,7 @@
         "views/aeat_sii_map_view.xml",
         "data/aeat_sii_map_data.xml",
         "security/ir.model.access.csv",
-        "security/aeat_sii.xml"
+        "security/aeat_sii.xml",
+        "views/product_view.xml",
     ],
 }
