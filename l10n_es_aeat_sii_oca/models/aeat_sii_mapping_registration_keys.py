@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (c) 2015-TODAY MINORISA (http://www.minorisa.net) All Rights Reserved.
+#    Copyright (c) 2015-TODAY MINORISA (http://www.minorisa.net)
+#    All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -18,27 +19,27 @@
 #
 ##############################################################################
 
-from openerp import api, models, fields, _
-from openerp.exceptions import ValidationError
+from openerp import api, fields, models
 
 
 class AeatSiiMappingRegistrationKeys(models.Model):
-    _name='aeat.sii.mapping.registration.keys'
+    _name = 'aeat.sii.mapping.registration.keys'
     _description = 'Aeat SII Invoice Registration Keys'
-    
-    
-    #registration_id = fields.Many2one('aeat.sii.invoice.registration','Aeat SII Invoice Registration')
-    code = fields.Char('Code',required=True,size=2)
-    name = fields.Char('Name',required=True)
-    #type = fields.Selection([('sale','Sale'),('purchase','Purchase'),('all','All')],'Type',required=True)
-    type = fields.Selection([('sale','Sale'),('purchase','Purchase')],'Type',required=True)
-    
+
+    # registration_id = fields.Many2one('aeat.sii.invoice.registration',
+    # 'Aeat SII Invoice Registration')
+    code = fields.Char(string='Code', required=True, size=2)
+    name = fields.Char(string='Name', required=True)
+    # type = fields.Selection([('sale','Sale'),('purchase','Purchase'),
+    # ('all','All')],'Type',required=True)
+    type = fields.Selection(
+        selection=[('sale', 'Sale'), ('purchase', 'Purchase')], string='Type',
+        required=True)
+
     @api.multi
     def name_get(self):
         vals = []
         for record in self:
-            name=u''
-            name += "[%s]" % record.code
-            name+= "-%s"%record.name
+            name = u'[{}]-{}'.format(record.code, record.name)
             vals.append(tuple([record.id, name]))
         return vals
