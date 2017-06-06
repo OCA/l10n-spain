@@ -15,7 +15,6 @@ from zeep.plugins import HistoryPlugin
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
 
-
 _logger = logging.getLogger(__name__)
 
 try:
@@ -166,7 +165,7 @@ class AccountInvoice(models.Model):
         return taxes
 
     @api.multi
-    def _get_sii_tax_line(self, tax_line, line, line_taxes):
+    def _get_sii_tax_line(self, tax_line, line, line_taxes, currency):
         self.ensure_one()
         tax_type = tax_line.amount * 100
         tax_line_req = self._get_tax_line_req(tax_type, line, line_taxes)
@@ -175,22 +174,26 @@ class AccountInvoice(models.Model):
             line.quantity, line.product_id, line.invoice_id.partner_id)
         tax_sii = {
             "TipoImpositivo": tax_type,
-            "BaseImponible": taxes['total']
+            "BaseImponible": currency.compute(taxes['total'], 
+                                              self.company_id.currency_id)
         }
         if tax_line_req:
             tipo_recargo = tax_line_req['percentage'] * 100
             cuota_recargo = tax_line_req['taxes'][0]['amount']
             tax_sii['TipoRecargoEquivalencia'] = tipo_recargo
-            tax_sii['CuotaRecargoEquivalencia'] = cuota_recargo
+            tax_sii['CuotaRecargoEquivalencia'] = currency.compute(cuota_recargo, 
+                                                                   self.company_id.currency_id)
 
         if self.type in ['out_invoice', 'out_refund']:
-            tax_sii['CuotaRepercutida'] = taxes['taxes'][0]['amount']
+            tax_sii['CuotaRepercutida'] = currency.compute(taxes['taxes'][0]['amount'], 
+                                                           self.company_id.currency_id)
         if self.type in ['in_invoice', 'in_refund']:
-            tax_sii['CuotaSoportada'] = taxes['taxes'][0]['amount']
+            tax_sii['CuotaSoportada'] = currency.compute(taxes['taxes'][0]['amount'], 
+                                                         self.company_id.currency_id)
         return tax_sii
 
     @api.multi
-    def _update_sii_tax_line(self, tax_sii, tax_line, line, line_taxes):
+    def _update_sii_tax_line(self, tax_sii, tax_line, line, line_taxes, currency):
         self.ensure_one()
         tax_type = tax_type = tax_line.amount * 100
         tax_line_req = self._get_tax_line_req(tax_type, line, line_taxes)
@@ -201,21 +204,26 @@ class AccountInvoice(models.Model):
             tipo_recargo = tax_line_req['percentage'] * 100
             cuota_recargo = tax_line_req['taxes'][0]['amount']
             tax_sii[str(tax_type)]['TipoRecargoEquivalencia'] += tipo_recargo
-            tax_sii[str(tax_type)]['CuotaRecargoEquivalencia'] += cuota_recargo
+            tax_sii[str(tax_type)]['CuotaRecargoEquivalencia'] += currency.compute(cuota_recargo, 
+                                                                                   self.company_id.currency_id)
 
-        tax_sii[str(tax_type)]['BaseImponible'] += taxes['total']
+        tax_sii[str(tax_type)]['BaseImponible'] += currency.compute(taxes['total'], 
+                                                                    self.company_id.currency_id)
         if self.type in ['out_invoice', 'out_refund']:
-            tax_sii[str(tax_type)]['CuotaRepercutida'] += taxes['taxes'][0]['amount']
+            tax_sii[str(tax_type)]['CuotaRepercutida'] += currency.compute(taxes['taxes'][0]['amount'], 
+                                                                           self.company_id.currency_id)
         if self.type in ['in_invoice', 'in_refund']:
-            tax_sii[str(tax_type)]['CuotaSoportada'] += taxes['taxes'][0]['amount']
+            tax_sii[str(tax_type)]['CuotaSoportada'] += currency.compute(taxes['taxes'][0]['amount'], 
+                                                                         self.company_id.currency_id)
         return tax_sii
 
     @api.multi
-    def _get_sii_out_taxes(self):
+    def _get_sii_out_taxes(self, currency):
         self.ensure_one()
         taxes_sii = {}
         taxes_f = {}
         taxes_to = {}
+        
         taxes_sfesb = self._get_taxes_map(['SFESB'], self.date_invoice)
         taxes_sfesbe = self._get_taxes_map(['SFESBE'], self.date_invoice)
         taxes_sfesisp = self._get_taxes_map(['SFESISP'], self.date_invoice)
@@ -236,12 +244,20 @@ class AccountInvoice(models.Model):
                         # TODO l10n_es no tiene impuesto exento de bienes
                         # corrientes nacionales
                         if tax_line in taxes_sfesbe:
-                            if 'Exenta' not in inv_breakdown['Sujeta']:
+                            if 'Exenta' not in inv_breakdown['Sujeta']:                                                                
                                 inv_breakdown['Sujeta']['Exenta'] = {
-                                    'BaseImponible': line.price_subtotal}
-                            else:
+                                    'BaseImponible': currency.compute(
+                                        line.price_subtotal,
+                                        self.company_id.currency_id)}
+                               
+                                if line.product_id.sii_exempt_cause != 'none':                                                                
+                                    inv_breakdown['Sujeta']['Exenta'].update({
+                                        'CausaExencion':line.product_id.sii_exempt_cause})                                 
+                            else:                                                              
                                 inv_breakdown['Sujeta']['Exenta'][
-                                    'BaseImponible'] += line.price_subtotal
+                                    'BaseImponible'] += currency.compute(line.price_subtotal,
+                                                                         self.company_id.currency_id)
+                               
                         # TODO Facturas No sujetas
                         if tax_line in taxes_sfesb or \
                                 tax_line in taxes_sfesisp:
@@ -267,11 +283,11 @@ class AccountInvoice(models.Model):
                                 taxes_f[str(tax_type)] = \
                                     self._get_sii_tax_line(
                                         tax_line, line,
-                                        line.invoice_line_tax_id)
+                                        line.invoice_line_tax_id, currency)
                             else:
                                 taxes_f = self._update_sii_tax_line(
                                     taxes_f, tax_line, line,
-                                    line.invoice_line_tax_id)
+                                    line.invoice_line_tax_id, currency)
                 if tax_line in taxes_sfess or tax_line in taxes_sfesse:
                     if 'DesgloseTipoOperacion' not in taxes_sii:
                         taxes_sii['DesgloseTipoOperacion'] = {}
@@ -283,13 +299,20 @@ class AccountInvoice(models.Model):
                     if tax_line in taxes_sfesse:
                          if 'Exenta' not in taxes_sii['DesgloseTipoOperacion'][
                                  'PrestacionServicios']['Sujeta']:
-                             taxes_sii['DesgloseTipoOperacion'][
-                             'PrestacionServicios']['Sujeta']['Exenta'] = {
-                                     'BaseImponible': line.price_subtotal}
+                            taxes_sii['DesgloseTipoOperacion'][
+                                'PrestacionServicios']['Sujeta']['Exenta'] = {
+                                    'BaseImponible': currency.compute(line.price_subtotal,
+                                                                      self.company_id.currency_id)                              
+                                    }
+                            if line.product_id.sii_exempt_cause != 'none':
+                                taxes_sii['DesgloseTipoOperacion'][
+                                    'PrestacionServicios']['Sujeta']['Exenta'].update({
+                                        'CausaExencion': line.product_id.sii_exempt_cause})
                          else:
                              taxes_sii['DesgloseTipoOperacion'][
-                             'PrestacionServicios']['Sujeta']['Exenta'][
-                                 'BaseImponible'] += line.price_subtotal   
+                                 'PrestacionServicios']['Sujeta']['Exenta'][
+                                     'BaseImponible'] += currency.compute(line.price_subtotal,
+                                                                          self.company_id.currency_id)   
                     # TODO Facturas no sujetas
                     if tax_line in taxes_sfess:
                         if 'NoExenta' not in type_breakdown[
@@ -302,7 +325,7 @@ class AccountInvoice(models.Model):
                             # else:
                             tipo_no_exenta = 'S1'
                             type_breakdown[
-                                'PrestacionServicios']['º']['NoExenta'][
+                                'PrestacionServicios']['Sujeta']['NoExenta'][
                                     'TipoNoExenta'] = tipo_no_exenta
                         if 'DesgloseIVA' not in taxes_sii[
                             'DesgloseTipoOperacion']['PrestacionServicios'][
@@ -318,11 +341,11 @@ class AccountInvoice(models.Model):
                                 taxes_to[str(tax_type)] = \
                                     self._get_sii_tax_line(
                                         tax_line, line,
-                                        line.invoice_line_tax_id)
+                                        line.invoice_line_tax_id, currency)
                             else:
                                 taxes_to = self._update_sii_tax_line(
                                     taxes_to, tax_line, line,
-                                    line.invoice_line_tax_id)
+                                    line.invoice_line_tax_id, currency)
         if len(taxes_f) > 0:
             for key, line in taxes_f.iteritems():
                 taxes_sii['DesgloseFactura']['Sujeta']['NoExenta'][
@@ -335,11 +358,12 @@ class AccountInvoice(models.Model):
         return taxes_sii
 
     @api.multi
-    def _get_sii_in_taxes(self):
+    def _get_sii_in_taxes(self, currency):
         self.ensure_one()
         taxes_sii = {}
         taxes_f = {}
         taxes_isp = {}
+        
         taxes_sfrs = self._get_taxes_map(['SFRS'], self.date_invoice)
         taxes_sfrisp = self._get_taxes_map(['SFRISP'], self.date_invoice)
         for line in self.invoice_line:
@@ -353,11 +377,11 @@ class AccountInvoice(models.Model):
                         tax_type = tax_line.amount * 100
                         if str(tax_type) not in taxes_isp:
                             taxes_isp[str(tax_type)] = self._get_sii_tax_line(
-                                tax_line, line, line.invoice_line_tax_id)
+                                tax_line, line, line.invoice_line_tax_id, currency)
                         else:
                             taxes_isp = self._update_sii_tax_line(
                                 taxes_isp, tax_line, line,
-                                line.invoice_line_tax_id)
+                                line.invoice_line_tax_id, currency)
                     else:
                         if 'DesgloseIVA' not in taxes_sii:
                             taxes_sii['DesgloseIVA'] = {}
@@ -366,11 +390,11 @@ class AccountInvoice(models.Model):
                         tax_type = tax_line.amount * 100
                         if str(tax_type) not in taxes_f:
                             taxes_f[str(tax_type)] = self._get_sii_tax_line(
-                                tax_line, line, line.invoice_line_tax_id)
+                                tax_line, line, line.invoice_line_tax_id, currency)
                         else:
                             taxes_f = self._update_sii_tax_line(
                                 taxes_f, tax_line, line,
-                                line.invoice_line_tax_id)
+                                line.invoice_line_tax_id, currency)
         for key, line in taxes_f.iteritems():
             taxes_sii['DesgloseIVA']['DetalleIVA'].append(line)
         for key, line in taxes_isp.iteritems():
@@ -385,7 +409,8 @@ class AccountInvoice(models.Model):
                 "The partner '{}' has not a VAT configured.").format(
                     self.partner_id.name))
         invoice_date = self._change_date_format(self.date_invoice)
-        company = self.company_id
+        company = self.company_id      
+        currency = self.currency_id.with_context(date=invoice_date or fields.Date.context_today(self))        
         ejercicio = fields.Date.from_string(
             self.period_id.fiscalyear_id.date_start).year
         periodo = '%02d' % fields.Date.from_string(
@@ -399,7 +424,7 @@ class AccountInvoice(models.Model):
             # TODO Los 5 tipos de facturas rectificativas
             if self.type == 'out_refund':
                 tipo_factura = 'R4'
-            tipo_desglose = self._get_sii_out_taxes()
+            tipo_desglose = self._get_sii_out_taxes(currency)
             key = self.registration_key.code
             invoices = {
                 "IDFactura": {
@@ -431,11 +456,15 @@ class AccountInvoice(models.Model):
                     base_rectificada = 0
                     cuota_rectificada = 0
                     for s in self.origin_invoices_ids:
-                        base_rectificada += s.amount_untaxed
-                        cuota_rectificada += s.amount_tax
+                        base_rectificada += currency.compute(s.amount_untaxed,
+                                                             self.company_id.currency_id)
+                        cuota_rectificada += currency.compute(s.amount_tax,
+                                                              self.company_id.currency_id)
                     invoices['FacturaExpedida']['ImporteRectificacion'] = {
-                        'BaseRectificada': base_rectificada,
-                        'CuotaRectificada': cuota_rectificada
+                        'BaseRectificada': currency.compute(base_rectificada, 
+                                                            self.company_id.currency_id),
+                        'CuotaRectificada': currency.compute(cuota_rectificada,
+                                                             self.company_id.currency_id)
                     }
 
         if self.type in ['in_invoice', 'in_refund']:
@@ -443,7 +472,7 @@ class AccountInvoice(models.Model):
             tipo_facturea = 'F1'
             if self.type == 'in_refund':
                 tipo_facturea = 'R4'
-            desglose_factura = self._get_sii_in_taxes()
+            desglose_factura = self._get_sii_in_taxes(currency)
             invoices = {
                 "IDFactura": {
                     "IDEmisorFactura": {
@@ -466,7 +495,8 @@ class AccountInvoice(models.Model):
                         "NIF": self.partner_id.vat[2:]
                     },
                     "FechaRegContable": invoice_date,
-                    "CuotaDeducible": self.amount_tax
+                    "CuotaDeducible": currency.compute(self.amount_tax,
+                                                       self.company_id.currency_id)
                 }
             }
             if self.type == 'in_refund':
@@ -477,11 +507,15 @@ class AccountInvoice(models.Model):
                     base_rectificada = 0
                     cuota_rectificada = 0
                     for s in self.origin_invoices_ids:
-                        base_rectificada += s.amount_untaxed
-                        cuota_rectificada += s.amount_tax
+                        base_rectificada += currency.compute(s.amount_untaxed,
+                                                             self.company_id.currency_id)
+                        cuota_rectificada += currency.compute(s.amount_tax,
+                                                              self.company_id.currency_id)
                     invoices['FacturaRecibida']['ImporteRectificacion'] = {
-                        'BaseRectificada': base_rectificada,
-                        'CuotaRectificada': cuota_rectificada
+                        'BaseRectificada': currency.compute(base_rectificada,
+                                                            self.company_id.currency_id),
+                        'CuotaRectificada': currency.compute(cuota_rectificada,
+                                                             self.company_id.currency_id)
                     }
 
         return invoices
@@ -582,7 +616,7 @@ class AccountInvoice(models.Model):
                     ], limit=1)
                     invoice.invoice_jobs_ids |= queue_ids
         return res
-
+    
     @api.multi
     def send_sii(self):
         queue_obj = self.env['queue.job']
@@ -600,7 +634,7 @@ class AccountInvoice(models.Model):
                         ('uuid', '=', new_delay)
                     ], limit=1)
                     invoice.invoice_jobs_ids |= queue_ids
-
+    
     @api.multi
     def action_cancel(self):
         for queue in self.invoice_jobs_ids:
