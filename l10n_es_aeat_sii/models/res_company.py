@@ -3,10 +3,9 @@
 # (c) 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
 # (c) 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from datetime import datetime, timedelta
 
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from datetime import datetime, timedelta
+from openerp import fields, models
 
 
 class ResCompany(models.Model):
@@ -18,7 +17,7 @@ class ResCompany(models.Model):
         comodel_name='account.chart.template', string='Chart Template')
     sii_method = fields.Selection(
         string='Method',
-        selection=[('auto', 'Automatic'),('manual', 'Manual')],
+        selection=[('auto', 'Automatic'), ('manual', 'Manual')],
         default='auto',
         help='By default the invoice send in validate process, with manual '
         'method, there a button to send the invoice.')
@@ -49,7 +48,7 @@ class ResCompany(models.Model):
             return now.replace(hour=hour, minute=minute)
 
         elif self.send_mode == 'delayed':
-            return datetime.now() + timedelta(seconds=self.delay_time * 60 * 60)
+            return datetime.now() + timedelta(seconds=self.delay_time * 3600)
 
         else:
             return None

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# (c) 2017 Diagram Software S.L.
+# Copyright 2017 Diagram Software S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 
@@ -8,13 +8,17 @@ from openerp.exceptions import ValidationError
 from openerp.tools import config
 from openerp import release
 import contextlib
-import OpenSSL.crypto
 import os
 import tempfile
 import base64
 import logging
 
 _logger = logging.getLogger(__name__)
+
+try:
+    import OpenSSL.crypto
+except (ImportError, IOError) as err:
+    _logger.debug(err)
 
 if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
     _logger.warning(
