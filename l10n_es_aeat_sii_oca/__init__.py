@@ -4,6 +4,7 @@
 
 from . import models
 from . import wizard
+from .hooks import add_key_to_existing_invoices
 # from . import controllers
 # from . import report
 # from .hooks import pre_init_hook, post_load, post_init_hook, uninstall_hook

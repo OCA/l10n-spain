@@ -9,8 +9,8 @@
 			<field name="arch" type="xml">
                 <button string="Re-Open" position="after">
                     <button type="object" string="Send SII"
-                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
-                    states="open,paid"/>
+                            name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+							states="open,paid" />
                 </button>
 			    <field name="supplier_invoice_number" position="attributes">
 			        <attribute name="required">True</attribute>
@@ -20,7 +20,7 @@
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="refund_type" 
-                            attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+								   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
                             <field name="registration_key" domain="[('type', '=', 'sale')]"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
@@ -32,7 +32,7 @@
 						
 						<group string="Invoice Jobs">
 							<field name="invoice_jobs_ids" nolabel="1"
-								   readonly="1">
+                                   readonly="1">
 								<tree>
                     				<field name="date_created"/>
                     				<field name="date_done"/>
@@ -57,15 +57,15 @@
 			<field name="arch" type="xml">
                 <button string="Re-Open" position="after">
                     <button type="object" string="Send SII"
-                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
-                    states="open,paid"/>
+                            name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                            states="open,paid" />
                 </button>
 				<notebook position="inside">
 					<page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="refund_type" 
-                            attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                                   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
                             <field name="registration_key" domain="[('type', '=', 'sale')]"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
@@ -94,8 +94,6 @@
 				</notebook>
 			</field>
 		</record>
-		
-
 
         <record id="view_account_invoice_sii_filter" model="ir.ui.view">
             <field name="name">account.invoice.select.sii</field>
@@ -103,10 +101,29 @@
             <field name="inherit_id" ref="account.view_account_invoice_filter" />
             <field name="arch" type="xml">
                 <filter name="unpaid" position="after">
-                    <filter name="sii_not_sent" string="SII not send" domain="[('sii_sent','=',False)]"/>
-                    <filter name="sii_sent" string="SII send" domain="[('sii_sent','=',True)]"/>
+                    <filter name="sii_not_sent" string="SII not send"
+                            domain="[('sii_sent','=',False)]" />
+                    <filter name="sii_sent" string="SII send"
+                            domain="[('sii_sent','=',True)]"/>
                 </filter>
             </field>
+        </record>
+
+		<record id="action_send_sii_invoices" model="ir.actions.server">
+            <field name="name">Send Invoices SII</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="account.model_account_invoice" />
+            <field name="code">self.send_sii(cr, uid, context.get('active_ids', []), context)</field>
+        </record>
+
+        <record id="action_send_sii_invoices_value" model="ir.values">
+            <field name="name">Send Invoices SII</field>
+            <field name="key">action</field>
+            <field name="key2">client_action_multi</field>
+            <field name="model">account.invoice</field>
+            <field name="value"
+                   eval="'ir.actions.server,%d' % ref('l10n_es_aeat_sii.action_send_sii_invoices')" />
         </record>
 
 	</data>
