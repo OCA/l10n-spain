@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data noupdate="0">
-    	<record id="aeat_sii_map" model="aeat.sii.map">
+        <record id="aeat_sii_map" model="aeat.sii.map">
             <field name="name">SII</field>
-        </record>			
+        </record>
         
         <record id="aeat_sii_map_line_SFESB" model="aeat.sii.map.lines">
             <field name="code">SFESB</field>
