@@ -31,7 +31,7 @@
             </field>
         </record>
     
-    	<record model="ir.actions.act_window" id="action_aeat_sii_mapping">
+        <record model="ir.actions.act_window" id="action_aeat_sii_mapping">
             <field name="name">Aeat SII Map</field>
             <field name="res_model">aeat.sii.map</field>
             <field name="view_type">form</field>
