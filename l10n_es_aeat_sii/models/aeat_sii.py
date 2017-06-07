@@ -6,7 +6,7 @@
 from openerp import api, models, fields, _
 
 
-class l10nEsAeatSii(models.Model):
+class L10nEsAeatSii(models.Model):
     _name = 'l10n.es.aeat.sii'
 
     name = fields.Char(string="Name")
