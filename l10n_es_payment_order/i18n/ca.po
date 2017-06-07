@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 03:30+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-21 09:36+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -282,7 +282,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,filename:0
 msgid "Filename"
-msgstr ""
+msgstr "Nom d'arxiu "
 
 #. module: l10n_es_payment_order
 #: selection:banking.export.csb.wizard,state:0
@@ -379,7 +379,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,note:0
 msgid "Log"
-msgstr ""
+msgstr "Registre "
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_not_to_the_order:0
@@ -406,7 +406,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: model:ir.model,name:l10n_es_payment_order.model_payment_mode
 msgid "Payment Mode"
-msgstr ""
+msgstr "Forma de pagament "
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,payment_order_ids:0
@@ -451,7 +451,7 @@ msgstr "Estat"
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb_suffix:0
 msgid "Suffix"
-msgstr ""
+msgstr "Sufix "
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb34_send_type:0
@@ -600,4 +600,4 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: view:banking.export.csb.wizard:l10n_es_payment_order.view_banking_export_csb_wizard_form
 msgid "Validate"
-msgstr ""
+msgstr "Validar"

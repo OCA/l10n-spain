@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-19 10:39+0000\n"
-"PO-Revision-Date: 2017-01-17 19:17+0000\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-25 10:39+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:211
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:213
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
@@ -202,7 +202,7 @@ msgstr "Complementària"
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional:0
 msgid "Conditional"
-msgstr ""
+msgstr "Condicional "
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional_expression:0
@@ -317,7 +317,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_end:0
 msgid "End date"
-msgstr ""
+msgstr "Data final "
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_tax_code_mapping.py:56
@@ -328,7 +328,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Export"
-msgstr ""
+msgstr "Exportar "
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_aeat_export
@@ -712,7 +712,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Recalculate"
-msgstr ""
+msgstr "Recalcular"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:132
@@ -744,7 +744,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,res_id:0
 msgid "Resource ID"
-msgstr ""
+msgstr "ID del recurs "
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
@@ -777,7 +777,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_start:0
 msgid "Start date"
-msgstr ""
+msgstr "Data d'inici "
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,state:0

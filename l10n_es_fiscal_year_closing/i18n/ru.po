@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 03:30+0000\n"
-"PO-Revision-Date: 2017-01-11 15:38+0000\n"
+"POT-Creation-Date: 2017-05-06 03:17+0000\n"
+"PO-Revision-Date: 2017-05-11 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Russian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Отменен"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,check_draft_moves:0
@@ -157,7 +157,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Компания"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
@@ -167,7 +167,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 msgid "Confirm"
-msgstr ""
+msgstr "Изменить"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
@@ -289,13 +289,13 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Done"
-msgstr ""
+msgstr "Завершен"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 #: selection:account.fiscalyear.closing,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Черновик"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:215
@@ -404,7 +404,7 @@ msgstr ""
 #: field:account.fiscalyear.closing,nlp_journal_id:0
 #: field:account.fiscalyear.closing,o_journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Журнал"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,loss_and_profit_move_id:0
@@ -601,7 +601,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,state:0
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:374

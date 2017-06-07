@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+<data>
+    <!-- Account Journal Entries Report XLSX-->
+    <report id="account_journal_entries_report_xlsx"
+            string="Account Journal Entries XLSX"
+            model="account.journal.period"
+            report_type="xlsx"
+            name="l10n_es_account_financial_report.journal_entries_xlsx"/>
+</data>
+</openerp>

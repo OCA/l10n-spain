@@ -3,13 +3,14 @@
 # * l10n_es_fiscal_year_closing
 # 
 # Translators:
+# Eric Antones <eantones@users.noreply.github.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 03:30+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-25 10:40+0000\n"
+"Last-Translator: Eric Antones <eantones@users.noreply.github.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -353,14 +354,14 @@ msgstr "Exercicis fiscals"
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_form
 #: model:ir.model,name:l10n_es_fiscal_year_closing.model_account_fiscalyear_closing
 msgid "Fiscal year closing"
-msgstr ""
+msgstr "Tancament d'exercici fiscal"
 
 #. module: l10n_es_fiscal_year_closing
 #: view:account.fiscalyear.closing:l10n_es_fiscal_year_closing.view_fyc_tree
 #: model:ir.actions.act_window,name:l10n_es_fiscal_year_closing.action_view_fyc_tree
 #: model:ir.ui.menu,name:l10n_es_fiscal_year_closing.menu_fyc_list
 msgid "Fiscal year closings"
-msgstr ""
+msgstr "Tancament d'exercicis fiscals"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,closing_fiscalyear_id:0
@@ -686,7 +687,7 @@ msgstr "This wizard will execute the following operations:"
 #. module: l10n_es_fiscal_year_closing
 #: model:ir.ui.menu,name:l10n_es_fiscal_year_closing.menu_account_end_year_treatments_old
 msgid "Useless operations"
-msgstr ""
+msgstr "Operacions sense ús"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:382

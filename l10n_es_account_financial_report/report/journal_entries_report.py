@@ -19,7 +19,7 @@ class JournalEntries(models.AbstractModel):
         if data:
             period_ids = data.get('period_ids', [])
             journal_ids = data.get('journal_ids', [])
-        else:
+        else:  # pragma: no cover
             journal_ids = []
             period_ids = []
             for jp in self:

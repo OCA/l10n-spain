@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-24 02:59+0000\n"
-"PO-Revision-Date: 2016-12-27 08:24+0000\n"
+"POT-Creation-Date: 2017-04-29 02:56+0000\n"
+"PO-Revision-Date: 2017-04-17 17:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es_CR/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "AEAT 115 report"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:109
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:117
 #, python-format
 msgid "Account Move Lines"
 msgstr ""
@@ -93,7 +93,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,company_id:0
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,partner_bank_id:0
@@ -171,7 +171,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_export_to_boe
@@ -227,7 +227,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,journal_id:0
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 #. module: l10n_es_aeat_mod115
 #: help:l10n.es.aeat.mod115.report,journal_id:0
@@ -320,7 +320,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Contabilizado"
 
 #. module: l10n_es_aeat_mod115
 #: field:l10n.es.aeat.mod115.report,previous_number:0
@@ -345,6 +345,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: view:l10n.es.aeat.mod115.report:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Retenciones e ingresos a cuenta"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:133
+#, python-format
+msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
