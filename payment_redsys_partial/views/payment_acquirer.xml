@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="acquirer_form_redsys_partial" model="ir.ui.view">
+        <field name="name">acquirer.form.redsys.partial</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment_redsys.acquirer_form_redsys"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="redsys_signature_version"]' position='after'>
+                <field name="redsys_percent_partial"
+                       attrs="{'required': [('provider', '=', 'redsys')]}"/>
+            </xpath>
+        </field>
+    </record>
+
+</data>
+</openerp>
+
