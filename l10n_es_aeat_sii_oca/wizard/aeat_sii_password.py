@@ -51,7 +51,7 @@ def pfx_to_crt(file, pfx_password, directory=None):
         yield t_crt.name
 
 
-class l10nEsAeatSiiPassword(models.TransientModel):
+class L10nEsAeatSiiPassword(models.TransientModel):
     _name = 'l10n.es.aeat.sii.password'
 
     password = fields.Char(string="Password", required=True)
