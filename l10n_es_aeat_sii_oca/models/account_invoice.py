@@ -8,8 +8,7 @@ import logging
 from datetime import datetime, date
 from requests import Session
 
-from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp import _, api, exceptions, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -137,7 +136,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         company = self.company_id
         if not company.vat:
-            raise Warning(_(
+            raise exceptions.Warning(_(
                 "No VAT configured for the company '{}'").format(company.name))
         id_version_sii = self.env['ir.config_parameter'].get_param(
             'l10n_es_aeat_sii.version', False)
@@ -151,6 +150,12 @@ class AccountInvoice(models.Model):
         return header
 
     @api.multi
+    def _get_line_price_subtotal(self, line):
+        self.ensure_one()
+        price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+        return price
+
+    @api.multi
     def _get_tax_line_req(self, tax_type, line, line_taxes):
         self.ensure_one()
         taxes = False
@@ -159,8 +164,7 @@ class AccountInvoice(models.Model):
         if len(line_taxes) > 1:
             for tax in line_taxes:
                 if tax in taxes_re:
-                    price = line.price_unit * (1 - (
-                        line.discount or 0.0) / 100.0)
+                    price = self._get_line_price_subtotal(line)
                     taxes = tax.compute_all(
                         price, line.quantity, line.product_id,
                         line.invoice_id.partner_id)
@@ -174,7 +178,7 @@ class AccountInvoice(models.Model):
         tax_type = tax_line.amount * 100
         tax_line_req = self._get_tax_line_req(tax_type, line, line_taxes)
         taxes = tax_line.compute_all(
-            (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
+            self._get_line_price_subtotal(line),
             line.quantity, line.product_id, line.invoice_id.partner_id)
         tax_sii = {
             "TipoImpositivo": tax_type,
@@ -198,7 +202,7 @@ class AccountInvoice(models.Model):
         tax_type = tax_type = tax_line.amount * 100
         tax_line_req = self._get_tax_line_req(tax_type, line, line_taxes)
         taxes = tax_line.compute_all(
-            (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
+            self._get_line_price_subtotal(line),
             line.quantity, line.product_id, line.invoice_id.partner_id)
         if tax_line_req:
             tipo_recargo = tax_line_req['percentage'] * 100
@@ -307,7 +311,7 @@ class AccountInvoice(models.Model):
                             # else:
                             tipo_no_exenta = 'S1'
                             type_breakdown[
-                                'PrestacionServicios']['º']['NoExenta'][
+                                'PrestacionServicios']['Sujeta']['NoExenta'][
                                     'TipoNoExenta'] = tipo_no_exenta
                         if 'DesgloseIVA' not in taxes_sii[
                             'DesgloseTipoOperacion']['PrestacionServicios'][
@@ -386,7 +390,7 @@ class AccountInvoice(models.Model):
     def _get_invoices(self):
         self.ensure_one()
         if not self.partner_id.vat:
-            raise Warning(_(
+            raise exceptions.Warning(_(
                 "The partner '{}' has not a VAT configured.").format(
                     self.partner_id.name))
         invoice_date = self._change_date_format(self.date_invoice)
@@ -396,7 +400,7 @@ class AccountInvoice(models.Model):
         periodo = '%02d' % fields.Date.from_string(
             self.period_id.date_start).month
         if not company.chart_template_id:
-            raise Warning(_(
+            raise exceptions.Warning(_(
                 'You have to select what account chart template use this'
                 ' company.'))
         if self.type in ['out_invoice', 'out_refund']:
@@ -615,7 +619,7 @@ class AccountInvoice(models.Model):
     def action_cancel(self):
         for queue in self.invoice_jobs_ids:
             if queue.state == 'started':
-                raise Warning(_(
+                raise exceptions.Warning(_(
                     'You can not cancel this invoice because'
                     ' there is a job running!'))
             elif queue.state in ('pending', 'enqueued', 'failed'):
