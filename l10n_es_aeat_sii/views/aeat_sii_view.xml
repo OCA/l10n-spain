@@ -53,10 +53,12 @@
         </record>
 
         <menuitem id="l10n_es_aeat_sii_parent_menu" name="SII"
-            parent="base.menu_config" sequence="0" groups="account.group_account_invoice"/>
+                  parent="base.menu_config" sequence="0"
+                  groups="account.group_account_invoice"/>
 
-        <menuitem id="l10n_es_aeat_sii_menu" name="SII Certificate" action="l10n_es_sii_action"
-            parent="l10n_es_aeat_sii_parent_menu" sequence="0"/>
+        <menuitem id="l10n_es_aeat_sii_menu" name="SII Certificate"
+                  action="l10n_es_sii_action" sequence="0"
+                  parent="l10n_es_aeat_sii_parent_menu" />
 
     </data>
 </openerp>
