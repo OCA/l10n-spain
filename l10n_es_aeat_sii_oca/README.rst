@@ -37,7 +37,7 @@ Connector:
 
 #. Ajustar variables de configuración:
 
-	ODOO_CONNECTOR_CHANNELS=root:4
+    ODOO_CONNECTOR_CHANNELS=root:4
  
   o otro canal de configuración. Por defecto es root:1
 

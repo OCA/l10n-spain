@@ -7,13 +7,11 @@
             <field name="name">Operación de régimen general</field>
             <field name="type">sale</field>
         </record>
-
         <record id="aeat_sii_mapping_registration_keys_02" model="aeat.sii.mapping.registration.keys">
             <field name="code">02</field>
             <field name="name">Exportación</field>
             <field name="type">sale</field>
-        </record>  
-    
+        </record>
         <record id="aeat_sii_mapping_registration_keys_03" model="aeat.sii.mapping.registration.keys">
             <field name="code">03</field>
             <field name="name">Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección (135-139 LIVA)</field>
@@ -38,7 +36,7 @@
             <field name="code">07</field>
             <field name="name">Régimen especial criterio de caja</field>
             <field name="type">sale</field>
-        </record> 
+        </record>
         <record id="aeat_sii_mapping_registration_keys_08" model="aeat.sii.mapping.registration.keys">
             <field name="code">08</field>
             <field name="name">Operaciones sujetas al IPSI  / IGIC</field>
@@ -49,17 +47,16 @@
             <field name="name">Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)</field>
             <field name="type">sale</field>
         </record>
-        
         <record id="aeat_sii_mapping_registration_keys_10" model="aeat.sii.mapping.registration.keys">
             <field name="code">10</field>
             <field name="name">Cobros por cuenta de terceros de honorarios profesionales o de derechos derivados de la propiedad industrial, de autor u otros por cuenta de sus socios, asociados o colegiados efectuados por sociedades, asociaciones, colegios profesionales u otras entidades que realicen estas funciones de cobro</field>
             <field name="type">sale</field>
-        </record>              
+        </record>
         <record id="aeat_sii_mapping_registration_keys_11" model="aeat.sii.mapping.registration.keys">
             <field name="code">11</field>
             <field name="name">Operaciones de arrendamiento de local de negocio sujetas a retención</field>
             <field name="type">sale</field>
-        </record>  
+        </record>
         <record id="aeat_sii_mapping_registration_keys_12" model="aeat.sii.mapping.registration.keys">
             <field name="code">12</field>
             <field name="name">Operaciones de arrendamiento de local de negocio no  sujetos a retención</field>
@@ -85,8 +82,6 @@
             <field name="name">Operación de régimen general</field>
             <field name="type">purchase</field>
         </record>
-
-
         <record id="aeat_sii_mapping_registration_keys_17" model="aeat.sii.mapping.registration.keys">
             <field name="code">02</field>
             <field name="name">Operaciones por las que los empresarios satisfacen compensaciones REAGYP</field>
@@ -126,12 +121,12 @@
             <field name="code">09</field>
             <field name="name">Adquisiciones intracomunitarias de bienes y prestaciones de servicios</field>
             <field name="type">purchase</field>
-        </record>           
+        </record>
         <record id="aeat_sii_mapping_registration_keys_25" model="aeat.sii.mapping.registration.keys">
             <field name="code">10</field>
             <field name="name">Compra de agencias viajes: operaciones de mediación en nombre y por cuenta ajena en los servicios de transporte prestados al destinatario de los servicios de acuerdo con el apartado 3 de la D.A.4ª RD1619/2012</field>
             <field name="type">purchase</field>
-        </record>                  
+        </record>
         <record id="aeat_sii_mapping_registration_keys_26" model="aeat.sii.mapping.registration.keys">
             <field name="code">11</field>
             <field name="name">Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)</field>
@@ -146,6 +141,6 @@
             <field name="code">13</field>
             <field name="name">Factura correspondiente a una importación (informada sin asociar a un DUA)</field>
             <field name="type">purchase</field>
-        </record>                              
+        </record>
     </data>
 </openerp>
