@@ -6,6 +6,7 @@
 # © 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
 #             (http://www.serviciosbaeza.com)
 # © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
+# © 2017 Factorlibre S.L. - Kiko Peiro
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
