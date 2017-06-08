@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- FORM VIEW -->
+            <record id="view_l10n_es_aeat_mod111_report_form" model="ir.ui.view">
+                <field name="name">l10n_es.aeat.mod111.report.form</field>
+                <field name="model">l10n.es.aeat.mod111.report</field>
+                <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+                <field name="arch" type="xml">
+                    <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
+                        <attribute name="name">%(action_wizard_aeat_mod111_export)d</attribute>
+                    </button>
+                    <field name="fiscalyear_id" position="replace">
+                        <field name="fiscalyear_id" domain="[('company_id','=',company_id)]" />
+                        <field name="period_id" domain="[('special','=',False),('fiscalyear_id','=',fiscalyear_id)]"/>
+
+                        <field name="currency_id" invisible="1"/>
+                    </field>
+                    <group string="Declaración" position="after">
+                        <group string="Datos a completar" colspan="4">
+                            <group>
+                                <field name="nombre"/>
+                                <field name="apellidos_razon_social"/>
+                                <field name="tipo_declaracion"/>
+                            </group>
+                        <group>
+                            <field name="complementaria"/>
+                            <field name="numero_justificante_anterior"/>
+                            <field name="codigo_electronico_anterior"/>
+                        </group>
+                    </group>
+                    <group string="Resultado" colspan="4" states="calculated,done,cancelled">
+                        <group>
+                            <field name="casilla_01"/>
+                            <field name="casilla_02" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_03" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_04"/>
+                            <field name="casilla_05" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_06" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group>
+                            <field name="casilla_07"/>
+                            <field name="casilla_08" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_09" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_10"/>
+                            <field name="casilla_11" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_12" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group>
+                            <field name="casilla_13"/>
+                            <field name="casilla_14" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_15" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_16"/>
+                            <field name="casilla_17" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_18" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group>
+                            <field name="casilla_19"/>
+                            <field name="casilla_20" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_21" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_22"/>
+                            <field name="casilla_23" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_24" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group>
+                            <field name="casilla_25"/>
+                            <field name="casilla_26" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_27" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group>
+                            <field name="casilla_28" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_29" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="casilla_30" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+                </group>
+            </field>
+        </record>
+
+        <!-- TREE VIEW -->
+        <record id="view_l10n_es_aeat_mod111_report_tree" model="ir.ui.view">
+            <field name="name">l10n_es.aeat.mod111.report.tree</field>
+            <field name="model">l10n.es.aeat.mod111.report</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
+            <field name="arch" type="xml">
+                <tree position="attributes">
+                    <attribute name="string">Declaraciones AEAT 111</attribute>
+                </tree>
+                <field name="fiscalyear_id" position="after">
+                    <field name="period_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- WINDOW ACTION -->
+        <record id="action_l10n_es_aeat_mod111_report" model="ir.actions.act_window">
+            <field name="name">Declaración AEAT 111</field>
+            <field name="res_model">l10n.es.aeat.mod111.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="help">Crea y consulta las declaraciones del modelo 111 de la AEAT.</field>
+        </record>
+
+        <record id="action_l10n_es_aeat_mod111_report_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_l10n_es_aeat_mod111_report_form"/>
+            <field name="act_window_id" ref="action_l10n_es_aeat_mod111_report"/>
+        </record>
+
+        <record id="action_l10n_es_aeat_mod111_report_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_l10n_es_aeat_mod111_report_tree"/>
+            <field name="act_window_id" ref="action_l10n_es_aeat_mod111_report"/>
+        </record>
+
+        <!-- MENU ACCESS -->
+        <menuitem id="menu_aeat_mod111_report" parent="l10n_es_aeat.menu_root_aeat" action="action_l10n_es_aeat_mod111_report" sequence="111" name="Declaración AEAT 111"/>
+    </data>
+</openerp>
