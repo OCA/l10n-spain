@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+		<record model="ir.ui.view" id="account_invoice_fecha_contabilizacion_form">
+			<field name="name">account.invoice.fecha.contabilizacion.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_invoice']" position="after">
+					<field name="date_posting"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="account_invoice_fecha_contabilizacion_proveedor_form">
+			<field name="name">account.invoice.fecha.contabilizacion.proveedor.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_supplier_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_invoice']" position="after">
+					<field name="date_posting"/>
+				</xpath>
+			</field>
+		</record>
+		
+	</data>
+</openerp>
