@@ -5,6 +5,8 @@
           name="pos_l10n_es_assets_backend"
           inherit_id="point_of_sale.assets_backend">
     <xpath expr="." position="inside">
+        <script src="/l10n_es_pos/static/lib/moment.js"
+                type="text/javascript"></script>
         <script src="/l10n_es_pos/static/src/js/main.js"
                 type="text/javascript"></script>
     </xpath>

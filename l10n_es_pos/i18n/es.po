@@ -39,6 +39,7 @@ msgid "Customer data"
 msgstr "Datos del cliente"
 
 #. module: l10n_es_pos
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:10
 #: view:website:point_of_sale.report_receipt
 msgid "Invoice"
 msgstr "Factura"
@@ -84,6 +85,7 @@ msgid "Simplified"
 msgstr "Simplificada"
 
 #. module: l10n_es_pos
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:7
 #: field:pos.order,simplified:0
 #: view:website:point_of_sale.report_receipt
 msgid "Simplified invoice"
