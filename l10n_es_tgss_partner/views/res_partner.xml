@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<record id="partner_company_form" model="ir.ui.view">
+    <field name="name">Add TGSS fields to company partners</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="account.view_partner_property_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//page[@name='accounting']/group">
+            <group>
+                <field name="contribution_account_ids">
+                    <tree editable="bottom">
+                        <field name="code"/>
+                    </tree>
+                </field>
+            </group>
+        </xpath>
+    </field>
+</record>
+
+<record id="partner_contact_form" model="ir.ui.view">
+    <field name="name">Add TGSS fields to contact partners</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id"
+           ref="partner_contact_personal_information_page.personal_information"/>
+    <field name="arch" type="xml">
+        <xpath expr="//group[@name='personal_information_group']">
+            <group>
+                <field name="contribution_account_owner_id" invisible="True"/>
+                <field name="model_name" invisible="True"/>
+                <field name="contribution_account_id"/>
+                <field name="affiliation_number"/>
+            </group>
+            <group>
+                <field name="affected_by_terrorism"/>
+                <field name="affected_by_gender_violence"/>
+                <field name="disability_percentage" class="oe_inline"/>
+            </group>
+            <group>
+                <field name="contribution_group_id"/>
+                <field name="professional_category_id"/>
+                <field name="study_level_id"/>
+            </group>
+        </xpath>
+    </field>
+</record>
+
+</data>
+</openerp>

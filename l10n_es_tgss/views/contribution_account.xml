@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Views -->
+<record id="contribution_account_list" model="ir.ui.view">
+    <field name="name">Contribution Account List</field>
+    <field name="model">l10n.es.tgss.contribution_account</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <tree string="Contribution Account List" editable="bottom">
+            <field name="code"/>
+            <field name="owner_record_id"/>
+        </tree>
+    </field>
+</record>
+
+<record id="contribution_account_search" model="ir.ui.view">
+    <field name="name">Contribution Account Search</field>
+    <field name="model">l10n.es.tgss.contribution_account</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <search>
+            <field name="code"/>
+        </search>
+    </field>
+</record>
+
+<!-- Menus -->
+<record id="contribution_account_list_action" model="ir.actions.act_window">
+    <field name="name">Contribution Accounts</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n.es.tgss.contribution_account</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="contribution_account_list"/>
+    <field name="search_view_id" ref="contribution_account_search"/>
+</record>
+
+<menuitem
+    id="contribution_account_menu"
+    parent="base.menu_config_address_book"
+    groups="base.group_no_one"
+    action="contribution_account_list_action"/>
+
+</data>
+</openerp>
