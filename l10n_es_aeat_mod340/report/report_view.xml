@@ -18,6 +18,17 @@
             rml="l10n_es_aeat_mod340/report/vat_book.rml"
             auto="True"
             header="False" />
+
+
+        <report
+            id="report_vat_book_invoices_issued"
+            model="l10n.es.aeat.mod340.report"
+            string="Vat book invoices issued"
+            report_type="qweb-pdf"
+            name="l10n_es_aeat_mod340.tmp_report_vat_book_invoices_issued"
+            file="l10n_es_aeat_mod340.tmp_report_vat_book_invoices_issued"
+            attachment_use="False"
+        />
+
     </data>
 </openerp>
-

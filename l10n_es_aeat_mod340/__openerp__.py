@@ -25,6 +25,7 @@
     'name': 'Generación de fichero modelo 340 y libro de IVA',
     'version': '8.0.2.5.1',
     "author": "Spanish Localization Team,"
+              # "Praxya., "
               # "Acysos S.L., "
               # "Ting, "
               # "Nan-tic, "
@@ -47,6 +48,8 @@
         'l10n_es_aeat_mod349'
     ],
     'data': [
+        'report/report_paper_format.xml',
+        'report/vat_book_invoices_issued.xml',
         'report/report_view.xml',
         'wizard/export_mod340_to_boe.xml',
         'views/mod340_view.xml',

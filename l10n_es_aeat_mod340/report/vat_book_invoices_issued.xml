@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_vat_book_invoices_issued_document">
+    <t t-call="report.html_container">
+
+        <div class="page">
+            <style type="text/css">
+               .detail_table {
+                   width:100%;
+                   margin-top: 2%;
+               }
+               .td_detail_table{
+                  width: 50%;
+                  padding-right: 5%;
+               }
+           </style>
+            <div class="row">
+
+              <div class="col-xs-12 text-center" id="title">
+                  <h3>Vat Book invoices issued</h3>
+              </div>
+
+              <div class="col-xs-12 text-center" id="fiscal_periods_div">
+                  <table class="detail_table" id="fiscal_periods_table">
+                      <tbody class="invoice_tbody">
+                          <tr>
+                              <td class="text-right td_detail_table">
+                               Company:
+                              </td>
+                              <td class="td_detail_table">
+                                  <span t-field="o.company_id"/>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="text-right td_detail_table">
+                               Fiscal Year:
+                              </td>
+                              <td class="td_detail_table">
+                                  <span t-field="o.fiscalyear_id"/>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="text-right td_detail_table">
+                               Periods:
+                              </td>
+                              <td class="td_detail_table">
+                                <t t-foreach="o.periods" t-as="period">
+                                  <span t-field="period.name"/>
+                                </t>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+              <div class="col-xs-12 text-center" id="vat_book_contact_div">
+                  <table class="detail_table" id="vat_book_contact_table">
+                      <tbody class="invoice_tbody">
+                          <tr>
+                              <td class="text-right td_detail_table">
+                               VAT:
+                              </td>
+                              <td class="td_detail_table">
+                                  <span t-field="o.company_vat"/>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="text-right td_detail_table">
+                               Contact phone:
+                              </td>
+                              <td class="td_detail_table">
+                                  <span t-field="o.contact_phone"/>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="text-right td_detail_table">
+                               Surnames and name contact:
+                              </td>
+                              <td class="td_detail_table">
+                                <span t-field="o.contact_name"/>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+
+              <div class="col-xs-12 text-center" id="vat_book_kind">
+                <h4>BOOK REGISTER OF BILLS ISSUED</h4>
+              </div>
+
+              <table class="table table-condensed" id="detail_table">
+                  <thead>
+                      <tr>
+                          <td id="detail_invoice_date">Invoice date</td>
+                          <td id="detail_registry">Registry</td>
+                          <td id="detail_invoice_number">Invoice number</td>
+                          <td id="detail_company">Company</td>
+                          <td id="detail_vat">VAT</td>
+                          <td id="detail_base">Base</td>
+                          <td id="detail_type">Type</td>
+                          <td id="detail_cuote">Cuote</td>
+                          <td id="detail_total">Total</td>
+                          <td id="detail_surcharge">Surcharge</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr t-foreach="o.issued" t-as="l">
+                          <td id="data_invoice_date">
+                           <span t-field="l.invoice_id.date_invoice"/>
+                          </td>
+                          <td id="data_registry">
+                            <span t-field="l.record_number"/>
+                          </td>
+                          <td id="data_invoice_number">
+                            <span t-field="l.invoice_id.number"/>
+                          </td>
+                          <td id="data_company">
+                            <span t-field="l.partner_id.name"/>
+                          </td>
+                          <td id="data_vat">
+                              <span t-field="l.partner_vat"/>
+                          </td>
+                          <t t-foreach="l.tax_line_ids" t-as="tax">
+                            <tr>
+                              <td id="data_base">
+                                  <span t-field="tax.base_amount"/>
+                              </td>
+                              <td id="data_type">
+                                  <span t-field="tax.tax_percentage"/>
+                              </td>
+                              <td id="data_cuote">
+                                  <span t-field="tax.tax_amount"/>
+                              </td>
+                              <td id="data_total">
+                                  <!-- <span t-field="tax.total"/> -->
+                              </td>
+                              <td id="data_surcharg">
+                                  <span t-field="tax.rec_tax_amount"/>
+                              </td>
+                            </tr>
+                          </t>
+                      </tr>
+                  </tbody>
+              </table>
+
+        </div>
+      </div> <!-- Close div page -->
+
+    </t>
+</template>
+
+<template id="tmp_report_vat_book_invoices_issued">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'company_id.partner_id.lang', 'l10n_es_aeat_mod340.report_vat_book_invoices_issued_document')"/>
+        </t>
+    </t>
+</template>
+
+<record id="l10n_es_aeat_mod340.report_vat_book_invoices_issued" model="ir.actions.report.xml">
+    <field name="paperformat_id" ref="l10n_es_aeat_mod340.paperformat_lowmargin_lowfooter"></field>
+</record>
+
+</data>
+</openerp>

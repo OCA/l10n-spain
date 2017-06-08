@@ -72,6 +72,7 @@ Créditos
 Contribuidores
 --------------
 
+* Daniel Rodriguez <drl.9319@gmail.com>
 * Ignacio Ibeas Izquierdo <ignacio@acysos.com>
 * Ting
 * NaN Projectes de Programari Lliure, S.L.
