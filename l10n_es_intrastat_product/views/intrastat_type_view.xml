@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2010-2014 Akretion (http://www.akretion.com/)
+    @author: Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<!-- Intrastat Type - Search view -->
+<record id="intrastat_type_search" model="ir.ui.view">
+    <field name="name">es.intrastat.product.report.intrastat.type.search</field>
+    <field name="model">report.intrastat.type</field>
+    <field name="arch" type="xml">
+        <search string="Search Intrastat Types">
+            <field name="name" />
+        </search>
+    </field>
+</record>
+
+<!-- Intrastat Type - Tree view -->
+<record id="intrastat_type_tree" model="ir.ui.view">
+    <field name="name">es.intrastat.product.report.intrastat.type.tree</field>
+    <field name="model">report.intrastat.type</field>
+    <field name="arch" type="xml">
+        <tree string="Intrastat type">
+            <field name="name" />
+            <field name="procedure_code" />
+            <field name="transaction_code" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+            <field name="object_type" />
+            <field name="is_fiscal_only" groups="l10n_es_intrastat_product.group_detailed_intrastat_product"/>
+            <field name="is_vat_required" />
+            <field name="intrastat_product_type" />
+        </tree>
+    </field>
+</record>
+
+<!-- Intrastat Type - Form view -->
+<record id="intrastat_type_form" model="ir.ui.view">
+    <field name="name">es.intrastat.product.report.intrastat.type.form</field>
+    <field name="model">report.intrastat.type</field>
+    <field name="arch" type="xml">
+        <form string="Intrastat type">
+            <h1>
+                <field name="name" />
+            </h1>
+            <group name="main">
+                <field name="active" />
+                <field name="object_type" />
+                <field name="procedure_code" />
+                <field name="transaction_code" />
+                <field name="is_fiscal_only" />
+                <field name="is_vat_required" />
+                <field name="intrastat_product_type" />
+            </group>
+        </form>
+    </field>
+</record>
+
+<!-- Intrastat type - Action for Configuration -->
+<record id="intrastat_type_action" model="ir.actions.act_window">
+    <field name="name">Intrastat Types</field>
+    <field name="res_model">report.intrastat.type</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<!-- Menu entry for Intrastat type -->
+<menuitem id="menu_intrastat_type" action="intrastat_type_action" parent="intrastat_base.menu_intrastat_config_root" />
+
+
+</data>
+</openerp>

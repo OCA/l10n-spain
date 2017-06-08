@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="transaction_11" model="intrastat.transaction">
+            <field name="code">11</field>
+            <field name="description">Compra/venta en firme</field>
+        </record>
+
+        <record id="transaction_12" model="intrastat.transaction">
+            <field name="code">12</field>
+            <field name="description">Suministro para la venta salvo aprobación o de prueba, para consignación o con la mediación de un agente comisionado</field>
+        </record>
+
+        <record id="transaction_13" model="intrastat.transaction">
+            <field name="code">13</field>
+            <field name="description">Trueque (compensación en especie</field>
+        </record>
+
+        <record id="transaction_14" model="intrastat.transaction">
+            <field name="code">14</field>
+            <field name="description">Compras por particulares</field>
+        </record>
+
+        <record id="transaction_15" model="intrastat.transaction">
+            <field name="code">15</field>
+            <field name="description">Arrendamiento financiero (alquiler-compra)</field>
+        </record>
+
+        <record id="transaction_21" model="intrastat.transaction">
+            <field name="code">21</field>
+            <field name="description">Devolución de mercancías</field>
+        </record>
+
+        <record id="transaction_22" model="intrastat.transaction">
+            <field name="code">22</field>
+            <field name="description">Sustitución de mercancías devueltas</field>
+        </record>
+
+        <record id="transaction_23" model="intrastat.transaction">
+            <field name="code">23</field>
+            <field name="description">Sustitución (por ejemplo, bajo garantía) de mercancías no devueltas'</field>
+        </record>
+
+        <record id="transaction_31" model="intrastat.transaction">
+            <field name="code">31</field>
+            <field name="description">Mercancías entregadas en el marco de programas de ayuda gestionados o financiados parcial o totalmente por la Comunidad Europea'</field>
+        </record>
+
+        <record id="transaction_32" model="intrastat.transaction">
+            <field name="code">32</field>
+            <field name="description">Otras entregas de ayuda gubernamental32</field>
+        </record>
+
+        <record id="transaction_33" model="intrastat.transaction">
+            <field name="code">33</field>
+            <field name="description">Otras entregas de ayuda (particulares, organizaciones no gubernamentales)</field>
+        </record>
+
+        <record id="transaction_34" model="intrastat.transaction">
+            <field name="code">34</field>
+            <field name="description">Otros</field>
+        </record>
+
+        <record id="transaction_40" model="intrastat.transaction">
+            <field name="code">40</field>
+            <field name="description">Operaciones con miras al trabajo por encargo (excepto las que se registren en el epígrafe 7)</field>
+        </record>
+
+        <record id="transaction_50" model="intrastat.transaction">
+            <field name="code">50</field>
+            <field name="description">Operaciones tras el trabajo por encargo (excepto las que se registren en el epígrafe 7)</field>
+        </record>
+
+        <record id="transaction_70" model="intrastat.transaction">
+            <field name="code">70</field>
+            <field name="description">Operaciones en el marco de programas comunes de defensa u otros programas intergubernamentales de producción conjunta</field>
+        </record>
+
+        <record id="transaction_80" model="intrastat.transaction">
+            <field name="code">80</field>
+            <field name="description">Suministro de materiales de construcción y maquinaria para trabajos en el marco de un contrato general de construcción o ingeniería</field>
+        </record>
+
+        <record id="transaction_90" model="intrastat.transaction">
+            <field name="code">90</field>
+            <field name="description">Otras transacciones</field>
+        </record>
+
+    </data>
+</openerp>

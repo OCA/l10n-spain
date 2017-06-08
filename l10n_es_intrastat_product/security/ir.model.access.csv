@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_report_intrastat_type,Full access on report.intrastat.type to finance manager,model_report_intrastat_type,account.group_account_manager,1,1,1,1
+access_report_intrastat_type_read,Read access on report.intrastat.type to employee,model_report_intrastat_type,base.group_user,1,0,0,0
+access_report_intrastat_product,Full access to l10n.fr.report.intrastat.product to accountant,model_l10n_es_report_intrastat_product,account.group_account_user,1,1,1,1
+access_report_intrastat_product_line,Full access to l10n.fr.report.intrastat.product.line to accountant,model_l10n_es_report_intrastat_product_line,account.group_account_user,1,1,1,1

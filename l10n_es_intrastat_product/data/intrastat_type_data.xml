@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="salida_mercancias" model="report.intrastat.type">
+            <field name="name">Salida de mercancías</field>
+            <field name="object_type">out_invoice</field>
+            <field name="procedure_code">1</field>
+            <field name="transaction_code" ref="transaction_11"/>
+            <field name="intrastat_product_type">export</field>
+        </record>
+
+        <record id="salda_temporal_sin_tratar" model="report.intrastat.type">
+            <field name="name">Salida Temporal de mercancías, para reintroducir sin tratar</field>
+            <field name="object_type">out_invoice</field>
+            <field name="procedure_code">2</field>
+            <field name="transaction_code" ref="transaction_21"/>
+            <field name="intrastat_product_type">export</field>
+        </record>
+
+        <record id="salida_temporal_tratada" model="report.intrastat.type">
+            <field name="name">Salida Temporal de mercancías, para reintroducir tratadas</field>
+            <field name="object_type">out_invoice</field>
+            <field name="procedure_code">3</field>
+            <field name="transaction_code" ref="transaction_22"/>
+            <field name="intrastat_product_type">export</field>
+        </record>
+
+        <record id="salida_sin_tratar" model="report.intrastat.type">
+            <field name="name">Salida, devolución de mercancías sin tratar</field>
+            <field name="object_type">in_refund</field>
+            <field name="procedure_code">4</field>
+            <field name="transaction_code" ref="transaction_21"/>
+            <field name="intrastat_product_type">export</field>
+        </record>
+
+        <record id="salida_tratada" model="report.intrastat.type">
+            <field name="name">Salida, devolución de mercancías tratadas</field>
+            <field name="object_type">out_invoice</field>
+            <field name="procedure_code">5</field>
+            <field name="transaction_code" ref="transaction_22"/>
+            <field name="intrastat_product_type">export</field>
+        </record>
+
+        <record id="llegada_mercancias" model="report.intrastat.type">
+            <field name="name">Llegada de mercancías</field>
+            <field name="object_type">in_invoice</field>
+            <field name="procedure_code">1</field>
+            <field name="transaction_code" ref="transaction_11"/>
+            <field name="intrastat_product_type">import</field>
+        </record>
+
+        <record id="llegada_temporal_sin_tratar" model="report.intrastat.type">
+            <field name="name">Llegada Temporal de mercancías, reexpedir sin tratar</field>
+            <field name="object_type">in_invoice</field>
+            <field name="procedure_code">2</field>
+            <field name="transaction_code" ref="transaction_21"/>
+            <field name="intrastat_product_type">import</field>
+        </record>
+
+        <record id="llegada_temporal_tratada" model="report.intrastat.type">
+            <field name="name">Llegada Temporal de mercancías, reexpedir tratadas</field>
+            <field name="object_type">in_invoice</field>
+            <field name="procedure_code">3</field>
+            <field name="transaction_code" ref="transaction_23"/>
+            <field name="intrastat_product_type">import</field>
+        </record>
+
+        <record id="llegada_sin_tratar" model="report.intrastat.type">
+            <field name="name">Llegada, devolución de mercancías sin tratar</field>
+            <field name="object_type">out_refund</field>
+            <field name="procedure_code">4</field>
+            <field name="transaction_code" ref="transaction_21"/>
+            <field name="intrastat_product_type">import</field>
+        </record>
+
+        <record id="llegada_tratada" model="report.intrastat.type">
+            <field name="name">Legada, devolución de mercancías tratadas</field>
+            <field name="object_type">in_invoice</field>
+            <field name="procedure_code">5</field>
+            <field name="transaction_code" ref="transaction_22"/>
+            <field name="intrastat_product_type">import</field>
+        </record>
+
+    </data>
+</openerp>

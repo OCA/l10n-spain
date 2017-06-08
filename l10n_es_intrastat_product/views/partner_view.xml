@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2011-2014 Akretion (http://www.akretion.com/)
+    @author Alexis de Lattre <alexis.delattre@akretion.com>
+    The licence is in the file __openerp__.py
+-->
+
+<openerp>
+<data>
+
+<!-- Add Fiscal rep on partner form view -->
+<record id="view_partner_property_form" model="ir.ui.view">
+    <field name="name">es.intrastat.product.res.partner</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="account.view_partner_property_form"/>
+    <field name="arch" type="xml">
+        <field name="property_account_position" position="after">
+            <field name="intrastat_fiscal_representative" />
+        </field>
+    </field>
+</record>
+
+</data>
+</openerp>
