@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+<!-- Views -->
+<record id="group_list" model="ir.ui.view">
+    <field name="name">Contribution Group List</field>
+    <field name="model">l10n_es_partner_contribution_group.group</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <tree string="Contribution Group List" editable="bottom">
+            <field name="number"/>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="group_search" model="ir.ui.view">
+    <field name="name">Contribution Group Search</field>
+    <field name="model">l10n_es_partner_contribution_group.group</field>
+    <field name="priority" eval="1"/>
+    <field name="arch" type="xml">
+        <search>
+            <field name="number"/>
+            <field name="name"/>
+        </search>
+    </field>
+</record>
+
+<!-- Menus -->
+<record id="group_list_action" model="ir.actions.act_window">
+    <field name="name">Contribution Group List</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">l10n_es_partner_contribution_group.group</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="group_list"/>
+    <field name="search_view_id" ref="group_search"/>
+</record>
+
+<menuitem
+    id="group_menu"
+    name="Contribution Groups"
+    parent="base.menu_config_address_book"
+    groups="base.group_no_one"
+    action="group_list_action"/>
+
+</data>
+</openerp>
