@@ -74,7 +74,10 @@ class L10nEsAeatMod340ExportToBoe(orm.TransientModel):
         # Persona de contacto (Apellidos y nombre)
         text += self._formatString(report.name_contact, 40)
         # Número identificativo de la declaración
-        text += self._formatNumber(report.declaration_number, 13)
+        text += self._formatNumber(report.declaration_number +
+                                   report.period_to.date_stop[:4] +
+                                   report.period_to.date_stop[5:7] + '9999',
+                                   13)
         # Declaración complementaria
         text += 'C' if report.type == 'C' else ' '
         # Declaración substitutiva
