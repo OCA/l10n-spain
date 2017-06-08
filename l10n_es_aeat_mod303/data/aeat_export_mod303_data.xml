@@ -5,6 +5,7 @@
         <!--  SUB-303-01  -->
         <record id="aeat_mod303_sub01_export_config" model="aeat.model.export.config">
             <field name="name">Exportación modelo 303 2014 - Régimen general/simplificado</field>
+            <field name="model" ref="l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report"/>
             <field name="model_number">303</field>
         </record>
 
@@ -795,6 +796,7 @@
         <!--  SUB-303-02  -->
         <record id="aeat_mod303_sub02_export_config" model="aeat.model.export.config">
             <field name="name">Exportación modelo 303 2014 - Régimen agrícola, ganadero y forestal (No implementado)</field>
+            <field name="model" ref="l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report"/>
             <field name="model_number">303</field>
         </record>
 
@@ -1870,6 +1872,7 @@
         <!--  SUB-303-03  -->
         <record id="aeat_mod303_sub03_export_config" model="aeat.model.export.config">
             <field name="name">Exportación modelo 303 2014 - Información adicional + Resultado</field>
+            <field name="model" ref="l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report"/>
             <field name="model_number">303</field>
         </record>
 
