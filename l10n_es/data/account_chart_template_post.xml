@@ -16,16 +16,19 @@
         <record id="account_chart_template_full" model="account.chart.template">
             <field name="tax_code_root_id" ref="account_tax_code_template_root"/>
             <field name="bank_account_view_id" ref="pgc_572"/>
+            <field name="account_root_id" ref="pgc_0"/>
         </record>
         
         <record id="account_chart_template_pymes" model="account.chart.template">
             <field name="tax_code_root_id" ref="account_tax_code_template_root"/>
             <field name="bank_account_view_id" ref="pgc_572"/>
+            <field name="account_root_id" ref="pgc_0"/>
         </record>
         
         <record id="account_chart_template_assoc" model="account.chart.template">
             <field name="tax_code_root_id" ref="account_tax_code_template_root"/>
             <field name="bank_account_view_id" ref="pgc_572"/>
+            <field name="account_root_id" ref="pgc_0"/>
         </record>
         
     </data>
