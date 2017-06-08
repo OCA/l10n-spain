@@ -1,0 +1,208 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#       * l10n_es_facturae
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-16 16:34+0000\n"
+"PO-Revision-Date: 2015-09-16 16:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+msgid "Aquí la contraseña del certificado"
+msgstr "Aquí la contraseña del certificado"
+
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Cerrar"
+msgstr "Cerrar"
+
+#. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+msgid "Certificado en formato .pfx con contraseña:"
+msgstr "Certificado en formato .pfx con contraseña:"
+
+#. module: l10n_es_facturae
+#: field:res.company,facturae_cert:0
+msgid "Certificado firma electrónica"
+msgstr "Certificado firma electrónica"
+
+#. module: l10n_es_facturae
+#: field:payment.mode.face.code,code:0
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_facturae
+#: field:res.company,facturae_cert_password:0
+msgid "Contraseña certificado"
+msgstr "Contraseña certificado"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_country
+#: view:res.country:l10n_es_facturae.view_country_form_ext
+msgid "Country"
+msgstr "País"
+
+#. module: l10n_es_facturae
+#: field:res.country,code_3166:0
+msgid "Code ISO 3166"
+msgstr "Código ISO 3166"
+
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Crear Factura-E"
+msgstr "Crear Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
+msgid "Create Factura-e file"
+msgstr "Crear fichero facturae"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,create_uid:0
+#: field:payment.mode.face.code,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,create_date:0
+#: field:payment.mode.face.code,create_date:0
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_facturae
+#: help:res.country,code_3166:0
+msgid "El código del país ISO 3166 (3 caractéres). Para España: \"ESP\"."
+msgstr "El código del país ISO 3166 (3 caractéres). Para España: \"ESP\"."
+
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Este proceso creará la factura electrónica"
+msgstr "Este proceso creará la factura electrónica"
+
+#. module: l10n_es_facturae
+#: view:create.facturae:l10n_es_facturae.wizard_create_facturae
+msgid "Exportar"
+msgstr "Exportar"
+
+#. module: l10n_es_facturae
+#: view:res.company:l10n_es_facturae.res_company_form
+#: view:res.partner:l10n_es_facturae.view_partner_form1
+msgid "FACe"
+msgstr "FACe"
+
+#. module: l10n_es_facturae
+#: field:payment.mode,face_code_id:0
+msgid "FACe code"
+msgstr "Código FACe"
+
+#. module: l10n_es_facturae
+#: field:res.partner,facturae:0
+msgid "Factura electrónica"
+msgstr "Factura electrónica"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,facturae:0
+msgid "Factura-E file"
+msgstr "Fichero facturae"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,facturae_fname:0
+msgid "File name"
+msgstr "Nombre fichero"
+
+#. module: l10n_es_facturae
+#: selection:create.facturae,state:0
+msgid "First"
+msgstr "Primero"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,id:0
+#: field:payment.mode.face.code,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,write_uid:0
+#: field:payment.mode.face.code,write_uid:0
+msgid "Last Updated by"
+msgstr "Últ. actualización por"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,write_date:0
+#: field:payment.mode.face.code,write_date:0
+msgid "Last Updated on"
+msgstr "Últ. actualización el"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,note:0
+msgid "Log"
+msgstr "Log"
+
+#. module: l10n_es_facturae
+#: field:payment.mode.face.code,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_facturae
+#: field:res.partner,oficina_contable:0
+msgid "Oficina contable"
+msgstr "Oficina contable"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_partner_address
+msgid "Partner Addresses"
+msgstr "Direcciones de empresa"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_payment_mode
+msgid "Payment Mode"
+msgstr "Modo de pago"
+
+#. module: l10n_es_facturae
+#: help:create.facturae,firmar_facturae:0
+msgid "Requiere certificado en la ficha de la compañía"
+msgstr "Requiere certificado en la ficha de la compañía"
+
+#. module: l10n_es_facturae
+#: selection:create.facturae,state:0
+msgid "Second"
+msgstr "Segundo"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_facturae
+#: field:res.partner,unidad_tramitadora:0
+msgid "Unidad tramitadora"
+msgstr "Unidad tramitadora"
+
+#. module: l10n_es_facturae
+#: field:create.facturae,firmar_facturae:0
+msgid "¿Desea firmar digitalmente el fichero generado?"
+msgstr "¿Desea firmar digitalmente el fichero generado?"
+
+#. module: l10n_es_facturae
+#: field:res.partner,organo_gestor:0
+msgid "Órgano gestor"
+msgstr "Órgano gestor"

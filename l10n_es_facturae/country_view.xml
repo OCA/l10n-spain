@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Country Expasion   -->
+        <record id="view_country_form_ext" model="ir.ui.view">
+            <field name="name">res.country.form_ext</field>
+            <field name="model">res.country</field>
+            <field name="inherit_id" ref="base.view_country_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="code_3166"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

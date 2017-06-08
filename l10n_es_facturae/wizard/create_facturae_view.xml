@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="wizard_create_facturae" model="ir.ui.view">
+            <field name="name">create.facturae.form</field>
+            <field name="model">create.facturae</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Crear Factura-E">
+                    <label string="Este proceso creará la factura electrónica" colspan="4"/>
+                    <field name="state" invisible="1"/>
+                    <group attrs="{'invisible': [('state', '=', 'second')]}" colspan="4">
+                        <field name="firmar_facturae" />
+                    </group>
+                    <group attrs="{'invisible': [('state', '=', 'first')]}" colspan="4">
+                        <field name="facturae" filename="facturae_fname"/>
+                        <field name="facturae_fname" invisible="1"/>
+                        <field name="note" colspan="4" nolabel="1"/>
+                    </group>
+                    <footer>
+                        <button icon="gtk-print" name="create_facturae_file" string="Exportar" type="object" states="first" class="oe_highlight"/>
+                        o
+                        <button string="Cerrar" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window name="Create Factura-e file"
+            res_model="create.facturae"
+            src_model="account.invoice"
+            view_mode="form"
+            target="new"
+            id="wizard_create_facturae_act_window" />
+
+    </data>
+</openerp>
