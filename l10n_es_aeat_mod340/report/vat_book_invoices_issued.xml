@@ -100,7 +100,6 @@
                           <td id="detail_base">Base</td>
                           <td id="detail_type">Type</td>
                           <td id="detail_cuote">Cuote</td>
-                          <td id="detail_total">Total</td>
                           <td id="detail_surcharge">Surcharge</td>
                       </tr>
                   </thead>
@@ -121,24 +120,44 @@
                           <td id="data_vat">
                               <span t-field="l.partner_vat"/>
                           </td>
+                          <t t-set="number_taxes" t-value="0" />
                           <t t-foreach="l.tax_line_ids" t-as="tax">
-                            <tr>
-                              <td id="data_base">
-                                  <span t-field="tax.base_amount"/>
-                              </td>
-                              <td id="data_type">
-                                  <span t-field="tax.tax_percentage"/>
-                              </td>
-                              <td id="data_cuote">
-                                  <span t-field="tax.tax_amount"/>
-                              </td>
-                              <td id="data_total">
-                                  <!-- <span t-field="tax.total"/> -->
-                              </td>
-                              <td id="data_surcharg">
-                                  <span t-field="tax.rec_tax_amount"/>
-                              </td>
-                            </tr>
+
+                            <t t-if="number_taxes != 0">
+                              <tr>
+                                <td colspan="5">
+                                </td>
+                                <td id="data_base_tax_hight">
+                                  <span t-esc="formatLang(tax.base_amount)"/>
+                                </td>
+                                <td id="data_type_tax_hight">
+                                    <span t-esc="tax.tax_percentage * 100"/>
+                                </td>
+                                <td id="data_cuote_tax_hight">
+                                    <span t-esc="formatLang(tax.tax_amount)"/>
+                                </td>
+                                <td id="data_surcharg_tax_hight">
+                                    <span t-esc="formatLang(tax.rec_tax_amount)"/>
+                                </td>
+                              </tr>
+                            </t>
+
+                            <t t-if="number_taxes == 0">
+                                <td id="data_base_first_tax">
+                                    <span t-esc="formatLang(tax.base_amount)"/>
+                                </td>
+                                <td id="data_type_first_tax">
+                                    <span t-esc="tax.tax_percentage * 100"/>
+                                </td>
+                                <td id="data_cuote_first_tax">
+                                    <span t-esc="formatLang(tax.tax_amount)"/>
+                                </td>
+                                <td id="data_surcharg_first_tax">
+                                  <span t-esc="formatLang(tax.rec_tax_amount)"/>
+                                </td>
+                            </t>
+
+                            <t t-set="number_taxes" t-value="number_taxes + 1" />
                           </t>
                       </tr>
                   </tbody>
