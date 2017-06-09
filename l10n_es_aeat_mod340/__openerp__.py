@@ -49,8 +49,9 @@
     ],
     'data': [
         'report/report_paper_format.xml',
-        'report/vat_book_invoices_issued.xml',
         'report/report_view.xml',
+        'report/vat_book_invoices_issued.xml',
+        'report/vat_book_invoices_received.xml',
         'wizard/export_mod340_to_boe.xml',
         'views/mod340_view.xml',
         'security/ir.model.access.csv',
