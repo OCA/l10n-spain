@@ -39,7 +39,7 @@ class L10nEsAeatMod216ExportToBoe(models.TransientModel):
         res += self._formatString(
             fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Devengado. Periodo: "01" ... "12" o "1T" … "4T"
-        res += self._formatString(report.period_type,2)
+        res += self._formatString(report.period_type, 2)
         # Tipo y cierre
         res += self._formatString('0000>', 5)
         return res
@@ -68,7 +68,7 @@ class L10nEsAeatMod216ExportToBoe(models.TransientModel):
         res += self._formatString('0', 1)
         res += self._formatString(
             fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
-        res += self._formatString(report.period_type,2)
+        res += self._formatString(report.period_type, 2)
         res += self._formatString('0000>', 5)
         # Fin de registro Constante CRLF(Hexadecimal 0D0A, Decimal 1310)
         res += '\x0A\x0D'
@@ -100,7 +100,7 @@ class L10nEsAeatMod216ExportToBoe(models.TransientModel):
         res += self._formatString(
             fields.Date.from_string(report.fiscalyear_id.date_start).year, 4)
         # Devengado. Periodo: "01" ... "12" o "1T" … "4T"
-        res += self._formatString(report.period_type,2)
+        res += self._formatString(report.period_type, 2)
         return res
 
     @api.multi
