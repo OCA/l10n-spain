@@ -86,7 +86,7 @@
               </div>
 
               <div class="col-xs-12 text-center" id="vat_book_kind">
-                <h4>BOOK REGISTER OF BILLS ISSUED</h4>
+                <h4>BOOK REGISTER OF INVOICES RECEIVED</h4>
               </div>
 
               <div class="col-xs-12" id="detail_div">
@@ -101,19 +101,18 @@
                             <td id="detail_base">Base</td>
                             <td id="detail_type">Type</td>
                             <td id="detail_cuote">Cuote</td>
-                            <td id="detail_surcharge">Surcharge</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr t-foreach="o.issued" t-as="l">
+                        <tr t-foreach="o.received" t-as="l">
                             <td id="data_invoice_date">
-                             <span t-field="l.invoice_id.date_invoice"/>
+                             <span t-esc="formatLang(l.invoice_id.date_invoice,date=True)"/>
                             </td>
                             <td id="data_registry">
                               <span t-field="l.record_number"/>
                             </td>
                             <td id="data_invoice_number">
-                              <span t-field="l.invoice_id.number"/>
+                              <span t-esc="l.invoice_id.reference or l.invoice_id.number or ''"/>
                             </td>
                             <td id="data_company">
                               <span t-field="l.partner_id.name"/>
@@ -137,9 +136,6 @@
                                   <td id="data_cuote_tax_hight">
                                       <span t-esc="formatLang(tax.tax_amount)"/>
                                   </td>
-                                  <td id="data_surcharg_tax_hight">
-                                      <span t-esc="formatLang(tax.rec_tax_amount)"/>
-                                  </td>
                                 </tr>
                               </t>
 
@@ -153,9 +149,6 @@
                                   <td id="data_cuote_first_tax">
                                       <span t-esc="formatLang(tax.tax_amount)"/>
                                   </td>
-                                  <td id="data_surcharg_first_tax">
-                                    <span t-esc="formatLang(tax.rec_tax_amount)"/>
-                                  </td>
                               </t>
 
                               <t t-set="number_taxes" t-value="number_taxes + 1" />
@@ -166,7 +159,7 @@
               </div> <!-- end detail div -->
 
               <div class="col-xs-12" id="title_sumary_invoices">
-                <h4>Summary invoices issued</h4>
+                <h4>Summary invoices received</h4>
               </div>
               <div class="col-xs-12" id="div_sumary_invoices">
                 <table class="table table-condensed" id="table_sumary_invoices">
@@ -179,7 +172,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr t-foreach="o.summary_issued" t-as="s">
+                        <tr t-foreach="o.summary_received" t-as="s">
                             <td class="text-center" id="data_sumary_code">
                              <span t-field="s.tax_code_id.name"/>
                             </td>
@@ -198,13 +191,13 @@
                              <strong>Total</strong>
                             </td>
                             <td class="text-center" id="total_sumary_base">
-                                <span t-esc="formatLang(o.total_taxable)"/>
+                                <span t-esc="formatLang(o.total_taxable_rec)"/>
                             </td>
                             <td class="text-center" id="total_sumary_cuote">
-                                <span t-esc="formatLang(o.total_sharetax)"/>
+                                <span t-esc="formatLang(o.total_sharetax_rec)"/>
                             </td>
                             <td class="text-center" id="total_sumary_type">
-                                <span t-esc="formatLang(o.total)"/>
+                                <span t-esc="formatLang(o.total_rec)"/>
                             </td>
                         </tr>
                     </tbody>
