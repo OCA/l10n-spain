@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <button string="Re-Open" position="after">
                     <button type="object" string="Send SII"
-                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                    name="send_sii"
                     states="open,paid"/>
                 </button>
                 <field name="reference" position="attributes">
@@ -40,7 +40,7 @@
             <field name="arch" type="xml">
                 <button string="Re-Open" position="after">
                     <button type="object" string="Send SII"
-                    name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                    name="send_sii"
                     states="open,paid"/>
                 </button>
                 <notebook position="inside">

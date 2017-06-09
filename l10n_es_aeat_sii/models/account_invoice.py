@@ -92,9 +92,10 @@ class AccountInvoice(osv.osv):
              '|', ('date_to', '>=', date), ('date_to', '=', False)], limit=1)[0])
         mapping_taxes = {}
         for code in codes:
-            tax_templates = sii_map_line_obj.browse(cr, uid, sii_map_line_obj.search(
+            tax_search = sii_map_line_obj.browse(cr, uid, sii_map_line_obj.search(
                 cr, uid, [('code', '=', code), ('sii_map_id', '=', sii_map.id)],
-                limit=1)[0]).taxes
+                limit=1)[0])
+            tax_templates = tax_search.taxes
             for tax_template in tax_templates:
                 tax = self.map_tax_template(cr, uid, tax_template, mapping_taxes, invoice)
                 if tax:
@@ -327,6 +328,7 @@ class AccountInvoice(osv.osv):
         for line in invoice.invoice_line:
             for tax_line in line.invoice_line_tax_id:
                 if tax_line in taxes_sfrs or tax_line in taxes_sfrisp:
+                    print tax_line
                     if tax_line in taxes_sfrisp:
                         if 'InversionSujetoPasivo' not in taxes_sii:
                             taxes_sii['InversionSujetoPasivo'] = {}
@@ -357,8 +359,12 @@ class AccountInvoice(osv.osv):
                                 taxes_f, tax_line, line,
                                 line.invoice_line_tax_id, invoice)
         for key, line in taxes_f.iteritems():
+            line['BaseImponible'] = round(line['BaseImponible'],2)
+            line['CuotaSoportada'] = round(line['CuotaSoportada'],2)
             taxes_sii['DesgloseIVA']['DetalleIVA'].append(line)
         for key, line in taxes_isp.iteritems():
+            line['BaseImponible'] = round(line['BaseImponible'],2)
+            line['CuotaSoportada'] = round(line['CuotaSoportada'],2)
             taxes_sii['InversionSujetoPasivo']['DetalleIVA'].append(line)
         return taxes_sii
 
@@ -423,13 +429,13 @@ class AccountInvoice(osv.osv):
             tipo_facturea = 'F1'
             if invoice.type == 'in_refund':
                 tipo_facturea = 'R4'
-            desglose_factura = self._get_sii_in_taxes()
+            desglose_factura = self._get_sii_in_taxes(cr, uid, invoice)
             invoices = {
                 "IDFactura": {
                     "IDEmisorFactura": {
                         "NIF": invoice.partner_id.vat[2:]
                     },
-                    "NumSerieFacturaEmisor": invoice.supplier_invoice_number[
+                    "NumSerieFacturaEmisor": invoice.reference[
                         0:60],
                     "FechaExpedicionFacturaEmisor": invoice_date},
                 "PeriodoImpositivo": {

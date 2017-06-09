@@ -10,7 +10,10 @@
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.iva_pymes_rep_21'),
                 ref('l10n_es.iva_pymes_rep_10'),
-                ref('l10n_es.iva_pymes_rep_4')
+                ref('l10n_es.iva_pymes_rep_4'),
+                ref('l10n_es.iva_rep_21'),
+                ref('l10n_es.iva_rep_10'),
+                ref('l10n_es.iva_rep_4')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Sujetas Bienes</field>
@@ -48,7 +51,8 @@
         <record id="aeat_sii_map_line_SFESSE" model="aeat.sii.map.lines">
             <field name="code">SFESSE</field>
             <field name="taxes" eval="[(6, 0, [
-                ref('l10n_es.iva_pymes_rep_ex')
+                ref('l10n_es.iva_pymes_rep_ex'),
+                ref('l10n_es.iva_rep_ex')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Servicios Exento</field>
@@ -60,21 +64,23 @@
                 ref('l10n_es.iva_pymes_sop_21'),
                 ref('l10n_es.iva_pymes_sop_10'),
                 ref('l10n_es.iva_pymes_sop_4'),
+                ref('l10n_es.iva_sop_21'),
+                ref('l10n_es.iva_sop_10'),
+                ref('l10n_es.iva_sop_4'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas Sujetas</field>
         </record>
 
-        <!--<record id="aeat_sii_map_line_SFRISP" model="aeat.sii.map.lines">-->
-            <!--<field name="code">SFRISP</field>-->
-            <!--<field name="taxes" eval="[(6, 0, [-->
-                <!--ref('l10n_es.account_tax_template_p_iva21_isp'),-->
-                <!--ref('l10n_es.account_tax_template_p_iva10_isp'),-->
-                <!--ref('l10n_es.account_tax_template_p_iva4_isp')-->
-            <!--])]"/>-->
-            <!--<field name="sii_map_id" ref="aeat_sii_map"/>-->
-            <!--<field name="name">SuministroFactRecibidas ISP</field>-->
-        <!--</record>-->
+        <record id="aeat_sii_map_line_SFRISP" model="aeat.sii.map.lines">
+            <field name="code">SFRISP</field>
+            <field name="taxes" eval="[(6, 0, [
+                ref('l10n_es.iva_pymes_ISP_compras_21'),
+                ref('l10n_es.iva_ISP_compras_21')
+            ])]"/>
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactRecibidas ISP</field>
+        </record>
 
         <!--<record id="aeat_sii_map_line_SFRBI" model="aeat.sii.map.lines">-->
             <!--<field name="code">SFRBI</field>-->
@@ -95,7 +101,13 @@
                 ref('l10n_es.re_pymes_buy_14'),
                 ref('l10n_es.re_pymes_14'),
                 ref('l10n_es.re_pymes_buy_05'),
-                ref('l10n_es.re_pymes_05')
+                ref('l10n_es.re_pymes_05'),
+                ref('l10n_es.re_buy_52'),
+                ref('l10n_es.re_52'),
+                ref('l10n_es.re_buy_14'),
+                ref('l10n_es.re_14'),
+                ref('l10n_es.re_buy_05'),
+                ref('l10n_es.re_05')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFact Recargo Equivalencia</field>
