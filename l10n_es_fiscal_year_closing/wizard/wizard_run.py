@@ -347,19 +347,18 @@ class ExecuteFyc(orm.TransientModel):
                             dest_id = account_map.dest_account_id.id
                             dest_accounts_totals[dest_id] -= balance
                 elif account.user_type.close_method == 'unreconciled':
-                    found_lines = move_line_obj.search(cr, uid, [
-                        ('period_id', 'in', period_ids),
-                        ('account_id', '=', account.id),
-                        ('company_id', '=', company_id),
-                    ])
-                    lines_by_partner = {}
-                    for line in move_line_obj.browse(cr, uid, found_lines):
-                        partner_id = line.partner_id.id
-                        balance = line.debit - line.credit
-                        lines_by_partner[partner_id] = (
-                            lines_by_partner.get(partner_id, 0.0) + balance)
-                    for partner_id in lines_by_partner.keys():
-                        balance = lines_by_partner[partner_id]
+                    lines_by_partner = move_line_obj.\
+                        read_group(cr, uid, [('period_id', 'in', period_ids),
+                                             ('account_id', '=', account.id),
+                                             ('company_id', '=', company_id)],
+                                   ['partner_id', 'debit', 'credit'],
+                                   ['partner_id'])
+                    for record in lines_by_partner:
+                        if record['partner_id']:
+                            partner_id = record['partner_id'][0]
+                        else:
+                            partner_id = False
+                        balance = record['debit'] - record['credit']
                         if not float_is_zero(
                                 balance, precision_digits=precision):
                             move_lines.append({
