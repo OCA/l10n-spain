@@ -55,3 +55,14 @@ class AccountInvoice(orm.Model):
         if lines:
             return True
         return False
+
+
+    @api.multi
+    def check_reference_required(self):
+        if self.type == 'in_invoice':
+            if self.reference is False:
+                return False
+            else:
+                return True
+        else:
+            return True

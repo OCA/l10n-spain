@@ -54,6 +54,7 @@
         'data/mod340_sequence.xml',
         'views/account_invoice_view.xml',
         'views/account_view.xml',
+        'views/account_workflow.xml',
         'data/taxes_data.xml',
         'security/ir_rule.xml'
     ],

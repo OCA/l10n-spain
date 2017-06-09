@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="account.t4" model="workflow.transition">
+            <field name="condition">check_reference_required()</field>
+        </record>
+    </data>
+</openerp>
