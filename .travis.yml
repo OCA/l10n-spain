@@ -12,7 +12,9 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml  # because pip installation is slow
-      - python-xlrd
+      # needed because server-tools is loaded in the dependency chain
+      - unixodbc-dev
+      - python-mysqldb
 
 env:
   global:
