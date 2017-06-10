@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 18:55+0000\n"
-"PO-Revision-Date: 2016-09-09 12:25+0000\n"
+"POT-Creation-Date: 2017-06-10 01:44+0000\n"
+"PO-Revision-Date: 2017-05-30 10:13+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -43,7 +43,7 @@ msgid "Account to close"
 msgstr "Conta a pechar"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:383
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:382
 #, python-format
 msgid "Account type closing method is not supported"
 msgstr "O peche do tipo de conta non está soportado"
@@ -612,13 +612,13 @@ msgid "The Closing move is required"
 msgstr "Requírese o asento de peche"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:437
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:436
 #, python-format
 msgid "The L&P account mappings are not properly configured: %s"
 msgstr "O mapeo de contas P&G non está configurado correctamente: %s"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:471
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:470
 #, python-format
 msgid "The L&P move must exist before creating the closing one"
 msgstr "O asento de perdas e ganancias debe existir antes de crea-lo asento de peche"
@@ -630,7 +630,7 @@ msgid "The Loss & Profit move is required"
 msgstr "Requírese o asento de perdas e ganancias"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:458
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:457
 #, python-format
 msgid "The Net L&P account mappings are not properly configured: %s"
 msgstr "O mapeo de contas P&G Neto non está configurado correctamente: %s"
@@ -642,19 +642,19 @@ msgid "The Opening move is required"
 msgstr "O asento de apertura é obrigatorio"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:502
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:501
 #, python-format
 msgid "The closing move must exist to create the opening one"
 msgstr "O asento de peche debe existir para crea-lo de apertura"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:505
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:504
 #, python-format
 msgid "The closing move shouldn't be empty"
 msgstr "O asento de peche non debería estar baleiro"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:422
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:421
 #, python-format
 msgid "The operation must be a supported one"
 msgstr "A operación debe ser unha das soportadas"
@@ -691,12 +691,12 @@ msgid "Useless operations"
 msgstr "Operacións sen uso"
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:382
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:436
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:457
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:470
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:501
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:504
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:381
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:435
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:456
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:469
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:500
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:503
 #, python-format
 msgid "UserError"
 msgstr "Erro de usuario"
