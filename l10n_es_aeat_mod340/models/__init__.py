@@ -20,3 +20,5 @@ from . import account_invoice
 from . import account
 from . import res_partner
 from . import mod340
+from . import vat_book_invoices_issued
+from . import vat_book_invoices_received
