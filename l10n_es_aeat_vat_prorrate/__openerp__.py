@@ -9,6 +9,7 @@
     "license": "AGPL-3",
     "author": "AvanzOSC, "
               "Tecnativa, "
+              "Praxya, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
@@ -19,7 +20,9 @@
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         'wizard/l10n_es_aeat_compute_vat_prorrate_view.xml',
-        'views/mod303_view.xml'
+        'views/mod303_view.xml',
+        'views/account_tax_code.xml',
+        'data/special_prorrate_taxes.xml'
     ],
     "installable": True,
 }

@@ -106,8 +106,8 @@ class L10nEsAeatMod303Report(models.Model):
              u"prorrata.")
     vat_prorrate_type = fields.Selection(
         [('none', 'None'),
-         ('general', 'General prorrate'), ],
-        # ('special', 'Special prorrate')],
+         ('general', 'General prorrate'),
+         ('special', 'Special prorrate')],
         readonly=True, states={'draft': [('readonly', False)]},
         string="VAT prorrate type", default='none', required=True)
     vat_prorrate_percent = fields.Float(
@@ -178,6 +178,16 @@ class L10nEsAeatMod303Report(models.Model):
         if (self.vat_prorrate_type == 'general' and
                 map_line.field_number in PRORRATE_TAX_LINE_MAPPING.keys()):
             res['amount'] *= self.vat_prorrate_percent / 100
+        # The special prorrate needs an specific calculation
+        elif (self.vat_prorrate_type == 'special' and
+            map_line.field_number in [29, 41]):
+            # Gets the move lines that have and special prorrate code
+            move_lines_prorr = self._get_special_prorrate_tax_code_lines(
+                periods=self.periods)
+            amount_prorr = sum(move_lines_prorr.mapped('tax_amount'))
+            # Adds the calcule to the amount field depending of the percentage
+            res['amount'] = res['amount'] + amount_prorr * (
+                (self.vat_prorrate_percent / 100) - 1)
         return res
 
     @api.multi
@@ -308,3 +318,33 @@ class L10nEsAeatMod303Report(models.Model):
                 'credit': self.casilla_44 if self.casilla_44 > 0 else 0.0,
             })
         return lines
+
+    @api.model
+    def _get_special_prorrate_tax_code_lines(self, periods=None):
+        """
+        Get the move lines for the special prorrate codes and periods
+        :param periods: Periods to include
+        :return: Move lines recordset that matches the criteria.
+        """
+        move_line_obj = self.env['account.move.line']
+        tax_code_obj = self.env['account.tax_code']
+        period_obj = self.env['account.period']
+        move_line_ids = list()
+
+        # If there are not periods, gets the current fiscal year's perios
+        if not periods:
+            periods = period_obj.search([
+                ('fiscalyear_id', '=', self.fiscalyear_id.id)
+            ])
+        # Search for the move lines that have and special prorrate tax code
+        tax_code_ids = tax_code_obj.search([
+            ('is_special_prorrate_code', '=', True),
+            ('company_id', 'child_of', self.company_id.id)
+        ])
+        if tax_code_ids:
+            move_line_ids = move_line_obj.search([
+                ('company_id', 'child_of', self.company_id.id),
+                ('tax_code_id', 'child_of', tax_code_ids.ids),
+                ('period_id', 'in', periods.ids)
+            ])
+        return move_line_ids
