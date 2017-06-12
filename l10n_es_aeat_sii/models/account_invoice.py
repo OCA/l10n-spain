@@ -9,6 +9,7 @@ from datetime import datetime, date
 from requests import Session
 
 from openerp import _, api, exceptions, fields, models
+from openerp.modules.registry import RegistryManager
 
 _logger = logging.getLogger(__name__)
 
@@ -53,6 +54,7 @@ class AccountInvoice(models.Model):
     sii_sent = fields.Boolean(string='SII Sent')
     sii_csv = fields.Char(string='SII CSV')
     sii_return = fields.Text(string='SII Return')
+    sii_send_error = fields.Text(string='SII Send Error')
     refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
         string="Refund Type")
@@ -76,6 +78,13 @@ class AccountInvoice(models.Model):
                     {'message': 'Debes tener al menos una factura '
                      'vinculada que sustituir'}
             }
+
+    @api.onchange('fiscal_position')
+    def onchange_fiscal_position(self):
+        for invoice in self:
+            if invoice.fiscal_position:
+                invoice.registration_key = \
+                    invoice.fiscal_position.sii_registration_key
 
     @api.multi
     def map_tax_template(self, tax_template, mapping_taxes):
@@ -391,8 +400,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         if not self.partner_id.vat:
             raise exceptions.Warning(_(
-                "The partner '{}' has not a VAT configured.").format(
-                    self.partner_id.name))
+                "The partner has not a VAT configured."))
         invoice_date = self._change_date_format(self.date_invoice)
         company = self.company_id
         ejercicio = fields.Date.from_string(
@@ -554,7 +562,15 @@ class AccountInvoice(models.Model):
             else:
                 tipo_comunicacion = 'A1'
             header = invoice._get_header(tipo_comunicacion)
-            invoices = invoice._get_invoices()
+            try:
+                invoices = invoice._get_invoices()
+            except Exception as fault:
+                new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
+                env = api.Environment(new_cr, self.env.uid, self.env.context)
+                self.with_env(env).sii_send_error = fault
+                new_cr.commit()
+                new_cr.close()
+                raise
             try:
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
@@ -573,8 +589,16 @@ class AccountInvoice(models.Model):
                 else:
                     self.sii_sent = False
                 self.sii_return = res
+                send_error = False
+                res_line = res['RespuestaLinea'][0]
+                if res_line['CodigoErrorRegistro']:
+                    send_error = u"{} | {}".format(
+                        unicode(res_line['CodigoErrorRegistro']),
+                        unicode(res_line['DescripcionErrorRegistro'])[:60])
+                self.sii_send_error = send_error
             except Exception as fault:
                 self.sii_return = fault
+                self.sii_send_error = fault
 
     @api.multi
     def invoice_validate(self):
