@@ -36,6 +36,7 @@
         "security/ir.model.access.csv",
         "security/aeat_sii.xml",
         "views/product_view.xml",
+        "views/account_view.xml"
     ],
     "post_init_hook": "add_key_to_existing_invoices",
 }
