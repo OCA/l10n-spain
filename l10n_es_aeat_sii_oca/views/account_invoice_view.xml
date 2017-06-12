@@ -105,7 +105,15 @@
                             domain="[('sii_sent','=',False)]" />
                     <filter name="sii_sent" string="SII send"
                             domain="[('sii_sent','=',True)]"/>
+                    <filter name="sii_send_state" string="SII failed"
+                            domain="[('sii_send_error','!=',False)]"/>
                 </filter>
+                <xpath expr="//group[@string='Group By']" position="inside">
+                    <separator/>
+                    <filter string="SII error"
+                        domain="[('sii_send_error','!=',False)]"
+                        context="{'group_by':'sii_send_error'}"/>
+                </xpath>
             </field>
         </record>
 
