@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015-2017 Tecnativa - Pedro M. Baeza
 # Copyright 2015 AvanzOSC - Ainara Galdona
+# (c) 2017 Praxya - Carlos Alba
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 {
@@ -15,6 +16,7 @@
     "category": "Accounting",
     "depends": [
         'l10n_es_aeat_mod303',
+        'account_chart_update'
     ],
     "data": [
         "data/tax_code_map_mod303_data.xml",

@@ -40,6 +40,23 @@ Se ha incluido un calculador del porcentaje de prorrata, utilizable en 2 casos:
 * En la última declaración del ejercicio, para determinar el porcentaje
   definitivo de prorrata, y sobre el que se compensará la diferencia.
 
+Prorrata especial
+-----------------
+
+Si se selecciona la "Prorrata especial", los cálculos de las casillas 29 y 41
+del informe 303, se realizarán teniendo en cuenta los apuntes que contengan los
+códigos de impuestos prorrateados.
+
+Se han añadido tres nuevos impuestos, así como tres nuevas plantillas de códigos
+de impuesto:
+
+* Prorrateable del 21%
+* Prorrateable del 10%
+* Prorrateable del 4%
+
+Será necesario actualizar tanto los impuestos como los códigos de impuestos
+para introducirlos en el sistema.
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/189/8.0
@@ -47,7 +64,6 @@ Se ha incluido un calculador del porcentaje de prorrata, utilizable en 2 casos:
 Problemas conocidos / Hoja de ruta
 ==================================
 
-* La prorrata especial de IVA no está contemplada aún.
 * Este módulo no incluye la posibilidad de las facturas de actividad
   diferenciada, de las que te puedes deducir el 100% del IVA de la factura.
 
@@ -59,6 +75,7 @@ Contribudores
 
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Ainara Galdona <agaldona@avanzosc.es>
+* Carlos Alba <calba@praxya.com>
 
 Maintainer
 ----------

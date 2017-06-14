@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2015-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2017 Praxya - Carlos Alba
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp import _, api, fields, exceptions, models
@@ -87,6 +88,10 @@ PRORRATE_TAX_CODES = {
     'RDDSCRE05': 'RDDSBI',
     'RDDSCRE52': 'RDDSBI',
 }
+SPECIAL_PRORRATE_FIELDS = [
+    29,
+    41
+]
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -180,7 +185,7 @@ class L10nEsAeatMod303Report(models.Model):
             res['amount'] *= self.vat_prorrate_percent / 100
         # The special prorrate needs an specific calculation
         elif (self.vat_prorrate_type == 'special' and
-            map_line.field_number in [29, 41]):
+            map_line.field_number in SPECIAL_PRORRATE_FIELDS):
             # Gets the move lines that have and special prorrate code
             move_lines_prorr = self._get_special_prorrate_tax_code_lines(
                 periods=self.periods)
