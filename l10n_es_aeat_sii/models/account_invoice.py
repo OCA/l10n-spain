@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2017 Alberto Martín Cortada <alberto.martin@guadaltech.es>
+#  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp.osv import osv, fields
 from openerp import exceptions
@@ -110,12 +111,12 @@ class AccountInvoice(osv.Model):
             map_line = sii_map_line_obj.search(cr, uid, [('code', '=', code), ('sii_map_id', '=', sii_map.id)], limit=1)
             if map_line:
                 map_line = map_line[0]
-            tax_templates = sii_map_line_obj.browse(cr, uid, map_line)
 
-            if tax_templates:
-                tax_templates = tax_templates.taxes
-            else:
+            tax_templates = sii_map_line_obj.browse(cr, uid, map_line)
+            if not tax_templates:
                 continue
+
+            tax_templates = tax_templates.taxes
 
             for tax_template in tax_templates:
                 tax = self.map_tax_template(cr, uid, tax_template, mapping_taxes, invoice)
@@ -128,7 +129,7 @@ class AccountInvoice(osv.Model):
         new_date = datetimeobject.strftime('%d-%m-%Y')
         return new_date
 
-    def _get_header(self, cr, uid, ids, company, TipoComunicacion):
+    def _get_header(self, cr, uid, ids, company, tipo_comunicacion):
 
         if not company.vat:
             raise exceptions.Warning(_(
@@ -138,11 +139,16 @@ class AccountInvoice(osv.Model):
         header = {
             "IDVersionSii": id_version_sii,
             "Titular": {
-                "NombreRazon": company.name,
+                "NombreRazon": company.name[0:120],
                 "NIF": company.vat[2:]},
-            "TipoComunicacion": TipoComunicacion
+            "TipoComunicacion": tipo_comunicacion
         }
         return header
+
+    def _get_line_price_subtotal(self, cr, uid, line):
+        price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+        return price
+
 
     def _get_tax_line_req(self, cr, uid, tax_type, line, line_taxes):
         taxes = False
@@ -151,8 +157,7 @@ class AccountInvoice(osv.Model):
         if len(line_taxes) > 1:
             for tax in line_taxes:
                 if tax in taxes_RE:
-                    price = line.price_unit * (1 - (
-                        line.discount or 0.0) / 100.0)
+                    price = self._get_line_price_subtotal(cr, uid, line)
                     taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax],
                                                                      price, line.quantity, line.product_id,
                                                                      line.invoice_id.partner_id)
@@ -166,7 +171,7 @@ class AccountInvoice(osv.Model):
         tax = self.pool.get('account.tax').browse(cr, uid, tax_line.id)
         if tax:
             taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax],
-                                                             (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
+                                                             self._get_line_price_subtotal(cr, uid, line),
                                                              line.quantity, line.product_id, line.invoice_id.partner_id)
 
         tax_sii = {
@@ -189,7 +194,7 @@ class AccountInvoice(osv.Model):
         tax_type = tax_line.amount * 100
         tax_line_req = self._get_tax_line_req(cr, uid, tax_type, line, line_taxes)
         taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax_line.id],
-                                                         (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
+                                                         self._get_line_price_subtotal(cr, uid, line),
                                                          line.quantity, line.product_id, line.invoice_id.partner_id)
         if tax_line_req:
             tipo_recargo = tax_line_req['percentage'] * 100
@@ -304,7 +309,7 @@ class AccountInvoice(osv.Model):
                             # else:
                             tipo_no_exenta = 'S1'
                             type_breakdown[
-                                'PrestacionServicios']['º']['NoExenta'][
+                                'PrestacionServicios']['Sujeta']['NoExenta'][
                                 'TipoNoExenta'] = tipo_no_exenta
                         if 'DesgloseIVA' not in taxes_sii[
                             'DesgloseTipoOperacion']['PrestacionServicios'][
@@ -422,7 +427,8 @@ class AccountInvoice(osv.Model):
                         "NombreRazon": invoice.partner_id.name[0:120],
                         "NIF": invoice.partner_id.vat[2:]
                     },
-                    "TipoDesglose": tipo_desglose
+                    "TipoDesglose": tipo_desglose,
+                    "ImporteTotal": invoice.amount_total
                 }
             }
             # Uso condicional de IDOtro/NIF
@@ -455,7 +461,7 @@ class AccountInvoice(osv.Model):
                     "IDEmisorFactura": {
                         "NIF": invoice.partner_id.vat[2:]
                     },
-                    "NumSerieFacturaEmisor": invoice.reference,
+                    "NumSerieFacturaEmisor": invoice.reference[0:60],
                     "FechaExpedicionFacturaEmisor": invoice_date},
                 "PeriodoImpositivo": {
                     "Ejercicio": ejercicio,
@@ -489,14 +495,33 @@ class AccountInvoice(osv.Model):
                     }
         return invoices
 
-    def _connect_sii(self, cr, uid, wsdl):
-        publicCrt = self.pool.get('ir.config_parameter').get_param(cr, uid,
-                                                                   'l10n_es_aeat_sii.publicCrt', False)
-        privateKey = self.pool.get('ir.config_parameter').get_param(cr, uid,
-                                                                    'l10n_es_aeat_sii.privateKey', False)
+    def _connect_sii(self, cr, uid, wsdl, company):
+
+        today = datetime.today()
+        config_obj = self.pool.get('l10n.es.aeat.sii')
+        sii_config_ids = config_obj.search(cr, uid,[
+            ('company_id', '=', company.id),
+            ('public_key', '!=', False),
+            ('private_key', '!=', False),
+            '|', ('date_start', '=', False),
+            ('date_start', '<=', today),
+            '|', ('date_end', '=', False),
+            ('date_end', '>=', today),
+            ('state', '=', 'active')
+        ], limit=1)
+
+        if sii_config_ids:
+            sii_config = config_obj.browse(cr, uid, sii_config_ids[0])
+            public_crt = sii_config.public_key
+            private_key = sii_config.private_key
+        else:
+            public_crt = self.pool.get('ir.config_parameter').get_param(cr, uid,
+                                                                       'l10n_es_aeat_sii.publicCrt', False)
+            private_key = self.pool.get('ir.config_parameter').get_param(cr, uid,
+                                                                        'l10n_es_aeat_sii.privateKey', False)
 
         session = Session()
-        session.cert = (publicCrt, privateKey)
+        session.cert = (public_crt, private_key)
         transport = Transport(session=session)
 
         history = HistoryPlugin()
@@ -510,14 +535,14 @@ class AccountInvoice(osv.Model):
             if invoice.type in ['out_invoice', 'out_refund']:
                 wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
                                                                   'l10n_es_aeat_sii.wsdl_out', False)
-                client = self._connect_sii(cr, uid, wsdl)
+                client = self._connect_sii(cr, uid, wsdl, company)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type in ['in_invoice', 'in_refund']:
                 wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
                                                                   'l10n_es_aeat_sii.wsdl_in', False)
-                client = self._connect_sii(cr, uid, wsdl)
+                client = self._connect_sii(cr, uid, wsdl, company)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
@@ -562,6 +587,7 @@ class AccountInvoice(osv.Model):
             company = invoice.company_id
             if company.sii_enabled:
                 self._send_invoice_to_sii(cr, uid, [invoice.id])
+        return True
 
     # @api.multi
     # def action_cancel(self):
