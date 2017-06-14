@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="view_l10n_es_vat_book_form" model="ir.ui.view">
+        <field name="name">l10n_es.vat.book.form</field>
+        <field name="model">l10n.es.vat.book</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group" position="after">
+              <field name="issued_invoice_ids">
+                <tree>
+                  <field name="invoice_date" />
+                  <field name="partner_id" />
+                  <field name="vat_number" />
+                  <field name="invoice_id" />
+                  <field name="base" />
+                  <field name="tax_import" />
+                  <field name="cuote" />
+                </tree>
+              </field>
+            </xpath> 
+         </field>
+    </record>
+
+    <!-- <record id="view_l10n_es_vat_book_tree" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book.tree</field>
+      <field name="model">l10n.es.vat.book</field>
+      <field name="arch" type="xml">
+        <tree string="Libro de IVA">
+          <field name="name" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_l10n_es_vat_book_search" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book.search</field>
+      <field name="model">l10n.es.vat.book</field>
+      <field name="arch" type="xml">
+        <search string="Libro de IVA">
+          <field name="name" />
+          <group string="Group By" name="groupby">
+            <filter name="name_groupby" string="name"
+              context="{'group_by': 'name'}" />
+          </group>
+        </search>
+      </field>
+    </record> -->
+
+    <record id="l10n_es_vat_book_action" model="ir.actions.act_window">
+      <field name="name">Libro de IVA</field>
+      <field name="res_model">l10n.es.vat.book</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <p class="oe_view_nocontent_create">
+          Click to create a new Libro de IVA.
+        </p>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_l10n_vat_book_report_form">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_vat_book_form"/>
+        <field name="act_window_id" ref="l10n_es_vat_book_action"/>
+    </record>
+
+    <menuitem id="menu_vat_book_report"
+      parent="l10n_es_aeat.menu_root_aeat"
+      action="l10n_es_vat_book_action"
+      name="Libro de IVA"/>
+
+    <!-- sequence="340" -->
+
+  </data>
+</openerp>
