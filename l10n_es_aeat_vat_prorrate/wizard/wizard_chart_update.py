@@ -2,7 +2,7 @@
 # © 2017 Praxya - Carlos Alba
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp import models, api, fields
+from openerp import models
 
 
 class WizardUpdateChartsAccounts(models.TransientModel):
