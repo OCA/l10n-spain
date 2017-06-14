@@ -332,7 +332,7 @@ class L10nEsAeatMod303Report(models.Model):
         :return: Move lines recordset that matches the criteria.
         """
         move_line_obj = self.env['account.move.line']
-        tax_code_obj = self.env['account.tax_code']
+        tax_code_obj = self.env['account.tax.code']
         period_obj = self.env['account.period']
         move_line_ids = list()
 
@@ -341,7 +341,7 @@ class L10nEsAeatMod303Report(models.Model):
             periods = period_obj.search([
                 ('fiscalyear_id', '=', self.fiscalyear_id.id)
             ])
-        # Search for the move lines that have and special prorrate tax code
+        # Search for the move lines that have an special prorrate tax code
         tax_code_ids = tax_code_obj.search([
             ('is_special_prorrate_code', '=', True),
             ('company_id', 'child_of', self.company_id.id)

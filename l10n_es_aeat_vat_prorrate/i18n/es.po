@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_vat_prorrate
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
@@ -71,6 +71,11 @@ msgstr "Ejercicio fiscal"
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
 msgid "General prorrate"
 msgstr "Prorrata general"
+
+#. module: l10n_es_aeat_vat_prorrate
+#: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
+msgid "Special prorrate"
+msgstr "Prorrata especial"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,id:0

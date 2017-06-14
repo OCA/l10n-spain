@@ -17,12 +17,12 @@
                 <field name="type" position="after">
                     <field name="vat_prorrate_type"/>
                     <label for="vat_prorrate_percent"
-                           attrs="{'invisible': [('vat_prorrate_type', '!=', 'general')]}"
+                           attrs="{'invisible': [('vat_prorrate_type', 'not in', ['general', 'special'])]}"
                             />
                     <div class="oe_inline"
-                         attrs="{'invisible': [('vat_prorrate_type', '!=', 'general')]}">
+                         attrs="{'invisible': [('vat_prorrate_type', 'not in', ['general', 'special'])]}">
                         <field name="vat_prorrate_percent"
-                               attrs="{'required': [('vat_prorrate_type', '=', 'general')]}"
+                               attrs="{'required': [('vat_prorrate_type', 'not in', ['general', 'special'])]}"
                                class="oe_inline"
                                 />
                         <button string="(compute prorrate percentage)"
