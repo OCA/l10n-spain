@@ -10,7 +10,9 @@ class AccountTaxCode(models.Model):
     _inherit = 'account.tax.code'
 
     is_special_prorrate_code = fields.Boolean(
-        string='Es de prorrata especial')
+        string='Es de prorrata especial',
+        help="Si está marcado, será incluido en el cálculo de la "
+             "prorrata especial del IVA en el informe 303.")
 
 
 class AccountTaxCodeTemplate(models.Model):
