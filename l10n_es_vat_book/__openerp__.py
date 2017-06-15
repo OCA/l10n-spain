@@ -23,6 +23,8 @@
         'views/l10n_es_vat_book.xml',
         'views/l10n_es_vat_book_issued_lines.xml',
         'views/l10n_es_vat_book_received_lines.xml',
+        'views/l10n_es_vat_book_received_tax_summary.xml',
+        'views/l10n_es_vat_book_issued_tax_summary.xml',
     ],
     "qweb": [
     ],
