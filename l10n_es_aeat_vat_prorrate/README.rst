@@ -10,6 +10,14 @@ Módulo para gestionar la prorrata del IVA en las declaraciones de la AEAT (por
 el momento, en el modelo 303), según el artículo 92 de la Ley 37/1992, de 28 de
 diciembre, del Impuesto sobre el Valor Añadido.
 
+Instalación
+===========
+
+Es necesario instalar el módulo *account_chart_update*, que se encuentra en el
+repositorio de GitHub:
+
+https://github.com/OCA/account-financial-tools
+
 Configuración
 =============
 
@@ -56,14 +64,6 @@ de impuesto:
 
 Será necesario actualizar tanto los impuestos como los códigos de impuestos
 para introducirlos en el sistema.
-
-Instalación
-===========
-
-Es necesario instalar el módulo *account_chart_update*, que se encuentra en el
-repositorio de GitHub:
-
-https://github.com/OCA/account-financial-tools
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
