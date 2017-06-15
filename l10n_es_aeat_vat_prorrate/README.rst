@@ -57,6 +57,14 @@ de impuesto:
 Será necesario actualizar tanto los impuestos como los códigos de impuestos
 para introducirlos en el sistema.
 
+Instalación
+===========
+
+Es necesario instalar el módulo *account_chart_update*, que se encuentra en el
+repositorio de GitHub:
+
+https://github.com/OCA/account-financial-tools
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/189/8.0
