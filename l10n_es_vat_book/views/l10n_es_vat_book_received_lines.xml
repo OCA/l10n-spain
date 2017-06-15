@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_l10n_es_vat_book_received_lines_form" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book_received_lines.form</field>
+      <field name="model">l10n.es.vat.book.received.lines</field>
+      <field name="arch" type="xml">
+        <form string="Issued invoices">
+          <sheet>
+            <group name="main">
+              <field name="invoice_date" />
+              <field name="partner_id" />
+              <field name="vat_number" />
+              <field name="invoice_id" />
+              <field name="base" />
+              <field name="tax_import" />
+              <field name="total" />
+              <field name="tax_lines_received_ids" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_l10n_es_vat_book_received_lines_tree" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book_received_lines.tree</field>
+      <field name="model">l10n.es.vat.book.received.lines</field>
+      <field name="arch" type="xml">
+        <tree string="Issued invoices">
+          <field name="invoice_date" />
+          <field name="partner_id" />
+          <field name="vat_number" />
+          <field name="invoice_id" />
+          <field name="base" />
+          <field name="tax_import" />
+          <field name="total" />
+        </tree>
+      </field>
+    </record>
+
+  </data>
+</openerp>

@@ -7,3 +7,4 @@ from . import l10n_es_vat_book_received_lines
 from . import l10n_es_vat_book_rectification_lines
 from . import l10n_es_vat_book_issued_tax_summary
 from . import l10n_es_vat_book_received_tax_summary
+from . import l10n_es_vat_book_invoice_tax_lines
