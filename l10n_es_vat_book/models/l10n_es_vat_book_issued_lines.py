@@ -25,9 +25,14 @@ class L10nEsVatBookIssuedLines(models.Model):
     tax_import = fields.Float(
         string=_('Tax import'))
 
-    cuote = fields.Float(
-        string=_('Cuote'))
+    total = fields.Float(
+        string=_('Total'))
 
     l10n_es_vat_book_id = fields.Many2one(
         comodel_name='l10n.es.vat.book',
         string=_('Vat Book id'))
+
+    tax_line_issued_ids = fields.One2many(
+        comodel_name='l10n.es.vat.book.invoice.tax.lines',
+        inverse_name='issued_invoice_line_id',
+        string=_("Lineas de impuesto"))

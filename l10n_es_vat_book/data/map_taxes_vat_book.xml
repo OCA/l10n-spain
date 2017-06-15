@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="True">
+
+        <record id="aeat_vat_book_map" model="aeat.mod.map.tax.code">
+            <field name="model">340</field>
+        </record>
+        <record id="aeat_vat_book_line_01" model="aeat.mod.map.tax.code.line">
+            <field name="field_number">01</field>
+            <field name="map_parent_id" ref="aeat_vat_book_map"/>
+            <field name="name">Impuestos a mostrar en el libro de IVA</field>
+            <field name="tax_codes" eval="[
+              (4, ref('l10n_es.account_tax_code_template_IDBI')),
+              (4, ref('l10n_es.account_tax_code_template_AEBI')),
+              (4, ref('l10n_es.account_tax_code_template_OESDAD')),
+              (4, ref('l10n_es.account_tax_code_template_RGIDBI4')),
+              (4, ref('l10n_es.account_tax_code_template_RGIDBI10')),
+              (4, ref('l10n_es.account_tax_code_template_RGIDBI21')),
+              (4, ref('l10n_es.account_tax_code_template_AIDBYSBI')),
+              (4, ref('l10n_es.account_tax_code_template_AISBI')),
+              (4, ref('l10n_es.account_tax_code_template_OICBI')),
+              (4, ref('l10n_es.account_tax_code_template_OICBI4')),
+              (4, ref('l10n_es.account_tax_code_template_OICBI10')),
+              (4, ref('l10n_es.account_tax_code_template_OICBI21')),
+              (4, ref('l10n_es.account_tax_code_template_OIBIBI')),
+              (4, ref('l10n_es.account_tax_code_template_OICBI4')),
+              (4, ref('l10n_es.account_tax_code_template_OICBI10')),
+              (4, ref('l10n_es.account_tax_code_template_OICBI21')),
+              (4, ref('l10n_es.account_tax_code_template_AIBYSCBI')),
+              (4, ref('l10n_es.account_tax_code_template_AIBYSCBI4')),
+              (4, ref('l10n_es.account_tax_code_template_AIBYSCBI10')),
+              (4, ref('l10n_es.account_tax_code_template_AIBYSCBI21')),
+              (4, ref('l10n_es.account_tax_code_template_AIBIBI')),
+              (4, ref('l10n_es.account_tax_code_template_AIBIBI4')),
+              (4, ref('l10n_es.account_tax_code_template_AIBIBI10')),
+              (4, ref('l10n_es.account_tax_code_template_AIBIBI21')),
+              (4, ref('l10n_es.account_tax_code_template_OCIDSPEAIBI')),
+              (4, ref('l10n_es.account_tax_code_template_ONSOCIDSPQOEDAD')),
+              (4, ref('l10n_es.account_tax_code_template_VISP')),
+              (4, ref('l10n_es.account_tax_code_template_RDDSBI')),
+              (4, ref('l10n_es.account_tax_code_template_EIDBYS')),
+              (4, ref('l10n_es.account_tax_code_template_EIDBYS')),
+              ]"/>
+        </record>
+
+    </data>
+</openerp>
