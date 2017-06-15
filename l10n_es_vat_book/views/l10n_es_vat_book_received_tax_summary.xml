@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_l10n_es_vat_book_received_tax_summary_form" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book_received_tax_summary.form</field>
+      <field name="model">l10n.es.vat.book.received.tax.summary</field>
+      <field name="arch" type="xml">
+        <form string="Received summary">
+          <sheet>
+            <group name="main">
+              <field name="tax_code_id" />
+              <field name="sum_tax_amount" />
+              <field name="sum_base_amount" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_l10n_es_vat_book_received_tax_summary_tree" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book_received_tax_summary.tree</field>
+      <field name="model">l10n.es.vat.book.received.tax.summary</field>
+      <field name="arch" type="xml">
+        <tree string="Received summary">
+          <field name="tax_code_id" />
+          <field name="sum_tax_amount" />
+          <field name="sum_base_amount" />
+        </tree>
+      </field>
+    </record>
+
+  </data>
+</openerp>
