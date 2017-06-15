@@ -7,19 +7,57 @@
         <field name="model">l10n.es.vat.book</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//form/sheet/group" position="after">
-              <field name="issued_invoice_ids">
-                <tree>
-                  <field name="invoice_date" />
-                  <field name="partner_id" />
-                  <field name="vat_number" />
-                  <field name="invoice_id" />
-                  <field name="base" />
-                  <field name="tax_import" />
-                  <field name="cuote" />
-                </tree>
-              </field>
-            </xpath> 
+            <xpath expr="//group[@name='group_declaration']" position="after">
+              <notebook>
+                <page string="Issued Invoices" name="issued_invoices">
+                  <group>
+                    <field name="issued_invoice_ids" nolabel="1">
+                      <tree>
+                        <field name="invoice_date" />
+                        <field name="partner_id" />
+                        <field name="vat_number" />
+                        <field name="invoice_id" />
+                        <field name="base" />
+                        <field name="tax_import" />
+                        <field name="cuote" />
+                      </tree>
+                    </field>
+                  </group>
+                </page>
+
+                <page string="Received Invoices" name="received_invoices">
+                  <group>
+                    <field name="received_invoice_ids" nolabel="1">
+                      <tree>
+                        <field name="invoice_date" />
+                        <field name="partner_id" />
+                        <field name="vat_number" />
+                        <field name="invoice_id" />
+                        <field name="base" />
+                        <field name="tax_import" />
+                        <field name="cuote" />
+                      </tree>
+                    </field>
+                  </group>
+                </page>
+
+                <page string="Rectification Invoices" name="rectification_invoices">
+                  <group>
+                    <field name="rectification_invoice_ids" nolabel="1">
+                      <tree>
+                        <field name="invoice_date" />
+                        <field name="partner_id" />
+                        <field name="vat_number" />
+                        <field name="invoice_id" />
+                        <field name="base" />
+                        <field name="tax_import" />
+                        <field name="cuote" />
+                      </tree>
+                    </field>
+                  </group>
+                </page>
+              </notebook>
+            </xpath>
          </field>
     </record>
 
