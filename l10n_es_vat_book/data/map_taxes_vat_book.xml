@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-    <data noupdate="True">
+    <data noupdate="False">
 
         <record id="aeat_vat_book_map" model="aeat.mod.map.tax.code">
             <field name="model">340</field>
@@ -38,7 +38,6 @@
               (4, ref('l10n_es.account_tax_code_template_ONSOCIDSPQOEDAD')),
               (4, ref('l10n_es.account_tax_code_template_VISP')),
               (4, ref('l10n_es.account_tax_code_template_RDDSBI')),
-              (4, ref('l10n_es.account_tax_code_template_EIDBYS')),
               (4, ref('l10n_es.account_tax_code_template_EIDBYS')),
               ]"/>
         </record>
