@@ -22,7 +22,7 @@
                     <div class="oe_inline"
                          attrs="{'invisible': [('vat_prorrate_type', 'not in', ['general', 'special'])]}">
                         <field name="vat_prorrate_percent"
-                               attrs="{'required': [('vat_prorrate_type', 'not in', ['general', 'special'])]}"
+                               attrs="{'required': [('vat_prorrate_type', '=', 'general')]}"
                                class="oe_inline"
                                 />
                         <button string="(compute prorrate percentage)"
