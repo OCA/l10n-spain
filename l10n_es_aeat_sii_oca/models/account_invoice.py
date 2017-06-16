@@ -74,17 +74,48 @@ class AccountInvoice(models.Model):
         if self.refund_type == 'S' and not self.origin_invoices_ids:
             self.refund_type = False
             return {
-                'warning':
-                    {'message': 'Debes tener al menos una factura '
-                     'vinculada que sustituir'}
+                'warning': {'message': 'Debes tener al menos una factura '
+                                       'vinculada que sustituir'}
             }
 
     @api.onchange('fiscal_position')
     def onchange_fiscal_position(self):
         for invoice in self:
-            if invoice.fiscal_position:
+            if invoice.fiscal_position and 'out' in invoice.type:
                 invoice.registration_key = \
-                    invoice.fiscal_position.sii_registration_key
+                    invoice.fiscal_position.sii_registration_key_sale
+            elif invoice.fiscal_position:
+                invoice.registration_key = \
+                    invoice.fiscal_position.sii_registration_key_purchase
+
+    @api.model
+    def create(self, vals):
+        invoice = super(AccountInvoice, self).create(vals)
+        if not vals.get('registration_key', False) and \
+                vals.get('fiscal_position', False):
+            if 'out' in invoice.type:
+                invoice.registration_key = \
+                    invoice.fiscal_position.sii_registration_key_sale
+            else:
+                invoice.registration_key = \
+                    invoice.fiscal_position.sii_registration_key_purchase
+        return invoice
+
+    @api.multi
+    def write(self, vals):
+        res = super(AccountInvoice, self).write(vals)
+        if vals.get('fiscal_position', False) and not \
+                vals.get('registration_key', False):
+            for invoice in self:
+                if not invoice.registration_key:
+                    if 'out' in invoice.type:
+                        invoice.registration_key = \
+                            invoice.fiscal_position.sii_registration_key_sale
+                    else:
+                        invoice.registration_key = invoice.\
+                            fiscal_position.sii_registration_key_purchase
+
+        return res
 
     @api.multi
     def map_tax_template(self, tax_template, mapping_taxes):
@@ -241,6 +272,7 @@ class AccountInvoice(models.Model):
         taxes_sfens = self._get_taxes_map(['SFENS'], self.date_invoice)
         taxes_sfess = self._get_taxes_map(['SFESS'], self.date_invoice)
         taxes_sfesse = self._get_taxes_map(['SFESSE'], self.date_invoice)
+
         for line in self.invoice_line:
             for tax_line in line.invoice_line_tax_id:
                 if tax_line in taxes_sfesb or tax_line in taxes_sfesisp or \
@@ -279,7 +311,7 @@ class AccountInvoice(models.Model):
                                     'NoExenta']['DesgloseIVA'] = {}
                                 inv_breakdown['Sujeta'][
                                     'NoExenta']['DesgloseIVA'][
-                                        'DetalleIVA'] = []
+                                    'DetalleIVA'] = []
                             tax_type = tax_line.amount * 100
                             if str(tax_type) not in taxes_f:
                                 taxes_f[str(tax_type)] = \
@@ -321,16 +353,16 @@ class AccountInvoice(models.Model):
                             tipo_no_exenta = 'S1'
                             type_breakdown[
                                 'PrestacionServicios']['Sujeta']['NoExenta'][
-                                    'TipoNoExenta'] = tipo_no_exenta
+                                'TipoNoExenta'] = tipo_no_exenta
                         if 'DesgloseIVA' not in taxes_sii[
                             'DesgloseTipoOperacion']['PrestacionServicios'][
                                 'Sujeta']['NoExenta']:
                             type_breakdown[
                                 'PrestacionServicios']['Sujeta']['NoExenta'][
-                                    'DesgloseIVA'] = {}
+                                'DesgloseIVA'] = {}
                             type_breakdown[
                                 'PrestacionServicios']['Sujeta']['NoExenta'][
-                                    'DesgloseIVA']['DetalleIVA'] = []
+                                'DesgloseIVA']['DetalleIVA'] = []
                             tax_type = tax_line.amount * 100
                             if str(tax_type) not in taxes_to:
                                 taxes_to[str(tax_type)] = \
@@ -343,13 +375,18 @@ class AccountInvoice(models.Model):
                                     line.invoice_line_tax_id)
         if len(taxes_f) > 0:
             for key, line in taxes_f.iteritems():
+                if line.get('CuotaRepercutida', False):
+                    line['CuotaRepercutida'] = \
+                        round(line['CuotaRepercutida'], 2)
+                if line.get('TipoImpositivo', False):
+                    line['TipoImpositivo'] = round(line['TipoImpositivo'], 2)
                 taxes_sii['DesgloseFactura']['Sujeta']['NoExenta'][
                     'DesgloseIVA']['DetalleIVA'].append(line)
         if len(taxes_to) > 0:
             for key, line in taxes_to.iteritems():
                 taxes_sii['DesgloseTipoOperacion']['PrestacionServicios'][
                     'Sujeta']['NoExenta']['DesgloseIVA'][
-                        'DetalleIVA'].append(line)
+                    'DetalleIVA'].append(line)
         return taxes_sii
 
     @api.multi
@@ -470,8 +507,8 @@ class AccountInvoice(models.Model):
                         "NIF": self.partner_id.vat[2:]
                     },
                     "NumSerieFacturaEmisor":
-                        self.supplier_invoice_number and
-                        self.supplier_invoice_number[0:60],
+                    self.supplier_invoice_number and
+                    self.supplier_invoice_number[0:60],
                     "FechaExpedicionFacturaEmisor": invoice_date},
                 "PeriodoImpositivo": {
                     "Ejercicio": ejercicio,
@@ -504,7 +541,6 @@ class AccountInvoice(models.Model):
                         'BaseRectificada': base_rectificada,
                         'CuotaRectificada': cuota_rectificada
                     }
-
         return invoices
 
     @api.multi
@@ -693,6 +729,7 @@ class AccountInvoice(models.Model):
             :return: bool
         """
         return True
+
 
 @job(default_channel='root.invoice_validate_sii')
 def confirm_one_invoice(session, model_name, invoice_id):
