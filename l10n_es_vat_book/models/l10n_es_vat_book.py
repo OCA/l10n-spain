@@ -15,50 +15,62 @@ class L10nEsVatBook(models.Model):
     _period_yearly = True
 
     number = fields.Char(
-        default=_("vat_book"))
+        default=_("vat_book"),
+        readonly="True")
 
     issued_invoice_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.issued.lines',
         inverse_name='l10n_es_vat_book_id',
-        string=_('Issued invoices'))
+        string=_('Issued invoices'),
+        readonly="True")
 
     received_invoice_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.received.lines',
         inverse_name='l10n_es_vat_book_id',
-        string=_('Received received'))
+        string=_('Received received'),
+        readonly="True")
 
     rectification_invoice_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.rectification.lines',
         inverse_name='l10n_es_vat_book_id',
-        string=_('Rectification received'))
+        string=_('Rectification received'),
+        readonly="True")
 
     amount_without_tax_issued = fields.Float(
-        string=_('Total without taxes'))
+        string=_('Total without taxes'),
+        readonly="True")
 
     amount_tax_issued = fields.Float(
-        string=_('Taxes'))
+        string=_('Taxes'),
+        readonly="True")
 
     amount_total_issued = fields.Float(
-        string=_('Total'))
+        string=_('Total'),
+        readonly="True")
 
     issued_tax_summary = fields.One2many(
         comodel_name='l10n.es.vat.book.issued.tax.summary',
         inverse_name='vat_book_id',
-        string=_("Issued tax summary"))
+        string=_("Issued tax summary"),
+        readonly="True")
 
     amount_without_tax_received = fields.Float(
-        string=_('Total without taxes'))
+        string=_('Total without taxes'),
+        readonly="True")
 
     amount_tax_received = fields.Float(
-        string=_('Taxes'))
+        string=_('Taxes'),
+        readonly="True")
 
     amount_total_received = fields.Float(
-        string=_('Total'))
+        string=_('Total'),
+        readonly="True")
 
     received_tax_summary = fields.One2many(
         comodel_name='l10n.es.vat.book.received.tax.summary',
         inverse_name='vat_book_id',
-        string=_("Received tax summary"))
+        string=_("Received tax summary"),
+        readonly="True")
 
     @api.model
     def create(self, vals):
