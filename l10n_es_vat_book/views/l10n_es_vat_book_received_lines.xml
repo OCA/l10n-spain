@@ -26,7 +26,7 @@
       <field name="name">view.l10n_es_vat_book_received_lines.tree</field>
       <field name="model">l10n.es.vat.book.received.lines</field>
       <field name="arch" type="xml">
-        <tree string="Issued invoices">
+        <tree string="Issued invoices" colors="red:exeption==True">
           <field name="invoice_date" />
           <field name="partner_id" />
           <field name="vat_number" />
@@ -34,6 +34,8 @@
           <field name="base" />
           <field name="tax_import" />
           <field name="total" />
+          <field name="exeption" />
+          <field name="exeption_text" />
         </tree>
       </field>
     </record>

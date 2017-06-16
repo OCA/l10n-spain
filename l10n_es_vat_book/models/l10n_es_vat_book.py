@@ -137,7 +137,20 @@ class L10nEsVatBook(models.Model):
         received_invoice_obj = self.env['l10n.es.vat.book.received.lines']
         new_record = False
         invoice_vals = self._get_vals_invoice_line(invoice_id)
+        exeption_text = ""
+        exeption = False
+        if invoice_id.amount_total == 0:
+            exeption = True
+            exeption_text = _("The invoice can't have 0 in total \n")
+        if not invoice_id.partner_id.vat:
+            exeption = True
+            exeption_text += _("¡The partner haven't VAT!")
 
+        if exeption:
+            invoice_vals.update({
+                'exeption': True,
+                'exeption_text': exeption_text,
+            })
         if invoice_id.type in ('out_invoice'):
             new_record = issued_invoice_obj.create(invoice_vals)
         elif invoice_id.type in ('in_invoice'):
