@@ -336,14 +336,20 @@ class L10nEsAeatMod303Report(models.Model):
         period_obj = self.env['account.period']
         move_line_ids = list()
 
-        # If there are not periods, gets the current fiscal year's perios
+        SPECIAL_PRORRATE_CODES = [
+            'SOICC21PRORR',
+            'SOICC10PRORR',
+            'SOICC4PRORR'
+        ]
+
+        # If there are not periods, gets the current fiscal year's period
         if not periods:
             periods = period_obj.search([
                 ('fiscalyear_id', '=', self.fiscalyear_id.id)
             ])
         # Search for the move lines that have an special prorrate tax code
         tax_code_ids = tax_code_obj.search([
-            ('is_special_prorrate_code', '=', True),
+            ('code', 'in', SPECIAL_PRORRATE_CODES),
             ('company_id', 'child_of', self.company_id.id)
         ])
         if tax_code_ids:

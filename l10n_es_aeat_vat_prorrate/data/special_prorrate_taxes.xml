@@ -8,7 +8,6 @@
             <field name="code">SOICC21PRORR</field>
             <field name="name">Prorrateable Soportado operaciones interiores corrientes. Cuota. (21%)</field>
             <field name="sign">1.0</field>
-            <field name="is_special_prorrate_code">True</field>
         </record>
 
         <!-- 21% prorrate tax -->
@@ -37,7 +36,6 @@
             <field name="code">SOICC10PRORR</field>
             <field name="name">Prorrateable Soportado operaciones interiores corrientes. Cuota. (10%)</field>
             <field name="sign">1.0</field>
-            <field name="is_special_prorrate_code">True</field>
         </record>
 
         <!-- 10% prorrate tax -->
@@ -66,7 +64,6 @@
             <field name="code">SOICC4PRORR</field>
             <field name="name">Prorrateable Soportado operaciones interiores corrientes. Cuota. (4%)</field>
             <field name="sign">1.0</field>
-            <field name="is_special_prorrate_code">True</field>
         </record>
 
         <!-- 4% prorrate tax -->
