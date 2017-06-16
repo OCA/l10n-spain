@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_l10n_es_vat_book_rectification_issued_lines_form" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book_rectification_issued_lines.form</field>
+      <field name="model">l10n.es.vat.book.rectification.issued.lines</field>
+      <field name="arch" type="xml">
+        <form string="Rectification issued invoices">
+          <sheet>
+            <group name="main">
+              <field name="invoice_date" />
+              <field name="partner_id" />
+              <field name="vat_number" />
+              <field name="invoice_id" />
+              <field name="base" />
+              <field name="tax_import" />
+              <field name="total" />
+              <field name="tax_lines_rectification_issued_ids" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_l10n_es_vat_book_rectification_issued_lines_tree" model="ir.ui.view">
+      <field name="name">view.l10n_es_vat_book_rectification_issued_lines.tree</field>
+      <field name="model">l10n.es.vat.book.rectification.issued.lines</field>
+      <field name="arch" type="xml">
+        <tree string="Rectification issued invoices" colors="red:exeption==True">
+          <field name="invoice_date" />
+          <field name="partner_id" />
+          <field name="vat_number" />
+          <field name="invoice_id" />
+          <field name="base" />
+          <field name="tax_import" />
+          <field name="total" />
+          <field name="exeption" />
+          <field name="exeption_text" />
+        </tree>
+      </field>
+    </record>
+
+  </data>
+</openerp>

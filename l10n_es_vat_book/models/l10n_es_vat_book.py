@@ -30,8 +30,14 @@ class L10nEsVatBook(models.Model):
         string=_('Received received'),
         readonly="True")
 
-    rectification_invoice_ids = fields.One2many(
-        comodel_name='l10n.es.vat.book.rectification.lines',
+    rectification_issued_invoice_ids = fields.One2many(
+        comodel_name='l10n.es.vat.book.rectification.issued.lines',
+        inverse_name='l10n_es_vat_book_id',
+        string=_('Rectification issued'),
+        readonly="True")
+
+    rectification_received_invoice_ids = fields.One2many(
+        comodel_name='l10n.es.vat.book.rectification.received.lines',
         inverse_name='l10n_es_vat_book_id',
         string=_('Rectification received'),
         readonly="True")
@@ -68,6 +74,42 @@ class L10nEsVatBook(models.Model):
 
     received_tax_summary = fields.One2many(
         comodel_name='l10n.es.vat.book.received.tax.summary',
+        inverse_name='vat_book_id',
+        string=_("Received tax summary"),
+        readonly="True")
+
+    amount_without_tax_rectification_issued = fields.Float(
+        string=_('Total without taxes'),
+        readonly="True")
+
+    amount_tax_rectification_issued = fields.Float(
+        string=_('Taxes'),
+        readonly="True")
+
+    amount_total_rectification_issued = fields.Float(
+        string=_('Total'),
+        readonly="True")
+
+    rectification_issued_tax_summary = fields.One2many(
+        comodel_name='l10n.es.vat.book.rectification.issued.tax.summary',
+        inverse_name='vat_book_id',
+        string=_("Issued tax summary"),
+        readonly="True")
+
+    amount_without_tax_rectification_received = fields.Float(
+        string=_('Total without taxes'),
+        readonly="True")
+
+    amount_tax_rectification_received = fields.Float(
+        string=_('Taxes'),
+        readonly="True")
+
+    amount_total_rectification_received = fields.Float(
+        string=_('Total'),
+        readonly="True")
+
+    rectification_received_tax_summary = fields.One2many(
+        comodel_name='l10n.es.vat.book.rectification.received.tax.summary',
         inverse_name='vat_book_id',
         string=_("Received tax summary"),
         readonly="True")
@@ -147,6 +189,10 @@ class L10nEsVatBook(models.Model):
         """
         issued_invoice_obj = self.env['l10n.es.vat.book.issued.lines']
         received_invoice_obj = self.env['l10n.es.vat.book.received.lines']
+        rectification_issued_invoice_obj =\
+            self.env['l10n.es.vat.book.rectification.issued.lines']
+        rectification_received_invoice_obj =\
+            self.env['l10n.es.vat.book.rectification.received.lines']
         new_record = False
         invoice_vals = self._get_vals_invoice_line(invoice_id)
         exeption_text = ""
@@ -167,11 +213,11 @@ class L10nEsVatBook(models.Model):
             new_record = issued_invoice_obj.create(invoice_vals)
         elif invoice_id.type in ('in_invoice'):
             new_record = received_invoice_obj.create(invoice_vals)
-        # TODO Facturas rectificativas
-        # elif invoice_id.type in ('out_refund'):
-        #     tax_ven_rect.append(i)
-        # elif invoice_id.type in ('in_refund'):
-        #     tax_comp_rect.append(i)
+        elif invoice_id.type in ('out_refund'):
+            new_record = rectification_issued_invoice_obj.create(invoice_vals)
+        elif invoice_id.type in ('in_refund'):
+            new_record =\
+                rectification_received_invoice_obj.create(invoice_vals)
         return new_record
 
     def _vals_invoice_tax(self, invoice_tax_line):
@@ -232,11 +278,18 @@ class L10nEsVatBook(models.Model):
                         'received_invoice_line_id': invoice_vat_book_line_id.id
                     })
                     invoice_tax_lines_obj.create(vals)
-                # TODO Facturas rectificativas
-                # elif invoice_id.type in ('out_refund'):
-                #     tax_ven_rect.append(i)
-                # elif invoice_id.type in ('in_refund'):
-                #     tax_comp_rect.append(i)
+                elif invoice_id.type in ('out_refund'):
+                    vals.update({
+                        'rectification_issued_invoice_line_id':
+                        invoice_vat_book_line_id.id
+                    })
+                    invoice_tax_lines_obj.create(vals)
+                elif invoice_id.type in ('in_refund'):
+                    vals.update({
+                        'rectification_received_invoice_line_id':
+                        invoice_vat_book_line_id.id
+                    })
+                    invoice_tax_lines_obj.create(vals)
 
                 # Update summary
                 self._invoices_summary(invoice_tax_line, invoice_id.type)
@@ -277,6 +330,10 @@ class L10nEsVatBook(models.Model):
             self.env['l10n.es.vat.book.issued.tax.summary']
         received_tax_summary_obj =\
             self.env['l10n.es.vat.book.received.tax.summary']
+        rectification_issued_tax_summary_obj =\
+            self.env['l10n.es.vat.book.rectification.issued.tax.summary']
+        rectification_received_tax_summary_obj =\
+            self.env['l10n.es.vat.book.rectification.received.tax.summary']
         tax_code = invoice_tax_line.mapped('base_code_id.id')
 
         if invoice_type in ('out_invoice'):
@@ -340,12 +397,104 @@ class L10nEsVatBook(models.Model):
                 vals = self._get_vals_summary_invoices(
                     tax_code[0], invoice_tax_line)
                 received_tax_summary_obj.create(vals)
+        elif invoice_type in ('out_refund'):
+            self.write({
+                'amount_without_tax_rectification_issued':
+                    self.amount_without_tax_rectification_issued +
+                    invoice_tax_line.base,
+                'amount_tax_rectification_issued':
+                    self.amount_tax_rectification_issued +
+                    invoice_tax_line.amount,
+                'amount_total_rectification_issued':
+                    self.amount_total_rectification_issued +
+                    (invoice_tax_line.base + invoice_tax_line.amount),
+            })
 
-        # TODO Facturas rectificativas
-        # elif invoice_id.type in ('out_refund'):
-        #     tax_ven_rect.append(i)
-        # elif invoice_id.type in ('in_refund'):
-        #     tax_comp_rect.append(i)
+            # return the actually tax lines
+            tax_lines =\
+                self.rectification_issued_tax_summary.mapped('tax_code_id.id')
+            # If this tax not here make a new line, if this tax exist Add
+            # the new amount
+            if tax_code[0] in tax_lines:
+                rectification_issued_tax_summary_id =\
+                    rectification_issued_tax_summary_obj.search([
+                        ('tax_code_id', 'in', tax_code),
+                        ('vat_book_id', '=', self.id),
+                    ])
+                rectification_issued_tax_summary_id.write({
+                    'sum_tax_amount':
+                    rectification_issued_tax_summary_id.sum_tax_amount +
+                    invoice_tax_line.amount,
+                    'sum_base_amount':
+                    rectification_issued_tax_summary_id.sum_base_amount +
+                    invoice_tax_line.base,
+                })
+            else:
+                vals = self._get_vals_summary_invoices(
+                    tax_code[0], invoice_tax_line)
+                rectification_issued_tax_summary_obj.create(vals)
+        elif invoice_type in ('in_refund'):
+            self.write({
+                'amount_without_tax_rectification_received':
+                    self.amount_without_tax_rectification_received +
+                    invoice_tax_line.base,
+                'amount_tax_rectification_received':
+                    self.amount_tax_rectification_received +
+                    invoice_tax_line.amount,
+                'amount_total_rectification_received':
+                    self.amount_total_rectification_received +
+                    (invoice_tax_line.base + invoice_tax_line.amount),
+            })
+
+            # return the actually tax lines
+            tax_lines =\
+                self.rectification_received_tax_summary.mapped(
+                    'tax_code_id.id')
+            # If this tax not here make a new line, if this tax exist Add
+            # the new amount
+            if tax_code[0] in tax_lines:
+                rectification_received_tax_summary_id =\
+                    rectification_received_tax_summary_obj.search([
+                        ('tax_code_id', 'in', tax_code),
+                        ('vat_book_id', '=', self.id),
+                    ])
+                rectification_received_tax_summary_id.write({
+                    'sum_tax_amount':
+                    rectification_received_tax_summary_id.sum_tax_amount +
+                    invoice_tax_line.amount,
+                    'sum_base_amount':
+                    rectification_received_tax_summary_id.sum_base_amount +
+                    invoice_tax_line.base,
+                })
+            else:
+                vals = self._get_vals_summary_invoices(
+                    tax_code[0], invoice_tax_line)
+                rectification_received_tax_summary_obj.create(vals)
+
+    def _clear_old_data(self):
+        """
+            This function clean all the old data to make a new calculation
+        """
+        self.issued_invoice_ids.unlink()
+        self.received_invoice_ids.unlink()
+        self.rectification_issued_invoice_ids.unlink()
+        self.rectification_received_invoice_ids.unlink()
+        self.amount_without_tax_issued = 0
+        self.amount_tax_issued = 0
+        self.amount_total_issued = 0
+        self.issued_tax_summary.unlink()
+        self.amount_without_tax_received = 0
+        self.amount_tax_received = 0
+        self.amount_total_received = 0
+        self.received_tax_summary.unlink()
+        self.amount_without_tax_rectification_issued = 0
+        self.amount_tax_rectification_issued = 0
+        self.amount_total_rectification_issued = 0
+        self.rectification_issued_tax_summary.unlink()
+        self.amount_without_tax_rectification_received = 0
+        self.amount_tax_rectification_received = 0
+        self.amount_total_rectification_received = 0
+        self.rectification_received_tax_summary.unlink()
 
     def _calculate_vat_book(self):
         """
@@ -359,17 +508,7 @@ class L10nEsVatBook(models.Model):
                 _("This company doesn't have NIF"))
 
         # clean the old invoice records
-        self.issued_invoice_ids.unlink()
-        self.received_invoice_ids.unlink()
-        self.rectification_invoice_ids.unlink()
-        self.amount_without_tax_issued = 0
-        self.amount_tax_issued = 0
-        self.amount_total_issued = 0
-        self.issued_tax_summary.unlink()
-        self.amount_without_tax_received = 0
-        self.amount_tax_received = 0
-        self.amount_total_received = 0
-        self.received_tax_summary.unlink()
+        self._clear_old_data()
 
         # Get all the invoices in state different to fradt an cancel
         domain = [

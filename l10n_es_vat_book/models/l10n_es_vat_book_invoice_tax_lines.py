@@ -24,3 +24,11 @@ class L10nEsVatBookInvoiceTaxLines(models.Model):
     received_invoice_line_id = fields.Many2one(
         comodel_name='l10n.es.vat.book.received.lines',
         string=_("Received invoice line"))
+
+    rectification_issued_invoice_line_id = fields.Many2one(
+        comodel_name='l10n.es.vat.book.rectification.issued.lines',
+        string=_("Received invoice line"))
+
+    rectification_received_invoice_line_id = fields.Many2one(
+        comodel_name='l10n.es.vat.book.rectification.received.lines',
+        string=_("Received invoice line"))
