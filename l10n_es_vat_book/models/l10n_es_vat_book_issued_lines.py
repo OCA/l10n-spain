@@ -4,6 +4,7 @@ from openerp import models, api, fields, _
 
 class L10nEsVatBookIssuedLines(models.Model):
     _name = 'l10n.es.vat.book.issued.lines'
+    _order = 'invoice_id desc'
 
     invoice_date = fields.Date(
         string=_('Invoice Date'))
@@ -36,3 +37,9 @@ class L10nEsVatBookIssuedLines(models.Model):
         comodel_name='l10n.es.vat.book.invoice.tax.lines',
         inverse_name='issued_invoice_line_id',
         string=_("Lineas de impuesto"))
+
+    exeption = fields.Boolean(
+        string=_("Exeption"))
+
+    exeption_text = fields.Char(
+        string=_("Exeption text"))

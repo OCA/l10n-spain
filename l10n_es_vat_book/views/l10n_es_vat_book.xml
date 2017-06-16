@@ -32,49 +32,19 @@
 
                 <page string="Issued Invoices" name="issued_invoices">
                   <group>
-                    <field name="issued_invoice_ids" nolabel="1">
-                      <tree>
-                        <field name="invoice_date" />
-                        <field name="partner_id" />
-                        <field name="vat_number" />
-                        <field name="invoice_id" />
-                        <field name="base" />
-                        <field name="tax_import" />
-                        <field name="total" />
-                      </tree>
-                    </field>
+                    <field name="issued_invoice_ids" nolabel="1" />
                   </group>
                 </page>
 
                 <page string="Received Invoices" name="received_invoices">
                   <group>
-                    <field name="received_invoice_ids" nolabel="1">
-                      <tree>
-                        <field name="invoice_date" />
-                        <field name="partner_id" />
-                        <field name="vat_number" />
-                        <field name="invoice_id" />
-                        <field name="base" />
-                        <field name="tax_import" />
-                        <field name="total" />
-                      </tree>
-                    </field>
+                    <field name="received_invoice_ids" nolabel="1" />
                   </group>
                 </page>
 
                 <page string="Rectification Invoices" name="rectification_invoices">
                   <group>
-                    <field name="rectification_invoice_ids" nolabel="1">
-                      <tree>
-                        <field name="invoice_date" />
-                        <field name="partner_id" />
-                        <field name="vat_number" />
-                        <field name="invoice_id" />
-                        <field name="base" />
-                        <field name="tax_import" />
-                        <field name="total" />
-                      </tree>
-                    </field>
+                    <field name="rectification_invoice_ids" nolabel="1" />
                   </group>
                 </page>
               </notebook>
