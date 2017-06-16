@@ -16,17 +16,30 @@
             <xpath expr="//group[@name='group_declaration']" position="after">
               <notebook>
                 <page string="Summary" name="summary_invoices">
-                  <group string="Issued invoices">
+                  <group string="Issued invoices" name="summary_issued_invoices">
                     <field name="amount_without_tax_issued" />
                     <field name="amount_tax_issued" />
                     <field name="amount_total_issued" />
                     <field name="issued_tax_summary" />
                   </group>
-                  <group string="Received invoices">
+                  <group string="Received invoices" name="summary_received_invoices">
                     <field name="amount_without_tax_received" />
                     <field name="amount_tax_received" />
                     <field name="amount_total_received" />
                     <field name="received_tax_summary" />
+                  </group>
+
+                  <group string="Rectification Issued invoices" name="summary_rectification_issued_invoices">
+                    <field name="amount_without_tax_rectification_issued" />
+                    <field name="amount_tax_rectification_issued" />
+                    <field name="amount_total_rectification_issued" />
+                    <field name="rectification_issued_tax_summary" />
+                  </group>
+                  <group string="Rectification Received invoices" name="summary_rectification_received_invoices">
+                    <field name="amount_without_tax_rectification_received" />
+                    <field name="amount_tax_rectification_received" />
+                    <field name="amount_total_rectification_received" />
+                    <field name="rectification_received_tax_summary" />
                   </group>
                 </page>
 
@@ -42,9 +55,15 @@
                   </group>
                 </page>
 
-                <page string="Rectification Invoices" name="rectification_invoices">
+                <page string="Rectification issued" name="rectification_issued">
                   <group>
-                    <field name="rectification_invoice_ids" nolabel="1" />
+                    <field name="rectification_issued_invoice_ids" nolabel="1" />
+                  </group>
+                </page>
+
+                <page string="Rectification received" name="rectification_received">
+                  <group>
+                    <field name="rectification_received_invoice_ids" nolabel="1" />
                   </group>
                 </page>
               </notebook>
