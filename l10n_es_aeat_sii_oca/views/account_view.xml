@@ -11,7 +11,8 @@
             <field name="inherit_id" ref="account.view_account_position_form"/>
             <field name="arch" type="xml">
                 <field name="country_group_id" position="after">
-                    <field name="sii_registration_key"/>
+                    <field name="sii_registration_key_sale"/>
+                    <field name="sii_registration_key_purchase"/>
                 </field>
             </field>
         </record>
