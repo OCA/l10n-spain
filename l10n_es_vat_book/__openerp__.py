@@ -6,9 +6,9 @@
     "version": "8.0.1.0.0",
     "author": "PRAXYA, "
               "Odoo Community Association (OCA)",
-    "website": "http://www.antiun.com",
+    "website": "http://www.praxya.com",
     "license": "AGPL-3",
-    "category": "Localisation/Accounting",
+    "category": "Accounting",
     "depends": [
         'account',
         'base_vat',
@@ -25,6 +25,7 @@
         'views/l10n_es_vat_book_received_lines.xml',
         'views/l10n_es_vat_book_received_tax_summary.xml',
         'views/l10n_es_vat_book_issued_tax_summary.xml',
+        'views/l10n_es_vat_book_invoice_tax_lines.xml',
     ],
     "qweb": [
     ],

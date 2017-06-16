@@ -195,7 +195,7 @@ class L10nEsVatBook(models.Model):
         for invoice_tax_line in invoice_id.tax_line:
             tax_code = invoice_tax_line.mapped('base_code_id.id')
             # If this tax be in the vat_book tax list create a new tax line
-            if set(tax_code) < set(tax_code_ids.ids):
+            if tax_code != [] and set(tax_code) < set(tax_code_ids.ids):
                 vals = self._vals_invoice_tax(invoice_tax_line)
                 if invoice_id.type in ('out_invoice'):
                     vals.update({
@@ -253,11 +253,7 @@ class L10nEsVatBook(models.Model):
         received_tax_summary_obj =\
             self.env['l10n.es.vat.book.received.tax.summary']
         tax_code = invoice_tax_line.mapped('base_code_id.id')
-        print tax_code
-        # try:
-        #     pass
-        # except Exception as e:
-        #     raise
+
         if invoice_type in ('out_invoice'):
             self.write({
                 'amount_without_tax_issued':
@@ -265,7 +261,7 @@ class L10nEsVatBook(models.Model):
                 'amount_tax_issued':
                     self.amount_tax_issued + invoice_tax_line.amount,
                 'amount_total_issued':
-                    self.amount_total_issued + (invoice_tax_line.amount +
+                    self.amount_total_issued + (invoice_tax_line.base +
                                                 invoice_tax_line.amount),
             })
 
@@ -295,7 +291,7 @@ class L10nEsVatBook(models.Model):
                 'amount_tax_received':
                     self.amount_tax_received + invoice_tax_line.amount,
                 'amount_total_received':
-                    self.amount_total_received + (invoice_tax_line.amount +
+                    self.amount_total_received + (invoice_tax_line.base +
                                                   invoice_tax_line.amount),
             })
 
@@ -372,9 +368,17 @@ class L10nEsVatBook(models.Model):
             # Obtain all account.tax.code id inside a invoice
             invoice_tax_code_ids = \
                 invoice_id.tax_line.mapped('base_code_id.id')
+
             # If the account.tax.code from the invoice are not in the list of
             # account.tax.code vat book this invoice can't be in the vat_book
-            if not set(invoice_tax_code_ids) < set(tax_code_ids.ids):
+            vat_ok = False
+            for elem in invoice_tax_code_ids:
+                if elem in tax_code_ids.ids:
+                    vat_ok = True
+                    break
+            # If any of invoice tax are in vat_book list continue to the next
+            # invoice
+            if not vat_ok:
                 continue
 
             # Create a issued, received or rectification invoice line
@@ -384,14 +388,11 @@ class L10nEsVatBook(models.Model):
             # Create tax lines for the current vat_book_line
             self._create_invoice_tax(
                 invoice_vat_book_line_id, invoice_id, tax_code_ids)
-
-
         # Write state and date in the report
         # self.write({
         #     'state': 'calculated',
         #     # 'calculation_date': fields.Datetime.now(),
         # })
-
 
     def __init__(self, pool, cr):
         self._aeat_number = 'vat_book'
