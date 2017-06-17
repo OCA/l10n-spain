@@ -149,7 +149,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         else:
             res[expedida_recibida].update({
                 "FechaRegContable": self.invoice._change_date_format(
-                    self.invoice.date_invoice
+                    self.invoice.date
                 ),
                 "DesgloseFactura": {
                     'DesgloseIVA': {
