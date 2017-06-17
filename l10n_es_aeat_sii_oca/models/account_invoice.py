@@ -26,7 +26,6 @@ try:
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
-
 try:
     from openerp.addons.connector.queue.job import job
     from openerp.addons.connector.session import ConnectorSession
@@ -245,10 +244,10 @@ class AccountInvoice(models.Model):
         taxes = self.env['account.tax']
         sii_map = self.env['aeat.sii.map'].search(
             ['|',
-             ('date_from', '<=', self.date_invoice),
+             ('date_from', '<=', self.date),
              ('date_from', '=', False),
              '|',
-             ('date_to', '>=', self.date_invoice),
+             ('date_to', '>=', self.date),
              ('date_to', '=', False)], limit=1)
         mapping_taxes = {}
         tax_templates = sii_map.sudo().map_lines.filtered(
@@ -309,9 +308,9 @@ class AccountInvoice(models.Model):
         default_no_taxable_cause = self._get_no_taxable_cause()
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
-        for inv_line in self.invoice_line:
+        for inv_line in self.invoice_line_ids:
             exempt_cause = self._get_sii_exempt_cause(inv_line.product_id)
-            for tax_line in inv_line.invoice_line_tax_id:
+            for tax_line in inv_line.invoice_line_tax_ids:
                 breakdown_taxes = (
                     taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
                 )
@@ -533,10 +532,8 @@ class AccountInvoice(models.Model):
         invoice_date = self._change_date_format(self.date_invoice)
         partner = self.partner_id.commercial_partner_id
         company = self.company_id
-        ejercicio = fields.Date.from_string(
-            self.period_id.fiscalyear_id.date_start).year
-        periodo = '%02d' % fields.Date.from_string(
-            self.period_id.date_start).month
+        ejercicio = fields.Date.from_string(self.date).year
+        periodo = '%02d' % fields.Date.from_string(self.date).month
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {
@@ -1180,8 +1177,8 @@ class AccountInvoiceLine(models.Model):
             if tax in taxes_re:
                 price = self._get_sii_line_price_unit()
                 taxes = tax.compute_all(
-                    price, self.quantity, self.product_id,
-                    self.invoice_id.partner_id,
+                    price, self.quantity, self.invoice_id.currency_id,
+                    self.product_id, self.invoice_id.partner_id,
                 )
                 taxes['percentage'] = tax.amount
                 return taxes
@@ -1196,8 +1193,8 @@ class AccountInvoiceLine(models.Model):
         :param tax_line: Tax line that is being analyzed.
         """
         self.ensure_one()
-        if tax_line.child_depend:
-            tax_type = tax_line.child_ids.filtered('amount')[:1].amount
+        if tax_line.amount_type == 'group':
+            tax_type = tax_line.children_tax_ids.filtered('amount')[:1].amount
         else:
             tax_type = tax_line.amount
         if tax_type not in tax_dict:
