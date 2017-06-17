@@ -145,7 +145,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
             res[expedida_recibida].update({
                 "FechaRegContable":
                     datetime.strptime(
-                        self.invoice.date_invoice,
+                        self.invoice.date,
                         '%Y-%m-%d').strftime('%d-%m-%Y'),
                 "DesgloseFactura": {},
                 "CuotaDeducible": self.invoice.amount_tax

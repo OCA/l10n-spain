@@ -7,7 +7,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "8.0.1.1.1",
+    "version": "9.0.1.1.0",
     "category": "Accounting & Finance",
     "website": "https://odoo-community.org/",
     "author": "Acysos S.L., Odoo Community Association (OCA)",
@@ -19,7 +19,7 @@
                    "requests"],
     },
     "depends": [
-        "account_refund_original",
+        "account_invoice_refund_link",
         "l10n_es_aeat",
         "connector",
     ],

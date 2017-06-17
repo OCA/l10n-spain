@@ -5,7 +5,7 @@
 from openerp import fields, models
 
 
-class account_fiscal_position(models.Model):
+class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position'
 
     sii_registration_key = fields.Many2one(
