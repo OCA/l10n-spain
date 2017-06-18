@@ -5,14 +5,14 @@
 from openerp import fields, models
 
 
-class account_fiscal_position(models.Model):
+class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position'
 
     sii_registration_key_sale = fields.Many2one(
         'aeat.sii.mapping.registration.keys',
-        'Default SII Resgistration Key for Sales',
+        'Default SII Registration Key for Sales',
         domain=[('type', '=', 'sale')])
     sii_registration_key_purchase = fields.Many2one(
         'aeat.sii.mapping.registration.keys',
-        'Default SII Resgistration Key for Purchases',
+        'Default SII Registration Key for Purchases',
         domain=[('type', '=', 'purchase')])
