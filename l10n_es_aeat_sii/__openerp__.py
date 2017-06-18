@@ -1,16 +1,26 @@
 # -*- coding: utf-8 -*-
-# Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
-# (c) 2017 Diagram Software S.L.
-# Copyright (c) 2017-TODAY MINORISA <ramon.guiu@minorisa.net>
-# (c) 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
-# (c) 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
+# Copyright 2017 Acysos - Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2017 Diagram Software S.L.
+# Copyright 2017 MINORISA - <ramon.guiu@minorisa.net>
+# Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
+# Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
+# Copyright 2017 Factor Libre - Ismael Calvo
+# Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "8.0.1.1.1",
+    "version": "8.0.2.0.0",
     "category": "Accounting & Finance",
-    "website": "https://odoo-community.org/",
-    "author": "Acysos S.L., Odoo Community Association (OCA)",
+    "website": "https://odoospain.odoo.com",
+    "author": "Acysos S.L.,"
+              "Diagram,"
+              "Minorisa,"
+              "Studio73,"
+              "FactorLibre,"
+              "Comunitea,"
+              "Tecnativa,"
+              "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -36,7 +46,7 @@
         "security/ir.model.access.csv",
         "security/aeat_sii.xml",
         "views/product_view.xml",
-        "views/account_view.xml"
+        "views/account_fiscal_position_view.xml"
     ],
     "post_init_hook": "add_key_to_existing_invoices",
 }

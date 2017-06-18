@@ -169,10 +169,10 @@ class TestL10nEsAeatSii(common.TransactionCase):
         vat = self.partner.vat
         self.partner.vat = False
         with self.assertRaises(exceptions.Warning):
-            self.invoice._get_invoices()
+            self.invoice._get_sii_invoice_dict()
         self.partner.vat = vat
 
-        invoices = self.invoice._get_invoices()
+        invoices = self.invoice._get_sii_invoice_dict()
         test_out_inv = self._get_invoices_test('F1', u'01')
         for key in invoices.keys():
             self.assertDictEqual(
@@ -181,7 +181,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
 
         self.invoice.type = 'out_refund'
         self.invoice.refund_type = 'S'
-        invoices = self.invoice._get_invoices()
+        invoices = self.invoice._get_sii_invoice_dict()
         test_out_refund = self._get_invoices_test('R4', u'01')
         for key in invoices.keys():
             self.assertDictEqual(
@@ -190,7 +190,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
 
         self.invoice.type = 'in_invoice'
         self.invoice.supplier_invoice_number = 'sup0001'
-        invoices = self.invoice._get_invoices()
+        invoices = self.invoice._get_sii_invoice_dict()
         test_in_invoice = self._get_invoices_test('F1', u'01')
         for key in invoices.keys():
             self.assertDictEqual(
@@ -200,7 +200,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.invoice.type = 'in_refund'
         self.invoice.refund_type = 'S'
         self.invoice.supplier_invoice_number = 'sup0001'
-        invoices = self.invoice._get_invoices()
+        invoices = self.invoice._get_sii_invoice_dict()
         test_in_refund = self._get_invoices_test('R4', u'01')
         for key in invoices.keys():
             self.assertDictEqual(

@@ -63,7 +63,7 @@ class L10nEsAeatSiiPassword(models.TransientModel):
         directory = os.path.join(
             os.path.abspath(config['data_dir']), 'certificates',
             release.series, self.env.cr.dbname, record.folder)
-        file = base64.decodestring(record.file)
+        content = base64.decodestring(record.file)
         if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
             raise exceptions.Warning(
                 _('OpenSSL version is not supported. Upgrade to 0.15 '
@@ -71,9 +71,9 @@ class L10nEsAeatSiiPassword(models.TransientModel):
         try:
             if directory and not os.path.exists(directory):
                 os.makedirs(directory)
-            with pfx_to_pem(file, self.password, directory) as private_key:
+            with pfx_to_pem(content, self.password, directory) as private_key:
                 record.private_key = private_key
-            with pfx_to_crt(file, self.password, directory) as public_key:
+            with pfx_to_crt(content, self.password, directory) as public_key:
                 record.public_key = public_key
         except Exception as e:
             if e.args:
