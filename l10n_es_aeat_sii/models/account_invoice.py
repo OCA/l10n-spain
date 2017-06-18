@@ -234,6 +234,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         taxes_dict = self._get_out_taxes_basic_dict()
         tax_breakdown = taxes_dict['DesgloseFactura']
+        type_breakdown = taxes_dict['DesgloseTipoOperacion']
         taxes_f = {}
         taxes_to = {}
         taxes_sfesb = self._get_sii_taxes_map(['SFESB'])
@@ -259,7 +260,6 @@ class AccountInvoice(models.Model):
                         )
                         inv_line._update_sii_tax_line(taxes_f, tax_line)
                 if tax_line in (taxes_sfess + taxes_sfesse):
-                    type_breakdown = taxes_dict['DesgloseTipoOperacion']
                     service_dict = type_breakdown['PrestacionServicios']
                     if tax_line in taxes_sfesse:
                         service_dict['Sujeta']['Exenta']['BaseImponible'] = (
@@ -278,11 +278,10 @@ class AccountInvoice(models.Model):
                         inv_line._update_sii_tax_line(taxes_to, tax_line)
         for val in taxes_f.values():
             val['CuotaRepercutida'] = round(val['CuotaRepercutida'], 2)
-            val['TipoImpositivo'] = round(val['TipoImpositivo'], 2)
         tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA']['DetalleIVA'] = (
             taxes_f.values()
         )
-        tax_breakdown['PrestacionServicios']['Sujeta']['NoExenta'][
+        type_breakdown['PrestacionServicios']['Sujeta']['NoExenta'][
             'DesgloseIVA']['DetalleIVA'] = taxes_to.values()
         return taxes_dict
 
@@ -636,8 +635,6 @@ class AccountInvoiceLine(models.Model):
         tax_type = str(tax_line.amount * 100)
         if tax_type not in tax_dict:
             tax_dict[tax_type] = {
-                'TipoRecargoEquivalencia': 0,
-                'CuotaRecargoEquivalencia': 0,
                 'BaseImponible': 0,
                 'CuotaRepercutida': 0,
                 'CuotaSoportada': 0,
@@ -647,7 +644,8 @@ class AccountInvoiceLine(models.Model):
         if tax_line_req:
             tipo_recargo = tax_line_req['percentage'] * 100
             cuota_recargo = tax_line_req['taxes'][0]['amount']
-            tax_dict[tax_type]['TipoRecargoEquivalencia'] += tipo_recargo
+            tax_dict[tax_type]['TipoRecargoEquivalencia'] = tipo_recargo
+            tax_dict[tax_type].setdefault('CuotaRecargoEquivalencia', 0)
             tax_dict[tax_type]['CuotaRecargoEquivalencia'] += cuota_recargo
         # Rest of the taxes
         taxes = tax_line.compute_all(
