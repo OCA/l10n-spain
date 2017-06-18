@@ -22,7 +22,7 @@ class L10nEsAeatSii(models.Model):
     private_key = fields.Char(string="Private Key", readonly=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Compañía",
+        string="Company",
         required=True,
         default=lambda self: self.env.user.company_id.id
     )
@@ -41,10 +41,10 @@ class L10nEsAeatSii(models.Model):
         }
 
     @api.multi
-    def action_active(self):
+    def action_activate(self):
         self.ensure_one()
-        other_configs = self.search([('id', '!=', self.id),
-                                     ('company_id', '=', self.company_id.id)])
-        for config_id in other_configs:
-            config_id.state = 'draft'
+        self.search([
+            ('id', '!=', self.id),
+            ('company_id', '=', self.company_id.id),
+        ]).write({'state': 'draft'})
         self.state = 'active'
