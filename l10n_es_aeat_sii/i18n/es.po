@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-31 16:34+0000\n"
-"PO-Revision-Date: 2017-05-31 16:34+0000\n"
+"POT-Creation-Date: 2017-06-07 09:21+0000\n"
+"PO-Revision-Date: 2017-06-07 09:21+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -52,7 +52,7 @@ msgstr "SII - Lineas de mapeo"
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_tree
 msgid "Aeat SII Registration Keys"
-msgstr "Aeat SII Tabla de claves: régimen especial/identificación operaciones con transedencia tributaria"
+msgstr "SII - Tabla de claves"
 
 #. module: l10n_es_aeat_sii
 #: selection:res.company,send_mode:0
@@ -133,12 +133,12 @@ msgstr "Creado en"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_from
 msgid "Date from"
-msgstr "Desde fecha"
+msgstr "Fecha de"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_to
 msgid "Date to"
-msgstr "Hasta fecha"
+msgstr "Fecha hasta"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_delay_time
@@ -233,7 +233,7 @@ msgstr "Agrupar por..."
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_id
 msgid "ID"
-msgstr "ID"
+msgstr "ID (identificación)"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:35
@@ -252,7 +252,7 @@ msgstr "Factura"
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_sii_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Invoice Jobs"
-msgstr "Trabajos facturas"
+msgstr "Trabajos Factura"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map___last_update
@@ -270,7 +270,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualización de"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_write_date
@@ -292,7 +292,6 @@ msgid "Load Certificate"
 msgstr "Cargar Certificado"
 
 #. module: l10n_es_aeat_sii
-#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_map_view_form
 #: selection:res.company,sii_method:0
 msgid "Manual"
 msgstr "Manual"
@@ -300,7 +299,7 @@ msgstr "Manual"
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_map_view_form
 msgid "Mapping Lines"
-msgstr "Líneas de mapeo"
+msgstr "Líneas del mapeo"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_method
@@ -366,7 +365,6 @@ msgid "Private Key"
 msgstr "Clave privada"
 
 #. module: l10n_es_aeat_sii
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_public_key
 #: model:ir.model,name:l10n_es_aeat_sii.model_product_template
 msgid "Product Template"
 msgstr "Plantilla producto"
@@ -384,12 +382,12 @@ msgstr "Compras"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_refund_type
 msgid "Refund Type"
-msgstr "Tipo de rectificación"
+msgstr "Tipo rectificativa"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_registration_key
-msgid "Registration key"
-msgstr "Clave de registro"
+msgid "SII registration key"
+msgstr "Clave de registro SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_sii_form
@@ -413,8 +411,8 @@ msgstr "SII CSV"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_menu
-msgid "SII Certificate"
-msgstr "Certificado SII"
+msgid "SII Certificates"
+msgstr "Certificados SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_description
@@ -436,12 +434,12 @@ msgstr "Resultado SII"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_return
 msgid "SII Return"
-msgstr "Respuesta SII"
+msgstr "Retorno SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_sent
 msgid "SII Sent"
-msgstr "SII enviado"
+msgstr "Enviar SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -492,7 +490,7 @@ msgstr "Impuestos"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_test
 msgid "Test Enviroment"
-msgstr "Entorno de pruebas"
+msgstr "Entorno de test"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:410
@@ -525,7 +523,7 @@ msgstr "Con retardo"
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:651
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
-msgstr "¡No puede cancelar una factura porque hay un trabajo ejecutándose!"
+msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:423

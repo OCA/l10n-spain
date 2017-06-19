@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com> License AGPL-3.0 or 
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com> License AGPL-3.0 or
     later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -16,8 +16,6 @@
                     </group>
                     <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group name="sii_config">
-                            <field name="chart_template_id"
-                                   attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_test" />
                             <field name="sii_method"/>
                         </group>
