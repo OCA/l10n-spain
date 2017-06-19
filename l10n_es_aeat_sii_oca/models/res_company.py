@@ -40,8 +40,6 @@ class ResCompany(models.Model):
         string="SII Supplier header", size=500,
         help="An optional header description for supplier invoices. "
              "Applied on all the SII description methods")
-    chart_template_id = fields.Many2one(
-        comodel_name='account.chart.template', string='Chart Template')
     sii_method = fields.Selection(
         string='Method',
         selection=[('auto', 'Automatic'), ('manual', 'Manual')],
