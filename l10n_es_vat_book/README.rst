@@ -18,7 +18,6 @@ Para instalar este modulo necesitas:
 * l10n_es
 * l10n_es_aeat
 * account_refund_original
-* account_chart_update
 * account_invoice_currency
 
 Se instalan automáticamente si están disponibles en la lista de addons.
