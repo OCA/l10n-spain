@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<openerp>
-<data>
+<odoo>
     <record id="view_partner_form" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base_vat.view_partner_form" />
@@ -15,5 +14,4 @@
             </div>
         </field>
     </record>
-</data>
-</openerp>
+</odoo>

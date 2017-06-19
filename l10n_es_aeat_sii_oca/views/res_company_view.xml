@@ -8,15 +8,13 @@
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form" />
             <field name="arch" type="xml">
-                <page string="Configuration" position="inside">
+                <page name="configuration" position="inside">
                     <separator name="aeat_sii_config" string="AEAT SII Configuration" />
                     <group name="sii_enabled">
                         <field name="sii_enabled"/>
                     </group>
                     <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group name="sii_config">
-                            <field name="chart_template_id"
-                                   attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_test" />
                             <field name="sii_method"/>
                         </group>
