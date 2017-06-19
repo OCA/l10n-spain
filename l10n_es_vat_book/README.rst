@@ -5,7 +5,14 @@
 Libro de IVA
 ================================================================
 
-*
+Módulo que calcula el libro de IVA español.
+Esto módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe ->
+Declaraciones AEAT -> Libro de IVA.
+Es posible imprimir por separado los libros de:
+* Facturas emitidas
+* Facturas recibidas
+* Facturas rectificativas emitidas
+* Facturas rectificativas recibidas
 
 
 Instalación
@@ -26,6 +33,9 @@ Se instalan automáticamente si están disponibles en la lista de addons.
 Configuración
 =============
 
+Los códigos de impuestos incluidos en el Libro de IVA pueden verse en:
+Contabilidad -> Configuración -> AEAT -> Mapeo de códigos de impuesto ->
+Declaración AEAT 340
 
 
 Problemas conocidos / Hoja de ruta
