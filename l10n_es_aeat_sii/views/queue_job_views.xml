@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<openerp>
-<data>
+<odoo>
     <record id="view_queue_job_sii" model="ir.ui.view">
         <field name="model">queue.job</field>
         <field name="priority" eval="9999"/>
@@ -21,18 +20,17 @@
                          name="cancel_now"
                          string="Cancel sending"
                          class="oe_highlight_cancel"
-                         icon="gtk-stop"
+                         icon="fa-times-circle"
                          attrs="{'invisible': [('state', 'not in', ['pending','enqueued'])]}"
                 />
                 <button type="object"
                         name="do_now"
                         string="Send now"
                         class="oe_highlight"
-                        icon="gtk-go-forward"
+                        icon="fa-fighter-jet"
                         attrs="{'invisible': ['|', ('state', '!=', 'pending'), ('eta', '=', False)]}"
                 />
             </tree>
         </field>
     </record>
-</data>
-</openerp>
+</odoo>
