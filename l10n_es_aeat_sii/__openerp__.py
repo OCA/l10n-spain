@@ -153,7 +153,9 @@ To contribute to this module, please visit https://odoo-community.org.""",
         'res_company_view.xml', 
         'account_invoice_view.xml',
         'aeat_sii_map_view.xml',
-        'aeat_sii_mapping_registration_keys_view.xml'
+        'aeat_sii_mapping_registration_keys_view.xml',
+        'aeat_sii_view.xml',
+        'wizard/aeat_sii_password_view.xml',
     ],
      "data": [
         "data/ir_config_parameter.xml",
