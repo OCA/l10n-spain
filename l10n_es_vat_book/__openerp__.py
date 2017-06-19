@@ -36,6 +36,7 @@
         'report/vat_book_invoices_issued.xml',
         'report/vat_book_invoices_received.xml',
         'report/vat_book_rectification_issued_invoices.xml',
+        'report/vat_book_rectification_received_invoices.xml',
     ],
     "qweb": [
     ],

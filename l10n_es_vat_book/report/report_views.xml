@@ -23,12 +23,22 @@
         />
 
         <report
-            id="report_vat_book_rectification_invoices"
+            id="report_vat_book_rectification_issued_invoices"
             model="l10n.es.vat.book"
-            string="Vat book Rectification invoices"
+            string="Vat book Rectification issued invoices"
             report_type="qweb-pdf"
             name="l10n_es_vat_book.tmp_report_vat_book_rectification_issued_invoices"
             file="l10n_es_vat_book.tmp_report_vat_book_rectification_issued_invoices"
+            attachment_use="False"
+        />
+
+        <report
+            id="report_vat_book_rectification_received_invoices"
+            model="l10n.es.vat.book"
+            string="Vat book Rectification received invoices"
+            report_type="qweb-pdf"
+            name="l10n_es_vat_book.tmp_report_vat_book_rectification_received_invoices"
+            file="l10n_es_vat_book.tmp_report_vat_book_rectification_received_invoices"
             attachment_use="False"
         />
 
