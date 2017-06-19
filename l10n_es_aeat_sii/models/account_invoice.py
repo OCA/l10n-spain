@@ -115,7 +115,7 @@ class AccountInvoice(models.Model):
     @api.onchange('sii_refund_type')
     def onchange_sii_refund_type(self):
         if (self.sii_enabled and self.sii_refund_type == 'S' and
-                not self.origin_invoices_ids):
+                not self.origin_invoice_ids):
             self.sii_refund_type = False
             return {
                 'warning': {
@@ -125,22 +125,22 @@ class AccountInvoice(models.Model):
                 }
             }
 
-    @api.onchange('fiscal_position')
-    def onchange_fiscal_position_l10n_es_aeat_sii(self):
-        for invoice in self.filtered('fiscal_position'):
+    @api.onchange('fiscal_position_id')
+    def onchange_fiscal_position_id_l10n_es_aeat_sii(self):
+        for invoice in self.filtered('fiscal_position_id'):
             if 'out' in invoice.type:
-                key = invoice.fiscal_position.sii_registration_key_sale
+                key = invoice.fiscal_position_id.sii_registration_key_sale
             else:
-                key = invoice.fiscal_position.sii_registration_key_purchase
+                key = invoice.fiscal_position_id.sii_registration_key_purchase
             invoice.sii_registration_key = key
 
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
         invoice = super(AccountInvoice, self).create(vals)
-        if vals.get('fiscal_position') and \
+        if vals.get('fiscal_position_id') and \
                 not vals.get('sii_registration_key'):
-            invoice.onchange_fiscal_position_l10n_es_aeat_sii()
+            invoice.onchange_fiscal_position_id_l10n_es_aeat_sii()
         return invoice
 
     @api.multi
@@ -176,7 +176,7 @@ class AccountInvoice(models.Model):
                           "correct number")
                     )
         res = super(AccountInvoice, self).write(vals)
-        if vals.get('fiscal_position') and \
+        if vals.get('fiscal_position_id') and \
                 not vals.get('sii_registration_key'):
             self.onchange_fiscal_position_l10n_es_aeat_sii()
         return res
@@ -425,8 +425,8 @@ class AccountInvoice(models.Model):
         tax_amount = 0.0
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
-        for inv_line in self.invoice_line:
-            for tax_line in inv_line.invoice_line_tax_id:
+        for inv_line in self.invoice_line_ids:
+            for tax_line in inv_line.invoice_line_tax_ids:
                 if tax_line in taxes_sfrisp:
                     inv_line._update_sii_tax_line(taxes_isp, tax_line)
                 elif tax_line in taxes_sfrs:
@@ -436,9 +436,9 @@ class AccountInvoice(models.Model):
                         'DesgloseIVA',
                         {'DetalleIVA': {'BaseImponible': 0}},
                     )
-                    nsub_dict['DetalleIVA']['BaseImponible'] += inv_line.\
-                        _get_sii_line_price_subtotal() * sign
-
+                    nsub_dict['DetalleIVA']['BaseImponible'] += (
+                        inv_line._get_sii_line_price_subtotal() * sign
+                    )
         if taxes_isp:
             taxes_dict.setdefault(
                 'InversionSujetoPasivo', {'DetalleIVA': taxes_isp.values()},
@@ -486,8 +486,7 @@ class AccountInvoice(models.Model):
             raise exceptions.Warning(
                 _("This invoice is not SII enabled.")
             )
-        if not self.supplier_invoice_number\
-                and self.type in ['in_invoice', 'in_refund']:
+        if not self.reference and self.type in ['in_invoice', 'in_refund']:
             raise exceptions.Warning(
                 _("The supplier number invoice is required")
             )
@@ -512,7 +511,7 @@ class AccountInvoice(models.Model):
         :return: invoices (dict) : Dict XML with data for this invoice.
         """
         self.ensure_one()
-        invoice_date = self._change_date_format(self.date)
+        invoice_date = self._change_date_format(self.date_invoice)
         company = self.company_id
         ejercicio = fields.Date.from_string(self.date).year
         periodo = '%02d' % fields.Date.from_string(self.date).month
@@ -550,7 +549,7 @@ class AccountInvoice(models.Model):
                     )
                 },
                 "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": self.cc_amount_total * sign,
+                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
             }
             exp_dict = inv_dict['FacturaExpedida']
             # Uso condicional de IDOtro/NIF
@@ -559,13 +558,12 @@ class AccountInvoice(models.Model):
                 exp_dict['TipoRectificativa'] = self.sii_refund_type
                 if self.sii_refund_type == 'S':
                     exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': sum(
-                            self.
-                            mapped('origin_invoices_ids.cc_amount_untaxed')
-                        ),
-                        'CuotaRectificada': sum(
-                            self.mapped('origin_invoices_ids.cc_amount_tax')
-                        ),
+                        'BaseRectificada': abs(sum(self.mapped(
+                            'origin_invoice_ids.amount_untaxed_signed'
+                        ))),
+                        'CuotaRectificada': abs(sum(self.mapped(
+                            'origin_invoice_ids.amount_tax_signed'
+                        ))),
                     }
         return inv_dict
 
@@ -580,19 +578,15 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.date_invoice)
-        reg_date = self._change_date_format(
-            self._get_account_registration_date(),
-        )
-        ejercicio = fields.Date.from_string(
-            self.period_id.fiscalyear_id.date_start).year
-        periodo = '%02d' % fields.Date.from_string(
-            self.period_id.date_start).month
+        reg_date = self._change_date_format(self.date)
+        ejercicio = fields.Date.from_string(self.date).year
+        periodo = '%02d' % fields.Date.from_string(self.date).month
         desglose_factura, tax_amount = self._get_sii_in_taxes()
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {},
                 "NumSerieFacturaEmisor": (
-                    (self.supplier_invoice_number or '')[:60]
+                    (self.reference or '')[:60]
                 ),
                 "FechaExpedicionFacturaEmisor": invoice_date},
             "PeriodoImpositivo": {
@@ -628,7 +622,7 @@ class AccountInvoice(models.Model):
                     )
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": self.cc_amount_total * sign,
+                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
                 "CuotaDeducible": float_round(tax_amount * sign, 2),
             }
             # Uso condicional de IDOtro/NIF
@@ -638,14 +632,13 @@ class AccountInvoice(models.Model):
                 rec_dict['TipoRectificativa'] = self.sii_refund_type
                 refund_tax_amount = sum([
                     x._get_sii_in_taxes()[1]
-                    for x in self.origin_invoices_ids
+                    for x in self.origin_invoice_ids
                 ])
                 if self.sii_refund_type == 'S':
                     rec_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': sum(
-                            self.
-                            mapped('origin_invoices_ids.cc_amount_untaxed')
-                        ),
+                        'BaseRectificada': abs(sum(self.mapped(
+                            'origin_invoice_ids.amount_untaxed_signed'
+                        ))),
                         'CuotaRectificada': refund_tax_amount,
                     }
         return inv_dict
@@ -709,10 +702,7 @@ class AccountInvoice(models.Model):
         # De momento evitamos enviar facturas del primer semestre si no estamos
         # en entorno de pruebas
         invoices = self.filtered(
-            lambda i: (
-                i.company_id.sii_test or
-                i.period_id.date_start >= SII_START_DATE
-            )
+            lambda i: (i.company_id.sii_test or i.date >= SII_START_DATE)
         )
         queue_obj = self.env['queue.job']
         for invoice in invoices:
@@ -762,7 +752,7 @@ class AccountInvoice(models.Model):
                     res = serv.SuministroLRFacturasRecibidas(
                         header, inv_dict)
                 # TODO Facturas intracomunitarias 66 RIVA
-                # elif invoice.fiscal_position.id == self.env.ref(
+                # elif invoice.fiscal_position_id.id == self.env.ref(
                 #     'account.fp_intra').id:
                 #     res = serv.SuministroLRDetOperacionIntracomunitaria(
                 #         header, invoices)
@@ -851,7 +841,7 @@ class AccountInvoice(models.Model):
                     res = serv.AnulacionLRFacturasRecibidas(
                         header, inv_dict)
                 # TODO Facturas intracomunitarias 66 RIVA
-                # elif invoice.fiscal_position.id == self.env.ref(
+                # elif invoice.fiscal_position_id.id == self.env.ref(
                 #     'account.fp_intra').id:
                 #     res = serv.AnulacionLRDetOperacionIntracomunitaria(
                 #         header, invoices)
@@ -948,9 +938,9 @@ class AccountInvoice(models.Model):
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
         self.ensure_one()
-        if self.fiscal_position.name == u'Régimen Intracomunitario':
+        if self.fiscal_position_id.name == u'Régimen Intracomunitario':
             return 2
-        elif self.fiscal_position.name == \
+        elif self.fiscal_position_id.name == \
                 u'Régimen Extracomunitario / Canarias, Ceuta y Melilla':
             return 3
         else:
@@ -1026,14 +1016,14 @@ class AccountInvoice(models.Model):
             return 'E2'
         elif product.sii_exempt_cause != 'none':
             return product.sii_exempt_cause
-        elif self.fiscal_position and \
-                self.fiscal_position.sii_exempt_cause != 'none':
-            return self.fiscal_position.sii_exempt_cause
+        elif self.fiscal_position_id and \
+                self.fiscal_position_id.sii_exempt_cause != 'none':
+            return self.fiscal_position_id.sii_exempt_cause
 
     @api.multi
     def _get_no_taxable_cause(self):
         self.ensure_one()
-        return self.fiscal_position.sii_no_taxable_cause or \
+        return self.fiscal_position_id.sii_no_taxable_cause or \
             'ImportePorArticulos7_14_Otros'
 
     def is_sii_invoice(self):
@@ -1046,7 +1036,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
 
     @api.multi
-    @api.depends('invoice_line', 'invoice_line.name', 'company_id',
+    @api.depends('invoice_line_ids', 'invoice_line_ids.name', 'company_id',
                  'sii_manual_description')
     def _compute_sii_description(self):
         for invoice in self:
@@ -1062,11 +1052,11 @@ class AccountInvoice(models.Model):
                     invoice.sii_manual_description or description or '/'
                 )
             else:  # auto method
-                if invoice.invoice_line:
+                if invoice.invoice_line_ids:
                     if description:
                         description += ' | '
                     description += ' - '.join(
-                        invoice.mapped('invoice_line.name')
+                        invoice.mapped('invoice_line_ids.name')
                     )
             invoice.sii_description = description[:500]
 
@@ -1077,24 +1067,24 @@ class AccountInvoice(models.Model):
 
     @api.multi
     @api.depends('company_id', 'company_id.sii_enabled',
-                 'fiscal_position', 'fiscal_position.sii_active')
+                 'fiscal_position_id', 'fiscal_position_id.sii_active')
     def _compute_sii_enabled(self):
         """Compute if the invoice is enabled for the SII"""
         for invoice in self:
             if invoice.company_id.sii_enabled:
                 invoice.sii_enabled = (
-                    (invoice.fiscal_position and
-                     invoice.fiscal_position.sii_active) or
-                    not invoice.fiscal_position
+                    (invoice.fiscal_position_id and
+                     invoice.fiscal_position_id.sii_active) or
+                    not invoice.fiscal_position_id
                 )
             else:
                 invoice.sii_enabled = False
 
     @api.model
-    def _prepare_refund(self, invoice, date=None, period_id=None,
+    def _prepare_refund(self, invoice, date_invoice=None, date=None,
                         description=None, journal_id=None):
         res = super(AccountInvoice, self)._prepare_refund(
-            invoice, date=date, period_id=period_id,
+            invoice, date_invoice=date_invoice, date=date,
             description=description, journal_id=journal_id,
         )
         sii_refund_type = self.env.context.get('sii_refund_type')
@@ -1104,7 +1094,7 @@ class AccountInvoice(models.Model):
         if sii_refund_type:
             res['sii_refund_type'] = sii_refund_type
         if supplier_invoice_number_refund:
-            res['supplier_invoice_number'] = supplier_invoice_number_refund
+            res['reference'] = supplier_invoice_number_refund
 
         return res
 
@@ -1144,11 +1134,11 @@ class AccountInvoiceLine(models.Model):
         """Get any possible tax amounts for 'Recargo equivalencia'."""
         self.ensure_one()
         taxes_re = self.invoice_id._get_sii_taxes_map(['RE'])
-        for tax in self.invoice_line_tax_id:
+        for tax in self.invoice_line_tax_ids:
             if tax in taxes_re:
                 price = self._get_sii_line_price_unit()
                 taxes = tax.compute_all(
-                    price, self.quantity, self.invoice_id.currency_id,
+                    price, self.invoice_id.currency_id, self.quantity,
                     self.product_id, self.invoice_id.partner_id,
                 )
                 taxes['percentage'] = tax.amount
@@ -1170,7 +1160,7 @@ class AccountInvoiceLine(models.Model):
             tax_type = tax_line.amount
         if tax_type not in tax_dict:
             tax_dict[tax_type] = {
-                'TipoImpositivo': str(tax_type * 100),
+                'TipoImpositivo': str(tax_type),
                 'BaseImponible': 0,
                 'CuotaRepercutida': 0,
                 'CuotaSoportada': 0,
@@ -1178,17 +1168,17 @@ class AccountInvoiceLine(models.Model):
         # Recargo de equivalencia
         tax_line_req = self._get_sii_tax_line_req()
         if tax_line_req:
-            tipo_recargo = tax_line_req['percentage'] * 100
+            tipo_recargo = tax_line_req['percentage']
             cuota_recargo = tax_line_req['taxes'][0]['amount']
             tax_dict[tax_type]['TipoRecargoEquivalencia'] = tipo_recargo
             tax_dict[tax_type].setdefault('CuotaRecargoEquivalencia', 0)
             tax_dict[tax_type]['CuotaRecargoEquivalencia'] += cuota_recargo
         # Rest of the taxes
         taxes = tax_line.compute_all(
-            self._get_sii_line_price_unit(), self.quantity,
-            self.product_id, self.invoice_id.partner_id,
+            self._get_sii_line_price_unit(), self.invoice_id.currency_id,
+            self.quantity, self.product_id, self.invoice_id.partner_id,
         )
-        tax_dict[tax_type]['BaseImponible'] += taxes['total']
+        tax_dict[tax_type]['BaseImponible'] += taxes['total_excluded']
         if self.invoice_id.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <record id="invoice_supplier_sii_form" model="ir.ui.view">
             <field name="name">account.invoice.supplier.sii.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form" />
             <field name="arch" type="xml">
-                <button string="Re-Open" position="after">
+                <button name="action_cancel_draft" position="after">
                     <button type="object" string="Send to SII"
                             name="send_sii"
                             groups="l10n_es_aeat.group_account_aeat"
@@ -22,7 +21,7 @@
                                 ('sii_state', 'not in', ['sent','sent_modified'])]}" />
                 </button>
 
-                <field name="supplier_invoice_number" position="attributes">
+                <field name="reference" position="attributes">
                     <attribute name="attrs">{'required':[('state','not in',['open','paid','cancel'])]}</attribute>
                 </field>
 
@@ -67,7 +66,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
-                <button string="Re-Open" position="after">
+                <button name="action_cancel_draft" position="after">
                     <button type="object" string="Send to SII"
                             name="send_sii"
                             groups="l10n_es_aeat.group_account_aeat"
@@ -121,7 +120,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.view_account_invoice_filter" />
             <field name="arch" type="xml">
-                <xpath expr="//group[@string='Group By']" position="before">
+                <filter name="unpaid" position="after">
                     <group string="SII filters">
                         <filter name="sii_not_sent" string="SII not sent"
                             domain="[('sii_state', '=', 'not_sent')]"
@@ -141,8 +140,8 @@
                             domain="[('sii_send_failed', '=', True)]"
                             help="The last attemp to sent to SII has failed"/>
                     </group>
-                </xpath>
-                <xpath expr="//group[@string='Group By']" position="inside">
+                </filter>
+                <xpath expr="//group" position="inside">
                     <separator/>
                     <filter string="SII error"
                         domain="[('sii_send_failed', '=', True)]"
@@ -168,5 +167,4 @@
                    eval="'ir.actions.server,%d' % ref('l10n_es_aeat_sii.action_send_sii_invoices')" />
         </record>
 
-    </data>
-</openerp>
+</odoo>

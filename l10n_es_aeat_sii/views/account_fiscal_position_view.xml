@@ -4,8 +4,7 @@
      Copyright 2017 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 
-<openerp>
-    <data>
+<odoo>
 
         <record id="view_account_position_form" model="ir.ui.view">
             <field name="name">account.fiscal.position.form</field>
@@ -25,5 +24,4 @@
             </field>
         </record>
 
-    </data>
-</openerp>
+</odoo>

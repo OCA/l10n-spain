@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+# Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from openerp.tests import common
-from openerp import exceptions, fields
+from openerp import exceptions
 
 
 def _deep_sort(obj):
@@ -24,133 +25,117 @@ def _deep_sort(obj):
     return _sorted
 
 
-class TestL10nEsAeatSii(common.TransactionCase):
-    def setUp(self):
-        super(TestL10nEsAeatSii, self).setUp()
-        self.partner = self.env['res.partner'].create({
+class TestL10nEsAeatSii(common.SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super(TestL10nEsAeatSii, cls).setUpClass()
+        cls.partner = cls.env['res.partner'].create({
             'name': 'Test partner',
             'vat': 'ESF35999705'
         })
-        self.product = self.env['product.product'].create({
+        cls.product = cls.env['product.product'].create({
             'name': 'Test product',
         })
-        self.account_type = self.env['account.account.type'].create({
+        cls.account_type = cls.env['account.account.type'].create({
             'name': 'Test account type',
-            'code': 'TEST',
         })
-        self.account_expense = self.env['account.account'].create({
+        cls.account_expense = cls.env['account.account'].create({
             'name': 'Test expense account',
             'code': 'EXP',
-            'type': 'other',
-            'user_type': self.account_type.id,
+            'user_type_id': cls.account_type.id,
         })
-        self.analytic_account = self.env['account.analytic.account'].create({
+        cls.analytic_account = cls.env['account.analytic.account'].create({
             'name': 'Test analytic account',
-            'type': 'normal',
         })
-        self.account_tax = self.env['account.account'].create({
+        cls.account_tax = cls.env['account.account'].create({
             'name': 'Test tax account',
             'code': 'TAX',
-            'type': 'other',
-            'user_type': self.account_type.id,
+            'user_type_id': cls.account_type.id,
         })
-        self.base_code = self.env['account.tax.code'].create({
-            'name': '[28] Test base code',
-            'code': 'OICBI',
-        })
-        self.tax_code = self.env['account.tax.code'].create({
-            'name': '[29] Test tax code',
-            'code': 'SOICC',
-        })
-        self.tax = self.env['account.tax'].create({
+        cls.tax = cls.env['account.tax'].create({
             'name': 'Test tax 10%',
             # Needed for discriminatory tax amount in supplier invoices
             'description': 'P_IVA10_BC',
             'type_tax_use': 'purchase',
-            'type': 'percent',
-            'amount': '0.10',
-            'account_collected_id': self.account_tax.id,
-            'base_code_id': self.base_code.id,
-            'base_sign': 1,
-            'tax_code_id': self.tax_code.id,
-            'tax_sign': 1,
+            'amount_type': 'percent',
+            'amount': '10',
+            'account_id': cls.account_tax.id,
         })
-        self.period = self.env['account.period'].find()
-        self.env.user.company_id.sii_description_method = 'manual'
-        self.invoice = self.env['account.invoice'].create({
-            'partner_id': self.partner.id,
-            'date_invoice': fields.Date.today(),
+        cls.env.user.company_id.sii_description_method = 'manual'
+        cls.invoice = cls.env['account.invoice'].create({
+            'partner_id': cls.partner.id,
+            'date_invoice': '2017-06-19',
             'type': 'out_invoice',
-            'period_id': self.period.id,
-            'account_id': self.partner.property_account_payable.id,
-            'invoice_line': [
+            'account_id': cls.partner.property_account_payable_id.id,
+            'invoice_line_ids': [
                 (0, 0, {
-                    'product_id': self.product.id,
-                    'account_id': self.account_expense.id,
-                    'account_analytic_id': self.analytic_account.id,
+                    'product_id': cls.product.id,
+                    'account_id': cls.account_expense.id,
+                    'account_analytic_id': cls.analytic_account.id,
                     'name': 'Test line',
                     'price_unit': 100,
                     'quantity': 1,
-                    'invoice_line_tax_id': [(6, 0, self.tax.ids)],
+                    'invoice_line_tax_ids': [(6, 0, cls.tax.ids)],
                 })],
             'sii_manual_description': '/',
         })
-
-    def _open_invoice(self):
-        self.invoice.company_id.write({
+        cls.invoice.company_id.write({
             'sii_enabled': True,
             'sii_test': True,
             'use_connector': True,
-            'chart_template_id': self.env.ref(
+            'chart_template_id': cls.env.ref(
                 'l10n_es.account_chart_template_pymes').id,
             'vat': 'ESU2687761C',
         })
+        cls.invoice.signal_workflow('invoice_open')
+        cls.invoice.number = 'INV001'
+        cls.invoice.origin_invoice_ids = cls.invoice.copy()
+
+    def _open_invoice(self):
         self.invoice.signal_workflow('invoice_open')
 
     def test_job_creation(self):
-        self._open_invoice()
         self.assertTrue(self.invoice.invoice_jobs_ids)
 
     def _get_invoices_test(self, invoice_type, special_regime):
-        str_today = self.invoice._change_date_format(fields.Date.today())
-        emisor = self.invoice.company_id
-        contraparte = self.partner
         expedida_recibida = 'FacturaExpedida'
         if self.invoice.type in ['in_invoice', 'in_refund']:
-            emisor = self.partner
             expedida_recibida = 'FacturaRecibida'
         res = {
             'IDFactura': {
-                'FechaExpedicionFacturaEmisor': str_today,
-                'IDEmisorFactura': {
-                    'NIF': emisor.vat[2:]},
-                'NumSerieFacturaEmisor': (
-                    self.invoice.supplier_invoice_number or
-                    self.invoice.number)},
+                'FechaExpedicionFacturaEmisor': '19-06-2017',
+            },
             expedida_recibida: {
                 'TipoFactura': invoice_type,
                 'Contraparte': {
-                    'NombreRazon': contraparte.name,
-                    'NIF': contraparte.vat[2:],
+                    'NombreRazon': u'Test partner',
+                    'NIF': u'F35999705',
                 },
                 'DescripcionOperacion': u'/',
                 'ClaveRegimenEspecialOTrascendencia': special_regime,
-                'ImporteTotal': self.invoice.cc_amount_total,
+                'ImporteTotal': 110,
             },
             'PeriodoImpositivo': {
-                'Periodo': str(self.invoice.period_id.code[:2]),
-                'Ejercicio': int(self.invoice.period_id.code[-4:])
+                'Periodo': '06',
+                'Ejercicio': 2017,
             }
         }
         if self.invoice.type in ['out_invoice', 'out_refund']:
+            res['IDFactura'].update({
+                'NumSerieFacturaEmisor': u'INV001',
+                'IDEmisorFactura': {'NIF': u'U2687761C'},
+            })
             res[expedida_recibida].update({
                 'TipoDesglose': {},
+                'ImporteTotal': 110.0,
             })
         else:
+            res['IDFactura'].update({
+                'NumSerieFacturaEmisor': u'sup0001',
+                'IDEmisorFactura': {'NIF': u'F35999705'},
+            })
             res[expedida_recibida].update({
-                "FechaRegContable": self.invoice._change_date_format(
-                    self.invoice.date
-                ),
+                "FechaRegContable": '19-06-2017',
                 "DesgloseFactura": {
                     'DesgloseIVA': {
                         'DetalleIVA': [
@@ -163,37 +148,31 @@ class TestL10nEsAeatSii(common.TransactionCase):
                         ],
                     },
                 },
-                "CuotaDeducible": self.invoice.cc_amount_tax,
+                "CuotaDeducible": 10,
             })
         if invoice_type == 'R4':
-            invoices = self.invoice.origin_invoices_ids
-            base_rectificada = sum(invoices.mapped('cc_amount_untaxed'))
-            cuota_rectificada = sum(invoices.mapped('cc_amount_tax'))
             res[expedida_recibida].update({
                 'TipoRectificativa': 'S',
                 'ImporteRectificacion': {
-                    'BaseRectificada': base_rectificada,
-                    'CuotaRectificada': cuota_rectificada,
+                    'BaseRectificada': 100.0,
+                    'CuotaRectificada': 10.0,
                 }
             })
         return res
 
     def test_get_invoice_data(self):
-        self._open_invoice()
-
         vat = self.partner.vat
         self.partner.vat = False
         with self.assertRaises(exceptions.Warning):
             self.invoice._get_sii_invoice_dict()
         self.partner.vat = vat
-
         invoices = self.invoice._get_sii_invoice_dict()
         test_out_inv = self._get_invoices_test('F1', '01')
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
-                _deep_sort(test_out_inv.get(key)))
-
+                _deep_sort(test_out_inv.get(key)),
+            )
         self.invoice.type = 'out_refund'
         self.invoice.sii_refund_type = 'S'
         invoices = self.invoice._get_sii_invoice_dict()
@@ -201,29 +180,30 @@ class TestL10nEsAeatSii(common.TransactionCase):
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
-                _deep_sort(test_out_refund.get(key)))
-
+                _deep_sort(test_out_refund.get(key)),
+            )
         self.invoice.type = 'in_invoice'
-        self.invoice.supplier_invoice_number = 'sup0001'
+        self.invoice.reference = 'sup0001'
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_invoice = self._get_invoices_test('F1', '01')
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
-                _deep_sort(test_in_invoice.get(key)))
-
+                _deep_sort(test_in_invoice.get(key)),
+            )
         self.invoice.type = 'in_refund'
         self.invoice.sii_refund_type = 'S'
-        self.invoice.supplier_invoice_number = 'sup0001'
+        self.invoice.reference = 'sup0001'
+        self.invoice.origin_invoice_ids.type = 'in_invoice'
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_refund = self._get_invoices_test('R4', '01')
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
-                _deep_sort(test_in_refund.get(key)))
+                _deep_sort(test_in_refund.get(key)),
+            )
 
     def test_action_cancel(self):
-        self._open_invoice()
         self.invoice.invoice_jobs_ids.state = 'started'
         self.invoice.journal_id.update_posted = True
         with self.assertRaises(exceptions.Warning):
