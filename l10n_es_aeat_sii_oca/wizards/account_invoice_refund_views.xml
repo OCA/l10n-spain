@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2017 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<openerp>
-<data>
+<odoo>
 
     <record id="view_account_invoice_refund" model="ir.ui.view">
         <field name="model">account.invoice.refund</field>
@@ -21,5 +20,4 @@
         </field>
     </record>
 
-</data>
-</openerp>
+</odoo>
