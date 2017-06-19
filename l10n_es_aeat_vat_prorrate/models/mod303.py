@@ -174,7 +174,7 @@ class L10nEsAeatMod303Report(models.Model):
                     (self.vat_prorrate_percent / 100) - 1)
             })
         res = super(L10nEsAeatMod303Report,
-            self.with_context(context)).calculate()
+                self.with_context(context)).calculate()
         for report in self:
             report._calculate_casilla_44()
             account_number = '6391%' if report.casilla_44 > 0 else '6341%'
