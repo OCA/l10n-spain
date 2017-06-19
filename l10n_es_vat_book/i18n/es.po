@@ -1,0 +1,917 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_vat_book
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-19 09:58+0000\n"
+"PO-Revision-Date: 2017-06-19 12:12+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.act_window,help:l10n_es_vat_book.l10n_es_vat_book_action
+msgid ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"          Click to create a new Libro de IVA.\n"
+"        </p>\n"
+"      "
+msgstr ""
+"<p class=\"oe_view_nocontent_create\">\n"
+"          Click to create a new Libro de IVA.\n"
+"        </p>\n"
+"      "
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book
+msgid "AEAT report base module"
+msgstr "Módulo base para declaraciones AEAT"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_tax_summary.py:29
+#: field:l10n.es.vat.book.issued.tax.summary,tax_code_id:0
+#: field:l10n.es.vat.book.received.tax.summary,tax_code_id:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,tax_code_id:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,tax_code_id:0
+#, python-format
+msgid "Account Tax Code"
+msgstr "Código de impuesto"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,move_id:0
+msgid "Account entry"
+msgstr "Account entry"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,allow_posting:0
+msgid "Allow posting"
+msgstr "Allow posting"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+msgid "BOOK REGISTER OF INVOICES ISSUED"
+msgstr "LIBRO REGISTRO DE FACTURAS EMITIDAS"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+msgid "BOOK REGISTER OF INVOICES RECEIVED"
+msgstr "LIBRO REGISTRO FACTURAS RECIBIDAS"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+msgid "BOOK REGISTER OF RECTIFICATION ISSUED INVOICES"
+msgstr "LIBRO REGISTRO DE FACTURAS EMITIDAS RECTIFICATIVAS"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "BOOK REGISTER OF RECTIFICATION RECEIVED INVOICES"
+msgstr "LIBRO REGISTRO FACTURAS RECTIFICATIVAS RECIBIDAS"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,partner_bank_id:0
+msgid "Bank account"
+msgstr "Cuenta de banco"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:37
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:43
+#: field:l10n.es.vat.book.invoice.tax.lines,amount_without_tax:0
+#: field:l10n.es.vat.book.issued.lines,base:0
+#: field:l10n.es.vat.book.received.lines,base:0
+#: field:l10n.es.vat.book.rectification.issued.lines,base:0
+#: field:l10n.es.vat.book.rectification.received.lines,base:0
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+#, python-format
+msgid "Base"
+msgstr "Base"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:65
+#: field:l10n.es.vat.book,calculation_date:0
+#, python-format
+msgid "Calculation Date"
+msgstr "Fecha de calculo"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,state:0
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,company_id:0
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_vat_book
+#: help:l10n.es.vat.book,partner_bank_id:0
+msgid "Company bank account used for the presentation"
+msgstr "Company bank account used for the presentation"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Company:"
+msgstr "Compañía:"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,type:0
+msgid "Complementary"
+msgstr "Complementary"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Contact phone:"
+msgstr "Teléfono de contacto:"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,counterpart_account:0
+msgid "Counterpart account"
+msgstr "Cuenta contrapartida"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,create_uid:0
+#: field:l10n.es.vat.book.invoice.tax.lines,create_uid:0
+#: field:l10n.es.vat.book.issued.lines,create_uid:0
+#: field:l10n.es.vat.book.issued.tax.summary,create_uid:0
+#: field:l10n.es.vat.book.received.lines,create_uid:0
+#: field:l10n.es.vat.book.received.tax.summary,create_uid:0
+#: field:l10n.es.vat.book.rectification.issued.lines,create_uid:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,create_uid:0
+#: field:l10n.es.vat.book.rectification.received.lines,create_uid:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,create_uid:0
+msgid "Created by"
+msgstr "Created by"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,create_date:0
+#: field:l10n.es.vat.book.invoice.tax.lines,create_date:0
+#: field:l10n.es.vat.book.issued.lines,create_date:0
+#: field:l10n.es.vat.book.issued.tax.summary,create_date:0
+#: field:l10n.es.vat.book.received.lines,create_date:0
+#: field:l10n.es.vat.book.received.tax.summary,create_date:0
+#: field:l10n.es.vat.book.rectification.issued.lines,create_date:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,create_date:0
+#: field:l10n.es.vat.book.rectification.received.lines,create_date:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,create_date:0
+msgid "Created on"
+msgstr "Created on"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Cuote"
+msgstr "Cuota"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+msgid "Customer Invoice"
+msgstr "Factura cliente"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,support_type:0
+msgid "DVD"
+msgstr "DVD"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,number:0
+msgid "Declaration number"
+msgstr "Declaración número"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,display_name:0
+#: field:l10n.es.vat.book.invoice.tax.lines,display_name:0
+#: field:l10n.es.vat.book.issued.lines,display_name:0
+#: field:l10n.es.vat.book.issued.tax.summary,display_name:0
+#: field:l10n.es.vat.book.received.lines,display_name:0
+#: field:l10n.es.vat.book.received.tax.summary,display_name:0
+#: field:l10n.es.vat.book.rectification.issued.lines,display_name:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,display_name:0
+#: field:l10n.es.vat.book.rectification.received.lines,display_name:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,display_name:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_invoices_issued,display_name:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_invoices_received,display_name:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_rectification_issued_invoices,display_name:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_rectification_received_invoices,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,state:0
+msgid "Done"
+msgstr "Realizado"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:33
+#: field:l10n.es.vat.book.issued.lines,partner_id:0
+#: field:l10n.es.vat.book.received.lines,partner_id:0
+#: field:l10n.es.vat.book.rectification.issued.lines,partner_id:0
+#: field:l10n.es.vat.book.rectification.received.lines,partner_id:0
+#, python-format
+msgid "Empresa"
+msgstr "Empresa"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:61
+#: field:l10n.es.vat.book.issued.lines,exeption:0
+#: field:l10n.es.vat.book.received.lines,exeption:0
+#: field:l10n.es.vat.book.rectification.issued.lines,exeption:0
+#: field:l10n.es.vat.book.rectification.received.lines,exeption:0
+#, python-format
+msgid "Exeption"
+msgstr "Exeption"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:64
+#: field:l10n.es.vat.book.issued.lines,exeption_text:0
+#: field:l10n.es.vat.book.received.lines,exeption_text:0
+#: field:l10n.es.vat.book.rectification.issued.lines,exeption_text:0
+#: field:l10n.es.vat.book.rectification.received.lines,exeption_text:0
+#, python-format
+msgid "Exeption text"
+msgstr "Exepción"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,export_config:0
+msgid "Export config"
+msgstr "Export config"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Fiscal Year:"
+msgstr "Ejercicio fiscal"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,fiscalyear_id:0
+msgid "Fiscal year"
+msgstr "Año fiscal"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,contact_name:0
+msgid "Full Name"
+msgstr "Nombre completo"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,id:0 field:l10n.es.vat.book.invoice.tax.lines,id:0
+#: field:l10n.es.vat.book.issued.lines,id:0
+#: field:l10n.es.vat.book.issued.tax.summary,id:0
+#: field:l10n.es.vat.book.received.lines,id:0
+#: field:l10n.es.vat.book.received.tax.summary,id:0
+#: field:l10n.es.vat.book.rectification.issued.lines,id:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,id:0
+#: field:l10n.es.vat.book.rectification.received.lines,id:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,id:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_invoices_issued,id:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_invoices_received,id:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_rectification_issued_invoices,id:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_rectification_received_invoices,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:40
+#: field:l10n.es.vat.book.issued.lines,invoice_id:0
+#: field:l10n.es.vat.book.received.lines,invoice_id:0
+#: field:l10n.es.vat.book.rectification.issued.lines,invoice_id:0
+#: field:l10n.es.vat.book.rectification.received.lines,invoice_id:0
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+#, python-format
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:29
+#: field:l10n.es.vat.book.issued.lines,invoice_date:0
+#: field:l10n.es.vat.book.received.lines,invoice_date:0
+#: field:l10n.es.vat.book.rectification.issued.lines,invoice_date:0
+#: field:l10n.es.vat.book.rectification.received.lines,invoice_date:0
+#, python-format
+msgid "Invoice Date"
+msgstr "Fecha factura"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Invoice date"
+msgstr "Fecha factura"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+msgid "Invoice number"
+msgstr "Número factura"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Issued Invoices"
+msgstr "facturas emitidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:41
+#: field:l10n.es.vat.book.invoice.tax.lines,issued_invoice_line_id:0
+#, python-format
+msgid "Issued invoice line"
+msgstr "lineas facturas emitidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:43
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+#: field:l10n.es.vat.book,issued_invoice_ids:0
+#: view:l10n.es.vat.book.issued.lines:l10n_es_vat_book.view_l10n_es_vat_book_issued_lines_form
+#: view:l10n.es.vat.book.issued.lines:l10n_es_vat_book.view_l10n_es_vat_book_issued_lines_tree
+#: view:l10n.es.vat.book.received.lines:l10n_es_vat_book.view_l10n_es_vat_book_received_lines_form
+#: view:l10n.es.vat.book.received.lines:l10n_es_vat_book.view_l10n_es_vat_book_received_lines_tree
+#, python-format
+msgid "Issued invoices"
+msgstr "facturas emitidas"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book.rectification.issued.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_rectification_issued_tax_summary_form
+#: view:l10n.es.vat.book.rectification.issued.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_rectification_issued_tax_summary_tree
+msgid "Issued summary"
+msgstr "Resumen Emitidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:82
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:118
+#: field:l10n.es.vat.book,issued_tax_summary:0
+#: field:l10n.es.vat.book,rectification_issued_tax_summary:0
+#, python-format
+msgid "Issued tax summary"
+msgstr "Resumen impuestos emitidas"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,journal_id:0
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_vat_book
+#: help:l10n.es.vat.book,journal_id:0
+msgid "Journal in which post the move."
+msgstr "Journal in which post the move."
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,representative_vat:0
+msgid "L.R. VAT number"
+msgstr "NIF Representante legal"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,__last_update:0
+#: field:l10n.es.vat.book.invoice.tax.lines,__last_update:0
+#: field:l10n.es.vat.book.issued.lines,__last_update:0
+#: field:l10n.es.vat.book.issued.tax.summary,__last_update:0
+#: field:l10n.es.vat.book.received.lines,__last_update:0
+#: field:l10n.es.vat.book.received.tax.summary,__last_update:0
+#: field:l10n.es.vat.book.rectification.issued.lines,__last_update:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,__last_update:0
+#: field:l10n.es.vat.book.rectification.received.lines,__last_update:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,__last_update:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_invoices_issued,__last_update:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_invoices_received,__last_update:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_rectification_issued_invoices,__last_update:0
+#: field:report.l10n_es_vat_book.tmp_report_vat_book_rectification_received_invoices,__last_update:0
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,write_uid:0
+#: field:l10n.es.vat.book.invoice.tax.lines,write_uid:0
+#: field:l10n.es.vat.book.issued.lines,write_uid:0
+#: field:l10n.es.vat.book.issued.tax.summary,write_uid:0
+#: field:l10n.es.vat.book.received.lines,write_uid:0
+#: field:l10n.es.vat.book.received.tax.summary,write_uid:0
+#: field:l10n.es.vat.book.rectification.issued.lines,write_uid:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,write_uid:0
+#: field:l10n.es.vat.book.rectification.received.lines,write_uid:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,write_date:0
+#: field:l10n.es.vat.book.invoice.tax.lines,write_date:0
+#: field:l10n.es.vat.book.issued.lines,write_date:0
+#: field:l10n.es.vat.book.issued.tax.summary,write_date:0
+#: field:l10n.es.vat.book.received.lines,write_date:0
+#: field:l10n.es.vat.book.received.tax.summary,write_date:0
+#: field:l10n.es.vat.book.rectification.issued.lines,write_date:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,write_date:0
+#: field:l10n.es.vat.book.rectification.received.lines,write_date:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: l10n_es_vat_book
+#: help:l10n.es.vat.book,representative_vat:0
+msgid "Legal Representative VAT number."
+msgstr "Legal Representative VAT number."
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_tax_summary.py:44
+#: model:ir.actions.act_window,name:l10n_es_vat_book.l10n_es_vat_book_action
+#: model:ir.ui.menu,name:l10n_es_vat_book.menu_vat_book_report
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_tree
+#: field:l10n.es.vat.book.issued.tax.summary,vat_book_id:0
+#: field:l10n.es.vat.book.received.tax.summary,vat_book_id:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,vat_book_id:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,vat_book_id:0
+#, python-format
+msgid "Libro de IVA"
+msgstr "Libro de IVA"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:58
+#: field:l10n.es.vat.book.issued.lines,tax_line_issued_ids:0
+#: field:l10n.es.vat.book.received.lines,tax_line_issued_ids:0
+#: field:l10n.es.vat.book.rectification.issued.lines,tax_line_issued_ids:0
+#: field:l10n.es.vat.book.rectification.received.lines,tax_line_issued_ids:0
+#, python-format
+msgid "Lineas de impuesto"
+msgstr "Lineas de impuesto"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,model:0
+msgid "Model"
+msgstr "Model"
+
+#. module: l10n_es_vat_book
+#: help:l10n.es.vat.book,contact_name:0
+msgid "Must have name and surname."
+msgstr "Debe tener nombre y apellidos."
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:36
+#: field:l10n.es.vat.book.issued.lines,vat_number:0
+#: field:l10n.es.vat.book.received.lines,vat_number:0
+#: field:l10n.es.vat.book.rectification.issued.lines,vat_number:0
+#: field:l10n.es.vat.book.rectification.received.lines,vat_number:0
+#, python-format
+msgid "NIF"
+msgstr "NIF"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,type:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+msgid "Odoo Invoice"
+msgstr "Factura Odoo"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,period_type:0
+msgid "Period type"
+msgstr "Tipo de periodo"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,periods:0
+msgid "Period(s)"
+msgstr "Periodo(s)"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Periods:"
+msgstr "Periodos:"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,contact_phone:0
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,state:0
+msgid "Posted"
+msgstr "Posted"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,previous_number:0
+msgid "Previous declaration number"
+msgstr "Previous declaration number"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,state:0
+msgid "Processed"
+msgstr "Processed"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Received Invoices"
+msgstr "Facturas recibidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:45
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:49
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:53
+#: field:l10n.es.vat.book.invoice.tax.lines,received_invoice_line_id:0
+#: field:l10n.es.vat.book.invoice.tax.lines,rectification_issued_invoice_line_id:0
+#: field:l10n.es.vat.book.invoice.tax.lines,rectification_received_invoice_line_id:0
+#, python-format
+msgid "Received invoice line"
+msgstr "Lineas facturas recibidas"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Received invoices"
+msgstr "Facturas recibidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:49
+#: field:l10n.es.vat.book,received_invoice_ids:0
+#, python-format
+msgid "Received received"
+msgstr "Facturas recibidas"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book.invoice.tax.lines:l10n_es_vat_book.view_l10n_es_vat_book_invoice_tax_lines_form
+#: view:l10n.es.vat.book.invoice.tax.lines:l10n_es_vat_book.view_l10n_es_vat_book_invoice_tax_lines_tree
+#: view:l10n.es.vat.book.issued.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_issued_tax_summary_form
+#: view:l10n.es.vat.book.issued.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_issued_tax_summary_tree
+#: view:l10n.es.vat.book.received.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_received_tax_summary_form
+#: view:l10n.es.vat.book.received.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_received_tax_summary_tree
+#: view:l10n.es.vat.book.rectification.received.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_rectification_received_tax_summary_form
+#: view:l10n.es.vat.book.rectification.received.tax.summary:l10n_es_vat_book.view_l10n_es_vat_book_rectification_received_tax_summary_tree
+msgid "Received summary"
+msgstr "Resumen recibidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:100
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:136
+#: field:l10n.es.vat.book,received_tax_summary:0
+#: field:l10n.es.vat.book,rectification_received_tax_summary:0
+#, python-format
+msgid "Received tax summary"
+msgstr "Resumen impuestos recibidas"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Rectification Issued invoices"
+msgstr "Facturas rectificativas emitidas"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Rectification Received invoices"
+msgstr "Facturas recibidas rectificativas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:55
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+#: field:l10n.es.vat.book,rectification_issued_invoice_ids:0
+#, python-format
+msgid "Rectification issued"
+msgstr "Rectificativas emitidas"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book.rectification.issued.lines:l10n_es_vat_book.view_l10n_es_vat_book_rectification_issued_lines_form
+#: view:l10n.es.vat.book.rectification.issued.lines:l10n_es_vat_book.view_l10n_es_vat_book_rectification_issued_lines_tree
+msgid "Rectification issued invoices"
+msgstr "Facturas rectificativas emitidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:61
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+#: field:l10n.es.vat.book,rectification_received_invoice_ids:0
+#, python-format
+msgid "Rectification received"
+msgstr "Rectification received"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book.rectification.received.lines:l10n_es_vat_book.view_l10n_es_vat_book_rectification_received_lines_form
+#: view:l10n.es.vat.book.rectification.received.lines:l10n_es_vat_book.view_l10n_es_vat_book_rectification_received_lines_tree
+msgid "Rectification received invoices"
+msgstr "Facturas rectificativas recibidas"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,name:0
+msgid "Report identifier"
+msgstr "Report identifier"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,type:0
+msgid "Statement Type"
+msgstr "Statement Type"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,type:0
+msgid "Substitutive"
+msgstr "Substitutive"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Summary"
+msgstr "Resumen"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_tax_summary.py:37
+#: field:l10n.es.vat.book.issued.tax.summary,sum_base_amount:0
+#: field:l10n.es.vat.book.received.tax.summary,sum_base_amount:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,sum_base_amount:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,sum_base_amount:0
+#, python-format
+msgid "Summary base amount"
+msgstr "Resumen base"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+msgid "Summary invoices issued"
+msgstr "Resumen facturas emitidas"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+msgid "Summary invoices received"
+msgstr "Resumen de facturas recibidas"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Summary rectification Issued invoices"
+msgstr "Resumen facturas rectificativas emitidas"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_tax_summary.py:34
+#: field:l10n.es.vat.book.issued.tax.summary,sum_tax_amount:0
+#: field:l10n.es.vat.book.received.tax.summary,sum_tax_amount:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,sum_tax_amount:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,sum_tax_amount:0
+#, python-format
+msgid "Summary tax amount"
+msgstr "Resumen impuestos"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,support_type:0
+msgid "Support Type"
+msgstr "Support Type"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Surnames and name contact:"
+msgstr "Apellidos y nombre del contacto:"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_received_lines.py:32
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_rectification_issued_lines.py:31
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_rectification_received_lines.py:31
+#: field:l10n.es.vat.book.received.lines,tax_lines_received_ids:0
+#: field:l10n.es.vat.book.rectification.issued.lines,tax_lines_rectification_issued_ids:0
+#: field:l10n.es.vat.book.rectification.received.lines,tax_lines_rectification_received_ids:0
+#, python-format
+msgid "Tax Lines"
+msgstr "Lineas de impuesto"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:28
+#: field:l10n.es.vat.book.invoice.tax.lines,name:0
+#, python-format
+msgid "Tax Name"
+msgstr "Nombre impuesto"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:34
+#: field:l10n.es.vat.book.invoice.tax.lines,tax_amount:0
+#, python-format
+msgid "Tax amount"
+msgstr "Importe impuesto"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:46
+#: field:l10n.es.vat.book.issued.lines,tax_import:0
+#: field:l10n.es.vat.book.received.lines,tax_import:0
+#: field:l10n.es.vat.book.rectification.issued.lines,tax_import:0
+#: field:l10n.es.vat.book.rectification.received.lines,tax_import:0
+#, python-format
+msgid "Tax import"
+msgstr "Importe impuesto"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_invoice_tax_lines.py:31
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_tax_summary.py:40
+#: field:l10n.es.vat.book.invoice.tax.lines,tax_percent:0
+#: field:l10n.es.vat.book.issued.tax.summary,tax_percent:0
+#: field:l10n.es.vat.book.received.tax.summary,tax_percent:0
+#: field:l10n.es.vat.book.rectification.issued.tax.summary,tax_percent:0
+#: field:l10n.es.vat.book.rectification.received.tax.summary,tax_percent:0
+#, python-format
+msgid "Tax percent"
+msgstr "Porcentaje de impuesto"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:72
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:90
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:108
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:126
+#: field:l10n.es.vat.book,amount_tax_issued:0
+#: field:l10n.es.vat.book,amount_tax_received:0
+#: field:l10n.es.vat.book,amount_tax_rectification_issued:0
+#: field:l10n.es.vat.book,amount_tax_rectification_received:0
+#, python-format
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book,support_type:0
+msgid "Telematics"
+msgstr "Telematics"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:224
+#, python-format
+msgid "The invoice can't have 0 in total \n"
+msgstr "La factura no puede ser de 0 € \n"
+
+#. module: l10n_es_vat_book
+#: help:l10n.es.vat.book,counterpart_account:0
+msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
+msgstr "This account will be the counterpart for all the journal items that are regularized when posting the report."
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:538
+#, python-format
+msgid "This company doesn't have NIF"
+msgstr "Esta compañia no tiene NIF!"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:76
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:94
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:112
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:130
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:49
+#: field:l10n.es.vat.book,amount_total_issued:0
+#: field:l10n.es.vat.book,amount_total_received:0
+#: field:l10n.es.vat.book,amount_total_rectification_issued:0
+#: field:l10n.es.vat.book,amount_total_rectification_received:0
+#: field:l10n.es.vat.book.issued.lines,total:0
+#: field:l10n.es.vat.book.received.lines,total:0
+#: field:l10n.es.vat.book.rectification.issued.lines,total:0
+#: field:l10n.es.vat.book.rectification.received.lines,total:0
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+#, python-format
+msgid "Total"
+msgstr "Total"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:68
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:86
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:104
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:122
+#: field:l10n.es.vat.book,amount_without_tax_issued:0
+#: field:l10n.es.vat.book,amount_without_tax_received:0
+#: field:l10n.es.vat.book,amount_without_tax_rectification_issued:0
+#: field:l10n.es.vat.book,amount_without_tax_rectification_received:0
+#, python-format
+msgid "Total without taxes"
+msgstr "Total sin impuestos"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "VAT"
+msgstr "NIF"
+
+#. module: l10n_es_vat_book
+#: field:l10n.es.vat.book,company_vat:0
+msgid "VAT number"
+msgstr "Número NIF"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "VAT:"
+msgstr "NIF:"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book_issued_lines.py:53
+#: field:l10n.es.vat.book.issued.lines,l10n_es_vat_book_id:0
+#: field:l10n.es.vat.book.received.lines,l10n_es_vat_book_id:0
+#: field:l10n.es.vat.book.rectification.issued.lines,l10n_es_vat_book_id:0
+#: field:l10n.es.vat.book.rectification.received.lines,l10n_es_vat_book_id:0
+#, python-format
+msgid "Vat Book id"
+msgstr "Vat Book id"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_issued_document
+msgid "Vat Book invoices issued"
+msgstr "Libro de IVA facturas emitidas"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_invoices_received_document
+msgid "Vat Book invoices received"
+msgstr "Libro de IVA facturas recibidas"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_issued_invoices_document
+msgid "Vat Book rectification issued invoices"
+msgstr "Libro de IVA facturas rectificativas emitidas"
+
+#. module: l10n_es_vat_book
+#: view:website:l10n_es_vat_book.report_vat_book_rectification_received_invoices_document
+msgid "Vat Book rectification received invoices"
+msgstr "Libro de IVA Facturas rectificativas recibidas"
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.report_vat_book_rectification_issued_invoices
+msgid "Vat book Rectification issued invoices"
+msgstr "Libro de IVA facturas rectificativas emitidas"
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.report_vat_book_rectification_received_invoices
+msgid "Vat book Rectification received invoices"
+msgstr "Libro de IVA Facturas rectificativas recibidas"
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.report_vat_book_invoices_issued
+msgid "Vat book invoices issued"
+msgstr "Libro de IVA facturas emitidas"
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.report_vat_book_invoices_received
+msgid "Vat book invoices received"
+msgstr "Libro de IVA facturas recibidas"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "calculate_l10n_vat_book"
+msgstr "calculate_l10n_vat_book"
+
+#. module: l10n_es_vat_book
+#: view:l10n.es.vat.book:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "object"
+msgstr "object"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:37
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:148
+#, python-format
+msgid "vat_book"
+msgstr "vat_book"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:227
+#, python-format
+msgid "¡The partner haven't VAT!"
+msgstr "¡Este partner no tiene NIF!"

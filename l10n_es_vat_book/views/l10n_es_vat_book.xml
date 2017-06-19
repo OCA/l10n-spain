@@ -8,14 +8,12 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
         <field name="arch" type="xml">
 
-            <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-                <attribute name="type">object</attribute>
-                <attribute name="name">calculate_l10n_vat_book</attribute>
-            </button>
-
             <xpath expr="//group[@name='group_declaration']" position="after">
               <notebook>
                 <page string="Summary" name="summary_invoices">
+                  <group>
+                    <field name="calculation_date" />
+                  </group>
                   <group string="Issued invoices" name="summary_issued_invoices">
                     <field name="amount_without_tax_issued" />
                     <field name="amount_tax_issued" />
@@ -84,20 +82,6 @@
         </tree>
       </field>
     </record>
-
-    <!-- <record id="view_l10n_es_vat_book_search" model="ir.ui.view">
-      <field name="name">view.l10n_es_vat_book.search</field>
-      <field name="model">l10n.es.vat.book</field>
-      <field name="arch" type="xml">
-        <search string="Libro de IVA">
-          <field name="name" />
-          <group string="Group By" name="groupby">
-            <filter name="name_groupby" string="name"
-              context="{'group_by': 'name'}" />
-          </group>
-        </search>
-      </field>
-    </record> -->
 
     <record id="l10n_es_vat_book_action" model="ir.actions.act_window">
       <field name="name">Libro de IVA</field>
