@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from openerp.tests import common
-from openerp import exceptions
+from openerp import exceptions, fields
 from datetime import datetime
 
 
@@ -77,6 +77,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.period = self.env['account.period'].find()
         self.invoice = self.env['account.invoice'].create({
             'partner_id': self.partner.id,
+            'date_invoice': fields.Date.today(),
             'type': 'out_invoice',
             'period_id': self.period.id,
             'account_id': self.partner.property_account_payable.id,
@@ -107,7 +108,9 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.assertTrue(self.invoice.invoice_jobs_ids)
 
     def _get_invoices_test(self, invoice_type, special_regime):
-        str_today = datetime.now().strftime("%d-%m-%Y")
+        str_today = fields.Date.from_string(
+            fields.Date.today()
+        ).strftime("%d-%m-%Y")
         emisor = self.invoice.company_id
         contraparte = self.partner
         expedida_recibida = 'FacturaExpedida'
@@ -138,16 +141,20 @@ class TestL10nEsAeatSii(common.TransactionCase):
         }
         if self.invoice.type in ['out_invoice', 'out_refund']:
             res[expedida_recibida].update({
-                'TipoDesglose': {},
+                'TipoDesglose': (
+                    self.env['account.invoice']._get_out_taxes_basic_dict()
+                ),
                 'ImporteTotal': self.invoice.amount_total,
             })
         else:
             res[expedida_recibida].update({
+                'DesgloseFactura': (
+                    self.env['account.invoice']._get_in_taxes_basic_dict()
+                ),
                 "FechaRegContable":
                     datetime.strptime(
                         self.invoice.date_invoice,
                         '%Y-%m-%d').strftime('%d-%m-%Y'),
-                "DesgloseFactura": {},
                 "CuotaDeducible": self.invoice.amount_tax
             })
         if invoice_type == 'R4':
@@ -173,7 +180,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.partner.vat = vat
 
         invoices = self.invoice._get_sii_invoice_dict()
-        test_out_inv = self._get_invoices_test('F1', u'01')
+        test_out_inv = self._get_invoices_test('F1', '01')
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
@@ -182,7 +189,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.invoice.type = 'out_refund'
         self.invoice.refund_type = 'S'
         invoices = self.invoice._get_sii_invoice_dict()
-        test_out_refund = self._get_invoices_test('R4', u'01')
+        test_out_refund = self._get_invoices_test('R4', '01')
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
@@ -191,7 +198,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.invoice.type = 'in_invoice'
         self.invoice.supplier_invoice_number = 'sup0001'
         invoices = self.invoice._get_sii_invoice_dict()
-        test_in_invoice = self._get_invoices_test('F1', u'01')
+        test_in_invoice = self._get_invoices_test('F1', '01')
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
@@ -201,7 +208,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.invoice.refund_type = 'S'
         self.invoice.supplier_invoice_number = 'sup0001'
         invoices = self.invoice._get_sii_invoice_dict()
-        test_in_refund = self._get_invoices_test('R4', u'01')
+        test_in_refund = self._get_invoices_test('R4', '01')
         for key in invoices.keys():
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),

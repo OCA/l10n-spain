@@ -60,7 +60,9 @@ class AccountInvoice(models.Model):
         string="Refund Type", default='S')
     registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
-        string="SII registration key", required=True, default=_get_default_key,
+        string="SII registration key", default=_get_default_key,
+        # required=True, This is not set as required here to avoid the
+        # set not null constraint warning
     )
     sii_enabled = fields.Boolean(
         string='Enable SII', related='company_id.sii_enabled',
@@ -204,7 +206,7 @@ class AccountInvoice(models.Model):
                     },
                     'NoExenta': {
                         'DesgloseIVA': {
-                            'DetalleIva': [],
+                            'DetalleIVA': [],
                         },
                     },
                 },
@@ -217,7 +219,7 @@ class AccountInvoice(models.Model):
                         },
                         'NoExenta': {
                             'DesgloseIVA': {
-                                'DetalleIva': [],
+                                'DetalleIVA': [],
                             },
                         },
                     },
@@ -293,8 +295,12 @@ class AccountInvoice(models.Model):
         :return: Dictionary with the structure.
         """
         return {
-            'InversionSujetoPasivo': {},
-            'DesgloseIVA': {},
+            'InversionSujetoPasivo': {
+                'DetalleIVA': [],
+            },
+            'DesgloseIVA': {
+                'DetalleIVA': [],
+            },
         }
 
     @api.multi
@@ -397,7 +403,7 @@ class AccountInvoice(models.Model):
                 "FacturaRecibida": {
                     # TODO: Incluir los 5 tipos de facturas rectificativas
                     "TipoFactura": (
-                        'R4' if self.type == 'out_refund' else 'F1'
+                        'R4' if self.type == 'in_refund' else 'F1'
                     ),
                     "ClaveRegimenEspecialOTrascendencia": "01",
                     "DescripcionOperacion": self.sii_description[0:500],
