@@ -15,7 +15,6 @@
         'l10n_es',
         'l10n_es_aeat',
         'account_refund_original',
-        'account_chart_update',
         'account_invoice_currency',
     ],
     'data': [
@@ -30,6 +29,10 @@
         'views/l10n_es_vat_book_rectification_received_lines.xml',
         'views/l10n_es_vat_book_rectification_received_tax_summary.xml',
         'views/l10n_es_vat_book_rectification_issued_tax_summary.xml',
+        'report/report_paper_format.xml',
+        'report/report_views.xml',
+        'report/vat_book_invoices_issued.xml',
+        'report/vat_book_invoices_received.xml',
     ],
     "qweb": [
     ],
