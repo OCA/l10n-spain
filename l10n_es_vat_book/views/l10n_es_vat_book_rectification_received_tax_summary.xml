@@ -11,6 +11,7 @@
               <field name="tax_code_id" />
               <field name="sum_tax_amount" />
               <field name="sum_base_amount" />
+              <field name="tax_percent" />
             </group>
           </sheet>
         </form>
@@ -25,6 +26,7 @@
           <field name="tax_code_id" />
           <field name="sum_tax_amount" />
           <field name="sum_base_amount" />
+          <field name="tax_percent" />
         </tree>
       </field>
     </record>

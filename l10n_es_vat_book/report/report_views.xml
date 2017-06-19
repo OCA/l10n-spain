@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            id="report_vat_book_invoices_issued"
+            model="l10n.es.vat.book"
+            string="Vat book invoices issued"
+            report_type="qweb-pdf"
+            name="l10n_es_vat_book.tmp_report_vat_book_invoices_issued"
+            file="l10n_es_vat_book.tmp_report_vat_book_invoices_issued"
+            attachment_use="False"
+        />
+
+        <report
+            id="report_vat_book_invoices_received"
+            model="l10n.es.vat.book"
+            string="Vat book invoices received"
+            report_type="qweb-pdf"
+            name="l10n_es_vat_book.tmp_report_vat_book_invoices_received"
+            file="l10n_es_vat_book.tmp_report_vat_book_invoices_received"
+            attachment_use="False"
+        />
+
+    </data>
+</openerp>

@@ -17,6 +17,9 @@ class L10nEsVatBookIssuedTaxSummary(models.Model):
     sum_base_amount = fields.Float(
         string=_('Summary base amount'))
 
+    tax_percent = fields.Float(
+        string=_('Tax percent'))
+
     vat_book_id = fields.Many2one(
         comodel_name='l10n.es.vat.book',
         string=_('Libro de IVA'))

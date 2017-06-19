@@ -306,10 +306,18 @@ class L10nEsVatBook(models.Model):
             Returns:
                 vals: values to create a summary tax line
         """
+        if invoice_tax_line.amount > 0 and invoice_tax_line.base > 0:
+            tax_percentage = self.proximo(
+                round(abs(invoice_tax_line.amount / invoice_tax_line.base), 4),
+                VALID_TYPES,
+            )
+        else:
+            tax_percentage = 0
         vals = {
             'tax_code_id': tax_code,
             'sum_tax_amount': invoice_tax_line.amount,
             'sum_base_amount': invoice_tax_line.base,
+            'tax_percent': tax_percentage,
             'vat_book_id': self.id,
         }
         return vals
