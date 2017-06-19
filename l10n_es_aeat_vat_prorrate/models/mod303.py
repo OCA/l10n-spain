@@ -162,7 +162,19 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.multi
     def calculate(self):
-        res = super(L10nEsAeatMod303Report, self).calculate()
+        context = self._context.copy()
+        # The special prorrate needs an specific calculation
+        if (self.vat_prorrate_type == 'special'):
+            # Get the move lines that have and special prorrate code
+            move_lines_prorr = self._get_special_prorrate_tax_code_lines(
+                periods=self.periods)
+            amount_prorr = sum(move_lines_prorr.mapped('tax_amount'))
+            context.update({
+                'amount_prorr': amount_prorr * (
+                    (self.vat_prorrate_percent / 100) - 1)
+            })
+        res = super(L10nEsAeatMod303Report,
+            self.with_context(context)).calculate()
         for report in self:
             report._calculate_casilla_44()
             account_number = '6391%' if report.casilla_44 > 0 else '6341%'
@@ -184,15 +196,10 @@ class L10nEsAeatMod303Report(models.Model):
                 map_line.field_number in PRORRATE_TAX_LINE_MAPPING.keys()):
             res['amount'] *= self.vat_prorrate_percent / 100
         # The special prorrate needs an specific calculation
-        elif (self.vat_prorrate_type == 'special' and
-                map_line.field_number in SPECIAL_PRORRATE_FIELDS):
-            # Get the move lines that have and special prorrate code
-            move_lines_prorr = self._get_special_prorrate_tax_code_lines(
-                periods=self.periods)
-            amount_prorr = sum(move_lines_prorr.mapped('tax_amount'))
-            # Add the calculation to the amount depending of the percentage
-            res['amount'] += amount_prorr * (
-                (self.vat_prorrate_percent / 100) - 1)
+        elif (map_line.field_number in SPECIAL_PRORRATE_FIELDS):
+            if self._context.get('amount_prorr', False):
+                # Add the calculation to the amount depending of the percentage
+                res['amount'] += self._context.get('amount_prorr')
         return res
 
     @api.multi
