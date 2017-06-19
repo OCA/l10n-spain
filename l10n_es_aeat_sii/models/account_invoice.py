@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from datetime import datetime, date
+from datetime import date
 from requests import Session
 
 from openerp import _, api, exceptions, fields, models
@@ -169,7 +169,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _change_date_format(self, date):
-        datetimeobject = datetime.strptime(date, '%Y-%m-%d')
+        datetimeobject = fields.Date.from_string(date)
         new_date = datetimeobject.strftime('%d-%m-%Y')
         return new_date
 
@@ -191,42 +191,6 @@ class AccountInvoice(models.Model):
         }
         return header
 
-    @api.model
-    def _get_out_taxes_basic_dict(self):
-        """Create a dictionary with the basic SII taxes structure for customer
-        invoices.
-
-        :return: Dictionary with the structure.
-        """
-        return {
-            'DesgloseFactura': {
-                'Sujeta': {
-                    'Exenta': {
-                        'BaseImponible': 0,
-                    },
-                    'NoExenta': {
-                        'DesgloseIVA': {
-                            'DetalleIVA': [],
-                        },
-                    },
-                },
-            },
-            'DesgloseTipoOperacion': {
-                'PrestacionServicios': {
-                    'Sujeta': {
-                        'Exenta': {
-                            'BaseImponible': 0,
-                        },
-                        'NoExenta': {
-                            'DesgloseIVA': {
-                                'DetalleIVA': [],
-                            },
-                        },
-                    },
-                },
-            },
-        }
-
     @api.multi
     def _get_sii_out_taxes(self):
         """Get the taxes for sales invoices.
@@ -234,74 +198,79 @@ class AccountInvoice(models.Model):
         :param self: Single invoice record.
         """
         self.ensure_one()
-        taxes_dict = self._get_out_taxes_basic_dict()
-        tax_breakdown = taxes_dict['DesgloseFactura']
-        type_breakdown = taxes_dict['DesgloseTipoOperacion']
+        taxes_dict = {}
         taxes_f = {}
         taxes_to = {}
         taxes_sfesb = self._get_sii_taxes_map(['SFESB'])
         taxes_sfesbe = self._get_sii_taxes_map(['SFESBE'])
         taxes_sfesisp = self._get_sii_taxes_map(['SFESISP'])
         # taxes_sfesisps = self._get_taxes_map(['SFESISPS'])
-        # taxes_sfens = self._get_sii_taxes_map(['SFENS'])
+        taxes_sfens = self._get_sii_taxes_map(['SFENS'])
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         for inv_line in self.invoice_line:
             for tax_line in inv_line.invoice_line_tax_id:
+                if tax_line in (taxes_sfesb + taxes_sfesisp + taxes_sfens):
+                    tax_breakdown = taxes_dict.setdefault(
+                        'DesgloseFactura', {},
+                    )
                 if tax_line in taxes_sfesb:
+                    tax_breakdown.setdefault('Sujeta', {})
                     # TODO l10n_es no tiene impuesto exento de bienes
                     # corrientes nacionales
                     if tax_line in taxes_sfesbe:
+                        tax_breakdown.setdefault('Exenta', {
+                            'BaseImponible': 0,
+                        })
                         tax_breakdown['Sujeta']['Exenta']['BaseImponible'] += (
                             inv_line.price_subtotal
                         )
                     # TODO Facturas No sujetas
-                    if tax_line in (taxes_sfesb + taxes_sfesisp):
-                        tax_breakdown['Sujeta']['NoExenta']['TipoNoExenta'] = (
+                    tax_breakdown['Sujeta'].setdefault('NoExenta', {
+                        'TipoNoExenta': (
                             'S2' if tax_line in taxes_sfesisp else 'S1'
-                        )
-                        inv_line._update_sii_tax_line(taxes_f, tax_line)
+                        ),
+                        'DesgloseIVA': {
+                            'DetalleIVA': [],
+                        },
+                    })
+                    inv_line._update_sii_tax_line(taxes_f, tax_line)
                 if tax_line in (taxes_sfess + taxes_sfesse):
+                    type_breakdown = taxes_dict.setdefault(
+                        'DesgloseTipoOperacion', {
+                            'PrestacionServicios': {'Sujeta': {}},
+                        },
+                    )
                     service_dict = type_breakdown['PrestacionServicios']
                     if tax_line in taxes_sfesse:
-                        service_dict['Sujeta']['Exenta']['BaseImponible'] = (
-                            inv_line.price_subtotal
+                        exempt_dict = service_dict['Sujeta'].setdefault(
+                            'Exenta', {'BaseImponible': 0},
                         )
+                        exempt_dict['BaseImponible'] += inv_line.price_subtotal
                     # TODO Facturas no sujetas
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
                         # if tax_line in taxes_sfesisps:
                         #     TipoNoExenta = 'S2'
                         # else:
-                        tipo_no_exenta = 'S1'
-                        service_dict['Sujeta']['NoExenta']['TipoNoExenta'] = (
-                            tipo_no_exenta
+                        service_dict['Sujeta'].setdefault(
+                            'NoExenta', {
+                                'TipoNoExenta': 'S1',
+                                'DesgloseIVA': {
+                                    'DetalleIVA': [],
+                                },
+                            },
                         )
                         inv_line._update_sii_tax_line(taxes_to, tax_line)
         for val in taxes_f.values():
             val['CuotaRepercutida'] = round(val['CuotaRepercutida'], 2)
-        tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA']['DetalleIVA'] = (
-            taxes_f.values()
-        )
-        type_breakdown['PrestacionServicios']['Sujeta']['NoExenta'][
-            'DesgloseIVA']['DetalleIVA'] = taxes_to.values()
+        if taxes_f:
+            tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA'][
+                'DetalleIVA'] = taxes_f.values()
+        if taxes_to:
+            type_breakdown['PrestacionServicios']['Sujeta']['NoExenta'][
+                'DesgloseIVA']['DetalleIVA'] = taxes_to.values()
         return taxes_dict
-
-    @api.model
-    def _get_in_taxes_basic_dict(self):
-        """Create a dictionary with the basic SII taxes structure for supplier
-        invoices.
-
-        :return: Dictionary with the structure.
-        """
-        return {
-            'InversionSujetoPasivo': {
-                'DetalleIVA': [],
-            },
-            'DesgloseIVA': {
-                'DetalleIVA': [],
-            },
-        }
 
     @api.multi
     def _get_sii_in_taxes(self):
@@ -310,7 +279,7 @@ class AccountInvoice(models.Model):
         :param self:  Single invoice record.
         """
         self.ensure_one()
-        taxes_dict = self._get_in_taxes_basic_dict()
+        taxes_dict = {}
         taxes_f = {}
         taxes_isp = {}
         taxes_sfrs = self._get_sii_taxes_map(['SFRS'])
@@ -321,8 +290,14 @@ class AccountInvoice(models.Model):
                     inv_line._update_sii_tax_line(taxes_isp, tax_line)
                 elif tax_line in taxes_sfrs:
                     inv_line._update_sii_tax_line(taxes_f, tax_line)
-        taxes_dict['DesgloseIVA']['DetalleIVA'] = taxes_f.values()
-        taxes_dict['InversionSujetoPasivo']['DetalleIVA'] = taxes_isp.values()
+        if taxes_isp:
+            taxes_dict.setdefault(
+                'InversionSujetoPasivo', {'DetalleIVA': taxes_isp.values()},
+            )
+        if taxes_f:
+            taxes_dict.setdefault(
+                'DesgloseIVA', {'DetalleIVA': [taxes_f.values()]},
+            )
         return taxes_dict
 
     @api.multi

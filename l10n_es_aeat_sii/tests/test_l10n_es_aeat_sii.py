@@ -4,7 +4,6 @@
 
 from openerp.tests import common
 from openerp import exceptions, fields
-from datetime import datetime
 
 
 def _deep_sort(obj):
@@ -108,9 +107,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.assertTrue(self.invoice.invoice_jobs_ids)
 
     def _get_invoices_test(self, invoice_type, special_regime):
-        str_today = fields.Date.from_string(
-            fields.Date.today()
-        ).strftime("%d-%m-%Y")
+        str_today = self.invoice._change_date_format(fields.Date.today())
         emisor = self.invoice.company_id
         contraparte = self.partner
         expedida_recibida = 'FacturaExpedida'
@@ -141,20 +138,16 @@ class TestL10nEsAeatSii(common.TransactionCase):
         }
         if self.invoice.type in ['out_invoice', 'out_refund']:
             res[expedida_recibida].update({
-                'TipoDesglose': (
-                    self.env['account.invoice']._get_out_taxes_basic_dict()
-                ),
+                'TipoDesglose': {},
                 'ImporteTotal': self.invoice.amount_total,
             })
         else:
             res[expedida_recibida].update({
-                'DesgloseFactura': (
-                    self.env['account.invoice']._get_in_taxes_basic_dict()
-                ),
                 "FechaRegContable":
-                    datetime.strptime(
-                        self.invoice.date_invoice,
-                        '%Y-%m-%d').strftime('%d-%m-%Y'),
+                    self.invoice._change_date_format(
+                        self.invoice.date_invoice
+                    ),
+                "DesgloseFactura": {},
                 "CuotaDeducible": self.invoice.amount_tax
             })
         if invoice_type == 'R4':
