@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
+
         <record id="l10n_es_sii_form_view" model="ir.ui.view">
             <field name="name">l10n.es.aeat.sii.form</field>
             <field name="model">l10n.es.aeat.sii</field>
@@ -51,13 +51,14 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="l10n_es_aeat_sii_parent_menu" name="SII"
-                  parent="base.menu_config" sequence="0"
+        <menuitem id="l10n_es_aeat_sii_parent_menu"
+                  name="SII"
+                  parent="base.menu_administration"
+                  sequence="2"
                   groups="account.group_account_invoice"/>
 
         <menuitem id="l10n_es_aeat_sii_menu" name="SII Certificates"
                   action="l10n_es_sii_action" sequence="0"
                   parent="l10n_es_aeat_sii_parent_menu" />
 
-    </data>
-</openerp>
+</odoo>

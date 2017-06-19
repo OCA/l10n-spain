@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-    
+<odoo>
+
         <!-- Tree view -->
         <record id="aeat_sii_mapping_registration_keys_view_tree" model="ir.ui.view">
             <field name="name">aeat.sii.mapping.registration.keys.view.tree</field>
@@ -14,7 +13,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <!-- Search view -->
         <record id="aeat_sii_mapping_registration_keys_view_search" model="ir.ui.view">
             <field name="name">aeat.sii.mapping.registration.keys.view.search</field>
@@ -30,7 +29,7 @@
                 </search>
             </field>
         </record>
-        
+
         <record model="ir.actions.act_window" id="action_aeat_sii_mapping_registration_keys">
             <field name="name">Aeat SII Registration Keys</field>
             <field name="res_model">aeat.sii.mapping.registration.keys</field>
@@ -43,5 +42,4 @@
                   action="action_aeat_sii_mapping_registration_keys"
                   name="Aeat SII Registration Keys"/>
 
-    </data>
-</openerp>
+</odoo>
