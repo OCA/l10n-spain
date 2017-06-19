@@ -15,14 +15,14 @@
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
     "depends": [
-        'l10n_es_aeat_mod303'
+        'l10n_es_aeat_mod303',
     ],
     "data": [
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         'wizard/l10n_es_aeat_compute_vat_prorrate_view.xml',
         'views/mod303_view.xml',
-        'data/special_prorrate_taxes.xml'
+        'data/special_prorrate_taxes.xml',
     ],
     "installable": True,
 }

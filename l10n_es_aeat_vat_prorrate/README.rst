@@ -26,6 +26,16 @@ o diciembre), hay que introducir la cuenta contable y opcionalmente la cuenta
 analítica a la que llevar la regularización según el porcentaje de prorrata
 definitivo, que es el que se introduce en ese periodo.
 
+Se han añadido tres nuevos impuestos, así como tres nuevas plantillas de códigos
+de impuesto:
+
+* Prorrateable del 21%
+* Prorrateable del 10%
+* Prorrateable del 4%
+
+Será necesario actualizar tanto los impuestos como los códigos de impuestos
+para introducirlos en el sistema.
+
 Uso
 ===
 
@@ -54,16 +64,6 @@ Prorrata especial
 Si se selecciona la "Prorrata especial", los cálculos de las casillas 29 y 41
 del informe 303, se realizarán teniendo en cuenta los apuntes que contengan los
 códigos de impuestos prorrateados.
-
-Se han añadido tres nuevos impuestos, así como tres nuevas plantillas de códigos
-de impuesto:
-
-* Prorrateable del 21%
-* Prorrateable del 10%
-* Prorrateable del 4%
-
-Será necesario actualizar tanto los impuestos como los códigos de impuestos
-para introducirlos en el sistema.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

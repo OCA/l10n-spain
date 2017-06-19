@@ -186,12 +186,12 @@ class L10nEsAeatMod303Report(models.Model):
         # The special prorrate needs an specific calculation
         elif (self.vat_prorrate_type == 'special' and
                 map_line.field_number in SPECIAL_PRORRATE_FIELDS):
-            # Gets the move lines that have and special prorrate code
+            # Get the move lines that have and special prorrate code
             move_lines_prorr = self._get_special_prorrate_tax_code_lines(
                 periods=self.periods)
             amount_prorr = sum(move_lines_prorr.mapped('tax_amount'))
-            # Adds the calcule to the amount field depending of the percentage
-            res['amount'] = res['amount'] + amount_prorr * (
+            # Add the calculation to the amount depending of the percentage
+            res['amount'] += amount_prorr * (
                 (self.vat_prorrate_percent / 100) - 1)
         return res
 
@@ -342,7 +342,7 @@ class L10nEsAeatMod303Report(models.Model):
             'SOICC4PRORR'
         ]
 
-        # If there are not periods, gets the current fiscal year's period
+        # If there are not periods, get the current fiscal year's period
         if not periods:
             periods = period_obj.search([
                 ('fiscalyear_id', '=', self.fiscalyear_id.id)
