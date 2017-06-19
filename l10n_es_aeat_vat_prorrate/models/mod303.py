@@ -162,19 +162,17 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.multi
     def calculate(self):
-        context = self._context.copy()
+        amount_prorr_total = 0
         # The special prorrate needs an specific calculation
         if (self.vat_prorrate_type == 'special'):
             # Get the move lines that have and special prorrate code
             move_lines_prorr = self._get_special_prorrate_tax_code_lines(
                 periods=self.periods)
             amount_prorr = sum(move_lines_prorr.mapped('tax_amount'))
-            context.update({
-                'amount_prorr': amount_prorr * (
-                    (self.vat_prorrate_percent / 100) - 1)
-            })
-        res = super(L10nEsAeatMod303Report,
-                self.with_context(context)).calculate()
+            amount_prorr_total = amount_prorr * (
+                (self.vat_prorrate_percent / 100) - 1)
+        obj = self.with_context(amount_prorr=amount_prorr_total)
+        res = super(L10nEsAeatMod303Report, obj).calculate()
         for report in self:
             report._calculate_casilla_44()
             account_number = '6391%' if report.casilla_44 > 0 else '6341%'
