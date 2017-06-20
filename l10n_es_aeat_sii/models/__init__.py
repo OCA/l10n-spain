@@ -24,3 +24,4 @@ import aeat_sii_mapping_registration_keys
 import aeat_sii_map
 import res_company
 import account_invoice
+import aeat_sii

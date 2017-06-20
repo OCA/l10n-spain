@@ -71,7 +71,8 @@ class L10nEsAeatSiiPassword(osv.osv_memory):
         aeat_obj = self.pool['l10n.es.aeat.sii']
         for wizard in self.browse(cr, uid, ids):
             record = self.pool.get('l10n.es.aeat.sii').browse(cr, uid, context.get('active_id'), context=context)
-            directory = os.path.join(os.path.abspath(config['data_dir']), 'certificates', cr.dbname, record.folder)
+            path = self.pool.get('ir.config_parameter').get_param(cr, uid, 'l10n_es_aeat_sii.path_folder', '/')
+            directory = os.path.join(os.path.abspath(path), 'certificates', cr.dbname, record.folder)
             file = base64.decodestring(record.file)
             if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
                 raise exceptions.Warning(
