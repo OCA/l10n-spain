@@ -19,7 +19,8 @@
 #
 ##############################################################################
 from openerp import models, api, fields, _
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
+
 
 VALID_TYPES = [
     0, 0.005, 0.014, 0.04, 0.052, 0.07, 0.08, 0.10, 0.12, 0.16, 0.18, 0.21
@@ -534,7 +535,7 @@ class L10nEsVatBook(models.Model):
         invoice_obj = self.env['account.invoice']
         tax_code_obj = self.env['account.tax.code']
         if not self.company_id.partner_id.vat:
-            raise Warning(
+            raise UserError(
                 _("This company doesn't have NIF"))
 
         # clean the old invoice records
