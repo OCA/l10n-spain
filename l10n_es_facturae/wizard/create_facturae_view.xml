@@ -19,7 +19,7 @@
                         <field name="note" colspan="4" nolabel="1"/>
                     </group>
                     <footer>
-                        <button icon="gtk-print"
+                        <button icon="print"
                                 name="create_facturae_file"
                                 string="Export"
                                 type="object"

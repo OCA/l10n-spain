@@ -2,14 +2,15 @@
 <openerp>
   <data>
 
-        <record model="ir.ui.view" id="l10n_es_facturae.res_company_form">
-            <field name="name">l10n_es_facturae.res.company.form</field>
+        <record model="ir.ui.view" id="view_company_form">
+            <field name="name">res.company.form</field>
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="type">form</field>
+            <field name=""></field>
             <field name="arch" type="xml">
-                <xpath expr="//notebook/page[@string='Configuration']" position="after">
-                    <page string='Factura-E' name="page_facturae">
+                <notebook position="inside" >
+                    <page string='Factura-E' name="page_facturae" groups="base.group_erp_manager">
                         <group>
                             <field name="facturae_cert" />
                             <field name="facturae_cert_password"
@@ -17,7 +18,7 @@
                                    placeholder="Ponga aquí la contraseña del certificado"/>
                         </group>
                     </page>
-                </xpath>
+                </notebook>
             </field>
         </record>
 
