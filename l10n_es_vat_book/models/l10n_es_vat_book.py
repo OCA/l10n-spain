@@ -34,106 +34,106 @@ class L10nEsVatBook(models.Model):
     _period_yearly = True
 
     number = fields.Char(
-        default=_("vat_book"),
+        default="vat_book",
         readonly="True")
 
     issued_invoice_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.issued.lines',
         inverse_name='l10n_es_vat_book_id',
-        string=_('Issued invoices'),
+        string='Issued invoices',
         readonly="True")
 
     received_invoice_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.received.lines',
         inverse_name='l10n_es_vat_book_id',
-        string=_('Received received'),
+        string='Received received',
         readonly="True")
 
     rectification_issued_invoice_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.rectification.issued.lines',
         inverse_name='l10n_es_vat_book_id',
-        string=_('Rectification issued'),
+        string='Rectification issued',
         readonly="True")
 
     rectification_received_invoice_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.rectification.received.lines',
         inverse_name='l10n_es_vat_book_id',
-        string=_('Rectification received'),
+        string='Rectification received',
         readonly="True")
 
     calculation_date = fields.Date(
-        string=_('Calculation Date'))
+        string='Calculation Date')
 
     amount_without_tax_issued = fields.Float(
-        string=_('Total without taxes'),
+        string='Total without taxes',
         readonly="True")
 
     amount_tax_issued = fields.Float(
-        string=_('Taxes'),
+        string='Taxes',
         readonly="True")
 
     amount_total_issued = fields.Float(
-        string=_('Total'),
+        string='Total',
         readonly="True")
 
     issued_tax_summary = fields.One2many(
         comodel_name='l10n.es.vat.book.issued.tax.summary',
         inverse_name='vat_book_id',
-        string=_("Issued tax summary"),
+        string="Issued tax summary",
         readonly="True")
 
     amount_without_tax_received = fields.Float(
-        string=_('Total without taxes'),
+        string='Total without taxes',
         readonly="True")
 
     amount_tax_received = fields.Float(
-        string=_('Taxes'),
+        string='Taxes',
         readonly="True")
 
     amount_total_received = fields.Float(
-        string=_('Total'),
+        string='Total',
         readonly="True")
 
     received_tax_summary = fields.One2many(
         comodel_name='l10n.es.vat.book.received.tax.summary',
         inverse_name='vat_book_id',
-        string=_("Received tax summary"),
+        string="Received tax summary",
         readonly="True")
 
     amount_without_tax_rectification_issued = fields.Float(
-        string=_('Total without taxes'),
+        string='Total without taxes',
         readonly="True")
 
     amount_tax_rectification_issued = fields.Float(
-        string=_('Taxes'),
+        string='Taxes',
         readonly="True")
 
     amount_total_rectification_issued = fields.Float(
-        string=_('Total'),
+        string='Total',
         readonly="True")
 
     rectification_issued_tax_summary = fields.One2many(
         comodel_name='l10n.es.vat.book.rectification.issued.tax.summary',
         inverse_name='vat_book_id',
-        string=_("Issued tax summary"),
+        string="Issued tax summary",
         readonly="True")
 
     amount_without_tax_rectification_received = fields.Float(
-        string=_('Total without taxes'),
+        string='Total without taxes',
         readonly="True")
 
     amount_tax_rectification_received = fields.Float(
-        string=_('Taxes'),
+        string='Taxes',
         readonly="True")
 
     amount_total_rectification_received = fields.Float(
-        string=_('Total'),
+        string='Total',
         readonly="True")
 
     rectification_received_tax_summary = fields.One2many(
         comodel_name='l10n.es.vat.book.rectification.received.tax.summary',
         inverse_name='vat_book_id',
-        string=_("Received tax summary"),
+        string="Received tax summary",
         readonly="True")
 
     @api.model

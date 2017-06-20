@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, _
+from openerp import models, fields
 
 
 class L10nEsVatBookIssuedLines(models.Model):
@@ -26,39 +26,39 @@ class L10nEsVatBookIssuedLines(models.Model):
     _order = 'invoice_id desc'
 
     invoice_date = fields.Date(
-        string=_('Invoice Date'))
+        string='Invoice Date')
 
     partner_id = fields.Many2one(
         comodel_name='res.partner',
-        string=_('Empresa'))
+        string='Empresa')
 
     vat_number = fields.Char(
-        string=_('NIF'))
+        string='NIF')
 
     invoice_id = fields.Many2one(
         comodel_name='account.invoice',
-        string=_('Invoice'))
+        string='Invoice')
 
     base = fields.Float(
-        string=_('Base'))
+        string='Base')
 
     tax_import = fields.Float(
-        string=_('Tax import'))
+        string='Tax import')
 
     total = fields.Float(
-        string=_('Total'))
+        string='Total')
 
     l10n_es_vat_book_id = fields.Many2one(
         comodel_name='l10n.es.vat.book',
-        string=_('Vat Book id'))
+        string='Vat Book id')
 
     tax_line_issued_ids = fields.One2many(
         comodel_name='l10n.es.vat.book.invoice.tax.lines',
         inverse_name='issued_invoice_line_id',
-        string=_("Lineas de impuesto"))
+        string="Lineas de impuesto")
 
     exeption = fields.Boolean(
-        string=_("Exeption"))
+        string="Exeption")
 
     exeption_text = fields.Char(
-        string=_("Exeption text"))
+        string="Exeption text")

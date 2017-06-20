@@ -18,7 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, _
+from openerp import models, fields
 
 
 class L10nEsVatBookIssuedTaxSummary(models.Model):
@@ -26,19 +26,19 @@ class L10nEsVatBookIssuedTaxSummary(models.Model):
 
     tax_code_id = fields.Many2one(
         comodel_name='account.tax.code',
-        string=_('Account Tax Code'),
+        string='Account Tax Code',
         required=True,
         ondelete="cascade")
 
     sum_tax_amount = fields.Float(
-        string=_('Summary tax amount'))
+        string='Summary tax amount')
 
     sum_base_amount = fields.Float(
-        string=_('Summary base amount'))
+        string='Summary base amount')
 
     tax_percent = fields.Float(
-        string=_('Tax percent'))
+        string='Tax percent')
 
     vat_book_id = fields.Many2one(
         comodel_name='l10n.es.vat.book',
-        string=_('Libro de IVA'))
+        string='Libro de IVA')

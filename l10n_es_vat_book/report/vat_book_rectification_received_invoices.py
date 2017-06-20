@@ -1,4 +1,4 @@
-#-*- coding:utf-8 -*-
+# -*- coding:utf-8 -*-
 
 from openerp.osv import osv
 from openerp.report import report_sxw
