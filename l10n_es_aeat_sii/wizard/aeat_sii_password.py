@@ -17,12 +17,12 @@ _logger = logging.getLogger(__name__)
 
 try:
     import OpenSSL.crypto
+
+    if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
+        _logger.warning(
+            'OpenSSL version is not supported. Upgrade to 0.15 or greater.')
 except (ImportError, IOError) as err:
     _logger.debug(err)
-
-if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
-    _logger.warning(
-        'OpenSSL version is not supported. Upgrade to 0.15 or greater.')
 
 
 @contextlib.contextmanager

@@ -25,8 +25,11 @@
     "application": False,
     "installable": True,
     "external_dependencies": {
-        "python": ["zeep",
-                   "requests"],
+        "python": [
+            "zeep",
+            "requests",
+            "pyOpenSSL",
+        ],
     },
     "depends": [
         "account_refund_original",
