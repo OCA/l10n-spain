@@ -28,7 +28,7 @@
         "python": [
             "zeep",
             "requests",
-            "pyOpenSSL",
+            "OpenSSL",
         ],
     },
     "depends": [
