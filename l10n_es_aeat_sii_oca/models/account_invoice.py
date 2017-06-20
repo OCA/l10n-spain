@@ -36,7 +36,11 @@ except ImportError:
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def _get_default_key(self):
+    def _default_refund_type(self):
+        inv_type = self.env.context.get('type')
+        return 'S' if inv_type in ['out_refund', 'in_refund'] else False
+
+    def _default_registration_key(self):
         sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
         type = self.env.context.get('type')
         if type in ['in_invoice', 'in_refund']:
@@ -57,10 +61,10 @@ class AccountInvoice(models.Model):
     sii_send_error = fields.Text(string='SII Send Error')
     refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
-        string="Refund Type", default='S')
+        string="Refund Type", default=_default_refund_type)
     registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
-        string="SII registration key", default=_get_default_key,
+        string="SII registration key", default=_default_registration_key,
         # required=True, This is not set as required here to avoid the
         # set not null constraint warning
     )
@@ -380,7 +384,9 @@ class AccountInvoice(models.Model):
                     "TipoFactura": (
                         'R4' if self.type == 'in_refund' else 'F1'
                     ),
-                    "ClaveRegimenEspecialOTrascendencia": "01",
+                    "ClaveRegimenEspecialOTrascendencia": (
+                        self.registration_key.code
+                    ),
                     "DescripcionOperacion": self.sii_description[0:500],
                     "DesgloseFactura": self._get_sii_in_taxes(),
                     "Contraparte": {
@@ -616,6 +622,7 @@ class AccountInvoiceLine(models.Model):
         tax_type = str(tax_line.amount * 100)
         if tax_type not in tax_dict:
             tax_dict[tax_type] = {
+                'TipoImpositivo': tax_type,
                 'BaseImponible': 0,
                 'CuotaRepercutida': 0,
                 'CuotaSoportada': 0,
