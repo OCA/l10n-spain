@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_invoice_integration,access_account_invoice_face,model_account_invoice_integration,account.group_account_invoice,1,1,1,0
+access_account_invoice_integration_method,access_account_invoice_face,model_account_invoice_integration_method,account.group_account_invoice,1,0,0,0
+access_account_invoice_integration_log,access_account_invoice_face,model_account_invoice_integration_log,account.group_account_invoice,1,1,1,0

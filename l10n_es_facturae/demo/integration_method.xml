@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 Creu Blanca
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo noupdate="1">
+    <record id="seq_account_invoice_demo" model="ir.sequence">
+        <field name="name">Integration demo</field>
+        <field name="code">account.invoice.integration.demo</field>
+        <field name="prefix">DEMOINT</field>
+        <field name="padding">8</field>
+    </record>
+    <record id="integration_demo" model="account.invoice.integration.method">
+        <field name="name">Demo Integration</field>
+        <field name="code">demo</field>
+        <field name="sequence_id" ref="l10n_es_facturae.seq_account_invoice_demo"/>
+    </record>
+</odoo>

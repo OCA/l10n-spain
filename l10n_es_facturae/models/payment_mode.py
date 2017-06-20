@@ -2,11 +2,11 @@
 # © 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields
+from odoo import models, fields
 
 
 class PaymentMode(models.Model):
-    _inherit = "payment.mode"
+    _inherit = "account.payment.mode"
 
     facturae_code = fields.Selection(
         selection=[
@@ -29,4 +29,4 @@ class PaymentMode(models.Model):
             ('17', '[17] Cheque bancario'),
             ('18', '[18] Pago contra reembolso'),
             ('19', '[19] Pago mediante tarjeta'),
-        ], string="FACe code")
+        ], string="Facturae code", default='04')
