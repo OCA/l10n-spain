@@ -9,6 +9,7 @@
     "website": "https://odoo-community.org/",
     "author": "Studio73, "
               "Comunitea, "
+              "Punt Sistemes, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [
