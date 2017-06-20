@@ -213,23 +213,27 @@ class AccountInvoice(models.Model):
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         for inv_line in self.invoice_line:
+            exempt_cause = self._get_sii_exempt_cause(inv_line.product_id)
             for tax_line in inv_line.invoice_line_tax_id:
-                if tax_line in (taxes_sfesb + taxes_sfesisp + taxes_sfens):
+                breakdown_taxes = (
+                    taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesb
+                )
+                if tax_line in breakdown_taxes:
                     tax_breakdown = taxes_dict.setdefault(
                         'DesgloseFactura', {},
                     )
                 if tax_line in taxes_sfesb:
-                    tax_breakdown.setdefault('Sujeta', {})
+                    sub_dict = tax_breakdown.setdefault('Sujeta', {})
                     # TODO l10n_es no tiene impuesto exento de bienes
                     # corrientes nacionales
-                    if tax_line in taxes_sfesbe:
-                        tax_breakdown.setdefault('Exenta', {
-                            'BaseImponible': 0,
-                        })
-                        tax_breakdown['Sujeta']['Exenta']['BaseImponible'] += (
+                    ex_taxes = (taxes_sfesbe + taxes_sfesbe + taxes_sfesisp)
+                    if tax_line in ex_taxes:
+                        sub_dict.setdefault('Exenta', {'BaseImponible': 0})
+                        if exempt_cause:
+                            sub_dict['Exenta']['CausaExencion'] = exempt_cause
+                        sub_dict['Exenta']['BaseImponible'] += (
                             inv_line.price_subtotal
                         )
-                    # TODO Facturas No sujetas
                     tax_breakdown['Sujeta'].setdefault('NoExenta', {
                         'TipoNoExenta': (
                             'S2' if tax_line in taxes_sfesisp else 'S1'
@@ -239,6 +243,14 @@ class AccountInvoice(models.Model):
                         },
                     })
                     inv_line._update_sii_tax_line(taxes_f, tax_line)
+                # No sujetas
+                if tax_line in taxes_sfens:
+                    # FIXME: decidir que tipo se selecciona
+                    t_nsub = 'ImportePorArticulos7_14_Otros'
+                    nsub_dict = tax_breakdown.setdefault(
+                        'NoSujeta', {t_nsub: 0},
+                    )
+                    nsub_dict[t_nsub] += inv_line.price_subtotal
                 if tax_line in (taxes_sfess + taxes_sfesse):
                     type_breakdown = taxes_dict.setdefault(
                         'DesgloseTipoOperacion', {
@@ -250,6 +262,8 @@ class AccountInvoice(models.Model):
                         exempt_dict = service_dict['Sujeta'].setdefault(
                             'Exenta', {'BaseImponible': 0},
                         )
+                        if exempt_cause:
+                            exempt_dict['CausaExencion'] = exempt_cause
                         exempt_dict['BaseImponible'] += inv_line.price_subtotal
                     # TODO Facturas no sujetas
                     if tax_line in taxes_sfess:
@@ -274,6 +288,17 @@ class AccountInvoice(models.Model):
         if taxes_to:
             type_breakdown['PrestacionServicios']['Sujeta']['NoExenta'][
                 'DesgloseIVA']['DetalleIVA'] = taxes_to.values()
+        # Ajustes finales breakdown
+        # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
+        # - Ciertos condicionantes obligan DesgloseTipoOperacion
+        if ('DesgloseTipoOperacion' in taxes_dict
+                and 'DesgloseFactura' in taxes_dict) or \
+                ('DesgloseFactura' in taxes_dict
+                 and self._get_sii_gen_type() in (2, 3)):
+            taxes_dict.setdefault('DesgloseTipoOperacion', {})
+            taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
+                taxes_dict['DesgloseFactura']
+            del taxes_dict['DesgloseFactura']
         return taxes_dict
 
     @api.multi
@@ -368,9 +393,7 @@ class AccountInvoice(models.Model):
         if self.type in ['in_invoice', 'in_refund']:
             inv_dict = {
                 "IDFactura": {
-                    "IDEmisorFactura": {
-                        "NIF": self.partner_id.vat[2:]
-                    },
+                    "IDEmisorFactura": {},
                     "NumSerieFacturaEmisor": (
                         (self.supplier_invoice_number or '')[:60]
                     ),
@@ -391,12 +414,16 @@ class AccountInvoice(models.Model):
                     "DesgloseFactura": self._get_sii_in_taxes(),
                     "Contraparte": {
                         "NombreRazon": self.partner_id.name[0:120],
-                        "NIF": self.partner_id.vat[2:]
                     },
                     "FechaRegContable": invoice_date,
-                    "CuotaDeducible": self.amount_tax
+                    "ImporteTotal": self.amount_total,
+                    "CuotaDeducible": self.amount_tax,
                 }
             }
+            # Uso condicional de IDOtro/NIF
+            ident = self._get_sii_identifier()
+            inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
+            inv_dict['FacturaRecibida']['Contraparte'].update(ident)
             if self.type == 'in_refund':
                 rec_dict = inv_dict['FacturaRecibida']
                 rec_dict['TipoRectificativa'] = self.refund_type
@@ -555,24 +582,59 @@ class AccountInvoice(models.Model):
         return super(AccountInvoice, self).action_cancel()
 
     @api.multi
-    def _get_sii_identifier(self):
+    def _get_sii_gen_type(self):
+        """Make a choice for general invoice type
+
+        Returns:
+            int: 1 (National), 2 (Intracom), 3 (Export)
+        """
         self.ensure_one()
-        country_code = self.partner_id.vat[:2]
-        if country_code != 'ES':
-            if self.fiscal_position.name == u'Régimen Intracomunitario':
-                type_id = '02'
-            else:
-                type_id = '04'
-            dic_ret = {
+        if self.fiscal_position.name == u'Régimen Intracomunitario':
+            return 2
+        elif self.fiscal_position.name == \
+                u'Régimen Extracomunitario / Canarias, Ceuta y Melilla':
+            return 3
+        else:
+            return 1
+
+    @api.multi
+    def _get_sii_identifier(self):
+        """Get the SII structure for a partner identifier depending on the
+        conditions of the invoice.
+        """
+        self.ensure_one()
+        gen_type = self._get_sii_gen_type()
+        # Limpiar alfanum
+        vat = ''.join(e for e in self.partner_id.vat if e.isalnum()).upper()
+        if gen_type == 1 or vat.startswith('ES'):
+            return {"NIF": vat[2:]}
+        elif gen_type == 2:
+            return {
                 "IDOtro": {
-                    "CodigoPais": country_code,
-                    "IDType": type_id,
-                    "ID": self.partner_id.vat,
+                    "IDType": '02',
+                    "ID": vat,
                 }
             }
-        else:
-            dic_ret = {"NIF": self.partner_id.vat[2:]}
-        return dic_ret
+        elif gen_type == 3:
+            return {
+                "IDOtro": {
+                    "CodigoPais": self.partner_id.country_id.code or vat[:2],
+                    "IDType": '04',
+                    "ID": vat,
+                },
+            }
+
+    @api.multi
+    def _get_sii_exempt_cause(self, product):
+        """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII."""
+        self.ensure_one()
+        gen_type = self._get_sii_gen_type()
+        if gen_type == 2:
+            return 'E5'
+        elif gen_type == 3:
+            return 'E2'
+        elif product.sii_exempt_cause != 'none':
+            return product.sii_exempt_cause
 
     def is_sii_invoice(self):
         """Hook method to be overridden in additional modules to verify
