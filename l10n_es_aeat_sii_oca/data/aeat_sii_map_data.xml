@@ -48,7 +48,8 @@
         <record id="aeat_sii_map_line_SFESBE" model="aeat.sii.map.lines">
             <field name="code">SFESBE</field>
             <field name="taxes" eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_s_iva0_ic')
+                ref('l10n_es.account_tax_template_s_iva0_ic'),
+                ref('l10n_es.account_tax_template_s_iva0_e'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Bienes Exento</field>
