@@ -736,7 +736,12 @@ class AccountInvoiceLine(models.Model):
         :param tax_line: Tax line that is being analyzed.
         """
         self.ensure_one()
-        tax_type = str(tax_line.amount * 100)
+        if tax_line.child_depend:
+            for child in tax_line.child_ids:
+                if child.amount>0:
+                    tax_type = str(child.amount * 100)
+        else:
+            tax_type = str(tax_line.amount * 100)
         if tax_type not in tax_dict:
             tax_dict[tax_type] = {
                 'TipoImpositivo': tax_type,
