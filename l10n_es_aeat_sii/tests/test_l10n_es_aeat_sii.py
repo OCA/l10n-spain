@@ -130,6 +130,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
                 },
                 'DescripcionOperacion': u'/',
                 'ClaveRegimenEspecialOTrascendencia': special_regime,
+                'ImporteTotal': self.invoice.amount_total,
             },
             'PeriodoImpositivo': {
                 'Periodo': str(self.invoice.period_id.code[:2]),
@@ -139,7 +140,6 @@ class TestL10nEsAeatSii(common.TransactionCase):
         if self.invoice.type in ['out_invoice', 'out_refund']:
             res[expedida_recibida].update({
                 'TipoDesglose': {},
-                'ImporteTotal': self.invoice.amount_total,
             })
         else:
             res[expedida_recibida].update({
