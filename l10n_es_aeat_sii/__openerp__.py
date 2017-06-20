@@ -150,16 +150,17 @@ To contribute to this module, please visit https://odoo-community.org.""",
        "python": ["zeep", "requests"]
     },
     "update_xml" : [
-        'res_company_view.xml', 
-        'account_invoice_view.xml',
-        'aeat_sii_map_view.xml',
-        'aeat_sii_mapping_registration_keys_view.xml'
+        'views/res_company_view.xml', 
+        'views/account_invoice_view.xml',
+        'views/aeat_sii_map_view.xml',
+        'views/aeat_sii_mapping_registration_keys_view.xml'
     ],
      "data": [
         "data/ir_config_parameter.xml",
         "data/aeat_sii_map_data.xml",
         "data/aeat_sii_mapping_registration_keys_data.xml",
-        "security/ir.model.access.csv",
+        #"security/ir.model.access.csv",
+	#"security/aeat_sii.xml"
     ],
     "installable": True
 }

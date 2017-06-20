@@ -8,8 +8,15 @@
             <field name="arch" type="xml">
                     <page string="Configuration" position="inside">
                        <separator name="aeat_sii_config" string="AEAT SII Configuration" />
-                       <group>
-                        <field name="version_sii"/>
+
+		        <group name="sii_enabled">
+                        	<field name="sii_enabled"/>
+	                </group>
+
+			<group attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <!--<field name="chart_template_id"
+                               attrs="{'required': [('sii_enabled', '=', True)]}"/>-->
+                        <!--<field name="method"/>-->
                         <field name="wsdl_out" />
                         <field name="wsdl_in" />
                         <field name="wsdl_pi" />
