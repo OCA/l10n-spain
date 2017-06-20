@@ -32,6 +32,7 @@ from openerp.exceptions import Warning
 
 
 
+
 class account_invoice(osv.Model):
     _inherit = 'account.invoice'
 
@@ -71,7 +72,6 @@ class account_invoice(osv.Model):
                             'vinculada que sustituir'
                  }
             }
-
 
     def map_tax_template(self, cr, uid, tax_template, mapping_taxes,invoice):
         # Adapted from account_chart_update module
@@ -181,12 +181,11 @@ class account_invoice(osv.Model):
         return tax_sii
     
     
-    def _update_sii_tax_line(self, cr, uid, taxes, tax_line, line, line_taxes):
+    def _update_sii_tax_line(self, cr, uid, taxes, tax_line, line, line_taxes, invoice):
         tax_type = tax_type = tax_line.amount * 100
         tax_line_req = self._get_tax_line_req(cr, uid, tax_type, line, line_taxes)
         #tax = self.pool.get('account.tax').browse(cr, uid, tax_line.id)
-	taxes = self.pool.get('account.tax').compute_all(
-        	cr, uid, [tax_line.id],
+        taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax_line.id],
 	        (line.price_unit * (1 - (line.discount or 0.0) / 100.0)),
 	        line.quantity, line.product_id, line.invoice_id.partner_id)
 
@@ -197,7 +196,7 @@ class account_invoice(osv.Model):
             TipoRecargo = 0
             CuotaRecargo = 0
 
-        taxes[str(tax_type)]['BaseImponible'] += taxesc['total']
+        taxes[str(tax_type)]['BaseImponible'] += taxes['total']
         #taxes[str(tax_type)]['CuotaRepercutida'] += taxesc['taxes'][0]['amount']
         taxes[str(tax_type)]['TipoRecargoEquivalencia'] = TipoRecargo
         taxes[str(tax_type)]['CuotaRecargoEquivalencia'] += CuotaRecargo
@@ -210,7 +209,7 @@ class account_invoice(osv.Model):
 
     
     def _get_sii_out_taxes(self, cr, uid, invoice):
-	taxes_sii = {}
+        taxes_sii = {}
         taxes_f = {}
         taxes_to = {}
         taxes_sfesb = self._get_taxes_map(cr, uid, ['SFESB'],
@@ -305,7 +304,7 @@ class account_invoice(osv.Model):
                             # else:
                             tipo_no_exenta = 'S1'
                             type_breakdown[
-                                'PrestacionServicios']['º']['NoExenta'][
+                                'PrestacionServicios']['Sujeta']['NoExenta'][
                                     'TipoNoExenta'] = tipo_no_exenta
                         if 'DesgloseIVA' not in taxes_sii[
                             'DesgloseTipoOperacion']['PrestacionServicios'][
@@ -340,7 +339,7 @@ class account_invoice(osv.Model):
                     'Sujeta']['NoExenta']['DesgloseIVA'][
                         'DetalleIVA'].append(line)	
 
-	#raise Warning(taxes_sii)
+	    #raise Warning(taxes_sii)
         return taxes_sii
 
     
@@ -544,21 +543,36 @@ class account_invoice(osv.Model):
 
         return invoices
     
-    
-    def _connect_sii(self, cr, uid, wsdl):
-        publicCrt = self.pool.get('ir.config_parameter').get_param(cr, uid, 
-            'l10n_es_aeat_sii.publicCrt', False)
-        privateKey = self.pool.get('ir.config_parameter').get_param(cr, uid, 
-            'l10n_es_aeat_sii.privateKey', False)
+    def _connect_sii(self, cr, uid, wsdl, company_id):
+        today = datetime.now().date()
+        sii_config_pool = self.pool.get('l10n.es.aeat.sii')
+        sii_config_id = sii_config_pool.search(cr, uid,[
+            ('company_id', '=', company_id),
+            ('public_key', '!=', False),
+            ('private_key', '!=', False),
+            '|',
+            ('date_start', '=', False),
+            ('date_start', '<=', today),
+            '|',
+            ('date_end', '=', False),
+            ('date_end', '>=', today),
+            ('state', '=', 'active'),
+        ], limit=1)
+
+        if not sii_config_id:
+            raise osv.except_osv(_('Error!'), _("There is no certificate configured for this company and date"))
+
+        sii_config = sii_config_pool.browse(cr, uid, sii_config_id[0])
+
+        publicCrt = sii_config.public_key
+        privateKey = sii_config.private_key
 
         session = Session()
         session.cert = (publicCrt, privateKey)
         transport = Transport(session=session)
-
         history = HistoryPlugin()
         client = Client(wsdl=wsdl,transport=transport,plugins=[history])
         return client
-
     
     def _send_invoice_to_sii(self, cr, uid, ids):
 
@@ -567,13 +581,13 @@ class account_invoice(osv.Model):
             port_name = ''
             if invoice.type in['out_invoice','out_refund']:
                 wsdl = company.wsdl_out
-                client = self._connect_sii(cr, uid, wsdl)
+                client = self._connect_sii(cr, uid, wsdl, company.id)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type in ['in_invoice','in_refund']:
                 wsdl = company.wsdl_in
-                client = self._connect_sii(cr, uid, wsdl)
+                client = self._connect_sii(cr, uid, wsdl, company.id)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
@@ -607,7 +621,7 @@ class account_invoice(osv.Model):
 
 
     def action_number(self, cr, uid, ids, context=None):
-        res = super(AccountInvoice, self).action_number(cr, uid, ids, context=context)
+        res = super(account_invoice, self).action_number(cr, uid, ids, context=context)
         for invoice in self.browse(cr, uid, ids):
             company = invoice.company_id
             if company.sii_enabled and company.sii_method == 'auto':
@@ -629,7 +643,7 @@ class account_invoice(osv.Model):
         default['sii_csv'] = None
         default['sii_return'] = None
 
-        return super(AccountInvoice, self).copy(cr, uid, id, default, context=context)
+        return super(account_invoice, self).copy(cr, uid, id, default, context=context)
 
     
     def invoice_validate(self, cr, uid, ids, context=None):
