@@ -36,8 +36,15 @@ class res_company(osv.osv):
 
 
      _columns = {
+       'sii_enabled': fields.boolean(string='Enable SII'),
        'sii_test': fields.boolean('Test Enviroment'),
+       'sii_method': fields.selection(
+            string='Method',
+            selection=[('auto', 'Automatic'),('manual', 'Manual')],
+            help='By default the invoice send in validate process, with manual '
+            'method, there a button to send the invoice.'),
        'use_connector': fields.boolean('Use connector', help='Check it to use connector instead to send the invoice when it is validated'),
+       'chart_template_id': fields.many2one('account.chart.template', 'Chart Template',required=True),
        'wsdl_out': fields.char('WSDL Invoice Out'),
        'wsdl_in': fields.char('WSDL Invoice In'),
        'wsdl_pi': fields.char('WSDL Property Investment'),
@@ -51,32 +58,32 @@ class res_company(osv.osv):
      _defaults = {
        'wsdl_out': 'http://www.agenciatributaria.es/static_files/AEAT/'
         'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
-        'Suministro_inmediato_informacion/FicherosSuministros/V_06/'
+        'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
         'SuministroFactEmitidas.wsdl',
        'wsdl_in': 'http://www.agenciatributaria.es/static_files/AEAT/'
         'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
-        'Suministro_inmediato_informacion/FicherosSuministros/V_06/'
+        'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
         'SuministroFactRecibidas.wsdl',
        'wsdl_pi': 'http://www.agenciatributaria.es/static_files/AEAT/'
         'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
-        'Suministro_inmediato_informacion/FicherosSuministros/V_06/'
+        'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
         'SuministroBienesInversion.wsdl',
        'wsdl_ic': 'http://www.agenciatributaria.es/static_files/AEAT/'
         'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
-        'Suministro_inmediato_informacion/FicherosSuministros/V_06/'
+        'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
         'SuministroOpIntracomunitarias.wsdl',
        'wsdl_pr': 'http://www.agenciatributaria.es/static_files/AEAT/'
         'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
-        'Suministro_inmediato_informacion/FicherosSuministros/V_06/'
+        'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
         'SuministroCobrosEmitidas.wsdl',
        'wsdl_prm' : 'http://www.agenciatributaria.es/static_files/AEAT/'
         'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
-        'Suministro_inmediato_informacion/FicherosSuministros/V_06/'
+        'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
         'SuministroOpTrascendTribu.wsdl',
        'wsdl_ps': 'http://www.agenciatributaria.es/static_files/AEAT/'
         'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
-        'Suministro_inmediato_informacion/FicherosSuministros/V_06/'
+        'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
         'SuministroPagosRecibidas.wsdl',
-       'version_sii': 0.6,
+       'version_sii': 0.7,
      }
 res_company()

@@ -38,6 +38,41 @@ class aeat_sii_map(osv.Model):
         'date_to': fields.date('Date to'),
         'map_lines': fields.one2many('aeat.sii.map.lines', 'sii_map_id', 'Lines'),
     }     
+
+
+    def _unique_date_range(self, cr, uid, ids, context=None):
+
+        # TODO Revisar dominio para ambas fechas, er
+
+        # for map in self.browse(cr, uid, ids, context):
+            # domain = [('id', '!=', map.id)]
+            # if map.date_from and map.date_to:
+            #     domain += ['|', '&',
+            #                ('date_from', '<=', map.date_to),
+            #                ('date_from', '>=', map.date_from),
+            #                '|', '&',
+            #                ('date_to', '<=', map.date_to),
+            #                ('date_to', '>=', map.date_from),
+            #                '|', '&',
+            #                ('date_from', '=', False),
+            #                ('date_to', '>=', map.date_from),
+            #                '|', '&',
+            #                ('date_to', '=', False),
+            #                ('date_from', '<=', map.date_to),
+            #                ]
+            # elif map.date_from:
+            #     domain += [('date_to', '>=', map.date_from)]
+            # elif map.date_to:
+            #     domain += [('date_from', '<=', map.date_to)]
+            #
+            # if self.search(cr, uid, domain):
+            #     return False
+        return True
+
+    _constraints = [
+        (_unique_date_range, "Error! The dates of the record overlap with an existing record" , ['date_to','date_from'])
+    ]
+
 aeat_sii_map()
 
 class aeat_sii_map_lines(osv.Model):

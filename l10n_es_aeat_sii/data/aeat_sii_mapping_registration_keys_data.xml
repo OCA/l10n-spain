@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-    
         <record id="aeat_sii_mapping_registration_keys_01" model="aeat.sii.mapping.registration.keys">
             <field name="code">01</field>
             <field name="name">Operación de régimen general</field>
             <field name="type">sale</field>
         </record>
-
         <record id="aeat_sii_mapping_registration_keys_02" model="aeat.sii.mapping.registration.keys">
             <field name="code">02</field>
             <field name="name">Exportación</field>
             <field name="type">sale</field>
         </record>  
-    
         <record id="aeat_sii_mapping_registration_keys_03" model="aeat.sii.mapping.registration.keys">
             <field name="code">03</field>
             <field name="name">Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección (135-139 LIVA)</field>
@@ -81,70 +78,70 @@
             <field name="type">sale</field>
         </record>
         <record id="aeat_sii_mapping_registration_keys_16" model="aeat.sii.mapping.registration.keys">
-            <field name="code">01</field>
-            <field name="name">Operación de régimen general</field>
-            <field name="type">purchase</field>
+            <field name="code">16</field>
+            <field name="name">Primer semestre 2017</field>
+            <field name="type">sale</field>
         </record>
 
 
         <record id="aeat_sii_mapping_registration_keys_17" model="aeat.sii.mapping.registration.keys">
-            <field name="code">02</field>
-            <field name="name">Operaciones por las que los empresarios satisfacen compensaciones REAGYP</field>
+            <field name="code">01</field>
+            <field name="name">Operación de régimen general</field>
             <field name="type">purchase</field>
         </record>
         <record id="aeat_sii_mapping_registration_keys_18" model="aeat.sii.mapping.registration.keys">
-            <field name="code">03</field>
-            <field name="name">Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección (135-139 LIVA)</field>
+            <field name="code">02</field>
+            <field name="name">Operaciones por las que los empresarios satisfacen compensaciones en las adquisiciones a personas acogidas al Régimen especial de la agricultura, ganaderia y pesca.</field>
             <field name="type">purchase</field>
         </record>
         <record id="aeat_sii_mapping_registration_keys_19" model="aeat.sii.mapping.registration.keys">
+            <field name="code">03</field>
+            <field name="name">Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</field>
+            <field name="type">purchase</field>
+        </record>
+        <record id="aeat_sii_mapping_registration_keys_20" model="aeat.sii.mapping.registration.keys">
             <field name="code">04</field>
             <field name="name">Régimen especial oro de inversión</field>
             <field name="type">purchase</field>
         </record>
-        <record id="aeat_sii_mapping_registration_keys_20" model="aeat.sii.mapping.registration.keys">
+        <record id="aeat_sii_mapping_registration_keys_21" model="aeat.sii.mapping.registration.keys">
             <field name="code">05</field>
             <field name="name">Régimen especial agencias de viajes</field>
             <field name="type">purchase</field>
         </record>
-        <record id="aeat_sii_mapping_registration_keys_21" model="aeat.sii.mapping.registration.keys">
+        <record id="aeat_sii_mapping_registration_keys_22" model="aeat.sii.mapping.registration.keys">
             <field name="code">06</field>
             <field name="name">Régimen especial grupo de entidades en IVA (Nivel Avanzado)</field>
             <field name="type">purchase</field>
         </record>
-        <record id="aeat_sii_mapping_registration_keys_22" model="aeat.sii.mapping.registration.keys">
+        <record id="aeat_sii_mapping_registration_keys_23" model="aeat.sii.mapping.registration.keys">
             <field name="code">07</field>
             <field name="name">Régimen especial criterio de caja</field>
             <field name="type">purchase</field>
         </record>
-        <record id="aeat_sii_mapping_registration_keys_23" model="aeat.sii.mapping.registration.keys">
+        <record id="aeat_sii_mapping_registration_keys_24" model="aeat.sii.mapping.registration.keys">
             <field name="code">08</field>
-            <field name="name">Operaciones sujetas al IPSI  / IGIC</field>
+            <field name="name">Operaciones sujetas al IPSI / IGIC (Impuesto sobre la Producción, los Servicios y la Importación / Impuesto General Indirecto Canario).</field>
             <field name="type">purchase</field>
         </record>
-        <record id="aeat_sii_mapping_registration_keys_24" model="aeat.sii.mapping.registration.keys">
+        <record id="aeat_sii_mapping_registration_keys_25" model="aeat.sii.mapping.registration.keys">
             <field name="code">09</field>
             <field name="name">Adquisiciones intracomunitarias de bienes y prestaciones de servicios</field>
             <field name="type">purchase</field>
         </record>           
-        <record id="aeat_sii_mapping_registration_keys_25" model="aeat.sii.mapping.registration.keys">
-            <field name="code">10</field>
-            <field name="name">Compra de agencias viajes: operaciones de mediación en nombre y por cuenta ajena en los servicios de transporte prestados al destinatario de los servicios de acuerdo con el apartado 3 de la D.A.4ª RD1619/2012</field>
-            <field name="type">purchase</field>
-        </record>                  
         <record id="aeat_sii_mapping_registration_keys_26" model="aeat.sii.mapping.registration.keys">
-            <field name="code">11</field>
-            <field name="name">Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)</field>
-            <field name="type">purchase</field>
-        </record> 
-        <record id="aeat_sii_mapping_registration_keys_27" model="aeat.sii.mapping.registration.keys">
             <field name="code">12</field>
             <field name="name">Operaciones de arrendamiento de local de negocio</field>
             <field name="type">purchase</field>
         </record>
-        <record id="aeat_sii_mapping_registration_keys_28" model="aeat.sii.mapping.registration.keys">
+        <record id="aeat_sii_mapping_registration_keys_27" model="aeat.sii.mapping.registration.keys">
             <field name="code">13</field>
             <field name="name">Factura correspondiente a una importación (informada sin asociar a un DUA)</field>
+            <field name="type">purchase</field>
+        </record>                              
+        <record id="aeat_sii_mapping_registration_keys_28" model="aeat.sii.mapping.registration.keys">
+            <field name="code">14</field>
+            <field name="name">Primer semestre 2017</field>
             <field name="type">purchase</field>
         </record>                              
     </data>

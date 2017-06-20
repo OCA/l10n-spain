@@ -19,13 +19,14 @@
             <field name="model">aeat.sii.map</field>
             <field name="arch" type="xml">
                 <form string="Aeat SII Map">
-                    <group col="4">
+                    <group>
                         <field name="name"/>
                         <field name="date_from"/>
                         <field name="date_to"/>
-                    </group>
-                    <group string="Mapping Lines" col="4">
+                    <group string="Mapping Lines">
                         <field name='map_lines' nolabel="1"/>
+                    </group>
+
                     </group>
                 </form>
             </field>
