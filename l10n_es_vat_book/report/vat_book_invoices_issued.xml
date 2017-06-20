@@ -214,7 +214,7 @@
     </t>
 </template>
 
-<record id="l10n_es_vat_book.report_vat_book_invoices_issued" model="ir.actions.report.xml">
+<record id="report_vat_book_invoices_issued" model="ir.actions.report.xml">
     <field name="paperformat_id" ref="l10n_es_vat_book.paperformat_lowmargin_lowfooter"></field>
 </record>
 

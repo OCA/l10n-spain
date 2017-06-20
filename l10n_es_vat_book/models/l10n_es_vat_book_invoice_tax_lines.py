@@ -18,36 +18,36 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import models, fields, _
+from openerp import models, fields
 
 
 class L10nEsVatBookInvoiceTaxLines(models.Model):
     _name = 'l10n.es.vat.book.invoice.tax.lines'
 
     name = fields.Char(
-        string=_("Tax Name"))
+        string="Tax Name")
 
     tax_percent = fields.Float(
-        string=_("Tax percent"))
+        string="Tax percent")
 
     tax_amount = fields.Float(
-        string=_("Tax amount"))
+        string="Tax amount")
 
     amount_without_tax = fields.Float(
-        string=_("Base"))
+        string="Base")
 
     issued_invoice_line_id = fields.Many2one(
         comodel_name='l10n.es.vat.book.issued.lines',
-        string=_("Issued invoice line"))
+        string="Issued invoice line")
 
     received_invoice_line_id = fields.Many2one(
         comodel_name='l10n.es.vat.book.received.lines',
-        string=_("Received invoice line"))
+        string="Received invoice line")
 
     rectification_issued_invoice_line_id = fields.Many2one(
         comodel_name='l10n.es.vat.book.rectification.issued.lines',
-        string=_("Received invoice line"))
+        string="Received invoice line")
 
     rectification_received_invoice_line_id = fields.Many2one(
         comodel_name='l10n.es.vat.book.rectification.received.lines',
-        string=_("Received invoice line"))
+        string="Received invoice line")
