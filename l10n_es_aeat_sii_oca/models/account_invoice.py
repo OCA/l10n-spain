@@ -297,10 +297,10 @@ class AccountInvoice(models.Model):
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
-        if ('DesgloseTipoOperacion' in taxes_dict
-                and 'DesgloseFactura' in taxes_dict) or \
-                ('DesgloseFactura' in taxes_dict
-                 and self._get_sii_gen_type() in (2, 3)):
+        if (('DesgloseTipoOperacion' in taxes_dict and
+                'DesgloseFactura' in taxes_dict) or
+                ('DesgloseFactura' in taxes_dict and
+                 self._get_sii_gen_type() in (2, 3))):
             taxes_dict.setdefault('DesgloseTipoOperacion', {})
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
@@ -737,14 +737,12 @@ class AccountInvoiceLine(models.Model):
         """
         self.ensure_one()
         if tax_line.child_depend:
-            for child in tax_line.child_ids:
-                if child.amount>0:
-                    tax_type = str(child.amount * 100)
+            tax_type = tax_line.child_ids.filtered('amount')[:1].amount
         else:
-            tax_type = str(tax_line.amount * 100)
+            tax_type = tax_line.amount
         if tax_type not in tax_dict:
             tax_dict[tax_type] = {
-                'TipoImpositivo': tax_type,
+                'TipoImpositivo': str(tax_type * 100),
                 'BaseImponible': 0,
                 'CuotaRepercutida': 0,
                 'CuotaSoportada': 0,
