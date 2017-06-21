@@ -180,7 +180,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
                 _deep_sort(test_out_inv.get(key)))
 
         self.invoice.type = 'out_refund'
-        self.invoice.refund_type = 'S'
+        self.invoice.sii_refund_type = 'S'
         invoices = self.invoice._get_sii_invoice_dict()
         test_out_refund = self._get_invoices_test('R4', '01')
         for key in invoices.keys():
@@ -198,7 +198,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
                 _deep_sort(test_in_invoice.get(key)))
 
         self.invoice.type = 'in_refund'
-        self.invoice.refund_type = 'S'
+        self.invoice.sii_refund_type = 'S'
         self.invoice.supplier_invoice_number = 'sup0001'
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_refund = self._get_invoices_test('R4', '01')
