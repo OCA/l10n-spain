@@ -335,113 +335,150 @@ class AccountInvoice(models.Model):
         return taxes_dict
 
     @api.multi
-    def _get_sii_invoice_dict(self):
+    def _sii_check_exceptions(self):
+        """Inheritable method for exceptions control when sending SII invoices.
+        """
         self.ensure_one()
         if not self.partner_id.vat:
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
+        if not self.company_id.chart_template_id:
+            raise exceptions.Warning(_(
+                'You have to select what account chart template use this'
+                ' company.'))
+        if not self.company_id.sii_enabled:
+            raise exceptions.Warning(
+                _("This company doesn't have SII enabled.")
+            )
+
+    @api.multi
+    def _get_sii_invoice_dict_out(self):
+        """Build dict with data to send to AEAT WS for invoice types:
+        out_invoice and out_refund.
+
+        :return: invoices (dict) : Dict XML with data for this invoice.
+        """
+        self.ensure_one()
         invoice_date = self._change_date_format(self.date_invoice)
         company = self.company_id
         ejercicio = fields.Date.from_string(
             self.period_id.fiscalyear_id.date_start).year
         periodo = '%02d' % fields.Date.from_string(
             self.period_id.date_start).month
-        if not company.chart_template_id:
-            raise exceptions.Warning(_(
-                'You have to select what account chart template use this'
-                ' company.'))
-        inv_dict = {}
-        if self.type in ['out_invoice', 'out_refund']:
-            inv_dict = {
-                "IDFactura": {
-                    "IDEmisorFactura": {
-                        "NIF": company.vat[2:],
-                    },
-                    "NumSerieFacturaEmisor": self.number[0:60],
-                    "FechaExpedicionFacturaEmisor": invoice_date,
+        inv_dict = {
+            "IDFactura": {
+                "IDEmisorFactura": {
+                    "NIF": company.vat[2:],
                 },
-                "PeriodoImpositivo": {
-                    "Ejercicio": ejercicio,
-                    "Periodo": periodo,
+                "NumSerieFacturaEmisor": self.number[0:60],
+                "FechaExpedicionFacturaEmisor": invoice_date,
+            },
+            "PeriodoImpositivo": {
+                "Ejercicio": ejercicio,
+                "Periodo": periodo,
+            },
+            "FacturaExpedida": {
+                # TODO: Incluir los 5 tipos de facturas rectificativas
+                "TipoFactura": (
+                    'R4' if self.type == 'out_refund' else 'F1'
+                ),
+                "ClaveRegimenEspecialOTrascendencia": (
+                    self.sii_registration_key.code
+                ),
+                "DescripcionOperacion": self.sii_description[0:500],
+                "Contraparte": {
+                    "NombreRazon": self.partner_id.name[0:120],
                 },
-                "FacturaExpedida": {
-                    # TODO: Incluir los 5 tipos de facturas rectificativas
-                    "TipoFactura": (
-                        'R4' if self.type == 'out_refund' else 'F1'
-                    ),
-                    "ClaveRegimenEspecialOTrascendencia": (
-                        self.sii_registration_key.code
-                    ),
-                    "DescripcionOperacion": self.sii_description[0:500],
-                    "Contraparte": {
-                        "NombreRazon": self.partner_id.name[0:120],
-                    },
-                    "TipoDesglose": self._get_sii_out_taxes(),
-                    "ImporteTotal": self.amount_total,
-                }
+                "TipoDesglose": self._get_sii_out_taxes(),
+                "ImporteTotal": self.amount_total,
             }
-            exp_dict = inv_dict['FacturaExpedida']
-            # Uso condicional de IDOtro/NIF
-            exp_dict['Contraparte'].update(self._get_sii_identifier())
-            if self.type == 'out_refund':
-                exp_dict['TipoRectificativa'] = self.sii_refund_type
-                if self.sii_refund_type == 'S':
-                    exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_untaxed')
-                        ),
-                        'CuotaRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_tax')
-                        ),
-                    }
-        if self.type in ['in_invoice', 'in_refund']:
-            inv_dict = {
-                "IDFactura": {
-                    "IDEmisorFactura": {},
-                    "NumSerieFacturaEmisor": (
-                        (self.supplier_invoice_number or '')[:60]
+        }
+        exp_dict = inv_dict['FacturaExpedida']
+        # Uso condicional de IDOtro/NIF
+        exp_dict['Contraparte'].update(self._get_sii_identifier())
+        if self.type == 'out_refund':
+            exp_dict['TipoRectificativa'] = self.sii_refund_type
+            if self.sii_refund_type == 'S':
+                exp_dict['ImporteRectificacion'] = {
+                    'BaseRectificada': sum(
+                        self.mapped('origin_invoices_ids.amount_untaxed')
                     ),
-                    "FechaExpedicionFacturaEmisor": invoice_date},
-                "PeriodoImpositivo": {
-                    "Ejercicio": ejercicio,
-                    "Periodo": periodo
-                },
-                "FacturaRecibida": {
-                    # TODO: Incluir los 5 tipos de facturas rectificativas
-                    "TipoFactura": (
-                        'R4' if self.type == 'in_refund' else 'F1'
+                    'CuotaRectificada': sum(
+                        self.mapped('origin_invoices_ids.amount_tax')
                     ),
-                    "ClaveRegimenEspecialOTrascendencia": (
-                        self.sii_registration_key.code
-                    ),
-                    "DescripcionOperacion": self.sii_description[0:500],
-                    "DesgloseFactura": self._get_sii_in_taxes(),
-                    "Contraparte": {
-                        "NombreRazon": self.partner_id.name[0:120],
-                    },
-                    "FechaRegContable": invoice_date,
-                    "ImporteTotal": self.amount_total,
-                    "CuotaDeducible": self.amount_tax,
                 }
-            }
-            # Uso condicional de IDOtro/NIF
-            ident = self._get_sii_identifier()
-            inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
-            inv_dict['FacturaRecibida']['Contraparte'].update(ident)
-            if self.type == 'in_refund':
-                rec_dict = inv_dict['FacturaRecibida']
-                rec_dict['TipoRectificativa'] = self.sii_refund_type
-                if self.sii_refund_type == 'S':
-                    rec_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_untaxed')
-                        ),
-                        'CuotaRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_tax')
-                        ),
-                    }
         return inv_dict
+
+    @api.multi
+    def _get_sii_invoice_dict_in(self):
+        """Build dict with data to send to AEAT WS for invoice types:
+        in_invoice and in_refund.
+
+        :return: invoices (dict) : Dict XML with data for this invoice.
+        """
+        self.ensure_one()
+        invoice_date = self._change_date_format(self.date_invoice)
+        ejercicio = fields.Date.from_string(
+            self.period_id.fiscalyear_id.date_start).year
+        periodo = '%02d' % fields.Date.from_string(
+            self.period_id.date_start).month
+        inv_dict = {
+            "IDFactura": {
+                "IDEmisorFactura": {},
+                "NumSerieFacturaEmisor": (
+                    (self.supplier_invoice_number or '')[:60]
+                ),
+                "FechaExpedicionFacturaEmisor": invoice_date},
+            "PeriodoImpositivo": {
+                "Ejercicio": ejercicio,
+                "Periodo": periodo
+            },
+            "FacturaRecibida": {
+                # TODO: Incluir los 5 tipos de facturas rectificativas
+                "TipoFactura": (
+                    'R4' if self.type == 'in_refund' else 'F1'
+                ),
+                "ClaveRegimenEspecialOTrascendencia": (
+                    self.sii_registration_key.code
+                ),
+                "DescripcionOperacion": self.sii_description[0:500],
+                "DesgloseFactura": self._get_sii_in_taxes(),
+                "Contraparte": {
+                    "NombreRazon": self.partner_id.name[0:120],
+                },
+                "FechaRegContable": invoice_date,
+                "ImporteTotal": self.amount_total,
+                "CuotaDeducible": self.amount_tax,
+            }
+        }
+        # Uso condicional de IDOtro/NIF
+        ident = self._get_sii_identifier()
+        inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
+        inv_dict['FacturaRecibida']['Contraparte'].update(ident)
+        if self.type == 'in_refund':
+            rec_dict = inv_dict['FacturaRecibida']
+            rec_dict['TipoRectificativa'] = self.sii_refund_type
+            if self.sii_refund_type == 'S':
+                rec_dict['ImporteRectificacion'] = {
+                    'BaseRectificada': sum(
+                        self.mapped('origin_invoices_ids.amount_untaxed')
+                    ),
+                    'CuotaRectificada': sum(
+                        self.mapped('origin_invoices_ids.amount_tax')
+                    ),
+                }
+        return inv_dict
+
+    @api.multi
+    def _get_sii_invoice_dict(self):
+        self.ensure_one()
+        self._sii_check_exceptions()
+        if self.type in ['out_invoice', 'out_refund']:
+            return self._get_sii_invoice_dict_out()
+        elif self.type in ['in_invoice', 'in_refund']:
+            return self._get_sii_invoice_dict_in()
+        return {}
 
     @api.multi
     def _connect_sii(self, wsdl):
