@@ -55,6 +55,7 @@ class L10nEsAeatSiiPassword(models.TransientModel):
     _name = 'l10n.es.aeat.sii.password'
 
     password = fields.Char(string="Password", required=True)
+    folder = fields.Char(string="Folder Name", required=True)
 
     @api.multi
     def get_keys(self):
@@ -62,7 +63,8 @@ class L10nEsAeatSiiPassword(models.TransientModel):
             self.env.context.get('active_id'))
         directory = os.path.join(
             os.path.abspath(config['data_dir']), 'certificates',
-            release.series, self.env.cr.dbname, record.folder)
+            release.series, self.env.cr.dbname, self.folder,
+        )
         content = base64.decodestring(record.file)
         if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
             raise exceptions.Warning(
