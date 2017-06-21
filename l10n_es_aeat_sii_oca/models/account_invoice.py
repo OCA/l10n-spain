@@ -2,7 +2,9 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73>
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
+# Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import logging
 
 from datetime import date
@@ -36,11 +38,11 @@ except ImportError:
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def _default_refund_type(self):
+    def _default_sii_refund_type(self):
         inv_type = self.env.context.get('type')
         return 'S' if inv_type in ['out_refund', 'in_refund'] else False
 
-    def _default_registration_key(self):
+    def _default_sii_registration_key(self):
         sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
         type = self.env.context.get('type')
         if type in ['in_invoice', 'in_refund']:
@@ -56,30 +58,33 @@ class AccountInvoice(models.Model):
         default="/",
         required=True)
     sii_sent = fields.Boolean(string='SII Sent', copy=False)
-    sii_csv = fields.Char(string='SII CSV', copy=False)
-    sii_return = fields.Text(string='SII Return', copy=False)
-    sii_send_error = fields.Text(string='SII Send Error')
-    refund_type = fields.Selection(
+    sii_csv = fields.Char(string='SII CSV', copy=False, readonly=True)
+    sii_return = fields.Text(string='SII Return', copy=False, readonly=True)
+    sii_send_error = fields.Text(string='SII Send Error', readonly=True)
+    sii_refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
-        string="Refund Type", default=_default_refund_type)
-    registration_key = fields.Many2one(
+        string="SII Refund Type", default=_default_sii_refund_type,
+        oldname='refund_type',
+    )
+    sii_registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
-        string="SII registration key", default=_default_registration_key,
+        string="SII registration key", default=_default_sii_registration_key,
+        oldname='registration_key',
         # required=True, This is not set as required here to avoid the
         # set not null constraint warning
     )
     sii_enabled = fields.Boolean(
-        string='Enable SII', related='company_id.sii_enabled',
+        string='Enable SII', related='company_id.sii_enabled', readonly=True,
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
         string="Connector Jobs",
     )
 
-    @api.onchange('refund_type')
-    def onchange_refund_type_l10n_es_aeat_sii(self):
-        if self.refund_type == 'S' and not self.origin_invoices_ids:
-            self.refund_type = False
+    @api.onchange('sii_refund_type')
+    def onchange_sii_refund_type(self):
+        if self.sii_refund_type == 'S' and not self.origin_invoices_ids:
+            self.sii_refund_type = False
             return {
                 'warning': {
                     'message': _(
@@ -95,13 +100,13 @@ class AccountInvoice(models.Model):
                 key = invoice.fiscal_position.sii_registration_key_sale
             else:
                 key = invoice.fiscal_position.sii_registration_key_purchase
-            invoice.registration_key = key
+            invoice.sii_registration_key = key
 
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
         invoice = super(AccountInvoice, self).create(vals)
-        if invoice.fiscal_position and not invoice.registration_key:
+        if invoice.fiscal_position and not invoice.sii_registration_key:
             invoice.onchange_fiscal_position_l10n_es_aeat_sii()
         return invoice
 
@@ -110,7 +115,7 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).write(vals)
         if vals.get('fiscal_position'):
             self.filtered(
-                lambda x: x.fiscal_position and not x.registration_key
+                lambda x: x.fiscal_position and not x.sii_registration_key
             ).onchange_fiscal_position_l10n_es_aeat_sii()
         return res
 
@@ -283,11 +288,11 @@ class AccountInvoice(models.Model):
         for val in taxes_f.values():
             val['CuotaRepercutida'] = round(val['CuotaRepercutida'], 2)
         if taxes_f:
-            tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA'][
-                'DetalleIVA'] = taxes_f.values()
+            breakdown = tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA']
+            breakdown['DetalleIVA'] = taxes_f.values()
         if taxes_to:
-            type_breakdown['PrestacionServicios']['Sujeta']['NoExenta'][
-                'DesgloseIVA']['DetalleIVA'] = taxes_to.values()
+            sub = type_breakdown['PrestacionServicios']['Sujeta']
+            sub['NoExenta']['DesgloseIVA']['DetalleIVA'] = taxes_to.values()
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
@@ -366,7 +371,7 @@ class AccountInvoice(models.Model):
                         'R4' if self.type == 'out_refund' else 'F1'
                     ),
                     "ClaveRegimenEspecialOTrascendencia": (
-                        self.registration_key.code
+                        self.sii_registration_key.code
                     ),
                     "DescripcionOperacion": self.sii_description[0:500],
                     "Contraparte": {
@@ -380,8 +385,8 @@ class AccountInvoice(models.Model):
             # Uso condicional de IDOtro/NIF
             exp_dict['Contraparte'].update(self._get_sii_identifier())
             if self.type == 'out_refund':
-                exp_dict['TipoRectificativa'] = self.refund_type
-                if self.refund_type == 'S':
+                exp_dict['TipoRectificativa'] = self.sii_refund_type
+                if self.sii_refund_type == 'S':
                     exp_dict['ImporteRectificacion'] = {
                         'BaseRectificada': sum(
                             self.mapped('origin_invoices_ids.amount_untaxed')
@@ -408,7 +413,7 @@ class AccountInvoice(models.Model):
                         'R4' if self.type == 'in_refund' else 'F1'
                     ),
                     "ClaveRegimenEspecialOTrascendencia": (
-                        self.registration_key.code
+                        self.sii_registration_key.code
                     ),
                     "DescripcionOperacion": self.sii_description[0:500],
                     "DesgloseFactura": self._get_sii_in_taxes(),
@@ -426,8 +431,8 @@ class AccountInvoice(models.Model):
             inv_dict['FacturaRecibida']['Contraparte'].update(ident)
             if self.type == 'in_refund':
                 rec_dict = inv_dict['FacturaRecibida']
-                rec_dict['TipoRectificativa'] = self.refund_type
-                if self.refund_type == 'S':
+                rec_dict['TipoRectificativa'] = self.sii_refund_type
+                if self.sii_refund_type == 'S':
                     rec_dict['ImporteRectificacion'] = {
                         'BaseRectificada': sum(
                             self.mapped('origin_invoices_ids.amount_untaxed')
@@ -645,6 +650,18 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         return True
+
+    @api.model
+    def _prepare_refund(self, invoice, date=None, period_id=None,
+                        description=None, journal_id=None):
+        res = super(AccountInvoice, self)._prepare_refund(
+            invoice, date=date, period_id=period_id,
+            description=description, journal_id=journal_id,
+        )
+        sii_refund_type = self.env.context.get('sii_refund_type')
+        if sii_refund_type:
+            res['sii_refund_type'] = sii_refund_type
+        return res
 
 
 class AccountInvoiceLine(models.Model):
