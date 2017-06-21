@@ -9,7 +9,9 @@
             <field name="arch" type="xml">
                 <button string="Re-Open" position="after">
                     <button type="object" string="Send to SII"
-                            name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                            name="send_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': [('sii_enabled', '=', False)]}"
                             states="open,paid" />
                 </button>
                 <field name="supplier_invoice_number" position="attributes">
@@ -19,9 +21,9 @@
                     <page string="SII" groups="account.group_account_manager"  attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
                             <field name="sii_description"/>
-                            <field name="refund_type"
+                            <field name="sii_refund_type"
                                    attrs="{'required': [('type', 'in', ('out_refund',' in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
-                            <field name="registration_key" domain="[('type', '=', 'purchase')]" required="1"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'purchase')]" required="1"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
@@ -57,16 +59,18 @@
             <field name="arch" type="xml">
                 <button string="Re-Open" position="after">
                     <button type="object" string="Send SII"
-                            name="send_sii" groups="l10n_es_aeat.group_account_aeat"
+                            name="send_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': [('sii_enabled', '=', False)]}"
                             states="open,paid" />
                 </button>
                 <notebook position="inside">
                     <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
                             <field name="sii_description"/>
-                            <field name="refund_type"
-                                   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
-                            <field name="registration_key" domain="[('type', '=', 'sale')]" required="1"/>
+                            <field name="sii_refund_type"
+                                   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]" required="1"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
@@ -75,7 +79,7 @@
                             <field name="sii_return" />
                         </group>
 
-                        <group string="Invoice Jobs">
+                        <group string="Connector Jobs">
                             <field name="invoice_jobs_ids" nolabel="1"
                                    readonly="1">
                                 <tree>
