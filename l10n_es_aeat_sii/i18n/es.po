@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 16:43+0000\n"
-"PO-Revision-Date: 2017-06-21 16:43+0000\n"
+"POT-Creation-Date: 2017-06-21 17:17+0000\n"
+"PO-Revision-Date: 2017-06-21 17:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -554,10 +554,16 @@ msgid "Taxes"
 msgstr "Impuestos"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:342
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:344
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "La empresa no tiene un NIF establecido."
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:352
+#, python-format
+msgid "This company doesn't have SII enabled."
+msgstr "Esta compañía no tiene habilitado el SII."
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
@@ -581,13 +587,13 @@ msgid "With delay"
 msgstr "Con retardo"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:580
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:617
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:351
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:347
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar qué plan contable utiliza esta compañía"
