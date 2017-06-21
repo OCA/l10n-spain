@@ -42,6 +42,6 @@ class AeatSiiMappingRegistrationKeys(osv.Model):
         reads = self.read(cr, uid, ids, ['code', 'name'], context=context)
         res = []
         for record in reads:
-            name = "[%s]-%s" % (record.get('code'), record.get('name'))
-            res.append((record['id'], name))
+            name = u'[{}]-{}'.format(record.get('code'), record.get('name'))
+            res.append(tuple([record['id'], name]))
         return res

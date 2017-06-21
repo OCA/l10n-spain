@@ -44,22 +44,11 @@ class L10nEsAeatSii(osv.Model):
             'target': 'new',
         }
 
-    def action_active(self, cr, uid, ids, context={}):
-        conf = self.pool.get("ir.config_parameter")
+    def action_activate(self, cr, uid, ids, context={}):
+
         for aeat_sii in self.browse(cr, uid, ids, context=context):
 
-            # TODO use ref
-
-            if aeat_sii.public_key:
-                sii_crt = conf.search(cr, uid, [('key', '=', 'l10n_es_aeat_sii.publicCrt')])
-                if sii_crt:
-                    conf.write(cr, uid, sii_crt, {'value': aeat_sii.public_key})
-            if aeat_sii.private_key:
-                sii_key = conf.search(cr, uid, [('key', '=', 'l10n_es_aeat_sii.privateKey')])
-                if sii_key:
-                    conf.write(cr, uid, sii_key, {'value': aeat_sii.private_key})
-
-            other_configs = self.search(cr, uid, [('id', '!=', aeat_sii.id)])
+            other_configs = self.search(cr, uid, [('id', '!=', aeat_sii.id),('company_id', '=', aeat_sii.company_id.id)])
             for config_id in self.browse(cr, uid, other_configs):
                 self.write(cr, uid, config_id.id, {'state': 'draft'})
             self.write(cr, uid, aeat_sii.id, {'state': 'active'})

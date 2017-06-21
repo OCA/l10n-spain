@@ -27,8 +27,6 @@ class ResCompany(osv.Model):
                                                  ('fixed', 'At fixed time'),
                                                  ('delayed', 'With delay')],
                                       ),
-        # 'sent_time': fields.float(string="Sent time"),
-        # 'delay_time': fields.float(string="Delay time"),
 
     }
 
@@ -36,23 +34,3 @@ class ResCompany(osv.Model):
         'send_mode': 'auto',
         'sii_method': 'auto',
     }
-
-    # def _get_sii_eta(self, cr, uid, ids):
-    #     for company in self.browse(cr, uid, ids):
-    #         if company.send_mode == 'fixed':
-    #             now = datetime.now()
-    #
-    #             hour, minute = divmod(company.sent_time, 1)
-    #             hour = int(hour)
-    #             minute = int(minute * 60)
-    #
-    #             if now.date > hour or (now.hour == hour and now.minute > minute):
-    #                 now += timedelta(days=1)
-    #
-    #             return now.replace(hour=hour, minute=minute)
-    #
-    #         elif company.send_mode == 'delayed':
-    #             return datetime.now() + timedelta(seconds=self.delay_time * 60 * 60)
-    #
-    #         else:
-    #             return None

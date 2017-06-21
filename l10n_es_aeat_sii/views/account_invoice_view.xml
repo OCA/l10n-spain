@@ -12,9 +12,11 @@
                             name="send_sii" groups="account.group_account_manager"
                             states="open,paid"/>
                 </button>
-
                 <field name="reference" position="attributes">
                     <attribute name="required">True</attribute>
+                </field>
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="on_change">onchange_fiscal_position_l10n_es_aeat_sii(fiscal_position)</attribute>
                 </field>
                 <notebook position="inside">
                     <page string="SII" groups="account.group_account_manager"
@@ -22,6 +24,7 @@
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="refund_type"
+                                   on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"
                                    attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
                             <field name="registration_key" domain="[('type', '=', 'purchase')]"/>
                             <field name="sii_enabled" invisible="1"/>
@@ -46,12 +49,17 @@
                             name="send_sii" groups="account.group_account_manager"
                             states="open,paid"/>
                 </button>
+
+                <field name="fiscal_position" position="attributes">
+                    <attribute name="on_change">onchange_fiscal_position_l10n_es_aeat_sii(fiscal_position)</attribute>
+                </field>
                 <notebook position="inside">
                     <page string="AEAT" groups="account.group_account_manager"
                           attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="refund_type"
+                                   on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"
                                    attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
                             <field name="registration_key" domain="[('type', '=', 'sale')]"/>
                             <field name="sii_enabled" invisible="1"/>
