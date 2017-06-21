@@ -15,7 +15,6 @@ class L10nEsAeatSii(models.Model):
         ('active', 'Active')
     ], string="State", default="draft")
     file = fields.Binary(string="File", required=True)
-    folder = fields.Char(string="Folder Name", required=True)
     date_start = fields.Date(string="Start Date")
     date_end = fields.Date(string="End Date")
     public_key = fields.Char(string="Public Key", readonly=True)

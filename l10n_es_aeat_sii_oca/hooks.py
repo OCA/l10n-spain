@@ -20,16 +20,16 @@ def add_key_to_existing_invoices(cr, registry):
         if purchase_key:
             cr.execute("""
                 UPDATE account_invoice
-                SET registration_key = %s
+                SET sii_registration_key = %s
                 WHERE type IN ('in_invoice', 'in_refund');""",
                        (purchase_key[0],))
         if sale_key:
             cr.execute("""
                 UPDATE account_invoice
-                SET registration_key = %s
+                SET sii_registration_key = %s
                 WHERE type NOT IN ('in_invoice', 'in_refund');""",
                        (sale_key[0],))
         cr.execute("""
             ALTER TABLE account_invoice
-            ALTER COLUMN registration_key SET NOT NULL;
+            ALTER COLUMN sii_registration_key SET NOT NULL;
             """)
