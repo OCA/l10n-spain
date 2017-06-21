@@ -221,17 +221,17 @@ class AccountInvoice(models.Model):
             exempt_cause = self._get_sii_exempt_cause(inv_line.product_id)
             for tax_line in inv_line.invoice_line_tax_id:
                 breakdown_taxes = (
-                    taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesb
+                    taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
                 )
                 if tax_line in breakdown_taxes:
                     tax_breakdown = taxes_dict.setdefault(
                         'DesgloseFactura', {},
                     )
-                if tax_line in taxes_sfesb:
+                if tax_line in (taxes_sfesb + taxes_sfesbe + taxes_sfesisp):
                     sub_dict = tax_breakdown.setdefault('Sujeta', {})
                     # TODO l10n_es no tiene impuesto exento de bienes
                     # corrientes nacionales
-                    ex_taxes = (taxes_sfesbe + taxes_sfesbe + taxes_sfesisp)
+                    ex_taxes = taxes_sfesbe
                     if tax_line in ex_taxes:
                         sub_dict.setdefault('Exenta', {'BaseImponible': 0})
                         if exempt_cause:
@@ -239,15 +239,16 @@ class AccountInvoice(models.Model):
                         sub_dict['Exenta']['BaseImponible'] += (
                             inv_line.price_subtotal
                         )
-                    tax_breakdown['Sujeta'].setdefault('NoExenta', {
-                        'TipoNoExenta': (
-                            'S2' if tax_line in taxes_sfesisp else 'S1'
-                        ),
-                        'DesgloseIVA': {
-                            'DetalleIVA': [],
-                        },
-                    })
-                    inv_line._update_sii_tax_line(taxes_f, tax_line)
+                    else:
+                        sub_dict.setdefault('NoExenta', {
+                            'TipoNoExenta': (
+                                'S2' if tax_line in taxes_sfesisp else 'S1'
+                            ),
+                            'DesgloseIVA': {
+                                'DetalleIVA': [],
+                            },
+                        })
+                        inv_line._update_sii_tax_line(taxes_f, tax_line)
                 # No sujetas
                 if tax_line in taxes_sfens:
                     # FIXME: decidir que tipo se selecciona
