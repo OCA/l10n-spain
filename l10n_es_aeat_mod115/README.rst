@@ -44,6 +44,7 @@ Contribuidores
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Ainara Galdona <ainaragaldona@avanzosc.es>
 * Antonio Espinosa <antonioea@antiun.com>
+* Daniel Rodriguez <drl.9319@gmail.com>
 
 Maintainer
 ----------

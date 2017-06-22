@@ -31,6 +31,7 @@
     'license': 'AGPL-3',
     'depends': ['l10n_es_aeat'],
     'data': [
+        'data/multicompany_rule.xml',
         'data/aeat_export_mod115_2017_data.xml',
         'wizard/export_mod115_to_boe.xml',
         'views/mod115_view.xml',

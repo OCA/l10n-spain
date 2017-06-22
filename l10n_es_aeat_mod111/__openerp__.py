@@ -30,6 +30,7 @@
     'license': 'AGPL-3',
     'depends': ['l10n_es_aeat'],
     'data': [
+        'data/multicompany_rule.xml',
         'data/aeat_export_mod111_data.xml',
         'views/mod111_view.xml',
         'security/ir.model.access.csv',
