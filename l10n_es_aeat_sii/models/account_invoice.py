@@ -5,11 +5,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 
-from odoo import models, fields, api, _
+from datetime import date
+from odoo import models, exceptions, fields, api, _
 from requests import Session
 
-from datetime import datetime, date
-from odoo.exceptions import Warning
+from odoo.modules.registry import RegistryManager
 
 import logging
 
@@ -292,10 +292,10 @@ class AccountInvoice(models.Model):
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
-        if ('DesgloseTipoOperacion' in taxes_dict
-                and 'DesgloseFactura' in taxes_dict) or \
-                ('DesgloseFactura' in taxes_dict
-                 and self._get_sii_gen_type() in (2, 3)):
+        if ('DesgloseTipoOperacion' in taxes_dict and
+            'DesgloseFactura' in taxes_dict) or \
+                ('DesgloseFactura' in taxes_dict and
+                 self._get_sii_gen_type() in (2, 3)):
             taxes_dict.setdefault('DesgloseTipoOperacion', {})
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
@@ -539,9 +539,9 @@ class AccountInvoice(models.Model):
                     invoice._send_invoice_to_sii()
                 else:
                     eta = company._get_sii_eta()
-                    new_delay = self.with_delay().confirm_one_invoice()
+                    new_delay = self.with_delay(eta=eta).confirm_one_invoice()
                     queue_ids = queue_obj.search([
-                        ('uuid', '=', new_delay)
+                        ('uuid', '=', new_delay.uuid)
                     ], limit=1)
                     invoice.invoice_jobs_ids |= queue_ids
         return res
@@ -556,9 +556,9 @@ class AccountInvoice(models.Model):
                     invoice._send_invoice_to_sii()
                 else:
                     eta = company._get_sii_eta()
-                    new_delay = self.with_delay().confirm_one_invoice()
+                    new_delay = self.with_delay(eta=eta).confirm_one_invoice()
                     queue_ids = queue_obj.search([
-                        ('uuid', '=', new_delay)
+                        ('uuid', '=', new_delay.uuid)
                     ], limit=1)
                     invoice.invoice_jobs_ids |= queue_ids
 
@@ -645,6 +645,7 @@ class AccountInvoice(models.Model):
     def confirm_one_invoice(self):
         self._send_invoice_to_sii()
 
+
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
@@ -663,7 +664,7 @@ class AccountInvoiceLine(models.Model):
             if tax in taxes_re:
                 price = self._get_sii_line_price_subtotal()
                 taxes = tax.compute_all(
-                    price, self.quantity, self.invoice_id.currency_id,
+                    price, self.invoice_id.currency_id, self.quantity,
                     self.product_id, self.invoice_id.partner_id,
                 )
                 taxes['percentage'] = tax.amount
@@ -706,4 +707,3 @@ class AccountInvoiceLine(models.Model):
         else:
             key = 'CuotaSoportada'
         tax_dict[tax_type][key] += taxes['taxes'][0]['amount']
-

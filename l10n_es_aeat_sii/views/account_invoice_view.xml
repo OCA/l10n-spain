@@ -6,7 +6,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form" />
             <field name="arch" type="xml">
-                <button name="action_cancel_draft" position="after">
+                <button name="action_invoice_draft" position="after">
                     <button type="object" string="Send to SII"
                             name="send_sii" groups="l10n_es_aeat.group_account_aeat"
                             states="open,paid" />
@@ -31,9 +31,10 @@
 
                         <group string="Invoice Jobs">
                             <field name="invoice_jobs_ids" nolabel="1"
-                                   readonly="1">
+                                   readonly="1" widget="many2many">
                                 <tree>
                                     <field name="date_created"/>
+                                    <field name="eta"/>
                                     <field name="date_done"/>
                                     <field name="state"/>
                                     <button type="object"
@@ -54,7 +55,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
-                <button name="action_cancel_draft" position="after">
+                <button name="action_invoice_draft" position="after">
                     <button type="object" string="Send SII"
                             name="send_sii" groups="l10n_es_aeat.group_account_aeat"
                             states="open,paid" />
@@ -76,9 +77,10 @@
 
                         <group string="Invoice Jobs">
                             <field name="invoice_jobs_ids" nolabel="1"
-                                   readonly="1">
+                                   readonly="1" widget="many2many">
                                 <tree>
                                     <field name="date_created"/>
+                                    <field name="eta"/>
                                     <field name="date_done"/>
                                     <field name="state"/>
                                     <button type="object"
