@@ -604,6 +604,8 @@ class AccountInvoice(models.Model):
     def send_sii(self):
         queue_obj = self.env['queue.job']
         for invoice in self:
+            if not invoice.is_sii_invoice():
+                continue
             company = invoice.company_id
             if company.sii_enabled:
                 if not company.use_connector:
@@ -694,6 +696,8 @@ class AccountInvoice(models.Model):
         :return: bool value indicating if the invoice should be sent to SII.
         """
         self.ensure_one()
+        if self.fiscal_position and not self.fiscal_position.sii_active:
+            return False
         return True
 
     @api.model
