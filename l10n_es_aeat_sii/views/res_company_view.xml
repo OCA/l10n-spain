@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com> License AGPL-3.0 or
+    later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+        <record id="view_company_sii_form" model="ir.ui.view">
+            <field name="name">res.company.sii.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form" />
+            <field name="arch" type="xml">
+                 <notebook position="inside">
+                    <page name="sii" string="SII">
+                    <separator name="aeat_sii_config" string="AEAT SII Configuration" />
+                    <group name="sii_enabled">
+                        <field name="sii_enabled"/>
+                    </group>
+                    <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <group name="sii_config">
+                            <field name="sii_test" />
+                            <field name="sii_method"/>
+                        </group>
+                        <group name="sii_connector">
+                            <field name="use_connector" />
+                            <field name="send_mode"
+                                   attrs="{'invisible': [('use_connector', '=', False)]}"/>
+                            <field name='sent_time' widget='float_time'
+                                   attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'fixed')]}"/>
+                            <field name='delay_time' widget='float_time'
+                                   attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'delayed')]}"/>
+                        </group>
+                    </group>
+                 </page>
+                 </notebook>
+            </field>
+        </record>
+</odoo>
