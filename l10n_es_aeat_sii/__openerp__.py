@@ -5,6 +5,7 @@
 # Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2017 Factor Libre - Ismael Calvo
+# Copyright 2017 Otherway - Pedro Rodríguez Gil
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -19,6 +20,7 @@
               "Studio73,"
               "FactorLibre,"
               "Comunitea,"
+              "Otherway,"
               "Tecnativa,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",

@@ -11,8 +11,15 @@
                     <button type="object" string="Send to SII"
                             name="send_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': [('sii_enabled', '=', False)]}"
-                            states="open,paid" />
+                            attrs="{'invisible': ['|','|',('state', 'not in', ['open','paid']),
+                                ('sii_enabled', '=', False),
+                                ('sii_state', 'not in', ['not_sent','sent_modified','cancelled_modified'])]}" />
+                    <button type="object" string="Send cancellation to SII"
+                            name="cancel_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False),
+                                ('state', 'not in', ['cancel']),
+                                ('sii_state', 'not in', ['sent','sent_modified'])]}" />
                 </button>
                 <field name="supplier_invoice_number" position="attributes">
                     <attribute name="required">True</attribute>
@@ -27,7 +34,8 @@
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
-                            <field name="sii_sent" />
+                            <field name="sii_state" />
+                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                             <field name="sii_csv"/>
                             <field name="sii_return" />
                         </group>
@@ -58,11 +66,16 @@
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
                 <button string="Re-Open" position="after">
-                    <button type="object" string="Send SII"
+                    <button type="object" string="Send to SII"
                             name="send_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': [('sii_enabled', '=', False)]}"
-                            states="open,paid" />
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['open','paid']), ('sii_state','not in',['not_sent','sent_modified','cancelled_modified'])]}"
+                    />
+                    <button type="object" string="Send cancellation to SII"
+                            name="cancel_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_modified'])]}"
+                    />
                 </button>
                 <notebook position="inside">
                     <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
@@ -74,7 +87,8 @@
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
-                            <field name="sii_sent" />
+                            <field name="sii_state" />
+                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                             <field name="sii_csv"/>
                             <field name="sii_return" />
                         </group>
@@ -104,19 +118,32 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.view_account_invoice_filter" />
             <field name="arch" type="xml">
-                <filter name="unpaid" position="after">
-                    <filter name="sii_not_sent" string="SII not sent"
-                            domain="[('sii_sent','=',False)]" />
-                    <filter name="sii_sent" string="SII sent"
-                            domain="[('sii_sent','=',True)]"/>
-                    <filter name="sii_send_state" string="SII failed"
-                            domain="[('sii_send_error','!=',False)]"/>
-                </filter>
+                <xpath expr="//group[@string='Group By']" position="before">
+                    <group string="SII filters">
+                        <filter name="sii_not_sent" string="SII not sent"
+                            domain="[('sii_state', '=', 'not_sent')]"
+                            help="Never sent to SII" />
+                        <filter name="sii_sent" string="SII sent"
+                            domain="[('sii_state', 'in', ['sent','cancelled','sent_modified','cancelled_modified'])]"
+                            help="Already sent to SII. It includes cancelled invoices"/>
+                        <separator />
+                        <filter name="sii_cancelled" string="SII cancelled"
+                            domain="[('sii_state', 'in', ['cancelled','cancelled_modified'])]"
+                            help="Cancelled invoices at SII"/>
+                        <separator />
+                        <filter name="sii_pending" string="With modifications not sent to SII"
+                            domain="[('sii_state', 'in', ['sent_modified','cancelled_modified'])]"
+                            help="Already sent but with local changes not sent yet"/>
+                        <filter name="sii_send_failed" string="SII failed"
+                            domain="[('sii_send_failed', '=', True)]"
+                            help="The last attemp to sent to SII has failed"/>
+                    </group>
+                </xpath>
                 <xpath expr="//group[@string='Group By']" position="inside">
                     <separator/>
                     <filter string="SII error"
-                        domain="[('sii_send_error','!=',False)]"
-                        context="{'group_by':'sii_send_error'}"/>
+                        domain="[('sii_send_failed', '=', True)]"
+                        context="{'group_by':'sii_send_failed'}"/>
                 </xpath>
             </field>
         </record>
