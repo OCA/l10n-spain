@@ -12,6 +12,7 @@ from requests import Session
 
 from openerp import _, api, exceptions, fields, models
 from openerp.modules.registry import RegistryManager
+from openerp.tools.float_utils import float_round
 
 _logger = logging.getLogger(__name__)
 
@@ -286,8 +287,9 @@ class AccountInvoice(models.Model):
                             },
                         )
                         inv_line._update_sii_tax_line(taxes_to, tax_line)
-        for val in taxes_f.values():
-            val['CuotaRepercutida'] = round(val['CuotaRepercutida'], 2)
+        for val in taxes_f.values() + taxes_to.values():
+            val['CuotaRepercutida'] = float_round(val['CuotaRepercutida'], 2)
+            val['BaseImponible'] = float_round(val['BaseImponible'], 2)
         if taxes_f:
             breakdown = tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA']
             breakdown['DetalleIVA'] = taxes_f.values()
@@ -333,6 +335,9 @@ class AccountInvoice(models.Model):
             taxes_dict.setdefault(
                 'DesgloseIVA', {'DetalleIVA': [taxes_f.values()]},
             )
+        for val in taxes_isp.values() + taxes_f.values():
+            val['CuotaSoportada'] = float_round(val['CuotaSoportada'], 2)
+            val['BaseImponible'] = float_round(val['BaseImponible'], 2)
         return taxes_dict
 
     @api.multi
