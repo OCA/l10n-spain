@@ -609,3 +609,13 @@ msgstr "Debe tener al menos una factura rectificada"
 msgid "or"
 msgstr "o"
 
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_active:0
+msgid "SII Active"
+msgstr "SII Activo"
+
+#. module: l10n_es_aeat_sii
+#: help:account.fiscal.position,sii_active:0
+msgid "Enable SII for this fiscal position?"
+msgstr "¿Activar SII para esta posición fiscal?"
+
