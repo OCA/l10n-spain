@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 17:17+0000\n"
-"PO-Revision-Date: 2017-06-21 17:17+0000\n"
+"POT-Creation-Date: 2017-06-23 14:50+0000\n"
+"PO-Revision-Date: 2017-06-23 14:50+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -60,6 +60,16 @@ msgid "Aeat SII Registration Keys"
 msgstr "SII - Tabla de claves"
 
 #. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "Already sent but with local changes not sent yet"
+msgstr "Enviada previamente al SII pero con cambios locales no enviados"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "Already sent to SII. It includes cancelled invoices."
+msgstr "Enviada al SII. Incluye facturas canceladas"
+
+#. module: l10n_es_aeat_sii
 #: selection:res.company,send_mode:0
 msgid "At fixed time"
 msgstr "A una hora fija"
@@ -88,6 +98,21 @@ msgstr "Por sustitución"
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Cancelled"
+msgstr "Anulada"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Cancelled in SII but last modifications not sent"
+msgstr "Anulada en SII con modificaciones pendientes de comunicar"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "Cancelled invoices at SII"
+msgstr "Facturas anuladas en el SII"
 
 #. module: l10n_es_aeat_sii
 #: field:res.company,chart_template_id:0
@@ -261,6 +286,16 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_sii
+#: help:account.invoice,sii_send_failed:0
+msgid "Indicates that the last attempt to communicate this invoice to the SII has failed. See SII return for details"
+msgstr "Indica que el último intento de comunicar la factura al SII ha fallado. Ver el retorno SII para más detalles"
+
+#. module: l10n_es_aeat_sii
+#: help:account.invoice,sii_state:0
+msgid "Indicates the state of this invoice in relation with the presentation at the SII"
+msgstr "Indica el estado de esta factura en relación al registro en el SII"
+
+#. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:34
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 #, python-format
@@ -357,7 +392,12 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:190
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "Never sent to SII"
+msgstr "Nunca enviadas al SII"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:233
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr "La compañía '{}' no tiene ningún NIF establecido"
@@ -366,6 +406,11 @@ msgstr "La compañía '{}' no tiene ningún NIF establecido"
 #: selection:product.template,sii_exempt_cause:0
 msgid "None"
 msgstr "Ninguno"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Not sent"
+msgstr "No registrada"
 
 #. module: l10n_es_aeat_sii
 #: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
@@ -414,6 +459,11 @@ msgstr "Compras"
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Re-Open"
 msgstr "Reabrir"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Registered in SII but last modifications not sent"
+msgstr "Registro correcto en SII con modificaciones pendientes de comunicar"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
@@ -479,9 +529,9 @@ msgid "SII Send Error"
 msgstr "Error de envío SII"
 
 #. module: l10n_es_aeat_sii
-#: field:account.invoice,sii_sent:0
-msgid "SII Sent"
-msgstr "Enviado SII"
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "SII cancelled"
+msgstr "Anuladas SII"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -491,7 +541,12 @@ msgstr "Error SII"
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "SII failed"
-msgstr "Erróneas SII"
+msgstr "Envío SII fallido"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "SII filters"
+msgstr "Filtros SII"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -502,6 +557,16 @@ msgstr "No enviadas SII"
 #: field:account.invoice,sii_registration_key:0
 msgid "SII registration key"
 msgstr "Clave de registro SII"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_send_failed:0
+msgid "SII send failed"
+msgstr "Envío SII fallido"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_state:0
+msgid "SII send state"
+msgstr "Estado de envío SII"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -520,8 +585,9 @@ msgstr "Enviar facturas al SII"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
-msgid "Send SII"
-msgstr "Enviar SII"
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+msgid "Send cancellation to SII"
+msgstr "Enviar anulación al SII"
 
 #. module: l10n_es_aeat_sii
 #: field:res.company,send_mode:0
@@ -529,9 +595,15 @@ msgid "Send mode"
 msgstr "Modo de envío"
 
 #. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Send to SII"
 msgstr "Enviar al SII"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Sent"
+msgstr "Enviada"
 
 #. module: l10n_es_aeat_sii
 #: field:res.company,sent_time:0
@@ -554,16 +626,27 @@ msgid "Taxes"
 msgstr "Impuestos"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:344
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "The last attemp to sent to SII has failed"
+msgstr "El último intento de envío al SII ha fallado"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:389
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "La empresa no tiene un NIF establecido."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:352
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:397
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr "Esta compañía no tiene habilitado el SII."
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:401
+#, python-format
+msgid "This invoice is not SII enabled."
+msgstr "Esta factura no está habilitada para el SII."
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
@@ -587,19 +670,54 @@ msgid "With delay"
 msgstr "Con retardo"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:617
+#: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
+msgid "With modifications not sent to SII"
+msgstr "Modificaciones no enviadas al SII"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:834
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:347
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:800
+#, python-format
+msgid "You can not communicate the cancellation of this invoice at this moment because there is a job running!"
+msgstr "En este momento no puede comunicar la cancelación de esta factura porque hay un trabajo ejecutándose!"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:720
+#, python-format
+msgid "You can not communicate this invoice at this moment because there is a job running!"
+msgstr "En este momento no puede comunicar esta factura porque hay un trabajo ejecutándose!"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:142
+#, python-format
+msgid "You cannot change the supplier invoice number of an invoice already registered at the SII. You must cancel the invoice and create a new one with the correct number"
+msgstr "No puede cambiar el número de factura del proveedor de una factura enviada al SII. Debe cancelar la factura y crear una nueva con el número correcto"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:137
+#, python-format
+msgid "You cannot change the supplier of an invoice already registered at the SII. You must cancel the invoice and create a new one with the correct supplier"
+msgstr "No puede cambiar el proveedor de una factura enviada al SII. Debe cancelar la factura y crear una nueva con el proveedor correcto"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:158
+#, python-format
+msgid "You cannot delete an invoice already registered at the SII."
+msgstr "No puede eliminar una factura enviada al SII."
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:392
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar qué plan contable utiliza esta compañía"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:90
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:105
 #, python-format
 msgid "You must have at least one refunded invoice"
 msgstr "Debe tener al menos una factura rectificada"
