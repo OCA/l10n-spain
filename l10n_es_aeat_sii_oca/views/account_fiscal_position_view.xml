@@ -13,6 +13,7 @@
                 <field name="country_group_id" position="after">
                     <field name="sii_registration_key_sale"/>
                     <field name="sii_registration_key_purchase"/>
+                    <field name="sii_active" />
                 </field>
             </field>
         </record>
