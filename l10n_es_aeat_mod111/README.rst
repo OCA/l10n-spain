@@ -57,6 +57,7 @@ Contribuidores
 * AvanzOSC (http://www.avanzosc.es)
 * Antonio Espinosa <antonioea@antiun.com>
 * RGB Consulting SL (http://www.rgbconsulting.com)
+* Daniel Rodriguez <drl.9319@gmail.com>
 
 Maintainer
 ----------

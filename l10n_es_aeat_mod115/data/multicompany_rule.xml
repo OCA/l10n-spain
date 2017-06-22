@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+  <data noupdate="1">
+    <record id="mod115_multicompany_rule_id" model="ir.rule">
+      <field name="name">AEAT Mod 115 multicompany rule</field>
+      <field name="domain_force">['|',('company_id','=',False),('company_id','child_of',[user.company_id.id])]</field>
+      <field name="perm_read">True</field>
+      <field name="perm_create">True</field>
+      <field name="perm_write">True</field>
+      <field name="perm_unlink">True</field>
+      <field name="model_id" ref="model_l10n_es_aeat_mod115_report" />
+    </record>
+  </data>
+</openerp>

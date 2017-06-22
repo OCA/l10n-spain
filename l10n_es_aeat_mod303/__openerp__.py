@@ -21,6 +21,7 @@
         "l10n_es_aeat",
     ],
     "data": [
+        "data/multicompany_rule.xml",
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         "data/aeat_export_mod303_2017_data.xml",
