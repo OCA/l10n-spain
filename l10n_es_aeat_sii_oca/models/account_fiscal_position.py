@@ -16,6 +16,7 @@ class AccountFiscalPosition(models.Model):
         'aeat.sii.mapping.registration.keys',
         'Default SII Registration Key for Purchases',
         domain=[('type', '=', 'purchase')])
-
-    sii_active = fields.Boolean(string='SII Active', copy=False,
-                                help='Enable SII for this fiscal position?')
+    sii_active = fields.Boolean(
+        string='SII Active', copy=False, default=True,
+        help='Enable SII for this fiscal position?',
+    )
