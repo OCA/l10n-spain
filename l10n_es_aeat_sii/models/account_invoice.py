@@ -2,6 +2,7 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73>
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
+# Copyright 2017 Otherway - Pedro Rodríguez Gil
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -35,6 +36,16 @@ except ImportError:
         return functools.partial
     job = empty_decorator_factory
 
+SII_STATES = [
+    ('not_sent', 'Not sent'),
+    ('sent', 'Sent'),
+    ('sent_modified', 'Registered in SII but last modifications not sent'),
+    ('cancelled', 'Cancelled'),
+    ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
+]
+
+SII_VERSION = '0.7'
+
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
@@ -58,10 +69,22 @@ class AccountInvoice(models.Model):
         'SII Description',
         default="/",
         required=True)
-    sii_sent = fields.Boolean(string='SII Sent', copy=False)
+    sii_state = fields.Selection(
+        selection=SII_STATES, string="SII send state", default='not_sent',
+        help="Indicates the state of this invoice in relation with the "
+             "presentation at the SII",
+        copy=False,
+    )
     sii_csv = fields.Char(string='SII CSV', copy=False, readonly=True)
     sii_return = fields.Text(string='SII Return', copy=False, readonly=True)
-    sii_send_error = fields.Text(string='SII Send Error', readonly=True)
+    sii_send_error = fields.Text(
+        string='SII Send Error', readonly=True, copy=False,
+    )
+    sii_send_failed = fields.Boolean(
+        string="SII send failed",
+        help="Indicates that the last attempt to communicate this invoice to "
+             "the SII has failed. See SII return for details",
+    )
     sii_refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
         string="SII Refund Type", default=_default_sii_refund_type,
@@ -75,7 +98,7 @@ class AccountInvoice(models.Model):
         # set not null constraint warning
     )
     sii_enabled = fields.Boolean(
-        string='Enable SII', related='company_id.sii_enabled', readonly=True,
+        string='Enable SII', compute='_compute_sii_enabled',
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
@@ -113,12 +136,43 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def write(self, vals):
+        """For supplier invoices the SII primary key is the supplier
+        VAT/ID Otro and the supplier invoice number. Cannot let change these
+        values in a SII registered supplier invoice"""
+        for invoice in self:
+            if (invoice.type in ['in_invoice', 'in refund'] and
+                    invoice.sii_state != 'not_sent'):
+                if 'partner_id' in vals:
+                    raise exceptions.Warning(
+                        _("You cannot change the supplier of an invoice "
+                          "already registered at the SII. You must cancel the "
+                          "invoice and create a new one with the correct "
+                          "supplier")
+                    )
+                elif 'supplier_invoice_number' in vals:
+                    raise exceptions.Warning(
+                        _("You cannot change the supplier invoice number of "
+                          "an invoice already registered at the SII. You must "
+                          "cancel the invoice and create a new one with the "
+                          "correct number")
+                    )
         res = super(AccountInvoice, self).write(vals)
         if vals.get('fiscal_position'):
             self.filtered(
                 lambda x: x.fiscal_position and not x.sii_registration_key
             ).onchange_fiscal_position_l10n_es_aeat_sii()
         return res
+
+    @api.multi
+    def unlink(self):
+        """A registered invoice at the SII cannot be deleted"""
+        for invoice in self:
+            if invoice.sii_state != 'not_sent':
+                raise exceptions.Warning(
+                    _("You cannot delete an invoice already registered at the "
+                      "SII.")
+                )
+        return super(AccountInvoice, self).unlink()
 
     @api.multi
     def map_sii_tax_template(self, tax_template, mapping_taxes):
@@ -184,21 +238,29 @@ class AccountInvoice(models.Model):
         return new_date
 
     @api.multi
-    def _get_sii_header(self, tipo_comunicacion):
+    def _get_sii_header(self, tipo_comunicacion=False, cancellation=False):
+        """Builds SII send header
+
+        :param tipo_comunicacion String 'A0': new reg, 'A1': modification
+        :param cancellation Bool True when the communitacion es for invoice
+            cancellation
+        :return Dict with header data depending on cancellation
+        """
         self.ensure_one()
         company = self.company_id
         if not company.vat:
             raise exceptions.Warning(_(
                 "No VAT configured for the company '{}'").format(company.name))
         id_version_sii = self.env['ir.config_parameter'].get_param(
-            'l10n_es_aeat_sii.version', False)
+            'l10n_es_aeat_sii.version', SII_VERSION)
         header = {
             "IDVersionSii": id_version_sii,
             "Titular": {
                 "NombreRazon": self.company_id.name[0:120],
-                "NIF": self.company_id.vat[2:]},
-            "TipoComunicacion": tipo_comunicacion
+                "NIF": self.company_id.vat[2:]}
         }
+        if not cancellation:
+            header.update({"TipoComunicacion": tipo_comunicacion})
         return header
 
     @api.multi
@@ -359,12 +421,28 @@ class AccountInvoice(models.Model):
             raise exceptions.Warning(
                 _("This company doesn't have SII enabled.")
             )
+        if not self.sii_enabled:
+            raise exceptions.Warning(
+                _("This invoice is not SII enabled.")
+            )
 
     @api.multi
-    def _get_sii_invoice_dict_out(self):
+    def _get_account_registration_date(self):
+        """Hook method to allow the setting of the account registration date
+        of each supplier invoice. The SII recommends to set the send date as
+        the default value (point 9.3 of the document
+        SII_Descripcion_ServicioWeb_v0.7.pdf), so by default we return
+        the current date
+        :return String date in the format %Y-%m-%d"""
+        return date.today().strftime("%Y-%m-%d")
+
+    @api.multi
+    def _get_sii_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
         out_invoice and out_refund.
 
+        :param cancel: It indicates if the dictionary if for sending a
+          cancellation of the invoice.
         :return: invoices (dict) : Dict XML with data for this invoice.
         """
         self.ensure_one()
@@ -386,7 +464,9 @@ class AccountInvoice(models.Model):
                 "Ejercicio": ejercicio,
                 "Periodo": periodo,
             },
-            "FacturaExpedida": {
+        }
+        if not cancel:
+            inv_dict["FacturaExpedida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
                     'R4' if self.type == 'out_refund' else 'F1'
@@ -401,32 +481,36 @@ class AccountInvoice(models.Model):
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": self.amount_total,
             }
-        }
-        exp_dict = inv_dict['FacturaExpedida']
-        # Uso condicional de IDOtro/NIF
-        exp_dict['Contraparte'].update(self._get_sii_identifier())
-        if self.type == 'out_refund':
-            exp_dict['TipoRectificativa'] = self.sii_refund_type
-            if self.sii_refund_type == 'S':
-                exp_dict['ImporteRectificacion'] = {
-                    'BaseRectificada': sum(
-                        self.mapped('origin_invoices_ids.amount_untaxed')
-                    ),
-                    'CuotaRectificada': sum(
-                        self.mapped('origin_invoices_ids.amount_tax')
-                    ),
-                }
+            exp_dict = inv_dict['FacturaExpedida']
+            # Uso condicional de IDOtro/NIF
+            exp_dict['Contraparte'].update(self._get_sii_identifier())
+            if self.type == 'out_refund':
+                exp_dict['TipoRectificativa'] = self.sii_refund_type
+                if self.sii_refund_type == 'S':
+                    exp_dict['ImporteRectificacion'] = {
+                        'BaseRectificada': sum(
+                            self.mapped('origin_invoices_ids.amount_untaxed')
+                        ),
+                        'CuotaRectificada': sum(
+                            self.mapped('origin_invoices_ids.amount_tax')
+                        ),
+                    }
         return inv_dict
 
     @api.multi
-    def _get_sii_invoice_dict_in(self):
+    def _get_sii_invoice_dict_in(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
         in_invoice and in_refund.
 
+        :param cancel: It indicates if the dictionary if for sending a
+          cancellation of the invoice.
         :return: invoices (dict) : Dict XML with data for this invoice.
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.date_invoice)
+        reg_date = self._change_date_format(
+            self._get_account_registration_date(),
+        )
         ejercicio = fields.Date.from_string(
             self.period_id.fiscalyear_id.date_start).year
         periodo = '%02d' % fields.Date.from_string(
@@ -442,7 +526,12 @@ class AccountInvoice(models.Model):
                 "Ejercicio": ejercicio,
                 "Periodo": periodo
             },
-            "FacturaRecibida": {
+        }
+        # Uso condicional de IDOtro/NIF
+        ident = self._get_sii_identifier()
+        inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
+        if not cancel:
+            inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
                     'R4' if self.type == 'in_refund' else 'F1'
@@ -455,27 +544,24 @@ class AccountInvoice(models.Model):
                 "Contraparte": {
                     "NombreRazon": self.partner_id.name[0:120],
                 },
-                "FechaRegContable": invoice_date,
+                "FechaRegContable": reg_date,
                 "ImporteTotal": self.amount_total,
                 "CuotaDeducible": self.amount_tax,
             }
-        }
-        # Uso condicional de IDOtro/NIF
-        ident = self._get_sii_identifier()
-        inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
-        inv_dict['FacturaRecibida']['Contraparte'].update(ident)
-        if self.type == 'in_refund':
-            rec_dict = inv_dict['FacturaRecibida']
-            rec_dict['TipoRectificativa'] = self.sii_refund_type
-            if self.sii_refund_type == 'S':
-                rec_dict['ImporteRectificacion'] = {
-                    'BaseRectificada': sum(
-                        self.mapped('origin_invoices_ids.amount_untaxed')
-                    ),
-                    'CuotaRectificada': sum(
-                        self.mapped('origin_invoices_ids.amount_tax')
-                    ),
-                }
+            # Uso condicional de IDOtro/NIF
+            inv_dict['FacturaRecibida']['Contraparte'].update(ident)
+            if self.type == 'in_refund':
+                rec_dict = inv_dict['FacturaRecibida']
+                rec_dict['TipoRectificativa'] = self.sii_refund_type
+                if self.sii_refund_type == 'S':
+                    rec_dict['ImporteRectificacion'] = {
+                        'BaseRectificada': sum(
+                            self.mapped('origin_invoices_ids.amount_untaxed')
+                        ),
+                        'CuotaRectificada': sum(
+                            self.mapped('origin_invoices_ids.amount_tax')
+                        ),
+                    }
         return inv_dict
 
     @api.multi
@@ -486,6 +572,16 @@ class AccountInvoice(models.Model):
             return self._get_sii_invoice_dict_out()
         elif self.type in ['in_invoice', 'in_refund']:
             return self._get_sii_invoice_dict_in()
+        return {}
+
+    @api.multi
+    def _get_cancel_sii_invoice_dict(self):
+        self.ensure_one()
+        self._sii_check_exceptions()
+        if self.type in ['out_invoice', 'out_refund']:
+            return self._get_sii_invoice_dict_out(cancel=True)
+        elif self.type in ['in_invoice', 'in_refund']:
+            return self._get_sii_invoice_dict_in(cancel=True)
         return {}
 
     @api.multi
@@ -538,7 +634,7 @@ class AccountInvoice(models.Model):
                     port_name += 'Pruebas'
             client = self._connect_sii(wsdl)
             serv = client.bind('siiService', port_name)
-            if not invoice.sii_sent:
+            if invoice.sii_state == 'not_sent':
                 tipo_comunicacion = 'A0'
             else:
                 tipo_comunicacion = 'A1'
@@ -557,10 +653,11 @@ class AccountInvoice(models.Model):
                 #     res = serv.SuministroLRDetOperacionIntracomunitaria(
                 #         header, invoices)
                 if res['EstadoEnvio'] == 'Correcto':
-                    self.sii_sent = True
+                    self.sii_state = 'sent'
                     self.sii_csv = res['CSV']
+                    self.sii_send_failed = False
                 else:
-                    self.sii_sent = False
+                    self.sii_send_failed = True
                 self.sii_return = res
                 send_error = False
                 res_line = res['RespuestaLinea'][0]
@@ -575,7 +672,6 @@ class AccountInvoice(models.Model):
                 invoice = env['account.invoice'].browse(self.id)
                 invoice.sii_send_error = fault
                 invoice.sii_return = fault
-                invoice.sii_send_error = fault
                 new_cr.commit()
                 new_cr.close()
                 raise
@@ -585,9 +681,12 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).invoice_validate()
         queue_obj = self.env['queue.job']
         for invoice in self:
+            if invoice.sii_state == 'sent':
+                invoice.sii_state = 'sent_modified'
+            elif invoice.sii_state == 'cancelled':
+                invoice.sii_state = 'cancelled_modified'
             company = invoice.company_id
-            if company.sii_enabled and company.sii_method == 'auto' and \
-                    invoice.is_sii_invoice():
+            if invoice.sii_enabled and company.sii_method == 'auto':
                 if not company.use_connector:
                     invoice._send_invoice_to_sii()
                 else:
@@ -602,36 +701,142 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def send_sii(self):
+        invoices = self.filtered(
+            lambda i: (
+                i.sii_enabled and i.state in ['open', 'paid'] and
+                i.sii_state in [
+                    'not_sent', 'sent_modified', 'cancelled_modified',
+                ]
+            )
+        )
+        if not invoices._cancel_invoice_jobs():
+            raise exceptions.Warning(_(
+                'You can not communicate this invoice at this moment '
+                'because there is a job running!'))
         queue_obj = self.env['queue.job']
-        for invoice in self:
-            if not invoice.is_sii_invoice():
-                continue
+        for invoice in invoices:
             company = invoice.company_id
-            if company.sii_enabled:
-                if not company.use_connector:
-                    invoice._send_invoice_to_sii()
+            if not company.use_connector:
+                invoice._send_invoice_to_sii()
+            else:
+                eta = company._get_sii_eta()
+                session = ConnectorSession.from_env(self.env)
+                new_delay = confirm_one_invoice.delay(
+                    session, 'account.invoice', invoice.id, eta=eta)
+                queue_ids = queue_obj.search([
+                    ('uuid', '=', new_delay)
+                ], limit=1)
+                invoice.invoice_jobs_ids |= queue_ids
+
+    @api.multi
+    def _cancel_invoice_to_sii(self):
+        for invoice in self.filtered(lambda i: i.state in ['cancel']):
+            company = invoice.company_id
+            port_name = ''
+            wsdl = ''
+            if invoice.type in ['out_invoice', 'out_refund']:
+                wsdl = self.env['ir.config_parameter'].get_param(
+                    'l10n_es_aeat_sii.wsdl_out', False)
+                port_name = 'SuministroFactEmitidas'
+                if company.sii_test:
+                    port_name += 'Pruebas'
+            elif invoice.type in ['in_invoice', 'in_refund']:
+                wsdl = self.env['ir.config_parameter'].get_param(
+                    'l10n_es_aeat_sii.wsdl_in', False)
+                port_name = 'SuministroFactRecibidas'
+                if company.sii_test:
+                    port_name += 'Pruebas'
+            client = self._connect_sii(wsdl)
+            serv = client.bind('siiService', port_name)
+            header = invoice._get_sii_header(cancellation=True)
+            try:
+                inv_dict = invoice._get_cancel_sii_invoice_dict()
+                if invoice.type in ['out_invoice', 'out_refund']:
+                    res = serv.AnulacionLRFacturasEmitidas(
+                        header, inv_dict)
+                elif invoice.type in ['in_invoice', 'in_refund']:
+                    res = serv.AnulacionLRFacturasRecibidas(
+                        header, inv_dict)
+                # TODO Facturas intracomunitarias 66 RIVA
+                # elif invoice.fiscal_position.id == self.env.ref(
+                #     'account.fp_intra').id:
+                #     res = serv.AnulacionLRDetOperacionIntracomunitaria(
+                #         header, invoices)
+                if res['EstadoEnvio'] == 'Correcto':
+                    self.sii_state = 'cancelled'
+                    self.sii_csv = res['CSV']
+                    self.sii_send_failed = False
                 else:
-                    eta = company._get_sii_eta()
-                    session = ConnectorSession.from_env(self.env)
-                    new_delay = confirm_one_invoice.delay(
-                        session, 'account.invoice', invoice.id, eta=eta)
-                    queue_ids = queue_obj.search([
-                        ('uuid', '=', new_delay)
-                    ], limit=1)
-                    invoice.invoice_jobs_ids |= queue_ids
+                    self.sii_send_failed = True
+                self.sii_return = res
+                send_error = False
+                res_line = res['RespuestaLinea'][0]
+                if res_line['CodigoErrorRegistro']:
+                    send_error = u"{} | {}".format(
+                        unicode(res_line['CodigoErrorRegistro']),
+                        unicode(res_line['DescripcionErrorRegistro'])[:60])
+                self.sii_send_error = send_error
+            except Exception as fault:
+                new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
+                env = api.Environment(new_cr, self.env.uid, self.env.context)
+                invoice = env['account.invoice'].browse(self.id)
+                invoice.sii_send_error = fault
+                invoice.sii_return = fault
+                new_cr.commit()
+                new_cr.close()
+                raise
+
+    @api.multi
+    def cancel_sii(self):
+        invoices = self.filtered(
+            lambda i: (i.sii_enabled and i.state in ['cancel'] and
+                       i.sii_state in ['sent', 'sent_modified'])
+        )
+        if not invoices._cancel_invoice_jobs():
+            raise exceptions.Warning(_(
+                'You can not communicate the cancellation of this invoice '
+                'at this moment because there is a job running!'))
+        queue_obj = self.env['queue.job']
+        for invoice in invoices:
+            company = invoice.company_id
+            if not company.use_connector:
+                invoice._cancel_invoice_to_sii()
+            else:
+                eta = company._get_sii_eta()
+                session = ConnectorSession.from_env(self.env)
+                new_delay = cancel_one_invoice.delay(
+                    session, 'account.invoice', invoice.id, eta=eta)
+                queue_ids = queue_obj.search([
+                    ('uuid', '=', new_delay)
+                ], limit=1)
+                invoice.invoice_jobs_ids |= queue_ids
+
+    @api.multi
+    def _cancel_invoice_jobs(self):
+        for invoice in self:
+            for queue in invoice.invoice_jobs_ids:
+                if queue.state == 'started':
+                    return False
+                elif queue.state in ('pending', 'enqueued', 'failed'):
+                    queue.write({
+                        'state': 'done',
+                        'date_done': date.today()})
+        return True
 
     @api.multi
     def action_cancel(self):
-        for queue in self.invoice_jobs_ids:
-            if queue.state == 'started':
-                raise exceptions.Warning(_(
-                    'You can not cancel this invoice because'
-                    ' there is a job running!'))
-            elif queue.state in ('pending', 'enqueued', 'failed'):
-                queue.write({
-                    'state': 'done',
-                    'date_done': date.today()})
-        return super(AccountInvoice, self).action_cancel()
+        if not self._cancel_invoice_jobs():
+            raise exceptions.Warning(_(
+                'You can not cancel this invoice because'
+                ' there is a job running!'))
+        res = super(AccountInvoice, self).action_cancel()
+        if self.sii_state == 'sent':
+            self.sii_state = 'sent_modified'
+        elif self.sii_state == 'cancelled_modified':
+            # Case when repoen a cancelled invoice, validate and cancel again
+            # without any SII communication.
+            self.sii_state = 'cancelled'
+        return res
 
     @api.multi
     def _get_sii_gen_type(self):
@@ -696,9 +901,19 @@ class AccountInvoice(models.Model):
         :return: bool value indicating if the invoice should be sent to SII.
         """
         self.ensure_one()
-        if self.fiscal_position and not self.fiscal_position.sii_active:
-            return False
-        return True
+
+    @api.multi
+    def _compute_sii_enabled(self):
+        """Compute if the invoice is enabled for the SII"""
+        for invoice in self:
+            if invoice.company_id.sii_enabled:
+                invoice.sii_enabled = (
+                    (invoice.fiscal_position and
+                     invoice.fiscal_position.sii_active) or
+                    not invoice.fiscal_position
+                )
+            else:
+                invoice.sii_enabled = False
 
     @api.model
     def _prepare_refund(self, invoice, date=None, period_id=None,
@@ -785,3 +1000,11 @@ def confirm_one_invoice(session, model_name, invoice_id):
     invoice = model.browse(invoice_id)
     if invoice.exists():
         invoice._send_invoice_to_sii()
+
+
+@job(default_channel='root.invoice_validate_sii')
+def cancel_one_invoice(session, model_name, invoice_id):
+    model = session.env[model_name]
+    invoice = model.browse(invoice_id)
+    if invoice.exists():
+        invoice._cancel_invoice_to_sii()
