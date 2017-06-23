@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+     Copyright 2017 Comunitea - Omar Castiñeira
+     Copyright 2017 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 
 <openerp>
@@ -11,9 +13,11 @@
             <field name="inherit_id" ref="account.view_account_position_form"/>
             <field name="arch" type="xml">
                 <field name="country_group_id" position="after">
-                    <field name="sii_registration_key_sale"/>
-                    <field name="sii_registration_key_purchase"/>
-                    <field name="sii_active" />
+                    <field name="sii_active"/>
+                    <field name="sii_registration_key_sale" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                    <field name="sii_registration_key_purchase" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                    <field name="no_taxable_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                    <field name="sii_exempt_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
                 </field>
             </field>
         </record>
