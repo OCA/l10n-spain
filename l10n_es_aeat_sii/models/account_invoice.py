@@ -280,6 +280,7 @@ class AccountInvoice(models.Model):
         taxes_sfens = self._get_sii_taxes_map(['SFENS'])
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
+        default_no_taxable_cause = self._get_no_taxable_cause()
         for inv_line in self.invoice_line:
             exempt_cause = self._get_sii_exempt_cause(inv_line.product_id)
             for tax_line in inv_line.invoice_line_tax_id:
@@ -314,12 +315,10 @@ class AccountInvoice(models.Model):
                         inv_line._update_sii_tax_line(taxes_f, tax_line)
                 # No sujetas
                 if tax_line in taxes_sfens:
-                    # FIXME: decidir que tipo se selecciona
-                    t_nsub = 'ImportePorArticulos7_14_Otros'
                     nsub_dict = tax_breakdown.setdefault(
-                        'NoSujeta', {t_nsub: 0},
+                        'NoSujeta', {default_no_taxable_cause: 0},
                     )
-                    nsub_dict[t_nsub] += inv_line.\
+                    nsub_dict[default_no_taxable_cause] += inv_line.\
                         _get_sii_line_price_subtotal()
                 if tax_line in (taxes_sfess + taxes_sfesse):
                     type_breakdown = taxes_dict.setdefault(
@@ -385,12 +384,22 @@ class AccountInvoice(models.Model):
         taxes_isp = {}
         taxes_sfrs = self._get_sii_taxes_map(['SFRS'])
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
+        taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
+        tax_amount = 0.0
         for inv_line in self.invoice_line:
             for tax_line in inv_line.invoice_line_tax_id:
                 if tax_line in taxes_sfrisp:
                     inv_line._update_sii_tax_line(taxes_isp, tax_line)
                 elif tax_line in taxes_sfrs:
                     inv_line._update_sii_tax_line(taxes_f, tax_line)
+                elif tax_line in taxes_sfrns:
+                    nsub_dict = taxes_dict.setdefault(
+                        'DesgloseIVA',
+                        {'DetalleIVA': {'BaseImponible': 0}},
+                    )
+                    nsub_dict['DetalleIVA']['BaseImponible'] += inv_line.\
+                        _get_sii_line_price_subtotal()
+
         if taxes_isp:
             taxes_dict.setdefault(
                 'InversionSujetoPasivo', {'DetalleIVA': taxes_isp.values()},
@@ -402,7 +411,8 @@ class AccountInvoice(models.Model):
         for val in taxes_isp.values() + taxes_f.values():
             val['CuotaSoportada'] = float_round(val['CuotaSoportada'], 2)
             val['BaseImponible'] = float_round(val['BaseImponible'], 2)
-        return taxes_dict
+            tax_amount += val['CuotaSoportada']
+        return taxes_dict, tax_amount
 
     @api.multi
     def _sii_check_exceptions(self):
@@ -515,6 +525,7 @@ class AccountInvoice(models.Model):
             self.period_id.fiscalyear_id.date_start).year
         periodo = '%02d' % fields.Date.from_string(
             self.period_id.date_start).month
+        desglose_factura, tax_amount = self._get_sii_in_taxes()
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {},
@@ -540,13 +551,13 @@ class AccountInvoice(models.Model):
                     self.sii_registration_key.code
                 ),
                 "DescripcionOperacion": self.sii_description[0:500],
-                "DesgloseFactura": self._get_sii_in_taxes(),
+                "DesgloseFactura": desglose_factura,
                 "Contraparte": {
                     "NombreRazon": self.partner_id.name[0:120],
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": self.amount_total,
-                "CuotaDeducible": self.amount_tax,
+                "CuotaDeducible": float_round(tax_amount, 2),
             }
             # Uso condicional de IDOtro/NIF
             inv_dict['FacturaRecibida']['Contraparte'].update(ident)
@@ -893,6 +904,15 @@ class AccountInvoice(models.Model):
             return 'E2'
         elif product.sii_exempt_cause != 'none':
             return product.sii_exempt_cause
+        elif self.fiscal_position and \
+                self.fiscal_position.sii_exempt_cause != 'none':
+            return self.fiscal_position.sii_exempt_cause
+
+    @api.multi
+    def _get_no_taxable_cause(self):
+        self.ensure_one()
+        return self.fiscal_position.no_taxable_cause or \
+            'ImportePorArticulos7_14_Otros'
 
     def is_sii_invoice(self):
         """Hook method to be overridden in additional modules to verify
