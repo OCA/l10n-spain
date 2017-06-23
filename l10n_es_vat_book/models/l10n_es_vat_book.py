@@ -30,7 +30,7 @@ VALID_TYPES = [
 class L10nEsVatBook(models.Model):
     _inherit = "l10n.es.aeat.report"
     _name = 'l10n.es.vat.book'
-    _period_quarterly = False
+    _period_quarterly = True
     _period_monthly = True
     _period_yearly = True
 
