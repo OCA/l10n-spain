@@ -20,6 +20,4 @@
 #
 ##############################################################################
 
-import wizard
-import models
-
+import aeat_sii_password

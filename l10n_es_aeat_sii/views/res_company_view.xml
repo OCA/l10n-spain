@@ -6,16 +6,16 @@
             <field name="model">res.company</field>
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
-                    <page string="Configuration" position="inside">
-                       <separator name="aeat_sii_config" string="AEAT SII Configuration" />
+                <page string="Configuration" position="inside">
+                   <separator name="aeat_sii_config" string="AEAT SII Configuration" />
 
-		        <group name="sii_enabled">
+		            <group name="sii_enabled">
                         	<field name="sii_enabled"/>
 	                </group>
 
-			<group attrs="{'invisible': [('sii_enabled', '=', False)]}">
-                        <!--<field name="chart_template_id"
-                               attrs="{'required': [('sii_enabled', '=', True)]}"/>-->
+			        <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <field name="chart_template_id"
+                               attrs="{'required': [('sii_enabled', '=', True)]}"/>
                         <!--<field name="method"/>-->
                         <field name="wsdl_out" />
                         <field name="wsdl_in" />
@@ -26,8 +26,8 @@
                         <field name="wsdl_ps" />
                         <field name="use_connector"/>
                         <field name="sii_test" />
-                       </group>                    
-                    </page>
+                    </group>
+                </page>
             </field>
         </record>
    </data>

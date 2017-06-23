@@ -20,13 +20,8 @@
 #
 ##############################################################################
 
-import openerp.exceptions
-from openerp.osv import fields, osv, orm
-from requests import Session
-from zeep import Client
-from zeep.transports import Transport
-from zeep.plugins import HistoryPlugin
-from datetime import datetime
+from openerp.osv import fields, osv
+
 
 class aeat_sii_map(osv.Model):
     _name = 'aeat.sii.map'
@@ -41,32 +36,31 @@ class aeat_sii_map(osv.Model):
 
 
     def _unique_date_range(self, cr, uid, ids, context=None):
-
-        # TODO Revisar dominio para ambas fechas, er
-
+        #TODO
         # for map in self.browse(cr, uid, ids, context):
-            # domain = [('id', '!=', map.id)]
-            # if map.date_from and map.date_to:
-            #     domain += ['|', '&',
-            #                ('date_from', '<=', map.date_to),
-            #                ('date_from', '>=', map.date_from),
-            #                '|', '&',
-            #                ('date_to', '<=', map.date_to),
-            #                ('date_to', '>=', map.date_from),
-            #                '|', '&',
-            #                ('date_from', '=', False),
-            #                ('date_to', '>=', map.date_from),
-            #                '|', '&',
-            #                ('date_to', '=', False),
-            #                ('date_from', '<=', map.date_to),
-            #                ]
-            # elif map.date_from:
-            #     domain += [('date_to', '>=', map.date_from)]
-            # elif map.date_to:
-            #     domain += [('date_from', '<=', map.date_to)]
-            #
-            # if self.search(cr, uid, domain):
-            #     return False
+        #     domain = [('id', '!=', map.id)]
+        #     if map.date_from and map.date_to:
+        #         domain += ['|', '&',
+        #                    ('date_from', '<=', map.date_to),
+        #                    ('date_from', '>=', map.date_from),
+        #                    '|', '&',
+        #                    ('date_to', '<=', map.date_to),
+        #                    ('date_to', '>=', map.date_from),
+        #                    '|', '&',
+        #                    ('date_from', '=', False),
+        #                    ('date_to', '>=', map.date_from),
+        #                    '|', '&',
+        #                    ('date_to', '=', False),
+        #                    ('date_from', '<=', map.date_to),
+        #                    ]
+        #     elif map.date_from:
+        #         domain += [('date_to', '>=', map.date_from)]
+        #     elif map.date_to:
+        #         domain += [('date_from', '<=', map.date_to)]
+        #
+        #     if self.search(cr, uid, domain):
+        #         return False
+
         return True
 
     _constraints = [
@@ -81,9 +75,9 @@ class aeat_sii_map_lines(osv.Model):
 
     _columns = {
         'name': fields.char('Name'),
-        'code': fields.char('Code'),
-        'taxes': fields.many2many('account.tax.template', 'aeat_rel_tax_template_map_line_sii', 'template_id', 'sii_map_line_id', string="Taxes"),
-        'sii_map_id': fields.many2one('aeat.sii.map', 'Aeat SII Map'),
+        'code': fields.char('Code', required=True),
+        'taxes': fields.many2many('account.tax.template', 'aeat_rel_tax_template_map_line_sii', 'template_id', 'sii_map_line_id', 'Taxes'),
+        'sii_map_id': fields.many2one('aeat.sii.map', 'Aeat SII Map', ondelete='cascade'),
     }
 aeat_sii_map_lines()
 

@@ -26,21 +26,23 @@ from openerp.osv import fields, osv, orm
 class res_company(osv.osv):
      _inherit = 'res.company'
 
-     def _check_connector_installed(cr, uid, ids):
-        module = self.env['ir.module'].search(
-            [('name', '=', 'connector'), ('state', '=', 'installed')])
-        if not module:
-            raise exceptions.Warning(
-                _('The module "Connector" is not installed. You have '
-                  'to install it to activate this option'))
+     #TODO
+     # def _check_connector_installed(cr, uid, ids):
+     #    module = self.env['ir.module'].search(
+     #        [('name', '=', 'connector'), ('state', '=', 'installed')])
+     #    if not module:
+     #        raise exceptions.Warning(
+     #            _('The module "Connector" is not installed. You have '
+     #              'to install it to activate this option'))
 
 
      _columns = {
-       'sii_enabled': fields.boolean(string='Enable SII'),
+       'sii_enabled': fields.boolean('Enable SII'),
        'sii_test': fields.boolean('Test Enviroment'),
-       'sii_method': fields.selection(
-            string='Method',
-            selection=[('auto', 'Automatic'),('manual', 'Manual')],
+       'sii_method': fields.selection([
+           ('auto', 'Automatic'),
+           ('manual', 'Manual')],
+           'Method',
             help='By default the invoice send in validate process, with manual '
             'method, there a button to send the invoice.'),
        'use_connector': fields.boolean('Use connector', help='Check it to use connector instead to send the invoice when it is validated'),

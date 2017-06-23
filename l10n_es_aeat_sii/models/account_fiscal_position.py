@@ -20,6 +20,29 @@
 #
 ##############################################################################
 
-import wizard
-import models
 
+
+from openerp.osv import fields, osv
+
+
+class account_fiscal_position(osv.Model):
+    _inherit = 'account.fiscal.position'
+
+    _columns = {
+        'sii_registration_key_sale': fields.many2one(
+                'aeat.sii.mapping.registration.keys',
+                'Default SII Registration Key for Sales',
+                domain=[('type', '=', 'sale')]),
+        'sii_registration_key_purchase': fields.many2one(
+                'aeat.sii.mapping.registration.keys',
+                'Default SII Registration Key for Purchases',
+                domain=[('type', '=', 'purchase')]),
+        'sii_active': fields.boolean('SII Active', copy=False,
+                                help='Enable SII for this fiscal position?')
+    }
+
+
+    def copy(self, cr, uid, id, default, context={}):
+        default['sii_active'] = False
+
+        return super(account_fiscal_position, self).copy(cr, uid, id, default, context=context)

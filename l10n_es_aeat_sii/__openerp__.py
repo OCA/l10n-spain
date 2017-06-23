@@ -147,13 +147,18 @@ To contribute to this module, please visit https://odoo-community.org.""",
     "init_xml" : [],
     "demo_xml" : [],
     "external_dependencies": {
-       "python": ["zeep", "requests"]
+       "python": ["zeep",
+                  "requests",
+                  "OpenSSL",]
     },
     "update_xml" : [
+        'wizard/aeat_sii_password_view.xml',
         'views/res_company_view.xml', 
         'views/account_invoice_view.xml',
         'views/aeat_sii_map_view.xml',
-        'views/aeat_sii_mapping_registration_keys_view.xml'
+        'views/aeat_sii_mapping_registration_keys_view.xml',
+        'views/aeat_sii_view.xml',
+        'views/account_fiscal_position_view.xml',
     ],
      "data": [
         "data/ir_config_parameter.xml",
