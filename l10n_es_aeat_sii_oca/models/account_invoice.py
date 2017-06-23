@@ -335,7 +335,7 @@ class AccountInvoice(models.Model):
             )
         if taxes_f:
             taxes_dict.setdefault(
-                'DesgloseIVA', {'DetalleIVA': [taxes_f.values()]},
+                'DesgloseIVA', {'DetalleIVA': taxes_f.values()},
             )
         for val in taxes_isp.values() + taxes_f.values():
             val['CuotaSoportada'] = float_round(val['CuotaSoportada'], 2)
