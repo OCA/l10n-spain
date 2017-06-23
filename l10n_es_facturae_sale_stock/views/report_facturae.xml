@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="template_facturae"
+              inherit_id="l10n_es_facturae.template_facturae">
+        <xpath expr="//DeliveryNotesReferences" position="attributes">
+            <attribute name="t-if">line.get_qty_delivered() &gt; 0</attribute>
+        </xpath>
+        <xpath expr="//DeliveryNotesReferences" position="inside">
+            <t t-foreach="line.sale_line_ids" t-as="order_line">
+                <t t-foreach="order_line.procurement_ids.mapped('move_ids').filtered(lambda r: r.state == 'done' and not r.scrapped)"
+                   t-as="order_procurement">
+                    <DeliveryNote>
+                        <DeliveryNoteNumber t-length="30"
+                                            t-esc="order_procurement.picking_id.name"/>
+                        <DeliveryNoteDate
+                                t-esc="line.get_datetime(order_procurement.write_date).strftime('%Y-%m-%d')"/>
+                    </DeliveryNote>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>
