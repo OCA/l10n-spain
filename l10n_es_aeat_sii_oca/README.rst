@@ -78,10 +78,10 @@ Known issues / Roadmap
 * Comunicación de cobros y pagos
 * Determinadas facturas intracomunitarias (Articulo 66 RIVA)
 * Factura simplificada
-* Facturas No sujetas según el art 7.14 y no sujetas en el TAI
 * Asistente para consultar los documentos comunicados
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte)
 * Regimenes especial de seguros y agencias de viaje
+* Imputar los importes en € cuando la factura esta en otra divisa.
 
 Bug Tracker
 ===========
