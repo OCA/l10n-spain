@@ -29,8 +29,8 @@
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="sii_refund_type"
-                                   attrs="{'required': [('type', 'in', ('out_refund',' in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
-                            <field name="sii_registration_key" domain="[('type', '=', 'purchase')]" required="1"/>
+                                   attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'purchase')]" attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
@@ -82,8 +82,8 @@
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="sii_refund_type"
-                                   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
-                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]" required="1"/>
+                                   attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]" attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
