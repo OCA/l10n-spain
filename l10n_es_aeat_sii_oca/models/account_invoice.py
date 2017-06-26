@@ -107,7 +107,8 @@ class AccountInvoice(models.Model):
 
     @api.onchange('sii_refund_type')
     def onchange_sii_refund_type(self):
-        if self.sii_refund_type == 'S' and not self.origin_invoices_ids:
+        if (self.sii_enabled and self.sii_refund_type == 'S' and
+                not self.origin_invoices_ids):
             self.sii_refund_type = False
             return {
                 'warning': {
@@ -350,9 +351,17 @@ class AccountInvoice(models.Model):
                             },
                         )
                         inv_line._update_sii_tax_line(taxes_to, tax_line)
+        # Check if refund type is 'By differences'. Negative amounts!
+        sign = -1.0 if self.sii_refund_type == 'I' else 1.0
         for val in taxes_f.values() + taxes_to.values():
-            val['CuotaRepercutida'] = float_round(val['CuotaRepercutida'], 2)
-            val['BaseImponible'] = float_round(val['BaseImponible'], 2)
+            val['CuotaRepercutida'] = float_round(
+                val['CuotaRepercutida'] * sign, 2,
+            )
+            val['BaseImponible'] = float_round(val['BaseImponible'] * sign, 2)
+            if 'CuotaRecargoEquivalencia' in val:
+                val['CuotaRecargoEquivalencia'] = float_round(
+                    val['CuotaRecargoEquivalencia'] * sign, 2,
+                )
         if taxes_f:
             breakdown = tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA']
             breakdown['DetalleIVA'] = taxes_f.values()
@@ -408,9 +417,17 @@ class AccountInvoice(models.Model):
             taxes_dict.setdefault(
                 'DesgloseIVA', {'DetalleIVA': taxes_f.values()},
             )
+        # Check if refund type is 'By differences'. Negative amounts!
+        sign = -1.0 if self.sii_refund_type == 'I' else 1.0
         for val in taxes_isp.values() + taxes_f.values():
-            val['CuotaSoportada'] = float_round(val['CuotaSoportada'], 2)
-            val['BaseImponible'] = float_round(val['BaseImponible'], 2)
+            val['CuotaSoportada'] = float_round(
+                val['CuotaSoportada'] * sign, 2,
+            )
+            val['BaseImponible'] = float_round(val['BaseImponible'] * sign, 2)
+            if 'CuotaRecargoEquivalencia' in val:
+                val['CuotaRecargoEquivalencia'] = float_round(
+                    val['CuotaRecargoEquivalencia'] * sign, 2,
+                )
             tax_amount += val['CuotaSoportada']
         return taxes_dict, tax_amount
 
@@ -476,6 +493,8 @@ class AccountInvoice(models.Model):
             },
         }
         if not cancel:
+            # Check if refund type is 'By differences'. Negative amounts!
+            sign = -1.0 if self.sii_refund_type == 'I' else 1.0
             inv_dict["FacturaExpedida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
@@ -489,7 +508,7 @@ class AccountInvoice(models.Model):
                     "NombreRazon": self.partner_id.name[0:120],
                 },
                 "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": self.amount_total,
+                "ImporteTotal": self.amount_total * sign,
             }
             exp_dict = inv_dict['FacturaExpedida']
             # Uso condicional de IDOtro/NIF
@@ -542,6 +561,8 @@ class AccountInvoice(models.Model):
         ident = self._get_sii_identifier()
         inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
         if not cancel:
+            # Check if refund type is 'By differences'. Negative amounts!
+            sign = -1.0 if self.sii_refund_type == 'I' else 1.0
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
@@ -556,8 +577,8 @@ class AccountInvoice(models.Model):
                     "NombreRazon": self.partner_id.name[0:120],
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": self.amount_total,
-                "CuotaDeducible": float_round(tax_amount, 2),
+                "ImporteTotal": self.amount_total * sign,
+                "CuotaDeducible": float_round(tax_amount * sign, 2),
             }
             # Uso condicional de IDOtro/NIF
             inv_dict['FacturaRecibida']['Contraparte'].update(ident)
