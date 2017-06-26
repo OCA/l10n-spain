@@ -1,103 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data noupdate="0">
+<odoo>
+    <data noupdate="0">
 
-<record id="fptt_dua_4b" model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_bc"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_4s" model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_sc"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_4_inv"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_bi"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_10b" model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_bc"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_10s" model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_sc"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_10_inv"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_bi"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_21b" model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_bc"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_21s" model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_sc"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_21_inv"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_bi"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_0"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva0_bc"/>
-    <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
-</record>
-<record id="fptt_dua_ventas_4b"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4b"/>
-    <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
-</record>
-<record id="fptt_dua_ventas_4s"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4s"/>
-    <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e"/>
-</record>
-<record id="fptt_dua_ventas_10b"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10b"/>
-    <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
-</record>
-<record id="fptt_dua_ventas_10s"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10s"/>
-    <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e"/>
-</record>
-<record id="fptt_dua_ventas_21b"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21b"/>
-    <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
-</record>
-<record id="fptt_dua_ventas_21s"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21s"/>
-    <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e"/>
-</record>
-<record id="fptt_dua_ventas_21isp"
-    model="account.fiscal.position.tax.template">
-    <field name="position_id" ref="fp_dua"/>
-    <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21isp"/>
-    <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
-</record>
+        <record id="fptt_dua_4b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_bc"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_4s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_sc"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_4_inv"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_10b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_bc"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_10s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_sc"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_10_inv"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_21b" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_bc"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_21s" model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_sc"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_21_inv"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_bi"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_0"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva0_bc"/>
+            <field name="tax_dest_id" ref="account_tax_template_p_dua0"/>
+        </record>
+        <record id="fptt_dua_ventas_4b"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4b"/>
+            <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
+        </record>
+        <record id="fptt_dua_ventas_4s"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4s"/>
+            <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e"/>
+        </record>
+        <record id="fptt_dua_ventas_10b"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10b"/>
+            <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
+        </record>
+        <record id="fptt_dua_ventas_10s"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10s"/>
+            <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e"/>
+        </record>
+        <record id="fptt_dua_ventas_21b"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21b"/>
+            <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
+        </record>
+        <record id="fptt_dua_ventas_21s"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21s"/>
+            <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva_e"/>
+        </record>
+        <record id="fptt_dua_ventas_21isp"
+            model="account.fiscal.position.tax.template">
+            <field name="position_id" ref="fp_dua"/>
+            <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21isp"/>
+            <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
+        </record>
 
-</data>
-</openerp>
+    </data>
+</odoo>
