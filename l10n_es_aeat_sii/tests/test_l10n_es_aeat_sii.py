@@ -64,6 +64,8 @@ class TestL10nEsAeatSii(common.TransactionCase):
         })
         self.tax = self.env['account.tax'].create({
             'name': 'Test tax 10%',
+            # Needed for discriminatory tax amount in supplier invoices
+            'description': 'P_IVA10_BC',
             'type_tax_use': 'purchase',
             'type': 'percent',
             'amount': '0.10',
@@ -143,12 +145,22 @@ class TestL10nEsAeatSii(common.TransactionCase):
             })
         else:
             res[expedida_recibida].update({
-                "FechaRegContable":
-                    self.invoice._change_date_format(
-                        self.invoice.date_invoice
-                    ),
-                "DesgloseFactura": {},
-                "CuotaDeducible": self.invoice.amount_tax
+                "FechaRegContable": self.invoice._change_date_format(
+                    self.invoice.date_invoice
+                ),
+                "DesgloseFactura": {
+                    'DesgloseIVA': {
+                        'DetalleIVA': [
+                            {
+                                'BaseImponible': 100.0,
+                                'CuotaRepercutida': 0,
+                                'CuotaSoportada': 10.0,
+                                'TipoImpositivo': '10.0',
+                            },
+                        ],
+                    },
+                },
+                "CuotaDeducible": self.invoice.amount_tax,
             })
         if invoice_type == 'R4':
             invoices = self.invoice.origin_invoices_ids
