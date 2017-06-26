@@ -680,23 +680,24 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         queue_obj = self.env['queue.job']
-        for invoice in self:
+        for invoice in self.filtered('sii_enabled'):
             if invoice.sii_state == 'sent':
                 invoice.sii_state = 'sent_modified'
             elif invoice.sii_state == 'cancelled':
                 invoice.sii_state = 'cancelled_modified'
             company = invoice.company_id
-            if invoice.sii_enabled and company.sii_method == 'auto':
-                if not company.use_connector:
-                    invoice._send_invoice_to_sii()
-                else:
-                    eta = company._get_sii_eta()
-                    session = ConnectorSession.from_env(self.env)
-                    new_delay = confirm_one_invoice.delay(
-                        session, 'account.invoice', invoice.id, eta=eta)
-                    invoice.invoice_jobs_ids |= queue_obj.search([
-                        ('uuid', '=', new_delay)
-                    ], limit=1)
+            if company.sii_method != 'auto':
+                continue
+            if not company.use_connector:
+                invoice._send_invoice_to_sii()
+            else:
+                eta = company._get_sii_eta()
+                session = ConnectorSession.from_env(self.env)
+                new_delay = confirm_one_invoice.delay(
+                    session, 'account.invoice', invoice.id, eta=eta)
+                invoice.invoice_jobs_ids |= queue_obj.search(
+                    [('uuid', '=', new_delay)], limit=1,
+                )
         return res
 
     @api.multi
@@ -903,6 +904,8 @@ class AccountInvoice(models.Model):
         self.ensure_one()
 
     @api.multi
+    @api.depends('company_id', 'company_id.sii_enabled',
+                 'fiscal_position', 'fiscal_position.sii_active')
     def _compute_sii_enabled(self):
         """Compute if the invoice is enabled for the SII"""
         for invoice in self:
@@ -932,10 +935,19 @@ class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
     @api.multi
-    def _get_sii_line_price_subtotal(self):
-        """Obtain the effective invoice line price after discount."""
+    def _get_sii_line_price_unit(self):
+        """Obtain the effective invoice line price after discount. This is
+        obtain through this method, as it can be inherited in other modules
+        for altering the expected amount according other criteria."""
         self.ensure_one()
         return self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+
+    @api.multi
+    def _get_sii_line_price_subtotal(self):
+        """Obtain the effective invoice line price after discount. Needed as
+        we can modify the unit price via inheritance."""
+        self.ensure_one()
+        return self._get_sii_line_price_unit() * self.quantity
 
     @api.multi
     def _get_sii_tax_line_req(self):
@@ -944,7 +956,7 @@ class AccountInvoiceLine(models.Model):
         taxes_re = self.invoice_id._get_sii_taxes_map(['RE'])
         for tax in self.invoice_line_tax_id:
             if tax in taxes_re:
-                price = self._get_sii_line_price_subtotal()
+                price = self._get_sii_line_price_unit()
                 taxes = tax.compute_all(
                     price, self.quantity, self.product_id,
                     self.invoice_id.partner_id,
@@ -983,7 +995,7 @@ class AccountInvoiceLine(models.Model):
             tax_dict[tax_type]['CuotaRecargoEquivalencia'] += cuota_recargo
         # Rest of the taxes
         taxes = tax_line.compute_all(
-            self._get_sii_line_price_subtotal(), self.quantity,
+            self._get_sii_line_price_unit(), self.quantity,
             self.product_id, self.invoice_id.partner_id,
         )
         tax_dict[tax_type]['BaseImponible'] += taxes['total']
