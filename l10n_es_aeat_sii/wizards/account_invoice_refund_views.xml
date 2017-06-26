@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+<data>
+
+    <record id="view_account_invoice_refund" model="ir.ui.view">
+        <field name="model">account.invoice.refund</field>
+        <field name="inherit_id" ref="account.view_account_invoice_refund"/>
+        <field name="arch" type="xml">
+            <field name="description" position="before">
+                <field name="sii_refund_type_required" invisible="1"/>
+                <field name="sii_refund_type"
+                       attrs="{'required': [('sii_refund_type_required', '=', True)], 'invisible': [('sii_refund_type_required', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</data>
+</openerp>

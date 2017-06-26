@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="aeat_sii_map_view_tree" model="ir.ui.view">
+            <field name="name">aeat.sii.map.view.tree</field>
+            <field name="model">aeat.sii.map</field>
+            <field name="arch" type="xml">
+                <tree string="Aeat SII Map">
+                    <field name="name"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="aeat_sii_map_view_form" model="ir.ui.view">
+            <field name="name">aeat.sii.map.view.form</field>
+            <field name="model">aeat.sii.map</field>
+            <field name="arch" type="xml">
+                <form string="Aeat SII Map">
+                    <group col="4">
+                        <field name="name"/>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group string="Mapping Lines" col="4">
+                        <field name='map_lines' nolabel="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_aeat_sii_mapping">
+            <field name="name">Aeat SII Map</field>
+            <field name="res_model">aeat.sii.map</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_aeat_sii_map"
+                  parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+                  action="action_aeat_sii_mapping"
+                  name="Aeat SII Map"/>
+
+        <record id="l10n_es_aeat_sii_map_lines_view_tree" model="ir.ui.view">
+            <field name="name">aeat.sii.map.lines.view.tree</field>
+            <field name="model">aeat.sii.map.lines</field>
+            <field name="arch" type="xml">
+                <tree string="Aeat SII Map" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="taxes" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</openerp>
