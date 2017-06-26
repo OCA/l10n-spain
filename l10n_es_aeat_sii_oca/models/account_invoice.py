@@ -196,11 +196,14 @@ class AccountInvoice(models.Model):
                     ('name', '=', tax_template.name),
                     ('description', '=', tax_template.name)]
         if tax_template.description:
-            criteria = ['|', '|'] + criteria
-            criteria += [('description', '=', tax_template.description),
-                         ('name', '=', tax_template.description)]
+            criteria = ['|'] + criteria
+            criteria += [
+                '|',
+                ('description', '=', tax_template.description),
+                ('name', '=', tax_template.description),
+            ]
         criteria += [('company_id', '=', self.company_id.id)]
-        mapping_taxes[tax_template] = tax_obj.search(criteria, limit=1)
+        mapping_taxes[tax_template] = tax_obj.search(criteria)
         return mapping_taxes[tax_template]
 
     @api.multi
@@ -213,9 +216,7 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         taxes = self.env['account.tax']
-        sii_map_obj = self.env['aeat.sii.map']
-        sii_map_line_obj = self.env['aeat.sii.map.lines']
-        sii_map = sii_map_obj.search(
+        sii_map = self.env['aeat.sii.map'].search(
             ['|',
              ('date_from', '<=', self.date_invoice),
              ('date_from', '=', False),
@@ -223,12 +224,11 @@ class AccountInvoice(models.Model):
              ('date_to', '>=', self.date_invoice),
              ('date_to', '=', False)], limit=1)
         mapping_taxes = {}
-        for code in codes:
-            tax_templates = sii_map_line_obj.search(
-                [('code', '=', code), ('sii_map_id', '=', sii_map.id)],
-                limit=1).taxes
-            for tax_template in tax_templates:
-                taxes += self.map_sii_tax_template(tax_template, mapping_taxes)
+        tax_templates = sii_map.map_lines.filtered(
+            lambda x: x.code in codes
+        ).taxes
+        for tax_template in tax_templates:
+            taxes += self.map_sii_tax_template(tax_template, mapping_taxes)
         return taxes
 
     @api.multi
@@ -564,14 +564,16 @@ class AccountInvoice(models.Model):
             if self.type == 'in_refund':
                 rec_dict = inv_dict['FacturaRecibida']
                 rec_dict['TipoRectificativa'] = self.sii_refund_type
+                refund_tax_amount = sum([
+                    x._get_sii_in_taxes()[1]
+                    for x in self.origin_invoices_ids
+                ])
                 if self.sii_refund_type == 'S':
                     rec_dict['ImporteRectificacion'] = {
                         'BaseRectificada': sum(
                             self.mapped('origin_invoices_ids.amount_untaxed')
                         ),
-                        'CuotaRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_tax')
-                        ),
+                        'CuotaRectificada': refund_tax_amount,
                     }
         return inv_dict
 
