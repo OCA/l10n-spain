@@ -34,6 +34,7 @@ from openerp.exceptions import Warning
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class account_invoice(osv.Model):
     _inherit = 'account.invoice'
 
@@ -162,8 +163,8 @@ class account_invoice(osv.Model):
         new_date = date_time_object.strftime('%d-%m-%Y')
 
         return new_date
-    
-    
+
+
     def _get_header(self, cr, uid, ids, company, comunication_type):
         if not company.partner_id.vat:
            raise Warning(_(
@@ -553,7 +554,6 @@ class account_invoice(osv.Model):
                     'sii_return': fault,
                 }
                 self.write(cr, uid, invoice.id, values)
-
 
     def invoice_validate(self, cr, uid, ids, context=None):
         res = super(account_invoice, self).invoice_validate(cr, uid, ids, context=context)

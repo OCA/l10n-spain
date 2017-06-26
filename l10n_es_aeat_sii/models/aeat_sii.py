@@ -24,7 +24,11 @@ from osv import osv, fields
 from tools.translate import _
 
 
+<<<<<<< HEAD
 class l10n_es_aeat_sii(osv.osv):
+=======
+class L10nEsAeatSii(osv.osv):
+>>>>>>> 7.0-l10n_es_aeat_sii
     _name = 'l10n.es.aeat.sii'
 
     _columns = {
@@ -64,4 +68,8 @@ class l10n_es_aeat_sii(osv.osv):
 
         return {'type': 'ir.actions.act_window_close'}
 
+<<<<<<< HEAD
 l10n_es_aeat_sii()
+=======
+L10nEsAeatSii()
+>>>>>>> 7.0-l10n_es_aeat_sii
