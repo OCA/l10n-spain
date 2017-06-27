@@ -20,7 +20,13 @@
                             <field name="sii_test" />
                             <field name="sii_method"/>
                         </group>
-                        <group name="sii_connector">
+                        <group name="sii_description" string="Description config">
+                            <field name="sii_description_method"/>
+                            <field name="sii_description" attrs="{'invisible': [('sii_description_method', '!=', 'fixed')]}"/>
+                            <field name="sii_header_customer"/>
+                            <field name="sii_header_supplier"/>
+                        </group>
+                        <group name="sii_connector" string="Connector config">
                             <field name="use_connector" />
                             <field name="send_mode"
                                    attrs="{'invisible': [('use_connector', '=', False)]}"/>
