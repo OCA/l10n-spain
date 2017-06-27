@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+    <data noupdate="0">
+
+        <record id="aeat_sii_mapping_payment_keys_01" model="aeat.sii.payment.mode.key">
+            <field name="code">01</field>
+            <field name="name">Transferencia</field>
+        </record>
+        <record id="aeat_sii_mapping_payment_keys_02" model="aeat.sii.payment.mode.key">
+            <field name="code">02</field>
+            <field name="name">Cheque</field>
+        </record>
+        <record id="aeat_sii_mapping_payment_keys_03" model="aeat.sii.payment.mode.key">
+            <field name="code">03</field>
+            <field name="name">No se cobra / paga (fecha límite de devengo / devengo forzoso en concurso de acreedores)</field>
+        </record>
+        <record id="aeat_sii_mapping_payment_keys_04" model="aeat.sii.payment.mode.key">
+            <field name="code">04</field>
+            <field name="name">Otros medios de cobro / pago</field>
+        </record>
+
+    </data>
+</openerp>
