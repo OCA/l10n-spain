@@ -560,7 +560,11 @@ class AccountInvoice(models.Model):
         # Uso condicional de IDOtro/NIF
         ident = self._get_sii_identifier()
         inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
-        if not cancel:
+        if cancel:
+            inv_dict['IDFactura']['IDEmisorFactura'].update(
+                {'NombreRazon': self.partner_id.name[0:120]}
+            )
+        else:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = -1.0 if self.sii_refund_type == 'I' else 1.0
             inv_dict["FacturaRecibida"] = {
