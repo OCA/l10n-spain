@@ -37,6 +37,7 @@
         "account_refund_original",
         "l10n_es_aeat",
         "connector",
+        "account_invoice_currency",
     ],
     "data": [
         "data/ir_config_parameter.xml",
