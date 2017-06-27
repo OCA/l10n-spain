@@ -12,13 +12,16 @@
             <field name="model">account.fiscal.position</field>
             <field name="inherit_id" ref="account.view_account_position_form"/>
             <field name="arch" type="xml">
-                <field name="country_group_id" position="after">
-                    <field name="sii_active"/>
-                    <field name="sii_registration_key_sale" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
-                    <field name="sii_registration_key_purchase" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
-                    <field name="no_taxable_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
-                    <field name="sii_exempt_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
-                </field>
+                <xpath expr="//field[@name='country_group_id']/.." position="after">
+                    <field name="sii_enabled" invisible="1"/>
+                    <group string="SII" name="group_sii" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <field name="sii_active"/>
+                        <field name="sii_registration_key_sale" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                        <field name="sii_registration_key_purchase" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                        <field name="sii_no_taxable_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                        <field name="sii_exempt_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                    </group>
+                </xpath>
             </field>
         </record>
 
