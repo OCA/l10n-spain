@@ -549,13 +549,12 @@ class AccountInvoice(models.Model):
         period = self.period_id
         if not period:
             period = period.with_context(self.env.context).find(
-            self.date_invoice)[:1]
+                self.date_invoice)[:1]
         vat_pp = 100
         if period and period.vat_prorrate_percent:
-            vat_pp = period.vat_prorrate_percent 
+            vat_pp = period.vat_prorrate_percent
         if vat_pp != 100:
             cuota_deducible = cuota_deducible * (vat_pp / 100.0)
-            
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {},

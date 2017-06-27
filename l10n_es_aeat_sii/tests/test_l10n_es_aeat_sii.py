@@ -151,7 +151,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
                     self.invoice.date_invoice)[:1]
             vat_pp = 100
             if period and period.vat_prorrate_percent:
-                vat_pp = period.vat_prorrate_percent 
+                vat_pp = period.vat_prorrate_percent
             if vat_pp != 100:
                 cuota_deducible = cuota_deducible * (vat_pp / 100.0)
             res[expedida_recibida].update({
