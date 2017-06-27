@@ -13,6 +13,32 @@ class ResCompany(models.Model):
 
     sii_enabled = fields.Boolean(string='Enable SII')
     sii_test = fields.Boolean(string='Is Test Environment?')
+    sii_description_method = fields.Selection(
+        string='SII Description Method',
+        selection=[('auto', 'Automatic'), ('fixed', 'Fixed'),
+                   ('manual', 'Manual')],
+        default='manual',
+        help="Method for the SII invoices description, can be one of these:\n"
+             "- Automatic: the description will be the join of the invoice "
+             "  lines description\n"
+             "- Fixed: the description write on the below field 'SII "
+             "  Description'\n"
+             "- Manual (by default): It will be necessary to manually enter "
+             "  the description on each invoice\n\n"
+             "For all the options you can append a header text using the "
+             "below fields 'SII Sale header' and 'SII Purchase header'")
+    sii_description = fields.Char(
+        string="SII Description",
+        help="The description for invoices. Only when the filed SII "
+             "Description Method is 'fixed'.")
+    sii_header_customer = fields.Char(
+        string="SII Customer header",
+        help="An optional header description for customer invoices. "
+             "Applied on all the SII description methods")
+    sii_header_supplier = fields.Char(
+        string="SII Supplier header",
+        help="An optional header description for supplier invoices. "
+             "Applied on all the SII description methods")
     chart_template_id = fields.Many2one(
         comodel_name='account.chart.template', string='Chart Template')
     sii_method = fields.Selection(
@@ -41,7 +67,7 @@ class ResCompany(models.Model):
             now = datetime.now()
             hour, minute = divmod(self.sent_time, 1)
             hour = int(hour)
-            minute = int(minute*60)
+            minute = int(minute * 60)
             if now.date > hour or (now.hour == hour and now.minute > minute):
                 now += timedelta(days=1)
             return now.replace(hour=hour, minute=minute)
