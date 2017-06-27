@@ -147,7 +147,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
             cuota_deducible = self.invoice.amount_tax
             period = self.invoice.period_id
             if not period:
-                period = period.with_context(ctx).find(self.invoice.date_invoice)[:1]
+                period = period.with_context(self.env.context).find(self.invoice.date_invoice)[:1]
             if period and period.vat_prorrate_percent and period.vat_prorrate_percent != 100:
                 cuota_deducible = cuota_deducible * (period.vat_prorrate_percent / 100.0)
                 
