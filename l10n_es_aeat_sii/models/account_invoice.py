@@ -551,7 +551,7 @@ class AccountInvoice(models.Model):
         if not period:
             period = period.with_context(ctx).find(self.date_invoice)[:1]
         if period and period.vat_prorrate_percent and period.vat_prorrate_percent != 100:
-            cuota_deducible = cuota_deducible * (company.vat_prorrate_percent / 100.0)
+            cuota_deducible = cuota_deducible * (period.vat_prorrate_percent / 100.0)
             
         inv_dict = {
             "IDFactura": {
