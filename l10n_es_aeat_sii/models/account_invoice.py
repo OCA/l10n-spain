@@ -1014,15 +1014,6 @@ class AccountInvoice(models.Model):
         return self.fiscal_position.sii_no_taxable_cause or \
             'ImportePorArticulos7_14_Otros'
 
-    def is_sii_invoice(self):
-        """Hook method to be overridden in additional modules to verify
-        if the invoice must be sended trough SII system, for special cases.
-
-        :param self: Single invoice record
-        :return: bool value indicating if the invoice should be sent to SII.
-        """
-        self.ensure_one()
-
     @api.multi
     @api.depends('company_id', 'company_id.sii_enabled',
                  'fiscal_position', 'fiscal_position.sii_active')
