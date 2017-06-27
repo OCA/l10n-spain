@@ -545,13 +545,16 @@ class AccountInvoice(models.Model):
         periodo = '%02d' % fields.Date.from_string(
             self.period_id.date_start).month
         desglose_factura, tax_amount = self._get_sii_in_taxes()
-        
         cuota_deducible = tax_amount
         period = self.period_id
         if not period:
-            period = period.with_context(self.env.context).find(self.date_invoice)[:1]
-        if period and period.vat_prorrate_percent and period.vat_prorrate_percent != 100:
-            cuota_deducible = cuota_deducible * (period.vat_prorrate_percent / 100.0)
+            period = period.with_context(self.env.context).find(
+            self.date_invoice)[:1]
+        vat_pp = 100
+        if period and period.vat_prorrate_percent:
+            vat_pp = period.vat_prorrate_percent 
+        if vat_pp != 100:
+            cuota_deducible = cuota_deducible * (vat_pp / 100.0)
             
         inv_dict = {
             "IDFactura": {
