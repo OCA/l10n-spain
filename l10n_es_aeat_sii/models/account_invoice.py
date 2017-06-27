@@ -508,7 +508,7 @@ class AccountInvoice(models.Model):
                     "NombreRazon": self.partner_id.name[0:120],
                 },
                 "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": self.amount_total * sign,
+                "ImporteTotal": float_round(self.amount_total * sign, 2),
             }
             exp_dict = inv_dict['FacturaExpedida']
             # Uso condicional de IDOtro/NIF
@@ -577,7 +577,7 @@ class AccountInvoice(models.Model):
                     "NombreRazon": self.partner_id.name[0:120],
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": self.amount_total * sign,
+                "ImporteTotal": float_round(self.amount_total * sign, 2),
                 "CuotaDeducible": float_round(tax_amount * sign, 2),
             }
             # Uso condicional de IDOtro/NIF
