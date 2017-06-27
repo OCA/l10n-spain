@@ -744,6 +744,10 @@ class AccountInvoice(models.Model):
                 ]
             )
         )
+        if any(x.currency_id != x.company_id.currency_id for x in invoices):
+            raise exceptions.Warning(
+                _('Invoices in other currency are not yet supported')
+            )
         if not invoices._cancel_invoice_jobs():
             raise exceptions.Warning(_(
                 'You can not communicate this invoice at this moment '
@@ -934,7 +938,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_no_taxable_cause(self):
         self.ensure_one()
-        return self.fiscal_position.no_taxable_cause or \
+        return self.fiscal_position.sii_no_taxable_cause or \
             'ImportePorArticulos7_14_Otros'
 
     def is_sii_invoice(self):
