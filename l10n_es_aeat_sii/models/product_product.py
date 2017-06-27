@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 # Copyright 2017 MINORISA (http://www.minorisa.net)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, osv
+from osv import osv, fields
 
 
 class product_template(osv.osv):

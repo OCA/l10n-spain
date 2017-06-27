@@ -7,12 +7,13 @@
             <field name="priority">6</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
-                <group name="properties" position="after">
-                    <separator string="SII" />
-                    <group>
-                        <field name="sii_exempt_cause"/>
-                    </group>
-                </group>
+                <notebook position="inside">
+                    <page string="SII" >
+                        <group>
+                            <field name="sii_exempt_cause"/>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
     </data>

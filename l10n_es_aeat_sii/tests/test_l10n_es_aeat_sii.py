@@ -124,8 +124,8 @@ class test_l10n_es_aeat_sii(common.TransactionCase):
         self.invoice_obj.company_id.write({
             'sii_enabled': True,
             'use_connector': True,
-            # 'chart_template_id': self.registry(
-            #     'l10n_es.account_chart_template_pymes').id,
+            'chart_template_id': self.registry(
+                'l10n_es.account_chart_template_pymes').id,
             'vat': 'ESU2687761C',
         })
         wf_service = netsvc.LocalService("workflow")
@@ -159,7 +159,7 @@ class test_l10n_es_aeat_sii(common.TransactionCase):
                     },
                     'DescripcionOperacion': u'/',
                     'ClaveRegimenEspecialOTrascendencia': special_regime,
-                    'ImporteTotal': self.invoice_obj.amount_total,
+                    'ImporteTotal': self.invoice_obj.cc_amount_total,
                 },
                 'PeriodoImpositivo': {
                     'Periodo': str(self.invoice_obj.period_id.code[:2]),
@@ -177,12 +177,12 @@ class test_l10n_es_aeat_sii(common.TransactionCase):
                             self.invoice_obj.date_invoice
                         ),
                     "DesgloseFactura": {},
-                    "CuotaDeducible": self.invoice_obj.amount_tax
+                    "CuotaDeducible": self.invoice_obj.cc_amount_tax
                 })
             if invoice_type == 'R4':
                 invoices = self.invoice_obj.origin_invoices_ids
-                base_rectificada = sum(invoices.mapped('amount_untaxed'))
-                cuota_rectificada = sum(invoices.mapped('amount_tax'))
+                base_rectificada = sum(invoices.mapped('cc_amount_untaxed'))
+                cuota_rectificada = sum(invoices.mapped('cc_amount_tax'))
                 res[expedida_recibida].update({
                     'TipoRectificativa': 'S',
                     'ImporteRectificacion': {

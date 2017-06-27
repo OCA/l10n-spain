@@ -28,7 +28,24 @@ from openerp.osv import fields, osv
 class account_fiscal_position(osv.Model):
     _inherit = 'account.fiscal.position'
 
+
+    def _get_selection_sii_exempt_cause(self, cr, uid, context=None):
+
+        return self.pool.get('product.template').fields_get(cr, uid,
+            allfields=['sii_exempt_cause'])['sii_exempt_cause']['selection']
+
+    def default_sii_exempt_cause(self, cr, uid, context=None):
+        default_dict = self.pool.get('product.template').\
+            default_get(cr, uid, ['sii_exempt_cause'])
+        return default_dict.get('sii_exempt_cause')
+
+
     _columns = {
+        'sii_enabled': fields.related('company_id', 'sii_enabled',
+                                      type='boolean',
+                                      relation='res.company',
+                                      string='SII Enabled',
+                                      readonly=True),
         'sii_registration_key_sale': fields.many2one(
                 'aeat.sii.mapping.registration.keys',
                 'Default SII Registration Key for Sales',
@@ -38,7 +55,19 @@ class account_fiscal_position(osv.Model):
                 'Default SII Registration Key for Purchases',
                 domain=[('type', '=', 'purchase')]),
         'sii_active': fields.boolean('SII Active', copy=False,
-                                help='Enable SII for this fiscal position?')
+                                help='Enable SII for this fiscal position?'),
+        'sii_no_taxable_cause': fields.selection([
+            ('ImportePorArticulos7_14_Otros',
+             'No sujeta - No sujeción artículo 7, 14, otros'),
+            ('ImporteTAIReglasLocalizacion',
+             'Operaciones no sujetas en el TAI por reglas de localización'),
+        ], 'SII No taxable cause'),
+        'sii_exempt_cause': fields.selection(_get_selection_sii_exempt_cause, 'SII Exempt Cause')
+    }
+
+    _defaults = {
+        'sii_no_taxable_cause': 'ImportePorArticulos7_14_Otros',
+        'sii_exempt_cause': default_sii_exempt_cause,
     }
 
 

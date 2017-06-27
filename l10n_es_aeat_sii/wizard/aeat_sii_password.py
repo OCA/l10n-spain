@@ -23,7 +23,6 @@
 
 from osv import osv, fields
 from tools.translate import _
-from openerp.tools import config
 import exceptions
 import contextlib
 import OpenSSL.crypto

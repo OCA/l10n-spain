@@ -14,18 +14,28 @@
 	                </group>
 
 			        <group attrs="{'invisible': [('sii_enabled', '=', False)]}">
-                        <field name="chart_template_id"
-                               attrs="{'required': [('sii_enabled', '=', True)]}"/>
-                        <!--<field name="method"/>-->
-                        <field name="wsdl_out" />
-                        <field name="wsdl_in" />
-                        <field name="wsdl_pi" />
-                        <field name="wsdl_ic" />
-                        <field name="wsdl_pr" />
-                        <field name="wsdl_prm" />
-                        <field name="wsdl_ps" />
-                        <field name="use_connector"/>
-                        <field name="sii_test" />
+                        <group name="sii_config">
+                            <field name="chart_template_id"
+                                   attrs="{'required': [('sii_enabled', '=', True)]}"/>
+                            <field name="sii_test" />
+                            <field name="sii_method"/>
+                            <field name="wsdl_out" />
+                            <field name="wsdl_in" />
+                            <field name="wsdl_pi" />
+                            <field name="wsdl_ic" />
+                            <field name="wsdl_pr" />
+                            <field name="wsdl_prm" />
+                            <field name="wsdl_ps" />
+                        </group>
+                        <group name="sii_conector">
+                            <field name="use_connector"/>
+                            <field name="send_mode"
+                                   attrs="{'invisible': [('use_connector', '=', False)]}"/>
+                            <field name='sent_time' widget='float_time'
+                                   attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'fixed')]}"/>
+                            <field name='delay_time' widget='float_time'
+                                   attrs="{'invisible': ['|', ('use_connector', '=', False), ('send_mode', '!=', 'delayed')]}"/>
+                        </group>
                     </group>
                 </page>
             </field>
