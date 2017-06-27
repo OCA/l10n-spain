@@ -19,6 +19,9 @@ class AccountFiscalPosition(models.Model):
             default_get(['sii_exempt_cause'])
         return default_dict.get('sii_exempt_cause')
 
+    sii_enabled = fields.Boolean(
+        related="company_id.sii_enabled", readonly=True,
+    )
     sii_registration_key_sale = fields.Many2one(
         'aeat.sii.mapping.registration.keys',
         'Default SII Registration Key for Sales',
@@ -31,13 +34,14 @@ class AccountFiscalPosition(models.Model):
         string='SII Active', copy=False, default=True,
         help='Enable SII for this fiscal position?',
     )
-    no_taxable_cause = fields.Selection(
+    sii_no_taxable_cause = fields.Selection(
         selection=[
             ('ImportePorArticulos7_14_Otros',
              'No sujeta - No sujeción artículo 7, 14, otros'),
             ('ImporteTAIReglasLocalizacion',
              'Operaciones no sujetas en el TAI por reglas de localización'),
-        ], string="No taxable cause", default="ImportePorArticulos7_14_Otros",
+        ], string="SII No taxable cause",
+        default="ImportePorArticulos7_14_Otros", oldname="no_taxable_cause",
     )
     sii_exempt_cause = fields.Selection(
         string="SII Exempt Cause",
