@@ -545,6 +545,14 @@ class AccountInvoice(models.Model):
         periodo = '%02d' % fields.Date.from_string(
             self.period_id.date_start).month
         desglose_factura, tax_amount = self._get_sii_in_taxes()
+        
+        cuota_deducible = tax_amount
+        period = self.period_id
+        if not period:
+            period = period.with_context(ctx).find(self.date_invoice)[:1]
+        if period and period.vat_prorrate_percent and period.vat_prorrate_percent != 100:
+            cuota_deducible = cuota_deducible * (company.vat_prorrate_percent / 100.0)
+            
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {},
@@ -578,7 +586,7 @@ class AccountInvoice(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": self.amount_total * sign,
-                "CuotaDeducible": float_round(tax_amount * sign, 2),
+                "CuotaDeducible": float_round(cuota_deducible * sign, 2),
             }
             # Uso condicional de IDOtro/NIF
             inv_dict['FacturaRecibida']['Contraparte'].update(ident)

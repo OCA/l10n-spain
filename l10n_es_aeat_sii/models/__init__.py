@@ -9,3 +9,4 @@ from . import aeat_sii_map
 from . import product_product
 from . import account_fiscal_position
 from . import account_invoice
+from . import account_period
