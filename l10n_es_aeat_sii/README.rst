@@ -75,13 +75,14 @@ de AEAT.
 Known issues / Roadmap
 ======================
 
-* Comunicación de cobros y pagos
-* Determinadas facturas intracomunitarias (Articulo 66 RIVA)
-* Factura simplificada
-* Asistente para consultar los documentos comunicados
-* Libro de bienes de inversión (Libro anual se crea un módulo aparte)
-* Regimenes especial de seguros y agencias de viaje
-* Imputar los importes en € cuando la factura esta en otra divisa.
+* Comunicación de cobros y pagos.
+* Determinadas facturas intracomunitarias (Articulo 66 RIVA).
+* Facturas simplificadas.
+* Asistente para consultar los documentos comunicados.
+* Libro de bienes de inversión (Libro anual se crea un módulo aparte).
+* Regímenes especiales de seguros y de agencias de viaje.
+* Imputar los importes en € cuando la factura está en otra divisa.
+* Comunicación de las facturas del primer semestre.
 
 Bug Tracker
 ===========
