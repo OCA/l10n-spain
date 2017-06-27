@@ -143,7 +143,7 @@
                     <separator/>
                     <filter string="SII error"
                         domain="[('sii_send_failed', '=', True)]"
-                        context="{'group_by':'sii_send_failed'}"/>
+                        context="{'group_by':'sii_send_error'}"/>
                 </xpath>
             </field>
         </record>
