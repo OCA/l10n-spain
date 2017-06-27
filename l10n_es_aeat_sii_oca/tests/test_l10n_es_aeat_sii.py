@@ -132,7 +132,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
                 },
                 'DescripcionOperacion': u'/',
                 'ClaveRegimenEspecialOTrascendencia': special_regime,
-                'ImporteTotal': self.invoice.amount_total,
+                'ImporteTotal': self.invoice.cc_amount_total,
             },
             'PeriodoImpositivo': {
                 'Periodo': str(self.invoice.period_id.code[:2]),
@@ -160,12 +160,12 @@ class TestL10nEsAeatSii(common.TransactionCase):
                         ],
                     },
                 },
-                "CuotaDeducible": self.invoice.amount_tax,
+                "CuotaDeducible": self.invoice.cc_amount_tax,
             })
         if invoice_type == 'R4':
             invoices = self.invoice.origin_invoices_ids
-            base_rectificada = sum(invoices.mapped('amount_untaxed'))
-            cuota_rectificada = sum(invoices.mapped('amount_tax'))
+            base_rectificada = sum(invoices.mapped('cc_amount_untaxed'))
+            cuota_rectificada = sum(invoices.mapped('cc_amount_tax'))
             res[expedida_recibida].update({
                 'TipoRectificativa': 'S',
                 'ImporteRectificacion': {
