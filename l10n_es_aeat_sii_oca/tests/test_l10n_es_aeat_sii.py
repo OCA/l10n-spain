@@ -91,7 +91,8 @@ class TestL10nEsAeatSii(common.TransactionCase):
                     'price_unit': 100,
                     'quantity': 1,
                     'invoice_line_tax_id': [(6, 0, self.tax.ids)],
-                })]
+                })],
+            'sii_description': u'/',
         })
 
     def _open_invoice(self):
