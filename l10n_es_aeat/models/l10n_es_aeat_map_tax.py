@@ -1,30 +1,18 @@
 # -*- coding: utf-8 -*-
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2013-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
+
 from openerp import models, fields, api, exceptions, _
 
 
-class AeatModMapTaxCode(models.Model):
-    _name = 'aeat.mod.map.tax.code'
+class L10nEsAeatMapTax(models.Model):
+    _name = 'l10n.es.aeat.map.tax'
 
     date_from = fields.Date(string="From Date")
     date_to = fields.Date(string="To Date")
-    map_lines = fields.One2many(
-        comodel_name='aeat.mod.map.tax.code.line',
+    map_line_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.map.tax.line',
         inverse_name='map_parent_id', string="Map lines", required=True)
     model = fields.Integer(string="AEAT Model", required=True)
 
@@ -69,20 +57,3 @@ class AeatModMapTaxCode(models.Model):
                     fields.Date.from_string(record.date_to) or '')
             vals.append(tuple([record.id, name]))
         return vals
-
-
-class AeatModMapTaxCodeLine(models.Model):
-    _name = 'aeat.mod.map.tax.code.line'
-
-    field_number = fields.Integer(string="Field number", required=True)
-    tax_codes = fields.Many2many(
-        comodel_name='account.tax.code.template', string="Tax codes",
-        required=True)
-    name = fields.Char(required=True)
-    map_parent_id = fields.Many2one('aeat.mod.map.tax.code', required=True)
-    to_regularize = fields.Boolean()
-
-    def get_taxes_amount(self, report, periods):
-        move_lines = report._get_tax_code_lines(
-            self.mapped('tax_codes.code'), periods=periods)
-        return sum(move_lines.mapped('tax_amount'))

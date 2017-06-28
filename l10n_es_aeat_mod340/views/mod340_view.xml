@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
-        <!-- Modelo 340 -->
-        <record model="ir.ui.view" id="view_l10n_es_aeat_mod340_tree">
-            <field name="name">l10n.es.aeat.mod340.tree</field>
-            <field name="model">l10n.es.aeat.mod340.report</field>
-            <field name="arch" type="xml">
-                <tree string="Model 340">
-                    <field name="fiscalyear_id"/>
-                    <field name="period_type"/>
-                    <field name="name"/>
-                    <field name="type"/>
-                    <field name="state" invisible="1"/>
-                </tree>
-            </field>
-        </record>
 
         <record id="view_l10n_es_aeat_mod340_form" model="ir.ui.view">
             <field name="name">l10n_es.aeat.mod340.form</field>
             <field name="model">l10n.es.aeat.mod340.report</field>
             <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
-                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-                    <attribute name="name">%(action_wizard_aeat_mod340_export)d</attribute>
-                </button>
-                <group string="Declaración" position="after">
+                <group name="group_declaration" position="after">
                     <notebook colspan="4">
                         <page string="General">
                             <group string="Electronic Code VAT reverse charge" colspan="4">
@@ -37,21 +20,19 @@
                                         <field name="total_taxable" select ="2" readonly="1"/>
                                         <field name="total_sharetax" select ="2" readonly="1"/>
                                         <field name="total" select="2" readonly="1"/>
-                                        <field name="summary_issued" select ="2" readonly="1"/>
                                     </group>
                                     <group string="Received invoices" colspan="2">
                                         <field name="total_taxable_rec" select ="2" readonly="1"/>
                                         <field name="total_sharetax_rec" select ="2" readonly="1"/>
                                         <field name="total_rec" select="2" readonly="1"/>
-                                        <field name="summary_received" select ="2" readonly="1"/>
                                     </group>
                             </group>
                         </page>
                         <page string="Issued invoice" >
-                            <field name="issued" nolabel="1" />
+                            <field name="issued_ids" nolabel="1" />
                         </page>
                         <page string="Received invoice" >
-                            <field name="received" nolabel="1" />
+                            <field name="received_ids" nolabel="1" />
                         </page>
                     </notebook>
                 </group>
@@ -66,20 +47,15 @@
             <field name="name">l10n.es.aeat.mod340.issued.tree</field>
             <field name="model">l10n.es.aeat.mod340.issued</field>
             <field name="arch" type="xml">
-                <tree string="Issued invoices" colors="red:exception==True;">
+                <tree string="Issued invoices">
                     <field name="date_invoice"/>
                     <field name="partner_id"/>
                     <field name="partner_country_code"/>
                     <field name="partner_vat"/>
-                    <field name="vat_type"/>
                     <field name="invoice_id"/>
-                    <field name="key_operation"/>
                     <field name="base_tax" sum="Total Base" />
                     <field name="amount_tax" sum="Total Tax" />
-                    <field name="rec_amount_tax" sum="Total Rec Tax" />
                     <field name="total" sum="Total"/>
-                    <field name="txt_exception" />
-                    <field name="exception" />
                 </tree>
             </field>
         </record>
@@ -93,17 +69,13 @@
                     <newline/>
                     <field name="partner_id"/>
                     <field name="partner_vat"/>
-                    <field name="vat_type"/>                    
                     <field name="representative_vat"/>
                     <field name="partner_country_code"/>
                     <newline/>
-                    <field name="key_operation"/>
                     <field name="base_tax" />
                     <field name="amount_tax" />
-                    <field name="rec_amount_tax" />
                     <newline/>
                     <field name="total"/>
-                    <field name="txt_exception" />
                     <newline />
                     <field name="tax_line_ids" />
                 </form>
@@ -116,23 +88,14 @@
             <field name="name">l10n.es.aeat.mod340.received.tree</field>
             <field name="model">l10n.es.aeat.mod340.received</field>
             <field name="arch" type="xml">
-                <tree string="Received invoices" colors="red:exception==True;">
-                    <field name="date_invoice"/>
+                <tree string="Received invoices">
                     <field name="partner_id"/>
                     <field name="partner_country_code"/>
                     <field name="partner_vat"/>
-                    <field name="vat_type"/>                    
-                    <field name="invoice_id"/>
-                    <field name="supplier_invoice_number"/>
-                    <field name="key_operation"/>                    
+                    <field name="invoice_reference"/>
                     <field name="base_tax" sum="Total Base"/>
                     <field name="amount_tax" sum="Total Tax"/>
                     <field name="total" sum="Total"/>
-                    <field name="date_payment"/>
-                    <field name="payment_amount" sum="Total payment"/>
-                    <field name="name_payment_method"/>
-                    <field name="txt_exception" />
-                    <field name="exception" />
                 </tree>
             </field>
         </record>
@@ -146,20 +109,13 @@
                     <newline/>
                     <field name="partner_id"/>
                     <field name="partner_vat"/>
-                    <field name="vat_type"/>                                        
                     <field name="representative_vat"/>
                     <field name="partner_country_code"/>
                     <newline/>
-                    <field name="key_operation"/>                    
                     <field name="base_tax"/>
                     <field name="amount_tax"/>
                     <newline/>
-                    <field name="date_payment"/>
-                    <field name="payment_amount"/>
-                    <field name="name_payment_method"/>
-                    <newline/>
                     <field name="total"/>
-                    <field name="exception" />
                     <newline />
                     <field name="tax_line_ids" />
                 </form>
@@ -177,8 +133,6 @@
                     <field name="tax_percentage"/>
                     <field name="tax_amount"/>
                     <field name="base_amount"/>
-                    <field name="rec_tax_percentage"/>
-                    <field name="rec_tax_amount"/>
                 </form>
             </field>
         </record>
@@ -196,40 +150,20 @@
             </field>
         </record>
 
-
-        <!-- Tax Summary-->
-
-        <record id="view_l10n_es_aeat_mod340_tax_summary_tree" model="ir.ui.view">
-            <field name="name">l10n.es.aeat.mod340.tax_summary.tree</field>
-            <field name="model">l10n.es.aeat.mod340.tax_summary</field>
-            <field name="arch" type="xml">
-                <tree string="Summary taxes" >
-                    <field name="tax_code_id"/>
-                    <field name="sum_base_amount"/>
-                    <field name="sum_tax_amount"/>
-                    <field name="tax_percent"/>
-                </tree>
-            </field>
-        </record>
-
-
         <record id="view_l10n_es_aeat_mod340_report_search" model="ir.ui.view">
             <field name="name">AEAT Model 340 (search)</field>
             <field name="model">l10n.es.aeat.mod340.report</field>
             <field name="arch" type="xml">
                 <search string="AEAT 340">
                     <group col="8" colspan="4">
-                        <filter icon="terp-gtk-media-pause" string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
-                        <filter icon="gtk-execute" string="In process" domain="[('state','in',('calculating', 'calculated'))]" help="In process models"/>
-                        <filter icon="terp-camera_test" string="Done" domain="[('state','=','done')]" help="Confirmed models"/>
-                        <filter icon="gtk-cancel" string="Cancelled" domain="[('state', '=', 'canceled')]" help="Cancelled models"/>
+                        <filter icon="fa-undo" string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
+                        <filter icon="fa-gears" string="In process" domain="[('state','in',('calculating', 'calculated'))]" help="In process models"/>
+                        <filter icon="fa-check" string="Done" domain="[('state','=','done')]" help="Confirmed models"/>
+                        <filter icon="fa-remove" string="Cancelled" domain="[('state', '=', 'canceled')]" help="Cancelled models"/>
                         <separator orientation="vertical"/>
-                        <filter string="Fiscal Year" icon="terp-folder-orange" domain="[]" context="{'group_by':'fiscalyear_id'}"/>
-                        <separator orientation="vertical"/>
-                        <filter string="Company" icon="terp-personal" domain="[]" context="{'group_by':'company_id'}"/>
+                        <filter string="Company" icon="fa-user" domain="[]" context="{'group_by':'company_id'}"/>
                     </group>
                     <newline/>
-                    <field name="fiscalyear_id"/>
                     <field name="number"/>
                     <field name="type"/>
                 </search>
@@ -247,7 +181,7 @@
         <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod340_report_tree">
             <field name="sequence" eval="2"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod340_tree"/>
+            <field name="view_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
             <field name="act_window_id" ref="action_l10n_es_aeat_mod340_report"/>
         </record>
         <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod340_report_form">
@@ -263,4 +197,4 @@
                   sequence="340"
                   name="AEAT 340 Model"/>
     </data>
-</openerp>
+</odoo>

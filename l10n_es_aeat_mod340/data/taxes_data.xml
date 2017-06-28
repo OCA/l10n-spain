@@ -1,113 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data noupdate="0">
-        <!-- Bases incluidas en el Modelo 340
-             Ignacio Ibeas (Acysos) - ignacio@acysos.com (2013-05-13)
-             Víctor Sánchez Coma (OpenMind systems) - victor@openmindsystems.com.es (2015-05-20)
-        -->
         <!--IVA Devengado Base imponible-->
-        <record id="l10n_es.account_tax_code_template_IDBI" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
         <!-- Exentas IVA -->
-        <record id="l10n_es.account_tax_code_template_AEBI" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_p_iva0_bc" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_OESDAD" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_s_iva0" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
         <!--Regimen general-->
-        <record id="l10n_es.account_tax_code_template_RGIDBI4" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_s_iva4b" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_RGIDBI10" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_s_iva4s" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_RGIDBI21" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_s_iva10b" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        <!-- ADQUISICIONES INTRACOMUNITARIAS -->
-        <record id="l10n_es.account_tax_code_template_AIDBYSBI" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_s_iva10s" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
+
+        <record id="l10n_es.account_tax_template_s_iva21b" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_s_iva21s" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_s_iva21isp" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <!-- ADQUISICIONES INTRACOMUNITARIAS-->
         <!--IVA DEDUCIBLE -->
-        <record id="l10n_es.account_tax_code_template_AISBI" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_p_iva4_sp_in_1" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva10_sp_in_1" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva21_sp_in_1" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
         <!-- Base en OPERACIONES INTERIORES CORRIENTES-->
-        <record id="l10n_es.account_tax_code_template_OICBI" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_p_iva4_sp_ex_2" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_OICBI4" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_p_iva4_sc" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_OICBI10" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_p_iva4_bc" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_OICBI21" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_p_iva4_isp_1" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+
+        <record id="l10n_es.account_tax_template_p_iva10_sp_ex_2" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva10_sc" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva10_bc" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva10_isp_1" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+
+        <record id="l10n_es.account_tax_template_p_iva21_sp_ex_2" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva21_sc" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva21_bc" model="account.tax.template">
+            <field name="mod340" eval="True"/>
+        </record>
+        <record id="l10n_es.account_tax_template_p_iva21_isp_1" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
         <!-- Base en OPERACIONES INTERIORES CON BIENES DE INVERSIÓN-->
-        <record id="l10n_es.account_tax_code_template_OIBIBI" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_p_iva4_bi" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_OICBI4" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_p_iva10_bi" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_OICBI10" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
-        
-        <record id="l10n_es.account_tax_code_template_OICBI21" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_p_iva21_bi" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES CORRIENTES-->
-        <record id="l10n_es.account_tax_code_template_AIBYSCBI" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_p_iva10_ic_bc_1" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_AIBYSCBI4" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
-        
-        <record id="l10n_es.account_tax_code_template_AIBYSCBI10" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
-        
-        <record id="l10n_es.account_tax_code_template_AIBYSCBI21" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
+
         <!-- ADQUISICIONES INTRACOMUNITARIAS DE BIENES DE INVERSIÓN-->
-        <record id="l10n_es.account_tax_code_template_AIBIBI" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_p_iva4_ic_bi_1" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_AIBIBI4" model="account.tax.code.template">
+        <record id="l10n_es.account_tax_template_p_iva10_ic_bi_1" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
-        
-        <record id="l10n_es.account_tax_code_template_AIBIBI10" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
-        
-        <record id="l10n_es.account_tax_code_template_AIBIBI21" model="account.tax.code.template">
+
+        <record id="l10n_es.account_tax_template_p_iva21_ic_bi_1" model="account.tax.template">
             <field name="mod340" eval="True"/>
         </record>
         <!--Otros Códigos de Impuestos-->
-        <record id="l10n_es.account_tax_code_template_EIDBYS" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
-        
-        <record id="l10n_es.account_tax_code_template_EIDBYS" model="account.tax.code.template">
-            <field name="mod340" eval="True"/>
-        </record>
     </data>
-</openerp>
+</odoo>
