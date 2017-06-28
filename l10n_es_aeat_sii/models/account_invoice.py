@@ -710,6 +710,7 @@ class AccountInvoice(models.Model):
                 new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env['account.invoice'].browse(self.id)
+                invoice.sii_send_failed = True
                 invoice.sii_send_error = fault
                 invoice.sii_return = fault
                 new_cr.commit()
