@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
-        
+
         <record id="view_customer_account_invoice_ticket_form" model="ir.ui.view">
             <field name="name">Account invoice - Ticket summary</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                 <page string="Payments" position="after">
-                     <page string="AEAT 340">
-                         <field name="is_ticket_summary"/>
-                         <group colspan="4" col="4" attrs="{'invisible': [('is_ticket_summary','=',False)]}">
-                             <field name="first_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
-                             <field name="last_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
-                             <field name="number_tickets" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
-                         </group>
-                     </page>
-                 </page>
+                <notebook position="inside">
+                    <page string="AEAT 340">
+                        <field name="is_ticket_summary"/>
+                        <group colspan="4" col="4" attrs="{'invisible': [('is_ticket_summary','=',False)]}">
+                            <field name="first_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                            <field name="last_ticket" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                            <field name="number_tickets" attrs="{'required':[('is_ticket_summary','=',True)]}"/>
+                        </group>
+                    </page>
+                </notebook>
             </field>
         </record>
-        
+
         <!-- Supplier Invoice -->
-        
+
         <record id="invoice_supplier_mod340_form" model="ir.ui.view">
             <field name="name">account.invoice.supplier.mod340.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="reference" position="replace">
-                    <field name="reference" nolabel="1" required="1"/>
+                <field name="reference" position="attributes">
+                    <attribute name="required">1</attribute>
                 </field>
             </field>
         </record>
-        
+
     </data>
-</openerp>
+</odoo>

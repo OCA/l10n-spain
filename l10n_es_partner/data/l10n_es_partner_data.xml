@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- © 2016 Carlos Dauden <carlos.dauden@tecnativa.com>
+     © 2017 Miguel Paraíso <miguel.paraiso@aselcis.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
 <odoo noupdate="1">
     <record id="comercial_name_pattern" model="ir.config_parameter">
         <field name="key">l10n_es_partner.name_pattern</field>
         <field name="value">(%(comercial_name)s) %(name)s</field>
+    </record>
+    <record id="default_res_partner_simplified" model="res.partner">
+        <field name="name">Cliente de contado</field>
+        <field name="customer">1</field>
+        <field name="country_id" ref="base.es"/>
+        <field name="vat">ESA12345674</field>
     </record>
 </odoo>

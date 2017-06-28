@@ -21,6 +21,5 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from openerp import report
-from . import wizard
+
 from . import models
