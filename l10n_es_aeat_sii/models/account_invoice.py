@@ -880,6 +880,14 @@ class AccountInvoice(models.Model):
             # without any SII communication.
             self.sii_state = 'cancelled'
         return res
+    
+    @api.multi
+    def action_cancel_draft(self):
+        if not self._cancel_invoice_jobs():
+            raise exceptions.Warning(_(
+                'You can not set to draft this invoice because'
+                ' there is a job running!'))
+        return super(AccountInvoice, self).action_cancel_draft()
 
     @api.multi
     def _get_sii_gen_type(self):
