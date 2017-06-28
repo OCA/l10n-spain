@@ -131,7 +131,8 @@ class AccountInvoice(models.Model):
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
         invoice = super(AccountInvoice, self).create(vals)
-        if invoice.fiscal_position and not invoice.sii_registration_key:
+        if vals.get('fiscal_position') and \
+                not vals.get('sii_registration_key'):
             invoice.onchange_fiscal_position_l10n_es_aeat_sii()
         return invoice
 
@@ -158,10 +159,9 @@ class AccountInvoice(models.Model):
                           "correct number")
                     )
         res = super(AccountInvoice, self).write(vals)
-        if vals.get('fiscal_position'):
-            self.filtered(
-                lambda x: x.fiscal_position and not x.sii_registration_key
-            ).onchange_fiscal_position_l10n_es_aeat_sii()
+        if vals.get('fiscal_position') and \
+                not vals.get('sii_registration_key'):
+            self.onchange_fiscal_position_l10n_es_aeat_sii()
         return res
 
     @api.multi
