@@ -1,138 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
 
-        <record id="view_l10n_es_aeat_mod303_report_tree" model="ir.ui.view">
-            <field name="name">l10n_es.aeat.mod303.report.tree</field>
-            <field name="model">l10n.es.aeat.mod303.report</field>
-            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
-            <field name="arch" type="xml">
-                <tree position="attributes">
-                    <attribute name="string">AEAT 303 reports</attribute>=
-                </tree>
-                <field name="period_type" position="after">
-                    <field name="total_devengado"/>
-                    <field name="total_deducir"/>
-                    <field name="porcentaje_atribuible_estado"/>
-                    <field name="resultado_liquidacion"/>
-                </field>
-            </field>
-        </record>
+<record id="view_l10n_es_aeat_mod303_report_tree" model="ir.ui.view">
+    <field name="name">l10n_es.aeat.mod303.report.tree</field>
+    <field name="model">l10n.es.aeat.mod303.report</field>
+    <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
+    <field name="arch" type="xml">
+        <tree position="attributes">
+            <attribute name="string">AEAT 303 reports</attribute>=
+        </tree>
+        <field name="period_type" position="after">
+            <field name="total_devengado"/>
+            <field name="total_deducir"/>
+            <field name="porcentaje_atribuible_estado"/>
+            <field name="resultado_liquidacion"/>
+        </field>
+    </field>
+</record>
 
-        <record id="view_l10n_es_aeat_mod303_report_form" model="ir.ui.view">
-            <field name="name">l10n_es.aeat.mod303.report.form</field>
-            <field name="model">l10n.es.aeat.mod303.report</field>
-            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
-            <field name="arch" type="xml">
-                <field name="previous_number" position="after">
-                    <field name="devolucion_mensual"/>
-                </field>
-                <group name="group_declaration" position="after">
-                    <field name="currency_id" invisible="1"/>
-                    <group string="Resultado"
-                           name="group_result"
-                           attrs="{'invisible': [('state', '=', 'draft')]}"
-                           colspan="4"
-                           col="6"
-                            >
-                        <group>
-                            <field name="total_devengado"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                    />
-                            <field name="total_deducir"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                    />
-                            <field name="casilla_46"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                    />
-                        </group>
-                        <group>
-                            <field name="porcentaje_atribuible_estado"/>
-                            <field name="atribuible_estado"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                    />
-                            <field name="cuota_compensar"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                    />
-                        </group>
-                        <group>
-                            <field name="regularizacion_anual"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                   attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
-                                    />
-                            <field name="casilla_77"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                    />
-                            <field name="casilla_69"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                    />
-                            <field name="previous_result"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                   attrs="{'readonly': [('type', '!=', 'C')], 'required': [('type', '=', 'C')]}"
-                                    />
-                        </group>
-                    </group>
-                    <group class="oe_subtotal_footer oe_right"
-                           attrs="{'invisible': [('state', '=', 'draft')]}"
-                           colspan="2">
-                        <field name="resultado_liquidacion"
-                               class="oe_subtotal_footer_separator"
-                               widget="monetary"
-                               options="{'currency_field': 'currency_id'}"
-                                />
-                        <field name="result_type"/>
-                        <field name="compensate"
-                               attrs="{'invisible': [('result_type', '!=', 'B')]}"
-                                />
-                        <field name="company_partner_id" invisible="1"/>
-                        <field name="bank_account"
-                               domain="[('partner_id', '=', company_partner_id)]"
-                               attrs="{'invisible': [('result_type', 'not in', ('B', 'I')), ('compensate', '=', False)]}"
-                                />
-                    </group>
-                    <group string="Tax lines"
-                           name="group_tax_lines"
-                           colspan="4"
-                           attrs="{'invisible': [('state', '=', 'draft')]}">
-                        <field name="tax_lines" nolabel="1"/>
-                    </group>
+<record id="view_l10n_es_aeat_mod303_report_form" model="ir.ui.view">
+    <field name="name">l10n_es.aeat.mod303.report.form</field>
+    <field name="model">l10n.es.aeat.mod303.report</field>
+    <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+    <field name="arch" type="xml">
+        <field name="previous_number" position="after">
+            <field name="devolucion_mensual"/>
+        </field>
+        <group name="group_declaration" position="after">
+            <group string="Resultado"
+                   name="group_result"
+                   attrs="{'invisible': [('state', '=', 'draft')]}"
+                   colspan="4"
+                   col="6"
+                    >
+                <group>
+                    <field name="total_devengado"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                            />
+                    <field name="total_deducir"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                            />
+                    <field name="casilla_46"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                            />
                 </group>
-            </field>
-        </record>
+                <group>
+                    <field name="porcentaje_atribuible_estado"/>
+                    <field name="atribuible_estado"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                            />
+                    <field name="cuota_compensar"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                            />
+                </group>
+                <group>
+                    <field name="regularizacion_anual"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                           attrs="{'readonly': [('period_type', 'not in', ('4T', '12'))]}"
+                            />
+                    <field name="casilla_77"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                            />
+                    <field name="casilla_69"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                            />
+                    <field name="previous_result"
+                           widget="monetary"
+                           options="{'currency_field': 'currency_id'}"
+                           attrs="{'readonly': [('type', '!=', 'C')], 'required': [('type', '=', 'C')]}"
+                            />
+                </group>
+            </group>
+            <group class="oe_subtotal_footer oe_right"
+                   attrs="{'invisible': [('state', '=', 'draft')]}"
+                   colspan="2">
+                <field name="resultado_liquidacion"
+                       class="oe_subtotal_footer_separator"
+                       widget="monetary"
+                       options="{'currency_field': 'currency_id'}"
+                        />
+                <field name="result_type"/>
+                <field name="compensate" attrs="{'invisible': [('result_type', '!=', 'D')]}"/>
+                <field name="company_partner_id" invisible="1"/>
+                <field name="bank_account_id"
+                       domain="[('partner_id', '=', company_partner_id)]"
+                       attrs="{'invisible': ['|', ('result_type', 'not in', ('D', 'B', 'I')), ('compensate', '=', True)]}"
+                />
+            </group>
+            <group string="Tax lines"
+                   name="group_tax_lines"
+                   colspan="4"
+                   attrs="{'invisible': [('state', '=', 'draft')]}">
+                <field name="tax_line_ids" nolabel="1" readonly="1"/>
+            </group>
+        </group>
+    </field>
+</record>
 
-        <record id="action_l10n_es_aeat_mod303_report" model="ir.actions.act_window">
-            <field name="name">AEAT model 303</field>
-            <field name="res_model">l10n.es.aeat.mod303.report</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help">Create and query AEAT Model 303 reports</field>
-        </record>
-        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod303_report_tree">
-            <field name="sequence" eval="2"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod303_report_tree"/>
-            <field name="act_window_id" ref="action_l10n_es_aeat_mod303_report"/>
-        </record>
-        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod303_report_form">
-            <field name="sequence" eval="3"/>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod303_report_form"/>
-            <field name="act_window_id" ref="action_l10n_es_aeat_mod303_report"/>
-        </record>
+<record id="action_l10n_es_aeat_mod303_report" model="ir.actions.act_window">
+    <field name="name">AEAT model 303</field>
+    <field name="res_model">l10n.es.aeat.mod303.report</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help">Create and query AEAT Model 303 reports</field>
+</record>
 
-        <menuitem id="menu_aeat_mod303_report"
-                  parent="l10n_es_aeat.menu_root_aeat"
-                  action="action_l10n_es_aeat_mod303_report"
-                  sequence="303"
-                  name="AEAT 303 model"/>
-    </data>
-</openerp>
+<record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod303_report_tree">
+    <field name="sequence" eval="2"/>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="view_l10n_es_aeat_mod303_report_tree"/>
+    <field name="act_window_id" ref="action_l10n_es_aeat_mod303_report"/>
+</record>
+
+<record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod303_report_form">
+    <field name="sequence" eval="3"/>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_l10n_es_aeat_mod303_report_form"/>
+    <field name="act_window_id" ref="action_l10n_es_aeat_mod303_report"/>
+</record>
+
+<menuitem id="menu_aeat_mod303_report"
+          parent="l10n_es_aeat.menu_root_aeat"
+          action="action_l10n_es_aeat_mod303_report"
+          sequence="303"
+          name="AEAT 303 model"/>
+
+</odoo>
