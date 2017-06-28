@@ -42,7 +42,7 @@ las retenciones realizadas a éste proveedor se incluyan en el modelo 111
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Pruébalo en Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/8.0
+   :target: https://runbot.odoo-community.org/runbot/189/10.0
 
 
 Créditos
@@ -53,10 +53,39 @@ Contribuidores
 
 * MálagaTIC (http://www.malagatic.com)
 * Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * AvanzOSC (http://www.avanzosc.es)
-* Antonio Espinosa <antonioea@antiun.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * RGB Consulting SL (http://www.rgbconsulting.com)
+* Vicent Cubells (http://obertix.net)
+* Jose Maria Alzaga (http://www.aselcis.com)
+* Ismael Calvo (http://factorlibre.com)
+
+Financiadores
+-------------
+La migración de este módulo forma parte de una campaña de migración de la
+localización española que ha sido posible gracias a la colaboración económica
+de las siguientes empresas (por orden alfabético):
+
+* `Aizean evolution <http://www.aizean.com>`_
+* `Aselcis consulting <https://www.aselcis.com>`_
+* `AvanzOSC <http://avanzosc.es>`_
+* `Diagram software <http://diagram.es>`_
+* `Domatix <http://www.domatix.com>`_
+* `Eficent <http://www.eficent.com>`_
+* `FactorLibre <http://factorlibre.com>`_
+* `Fairhall solutions <http://www.fairhall.es>`_
+* `GAFIC SLP <http://www.gafic.com>`_
+* `Incaser <http://www.incaser.es>`_
+* `Ingeos <http://www.ingeos.es>`_
+* `Nubistalia <http://www.nubistalia.es>`_
+* `Punt sistemes <http://www.puntsistemes.es>`_
+* `Praxya <http://praxya.com>`_
+* `Reeng <http://www.reng.es>`_
+* `Soluntec <http://www.soluntec.es>`_
+* `Tecnativa <https://www.tecnativa.com>`_
+* `Trey <https://www.trey.es>`_
+* `Vicent Cubells <http://vcubells.net>`_
 
 Maintainer
 ----------
