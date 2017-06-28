@@ -8,8 +8,9 @@ Punto de venta Punto de venta adaptado a la legislación española
 * Adapta el terminal punto de venta a la legislación Española (no se permite la
   emisión de tiquets, todo deben ser facturas o facturas simplificadas con
   numeración)
-* Adapta el ticket de venta a factura simplificada, añadiendo el NIF del emisor.
-* Incluye los datos del cliente (nombre, NIF y dirección) si hay uno asignado.
+* Adapta el ticket de venta a la factura simplificada, añadiendo una secuencia correlativa y el NIF del emisor.
+* Incluye los datos del cliente (nombre, NIF y dirección) si hay uno asignado, de lo contrario, asigna un 'cliente
+  de contado' por defecto.
 * Chequea que no se realice una factura simplificada con valor
   superior a 3.000 euros (la cantidad es configurable por TPV).
 
@@ -20,37 +21,23 @@ Instalación
 Para instalar este modulo necesitas:
 
 * point_of_sale (Odoo addon)
-* pos_pricelist (OCA addon, repositorio pos)
+* l10n_es_partner (OCA addon, repositorio l10n-spain)
 
-Ambos se instalan automáticamente si están disponibles en la lista de addons.
+Se instalan automáticamente si están disponibles en la lista de addons.
+
+También es necesario definir una secuencia de factura simplificada en la
+configuración de cada TPV.
 
 
 Configuración
 =============
 
 Se puede configurar el límite a partir del cual no se considera factura
-simplificada. Por defecto es 3.000,00 €. Para modificarlo ir a:
+simplificada, por defecto es 3.000,00 €. También permite modificar la secuencia de factura simplificada.
+Para modificarlos es necesario ir a:
 Configuracion > Terminal punto de venta (TPV)
 
 `Ver enlace de la AEAT <http://www.agenciatributaria.es/AEAT.internet/Inicio_es_ES/_Segmentos_/Empresas_y_profesionales/Empresas/IVA/Obligaciones_de_facturacion/Tipos_de_factura.shtml>`_
-
-Se aconseja disponer de una secuencia sin hueco ``Ref. Venta`` para cada TPV,
-porque es el número que aparece como Factura o Factura simplificada.
-
-
-Problemas conocidos / Hoja de ruta
-==================================
-
-No permite realizar facturas contables convencionales a partir de un pedido del
-TPV porque el pedido ya incluye toda la información contable y de impuestos
-necesaria (hereda esta funcionalidad del addon pos_pricelist) y esto provoca que
-haya huecos en la numeración de las facturas simplificadas (esto no lo permite
-la legislación española)
-
-Desde el TPV se imprime un tiquet sólo con la referencia del pedido. En este momento
-no se puede mostrar el número de factura (simplificada o no) porque el TPV puede
-estar offline. Si el cliente solicita una factura deducible es necesario imprimir
-el tiquet desde el backend.
 
 
 Bug Tracker
@@ -89,6 +76,8 @@ Contribuidores
 * Pedro M. Baeza [Serv. Tecnológicos Avanzados] <pedro.baeza@serviciosbaeza.com>
 * Antonio Espinosa <antonioea@antiun.com>
 * Rafael Blasco <rafabn@antiun.com>
+* David Gómez <david.gomez@aselcis.com>
+* Miguel Paraíso <miguel.paraiso@aselcis.com>
 
 
 Mantenedor

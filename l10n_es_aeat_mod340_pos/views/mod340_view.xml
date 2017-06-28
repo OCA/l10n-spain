@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Invoice Issued-->
+        <record id="view_l10n_es_aeat_mod340_pos_invoice_issued_tree"
+                model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod340.pos.issued.tree</field>
+            <field name="model">l10n.es.aeat.mod340.issued</field>
+            <field name="inherit_id"
+                   ref="l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_tree"/>
+            <field name="arch" type="xml">
+                <field name="invoice_id" position="replace">
+                    <field name="invoice_name"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -7,6 +7,7 @@ Funcionalidad:
 * Añade el campo *Nombre comercial* a las empresas y permite buscar por él.
 * Permite definir un patrón del nombre a mostrar a partir del nombre y el
   nombre comercial de la empresa.
+* Añade un *Cliente de contado* para las facturas simplificadas.
 * Convierte el NIF a mayúsculas.
 * Añade los campos nombre largo, NIF y web a los bancos.
 * Añade los datos de los bancos españoles extraídos del registro oficial del

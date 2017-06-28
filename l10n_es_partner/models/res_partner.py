@@ -38,16 +38,14 @@ class ResPartner(models.Model):
         Odoo overwrites name_search on res.partner in a non inheritable way."""
         if not args:
             args = []
+        if not limit:
+            limit = 100
         partners = self.search(
             [('comercial', operator, name)] + args, limit=limit,
         )
         res = partners.name_get()
-        if limit:
-            limit_rest = limit - len(partners)
-        else:
-            # limit can be 0 or None representing infinite
-            limit_rest = limit
-        if limit_rest or not limit:
+        limit_rest = limit - len(partners)
+        if limit_rest:
             args += [('id', 'not in', partners.ids)]
             res += super(ResPartner, self).name_search(
                 name, args=args, operator=operator, limit=limit_rest,

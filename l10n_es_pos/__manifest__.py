@@ -2,29 +2,27 @@
 # See README.rst file on addon root folder for license details
 
 {
-    "name": "Punto de venta adaptado a la legislación española",
-    "version": "8.0.1.0.0",
-    "author": "Antiun Ingeniería S.L., "
+    'name': "Punto de venta adaptado a la legislación española",
+    'summary': """
+        Añade todo lo necesario para adaptar el TPV a la legislación Española.
+    """,
+    'description': """
+Añade todo lo necesario para adaptar el TPV a la legislación Española.
+    """,
+
+    'website': "https://www.aselcis.com",
+    'category': 'Point Of Sale',
+    'author': "Antiun Ingeniería S.L., "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
+              "Aselcis Consulting, "
               "Spanish Localization Team, "
               "Odoo Community Association (OCA)",
-    "website": "http://www.antiun.com",
-    "license": "AGPL-3",
-    "category": "Point Of Sale",
-    "depends": [
-        'base',
-        'point_of_sale',
-        'pos_pricelist'
-    ],
+    'version': '10.0.1.0.0',
+    'depends': ['point_of_sale', 'l10n_es_partner'],
+    'license': 'AGPL-3',
     'data': [
-        "views/pos_template.xml",
-        "views/point_of_sale_view.xml",
-        "views/point_of_sale_report.xml",
-        "reports/common.xml",
-        "reports/receipt_report.xml",
+        'views/pos_templates.xml',
+        'views/pos_views.xml',
     ],
-    "qweb": [
-        'static/src/xml/pos.xml',
-    ],
-    'installable': False,
+    'qweb': ['static/src/xml/pos.xml'],
 }
