@@ -4,7 +4,7 @@
 <openerp>
     <data>
         <template id="account_balance_reporting.report_generic">
-            <t t-call="report.external_layout">
+            <t t-call="report.html_container">
                 <t t-foreach="docs" t-as="o">
                     <div class="page">
                         <div class="row">
@@ -59,6 +59,23 @@
                 </t>
             </t>
         </template>
+
+        <template id="report_generic_external_layout" inherit_id="account_balance_reporting.report_generic"
+                  primary="True">
+            <xpath expr="//t[@t-call='report.html_container']" position="attributes">
+                <attribute name="t-call">report.external_layout</attribute>
+            </xpath>
+        </template>
+
+        <template id="report_generic_non_zero_external_layout"
+                  inherit_id="account_balance_reporting.report_generic_external_layout" primary="True">
+            <xpath expr="//tr[@t-as='line']" position="attributes">
+                <attribute name="t-foreach">o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value !=
+                    0.0)
+                </attribute>
+            </xpath>
+        </template>
+
         <template id="report_generic_non_zero" inherit_id="account_balance_reporting.report_generic" primary="True">
             <xpath expr="//tr[@t-as='line']" position="attributes">
                 <attribute name="t-foreach">o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value !=

@@ -25,7 +25,27 @@
             file="account_balance_reporting.report_generic"
     />
 
-    <record forcecreate="True" id="paperformat_balance_reporting" model="report.paperformat">
+    <!-- Generic report with external layout -->
+    <report id="report_account_balance_reporting_generic_external_layout"
+            model="account.balance.reporting"
+            report_type="qweb-pdf"
+            string="Generic balance report with header and footer"
+            menu="False"
+            name="account_balance_reporting.report_generic_external_layout"
+            file="account_balance_reporting.report_generic"
+    />
+
+    <!-- Generic report with external layout without zero lines -->
+    <report id="report_account_balance_reporting_default_non_zero_external_layout"
+            model="account.balance.reporting"
+            report_type="qweb-pdf"
+            string="Generic balance report with header and footer(non zero lines)"
+            menu="False"
+            name="account_balance_reporting.report_generic_non_zero_external_layout"
+            file="account_balance_reporting.report_generic"
+    />
+
+    <record forcecreate="True" id="paperformat_balance_reporting_external_layout" model="report.paperformat">
         <field name="name">Balance Reporting Paperformat</field>
         <field name="default" eval="True"/>
         <field name="format">A4</field>
@@ -41,12 +61,36 @@
         <field name="dpi">90</field>
     </record>
 
+    <record forcecreate="True" id="paperformat_balance_reporting" model="report.paperformat">
+        <field name="name">Balance Reporting Paperformat</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">10</field>
+        <field name="dpi">90</field>
+    </record>
+
     <record id="report_account_balance_reporting_generic" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="paperformat_balance_reporting"/>
     </record>
     <record id="report_account_balance_reporting_default_non_zero" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="paperformat_balance_reporting"/>
     </record>
+
+    <record id="report_account_balance_reporting_generic_external_layout" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="paperformat_balance_reporting_external_layout"/>
+    </record>
+    <record id="report_account_balance_reporting_default_non_zero_external_layout" model="ir.actions.report.xml">
+        <field name="paperformat_id" ref="paperformat_balance_reporting_external_layout"/>
+    </record>
+
 </data>
 </openerp>
 	
