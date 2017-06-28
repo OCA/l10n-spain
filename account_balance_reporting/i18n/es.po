@@ -169,7 +169,7 @@ msgstr "Haber-Debe, invertido con paréntesis"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,current_move_line_count:0
 msgid "Current move line count"
-msgstr "Cuenta de línea de movimiento actual"
+msgstr "Nº de apuntes actual"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,current_date_from:0
@@ -221,7 +221,7 @@ msgstr "Diseño"
 #: field:account.balance.reporting.template,display_name:0
 #: field:account.balance.reporting.template.line,display_name:0
 msgid "Display Name"
-msgstr "Nombre para mostrar"
+msgstr "Nombre mostrado"
 
 #. module: account_balance_reporting
 #: field:account.account,not_level_expand:0
@@ -315,7 +315,7 @@ msgid "Generic balance report with header and footer"
 msgstr "Informe genérico de saldo con cabecera y pie"
 
 #. module: account_balance_reporting
-#: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_default_non_zero_external_layout
+#: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_default_n_z_external_layout
 msgid "Generic balance report with header and footer(non zero lines)"
 msgstr "Informe genérico de saldo con cabecera y pie (sin líneas a cero)"
 
@@ -481,7 +481,7 @@ msgstr "Periodos"
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,previous_move_line_count:0
 msgid "Previous move line count"
-msgstr "Previous move line count"
+msgstr "Nº de apuntes previos"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print

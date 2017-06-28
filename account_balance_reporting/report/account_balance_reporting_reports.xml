@@ -36,7 +36,7 @@
     />
 
     <!-- Generic report with external layout without zero lines -->
-    <report id="report_account_balance_reporting_default_non_zero_external_layout"
+    <report id="report_account_balance_reporting_default_n_z_external_layout"
             model="account.balance.reporting"
             report_type="qweb-pdf"
             string="Generic balance report with header and footer(non zero lines)"
@@ -87,7 +87,7 @@
     <record id="report_account_balance_reporting_generic_external_layout" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="paperformat_balance_reporting_external_layout"/>
     </record>
-    <record id="report_account_balance_reporting_default_non_zero_external_layout" model="ir.actions.report.xml">
+    <record id="report_account_balance_reporting_default_n_z_external_layout" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="paperformat_balance_reporting_external_layout"/>
     </record>
 
