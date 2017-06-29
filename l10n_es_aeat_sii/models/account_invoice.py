@@ -180,11 +180,8 @@ class AccountInvoice(models.Model):
             if (invoice.type in ['in_invoice', 'in refund'] and
                     invoice.sii_state != 'not_sent'):
                 if 'partner_id' in vals:
-                    correct_partners = self.env['res.partner']
-                    correct_partners |= invoice.partner_id.\
-                        commercial_partner_id.child_ids
-                    correct_partners |= \
-                        invoice.partner_id.commercial_partner_id
+                    correct_partners = invoice.partner_id.commercial_partner_id
+                    correct_partners |= correct_partners.child_ids
                     if vals['partner_id'] not in correct_partners.ids:
                         raise exceptions.Warning(
                             _("You cannot change the supplier of an invoice "
@@ -963,8 +960,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
         # Limpiar alfanum
-        vat = ''.join(e for e in self.partner_id.vat
-                      if e.isalnum()).upper()
+        vat = ''.join(e for e in self.partner_id.vat if e.isalnum()).upper()
         if gen_type == 1 or vat.startswith('ES'):
             return {"NIF": vat[2:]}
         elif gen_type == 2:
