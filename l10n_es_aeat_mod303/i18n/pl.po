@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-06 17:03+0000\n"
-"PO-Revision-Date: 2016-09-06 17:03+0000\n"
+"POT-Creation-Date: 2017-06-29 15:03+0000\n"
+"PO-Revision-Date: 2017-06-29 15:03+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,11 +41,6 @@ msgid "AEAT model 303"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_move_id
-msgid "Account entry"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_allow_posting
 msgid "Allow posting"
 msgstr ""
@@ -56,28 +51,8 @@ msgid "Bank account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_calculation_date
-msgid "Calculation date"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Cancelled"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_id
-msgid "Company"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
 msgid "Compensate"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,type:0
-msgid "Complementary"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -106,53 +81,13 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_currency_id
-msgid "Currency"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,support_type:0
-msgid "DVD"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_number
-msgid "Declaration number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Done"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Draft"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_date_end
-msgid "Ending date"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_export_config_id
-msgid "Export configuration"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
 msgid "Fee to compensate for prior periods, in which his statement was to return and compensation back option was chosen"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_name
-msgid "Full Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -171,21 +106,6 @@ msgid "In the last auto settlement of the year, shall be recorded (the fourth pe
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
-msgid "Journal"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
-msgid "Journal in which post the move."
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_representative_vat
-msgid "L.R. VAT number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report___last_update
 msgid "Last Modified on"
 msgstr ""
@@ -201,23 +121,8 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_representative_vat
-msgid "Legal Representative VAT number."
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_model_id
-msgid "Model"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_devolucion_mensual
 msgid "Montly Return"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_name
-msgid "Must have name and surname."
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -226,48 +131,13 @@ msgid "No activity/Zero result"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,type:0
-msgid "Normal"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_partner_id
 msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_period_type
-msgid "Period type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_phone
-msgid "Phone"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Posted"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_previous_number
-msgid "Previous declaration number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,state:0
-msgid "Processed"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_name
-msgid "Report identifier"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -286,44 +156,18 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:199
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:185
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:201
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:187
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_date_start
-msgid "Starting date"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_state
-msgid "State"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_type
-msgid "Statement Type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,type:0
-msgid "Substitutive"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_support_type
-msgid "Support Type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_tax_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Tax lines"
 msgstr ""
@@ -331,11 +175,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_porcentaje_atribuible_estado
 msgid "Taxpayers who pay jointly to the Central Government and the Provincial Councils of the Basque Country or the Autonomous Community of Navarra, will enter in this box the percentage of volume operations in the common territory. Other taxpayers will enter in this box 100%"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: selection:l10n.es.aeat.mod303.report,support_type:0
-msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -351,16 +190,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_vat
-msgid "VAT number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_year
-msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
