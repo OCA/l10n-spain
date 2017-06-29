@@ -8,7 +8,7 @@
 
 {
     "name": "Account balance reporting engine",
-    "version": "10.0.1.0.1",
+    "version": "10.0.1.0.2",
     "author": "Pexego, "
               "AvanzOSC, "
               "Tecnativa, "
