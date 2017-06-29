@@ -74,8 +74,7 @@ Créditos
 Contribuidores
 --------------
 
-* Rafael Blasco <rafabn@antiun.com>
-* Antonio Espinosa <antonioea@antiun.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
 
 Maintainer
 ----------
