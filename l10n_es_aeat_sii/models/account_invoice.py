@@ -696,19 +696,19 @@ class AccountInvoice(models.Model):
                 #     res = serv.SuministroLRDetOperacionIntracomunitaria(
                 #         header, invoices)
                 if res['EstadoEnvio'] == 'Correcto':
-                    self.sii_state = 'sent'
-                    self.sii_csv = res['CSV']
-                    self.sii_send_failed = False
+                    invoice.sii_state = 'sent'
+                    invoice.sii_csv = res['CSV']
+                    invoice.sii_send_failed = False
                 else:
-                    self.sii_send_failed = True
-                self.sii_return = res
+                    invoice.sii_send_failed = True
+                invoice.sii_return = res
                 send_error = False
                 res_line = res['RespuestaLinea'][0]
                 if res_line['CodigoErrorRegistro']:
                     send_error = u"{} | {}".format(
                         unicode(res_line['CodigoErrorRegistro']),
                         unicode(res_line['DescripcionErrorRegistro'])[:60])
-                self.sii_send_error = send_error
+                invoice.sii_send_error = send_error
             except Exception as fault:
                 new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
@@ -808,24 +808,25 @@ class AccountInvoice(models.Model):
                 #     res = serv.AnulacionLRDetOperacionIntracomunitaria(
                 #         header, invoices)
                 if res['EstadoEnvio'] == 'Correcto':
-                    self.sii_state = 'cancelled'
-                    self.sii_csv = res['CSV']
-                    self.sii_send_failed = False
+                    invoice.sii_state = 'cancelled'
+                    invoice.sii_csv = res['CSV']
+                    invoice.sii_send_failed = False
                 else:
-                    self.sii_send_failed = True
-                self.sii_return = res
+                    invoice.sii_send_failed = True
+                invoice.sii_return = res
                 send_error = False
                 res_line = res['RespuestaLinea'][0]
                 if res_line['CodigoErrorRegistro']:
                     send_error = u"{} | {}".format(
                         unicode(res_line['CodigoErrorRegistro']),
                         unicode(res_line['DescripcionErrorRegistro'])[:60])
-                self.sii_send_error = send_error
+                invoice.sii_send_error = send_error
             except Exception as fault:
                 new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env['account.invoice'].browse(self.id)
                 invoice.sii_send_error = fault
+                invoice.sii_send_failed = True
                 invoice.sii_return = fault
                 new_cr.commit()
                 new_cr.close()
@@ -882,6 +883,14 @@ class AccountInvoice(models.Model):
             # without any SII communication.
             self.sii_state = 'cancelled'
         return res
+
+    @api.multi
+    def action_cancel_draft(self):
+        if not self._cancel_invoice_jobs():
+            raise exceptions.Warning(_(
+                'You can not set to draft this invoice because'
+                ' there is a job running!'))
+        return super(AccountInvoice, self).action_cancel_draft()
 
     @api.multi
     def _get_sii_gen_type(self):
