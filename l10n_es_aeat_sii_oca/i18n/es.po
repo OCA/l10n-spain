@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-27 01:19+0000\n"
-"PO-Revision-Date: 2017-06-27 01:19+0000\n"
+"PO-Revision-Date: 2017-06-29 04:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,6 @@ msgid "Aeat SII Map"
 msgstr "SII - Mapeo de impuestos"
 
 #. module: l10n_es_aeat_sii
-#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_map_line
 #: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_map_lines
 msgid "Aeat SII Map Lines"
 msgstr "SII - Lineas de mapeo"
@@ -325,7 +324,7 @@ msgid "Invoice Refund"
 msgstr "Abono factura"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:749
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:753
 #, python-format
 msgid "Invoices in other currency are not yet supported"
 msgstr "Las facturas en otra moneda no están soportadas aún"
@@ -710,22 +709,28 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:868
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:873
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:835
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:840
 #, python-format
 msgid "You can not communicate the cancellation of this invoice at this moment because there is a job running!"
 msgstr "En este momento no puede comunicar la cancelación de esta factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:752
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:756
 #, python-format
 msgid "You can not communicate this invoice at this moment because there is a job running!"
 msgstr "En este momento no puede comunicar esta factura porque hay un trabajo ejecutándose!"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:888
+#, python-format
+msgid "You can not set to draft this invoice because there is a job running!"
+msgstr "En este momento no puede poner en borrador esta factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:155
