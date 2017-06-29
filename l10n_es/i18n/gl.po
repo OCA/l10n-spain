@@ -1,32 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es
-# 
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+#	* l10n_es
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-02 03:36+0000\n"
-"PO-Revision-Date: 2016-12-02 03:36+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
-"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"POT-Creation-Date: 2017-06-29 15:02+0000\n"
+"PO-Revision-Date: 2017-06-29 15:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_capital
 msgid "Capital"
-msgstr "Capital"
+msgstr ""
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_stock
 msgid "Existencias"
-msgstr "Existencias"
+msgstr ""
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_financieras
@@ -36,12 +33,12 @@ msgstr "Financieiras"
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_gastos_neto
 msgid "Gastos patrimonio neto"
-msgstr "Gastos patrimonio neto"
+msgstr ""
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_ingresos_neto
 msgid "Ingresos patrimonio neto"
-msgstr "Ingresos patrimonio neto"
+msgstr ""
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_tax
@@ -52,3 +49,4 @@ msgstr "Imposto"
 #: model:account.account.type,name:l10n_es.account_type_terceros
 msgid "Terceros"
 msgstr "Terceiros"
+
