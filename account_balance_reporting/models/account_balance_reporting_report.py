@@ -189,8 +189,9 @@ class AccountBalanceReportingLine(models.Model):
     def _compute_display_name(self):
         for line in self:
             level = (
-                line.css_class[1:].isdigit() and int(line.css_class[1:]) or 1)
-            line.display_name = '..' * (level - 1) + line.name
+                line.css_class[1:].isdigit() and int(line.css_class[1:]) or 1
+            )
+            line.display_name = '..' * (level - 1) + (line.name or '')
 
     @api.multi
     @api.depends('current_move_line_ids')
