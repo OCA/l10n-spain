@@ -76,5 +76,5 @@ class L10nEsAeatSiiPassword(osv.TransientModel):
             except Exception as e:
                 if e.args:
                     args = list(e.args)
-                raise exceptions.osv_exception(args[-1])
+                raise exceptions.Warning(args[-1])
         return {'type': 'ir.actions.act_window_close'}

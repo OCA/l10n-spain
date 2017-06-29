@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # (c) 2017 Diagram Software S.L.
+# (c) 2017 Consultoría Informática Studio 73 S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from openerp.osv import osv, fields
@@ -44,7 +45,7 @@ class L10nEsAeatSii(osv.Model):
             'target': 'new',
         }
 
-    def action_activate(self, cr, uid, ids, context={}):
+    def action_active(self, cr, uid, ids, context={}):
 
         for aeat_sii in self.browse(cr, uid, ids, context=context):
 

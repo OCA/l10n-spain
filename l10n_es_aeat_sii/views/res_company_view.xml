@@ -17,10 +17,19 @@
                     <group colspan="4" col="4" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <field name="chart_template_id"
                                attrs="{'required': [('sii_enabled', '=', True)]}"/>
-                        <!--<field name="use_connector" />-->
                         <field name="sii_test"/>
                         <field name="sii_method"/>
+                        <newline/>
+                        <group name="sii_description">
+                            <separator string='Description Config'/>
+                            <newline/>
 
+                            <field name="sii_description_method"/>
+                            <field name="sii_description"
+                                   attrs="{'invisible': [('sii_description_method', '!=', 'fixed')]}"/>
+                            <field name="sii_header_customer"/>
+                            <field name="sii_header_supplier"/>
+                        </group>
                     </group>
                 </page>
             </field>
