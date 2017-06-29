@@ -115,9 +115,8 @@ class account_invoice(osv.Model):
 
     def create(self, cr, uid, vals, context=None):
         if vals.get('fiscal_position') and not vals.get('sii_registration_key'):
-            vals['sii_registration_key'] = self.\
-                onchange_fiscal_position_l10n_es_aeat_sii(cr, uid, vals['fiscal_position'], context.get('type'))
-
+            vals['sii_registration_key'] = self. \
+                onchange_fiscal_position_l10n_es_aeat_sii(cr, uid, vals['fiscal_position'], vals.get('type'))
         return super(account_invoice, self).create(cr, uid, vals, context)
 
     #TODO
