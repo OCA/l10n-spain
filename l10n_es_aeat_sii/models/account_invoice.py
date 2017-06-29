@@ -45,7 +45,8 @@ SII_STATES = [
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
 ]
 
-SII_VERSION = '0.7'
+SII_VERSION = '1.0'
+SII_START_DATE = '2017-07-01'
 
 
 class AccountInvoice(models.Model):
@@ -290,10 +291,8 @@ class AccountInvoice(models.Model):
         if not company.vat:
             raise exceptions.Warning(_(
                 "No VAT configured for the company '{}'").format(company.name))
-        id_version_sii = self.env['ir.config_parameter'].get_param(
-            'l10n_es_aeat_sii.version', SII_VERSION)
         header = {
-            "IDVersionSii": id_version_sii,
+            "IDVersionSii": SII_VERSION,
             "Titular": {
                 "NombreRazon": self.company_id.name[0:120],
                 "NIF": self.company_id.vat[2:]}
@@ -353,6 +352,13 @@ class AccountInvoice(models.Model):
                                 'DetalleIVA': [],
                             },
                         })
+                        not_ex_type = sub_dict['NoExenta']['TipoNoExenta']
+                        if tax_line in taxes_sfesisp:
+                            is_s3 = not_ex_type == 'S1'
+                        else:
+                            is_s3 = not_ex_type == 'S2'
+                        if is_s3:
+                            sub_dict['NoExenta']['TipoNoExenta'] = 'S3'
                         inv_line._update_sii_tax_line(taxes_f, tax_line)
                 # No sujetas
                 if tax_line in taxes_sfens:
@@ -702,6 +708,34 @@ class AccountInvoice(models.Model):
         return client
 
     @api.multi
+    def _process_invoice_for_sii_send(self):
+        """Process invoices for sending to the SII. Adds general checks from
+        configuration parameters and invoice availability for SII. If the
+        invoice is to be sent the decides the send method: direct send or
+        via connector depending on 'Use connector' configuration"""
+        # De momento evitamos enviar facturas del primer semestre si no estamos
+        # en entorno de pruebas
+        invoices = self.filtered(
+            lambda i: (
+                i.company_id.sii_test or
+                i.period_id.date_start >= SII_START_DATE
+            )
+        )
+        queue_obj = self.env['queue.job']
+        for invoice in invoices:
+            company = invoice.company_id
+            if not company.use_connector:
+                invoice._send_invoice_to_sii()
+            else:
+                eta = company._get_sii_eta()
+                session = ConnectorSession.from_env(self.env)
+                new_delay = confirm_one_invoice.delay(
+                    session, 'account.invoice', invoice.id, eta=eta)
+                invoice.invoice_jobs_ids |= queue_obj.search(
+                    [('uuid', '=', new_delay)], limit=1,
+                )
+
+    @api.multi
     def _send_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ['open', 'paid']):
             company = invoice.company_id
@@ -767,7 +801,6 @@ class AccountInvoice(models.Model):
     @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
-        queue_obj = self.env['queue.job']
         for invoice in self.filtered('sii_enabled'):
             if invoice.sii_state == 'sent':
                 invoice.sii_state = 'sent_modified'
@@ -776,16 +809,7 @@ class AccountInvoice(models.Model):
             company = invoice.company_id
             if company.sii_method != 'auto':
                 continue
-            if not company.use_connector:
-                invoice._send_invoice_to_sii()
-            else:
-                eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
-                new_delay = confirm_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
-                invoice.invoice_jobs_ids |= queue_obj.search(
-                    [('uuid', '=', new_delay)], limit=1,
-                )
+            invoice._process_invoice_for_sii_send()
         return res
 
     @api.multi
@@ -802,20 +826,7 @@ class AccountInvoice(models.Model):
             raise exceptions.Warning(_(
                 'You can not communicate this invoice at this moment '
                 'because there is a job running!'))
-        queue_obj = self.env['queue.job']
-        for invoice in invoices:
-            company = invoice.company_id
-            if not company.use_connector:
-                invoice._send_invoice_to_sii()
-            else:
-                eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
-                new_delay = confirm_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
-                queue_ids = queue_obj.search([
-                    ('uuid', '=', new_delay)
-                ], limit=1)
-                invoice.invoice_jobs_ids |= queue_ids
+        invoices._process_invoice_for_sii_send()
 
     @api.multi
     def _cancel_invoice_to_sii(self):
