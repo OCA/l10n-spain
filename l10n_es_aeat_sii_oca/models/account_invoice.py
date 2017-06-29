@@ -316,6 +316,8 @@ class AccountInvoice(models.Model):
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         default_no_taxable_cause = self._get_no_taxable_cause()
+        # Check if refund type is 'By differences'. Negative amounts!
+        sign = self._get_sii_sign()
         for inv_line in self.invoice_line:
             exempt_cause = self._get_sii_exempt_cause(inv_line.product_id)
             for tax_line in inv_line.invoice_line_tax_id:
@@ -336,7 +338,7 @@ class AccountInvoice(models.Model):
                         if exempt_cause:
                             sub_dict['Exenta']['CausaExencion'] = exempt_cause
                         sub_dict['Exenta']['BaseImponible'] += (
-                            inv_line._get_sii_line_price_subtotal()
+                            inv_line._get_sii_line_price_subtotal() * sign
                         )
                     else:
                         sub_dict.setdefault('NoExenta', {
@@ -369,7 +371,7 @@ class AccountInvoice(models.Model):
                         if exempt_cause:
                             exempt_dict['CausaExencion'] = exempt_cause
                         exempt_dict['BaseImponible'] += inv_line.\
-                            _get_sii_line_price_subtotal()
+                            _get_sii_line_price_subtotal() * sign
                     # TODO Facturas no sujetas
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
@@ -385,8 +387,6 @@ class AccountInvoice(models.Model):
                             },
                         )
                         inv_line._update_sii_tax_line(taxes_to, tax_line)
-        # Check if refund type is 'By differences'. Negative amounts!
-        sign = -1.0 if self.sii_refund_type == 'I' else 1.0
         for val in taxes_f.values() + taxes_to.values():
             val['CuotaRepercutida'] = float_round(
                 val['CuotaRepercutida'] * sign, 2,
@@ -429,6 +429,8 @@ class AccountInvoice(models.Model):
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
         tax_amount = 0.0
+        # Check if refund type is 'By differences'. Negative amounts!
+        sign = self._get_sii_sign()
         for inv_line in self.invoice_line:
             for tax_line in inv_line.invoice_line_tax_id:
                 if tax_line in taxes_sfrisp:
@@ -441,7 +443,7 @@ class AccountInvoice(models.Model):
                         {'DetalleIVA': {'BaseImponible': 0}},
                     )
                     nsub_dict['DetalleIVA']['BaseImponible'] += inv_line.\
-                        _get_sii_line_price_subtotal()
+                        _get_sii_line_price_subtotal() * sign
 
         if taxes_isp:
             taxes_dict.setdefault(
@@ -451,8 +453,6 @@ class AccountInvoice(models.Model):
             taxes_dict.setdefault(
                 'DesgloseIVA', {'DetalleIVA': taxes_f.values()},
             )
-        # Check if refund type is 'By differences'. Negative amounts!
-        sign = -1.0 if self.sii_refund_type == 'I' else 1.0
         for val in taxes_isp.values() + taxes_f.values():
             val['CuotaSoportada'] = float_round(
                 val['CuotaSoportada'] * sign, 2,
@@ -531,7 +531,7 @@ class AccountInvoice(models.Model):
         }
         if not cancel:
             # Check if refund type is 'By differences'. Negative amounts!
-            sign = -1.0 if self.sii_refund_type == 'I' else 1.0
+            sign = self._get_sii_sign()
             inv_dict["FacturaExpedida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
@@ -604,7 +604,7 @@ class AccountInvoice(models.Model):
             )
         else:
             # Check if refund type is 'By differences'. Negative amounts!
-            sign = -1.0 if self.sii_refund_type == 'I' else 1.0
+            sign = self._get_sii_sign()
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
@@ -1025,6 +1025,11 @@ class AccountInvoice(models.Model):
         if sii_refund_type:
             res['sii_refund_type'] = sii_refund_type
         return res
+
+    @api.multi
+    def _get_sii_sign(self):
+        self.ensure_one()
+        return -1.0 if self.sii_refund_type == 'I' else 1.0
 
 
 class AccountInvoiceLine(models.Model):
