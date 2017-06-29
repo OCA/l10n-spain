@@ -131,7 +131,8 @@ class AccountInvoice(models.Model):
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
         invoice = super(AccountInvoice, self).create(vals)
-        if invoice.fiscal_position and not invoice.sii_registration_key:
+        if vals.get('fiscal_position') and \
+                not vals.get('sii_registration_key'):
             invoice.onchange_fiscal_position_l10n_es_aeat_sii()
         return invoice
 
@@ -158,10 +159,9 @@ class AccountInvoice(models.Model):
                           "correct number")
                     )
         res = super(AccountInvoice, self).write(vals)
-        if vals.get('fiscal_position'):
-            self.filtered(
-                lambda x: x.fiscal_position and not x.sii_registration_key
-            ).onchange_fiscal_position_l10n_es_aeat_sii()
+        if vals.get('fiscal_position') and \
+                not vals.get('sii_registration_key'):
+            self.onchange_fiscal_position_l10n_es_aeat_sii()
         return res
 
     @api.multi
@@ -484,7 +484,10 @@ class AccountInvoice(models.Model):
                 "IDEmisorFactura": {
                     "NIF": company.vat[2:],
                 },
-                "NumSerieFacturaEmisor": self.number[0:60],
+                # On cancelled invoices, number is not filled
+                "NumSerieFacturaEmisor": (
+                    self.number or self.internal_number or ''
+                )[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
             "PeriodoImpositivo": {
@@ -508,7 +511,7 @@ class AccountInvoice(models.Model):
                     "NombreRazon": self.partner_id.name[0:120],
                 },
                 "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": self.amount_total * sign,
+                "ImporteTotal": self.cc_amount_total * sign,
             }
             exp_dict = inv_dict['FacturaExpedida']
             # Uso condicional de IDOtro/NIF
@@ -518,10 +521,11 @@ class AccountInvoice(models.Model):
                 if self.sii_refund_type == 'S':
                     exp_dict['ImporteRectificacion'] = {
                         'BaseRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_untaxed')
+                            self.
+                            mapped('origin_invoices_ids.cc_amount_untaxed')
                         ),
                         'CuotaRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_tax')
+                            self.mapped('origin_invoices_ids.cc_amount_tax')
                         ),
                     }
         return inv_dict
@@ -581,7 +585,7 @@ class AccountInvoice(models.Model):
                     "NombreRazon": self.partner_id.name[0:120],
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": self.amount_total * sign,
+                "ImporteTotal": self.cc_amount_total * sign,
                 "CuotaDeducible": float_round(tax_amount * sign, 2),
             }
             # Uso condicional de IDOtro/NIF
@@ -596,7 +600,8 @@ class AccountInvoice(models.Model):
                 if self.sii_refund_type == 'S':
                     rec_dict['ImporteRectificacion'] = {
                         'BaseRectificada': sum(
-                            self.mapped('origin_invoices_ids.amount_untaxed')
+                            self.
+                            mapped('origin_invoices_ids.cc_amount_untaxed')
                         ),
                         'CuotaRectificada': refund_tax_amount,
                     }
@@ -708,6 +713,7 @@ class AccountInvoice(models.Model):
                 new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env['account.invoice'].browse(self.id)
+                invoice.sii_send_failed = True
                 invoice.sii_send_error = fault
                 invoice.sii_return = fault
                 new_cr.commit()
@@ -748,10 +754,6 @@ class AccountInvoice(models.Model):
                 ]
             )
         )
-        if any(x.currency_id != x.company_id.currency_id for x in invoices):
-            raise exceptions.Warning(
-                _('Invoices in other currency are not yet supported')
-            )
         if not invoices._cancel_invoice_jobs():
             raise exceptions.Warning(_(
                 'You can not communicate this invoice at this moment '
@@ -1000,7 +1002,14 @@ class AccountInvoiceLine(models.Model):
         obtain through this method, as it can be inherited in other modules
         for altering the expected amount according other criteria."""
         self.ensure_one()
-        return self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        price_unit = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        if self.invoice_id.currency_id != \
+                self.invoice_id.company_id.currency_id:
+            from_currency = self.invoice_id.currency_id.\
+                with_context(date=self.invoice_id.date_invoice)
+            price_unit = from_currency.\
+                compute(price_unit, self.invoice_id.company_id.currency_id)
+        return price_unit
 
     @api.multi
     def _get_sii_line_price_subtotal(self):
