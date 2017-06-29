@@ -4,6 +4,7 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2017 Otherway - Pedro Rodríguez Gil
 # Copyright 2017 Tecnativa - Pedro M. Baeza
+# Copyright 2017 Comunitea - Omar Castiñeira <omar@comunitea.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -179,12 +180,15 @@ class AccountInvoice(models.Model):
             if (invoice.type in ['in_invoice', 'in refund'] and
                     invoice.sii_state != 'not_sent'):
                 if 'partner_id' in vals:
-                    raise exceptions.Warning(
-                        _("You cannot change the supplier of an invoice "
-                          "already registered at the SII. You must cancel the "
-                          "invoice and create a new one with the correct "
-                          "supplier")
-                    )
+                    correct_partners = invoice.partner_id.commercial_partner_id
+                    correct_partners |= correct_partners.child_ids
+                    if vals['partner_id'] not in correct_partners.ids:
+                        raise exceptions.Warning(
+                            _("You cannot change the supplier of an invoice "
+                              "already registered at the SII. You must cancel "
+                              "the invoice and create a new one with the "
+                              "correct supplier")
+                            )
                 elif 'supplier_invoice_number' in vals:
                     raise exceptions.Warning(
                         _("You cannot change the supplier invoice number of "
@@ -542,7 +546,9 @@ class AccountInvoice(models.Model):
                 ),
                 "DescripcionOperacion": self.sii_description[0:500],
                 "Contraparte": {
-                    "NombreRazon": self.partner_id.name[0:120],
+                    "NombreRazon": (
+                        self.partner_id.commercial_partner_id.name[0:120]
+                    )
                 },
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": self.cc_amount_total * sign,
@@ -600,7 +606,9 @@ class AccountInvoice(models.Model):
         inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
         if cancel:
             inv_dict['IDFactura']['IDEmisorFactura'].update(
-                {'NombreRazon': self.partner_id.name[0:120]}
+                {'NombreRazon': (
+                    self.partner_id.commercial_partner_id.name[0:120]
+                    )}
             )
         else:
             # Check if refund type is 'By differences'. Negative amounts!
@@ -616,7 +624,9 @@ class AccountInvoice(models.Model):
                 "DescripcionOperacion": self.sii_description[0:500],
                 "DesgloseFactura": desglose_factura,
                 "Contraparte": {
-                    "NombreRazon": self.partner_id.name[0:120],
+                    "NombreRazon": (
+                        self.partner_id.commercial_partner_id.name[0:120]
+                    )
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": self.cc_amount_total * sign,
@@ -963,7 +973,10 @@ class AccountInvoice(models.Model):
         elif gen_type == 3:
             return {
                 "IDOtro": {
-                    "CodigoPais": self.partner_id.country_id.code or vat[:2],
+                    "CodigoPais": (
+                        self.partner_id.commercial_partner_id.
+                        country_id.code or vat[:2]
+                    ),
                     "IDType": '04',
                     "ID": vat,
                 },
