@@ -28,7 +28,7 @@
                             <field name="sii_description"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('type', 'in', ('out_refund',' in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
-                            <field name="sii_registration_key" domain="[('type', '=', 'purchase')]" required="1"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'purchase')]"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
@@ -81,7 +81,7 @@
                             <field name="sii_description"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
-                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]" required="1"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">
@@ -142,7 +142,7 @@
                     <separator/>
                     <filter string="SII error"
                         domain="[('sii_send_failed','=',True)]"
-                        context="{'group_by':'sii_send_failed'}"/>
+                        context="{'group_by':'sii_send_error'}"/>
                 </xpath>
             </field>
         </record>

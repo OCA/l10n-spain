@@ -42,7 +42,7 @@ Suministro Inmediato de Información en el IVA
 Módulo para la presentación inmediata del IVA
 http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_05/SII_Descripcion_ServicioWeb_v0.5_es_es.pdf
 
-Installation
+Instalación
 ============
 
 Para instalar esté módulo necesita:
@@ -51,7 +51,7 @@ Para instalar esté módulo necesita:
 #. Libreria Python Requests, se puede instalar con el comando 'pip install requests'
 #. Libreria pyOpenSSL, versión 0.15 o posterior, se puede instalar con el comando 'pip install pyopenssl'
 
-Configuration
+Configuración
 =============
 
 Para configurar este módulo necesitas:
@@ -62,10 +62,10 @@ Estas URLs pueden cambiar según comunidades
 de Odoo. 
 
 
-Usage
+Uso
 =====
 
-Cuando se válida una factura actumáticamente envia la comunicación al servidor
+Cuando se válida una factura automáticamente se envia la comunicación al servidor
 de AEAT.
 
 
@@ -85,7 +85,6 @@ Known issues / Roadmap
 * Asistente para consultar los documentos comunicados.
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte).
 * Regímenes especiales de seguros y de agencias de viaje.
-* Imputar los importes en € cuando la factura está en otra divisa.
 * Comunicación de las facturas del primer semestre.
 * Usar modulo connector
 

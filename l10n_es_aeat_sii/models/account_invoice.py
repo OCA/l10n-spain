@@ -47,35 +47,35 @@ class account_invoice(osv.Model):
     _inherit = 'account.invoice'
 
     def _default_sii_refund_type(self, cr, uid, ids, context=None):
-        invoice = self.browse(cr, uid, ids, context)
-        return 'S' if invoice.type in ('out_refund', 'in_refund') else False
+        if not context:
+            context = {}
+
+        return 'S' if context.get('invoice_type',False) in ('out_refund', 'in_refund') else False
 
     def _default_sii_registration_key(self, cr, uid, ids, context=None):
         sii_key_obj = self.pool.get('aeat.sii.mapping.registration.keys')
-        invoice = self.browse(cr, uid, ids, context)
-        type = invoice.type
-        if type in ['in_invoice', 'in_refund']:
+        if not context:
+            context = {}
+
+        if context.get('invoice_type',False) in ['in_invoice', 'in_refund']:
             key = sii_key_obj.search(cr, uid, [('code', '=', '01'), ('type', '=', 'purchase')], limit=1)
         else:
             key = sii_key_obj.search(cr, uid, [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
 
-        return key[0]
-
+        return key and key[0] or False
 
     _columns = {
         'sii_description': fields.text('SII Description', required=True),
-        'sii_state': fields.selection(SII_STATES, 'SII Send state',
-                                     help="Indicates the state of this invoice in relation with the "
-                                          "presentation at the SII"
-                                     ),
+        'sii_state': fields.selection(SII_STATES, 'SII Send state', help="Indicates the state of this invoice in "
+                                                                         "relation with the presentation at the SII"),
         'sii_csv': fields.char(string='SII CSV', readonly=True),
         'sii_return': fields.text('SII Return', readonly=True),
         'sii_send_error': fields.text('SII Send Error', readonly=True),
         'sii_send_failed': fields.boolean('SII send failed',
                                           help="Indicates that the last attempt to communicate this invoice to "
                                                " the SII has failed. See SII return for details"),
-        'sii_refund_type': fields.selection([('S', 'By substitution'),('I', 'By differences')], 'Refund Type'),
-        'sii_registration_key': fields.many2one('aeat.sii.mapping.registration.keys', 'SII registration key', required=True),
+        'sii_refund_type': fields.selection([('S', 'By substitution'), ('I', 'By differences')], 'Refund Type'),
+        'sii_registration_key': fields.many2one('aeat.sii.mapping.registration.keys', 'SII registration key'),
         'sii_enabled': fields.related('company_id', 'sii_enabled',
                                       type='boolean',
                                       relation='res.company',
@@ -92,29 +92,32 @@ class account_invoice(osv.Model):
      'sii_description': '/'
     }
 
-    #TODO
-    def onchange_refund_type(self, cr, uid):
-        if self.sii_refund_type == 'S' and not self.origin_invoices_ids:
-            self.sii_refund_type = False
+    # TODO
+    def onchange_refund_type(self, cr, uid, sii_refund_type, origin_invoices_ids):
+        if sii_refund_type == 'S' and not origin_invoices_ids:
+            sii_refund_type = False
             return {'warning':
                 {'message':_('You must have at least one refunded invoice'),
                  }
             }
 
     def onchange_fiscal_position_l10n_es_aeat_sii(self, cr, uid, fiscal_position, invoice_type, context=None):
-        fiscal_position = self.pool.get('account.fiscal.position').browse(cr, uid, fiscal_position)
-        if fiscal_position:
-            if 'out' in invoice_type:
-                key = fiscal_position.sii_registration_key_sale.id
-            else:
-                key = fiscal_position.sii_registration_key_purchase.id
+        if not fiscal_position:
+            return False
 
-        return key
+        fiscal_position = self.pool.get('account.fiscal.position').browse(cr, uid, fiscal_position)
+        if 'out' in invoice_type:
+            key = fiscal_position.sii_registration_key_sale.id
+        else:
+            key = fiscal_position.sii_registration_key_purchase.id
+
+        return key and key[0] or False
 
     def create(self, cr, uid, vals, context=None):
-        if vals.get('fiscal_position'):
-            vals['sii_registration_key'] = self.onchange_fiscal_position_l10n_es_aeat_sii(cr, uid, vals['fiscal_position'],
-                                                                         context.get('type'))
+        if vals.get('fiscal_position') and not vals.get('sii_registration_key'):
+            vals['sii_registration_key'] = self.\
+                onchange_fiscal_position_l10n_es_aeat_sii(cr, uid, vals['fiscal_position'], context.get('type'))
+
         return super(account_invoice, self).create(cr, uid, vals, context)
 
     #TODO
@@ -126,8 +129,7 @@ class account_invoice(osv.Model):
             ids = [ids]
 
         for invoice in self.browse(cr, uid, ids, context):
-            if (invoice.type in ['in_invoice', 'in refund'] and
-                        invoice.sii_state != 'not_sent'):
+            if (invoice.type in ['in_invoice', 'in refund'] and invoice.sii_state != 'not_sent'):
                 if 'partner_id' in vals:
                     raise osv.except_osv(_('Warning!'),
                                          _("You cannot change the supplier of an invoice "
@@ -144,7 +146,8 @@ class account_invoice(osv.Model):
                     )
 
             if vals.get('fiscal_position') and not vals.get('sii_registration_key'):
-                vals['sii_registration_key'] = self.onchange_fiscal_position_l10n_es_aeat_sii(cr, uid, vals.get('fiscal_position'),
+                vals['sii_registration_key'] = self.\
+                    onchange_fiscal_position_l10n_es_aeat_sii(cr, uid, vals.get('fiscal_position'),
                                                                              invoice.type)
 
         return super(account_invoice, self).write(cr, uid, ids, vals)
@@ -210,7 +213,7 @@ class account_invoice(osv.Model):
         return self.pool.get("account.tax").browse(cr, uid, taxes)
 
     def _change_date_format(self, cr, uid, date):
-        date_time_object = datetime.strptime(date,'%Y-%m-%d')
+        date_time_object = datetime.strptime(date, '%Y-%m-%d')
         new_date = date_time_object.strftime('%d-%m-%Y')
 
         return new_date
@@ -231,7 +234,6 @@ class account_invoice(osv.Model):
                    "Titular": {
                       "NombreRazon": company.name,
                       "NIF": company.vat[2:]},
-
         }
 
         if not cancellation:
@@ -456,7 +458,7 @@ class account_invoice(osv.Model):
                 "IDEmisorFactura": {
                     "NIF": invoice.company_id.vat[2:]
                 },
-                "NumSerieFacturaEmisor": invoice.number,
+                "NumSerieFacturaEmisor": (invoice.number or invoice.internal_number or '')[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date
             },
             "PeriodoImpositivo": {
@@ -676,7 +678,8 @@ class account_invoice(osv.Model):
 
             except Exception as fault:
                 values = {
-                    'sii_send_error': fault,
+                    'sii_send_failed': True,
+                    'sii_send_error': True,
                     'sii_return': fault,
                 }
                 self.write(cr, uid, invoice.id, values)
@@ -861,15 +864,23 @@ class account_invoice(osv.Model):
 
         return super(account_invoice, self).action_cancel(cr, uid, ids, context)
 
+    # TODO
+    # def action_cancel_draft(self, cr, uid, ids, *args):
+    #     if not self._cancel_invoice_jobs():
+    #         raise osv.except_osv(_(
+    #             'You can not set to draft this invoice because'
+    #             ' there is a job running!'))
+    #
+    #     return super(account_invoice, self).action_cancel_draft(cr, uid, ids)
+
     def _get_sii_gen_type(self, cr, uid, invoice, context=None):
         """Make a choice for general invoice type
         Returns:
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
-        if invoice.fiscal_position.name == u'Régimen Intracomunitario':
+        if u'Régimen Intracomunitario' in invoice.fiscal_position.name :
             return 2
-        elif invoice.fiscal_position.name == \
-                u'Régimen Extracomunitario':
+        elif u'Régimen Extracomunitario' in invoice.fiscal_position.name:
             return 3
         else:
             return 1
@@ -961,7 +972,6 @@ class account_invoice(osv.Model):
         return res
     
     def copy(self, cr, uid, id, default, context={}):
-
         default['sii_state'] = False
         default['sii_csv'] = None
         default['sii_return'] = None
@@ -1009,7 +1019,6 @@ class account_invoice_line(osv.Model):
             tax_type = sum(child.amount for child in tax_line.child_ids)
         else:
             tax_type = tax_line.amount
-
         if tax_type not in tax_dict:
             tax_dict[tax_type] = {
                 'TipoImpositivo': str(tax_type * 100),
@@ -1036,7 +1045,6 @@ class account_invoice_line(osv.Model):
         else:
             key = 'CuotaSoportada'
         tax_dict[tax_type][key] += taxes['taxes'][0]['amount']
-
         return tax_dict
 
 account_invoice_line()

@@ -67,7 +67,7 @@ class res_company(osv.osv):
     }
 
     _defaults = {
-        'send_mode': 'auto',
+        'sii_method': 'auto',
         'wsdl_out': 'http://www.agenciatributaria.es/static_files/AEAT/'
                     'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
                     'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
@@ -96,7 +96,7 @@ class res_company(osv.osv):
                    'Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/'
                    'Suministro_inmediato_informacion/FicherosSuministros/V_07/'
                    'SuministroPagosRecibidas.wsdl',
-        'version_sii': 0.7,
+        'version_sii': 1.0,
     }
 
     def _get_sii_eta(self, cr, uid, ids, context=None):

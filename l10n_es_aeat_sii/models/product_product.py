@@ -20,5 +20,5 @@ class product_template(osv.osv):
 
 
     _defaults = {
-        'sii_exempt_cause': 'none,'
+        'sii_exempt_cause': 'none'
     }
