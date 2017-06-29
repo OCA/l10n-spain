@@ -45,7 +45,8 @@ SII_STATES = [
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
 ]
 
-SII_VERSION = '0.7'
+SII_VERSION = '1.0'
+SII_START_DATE = '2017-07-01'
 
 
 class AccountInvoice(models.Model):
@@ -61,7 +62,7 @@ class AccountInvoice(models.Model):
         method_desc = company.sii_description_method
         header_customer = company.sii_header_customer
         header_supplier = company.sii_header_supplier
-        description = ''
+        description = '/'
         if inv_type in ['out_invoice', 'out_refund'] and header_customer:
             description = header_customer
         elif inv_type in ['in_invoice', 'in_refund'] and header_supplier:
@@ -90,6 +91,10 @@ class AccountInvoice(models.Model):
 
     sii_description = fields.Text(
         string='SII Description', default=_default_sii_description,
+    )
+    sii_description_computed = fields.Text(
+        string='SII computed description', compute="_compute_sii_description",
+        default=False, store=True,
     )
     sii_state = fields.Selection(
         selection=SII_STATES, string="SII send state", default='not_sent',
@@ -148,7 +153,7 @@ class AccountInvoice(models.Model):
             else:
                 key = invoice.fiscal_position.sii_registration_key_purchase
             invoice.sii_registration_key = key
-
+    
     @api.onchange('invoice_line')
     def _onchange_invoice_line_l10n_es_aeat_sii(self):
         for invoice in self:
@@ -160,8 +165,8 @@ class AccountInvoice(models.Model):
             if description:
                 description += ' | '
             description += ' - '.join(invoice.mapped('invoice_line.name'))
-            invoice.sii_description = description[:500]
-
+        invoice.sii_description = description[:500]
+    
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
@@ -169,6 +174,9 @@ class AccountInvoice(models.Model):
         if vals.get('fiscal_position') and \
                 not vals.get('sii_registration_key'):
             invoice.onchange_fiscal_position_l10n_es_aeat_sii()
+        if vals.get('invoice_line') and \
+                not vals.get('sii_description'):
+            invoice._onchange_invoice_line_l10n_es_aeat_sii()
         return invoice
 
     @api.multi
@@ -177,8 +185,15 @@ class AccountInvoice(models.Model):
         VAT/ID Otro and the supplier invoice number. Cannot let change these
         values in a SII registered supplier invoice"""
         for invoice in self:
-            if (invoice.type in ['in_invoice', 'in refund'] and
-                    invoice.sii_state != 'not_sent'):
+            if invoice.sii_state == 'not_sent':
+                continue
+            if 'date_invoice' in vals:
+                raise exceptions.Warning(
+                    _("You cannot change the invoice date of an invoice "
+                      "already registered at the SII. You must cancel the "
+                      "invoice and create a new one with the correct date")
+                )
+            if (invoice.type in ['in_invoice', 'in refund']):
                 if 'partner_id' in vals:
                     correct_partners = invoice.partner_id.commercial_partner_id
                     correct_partners |= correct_partners.child_ids
@@ -200,6 +215,9 @@ class AccountInvoice(models.Model):
         if vals.get('fiscal_position') and \
                 not vals.get('sii_registration_key'):
             self.onchange_fiscal_position_l10n_es_aeat_sii()
+        if vals.get('invoice_line') and \
+                not vals.get('sii_description'):
+            self._onchange_invoice_line_l10n_es_aeat_sii()
         return res
 
     @api.multi
@@ -290,10 +308,8 @@ class AccountInvoice(models.Model):
         if not company.vat:
             raise exceptions.Warning(_(
                 "No VAT configured for the company '{}'").format(company.name))
-        id_version_sii = self.env['ir.config_parameter'].get_param(
-            'l10n_es_aeat_sii.version', SII_VERSION)
         header = {
-            "IDVersionSii": id_version_sii,
+            "IDVersionSii": SII_VERSION,
             "Titular": {
                 "NombreRazon": self.company_id.name[0:120],
                 "NIF": self.company_id.vat[2:]}
@@ -353,6 +369,13 @@ class AccountInvoice(models.Model):
                                 'DetalleIVA': [],
                             },
                         })
+                        not_ex_type = sub_dict['NoExenta']['TipoNoExenta']
+                        if tax_line in taxes_sfesisp:
+                            is_s3 = not_ex_type == 'S1'
+                        else:
+                            is_s3 = not_ex_type == 'S2'
+                        if is_s3:
+                            sub_dict['NoExenta']['TipoNoExenta'] = 'S3'
                         inv_line._update_sii_tax_line(taxes_f, tax_line)
                 # No sujetas
                 if tax_line in taxes_sfens:
@@ -702,6 +725,34 @@ class AccountInvoice(models.Model):
         return client
 
     @api.multi
+    def _process_invoice_for_sii_send(self):
+        """Process invoices for sending to the SII. Adds general checks from
+        configuration parameters and invoice availability for SII. If the
+        invoice is to be sent the decides the send method: direct send or
+        via connector depending on 'Use connector' configuration"""
+        # De momento evitamos enviar facturas del primer semestre si no estamos
+        # en entorno de pruebas
+        invoices = self.filtered(
+            lambda i: (
+                i.company_id.sii_test or
+                i.period_id.date_start >= SII_START_DATE
+            )
+        )
+        queue_obj = self.env['queue.job']
+        for invoice in invoices:
+            company = invoice.company_id
+            if not company.use_connector:
+                invoice._send_invoice_to_sii()
+            else:
+                eta = company._get_sii_eta()
+                session = ConnectorSession.from_env(self.env)
+                new_delay = confirm_one_invoice.delay(
+                    session, 'account.invoice', invoice.id, eta=eta)
+                invoice.invoice_jobs_ids |= queue_obj.search(
+                    [('uuid', '=', new_delay)], limit=1,
+                )
+
+    @api.multi
     def _send_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ['open', 'paid']):
             company = invoice.company_id
@@ -767,7 +818,6 @@ class AccountInvoice(models.Model):
     @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
-        queue_obj = self.env['queue.job']
         for invoice in self.filtered('sii_enabled'):
             if invoice.sii_state == 'sent':
                 invoice.sii_state = 'sent_modified'
@@ -776,16 +826,7 @@ class AccountInvoice(models.Model):
             company = invoice.company_id
             if company.sii_method != 'auto':
                 continue
-            if not company.use_connector:
-                invoice._send_invoice_to_sii()
-            else:
-                eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
-                new_delay = confirm_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
-                invoice.invoice_jobs_ids |= queue_obj.search(
-                    [('uuid', '=', new_delay)], limit=1,
-                )
+            invoice._process_invoice_for_sii_send()
         return res
 
     @api.multi
@@ -802,20 +843,7 @@ class AccountInvoice(models.Model):
             raise exceptions.Warning(_(
                 'You can not communicate this invoice at this moment '
                 'because there is a job running!'))
-        queue_obj = self.env['queue.job']
-        for invoice in invoices:
-            company = invoice.company_id
-            if not company.use_connector:
-                invoice._send_invoice_to_sii()
-            else:
-                eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
-                new_delay = confirm_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
-                queue_ids = queue_obj.search([
-                    ('uuid', '=', new_delay)
-                ], limit=1)
-                invoice.invoice_jobs_ids |= queue_ids
+        invoices._process_invoice_for_sii_send()
 
     @api.multi
     def _cancel_invoice_to_sii(self):
@@ -1011,6 +1039,31 @@ class AccountInvoice(models.Model):
         :return: bool value indicating if the invoice should be sent to SII.
         """
         self.ensure_one()
+
+    @api.multi
+    @api.depends('invoice_line', 'invoice_line.name')
+    def _compute_sii_description(self):
+        """Compute the invoice description for SII when changes are made
+        over invoice lines. This is necessary when a process creates or 
+        modifies an invoice line in an invoice but not using the 'create' nor
+        'write' methods of account.invoice model but the account.invoice.line
+        ones, in these cases the description wont me calculated when
+        description mode is set to 'auto'"""  
+        for invoice in self:
+            description = invoice.sii_description
+            if invoice.company_id.sii_description_method == 'auto':
+                description = self.with_context(
+                    type=invoice.type, force_company=invoice.company_id.id,
+                )._default_sii_description()
+                if invoice.invoice_line:
+                    description += ' | '
+                    description += ' - '.join(invoice.mapped(
+                        'invoice_line.name'
+                    ))
+                    description = description[:500] if description else \
+                        False
+            invoice.write({'sii_description': description})
+            invoice.sii_description_computed = description
 
     @api.multi
     @api.depends('company_id', 'company_id.sii_enabled',
