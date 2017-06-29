@@ -7,8 +7,8 @@ Retenciones IRNR (No residentes)
 ================================
 
 IRNR: Impuesto sobre la Renta de no Residentes sin establecimiento permanente.
-Añade los impuestos, códigos de impuestos y posiciones fiscales para permitir
-realizar la retención IRPF de no residentes.
+Añade los impuestos y posiciones fiscales para permitir realizar la retención
+IRPF de no residentes.
 
 La legislación vigente (2015) nos obliga a realizar las siguientes retenciones:
 
@@ -65,7 +65,7 @@ las líneas de la factura.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Pruébalo en Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/8.0
+   :target: https://runbot.odoo-community.org/runbot/189/10.0
 
 
 Créditos
@@ -74,8 +74,8 @@ Créditos
 Contribuidores
 --------------
 
-* Rafael Blasco <rafabn@antiun.com>
-* Antonio Espinosa <antonioea@antiun.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Maintainer
 ----------
@@ -90,4 +90,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
