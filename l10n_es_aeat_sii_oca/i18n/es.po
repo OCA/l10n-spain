@@ -167,7 +167,7 @@ msgstr "Trabajos del conector"
 #. module: l10n_es_aeat_sii
 #: view:res.company:l10n_es_aeat_sii.view_company_sii_form
 msgid "Connector config"
-msgstr "Connector config"
+msgstr "Configuración del conector"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map,create_uid:0
@@ -434,12 +434,12 @@ msgid "Method for the SII invoices description, can be one of these:\n"
 "- Manual (by default): It will be necessary to manually enter   the description on each invoice\n"
 "\n"
 "For all the options you can append a header text using the below fields 'SII Customer header' and 'SII Supplier header'"
-msgstr "Method for the SII invoices description, can be one of these:\n"
+msgstr "Método para la descripción de las facturas para el SII. Puede ser uno de estos:\n"
 "- Automático: la descripción será la unión de la descripción de las líneas de la factura\n"
 "- Fijo: la descripción escrita en el campo de abajo 'Descripción SII'\n"
 "- Manual (por defecto): será necesario introducir manualmente la descripción en cada factura\n"
 "\n"
-"Para todas las opciones puedes añadir un texto de cabecera usando los campos de abajo 'Cabecera de cliente para SII' y 'Cabecera de proveedor para SII'"
+"Para todas las opciones puede añadir un texto de cabecera usando los campos de abajo 'Cabecera de cliente para SII' y 'Cabecera de proveedor para SII'"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map,name:0
