@@ -50,6 +50,28 @@ SII_VERSION = '0.7'
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+    def _default_sii_description(self):
+        context = self.env.context
+        inv_type = context.get('type')
+        if context.get('force_company'):
+            company = self.env['res.company'].browse(context['force_company'])
+        else:
+            company = self.env.user.company_id
+        method_desc = company.sii_description_method
+        header_customer = company.sii_header_customer
+        header_supplier = company.sii_header_supplier
+        description = ''
+        if inv_type in ['out_invoice', 'out_refund'] and header_customer:
+            description = header_customer
+        elif inv_type in ['in_invoice', 'in_refund'] and header_supplier:
+            description = header_supplier
+        if method_desc in ['fixed']:
+            fixed_desc = company.sii_description
+            if fixed_desc and description:
+                description += ' | '
+            description += fixed_desc
+        return description[0:500]
+
     def _default_sii_refund_type(self):
         inv_type = self.env.context.get('type')
         return 'S' if inv_type in ['out_refund', 'in_refund'] else False
@@ -66,9 +88,8 @@ class AccountInvoice(models.Model):
         return key
 
     sii_description = fields.Text(
-        'SII Description',
-        default="/",
-        required=True)
+        string='SII Description', default=_default_sii_description,
+    )
     sii_state = fields.Selection(
         selection=SII_STATES, string="SII send state", default='not_sent',
         help="Indicates the state of this invoice in relation with the "
@@ -81,7 +102,7 @@ class AccountInvoice(models.Model):
         string='SII Send Error', readonly=True, copy=False,
     )
     sii_send_failed = fields.Boolean(
-        string="SII send failed",
+        string="SII send failed", copy=False,
         help="Indicates that the last attempt to communicate this invoice to "
              "the SII has failed. See SII return for details",
     )
@@ -126,6 +147,19 @@ class AccountInvoice(models.Model):
             else:
                 key = invoice.fiscal_position.sii_registration_key_purchase
             invoice.sii_registration_key = key
+
+    @api.onchange('invoice_line')
+    def _onchange_invoice_line_l10n_es_aeat_sii(self):
+        for invoice in self:
+            if invoice.company_id.sii_description_method != 'auto':
+                continue
+            description = self.with_context(
+                type=invoice.type, force_company=invoice.company_id.id,
+            )._default_sii_description()
+            if description:
+                description += ' | '
+            description += ' - '.join(invoice.mapped('invoice_line.name'))
+            invoice.sii_description = description[:500]
 
     @api.model
     def create(self, vals):
