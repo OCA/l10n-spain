@@ -6,6 +6,7 @@
 
 from datetime import datetime, timedelta
 from openerp import fields, models
+import pytz
 
 
 class ResCompany(models.Model):
@@ -64,13 +65,17 @@ class ResCompany(models.Model):
 
     def _get_sii_eta(self):
         if self.send_mode == 'fixed':
-            now = datetime.now()
+            offset = datetime.now(pytz.timezone(
+                self._context.get('tz'))).strftime('%z')
+            hour_diff = int(offset[:3])
             hour, minute = divmod(self.sent_time, 1)
-            hour = int(hour)
-            minute = int(minute * 60)
-            if now.date > hour or (now.hour == hour and now.minute > minute):
+            hour = int(hour - hour_diff)
+            minute = int(minute)
+            now = datetime.now()
+            if now.hour > hour or (now.hour == hour and now.minute > minute):
                 now += timedelta(days=1)
-            return now.replace(hour=hour, minute=minute)
+            now = now.replace(hour=hour, minute=minute)
+            return now
         elif self.send_mode == 'delayed':
             return datetime.now() + timedelta(seconds=self.delay_time * 3600)
         else:
