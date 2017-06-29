@@ -98,6 +98,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
     def _open_invoice(self):
         self.invoice.company_id.write({
             'sii_enabled': True,
+            'sii_test': True,
             'use_connector': True,
             'chart_template_id': self.env.ref(
                 'l10n_es.account_chart_template_pymes').id,
