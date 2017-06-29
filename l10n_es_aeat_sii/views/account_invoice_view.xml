@@ -17,7 +17,7 @@
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False),
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False),
                                 ('state', 'not in', ['cancel']),
                                 ('sii_state', 'not in', ['sent','sent_modified'])]}" />
                 </button>
@@ -74,7 +74,7 @@
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_modified'])]}"
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_modified'])]}"
                     />
                 </button>
                 <notebook position="inside">
