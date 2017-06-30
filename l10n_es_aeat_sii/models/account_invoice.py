@@ -204,7 +204,7 @@ class AccountInvoice(osv.Model):
                           "invoice and create a new one with the correct "
                           "supplier")
                     )
-                elif 'supplier_invoice_number' in vals:
+                elif 'reference' in vals:
                     raise exceptions.Warning(
                         _("You cannot change the supplier invoice number of "
                           "an invoice already registered at the SII. You must "
@@ -509,7 +509,7 @@ class AccountInvoice(osv.Model):
                 _("This invoice is not SII enabled.")
             )
 
-        if not invoice.supplier_invoice_number and invoice.type in ['in_invoice','in_refund']:
+        if not invoice.reference and invoice.type in ['in_invoice','in_refund']:
             raise exceptions.Warning(
                 _("The supplier invoice number is required")
             )
