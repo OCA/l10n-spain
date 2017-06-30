@@ -32,7 +32,8 @@ SII_STATES = [
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
 ]
 
-SII_VERSION = '0.7'
+SII_VERSION = '1.0'
+SII_START_DATE = '2017-07-01'
 
 
 class AccountInvoice(osv.Model):
@@ -335,7 +336,8 @@ class AccountInvoice(osv.Model):
 
         default_no_taxable_cause = self._get_no_taxable_cause(cr, uid, invoice)
 
-
+        # Check if refund type is 'By differences'. Negative amounts!
+        sign = -1.0 if invoice.sii_refund_type == 'I' else 1.0
         for inv_line in invoice.invoice_line:
             exempt_cause = self._get_sii_exempt_cause(cr, uid, inv_line.product_id, invoice)
             for tax_line in inv_line.invoice_line_tax_id:
@@ -356,7 +358,7 @@ class AccountInvoice(osv.Model):
                         if exempt_cause:
                             sub_dict['Exenta']['CausaExencion'] = exempt_cause
                         sub_dict['Exenta']['BaseImponible'] += (
-                            inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line)
+                            inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line) * sign
                         )
                     else:
                         sub_dict.setdefault('NoExenta', {
@@ -387,7 +389,7 @@ class AccountInvoice(osv.Model):
                         )
                         if exempt_cause:
                             exempt_dict['CausaExencion'] = exempt_cause
-                        exempt_dict['BaseImponible'] += inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line)
+                        exempt_dict['BaseImponible'] += inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line) * sign
                     # TODO Facturas no sujetas
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
@@ -506,6 +508,12 @@ class AccountInvoice(osv.Model):
             raise exceptions.Warning(
                 _("This invoice is not SII enabled.")
             )
+
+        if not invoice.supplier_invoice_number and invoice.type in ['in_invoice','in_refund']:
+            raise exceptions.Warning(
+                _("The supplier invoice number is required")
+            )
+
 
     def _get_account_registration_date(self, cr, uid, invoice):
         """Hook method to allow the setting of the account registration date

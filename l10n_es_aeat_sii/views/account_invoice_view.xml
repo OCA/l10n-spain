@@ -22,9 +22,6 @@
                 </button>
 
 
-                <field name="reference" position="attributes">
-                    <attribute name="required">True</attribute>
-                </field>
                 <field name="fiscal_position" position="attributes">
                     <attribute name="on_change">onchange_fiscal_position_l10n_es_aeat_sii(fiscal_position)</attribute>
                 </field>

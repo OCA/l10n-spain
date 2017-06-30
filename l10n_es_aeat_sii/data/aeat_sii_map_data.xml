@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
-    <data>
-    	<record id="aeat_sii_map" model="aeat.sii.map">
+    <data noupdate="0">
+        <record id="aeat_sii_map" model="aeat.sii.map">
             <field name="name">SII</field>
         </record>
 
@@ -48,6 +48,16 @@
             <field name="name">SuministroFactEmitidas Sujetas Servicios</field>
         </record>
 
+        <record id="aeat_sii_map_line_SFESBE" model="aeat.sii.map.lines">
+            <field name="code">SFESBE</field>
+            <!--<field name="taxes" eval="[(6, 0, [-->
+                <!--ref('l10n_es.account_tax_template_s_iva0_ic'),-->
+                <!--ref('l10n_es.account_tax_template_s_iva0_e'),-->
+            <!--])]"/>-->
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactEmitidas Bienes Exento</field>
+        </record>
+
         <record id="aeat_sii_map_line_SFESSE" model="aeat.sii.map.lines">
             <field name="code">SFESSE</field>
             <field name="taxes" eval="[(6, 0, [
@@ -82,16 +92,25 @@
             <field name="name">SuministroFactRecibidas ISP</field>
         </record>
 
-        <!--<record id="aeat_sii_map_line_SFRBI" model="aeat.sii.map.lines">-->
-            <!--<field name="code">SFRBI</field>-->
+        <record id="aeat_sii_map_line_SFRBI" model="aeat.sii.map.lines">
+            <field name="code">SFRBI</field>
             <!--<field name="taxes" eval="[(6, 0, [-->
                 <!--ref('l10n_es.account_tax_template_p_iva4_bi'),-->
                 <!--ref('l10n_es.account_tax_template_p_iva10_bi'),-->
                 <!--ref('l10n_es.account_tax_template_p_iva21_bi')-->
             <!--])]"/>-->
-            <!--<field name="sii_map_id" ref="aeat_sii_map"/>-->
-            <!--<field name="name">SuministroFactRecibidas Bienes de Inversión</field>-->
-        <!--</record>-->
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactRecibidas Bienes de Inversión</field>
+        </record>
+
+        <record id="aeat_sii_map_line_SFRNS" model="aeat.sii.map.lines">
+            <field name="code">SFRNS</field>
+            <!--<field name="taxes" eval="[(6, 0, [-->
+                <!--ref('l10n_es.account_tax_template_p_iva0_ns')-->
+            <!--])]"/>-->
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactRecibidas No Sujeta</field>
+        </record>
 
         <record id="aeat_sii_map_line_RE" model="aeat.sii.map.lines">
             <field name="code">RE</field>
