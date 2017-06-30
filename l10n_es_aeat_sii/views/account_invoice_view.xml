@@ -17,7 +17,7 @@
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False),
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False),
                                 ('state', 'not in', ['cancel']),
                                 ('sii_state', 'not in', ['sent','sent_modified'])]}" />
                 </button>
@@ -27,7 +27,7 @@
                 <notebook position="inside">
                     <page string="SII" groups="account.group_account_manager"  attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
-                            <field name="sii_description"/>
+                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'purchase')]" attrs="{'required': [('sii_enabled', '=', True)]}"/>
@@ -74,13 +74,13 @@
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_modified'])]}"
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_modified'])]}"
                     />
                 </button>
                 <notebook position="inside">
                     <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
-                            <field name="sii_description"/>
+                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'sale')]" attrs="{'required': [('sii_enabled', '=', True)]}"/>
@@ -143,7 +143,7 @@
                     <separator/>
                     <filter string="SII error"
                         domain="[('sii_send_failed', '=', True)]"
-                        context="{'group_by':'sii_send_failed'}"/>
+                        context="{'group_by':'sii_send_error'}"/>
                 </xpath>
             </field>
         </record>
