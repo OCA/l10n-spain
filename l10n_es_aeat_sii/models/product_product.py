@@ -11,10 +11,15 @@ class ProductTemplate(models.Model):
     sii_exempt_cause = fields.Selection(
         string="SII Exempt Cause",
         selection=[('none', 'None'),
-                   ('E1', 'E1'),
-                   ('E2', 'E2'),
-                   ('E3', 'E3'),
-                   ('E4', 'E4'),
-                   ('E5', 'E5'),
-                   ('E6', 'E6')],
+                   ('E1', '[E1] Art. 20: Operaciones interiores exentas'),
+                   ('E2', '[E2] Art. 21: Exenciones en las exportaciones de '
+                          'bienes'),
+                   ('E3', '[E3] Art. 22: Exenciones en las operaciones '
+                          'asimiladas a las exportaciones'),
+                   ('E4', '[E4] Art. 23 y 24: Exenciones relativas a '
+                          'regímenes aduaneros y fiscales. Exenciones zonas '
+                          'francas, depósitos francos y otros depósitos.'),
+                   ('E5', '[E5] Art. 25: Exenciones en las entregas de bienes '
+                          'destinados a otro estado miembro.'),
+                   ('E6', '[E6] Otros')],
         default='none')
