@@ -62,7 +62,7 @@ class AccountInvoice(models.Model):
         method_desc = company.sii_description_method
         header_customer = company.sii_header_customer
         header_supplier = company.sii_header_supplier
-        description = ''
+        description = '/'
         if inv_type in ['out_invoice', 'out_refund'] and header_customer:
             description = header_customer
         elif inv_type in ['in_invoice', 'in_refund'] and header_supplier:
@@ -91,6 +91,10 @@ class AccountInvoice(models.Model):
 
     sii_description = fields.Text(
         string='SII Description', default=_default_sii_description,
+    )
+    sii_description_computed = fields.Text(
+        string='SII computed description', compute="_compute_sii_description",
+        default=False, store=True,
     )
     sii_state = fields.Selection(
         selection=SII_STATES, string="SII send state", default='not_sent',
@@ -149,7 +153,7 @@ class AccountInvoice(models.Model):
             else:
                 key = invoice.fiscal_position.sii_registration_key_purchase
             invoice.sii_registration_key = key
-
+    
     @api.onchange('invoice_line')
     def _onchange_invoice_line_l10n_es_aeat_sii(self):
         for invoice in self:
@@ -161,8 +165,8 @@ class AccountInvoice(models.Model):
             if description:
                 description += ' | '
             description += ' - '.join(invoice.mapped('invoice_line.name'))
-            invoice.sii_description = description[:500]
-
+        invoice.sii_description = description[:500]
+    
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
@@ -170,6 +174,9 @@ class AccountInvoice(models.Model):
         if vals.get('fiscal_position') and \
                 not vals.get('sii_registration_key'):
             invoice.onchange_fiscal_position_l10n_es_aeat_sii()
+        if vals.get('invoice_line') and \
+                not vals.get('sii_description'):
+            invoice._onchange_invoice_line_l10n_es_aeat_sii()
         return invoice
 
     @api.multi
@@ -201,6 +208,9 @@ class AccountInvoice(models.Model):
         if vals.get('fiscal_position') and \
                 not vals.get('sii_registration_key'):
             self.onchange_fiscal_position_l10n_es_aeat_sii()
+        if vals.get('invoice_line') and \
+                not vals.get('sii_description'):
+            self._onchange_invoice_line_l10n_es_aeat_sii()
         return res
 
     @api.multi
@@ -1022,6 +1032,31 @@ class AccountInvoice(models.Model):
         :return: bool value indicating if the invoice should be sent to SII.
         """
         self.ensure_one()
+
+    @api.multi
+    @api.depends('invoice_line', 'invoice_line.name')
+    def _compute_sii_description(self):
+        """Compute the invoice description for SII when changes are made
+        over invoice lines. This is necessary when a process creates or 
+        modifies an invoice line in an invoice but not using the 'create' nor
+        'write' methods of account.invoice model but the account.invoice.line
+        ones, in these cases the description wont me calculated when
+        description mode is set to 'auto'"""  
+        for invoice in self:
+            description = invoice.sii_description
+            if invoice.company_id.sii_description_method == 'auto':
+                description = self.with_context(
+                    type=invoice.type, force_company=invoice.company_id.id,
+                )._default_sii_description()
+                if invoice.invoice_line:
+                    description += ' | '
+                    description += ' - '.join(invoice.mapped(
+                        'invoice_line.name'
+                    ))
+                    description = description[:500] if description else \
+                        False
+            invoice.write({'sii_description': description})
+            invoice.sii_description_computed = description
 
     @api.multi
     @api.depends('company_id', 'company_id.sii_enabled',
