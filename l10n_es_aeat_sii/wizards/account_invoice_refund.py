@@ -37,10 +37,14 @@ class AccountInvoiceRefund(models.TransientModel):
         string="Is Supplier Invoice Number Required?",
         default=_default_supplier_invoice_number_refund_required,
     )
-    supplier_invoice_number_refund = fields.Char(string="Supplier Invoice Number")
+    supplier_invoice_number_refund = fields.Char(
+        string="Supplier Invoice Number"
+    )
 
     @api.multi
     def compute_refund(self, mode='refund'):
-        obj = self.with_context(sii_refund_type=self.sii_refund_type,
-                                supplier_invoice_number=self.supplier_invoice_number_refund)
+        obj = self.with_context(
+            sii_refund_type=self.sii_refund_type,
+            supplier_invoice_number=self.supplier_invoice_number_refund
+        )
         return super(AccountInvoiceRefund, obj).compute_refund(mode)
