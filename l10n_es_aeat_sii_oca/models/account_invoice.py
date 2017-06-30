@@ -1071,7 +1071,7 @@ class AccountInvoice(models.Model):
                     description += ' - '.join(
                         invoice.mapped('invoice_line.name')
                     )
-            invoice.sii_description = description[:500]
+            invoice.sii_description = description[:500] or '/'
 
     @api.multi
     def _inverse_sii_description(self):
