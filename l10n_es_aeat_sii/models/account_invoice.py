@@ -459,7 +459,10 @@ class AccountInvoice(models.Model):
         """Inheritable method for exceptions control when sending SII invoices.
         """
         self.ensure_one()
-        if not self.partner_id.vat:
+        gen_type = self._get_sii_gen_type()
+        country_code = self.partner_id.commercial_partner_id.country_id\
+            .country_code or self.partner_id.vat[:2]
+        if (gen_type != 3 or country_code == 'ES') and not self.partner_id.vat:
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
@@ -956,7 +959,7 @@ class AccountInvoice(models.Model):
         gen_type = self._get_sii_gen_type()
         # Limpiar alfanum
         vat = ''.join(e for e in self.partner_id.vat if e.isalnum()).upper()
-        if gen_type == 1 or vat.startswith('ES'):
+        if gen_type == 1:
             return {"NIF": vat[2:]}
         elif gen_type == 2:
             return {
@@ -966,14 +969,14 @@ class AccountInvoice(models.Model):
                 }
             }
         elif gen_type == 3:
+            country_code = self.partner_id.commercial_partner_id.country_id\
+                .code or vat[:2]
+            id_type = '07' if country_code == 'ES' else '04'
             return {
                 "IDOtro": {
-                    "CodigoPais": (
-                        self.partner_id.commercial_partner_id.
-                        country_id.code or vat[:2]
-                    ),
-                    "IDType": '04',
-                    "ID": vat,
+                    "CodigoPais": country_code,
+                    "IDType": id_type,
+                    "ID": vat or 'NO_DISPONIBLE',
                 },
             }
 
