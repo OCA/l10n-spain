@@ -6,8 +6,15 @@
     "name": "Suministro Inmediato de Información en el IVA",
     "version": "6.1.0.2",
     "category": "Accounting & Finance",
-    "website": "https://odoo-community.org/",
-    "author": "Acysos S.L., "
+    "website": "https://odoospain.odoo.com",
+    "author": "Acysos S.L.,"
+              "Diagram,"
+              "Minorisa,"
+              "Studio73,"
+              "FactorLibre,"
+              "Comunitea,"
+              "Otherway,"
+              "Tecnativa,"
               "Alberto Martín Cortada - Guadaltehch,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",

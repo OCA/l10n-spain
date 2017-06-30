@@ -2,9 +2,9 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============
+=============================================
 Suministro Inmediato de Información en el IVA
-==============
+=============================================
 
 Módulo para la presentación inmediata del IVA
 http://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_05/SII_Descripcion_ServicioWeb_v0.5_es_es.pdf
@@ -16,6 +16,7 @@ Para instalar esté módulo necesita:
 
 #. Libreria Python Zeep, se puede instalar con el comando 'pip install zeep'
 #. Libreria Python Requests, se puede instalar con el comando 'pip install requests'
+#. Libreria pyOpenSSL, versión 0.15 o posterior
 
 Configuration
 =============
@@ -23,15 +24,15 @@ Configuration
 Para configurar este módulo necesitas:
 
 #. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
-Estas URLs pueden cambiar según comunidades
+   Estas URLs pueden cambiar según comunidades
 #. Los certificados deben alojarse en una carpeta accesible por la instalación
-de Odoo. Las rutas de los certificados se pueden indicar en Configuración->
-Parámetros->Parametros del sistemas con las claves l10n_es_aeat_sii.publicCrt y
-l10n_es_aeat_sii.privateKey
+   de Odoo.
 #. Preparar el certificado. El certificado enviado por la FMNT es en formato
-p12, este certificado no se puede usar directamente con Zeep. Se tiene que
-extraer la clave pública y la clave privada.
-El linux se pueden usar los siguientes comandos:
+   p12, este certificado no se puede usar directamente con Zeep. Se tiene que
+   extraer la clave pública y la clave privada.
+
+En Linux se pueden usar los siguientes comandos:
+
 - Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
 - Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out privateKey.pem -nodes"
 
@@ -39,29 +40,21 @@ El linux se pueden usar los siguientes comandos:
 Usage
 =====
 
-Cuando se válida una factura actumáticamente envia la comunicación al servidor
+Cuando se valida una factura automáticamente envia la comunicación al servidor
 de AEAT.
 
 
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/{repo_id}/{branch}
-
-.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-.. branch is "8.0" for example
 
 Known issues / Roadmap
 ======================
 
-* Facturas de bienes de inversión
-* Comunicación de cobros y pagos
-* Determinadas facturas intracomunitarias
-* Factura simplificada
-* Facturas No sujetas según el art 7.14 y no sujetas en el TAI
-* Asistente para consultar los documentos comunicados 
-* Carga directa del certificado desde Odoo (PR Enviado)
-* Control de longitud y tipo de datos
-* Usar modulo connector
+* Comunicación de cobros y pagos.
+* Determinadas facturas intracomunitarias (Articulo 66 RIVA).
+* Facturas simplificadas.
+* Asistente para consultar los documentos comunicados.
+* Libro de bienes de inversión (Libro anual se crea un módulo aparte).
+* Regímenes especiales de seguros y de agencias de viaje.
+* Comunicación de las facturas del primer semestre.
 
 Bug Tracker
 ===========
@@ -83,14 +76,14 @@ Contributors
 ------------
 
 * Ignacio Ibeas <ignacio@acysos.com>
-
-Funders
--------
-
-The development of this module has been financially supported by:
-
-* Company 1 name
-* Company 2 name
+* Rubén Cerdà <ruben.cerda.roig@diagram.es>
+* Ramon Guiu <ramon.guiu@minorisa.net>
+* Pablo Fuentes <pablo@studio73.es>
+* Jordi Tolsà <jordi@studio73.es>
+* Ismael Calvo <ismael.calvo@factorlibre.es>
+* Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Alberto Martín Cortada <alberto.martin@guadaltech.es>
 
 Maintainer
 ----------
