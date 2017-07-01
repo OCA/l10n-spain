@@ -6,6 +6,7 @@
 
 from datetime import datetime, timedelta
 from openerp import fields, models
+import pytz
 
 
 class ResCompany(models.Model):
@@ -28,15 +29,15 @@ class ResCompany(models.Model):
              "For all the options you can append a header text using the "
              "below fields 'SII Sale header' and 'SII Purchase header'")
     sii_description = fields.Char(
-        string="SII Description",
-        help="The description for invoices. Only when the filed SII "
-             "Description Method is 'fixed'.")
+        string="SII Description", size=500,
+        help="The description for invoices. Only used when the field SII "
+             "Description Method is 'Fixed'.")
     sii_header_customer = fields.Char(
-        string="SII Customer header",
+        string="SII Customer header", size=500,
         help="An optional header description for customer invoices. "
              "Applied on all the SII description methods")
     sii_header_supplier = fields.Char(
-        string="SII Supplier header",
+        string="SII Supplier header", size=500,
         help="An optional header description for supplier invoices. "
              "Applied on all the SII description methods")
     chart_template_id = fields.Many2one(
@@ -64,13 +65,17 @@ class ResCompany(models.Model):
 
     def _get_sii_eta(self):
         if self.send_mode == 'fixed':
-            now = datetime.now()
+            offset = datetime.now(pytz.timezone(
+                self._context.get('tz'))).strftime('%z')
+            hour_diff = int(offset[:3])
             hour, minute = divmod(self.sent_time, 1)
-            hour = int(hour)
-            minute = int(minute * 60)
-            if now.date > hour or (now.hour == hour and now.minute > minute):
+            hour = int(hour - hour_diff)
+            minute = int(minute)
+            now = datetime.now()
+            if now.hour > hour or (now.hour == hour and now.minute > minute):
                 now += timedelta(days=1)
-            return now.replace(hour=hour, minute=minute)
+            now = now.replace(hour=hour, minute=minute)
+            return now
         elif self.send_mode == 'delayed':
             return datetime.now() + timedelta(seconds=self.delay_time * 3600)
         else:

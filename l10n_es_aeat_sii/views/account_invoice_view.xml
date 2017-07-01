@@ -80,10 +80,11 @@
                 <notebook position="inside">
                     <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
-                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)]}"/>
+                            <field name="sii_description_method" invisible="1"/>
+                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)], 'readonly': [('sii_description_method', '!=', 'manual')]}"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
-                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]" attrs="{'required': [('sii_enabled', '=', True)]}"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]" attrs="{'required': [('sii_enabled', '=', True)]}" widget="selection"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result">

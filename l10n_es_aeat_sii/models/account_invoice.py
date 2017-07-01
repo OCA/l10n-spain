@@ -52,28 +52,6 @@ SII_START_DATE = '2017-07-01'
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
-    def _default_sii_description(self):
-        context = self.env.context
-        inv_type = context.get('type')
-        if context.get('force_company'):
-            company = self.env['res.company'].browse(context['force_company'])
-        else:
-            company = self.env.user.company_id
-        method_desc = company.sii_description_method
-        header_customer = company.sii_header_customer
-        header_supplier = company.sii_header_supplier
-        description = ''
-        if inv_type in ['out_invoice', 'out_refund'] and header_customer:
-            description = header_customer
-        elif inv_type in ['in_invoice', 'in_refund'] and header_supplier:
-            description = header_supplier
-        if method_desc in ['fixed']:
-            fixed_desc = company.sii_description
-            if fixed_desc and description:
-                description += ' | '
-            description += fixed_desc
-        return description[0:500]
-
     def _default_sii_refund_type(self):
         inv_type = self.env.context.get('type')
         return 'S' if inv_type in ['out_refund', 'in_refund'] else False
@@ -89,8 +67,15 @@ class AccountInvoice(models.Model):
                 [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
         return key
 
+    sii_manual_description = fields.Text(
+        string='SII manual description', size=500, copy=False,
+    )
+    sii_description_method = fields.Selection(
+        related='company_id.sii_description_method', readonly=True,
+    )
     sii_description = fields.Text(
-        string='SII Description', default=_default_sii_description,
+        string='SII computed description', compute="_compute_sii_description",
+        store=True, inverse='_inverse_sii_description',
     )
     sii_state = fields.Selection(
         selection=SII_STATES, string="SII send state", default='not_sent',
@@ -150,19 +135,6 @@ class AccountInvoice(models.Model):
                 key = invoice.fiscal_position.sii_registration_key_purchase
             invoice.sii_registration_key = key
 
-    @api.onchange('invoice_line')
-    def _onchange_invoice_line_l10n_es_aeat_sii(self):
-        for invoice in self:
-            if invoice.company_id.sii_description_method != 'auto':
-                continue
-            description = self.with_context(
-                type=invoice.type, force_company=invoice.company_id.id,
-            )._default_sii_description()
-            if description:
-                description += ' | '
-            description += ' - '.join(invoice.mapped('invoice_line.name'))
-            invoice.sii_description = description[:500]
-
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
@@ -178,8 +150,15 @@ class AccountInvoice(models.Model):
         VAT/ID Otro and the supplier invoice number. Cannot let change these
         values in a SII registered supplier invoice"""
         for invoice in self:
-            if (invoice.type in ['in_invoice', 'in refund'] and
-                    invoice.sii_state != 'not_sent'):
+            if invoice.sii_state == 'not_sent':
+                continue
+            if 'date_invoice' in vals:
+                raise exceptions.Warning(
+                    _("You cannot change the invoice date of an invoice "
+                      "already registered at the SII. You must cancel the "
+                      "invoice and create a new one with the correct date")
+                )
+            if (invoice.type in ['in_invoice', 'in refund']):
                 if 'partner_id' in vals:
                     correct_partners = invoice.partner_id.commercial_partner_id
                     correct_partners |= correct_partners.child_ids
@@ -550,7 +529,7 @@ class AccountInvoice(models.Model):
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
                 ),
-                "DescripcionOperacion": self.sii_description[0:500],
+                "DescripcionOperacion": self.sii_description,
                 "Contraparte": {
                     "NombreRazon": (
                         self.partner_id.commercial_partner_id.name[0:120]
@@ -627,7 +606,7 @@ class AccountInvoice(models.Model):
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
                 ),
-                "DescripcionOperacion": self.sii_description[0:500],
+                "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
                 "Contraparte": {
                     "NombreRazon": (
@@ -1013,6 +992,36 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         return self.fiscal_position.sii_no_taxable_cause or \
             'ImportePorArticulos7_14_Otros'
+
+    @api.multi
+    @api.depends('invoice_line', 'invoice_line.name', 'company_id',
+                 'sii_manual_description')
+    def _compute_sii_description(self):
+        for invoice in self:
+            if invoice.type in ['out_invoice', 'out_refund']:
+                description = invoice.company_id.sii_header_customer or ''
+            else:  # supplier invoices
+                description = invoice.company_id.sii_header_supplier or ''
+            method = invoice.company_id.sii_description_method
+            if method == 'fixed':
+                description += (invoice.company_id.sii_description or '/')
+            elif method == 'manual':
+                description = (
+                    invoice.sii_manual_description or description or '/'
+                )
+            else:  # auto method
+                if invoice.invoice_line:
+                    if description:
+                        description += ' | '
+                    description += ' - '.join(
+                        invoice.mapped('invoice_line.name')
+                    )
+            invoice.sii_description = description[:500]
+
+    @api.multi
+    def _inverse_sii_description(self):
+        for invoice in self:
+            invoice.sii_manual_description = invoice.sii_description
 
     @api.multi
     @api.depends('company_id', 'company_id.sii_enabled',
