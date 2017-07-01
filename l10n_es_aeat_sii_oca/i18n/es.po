@@ -1,13 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * l10n_es_aeat_sii
+#	* l10n_es_aeat_sii
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-01 10:30+0000\n"
-"PO-Revision-Date: 2017-07-01 10:30+0000\n"
+"POT-Creation-Date: 2017-07-01 14:24+0000\n"
+"PO-Revision-Date: 2017-07-01 14:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -231,7 +231,7 @@ msgstr "Configuración de descripción"
 #: field:l10n.es.aeat.sii,display_name:0
 #: field:l10n.es.aeat.sii.password,display_name:0
 msgid "Display Name"
-msgstr "Nombre"
+msgstr "Nombre mostrado"
 
 #. module: l10n_es_aeat_sii
 #: selection:l10n.es.aeat.sii,state:0
@@ -317,8 +317,6 @@ msgid "Group By..."
 msgstr "Agrupar por..."
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,id:0 field:aeat.sii.map.lines,id:0
-#: field:aeat.sii.mapping.registration.keys,id:0 field:l10n.es.aeat.sii,id:0
 #: field:aeat.sii.map,id:0
 #: field:aeat.sii.map.lines,id:0
 #: field:aeat.sii.mapping.registration.keys,id:0
@@ -357,7 +355,7 @@ msgstr "Línea de factura"
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice_refund
 msgid "Invoice Refund"
-msgstr "Abono factura"
+msgstr "Factura rectificativa"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:753
@@ -432,6 +430,7 @@ msgid "Method"
 msgstr "Método"
 
 #. module: l10n_es_aeat_sii
+#: help:account.invoice,sii_description_method:0
 #: help:res.company,sii_description_method:0
 msgid "Method for the SII invoices description, can be one of these:\n"
 "- Automatic: the description will be the join of the invoice   lines description\n"
@@ -465,7 +464,7 @@ msgid "Never sent to SII"
 msgstr "Nunca enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:304
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:271
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr "La compañía '{}' no tiene ningún NIF establecido"
@@ -580,12 +579,12 @@ msgid "SII Customer header"
 msgstr "Cabecera de cliente para SII"
 
 #. module: l10n_es_aeat_sii
-#: field:account.invoice,sii_description:0
 #: field:res.company,sii_description:0
 msgid "SII Description"
 msgstr "Descripción SII"
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_description_method:0
 #: field:res.company,sii_description_method:0
 msgid "SII Description Method"
 msgstr "Método de descripción de SII"
@@ -644,9 +643,9 @@ msgid "SII cancelled"
 msgstr "Anuladas SII"
 
 #. module: l10n_es_aeat_sii
-#: field:account.invoice,sii_description_computed:0
+#: field:account.invoice,sii_description:0
 msgid "SII computed description"
-msgstr "Descripción autocalculada para el SII"
+msgstr "SII computed description"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -662,6 +661,11 @@ msgstr "Envío SII fallido"
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "SII filters"
 msgstr "Filtros SII"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_manual_description:0
+msgid "SII manual description"
+msgstr "Descripción manul SII"
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -742,8 +746,8 @@ msgstr "Impuestos"
 
 #. module: l10n_es_aeat_sii
 #: help:res.company,sii_description:0
-msgid "The description for invoices. Only when the filed SII Description Method is 'fixed'."
-msgstr "La descripción para las facturas. Solo cuando el campo 'Método de descripción de SII' es 'fijo'."
+msgid "The description for invoices. Only used when the field SII Description Method is 'Fixed'."
+msgstr "La descripción para las facturas. Usada solo cuando el campo 'Método de descripción de SII' es 'Fijo'."
 
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
@@ -751,19 +755,19 @@ msgid "The last attemp to sent to SII has failed"
 msgstr "El último intento de envío al SII ha fallado"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:497
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:464
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "La empresa no tiene un NIF establecido."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:505
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:472
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr "Esta compañía no tiene habilitado el SII."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:509
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:476
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr "Esta factura no está habilitada para el SII."
@@ -795,64 +799,94 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:942
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:909
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:909
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:876
 #, python-format
 msgid "You can not communicate the cancellation of this invoice at this moment because there is a job running!"
 msgstr "En este momento no puede comunicar la cancelación de esta factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:838
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:805
 #, python-format
 msgid "You can not communicate this invoice at this moment because there is a job running!"
 msgstr "En este momento no puede comunicar esta factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:957
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:924
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr "En este momento no puede poner en borrador esta factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:205
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:157
 #, python-format
 msgid "You cannot change the invoice date of an invoice already registered at the SII. You must cancel the invoice and create a new one with the correct date"
 msgstr "No puede cambiar la fecha de factura de una factura enviada al SII. Debe cancelar la factura y crear una nueva con la fecha correcta"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:198
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:174
 #, python-format
 msgid "You cannot change the supplier invoice number of an invoice already registered at the SII. You must cancel the invoice and create a new one with the correct number"
 msgstr "No puede cambiar el número de factura del proveedor de una factura enviada al SII. Debe cancelar la factura y crear una nueva con el número correcto"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:191
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:167
 #, python-format
 msgid "You cannot change the supplier of an invoice already registered at the SII. You must cancel the invoice and create a new one with the correct supplier"
 msgstr "No puede cambiar el proveedor de una factura enviada al SII. Debe cancelar la factura y crear una nueva con el proveedor correcto"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:224
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:191
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr "No puede eliminar una factura enviada al SII."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:500
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:467
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar qué plan contable utiliza esta compañía"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:142
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:123
 #, python-format
 msgid "You must have at least one refunded invoice"
 msgstr "Debe tener al menos una factura rectificada"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "[E1] Art. 20: Operaciones interiores exentas"
+msgstr "[E1] Art. 20: Operaciones interiores exentas"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "[E2] Art. 21: Exenciones en las exportaciones de bienes"
+msgstr "[E2] Art. 21: Exenciones en las exportaciones de bienes"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "[E3] Art. 22: Exenciones en las operaciones asimiladas a las exportaciones"
+msgstr "[E3] Art. 22: Exenciones en las operaciones asimiladas a las exportaciones"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "[E4] Art. 23 y 24: Exenciones relativas a regímenes aduaneros y fiscales. Exenciones zonas francas, depósitos francos y otros depósitos."
+msgstr "[E4] Art. 23 y 24: Exenciones relativas a regímenes aduaneros y fiscales. Exenciones zonas francas, depósitos francos y otros depósitos."
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "[E5] Art. 25: Exenciones en las entregas de bienes destinados a otro estado miembro."
+msgstr "[E5] Art. 25: Exenciones en las entregas de bienes destinados a otro estado miembro."
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "[E6] Otros"
+msgstr "[E6] Otros"
 
 #. module: l10n_es_aeat_sii
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
