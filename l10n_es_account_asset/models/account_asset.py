@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2012-2015 Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2012-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import calendar
-from openerp import api, fields, models
-from openerp.tools import float_is_zero
+from odoo import api, fields, models
+from odoo.tools import float_is_zero
 from dateutil.relativedelta import relativedelta
 
 
@@ -28,8 +29,9 @@ class AccountAssetAsset(models.Model):
 
     @api.multi
     def _get_last_depreciation_date(self):
-        """Manipulate the date for getting the correct one when we define
-        a start depreciation date.
+        """Manipulate the date for getting the correct one
+
+        Used when we define a start depreciation date.
         """
         last_depreciation_date = super(
             AccountAssetAsset, self)._get_last_depreciation_date()
@@ -59,17 +61,15 @@ class AccountAssetAsset(models.Model):
         states={'draft': [('readonly', False)]},
         help="Only needed if not the same than purchase date")
 
-    def _check_prorata(self, cr, uid, ids, context=None):
-        for asset in self.browse(cr, uid, ids, context=context):
-            if asset.prorata and asset.method_time not in ('number',
-                                                           'percentage'):
-                return False
-        return True
-
-    _constraints = [
-        (_check_prorata, 'Prorata temporis can be applied only for time method'
-         ' "number of depreciations".', ['prorata']),
-    ]
+    @api.multi
+    @api.constrains('prorata', 'method_time')
+    def _check_prorata(self):
+        incorrect_assets = self.filtered(lambda x: (
+            x.prorata and x.method_time not in ('number', 'percentage')
+        ))
+        if incorrect_assets:
+            # Call super for raising the exception
+            super(AccountAssetAsset, self)._check_prorata()
 
     _sql_constraints = [
         ('method_percentage',
@@ -100,50 +100,47 @@ class AccountAssetAsset(models.Model):
             asset.method_percentage = (
                 asset.annual_percentage * asset.method_period / 12)
 
-    @api.model
-    def _compute_board_undone_dotation_nb(self, asset, depreciation_date,
-                                          total_days):
-        if asset.method_time == 'percentage':
+    def _compute_board_undone_dotation_nb(self, depreciation_date, total_days):
+        if self.method_time == 'percentage':
             number = 0
             percentage = 100.0
             while percentage > 0:
-                if number == 0 and asset.prorata:
+                if number == 0 and self.prorata:
                     days = (total_days -
                             float(depreciation_date.strftime('%j'))) + 1
-                    percentage -= asset.method_percentage * days / total_days
+                    percentage -= self.method_percentage * days / total_days
                 else:
-                    percentage -= asset.method_percentage
+                    percentage -= self.method_percentage
                 number += 1
             return number
         else:
             return super(AccountAssetAsset, self).\
                 _compute_board_undone_dotation_nb(
-                asset, depreciation_date, total_days)
+                    depreciation_date, total_days)
 
-    @api.model
-    def _compute_board_amount(self, asset, i, residual_amount, amount_to_depr,
+    def _compute_board_amount(self, sequence, residual_amount, amount_to_depr,
                               undone_dotation_number,
                               posted_depreciation_line_ids, total_days,
                               depreciation_date):
-        if asset.method_time == 'percentage':
+        if self.method_time == 'percentage':
             # Nuevo tipo de cálculo
-            if i == undone_dotation_number:
+            if sequence == undone_dotation_number:
                 return residual_amount
             else:
-                if i == 1 and asset.prorata:
-                    if asset.method_period == 1:
+                if sequence == 1 and self.prorata:
+                    if self.method_period == 1:
                         total_days = calendar.monthrange(
                             depreciation_date.year, depreciation_date.month)[1]
                         days = total_days - float(depreciation_date.day) + 1
                     else:
                         days = (total_days - float(
                             depreciation_date.strftime('%j'))) + 1
-                    percentage = asset.method_percentage * days / total_days
+                    percentage = self.method_percentage * days / total_days
                 else:
-                    percentage = asset.method_percentage
+                    percentage = self.method_percentage
                 return amount_to_depr * percentage / 100
-        elif (asset.method == 'linear' and asset.prorata and
-              i != undone_dotation_number):
+        elif (self.method == 'linear' and self.prorata and
+              sequence != undone_dotation_number):
             # Caso especial de cálculo que cambia
             # Debemos considerar también las cantidades ya depreciadas
             depreciated_amount = 0
@@ -151,9 +148,9 @@ class AccountAssetAsset(models.Model):
             for line in depr_lin_obj.browse(posted_depreciation_line_ids):
                 depreciated_amount += line.amount
             amount = (amount_to_depr + depreciated_amount) \
-                / asset.method_number
-            if i == 1:
-                if asset.method_period == 1:
+                / self.method_number
+            if sequence == 1:
+                if self.method_period == 1:
                         total_days = calendar.monthrange(
                             depreciation_date.year, depreciation_date.month)[1]
                         days = total_days - float(depreciation_date.day) + 1
@@ -164,7 +161,7 @@ class AccountAssetAsset(models.Model):
             return amount
         else:
             return super(AccountAssetAsset, self)._compute_board_amount(
-                asset, i, residual_amount, amount_to_depr,
+                sequence, residual_amount, amount_to_depr,
                 undone_dotation_number, posted_depreciation_line_ids,
                 total_days, depreciation_date)
 
