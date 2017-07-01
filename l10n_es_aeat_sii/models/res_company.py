@@ -29,15 +29,15 @@ class ResCompany(models.Model):
              "For all the options you can append a header text using the "
              "below fields 'SII Sale header' and 'SII Purchase header'")
     sii_description = fields.Char(
-        string="SII Description",
-        help="The description for invoices. Only when the filed SII "
-             "Description Method is 'fixed'.")
+        string="SII Description", size=500,
+        help="The description for invoices. Only used when the field SII "
+             "Description Method is 'Fixed'.")
     sii_header_customer = fields.Char(
-        string="SII Customer header",
+        string="SII Customer header", size=500,
         help="An optional header description for customer invoices. "
              "Applied on all the SII description methods")
     sii_header_supplier = fields.Char(
-        string="SII Supplier header",
+        string="SII Supplier header", size=500,
         help="An optional header description for supplier invoices. "
              "Applied on all the SII description methods")
     chart_template_id = fields.Many2one(
