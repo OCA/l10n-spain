@@ -7,10 +7,18 @@
             <field name="model">l10n.es.aeat.compute.vat.prorrate</field>
             <field name="arch" type="xml">
                 <form string="Compute VAT prorrate">
-                    <p>This wizard will compute the VAT prorrate for the fiscal year selected, which is applicable as the provisional one for the AEAT reports of the following fiscal year up to last period, in which the definitive prorrate percentage has to be calculated and the difference must be compensated.</p>
-                    <p>Please select the fiscal year that corresponds to your previous fiscal year.</p>
+                    <p>This wizard will compute the VAT prorrate for a year.
+                        You have to use the prorrate of the previous year as
+                        provisional value for all the AEAT reports of the
+                        following year up to last period, in which the
+                        definitive prorrate percentage has to be calculated
+                        for that year and the difference must be compensated.
+                    </p>
+                    <p>Please introduce the year for which you want to compute
+                        the prorrate percentage.
+                    </p>
                     <group>
-                        <field name="fiscalyear_id"/>
+                        <field name="year"/>
                     </group>
                     <footer>
                         <button string="Compute" name="button_compute" type="object" class="oe_highlight"/>
