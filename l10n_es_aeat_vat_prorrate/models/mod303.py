@@ -134,8 +134,8 @@ class L10nEsAeatMod303Report(models.Model):
                 (prorrate_debit - prorrate_credit) * factor, prec)
             account_groups = self.env['account.move.line'].read_group(
                 [('id', 'in', base_tax_line.move_lines.ids)],
-                ['tax_amount', 'account_id', 'account_analytic_id'],
-                ['account_id', 'account_analytic_id'])
+                ['tax_amount', 'account_id', 'analytic_account_id'],
+                ['account_id', 'analytic_account_id'])
             total_balance = sum(x['tax_amount'] for x in account_groups)
             extra_lines = []
             amount_factor = abs(total_prorrate) / abs(total_balance)
