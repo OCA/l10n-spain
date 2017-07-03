@@ -394,10 +394,16 @@ class AccountInvoice(models.Model):
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
+        country_code = (
+            self.partner_id.commercial_partner_id.country_id.code or
+            (self.partner_id.vat or '')[:2]
+        ).upper()
         if (('DesgloseTipoOperacion' in taxes_dict and
                 'DesgloseFactura' in taxes_dict) or
                 ('DesgloseFactura' in taxes_dict and
-                 self._get_sii_gen_type() in (2, 3))):
+                 self._get_sii_gen_type() in (2, 3)) or
+                ('DesgloseFactura' in taxes_dict and
+                 self._get_sii_gen_type() == 1 and country_code != 'ES')):
             taxes_dict.setdefault('DesgloseTipoOperacion', {})
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
@@ -460,9 +466,12 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
-        country_code = self.partner_id.commercial_partner_id.country_id\
-            .country_code or self.partner_id.vat[:2]
-        if (gen_type != 3 or country_code == 'ES') and not self.partner_id.vat:
+        country_code = (
+            self.partner_id.commercial_partner_id.country_id.code or
+            (self.partner_id.vat or '')[:2]
+        ).upper()
+        if (gen_type != 3 or country_code == 'ES') and not \
+                self.partner_id.vat:
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
@@ -958,9 +967,37 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
         # Limpiar alfanum
-        vat = ''.join(e for e in self.partner_id.vat if e.isalnum()).upper()
+        if self.partner_id.vat:
+            vat = ''.join(
+                e for e in self.partner_id.vat if e.isalnum()
+            ).upper()
+        else:
+            vat = 'NO_DISPONIBLE'
+        country_code = (
+            self.partner_id.commercial_partner_id.country_id.code or
+            (self.partner_id.vat or '')[:2]
+        ).upper()
         if gen_type == 1:
-            return {"NIF": vat[2:]}
+            if '1117' in (self.sii_send_error or ''):
+                return {
+                    "IDOtro": {
+                        "CodigoPais": country_code,
+                        "IDType": '07',
+                        "ID": vat[2:],
+                    }
+                }
+            else:
+                if country_code != 'ES':
+                    id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
+                    return {
+                        "IDOtro": {
+                            "CodigoPais": country_code,
+                            "IDType": id_type,
+                            "ID": vat,
+                        },
+                    }
+                else:
+                    return {"NIF": vat[2:]}
         elif gen_type == 2:
             return {
                 "IDOtro": {
@@ -969,14 +1006,15 @@ class AccountInvoice(models.Model):
                 }
             }
         elif gen_type == 3:
-            country_code = self.partner_id.commercial_partner_id.country_id\
-                .code or vat[:2]
-            id_type = '07' if country_code == 'ES' else '04'
+            if country_code != 'ES':
+                id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
+            else:
+                id_type = '06'
             return {
                 "IDOtro": {
                     "CodigoPais": country_code,
                     "IDType": id_type,
-                    "ID": vat or 'NO_DISPONIBLE',
+                    "ID": vat,
                 },
             }
 
