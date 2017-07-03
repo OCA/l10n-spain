@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="invoice_tree_reg_date" model="ir.ui.view">
+            <field name="name">account.invoice.tree.reg_date</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_invoice" position="after">
+                    <field name="registration_date"></field>
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_supplier_form_reg_date" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.reg_date</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="date_invoice" position="after">
+                    <field name="registration_date"></field>
+                </field>
+            </field>
+        </record>
+
+     </data>
+</openerp>
