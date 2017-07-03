@@ -31,16 +31,19 @@ class AccountInvoice(models.Model):
         date_stop = invoice.registration_date or invoice.date_invoice \
             or time.strftime('%Y-%m-%d')
 
-        period_ids = period_model.search(cr, uid, [
-            ('date_start', '<=', date_start),
-            ('date_stop', '>=', date_stop),
-            ('company_id', '=', invoice.company_id.id),
-            ('special', '!=', True),
-        ])
-        if period_ids:
-            period_id = period_ids[0]
+        if invoice.period_id:
+            period_id = invoice.period_id.id
         else:
-            period_id = False
+            period_ids = period_model.search(cr, uid, [
+                ('date_start', '<=', date_start),
+                ('date_stop', '>=', date_stop),
+                ('company_id', '=', invoice.company_id.id),
+                ('special', '!=', True),
+            ])
+            if period_ids:
+                period_id = period_ids[0]
+            else:
+                period_id = False
         return period_id, date_start, date_stop
 
     def action_move_create(self, cr, uid, ids, context=None):
@@ -110,11 +113,9 @@ class AccountInvoice(models.Model):
                 sql = (
                     "update account_move_line "
                     "set period_id = {}, date = '{}'"
-                    "where move_id = {}").format(
-                        period_id,
-                        mov_date,
-                        inv.move_id.id
-                )
+                    "where move_id = {}").format(period_id,
+                                                 mov_date,
+                                                 inv.move_id.id)
                 cr.execute(sql)
 
                 account_move_model.write(
