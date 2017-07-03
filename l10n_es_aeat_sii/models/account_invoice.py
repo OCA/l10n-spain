@@ -475,6 +475,11 @@ class AccountInvoice(models.Model):
             raise exceptions.Warning(
                 _("This invoice is not SII enabled.")
             )
+        if not self.supplier_invoice_number\
+                and self.type in ['in_invoice', 'in_refund']:
+            raise exceptions.Warning(
+                _("The supplier number invoice is required")
+            )
 
     @api.multi
     def _get_account_registration_date(self):
@@ -1046,8 +1051,14 @@ class AccountInvoice(models.Model):
             description=description, journal_id=journal_id,
         )
         sii_refund_type = self.env.context.get('sii_refund_type')
+        supplier_invoice_number_refund = self.env.context.get(
+            'supplier_invoice_number'
+        )
         if sii_refund_type:
             res['sii_refund_type'] = sii_refund_type
+        if supplier_invoice_number_refund:
+            res['supplier_invoice_number'] = supplier_invoice_number_refund
+
         return res
 
     @api.multi
