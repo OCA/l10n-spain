@@ -295,10 +295,9 @@ class AccountInvoice(osv.Model):
         if not company.vat:
             raise exceptions.Warning(_(
                 "No VAT configured for the company '{}'").format(company.name))
-        id_version_sii = self.pool.get('ir.config_parameter').get_param(cr, uid,
-                                                                        'l10n_es_aeat_sii.version', False)
+
         header = {
-            "IDVersionSii": id_version_sii,
+            "IDVersionSii": SII_VERSION,
             "Titular": {
                 "NombreRazon": company.name[0:120],
                 "NIF": company.vat[2:]},
