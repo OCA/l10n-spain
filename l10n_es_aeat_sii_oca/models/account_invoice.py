@@ -7,11 +7,10 @@
 import logging
 import json
 
-from odoo import _, api, fields, models
+from odoo import _, api, fields, exceptions, models
 from requests import Session
 
 from datetime import date
-from odoo.exceptions import Warning
 from odoo.modules.registry import RegistryManager
 from odoo.tools.float_utils import float_round
 
@@ -868,7 +867,7 @@ class AccountInvoice(models.Model):
                 eta = company._get_sii_eta()
                 new_delay = self.sudo().with_context(
                     company_id=company.id
-                ).with_delay().confirm_one_invoice()
+                ).with_delay(eta=eta).confirm_one_invoice()
                 job = queue_obj.search([
                     ('uuid', '=', new_delay)
                 ], limit=1)
@@ -1067,7 +1066,7 @@ class AccountInvoice(models.Model):
                 eta = company._get_sii_eta()
                 new_delay = self.sudo().with_context(
                     company_id=company.id,
-                ).with_delay().cancel_one_invoice()
+                ).with_delay(eta=eta).cancel_one_invoice()
                 job = queue_obj.search([
                     ('uuid', '=', new_delay)
                 ], limit=1)
@@ -1291,7 +1290,6 @@ class AccountInvoice(models.Model):
         return -1.0 if self.sii_refund_type == 'I' and 'refund' in self.type \
             else 1.0
 
-
     @job
     @api.multi
     def confirm_one_invoice(self):
@@ -1299,5 +1297,5 @@ class AccountInvoice(models.Model):
 
     @job
     @api.multi
-    def cancel_one_invoice(session, model_name, invoice_id):
-        invoice._cancel_invoice_to_sii()
+    def cancel_one_invoice(self):
+        self._cancel_invoice_to_sii()
