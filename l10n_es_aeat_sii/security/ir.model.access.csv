@@ -8,4 +8,4 @@ access_model_aeat_sii_mapping_registration_keys_aeat,aeat.sii.mapping.registrati
 access_model_aeat_sii_mapping_registration_keys_aeat_account,aeat.sii.mapping.registration.keys aeat,model_aeat_sii_mapping_registration_keys,account.group_account_invoice,1,0,0,0
 access_l10n_es_aeat_sii_admin,l10n.es.aeat.sii admin,model_l10n_es_aeat_sii,base.group_system,1,1,1,1
 access_l10n_es_aeat_sii_aeat,l10n.es.aeat.sii aeat,model_l10n_es_aeat_sii,l10n_es_aeat.group_account_aeat,1,0,0,0
-access_queue_job,access_queue_job aeat,connector.model_queue_job,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_queue_job,access_queue_job aeat,queue_job.model_queue_job,l10n_es_aeat.group_account_aeat,1,0,0,0
