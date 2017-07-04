@@ -63,10 +63,11 @@ class ResCompany(models.Model):
 
     def _get_sii_eta(self, date_ini=None):
         if self.send_mode == 'fixed':
-            offset = datetime.now(pytz.timezone(
-                self._context.get('tz'))).strftime('%z')
+            tz = self.env.context.get('tz', self.env.user.partner_id.tz)
+            offset = datetime.now(pytz.timezone(tz)).strftime('%z') if tz \
+                else '+00'
             hour_diff = int(offset[:3])
-            hour, minute = divmod(self.sent_time, 1)
+            hour, minute = divmod(self.sent_time * 60, 60)
             hour = int(hour - hour_diff)
             minute = int(minute)
             now = datetime.now()

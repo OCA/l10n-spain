@@ -30,26 +30,28 @@
                 </field>
 
                 <notebook position="inside">
-                    <page string="SII" groups="account.group_account_manager"  attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                    <page string="SII" groups="account.group_account_invoice"  attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
-                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)]}"/>
+                            <field name="sii_description_method" invisible="1"/>
+                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)], 'readonly': [('sii_description_method', '!=', 'manual')]}"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'purchase')]" attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
-                        <group string="SII Result">
+                        <group string="SII Result" groups="l10n_es_aeat.group_account_aeat">
                             <field name="sii_state" />
                             <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                             <field name="sii_csv"/>
                             <field name="sii_return" />
                         </group>
 
-                        <group string="Invoice Jobs">
+                        <group string="Invoice Jobs" groups="l10n_es_aeat.group_account_aeat">
                             <field name="invoice_jobs_ids" nolabel="1"
                                    readonly="1">
                                 <tree>
                                     <field name="date_created"/>
+                                    <field name="eta"/>
                                     <field name="date_done"/>
                                     <field name="state"/>
                                     <button type="object"
@@ -57,6 +59,12 @@
                                             string="Requeue"
                                             class="oe_highlight"
                                             attrs="{'invisible': [('state', '!=', 'failed')]}"/>
+                                    <button type="object"
+                                            name="do_now"
+                                            string="Send now"
+                                            class="oe_highlight"
+                                            attrs="{'invisible': [('state', '!=', 'pending'), ('eta', '!=', False)]}"
+                                    />
                                 </tree>
                             </field>
                         </group>
@@ -83,7 +91,7 @@
                     />
                 </button>
                 <notebook position="inside">
-                    <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                    <page string="SII" groups="account.group_account_invoice" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
                             <field name="sii_description_method" invisible="1"/>
                             <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)], 'readonly': [('sii_description_method', '!=', 'manual')]}"/>
@@ -92,18 +100,19 @@
                             <field name="sii_registration_key" domain="[('type', '=', 'sale')]" attrs="{'required': [('sii_enabled', '=', True)]}" widget="selection"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
-                        <group string="SII Result">
+                        <group string="SII Result" groups="l10n_es_aeat.group_account_aeat">
                             <field name="sii_state" />
                             <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                             <field name="sii_csv"/>
                             <field name="sii_return" />
                         </group>
-                        
-                        <group string="Invoice Jobs">
+
+                        <group string="Invoice Jobs" groups="l10n_es_aeat.group_account_aeat">
                             <field name="invoice_jobs_ids" nolabel="1"
                                    readonly="1">
                                 <tree>
                                     <field name="date_created"/>
+                                    <field name="eta"/>
                                     <field name="date_done"/>
                                     <field name="state"/>
                                     <button type="object"
@@ -111,6 +120,12 @@
                                             string="Requeue"
                                             class="oe_highlight"
                                             attrs="{'invisible': [('state', '!=', 'failed')]}"/>
+                                    <button type="object"
+                                            name="do_now"
+                                            string="Send now"
+                                            class="oe_highlight"
+                                            attrs="{'invisible': [('state', '!=', 'pending'), ('eta', '!=', False)]}"
+                                    />
                                 </tree>
                             </field>
                         </group>
@@ -127,7 +142,7 @@
                 <filter name="unpaid" position="after">
                     <group string="SII filters">
                         <filter name="sii_not_sent" string="SII not sent"
-                            domain="[('sii_state', '=', 'not_sent')]"
+                            domain="[('sii_state', '=', 'not_sent'), ('date_invoice', '>=', '2017-01-01')]"
                             help="Never sent to SII" />
                         <filter name="sii_sent" string="SII sent"
                             domain="[('sii_state', 'in', ['sent','cancelled','sent_modified','cancelled_modified'])]"

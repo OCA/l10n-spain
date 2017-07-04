@@ -130,6 +130,68 @@ class AccountInvoice(models.Model):
                 key = invoice.fiscal_position_id.sii_registration_key_purchase
             invoice.sii_registration_key = key
 
+    @api.multi
+    @api.onchange('sii_state')
+    def _compute_sii_send_pending(self):
+        """Calcula si una factura está en un estado en el que deba comunicarse
+        al SII"""
+        for invoice in self:
+            if not invoice.company_id.sii_enabled:
+                invoice.sii_send_pending = False
+            elif invoice.state not in ['open', 'paid', 'cancel']:
+                invoice.sii_send_pending = False
+            elif invoice.state in ['open', 'paid'] and \
+                    (invoice.period_id.date_start < '2017-07-01' or
+                     (invoice.fiscal_position and not
+                      invoice.fiscal_position.sii_active) or
+                     invoice.sii_state not in
+                     ['not_sent', 'sent_modified', 'cancelled_modified']):
+                invoice.sii_send_pending = False
+            elif invoice.state in ['cancel'] and \
+                    (invoice.period_id.date_start < '2017-07-01' or
+                     (invoice.fiscal_position and
+                      not invoice.fiscal_position.sii_active) or
+                     invoice.sii_state not in ['sent', 'sent_modified']):
+                invoice.sii_send_pending = False
+            else:
+                jobs = invoice.invoice_jobs_ids.\
+                filtered(lambda j: j.state in ('pending', 'enqueued') and
+                         (j.eta == False or j.eta > fields.Datetime.now))
+                invoice.sii_send_pending = False if len(jobs) else True
+
+    def _search_sii_send_pending(self, operator, value):
+        """Obtiene las facturas están en un estado en el que deban comunicarse
+        al SII."""
+        query = """
+        SELECT i.id FROM account_invoice i
+        JOIN res_company c ON c.id = i.company_id
+        JOIN account_period p ON p.id = i.period_id
+        WHERE c.sii_enabled IS TRUE AND
+        p.date_start >= '2017-07-01' AND
+        NOT EXISTS (
+            SELECT 1 FROM account_invoice_queue_job_rel jrel
+            JOIN queue_job j ON j.id = jrel.job_id
+            WHERE jrel.invoice_id = i.id AND
+            j.state IN ('pending','enqueued','started')
+        ) AND (
+            i.fiscal_position IS NULL OR
+            (SELECT sii_active FROM account_fiscal_position WHERE
+                id = i.fiscal_position) IS TRUE
+        ) AND (
+            (i.state IN ('open','paid') AND i.sii_state IN
+                ('not_sent','sent_modified','cancelled_modified')) OR
+            (i.state IN ('cancel') AND i.sii_state IN
+                ('sent','sent_modified'))
+        )
+        """
+        self._cr.execute(query)
+        invoices_pending = self._cr.dictfetchall()
+        if value:
+            oper = 'in' if operator == '=' else 'not in'
+        else:
+            oper = 'not in' if operator == '=' else 'in'
+        return [('id', oper, [x['id'] for x in invoices_pending])]
+
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
@@ -912,14 +974,11 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _cancel_invoice_jobs(self):
-        for invoice in self:
-            for queue in invoice.invoice_jobs_ids:
-                if queue.state == 'started':
-                    return False
-                elif queue.state in ('pending', 'enqueued', 'failed'):
-                    queue.write({
-                        'state': 'done',
-                        'date_done': date.today()})
+        for queue in self.mapped('invoice_jobs_ids'):
+            if queue.state == 'started':
+                return False
+            elif queue.state in ('pending', 'enqueued', 'failed'):
+                queue.sudo().unlink()
         return True
 
     @api.multi
