@@ -27,22 +27,23 @@
                 </field>
 
                 <notebook position="inside">
-                    <page string="SII" groups="account.group_account_manager"  attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                    <page string="SII" groups="account.group_account_invoice"  attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
-                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)]}"/>
+                            <field name="sii_description_method" invisible="1"/>
+                            <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)], 'readonly': [('sii_description_method', '!=', 'manual')]}"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'purchase')]" attrs="{'required': [('sii_enabled', '=', True)]}"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
-                        <group string="SII Result">
+                        <group string="SII Result" groups="l10n_es_aeat.group_account_aeat">
                             <field name="sii_state" />
                             <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                             <field name="sii_csv"/>
                             <field name="sii_return" />
                         </group>
 
-                        <group string="Connector Jobs">
+                        <group string="Connector Jobs" groups="l10n_es_aeat.group_account_aeat">
                             <field name="invoice_jobs_ids" nolabel="1"
                                    readonly="1">
                                 <tree>
@@ -80,7 +81,7 @@
                     />
                 </button>
                 <notebook position="inside">
-                    <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                    <page string="SII" groups="account.group_account_invoice" attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
                             <field name="sii_description_method" invisible="1"/>
                             <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)], 'readonly': [('sii_description_method', '!=', 'manual')]}"/>
@@ -89,14 +90,14 @@
                             <field name="sii_registration_key" domain="[('type', '=', 'sale')]" attrs="{'required': [('sii_enabled', '=', True)]}" widget="selection"/>
                             <field name="sii_enabled" invisible="1"/>
                         </group>
-                        <group string="SII Result">
+                        <group string="SII Result" groups="l10n_es_aeat.group_account_aeat">
                             <field name="sii_state" />
                             <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                             <field name="sii_csv"/>
                             <field name="sii_return" />
                         </group>
 
-                        <group string="Connector Jobs">
+                        <group string="Connector Jobs" groups="l10n_es_aeat.group_account_aeat">
                             <field name="invoice_jobs_ids" nolabel="1"
                                    readonly="1">
                                 <tree>
