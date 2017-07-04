@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
-<data noupdate="1">
+<odoo>
 
     <record id="l10n_es_aeat_sii_rule" model="ir.rule">
         <field name="name">AEAT SII config multi-company</field>
@@ -16,5 +15,4 @@
         <field name="groups" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]"/>
     </record>
 
-</data>
-</openerp>
+</odoo>
