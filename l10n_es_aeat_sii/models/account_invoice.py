@@ -6,11 +6,10 @@
 
 import logging
 
-from odoo import models, fields, api, _
+from odoo import models, exceptions, fields, api, _
 from requests import Session
 
 from datetime import date
-from odoo.exceptions import Warning
 from odoo.modules.registry import RegistryManager
 from odoo.tools.float_utils import float_round
 
@@ -708,9 +707,9 @@ class AccountInvoice(models.Model):
                 invoice._send_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                new_delay = self.with_delay().confirm_one_invoice()
+                new_delay = self.with_delay(eta=eta).confirm_one_invoice()
                 queue_ids = queue_obj.search([
-                    ('uuid', '=', new_delay)
+                    ('uuid', '=', new_delay.uuid)
                 ], limit=1)
                 invoice.invoice_jobs_ids |= queue_ids
 
@@ -883,9 +882,9 @@ class AccountInvoice(models.Model):
                 invoice._cancel_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                new_delay = self.with_delay().cancel_one_invoice()
+                new_delay = self.with_delay(eta=eta).cancel_one_invoice()
                 queue_ids = queue_obj.search([
-                    ('uuid', '=', new_delay)
+                    ('uuid', '=', new_delay.uuid)
                 ], limit=1)
                 invoice.invoice_jobs_ids |= queue_ids
 
@@ -1097,6 +1096,16 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         return -1.0 if self.sii_refund_type == 'I' else 1.0
 
+    @job
+    @api.multi
+    def confirm_one_invoice(self):
+        self._send_invoice_to_sii()
+
+    @job
+    @api.multi
+    def cancel_one_invoice(self):
+        self._cancel_invoice_to_sii()
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
@@ -1178,14 +1187,3 @@ class AccountInvoiceLine(models.Model):
         else:
             key = 'CuotaSoportada'
         tax_dict[tax_type][key] += taxes['taxes'][0]['amount']
-
-
-    @job
-    @api.multi
-    def confirm_one_invoice(self):
-        self._send_invoice_to_sii()
-
-    @job
-    @api.multi
-    def cancel_one_invoice(session, model_name, invoice_id):
-        invoice._cancel_invoice_to_sii()
