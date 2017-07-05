@@ -109,6 +109,7 @@ Contributors
 * Jordi Tolsà <jordi@studio73.es>
 * Ismael Calvo <ismael.calvo@factorlibre.es>
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
+* Juanjo Algaz <jalgaz@gmail.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Maintainer
