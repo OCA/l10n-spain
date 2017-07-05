@@ -468,7 +468,7 @@ class AccountInvoice(models.Model):
         """Build dict with data to send to AEAT WS for invoice types:
         out_invoice and out_refund.
 
-        :param cancel: It indicates if the dictionary if for sending a
+        :param cancel: It indicates if the dictionary is for sending a
           cancellation of the invoice.
         :return: invoices (dict) : Dict XML with data for this invoice.
         """
@@ -885,13 +885,14 @@ class AccountInvoice(models.Model):
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
         self.ensure_one()
-        if self.fiscal_position.name == u'Régimen Intracomunitario':
-            return 2
-        elif self.fiscal_position.name == \
-                u'Régimen Extracomunitario / Canarias, Ceuta y Melilla':
-            return 3
-        else:
-            return 1
+        partner_identification = self.fiscal_position.sii_partner_identification_type
+        if not partner_identification:
+            raise exceptions.Warning(
+                _("You dont set identification type on fiscal position. Please, "
+                  "set it and try again.")
+            )
+        return partner_identification
+
 
     @api.multi
     def _get_sii_identifier(self):
