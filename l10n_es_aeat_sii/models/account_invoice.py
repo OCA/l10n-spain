@@ -24,6 +24,9 @@ try:
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
+
+from openerp.tools.translate import _
+
 SII_STATES = [
     ('not_sent', 'Not sent'),
     ('sent', 'Sent'),
@@ -82,7 +85,7 @@ class AccountInvoice(osv.Model):
             if fixed_desc and description:
                 description += ' | '
             description += fixed_desc
-        return description[0:500]
+        return description[0:500] or '/'
 
 
     def _compute_sii_enabled(self, cr, uid, ids, name, arg={}, context=None):
@@ -141,7 +144,7 @@ class AccountInvoice(osv.Model):
         default['sii_sent'] = False
         default['sii_return'] = None
         default['sii_csv'] = None
-        default['sii_state'] = None
+        default['sii_state'] = 'not_sent'
         default['sii_send_error'] = None
 
         return super(AccountInvoice, self).copy(cr, uid, id, default, context=context)
@@ -152,21 +155,25 @@ class AccountInvoice(osv.Model):
                 return {'warning':
                             {'message': 'You must have at least one refunded invoice'},
                         'value': {
-                            'refund_type': None,
+                            'sii_refund_type': None,
                         }
                         }
 
     def onchange_fiscal_position_l10n_es_aeat_sii(self, cr, uid, ids, fiscal_position):
-        for invoice in self.browse(cr, uid, ids):
-            if 'out' in invoice.type:
-                key = invoice.fiscal_position.sii_registration_key_sale
-            else:
-                key = invoice.fiscal_position.sii_registration_key_purchase
-            return {
-                'value': {
-                    'registration_key': key or key.id,
+        if fiscal_position:
+            fp = self.pool["account.fiscal.position"].browse(cr,uid, fiscal_position)
+            key = False
+            for invoice in self.browse(cr, uid, ids):
+                if fp:
+                    if 'out' in invoice.type:
+                        key = fp.sii_registration_key_sale
+                    else:
+                        key = fp.sii_registration_key_purchase
+                return {
+                    'value': {
+                        'sii_registration_key': key and key.id,
+                    }
                 }
-            }
 
     def onchange_invoice_line_l10n_es_aeat_sii(self, cr, uid, ids, invoice_line):
         description = ""
