@@ -285,6 +285,7 @@ class AccountInvoice(models.Model):
         taxes_dict = {}
         taxes_f = {}
         taxes_to = {}
+        tax_breakdown = {}
         taxes_sfesb = self._get_sii_taxes_map(['SFESB'])
         taxes_sfesbe = self._get_sii_taxes_map(['SFESBE'])
         taxes_sfesisp = self._get_sii_taxes_map(['SFESISP'])
@@ -386,6 +387,10 @@ class AccountInvoice(models.Model):
         if taxes_to:
             sub = type_breakdown['PrestacionServicios']['Sujeta']
             sub['NoExenta']['DesgloseIVA']['DetalleIVA'] = taxes_to.values()
+        if 'Exenta' in tax_breakdown['Sujeta']:
+            exempt_dict = tax_breakdown['Sujeta']['Exenta']
+            exempt_dict['BaseImponible'] = \
+                float_round(exempt_dict['BaseImponible'], 2)
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
@@ -1006,11 +1011,8 @@ class AccountInvoice(models.Model):
                     "ID": vat,
                 }
             }
-        elif gen_type == 3:
-            if country_code != 'ES':
-                id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
-            else:
-                id_type = '06'
+        elif gen_type == 3 and country_code != 'ES':
+            id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
             return {
                 "IDOtro": {
                     "CodigoPais": country_code,
@@ -1018,6 +1020,8 @@ class AccountInvoice(models.Model):
                     "ID": vat,
                 },
             }
+        elif gen_type == 3:
+            return {"NIF": vat[2:]}
 
     @api.multi
     def _get_sii_exempt_cause(self, product):
