@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_account_invoice_integration_cancel"
+                model="ir.ui.view">
+            <field name="name">account.invoice.integration.cancel.form</field>
+            <field name="model">account.invoice.integration.cancel</field>
+            <field name="inherit_id"
+                   ref="l10n_es_facturae.view_account_invoice_integration_cancel"/>
+            <field name="arch" type="xml">
+                <field name="integration_id" position="after">
+                    <field name="method_code" invisible="1"/>
+                    <field name="motive"
+                           attrs="{'invisible': [('method_code', '!=', 'FACe')],
+                           'required': [('method_code', '=', 'FACe')]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
