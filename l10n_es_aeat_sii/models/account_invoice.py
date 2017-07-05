@@ -221,7 +221,7 @@ class AccountInvoice(osv.Model):
         return super(AccountInvoice, self).write(cr, uid, ids, vals,context)
 
 
-    def unlink(self,cr, uid, ids):
+    def unlink(self,cr, uid, ids, context=None):
         """A registered invoice at the SII cannot be deleted"""
         for invoice in self.browse(cr, uid, ids):
             if invoice.sii_state != 'not_sent':
