@@ -391,6 +391,10 @@ class AccountInvoice(models.Model):
         if taxes_to:
             sub = type_breakdown['PrestacionServicios']['Sujeta']
             sub['NoExenta']['DesgloseIVA']['DetalleIVA'] = taxes_to.values()
+        if 'Exenta' in tax_breakdown['Sujeta']:
+            exempt_dict = tax_breakdown['Sujeta']['Exenta']
+            exempt_dict['BaseImponible'] = \
+                float_round(exempt_dict['BaseImponible'], 2)
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
