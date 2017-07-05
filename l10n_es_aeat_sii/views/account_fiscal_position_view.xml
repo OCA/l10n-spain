@@ -19,6 +19,7 @@
                         <field name="sii_registration_key_purchase" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
                         <field name="sii_no_taxable_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
                         <field name="sii_exempt_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                        <field name="sii_partner_identification_type" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
                     </group>
                 </xpath>
             </field>
