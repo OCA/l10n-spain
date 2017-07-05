@@ -471,12 +471,16 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
+        partner = self.partner_id.commercial_partner_id
         country_code = (
-            self.partner_id.commercial_partner_id.country_id.code or
-            (self.partner_id.vat or '')[:2]
+            partner.country_id.code or (self.partner_id.vat or '')[:2]
         ).upper()
-        if (gen_type != 3 or country_code == 'ES') and not \
-                self.partner_id.vat:
+        if partner.sii_simplified_invoice and self.type[:2] == 'in':
+            raise exceptions.Warning(
+                _("You can't make a supplier simplified invoice.")
+            )
+        if ((gen_type != 3 or country_code == 'ES') and
+                not partner.vat and not partner.sii_simplified_invoice):
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
@@ -519,6 +523,7 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.date_invoice)
+        partner = self.partner_id.commercial_partner_id
         company = self.company_id
         ejercicio = fields.Date.from_string(
             self.period_id.fiscalyear_id.date_start).year
@@ -543,26 +548,27 @@ class AccountInvoice(models.Model):
         if not cancel:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
+            if partner.sii_simplified_invoice:
+                tipo_factura = 'R5' if self.type == 'out_refund' else 'F2'
+            else:
+                tipo_factura = 'R4' if self.type == 'out_refund' else 'F1'
             inv_dict["FacturaExpedida"] = {
-                # TODO: Incluir los 5 tipos de facturas rectificativas
-                "TipoFactura": (
-                    'R4' if self.type == 'out_refund' else 'F1'
-                ),
+                "TipoFactura": tipo_factura,
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
                 ),
                 "DescripcionOperacion": self.sii_description,
-                "Contraparte": {
-                    "NombreRazon": (
-                        self.partner_id.commercial_partner_id.name[0:120]
-                    )
-                },
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": self.cc_amount_total * sign,
             }
             exp_dict = inv_dict['FacturaExpedida']
-            # Uso condicional de IDOtro/NIF
-            exp_dict['Contraparte'].update(self._get_sii_identifier())
+            if not partner.sii_simplified_invoice:
+                # Simplified invoices don't have counterpart
+                exp_dict["Contraparte"] = {
+                    "NombreRazon": partner.name[0:120],
+                }
+                # Uso condicional de IDOtro/NIF
+                exp_dict['Contraparte'].update(self._get_sii_identifier())
             if self.type == 'out_refund':
                 exp_dict['TipoRectificativa'] = self.sii_refund_type
                 if self.sii_refund_type == 'S':
