@@ -5,9 +5,9 @@
 from openerp import fields, models, api
 
 SII_GEN_TYPE = [
-    ('1', 'National'),
-    ('2', 'Intracom'),
-    ('3', 'Export')
+    (1, 'National'),
+    (2, 'Intracom'),
+    (3, 'Export')
 ]
 
 class AccountFiscalPosition(models.Model):
@@ -56,5 +56,5 @@ class AccountFiscalPosition(models.Model):
     sii_partner_identification_type = fields.Selection(
         selection=SII_GEN_TYPE,
         string="SII partner Identification Type",
-        default="1",
+        default=1,
     )
