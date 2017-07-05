@@ -239,10 +239,10 @@ class AccountInvoice(models.Model):
         taxes = self.env['account.tax']
         sii_map = self.env['aeat.sii.map'].search(
             ['|',
-             ('date_from', '<=', self.date),
+             ('date_from', '<=', self.date_invoice),
              ('date_from', '=', False),
              '|',
-             ('date_to', '>=', self.date),
+             ('date_to', '>=', self.date_invoice),
              ('date_to', '=', False)], limit=1)
         mapping_taxes = {}
         tax_templates = sii_map.sudo().with_context(

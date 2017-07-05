@@ -10,3 +10,4 @@ from . import product_product
 from . import queue_job
 from . import account_fiscal_position
 from . import account_invoice
+from . import res_partner
