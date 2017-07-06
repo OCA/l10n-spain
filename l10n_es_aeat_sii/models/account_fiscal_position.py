@@ -4,12 +4,6 @@
 
 from openerp import fields, models, api
 
-SII_GEN_TYPE = [
-    (1, 'National'),
-    (2, 'Intracom'),
-    (3, 'Export')
-]
-
 class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position'
 
@@ -54,7 +48,6 @@ class AccountFiscalPosition(models.Model):
         default=default_sii_exempt_cause,
     )
     sii_partner_identification_type = fields.Selection(
-        selection=SII_GEN_TYPE,
+        selection=[('1', 'National'), ('2', 'Intracom'), ('3', 'Export')],
         string="SII partner Identification Type",
-        default=1,
     )
