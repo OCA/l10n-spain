@@ -12,7 +12,7 @@ import logging
 from datetime import date
 from requests import Session
 
-from openerp import _, api, exceptions, fields, models
+from openerp import _, api, exceptions, fields, models, SUPERUSER_ID
 from openerp.modules.registry import RegistryManager
 from openerp.tools.float_utils import float_round
 
@@ -735,9 +735,13 @@ class AccountInvoice(models.Model):
                 invoice._send_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
+                session = ConnectorSession(
+                    self.env.cr, SUPERUSER_ID, context=self.env.context,
+                )
                 new_delay = confirm_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
+                    session, 'account.invoice', invoice.id,
+                    eta=eta if not invoice.sii_send_failed else False,
+                )
                 invoice.invoice_jobs_ids |= queue_obj.search(
                     [('uuid', '=', new_delay)], limit=1,
                 )
@@ -921,14 +925,11 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _cancel_invoice_jobs(self):
-        for invoice in self:
-            for queue in invoice.invoice_jobs_ids:
-                if queue.state == 'started':
-                    return False
-                elif queue.state in ('pending', 'enqueued', 'failed'):
-                    queue.write({
-                        'state': 'done',
-                        'date_done': date.today()})
+        for queue in self.mapped('invoice_jobs_ids'):
+            if queue.state == 'started':
+                return False
+            elif queue.state in ('pending', 'enqueued', 'failed'):
+                queue.sudo().unlink()
         return True
 
     @api.multi
