@@ -106,7 +106,7 @@ class AccountInvoice(osv.Model):
 
     _columns = {
 
-        'sii_description': fields.text(string='SII Description', required=True),
+        'sii_description': fields.text(string='SII Description', required=False),
         'sii_state': fields.selection(
             selection=SII_STATES, string="SII send state", default='not_sent',
             help="Indicates the state of this invoice in relation with the "
