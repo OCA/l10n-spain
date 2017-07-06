@@ -48,3 +48,7 @@ class AccountFiscalPosition(models.Model):
         selection='_get_selection_sii_exempt_cause',
         default=default_sii_exempt_cause,
     )
+    sii_partner_identification_type = fields.Selection(
+        selection=[('1', 'National'), ('2', 'Intracom'), ('3', 'Export')],
+        string="SII partner Identification Type",
+    )
