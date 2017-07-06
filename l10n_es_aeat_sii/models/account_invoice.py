@@ -1110,7 +1110,8 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_sii_sign(self):
         self.ensure_one()
-        return -1.0 if self.sii_refund_type == 'I' else 1.0
+        return -1.0 if self.sii_refund_type == 'I' and 'refund' in self.type \
+            else 1.0
 
 
 class AccountInvoiceLine(models.Model):
