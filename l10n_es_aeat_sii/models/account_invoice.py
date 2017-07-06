@@ -891,7 +891,7 @@ class AccountInvoice(models.Model):
         elif self.fiscal_position.name == u'Régimen Intracomunitario':
             res = 2
         elif (self.fiscal_position.name ==
-                  u'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
+              u'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
             res = 3
         else:
             res = 1
