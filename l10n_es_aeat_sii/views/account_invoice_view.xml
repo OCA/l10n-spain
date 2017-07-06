@@ -22,9 +22,6 @@
                 </button>
 
 
-                <field name="fiscal_position" position="attributes">
-                    <attribute name="on_change">onchange_fiscal_position_l10n_es_aeat_sii(fiscal_position)</attribute>
-                </field>
 
                 <field name="invoice_line" position="attributes">
                     <attribute name="on_change">onchange_invoice_line_l10n_es_aeat_sii(invoice_line)</attribute>
@@ -71,9 +68,7 @@
                                 ('sii_state', 'not in', ['sent','sent_modified'])]}" />
                 </button>
 
-                <field name="fiscal_position" position="attributes">
-                    <attribute name="on_change">onchange_fiscal_position_l10n_es_aeat_sii(fiscal_position)</attribute>
-                </field>
+
 
                 <field name="invoice_line" position="attributes">
                     <attribute name="on_change">onchange_invoice_line_l10n_es_aeat_sii(invoice_line)</attribute>

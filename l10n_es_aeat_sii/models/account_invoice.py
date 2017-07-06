@@ -159,21 +159,24 @@ class AccountInvoice(osv.Model):
                         }
                         }
 
-    def onchange_fiscal_position_l10n_es_aeat_sii(self, cr, uid, ids, fiscal_position):
+    def on_change_fiscal_position(self, cr, uid, ids, fiscal_position, type, context=None):
+        """
+        Suggest an operation key when fiscal position changes
+        """
+        if context is None:
+            context = {}
+        res = super(AccountInvoice, self).on_change_fiscal_position(cr, uid, ids, fiscal_position, type)
         if fiscal_position:
-            fp = self.pool["account.fiscal.position"].browse(cr,uid, fiscal_position)
-            key = False
-            for invoice in self.browse(cr, uid, ids):
-                if fp:
-                    if 'out' in invoice.type:
-                        key = fp.sii_registration_key_sale
-                    else:
-                        key = fp.sii_registration_key_purchase
-                return {
-                    'value': {
-                        'sii_registration_key': key and key.id,
-                    }
-                }
+            fiscal_obj = self.pool.get('account.fiscal.position')
+            fp = fiscal_obj.browse(cr, uid, [fiscal_position])[0]
+            if 'out' in type:
+                key = fp.sii_registration_key_sale
+            else:
+                key = fp.sii_registration_key_purchase
+            res = {'value' : {'sii_registration_key': key and key.id or False}}
+
+
+        return res
 
     def onchange_invoice_line_l10n_es_aeat_sii(self, cr, uid, ids, invoice_line):
         description = ""
