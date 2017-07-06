@@ -876,7 +876,7 @@ class AccountInvoice(osv.Model):
                         header, inv_dict)
                 if res['EstadoEnvio'] == 'Correcto':
                     self.write(cr, uid, invoice.id, {
-                        'sii_state': 'sent',
+                        'sii_state': 'cancelled',
                         'sii_send_failed': False,
                         'sii_sent': True,
                         'sii_csv': res['CSV']
