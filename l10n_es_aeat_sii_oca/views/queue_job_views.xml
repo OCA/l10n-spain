@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+<data>
+    <record id="view_queue_job_sii" model="ir.ui.view">
+        <field name="model">queue.job</field>
+        <field name="priority" eval="9999"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date_created"/>
+                <field name="eta"/>
+                <field name="date_done"/>
+                <field name="state"/>
+                <button type="object"
+                        name="requeue"
+                        string="Requeue"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state', '!=', 'failed')]}"/>
+                 <button type="object"
+                         name="cancel_now"
+                         string="Cancel sending"
+                         class="oe_highlight_cancel"
+                         icon="gtk-stop"
+                         attrs="{'invisible': [('state', 'not in', ['pending','enqueued'])]}"
+                />
+                <button type="object"
+                        name="do_now"
+                        string="Send now"
+                        class="oe_highlight"
+                        icon="gtk-go-forward"
+                        attrs="{'invisible': ['|', ('state', '!=', 'pending'), ('eta', '=', False)]}"
+                />
+            </tree>
+        </field>
+    </record>
+</data>
+</openerp>
