@@ -33,8 +33,7 @@
                         <group string="SII Information">
                             <field name="sii_description"/>
                             <field name="sii_refund_type"
-                                   on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"
-                                   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                                   on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'purchase')]"/>
                             <field name="sii_enabled" />
                         </group>
@@ -80,8 +79,7 @@
                         <group string="SII Information">
                             <field name="sii_description"  />
                             <field name="sii_refund_type"
-                                   on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"
-                                   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
+                                   on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'sale')]"/>
                             <field name="sii_enabled" invisible="1"/>
 

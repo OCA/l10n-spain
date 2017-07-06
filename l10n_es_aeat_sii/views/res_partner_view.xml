@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+<data>
+
+    <record id="view_partner_form_sii" model="ir.ui.view">
+            <field name="name">res.partner.inherit.sii</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <field name="property_account_payable" position="after">
+                    <group >
+                        <field name="sii_simplified_invoice" />
+                    </group>
+                </field>
+            </field>
+        </record>
+</data>
+</openerp>
