@@ -173,7 +173,7 @@ class AccountInvoice(osv.Model):
                 key = fp.sii_registration_key_sale
             else:
                 key = fp.sii_registration_key_purchase
-            res = {'value' : {'sii_registration_key': key and key.id or False}}
+            res['value']['sii_registration_key'] = key and key.id or False
 
 
         return res
