@@ -884,18 +884,18 @@ class AccountInvoice(models.Model):
         Returns:
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
-        res = 1
         self.ensure_one()
         partner_ident = self.fiscal_position.sii_partner_identification_type
-        if not partner_ident:
-            if self.fiscal_position.name == u'Régimen Intracomunitario':
-                res = 2
-            elif self.fiscal_position.name == \
-                    u'Régimen Extracomunitario / Canarias, Ceuta y Melilla':
-                res = 3
+        if partner_ident:
+            res = int(partner_ident)
+        elif self.fiscal_position.name == u'Régimen Intracomunitario':
+            res = 2
+        elif (self.fiscal_position.name ==
+                  u'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
+            res = 3
         else:
-            res = partner_ident
-        return int(res)
+            res = 1
+        return res
 
     @api.multi
     def _get_sii_identifier(self):
