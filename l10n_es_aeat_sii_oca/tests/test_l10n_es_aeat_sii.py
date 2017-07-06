@@ -95,6 +95,14 @@ class TestL10nEsAeatSii(common.TransactionCase):
                 })],
             'sii_manual_description': '/',
         })
+        self.user = self.env['res.users'].create({
+            'name': 'Test user',
+            'login': 'test_user',
+            'groups_id': [
+                (4, self.env.ref('account.group_account_invoice').id)
+            ],
+            'email': 'somebody@somewhere.com',
+        })
 
     def _open_invoice(self):
         self.invoice.company_id.write({
@@ -257,3 +265,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         self.assertEqual(
             invoice_temp.sii_description, 'Test customer header | Test line',
         )
+
+    def test_permissions(self):
+        """This should work without errors"""
+        self.invoice.sudo(self.user).signal_workflow('invoice_open')
