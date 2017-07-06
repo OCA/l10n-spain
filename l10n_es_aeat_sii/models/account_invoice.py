@@ -341,7 +341,6 @@ class AccountInvoice(osv.Model):
                                                ['SFESSE'], invoice)
 
         default_no_taxable_cause = self._get_no_taxable_cause(cr, uid, invoice)
-
         # Check if refund type is 'By differences'. Negative amounts!
         sign = -1.0 if invoice.sii_refund_type == 'I' else 1.0
         for inv_line in invoice.invoice_line:
@@ -470,7 +469,8 @@ class AccountInvoice(osv.Model):
                         'DesgloseIVA',
                         {'DetalleIVA': {'BaseImponible': 0}},
                     )
-                    nsub_dict['DetalleIVA']['BaseImponible'] += inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line)
+                    nsub_dict['DetalleIVA']['BaseImponible'] +=\
+                        inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line) * sign
 
         if taxes_isp:
             taxes_dict.setdefault(
@@ -517,7 +517,7 @@ class AccountInvoice(osv.Model):
 
         if not invoice.reference and invoice.type in ['in_invoice','in_refund']:
             raise exceptions.Warning(
-                _("The supplier invoice number is required")
+                _("The supplier number invoice is required")
             )
 
 
@@ -926,9 +926,36 @@ class AccountInvoice(osv.Model):
         """
         gen_type = self._get_sii_gen_type(cr, uid, invoice)
         # Limpiar alfanum
-        vat = ''.join(e for e in invoice.partner_id.vat if e.isalnum()).upper()
-        if gen_type == 1 or vat.startswith('ES'):
-            return {"NIF": vat[2:]}
+        if invoice.partner_id.vat:
+            vat = ''.join(
+                e for e in invoice.partner_id.vat if e.isalnum()
+            ).upper()
+        else:
+            vat = 'NO_DISPONIBLE'
+        country_code = (
+            (invoice.partner_id.vat or '')[:2]
+        ).upper()
+        if gen_type == 1:
+            if '1117' in (invoice.sii_send_error or ''):
+                return {
+                    "IDOtro": {
+                        "CodigoPais": country_code,
+                        "IDType": '07',
+                        "ID": vat[2:],
+                    }
+                }
+            else:
+                if country_code != 'ES':
+                    id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
+                    return {
+                        "IDOtro": {
+                            "CodigoPais": country_code,
+                            "IDType": id_type,
+                            "ID": vat,
+                        },
+                    }
+                else:
+                    return {"NIF": vat[2:]}
         elif gen_type == 2:
             return {
                 "IDOtro": {
@@ -937,10 +964,14 @@ class AccountInvoice(osv.Model):
                 }
             }
         elif gen_type == 3:
+            if country_code != 'ES':
+                id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
+            else:
+                id_type = '06'
             return {
                 "IDOtro": {
-                    "CodigoPais": self.partner_id.country_id.code or vat[:2],
-                    "IDType": '04',
+                    "CodigoPais": country_code,
+                    "IDType": id_type,
                     "ID": vat,
                 },
             }
