@@ -4,6 +4,7 @@
 
 from openerp import fields, models, api
 
+
 class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position'
 
