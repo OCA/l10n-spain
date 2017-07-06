@@ -290,6 +290,7 @@ class AccountInvoice(models.Model):
         taxes_dict = {}
         taxes_f = {}
         taxes_to = {}
+        tax_breakdown = {}
         taxes_sfesb = self._get_sii_taxes_map(['SFESB'])
         taxes_sfesbe = self._get_sii_taxes_map(['SFESBE'])
         taxes_sfesisp = self._get_sii_taxes_map(['SFESISP'])
