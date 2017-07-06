@@ -8,11 +8,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import json
 
 from datetime import date
 from requests import Session
 
-from openerp import _, api, exceptions, fields, models
+from openerp import _, api, exceptions, fields, models, SUPERUSER_ID
 from openerp.modules.registry import RegistryManager
 from openerp.tools.float_utils import float_round
 
@@ -85,6 +86,12 @@ class AccountInvoice(models.Model):
     )
     sii_csv = fields.Char(string='SII CSV', copy=False, readonly=True)
     sii_return = fields.Text(string='SII Return', copy=False, readonly=True)
+    sii_header_sent = fields.Text(
+        string="SII last header sent", copy=False, readonly=True,
+    )
+    sii_content_sent = fields.Text(
+        string="SII last content sent", copy=False, readonly=True,
+    )
     sii_send_error = fields.Text(
         string='SII Send Error', readonly=True, copy=False,
     )
@@ -243,7 +250,7 @@ class AccountInvoice(models.Model):
              ('date_to', '>=', self.date_invoice),
              ('date_to', '=', False)], limit=1)
         mapping_taxes = {}
-        tax_templates = sii_map.map_lines.filtered(
+        tax_templates = sii_map.sudo().map_lines.filtered(
             lambda x: x.code in codes
         ).taxes
         for tax_template in tax_templates:
@@ -728,17 +735,21 @@ class AccountInvoice(models.Model):
                 i.period_id.date_start >= SII_START_DATE
             )
         )
-        queue_obj = self.env['queue.job']
+        queue_obj = self.env['queue.job'].sudo()
         for invoice in invoices:
             company = invoice.company_id
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
+                session = ConnectorSession(
+                    self.env.cr, SUPERUSER_ID, context=self.env.context,
+                )
                 new_delay = confirm_one_invoice.delay(
-                    session, 'account.invoice', invoice.id, eta=eta)
-                invoice.invoice_jobs_ids |= queue_obj.search(
+                    session, 'account.invoice', invoice.id,
+                    eta=eta if not invoice.sii_send_failed else False,
+                )
+                invoice.sudo().invoice_jobs_ids |= queue_obj.search(
                     [('uuid', '=', new_delay)], limit=1,
                 )
 
@@ -769,6 +780,8 @@ class AccountInvoice(models.Model):
             header = invoice._get_sii_header(tipo_comunicacion)
             try:
                 inv_dict = invoice._get_sii_invoice_dict()
+                invoice.sii_header_sent = json.dumps(header, indent=4)
+                invoice.sii_content_sent = json.dumps(inv_dict, indent=4)
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
                         header, inv_dict)
@@ -917,18 +930,15 @@ class AccountInvoice(models.Model):
                 queue_ids = queue_obj.search([
                     ('uuid', '=', new_delay)
                 ], limit=1)
-                invoice.invoice_jobs_ids |= queue_ids
+                invoice.sudo().invoice_jobs_ids |= queue_ids
 
     @api.multi
     def _cancel_invoice_jobs(self):
-        for invoice in self:
-            for queue in invoice.invoice_jobs_ids:
-                if queue.state == 'started':
-                    return False
-                elif queue.state in ('pending', 'enqueued', 'failed'):
-                    queue.write({
-                        'state': 'done',
-                        'date_done': date.today()})
+        for queue in self.mapped('invoice_jobs_ids'):
+            if queue.state == 'started':
+                return False
+            elif queue.state in ('pending', 'enqueued', 'failed'):
+                queue.sudo().unlink()
         return True
 
     @api.multi
