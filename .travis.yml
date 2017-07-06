@@ -28,7 +28,7 @@ virtualenv:
   system_site_packages: true
 
 install:
-  - git clone https://github.com/vauxoo-dev/maintainer-quality-tools.git -b master-oca-install-root-req-moy ${HOME}/maintainer-quality-tools
+  - git clone https://github.com/vauxoo-dev/maintainer-quality-tools.git -b master-oca-install-wo-usr-moy ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 
