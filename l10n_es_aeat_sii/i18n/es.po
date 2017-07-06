@@ -841,3 +841,22 @@ msgstr "[E6] Otros"
 msgid "or"
 msgstr "o"
 
+#. module: l10n_es_aeat_sii
+#: selection:account.fiscal.position,sii_partner_identification_type:0
+msgid "National"
+msgstr "Nacional"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.fiscal.position,sii_partner_identification_type:0
+msgid "Export"
+msgstr "Exportación"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.fiscal.position,sii_partner_identification_type:0
+msgid "Intracom"
+msgstr "Intracomunitario"
+
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_partner_identification_type:0
+msgid "SII partner Identification Type"
+msgstr "SII Tipo de identifiación del cliente"
