@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-09 17:00+0000\n"
-"PO-Revision-Date: 2017-07-09 17:00+0000\n"
+"POT-Creation-Date: 2017-07-09 17:24+0000\n"
+"PO-Revision-Date: 2017-07-09 17:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -113,6 +113,11 @@ msgstr "Por sustitución"
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+msgid "Cancel sending"
+msgstr "Cancelar envío"
 
 #. module: l10n_es_aeat_sii
 #: selection:account.invoice,sii_state:0
@@ -707,6 +712,12 @@ msgstr "Modo de envío"
 #. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+msgid "Send now"
+msgstr "Enviar ahora"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
+#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Send to SII"
 msgstr "Enviar al SII"
 
@@ -738,7 +749,7 @@ msgstr "Estado"
 #. module: l10n_es_aeat_sii
 #: field:account.invoice.refund,supplier_invoice_number_refund:0
 msgid "Supplier Invoice Number"
-msgstr "Nº factura proveedor"
+msgstr "Nº de factura del proveedor"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map.lines,taxes:0
@@ -765,7 +776,7 @@ msgstr "La empresa no tiene un NIF establecido."
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:502
 #, python-format
 msgid "The supplier number invoice is required"
-msgstr "El número de factura del proveedor es obligatorio"
+msgstr "El nº de factura del proveedor es obligatorio"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:493
@@ -806,25 +817,25 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:937
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:938
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:904
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:908
 #, python-format
 msgid "You can not communicate the cancellation of this invoice at this moment because there is a job running!"
 msgstr "En este momento no puede comunicar la cancelación de esta factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:833
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:837
 #, python-format
 msgid "You can not communicate this invoice at this moment because there is a job running!"
 msgstr "En este momento no puede comunicar esta factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:924
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:953
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr "En este momento no puede poner en borrador esta factura porque hay un trabajo ejecutándose!"
@@ -833,7 +844,7 @@ msgstr "En este momento no puede poner en borrador esta factura porque hay un tr
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:480
 #, python-format
 msgid "You can't make a supplier simplified invoice."
-msgstr "No puede realizar una facturas simplificada a un proveedor."
+msgstr "No puede realizar una factura simplificada a un proveedor."
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:157

@@ -48,6 +48,7 @@
                                    readonly="1">
                                 <tree>
                                     <field name="date_created"/>
+                                    <field name="eta"/>
                                     <field name="date_done"/>
                                     <field name="state"/>
                                     <button type="object"
@@ -55,6 +56,12 @@
                                             string="Requeue"
                                             class="oe_highlight"
                                             attrs="{'invisible': [('state', '!=', 'failed')]}"/>
+                                    <button type="object"
+                                            name="do_now"
+                                            string="Send now"
+                                            class="oe_highlight"
+                                            attrs="{'invisible': [('state', '!=', 'pending'), ('eta', '!=', False)]}"
+                                    />
                                 </tree>
                             </field>
                         </group>
@@ -102,6 +109,7 @@
                                    readonly="1">
                                 <tree>
                                     <field name="date_created"/>
+                                    <field name="eta"/>
                                     <field name="date_done"/>
                                     <field name="state"/>
                                     <button type="object"
@@ -109,6 +117,20 @@
                                             string="Requeue"
                                             class="oe_highlight"
                                             attrs="{'invisible': [('state', '!=', 'failed')]}"/>
+                                     <button type="object"
+                                             name="cancel_now"
+                                             string="Cancel sending"
+                                             class="oe_highlight_cancel"
+                                             icon="gtk-stop"
+                                             attrs="{'invisible': [('state', 'not in', ['pending','enqueued'])]}"
+                                    />
+                                    <button type="object"
+                                            name="do_now"
+                                            string="Send now"
+                                            class="oe_highlight"
+                                            icon="gtk-go-forward"
+                                            attrs="{'invisible': ['|', ('state', '!=', 'pending'), ('eta', '=', False)]}"
+                                    />
                                 </tree>
                             </field>
                         </group>
@@ -125,7 +147,7 @@
                 <xpath expr="//group[@string='Group By']" position="before">
                     <group string="SII filters">
                         <filter name="sii_not_sent" string="SII not sent"
-                            domain="[('sii_state', '=', 'not_sent')]"
+                            domain="[('sii_state', '=', 'not_sent'), ('date_invoice', '>=', '2017-01-01')]"
                             help="Never sent to SII" />
                         <filter name="sii_sent" string="SII sent"
                             domain="[('sii_state', 'in', ['sent','cancelled','sent_modified','cancelled_modified'])]"
