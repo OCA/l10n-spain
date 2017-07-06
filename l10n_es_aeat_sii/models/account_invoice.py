@@ -501,7 +501,7 @@ class AccountInvoice(osv.Model):
     def _sii_check_exceptions(self,cr, uid, invoice):
         """Inheritable method for exceptions control when sending SII invoices.
         """
-        if not invoice.partner_id.vat:
+        if not invoice.partner_id.vat and not invoice.partner_id.sii_simplified_invoice:
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
@@ -522,6 +522,11 @@ class AccountInvoice(osv.Model):
             raise exceptions.Warning(
                 _("The supplier invoice number is required")
             )
+
+        if invoice.partner_id.sii_simplified_invoice and invoice.type[:2] == 'in':
+            raise exceptions.Warning(
+                _("You can't make a supplier simplified invoice.")
+                )
 
 
     def _get_account_registration_date(self, cr, uid, invoice):
@@ -547,6 +552,7 @@ class AccountInvoice(osv.Model):
         company = invoice.company_id
         ejercicio = invoice.period_id.fiscalyear_id.date_start[0:4]
         periodo = invoice.period_id.date_start[5:7]
+        partner = invoice.partner_id
 
         inv_dict = {
             "IDFactura": {
@@ -577,16 +583,29 @@ class AccountInvoice(osv.Model):
                     invoice.sii_registration_key.code
                 ),
                 "DescripcionOperacion": invoice.sii_description[0:500],
-                "Contraparte": {
-                    "NombreRazon": invoice.partner_id.name[0:120],
-                },
+                # "Contraparte": {
+                #     "NombreRazon": invoice.partner_id.name[0:120],
+                # },
                 "TipoDesglose": self._get_sii_out_taxes(cr, uid, invoice),
                 "ImporteTotal": invoice.amount_total * sign,
             }
 
+            if partner.sii_simplified_invoice:
+                inv_dict["FacturaExpedida"]['TipoFactura'] = 'R5' if invoice.type == 'out_refund' else 'F2'
+
+
+
             exp_dict = inv_dict['FacturaExpedida']
             # Uso condicional de IDOtro/NIF
-            exp_dict['Contraparte'].update(self._get_sii_identifier(cr, uid, invoice))
+            # exp_dict['Contraparte'].update(self._get_sii_identifier(cr, uid, invoice))
+
+            if not partner.sii_simplified_invoice:
+                # Simplified invoices don't have counterpart
+                exp_dict["Contraparte"] = {
+                    "NombreRazon": partner.name[0:120],
+                }
+                # Uso condicional de IDOtro/NIF
+                exp_dict['Contraparte'].update(self._get_sii_identifier(cr, uid, invoice))
 
             if invoice.type == 'out_refund':
                 exp_dict['TipoRectificativa'] = invoice.sii_refund_type
