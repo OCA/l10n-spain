@@ -852,13 +852,13 @@ class AccountInvoice(osv.Model):
             port_name = ''
             wsdl = ''
             if invoice.type in ['out_invoice', 'out_refund']:
-                self.pool['ir.config_parameter'].get_param(cr, uid,
+                wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
                                                            'l10n_es_aeat_sii.wsdl_out', False)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type in ['in_invoice', 'in_refund']:
-                self.pool['ir.config_parameter'].get_param(cr, uid,
+                wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
                                                            'l10n_es_aeat_sii.wsdl_in', False)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
