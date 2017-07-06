@@ -29,7 +29,7 @@
     },
     "depends": [
         "account_refund_original",
-        "l10n_es_aeat",
+        "l10n_es_aeat_mod349",
         # "account_invoice_currency",
     ],
     "data": [
@@ -46,6 +46,7 @@
         "security/ir.model.access.csv",
         "security/aeat_sii.xml",
         "views/product_view.xml",
-        "views/account_fiscal_position_view.xml"
+        "views/account_fiscal_position_view.xml",
+        "views/res_partner_view.xml"
     ],
 }
