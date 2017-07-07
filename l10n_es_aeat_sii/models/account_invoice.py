@@ -681,22 +681,22 @@ class AccountInvoice(osv.Model):
 
 
 
-        # Uso condicional de IDOtro/NIF
-        inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
-        inv_dict['FacturaRecibida']['Contraparte'].update(ident)
-        if invoice.type == 'in_refund':
-            rec_dict = inv_dict['FacturaRecibida']
-            rec_dict['TipoRectificativa'] = invoice.sii_refund_type
-            if invoice.refund_type == 'S':
-                base_rectificada = 0
-                cuota_rectificada = 0
-                for s in invoice.origin_invoices_ids:
-                    base_rectificada += s.amount_untaxed
-                    cuota_rectificada += s.amount_tax
-                rec_dict['ImporteRectificacion'] = {
-                    'BaseRectificada': base_rectificada,
-                    'CuotaRectificada': cuota_rectificada
-                }
+            # Uso condicional de IDOtro/NIF
+            inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
+            inv_dict['FacturaRecibida']['Contraparte'].update(ident)
+            if invoice.type == 'in_refund':
+                rec_dict = inv_dict['FacturaRecibida']
+                rec_dict['TipoRectificativa'] = invoice.sii_refund_type
+                if invoice.refund_type == 'S':
+                    base_rectificada = 0
+                    cuota_rectificada = 0
+                    for s in invoice.origin_invoices_ids:
+                        base_rectificada += s.amount_untaxed
+                        cuota_rectificada += s.amount_tax
+                    rec_dict['ImporteRectificacion'] = {
+                        'BaseRectificada': base_rectificada,
+                        'CuotaRectificada': cuota_rectificada
+                    }
         return inv_dict
 
     def _get_sii_invoice_dict(self, cr, uid, invoice):
@@ -867,7 +867,7 @@ class AccountInvoice(osv.Model):
             serv = client.bind('siiService', port_name)
             header = self._get_sii_header(cr, uid, invoice.id, company, cancellation=True)
             try:
-                inv_dict = self._get_sii_invoice_dict(cr, uid, invoice)
+                inv_dict = self._get_cancel_sii_invoice_dict(cr, uid, invoice)
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.AnulacionLRFacturasEmitidas(
                         header, inv_dict)
