@@ -687,7 +687,7 @@ class AccountInvoice(osv.Model):
             if invoice.type == 'in_refund':
                 rec_dict = inv_dict['FacturaRecibida']
                 rec_dict['TipoRectificativa'] = invoice.sii_refund_type
-                if invoice.refund_type == 'S':
+                if invoice.sii_refund_type == 'S':
                     base_rectificada = 0
                     cuota_rectificada = 0
                     for s in invoice.origin_invoices_ids:
