@@ -1010,11 +1010,8 @@ class AccountInvoice(models.Model):
                     "ID": vat,
                 }
             }
-        elif gen_type == 3:
-            if country_code != 'ES':
-                id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
-            else:
-                id_type = '06'
+        elif gen_type == 3 and country_code != 'ES':
+            id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
             return {
                 "IDOtro": {
                     "CodigoPais": country_code,
@@ -1022,6 +1019,8 @@ class AccountInvoice(models.Model):
                     "ID": vat,
                 },
             }
+        elif gen_type == 3:
+            return {"NIF": vat[2:]}
 
     @api.multi
     def _get_sii_exempt_cause(self, product):
