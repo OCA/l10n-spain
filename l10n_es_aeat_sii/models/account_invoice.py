@@ -8,8 +8,7 @@ import logging
 
 from odoo import models, exceptions, fields, api, _
 from requests import Session
-
-from datetime import date
+from datetime import date, datetime, timedelta
 from odoo.modules.registry import RegistryManager
 from odoo.tools.float_utils import float_round
 
@@ -62,6 +61,7 @@ class AccountInvoice(models.Model):
                 [('code', '=', '01'), ('type', '=', 'sale')], limit=1)
         return key
 
+    reg_date = fields.Date('Registration Date', readonly=True, copy=False)
     sii_manual_description = fields.Text(
         string='SII manual description', size=500, copy=False,
     )
@@ -122,7 +122,7 @@ class AccountInvoice(models.Model):
             }
 
     @api.onchange('fiscal_position_id')
-    def onchange_fiscal_position_id_l10n_es_aeat_sii(self):
+    def onchange_fiscal_position_l10n_es_aeat_sii(self):
         for invoice in self.filtered('fiscal_position_id'):
             if 'out' in invoice.type:
                 key = invoice.fiscal_position_id.sii_registration_key_sale
@@ -136,7 +136,7 @@ class AccountInvoice(models.Model):
         invoice = super(AccountInvoice, self).create(vals)
         if vals.get('fiscal_position_id') and \
                 not vals.get('sii_registration_key'):
-            invoice.onchange_fiscal_position_id_l10n_es_aeat_sii()
+            invoice.onchange_fiscal_position_l10n_es_aeat_sii()
         return invoice
 
     @api.multi
@@ -155,7 +155,7 @@ class AccountInvoice(models.Model):
                 )
             if (invoice.type in ['in_invoice', 'in refund']):
                 if 'partner_id' in vals:
-                    correct_partners = invoice.partner_id.commercial_partner_id
+                    correct_partners = invoice.commercial_partner_id
                     correct_partners |= correct_partners.child_ids
                     if vals['partner_id'] not in correct_partners.ids:
                         raise exceptions.Warning(
@@ -390,7 +390,7 @@ class AccountInvoice(models.Model):
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
         country_code = (
-            self.partner_id.commercial_partner_id.country_id.code or
+            self.commercial_partner_id.country_id.code or
             (self.partner_id.vat or '')[:2]
         ).upper()
         if (('DesgloseTipoOperacion' in taxes_dict and
@@ -462,7 +462,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
         country_code = (
-            self.partner_id.commercial_partner_id.country_id.code or
+            self.commercial_partner_id.country_id.code or
             (self.partner_id.vat or '')[:2]
         ).upper()
         if (gen_type != 3 or country_code == 'ES') and not \
@@ -541,7 +541,7 @@ class AccountInvoice(models.Model):
                 "DescripcionOperacion": self.sii_description,
                 "Contraparte": {
                     "NombreRazon": (
-                        self.partner_id.commercial_partner_id.name[0:120]
+                        self.commercial_partner_id.name[0:120]
                     )
                 },
                 "TipoDesglose": self._get_sii_out_taxes(),
@@ -574,7 +574,10 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.date_invoice)
-        reg_date = self._change_date_format(self.date)
+        if self.reg_date:
+            reg_date = self._change_date_format(self.reg_date)
+        else:
+            reg_date = self._change_date_format(self.date)
         ejercicio = fields.Date.from_string(self.date).year
         periodo = '%02d' % fields.Date.from_string(self.date).month
         desglose_factura, tax_amount = self._get_sii_in_taxes()
@@ -596,7 +599,7 @@ class AccountInvoice(models.Model):
         if cancel:
             inv_dict['IDFactura']['IDEmisorFactura'].update(
                 {'NombreRazon': (
-                    self.partner_id.commercial_partner_id.name[0:120]
+                    self.commercial_partner_id.name[0:120]
                     )}
             )
         else:
@@ -614,7 +617,7 @@ class AccountInvoice(models.Model):
                 "DesgloseFactura": desglose_factura,
                 "Contraparte": {
                     "NombreRazon": (
-                        self.partner_id.commercial_partner_id.name[0:120]
+                        self.commercial_partner_id.name[0:120]
                     )
                 },
                 "FechaRegContable": reg_date,
@@ -706,7 +709,12 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                if invoice.type  in['out_invoice','out_refund']:
+                    date_ini = fields.Date.\
+                            from_string(invoice.date_invoice)
+                else:
+                    date_ini = datetime.now()
+                eta = company._get_sii_eta(date_ini)
                 new_delay = self.with_delay(eta=eta).confirm_one_invoice()
                 queue_ids = queue_obj.search([
                     ('uuid', '=', new_delay.uuid)
@@ -779,7 +787,11 @@ class AccountInvoice(models.Model):
     @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
+
         for invoice in self.filtered('sii_enabled'):
+            if not invoice.reg_date and invoice.type in ['in_invoice',
+                                                      'in_refund']:
+                invoice.reg_date = fields.Date.context_today(self)
             if invoice.sii_state == 'sent':
                 invoice.sii_state = 'sent_modified'
             elif invoice.sii_state == 'cancelled':
@@ -881,7 +893,12 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._cancel_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                if invoice.type in ['out_invoice', 'out_refund']:
+                    date_ini = fields.Date. \
+                        from_string(invoice.date_invoice)
+                else:
+                    date_ini = datetime.now()
+                eta = company._get_sii_eta(date_ini)
                 new_delay = self.with_delay(eta=eta).cancel_one_invoice()
                 queue_ids = queue_obj.search([
                     ('uuid', '=', new_delay.uuid)
@@ -954,7 +971,7 @@ class AccountInvoice(models.Model):
         else:
             vat = 'NO_DISPONIBLE'
         country_code = (
-            self.partner_id.commercial_partner_id.country_id.code or
+            self.commercial_partner_id.country_id.code or
             (self.partner_id.vat or '')[:2]
         ).upper()
         if gen_type == 1:
@@ -1094,7 +1111,8 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_sii_sign(self):
         self.ensure_one()
-        return -1.0 if self.sii_refund_type == 'I' else 1.0
+        return -1.0 if self.sii_refund_type == 'I' and 'refund' in \
+                                                       self.type else 1.0
 
     @job
     @api.multi

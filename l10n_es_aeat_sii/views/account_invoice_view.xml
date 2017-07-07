@@ -21,6 +21,10 @@
                                 ('sii_state', 'not in', ['sent','sent_modified'])]}" />
                 </button>
 
+                <field name="date_due" position="after">
+                    <field name="reg_date"/>
+                </field>
+
                 <field name="reference" position="attributes">
                     <attribute name="attrs">{'required':[('state','not in',['open','paid','cancel'])]}</attribute>
                 </field>

@@ -61,7 +61,7 @@ class ResCompany(models.Model):
     sent_time = fields.Float(string="Sent time")
     delay_time = fields.Float(string="Delay time")
 
-    def _get_sii_eta(self):
+    def _get_sii_eta(self, date_ini=None):
         if self.send_mode == 'fixed':
             offset = datetime.now(pytz.timezone(
                 self._context.get('tz'))).strftime('%z')
@@ -75,6 +75,8 @@ class ResCompany(models.Model):
             now = now.replace(hour=hour, minute=minute)
             return now
         elif self.send_mode == 'delayed':
-            return datetime.now() + timedelta(seconds=self.delay_time * 3600)
+            if not date_ini:
+                date_ini = datetime.now()
+            return date_ini + timedelta(seconds=self.delay_time * 3600)
         else:
             return None
