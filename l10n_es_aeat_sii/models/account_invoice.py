@@ -126,7 +126,7 @@ class AccountInvoice(osv.Model):
         'sii_refund_type': fields.selection(
             selection=[('S', 'By substitution'), ('I', 'By differences')],
             string="Refund Type"),
-        'sii_registration_key': fields.many2one('aeat.sii.mapping.registration.keys', "Registration key", required=True),
+        'sii_registration_key': fields.many2one('aeat.sii.mapping.registration.keys', "Registration key", required=False),
         'sii_csv': fields.char(string='SII CSV', size=64),
         'sii_enabled': fields.function(_compute_sii_enabled, type='boolean', string='Enable SII'),
 
@@ -227,7 +227,7 @@ class AccountInvoice(osv.Model):
     def unlink(self,cr, uid, ids, context=None):
         """A registered invoice at the SII cannot be deleted"""
         for invoice in self.browse(cr, uid, ids):
-            if invoice.sii_state != 'not_sent':
+            if invoice.sii_state in ['sent','sent_modified','cancelled', 'cancelled_modified']:
                 raise exceptions.Warning(
                     _("You cannot delete an invoice already registered at the "
                       "SII.")
