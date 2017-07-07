@@ -1012,12 +1012,12 @@ class AccountInvoice(models.Model):
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
         self.ensure_one()
-        partner_ident = self.fiscal_position.sii_partner_identification_type
+        partner_ident = self.fiscal_position_id.sii_partner_identification_type
         if partner_ident:
-            res = int(partner_ident)
-        elif self.fiscal_position.name == u'Régimen Intracomunitario':
+            res = int(partner_ide_nt)
+        elif self.fiscal_position_id.name == u'Régimen Intracomunitario':
             res = 2
-        elif (self.fiscal_position.name ==
+        elif (self.fiscal_position_id.name ==
               u'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
             res = 3
         else:
