@@ -547,8 +547,8 @@ class AccountInvoice(models.Model):
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
                     'R4' if ((self.type == 'out_refund' and
-                            self.sii_refund_type == 'I') or
-                            self.sii_substitution_refund) else 'F1'
+                              self.sii_refund_type == 'I') or
+                             self.sii_substitution_refund) else 'F1'
                 ),
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
@@ -622,8 +622,8 @@ class AccountInvoice(models.Model):
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
                     'R4' if ((self.type == 'in_refund' and
-                            self.sii_refund_type == 'I') or
-                            self.sii_substitution_refund) else 'F1'
+                              self.sii_refund_type == 'I') or
+                             self.sii_substitution_refund) else 'F1'
                 ),
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
