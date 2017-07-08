@@ -41,10 +41,24 @@ class AccountInvoiceRefund(models.TransientModel):
         string="Supplier Invoice Number",
     )
 
+    @api.onchange('filter_refund')
+    def onchange_filter_refund(self):
+        if not self.sii_refund_type_required:
+            return
+        self.sii_refund_type = 'S' if self.filter_refund == 'modify' else 'I'
+
     @api.multi
     def compute_refund(self, mode='refund'):
         obj = self.with_context(
             sii_refund_type=self.sii_refund_type,
             supplier_invoice_number=self.supplier_invoice_number_refund,
         )
-        return super(AccountInvoiceRefund, obj).compute_refund(mode)
+        result = super(AccountInvoiceRefund, obj).compute_refund(mode)
+        if mode not in ['modify']:
+            return result
+        created_inv_ids = [t[2] for t in result['domain'] if t[0] == 'id'][0]
+        for invoice in self.env['account.invoice'].browse(created_inv_ids):
+            if invoice.type not in ['out_invoice', 'in_invoice']:
+                continue
+            invoice.sii_substitution_refund = True
+        return result

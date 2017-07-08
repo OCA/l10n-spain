@@ -98,6 +98,11 @@ class AccountInvoice(models.Model):
         string="SII Refund Type", default=_default_sii_refund_type,
         oldname='refund_type',
     )
+    sii_substitution_refund = fields.Boolean(
+        string="Is a refund by substitution?", copy=False,
+        help="Check when this invoice has been registered as the final "
+             "correct invoice of a refund process by substitution"
+    )
     sii_registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
         string="SII registration key", default=_default_sii_registration_key,
@@ -541,7 +546,9 @@ class AccountInvoice(models.Model):
             inv_dict["FacturaExpedida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
-                    'R4' if self.type == 'out_refund' else 'F1'
+                    'R4' if ((self.type == 'out_refund' and
+                              self.sii_refund_type == 'I') or
+                             self.sii_substitution_refund) else 'F1'
                 ),
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
@@ -558,18 +565,14 @@ class AccountInvoice(models.Model):
             exp_dict = inv_dict['FacturaExpedida']
             # Uso condicional de IDOtro/NIF
             exp_dict['Contraparte'].update(self._get_sii_identifier())
-            if self.type == 'out_refund':
+            if self.type == 'out_refund' and self.sii_refund_type == 'I':
                 exp_dict['TipoRectificativa'] = self.sii_refund_type
-                if self.sii_refund_type == 'S':
-                    exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': sum(
-                            self.
-                            mapped('origin_invoices_ids.cc_amount_untaxed')
-                        ),
-                        'CuotaRectificada': sum(
-                            self.mapped('origin_invoices_ids.cc_amount_tax')
-                        ),
-                    }
+            elif self.sii_substitution_refund:
+                exp_dict['TipoRectificativa'] = 'S'
+                exp_dict['ImporteRectificacion'] = {
+                    'BaseRectificada': 0,
+                    'CuotaRectificada': 0,
+                }
         return inv_dict
 
     @api.multi
@@ -618,7 +621,9 @@ class AccountInvoice(models.Model):
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
-                    'R4' if self.type == 'in_refund' else 'F1'
+                    'R4' if ((self.type == 'in_refund' and
+                              self.sii_refund_type == 'I') or
+                             self.sii_substitution_refund) else 'F1'
                 ),
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
@@ -635,22 +640,16 @@ class AccountInvoice(models.Model):
                 "CuotaDeducible": float_round(tax_amount * sign, 2),
             }
             # Uso condicional de IDOtro/NIF
-            inv_dict['FacturaRecibida']['Contraparte'].update(ident)
-            if self.type == 'in_refund':
-                rec_dict = inv_dict['FacturaRecibida']
+            rec_dict = inv_dict['FacturaRecibida']
+            rec_dict['Contraparte'].update(ident)
+            if self.type == 'in_refund' and self.sii_refund_type == 'I':
                 rec_dict['TipoRectificativa'] = self.sii_refund_type
-                refund_tax_amount = sum([
-                    x._get_sii_in_taxes()[1]
-                    for x in self.origin_invoices_ids
-                ])
-                if self.sii_refund_type == 'S':
-                    rec_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': sum(
-                            self.
-                            mapped('origin_invoices_ids.cc_amount_untaxed')
-                        ),
-                        'CuotaRectificada': refund_tax_amount,
-                    }
+            elif self.sii_substitution_refund:
+                rec_dict['TipoRectificativa'] = 'S'
+                rec_dict['ImporteRectificacion'] = {
+                    'BaseRectificada': 0,
+                    'CuotaRectificada': 0,
+                }
         return inv_dict
 
     @api.multi
@@ -1109,7 +1108,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_sii_sign(self):
         self.ensure_one()
-        return -1.0 if self.sii_refund_type == 'I' else 1.0
+        return -1.0 if self.type in ['in_refund', 'out_refund'] else 1.0
 
 
 class AccountInvoiceLine(models.Model):
