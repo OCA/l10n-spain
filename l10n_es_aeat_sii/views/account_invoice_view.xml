@@ -44,26 +44,11 @@
                         </group>
 
                         <group string="Connector Jobs" groups="l10n_es_aeat.group_account_aeat">
-                            <field name="invoice_jobs_ids" nolabel="1"
-                                   readonly="1">
-                                <tree>
-                                    <field name="date_created"/>
-                                    <field name="eta"/>
-                                    <field name="date_done"/>
-                                    <field name="state"/>
-                                    <button type="object"
-                                            name="requeue"
-                                            string="Requeue"
-                                            class="oe_highlight"
-                                            attrs="{'invisible': [('state', '!=', 'failed')]}"/>
-                                    <button type="object"
-                                            name="do_now"
-                                            string="Send now"
-                                            class="oe_highlight"
-                                            attrs="{'invisible': [('state', '!=', 'pending'), ('eta', '!=', False)]}"
-                                    />
-                                </tree>
-                            </field>
+                            <field name="invoice_jobs_ids"
+                                   nolabel="1"
+                                   readonly="1"
+                                   context="{'tree_view_ref': 'l10n_es_aeat_sii.view_queue_job_sii'}"
+                            />
                         </group>
                     </page>
                 </notebook>
@@ -105,34 +90,11 @@
                         </group>
 
                         <group string="Connector Jobs" groups="l10n_es_aeat.group_account_aeat">
-                            <field name="invoice_jobs_ids" nolabel="1"
-                                   readonly="1">
-                                <tree>
-                                    <field name="date_created"/>
-                                    <field name="eta"/>
-                                    <field name="date_done"/>
-                                    <field name="state"/>
-                                    <button type="object"
-                                            name="requeue"
-                                            string="Requeue"
-                                            class="oe_highlight"
-                                            attrs="{'invisible': [('state', '!=', 'failed')]}"/>
-                                     <button type="object"
-                                             name="cancel_now"
-                                             string="Cancel sending"
-                                             class="oe_highlight_cancel"
-                                             icon="gtk-stop"
-                                             attrs="{'invisible': [('state', 'not in', ['pending','enqueued'])]}"
-                                    />
-                                    <button type="object"
-                                            name="do_now"
-                                            string="Send now"
-                                            class="oe_highlight"
-                                            icon="gtk-go-forward"
-                                            attrs="{'invisible': ['|', ('state', '!=', 'pending'), ('eta', '=', False)]}"
-                                    />
-                                </tree>
-                            </field>
+                            <field name="invoice_jobs_ids"
+                                   nolabel="1"
+                                   readonly="1"
+                                   context="{'tree_view_ref': 'l10n_es_aeat_sii.view_queue_job_sii'}"
+                            />
                         </group>
                     </page>
                 </notebook>
