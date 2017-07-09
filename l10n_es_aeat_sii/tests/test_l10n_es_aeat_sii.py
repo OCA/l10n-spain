@@ -146,7 +146,6 @@ class TestL10nEsAeatSii(common.SavepointCase):
                         'DetalleIVA': [
                             {
                                 'BaseImponible': 100.0,
-                                'CuotaRepercutida': 0,
                                 'CuotaSoportada': 10.0,
                                 'TipoImpositivo': '10.0',
                             },
@@ -199,6 +198,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.invoice.type = 'in_refund'
         self.invoice.sii_refund_type = 'S'
         self.invoice.reference = 'sup0001'
+        self.invoice.compute_taxes()
         self.invoice.origin_invoice_ids.type = 'in_invoice'
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_refund = self._get_invoices_test('R4', '01')
