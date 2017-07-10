@@ -5,6 +5,7 @@
 # Copyright 2017 Otherway - Pedro Rodríguez Gil
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # Copyright 2017 Comunitea - Omar Castiñeira <omar@comunitea.com>
+# Copyright 2017 Ozono Multimedia - Iván Antón <ozono@ozonomultimedia.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -994,7 +995,8 @@ class AccountInvoice(models.Model):
             (self.partner_id.vat or '')[:2]
         ).upper()
         if gen_type == 1:
-            if '1117' in (self.sii_send_error or ''):
+            if ('1117' in (self.sii_send_error or '') or
+                    '2011' in (self.sii_send_error or '')):
                 return {
                     "IDOtro": {
                         "CodigoPais": country_code,
