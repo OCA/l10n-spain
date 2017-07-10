@@ -125,8 +125,8 @@ class L10nEsAeatReport(models.AbstractModel):
         domain="[('state', '=', 'iban'), ('company_id', '=', company_id)]")
 
     _sql_constraints = [
-        ('name_uniq', 'unique(name)',
-         'AEAT report identifier must be unique'),
+        ('name_uniq', 'unique(name, company_id)',
+         'AEAT report identifier must be unique by company'),
     ]
 
     @api.one
