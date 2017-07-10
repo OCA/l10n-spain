@@ -935,12 +935,19 @@ class AccountInvoice(osv.Model):
         Returns:
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
-        if invoice.fiscal_position.name == u'Régimen Intracomunitario':
-            return 2
-        elif invoice.fiscal_position.name == u'Régimen Extracomunitario / Canarias, Ceuta y Melilla':
-            return 3
+        partner_ident = invoice.fiscal_position.sii_partner_identification_type
+        if partner_ident:
+            res = int(partner_ident)
+        elif invoice.fiscal_position.name == u'Régimen Intracomunitario':
+            res = 2
+        elif (invoice.fiscal_position.name ==
+                  u'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
+            res = 3
         else:
-            return 1
+            res = 1
+
+        return res
+
 
     def _get_sii_identifier(self, cr, uid, invoice):
         """Get the SII structure for a partner identifier depending on the
@@ -954,9 +961,15 @@ class AccountInvoice(osv.Model):
             ).upper()
         else:
             vat = 'NO_DISPONIBLE'
-        country_code = (
-            (invoice.partner_id.vat or '')[:2]
-        ).upper()
+        country_code = False
+        for address in invoice.partner_id.address:
+            if address.type == 'invoice':
+                country_code = address.country_id.code or ''
+                break;
+        if not country_code and invoice.partner_id.vat:
+            country_code = invoice.partner_id.vat[:2].upper()
+        elif not country_code:
+            country_code = ''
         if gen_type == 1:
             if '1117' in (invoice.sii_send_error or ''):
                 return {
@@ -985,11 +998,8 @@ class AccountInvoice(osv.Model):
                     "ID": vat,
                 }
             }
-        elif gen_type == 3:
-            if country_code != 'ES':
-                id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
-            else:
-                id_type = '06'
+        elif gen_type == 3 and country_code != 'ES':
+            id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
             return {
                 "IDOtro": {
                     "CodigoPais": country_code,
@@ -997,6 +1007,11 @@ class AccountInvoice(osv.Model):
                     "ID": vat,
                 },
             }
+        elif gen_type == 3:
+
+            return {
+                     "NIF": vat[2:]
+                     }
 
     def _get_sii_exempt_cause(self, cr, uid, product, invoice):
         """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII."""
@@ -1045,7 +1060,7 @@ class AccountInvoiceLine(osv.Model):
 
     def _get_sii_line_price_subtotal(self, cr, uid, line):
         """Obtain the effective invoice line price after discount."""
-        return line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+        return round(line.price_unit * (1 - (line.discount or 0.0) / 100.0), 2)
 
     def _get_sii_tax_line_req(self, cr, uid, line):
         """Get any possible tax amounts for 'Recargo equivalencia'."""

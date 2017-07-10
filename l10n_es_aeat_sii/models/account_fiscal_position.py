@@ -32,12 +32,21 @@ class AccountFiscalPosition(osv.Model):
         'sii_exempt_cause': fields.selection(
             string="SII Exempt Cause",
             selection=[('none', 'None'),
-                   ('E1', 'E1'),
-                   ('E2', 'E2'),
-                   ('E3', 'E3'),
-                   ('E4', 'E4'),
-                   ('E5', 'E5'),
-                   ('E6', 'E6')]),
+                       ('E1', '[E1] Art. 20: Operaciones interiores exentas'),
+                       ('E2', '[E2] Art. 21: Exenciones en las exportaciones de '
+                              'bienes'),
+                       ('E3', '[E3] Art. 22: Exenciones en las operaciones '
+                              'asimiladas a las exportaciones'),
+                       ('E4', '[E4] Art. 23 y 24: Exenciones relativas a '
+                              'regímenes aduaneros y fiscales. Exenciones zonas '
+                              'francas, depósitos francos y otros depósitos.'),
+                       ('E5', '[E5] Art. 25: Exenciones en las entregas de bienes '
+                              'destinados a otro estado miembro.'),
+                       ('E6', '[E6] Otros')]),
+
+        'sii_partner_identification_type' : fields.selection(
+            selection=[('1', 'Nacional'), ('2', 'Intracomunitario'), ('3', 'Exportación')],
+            string="Tipo de Identificación",)
 
     }
 
@@ -45,7 +54,7 @@ class AccountFiscalPosition(osv.Model):
         default_dict = self.pool['product.template'].default_get(['sii_exempt_cause'])
         return default_dict.get('sii_exempt_cause')
 
-    _defaults = {
-                    'sii_no_taxable_causa': 'ImportePorArticulos7_14_Otros',
-                    'sii_exempt_cause': _default_sii_exempt_cause
-                },
+    # _defaults = {
+    #                 'sii_no_taxable_cause': 'ImportePorArticulos7_14_Otros',
+    #                 'sii_exempt_cause': 'none'
+    #             },
