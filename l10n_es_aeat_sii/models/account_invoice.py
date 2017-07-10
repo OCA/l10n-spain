@@ -85,7 +85,7 @@ class AccountInvoice(osv.Model):
             if fixed_desc and description:
                 description += ' | '
             description += fixed_desc
-        return description[0:500] or '/'
+        return description[0:500] or method_desc or '/'
 
 
     def _compute_sii_enabled(self, cr, uid, ids, name, arg={}, context=None):
