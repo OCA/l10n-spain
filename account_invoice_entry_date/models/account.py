@@ -2,8 +2,7 @@
 # Copyright 2004-2010 ISA srl (<http://www.isa.it>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import time
-from openerp import fields, models
+from openerp import models, fields, api
 from openerp.tools.translate import _
 from openerp.exceptions import Warning as UserError
 
@@ -23,109 +22,60 @@ class AccountInvoice(models.Model):
         help="Keep empty to use the current date",
         copy=False)
 
-    def _get_period_from_dates(self, cr, uid, invoice):
-        period_model = self.pool['account.period']
-
-        date_start = invoice.registration_date or invoice.date_invoice \
-            or time.strftime('%Y-%m-%d')
-        date_stop = invoice.registration_date or invoice.date_invoice \
-            or time.strftime('%Y-%m-%d')
-
-        if invoice.period_id:
-            period_id = invoice.period_id.id
+    def _get_period_from_dates(self):
+        self.ensure_one()
+        if self.period_id:
+            period_id = self.period_id
         else:
-            period_ids = period_model.search(cr, uid, [
-                ('date_start', '<=', date_start),
-                ('date_stop', '>=', date_stop),
-                ('company_id', '=', invoice.company_id.id),
-                ('special', '!=', True),
-            ])
-            if period_ids:
-                period_id = period_ids[0]
-            else:
-                period_id = False
-        return period_id, date_start, date_stop
+            date = self.registration_date or self.date_invoice \
+                   or fields.Date.today()
+            period_id = self.env['account.period'].find(dt=date)
+        return period_id
 
-    def action_move_create(self, cr, uid, ids, context=None):
-
-        if not context:
-            context = {}
-
-        sequence_model = self.pool['ir.sequence']
-
-        for inv in self.browse(cr, uid, ids):
+    @api.multi
+    def action_move_create(self):
+        for inv in self:
             if inv.type in ('in_invoice', 'in_refund'):
                 date_invoice = inv.date_invoice
                 reg_date = inv.registration_date
                 if not inv.registration_date:
                     if not inv.date_invoice:
-                        reg_date = time.strftime('%Y-%m-%d')
+                        reg_date = fields.Date.today()
                     else:
                         reg_date = inv.date_invoice
-
                 if date_invoice and reg_date and date_invoice > reg_date:
                     raise UserError(
                         _("The invoice date cannot be later than"
                           " the date of registration!"))
-
-                period_id, date_start, date_stop = self._get_period_from_dates(
-                    cr, uid, inv)
-                if not period_id:
-                    raise Warning(
-                        _("Can't find a non special period for %s - %s (%s)")
-                        % (date_start, date_stop, inv.company_id.name)
-                    )
-
+                period_id = inv._get_period_from_dates()
                 invoice_values = {'registration_date': reg_date,
-                                  'period_id': period_id}
-
+                                  'period_id': period_id.id}
                 # ----- For in invoice or refund, force the sequence based on
                 #       registration date
                 if not inv.internal_number:
-                    period = self.pool['account.period'].browse(
-                        cr, uid, period_id, context)
+                    sequence_model = self.pool.get('ir.sequence')
                     invoice_number_context = {
-                        'fiscalyear_id': period.fiscalyear_id.id}
+                        'fiscalyear_id': period_id.fiscalyear_id.id
+                    }
                     internal_number = sequence_model.next_by_id(
-                        cr, uid, inv.journal_id.sequence_id.id,
-                        invoice_number_context)
+                        self._cr, self._uid, inv.journal_id.sequence_id.id,
+                        invoice_number_context
+                    )
                     invoice_values.update({'internal_number': internal_number})
+                inv.write(invoice_values)
 
-                self.write(cr, uid, [inv.id], invoice_values)
+        super(AccountInvoice, self).action_move_create()
 
-        super(AccountInvoice, self).action_move_create(
-            cr, uid, ids, context=context)
-
-        account_move_model = self.pool['account.move']
-
-        for inv in self.browse(cr, uid, ids):
+        for inv in self:
             if inv.type in ('in_invoice', 'in_refund'):
-
                 mov_date = inv.registration_date or inv.date_invoice or \
-                    time.strftime('%Y-%m-%d')
-
-                account_move_model.write(
-                    cr, uid, [inv.move_id.id], {'state': 'draft'})
-
-                period_id, date_start, date_stop = self._get_period_from_dates(
-                    cr, uid, inv)
-
-                sql = (
-                    "update account_move_line "
-                    "set period_id = {}, date = '{}'"
-                    "where move_id = {}").format(period_id,
-                                                 mov_date,
-                                                 inv.move_id.id)
-                cr.execute(sql)
-
-                account_move_model.write(
-                    cr, uid, [inv.move_id.id],
-                    {'period_id': period_id, 'date': mov_date})
-
-                account_move_model.write(
-                    cr, uid, [inv.move_id.id], {'state': 'posted'})
-
-        self._log_event(cr, uid, ids)
+                           fields.Date.today()
+                inv.move_id.button_cancel()
+                period_id = inv._get_period_from_dates()
+                inv.move_id.write(
+                    {'period_id': period_id.id, 'date': mov_date}
+                )
+                inv.move_id.button_validate()
         return True
 
     def _get_account_registration_date(self):
