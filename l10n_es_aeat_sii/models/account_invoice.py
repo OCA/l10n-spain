@@ -742,7 +742,7 @@ class AccountInvoice(models.Model):
                     session, 'account.invoice', invoice.id,
                     eta=eta if not invoice.sii_send_failed else False,
                 )
-                invoice.invoice_jobs_ids |= queue_obj.search(
+                invoice.sudo().invoice_jobs_ids |= queue_obj.search(
                     [('uuid', '=', new_delay)], limit=1,
                 )
 
@@ -921,7 +921,7 @@ class AccountInvoice(models.Model):
                 queue_ids = queue_obj.search([
                     ('uuid', '=', new_delay)
                 ], limit=1)
-                invoice.invoice_jobs_ids |= queue_ids
+                invoice.sudo().invoice_jobs_ids |= queue_ids
 
     @api.multi
     def _cancel_invoice_jobs(self):
