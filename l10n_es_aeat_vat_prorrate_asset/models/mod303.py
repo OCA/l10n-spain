@@ -10,6 +10,9 @@ class L10nEsAeatMod303Report(models.Model):
 
     def _calculate_casilla_44(self):
         super(L10nEsAeatMod303Report, self)._calculate_casilla_44()
+        if (self.vat_prorrate_type != 'general' or
+                self.period_type not in ('4T', '12')):
+            return
         year = fields.Date.from_string(self.fiscalyear_id.date_start).year
         assets = self.env['account.asset.asset'].search(
             [('purchase_date', 'like', '{}%'.format(year))]
