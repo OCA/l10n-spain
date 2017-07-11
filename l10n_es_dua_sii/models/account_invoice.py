@@ -3,17 +3,17 @@
 # Copyright 2017 Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     @api.multi
-    @api.depends('tax_line')
+    @api.depends('tax_line_ids')
     def _compute_sii_enabled(self):
         for invoice in self:
-            if invoice.fiscal_position.name == u'Importación con DUA' and \
+            if invoice.fiscal_position_id.name == u'Importación con DUA' and \
                     not invoice.sii_dua_invoice:
                 invoice.sii_enabled = False
             else:
@@ -22,10 +22,13 @@ class AccountInvoice(models.Model):
     @api.multi
     def _compute_dua_invoice(self):
         for invoice in self:
-            if invoice.fiscal_position.name == u'Importación con DUA' and \
-                    invoice.tax_line.\
-                    filtered(lambda x: x.tax_code_id.code in
-                             ['DIBYSCC21', 'DIBYSCC10', 'DIBYSCC04']):
+            if invoice.fiscal_position_id.name == u'Importación con DUA' and \
+                    invoice.tax_line_ids.\
+                    filtered(lambda x: x.tax_id.description in
+                             ['P_IVA21_IBC', 'P_IVA10_IBC', 'P_IVA4_IBC',
+                              'P_IVA21_IBI', 'P_IVA10_IBI', 'P_IVA4_IBI',
+                              'P_IVA21_SP_EX', 'P_IVA10_SP_EX',
+                              'P_IVA4_SP_EX']):
                 invoice.sii_dua_invoice = True
             else:
                 invoice.sii_dua_invoice = False
@@ -34,7 +37,7 @@ class AccountInvoice(models.Model):
                                      compute="_compute_dua_invoice")
 
     @api.multi
-    def _get_sii_invoice_dict_in(self):
+    def _get_sii_invoice_dict_in(self, cancel=False):
         """
         Según la documentación de la AEAT, la operación de importación se
         registra con TipoFactura = F5, sin FechaOperacion y con el NIF de la
@@ -44,7 +47,7 @@ class AccountInvoice(models.Model):
         http://bit.ly/2rGWiAI
 
         """
-        res = super(AccountInvoice, self)._get_sii_invoice_dict_in()
+        res = super(AccountInvoice, self)._get_sii_invoice_dict_in(cancel)
         if res.get('FacturaRecibida') and self.sii_dua_invoice:
             res['FacturaRecibida']['TipoFactura'] = 'F5'
             res['FacturaRecibida'].pop('FechaOperacion', None)
