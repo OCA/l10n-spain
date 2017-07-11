@@ -5,6 +5,7 @@
 {
     "name": "Suministro Inmediato de Información de importaciones con DUA",
     "version": "10.0.1.0.1",
+
     "category": "Accounting & Finance",
     "website": "https://odoo-community.org/",
     "author": "Studio73, "
