@@ -49,9 +49,9 @@ addon | version | summary
 [l10n_es_aeat_mod340_type0](l10n_es_aeat_mod340_type0/) | 8.0.1.0.0 | Generación de fichero modelo 340. Registro tipo 0
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 8.0.1.5.0 | Modelo 347 AEAT
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.2.0 | Modelo 349 AEAT
-[l10n_es_aeat_sii](l10n_es_aeat_sii/) | 8.0.2.7.0 | Suministro Inmediato de Información en el IVA
+[l10n_es_aeat_sii](l10n_es_aeat_sii/) | 8.0.2.7.1 | Suministro Inmediato de Información en el IVA
 [l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 8.0.2.0.1 | AEAT - Prorrata de IVA
-[l10n_es_aeat_vat_prorrate_asset](l10n_es_aeat_vat_prorrate_asset/) | 8.0.1.0.0 | AEAT - Prorrata de IVA - Extensión para los activos
+[l10n_es_aeat_vat_prorrate_asset](l10n_es_aeat_vat_prorrate_asset/) | 8.0.1.0.1 | AEAT - Prorrata de IVA - Extensión para los activos
 [l10n_es_cnae](l10n_es_cnae/) | 8.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
 [l10n_es_crm_lead_trade_name](l10n_es_crm_lead_trade_name/) | 8.0.1.0.0 | Add trade name field to leads
 [l10n_es_dua](l10n_es_dua/) | 8.0.1.0.0 | Importaciones con DUA
