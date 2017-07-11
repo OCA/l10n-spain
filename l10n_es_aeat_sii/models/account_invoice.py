@@ -8,6 +8,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
+import json
 
 from datetime import date
 from requests import Session
@@ -85,6 +86,12 @@ class AccountInvoice(models.Model):
     )
     sii_csv = fields.Char(string='SII CSV', copy=False, readonly=True)
     sii_return = fields.Text(string='SII Return', copy=False, readonly=True)
+    sii_header_sent = fields.Text(
+        string="SII last header sent", copy=False, readonly=True,
+    )
+    sii_content_sent = fields.Text(
+        string="SII last content sent", copy=False, readonly=True,
+    )
     sii_send_error = fields.Text(
         string='SII Send Error', readonly=True, copy=False,
     )
@@ -773,6 +780,8 @@ class AccountInvoice(models.Model):
             header = invoice._get_sii_header(tipo_comunicacion)
             try:
                 inv_dict = invoice._get_sii_invoice_dict()
+                invoice.sii_header_sent = json.dumps(header, indent=4)
+                invoice.sii_content_sent = json.dumps(inv_dict, indent=4)
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
                         header, inv_dict)
