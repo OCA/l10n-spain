@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_dua_sii
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2017-07-01 01:15+0000\n"
 "PO-Revision-Date: 2017-07-01 01:15+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/teams/23907/es_CR/)\n"
+"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/"
+"teams/23907/es_CR/)\n"
+"Language: es_CR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_CR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_dua_sii
@@ -24,6 +25,6 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_dua_sii
-#: field:account.invoice,sii_dua_invoice:0
+#: model:ir.model.fields,field_description:l10n_es_dua_sii.field_account_invoice_sii_dua_invoice
 msgid "SII DUA Invoice"
 msgstr ""
