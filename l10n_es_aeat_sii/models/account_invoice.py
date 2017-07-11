@@ -243,7 +243,7 @@ class AccountInvoice(models.Model):
              ('date_to', '>=', self.date_invoice),
              ('date_to', '=', False)], limit=1)
         mapping_taxes = {}
-        tax_templates = sii_map.map_lines.filtered(
+        tax_templates = sii_map.sudo().map_lines.filtered(
             lambda x: x.code in codes
         ).taxes
         for tax_template in tax_templates:
@@ -728,7 +728,7 @@ class AccountInvoice(models.Model):
                 i.period_id.date_start >= SII_START_DATE
             )
         )
-        queue_obj = self.env['queue.job']
+        queue_obj = self.env['queue.job'].sudo()
         for invoice in invoices:
             company = invoice.company_id
             if not company.use_connector:
