@@ -37,10 +37,24 @@
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result" groups="l10n_es_aeat.group_account_aeat">
-                            <field name="sii_state" />
-                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
-                            <field name="sii_csv"/>
-                            <field name="sii_return" />
+                            <notebook>
+                                <page name="page_sii_result_general" string="General">
+                                    <group>
+                                        <field name="sii_state" />
+                                        <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                                        <field name="sii_send_error" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                                        <field name="sii_csv"/>
+                                    </group>
+                                </page>
+                                <page name="page_sii_result_technical" string="Technical" groups="base.group_no_one">
+                                    <group><label for="sii_header_sent"/></group>
+                                    <field name="sii_header_sent" />
+                                    <group><label for="sii_content_sent"/></group>
+                                    <field name="sii_content_sent"/>
+                                    <group><label for="sii_return"/></group>
+                                    <field name="sii_return" />
+                                </page>
+                            </notebook>
                         </group>
 
                         <group string="Connector Jobs" groups="l10n_es_aeat.group_account_aeat">
@@ -83,10 +97,24 @@
                             <field name="sii_enabled" invisible="1"/>
                         </group>
                         <group string="SII Result" groups="l10n_es_aeat.group_account_aeat">
-                            <field name="sii_state" />
-                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
-                            <field name="sii_csv"/>
-                            <field name="sii_return" />
+                            <notebook>
+                                <page name="page_sii_result_general" string="General">
+                                    <group>
+                                        <field name="sii_state" />
+                                        <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                                        <field name="sii_send_error" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                                        <field name="sii_csv"/>
+                                    </group>
+                                </page>
+                                <page name="page_sii_result_technical" string="Technical" groups="base.group_no_one">
+                                    <group><label for="sii_header_sent"/></group>
+                                    <field name="sii_header_sent" />
+                                    <group><label for="sii_content_sent"/></group>
+                                    <field name="sii_content_sent"/>
+                                    <group><label for="sii_return"/></group>
+                                    <field name="sii_return" />
+                                </page>
+                            </notebook>
                         </group>
 
                         <group string="Connector Jobs" groups="l10n_es_aeat.group_account_aeat">
