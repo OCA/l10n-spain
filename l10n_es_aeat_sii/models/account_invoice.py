@@ -111,8 +111,26 @@ class AccountInvoice(models.Model):
         # required=True, This is not set as required here to avoid the
         # set not null constraint warning
     )
+    sii_registration_key_code = fields.Char(
+        related="sii_registration_key.code", readonly=True,
+    )
     sii_enabled = fields.Boolean(
         string='Enable SII', compute='_compute_sii_enabled',
+    )
+    sii_property_location = fields.Selection(
+        string="Real property location", copy=False,
+        selection=[
+            ('1', '[1]-Real property with cadastral code located within '
+                  'the Spanish territory except Basque Country or Navarra'),
+            ('2', '[2]-Real property located in the '
+                  'Basque Country or Navarra'),
+            ('3', '[3]-Real property in any of the above situations '
+                  'but without cadastral code'),
+            ('4', '[4]-Real property located in a foreign country'),
+        ],
+    )
+    sii_property_cadastrial_code = fields.Char(
+        string="Real property cadastrial code", size=25, copy=False,
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
@@ -591,6 +609,14 @@ class AccountInvoice(models.Model):
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
             }
+            if self.sii_registration_key.code in ['12', '13']:
+                inv_dict["FacturaExpedida"]['DatosInmueble'] = {
+                    'DetalleInmueble': {
+                        'SituacionInmueble': self.sii_property_location,
+                        'ReferenciaCatastral':
+                            self.sii_property_cadastrial_code or ''
+                    }
+                }
             exp_dict = inv_dict['FacturaExpedida']
             if not partner.sii_simplified_invoice:
                 # Simplified invoices don't have counterpart
