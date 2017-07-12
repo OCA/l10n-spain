@@ -149,6 +149,17 @@ class AccountInvoice(osv.Model):
 
         return super(AccountInvoice, self).copy(cr, uid, id, default, context=context)
 
+    def create(self, cr, uid, vals, context=None):
+        if vals.get('fiscal_position') and vals.get('type'):
+            position_fiscal = self.pool.get('account.fiscal.position').browse(cr, uid, [vals['fiscal_position']], context=context)[0]
+            if vals['type'] in ['in_invoice', 'in_refund']:
+                if position_fiscal and position_fiscal.sii_registration_key_purchase:
+                    vals['sii_registration_key'] = position_fiscal.sii_registration_key_purchase.id
+            else:
+                if position_fiscal and position_fiscal.sii_registration_key_sale:
+                    vals['sii_registration_key'] = position_fiscal.sii_registration_key_sale.id
+        return super(AccountInvoice, self).create(cr, uid, vals, context)
+
     def onchange_refund_type_l10n_es_aeat_sii(self, cr, uid, ids, refund_type):
         for invoice in self.browse(cr, uid, ids):
             if refund_type == 'S' and not invoice.origin_invoices_ids:
