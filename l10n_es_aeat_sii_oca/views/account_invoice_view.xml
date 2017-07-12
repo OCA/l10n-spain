@@ -13,13 +13,13 @@
                             groups="l10n_es_aeat.group_account_aeat"
                             attrs="{'invisible': ['|','|',('state', 'not in', ['open','paid']),
                                 ('sii_enabled', '=', False),
-                                ('sii_state', 'not in', ['not_sent','sent_modified','cancelled_modified'])]}" />
+                                ('sii_state', 'in', ['sent','cancelled'])]}" />
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="l10n_es_aeat.group_account_aeat"
                             attrs="{'invisible': ['|','|',('sii_enabled', '=', False),
                                 ('state', 'not in', ['cancel']),
-                                ('sii_state', 'not in', ['sent','sent_modified'])]}" />
+                                ('sii_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}" />
                 </button>
 
                 <field name="supplier_invoice_number" position="attributes">
@@ -78,12 +78,12 @@
                     <button type="object" string="Send to SII"
                             name="send_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['open','paid']), ('sii_state','not in',['not_sent','sent_modified','cancelled_modified'])]}"
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['open','paid']), ('sii_state','in',['sent','cancelled'])]}"
                     />
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="l10n_es_aeat.group_account_aeat"
-                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_modified'])]}"
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}"
                     />
                 </button>
                 <notebook position="inside">
@@ -140,7 +140,7 @@
                             domain="[('sii_state', '=', 'not_sent'), ('date_invoice', '>=', '2017-01-01')]"
                             help="Never sent to SII" />
                         <filter name="sii_sent" string="SII sent"
-                            domain="[('sii_state', 'in', ['sent','cancelled','sent_modified','cancelled_modified'])]"
+                            domain="[('sii_state', 'not in', ['not_sent'])]"
                             help="Already sent to SII. It includes cancelled invoices"/>
                         <separator />
                         <filter name="sii_cancelled" string="SII cancelled"
