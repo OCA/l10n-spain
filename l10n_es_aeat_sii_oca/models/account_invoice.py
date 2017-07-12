@@ -41,6 +41,7 @@ except ImportError:
 SII_STATES = [
     ('not_sent', 'Not sent'),
     ('sent', 'Sent'),
+    ('sent_w_errors', 'Accepted with errors'),
     ('sent_modified', 'Registered in SII but last modifications not sent'),
     ('cancelled', 'Cancelled'),
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
@@ -80,9 +81,9 @@ class AccountInvoice(models.Model):
     )
     sii_state = fields.Selection(
         selection=SII_STATES, string="SII send state", default='not_sent',
+        readonly=True, copy=False,
         help="Indicates the state of this invoice in relation with the "
              "presentation at the SII",
-        copy=False,
     )
     sii_csv = fields.Char(string='SII CSV', copy=False, readonly=True)
     sii_return = fields.Text(string='SII Return', copy=False, readonly=True)
@@ -797,6 +798,10 @@ class AccountInvoice(models.Model):
                     invoice.sii_state = 'sent'
                     invoice.sii_csv = res['CSV']
                     invoice.sii_send_failed = False
+                elif res['EstadoEnvio'] == 'AceptadoConErrores':
+                    invoice.sii_state = 'sent_w_errors'
+                    invoice.sii_csv = res['CSV']
+                    invoice.sii_send_failed = True
                 else:
                     invoice.sii_send_failed = True
                 invoice.sii_return = res
@@ -837,9 +842,7 @@ class AccountInvoice(models.Model):
         invoices = self.filtered(
             lambda i: (
                 i.sii_enabled and i.state in ['open', 'paid'] and
-                i.sii_state in [
-                    'not_sent', 'sent_modified', 'cancelled_modified',
-                ]
+                i.sii_state not in ['sent', 'cancelled']
             )
         )
         if not invoices._cancel_invoice_jobs():
@@ -911,7 +914,8 @@ class AccountInvoice(models.Model):
     def cancel_sii(self):
         invoices = self.filtered(
             lambda i: (i.sii_enabled and i.state in ['cancel'] and
-                       i.sii_state in ['sent', 'sent_modified'])
+                       i.sii_state in ['sent', 'sent_w_errors',
+                                       'sent_modified'])
         )
         if not invoices._cancel_invoice_jobs():
             raise exceptions.Warning(_(
