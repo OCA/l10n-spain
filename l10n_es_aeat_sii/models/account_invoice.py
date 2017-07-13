@@ -1188,9 +1188,9 @@ class AccountInvoiceLine(models.Model):
         """
         self.ensure_one()
         if tax_line.child_depend:
-            tax_type = tax_line.child_ids.filtered('amount')[:1].amount
+            tax_type = abs(tax_line.child_ids.filtered('amount')[:1].amount)
         else:
-            tax_type = tax_line.amount
+            tax_type = abs(tax_line.amount)
         if tax_type not in tax_dict:
             tax_dict[tax_type] = {
                 'TipoImpositivo': str(tax_type * 100),
@@ -1216,7 +1216,7 @@ class AccountInvoiceLine(models.Model):
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
-        tax_dict[tax_type][key] += taxes['taxes'][0]['amount']
+        tax_dict[tax_type][key] += abs(taxes['taxes'][0]['amount'])
 
 
 @job(default_channel='root.invoice_validate_sii')
