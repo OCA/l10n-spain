@@ -410,6 +410,7 @@ class AccountInvoice(models.Model):
         taxes_sfens = self._get_sii_taxes_map(['SFENS'])
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
+        taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
         default_no_taxable_cause = self._get_no_taxable_cause()
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
@@ -458,12 +459,16 @@ class AccountInvoice(models.Model):
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
                 nsub_dict[default_no_taxable_cause] += tax_line.base * sign
-            if tax in (taxes_sfess + taxes_sfesse):
+            if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
                     'DesgloseTipoOperacion', {
-                        'PrestacionServicios': {'Sujeta': {}},
+                        'PrestacionServicios': {},
                     },
                 )
+                if tax_line in (taxes_sfesse + taxes_sfess):
+                    type_breakdown['PrestacionServicios'].setdefault(
+                        'Sujeta', {}
+                    )
                 service_dict = type_breakdown['PrestacionServicios']
                 if tax in taxes_sfesse:
                     exempt_dict = service_dict['Sujeta'].setdefault(
@@ -472,7 +477,6 @@ class AccountInvoice(models.Model):
                     if exempt_cause:
                         exempt_dict['CausaExencion'] = exempt_cause
                     exempt_dict['BaseImponible'] += tax_line.base * sign
-                # TODO Facturas no sujetas
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax_line in taxes_sfesisps:
@@ -489,6 +493,13 @@ class AccountInvoice(models.Model):
                     sub = type_breakdown['PrestacionServicios']['Sujeta'][
                         'NoExenta']['DesgloseIVA']['DetalleIVA']
                     sub.append(self._get_sii_tax_dict(tax_line, sign))
+                if tax_line in taxes_sfesns:
+                    nsub_dict = service_dict.setdefault(
+                        'NoSujeta', {'ImporteTAIReglasLocalizacion': 0},
+                    )
+                    nsub_dict['ImporteTAIReglasLocalizacion'] += (
+                        tax_line.base * sign
+                    )
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
