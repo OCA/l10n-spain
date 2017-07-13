@@ -34,12 +34,22 @@
             <field name="name">SuministroFactEmitidas No Sujeta</field>
         </record>
 
+        <record id="aeat_sii_map_line_SFESNS" model="aeat.sii.map.lines">
+            <field name="code">SFESNS</field>
+            <field name="taxes" eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_s_iva_e'),
+                ref('l10n_es.account_tax_template_s_iva0_sp_i'),
+            ])]"/>
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactEmitidas Servicios No Sujeta</field>
+        </record>
+
         <record id="aeat_sii_map_line_SFESS" model="aeat.sii.map.lines">
             <field name="code">SFESS</field>
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva21s'),
                 ref('l10n_es.account_tax_template_s_iva10s'),
-                ref('l10n_es.account_tax_template_s_iva4s')
+                ref('l10n_es.account_tax_template_s_iva4s'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Sujetas Servicios</field>
@@ -59,7 +69,6 @@
             <field name="code">SFESSE</field>
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva0'),
-                ref('l10n_es.account_tax_template_s_iva0_sp_i')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Servicios Exento</field>
