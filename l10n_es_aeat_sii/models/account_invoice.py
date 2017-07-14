@@ -1198,11 +1198,6 @@ class AccountInvoiceLine(models.Model):
                 'CuotaRepercutida': 0,
                 'CuotaSoportada': 0,
             }
-        taxes = tax_line.compute_all(
-            self._get_sii_line_price_unit(), self.quantity,
-            self.product_id, self.invoice_id.partner_id,
-        )
-        tax_dict[tax_type]['BaseImponible'] += taxes['total']
         # Recargo de equivalencia
         tax_line_req = self._get_sii_tax_line_req()
         if tax_line_req:
@@ -1212,12 +1207,18 @@ class AccountInvoiceLine(models.Model):
             tax_dict[tax_type].setdefault('CuotaRecargoEquivalencia', 0)
             tax_dict[tax_type]['CuotaRecargoEquivalencia'] += cuota_recargo
         # Rest of the taxes
+        taxes = tax_line.compute_all(
+            self._get_sii_line_price_unit(), self.quantity,
+            self.product_id, self.invoice_id.partner_id,
+        )
+        tax_dict[tax_type]['BaseImponible'] += taxes['total']
         if self.invoice_id.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
         if taxes['total'] >= 0:
-            sii_included_taxes = [t for t in taxes['taxes'] if t['amount'] >= 0]
+            sii_included_taxes = [t for t in taxes['taxes']
+                                  if t['amount'] >= 0]
         else:
             sii_included_taxes = [t for t in taxes['taxes'] if t['amount'] < 0]
         for tax in sii_included_taxes:
