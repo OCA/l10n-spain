@@ -118,7 +118,7 @@ class AccountInvoice(models.Model):
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
-        string="Connector Jobs",
+        string="Connector Jobs", copy=False
     )
 
     @api.onchange('sii_refund_type')
