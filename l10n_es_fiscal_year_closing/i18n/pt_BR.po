@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:45+0000\n"
+"POT-Creation-Date: 2017-07-15 00:55+0000\n"
+"PO-Revision-Date: 2017-07-13 15:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +41,7 @@ msgid "Account to close"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:383
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:382
 #, python-format
 msgid "Account type closing method is not supported"
 msgstr ""
@@ -82,7 +82,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,check_draft_moves:0
@@ -477,7 +477,7 @@ msgstr ""
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/l10n_es_fiscalyear_closing.py:121
@@ -610,13 +610,13 @@ msgid "The Closing move is required"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:437
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:436
 #, python-format
 msgid "The L&P account mappings are not properly configured: %s"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:471
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:470
 #, python-format
 msgid "The L&P move must exist before creating the closing one"
 msgstr ""
@@ -628,7 +628,7 @@ msgid "The Loss & Profit move is required"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:458
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:457
 #, python-format
 msgid "The Net L&P account mappings are not properly configured: %s"
 msgstr ""
@@ -640,19 +640,19 @@ msgid "The Opening move is required"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:502
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:501
 #, python-format
 msgid "The closing move must exist to create the opening one"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:505
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:504
 #, python-format
 msgid "The closing move shouldn't be empty"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:422
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:421
 #, python-format
 msgid "The operation must be a supported one"
 msgstr ""
@@ -689,12 +689,12 @@ msgid "Useless operations"
 msgstr ""
 
 #. module: l10n_es_fiscal_year_closing
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:382
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:436
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:457
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:470
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:501
-#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:504
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:381
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:435
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:456
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:469
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:500
+#: code:addons/l10n_es_fiscal_year_closing/wizard/wizard_run.py:503
 #, python-format
 msgid "UserError"
 msgstr ""

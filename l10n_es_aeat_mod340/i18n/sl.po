@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-06 03:17+0000\n"
-"PO-Revision-Date: 2017-04-28 16:22+0000\n"
+"POT-Creation-Date: 2017-07-15 00:54+0000\n"
+"PO-Revision-Date: 2017-07-13 15:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Datum izračuna"
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
 #: selection:l10n.es.aeat.mod340.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Preklicano"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
@@ -533,7 +533,7 @@ msgid "Issued invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/models/mod340.py:270
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:271
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_form
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
@@ -846,6 +846,11 @@ msgid "RESUMEN FACTURAS RECIBIDAS"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: reportvat book:0
+msgid "Recargo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.tax_summary,summary_type:0
 msgid "Received"
 msgstr "Prejeto"
@@ -861,7 +866,7 @@ msgid "Received invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/models/mod340.py:274
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:275
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
