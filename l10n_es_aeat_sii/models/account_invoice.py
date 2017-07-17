@@ -781,8 +781,10 @@ class AccountInvoice(models.Model):
             header = invoice._get_sii_header(tipo_comunicacion)
             try:
                 inv_dict = invoice._get_sii_invoice_dict()
-                invoice.sii_header_sent = json.dumps(header, indent=4)
-                invoice.sii_content_sent = json.dumps(inv_dict, indent=4)
+                inv_upd = {
+                    'sii_header_sent': json.dumps(header, indent=4),
+                    'sii_content_sent': json.dumps(inv_dict, indent=4)
+                }
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
                         header, inv_dict)
@@ -795,23 +797,30 @@ class AccountInvoice(models.Model):
                 #     res = serv.SuministroLRDetOperacionIntracomunitaria(
                 #         header, invoices)
                 if res['EstadoEnvio'] == 'Correcto':
-                    invoice.sii_state = 'sent'
-                    invoice.sii_csv = res['CSV']
-                    invoice.sii_send_failed = False
+                    inv_upd.update({
+                        'sii_state': 'sent',
+                        'sii_csv': res['CSV'],
+                        'sii_send_failed': False
+                        })
                 elif res['EstadoEnvio'] == 'AceptadoConErrores':
-                    invoice.sii_state = 'sent_w_errors'
-                    invoice.sii_csv = res['CSV']
-                    invoice.sii_send_failed = True
+                    inv_upd.update({
+                        'sii_state': 'sent_w_errors',
+                        'sii_csv': res['CSV'],
+                        'sii_send_failed': True
+                        })
                 else:
-                    invoice.sii_send_failed = True
-                invoice.sii_return = res
+                    inv_upd['sii_send_failed'] = True
                 send_error = False
                 res_line = res['RespuestaLinea'][0]
                 if res_line['CodigoErrorRegistro']:
                     send_error = u"{} | {}".format(
                         unicode(res_line['CodigoErrorRegistro']),
                         unicode(res_line['DescripcionErrorRegistro'])[:60])
-                invoice.sii_send_error = send_error
+                inv_upd.update({
+                    'sii_return': res,
+                    'sii_send_error': send_error
+                    })
+                invoice.write(inv_upd)
             except Exception as fault:
                 new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
