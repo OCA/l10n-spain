@@ -369,6 +369,32 @@ class AccountInvoice(models.Model):
             )
         return tax_dict
 
+    def _is_sii_type_breakdown_required(self, taxes_dict):
+        """Calculates if the block 'DesgloseTipoOperacion' is required for
+        the invoice communication."""
+        self.ensure_one()
+        if 'DesgloseFactura' not in taxes_dict:
+            return False
+        country_code = self._get_sii_country_code()
+        sii_gen_type = self._get_sii_gen_type()
+        if 'DesgloseTipoOperacion' in taxes_dict:
+            # DesgloseTipoOperacion and DesgloseFactura are Exclusive
+            return True
+        elif sii_gen_type in (2, 3):
+            # DesgloseTipoOperacion required for Intracommunity and
+            # Export operations
+            return True
+        elif sii_gen_type == 1 and country_code != 'ES':
+            # DesgloseTipoOperacion required for national operations
+            # with 'IDOtro' in the SII identifier block
+            return True
+        elif (sii_gen_type == 1 and
+                (self.partner_id.vat or '').startswith('ESN')):
+            # DesgloseTipoOperacion required if customer's country is Spain and
+            # has a NIF which starts with 'N'
+            return True
+        return False
+
     @api.multi
     def _get_sii_out_taxes(self):
         """Get the taxes for sales invoices.
@@ -466,13 +492,7 @@ class AccountInvoice(models.Model):
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
-        country_code = self._get_sii_country_code()
-        if (('DesgloseTipoOperacion' in taxes_dict and
-                'DesgloseFactura' in taxes_dict) or
-                ('DesgloseFactura' in taxes_dict and
-                 self._get_sii_gen_type() in (2, 3)) or
-                ('DesgloseFactura' in taxes_dict and
-                 self._get_sii_gen_type() == 1 and country_code != 'ES')):
+        if self._is_sii_type_breakdown_required(taxes_dict):
             taxes_dict.setdefault('DesgloseTipoOperacion', {})
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
