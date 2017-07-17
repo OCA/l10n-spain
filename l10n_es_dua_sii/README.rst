@@ -48,7 +48,7 @@ Contribuidores
 * Studio73 - Pablo Fuentes <pablo@studio73.es>
 * Studio73 - Jordi Tolsà <jordi@studio73.es>
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
-
+* Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Maintainer
 ----------

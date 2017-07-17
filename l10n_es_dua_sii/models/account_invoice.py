@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Consultoría Informática Studio 73 S.L.
 # Copyright 2017 Comunitea Servicios Tecnológicos S.L.
+# Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import models, fields, api
@@ -34,7 +35,7 @@ class AccountInvoice(models.Model):
                                      compute="_compute_dua_invoice")
 
     @api.multi
-    def _get_sii_invoice_dict_in(self):
+    def _get_sii_invoice_dict_in(self, cancel=False):
         """
         Según la documentación de la AEAT, la operación de importación se
         registra con TipoFactura = F5, sin FechaOperacion y con el NIF de la
@@ -44,8 +45,10 @@ class AccountInvoice(models.Model):
         http://bit.ly/2rGWiAI
 
         """
-        res = super(AccountInvoice, self)._get_sii_invoice_dict_in()
-        if res.get('FacturaRecibida') and self.sii_dua_invoice:
+        res = super(AccountInvoice, self)._get_sii_invoice_dict_in(
+            cancel=cancel,
+        )
+        if not cancel and res.get('FacturaRecibida') and self.sii_dua_invoice:
             res['FacturaRecibida']['TipoFactura'] = 'F5'
             res['FacturaRecibida'].pop('FechaOperacion', None)
             res['FacturaRecibida']['IDEmisorFactura'] = \
