@@ -820,11 +820,13 @@ class AccountInvoice(models.Model):
                 #     'account.fp_intra').id:
                 #     res = serv.SuministroLRDetOperacionIntracomunitaria(
                 #         header, invoices)
+                res_line = res['RespuestaLinea'][0]
                 if res['EstadoEnvio'] == 'Correcto':
                     invoice.sii_state = 'sent'
                     invoice.sii_csv = res['CSV']
                     invoice.sii_send_failed = False
-                elif res['EstadoEnvio'] == 'AceptadoConErrores':
+                elif res['EstadoEnvio'] == 'ParcialmenteCorrecto' and \
+                        res_line['EstadoRegistro'] == 'AceptadoConErrores':
                     invoice.sii_state = 'sent_w_errors'
                     invoice.sii_csv = res['CSV']
                     invoice.sii_send_failed = True
@@ -832,7 +834,6 @@ class AccountInvoice(models.Model):
                     invoice.sii_send_failed = True
                 invoice.sii_return = res
                 send_error = False
-                res_line = res['RespuestaLinea'][0]
                 if res_line['CodigoErrorRegistro']:
                     send_error = u"{} | {}".format(
                         unicode(res_line['CodigoErrorRegistro']),
