@@ -15,6 +15,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def action_move_create(self):
+        res = super(AccountInvoice, self).action_move_create()
         for inv in self:
             if not inv.invoice_number:
                 sequence = inv.journal_id.invoice_sequence_id
@@ -33,7 +34,6 @@ class AccountInvoice(models.Model):
                 })
             else:  # pragma: no cover
                 inv.number = inv.invoice_number
-        res = super(AccountInvoice, self).action_move_create()
         for inv in self:
             # Include the invoice reference on the created journal item
             # This is done for displaying the number on the conciliation
