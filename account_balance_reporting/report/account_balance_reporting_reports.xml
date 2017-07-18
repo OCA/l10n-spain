@@ -35,7 +35,7 @@
             file="account_balance_reporting.report_generic"
     />
 
-    <!-- Generic report with external layout without zero lines -->
+     <!--Generic report with external layout without zero lines -->
     <report id="report_account_balance_reporting_default_n_z_external_layout"
             model="account.balance.reporting"
             report_type="qweb-pdf"
@@ -93,4 +93,3 @@
 
 </data>
 </openerp>
-	
