@@ -591,8 +591,8 @@ class AccountInvoice(models.Model):
                 inv_dict["FacturaExpedida"]['DatosInmueble'] = {
                     'DetalleInmueble': {
                         'SituacionInmueble': self.sii_property_location,
-                        'ReferenciaCatastral':
-                            self.sii_property_cadastrial_code or ''
+                        'ReferenciaCatastral': (
+                            self.sii_property_cadastrial_code or '')
                     }
                 }
             exp_dict = inv_dict['FacturaExpedida']
@@ -769,8 +769,10 @@ class AccountInvoice(models.Model):
                 invoice._send_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
+                ctx = self.env.context.copy()
+                ctx.update(company_id=company.id)
                 session = ConnectorSession(
-                    self.env.cr, SUPERUSER_ID, context=self.env.context,
+                    self.env.cr, SUPERUSER_ID, context=ctx,
                 )
                 new_delay = confirm_one_invoice.delay(
                     session, 'account.invoice', invoice.id,
