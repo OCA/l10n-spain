@@ -1403,7 +1403,8 @@ class AccountInvoiceLine(models.Model):
             from_currency = self.invoice_id.currency_id.\
                 with_context(date=self.invoice_id.date_invoice)
             price_unit = from_currency.\
-                compute(price_unit, self.invoice_id.company_id.currency_id)
+                compute(price_unit, self.invoice_id.company_id.currency_id,
+                        round=False)
         return price_unit
 
     @api.multi
