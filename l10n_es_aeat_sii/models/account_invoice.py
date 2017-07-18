@@ -805,10 +805,12 @@ class AccountInvoice(models.Model):
             else:
                 tipo_comunicacion = 'A1'
             header = invoice._get_sii_header(tipo_comunicacion)
+            inv_vals = {
+                'sii_header_sent': json.dumps(header, indent=4),
+            }
             try:
                 inv_dict = invoice._get_sii_invoice_dict()
-                invoice.sii_header_sent = json.dumps(header, indent=4)
-                invoice.sii_content_sent = json.dumps(inv_dict, indent=4)
+                inv_vals['sii_content_sent'] = json.dumps(inv_dict, indent=4)
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
                         header, inv_dict)
@@ -822,30 +824,38 @@ class AccountInvoice(models.Model):
                 #         header, invoices)
                 res_line = res['RespuestaLinea'][0]
                 if res['EstadoEnvio'] == 'Correcto':
-                    invoice.sii_state = 'sent'
-                    invoice.sii_csv = res['CSV']
-                    invoice.sii_send_failed = False
+                    inv_vals.update({
+                        'sii_state': 'sent',
+                        'sii_csv': res['CSV'],
+                        'sii_send_failed': False,
+                    })
                 elif res['EstadoEnvio'] == 'ParcialmenteCorrecto' and \
                         res_line['EstadoRegistro'] == 'AceptadoConErrores':
-                    invoice.sii_state = 'sent_w_errors'
-                    invoice.sii_csv = res['CSV']
-                    invoice.sii_send_failed = True
+                    inv_vals.update({
+                        'sii_state': 'sent_w_errors',
+                        'sii_csv': res['CSV'],
+                        'sii_send_failed': True,
+                    })
                 else:
-                    invoice.sii_send_failed = True
-                invoice.sii_return = res
+                    inv_vals['sii_send_failed'] = True
+                inv_vals['sii_return'] = res
                 send_error = False
                 if res_line['CodigoErrorRegistro']:
                     send_error = u"{} | {}".format(
                         unicode(res_line['CodigoErrorRegistro']),
                         unicode(res_line['DescripcionErrorRegistro'])[:60])
-                invoice.sii_send_error = send_error
+                inv_vals['sii_send_error'] = send_error
+                invoice.write(inv_vals)
             except Exception as fault:
                 new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env['account.invoice'].browse(self.id)
-                invoice.sii_send_failed = True
-                invoice.sii_send_error = fault
-                invoice.sii_return = fault
+                inv_vals.update({
+                    'sii_send_failed': True,
+                    'sii_send_error': fault,
+                    'sii_return': fault,
+                })
+                invoice.write(inv_vals)
                 new_cr.commit()
                 new_cr.close()
                 raise
