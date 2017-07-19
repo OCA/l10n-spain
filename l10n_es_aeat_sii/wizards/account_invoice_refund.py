@@ -8,10 +8,11 @@ class AccountInvoiceRefund(osv.TransientModel):
     _inherit = "account.invoice.refund"
 
     def _default_sii_refund_type_required(self, cr, uid, context):
-        invoices = self.pool['account.invoice'].browse(cr, uid, context.get('active_ids'), context)
-        for inv in invoices:
-            if inv.sii_enabled:
-                return True
+        if context.get('active_ids'):
+            invoices = self.pool['account.invoice'].browse(cr, uid, context.get('active_ids'), context)
+            for inv in invoices:
+                if inv.sii_enabled:
+                    return True
         return False
 
 
