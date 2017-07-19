@@ -8,7 +8,7 @@
         <field name="model">account.invoice.refund</field>
         <field name="inherit_id" ref="account.view_account_invoice_refund"/>
         <field name="arch" type="xml">
-            <field name="description" position="before">
+            <field name="filter_refund" position="after">
                 <field name="sii_refund_type_required" invisible="1"/>
                 <field name="sii_refund_type"
                        attrs="{'required': [('sii_refund_type_required', '=', True)], 'invisible': [('sii_refund_type_required', '=', False)]}"
