@@ -12,7 +12,7 @@
                 <field name="date_done"/>
                 <field name="state"/>
                 <button type="object"
-                        name="requeue"
+                        name="requeue_sudo"
                         string="Requeue"
                         class="oe_highlight"
                         attrs="{'invisible': [('state', '!=', 'failed')]}"/>
