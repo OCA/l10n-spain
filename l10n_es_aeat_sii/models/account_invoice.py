@@ -773,8 +773,10 @@ class AccountInvoice(models.Model):
                 else:
                     registry_date = invoice._get_account_registration_date()
                 eta = company._get_sii_eta(registry_date=registry_date)
+                ctx = self.env.context.copy()
+                ctx.update(company_id=company.id)
                 session = ConnectorSession(
-                    self.env.cr, SUPERUSER_ID, context=self.env.context,
+                    self.env.cr, SUPERUSER_ID, context=ctx,
                 )
                 new_delay = confirm_one_invoice.delay(
                     session, 'account.invoice', invoice.id,
@@ -973,7 +975,11 @@ class AccountInvoice(models.Model):
                 else:
                     registry_date = invoice._get_account_registration_date()
                 eta = company._get_sii_eta(registry_date=registry_date)
-                session = ConnectorSession.from_env(self.env)
+                ctx = self.env.context.copy()
+                ctx.update(company_id=company.id)
+                session = ConnectorSession(
+                    self.env.cr, SUPERUSER_ID, context=ctx,
+                )
                 new_delay = cancel_one_invoice.delay(
                     session, 'account.invoice', invoice.id, eta=eta)
                 queue_ids = queue_obj.search([
