@@ -591,8 +591,8 @@ class AccountInvoice(models.Model):
                 inv_dict["FacturaExpedida"]['DatosInmueble'] = {
                     'DetalleInmueble': {
                         'SituacionInmueble': self.sii_property_location,
-                        'ReferenciaCatastral':
-                            self.sii_property_cadastrial_code or ''
+                        'ReferenciaCatastral': (
+                            self.sii_property_cadastrial_code or '')
                     }
                 }
             exp_dict = inv_dict['FacturaExpedida']
@@ -768,7 +768,11 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                if 'out' in invoice.type:
+                    registry_date = invoice.date_invoice
+                else:
+                    registry_date = invoice._get_account_registration_date()
+                eta = company._get_sii_eta(registry_date=registry_date)
                 session = ConnectorSession(
                     self.env.cr, SUPERUSER_ID, context=self.env.context,
                 )
@@ -964,7 +968,11 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._cancel_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                if 'out' in invoice.type:
+                    registry_date = invoice.date_invoice
+                else:
+                    registry_date = invoice._get_account_registration_date()
+                eta = company._get_sii_eta(registry_date=registry_date)
                 session = ConnectorSession.from_env(self.env)
                 new_delay = cancel_one_invoice.delay(
                     session, 'account.invoice', invoice.id, eta=eta)

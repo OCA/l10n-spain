@@ -63,7 +63,11 @@ class ResCompany(models.Model):
     sent_time = fields.Float(string="Sent time")
     delay_time = fields.Float(string="Delay time")
 
-    def _get_sii_eta(self):
+    def _get_sii_eta(self, registry_date=False):
+        if registry_date:
+            exec_date = fields.Datetime.from_string(registry_date)
+        else:
+            exec_date = datetime.now()
         if self.send_mode == 'fixed':
             tz = self.env.context.get('tz', self.env.user.partner_id.tz)
             offset = datetime.now(pytz.timezone(tz)).strftime('%z') if tz \
@@ -72,12 +76,12 @@ class ResCompany(models.Model):
             hour, minute = divmod(self.sent_time * 60, 60)
             hour = int(hour - hour_diff)
             minute = int(minute)
-            now = datetime.now()
-            if now.hour > hour or (now.hour == hour and now.minute > minute):
-                now += timedelta(days=1)
-            now = now.replace(hour=hour, minute=minute)
-            return now
+            if exec_date.hour > hour or \
+                    (exec_date.hour == hour and exec_date.minute > minute):
+                exec_date += timedelta(days=1)
+            exec_date = exec_date.replace(hour=hour, minute=minute)
+            return exec_date
         elif self.send_mode == 'delayed':
-            return datetime.now() + timedelta(seconds=self.delay_time * 3600)
+            return exec_date + timedelta(seconds=self.delay_time * 3600)
         else:
             return None
