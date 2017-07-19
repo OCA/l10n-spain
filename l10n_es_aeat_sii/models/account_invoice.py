@@ -46,9 +46,14 @@ SII_STATES = [
     ('cancelled', 'Cancelled'),
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
 ]
-
 SII_VERSION = '1.0'
 SII_START_DATE = '2017-07-01'
+SII_COUNTRY_CODE_MAPPING = {
+    'RE': 'FR',
+    'GP': 'FR',
+    'MQ': 'FR',
+    'GF': 'FR',
+}
 
 
 class AccountInvoice(models.Model):
@@ -425,10 +430,7 @@ class AccountInvoice(models.Model):
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
-        country_code = (
-            self.partner_id.commercial_partner_id.country_id.code or
-            (self.partner_id.vat or '')[:2]
-        ).upper()
+        country_code = self._get_sii_country_code()
         if (('DesgloseTipoOperacion' in taxes_dict and
                 'DesgloseFactura' in taxes_dict) or
                 ('DesgloseFactura' in taxes_dict and
@@ -498,9 +500,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
         partner = self.partner_id.commercial_partner_id
-        country_code = (
-            partner.country_id.code or (self.partner_id.vat or '')[:2]
-        ).upper()
+        country_code = self._get_sii_country_code()
         if partner.sii_simplified_invoice and self.type[:2] == 'in':
             raise exceptions.Warning(
                 _("You can't make a supplier simplified invoice.")
@@ -1045,10 +1045,7 @@ class AccountInvoice(models.Model):
             ).upper()
         else:
             vat = 'NO_DISPONIBLE'
-        country_code = (
-            self.partner_id.commercial_partner_id.country_id.code or
-            (self.partner_id.vat or '')[:2]
-        ).upper()
+        country_code = self._get_sii_country_code()
         if gen_type == 1:
             if '1117' in (self.sii_send_error or ''):
                 return {
@@ -1109,6 +1106,15 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         return self.fiscal_position.sii_no_taxable_cause or \
             'ImportePorArticulos7_14_Otros'
+
+    @api.multi
+    def _get_sii_country_code(self):
+        self.ensure_one()
+        country_code = (
+            self.partner_id.commercial_partner_id.country_id.code or
+            (self.partner_id.vat or '')[:2]
+        ).upper()
+        return SII_COUNTRY_CODE_MAPPING.get(country_code, country_code)
 
     @api.multi
     @api.depends('invoice_line', 'invoice_line.name', 'company_id',
