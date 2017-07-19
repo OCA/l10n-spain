@@ -967,7 +967,11 @@ class AccountInvoice(models.Model):
                 invoice._cancel_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                session = ConnectorSession.from_env(self.env)
+                ctx = self.env.context.copy()
+                ctx.update(company_id=company.id)
+                session = ConnectorSession(
+                    self.env.cr, SUPERUSER_ID, context=ctx,
+                )
                 new_delay = cancel_one_invoice.delay(
                     session, 'account.invoice', invoice.id, eta=eta)
                 queue_ids = queue_obj.search([
