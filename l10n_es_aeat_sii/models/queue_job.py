@@ -18,3 +18,7 @@ class QueueJob(models.Model):
         self.sudo().filtered(
             lambda x: x.state in ['pending', 'enqueued']
         ).unlink()
+
+    @api.multi
+    def requeue_sudo(self):
+        self.sudo().requeue()
