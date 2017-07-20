@@ -768,7 +768,11 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                if 'out' in invoice.type:
+                    registry_date = invoice.date_invoice
+                else:
+                    registry_date = invoice._get_account_registration_date()
+                eta = company._get_sii_eta(registry_date=registry_date)
                 ctx = self.env.context.copy()
                 ctx.update(company_id=company.id)
                 session = ConnectorSession(
@@ -966,7 +970,11 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._cancel_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                if 'out' in invoice.type:
+                    registry_date = invoice.date_invoice
+                else:
+                    registry_date = invoice._get_account_registration_date()
+                eta = company._get_sii_eta(registry_date=registry_date)
                 ctx = self.env.context.copy()
                 ctx.update(company_id=company.id)
                 session = ConnectorSession(
