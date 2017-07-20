@@ -37,11 +37,18 @@
                             <field name="sii_registration_key" domain="[('type', '=', 'purchase')]"/>
                             <field name="sii_enabled" />
                         </group>
-                        <group string="SII Result">
-                            <field name="sii_state" />
-                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
-                            <field name="sii_csv"/>
-                            <field name="sii_return" />
+                        <group string="SII Result" >
+                            <group string="General" >
+                                <field name="sii_state" />
+                                <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                                <field name="sii_csv"/>
+                            </group>
+                            <newline />
+                            <group string="Technical" >
+                                <field name="sii_header_sent" />
+                                <field name="sii_content_sent"/>
+                                <field name="sii_return" colspan="4"/>
+                            </group>
                         </group>
                     </page>
                 </notebook>
@@ -84,11 +91,18 @@
                             <field name="sii_enabled" invisible="1"/>
 
                         </group>
-                        <group string="SII Result">
-                            <field name="sii_state" />
-                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
-                            <field name="sii_csv"/>
-                            <field name="sii_return" />
+                        <group string="SII Result" >
+                            <group string="General" >
+                                <field name="sii_state" />
+                                <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                                <field name="sii_csv"/>
+                            </group>
+                            <newline />
+                            <group string="Technical" >
+                                <field name="sii_header_sent" />
+                                <field name="sii_content_sent"/>
+                                <field name="sii_return" colspan="4"/>
+                            </group>
                         </group>
                     </page>
                 </notebook>

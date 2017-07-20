@@ -4,7 +4,7 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2017 Alberto Martín Cortada <alberto.martin@guadaltech.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
+import json
 import logging
 
 from datetime import date, datetime
@@ -129,6 +129,8 @@ class AccountInvoice(osv.Model):
         'sii_registration_key': fields.many2one('aeat.sii.mapping.registration.keys', "Registration key", required=False),
         'sii_csv': fields.char(string='SII CSV', size=64),
         'sii_enabled': fields.function(_compute_sii_enabled, type='boolean', string='Enable SII'),
+        'sii_header_sent' : fields.text(string="SII last header sent", copy=False, readonly=True),
+        'sii_content_sent' : fields.text(string="SII last content sent", copy=False, readonly=True)
 
     }
 
@@ -784,7 +786,11 @@ class AccountInvoice(osv.Model):
             else:
                 tipo_comunicacion = 'A1'
             header = self._get_sii_header(cr, uid, invoice.id, company, tipo_comunicacion)
+            inv_vals = {
+                'sii_header_sent': json.dumps(header, indent=4),
+            }
             inv_dict = self._get_sii_invoice_dict(cr, uid, invoice)
+            inv_vals['sii_content_sent'] = json.dumps(inv_dict, indent=4)
             try:
                 if invoice.type in ['out_invoice', 'out_refund']:
                     res = serv.SuministroLRFacturasEmitidas(
@@ -808,11 +814,29 @@ class AccountInvoice(osv.Model):
 
                 send_error = False
                 res_line = res['RespuestaLinea'][0]
+                if res['EstadoEnvio'] == 'Correcto':
+                    inv_vals.update({
+                        'sii_state': 'sent',
+                        'sii_csv': res['CSV'],
+                        'sii_send_failed': False,
+                    })
+                elif res['EstadoEnvio'] == 'ParcialmenteCorrecto' and \
+                                res_line['EstadoRegistro'] == 'AceptadoConErrores':
+                    inv_vals.update({
+                        'sii_state': 'sent_w_errors',
+                        'sii_csv': res['CSV'],
+                        'sii_send_failed': True,
+                    })
+                else:
+                    inv_vals['sii_send_failed'] = True
+                inv_vals['sii_return'] = res
+                send_error = False
                 if res_line['CodigoErrorRegistro']:
                     send_error = u"{} | {}".format(
                         unicode(res_line['CodigoErrorRegistro']),
                         unicode(res_line['DescripcionErrorRegistro'])[:60])
-                self.write(cr, uid, invoice.id, {'sii_send_error': send_error})
+                inv_vals['sii_send_error'] = send_error
+                self.write(cr, uid, invoice.id, inv_vals)
 
             except Exception as fault:
 
