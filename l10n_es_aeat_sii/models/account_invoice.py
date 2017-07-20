@@ -356,6 +356,7 @@ class AccountInvoice(models.Model):
         taxes_sfens = self._get_sii_taxes_map(['SFENS'])
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
+        taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
         default_no_taxable_cause = self._get_no_taxable_cause()
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
@@ -403,14 +404,19 @@ class AccountInvoice(models.Model):
                     nsub_dict = tax_breakdown.setdefault(
                         'NoSujeta', {default_no_taxable_cause: 0},
                     )
-                    nsub_dict[default_no_taxable_cause] += inv_line.\
-                        _get_sii_line_price_subtotal()
-                if tax_line in (taxes_sfess + taxes_sfesse):
+                    nsub_dict[default_no_taxable_cause] += (
+                        inv_line._get_sii_line_price_subtotal() * sign
+                    )
+                if tax_line in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                     type_breakdown = taxes_dict.setdefault(
                         'DesgloseTipoOperacion', {
-                            'PrestacionServicios': {'Sujeta': {}},
+                            'PrestacionServicios': {},
                         },
                     )
+                    if tax_line in (taxes_sfesse + taxes_sfess):
+                        type_breakdown['PrestacionServicios'].setdefault(
+                            'Sujeta', {}
+                        )
                     service_dict = type_breakdown['PrestacionServicios']
                     if tax_line in taxes_sfesse:
                         exempt_dict = service_dict['Sujeta'].setdefault(
@@ -420,7 +426,6 @@ class AccountInvoice(models.Model):
                             exempt_dict['CausaExencion'] = exempt_cause
                         exempt_dict['BaseImponible'] += inv_line.\
                             _get_sii_line_price_subtotal() * sign
-                    # TODO Facturas no sujetas
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
                         # if tax_line in taxes_sfesisps:
@@ -435,6 +440,13 @@ class AccountInvoice(models.Model):
                             },
                         )
                         inv_line._update_sii_tax_line(taxes_to, tax_line)
+                    if tax_line in taxes_sfesns:
+                        nsub_dict = service_dict.setdefault(
+                            'NoSujeta', {'ImporteTAIReglasLocalizacion': 0},
+                        )
+                        nsub_dict['ImporteTAIReglasLocalizacion'] += (
+                            inv_line._get_sii_line_price_subtotal() * sign
+                        )
         for val in taxes_f.values() + taxes_to.values():
             val['CuotaRepercutida'] = float_round(
                 val['CuotaRepercutida'] * sign, 2,
