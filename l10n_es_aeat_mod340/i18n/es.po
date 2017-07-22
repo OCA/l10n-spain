@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
+# Juanjo A <jalgaz@gmail.com>, 2017
 # kikopeiro <francisco.peiro@factorlibre.com>, 2016
 # kikopeiro <francisco.peiro@factorlibre.com>, 2016
 # oihane <oihanecruce@gmail.com>, 2015
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-20 01:15+0000\n"
-"PO-Revision-Date: 2017-05-19 14:27+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"POT-Creation-Date: 2017-07-21 00:44+0000\n"
+"PO-Revision-Date: 2017-07-17 08:03+0000\n"
+"Last-Translator: Juanjo A <jalgaz@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -495,7 +496,7 @@ msgstr "Factura"
 msgid ""
 "Invoice %s, Amount untaxed Lines %.2f do not correspond to AmountUntaxed on "
 "Invoice %.2f"
-msgstr "Factura %s, la base imposible de las líneas %.2f no se corresponde con la base imponible en la factura %.2f"
+msgstr "Factura %s, la base imponible de las líneas %.2f no se corresponde con la base imponible en la factura %.2f"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.tax_line_issued,invoice_record_id:0

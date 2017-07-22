@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-15 00:55+0000\n"
-"PO-Revision-Date: 2017-07-15 00:55+0000\n"
+"POT-Creation-Date: 2017-07-21 00:45+0000\n"
+"PO-Revision-Date: 2017-07-21 00:45+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Polish (https://www.transifex.com/oca/teams/23907/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -164,6 +164,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_registration_key_code:0
 #: field:aeat.sii.map.lines,code:0
 #: field:aeat.sii.mapping.registration.keys,code:0
 msgid "Code"
@@ -462,7 +463,7 @@ msgid "Never sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:279
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:302
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
@@ -543,6 +544,16 @@ msgstr ""
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Re-Open"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_property_cadastrial_code:0
+msgid "Real property cadastrial code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_property_location:0
+msgid "Real property location"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -796,25 +807,25 @@ msgid "The last attemp to sent to SII has failed"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:493
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:544
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:510
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:561
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:501
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:552
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:505
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:556
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr ""
@@ -841,13 +852,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:951
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1027
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:921
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:993
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -855,7 +866,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:849
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:921
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -863,19 +874,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:966
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1042
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:488
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:539
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:165
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:188
 #, python-format
 msgid ""
 "You cannot change the invoice date of an invoice already registered at the "
@@ -883,7 +894,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:182
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:205
 #, python-format
 msgid ""
 "You cannot change the supplier invoice number of an invoice already "
@@ -892,7 +903,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:175
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:198
 #, python-format
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
@@ -900,21 +911,44 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:199
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:222
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:496
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:547
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:131
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:154
 #, python-format
 msgid "You must have at least one refunded invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid ""
+"[1]-Real property with cadastral code located within the Spanish territory "
+"except Basque Country or Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid "[2]-Real property located in the Basque Country or Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid ""
+"[3]-Real property in any of the above situations but without cadastral code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid "[4]-Real property located in a foreign country"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
