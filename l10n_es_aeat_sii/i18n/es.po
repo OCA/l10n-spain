@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_sii
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -37,6 +37,16 @@ msgstr "Activar"
 #: selection:l10n.es.aeat.sii,state:0
 msgid "Active"
 msgstr "Activo"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_registration_key_additional2:0
+msgid "Additional 2 SII registration key"
+msgstr "Clave de registro adicional 2 SII"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_registration_key_additional1:0
+msgid "Additional SII registration key"
+msgstr "Clave de registro adicional SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys
