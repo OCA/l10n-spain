@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form1" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id"
+               ref="l10n_es_facturae.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="organo_proponente" position="after">
+                <field name="facturae_efact_code"/>
+            </field>
+        </field>
+    </record>
+</odoo>
