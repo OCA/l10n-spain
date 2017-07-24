@@ -527,6 +527,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         taxes_dict = {}
         taxes_sfrs = self._get_sii_taxes_map(['SFRS'])
+        taxes_sfrsa = self._get_sii_taxes_map(['SFRSA'])
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
         tax_amount = 0.0
@@ -557,6 +558,19 @@ class AccountInvoice(models.Model):
                 sfrns_dict['DetalleIVA'].append({
                     'BaseImponible': sign * tax_line.base,
                 })
+            elif tax_line in taxes_sfrsa:
+                sfrsa_dict = taxes_dict.setdefault(
+                    'DesgloseIVA', {'DetalleIVA': []},
+                )
+                tax_dict = self._get_sii_tax_dict(tax_line, sign)
+                tax_dict['PorcentCompensacionREAGYP'] = tax_dict.pop(
+                    'TipoImpositivo'
+                )
+                tax_dict['ImporteCompensacionREAGYP'] = tax_dict.pop(
+                    'CuotaSoportada'
+
+                )
+                sfrsa_dict['DetalleIVA'] = [tax_dict]
         return taxes_dict, tax_amount
 
     @api.multi
