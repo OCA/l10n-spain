@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record id="account_invoice_efact_server" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.server</field>
+        <field name="value">efact.eacat.cat</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+    <record id="account_invoice_efact_port" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.port</field>
+        <field name="value">22</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+    <record id="account_invoice_efact_user" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.user</field>
+        <field name="value">usuario</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+    <record id="account_invoice_efact_password" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.password</field>
+        <field name="value">password</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+    <record id="account_invoice_efact_key" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.key</field>
+        <field name="value">AAAAB3NzaC1yc2EAAAADAQABAAABAQC+3KviUE0FJhHkwuYaJS53NUuFNkuIV5T35rgHXoQFFVi4X0NgZrXNl5Y/7645FRxN1xUSGoi5x9WWPNXCEiX5whe4grKRKzzdnCKF3t2VXqwxX0OZNBffY182P0VVavdfqt+bmQR0OTS0to03rUstaJdmuSJbAAO8iS+f6Dz23qUZhJdwAAoRHXoUfSzr5+ofNtwW6viuy4Slh3SSuJ8xe4qst6jpGMxPobs96B2cuhv332NI0ivAXqyEAz4lq6IveCavHSRxEjlLJ4OtI4rB5D653bth6vsf5Dx9+QbpLqkc2fFlkDr2levM47QjL4YpOAJQQYVG66YjV7L2bUkH</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+    <record id="seq_account_invoice_efact" model="ir.sequence">
+        <field name="name">Integration eFact</field>
+        <field name="code">account.invoice.integration.face</field>
+        <field name="prefix">eFACT</field>
+        <field name="padding">8</field>
+    </record>
+    <record id="integration_efact" model="account.invoice.integration.method">
+        <field name="name">eFACT</field>
+        <field name="code">eFACT</field>
+        <field name="sequence_id" ref="l10n_es_facturae_efact.seq_account_invoice_efact"/>
+    </record>
+    <record id="update_efact_job" model="ir.cron">
+        <field name="name">eFACT update Job</field>
+        <field name="active">True</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="priority">8</field>
+        <field name="interval_type">hours</field>
+        <field name="numbercall">-1</field>
+        <field name="model">account.invoice.integration.log</field>
+        <field name="function">efact_check_history</field>
+        <field name="args">()</field>
+    </record>
+</odoo>
