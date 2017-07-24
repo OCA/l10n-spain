@@ -511,9 +511,11 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         taxes_dict = {}
         taxes_f = {}
+        taxes_fa = {}
         taxes_isp = {}
         taxes_ns = {}
         taxes_sfrs = self._get_sii_taxes_map(['SFRS'])
+        taxes_sfrsa = self._get_sii_taxes_map(['SFRSA'])
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
         tax_amount = 0.0
@@ -529,7 +531,8 @@ class AccountInvoice(models.Model):
                     taxes_ns.setdefault('no_sujeto', {'BaseImponible': 0},)
                     taxes_ns['no_sujeto']['BaseImponible'] += inv_line.\
                         _get_sii_line_price_subtotal()
-
+                elif tax_line in taxes_sfrsa:
+                    inv_line._update_sii_tax_line(taxes_fa, tax_line)
         if taxes_isp:
             taxes_dict.setdefault(
                 'InversionSujetoPasivo', {'DetalleIVA': taxes_isp.values()},
@@ -539,7 +542,7 @@ class AccountInvoice(models.Model):
                 'DesgloseIVA', {'DetalleIVA': (taxes_f.values() +
                                                taxes_ns.values())},
             )
-        for val in taxes_isp.values() + taxes_f.values():
+        for val in taxes_isp.values() + taxes_f.values() + taxes_fa.values():
             val['CuotaSoportada'] = float_round(
                 val['CuotaSoportada'] * sign, 2,
             )
@@ -551,6 +554,18 @@ class AccountInvoice(models.Model):
             tax_amount += val['CuotaSoportada']
         for reg in taxes_ns.values():
             reg['BaseImponible'] = float_round(reg['BaseImponible'] * sign, 2)
+        if taxes_fa:
+            # Régimen especial agricultura - Cambiar claves
+            for tax_fa in taxes_fa.values():
+                tax_fa['PorcentCompensacionREAGYP'] = tax_fa.pop(
+                    'TipoImpositivo'
+                )
+                tax_fa['ImporteCompensacionREAGYP'] = tax_fa.pop(
+                    'CuotaSoportada'
+                )
+            taxes_dict.setdefault(
+                'DesgloseIVA', {'DetalleIVA': taxes_fa.values()},
+            )
         return taxes_dict, tax_amount
 
     @api.multi
