@@ -20,6 +20,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatReportTaxMapping, self).calculate()
+        tax_line_obj = self.env['l10n.es.aeat.tax.line']
         for report in self:
             report.tax_line_ids.unlink()
             # Buscar configuración de mapeo de impuestos
@@ -35,7 +36,17 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                 tax_lines = []
                 for map_line in tax_code_map.map_line_ids:
                     tax_lines.append(report._prepare_tax_line_vals(map_line))
-                report.tax_line_ids = [(0, 0, x) for x in tax_lines]
+                # Due to a bug in ORM that unlinks other tables' records, we
+                # have to avoid (0, 0, x) syntax
+                # Reference: https://github.com/odoo/odoo/issues/18438
+                for tax_line_vals in tax_lines:
+                    tax_line_vals.update({
+                        'model': report._name,
+                        'res_id': report.id,
+                    })
+                    tax_line_obj.create(tax_line_vals)
+                report.modified(['tax_line_ids'])
+                report.recompute()
         return res
 
     @api.multi
