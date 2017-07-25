@@ -20,6 +20,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatReportTaxMapping, self).calculate()
+        tax_line_obj = self.env['l10n.es.aeat.tax.line']
         for report in self:
             report.tax_lines.unlink()
             # Buscar configuración de mapeo de impuestos
