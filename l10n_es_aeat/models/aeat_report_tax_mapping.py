@@ -40,7 +40,17 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                 tax_lines = []
                 for map_line in tax_code_map.map_lines:
                     tax_lines.append(report._prepare_tax_line_vals(map_line))
-                report.tax_lines = [(0, 0, x) for x in tax_lines]
+                # Due to a bug in ORM that unlinks other tables' records, we
+                # have to avoid (0, 0, x) syntax
+                # Reference: https://github.com/odoo/odoo/issues/18438
+                for tax_line_vals in tax_lines:
+                    tax_line_vals.update({
+                        'model': report._name,
+                        'res_id': report.id,
+                    })
+                    tax_line_obj.create(tax_line_vals)
+                report.modified(['tax_lines'])
+                report.recalculate()
         return res
 
     @api.multi
