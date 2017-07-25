@@ -45,7 +45,8 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                         'res_id': report.id,
                     })
                     tax_line_obj.create(tax_line_vals)
-                report.invalidate_cache()
+                report.modified(['tax_line_ids'])
+                report.recompute()
         return res
 
     @api.multi
