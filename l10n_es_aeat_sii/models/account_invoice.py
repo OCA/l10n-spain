@@ -152,14 +152,24 @@ class AccountInvoice(osv.Model):
         return super(AccountInvoice, self).copy(cr, uid, id, default, context=context)
 
     def create(self, cr, uid, vals, context=None):
-        if vals.get('fiscal_position') and vals.get('type'):
-            position_fiscal = self.pool.get('account.fiscal.position').browse(cr, uid, [vals['fiscal_position']], context=context)[0]
-            if vals['type'] in ['in_invoice', 'in_refund']:
-                if position_fiscal and position_fiscal.sii_registration_key_purchase:
-                    vals['sii_registration_key'] = position_fiscal.sii_registration_key_purchase.id
-            else:
-                if position_fiscal and position_fiscal.sii_registration_key_sale:
-                    vals['sii_registration_key'] = position_fiscal.sii_registration_key_sale.id
+        if vals.get('type'):
+            if not vals.get('sii_description'):
+                if context.get('force_company'):
+                    company = self.pool['res.company'].browse(cr, uid, context['force_company'])
+                else:
+                    company = self.pool.get("res.users").browse(cr, uid, uid).company_id
+                if vals['type'] in ['in_invoice', 'in_refund']:
+                    vals['sii_description'] = company.sii_header_supplier
+                else:
+                    vals['sii_description'] = company.sii_header_customer
+            if vals.get('fiscal_position'):
+                position_fiscal = self.pool.get('account.fiscal.position').browse(cr, uid, [vals['fiscal_position']], context=context)[0]
+                if vals['type'] in ['in_invoice', 'in_refund']:
+                    if position_fiscal and position_fiscal.sii_registration_key_purchase:
+                        vals['sii_registration_key'] = position_fiscal.sii_registration_key_purchase.id
+                else:
+                    if position_fiscal and position_fiscal.sii_registration_key_sale:
+                        vals['sii_registration_key'] = position_fiscal.sii_registration_key_sale.id
         return super(AccountInvoice, self).create(cr, uid, vals, context)
 
     def onchange_refund_type_l10n_es_aeat_sii(self, cr, uid, ids, refund_type):
