@@ -116,6 +116,14 @@ class AccountInvoice(models.Model):
         # required=True, This is not set as required here to avoid the
         # set not null constraint warning
     )
+    sii_registration_key_additional1 = fields.Many2one(
+        comodel_name='aeat.sii.mapping.registration.keys',
+        string="Additional SII registration key"
+    )
+    sii_registration_key_additional2 = fields.Many2one(
+        comodel_name='aeat.sii.mapping.registration.keys',
+        string="Additional 2 SII registration key"
+    )
     sii_registration_key_code = fields.Char(
         related="sii_registration_key.code", readonly=True,
     )
@@ -640,6 +648,14 @@ class AccountInvoice(models.Model):
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
             }
+            if self.sii_registration_key_additional1:
+                inv_dict["FacturaExpedida"].\
+                    update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
+                        self.sii_registration_key_additional1.code)})
+            if self.sii_registration_key_additional2:
+                inv_dict["FacturaExpedida"].\
+                    update({'ClaveRegimenEspecialOTrascendenciaAdicional2': (
+                        self.sii_registration_key_additional2.code)})
             if self.sii_registration_key.code in ['12', '13']:
                 inv_dict["FacturaExpedida"]['DatosInmueble'] = {
                     'DetalleInmueble': {
@@ -727,6 +743,14 @@ class AccountInvoice(models.Model):
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
                 "CuotaDeducible": tax_amount * sign,
             }
+            if self.sii_registration_key_additional1:
+                inv_dict["FacturaRecibida"].\
+                    update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
+                        self.sii_registration_key_additional1.code)})
+            if self.sii_registration_key_additional2:
+                inv_dict["FacturaRecibida"].\
+                    update({'ClaveRegimenEspecialOTrascendenciaAdicional2': (
+                        self.sii_registration_key_additional2.code)})
             # Uso condicional de IDOtro/NIF
             inv_dict['FacturaRecibida']['Contraparte'].update(ident)
             if self.type == 'in_refund':
