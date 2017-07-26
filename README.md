@@ -37,7 +37,7 @@ addon | version | summary
 [l10n_es_account_financial_report](l10n_es_account_financial_report/) | 8.0.1.0.0 | Informes financieros para España
 [l10n_es_account_financial_report_xlsx](l10n_es_account_financial_report_xlsx/) | 8.0.1.0.0 | Informes financieros para España XLSX
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 8.0.1.3.0 | Secuencia para facturas separada de la secuencia de asientos
-[l10n_es_aeat](l10n_es_aeat/) | 8.0.1.9.2 | AEAT Base
+[l10n_es_aeat](l10n_es_aeat/) | 8.0.1.9.3 | AEAT Base
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 8.0.2.1.0 | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 8.0.1.3.0 | AEAT modelo 115
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 8.0.0.9.0 | AEAT modelo 130
