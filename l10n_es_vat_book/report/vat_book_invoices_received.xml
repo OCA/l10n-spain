@@ -125,7 +125,7 @@
 
                               <t t-if="number_taxes != 0">
                                 <tr>
-                                  <td colspan="4">
+                                  <td colspan="5">
                                   </td>
                                   <td id="data_base_tax_hight">
                                     <span t-esc="formatLang(tax.amount_without_tax)"/>
