@@ -187,13 +187,13 @@
                              <strong>Total</strong>
                             </td>
                             <td class="text-center" id="total_sumary_base">
-                                <span t-esc="formatLang(o.amount_without_tax_received)"/>
+                                <span t-esc="formatLang(o.amount_without_tax_issued)"/>
                             </td>
                             <td class="text-center" id="total_sumary_cuote">
-                                <span t-esc="formatLang(o.amount_tax_received)"/>
+                                <span t-esc="formatLang(o.amount_tax_issued)"/>
                             </td>
                             <td class="text-center" id="total_sumary_type">
-                                <span t-esc="formatLang(o.amount_total_received)"/>
+                                <span t-esc="formatLang(o.amount_total_issued)"/>
                             </td>
                         </tr>
                     </tbody>
