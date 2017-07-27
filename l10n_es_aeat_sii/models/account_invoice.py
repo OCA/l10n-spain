@@ -152,6 +152,8 @@ class AccountInvoice(osv.Model):
         return super(AccountInvoice, self).copy(cr, uid, id, default, context=context)
 
     def create(self, cr, uid, vals, context=None):
+        if context is None:
+            context = {}
         if vals.get('type'):
             if not vals.get('sii_description'):
                 if context.get('force_company'):
