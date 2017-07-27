@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingenieria S.L. - Antonio Espinosa
-# © 2015 Antiun Ingenieria S.L. - Jairo Llopis
+# Copyright 2015 Tecnativa - Antonio Espinosa
+# Copyright 2015 Tecnativa - Jairo Llopis
+# Copyright 2017 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api
+from odoo import api, models
 import logging
 
 logger = logging.getLogger(__name__)
@@ -12,65 +13,65 @@ logger = logging.getLogger(__name__)
 class NutsImport(models.TransientModel):
     _inherit = 'nuts.import'
     _es_state_map = {
-        'ES111': 'l10n_es_toponyms.ES15',  # A Coruña
-        'ES112': 'l10n_es_toponyms.ES27',  # Lugo
-        'ES113': 'l10n_es_toponyms.ES32',  # Ourense
-        'ES114': 'l10n_es_toponyms.ES36',  # Pontevedra
-        'ES120': 'l10n_es_toponyms.ES33',  # Asturias
-        'ES130': 'l10n_es_toponyms.ES39',  # Cantabria
-        'ES211': 'l10n_es_toponyms.ES01',  # Araba/Álava
-        'ES212': 'l10n_es_toponyms.ES20',  # Gipuzkoa
-        'ES213': 'l10n_es_toponyms.ES48',  # Bizkaia
-        'ES220': 'l10n_es_toponyms.ES31',  # Navarra
-        'ES230': 'l10n_es_toponyms.ES26',  # La Rioja
-        'ES241': 'l10n_es_toponyms.ES22',  # Huesca
-        'ES242': 'l10n_es_toponyms.ES44',  # Teruel
-        'ES243': 'l10n_es_toponyms.ES50',  # Zaragoza
-        'ES300': 'l10n_es_toponyms.ES28',  # Madrid
-        'ES411': 'l10n_es_toponyms.ES05',  # Ávila
-        'ES412': 'l10n_es_toponyms.ES09',  # Burgos
-        'ES413': 'l10n_es_toponyms.ES24',  # León
-        'ES414': 'l10n_es_toponyms.ES34',  # Palencia
-        'ES415': 'l10n_es_toponyms.ES37',  # Salamanca
-        'ES416': 'l10n_es_toponyms.ES40',  # Segovia
-        'ES417': 'l10n_es_toponyms.ES42',  # Soria
-        'ES418': 'l10n_es_toponyms.ES47',  # Valladolid
-        'ES419': 'l10n_es_toponyms.ES49',  # Zamora
-        'ES421': 'l10n_es_toponyms.ES02',  # Albacete
-        'ES422': 'l10n_es_toponyms.ES13',  # Ciudad Real
-        'ES423': 'l10n_es_toponyms.ES16',  # Cuenca
-        'ES424': 'l10n_es_toponyms.ES19',  # Guadalajara
-        'ES425': 'l10n_es_toponyms.ES45',  # Toledo
-        'ES431': 'l10n_es_toponyms.ES06',  # Badajoz
-        'ES432': 'l10n_es_toponyms.ES10',  # Cáceres
-        'ES511': 'l10n_es_toponyms.ES08',  # Barcelona
-        'ES512': 'l10n_es_toponyms.ES17',  # Girona
-        'ES513': 'l10n_es_toponyms.ES25',  # Lleida
-        'ES514': 'l10n_es_toponyms.ES43',  # Tarragona
-        'ES521': 'l10n_es_toponyms.ES03',  # Alicante / Alacant
-        'ES522': 'l10n_es_toponyms.ES12',  # Castellón / Castelló
-        'ES523': 'l10n_es_toponyms.ES46',  # Valencia / València
-        'ES531': 'l10n_es_toponyms.ES07',  # Eivissa y Formentera
-        'ES532': 'l10n_es_toponyms.ES07',  # Mallorca
-        'ES533': 'l10n_es_toponyms.ES07',  # Menorca
-        'ES611': 'l10n_es_toponyms.ES04',  # Almería
-        'ES612': 'l10n_es_toponyms.ES11',  # Cádiz
-        'ES613': 'l10n_es_toponyms.ES14',  # Córdoba
-        'ES614': 'l10n_es_toponyms.ES18',  # Granada
-        'ES615': 'l10n_es_toponyms.ES21',  # Huelva
-        'ES616': 'l10n_es_toponyms.ES23',  # Jaén
-        'ES617': 'l10n_es_toponyms.ES29',  # Málaga
-        'ES618': 'l10n_es_toponyms.ES41',  # Sevilla
-        'ES620': 'l10n_es_toponyms.ES30',  # Murcia
-        'ES630': 'l10n_es_toponyms.ES51',  # Ceuta
-        'ES640': 'l10n_es_toponyms.ES52',  # Melilla
-        'ES703': 'l10n_es_toponyms.ES38',  # El Hierro
-        'ES704': 'l10n_es_toponyms.ES35',  # Fuerteventura
-        'ES705': 'l10n_es_toponyms.ES35',  # Gran Canaria
-        'ES706': 'l10n_es_toponyms.ES38',  # La Gomera
-        'ES707': 'l10n_es_toponyms.ES38',  # La Palma
-        'ES708': 'l10n_es_toponyms.ES35',  # Lanzarote
-        'ES709': 'l10n_es_toponyms.ES38',  # Tenerife
+        'ES111': 'base.state_es_c',  # A Coruña
+        'ES421': 'base.state_es_ab',  # Albacete
+        'ES521': 'base.state_es_a',  # Alicante / Alacant
+        'ES611': 'base.state_es_al',  # Almería
+        'ES211': 'base.state_es_vi',  # Araba/Álava
+        'ES120': 'base.state_es_o',  # Asturias
+        'ES411': 'base.state_es_av',  # Ávila
+        'ES431': 'base.state_es_ba',  # Badajoz
+        'ES511': 'base.state_es_b',  # Barcelona
+        'ES213': 'base.state_es_bi',  # Bizkaia
+        'ES412': 'base.state_es_bu',  # Burgo
+        'ES432': 'base.state_es_cc',  # Cáceres
+        'ES612': 'base.state_es_ca',  # Cádiz
+        'ES130': 'base.state_es_s',  # Cantabria
+        'ES522': 'base.state_es_cs',  # Castellón / Castelló
+        'ES630': 'base.state_es_ce',  # Ceuta
+        'ES422': 'base.state_es_cr',  # Ciudad Real
+        'ES613': 'base.state_es_co',  # Córdoba
+        'ES423': 'base.state_es_cu',  # Cuenca
+        'ES531': 'base.state_es_pm',  # Eivissa y Formentera
+        'ES703': 'base.state_es_tf',  # El Hierro
+        'ES704': 'base.state_es_gc',  # Fuerteventura
+        'ES212': 'base.state_es_ss',  # Gipuzkoa
+        'ES512': 'base.state_es_gi',  # Girona
+        'ES705': 'base.state_es_gc',  # Gran Canaria
+        'ES614': 'base.state_es_gr',  # Granada
+        'ES424': 'base.state_es_gu',  # Guadalajara
+        'ES615': 'base.state_es_h',  # Huelva
+        'ES241': 'base.state_es_hu',  # Huesca
+        'ES616': 'base.state_es_j',  # Jaén
+        'ES706': 'base.state_es_tf',  # La Gomera
+        'ES707': 'base.state_es_tf',  # La Palma
+        'ES230': 'base.state_es_lo',  # La Rioja
+        'ES708': 'base.state_es_gc',  # Lanzarote
+        'ES413': 'base.state_es_le',  # León
+        'ES513': 'base.state_es_l',  # Lleida
+        'ES112': 'base.state_es_lu',  # Lugo
+        'ES300': 'base.state_es_m',  # Madrid
+        'ES617': 'base.state_es_ma',  # Málaga
+        'ES532': 'base.state_es_pm',  # Mallorca
+        'ES640': 'base.state_es_ml',  # Melilla
+        'ES533': 'base.state_es_ba',  # Menorca
+        'ES620': 'base.state_es_mu',  # Murcia
+        'ES220': 'base.state_es_na',  # Navarra
+        'ES113': 'base.state_es_or',  # Ourense
+        'ES414': 'base.state_es_p',  # Palencia
+        'ES114': 'base.state_es_po',  # Pontevedra
+        'ES415': 'base.state_es_sa',  # Salamanca
+        'ES416': 'base.state_es_sg',  # Segovia
+        'ES618': 'base.state_es_se',  # Sevilla
+        'ES417': 'base.state_es_so',  # Soria
+        'ES514': 'base.state_es_t',  # Tarragona
+        'ES709': 'base.state_es_tf',  # Tenerife
+        'ES242': 'base.state_es_te',  # Teruel
+        'ES425': 'base.state_es_to',  # Toledo
+        'ES523': 'base.state_es_v',  # Valencia / València
+        'ES418': 'base.state_es_va',  # Valladolid
+        'ES419': 'base.state_es_za',  # Zamora
+        'ES243': 'base.state_es_z',  # Zaragoza
         'ESZZZ': False,  # Extra-Regio NUTS 3
     }
 
