@@ -194,6 +194,10 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             'property_account_payable_id': self.accounts['410000'].id,
             'property_account_receivable_id': self.accounts['430000'].id,
         })
+        self.customer_bank = self.env['res.partner.bank'].create({
+            'partner_id': self.customer.id,
+            'acc_number': 'ES66 2100 0418 4012 3456 7891',
+        })
         return True
 
     def setUp(self):
