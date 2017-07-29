@@ -357,6 +357,7 @@ class AccountInvoice(models.Model):
         taxes_f = {}
         taxes_to = {}
         tax_breakdown = {}
+        type_breakdown = {}
         taxes_sfesb = self._get_sii_taxes_map(['SFESB'])
         taxes_sfesbe = self._get_sii_taxes_map(['SFESBE'])
         taxes_sfesisp = self._get_sii_taxes_map(['SFESISP'])
@@ -388,7 +389,7 @@ class AccountInvoice(models.Model):
                         if exempt_cause:
                             sub_dict['Exenta']['CausaExencion'] = exempt_cause
                         sub_dict['Exenta']['BaseImponible'] += (
-                            inv_line._get_sii_line_price_subtotal() * sign
+                            inv_line._get_sii_line_price_subtotal()
                         )
                     else:
                         sub_dict.setdefault('NoExenta', {
@@ -413,7 +414,7 @@ class AccountInvoice(models.Model):
                         'NoSujeta', {default_no_taxable_cause: 0},
                     )
                     nsub_dict[default_no_taxable_cause] += (
-                        inv_line._get_sii_line_price_subtotal() * sign
+                        inv_line._get_sii_line_price_subtotal()
                     )
                 if tax_line in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                     type_breakdown = taxes_dict.setdefault(
@@ -433,7 +434,7 @@ class AccountInvoice(models.Model):
                         if exempt_cause:
                             exempt_dict['CausaExencion'] = exempt_cause
                         exempt_dict['BaseImponible'] += inv_line.\
-                            _get_sii_line_price_subtotal() * sign
+                            _get_sii_line_price_subtotal()
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
                         # if tax_line in taxes_sfesisps:
@@ -473,7 +474,24 @@ class AccountInvoice(models.Model):
         if 'Sujeta' in tax_breakdown and 'Exenta' in tax_breakdown['Sujeta']:
             exempt_dict = tax_breakdown['Sujeta']['Exenta']
             exempt_dict['BaseImponible'] = \
-                float_round(exempt_dict['BaseImponible'], 2)
+                float_round(exempt_dict['BaseImponible'] * sign, 2)
+        if 'NoSujeta' in tax_breakdown:
+            nsub_dict = tax_breakdown['NoSujeta']
+            nsub_dict[default_no_taxable_cause] = \
+                float_round(nsub_dict[default_no_taxable_cause] * sign, 2)
+        if type_breakdown:
+            services_dict = type_breakdown['PrestacionServicios']
+            if 'Sujeta' in services_dict \
+                    and 'Exenta' in services_dict['Sujeta']:
+                exempt_dict = services_dict['Sujeta']['Exenta']
+                exempt_dict['BaseImponible'] = \
+                    float_round(exempt_dict['BaseImponible'] * sign, 2)
+            if 'NoSujeta' in services_dict:
+                nsub_dict = services_dict['NoSujeta']
+                nsub_dict["ImporteTAIReglasLocalizacion"] = \
+                    float_round(nsub_dict["ImporteTAIReglasLocalizacion"] *
+                                sign, 2)
+
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
@@ -510,7 +528,7 @@ class AccountInvoice(models.Model):
                 elif tax_line in taxes_sfrns:
                     taxes_ns.setdefault('no_sujeto', {'BaseImponible': 0},)
                     taxes_ns['no_sujeto']['BaseImponible'] += inv_line.\
-                        _get_sii_line_price_subtotal() * sign
+                        _get_sii_line_price_subtotal()
 
         if taxes_isp:
             taxes_dict.setdefault(
@@ -531,6 +549,8 @@ class AccountInvoice(models.Model):
                     val['CuotaRecargoEquivalencia'] * sign, 2,
                 )
             tax_amount += val['CuotaSoportada']
+        for reg in taxes_ns.values():
+            reg['BaseImponible'] = float_round(reg['BaseImponible'] * sign, 2)
         return taxes_dict, tax_amount
 
     @api.multi
