@@ -73,6 +73,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
 * Vicent Cubells <vicent@vcubells.net>
+* Jose Maria Alzaga <jose.alzaga@aselcis.com>
 
 Financiadores
 -------------

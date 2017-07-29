@@ -21,6 +21,7 @@
         "Pedro M. Baeza <pedro.baeza@tecnativa.com>",
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Vicent Cubells <vicent.cubells@tecnativa.com>",
+        "Jose Maria Alzaga <jose.alzaga@aselcis.com>",
     ],
     "license": 'AGPL-3',
     "depends": [
