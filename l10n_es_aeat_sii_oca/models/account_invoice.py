@@ -551,10 +551,12 @@ class AccountInvoice(models.Model):
                 )
                 tax_amount += round(tax_line.amount, 2)
             elif tax in taxes_sfrns:
-                taxes_dict.setdefault(
-                    'DesgloseIVA',
-                    {'DetalleIVA': {'BaseImponible': sign * tax_line.base}},
+                sfrns_dict = taxes_dict.setdefault(
+                    'DesgloseIVA', {'DetalleIVA': []},
                 )
+                sfrns_dict['DetalleIVA'].append({
+                    'BaseImponible': sign * tax_line.base,
+                })
         return taxes_dict, tax_amount
 
     @api.multi
