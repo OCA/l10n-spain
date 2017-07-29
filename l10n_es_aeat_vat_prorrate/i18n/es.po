@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-23 16:40+0000\n"
-"PO-Revision-Date: 2017-02-20 12:40+0000\n"
+"POT-Creation-Date: 2017-07-27 00:52+0000\n"
+"PO-Revision-Date: 2017-06-27 01:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -119,13 +119,13 @@ msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
 msgstr "Regularización por aplicación del porcentaje definitivo de prorrata."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:203
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:302
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr "Regularización prorrata IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:73
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:147
 #, python-format
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
@@ -156,7 +156,7 @@ msgid ""
 msgstr "ESte asistente calculará la prorrata de IVA para el año fiscal seleccionado, que se puede aplicar como el valor provisional para los informes de AEAT para el año fiscal siguiente hasta el último período, en que se debe calcular la prorrata definitiva y compensar la diferencia."
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:59
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:133
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr "El porcentaje de la prorrata de IVA debe estar entre 0.01 y 100"
