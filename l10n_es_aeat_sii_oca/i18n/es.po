@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 03:05+0000\n"
-"PO-Revision-Date: 2017-07-29 03:05+0000\n"
+"POT-Creation-Date: 2017-08-01 19:33+0000\n"
+"PO-Revision-Date: 2017-08-01 19:33+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -825,13 +825,13 @@ msgid "The last attemp to sent to SII has failed"
 msgstr "El último intento de envío al SII ha fallado"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:575
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:577
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "La empresa no tiene un NIF configurado."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:591
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:593
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr "El nº de factura del proveedor es obligatorio"
@@ -845,13 +845,13 @@ msgstr ""
 "Compruébelos."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:583
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:585
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr "Esta compañía no tiene habilitado el SII."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:587
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:589
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr "Esta factura no está habilitada para el SII."
@@ -878,13 +878,13 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1062
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1064
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1028
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1030
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -894,7 +894,7 @@ msgstr ""
 " un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:956
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:958
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -904,7 +904,7 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1077
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1079
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
@@ -912,7 +912,7 @@ msgstr ""
 "trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:570
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:572
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr "No puede realizar una factura simplificada a un proveedor."
@@ -955,7 +955,7 @@ msgid "You cannot delete an invoice already registered at the SII."
 msgstr "No puede eliminar una factura enviada al SII."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:578
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:580
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar que plan contable utiliza esta compañía"

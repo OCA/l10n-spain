@@ -473,7 +473,7 @@ class AccountInvoice(models.Model):
                         'PrestacionServicios': {},
                     },
                 )
-                if tax_line in (taxes_sfesse + taxes_sfess):
+                if tax in (taxes_sfesse + taxes_sfess):
                     type_breakdown['PrestacionServicios'].setdefault(
                         'Sujeta', {}
                     )
@@ -487,7 +487,7 @@ class AccountInvoice(models.Model):
                     exempt_dict['BaseImponible'] += tax_line.base * sign
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
-                    # if tax_line in taxes_sfesisps:
+                    # if tax in taxes_sfesisps:
                     #     TipoNoExenta = 'S2'
                     # else:
                     service_dict['Sujeta'].setdefault(
@@ -501,7 +501,7 @@ class AccountInvoice(models.Model):
                     sub = type_breakdown['PrestacionServicios']['Sujeta'][
                         'NoExenta']['DesgloseIVA']['DetalleIVA']
                     sub.append(self._get_sii_tax_dict(tax_line, sign))
-                if tax_line in taxes_sfesns:
+                if tax in taxes_sfesns:
                     nsub_dict = service_dict.setdefault(
                         'NoSujeta', {'ImporteTAIReglasLocalizacion': 0},
                     )
@@ -527,6 +527,7 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         taxes_dict = {}
         taxes_sfrs = self._get_sii_taxes_map(['SFRS'])
+        taxes_sfrsa = self._get_sii_taxes_map(['SFRSA'])
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
         tax_amount = 0.0
@@ -551,10 +552,25 @@ class AccountInvoice(models.Model):
                 )
                 tax_amount += round(tax_line.amount, 2)
             elif tax in taxes_sfrns:
-                taxes_dict.setdefault(
-                    'DesgloseIVA',
-                    {'DetalleIVA': {'BaseImponible': sign * tax_line.base}},
+                sfrns_dict = taxes_dict.setdefault(
+                    'DesgloseIVA', {'DetalleIVA': []},
                 )
+                sfrns_dict['DetalleIVA'].append({
+                    'BaseImponible': sign * tax_line.base,
+                })
+            elif tax in taxes_sfrsa:
+                sfrsa_dict = taxes_dict.setdefault(
+                    'DesgloseIVA', {'DetalleIVA': []},
+                )
+                tax_dict = self._get_sii_tax_dict(tax_line, sign)
+                tax_dict['PorcentCompensacionREAGYP'] = tax_dict.pop(
+                    'TipoImpositivo'
+                )
+                tax_dict['ImporteCompensacionREAGYP'] = tax_dict.pop(
+                    'CuotaSoportada'
+
+                )
+                sfrsa_dict['DetalleIVA'] = [tax_dict]
         return taxes_dict, tax_amount
 
     @api.multi
