@@ -494,6 +494,7 @@ class AccountInvoice(models.Model):
         taxes_dict = {}
         taxes_f = {}
         taxes_isp = {}
+        taxes_ns = {}
         taxes_sfrs = self._get_sii_taxes_map(['SFRS'])
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
@@ -507,20 +508,18 @@ class AccountInvoice(models.Model):
                 elif tax_line in taxes_sfrs:
                     inv_line._update_sii_tax_line(taxes_f, tax_line)
                 elif tax_line in taxes_sfrns:
-                    nsub_dict = taxes_dict.setdefault(
-                        'DesgloseIVA',
-                        {'DetalleIVA': {'BaseImponible': 0}},
-                    )
-                    nsub_dict['DetalleIVA']['BaseImponible'] += inv_line.\
+                    taxes_ns.setdefault('no_sujeto', {'BaseImponible': 0},)
+                    taxes_ns['no_sujeto']['BaseImponible'] += inv_line.\
                         _get_sii_line_price_subtotal() * sign
 
         if taxes_isp:
             taxes_dict.setdefault(
                 'InversionSujetoPasivo', {'DetalleIVA': taxes_isp.values()},
             )
-        if taxes_f:
+        if taxes_f or taxes_ns:
             taxes_dict.setdefault(
-                'DesgloseIVA', {'DetalleIVA': taxes_f.values()},
+                'DesgloseIVA', {'DetalleIVA': (taxes_f.values() +
+                                               taxes_ns.values())},
             )
         for val in taxes_isp.values() + taxes_f.values():
             val['CuotaSoportada'] = float_round(
