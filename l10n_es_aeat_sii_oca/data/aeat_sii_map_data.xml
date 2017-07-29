@@ -104,6 +104,15 @@
             <field name="name">SuministroFactRecibidas Sujetas</field>
         </record>
 
+        <record id="aeat_sii_map_line_SFRSA" model="aeat.sii.map.lines">
+            <field name="code">SFRSA</field>
+            <field name="taxes" eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_p_iva12_agr'),
+            ])]"/>
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactRecibidas Sujetas Agricultura</field>
+        </record>
+
         <record id="aeat_sii_map_line_SFRISP" model="aeat.sii.map.lines">
             <field name="code">SFRISP</field>
             <field name="taxes" eval="[(6, 0, [
