@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 17:14+0000\n"
-"PO-Revision-Date: 2017-04-19 17:14+0000\n"
+"POT-Creation-Date: 2017-07-29 03:04+0000\n"
+"PO-Revision-Date: 2017-07-29 03:04+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/oca/teams/23907/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -805,7 +805,7 @@ msgid "Regular"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:151
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:162
 #, python-format
 msgid "Regularization"
 msgstr "Regularización"
@@ -1028,7 +1028,7 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:185
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:196
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr "Debe rellenar tanto el diario como la cuenta de contrapartida."
