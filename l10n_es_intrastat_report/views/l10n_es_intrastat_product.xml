@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="l10n_es_intrastat_product_computation_line_view_form" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.computation.line.form</field>
+      <field name="model">l10n.es.intrastat.product.computation.line</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_computation_line_view_form"/>
+      <field name="arch" type="xml">
+        <field name="region_id" position="after">
+          <field name="intrastat_state_id"/>
+        </field>
+        <field name="amount_accessory_cost_company_currency" position="attributes">
+          <attribute name="invisible">1</attribute>/>
+        </field>
+        <field name="incoterm_id" position="attributes">
+          <attribute name="invisible"/>
+          <attribute name="attrs">{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+        </field>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_computation_line_view_tree" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.computation.line.tree</field>
+      <field name="model">l10n.es.intrastat.product.computation.line</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_computation_line_view_tree"/>
+      <field name="arch" type="xml">
+        <field name="region_id" position="after">
+          <field name="intrastat_state_id"/>
+        </field>
+        <field name="amount_accessory_cost_company_currency" position="attributes">
+          <attribute name="invisible">1</attribute>/>
+        </field>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_declaration_line_view_form" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.declaration.line.form</field>
+      <field name="model">l10n.es.intrastat.product.declaration.line</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_form"/>
+      <field name="arch" type="xml">
+        <field name="region_id" position="after">
+          <field name="intrastat_state_id"/>
+        </field>
+        <field name="incoterm_id" position="attributes">
+          <attribute name="invisible"/>
+          <attribute name="attrs">{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
+        </field>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_declaration_line_view_tree" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.declaration.line.tree</field>
+      <field name="model">l10n.es.intrastat.product.declaration.line</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_tree"/>
+      <field name="arch" type="xml">
+        <field name="region_id" position="after">
+          <field name="intrastat_state_id"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_declaration_view_form" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.declaration.form</field>
+      <field name="model">l10n.es.intrastat.product.declaration</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_form"/>
+      <field name="arch" type="xml">
+        <form position="attributes">
+          <attribute name="string">Spanish Intrastat Product Declaration</attribute>
+        </form>
+        <field name="reporting_level" position="attributes">
+          <attribute name="invisible"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_declaration_view_tree" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.declaration.tree</field>
+      <field name="model">l10n.es.intrastat.product.declaration</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_tree"/>
+      <field name="arch" type="xml">
+        <tree position="attributes">
+          <attribute name="string">Spanish Intrastat Product Declaration</attribute>
+        </tree>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_declaration_view_search" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.declaration.search</field>
+      <field name="model">l10n.es.intrastat.product.declaration</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_search"/>
+      <field name="arch" type="xml">
+        <search position="attributes">
+          <attribute name="string">Search Spanish Intrastat Product Declaration</attribute>
+        </search>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_declaration_view_graph" model="ir.ui.view">
+      <field name="name">l10n.es.intrastat.product.declaration.graph</field>
+      <field name="model">l10n.es.intrastat.product.declaration</field>
+      <field name="mode">primary</field>
+      <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_view_graph"/>
+      <field name="arch" type="xml">
+        <graph position="attributes">
+          <attribute name="string">Spanish Intrastat Product Declaration</attribute>
+        </graph>
+      </field>
+    </record>
+
+    <record id="l10n_es_intrastat_product_declaration_action" model="ir.actions.act_window">
+      <field name="name">Spanish Intrastat Product Declaration</field>
+      <field name="res_model">l10n.es.intrastat.product.declaration</field>
+      <field name="view_mode">tree,form,graph</field>
+    </record>
+
+    <menuitem id="l10n_es_intrastat_product_declaration_menu"
+      parent="intrastat_base.menu_intrastat_base_root"
+      action="l10n_es_intrastat_product_declaration_action"/>
+
+  </data>
+</openerp>
