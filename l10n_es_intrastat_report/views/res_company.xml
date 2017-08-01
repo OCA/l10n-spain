@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+
+    <record id="view_company_form" model="ir.ui.view">
+      <field name="name">res.company.form</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="intrastat_product.view_company_form"/>
+      <field name="arch" type="xml">
+        <field name="intrastat_region_id" position="after">
+          <field name="intrastat_state_id"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <record id="invoice_form" model="ir.ui.view">
+      <field name="name">intrastat.invoice.form</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="intrastat_product.invoice_form"/>
+      <field name="arch" type="xml">
+        <field name="src_dest_region_id" position="after">
+          <field name="src_dest_state_id"/>
+        </field>
+      </field>
+    </record>
+
+    <record id="invoice_supplier_form" model="ir.ui.view">
+      <field name="name">intrastat.invoice.supplier.form</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="intrastat_product.invoice_supplier_form"/>
+      <field name="arch" type="xml">
+        <field name="src_dest_region_id" position="after">
+          <field name="src_dest_state_id"/>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>
