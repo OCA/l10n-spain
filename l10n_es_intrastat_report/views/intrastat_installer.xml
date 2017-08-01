@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+  <data>
+    <record id="intrastat_installer_view_form" model="ir.ui.view">
+      <field name="name">intrastat.installer.view</field>
+      <field name="model">intrastat.installer</field>
+      <field name="inherit_id" ref="base.res_config_installer"/>
+      <field name="arch" type="xml">
+        <data>
+          <form position="attributes">
+            <attribute name="string">Load Intrastat Codes</attribute>
+          </form>
+          <xpath expr="//separator[@string='title']" position="after">
+            <group position="inside">
+              <field name="CN_file"/>
+            </group>
+          </xpath>
+          <separator string="title" position="attributes">
+            <attribute name="string">Load Intrastat Codes</attribute>
+          </separator>
+          <xpath expr="//button[@string='Install Modules']" position="attributes">
+            <attribute name="string">Load</attribute>
+          </xpath>
+        </data>
+      </field>
+    </record>
+
+    <record id="intrastat_installer_action" model="ir.actions.act_window">
+      <field name="name">Load Intrastat Codes</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">intrastat.installer</field>
+      <field name="view_id" ref="intrastat_installer_view_form"/>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+    <record id="intrastat_installer_todo" model="ir.actions.todo">
+      <field name="action_id" ref="intrastat_installer_action"/>
+      <field name="sequence">10</field>
+      <field name="type">automatic</field>
+    </record>
+
+  </data>
+</openerp>
