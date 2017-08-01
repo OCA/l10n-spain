@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data noupdate="1">
+
+    <record id="intrastat_transaction_1" model="intrastat.transaction">
+      <field name="code">1</field>
+      <field name="description">Llegada/Salida de mercancías con destino final</field>
+    </record>
+    <record id="intrastat_transaction_2" model="intrastat.transaction">
+      <field name="code">2</field>
+      <field name="description">Llegada/Salida temporal de mercancías para ser reexpedidas/reintroducidas con posterioridad en el mismo estado</field>
+    </record>
+    <record id="intrastat_transaction_3" model="intrastat.transaction">
+      <field name="code">3</field>
+      <field name="description">Llegada/Salida temporal de mercancías para ser reexpedidas/reintroducidas con posterioridad, después de haber sido reparas o transformadas</field>
+    </record>
+    <record id="intrastat_transaction_4" model="intrastat.transaction">
+      <field name="code">4</field>
+      <field name="description">Llegada/Salida de mercancías devueltas en el mismo estado</field>
+    </record>
+    <record id="intrastat_transaction_5" model="intrastat.transaction">
+      <field name="code">5</field>
+      <field name="description">Llegada/Salida de mercancías devueltas después de haber haber sido reparas o transformadas</field>
+    </record>
+
+  </data>
+</openerp>
