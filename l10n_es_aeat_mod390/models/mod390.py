@@ -2,7 +2,7 @@
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from openerp import _, api, fields, exceptions, models
+from odoo import _, api, fields, exceptions, models
 
 
 REQUIRED_ON_CALCULATED = {
