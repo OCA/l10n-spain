@@ -9,6 +9,7 @@ import re
 from calendar import monthrange
 from openerp import _, api, fields, exceptions, models, SUPERUSER_ID
 from openerp.tools import config
+from datetime import datetime
 
 
 class L10nEsAeatReport(models.AbstractModel):
@@ -406,3 +407,14 @@ class L10nEsAeatReport(models.AbstractModel):
                     sequence, aeat_num, company,
                 ))
         return res
+
+    @api.model
+    def _get_formatted_date(self, date):
+        """Convert an Odoo date to BOE export date format.
+
+        :param date: Date in Odoo format or falsy value
+        :return: Date formatted for BOE export.
+        """
+        if not date:
+            return ''
+        return datetime.strftime(fields.Date.from_string(date), "%d%m%Y")
