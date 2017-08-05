@@ -2,7 +2,7 @@
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
-from openerp.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
 
 
@@ -10,10 +10,13 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
     taxes_sale = {
         # tax code: (base, tax_amount)
         'S_IVA4B': (1000, 40),
+        'S_IVA4B//neg': (-100, -4),
         'S_IVA4S': (1100, 44),
         'S_IVA10B': (1200, 120),
+        'S_IVA10B//neg': (-120, -12),
         'S_IVA10S': (1300, 130),
         'S_IVA21B': (1400, 294),
+        'S_IVA21B//neg': (-140, -29.4),
         'S_IVA21S': (1500, 315),
         'S_IVA21ISP': (1600, 336),
         'S_REQ05': (1700, 8.5),
@@ -65,17 +68,17 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
     }
     taxes_result = {
         # Régimen ordinario - Base imponible 4%
-        '1': 6300.0,
+        '1': 6000.0,
         # Régimen ordinario - Cuota 4%
-        '2': 252.0,
+        '2': 240.0,
         # Régimen ordinario - Base imponible 10%
-        '3': 7500.0,
+        '3': 7140.0,
         # Régimen ordinario - Cuota 10%
-        '4': 750.0,
+        '4': 714.0,
         # Régimen ordinario - Base imponible 21%
-        '5': 8700.0,
+        '5': 8280.0,
         # Régimen ordinario - Cuota 21%
-        '6': 1827.0,
+        '6': 1738.8,
         # Adquisiciones intracomunitarias de bienes - Base 4%
         '21': 300.0,
         # Adquisiciones intracomunitarias de bienes - Cuota 4%
@@ -93,9 +96,9 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # IVA devengado otros supuestos de inversión del sujeto pasivo - Cuota
         '28': 131.1,
         # Modificación de bases
-        '29': -7500.0 - 4860.0,
+        '29': -7140.0 - 4860.0,
         # Modificación de cuotas
-        '30': -943.0 - 619.7,
+        '30': -897.6 - 619.7,
         # Recargo de equivalencia - Base 0,5%
         '35': 5100.0,
         # Recargo de equivalencia - Cuota 0,5%
@@ -107,7 +110,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # Rectificación de deducciones - Cuota
         '62': -1234.75,
         # Volumen de operaciones
-        '99': 15000.0,
+        '99': 14280.0,
         # Operaciones realizadas por sujetos pasivos acogidos al régimen
         # especial del recargo de equivalencia
         '102': -16200.0,
@@ -248,9 +251,9 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
                 "Incorrect result in field %s" % field
             )
         # Check computed fields
-        self.assertAlmostEqual(self.model390.casilla_33, 17520.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_34, 2234.4, 2)
-        self.assertAlmostEqual(self.model390.casilla_47, 2499.4, 2)
+        self.assertAlmostEqual(self.model390.casilla_33, 16800.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_34, 2143.6, 2)
+        self.assertAlmostEqual(self.model390.casilla_47, 2408.6, 2)
         self.assertAlmostEqual(self.model390.casilla_48, 5310.0, 2)
         self.assertAlmostEqual(self.model390.casilla_49, 634.8, 2)
         self.assertAlmostEqual(self.model390.casilla_52, 3150.0, 2)
@@ -260,9 +263,9 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_597, 4500.0, 2)
         self.assertAlmostEqual(self.model390.casilla_598, 576.0, 2)
         self.assertAlmostEqual(self.model390.casilla_64, 609.65, 2)
-        self.assertAlmostEqual(self.model390.casilla_65, 1889.75, 2)
-        self.assertAlmostEqual(self.model390.casilla_86, 1889.75, 2)
-        self.assertAlmostEqual(self.model390.casilla_108, 25800.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_65, 1798.95, 2)
+        self.assertAlmostEqual(self.model390.casilla_86, 1798.95, 2)
+        self.assertAlmostEqual(self.model390.casilla_108, 25080.0, 2)
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
             'name': 'test_export_to_boe.txt',
