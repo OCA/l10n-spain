@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="l10n_es_sii_form_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.sii.form</field>
+            <field name="model">l10n.es.aeat.sii</field>
+            <field name="arch" type="xml">
+                <form string="Load Certificate">
+                    <header>
+                        <button name="load_password_wizard" type="object" string="Obtain Keys"/>
+                        <button name="action_activate" type="object" string="Activate"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="file"/>
+                        </group>
+                        <group>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="private_key"/>
+                        <field name="public_key"/>
+                    </group>
+                 </form>
+            </field>
+        </record>
+
+        <record id="l10n_es_sii_tree_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.sii.tree</field>
+            <field name="model">l10n.es.aeat.sii</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="state"/>
+                 </tree>
+            </field>
+        </record>
+
+        <record id="l10n_es_sii_action" model="ir.actions.act_window">
+            <field name="name">SII</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.aeat.sii</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="l10n_es_aeat_sii_parent_menu"
+                  name="SII"
+                  parent="base.menu_administration"
+                  sequence="2"
+                  groups="account.group_account_invoice"/>
+
+        <menuitem id="l10n_es_aeat_sii_menu" name="SII Certificates"
+                  action="l10n_es_sii_action" sequence="0"
+                  parent="l10n_es_aeat_sii_parent_menu" />
+
+</odoo>
