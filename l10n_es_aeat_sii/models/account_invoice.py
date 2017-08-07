@@ -473,7 +473,7 @@ class AccountInvoice(models.Model):
                         'PrestacionServicios': {},
                     },
                 )
-                if tax_line in (taxes_sfesse + taxes_sfess):
+                if tax in (taxes_sfesse + taxes_sfess):
                     type_breakdown['PrestacionServicios'].setdefault(
                         'Sujeta', {}
                     )
@@ -487,7 +487,7 @@ class AccountInvoice(models.Model):
                     exempt_dict['BaseImponible'] += tax_line.base * sign
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
-                    # if tax_line in taxes_sfesisps:
+                    # if tax in taxes_sfesisps:
                     #     TipoNoExenta = 'S2'
                     # else:
                     service_dict['Sujeta'].setdefault(
@@ -501,7 +501,7 @@ class AccountInvoice(models.Model):
                     sub = type_breakdown['PrestacionServicios']['Sujeta'][
                         'NoExenta']['DesgloseIVA']['DetalleIVA']
                     sub.append(self._get_sii_tax_dict(tax_line, sign))
-                if tax_line in taxes_sfesns:
+                if tax in taxes_sfesns:
                     nsub_dict = service_dict.setdefault(
                         'NoSujeta', {'ImporteTAIReglasLocalizacion': 0},
                     )
