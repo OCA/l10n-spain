@@ -1135,9 +1135,9 @@ class AccountInvoiceLine(osv.Model):
         """
 
         if tax_line.child_depend:
-            for line in tax_line.child_ids:
-                if line.amount:
-                    tax_type = abs(line.amount)
+            for child_line in tax_line.child_ids:
+                if child_line.amount:
+                    tax_type = abs(child_line.amount)
                     break
         else:
             tax_type = abs(tax_line.amount)
