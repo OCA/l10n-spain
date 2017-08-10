@@ -10,9 +10,7 @@ import json
 from odoo import _, api, fields, exceptions, models
 from requests import Session
 
-from datetime import date
 from odoo.modules.registry import RegistryManager
-from odoo.tools.float_utils import float_round
 
 _logger = logging.getLogger(__name__)
 
@@ -708,8 +706,11 @@ class AccountInvoice(models.Model):
                             'origin_invoice_ids.amount_untaxed_signed'
                         ))),
                         'CuotaRectificada': abs(sum(self.mapped(
-                            'origin_invoice_ids.amount_tax_signed'
-                        ))),
+                            'origin_invoice_ids'
+                        ).mapped(lambda x: (
+                            x.amount_total_company_signed -
+                            x.amount_untaxed_signed
+                        )))),
                     }
         return inv_dict
 
@@ -869,7 +870,7 @@ class AccountInvoice(models.Model):
                     company_id=company.id
                 ).with_delay(eta=eta).confirm_one_invoice()
                 job = queue_obj.search([
-                    ('uuid', '=', new_delay)
+                    ('uuid', '=', new_delay.uuid)
                 ], limit=1)
                 invoice.sudo().invoice_jobs_ids |= job
 
@@ -1068,7 +1069,7 @@ class AccountInvoice(models.Model):
                     company_id=company.id,
                 ).with_delay(eta=eta).cancel_one_invoice()
                 job = queue_obj.search([
-                    ('uuid', '=', new_delay)
+                    ('uuid', '=', new_delay.uuid)
                 ], limit=1)
                 invoice.sudo().invoice_jobs_ids |= job
 
