@@ -87,7 +87,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'l10n_es.account_chart_template_pymes').id,
             'vat': 'ESU2687761C',
         })
-        cls.invoice.signal_workflow('invoice_open')
+        cls.invoice.action_invoice_open()
         cls.invoice.number = 'INV001'
         cls.invoice.origin_invoice_ids = cls.invoice.copy()
         cls.user = cls.env['res.users'].create({
@@ -245,4 +245,4 @@ class TestL10nEsAeatSii(common.SavepointCase):
 
     def test_permissions(self):
         """This should work without errors"""
-        self.invoice.sudo(self.user).signal_workflow('invoice_open')
+        self.invoice.sudo(self.user).action_invoice_open()
