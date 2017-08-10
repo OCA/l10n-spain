@@ -118,7 +118,7 @@
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_p_iva21_isp_1'),
                 ref('l10n_es.account_tax_template_p_iva10_isp_1'),
-                ref('l10n_es.account_tax_template_p_iva4_isp_1')
+                ref('l10n_es.account_tax_template_p_iva4_isp_1'),
                 ref('l10n_es.account_tax_template_p_iva21_sp_ex_1'),
                 ref('l10n_es.account_tax_template_p_iva10_sp_ex_1'),
                 ref('l10n_es.account_tax_template_p_iva4_sp_ex_1'),
