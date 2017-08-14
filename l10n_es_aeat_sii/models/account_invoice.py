@@ -558,7 +558,7 @@ class AccountInvoice(models.Model):
                 sfrns_dict['DetalleIVA'].append({
                     'BaseImponible': sign * tax_line.base,
                 })
-            elif tax_line in taxes_sfrsa:
+            elif tax in taxes_sfrsa:
                 sfrsa_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
