@@ -7,6 +7,7 @@ import json
 from datetime import datetime
 from openerp.tools import DEFAULT_SERVER_DATE_FORMAT as DF
 
+
 def migrate(cr, version):
     env = Environment(cr, SUPERUSER_ID, {})
     invoice_obj = env['account.invoice']

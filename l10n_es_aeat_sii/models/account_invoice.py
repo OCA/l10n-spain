@@ -614,7 +614,8 @@ class AccountInvoice(models.Model):
         of each supplier invoice. The SII recommends to set the send date as
         the default value (point 9.3 of the document
         SII_Descripcion_ServicioWeb_v0.7.pdf), so by default we return
-        the current date or, if exists, the stored sii_account_registration_date
+        the current date or, if exists, the stored
+        sii_account_registration_date
         :return String date in the format %Y-%m-%d"""
         self.ensure_one()
         if self.sii_account_registration_date:
@@ -942,8 +943,8 @@ class AccountInvoice(models.Model):
                 if not invoice.sii_account_registration_date and \
                         'in' in invoice.type:
                     inv_vals.update({
-                        'sii_account_registration_date': self.\
-                            _get_account_registration_date(),
+                        'sii_account_registration_date': self.
+                        _get_account_registration_date(),
                     })
                 inv_vals['sii_return'] = res
                 send_error = False
