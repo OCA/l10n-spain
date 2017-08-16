@@ -8,25 +8,51 @@
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <button string="Re-Open" position="after">
-                    <button type="object" string="Send SII"
-                    name="send_sii"
-                    states="open,paid"/>
+                    <button type="object" string="Send to SII"
+                            name="send_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': ['|','|',('state', 'not in', ['open','paid']),
+                                ('sii_enabled', '=', False),
+                                ('sii_state', 'not in', ['not_sent','sent_modified','cancelled_modified'])]}" />
+                    <button type="object" string="Send cancellation to SII"
+                            name="cancel_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False),
+                                ('state', 'not in', ['cancel']),
+                                ('sii_state', 'not in', ['sent','sent_modified'])]}" />
                 </button>
-                <field name="reference" position="attributes">
-                    <attribute name="required">True</attribute>
-                </field>
+
                 <notebook position="inside">
-                    <page string="SII">
-                        <separator string="SII Information" colspan="4"/>
-                        <field name="sii_description"/>
-                        <field name="refund_type" attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
-                        <field name="registration_key" domain="[('type', '=', 'sale')]"/>
-                        <field name="sii_enabled" invisible="1"/>
-                        <separator string="SII Result" colspan="4"/>
-                        <field name="sii_sent" />
-                        <field name="sii_csv"/>
-                        <newline />
-                        <field name="sii_return" colspan="4"/>
+                    <page string="SII" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <group string="SII Information">
+                            <field name="sii_description"/>
+                            <field name="sii_refund_type"
+                                   attrs="{'required': [('type', 'in', ('out_refund',' in_refund'))], 'invisible': [('type', 'not in', ('out_refund', 'in_refund'))]}"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'purchase')]"/>
+                            <field name="sii_enabled" invisible="1"/>
+                        </group>
+                        <group string="SII Result">
+                            <field name="sii_state" />
+                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                            <field name="sii_csv"/>
+                            <field name="sii_return"/>
+                        </group>
+
+                        <!--<group string="Connector Jobs">-->
+                            <!--<field name="invoice_jobs_ids" nolabel="1"-->
+                                   <!--readonly="1">-->
+                                <!--<tree>-->
+                                    <!--<field name="date_created"/>-->
+                                    <!--<field name="date_done"/>-->
+                                    <!--<field name="state"/>-->
+                                    <!--<button type="object"-->
+                                            <!--name="requeue"-->
+                                            <!--string="Requeue"-->
+                                            <!--class="oe_highlight"-->
+                                            <!--attrs="{'invisible': [('state', '!=', 'failed')]}"/>-->
+                                <!--</tree>-->
+                            <!--</field>-->
+                        <!--</group>-->
                     </page>
                 </notebook>
             </field>
@@ -38,26 +64,104 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <button string="Re-Open" position="after">
-                    <button type="object" string="Send SII"
-                    name="send_sii"
-                    states="open,paid"/>
+                    <button type="object" string="Send to SII"
+                            name="send_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['open','paid']), ('sii_state','not in',['not_sent','sent_modified','cancelled_modified'])]}"
+                    />
+                    <button type="object" string="Send cancellation to SII"
+                            name="cancel_sii"
+                            groups="l10n_es_aeat.group_account_aeat"
+                            attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_modified'])]}"
+                    />
                 </button>
                 <notebook position="inside">
-                    <page string="SII">
-                        <separator string="SII Information" colspan="4"/>
-                        <field name="sii_description"/>
-                        <field name="refund_type" 
-                        attrs="{'required': [('type', 'in', ('out_refund','in_refund'))]}"/>
-                        <field name="registration_key" domain="[('type', '=', 'sale')]"/>
-                        <field name="sii_enabled" invisible="1"/>
-                        <separator string="SII Result" colspan="4"/>
-                        <field name="sii_sent" />
-                        <field name="sii_csv"/>
-                        <newline />
-                        <field name="sii_return" colspan="4"/>
+                    <page string="SII" groups="account.group_account_manager" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <group string="SII Information">
+                            <field name="sii_description"/>
+                            <field name="sii_refund_type"
+                                   attrs="{'required': [('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
+                            <field name="sii_registration_key" domain="[('type', '=', 'sale')]"/>
+                            <field name="sii_enabled" invisible="1"/>
+                        </group>
+                        <group string="SII Result">
+                            <field name="sii_state"/>
+                            <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                            <field name="sii_csv"/>
+                            <field name="sii_return"/>
+                        </group>
+
+                        <!--<group string="Connector Jobs">-->
+                            <!--<field name="invoice_jobs_ids" nolabel="1"-->
+                                   <!--readonly="1">-->
+                                <!--<tree>-->
+                                    <!--<field name="date_created"/>-->
+                                    <!--<field name="date_done"/>-->
+                                    <!--<field name="state"/>-->
+                                    <!--<button type="object"-->
+                                            <!--name="requeue"-->
+                                            <!--string="Requeue"-->
+                                            <!--class="oe_highlight"-->
+                                            <!--attrs="{'invisible': [('state', '!=', 'failed')]}"/>-->
+                                <!--</tree>-->
+                            <!--</field>-->
+                        <!--</group>-->
+
                     </page>
                 </notebook>
             </field>
+        </record>
+
+        <record id="view_account_invoice_sii_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select.sii</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter" />
+            <field name="arch" type="xml">
+                 <xpath expr="//group[@string='Group By...']" position="before">
+                    <group string="SII filters">
+                        <filter name="sii_not_sent" string="SII not sent"
+                            domain="[('sii_state', '=', 'not_sent')]"
+                            help="Never sent to SII" />
+                        <filter name="sii_sent" string="SII sent"
+                            domain="[('sii_state', 'in', ['sent','cancelled','sent_modified','cancelled_modified'])]"
+                            help="Already sent to SII. It includes cancelled invoices"/>
+                        <separator />
+                        <filter name="sii_cancelled" string="SII cancelled"
+                            domain="[('sii_state', 'in', ['cancelled','cancelled_modified'])]"
+                            help="Cancelled invoices at SII"/>
+                        <separator />
+                        <filter name="sii_pending" string="With modifications not sent to SII"
+                            domain="[('sii_state', 'in', ['sent_modified','cancelled_modified'])]"
+                            help="Already sent but with local changes not sent yet"/>
+                        <filter name="sii_send_failed" string="SII failed"
+                            domain="[('sii_send_failed', '=', True)]"
+                            help="The last attemp to sent to SII has failed"/>
+                    </group>
+                 </xpath>
+                <xpath expr="//group[@string='Group By...']" position="inside">
+                    <separator/>
+                    <filter string="SII error"
+                        domain="[('sii_send_failed','=',True)]"
+                        context="{'group_by':'sii_send_error'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_send_sii_invoices" model="ir.actions.server">
+            <field name="name">Send Invoices to SII</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="account.model_account_invoice" />
+            <field name="code">self.send_sii(cr, uid, context.get('active_ids', []), context)</field>
+        </record>
+
+        <record id="action_send_sii_invoices_value" model="ir.values">
+            <field name="name">Send Invoices to SII</field>
+            <field name="key">action</field>
+            <field name="key2">client_action_multi</field>
+            <field name="model">account.invoice</field>
+            <field name="value"
+                   eval="'ir.actions.server,%d' % ref('l10n_es_aeat_sii.action_send_sii_invoices')" />
         </record>
 
     </data>

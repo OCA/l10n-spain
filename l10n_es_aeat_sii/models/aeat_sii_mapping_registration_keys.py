@@ -18,8 +18,7 @@
 #
 ##############################################################################
 
-from openerp.osv import fields, osv, orm
-from openerp.exceptions import Warning
+from openerp.osv import fields, osv
 
 
 class aeat_sii_mapping_registration_keys(osv.Model):
@@ -35,9 +34,7 @@ class aeat_sii_mapping_registration_keys(osv.Model):
     def name_get(self, cr, uid, ids, context=None):
         vals = []
         for record in self.browse(cr, uid, ids, context):
-            name=u''
-            name += "[%s]" % record.code
-            name+= "-%s"%record.name
+            name = u'[{}]-{}'.format(record.code, record.name)
             vals.append(tuple([record.id, name]))
         return vals
 

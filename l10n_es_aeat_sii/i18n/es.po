@@ -6,42 +6,61 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 19:34+0000\n"
-"PO-Revision-Date: 2017-05-07 21:41+0200\n"
-"Last-Translator: Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>\n"
+"POT-Creation-Date: 2017-06-27 17:31+0000\n"
+"PO-Revision-Date: 2017-06-27 19:52+0100\n"
+"Last-Translator: Susana Vázquez <svazquez@netquest.com>\n"
 "Language-Team: Acysos S.L. <info@acysos.com>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #. module: l10n_es_aeat_sii
-#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
-#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
-msgid "AEAT"
-msgstr "AEAT"
+#: help:res.company,sii_method:0
+msgid ""
+"By default the invoice send in validate process, with manual method, there a "
+"button to send the invoice."
+msgstr ""
+"Por defecto, la factura es enviada/encolada en el proceso de validación. Con "
+"el método manual, hay un botón para enviarla."
 
 #. module: l10n_es_aeat_sii
-#: view:res.company:l10n_es_aeat_sii.view_company_sii_form
-msgid "AEAT SII Configuration"
-msgstr "Configuración AEAT SII"
+#: view:aeat.sii.mapping.registration.keys:0
+msgid "Group By..."
+msgstr "Agrupar por..."
 
 #. module: l10n_es_aeat_sii
-#: selection:l10n.es.aeat.sii,state:0
-msgid "Active"
-msgstr "Activo"
+#: selection:account.invoice,sii_state:0
+msgid "Cancelled in SII but last modifications not sent"
+msgstr "Anulada en SII con modificaciones pendientes de comunicar"
 
 #. module: l10n_es_aeat_sii
-#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys
-#: model:ir.model,name:l10n_es_aeat_sii.model_l10n_es_aeat_sii_mapping_registration_keys
-msgid "Aeat SII Invoice Registration Keys"
-msgstr "AEAT SII Claves de Identificación Operaciones"
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:444
+#, python-format
+msgid "The partner %s has not a VAT configured."
+msgstr "La empresa %s no tiene un NIF establecido."
 
 #. module: l10n_es_aeat_sii
-#: view:aeat.sii.map:l10n_es_aeat_sii.aeat_sii_map_view_form
-#: view:aeat.sii.map:l10n_es_aeat_sii.aeat_sii_map_view_tree
-#: view:aeat.sii.map.lines:l10n_es_aeat_sii.l10n_es_aeat_sii_map_lines_view_tree
+#: view:account.fiscal.position:0 view:account.invoice:0
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.l10n_es_sii_action
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_parent_menu
+#: view:product.template:0
+msgid "SII"
+msgstr "SII"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_l10n_es_aeat_sii_password
+msgid "l10n.es.aeat.sii.password"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "SII not sent"
+msgstr "No enviadas SII"
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.map:0 view:aeat.sii.map.lines:0
 #: field:aeat.sii.map.lines,sii_map_id:0
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_mapping
 #: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_map
@@ -50,42 +69,455 @@ msgid "Aeat SII Map"
 msgstr "SII - Mapeo de impuestos"
 
 #. module: l10n_es_aeat_sii
-#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_map_lines
-msgid "Aeat SII Map Lines"
-msgstr "SII - Lineas de mapeo"
+#: field:l10n.es.aeat.sii,company_id:0
+#, fuzzy
+msgid "Company"
+msgstr "Compañías"
 
 #. module: l10n_es_aeat_sii
-#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
-#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_tree
-#: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_mapping_registration_keys
-#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_mapping_registration_keys
-msgid "Aeat SII Registration Keys"
+#: field:aeat.sii.map,date_to:0
+msgid "Date to"
+msgstr "Fecha hasta"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_state:0
+msgid "SII Send state"
+msgstr "Estado de envío SII"
+
+#. module: l10n_es_aeat_sii
+#: selection:aeat.sii.mapping.registration.keys,type:0
+msgid "Purchase"
+msgstr "Compras"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "Cancelled invoices at SII"
+msgstr "Facturas anuladas en el SII"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,send_mode:0
+msgid "Send mode"
+msgstr "Modo de envío"
+
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_active:0
+msgid "SII Active"
+msgstr "Activa para el SII"
+
+#. module: l10n_es_aeat_sii
+#: selection:aeat.sii.mapping.registration.keys,type:0
+msgid "Sale"
+msgstr "Ventas"
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map.lines,taxes:0
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_registration_key_purchase:0
+#, fuzzy
+msgid "Default SII Registration Key for Purchases"
 msgstr "Aeat SII claves de registro"
 
 #. module: l10n_es_aeat_sii
-#: selection:account.invoice,refund_type:0
-msgid "By differences"
-msgstr "Por diferencias"
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:415
+#, python-format
+msgid "The partner has not a VAT configured."
+msgstr "La empresa no tiene un NIF establecido."
 
 #. module: l10n_es_aeat_sii
-#: selection:account.invoice,refund_type:0
-msgid "By substitution"
-msgstr "Por sustitución"
-
-#. module: l10n_es_aeat_sii
-#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
-msgid "Cancel"
+#: selection:account.invoice,sii_state:0
+#, fuzzy
+msgid "Cancelled"
 msgstr "Cancelar"
 
 #. module: l10n_es_aeat_sii
-#: field:res.company,chart_template_id:0
-msgid "Chart Template"
-msgstr "Plantilla de cuentas"
+#: selection:res.company,sii_method:0
+msgid "Automatic"
+msgstr "Automático"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "SII failed"
+msgstr "Envío SII fallido"
+
+#. module: l10n_es_aeat_sii
+#: view:res.company:0
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice.refund,sii_refund_type_required:0
+msgid "Is SII Refund Type required?"
+msgstr "¿Es requerido el tipo de rectificativa SII?"
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii:0
+msgid "Load Certificate"
+msgstr "Cargar certificado"
+
+#. module: l10n_es_aeat_sii
+#: selection:res.company,send_mode:0
+msgid "On validate"
+msgstr "Al validar"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:140
+#, python-format
+msgid ""
+"You cannot change the supplier invoice number of an invoice already "
+"registered at the SII. You must cancel the invoice and create a new one with "
+"the correct number"
+msgstr ""
+"No puede cambiar el número de factura del proveedor de una factura enviada "
+"al SII. Debe cancelar la factura y crear una nueva con el número correcto"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_csv:0
+msgid "SII CSV"
+msgstr "SII CSV"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "Re-Open"
+msgstr "Reabrir"
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,date_from:0
+msgid "Date from"
+msgstr "Fecha desde"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,use_connector:0
+msgid "Use connector"
+msgstr "Usar conector"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "SII Result"
+msgstr "Resultado SII"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "SII cancelled"
+msgstr "Anuladas SII"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Not sent"
+msgstr "No registrada"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,state:0
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.actions.server,name:l10n_es_aeat_sii.action_send_sii_invoices
+msgid "Send Invoices to SII"
+msgstr "Enviar facturas al SII"
+
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_no_taxable_cause:0
+msgid "SII No taxable cause"
+msgstr "Causa de no sujeción SII"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Sent"
+msgstr "Enviada"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_state:0
+msgid "Registered in SII but last modifications not sent"
+msgstr "Registro correcto en SII con modificaciones pendientes de comunicar"
+
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_exempt_cause:0
+#: field:product.template,sii_exempt_cause:0
+msgid "SII Exempt Cause"
+msgstr "Causa de exención SII"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,private_key:0
+msgid "Private Key"
+msgstr "Clave privada"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "E5"
+msgstr "E5"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "E4"
+msgstr "E4"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys
+msgid "Aeat SII Invoice Registration Keys"
+msgstr "AEAT SII Claves de Identificación Operaciones"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "E6"
+msgstr "E6"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "E1"
+msgstr "E1"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "E3"
+msgstr "E3"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "E2"
+msgstr "E2"
+
+#. module: l10n_es_aeat_sii
+#: selection:product.template,sii_exempt_cause:0
+msgid "None"
+msgstr "Ninguno"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_menu
+msgid "SII Certificate"
+msgstr "Certificado"
+
+#. module: l10n_es_aeat_sii
+#: selection:res.company,sii_method:0
+msgid "Manual"
+msgstr "Manual"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:605
+#, python-format
+msgid "There is no certificate configured for this company and date"
+msgstr "No hay un certificado configurado para esta compañía y fecha"
+
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_registration_key_sale:0
+#, fuzzy
+msgid "Default SII Registration Key for Sales"
+msgstr "Aeat SII claves de registro"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_l10n_es_aeat_sii
+msgid "l10n.es.aeat.sii"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,sii_enabled:0
+msgid "Enable SII"
+msgstr "Activar SII"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "SII filters"
+msgstr "Filtros SII"
 
 #. module: l10n_es_aeat_sii
 #: help:res.company,use_connector:0
-msgid "Check it to use connector instead to send the invoice when it is validated"
-msgstr "Pulse para usar el módulo connector en vez de enviar la factura cuando es validada"
+msgid ""
+"Check it to use connector instead to send the invoice when it is validated"
+msgstr ""
+"Pulse para usar el módulo connector en vez de enviar la factura cuando es "
+"validada"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:133
+#, python-format
+msgid ""
+"You cannot change the supplier of an invoice already registered at the SII. "
+"You must cancel the invoice and create a new one with the correct supplier"
+msgstr ""
+"No puede cambiar el proveedor de una factura enviada al SII. Debe cancelar "
+"la factura y crear una nueva con el proveedor correcto"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:53
+#: view:l10n.es.aeat.sii.password:0
+#, python-format
+msgid "Insert Password"
+msgstr "Introduzca contraseña"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_registration_key:0
+msgid "SII registration key"
+msgstr "Clave de registro SII"
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii:0 view:l10n.es.aeat.sii.password:0
+msgid "Obtain Keys"
+msgstr "Obtener claves"
+
+#. module: l10n_es_aeat_sii
+#: selection:res.company,send_mode:0
+msgid "At fixed time"
+msgstr " \"A una hora fija"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,date_start:0
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "Send cancellation to SII"
+msgstr "Enviar anulación al SII"
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii.password:0
+msgid "or"
+msgstr "o"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_pi:0
+msgid "WSDL Property Investment"
+msgstr "WSDL Bienes de inversión"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_return:0
+msgid "SII Return"
+msgstr "Retorno SII"
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.aeat.sii:0
+#, fuzzy
+msgid "Certificate"
+msgstr "Certificado SII"
+
+#. module: l10n_es_aeat_sii
+#: selection:res.company,send_mode:0
+msgid "With delay"
+msgstr "Con retardo"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:707
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:731
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:816
+#, python-format
+msgid "Connector is not available"
+msgstr "Conector no disponible"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_prm:0
+msgid "WSDL Money Payment Received"
+msgstr "WSDL Cobros en metálico recibidos"
+
+#. module: l10n_es_aeat_sii
+#: selection:l10n.es.aeat.sii,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_aeat_sii
+#: field:account.fiscal.position,sii_enabled:0
+#: field:account.invoice,sii_enabled:0
+msgid "SII Enabled"
+msgstr "Activar SII"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:423
+#, python-format
+msgid "This company doesn't have SII enabled."
+msgstr "Esta compañía no tiene habilitado el SII."
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,sii_method:0
+msgid "Method"
+msgstr "Método"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:157
+#, python-format
+msgid "You cannot delete an invoice already registered at the SII."
+msgstr "No puede eliminar una factura enviada al SII."
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "Already sent to SII. It includes cancelled invoices"
+msgstr "Ya enviadas al SII. Incluye facturas canceladas"
+
+#. module: l10n_es_aeat_sii
+#: help:account.invoice,sii_state:0
+msgid ""
+"Indicates the state of this invoice in relation with the presentation at the "
+"SII"
+msgstr "Indica el estado de esta factura en relación al registro en el SII"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,public_key:0
+msgid "Public Key"
+msgstr "Clave pública"
+
+#. module: l10n_es_aeat_sii
+#: selection:l10n.es.aeat.sii,state:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_ps:0
+msgid "WSDL Payment Sent"
+msgstr "WSDL Pagos enviados"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:228
+#, python-format
+msgid "No VAT configured for the company '{}'"
+msgstr "La compañía '{}' no tiene ningún NIF establecido"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/wizard/aeat_sii_password.py:78
+#, python-format
+msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
+msgstr "La versión OpenSSL no está soportada. Actualice a 0.15 o superior."
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "SII Information"
+msgstr "Información SII"
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.map:0
+msgid "Mapping Lines"
+msgstr "Líneas del mapeo"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_pr:0
+msgid "WSDL Payment Received"
+msgstr "WSDL Pagos recibidos"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,sii_test:0
+msgid "Test Enviroment"
+msgstr "Entorno de pruebas"
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:428
+#, python-format
+msgid "This invoice is not SII enabled."
+msgstr "Esta factura no está habilitada para el SII."
+
+#. module: l10n_es_aeat_sii
+#: selection:account.fiscal.position,sii_no_taxable_cause:0
+msgid "No sujeta - No sujeción artículo 7, 14, otros"
+msgstr "No sujeta - No sujeción artículo 7, 14, otros"
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.mapping.registration.keys:0
+#: field:aeat.sii.mapping.registration.keys,type:0
+msgid "Type"
+msgstr "Tipo"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map.lines,code:0
@@ -94,93 +526,30 @@ msgid "Code"
 msgstr "Código"
 
 #. module: l10n_es_aeat_sii
-#: model:ir.model,name:l10n_es_aeat_sii.model_res_company
-msgid "Companies"
-msgstr "Compañías"
+#: field:account.invoice,sii_send_failed:0
+msgid "SII send failed"
+msgstr "Envío SII fallido"
 
 #. module: l10n_es_aeat_sii
-#: view:res.company:l10n_es_aeat_sii.view_company_sii_form
-msgid "Configuration"
-msgstr "Configuración"
+#: selection:account.invoice,sii_refund_type:0
+#: selection:account.invoice.refund,sii_refund_type:0
+msgid "By substitution"
+msgstr "Por sustitución"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,create_uid:0 field:aeat.sii.map.lines,create_uid:0
-#: field:aeat.sii.mapping.registration.keys,create_uid:0
-#: field:l10n.es.aeat.sii,create_uid:0
-#: field:l10n.es.aeat.sii.password,create_uid:0
-msgid "Created by"
-msgstr "Creado por"
+#: view:l10n.es.aeat.sii:0
+msgid "To Active"
+msgstr "Para activar"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,create_date:0 field:aeat.sii.map.lines,create_date:0
-#: field:aeat.sii.mapping.registration.keys,create_date:0
-#: field:l10n.es.aeat.sii,create_date:0
-#: field:l10n.es.aeat.sii.password,create_date:0
-msgid "Created on"
-msgstr "Creado en"
+#: view:account.invoice:0
+msgid "With modifications not sent to SII"
+msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,date_from:0
-msgid "Date from"
-msgstr "Fecha desde"
-
-#. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,date_to:0
-msgid "Date to"
-msgstr "Fecha hasta"
-
-#. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,display_name:0 field:aeat.sii.map.lines,display_name:0
-#: field:aeat.sii.mapping.registration.keys,display_name:0
-#: field:l10n.es.aeat.sii,display_name:0
-#: field:l10n.es.aeat.sii.password,display_name:0
-msgid "Display Name"
-msgstr "Nombre"
-
-#. module: l10n_es_aeat_sii
-#: selection:l10n.es.aeat.sii,state:0
-msgid "Draft"
-msgstr "Borrador"
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii,date_end:0
-msgid "End Date"
-msgstr "Fecha hasta"
-
-#. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/aeat_sii_map.py:38
-#, python-format
-msgid "Error! The dates of the record overlap with an existing record."
-msgstr "Error! Las fecha del registro se superponen con otro registro"
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii,file:0
-msgid "File"
-msgstr "Fichero"
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii,folder:0
-msgid "Folder Name"
-msgstr "Nombre Carpeta"
-
-#. module: l10n_es_aeat_sii
-#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
-msgid "Group By..."
-msgstr "Agrupar por..."
-
-#. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,id:0 field:aeat.sii.map.lines,id:0
-#: field:aeat.sii.mapping.registration.keys,id:0 field:l10n.es.aeat.sii,id:0
-#: field:l10n.es.aeat.sii.password,id:0
-msgid "ID"
-msgstr "ID"
-
-#. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/aeat_sii.py:28
-#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
-#, python-format
-msgid "Insert Password"
-msgstr "Introduzca contraseña"
+#: model:ir.model,name:l10n_es_aeat_sii.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr "Posición fiscal"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice
@@ -188,48 +557,112 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,__last_update:0 field:aeat.sii.map.lines,__last_update:0
-#: field:aeat.sii.mapping.registration.keys,__last_update:0
-#: field:l10n.es.aeat.sii,__last_update:0
-#: field:l10n.es.aeat.sii.password,__last_update:0
-msgid "Last Modified on"
-msgstr "Últ. modificación en"
+#: selection:account.fiscal.position,sii_no_taxable_cause:0
+msgid "Operaciones no sujetas en el TAI por reglas de localización"
+msgstr "Operaciones no sujetas en el TAI por reglas de localización"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,write_uid:0 field:aeat.sii.map.lines,write_uid:0
-#: field:aeat.sii.mapping.registration.keys,write_uid:0
-#: field:l10n.es.aeat.sii,write_uid:0
-#: field:l10n.es.aeat.sii.password,write_uid:0
-msgid "Last Updated by"
-msgstr "Últ. actualización por"
+#: view:l10n.es.aeat.sii.password:0
+msgid "Cancel"
+msgstr "Cancelar"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,write_date:0 field:aeat.sii.map.lines,write_date:0
-#: field:aeat.sii.mapping.registration.keys,write_date:0
-#: field:l10n.es.aeat.sii,write_date:0
-#: field:l10n.es.aeat.sii.password,write_date:0
-msgid "Last Updated on"
-msgstr "Últ. actualización en"
+#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_map_lines
+msgid "Aeat SII Map Lines"
+msgstr "SII - Lineas de mapeo"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,map_lines:0
-msgid "Lines"
-msgstr "Líneas"
+#: view:account.invoice:0
+msgid "Send to SII"
+msgstr "Enviar al SII"
 
 #. module: l10n_es_aeat_sii
-#: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
-msgid "Load Certificate"
-msgstr "Cargar Certificado"
+#: view:account.invoice:0
+msgid "SII error"
+msgstr "Error SII"
 
 #. module: l10n_es_aeat_sii
-#: view:aeat.sii.map:l10n_es_aeat_sii.aeat_sii_map_view_form
-msgid "Mapping Lines"
-msgstr "Líneas del mapeo"
+#: field:account.invoice,sii_send_error:0
+msgid "SII Send Error"
+msgstr "Error de envío SII"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,name:0
-msgid "Model"
-msgstr "Modelo"
+#: field:res.company,wsdl_in:0
+msgid "WSDL Invoice In"
+msgstr "WSDL Factura recibidas"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "The last attemp to sent to SII has failed"
+msgstr "El último intento de envío al SII ha fallado"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,sent_time:0
+msgid "Sent time"
+msgstr "Hora de envío"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "Already sent but with local changes not sent yet"
+msgstr "Enviada previamente al SII pero con cambios locales no enviados"
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_refund_type:0
+#: selection:account.invoice.refund,sii_refund_type:0
+msgid "By differences"
+msgstr "Por diferencias"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,chart_template_id:0
+msgid "Chart Template"
+msgstr "Plantilla de cuentas"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,folder:0
+#, fuzzy
+msgid "Folder"
+msgstr "Nombre Carpeta"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_description:0
+msgid "SII Description"
+msgstr "Descripción SII"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_refund_type:0
+msgid "Refund Type"
+msgstr "Tipo rectificativa"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,wsdl_ic:0
+msgid "WSDL Intra-Community"
+msgstr "WSDL Intracomunitarias"
+
+#. module: l10n_es_aeat_sii
+#: view:res.company:0
+msgid "AEAT SII Configuration"
+msgstr "Configuración AEAT SII"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_conf
+#, fuzzy
+msgid "Configuration SII"
+msgstr "Configuración"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii.password,password:0
+msgid "Password"
+msgstr "Contraseña"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,date_end:0
+msgid "End Date"
+msgstr "Fecha hasta"
 
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map.lines,name:0
@@ -239,141 +672,9 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_es_aeat_sii
-#: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
-#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
-msgid "Obtain Keys"
-msgstr "Obtener Claves"
-
-#. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/wizard/aeat_sii_password.py:65
-#, python-format
-msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
-msgstr "Versión de OpenSSL no soportada. Actualice a 0.15 o superior "
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii.password,password:0
-msgid "Password"
-msgstr "Contraseña"
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii,private_key:0
-msgid "Private Key"
-msgstr "Clave privada"
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii,public_key:0
-msgid "Public Key"
-msgstr "Clave pública"
-
-#. module: l10n_es_aeat_sii
-#: selection:aeat.sii.mapping.registration.keys,type:0
-msgid "Purchase"
-msgstr "Compras"
-
-#. module: l10n_es_aeat_sii
-#: field:account.invoice,refund_type:0
-msgid "Refund Type"
-msgstr "Tipo rectificativa"
-
-#. module: l10n_es_aeat_sii
-#: field:account.invoice,registration_key:0
-msgid "Registration key"
-msgstr "Clave del registro"
-
-#. module: l10n_es_aeat_sii
-#: model:ir.actions.act_window,name:l10n_es_aeat_sii.l10n_es_sii_action
-#: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_parent_menu
-msgid "SII"
-msgstr "SII"
-
-#. module: l10n_es_aeat_sii
-#: model:ir.ui.menu,name:l10n_es_aeat_sii.l10n_es_aeat_sii_menu
-msgid "SII Certificate"
-msgstr "Certificado SII"
-
-#. module: l10n_es_aeat_sii
-#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
-#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
-msgid "SII Information"
-msgstr "Información SII"
-
-#. module: l10n_es_aeat_sii
-#: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
-#: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
-msgid "SII Result"
-msgstr "Resultado SII"
-
-#. module: l10n_es_aeat_sii
-#: field:account.invoice,sii_return:0
-msgid "SII Return"
-msgstr "Retorno SII"
-
-#. module: l10n_es_aeat_sii
-#: field:account.invoice,sii_sent:0
-msgid "SII Sent"
-msgstr "SII Enviado"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,sii_version:0
-msgid "SII Version"
-msgstr "Versión SII"
-
-#. module: l10n_es_aeat_sii
-#: selection:aeat.sii.mapping.registration.keys,type:0
-msgid "Sale"
-msgstr "Ventas"
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii,date_start:0
-msgid "Start Date"
-msgstr "Fecha de inicio"
-
-#. module: l10n_es_aeat_sii
-#: field:l10n.es.aeat.sii,state:0
-msgid "State"
-msgstr "Estado"
-
-#. module: l10n_es_aeat_sii
-#: field:aeat.sii.map.lines,taxes:0
-msgid "Taxes"
-msgstr "Impuestos"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,sii_test:0
-msgid "Test Enviroment"
-msgstr "Entorno de pruebas"
-
-#. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/res_company.py:17
-#, python-format
-msgid "The module \"Connector\" is not installed. You have to install it to activate this option"
-msgstr "El módulo \"Connector\" no está instalado. Debe instalarlo para activar esta opción."
-
-#. module: l10n_es_aeat_sii
-#: view:l10n.es.aeat.sii:l10n_es_aeat_sii.l10n_es_sii_form_view
-msgid "To Active"
-msgstr "Para activar"
-
-#. module: l10n_es_aeat_sii
-#: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
-#: field:aeat.sii.mapping.registration.keys,type:0
-msgid "Type"
-msgstr "Tipo"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,use_connector:0
-msgid "Use connector"
-msgstr "Usar connector"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_ic:0
-msgid "WSDL Intra-Community"
-msgstr "WSDL Intracomunitarias"
-
-#. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_in:0
-msgid "WSDL Invoice In"
-msgstr "WSDL Factura recibidas"
+#: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice_refund
+msgid "Invoice Refund"
+msgstr "Abono factura"
 
 #. module: l10n_es_aeat_sii
 #: field:res.company,wsdl_out:0
@@ -381,32 +682,109 @@ msgid "WSDL Invoice Out"
 msgstr "WSDL Facturas emitidas"
 
 #. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_prm:0
-msgid "WSDL Money Payment Received"
-msgstr "WSDL Cobros en metálico recibidos"
+#: field:aeat.sii.map,map_lines:0
+msgid "Lines"
+msgstr "Líneas"
 
 #. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_pr:0
-msgid "WSDL Payment Received"
-msgstr "WSDL Pagos recibidos"
+#: help:account.invoice,sii_send_failed:0
+msgid ""
+"Indicates that the last attempt to communicate this invoice to  the SII has "
+"failed. See SII return for details"
+msgstr ""
+"Indica que el último intento de comunicar la factura al SII ha fallado. Ver "
+"el retorno SII para más detalles"
 
 #. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_ps:0
-msgid "WSDL Payment Sent"
-msgstr "WSDL Pagos enviados"
+#: model:ir.model,name:l10n_es_aeat_sii.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
 
 #. module: l10n_es_aeat_sii
-#: field:res.company,wsdl_pi:0
-msgid "WSDL Property Investment"
-msgstr "WSDL Bienes de inversión"
+#: field:account.invoice.refund,sii_refund_type:0
+msgid "SII Refund Type"
+msgstr "Tipo rectificativa SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:356
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:100
 #, python-format
-msgid "You have to select what account chart template use this company."
-msgstr "Debe seleccionar que plan contable utiliza esta compañía"
+msgid "You must have at least one refunded invoice"
+msgstr "Debe tener al menos una factura rectificada"
 
 #. module: l10n_es_aeat_sii
-#: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
-msgid "or"
-msgstr "o"
+#: view:account.invoice:0
+msgid "SII sent"
+msgstr "Enviadas SII"
+
+#. module: l10n_es_aeat_sii
+#: field:aeat.sii.map,name:0
+msgid "Model"
+msgstr "Modelo"
+
+#. module: l10n_es_aeat_sii
+#: view:aeat.sii.mapping.registration.keys:0
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_mapping_registration_keys
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_mapping_registration_keys
+msgid "Aeat SII Registration Keys"
+msgstr "Aeat SII claves de registro"
+
+#. module: l10n_es_aeat_sii
+#: view:account.invoice:0
+msgid "Never sent to SII"
+msgstr "Nunca enviadas al SII"
+
+#. module: l10n_es_aeat_sii
+#: field:res.company,version_sii:0
+msgid "Versión SII AEAT"
+msgstr "Versión SII AEAT"
+
+#. module: l10n_es_aeat_sii
+#: help:account.fiscal.position,sii_active:0
+#: help:account.invoice,sii_enabled:0
+msgid "Enable SII for this fiscal position?"
+msgstr "¿Activar SII para esta posición fiscal?"
+
+#. module: l10n_es_aeat_sii
+#: constraint:aeat.sii.map:0
+#, fuzzy
+msgid "Error! The dates of the record overlap with an existing record"
+msgstr "Error! Las fecha del registro se superponen con otro registro"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.aeat.sii,file:0
+msgid "File"
+msgstr "Fichero"
+
+#~ msgid "AEAT"
+#~ msgstr "AEAT"
+
+#~ msgid "Created by"
+#~ msgstr "Creado por"
+
+#~ msgid "Created on"
+#~ msgstr "Creado en"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Últ. modificación en"
+
+#~ msgid "Last Updated by"
+#~ msgstr "Últ. actualización por"
+
+#~ msgid "Last Updated on"
+#~ msgstr "Últ. actualización en"
+
+#~ msgid ""
+#~ "The module \"Connector\" is not installed. You have to install it to "
+#~ "activate this option"
+#~ msgstr ""
+#~ "El módulo \"Connector\" no está instalado. Debe instalarlo para activar "
+#~ "esta opción."
+
+#~ msgid "You have to select what account chart template use this company."
+#~ msgstr "Debe seleccionar que plan contable utiliza esta compañía"

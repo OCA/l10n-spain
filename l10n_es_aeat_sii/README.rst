@@ -16,6 +16,7 @@ Para instalar esté módulo necesita:
 
 #. Libreria Python Zeep, se puede instalar con el comando 'pip install zeep'
 #. Libreria Python Requests, se puede instalar con el comando 'pip install requests'
+#. Libreria pyOpenSSL, versión 0.15 o posterior
 
 Configuration
 =============
@@ -24,22 +25,12 @@ Para configurar este módulo necesitas:
 
 #. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
 Estas URLs pueden cambiar según comunidades
-#. Los certificados deben alojarse en una carpeta accesible por la instalación
-de Odoo. Las rutas de los certificados se pueden indicar en Configuración->
-Parámetros->Parametros del sistemas con las claves l10n_es_aeat_sii.publicCrt y
-l10n_es_aeat_sii.privateKey
-#. Preparar el certificado. El certificado enviado por la FMNT es en formato
-p12, este certificado no se puede usar directamente con Zeep. Se tiene que
-extraer la clave pública y la clave privada.
-El linux se pueden usar los siguientes comandos:
-- Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
-- Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out privateKey.pem -nodes"
 
 
 Usage
 =====
 
-Cuando se válida una factura actumáticamente envia la comunicación al servidor
+Cuando se válida una factura automáticamente envia la comunicación al servidor
 de AEAT.
 
 
@@ -53,15 +44,13 @@ de AEAT.
 Known issues / Roadmap
 ======================
 
-* Facturas rectificativas
-* Facturas de bienes de inversión
-* Comunicación de cobros y pagos
-* Determinadas facturas intracomunitarias
-* Factura simplificada
-* Facturas No sujetas según el art 7.14 y no sujetas en el TAI
-* Asistente para consultar los documentos comunicados 
-* Carga directa del certificado desde Odoo (PR Enviado)
-* Control de longitud y tipo de datos
+* Comunicación de cobros y pagos.
+* Determinadas facturas intracomunitarias (Articulo 66 RIVA).
+* Facturas simplificadas.
+* Asistente para consultar los documentos comunicados.
+* Libro de bienes de inversión (Libro anual se crea un módulo aparte).
+* Regímenes especiales de seguros y de agencias de viaje.
+* Comunicación de las facturas del primer semestre.
 * Usar modulo connector
 
 Bug Tracker
@@ -84,14 +73,16 @@ Contributors
 ------------
 
 * Ignacio Ibeas <ignacio@acysos.com>
+* Rubén Cerdà <ruben.cerda.roig@diagram.es>
+* Ramon Guiu <ramon.guiu@minorisa.net>
+* Pablo Fuentes <pablo@studio73.es>
+* Jordi Tolsà <jordi@studio73.es>
+* Ismael Calvo <ismael.calvo@factorlibre.es>
+* Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Susana Vázquez <svazquez@netquest.com>
 
-Funders
--------
 
-The development of this module has been financially supported by:
-
-* Company 1 name
-* Company 2 name
 
 Maintainer
 ----------
