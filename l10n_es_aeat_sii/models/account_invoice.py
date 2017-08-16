@@ -111,6 +111,11 @@ class AccountInvoice(models.Model):
         string="SII Refund Type", default=_default_sii_refund_type,
         oldname='refund_type',
     )
+    sii_account_registration_date = fields.Date(
+        string='SII account registration date', readonly=True, copy=False,
+        help="Indicates the account registration date set at the SII, which "
+        "must be the date when the invoice is recorded in the system and is "
+        "independent of the date of the accounting entry of the invoice")
     sii_registration_key = fields.Many2one(
         comodel_name='aeat.sii.mapping.registration.keys',
         string="SII registration key", default=_default_sii_registration_key,
@@ -609,8 +614,11 @@ class AccountInvoice(models.Model):
         of each supplier invoice. The SII recommends to set the send date as
         the default value (point 9.3 of the document
         SII_Descripcion_ServicioWeb_v0.7.pdf), so by default we return
-        the current date
+        the current date or, if exists, the stored sii_account_registration_date
         :return String date in the format %Y-%m-%d"""
+        self.ensure_one()
+        if self.sii_account_registration_date:
+            return self.sii_account_registration_date
         return date.today().strftime("%Y-%m-%d")
 
     @api.multi
@@ -931,6 +939,12 @@ class AccountInvoice(models.Model):
                     })
                 else:
                     inv_vals['sii_send_failed'] = True
+                if not invoice.sii_account_registration_date and \
+                        'in' in invoice.type:
+                    inv_vals.update({
+                        'sii_account_registration_date': self.\
+                            _get_account_registration_date(),
+                    })
                 inv_vals['sii_return'] = res
                 send_error = False
                 if res_line['CodigoErrorRegistro']:
