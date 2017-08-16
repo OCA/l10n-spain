@@ -940,7 +940,8 @@ class AccountInvoice(models.Model):
                     })
                 else:
                     inv_vals['sii_send_failed'] = True
-                if not invoice.sii_account_registration_date and \
+                if 'sii_state' in inv_vals and \
+                        not invoice.sii_account_registration_date and \
                         'in' in invoice.type:
                     inv_vals.update({
                         'sii_account_registration_date': self.
