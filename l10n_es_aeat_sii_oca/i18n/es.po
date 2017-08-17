@@ -348,6 +348,17 @@ msgstr ""
 "el retorno SII para más detalles"
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice_sii_account_registration_date
+msgid ""
+"Indicates the account registration date set at the SII, which must be "
+"the date when the invoice is recorded in the system and is independent of "
+"the date of the accounting entry of the invoice"
+msgstr ""
+"Indica la fecha de registro contable establecida en el SII, la cual "
+"debe ser la fecha en que se registra la factura en el sistema con "
+"independencia de la fecha del asiento contable de la factura"
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice_sii_state
 msgid ""
 "Indicates the state of this invoice in relation with the presentation at the"
@@ -666,6 +677,11 @@ msgstr "Error de envío SII"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_header_supplier
 msgid "SII Supplier header"
 msgstr "Cabecera de proveedor para SII"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_account_registration_date
+msgid "SII account registration date"
+msgstr "Fecha de registro contable SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_account_invoice_sii_filter
