@@ -10,7 +10,6 @@
 import logging
 import json
 
-from datetime import date
 from requests import Session
 
 from openerp import _, api, exceptions, fields, models, SUPERUSER_ID

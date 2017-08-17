@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # © 2017 - Otherway Creatives - Pedro Rodriguez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import SUPERUSER_ID
+from openerp import SUPERUSER_ID, fields
 from openerp.api import Environment
 import json
 from datetime import datetime
