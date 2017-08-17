@@ -42,6 +42,7 @@
                                 <page name="page_sii_result_general" string="General">
                                     <group>
                                         <field name="sii_state" />
+                                        <field name="sii_account_registration_date" />
                                         <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                                         <field name="sii_send_error" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
                                         <field name="sii_csv"/>
