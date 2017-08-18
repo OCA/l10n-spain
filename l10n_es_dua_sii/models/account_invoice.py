@@ -26,7 +26,7 @@ class AccountInvoice(models.Model):
             if invoice.fiscal_position.name == u'Importación con DUA' and \
                     invoice.tax_line.\
                     filtered(lambda x: x.tax_code_id.code in
-                             ['DIBYSCC21', 'DIBYSCC10', 'DIBYSCC04']):
+                             ['DIBYSCC21', 'DIBYSCC10', 'DIBYSCC4']):
                 invoice.sii_dua_invoice = True
             else:
                 invoice.sii_dua_invoice = False
