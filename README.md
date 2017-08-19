@@ -55,7 +55,7 @@ addon | version | summary
 [l10n_es_cnae](l10n_es_cnae/) | 8.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
 [l10n_es_crm_lead_trade_name](l10n_es_crm_lead_trade_name/) | 8.0.1.0.0 | Add trade name field to leads
 [l10n_es_dua](l10n_es_dua/) | 8.0.1.0.0 | Importaciones con DUA
-[l10n_es_dua_sii](l10n_es_dua_sii/) | 8.0.1.0.1 | Suministro Inmediato de Información de importaciones con DUA
+[l10n_es_dua_sii](l10n_es_dua_sii/) | 8.0.1.0.2 | Suministro Inmediato de Información de importaciones con DUA
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.2.0.0 | Cierre de ejercicio fiscal para España
 [l10n_es_irnr](l10n_es_irnr/) | 8.0.1.0.0 | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 8.0.1.0.0 | NUTS specific options for Spain
