@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-28 16:22+0000\n"
+"POT-Creation-Date: 2017-08-19 00:55+0000\n"
+"PO-Revision-Date: 2017-08-11 11:54+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -534,7 +534,7 @@ msgid "Issued invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/models/mod340.py:270
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:271
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_form
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
@@ -681,7 +681,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,model:0
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod340
 #: model:ir.model,name:l10n_es_aeat_mod340.model_l10n_es_aeat_mod340_report
@@ -847,6 +847,11 @@ msgid "RESUMEN FACTURAS RECIBIDAS"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: reportvat book:0
+msgid "Recargo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.tax_summary,summary_type:0
 msgid "Received"
 msgstr ""
@@ -862,7 +867,7 @@ msgid "Received invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/models/mod340.py:274
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:275
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form

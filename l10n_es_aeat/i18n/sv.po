@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:43+0000\n"
+"POT-Creation-Date: 2017-08-19 00:55+0000\n"
+"PO-Revision-Date: 2017-08-11 11:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Swedish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: sql_constraint:l10n.es.aeat.report:0
 #: sql_constraint:l10n.es.aeat.report.tax.mapping:0
-msgid "AEAT report identifier must be unique"
+msgid "AEAT report identifier must be unique by company"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -715,7 +715,7 @@ msgid "Recalculate"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:132
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:143
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -784,7 +784,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,state:0
 #: field:l10n.es.aeat.report.tax.mapping,state:0
 msgid "State"
-msgstr ""
+msgstr "Status"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
@@ -931,7 +931,7 @@ msgid "Wrong aling option. It should be < or >"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:165
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:176
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""
