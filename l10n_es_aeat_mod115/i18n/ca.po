@@ -3,15 +3,15 @@
 # * l10n_es_aeat_mod115
 # 
 # Translators:
-# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 03:05+0000\n"
-"PO-Revision-Date: 2017-07-29 03:05+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-08-18 11:09+0000\n"
+"PO-Revision-Date: 2017-08-18 11:09+0000\n"
+"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,22 +22,22 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
 msgid "AEAT 115 model"
-msgstr ""
+msgstr "Model AEAT 115"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_report
 msgid "AEAT 115 report"
-msgstr ""
+msgstr "Informe AEAT 115"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_tree
 msgid "AEAT 115 reports"
-msgstr ""
+msgstr "Informes AEAT 115"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
 msgid "AEAT model 115"
-msgstr ""
+msgstr "Model 115 AEAT"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_move_id
@@ -52,12 +52,12 @@ msgstr "Permetre la publicació"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_03
 msgid "Amount of retentions"
-msgstr ""
+msgstr "Suma de les retencions "
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Amounts retained"
-msgstr ""
+msgstr "Import dels ingressos a compte "
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_partner_bank_id
@@ -97,7 +97,7 @@ msgstr "Compte de la contrapartida"
 #. module: l10n_es_aeat_mod115
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
 msgid "Create and query AEAT Model 115 reports."
-msgstr ""
+msgstr "Crear i consultar les declaracions del model 115 de l'AEAT. "
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_create_uid
@@ -228,7 +228,7 @@ msgstr "Normal"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_01
 msgid "Number of recipients"
-msgstr ""
+msgstr "Nombre de destinataris"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_partner_id
@@ -278,7 +278,7 @@ msgstr "Tipus de resultat"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_05
 msgid "Result: ([03] - [04])"
-msgstr ""
+msgstr "Resultat: ([03]-[04])"
 
 #. module: l10n_es_aeat_mod115
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:75
@@ -375,14 +375,14 @@ msgstr "[01] No de destinataris "
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_03
 msgid "[03] Amount of retentions"
-msgstr ""
+msgstr "[03] Suma de les retencions "
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_04
 msgid "[04] Fees to compensate"
-msgstr ""
+msgstr "[04] Quotes a compensar"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_05
 msgid "[05] Result"
-msgstr ""
+msgstr "[05] Resultat"
