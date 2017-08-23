@@ -5,7 +5,7 @@
 
 {
     "name": "Relationship refund - origin invoice",
-    "version": "8.0.2.0.0",
+    "version": "8.0.2.1.0",
     "author": "Spanish Localization Team,"
               "Tecnativa,"
               "Odoo Community Association (OCA)",

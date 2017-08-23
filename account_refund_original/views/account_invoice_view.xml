@@ -8,11 +8,17 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
                 <page string="Payments" position="after">
-                    <page string="Refunds" attrs="{'invisible':[('type', 'not in', ['in_refund', 'out_refund'])]}">
-                        <separator string="Description" colspan="4"/>
-                        <field name="refund_invoices_description" colspan="4" nolabel="1"/>
-                        <separator string="Refunded invoices" colspan="4"/>
-                        <field name="origin_invoices_ids" colspan="4" nolabel="1"/>
+                    <page name="refunds" string="Refunds">
+                        <group attrs="{'invisible':[('type', 'not in', ['in_refund', 'out_refund'])]}">
+                            <separator string="Description" colspan="4"/>
+                            <field name="refund_invoices_description" colspan="4" nolabel="1"/>
+                            <separator string="Refunded invoices" colspan="4"/>
+                            <field name="origin_invoices_ids" colspan="4" nolabel="1"/>
+                        </group>
+                        <group attrs="{'invisible':[('type', 'not in', ['in_invoice', 'out_invoice'])]}">
+                            <separator string="Refund invoices" colspan="4"/>
+                            <field name="refund_invoice_ids" colspan="4" nolabel="1"/>
+                        </group>
                     </page>
                 </page>
             </field>
@@ -24,11 +30,17 @@
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
                 <page string="Payments" position="after">
-                    <page string="Refunds" attrs="{'invisible':[('type', 'not in', ['in_refund', 'out_refund'])]}">
-                        <separator string="Description" colspan="4"/>
-                        <field name="refund_invoices_description" colspan="4" nolabel="1"/>
-                        <separator string="Refunded invoices" colspan="4"/>
-                        <field name="origin_invoices_ids" colspan="4" nolabel="1"/>
+                    <page string="Refunds">
+                        <group attrs="{'invisible':[('type', 'not in', ['in_refund', 'out_refund'])]}">
+                            <separator string="Description" colspan="4"/>
+                            <field name="refund_invoices_description" colspan="4" nolabel="1"/>
+                            <separator string="Refunded invoices" colspan="4"/>
+                            <field name="origin_invoices_ids" colspan="4" nolabel="1"/>
+                        </group>
+                        <group attrs="{'invisible':[('type', 'not in', ['in_invoice', 'out_invoice'])]}">
+                            <separator string="Refund invoices" colspan="4"/>
+                            <field name="refund_invoice_ids" colspan="4" nolabel="1"/>
+                        </group>
                     </page>
                 </page>
             </field>

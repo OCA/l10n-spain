@@ -16,6 +16,11 @@ class AccountInvoice(models.Model):
         string='Refund invoice', help='Links to original invoice which is '
                                       'referred by current refund invoice',
     )
+    refund_invoice_ids = fields.Many2many(
+        comodel_name='account.invoice', column1='original_invoice_id',
+        column2='refund_invoice_id', relation='account_invoice_refunds_rel',
+        string="Refund invoices", readonly=True,
+        help="Refund invoices created from this invoice")
 
     @api.model
     def _prepare_refund(self, invoice, date=None, period_id=None,
@@ -26,4 +31,26 @@ class AccountInvoice(models.Model):
         )
         res['origin_invoices_ids'] = [(6, 0, invoice.ids)]
         res['refund_invoices_description'] = description
+        refund_lines_vals = res['invoice_line']
+        for i, line in enumerate(invoice.invoice_line):
+            if i + 1 > len(refund_lines_vals):  # pragma: no cover
+                # Avoid error if someone manipulate the original method
+                break
+            refund_lines_vals[i][2]['origin_line_ids'] = [(6, 0, line.ids)]
         return res
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = 'account.invoice.line'
+
+    origin_line_ids = fields.Many2many(
+        comodel_name='account.invoice.line', column1='refund_line_id',
+        column2='original_line_id', string="Original invoice line",
+        relation='account_invoice_line_refunds_rel',
+        help="Original invoice line to which this refund invoice line "
+             "is referred to")
+    refund_line_ids = fields.Many2many(
+        comodel_name='account.invoice.line', column1='original_line_id',
+        column2='refund_line_id', string="Refund invoice line",
+        relation='account_invoice_line_refunds_rel',
+        help="Refund invoice lines created from this invoice line")
