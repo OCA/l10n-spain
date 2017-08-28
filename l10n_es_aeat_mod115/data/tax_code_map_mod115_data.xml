@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="aeat_mod115_map" model="l10n.es.aeat.map.tax">
+    <field name="model">115</field>
+</record>
+<record id="aeat_mod115_map_line_02" model="l10n.es.aeat.map.tax.line">
+    <field name="map_parent_id" ref="aeat_mod115_map"/>
+    <field name="field_number">02</field>
+    <field name="name">Base retenciones e ingresos a cuenta</field>
+    <field name="field_type">base</field>
+    <field name="sum_type">both</field>
+    <field name="inverse" eval="True"/>
+    <!-- Base facturas de compra (debe) - Base facturas rectificativas de compra (haber):
+         P_RAC19A, P_RAC195A, P_RAC20A, P_RAC21A -->
+    <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf19a'), ref('l10n_es.account_tax_template_p_irpf195a'),ref('l10n_es.account_tax_template_p_irpf20a'), ref('l10n_es.account_tax_template_p_irpf21a')])]"/>
+</record>
+<record id="aeat_mod115_map_line_03" model="l10n.es.aeat.map.tax.line">
+    <field name="map_parent_id" ref="aeat_mod115_map"/>
+    <field name="field_number">03</field>
+    <field name="name">Retenciones e ingresos a cuenta</field>
+    <field name="field_type">amount</field>
+    <field name="sum_type">both</field>
+    <field name="inverse" eval="False"/>
+    <!-- Couta facturas de compra (haber) - Couta facturas rectificativas de compra (debe):
+         P_RAC19A, P_RAC195A, P_RAC20A, P_RAC21A -->
+         <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf19a'), ref('l10n_es.account_tax_template_p_irpf195a'),ref('l10n_es.account_tax_template_p_irpf20a'), ref('l10n_es.account_tax_template_p_irpf21a')])]"/>
+</record>
+
+</odoo>
