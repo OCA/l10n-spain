@@ -119,6 +119,9 @@
                 ref('l10n_es.account_tax_template_p_iva21_isp_1'),
                 ref('l10n_es.account_tax_template_p_iva10_isp_1'),
                 ref('l10n_es.account_tax_template_p_iva4_isp_1')
+                ref('l10n_es.account_tax_template_p_iva21_sp_ex_1'),
+                ref('l10n_es.account_tax_template_p_iva10_sp_ex_1'),
+                ref('l10n_es.account_tax_template_p_iva4_sp_ex_1')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas ISP</field>
