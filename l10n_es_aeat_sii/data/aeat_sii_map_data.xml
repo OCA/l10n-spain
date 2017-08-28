@@ -118,7 +118,10 @@
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_p_iva21_isp'),
                 ref('l10n_es.account_tax_template_p_iva10_isp'),
-                ref('l10n_es.account_tax_template_p_iva4_isp')
+                ref('l10n_es.account_tax_template_p_iva4_isp'),
+                ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
+                ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+                ref('l10n_es.account_tax_template_p_iva4_sp_ex')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas ISP</field>
