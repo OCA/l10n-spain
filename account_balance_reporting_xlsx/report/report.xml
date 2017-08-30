@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2014 Anubía, soluciones en la nube,SL (http://www.anubia.es)
+Copyright Juan Formoso <jfv@anubia.es>
+Copyright Alejandro Santana <alejandrosantana@anubia.es>
+Copyright Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+Copyright 2017 valentin vinagre  <valentin.vinagre@qubiq.es>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+-->
+<openerp>
+    <data>
+	    <!-- Account Balance Report XLSX-->
+	    <report id="account_balance_reporting_generic_report_xlsx"
+	            string="Account_balance_reporting"
+	            model="account.balance.reporting"
+	            report_type="xlsx"
+	            menu="False"
+	            name="account_balance_reporting_xls.generic_report"/>
+	</data>
+</openerp>
