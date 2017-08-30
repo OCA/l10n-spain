@@ -66,16 +66,16 @@ class AccountInvoice(models.Model):
 
         super(AccountInvoice, self).action_move_create()
 
-        for inv in self:
-            if inv.type in ('in_invoice', 'in_refund'):
-                mov_date = inv.registration_date or inv.date_invoice or \
-                           fields.Date.today()
-                inv.move_id.button_cancel()
-                period_id = inv._get_period_from_dates()
-                inv.move_id.write(
-                    {'period_id': period_id.id, 'date': mov_date}
-                )
-                inv.move_id.button_validate()
+        # for inv in self:
+        #     if inv.type in ('in_invoice', 'in_refund'):
+        #         mov_date = inv.registration_date or inv.date_invoice or \
+        #                    fields.Date.today()
+        #         inv.move_id.button_cancel()
+        #         period_id = inv._get_period_from_dates()
+        #         inv.move_id.write(
+        #             {'period_id': period_id.id, 'date': mov_date}
+        #         )
+        #         inv.move_id.button_validate()
         return True
 
     def _get_account_registration_date(self):
