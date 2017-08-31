@@ -160,5 +160,14 @@
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFact Recargo Equivalencia</field>
         </record>
+        
+        <record id="aeat_sii_map_line_SFRND" model="aeat.sii.map.lines">
+            <field name="code">SFRND</field>
+            <field name="taxes" eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_p_iva0_nd')
+            ])]"/>
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactRecibidas No Deducible</field>
+        </record>
     </data>
 </openerp>

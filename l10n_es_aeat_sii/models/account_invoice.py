@@ -519,10 +519,12 @@ class AccountInvoice(models.Model):
         taxes_fa = {}
         taxes_isp = {}
         taxes_ns = {}
+        taxes_nd = {}
         taxes_sfrs = self._get_sii_taxes_map(['SFRS'])
         taxes_sfrsa = self._get_sii_taxes_map(['SFRSA'])
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
+        taxes_sfrnd = self._get_sii_taxes_map(['SFRND'])
         tax_amount = 0.0
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
@@ -538,14 +540,17 @@ class AccountInvoice(models.Model):
                         _get_sii_line_price_subtotal()
                 elif tax_line in taxes_sfrsa:
                     inv_line._update_sii_tax_line(taxes_fa, tax_line)
+                elif tax_line in taxes_sfrnd:
+                    inv_line._update_sii_tax_line(taxes_nd, tax_line)
         if taxes_isp:
             taxes_dict.setdefault(
                 'InversionSujetoPasivo', {'DetalleIVA': taxes_isp.values()},
             )
-        if taxes_f or taxes_ns:
+        if taxes_f or taxes_ns or taxes_nd:
             taxes_dict.setdefault(
                 'DesgloseIVA', {'DetalleIVA': (taxes_f.values() +
-                                               taxes_ns.values())},
+                                               taxes_ns.values() +
+                                               taxes_nd.values())},
             )
         for val in taxes_isp.values() + taxes_f.values() + taxes_fa.values():
             val['CuotaSoportada'] = float_round(
@@ -557,6 +562,15 @@ class AccountInvoice(models.Model):
                     val['CuotaRecargoEquivalencia'] * sign, 2,
                 )
             tax_amount += val['CuotaSoportada']
+        for val in taxes_nd.values():
+            val['CuotaSoportada'] = float_round(
+                val['CuotaSoportada'] * sign, 2,
+            )
+            val['BaseImponible'] = float_round(val['BaseImponible'] * sign, 2)
+            if 'CuotaRecargoEquivalencia' in val:
+                val['CuotaRecargoEquivalencia'] = float_round(
+                    val['CuotaRecargoEquivalencia'] * sign, 2,
+                )
         for reg in taxes_ns.values():
             reg['BaseImponible'] = float_round(reg['BaseImponible'] * sign, 2)
         if taxes_fa:
