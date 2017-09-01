@@ -36,6 +36,12 @@ que se encuentran en https://github.com/OCA/bank-payment.
 Para generar el archivo XML, hace falta el módulo *report_xml* que se encuentra
 en https://github.com/OCA/reporting-engine.
 
+Este módulo añade cambios en las plantillas de impuestos. En caso de
+instalarlo sobre una base de datos que ya tenga el plan de cuentas contable
+español instalado, habrá que actualizar los impuestos usando el módulo
+*account_chart_update*, disponible en
+https://github.com/OCA/account-financial-tools.
+
 En el caso de querer firmar el formato FacturaE desde Odoo, debe instalarse la
 última versión de xmlsec1, disponible en el repositorio
 https://github.com/lsh123/xmlsec, que debe compilarse e instalarse con todas
@@ -43,6 +49,8 @@ sus dependencias.
 Para que funcione, debe añadirse el parámetro LD_LIBRARY_PATH con el valor
 /usr/local/lib.
 Posteriormente deberá instalarse la libreria xmlsec de Python.
+
+
 
 Configuración
 =============
@@ -55,6 +63,7 @@ Configuración
 * Si se desea firmar el xml generado desde Odoo, tenemos que irnos al
   formulario de las compañías y subir el certificado en formato .pfx y
   escribir la contraseña de acceso al certificado.
+* Actualizar los impuestos usando
 
 Uso
 ===

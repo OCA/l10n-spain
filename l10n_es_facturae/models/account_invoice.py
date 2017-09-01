@@ -149,16 +149,36 @@ class AccountInvoice(models.Model):
                 'correction_method']['selection'])[self.correction_method]
 
     def validate_facturae_fields(self):
+        if not self.tax_line_ids:
+            raise ValidationError(_('Taxes not provided.'))
+        for line in self.invoice_line_ids:
+            if not line.invoice_line_tax_ids:
+                raise ValidationError(_('Taxes not provided in invoice line '
+                                        '%s') % line.name)
+        if not self.partner_id.vat:
+            raise ValidationError(_('Partner vat not provided'))
+        if not self.company_id.partner_id.vat:
+            raise ValidationError(_('Company vat not provided'))
         if len(self.partner_id.vat) < 3:
             raise ValidationError(_('Partner vat is too small'))
+        if not self.partner_id.state_id:
+            raise ValidationError(_('Partner state not provided'))
         if len(self.company_id.vat) < 3:
             raise ValidationError(_('Company vat is too small'))
+        if not self.payment_mode_id:
+            raise ValidationError(_('Payment mode is required'))
         if self.payment_mode_id.facturae_code == '02':
+            if not self.mandate_id:
+                raise ValidationError(_('Mandate is missing'))
+            if not self.mandate_id.partner_bank_id:
+                raise ValidationError(_('Partner bank in mandate is missing'))
             if len(self.mandate_id.partner_bank_id.bank_id.bic) != 11:
                 raise ValidationError(_('Mandate account BIC must be 11'))
             if len(self.mandate_id.partner_bank_id.acc_number) < 5:
                 raise ValidationError(_('Mandate account is too small'))
         else:
+            if not self.partner_bank_id:
+                raise ValidationError(_('Partner bank is missing'))
             if self.partner_bank_id.bank_id.bic and len(
                     self.partner_bank_id.bank_id.bic) != 11:
                 raise ValidationError(_('Selected account BIC must be 11'))

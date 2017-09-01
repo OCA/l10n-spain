@@ -8,6 +8,10 @@ from odoo import models, fields
 class AccountTaxTemplate(models.Model):
     _inherit = "account.tax.template"
 
+    facturae_type = fields.Selection(
+        selection=[('taxtypecode', 'Tipo impositivo'),
+                   ('equivalencesurcharge', 'Recargo de equivalencia')])
+
     facturae_code = fields.Selection(
         selection=[
             ('01', 'IVA: Impuesto sobre el valor añadido'),
@@ -38,10 +42,11 @@ class AccountTaxTemplate(models.Model):
             ('18', 'REIGIC: Régimen especial de IGIC: para agencias de'
                    'viajes'),
             ('19', 'REIPSI: Régimen especial de IPSI para agencias de viajes'),
-        ], string='Facturae code', default='01'
+        ], string='Facturae code'
     )
 
     def _get_tax_vals(self, company):
         val = super(AccountTaxTemplate, self)._get_tax_vals(company)
         val['facturae_code'] = self.facturae_code
+        val['facturae_type'] = self.facturae_type
         return val

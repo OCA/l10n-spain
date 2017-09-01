@@ -21,6 +21,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             'type_tax_use': 'sale',
             'facturae_code': '01',
         })
+
         self.state = self.env['res.country.state'].create({
             'name': 'Ciudad Real',
             'code': '13',

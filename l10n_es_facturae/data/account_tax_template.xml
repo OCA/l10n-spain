@@ -1,111 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record id="l10n_es.account_tax_template_s_iva21b" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva21s" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva21isp" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva0_sp_i" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva_ns" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva_e" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva0" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva4b" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva10b" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva4s" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva10s" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_req014" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_req52" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_p_iva12_agr" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva0_e" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva0_ic" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
+    <record id="l10n_es.account_tax_template_s_iva0_isp" model="account.tax.template">
+        <field name="facturae_code">01</field>
+        <field name="facturae_type">taxtypecode</field>
+    </record>
     <record id="l10n_es.account_tax_template_p_irpf21td" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf9" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf18" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf19" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf19a" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf195a" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf19" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf20a" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf18" model="account.tax.template">
         <field name="facturae_code">04</field>
-    </record>
-    <record id="l10n_es.account_tax_template_p_irpf19a" model="account.tax.template">
-        <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf195a" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf7" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf9" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf20" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf20a" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf1" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf2" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf21" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf21a" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf7" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_irpf15" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf1" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf15" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf21t" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf21te" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf20" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf21a" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf21p" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf2" model="account.tax.template">
         <field name="facturae_code">04</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_rp19" model="account.tax.template">
         <field name="facturae_code">05</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_rrD19" model="account.tax.template">
         <field name="facturae_code">05</field>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_s_req05" model="account.tax.template">
-        <field name="facturae_code">05</field>
+        <field name="facturae_code"/>
+        <field name="facturae_type">equivalencesurcharge</field>
     </record>
     <record id="l10n_es.account_tax_template_p_irpf19a" model="account.tax.template">
-        <field name="facturae_code">05</field>
+        <field name="facturae_code"/>
+        <field name="facturae_type">taxtypecode</field>
     </record>
     <record id="l10n_es.account_tax_template_p_req014" model="account.tax.template">
-        <field name="facturae_code">05</field>
+        <field name="facturae_code"/>
+        <field name="facturae_type">equivalencesurcharge</field>
     </record>
     <record id="l10n_es.account_tax_template_p_req05" model="account.tax.template">
-        <field name="facturae_code">05</field>
+        <field name="facturae_code"/>
+        <field name="facturae_type">equivalencesurcharge</field>
     </record>
     <record id="l10n_es.account_tax_template_p_req52" model="account.tax.template">
-        <field name="facturae_code">05</field>
+        <field name="facturae_code"/>
+        <field name="facturae_type">equivalencesurcharge</field>
     </record>
 </odoo>

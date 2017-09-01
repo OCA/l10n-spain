@@ -10,6 +10,7 @@
             <field name="arch" type="xml">
                 <field name="tax_adjustment" position="after">
                     <field name="facturae_code"/>
+                    <field name="facturae_type"/>
                 </field>
             </field>
         </record>

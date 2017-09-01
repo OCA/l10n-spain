@@ -8,6 +8,10 @@ from odoo import models, fields
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
+    facturae_type = fields.Selection(
+        selection=[('taxtypecode', 'Tipo impositivo'),
+                   ('equivalencesurcharge', 'Recargo de equivalencia')])
+
     facturae_code = fields.Selection(
         selection=[
             ('01', 'IVA: Impuesto sobre el valor añadido'),

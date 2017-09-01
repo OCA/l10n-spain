@@ -194,26 +194,33 @@
                     <TaxesOutputs>
                         <t t-foreach="invoice.tax_line_ids" t-as="tax_line">
                             <Tax t-if="tax_line.tax_id.amount &gt;=0">
-                                <TaxTypeCode t-esc="tax_line.tax_id.facturae_code"/>
-                                <TaxRate t-esc="'%.2f' % (tax_line.tax_id.amount)"/>
-                                <TaxableBase>
-                                    <TotalAmount t-esc="'%.2f' % tax_line.base"/>
-                                    <EquivalentInEuros t-esc="'%.2f' % (tax_line.base * euro_rate / currency_rate)"/>
-                                </TaxableBase>
-                                <TaxAmount>
-                                    <TotalAmount t-esc="'%.2f' % tax_line.amount"/>
-                                    <EquivalentInEuros t-esc="'%.2f' % (tax_line.amount * euro_rate / currency_rate)"/>
-                                </TaxAmount>
+                                <t t-if="line_tax.facturae_type == 'taxtypecode'">
+                                    <TaxTypeCode t-esc="tax_line.tax_id.facturae_code"/>
+                                    <TaxRate t-esc="'%.2f' % (tax_line.tax_id.amount)"/>
+                                    <TaxableBase>
+                                        <TotalAmount t-esc="'%.2f' % tax_line.base"/>
+                                        <EquivalentInEuros t-esc="'%.2f' % (tax_line.base * euro_rate / currency_rate)"/>
+                                    </TaxableBase>
+                                    <TaxAmount>
+                                        <TotalAmount t-esc="'%.2f' % tax_line.amount"/>
+                                        <EquivalentInEuros t-esc="'%.2f' % (tax_line.amount * euro_rate / currency_rate)"/>
+                                    </TaxAmount>
+                                </t>
                                 <SpecialTaxableBase t-if="False"/>
                                 <SpecialTaxAmount t-if="False"/>
-                                <EquivalenceSurcharge t-if="False"/>
-                                <EquivalenceSurchargeAmount t-if="False"/>
+                                <t t-if="line_tax.facturae_type == 'equivalencesurcharge'">
+                                    <EquivalenceSurcharge t-esc="tax_line.tax_id.amount"/>
+                                    <EquivalenceSurchargeAmount>
+                                        <TotalAmount t-esc="'%.2f' % tax_line.tax_id.amount"/>
+                                        <EquivalentInEuros t-esc="'%.2f' % (tax_line.amount * euro_rate / currency_rate)"/>
+                                    </EquivalenceSurchargeAmount>
+                                </t>
                             </Tax>
                         </t>
                     </TaxesOutputs>
                     <TaxesWithheld t-if="withheld">
                         <t t-foreach="invoice.tax_line_ids" t-as="tax_line">
-                            <Tax t-if="tax_line.tax_id.amount &lt; 0">
+                            <Tax t-if="tax_line.tax_id.amount &lt; 0 and line_tax.facturae_type == 'taxtypecode'">
                                 <TaxTypeCode t-esc="tax_line.tax_id.facturae_code"/>
                                 <TaxRate t-esc="'%.2f' % (-tax_line.tax_id.amount)"/>
                                 <TaxableBase>
@@ -283,7 +290,7 @@
                             <GrossAmount t-esc="'%.6f' % line.price_subtotal"/>
                             <TaxesWithheld t-if="withheld">
                                 <t t-foreach="line.invoice_line_tax_ids" t-as="line_tax">
-                                    <Tax t-if="line_tax.amount &lt; 0">
+                                    <Tax t-if="line_tax.amount &lt; 0 and line_tax.facturae_type == 'taxtypecode'">
                                         <TaxTypeCode t-esc="line_tax.facturae_code"/>
                                         <TaxRate t-esc="'%.2f' % (-line_tax.amount)"/>
                                         <TaxableBase>
@@ -299,7 +306,7 @@
                             </TaxesWithheld>
                             <TaxesOutputs>
                                 <t t-foreach="line.invoice_line_tax_ids" t-as="line_tax">
-                                    <Tax t-if="line_tax.amount &gt;= 0">
+                                    <Tax t-if="line_tax.amount &gt;= 0 and line_tax.facturae_type == 'taxtypecode'">
                                         <TaxTypeCode t-esc="line_tax.facturae_code"/>
                                         <TaxRate t-esc="'%.2f' % (line_tax.amount)"/>
                                         <TaxableBase>
