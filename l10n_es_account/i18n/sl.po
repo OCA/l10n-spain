@@ -10,22 +10,22 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 04:14+0000\n"
 "PO-Revision-Date: 2015-05-23 16:34+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/fr/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_account
 #: field:account.tax.code.template,chart_template_id:0
 msgid "Chart Template"
-msgstr "Modèle de plan"
+msgstr "Predloga kontnega plana"
 
 #. module: l10n_es_account
 #: model:ir.model,name:l10n_es_account.model_account_account
 msgid "Account"
-msgstr "Compte"
+msgstr "Konto"
 
 #. module: l10n_es_account
 #: model:ir.model,name:l10n_es_account.model_account_tax_code_template

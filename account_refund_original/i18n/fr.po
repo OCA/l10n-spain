@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-14 00:10+0000\n"
+"POT-Creation-Date: 2017-08-19 04:14+0000\n"
 "PO-Revision-Date: 2015-05-23 16:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/fr/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: account_refund_original
 #: field:account.invoice,origin_invoices_ids:0
 msgid "Refund invoice"
-msgstr ""
+msgstr "Avoir"
 
 #. module: account_refund_original
 #: view:account.invoice:0
@@ -30,7 +30,7 @@ msgstr "Description"
 #. module: account_refund_original
 #: view:account.invoice:0
 msgid "Refunds"
-msgstr ""
+msgstr "Avoirs"
 
 #. module: account_refund_original
 #: model:ir.model,name:account_refund_original.model_account_invoice_refund
@@ -40,17 +40,17 @@ msgstr ""
 #. module: account_refund_original
 #: field:account.invoice,refund_invoices_description:0
 msgid "Refund invoices description"
-msgstr ""
+msgstr "Motif de l'avoir"
 
 #. module: account_refund_original
 #: view:account.invoice:0
 msgid "Refunded invoices"
-msgstr ""
+msgstr "Factures associées"
 
 #. module: account_refund_original
 #: help:account.invoice,origin_invoices_ids:0
 msgid "Links to original invoice which is referred by current refund invoice"
-msgstr ""
+msgstr "Liens vers les facture à l'origine de l'avoir"
 
 #. module: account_refund_original
 #: view:account.invoice:0

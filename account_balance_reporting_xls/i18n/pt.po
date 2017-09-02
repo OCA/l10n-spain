@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-19 04:14+0000\n"
-"PO-Revision-Date: 2015-05-23 16:32+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/ca/)\n"
+"PO-Revision-Date: 2017-08-21 07:13+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Portuguese (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_balance_reporting_xls
@@ -33,13 +33,13 @@ msgstr ""
 #: code:addons/account_balance_reporting_xls/report/reporting_xls.py:84
 #, python-format
 msgid "Code"
-msgstr "Codi"
+msgstr "Código"
 
 #. module: account_balance_reporting_xls
 #: code:addons/account_balance_reporting_xls/report/reporting_xls.py:110
 #, python-format
 msgid "Notes"
-msgstr "Notes"
+msgstr "Notas"
 
 #. module: account_balance_reporting_xls
 #: model:ir.model,name:account_balance_reporting_xls.model_account_balance_reporting_print_wizard
@@ -66,10 +66,10 @@ msgstr ""
 #. module: account_balance_reporting_xls
 #: view:account.balance.reporting.print.wizard:0
 msgid "Export"
-msgstr "Exportar "
+msgstr ""
 
 #. module: account_balance_reporting_xls
 #: code:addons/account_balance_reporting_xls/report/reporting_xls.py:103
 #, python-format
 msgid "Balance"
-msgstr "Balanç"
+msgstr ""
