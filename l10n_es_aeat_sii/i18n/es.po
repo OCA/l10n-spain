@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# Pedro Rodríguez <pedro@otherway.es>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 00:56+0000\n"
-"PO-Revision-Date: 2017-08-19 00:56+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-08-29 01:00+0000\n"
+"PO-Revision-Date: 2017-08-29 01:00+0000\n"
+"Last-Translator: Pedro Rodríguez <pedro@otherway.es>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,12 +42,12 @@ msgstr "Activo"
 #. module: l10n_es_aeat_sii
 #: field:account.invoice,sii_registration_key_additional2:0
 msgid "Additional 2 SII registration key"
-msgstr ""
+msgstr "Clave de registro adicional 2 SII"
 
 #. module: l10n_es_aeat_sii
 #: field:account.invoice,sii_registration_key_additional1:0
 msgid "Additional SII registration key"
-msgstr ""
+msgstr "Clave de registro adicional SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys

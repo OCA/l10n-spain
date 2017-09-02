@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-10 01:44+0000\n"
-"PO-Revision-Date: 2017-02-10 00:46+0000\n"
+"POT-Creation-Date: 2017-08-29 00:59+0000\n"
+"PO-Revision-Date: 2017-08-24 09:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -30,9 +30,24 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: account_refund_original
+#: model:ir.model,name:account_refund_original.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Línea de factura"
+
+#. module: account_refund_original
 #: help:account.invoice,origin_invoices_ids:0
 msgid "Links to original invoice which is referred by current refund invoice"
 msgstr "Enlaces a la factura original a la que es referida la actual factura rectificativa"
+
+#. module: account_refund_original
+#: field:account.invoice.line,origin_line_ids:0
+msgid "Original invoice line"
+msgstr "Línea de la factura original"
+
+#. module: account_refund_original
+#: help:account.invoice.line,origin_line_ids:0
+msgid "Original invoice line to which this refund invoice line is referred to"
+msgstr "Línea de la factura original a la que está línea de factura rectificativa se refiere"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
@@ -44,6 +59,28 @@ msgstr "Pagos"
 #: field:account.invoice,origin_invoices_ids:0
 msgid "Refund invoice"
 msgstr "Factura rectificativa"
+
+#. module: account_refund_original
+#: field:account.invoice.line,refund_line_ids:0
+msgid "Refund invoice line"
+msgstr "Línea de factura rectificativa"
+
+#. module: account_refund_original
+#: help:account.invoice.line,refund_line_ids:0
+msgid "Refund invoice lines created from this invoice line"
+msgstr "Líneas de facturas rectificativas creadas desde esta línea de factura"
+
+#. module: account_refund_original
+#: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
+#: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
+#: field:account.invoice,refund_invoice_ids:0
+msgid "Refund invoices"
+msgstr "Facturas rectificativas"
+
+#. module: account_refund_original
+#: help:account.invoice,refund_invoice_ids:0
+msgid "Refund invoices created from this invoice"
+msgstr "Facturas rectificativas creadas desde esta factura"
 
 #. module: account_refund_original
 #: field:account.invoice,refund_invoices_description:0

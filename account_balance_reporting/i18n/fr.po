@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 03:43+0000\n"
-"PO-Revision-Date: 2017-02-25 18:58+0000\n"
+"POT-Creation-Date: 2017-08-29 00:59+0000\n"
+"PO-Revision-Date: 2017-08-21 07:22+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -408,7 +408,7 @@ msgstr "Dernière mise à jour le"
 #. module: account_balance_reporting
 #: field:account.balance.reporting,level:0
 msgid "Level"
-msgstr ""
+msgstr "Niveau"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -510,7 +510,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Print"
-msgstr ""
+msgstr "Imprimer"
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
@@ -532,7 +532,7 @@ msgstr ""
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 #: field:account.balance.reporting.print.wizard,report_id:0
 msgid "Report"
-msgstr ""
+msgstr "Lettre"
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,report_xml_id:0
