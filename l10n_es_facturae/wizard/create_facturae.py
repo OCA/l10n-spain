@@ -9,13 +9,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
-import logging
 
 from odoo import api, fields, models, _
 from odoo.exceptions import Warning as UserError
-
-
-logger = logging.Logger("facturae")
 
 
 class Log(Exception):
@@ -47,21 +43,16 @@ class CreateFacturae(models.TransientModel):
         '¿Desea firmar digitalmente el fichero generado?',
         help='Requiere certificado en la ficha de la compañía', default=True)
 
-    @api.model
-    def _get_valid_invoice_statuses(self):
-        return ['open', 'paid']
-
     @api.multi
     def create_facturae_file(self):
         log = Log()
         invoice_ids = self.env.context.get('active_ids', [])
         if not invoice_ids or len(invoice_ids) > 1:
             raise UserError(_('You can only select one invoice to export'))
-
+        active_model = self.env.context.get('active_model', False)
+        assert active_model == 'account.invoice', \
+            'Bad context propagation'
         invoice = self.env['account.invoice'].browse(invoice_ids[0])
-        if invoice.state not in self._get_valid_invoice_statuses():
-            raise UserError(_('You can only create Factura-E files for '
-                              'invoices that have been validated.'))
         invoice_file, file_name = invoice.ensure_one().get_facturae(
             self.firmar_facturae)
 

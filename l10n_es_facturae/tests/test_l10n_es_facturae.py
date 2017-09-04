@@ -4,11 +4,16 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import base64
+import logging
 
 from lxml import etree
 from odoo import exceptions
 from odoo.tests import common
 from OpenSSL import crypto
+try:
+    import xmlsec
+except(ImportError, IOError) as err:
+    logging.info(err)
 
 
 class TestL10nEsFacturae(common.TransactionCase):
@@ -163,7 +168,8 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.invoice.number = '2999/99999'
         wizard = self.env['create.facturae'].create({})
         wizard.with_context(
-            active_ids=self.invoice.ids).create_facturae_file()
+            active_ids=self.invoice.ids,
+            active_model='account.invoice').create_facturae_file()
         generated_facturae = etree.fromstring(
             base64.b64decode(wizard.facturae))
         fe = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
@@ -222,6 +228,27 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.assertEqual(len(generated_facturae.xpath('//ds:Signature',
                                                       namespaces={'ds': ns})),
                          1)
+        ctx = xmlsec.SignatureContext()
+        tree = etree.parse(generated_facturae)
+        verification_error = False
+        node = tree.find(".//ds:Signature")
+        ctx = xmlsec.SignatureContext()
+        certificate = crypto.load_pkcs12(
+            base64.b64decode(main_company.facturae_cert), 'password')
+        certificate.set_ca_certificates(None)
+
+        ctx.key = xmlsec.Key.from_memory(
+            certificate.export(),
+            format=xmlsec.constants.KeyDataFormatPkcs12
+        )
+
+        try:
+            ctx.verify(node)
+        except Exception:
+            verification_error = True
+            pass
+        self.assertEquals(verification_error, False)
+
         motive = 'Description motive'
         refund = self.env['account.invoice.refund'].create(
             {'refund_reason': '01',

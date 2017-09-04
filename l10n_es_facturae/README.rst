@@ -84,6 +84,8 @@ Problemas conocidos / Hoja de ruta
   cifrados en la base de datos.
 * Ver la posibilidad de exportar varias facturas juntas.
 * Soportar formato Factura-E v3.2.1.
+* Las facturas con recargo de equivalencia no generan un formato correcto.
+
 
 Credits
 =======

@@ -21,6 +21,8 @@ except(ImportError, IOError) as err:
 from odoo import models, fields, tools, _, api
 from odoo.exceptions import Warning as UserError, ValidationError
 
+logger = logging.Logger("facturae")
+
 
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
@@ -148,9 +150,10 @@ class AccountInvoice(models.Model):
             self.fields_get(allfields=['correction_method'])[
                 'correction_method']['selection'])[self.correction_method]
 
+    def _get_valid_invoice_statuses(self):
+        return ['open', 'paid']
+
     def validate_facturae_fields(self):
-        if not self.tax_line_ids:
-            raise ValidationError(_('Taxes not provided.'))
         for line in self.invoice_line_ids:
             if not line.invoice_line_tax_ids:
                 raise ValidationError(_('Taxes not provided in invoice line '
@@ -184,6 +187,9 @@ class AccountInvoice(models.Model):
                 raise ValidationError(_('Selected account BIC must be 11'))
             if len(self.partner_bank_id.acc_number) < 5:
                 raise ValidationError(_('Selected account is too small'))
+        if self.state not in self._get_valid_invoice_statuses():
+            raise ValidationError(_('You can only create Factura-E files for '
+                                    'invoices that have been validated.'))
         return
 
     def get_facturae(self, firmar_facturae):
@@ -396,17 +402,18 @@ class AccountInvoice(models.Model):
                 root, xml_declaration=True, encoding='UTF-8'
             )
 
-        logger = logging.getLogger("facturae")
         self.validate_facturae_fields()
 
         report = self.env.ref('l10n_es_facturae.report_facturae')
         xml_facturae = self.env['report'].get_html([self.id],
                                                    report.report_name)
+        # Quitamos espacios en blanco, para asegurar que el XML final quede
+        # totalmente libre de ellos.
         tree = etree.fromstring(
             xml_facturae, etree.XMLParser(remove_blank_text=True))
         xml_facturae = etree.tostring(tree, xml_declaration=True,
                                       encoding='UTF-8')
-        self._validate_facturae(xml_facturae, logger)
+        self._validate_facturae(xml_facturae)
         if self.company_id.facturae_cert and firmar_facturae:
             file_name = (_(
                 'facturae') + '_' + self.number + '.xsig').replace('/', '-')
@@ -421,11 +428,13 @@ class AccountInvoice(models.Model):
 
         return invoice_file, file_name
 
-    @staticmethod
-    def _validate_facturae(xml_string, logger):
+    def _get_facturae_schema_file(self):
+        return tools.file_open("Facturaev3_2.xsd",
+                               subdir="addons/l10n_es_facturae/data")
+
+    def _validate_facturae(self, xml_string):
         facturae_schema = etree.XMLSchema(
-            etree.parse(tools.file_open(
-                "Facturaev3_2.xsd", subdir="addons/l10n_es_facturae/data")))
+            etree.parse(self._get_facturae_schema_file()))
         try:
             facturae_schema.assertValid(etree.fromstring(xml_string))
         except Exception, e:
