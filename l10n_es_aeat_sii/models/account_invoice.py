@@ -156,6 +156,10 @@ class AccountInvoice(models.Model):
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
         string="Connector Jobs", copy=False,
     )
+    travel_tax_free_invoice = fields.Many2one(
+        'account.invoice', "Related travel tax free invoice")
+    travel_tax_free = fields.Boolean(
+        related='journal_id.travel_tax_free', readonly=True)
 
     @api.onchange('sii_refund_type')
     def onchange_sii_refund_type(self):
@@ -637,15 +641,20 @@ class AccountInvoice(models.Model):
             self.period_id.fiscalyear_id.date_start).year
         periodo = '%02d' % fields.Date.from_string(
             self.period_id.date_start).month
+        # On cancelled invoices, number is not filled
+        inv_number = self.number or self.internal_number or ''
+        if self.travel_tax_free:
+            if not self.travel_tax_free_invoice:
+                raise exceptions.Warning(_(
+                    "The related traveler tax free invoice is needed on the "
+                    "invoice '{}'").format(self.number))
+            inv_number = self.travel_tax_free_invoice.number
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {
                     "NIF": company.vat[2:],
                 },
-                # On cancelled invoices, number is not filled
-                "NumSerieFacturaEmisor": (
-                    self.number or self.internal_number or ''
-                )[0:60],
+                "NumSerieFacturaEmisor": inv_number[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
             "PeriodoImpositivo": {
@@ -901,7 +910,10 @@ class AccountInvoice(models.Model):
             client = self._connect_sii(wsdl)
             serv = client.bind('siiService', port_name)
             if invoice.sii_state == 'not_sent':
-                tipo_comunicacion = 'A0'
+                if invoice.travel_tax_free:
+                    tipo_comunicacion = 'A4'
+                else:
+                    tipo_comunicacion = 'A0'
             else:
                 tipo_comunicacion = 'A1'
             header = invoice._get_sii_header(tipo_comunicacion)
@@ -1129,7 +1141,8 @@ class AccountInvoice(models.Model):
         elif self.fiscal_position.name == u'Régimen Intracomunitario':
             res = 2
         elif (self.fiscal_position.name ==
-              u'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
+              u'Régimen Extracomunitario / Canarias, Ceuta y Melilla' or
+              self.travel_tax_free):
             res = 3
         else:
             res = 1
