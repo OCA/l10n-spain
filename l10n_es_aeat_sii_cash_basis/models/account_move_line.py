@@ -37,7 +37,7 @@ class AccountMoveLine(models.Model):
             if move.invoice:
                 if move.invoice.sii_registration_key.code == '07':
                     company = move.invoice.company_id
-                    if company.sii_enabled and move.invoice.is_sii_invoice():
+                    if company.sii_enabled:
                         if not company.use_connector:
                             move.invoice.send_recc_payment(move)
                         else:
