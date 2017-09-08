@@ -201,7 +201,8 @@ class TestL10nEsFacturae(common.TransactionCase):
         main_company.partner_id.country_id = False
         with self.assertRaises(exceptions.UserError):
             wizard.with_context(
-                active_ids=self.invoice.ids).create_facturae_file()
+                active_ids=self.invoice.ids,
+                active_model='account.invoice').create_facturae_file()
         pkcs12 = crypto.PKCS12()
         pkey = crypto.PKey()
         pkey.generate_key(crypto.TYPE_RSA, 512)
@@ -221,17 +222,16 @@ class TestL10nEsFacturae(common.TransactionCase):
         main_company.facturae_cert_password = 'password'
         main_company.partner_id.country_id = self.ref('base.es')
         wizard.with_context(
-            active_ids=self.invoice.ids).create_facturae_file()
+            active_ids=self.invoice.ids,
+            active_model='account.invoice').create_facturae_file()
         generated_facturae = etree.fromstring(
             base64.b64decode(wizard.facturae))
         ns = 'http://www.w3.org/2000/09/xmldsig#'
         self.assertEqual(len(generated_facturae.xpath('//ds:Signature',
                                                       namespaces={'ds': ns})),
                          1)
-        ctx = xmlsec.SignatureContext()
-        tree = etree.parse(generated_facturae)
-        verification_error = False
-        node = tree.find(".//ds:Signature")
+
+        node = generated_facturae.find(".//ds:Signature", {'ds': ns})
         ctx = xmlsec.SignatureContext()
         certificate = crypto.load_pkcs12(
             base64.b64decode(main_company.facturae_cert), 'password')
@@ -241,13 +241,17 @@ class TestL10nEsFacturae(common.TransactionCase):
             certificate.export(),
             format=xmlsec.constants.KeyDataFormatPkcs12
         )
-
+        verification_error = False
+        error_message = ''
         try:
             ctx.verify(node)
-        except Exception:
+        except Exception as e:
             verification_error = True
+            error_message = e.message
             pass
-        self.assertEquals(verification_error, False)
+        self.assertEquals(verification_error, False,
+                          'Error found during verification of the signature of '
+                          'the invoice: %s' % error_message)
 
         motive = 'Description motive'
         refund = self.env['account.invoice.refund'].create(
@@ -262,11 +266,13 @@ class TestL10nEsFacturae(common.TransactionCase):
         refund_inv.partner_bank_id = self.bank
         refund_inv.action_invoice_open()
         refund_inv.number = '2998/99999'
-        wizard.with_context(active_ids=refund_inv.ids).create_facturae_file()
+        wizard.with_context(
+            active_ids=refund_inv.ids,
+            active_model='account.invoice').create_facturae_file()
         with self.assertRaises(exceptions.UserError):
             wizard.with_context(active_ids=[
                 self.invoice_02.id, self.invoice.id
-            ]).create_facturae_file()
+            ], active_model='account.invoice').create_facturae_file()
         self.assertTrue(self.invoice.can_integrate)
         self.assertEqual(self.invoice.integration_count, 0)
         integrations = self.invoice.action_integrations()
