@@ -99,18 +99,6 @@ class TestCreateChart(common.SavepointCase):
             'company_id': self.company.id,
         })
         self.assertEqual(journal.sequence_id, prev_journal.sequence_id)
-        other_company = self.env['res.company'].create(
-            {'name': 'Other company'},
-        )
-        other_journal = self.journal_obj.create({
-            'name': 'Test journal other',
-            'code': 'TO',
-            'type': 'general',
-            'company_id': other_company.id,
-        })
-        self.assertNotEqual(
-            other_journal.sequence_id, journal.sequence_id,
-        )
 
     def test_journal_constrains(self):
         other_company = self.env['res.company'].create(
