@@ -3,3 +3,4 @@
 
 from . import test_create_chart
 from . import test_invoice_sequence
+from . import test_other_chart
