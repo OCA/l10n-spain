@@ -18,6 +18,8 @@ class WizardMultiChartsAccounts(models.TransientModel):
         )._create_bank_journals_from_o2m(
             company, acc_template_ref,
         )
+        if not self.chart_template_id.is_spanish_chart():
+            return res
         journals2 = journal_model.search([('company_id', '=', company.id)])
         new_journals = journals2 - journals
         sequence = self.env['ir.sequence'].search([
