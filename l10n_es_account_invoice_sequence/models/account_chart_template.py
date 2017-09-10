@@ -50,9 +50,13 @@ class AccountChartTemplate(models.Model):
         ]
 
     @api.multi
-    @tools.ormcache()
-    def is_spanish_chart(self):
+    def _get_spanish_charts(self):
         charts = self.env['account.chart.template']
         for chart_id in self._get_spanish_charts_xml_ids():
             charts |= self.env.ref(chart_id)
         return charts
+
+    @api.multi
+    @tools.ormcache('self')
+    def is_spanish_chart(self):
+        return self in self._get_spanish_charts()
