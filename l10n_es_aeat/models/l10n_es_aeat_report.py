@@ -380,7 +380,7 @@ class L10nEsAeatReport(models.AbstractModel):
     def _filter_phone(self, phone):
         return (phone or '').replace(" ", "")[-9:]
 
-    @api.cr
+    @api.model_cr
     def _register_hook(self):
         res = super(L10nEsAeatReport, self)._register_hook()
         if self._name in ('l10n.es.aeat.report',
