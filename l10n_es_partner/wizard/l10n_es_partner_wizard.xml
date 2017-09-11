@@ -30,12 +30,12 @@
                                attrs="{'invisible': [('import_fail', '=', False)]}"
                                string="Something has failed importing data from Internet. You will need to import local data instead."/>
                     </separator>
-                    <button string='Install Modules' position="after">
+                    <button name="action_next" position="after">
                         <button name="import_local"
                                 string="Import from local file"
                                 type="object" />
                     </button>
-                    <button string='Install Modules' position="attributes">
+                    <button name="action_next" position="attributes">
                         <attribute name="string">Import from Internet</attribute>
                         <attribute name="attrs">{'invisible': [('import_fail', '=', True)]}</attribute>
                     </button>
