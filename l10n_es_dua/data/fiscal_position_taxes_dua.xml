@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data noupdate="0">
+<odoo>
 
 <record id="fptt_dua_4b" model="account.fiscal.position.tax.template">
     <field name="position_id" ref="fp_dua"/>
@@ -99,5 +98,4 @@
     <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_iva0_e"/>
 </record>
 
-</data>
-</openerp>
+</odoo>
