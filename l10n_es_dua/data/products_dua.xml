@@ -3,9 +3,9 @@
 
 <record id="fp_dua" model="account.fiscal.position.template">
     <field name="name">Importación con DUA</field>
-    <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+    <field name="chart_template_id"
+           ref="l10n_es.account_chart_template_common"/>
 </record>
-
 <record id="producto_dua_valoracion_21" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
@@ -17,7 +17,6 @@
     <field name="sale_ok" eval="False"/>
     <field name="purchase_ok" eval="False"/>
 </record>
-
 <record id="producto_dua_valoracion_10" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
@@ -29,7 +28,6 @@
     <field name="sale_ok" eval="False"/>
     <field name="purchase_ok" eval="False"/>
 </record>
-
 <record id="producto_dua_valoracion_4" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
@@ -41,7 +39,6 @@
     <field name="sale_ok" eval="False"/>
     <field name="purchase_ok" eval="False"/>
 </record>
-
 <record id="producto_dua_compensacion" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
