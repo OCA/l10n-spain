@@ -1118,10 +1118,11 @@ class AccountInvoiceLine(osv.Model):
         for tax in line.invoice_line_tax_id:
             if tax in taxes_re:
                 price = self._get_sii_line_price_subtotal(cr, uid, line)
-                taxes = tax.compute_all(
-                    price, line.quantity, line.product_id,
-                    line.invoice_id.partner_id,
-                )
+                taxes = self.pool.get('account.tax').compute_all(cr, uid, [tax],
+                                                                 self._get_sii_line_price_subtotal(cr, uid, line),
+                                                                 line.quantity,
+                                                                 line.product_id, line.invoice_id.partner_id,
+                                                                 )
                 taxes['percentage'] = tax.amount
                 return taxes
         return {}
