@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-<data noupdate="0">
+<odoo>
+    <data noupdate="0">
 
-<record id="fp_dua" model="account.fiscal.position.template">
-    <field name="name">Importación con DUA</field>
-    <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
-</record>
+        <record id="fp_dua" model="account.fiscal.position.template">
+            <field name="name">Importación con DUA</field>
+            <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        </record>
 
-</data>
-</openerp>
+    </data>
+</odoo>

@@ -5,7 +5,7 @@
 {
     'name': "Importaciones con DUA",
     'category': 'Localization/Account Charts',
-    'version': '8.0.1.0.0',
+    'version': '10.0.1.0.0',
     'depends': [
         'product',
         'l10n_es',
@@ -23,5 +23,5 @@
     'license': 'AGPL-3',
     'demo': [],
     'test': [],
-    'installable': False,
+    'installable': True,
 }
