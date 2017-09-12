@@ -59,7 +59,7 @@ addon | version | summary
 [l10n_es_fiscal_year_closing](l10n_es_fiscal_year_closing/) | 8.0.2.0.0 | Cierre de ejercicio fiscal para España
 [l10n_es_irnr](l10n_es_irnr/) | 8.0.1.0.0 | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 8.0.1.0.0 | NUTS specific options for Spain
-[l10n_es_partner](l10n_es_partner/) | 8.0.1.5.2 | Adaptación de los clientes, proveedores y bancos para España
+[l10n_es_partner](l10n_es_partner/) | 8.0.1.5.3 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 8.0.1.0.0 | Partner Mercantil
 [l10n_es_payment_order](l10n_es_payment_order/) | 8.0.1.7.0 | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
 [l10n_es_payment_order_confirminet](l10n_es_payment_order_confirminet/) | 8.0.1.0.0 | Exportación de fichero bancario Confirminet
