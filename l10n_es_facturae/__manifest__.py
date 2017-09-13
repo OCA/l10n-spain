@@ -23,6 +23,7 @@
         "account_payment_partner",
         "account_accountant",
         "l10n_es_partner",
+        "l10n_es",
         "base_iso3166",
         "base_vat",
         "partner_firstname",
@@ -48,6 +49,7 @@
     "external_dependencies": {
         "python": [
             "OpenSSL",
+            "xmlsig"
         ],
     },
     "demo": [

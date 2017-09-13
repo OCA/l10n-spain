@@ -166,7 +166,7 @@
                         <Corrective t-if="invoice.refund_invoice_id">
                             <InvoiceNumber t-length="20" t-esc="invoice.refund_invoice_id.number"/>
                             <InvoiceSeriesCode t-length="20" t-esc="''"/>
-                            <ReasonCode t-esc="invoice.refund_reason"/>
+                            <ReasonCode t-esc="invoice.facturae_refund_reason"/>
                             <ReasonDescription t-esc="invoice.get_refund_reason_string()"/>
                             <TaxPeriod>
                                 <StartDate t-esc="invoice.refund_invoice_id.date_invoice"/>

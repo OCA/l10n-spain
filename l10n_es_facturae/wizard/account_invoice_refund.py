@@ -57,6 +57,6 @@ class AccountInvoiceRefund(models.TransientModel):
         inv = self.env['account.invoice'].search(res['domain'])
         inv.update({
             'correction_method': self.correction_method,
-            'refund_reason': self.refund_reason
+            'facturae_refund_reason': self.refund_reason
         })
         return res

@@ -11,7 +11,7 @@ from odoo import exceptions
 from odoo.tests import common
 from OpenSSL import crypto
 try:
-    import xmlsec
+    import xmlsig
 except(ImportError, IOError) as err:
     logging.info(err)
 
@@ -232,15 +232,10 @@ class TestL10nEsFacturae(common.TransactionCase):
                          1)
 
         node = generated_facturae.find(".//ds:Signature", {'ds': ns})
-        ctx = xmlsec.SignatureContext()
+        ctx = xmlsig.SignatureContext()
         certificate = crypto.load_pkcs12(
             base64.b64decode(main_company.facturae_cert), 'password')
         certificate.set_ca_certificates(None)
-
-        ctx.key = xmlsec.Key.from_memory(
-            certificate.export(),
-            format=xmlsec.constants.KeyDataFormatPkcs12
-        )
         verification_error = False
         error_message = ''
         try:
@@ -249,10 +244,11 @@ class TestL10nEsFacturae(common.TransactionCase):
             verification_error = True
             error_message = e.message
             pass
-        self.assertEquals(verification_error, False,
-                          'Error found during verification of the signature of '
-                          'the invoice: %s' % error_message)
-
+        self.assertEquals(
+            verification_error,
+            False,
+            'Error found during verification of the signature of ' +
+            'the invoice: %s' % error_message)
         motive = 'Description motive'
         refund = self.env['account.invoice.refund'].create(
             {'refund_reason': '01',
@@ -262,7 +258,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         refund_inv = self.env['account.invoice'].search(
             refund_result['domain'])
         self.assertEquals(refund_inv.name, motive)
-        self.assertEquals(refund_inv.refund_reason, '01')
+        self.assertEquals(refund_inv.facturae_refund_reason, '01')
         refund_inv.partner_bank_id = self.bank
         refund_inv.action_invoice_open()
         refund_inv.number = '2998/99999'
