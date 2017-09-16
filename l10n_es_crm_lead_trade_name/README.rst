@@ -57,6 +57,7 @@ Contributors
 
 * Rafael Blasco <rafaelbn@antiun.com>
 * Jairo Llopis <yajo.sk8@gmail.com>
+* Marçal Isern <marsal.isern@qubiq.es>
 
 Maintainer
 ----------
