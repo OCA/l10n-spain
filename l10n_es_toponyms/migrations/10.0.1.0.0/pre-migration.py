@@ -66,4 +66,7 @@ def migrate(env, version):
     """Rename XML-IDs for not duplicating states as now Odoo core has
     integrated them.
     """
+    for old_xml_id, new_xml_id in XMLID_RENAMES:
+        # Delete first records created by base module
+        env.ref(new_xml_id).unlink()
     openupgrade.rename_xmlids(env.cr, XMLID_RENAMES)
