@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="account_asset_form_view" model="ir.ui.view">
+            <field name="name">account.asset.asset.form.view</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="account_asset.view_account_asset_asset_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <button name="%(l10n_es_account_asset_variation.account_asset_variation_wiz_action)d" type="action" string="Load Variable Percentage" attrs="{'invisible': ['|', ('method_time', '!=', 'percentage'),('state', '!=', 'open')]}"/>
+                </field>
+                <xpath expr="//field[@name='depreciation_line_ids']/tree//field[@name='depreciated_value']" position="after">
+                    <field name="method_percentage"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

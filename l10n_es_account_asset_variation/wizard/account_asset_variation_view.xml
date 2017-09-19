@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="account_asset_variation_wiz_form_view" model="ir.ui.view">
+            <field name="name">account.asset.variation.wiz.form.view</field>
+            <field name="model">account.asset.variation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="percentage"/>
+                        <field name="start_date"/>
+                        <field name="end_date" />
+                    </group>
+                    <footer>
+                        <button name="action_calculate_depreciation_board" string="Calculate Board"
+                                type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_asset_variation_wiz_action" model="ir.actions.act_window">
+            <field name="name">Load Asset Variation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.asset.variation</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="account_asset_variation_wiz_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</openerp>
