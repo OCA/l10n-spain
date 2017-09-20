@@ -56,7 +56,7 @@
                                 <button name="show_move_lines_current"
                                         type="object"
                                         help="Show journal items"
-                                        icon="gtk-find"
+                                        icon="fa-search-plus"
                                         attrs="{'invisible': [('current_move_line_count', '=', 0)]}"
                                 />
                                 <field name="previous_value"/>
@@ -64,7 +64,7 @@
                                 <button name="show_move_lines_previous"
                                         type="object"
                                         help="Show journal items"
-                                        icon="gtk-find"
+                                        icon="fa-search-plus"
                                         attrs="{'invisible': [('previous_move_line_count', '=', 0)]}"
                                 />
                                 <field name="css_class"/>
