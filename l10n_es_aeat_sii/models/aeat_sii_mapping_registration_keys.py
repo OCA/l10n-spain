@@ -10,7 +10,7 @@ class AeatSiiMappingRegistrationKeys(models.Model):
     _description = 'Aeat SII Invoice Registration Keys'
 
     code = fields.Char(string='Code', required=True, size=2)
-    name = fields.Char(string='Name', required=True)
+    name = fields.Char(string='Name', required=True, translate=True)
     type = fields.Selection(
         selection=[('sale', 'Sale'), ('purchase', 'Purchase')], string='Type',
         required=True)
