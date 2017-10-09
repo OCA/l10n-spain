@@ -1,23 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_account_asset
+#	* l10n_es_account_asset
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-02 02:44+0000\n"
-"PO-Revision-Date: 2017-07-02 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Colombia) (https://www.transifex.com/oca/teams/23907/"
-"es_CO/)\n"
-"Language: es_CO\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_annual_percentage
@@ -27,7 +21,7 @@ msgstr ""
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
 msgid "Asset category"
-msgstr "Categoría de activo"
+msgstr ""
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
@@ -47,10 +41,7 @@ msgstr ""
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_move_end_period
-msgid ""
-"Move the depreciation entry at the end of the period. If the period are 12 "
-"months, it is put on 31st of December, and in the end of the month in other "
-"case."
+msgid "Move the depreciation entry at the end of the period. If the period are 12 months, it is put on 31st of December, and in the end of the month in other case."
 msgstr ""
 
 #. module: l10n_es_account_asset
@@ -68,3 +59,4 @@ msgstr ""
 #: sql_constraint:account.asset.category:0
 msgid "Wrong percentage!"
 msgstr ""
+
