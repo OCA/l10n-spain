@@ -19,11 +19,14 @@ class AccountInvoice(models.Model):
         for inv in self:
             if not inv.invoice_number:
                 sequence = inv.journal_id.invoice_sequence_id
-                if inv.type in {'out_refund', 'in_refund'}:
+                if inv.type in {'out_refund', 'in_refund'} and \
+                        inv.journal_id.refund_inv_sequence_id:
                     sequence = inv.journal_id.refund_inv_sequence_id
                 if sequence:
                     sequence = sequence.with_context(
-                        ir_sequence_date=inv.date or inv.date_invoice)
+                        ir_sequence_date=inv.date or inv.date_invoice,
+                        ir_sequence_date_range=inv.date or inv.date_invoice,
+                    )
                     number = sequence.next_by_id()
                 else:  # pragma: no cover
                     # Other localizations or not configured journals

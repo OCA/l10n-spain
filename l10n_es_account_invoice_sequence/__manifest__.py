@@ -3,11 +3,11 @@
 # Copyright 2014 Ángel Moya (Domatix)
 # Copyright 2014 Roberto Lizana (Trey)
 # Copyright 2013-2016 Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Secuencia para facturas separada de la secuencia de asientos",
-    "version": "10.0.1.0.2",
+    "version": "11.0.1.0.0",
     "author": "Spanish Localization Team, "
               "NaN·Tic, "
               "Trey, "
@@ -17,7 +17,7 @@
     "category": "Accounting",
     "license": "AGPL-3",
     "depends": [
-        'l10n_es',
+        'l10n_es', 'account_invoicing'
     ],
     "data": [
         'data/sequence_data.xml',

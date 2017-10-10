@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015-2017 Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp.tests import common
-from openerp import exceptions
+from odoo.tests import common
+from odoo import exceptions
 from ..hooks import post_init_hook
 
 
@@ -21,6 +21,8 @@ class TestCreateChart(common.SavepointCase):
         cls.wizard = cls.env['wizard.multi.charts.accounts'].create({
             'company_id': cls.company.id,
             'chart_template_id': cls.chart.id,
+            'sale_tax_id': False,
+            'purchase_tax_id': False,
             'code_digits': 6,
             'currency_id': cls.env.ref('base.EUR').id,
             'transfer_account_id': cls.chart.transfer_account_id.id,
