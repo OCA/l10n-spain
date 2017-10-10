@@ -12,15 +12,14 @@
                             name="send_sii" groups="account.group_account_manager"
                             attrs="{'invisible': ['|','|',('state', 'not in', ['open','paid']),
                                 ('sii_enabled', '=', False),
-                                ('sii_state', 'not in', ['not_sent','sent_modified','cancelled_modified'])]}" />
+                                ('sii_state', 'not in', ['not_sent','sent_modified','cancelled_modified'])]}"/>
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="account.group_account_manager"
                             attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False),
                                 ('state', 'not in', ['cancel']),
-                                ('sii_state', 'not in', ['sent','sent_modified'])]}" />
+                                ('sii_state', 'not in', ['sent','sent_modified'])]}"/>
                 </button>
-
 
 
                 <field name="invoice_line" position="attributes">
@@ -35,17 +34,17 @@
                             <field name="sii_refund_type"
                                    on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'purchase')]"/>
-                            <field name="sii_enabled" />
+                            <field name="sii_enabled"/>
                         </group>
-                        <group string="SII Result" >
-                            <group string="General" >
-                                <field name="sii_state" />
-                                <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                        <group string="SII Result">
+                            <group string="General">
+                                <field name="sii_state"/>
+                                <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}"/>
                                 <field name="sii_csv"/>
                             </group>
-                            <newline />
-                            <group string="Technical" >
-                                <field name="sii_header_sent" />
+                            <newline/>
+                            <group string="Technical">
+                                <field name="sii_header_sent"/>
                                 <field name="sii_content_sent"/>
                                 <field name="sii_return" colspan="4"/>
                             </group>
@@ -65,15 +64,14 @@
                             name="send_sii" groups="account.group_account_manager"
                             attrs="{'invisible': ['|','|',('state', 'not in', ['open','paid']),
                                 ('sii_enabled', '=', False),
-                                ('sii_state', 'not in', ['not_sent','sent_modified','cancelled_modified'])]}" />
+                                ('sii_state', 'not in', ['not_sent','sent_modified','cancelled_modified'])]}"/>
                     <button type="object" string="Send cancellation to SII"
                             name="cancel_sii"
                             groups="account.group_account_manager"
                             attrs="{'invisible': ['|','|','|',('sii_enabled', '=', False),
                                 ('state', 'not in', ['cancel']),
-                                ('sii_state', 'not in', ['sent','sent_modified'])]}" />
+                                ('sii_state', 'not in', ['sent','sent_modified'])]}"/>
                 </button>
-
 
 
                 <field name="invoice_line" position="attributes">
@@ -84,22 +82,34 @@
                     <page string="SII" groups="account.group_account_manager"
                           attrs="{'invisible': [('sii_enabled', '=', False)]}">
                         <group string="SII Information">
-                            <field name="sii_description"  />
+                            <field name="sii_description"/>
                             <field name="sii_refund_type"
                                    on_change="onchange_refund_type_l10n_es_aeat_sii(refund_type)"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'sale')]"/>
+
+                            <field name="sii_registration_key_code" invisible="1"/>
+                            <field name="sii_travel_tax_free" invisible="1"/>
+                            <field name="sii_travel_tax_free_invoice"
+                                   attrs="{'invisible': [('sii_travel_tax_free', '=', False)], 'required': [('sii_travel_tax_free', '=', True)]}"/>
                             <field name="sii_enabled" invisible="1"/>
+                            <field name="sii_property_location"
+                                   attrs="{'invisible': [('sii_registration_key_code', 'not in', ['12', '13'])],
+                                           'required': [('sii_registration_key_code', 'in', ['12', '13'])]}"/>
+                            <field name="sii_property_cadastrial_code"
+                                   attrs="{'invisible': [('sii_registration_key_code', 'not in', ['12', '13'])],
+                                           'required': [('sii_registration_key_code', 'in', ['12', '13']),
+                                           ('sii_property_location', 'in', ['1', '2'])]}"/>
 
                         </group>
-                        <group string="SII Result" >
-                            <group string="General" >
-                                <field name="sii_state" />
-                                <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}" />
+                        <group string="SII Result">
+                            <group string="General">
+                                <field name="sii_state"/>
+                                <field name="sii_send_failed" attrs="{'invisible': [('sii_send_failed', '=', False)]}"/>
                                 <field name="sii_csv"/>
                             </group>
-                            <newline />
-                            <group string="Technical" >
-                                <field name="sii_header_sent" />
+                            <newline/>
+                            <group string="Technical">
+                                <field name="sii_header_sent"/>
                                 <field name="sii_content_sent"/>
                                 <field name="sii_return" colspan="4"/>
                             </group>
@@ -118,29 +128,29 @@
                 <xpath expr="//group[@string='Group By...']" position="before">
                     <group string="SII filters">
                         <filter name="sii_not_sent" string="SII not sent"
-                            domain="[('sii_state', '=', 'not_sent')]"
-                            help="Never sent to SII" />
+                                domain="[('sii_state', '=', 'not_sent')]"
+                                help="Never sent to SII"/>
                         <filter name="sii_sent" string="SII sent"
-                            domain="[('sii_state', 'in', ['sent','cancelled','sent_modified','cancelled_modified'])]"
-                            help="Already sent to SII. It includes cancelled invoices"/>
-                        <separator />
+                                domain="[('sii_state', 'in', ['sent','cancelled','sent_modified','cancelled_modified'])]"
+                                help="Already sent to SII. It includes cancelled invoices"/>
+                        <separator/>
                         <filter name="sii_cancelled" string="SII cancelled"
-                            domain="[('sii_state', 'in', ['cancelled','cancelled_modified'])]"
-                            help="Cancelled invoices at SII"/>
-                        <separator />
+                                domain="[('sii_state', 'in', ['cancelled','cancelled_modified'])]"
+                                help="Cancelled invoices at SII"/>
+                        <separator/>
                         <filter name="sii_pending" string="With modifications not sent to SII"
-                            domain="[('sii_state', 'in', ['sent_modified','cancelled_modified'])]"
-                            help="Already sent but with local changes not sent yet"/>
+                                domain="[('sii_state', 'in', ['sent_modified','cancelled_modified'])]"
+                                help="Already sent but with local changes not sent yet"/>
                         <filter name="sii_send_failed" string="SII failed"
-                            domain="[('sii_send_failed', '=', True)]"
-                            help="The last attemp to sent to SII has failed"/>
+                                domain="[('sii_send_failed', '=', True)]"
+                                help="The last attemp to sent to SII has failed"/>
                     </group>
                 </xpath>
                 <xpath expr="//group[@string='Group By...']" position="inside">
                     <separator/>
                     <filter string="SII error"
-                        domain="[('sii_send_failed', '=', True)]"
-                        context="{'group_by':'sii_send_error'}"/>
+                            domain="[('sii_send_failed', '=', True)]"
+                            context="{'group_by':'sii_send_error'}"/>
                 </xpath>
             </field>
         </record>
@@ -149,7 +159,7 @@
             <field name="name">Send Invoices to SII</field>
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
-            <field name="model_id" ref="account.model_account_invoice" />
+            <field name="model_id" ref="account.model_account_invoice"/>
             <field name="code">self.send_sii(cr, uid, context.get('active_ids', []), context)</field>
         </record>
 
@@ -159,7 +169,7 @@
             <field name="key2">client_action_multi</field>
             <field name="model">account.invoice</field>
             <field name="value"
-                   eval="'ir.actions.server,%d' % ref('l10n_es_aeat_sii.action_send_sii_invoices')" />
+                   eval="'ir.actions.server,%d' % ref('l10n_es_aeat_sii.action_send_sii_invoices')"/>
         </record>
 
     </data>

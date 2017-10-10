@@ -10,6 +10,7 @@ import aeat_sii_map
 import product_product
 import account_fiscal_position
 import account_invoice
+import account_journal
 import res_partner
 
 

@@ -24,7 +24,6 @@ try:
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
-
 from openerp.tools.translate import _
 
 SII_STATES = [
@@ -42,7 +41,7 @@ SII_START_DATE = '2017-07-01'
 class AccountInvoice(osv.Model):
     _inherit = 'account.invoice'
 
-    def _default_sii_refund_type(self, cr, uid,context=None):
+    def _default_sii_refund_type(self, cr, uid, context=None):
         if context is None:
             context = {}
         inv_type = context.get('default_type')
@@ -64,12 +63,11 @@ class AccountInvoice(osv.Model):
 
     def _default_sii_description(self, cr, uid, context=None):
 
-
         inv_type = context.get('default_type')
         if context.get('force_company'):
             company = self.pool['res.company'].browse(cr, uid, context['force_company'])
         else:
-            company = self.pool.get("res.users").browse(cr,uid, uid).company_id
+            company = self.pool.get("res.users").browse(cr, uid, uid).company_id
 
         method_desc = company.sii_description_method
         header_customer = company.sii_header_customer
@@ -86,7 +84,6 @@ class AccountInvoice(osv.Model):
                 description += ' | '
             description += fixed_desc
         return description[0:500] or company.sii_description or '/'
-
 
     def _compute_sii_enabled(self, cr, uid, ids, name, arg={}, context=None):
         """Compute if the invoice is enabled for the SII"""
@@ -126,11 +123,33 @@ class AccountInvoice(osv.Model):
         'sii_refund_type': fields.selection(
             selection=[('S', 'By substitution'), ('I', 'By differences')],
             string="Refund Type"),
-        'sii_registration_key': fields.many2one('aeat.sii.mapping.registration.keys', "Registration key", required=False),
+        'sii_registration_key': fields.many2one('aeat.sii.mapping.registration.keys', "Registration key",
+                                                required=False),
+        'sii_registration_key_code': fields.related(
+            'sii_registration_key', 'code', type="char", size=8, string="Registration key Code", readonly=True),
         'sii_csv': fields.char(string='SII CSV', size=64),
         'sii_enabled': fields.function(_compute_sii_enabled, type='boolean', string='Enable SII'),
-        'sii_header_sent' : fields.text(string="SII last header sent", copy=False, readonly=True),
-        'sii_content_sent' : fields.text(string="SII last content sent", copy=False, readonly=True)
+        'sii_header_sent': fields.text(string="SII last header sent", copy=False, readonly=True),
+        'sii_content_sent': fields.text(string="SII last content sent", copy=False, readonly=True),
+
+        'sii_travel_tax_free_invoice': fields.many2one("account.invoice",
+                                                       "Related travel tax free invoice"),
+        'sii_travel_tax_free': fields.related(
+            'journal_id', 'sii_travel_tax_free', string="Travel Tax Free", type="boolean", readonly=True),
+
+        # alquileres
+        'sii_property_location': fields.selection(string="Real property location",
+                                                  selection=[('1', '[1]-Real property with cadastral code '
+                                                                   'located within the Spanish territory except Basque '
+                                                                   'Country or Navarra'),
+                                                             ('2', '[2]-Real property located in the Basque '
+                                                                   'Country or Navarra'),
+                                                             ('3', '[3]-Real property in any of the above situations '
+                                                                   'but without cadastral code'),
+                                                             ('4', '[4]-Real property located in a foreign country'), ]
+                                                  ),
+
+        'sii_property_cadastrial_code': fields.char(string="Real property cadastrial code", size=25),
 
     }
 
@@ -165,7 +184,9 @@ class AccountInvoice(osv.Model):
                 else:
                     vals['sii_description'] = company.sii_header_customer
             if vals.get('fiscal_position'):
-                position_fiscal = self.pool.get('account.fiscal.position').browse(cr, uid, [vals['fiscal_position']], context=context)[0]
+                position_fiscal = \
+                    self.pool.get('account.fiscal.position').browse(cr, uid, [vals['fiscal_position']],
+                                                                    context=context)[0]
                 if vals['type'] in ['in_invoice', 'in_refund']:
                     if position_fiscal and position_fiscal.sii_registration_key_purchase:
                         vals['sii_registration_key'] = position_fiscal.sii_registration_key_purchase.id
@@ -200,7 +221,6 @@ class AccountInvoice(osv.Model):
                 key = fp.sii_registration_key_purchase
             res['value']['sii_registration_key'] = key and key.id or False
 
-
         return res
 
     def onchange_invoice_line_l10n_es_aeat_sii(self, cr, uid, ids, invoice_line):
@@ -208,7 +228,8 @@ class AccountInvoice(osv.Model):
         for invoice in self.browse(cr, uid, ids):
             if invoice.company_id.sii_description_method != 'auto':
                 continue
-            description = self._default_sii_description(cr,uid,{'default_type': invoice.type, 'force_company': invoice.company_id.id})
+            description = self._default_sii_description(cr, uid, {'default_type': invoice.type,
+                                                                  'force_company': invoice.company_id.id})
             if description:
                 description += ' | '
             for line in invoice.invoice_line:
@@ -220,18 +241,17 @@ class AccountInvoice(osv.Model):
             }
         }
 
-
-    def write(self, cr, uid, ids, vals,context=None):
+    def write(self, cr, uid, ids, vals, context=None):
         """For supplier invoices the SII primary key is the supplier
         VAT/ID Otro and the supplier invoice number. Cannot let change these
         values in a SII registered supplier invoice"""
 
-        if not isinstance(ids,list):
+        if not isinstance(ids, list):
             ids = [ids]
 
         for invoice in self.browse(cr, uid, ids):
             if (invoice.type in ['in_invoice', 'in refund'] and
-                    invoice.sii_state != 'not_sent'):
+                        invoice.sii_state != 'not_sent'):
                 if 'partner_id' in vals:
                     raise exceptions.Warning(
                         _("You cannot change the supplier of an invoice "
@@ -246,13 +266,12 @@ class AccountInvoice(osv.Model):
                           "cancel the invoice and create a new one with the "
                           "correct number")
                     )
-        return super(AccountInvoice, self).write(cr, uid, ids, vals,context)
+        return super(AccountInvoice, self).write(cr, uid, ids, vals, context)
 
-
-    def unlink(self,cr, uid, ids, context=None):
+    def unlink(self, cr, uid, ids, context=None):
         """A registered invoice at the SII cannot be deleted"""
         for invoice in self.browse(cr, uid, ids):
-            if invoice.sii_state in ['sent','sent_modified','cancelled', 'cancelled_modified']:
+            if invoice.sii_state in ['sent', 'sent_modified', 'cancelled', 'cancelled_modified']:
                 raise exceptions.Warning(
                     _("You cannot delete an invoice already registered at the "
                       "SII.")
@@ -422,7 +441,8 @@ class AccountInvoice(osv.Model):
                         )
                         if exempt_cause:
                             exempt_dict['CausaExencion'] = exempt_cause
-                        exempt_dict['BaseImponible'] += inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line) * sign
+                        exempt_dict['BaseImponible'] += inv_line_obj._get_sii_line_price_subtotal(cr, uid,
+                                                                                                  inv_line) * sign
                     # TODO Facturas no sujetas
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
@@ -460,7 +480,7 @@ class AccountInvoice(osv.Model):
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
         if (('DesgloseTipoOperacion' in taxes_dict and
-                'DesgloseFactura' in taxes_dict) or
+                     'DesgloseFactura' in taxes_dict) or
                 ('DesgloseFactura' in taxes_dict
                  and self._get_sii_gen_type(cr, uid, invoice) in (2, 3))):
             taxes_dict.setdefault('DesgloseTipoOperacion', {})
@@ -484,7 +504,7 @@ class AccountInvoice(osv.Model):
         taxes_sfrisp = self._get_sii_taxes_map(cr, uid,
                                                ['SFRISP'], invoice)
         taxes_sfrns = self._get_sii_taxes_map(cr, uid,
-                                               ['SFRNS'], invoice)
+                                              ['SFRNS'], invoice)
         tax_amount = 0.0
         for inv_line in invoice.invoice_line:
             for tax_line in inv_line.invoice_line_tax_id:
@@ -497,7 +517,7 @@ class AccountInvoice(osv.Model):
                         'DesgloseIVA',
                         {'DetalleIVA': {'BaseImponible': 0}},
                     )
-                    nsub_dict['DetalleIVA']['BaseImponible'] +=\
+                    nsub_dict['DetalleIVA']['BaseImponible'] += \
                         inv_line_obj._get_sii_line_price_subtotal(cr, uid, inv_line) * sign
 
         if taxes_isp:
@@ -522,8 +542,7 @@ class AccountInvoice(osv.Model):
             tax_amount += val['CuotaSoportada']
         return taxes_dict, tax_amount
 
-
-    def _sii_check_exceptions(self,cr, uid, invoice):
+    def _sii_check_exceptions(self, cr, uid, invoice):
         """Inheritable method for exceptions control when sending SII invoices.
         """
         if not invoice.partner_id.vat and not invoice.partner_id.sii_simplified_invoice:
@@ -543,7 +562,7 @@ class AccountInvoice(osv.Model):
                 _("This invoice is not SII enabled.")
             )
 
-        if not invoice.reference and invoice.type in ['in_invoice','in_refund']:
+        if not invoice.reference and invoice.type in ['in_invoice', 'in_refund']:
             raise exceptions.Warning(
                 _("The supplier number invoice is required")
             )
@@ -551,8 +570,7 @@ class AccountInvoice(osv.Model):
         if invoice.partner_id.sii_simplified_invoice and invoice.type[:2] == 'in':
             raise exceptions.Warning(
                 _("You can't make a supplier simplified invoice.")
-                )
-
+            )
 
     def _get_account_registration_date(self, cr, uid, invoice):
         """Hook method to allow the setting of the account registration date
@@ -579,6 +597,17 @@ class AccountInvoice(osv.Model):
         periodo = invoice.period_id.date_start[5:7]
         partner = invoice.partner_id
 
+        inv_number = invoice.number or invoice.internal_number or ''
+
+        if invoice.sii_travel_tax_free:
+            if not invoice.sii_travel_tax_free_invoice:
+                raise exceptions.Warning(_(
+                    "The related traveler tax free invoice is needed on the invoice '{}'").format(
+                    invoice.number or invoice.internal_number or ''))
+            inv_number = (
+                invoice.sii_travel_tax_free_invoice.number or invoice.sii_travel_tax_free_invoice.internal_number or ''
+            )
+
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {
@@ -586,8 +615,8 @@ class AccountInvoice(osv.Model):
                 },
                 # On cancelled invoices, number is not filled
                 "NumSerieFacturaEmisor": (
-                    invoice.number or invoice.internal_number or ''
-                )[0:60],
+                                             inv_number
+                                         )[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
             "PeriodoImpositivo": {
@@ -615,10 +644,16 @@ class AccountInvoice(osv.Model):
                 "ImporteTotal": invoice.amount_total * sign,
             }
 
+            if invoice.sii_registration_key.code in ['12', '13']:
+                inv_dict["FacturaExpedida"]['DatosInmueble'] = {
+                    'DetalleInmueble': {
+                                        'SituacionInmueble': invoice.sii_property_location,
+                                        'ReferenciaCatastral': invoice.sii_property_cadastrial_code or ''
+                                        }
+                }
+
             if partner.sii_simplified_invoice:
                 inv_dict["FacturaExpedida"]['TipoFactura'] = 'R5' if invoice.type == 'out_refund' else 'F2'
-
-
 
             exp_dict = inv_dict['FacturaExpedida']
             # Uso condicional de IDOtro/NIF
@@ -657,9 +692,8 @@ class AccountInvoice(osv.Model):
 
         invoice_date = self._change_date_format(cr, uid, invoice.date_invoice)
         reg_date = self._change_date_format(cr, uid,
-            self._get_account_registration_date(cr, uid, invoice),
-        )
-
+                                            self._get_account_registration_date(cr, uid, invoice),
+                                            )
 
         ejercicio = invoice.period_id.fiscalyear_id.date_start[0:4]
         periodo = invoice.period_id.date_start[5:7]
@@ -704,8 +738,6 @@ class AccountInvoice(osv.Model):
                 "CuotaDeducible": float_round(tax_amount * sign, 2),
             }
 
-
-
             # Uso condicional de IDOtro/NIF
             inv_dict['IDFactura']['IDEmisorFactura'].update(ident)
             inv_dict['FacturaRecibida']['Contraparte'].update(ident)
@@ -739,7 +771,6 @@ class AccountInvoice(osv.Model):
         elif invoice.type in ['in_invoice', 'in_refund']:
             return self._get_sii_invoice_dict_in(cr, uid, invoice, cancel=True)
         return {}
-
 
     def _connect_sii(self, cr, uid, wsdl, company):
 
@@ -793,10 +824,13 @@ class AccountInvoice(osv.Model):
                 if company.sii_test:
                     port_name += 'Pruebas'
             serv = client.bind('siiService', port_name)
-            if not invoice.sii_sent:
+            if not invoice.sii_state == 'no_sent':
                 tipo_comunicacion = 'A0'
+                if invoice.sii_travel_tax_free:
+                    tipo_comunicacion = 'A4'
             else:
                 tipo_comunicacion = 'A1'
+
             header = self._get_sii_header(cr, uid, invoice.id, company, tipo_comunicacion)
             inv_vals = {
                 'sii_header_sent': json.dumps(header, indent=4),
@@ -812,15 +846,15 @@ class AccountInvoice(osv.Model):
                         header, inv_dict)
                 if res['EstadoEnvio'] == 'Correcto':
                     self.write(cr, uid, invoice.id, {
-                                                     'sii_state': 'sent',
-                                                     'sii_send_failed': False,
-                                                     'sii_sent': True,
-                                                     'sii_csv': res['CSV']
-                                                     })
+                        'sii_state': 'sent',
+                        'sii_send_failed': False,
+                        'sii_sent': True,
+                        'sii_csv': res['CSV']
+                    })
                 else:
                     self.write(cr, uid, invoice.id, {
-                                                     'sii_send_failed': True,
-                                                     })
+                        'sii_send_failed': True,
+                    })
 
                 self.write(cr, uid, invoice.id, {'sii_return': res})
 
@@ -854,7 +888,6 @@ class AccountInvoice(osv.Model):
 
                 new_cr = pooler.get_db(cr.dbname).cursor()
 
-
                 self.write(cr, uid, invoice.id, {
                     'sii_send_failed': True,
                     'sii_send_error': fault,
@@ -864,18 +897,16 @@ class AccountInvoice(osv.Model):
                 new_cr.commit()
                 new_cr.close()
 
-
-
     def action_number(self, cr, uid, ids, context=None):
         res = super(AccountInvoice, self).action_number(cr, uid, ids, context=context)
         for invoice in self.browse(cr, uid, ids):
             if invoice.sii_enabled:
                 if invoice.sii_state == 'sent':
                     self.write(cr, uid, invoice.id, {
-                        'sii_state': 'sent_modified'},context)
+                        'sii_state': 'sent_modified'}, context)
                 elif invoice.sii_state == 'cancelled':
                     self.write(cr, uid, invoice.id, {
-                        'sii_state': 'cancelled_modified'},context)
+                        'sii_state': 'cancelled_modified'}, context)
                 company = invoice.company_id
                 if company.sii_enabled and company.sii_method == 'auto':
                     self._send_invoice_to_sii(cr, uid, [invoice.id])
@@ -891,8 +922,6 @@ class AccountInvoice(osv.Model):
                 self._send_invoice_to_sii(cr, uid, [invoice.id])
         return True
 
-
-
     def _cancel_invoice_to_sii(self, cr, uid, ids):
         for invoice in self.pool.get('account.invoice').browse(cr, uid, ids):
             company = invoice.company_id
@@ -900,13 +929,13 @@ class AccountInvoice(osv.Model):
             wsdl = ''
             if invoice.type in ['out_invoice', 'out_refund']:
                 wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
-                                                           'l10n_es_aeat_sii.wsdl_out', False)
+                                                                  'l10n_es_aeat_sii.wsdl_out', False)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type in ['in_invoice', 'in_refund']:
                 wsdl = self.pool['ir.config_parameter'].get_param(cr, uid,
-                                                           'l10n_es_aeat_sii.wsdl_in', False)
+                                                                  'l10n_es_aeat_sii.wsdl_in', False)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
@@ -957,12 +986,12 @@ class AccountInvoice(osv.Model):
     def cancel_sii(self, cr, uid, ids, context=None):
         for invoice in self.browse(cr, uid, ids, context):
             company = invoice.company_id
-            if company.sii_enabled and invoice.sii_enabled and invoice.state in ['cancel'] and invoice.sii_state in ['sent', 'sent_modified']:
+            if company.sii_enabled and invoice.sii_enabled and invoice.state in ['cancel'] and invoice.sii_state in [
+                'sent', 'sent_modified']:
                 self._cancel_invoice_to_sii(cr, uid, [invoice.id])
         return True
 
-
-    def action_cancel(self, cr, uid , ids, context=None):
+    def action_cancel(self, cr, uid, ids, context=None):
         for invoice in self.browse(cr, uid, ids, context):
             res = super(AccountInvoice, self).action_cancel(cr, uid, ids)
             if invoice.sii_state == 'sent':
@@ -982,7 +1011,11 @@ class AccountInvoice(osv.Model):
         Returns:
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
-        partner_ident = invoice.fiscal_position.sii_partner_identification_type
+        if invoice.sii_travel_tax_free:
+            partner_ident = 3
+        else:
+            partner_ident = invoice.fiscal_position.sii_partner_identification_type
+
         if partner_ident:
             res = int(partner_ident)
         elif invoice.fiscal_position.name == u'Régimen Intracomunitario':
@@ -994,7 +1027,6 @@ class AccountInvoice(osv.Model):
             res = 1
 
         return res
-
 
     def _get_sii_identifier(self, cr, uid, invoice):
         """Get the SII structure for a partner identifier depending on the
@@ -1057,8 +1089,8 @@ class AccountInvoice(osv.Model):
         elif gen_type == 3:
 
             return {
-                     "NIF": vat[2:]
-                     }
+                "NIF": vat[2:]
+            }
 
     def _get_sii_exempt_cause(self, cr, uid, product, invoice):
         """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII."""
@@ -1073,10 +1105,9 @@ class AccountInvoice(osv.Model):
                         invoice.fiscal_position.sii_exempt_cause != 'none':
             return invoice.fiscal_position.sii_exempt_cause
 
-
     def _get_no_taxable_cause(self, cr, uid, invoice):
         return invoice.fiscal_position.sii_no_taxable_cause or \
-            'ImportePorArticulos7_14_Otros'
+               'ImportePorArticulos7_14_Otros'
 
     def is_sii_invoice(self, cr, uid, invoice):
         """Hook method to be overridden in additional modules to verify
@@ -1086,8 +1117,6 @@ class AccountInvoice(osv.Model):
         :return: bool value indicating if the invoice should be sent to SII.
         """
         return True
-
-
 
     def _prepare_refund(self, cr, uid, invoice, date=None, period_id=None,
                         description=None, journal_id=None, context=None):
@@ -1099,7 +1128,6 @@ class AccountInvoice(osv.Model):
         if sii_refund_type:
             res['sii_refund_type'] = sii_refund_type
         return res
-
 
 
 class AccountInvoiceLine(osv.Model):
@@ -1175,4 +1203,3 @@ class AccountInvoiceLine(osv.Model):
             sii_included_taxes = [t for t in taxes['taxes'] if t['amount'] < 0]
         for tax in sii_included_taxes:
             tax_dict[tax_type][key] += tax['amount']
-
