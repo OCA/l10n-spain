@@ -2,7 +2,7 @@
 # Copyright 2011 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2013-2017 Pedro M. Baeza
 
-from openerp import _, api, fields, exceptions, models
+from odoo import _, api, fields, exceptions, models
 
 
 class AccountJournal(models.Model):
