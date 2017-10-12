@@ -6,7 +6,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form" />
             <field name="arch" type="xml">
-                <button name="action_cancel_draft" position="after">
+                <button name="action_invoice_draft" position="after">
                     <button type="object" string="Send to SII"
                             name="send_sii"
                             groups="l10n_es_aeat.group_account_aeat"
@@ -76,7 +76,7 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form" />
             <field name="arch" type="xml">
-                <button name="action_cancel_draft" position="after">
+                <button name="action_invoice_draft" position="after">
                     <button type="object" string="Send to SII"
                             name="send_sii"
                             groups="l10n_es_aeat.group_account_aeat"
@@ -181,7 +181,10 @@
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
             <field name="model_id" ref="account.model_account_invoice" />
-            <field name="code">self.send_sii(cr, uid, context.get('active_ids', []), context)</field>
+            <field name="code">
+if records:
+    action = records.send_sii()
+            </field>
         </record>
 
         <record id="action_send_sii_invoices_value" model="ir.values">
