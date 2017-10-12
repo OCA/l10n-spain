@@ -181,7 +181,10 @@
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
             <field name="model_id" ref="account.model_account_invoice" />
-            <field name="code">self.send_sii(cr, uid, context.get('active_ids', []), context)</field>
+            <field name="code">
+if records:
+    action = records.send_sii()
+            </field>
         </record>
 
         <record id="action_send_sii_invoices_value" model="ir.values">
