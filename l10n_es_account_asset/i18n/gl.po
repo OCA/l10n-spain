@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_asset
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-02 02:44+0000\n"
+"PO-Revision-Date: 2017-07-02 02:44+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_annual_percentage
+msgid "Annual depreciation percentage"
+msgstr "Porcentaxe de amortización anual"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
+msgid "Asset category"
+msgstr "Categoría de activo"
+
+#. module: l10n_es_account_asset
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
+msgid "Asset/Revenue Recognition"
+msgstr ""
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_move_end_period
+msgid "At the end of the period"
+msgstr "Ó final do período"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_category_method_percentage
+msgid "Depreciation percentage"
+msgstr "Porcentaxe de amortización"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_move_end_period
+msgid ""
+"Move the depreciation entry at the end of the period. If the period are 12 "
+"months, it is put on 31st of December, and in the end of the month in other "
+"case."
+msgstr ""
+"Move o apunte de amortización ó final do período. Se o período é de 12 "
+"meses, pono o 31 de decembro, e ó final do mes no resto dos casos."
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
+msgid "Only needed if not the same than purchase date"
+msgstr "Precisa só se non coincide coa data de compra"
+
+#. module: l10n_es_account_asset
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
+msgid "Start Depreciation Date"
+msgstr "Data de comezo da amortización"
+
+#. module: l10n_es_account_asset
+#: sql_constraint:account.asset.asset:0
+#: sql_constraint:account.asset.category:0
+msgid "Wrong percentage!"
+msgstr "¡Porcentaxe incorrecta!"
