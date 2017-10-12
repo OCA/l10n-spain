@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Menu needed for enterprise -->
+
+    <menuitem
+            id="account_reports_es_statements_menu"
+            name="Spanish Statements"
+            parent="account.menu_finance_reports"
+            sequence="3"
+            groups="account.group_account_user"
+    />
+
     <!-- Cuenta extra necesaria porque es campo requerido en el chart template -->
 
     <record model="account.account.template" id="common_transfer_account_id">
