@@ -23,7 +23,6 @@ env:
   - secure: "XLhGdCIh86zcqww9qBpnk8Xqsf1Pcgw9SKr7X0KYBHJofHj4Z6Kq/oVFjpZ1LSjadsaABKbwY7h4hvKEpxZwptCv+fNTOKYy7hXFLGYnDeNeWu4zA4LI7TA5uPvyZjZ+g2xc+9dzR/VbfRHNqjvmgiEidxxqLeOnNFZ5CHdOdCw="
   matrix:
   - LINT_CHECK="1"
-  - TRANSIFEX="1"
   - TESTS="1" ODOO_REPO="OCA/OCB"
   - TESTS="1" ODOO_REPO="odoo/odoo"
 
