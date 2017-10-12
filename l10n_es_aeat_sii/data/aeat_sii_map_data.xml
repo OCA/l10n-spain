@@ -10,7 +10,7 @@
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva21b'),
                 ref('l10n_es.account_tax_template_s_iva4b'),
-                ref('l10n_es.account_tax_template_s_iva10b')
+                ref('l10n_es.account_tax_template_s_iva10b'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Sujetas Bienes</field>
@@ -19,7 +19,7 @@
         <record id="aeat_sii_map_line_SFESISP" model="aeat.sii.map.lines">
             <field name="code">SFESISP</field>
             <field name="taxes" eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_s_iva0_isp')
+                ref('l10n_es.account_tax_template_s_iva0_isp'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Sujetas ISP</field>
@@ -28,7 +28,7 @@
         <record id="aeat_sii_map_line_SFENS" model="aeat.sii.map.lines">
             <field name="code">SFENS</field>
             <field name="taxes" eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_s_iva_ns')
+                ref('l10n_es.account_tax_template_s_iva_ns'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas No Sujeta</field>
@@ -98,7 +98,7 @@
                 ref('l10n_es.account_tax_template_p_iva21_ic_bi_1'),
                 ref('l10n_es.account_tax_template_p_iva4_ibc'),
                 ref('l10n_es.account_tax_template_p_iva10_ibc'),
-                ref('l10n_es.account_tax_template_p_iva21_ibc')
+                ref('l10n_es.account_tax_template_p_iva21_ibc'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas Sujetas</field>
@@ -121,7 +121,7 @@
                 ref('l10n_es.account_tax_template_p_iva4_isp_1'),
                 ref('l10n_es.account_tax_template_p_iva21_sp_ex_1'),
                 ref('l10n_es.account_tax_template_p_iva10_sp_ex_1'),
-                ref('l10n_es.account_tax_template_p_iva4_sp_ex_1')
+                ref('l10n_es.account_tax_template_p_iva4_sp_ex_1'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas ISP</field>
@@ -132,7 +132,7 @@
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_p_iva4_bi'),
                 ref('l10n_es.account_tax_template_p_iva10_bi'),
-                ref('l10n_es.account_tax_template_p_iva21_bi')
+                ref('l10n_es.account_tax_template_p_iva21_bi'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas Bienes de Inversión</field>
@@ -141,7 +141,7 @@
         <record id="aeat_sii_map_line_SFRNS" model="aeat.sii.map.lines">
             <field name="code">SFRNS</field>
             <field name="taxes" eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_p_iva0_ns')
+                ref('l10n_es.account_tax_template_p_iva0_ns'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas No Sujeta</field>
@@ -155,10 +155,19 @@
                 ref('l10n_es.account_tax_template_p_req014'),
                 ref('l10n_es.account_tax_template_s_req014'),
                 ref('l10n_es.account_tax_template_p_req05'),
-                ref('l10n_es.account_tax_template_s_req05')
+                ref('l10n_es.account_tax_template_s_req05'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFact Recargo Equivalencia</field>
+        </record>
+        
+        <record id="aeat_sii_map_line_SFRND" model="aeat.sii.map.lines">
+            <field name="code">SFRND</field>
+            <field name="taxes" eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_p_iva0_nd'),
+            ])]"/>
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">SuministroFactRecibidas No Deducible</field>
         </record>
     </data>
 </openerp>
