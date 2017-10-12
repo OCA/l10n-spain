@@ -575,7 +575,7 @@ class AccountInvoice(models.Model):
                 tax_dict['ImporteCompensacionREAGYP'] = tax_dict.pop(
                     'CuotaSoportada'
                 )
-                sfrsa_dict['DetalleIVA'] = [tax_dict]
+                sfrsa_dict['DetalleIVA'].append(tax_dict)
             elif tax_line in taxes_sfrnd:
                 sfrnd_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
