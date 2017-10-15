@@ -2,13 +2,13 @@
 # © 2009 Pexego/Comunitea
 # © 2011-2012 Iker Coranti (www.avanzosc.es)
 # © 2014 Juanjo Algaz (gutierrezweb.es)
-# © 2014-2016 Pedro M. Baeza
+# © 2014-2017 Tecnativa - Pedro M. Baeza
 # © 2016 Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
 {
     "name": "Account balance reporting engine",
-    "version": "9.0.1.0.2",
+    "version": "9.0.1.0.3",
     "author": "Pexego, "
               "AvanzOSC, "
               "Tecnativa, "

@@ -372,6 +372,11 @@ class AccountBalanceReportingLine(models.Model):
             domain_previous = []
             domain_previous += [('date', '>=', report.previous_date_from),
                                 ('date', '<=', report.previous_date_to)]
+            # Exclude closing/opening/PL moves (if account_fiscal_year_closing
+            # is installed)
+            if 'closing_type' in self.env['account.move']._fields:
+                domain_current.append(('move_id.closing_type', '!=', 'none'))
+                domain_previous.append(('move_id.closing_type', '!=', 'none'))
             for line in self.filtered(lambda l: l.report_id == report):
                 if (line.calc_date and
                         line.calc_date == line.report_id.calc_date):
