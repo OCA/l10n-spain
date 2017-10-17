@@ -5,7 +5,7 @@
 {
     "name": "Partner Mercantil",
     "summary": u"Añade los datos del registro mercantil a la empresa",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "Spanish Localization Team, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",

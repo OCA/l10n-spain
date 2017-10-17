@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_partner_mercantil
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-06-29 22:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/oca/teams/23907/eu/)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_partner_mercantil
@@ -36,15 +36,15 @@ msgid "Commercial Registry"
 msgstr ""
 
 #. module: l10n_es_partner_mercantil
+#: model:ir.model,name:l10n_es_partner_mercantil.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_folio
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_folio
 msgid "Page"
 msgstr ""
-
-#. module: l10n_es_partner_mercantil
-#: model:ir.model,name:l10n_es_partner_mercantil.model_res_partner
-msgid "Partner"
-msgstr "Empresa"
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_seccion
@@ -63,3 +63,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_tomo
 msgid "Volume"
 msgstr ""
+
+#~ msgid "Partner"
+#~ msgstr "Empresa"
