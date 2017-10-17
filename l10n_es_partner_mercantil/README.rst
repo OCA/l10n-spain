@@ -20,7 +20,7 @@ Uso
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/8.0
+   :target: https://runbot.odoo-community.org/runbot/189/11.0
 
 Gestión de errores
 ==================
@@ -29,7 +29,7 @@ Los errores/fallos se gestionan en `las incidencias de GitHub <https://github.co
 En caso de problemas, compruebe por favor si su incidencia ha sido ya
 reportada. Si fue el primero en descubrirla, ayúdenos a solucionarla indicando
 una detallada descripción
-`aquí <https://github.com/OCA/l10n-spain/issues/new?body=m%f3dulo:%20l10_es_account_asset%0Aversi%f3n:%209.0%0A%0A**Pasos%20para%20reproducirlo**%0A-%20...%0A%0A**Comportamiento%20actual**%0A%0A**Comportamiento%20esperado**>`_.
+`aquí <https://github.com/OCA/l10n-spain/issues/new?body=m%f3dulo:%20l10_es_partner_mercantil%0Aversi%f3n:%2011.0%0A%0A**Pasos%20para%20reproducirlo**%0A-%20...%0A%0A**Comportamiento%20actual**%0A%0A**Comportamiento%20esperado**>`_.
 
 Créditos
 ========
