@@ -2436,6 +2436,7 @@
 <record id="aeat_mod303_main_export_config" model="aeat.model.export.config">
     <field name="name">Mod.303 2014-2016</field>
     <field name="date_start">2014-01-01</field>
+    <field name="date_end">2016-12-31</field>
     <field name="model_number">303</field>
     <field name="model_id" ref="l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report"/>
 </record>
