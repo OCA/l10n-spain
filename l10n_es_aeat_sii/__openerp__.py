@@ -56,6 +56,7 @@
         "views/queue_job_views.xml",
         "views/account_fiscal_position_view.xml",
         "views/res_partner_views.xml",
+        "views/account_journal_view.xml",
     ],
     "post_init_hook": "add_key_to_existing_invoices",
 }

@@ -413,6 +413,12 @@ msgid "Is Test Environment?"
 msgstr "¿Es un entorno de pruebas?"
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,travel_tax_free:0
+#: field:account.journal,travel_tax_free:0
+msgid "Journal for SII traveller regime"
+msgstr "Diario para régimen de viajeros del SII"
+
+#. module: l10n_es_aeat_sii
 #: field:aeat.sii.map,__last_update:0 field:aeat.sii.map.lines,__last_update:0
 #: field:aeat.sii.mapping.registration.keys,__last_update:0
 #: field:l10n.es.aeat.sii,__last_update:0
@@ -600,6 +606,11 @@ msgstr "Situación del inmueble"
 #: selection:account.invoice,sii_state:0
 msgid "Registered in SII but last modifications not sent"
 msgstr "Registro correcto en SII con modificaciones pendientes de comunicar"
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,travel_tax_free_invoice:0
+msgid "Related travel tax free invoice"
+msgstr "Factura del régimen de viajeros relacionada"
 
 #. module: l10n_es_aeat_sii
 #: view:queue.job:l10n_es_aeat_sii.view_queue_job_sii
@@ -858,6 +869,12 @@ msgstr "El último intento de envío al SII ha fallado"
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "La empresa no tiene un NIF establecido."
+
+#. module: l10n_es_aeat_sii
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:648
+#, python-format
+msgid "The related traveler tax free invoice is needed on the invoice '{}'"
+msgstr "La factura del régimen de viajeros relacionada es necesaria en la factura '{}'"
 
 #. module: l10n_es_aeat_sii
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:608
