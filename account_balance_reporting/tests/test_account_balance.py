@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Tecnativa - Vicent Cubells <vicent.cubells@tecnativa.com>
-# Copyright 2016 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
 from odoo.tests import common
 from odoo import fields
 
 
-class TestAccountBalance(common.SavepointCase):
+class TestAccountBalanceBase(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestAccountBalance, cls).setUpClass()
+        super(TestAccountBalanceBase, cls).setUpClass()
         # Environments
         cls.account_obj = cls.env['account.account']
         cls.type_obj = cls.env['account.account.type']
@@ -202,7 +202,18 @@ class TestAccountBalance(common.SavepointCase):
             'date_start': '2017-01-01',
             'date_end': '2017-12-31',
         })
+        cls.print_wizard = (
+            cls.env['account.balance.reporting.print.wizard'].create({
+                'report_id': cls.report.id,
+                'report_xml_id': cls.env.ref(
+                    'account_balance_reporting.'
+                    'report_account_balance_reporting_generic'
+                ).id,
+            })
+        )
 
+
+class TestAccountBalance(TestAccountBalanceBase):
     def test_onchange_current_date_range(self):
         with self.env.do_in_onchange():
             report = self.env['account.balance.reporting'].new({
@@ -348,3 +359,20 @@ class TestAccountBalance(common.SavepointCase):
                 self.assertAlmostEqual(line5, line.current_value, 2)
             elif line.sequence == 6:
                 self.assertAlmostEqual(line6, line.current_value, 2)
+
+    def test_generation_report_qweb(self):
+        report_action = self.print_wizard.print_report()
+        report_name = 'account_balance_reporting.report_generic'
+        self.assertDictContainsSubset(
+            {
+                'type': 'ir.actions.report.xml',
+                'report_name': report_name,
+                'datas': {
+                    'ids': self.report.ids,
+                },
+            },
+            report_action,
+        )
+        # Check if report template is correct
+        report_html = self.env['report'].get_html(self.report.id, report_name)
+        self.assertIn('<tbody class="balance_reporting">', report_html)

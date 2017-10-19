@@ -110,25 +110,20 @@ class AccountBalanceReportingXlsx(ReportXlsx):
         if data and data.get('report_id'):
             id_report = data.get('report_id')[0]
         report_data = self.env['account.balance.reporting'].browse(id_report)
-
         # Initial row
         self.row_pos = 0
-
         # Load formats to workbook
         self._define_formats(workbook)
-
         # Set report name
-        report_name = 'Informe Genérico'
+        report_name = u'Informe Genérico'
         if data and data.get('report_id'):
             report_name = data.get('report_id')[1].capitalize() + \
                 ' - ' + self.env.user.company_id.name + \
                 ' - ' + str(date.today())
         self.sheet = workbook.add_worksheet(report_name[:31])
         self._write_report_title(report_name)
-
         # Set headers
         self._set_headers()
-
         # Generate data
         zero_lines = True
         name_module = 'account_balance_reporting.'
