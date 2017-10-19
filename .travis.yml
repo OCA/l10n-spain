@@ -15,6 +15,10 @@ addons:
       # needed because server-tools is loaded in the dependency chain
       - unixodbc-dev
       - python-mysqldb
+      - libxml2-dev
+      - libxmlsec1-dev
+      - libxmlsec1-openssl
+      - openssl
 
 env:
   global:
