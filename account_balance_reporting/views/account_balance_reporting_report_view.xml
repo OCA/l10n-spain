@@ -30,14 +30,12 @@
                             <field name="calc_date" states="calc_done,done"/>
                         </group>
                         <group>
-                            <group>
-                                <separator string="Fiscal year 1" colspan="4"/>
+                            <group string="Fiscal year 1">
                                 <field name="current_date_range"/>
                                 <field name="current_date_from"/>
                                 <field name="current_date_to"/>
                             </group>
-                            <group>
-                                <separator string="Fiscal year 2" colspan="4"/>
+                            <group string="Fiscal year 2">
                                 <field name="previous_date_range"/>
                                 <field name="previous_date_from"/>
                                 <field name="previous_date_to"/>
