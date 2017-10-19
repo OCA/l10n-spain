@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2014 Anubía, soluciones en la nube,SL (http://www.anubia.es)
+Copyright Juan Formoso <jfv@anubia.es>
+Copyright Alejandro Santana <alejandrosantana@anubia.es>
+Copyright Pedro M. Baeza <pedro.baeza@tecnativa.com>
+Copyright 2017 valentin vinagre  <valentin.vinagre@qubiq.es>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+    <record model="ir.ui.view" id="wizard_account_balance_reporting_xls_print">
+        <field name="name">account.balance.reporting.print.wizard.xls.form</field>
+        <field name="model">account.balance.reporting.print.wizard</field>
+        <field name="inherit_id" ref="account_balance_reporting.wizard_account_balance_reporting_print"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[1]" position="after">
+                <button name="xlsx_export"
+                        string="Export"
+                        type="object"/>
+                o
+            </xpath>
+        </field>
+    </record>
+</odoo>
