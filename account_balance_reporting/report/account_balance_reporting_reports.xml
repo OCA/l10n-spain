@@ -40,10 +40,10 @@
         <field name="dpi">90</field>
     </record>
 
-    <record id="report_account_balance_reporting_generic" model="ir.actions.report.xml">
+    <record id="report_account_balance_reporting_generic" model="ir.actions.report">
         <field name="paperformat_id" ref="paperformat_balance_reporting"/>
     </record>
-    <record id="report_account_balance_reporting_default_non_zero" model="ir.actions.report.xml">
+    <record id="report_account_balance_reporting_default_non_zero" model="ir.actions.report">
         <field name="paperformat_id" ref="paperformat_balance_reporting"/>
     </record>
 

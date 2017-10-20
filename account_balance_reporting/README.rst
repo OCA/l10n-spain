@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
 ================================
@@ -30,7 +30,7 @@ but it might be used as a generic accounting report engine.
 Configuration
 =============
 
-#. Go to *Invoicing > Configuration > Financial Reports > Financial Reports*.
+#. Go to *Invoicing / Accounting > Configuration > Management > Spanish Financial Reports*.
 #. Create or edit one existing template.
 #. Add report lines with formulas to configure your financial report.
 
@@ -45,7 +45,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/10.0
+   :target: https://runbot.odoo-community.org/runbot/189/11.0
 
 Known issues / Roadmap
 ======================
@@ -70,35 +70,10 @@ Contributors
 * Iker Coranti (AvanzOSC)
 * Juanjo Algaz <juanjoa@malagatic.com>
 * Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
-* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-* Vicent Cubells <vicent@vcubells.net>
-
-Financiadores
--------------
-La migración de este módulo forma parte de una campaña de migración de la
-localización española que ha sido posible gracias a la colaboración económica
-de las siguientes empresas (por orden alfabético):
-
-* `Aizean evolution <http://www.aizean.com>`_
-* `Aselcis consulting <https://www.aselcis.com>`_
-* `AvanzOSC <http://avanzosc.es>`_
-* `Diagram software <http://diagram.es>`_
-* `Domatix <http://www.domatix.com>`_
-* `Eficent <http://www.eficent.com>`_
-* `FactorLibre <http://factorlibre.com>`_
-* `Fairhall solutions <http://www.fairhall.es>`_
-* `GAFIC SLP <http://www.gafic.com>`_
-* `Incaser <http://www.incaser.es>`_
-* `Ingeos <http://www.ingeos.es>`_
-* `Nubistalia <http://www.nubistalia.es>`_
-* `Punt sistemes <http://www.puntsistemes.es>`_
-* `Praxya <http://praxya.com>`_
-* `Reeng <http://www.reng.es>`_
-* `Soluntec <http://www.soluntec.es>`_
-* `Tecnativa <https://www.tecnativa.com>`_
-* `Trey <https://www.trey.es>`_
-* `Vicent Cubells <http://vcubells.net>`_
+* Tecnativa (https://www.tecnativa.com):
+  * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+  * Vicent Cubells <vicent.cubells@tecnativa.com>
 
 Maintainer
 ----------

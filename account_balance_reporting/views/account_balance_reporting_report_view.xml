@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Copyright 2009 Pexego Sistemas Informáticos
-     Copyright 2013-2016 Tecnativa
+     Copyright 2013-2017 Tecnativa
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
@@ -9,7 +9,7 @@
         <field name="name">account.balance.reporting.form</field>
         <field name="model">account.balance.reporting</field>
         <field name="arch" type="xml">
-            <form string="Account balance report" version="7.0">
+            <form string="Account balance report">
                 <header>
                     <button name="action_calculate" type="object" string="Calculate" states="draft" class="oe_highlight"/>
                     <button name="action_calculate" type="object" string="Recalculate" states="calc_done" />
@@ -18,6 +18,7 @@
                     <button name="action_recover" type="object" string="Draft" class="oe_highlight" states="canceled"/>
                     <field name="state" select="2" widget="statusbar" statusbar_visible="calc_done,done" statusbar_colors='{"calc_done":"blue","done":"blue","canceled":"red"}'/>
                 </header>
+                <sheet>
                 <label for="name" class="oe_edit_only"/>
                 <h1>
                     <field name="name" nolabel="1"/>
@@ -70,6 +71,7 @@
                         </field>
                     </page>
                 </notebook>
+                </sheet>
             </form>
         </field>
     </record>

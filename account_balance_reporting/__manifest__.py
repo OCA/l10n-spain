@@ -1,27 +1,19 @@
-# -*- coding: utf-8 -*-
-# © 2009 Pexego/Comunitea
-# © 2011-2012 Iker Coranti (www.avanzosc.es)
-# © 2014 Juanjo Algaz (gutierrezweb.es)
-# © 2014-2017 Tecnativa - Pedro M. Baeza
-# © 2016 Vicent Cubells
+# Copyright 2009 Pexego/Comunitea
+# Copyright 2011-2012 Iker Coranti (www.avanzosc.es)
+# Copyright 2014 Juanjo Algaz (gutierrezweb.es)
+# Copyright 2014-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2016 Tecnativa - Vicent Cubells
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
 {
     "name": "Account balance reporting engine",
-    "version": "10.0.1.3.0",
+    "version": "11.0.1.0.0",
     "author": "Pexego, "
               "AvanzOSC, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
-    "website": "http://www.pexego.es",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting & Finance",
-    "contributors": [
-        "Juanjo Algaz <juanjoa@malagatic.com>",
-        "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
-        "Pedro M. Baeza <pedro.baeza@tecnativa.com>",
-        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
-        "Vicent Cubells <vicent.cubells@tecnativa.com>",
-    ],
     "license": 'AGPL-3',
     "depends": [
         "account",

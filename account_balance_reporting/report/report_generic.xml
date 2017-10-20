@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Vicent Cubells <vicent.cubells@tecnativa.com>
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+     Copyright 2017 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
     <template id="account_balance_reporting.report_generic">
-        <t t-call="report.html_container">
+        <t t-call="web.html_container">
+        <t t-call="web.internal_layout">
+            <strong><span t-esc="HOLA"/></strong>
             <t t-foreach="docs" t-as="o">
                 <div class="header" style="font-size:120%;width:100%;text-align:center;background-color:#ccc;border:1px solid black;">
                     <strong><span t-esc="o.name"/></strong>
@@ -41,6 +44,7 @@
                     </div>
                 </div>
             </t>
+        </t>
         </t>
     </template>
     <template id="report_generic_non_zero" inherit_id="account_balance_reporting.report_generic" primary="True">

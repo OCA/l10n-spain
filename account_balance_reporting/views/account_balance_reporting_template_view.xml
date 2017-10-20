@@ -1,16 +1,17 @@
 <?xml version="1.0"?>
 <!-- Copyright 2009 Pexego Sistemas Informáticos - Borja López Soilán
-     Copyright 2013-2016 Tecnativa
+     Copyright 2013-2017 Tecnativa
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
 <odoo>
 
-        <!-- Template form view -->
-        <record model="ir.ui.view" id="view_account_balance_reporting_template_form">
-            <field name="name">account.balance.reporting.template.form</field>
-            <field name="model">account.balance.reporting.template</field>
-            <field name="arch" type="xml">
-                <form string="Account balance report template" version="7.0">
+    <!-- Template form view -->
+    <record model="ir.ui.view" id="view_account_balance_reporting_template_form">
+        <field name="name">account.balance.reporting.template.form</field>
+        <field name="model">account.balance.reporting.template</field>
+        <field name="arch" type="xml">
+            <form string="Account balance report template">
+                <sheet>
                     <label for="name" class="oe_edit_only"/>
                     <h1>
                         <field name="name"/>
@@ -39,16 +40,17 @@
                             </field>
                         </page>
                     </notebook>
-                </form>
-            </field>
-        </record>
+                </sheet>
+            </form>
+        </field>
+    </record>
 
         <!-- Template tree view -->
         <record model="ir.ui.view" id="view_account_balance_reporting_template_tree">
             <field name="name">account.balance.reporting.template.tree</field>
             <field name="model">account.balance.reporting.template</field>
             <field name="arch" type="xml">
-                <tree string="Account balance report templates" version="7.0">
+                <tree string="Account balance report templates">
                     <field name="name"/>
                     <field name="report_xml_id"/>
                     <field name="balance_mode"/>

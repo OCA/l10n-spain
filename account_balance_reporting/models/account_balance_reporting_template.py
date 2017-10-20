@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2009 Pexego/Comunitea
 # © 2016 Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
@@ -39,7 +38,7 @@ class AccountBalanceReportingTemplate(models.Model):
                    ('user', 'User')],
         string='Type', default='user', old_name='type')
     report_xml_id = fields.Many2one(
-        comodel_name='ir.actions.report.xml', string='Report design',
+        comodel_name='ir.actions.report', string='Report design',
         ondelete='set null')
     description = fields.Text('Description')
     balance_mode = fields.Selection(
@@ -162,7 +161,7 @@ class AccountBalanceReportingTemplateLine(models.Model):
         """Allow to search by code."""
         if args is None:
             args = []
-        args += ['|', ('code', operator, name)]
+        args = ['|', ('code', operator, name)] + args
         return super(AccountBalanceReportingTemplateLine, self).name_search(
             name=name, args=args, operator=operator, limit=limit,
         )

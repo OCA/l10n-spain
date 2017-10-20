@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Tecnativa - Vicent Cubells <vicent.cubells@tecnativa.com>
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
@@ -65,7 +64,7 @@ class TestAccountBalanceBase(common.SavepointCase):
             'journal_id': cls.journal.id,
             'state': 'draft',
             'company_id': cls.company_id,
-            'date': fields.Date.from_string('2016-01-01'),
+            'date': '2016-01-01',
             'line_ids': [
                 (0, 0, {
                     'account_id': cls.account_1515.id,
@@ -133,6 +132,10 @@ class TestAccountBalanceBase(common.SavepointCase):
         cls.template = cls.template_obj.create(vals={
             'name': 'test_template debit-credit',
             'balance_mode': '0',
+            'report_xml_id': cls.env.ref(
+                'account_balance_reporting.'
+                'report_account_balance_reporting_generic'
+            ).id,
         })
         cls.parent = cls.line_obj.create(vals={
             'name': 'Testing balance template',
@@ -177,12 +180,44 @@ class TestAccountBalanceBase(common.SavepointCase):
             'sequence': 5,
         })
         cls.line6 = cls.line_obj.create(vals={
-            'name': 'Sum of accounts',
+            'name': 'Sum of codes',
             'code': '1600',
             'current_value': '1400 + 1500',
             'negate': False,
             'template_id': cls.template.id,
             'sequence': 6,
+        })
+        cls.line7 = cls.line_obj.create(vals={
+            'name': 'Debit of account 4',
+            'code': '1700',
+            'current_value': 'debit(656*)',
+            'negate': False,
+            'template_id': cls.template.id,
+            'sequence': 7,
+        })
+        cls.line8 = cls.line_obj.create(vals={
+            'name': 'Credit of account 4',
+            'code': '1800',
+            'current_value': 'credit(656*)',
+            'negate': False,
+            'template_id': cls.template.id,
+            'sequence': 8,
+        })
+        cls.line9 = cls.line_obj.create(vals={
+            'name': 'Constant value',
+            'code': '1900',
+            'current_value': '50.0',
+            'negate': False,
+            'template_id': cls.template.id,
+            'sequence': 9,
+        })
+        cls.line10 = cls.line_obj.create(vals={
+            'name': 'Subtract of codes',
+            'code': '2000',
+            'current_value': '1400 - 1500',
+            'negate': False,
+            'template_id': cls.template.id,
+            'sequence': 10,
         })
         # Create a report with this template
         cls.report = cls.reporting_obj.create(vals={
@@ -192,6 +227,8 @@ class TestAccountBalanceBase(common.SavepointCase):
             'state': 'draft',
             'current_date_from': fields.Date.today(),
             'current_date_to': fields.Date.today(),
+            'previous_date_from': '2016-01-01',
+            'previous_date_to': '2016-01-01',
         })
         cls.date_range_type = cls.env['date.range.type'].create({
             'name': 'Test range type',
@@ -203,13 +240,9 @@ class TestAccountBalanceBase(common.SavepointCase):
             'date_end': '2017-12-31',
         })
         cls.print_wizard = (
-            cls.env['account.balance.reporting.print.wizard'].create({
-                'report_id': cls.report.id,
-                'report_xml_id': cls.env.ref(
-                    'account_balance_reporting.'
-                    'report_account_balance_reporting_generic'
-                ).id,
-            })
+            cls.env['account.balance.reporting.print.wizard'].with_context(
+                active_id=cls.report.id,
+            ).create({})
         )
 
 
@@ -239,7 +272,7 @@ class TestAccountBalance(TestAccountBalanceBase):
         self.assertTrue(self.report.calc_date)
         line1 = self.report.line_ids.filtered(lambda x: x.sequence == 1)
         self.assertEqual(line1.current_move_line_count, 6)
-        self.assertEqual(line1.previous_move_line_count, 0)
+        self.assertEqual(line1.previous_move_line_count, 2)
         self.report.action_confirm()
         self.assertEqual(self.report.state, 'done')
         self.report.action_cancel()
@@ -247,10 +280,22 @@ class TestAccountBalance(TestAccountBalanceBase):
         self.report.action_recover()
         self.assertEqual(self.report.state, 'draft')
         self.assertFalse(self.report.calc_date)
+        line2 = self.report.line_ids.filtered(lambda x: x.sequence == 2)
+        action = line2.show_move_lines_current()
+        move_lines = (
+            self.move200_1_4.line_ids + self.move75_4_1.line_ids +
+            self.move90_6_1.line_ids
+        ).filtered(lambda x: x.account_id == self.account_1515)
+        self.assertCountEqual(action['domain'][0][2], move_lines.ids)
+        action2 = line2.show_move_lines_previous()
+        move_lines2 = self.move100_1_4.line_ids.filtered(
+            lambda x: x.account_id == self.account_1515
+        )
+        self.assertCountEqual(action2['domain'][0][2], move_lines2.ids)
 
     def test_copy_template(self):
         copied_template = self.template.copy()
-        self.assertEqual(len(copied_template.line_ids), 6)
+        self.assertEqual(len(copied_template.line_ids), 10)
 
     def test_template_line_name_search(self):
         line_obj = self.env['account.balance.reporting.template.line']
@@ -276,7 +321,6 @@ class TestAccountBalance(TestAccountBalanceBase):
         for line in self.report.line_ids:
             if line.sequence == 1:
                 self.assertAlmostEqual(line1, line.current_value, 2)
-                pass
             elif line.sequence == 2:
                 self.assertAlmostEqual(line2, line.current_value, 2)
             elif line.sequence == 3:
@@ -287,6 +331,14 @@ class TestAccountBalance(TestAccountBalanceBase):
                 self.assertAlmostEqual(line5, line.current_value, 2)
             elif line.sequence == 6:
                 self.assertAlmostEqual(line6, line.current_value, 2)
+            elif line.sequence == 7:
+                self.assertAlmostEqual(-90, line.current_value, 2)
+            elif line.sequence == 8:
+                self.assertAlmostEqual(0, line.current_value, 2)
+            elif line.sequence == 9:
+                self.assertAlmostEqual(50.0, line.current_value, 2)
+            elif line.sequence == 10:
+                self.assertAlmostEqual(0, line.current_value, 2)
 
     def test_account_balance_mode_1(self):
         """Check results for debit-credit report with brackets."""
@@ -311,6 +363,14 @@ class TestAccountBalance(TestAccountBalanceBase):
                 self.assertAlmostEqual(line5, line.current_value, 2)
             elif line.sequence == 6:
                 self.assertAlmostEqual(line6, line.current_value, 2)
+            elif line.sequence == 7:
+                self.assertAlmostEqual(-90, line.current_value, 2)
+            elif line.sequence == 8:
+                self.assertAlmostEqual(0, line.current_value, 2)
+            elif line.sequence == 9:
+                self.assertAlmostEqual(50.0, line.current_value, 2)
+            elif line.sequence == 10:
+                self.assertAlmostEqual(-180, line.current_value, 2)
 
     def test_account_balance_mode_2(self):
         """Check results for credit-debit report."""
@@ -335,6 +395,14 @@ class TestAccountBalance(TestAccountBalanceBase):
                 self.assertAlmostEqual(line5, line.current_value, 2)
             elif line.sequence == 6:
                 self.assertAlmostEqual(line6, line.current_value, 2)
+            elif line.sequence == 7:
+                self.assertAlmostEqual(-90, line.current_value, 2)
+            elif line.sequence == 8:
+                self.assertAlmostEqual(0, line.current_value, 2)
+            elif line.sequence == 9:
+                self.assertAlmostEqual(50.0, line.current_value, 2)
+            elif line.sequence == 10:
+                self.assertAlmostEqual(0, line.current_value, 2)
 
     def test_account_balance_mode_3(self):
         """Check results for credit-debit report with brackets."""
@@ -359,20 +427,39 @@ class TestAccountBalance(TestAccountBalanceBase):
                 self.assertAlmostEqual(line5, line.current_value, 2)
             elif line.sequence == 6:
                 self.assertAlmostEqual(line6, line.current_value, 2)
+            elif line.sequence == 7:
+                self.assertAlmostEqual(-90, line.current_value, 2)
+            elif line.sequence == 8:
+                self.assertAlmostEqual(0, line.current_value, 2)
+            elif line.sequence == 9:
+                self.assertAlmostEqual(50.0, line.current_value, 2)
+            elif line.sequence == 10:
+                self.assertAlmostEqual(-180, line.current_value, 2)
 
     def test_generation_report_qweb(self):
+        self.assertEqual(self.print_wizard.report_id, self.report)
+        self.assertEqual(
+            self.print_wizard.report_xml_id,
+            self.env.ref(
+                'account_balance_reporting.'
+                'report_account_balance_reporting_generic'
+            ))
         report_action = self.print_wizard.print_report()
         report_name = 'account_balance_reporting.report_generic'
         self.assertDictContainsSubset(
             {
-                'type': 'ir.actions.report.xml',
+                'type': 'ir.actions.report',
                 'report_name': report_name,
-                'datas': {
+                'data': {
                     'ids': self.report.ids,
+                    'model': 'account.balance.reporting',
                 },
             },
             report_action,
         )
         # Check if report template is correct
-        report_html = self.env['report'].get_html(self.report.id, report_name)
-        self.assertIn('<tbody class="balance_reporting">', report_html)
+        report_html = self.print_wizard.report_xml_id.render_qweb_html(
+            self.report.ids, report_action['data'],
+        )
+        self.assertEqual(report_html[1], 'html')
+        self.assertIn(b'<tbody class="balance_reporting">', report_html[0])
