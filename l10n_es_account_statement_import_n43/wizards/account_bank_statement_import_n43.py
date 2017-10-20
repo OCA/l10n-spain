@@ -65,7 +65,7 @@ class AccountBankStatementImport(models.TransientModel):
             'concepto_c': line[22:24],
             'concepto_p': line[24:27],
             'importe': (float(line[28:40]) + (float(line[40:42]) / 100)),
-            'num_documento': line[41:52],
+            'num_documento': line[42:52],
             'referencia1': line[52:64].strip(),
             'referencia2': line[64:].strip(),
             'conceptos': {},
