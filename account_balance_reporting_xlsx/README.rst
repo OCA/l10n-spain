@@ -8,12 +8,19 @@ Excel export for account balance reporting engine
 
 This module allows to export financial reports to XLSX files from print dialog.
 
-**WARNING:** This module requires module *report_xlsx*, available on:
+This module requires module *report_xlsx*, available on:
 
   https://github.com/OCA/reporting-engine/
 
 Usage
 =====
+
+
+#. Go to *Accounting > Reports > Spanish Financial Reports > Financial Reports*.
+#. Select a reporting template.
+#. Click on *Print > Financial Report*.
+#. Select *Report* and *Design*.
+#. Click *Export*.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -40,7 +47,7 @@ Contributors
 
 * Alejandro Santana <alejandrosantana@anubia.es>
 * Juan Formoso <jfv@anubia.es>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Valentin Vinagre <valentin.vinagre@qubiq.es>
 
 Do not contact contributors directly about support or help with technical issues.

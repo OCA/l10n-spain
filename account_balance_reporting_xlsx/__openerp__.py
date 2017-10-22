@@ -12,27 +12,16 @@
     "version": "9.0.1.0.0",
     "category": "Accounting / Reports",
     "author": "Spanish Localization Team,Odoo Community Association (OCA)",
-    'website': 'http://odoo-spain.org',
-    'contributors': [
-        'Alejandro Santana <alejandrosantana@anubia.es>',
-        'Juan Formoso <jfv@anubia.es>',
-        'Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>',
-        'Valentin Vinagre <valentin.vinagre@qubiq.es>'
-    ],
+    'website': 'https://odoospain.odoo.com',
     "license": "AGPL-3",
     'depends': [
         'account_balance_reporting',
         'report_xlsx',
     ],
-    'external_dependencies': {
-        'python': ['xlsxwriter'],
-    },
     'data': [
         'report/report.xml',
         'wizard/account_balance_reporting_wizard.xml',
     ],
     "application": False,
     "installable": True,
-    'demo': [],
-    'test': [],
 }
