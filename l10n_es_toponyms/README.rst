@@ -1,3 +1,8 @@
+.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
+   :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :alt: License: AGPL-3
+
+===================
 Topónimos españoles
 ===================
 
@@ -15,33 +20,35 @@ Los datos se obtienen de GeoNames (http://www.geonames.org) directamente,
 o bien utilizando una copia local extraída del mismo sitio cuya última
 actualización es del 25/02/2015.
 
-Installation
-============
+Instalación
+===========
+
 Para instalar este módulo, son necesarios los módulos *base_location* y
 *base_location_geonames_import*, disponibles en:
 
 https://github.com/OCA/partner-contact
 
 
-Usage
-=====
+Uso
+===
 
 Tras la instalación del módulo, aparecerá un cuadro de diálogo para seleccionar
 los nombres de las provincias y si se desean importar las ciudades. Escoja
 las opciones que quiera y pulse en el botón *Configurar* correspondiente
 según se quiera importar de Internet o de local.
 
-Credits
-=======
+Créditos
+========
 
-Contributors
-------------
+Contribuidores
+--------------
 
 * Jordi Esteve <jesteve@zikzakmedia.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
 Financiadores
 -------------
+
 La migración de este módulo forma parte de una campaña de migración de la
 localización española que ha sido posible gracias a la colaboración económica
 de las siguientes empresas (por orden alfabético):
@@ -69,9 +76,9 @@ de las siguientes empresas (por orden alfabético):
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -79,4 +86,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
