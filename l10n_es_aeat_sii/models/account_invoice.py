@@ -572,7 +572,7 @@ class AccountInvoice(models.Model):
                     'CuotaSoportada'
                 )
                 sfrsa_dict['DetalleIVA'].append(tax_dict)
-            elif tax_line in taxes_sfrnd:
+            elif tax in taxes_sfrnd:
                 sfrnd_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
