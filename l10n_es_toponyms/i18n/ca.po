@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_toponyms
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2017-06-29 22:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-06-29 23:03+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from GeoNames"
-msgstr ""
+msgstr "Configurar de GeoNames"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from local"
-msgstr ""
+msgstr "Configuració local"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_uid
@@ -51,7 +52,7 @@ msgstr "ID"
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_better_zip_geonames_import
 msgid "Import Better Zip from Geonames"
-msgstr ""
+msgstr "Importar millor codi postal de Geonames"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms___last_update
@@ -76,7 +77,7 @@ msgstr "Nom"
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Spanish cities configuration"
-msgstr ""
+msgstr "Configuració de ciutats espanyoles"
 
 #. module: l10n_es_toponyms
 #: model:ir.actions.act_window,name:l10n_es_toponyms.action_config_toponyms_es_form
@@ -87,6 +88,8 @@ msgstr "Configuració dels topònims de l'Estat Espanyol"
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "This wizard will add city and state information to zip codes"
 msgstr ""
+"Aquest assistent afegirà la informació de la població i la província als "
+"codis postals"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
@@ -98,4 +101,4 @@ msgstr "Avís! Afegir més de 54000 codis postals pot tardar varis minuts."
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
 msgid "config.es.toponyms"
-msgstr ""
+msgstr "config.es.toponyms"
