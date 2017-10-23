@@ -22,4 +22,4 @@ class ProductTemplate(models.Model):
                    ('E5', '[E5] Art. 25: Exenciones en las entregas de bienes '
                           'destinados a otro estado miembro.'),
                    ('E6', '[E6] Otros')],
-        default='none')
+    )
