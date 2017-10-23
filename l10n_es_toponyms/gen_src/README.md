@@ -21,8 +21,7 @@ l10n_es_toponyms.
 Uso del script
 ==============
 
-1. Para ejecutar el script, es necesario tener las librerías requests
-   y unicodecsv
+1. Para ejecutar el script, es necesario tener la librería requests
 2. Ejecuta el script poniendo: `python gen_toponyms_geonames.py`
 3. Esperar hasta que el shell indique "Proceso terminado".
 4. Copiar el archivo `l10n_es_toponyms_zipcodes.xml` generado a la carpeta 

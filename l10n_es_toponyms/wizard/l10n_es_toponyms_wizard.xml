@@ -28,7 +28,6 @@
 
     <record id="action_config_toponyms_es_form" model="ir.actions.act_window">
         <field name="name">Spanish toponyms configuration</field>
-        <field name="type">ir.actions.act_window</field>
         <field name="res_model">config.es.toponyms</field>
         <field name="view_id" ref="view_confirm_toponyms_es_form"/>
         <field name="view_type">form</field>
@@ -41,7 +40,6 @@
         <field name="name">Spanish toponyms configuration</field>
         <field name="action_id" ref="action_config_toponyms_es_form"/>
         <field name="sequence">20</field>
-        <field name="type">automatic</field>
     </record>
 
 </odoo>
