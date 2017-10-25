@@ -77,9 +77,8 @@ class AccountAssetAsset(models.Model):
          'Wrong percentage!'),
     ]
 
-    @api.multi
-    def onchange_category_id(self, category_id):
-        res = super(AccountAssetAsset, self).onchange_category_id(category_id)
+    def onchange_category_id_values(self, category_id):
+        res = super(AccountAssetAsset, self).onchange_category_id_values(category_id)
         if category_id:
             category_obj = self.env['account.asset.category']
             category = category_obj.browse(category_id)
