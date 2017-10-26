@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-# © 2013-2016 Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
+# Copyright 2013-2017 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
 from odoo import models, fields, api, _
 from odoo import tools
@@ -32,8 +31,8 @@ class L10nEsPartnerImportWizard(models.TransientModel):
         try:
             response = requests.get(
                 'http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
-                'REGBANESP_CONESTAB_A.xls')
-            if not response.ok:
+                'REGBANESP_CONESTAB_A.XLS')
+            if not response.ok:  # pragma: no cover
                 raise Exception()
             src_file.write(response.content)
             src_file.close()
@@ -42,7 +41,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             tools.convert_xml_import(
                 self._cr, 'l10n_es_partner', dest_file.name, {}, 'init',
                 noupdate=True)
-        except:
+        except Exception:  # pragma: no cover
             self.import_fail = True
             return {
                 'name': _('Import spanish bank data'),

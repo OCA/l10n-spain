@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# © 2014 Ismael Calvo <ismael.calvo@factorlibre.com>
-# © 2016 Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2014 Ismael Calvo <ismael.calvo@factorlibre.com>
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 import codecs
@@ -77,7 +76,7 @@ class XlsDictReader:
     first column as the keys for the data dictionary.
     """
     def __init__(self, path, sheet_number=0):
-        if not xlrd:
+        if not xlrd:  # pragma: no cover
             raise Exception("Librería xlrd no encontrada.")
         self.workbook = xlrd.open_workbook(path)
         self.sheet = self.workbook.sheet_by_index(sheet_number)
@@ -85,17 +84,18 @@ class XlsDictReader:
                        range(self.sheet.ncols)]
         self.nrow = 1
 
-    def next(self):
+    def __next__(self):
         if self.nrow >= self.sheet.nrows:
+            self.nrow = 1
             raise StopIteration
         vals = []
         for ncol in range(self.sheet.ncols):
             val = self.sheet.cell_value(self.nrow, ncol)
             cell_type = self.sheet.cell_type(self.nrow, ncol)
-            if cell_type == xlrd.XL_CELL_DATE:
+            if cell_type == xlrd.XL_CELL_DATE:  # pragma: no cover
                 vals.append(datetime(
                     *xlrd.xldate_as_tuple(val, self.workbook.datemode)))
-            elif cell_type == xlrd.XL_CELL_BOOLEAN:
+            elif cell_type == xlrd.XL_CELL_BOOLEAN:  # pragma: no cover
                 vals.append(bool(val))
             else:
                 vals.append(val)
@@ -103,12 +103,13 @@ class XlsDictReader:
         return dict((self.header[x], vals[x]) for x in range(len(self.header)))
 
     def __iter__(self):
+        self.nrow = 1
         return self
 
 
 def escape(data):
     if isinstance(data, (int, float)):  # pragma: no cover
-        data = unicode(int(data))
+        data = str(int(data))
     chars = [('&', '&amp;'), ('>', '&gt;'), ('<', '&lt;'), ('"', "&quot;"),
              ("'", "&apos;")]
     for c in chars:
@@ -117,9 +118,10 @@ def escape(data):
 
 
 def gen_bank_data_xml(src_path, dest_path):
-    # Leer tabla estática de BICs
     indent = "    "
     bics = {}
+    # Leer tabla estática de BICs. Última revisión obtenida de
+    # http://www.bde.es/f/webbde/SPA/sispago/t2/TARGET2_BE_BIC.pdf
     reader = XlsDictReader(os.path.join(os.path.dirname(__file__), "bics.xls"))
     for row in reader:
         bics[row['ENTIDAD']] = row['BIC']
@@ -145,7 +147,7 @@ def gen_bank_data_xml(src_path, dest_path):
         )
         output.write(indent + '<record id="%s" model="res.bank">\n' % name)
         output.write(
-            indent * 2 + u'<field name="name">{}</field>\n'.format(
+            indent * 2 + '<field name="name">{}</field>\n'.format(
                 escape(row['NOMCOMERCIAL'].title() or row['ANAGRAMA'].title())
             )
         )
@@ -175,14 +177,11 @@ def gen_bank_data_xml(src_path, dest_path):
         if row['TELEFONO']:
             output.write(indent * 2 + '<field name="phone">%s</field>\n' %
                          escape(row['TELEFONO']))
-        if row['NUMFAX']:
-            output.write(indent * 2 + '<field name="fax">%s</field>\n' %
-                         escape(row['NUMFAX']))
         output.write('        <field eval="1" name="active"/>\n')
         if row['CODPOSTAL']:
             output.write(
                 indent * 2 +
-                u'<field name="state" ref="base.state_es_{}"/>\n'.format(
+                '<field name="state" ref="base.state_es_{}"/>\n'.format(
                     STATES_REPLACE_LIST[
                         str(int(row['CODPOSTAL']))[:-3].zfill(2)
                     ]
@@ -198,5 +197,5 @@ def gen_bank_data_xml(src_path, dest_path):
 if __name__ == "__main__":  # pragma: no cover
     dir_path = os.path.os.path.dirname(__file__)
     parent_path = os.path.abspath(os.path.join(dir_path, os.pardir))
-    gen_bank_data_xml('REGBANESP_CONESTAB_A.xls',
+    gen_bank_data_xml('REGBANESP_CONESTAB_A.XLS',
                       os.path.join(parent_path, "wizard", "data_banks.xml"))
