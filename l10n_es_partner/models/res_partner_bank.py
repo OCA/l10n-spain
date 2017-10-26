@@ -1,22 +1,15 @@
-# -*- coding: utf-8 -*-
-# © 2009 Jordi Esteve <jesteve@zikzakmedia.com>
-# © 2012-2014 Ignacio Ibeas <ignacio@acysos.com>
-# © 2016-2017 Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
+# Copyright 2009 Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2012-2014 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, api, exceptions, models
 from odoo.addons.base_iban.models.res_partner_bank import \
     normalize_iban, validate_iban, pretty_iban
 
 
 class ResPartnerBank(models.Model):
     _inherit = 'res.partner.bank'
-
-    acc_country_id = fields.Many2one(
-        comodel_name='res.country', related='partner_id.country_id',
-        string='Bank country', readonly=True,
-        help='If the country of the bank is Spain, it validates the bank '
-             'code or IBAN, formatting it accordingly.')
 
     @api.model
     def _crc(self, texto):
@@ -41,7 +34,7 @@ class ResPartnerBank(models.Model):
         """Cálculo del código de control bancario"""
         texto = "00%04d%04d" % (int(banco), int(sucursal))
         dc1 = self._crc(texto)
-        texto = "%010d" % long(cuenta)
+        texto = "%010d" % int(cuenta)
         dc2 = self._crc(texto)
         return "%1d%1d" % (dc1, dc2)
 
@@ -88,15 +81,19 @@ class ResPartnerBank(models.Model):
                 res['warning_message'] = _('Invalid bank account.')
                 return res
             bank = bank_obj.search([('code', '=', number[:4])], limit=1)
-        res['acc_number'] = number
+        res['acc_number'] = number.upper()
         res['bank_id'] = bank.id
         return res
 
     @api.multi
-    @api.onchange('acc_country_id', 'acc_number')
+    @api.onchange('acc_number', 'bank_id')
     def _onchange_acc_number_l10n_es_partner(self):
+        context = self.env.context
+        if not context.get('default_partner_id'):  # pragma: no cover
+            return
+        partner = self.env['res.partner'].browse(context['default_partner_id'])
         res = self._process_onchange_acc_number(
-            self.acc_number, self.acc_country_id,
+            self.acc_number, partner.country_id,
         )
         if res.get('warning_message'):
             warning_dict = {

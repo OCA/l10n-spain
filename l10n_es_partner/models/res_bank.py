@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
-# © 2009 Jordi Esteve <jesteve@zikzakmedia.com>
-# © 2012-2014 Ignacio Ibeas <ignacio@acysos.com>
-# © 2016 Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
+# Copyright 2009 Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2012-2014 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
 from odoo import models, fields
 
