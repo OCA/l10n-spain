@@ -78,7 +78,8 @@ class AccountAssetAsset(models.Model):
     ]
 
     def onchange_category_id_values(self, category_id):
-        res = super(AccountAssetAsset, self).onchange_category_id_values(category_id)
+        res = super(AccountAssetAsset, self).\
+            onchange_category_id_values(category_id)
         if category_id:
             category_obj = self.env['account.asset.category']
             category = category_obj.browse(category_id)
