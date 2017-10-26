@@ -20,7 +20,7 @@
                             <p colspan="4">This wizard will import spanish bank data. You can choose to import it from:</p>
                             <ul>
                                 <li>Internet (from Bank of Spain). Maybe this source will be not available from certain moment in time. You will need xlrd Python library.</li>
-                                <li>Local file mirror. This copy was updated last time on 20/01/2017.</li>
+                                <li>Local file mirror. This copy was updated last time on 26/10/2017.</li>
                             </ul>
                         </group>
                         <label colspan="4"
@@ -53,10 +53,8 @@
         <!-- register on configuration -->
         <record id="config_wizard_l10n_es_partner" model="ir.actions.todo">
             <field name="name">Import spanish bank data</field>
-            <field name="note">This wizard will import spanish bank data.</field>
             <field name="action_id" ref="action_l10n_es_partner_import"/>
             <field name="sequence">20</field>
-            <field name="type">automatic</field>
         </record>
 
     </data>
