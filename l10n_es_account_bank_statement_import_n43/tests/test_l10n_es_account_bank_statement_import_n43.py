@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
 from odoo.modules.module import get_module_resource
+import base64
 
 
 class L10nEsAccountBankStatementImportN43(common.SavepointCase):
@@ -18,7 +18,7 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
         })
         n43_file_path = get_module_resource(
             'l10n_es_account_bank_statement_import_n43', 'tests', 'test.n43')
-        n43_file = open(n43_file_path, 'rb').read().encode('base64')
+        n43_file = base64.b64encode(open(n43_file_path, 'rb').read())
         cls.import_wizard = cls.env['account.bank.statement.import'].create({
             'data_file': n43_file,
         })
