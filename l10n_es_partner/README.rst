@@ -17,6 +17,24 @@ Funcionalidad:
   campo de país a las cuentas bancarias de las empresas y se realizan
   validaciones cuando el país es España.
 
+Configuración
+=============
+
+Para añadir cuentas bancarias a la compañía, el mejor camino es ir a
+Contabilidad > Configuración > Contabilidad > Cuentas bancarias.
+
+Para añadir cuentas bancarias a los clientes/proveedores, hay que ir a la
+lista de empresas desde cualquiera de los accesos, y pulsar sobre el enlace
+"n Cuenta(s) bancaria(s)" que hay en la pestaña "Ventas y compras".
+
+Para definir el patrón del nombre a mostrar en empresas, hay que ir a
+Configuración > Técnico > Parámetros > Parámetros del sistema
+Seleccionar la clave l10n_es_partner.name_pattern
+Definir el patron utilizando las etiquetas *%(name)s* para nombre y
+*%(comercial_name)s* para nombre comercial.
+
+Uso
+===
 
 Funcionamiento de la validación de la cuenta bancaria para cuentas españolas:
 -----------------------------------------------------------------------------
@@ -39,21 +57,9 @@ Funcionamiento de la validación de la cuenta bancaria para cuentas IBAN:
 * Si el NC es incorrecto, se devuelve un error.
 * Se comprueba también el DC.
 
-Configuración
-=============
-
-Para añadir cuentas bancarias a la compañía, el mejor camino es ir a
-Contabilidad > Configuración > Contabilidad > Cuentas bancarias.
-
-Para añadir cuentas bancarias a los clientes/proveedores, hay que ir a la
-lista de empresas desde cualquiera de los accesos, y pulsar sobre el enlace
-"n Cuenta(s) bancaria(s)" que hay en la pestaña "Ventas y compras".
-
-Para definir el patron del nombre a mostrar en empresas, hay que ir a
-Configuración > Técnico > Parámetros > Parámetros del sistema
-Seleccionar la clave l10n_es_partner.name_pattern
-Definir el patron utilizando las etiquetas *%(name)s* para nombre y
-*%(comercial_name)s* para nombre comercial.
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/189/11.0
 
 Créditos
 ========
@@ -68,36 +74,10 @@ Contribuidores
 * Ismael Calvo <ismael.calvo@factorlibre.com>
 * Carlos Dauden <carlos.dauden@tecnativa.com>
 
-Financiadores
--------------
-La migración de este módulo forma parte de una campaña de migración de la
-localización española que ha sido posible gracias a la colaboración económica
-de las siguientes empresas (por orden alfabético):
-
-* `Aizean evolution <http://www.aizean.com>`_
-* `Aselcis consulting <https://www.aselcis.com>`_
-* `AvanzOSC <http://avanzosc.es>`_
-* `Diagram software <http://diagram.es>`_
-* `Domatix <http://www.domatix.com>`_
-* `Eficent <http://www.eficent.com>`_
-* `FactorLibre <http://factorlibre.com>`_
-* `Fairhall solutions <http://www.fairhall.es>`_
-* `GAFIC SLP <http://www.gafic.com>`_
-* `Incaser <http://www.incaser.es>`_
-* `Ingeos <http://www.ingeos.es>`_
-* `Nubistalia <http://www.nubistalia.es>`_
-* `Punt sistemes <http://www.puntsistemes.es>`_
-* `Praxya <http://praxya.com>`_
-* `Reeng <http://www.reng.es>`_
-* `Soluntec <http://www.soluntec.es>`_
-* `Tecnativa <https://www.tecnativa.com>`_
-* `Trey <https://www.trey.es>`_
-* `Vicent Cubells <http://vcubells.net>`_
-
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
    :target: https://odoo-community.org
 
