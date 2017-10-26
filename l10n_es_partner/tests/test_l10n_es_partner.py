@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-# © 2016 Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3).
+# Copyright 2016-2017 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
 from odoo.tests import common
 
@@ -32,10 +31,10 @@ class TestL10nEsPartner(common.SavepointCase):
             'acc_number': 'ES7620770024003102575766',
         })
         cls.wizard = cls.env['l10n.es.partner.import.wizard'].create({})
-        cls.wizard_toponyms = cls.env['config.es.toponyms'].create({
-            'name': '',
-        })
         cls.env.user.company_id.country_id = cls.country_spain.id
+        cls.bank_obj = cls.env['res.partner.bank'].with_context(
+            default_partner_id=cls.partner.id
+        )
 
     def test_search_commercial(self):
         partner_obj = self.env['res.partner']
@@ -45,26 +44,23 @@ class TestL10nEsPartner(common.SavepointCase):
 
     def test_onchange_acc_number_old(self):
         with self.env.do_in_onchange():
-            record = self.env['res.partner.bank'].new()
+            record = self.bank_obj.new()
             record.acc_number = '99999999509999999999'
-            record.acc_country_id = self.country_spain.id
             record._onchange_acc_number_l10n_es_partner()
             self.assertEqual(record.acc_number, '9999 9999 50 9999999999')
             self.assertEqual(record.bank_id, self.bank)
 
     def test_onchange_acc_number_old_incorrect_dc(self):
         with self.env.do_in_onchange():
-            record = self.env['res.partner.bank'].new()
+            record = self.bank_obj.new()
             record.acc_number = '99999999999999999999'
-            record.acc_country_id = self.country_spain.id
             res = record._onchange_acc_number_l10n_es_partner()
             self.assertTrue(res.get('warning'))
 
     def test_onchange_acc_number_old_incorrect_size(self):
         with self.env.do_in_onchange():
-            record = self.env['res.partner.bank'].new()
+            record = self.bank_obj.new()
             record.acc_number = '9999999950999999999'
-            record.acc_country_id = self.country_spain.id
             res = record._onchange_acc_number_l10n_es_partner()
             self.assertTrue(res.get('warning'))
 
@@ -79,9 +75,8 @@ class TestL10nEsPartner(common.SavepointCase):
 
     def test_onchange_acc_number(self):
         with self.env.do_in_onchange():
-            record = self.env['res.partner.bank'].new()
-            record.acc_number = 'ES1299999999509999999999'
-            record.acc_country_id = self.country_spain.id
+            record = self.bank_obj.new()
+            record.acc_number = 'es1299999999509999999999'
             record._onchange_acc_number_l10n_es_partner()
             self.assertEqual(
                 record.acc_number, 'ES12 9999 9999 5099 9999 9999')
@@ -94,14 +89,17 @@ class TestL10nEsPartner(common.SavepointCase):
             record.bank_acc_country_id = self.country_spain.id
             record._onchange_bank_acc_number_l10n_es_partner()
             self.assertEqual(
-                record.bank_acc_number, 'ES12 9999 9999 5099 9999 9999')
+                record.bank_acc_number, 'ES12 9999 9999 5099 9999 9999',
+            )
+            self.assertEqual(
+                record.name, 'BDE ES12 9999 9999 5099 9999 9999',
+            )
             self.assertEqual(record.bank_id, self.bank)
 
     def test_onchange_acc_number_invalid(self):
         with self.env.do_in_onchange():
-            record = self.env['res.partner.bank'].new()
+            record = self.bank_obj.new()
             record.acc_number = 'ES9999999999999999999999'
-            record.acc_country_id = self.country_spain.id
             res = record._onchange_acc_number_l10n_es_partner()
             self.assertTrue(res['warning']['message'])
 
@@ -112,14 +110,6 @@ class TestL10nEsPartner(common.SavepointCase):
             record.bank_acc_country_id = self.country_spain.id
             res = record._onchange_bank_acc_number_l10n_es_partner()
             self.assertTrue(res['warning']['message'])
-
-    def test_create_journal(self):
-        journal = self.env['account.journal'].create({
-            'type': 'bank',
-            'bank_id': self.bank.id,
-            'bank_acc_number': 'ES12 9999 9999 5099 9999 9999',
-        })
-        self.assertEqual(journal.name, 'BDE ES12 9999 9999 5099 9999 9999')
 
     def test_import_banks(self):
         # Then import banks
