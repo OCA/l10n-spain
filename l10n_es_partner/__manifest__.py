@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
-# © 2009 Jordi Esteve <jesteve@zikzakmedia.com>
-# © 2013 Ignacio Ibeas <ignacio@acysos.com>
-# © 2015 Sergio Teruel <sergio@incaser.es>
-# © 2013-2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+# Copyright 2009 Jordi Esteve <jesteve@zikzakmedia.com>
+# Copyright 2013 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2015 Tecnativa - Sergio Teruel
+# Copyright 2016 Tecnativa - Carlos Dauden
+# Copyright 2013-2017 Tecnativa - Pedro M. Baeza
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "ZikZak,"
               "Acysos,"
               "Tecnativa,"
@@ -24,14 +24,12 @@
         "account",
         "base_iban",
         "base_vat",
-        "l10n_es_toponyms",
     ],
     "data": [
         "data/l10n_es_partner_data.xml",
         "views/account_journal_view.xml",
         "views/res_bank_view.xml",
         "views/res_partner_view.xml",
-        "views/res_partner_bank_view.xml",
         "wizard/l10n_es_partner_wizard.xml",
     ],
     'installable': True,
