@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-27 00:55+0000\n"
-"PO-Revision-Date: 2017-10-23 10:55+0000\n"
+"PO-Revision-Date: 2017-09-30 10:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"Language-Team: English (United States) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en_US/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
@@ -70,17 +70,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,partner_bank_id:0
 msgid "Bank account"
-msgstr "Bančni račun"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Datum izračuna"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Cancelled"
-msgstr "Preklicano"
+msgstr "Cancelled"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,casilla_01:0
@@ -175,7 +175,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_id:0
 msgid "Company"
-msgstr "Družba"
+msgstr "Company"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,partner_bank_id:0
@@ -201,18 +201,18 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod130.report,create_uid:0
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr "Created by"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod130.report,create_date:0
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr "Created on"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,currency_id:0
 msgid "Currency"
-msgstr "Valuta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,previous_electronic_code:0
@@ -251,17 +251,17 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,display_name:0
 #: field:l10n.es.aeat.mod130.report,display_name:0
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Done"
-msgstr "Opravljeno"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Draft"
-msgstr "Osnutek"
+msgstr "Draft"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_wizard_aeat_mod130_export
@@ -281,7 +281,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,data:0
 msgid "File"
-msgstr "Datoteka"
+msgstr "File"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,name:0
@@ -317,7 +317,7 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,journal_id:0
 msgid "Journal"
-msgstr "Dnevnik"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,journal_id:0
@@ -333,19 +333,19 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,__last_update:0
 #: field:l10n.es.aeat.mod130.report,__last_update:0
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod130.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr "Last Updated by"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod130.report,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Last Updated on"
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,representative_vat:0
@@ -370,7 +370,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,type:0
 msgid "Normal"
-msgstr "Običajno"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: view:l10n.es.aeat.mod130.report:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
@@ -420,12 +420,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,contact_phone:0
 msgid "Phone"
-msgstr "Telefon"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Posted"
-msgstr "Knjiženo"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,complementary:0
@@ -440,7 +440,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Processed"
-msgstr "Obdelano"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,name:0
@@ -470,7 +470,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,state:0
 #: field:l10n.es.aeat.mod130.report,state:0
 msgid "State"
-msgstr "Stanje"
+msgstr "State"
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,type:0
@@ -607,7 +607,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.export_to_boe,state:0
 msgid "open"
-msgstr "odprtje"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,has_deduccion_80:0

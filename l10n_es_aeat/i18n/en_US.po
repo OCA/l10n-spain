@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-27 00:55+0000\n"
-"PO-Revision-Date: 2017-10-23 10:55+0000\n"
+"PO-Revision-Date: 2017-09-30 10:34+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"Language-Team: English (United States) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/en_US/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:213
@@ -107,7 +107,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,amount:0
 msgid "Amount"
-msgstr "Znesek"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,apply_sign:0
@@ -134,7 +134,7 @@ msgstr ""
 #: field:l10n.es.aeat.report,partner_bank_id:0
 #: field:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
 msgid "Bank account"
-msgstr "Bančni račun"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
@@ -149,26 +149,26 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Calculate"
-msgstr "Izračunaj"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,calculation_date:0
 #: field:l10n.es.aeat.report.tax.mapping,calculation_date:0
 msgid "Calculation date"
-msgstr "Datum izračuna"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Cancel"
-msgstr "Preklic"
+msgstr "Cancel"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Cancelled"
-msgstr "Preklicano"
+msgstr "Cancelled"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -178,14 +178,14 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Close"
-msgstr "Zaključi"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: field:l10n.es.aeat.report,company_id:0
 #: field:l10n.es.aeat.report.tax.mapping,company_id:0
 msgid "Company"
-msgstr "Družba"
+msgstr "Company"
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,partner_bank_id:0
@@ -202,7 +202,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional:0
 msgid "Conditional"
-msgstr "Pogojno"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,conditional_expression:0
@@ -222,7 +222,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Confirm"
-msgstr "Potrdi"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -253,7 +253,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.tax.line,create_uid:0
 msgid "Created by"
-msgstr "Ustvaril"
+msgstr "Created by"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,create_date:0
@@ -263,7 +263,7 @@ msgstr "Ustvaril"
 #: field:l10n.es.aeat.report.export_to_boe,create_date:0
 #: field:l10n.es.aeat.tax.line,create_date:0
 msgid "Created on"
-msgstr "Ustvarjeno"
+msgstr "Created on"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
@@ -292,14 +292,14 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,display_name:0
 #: field:l10n.es.aeat.tax.line,display_name:0
 msgid "Display Name"
-msgstr "Prikazni naziv"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Done"
-msgstr "Opravljeno"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -307,7 +307,7 @@ msgstr "Opravljeno"
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Draft"
-msgstr "Osnutek"
+msgstr "Draft"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -323,12 +323,12 @@ msgstr ""
 #: code:addons/l10n_es_aeat/models/aeat_tax_code_mapping.py:56
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
-msgstr ""
+msgstr "Error! The dates of the record overlap with an existing record."
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Export"
-msgstr "Izvoz"
+msgstr "Export"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_aeat_export
@@ -371,7 +371,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,expression:0
 msgid "Expression"
-msgstr "Izraz"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_export_configuration.py:106
@@ -398,7 +398,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report.export_to_boe,data:0
 msgid "File"
-msgstr "Datoteka"
+msgstr "File"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report.export_to_boe,name:0
@@ -491,7 +491,7 @@ msgstr ""
 #: field:l10n.es.aeat.report,journal_id:0
 #: field:l10n.es.aeat.report.tax.mapping,journal_id:0
 msgid "Journal"
-msgstr "Dnevnik"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,journal_id:0
@@ -520,7 +520,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,__last_update:0
 #: field:l10n.es.aeat.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Zadnjič spremenjeno"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -530,7 +530,7 @@ msgstr "Zadnjič spremenjeno"
 #: field:l10n.es.aeat.report.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji posodobil"
+msgstr "Last Updated by"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_date:0
@@ -540,12 +540,12 @@ msgstr "Zadnji posodobil"
 #: field:l10n.es.aeat.report.export_to_boe,write_date:0
 #: field:l10n.es.aeat.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnjič posodobljeno"
+msgstr "Last Updated on"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
 msgid "Left"
-msgstr "Levo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: help:l10n.es.aeat.report,representative_vat:0
@@ -556,7 +556,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,config_lines:0
 msgid "Lines"
-msgstr "Postavke"
+msgstr "Lines"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,map_line:0
@@ -576,7 +576,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:aeat.mod.map.tax.code:l10n_es_aeat.aeat_mod_map_tax_code_form
 msgid "Mapping Lines"
-msgstr ""
+msgstr "Mapping Lines"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,model:0
@@ -602,7 +602,7 @@ msgstr ""
 #: field:aeat.model.export.config.line,name:0
 #: field:l10n.es.aeat.tax.line,name:0
 msgid "Name"
-msgstr "Naziv"
+msgstr "Name"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,negative_sign:0
@@ -613,7 +613,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,type:0
 #: selection:l10n.es.aeat.report.tax.mapping,type:0
 msgid "Normal"
-msgstr "Običajno"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,decimal_size:0
@@ -667,7 +667,7 @@ msgstr ""
 #: field:l10n.es.aeat.report,contact_phone:0
 #: field:l10n.es.aeat.report.tax.mapping,contact_phone:0
 msgid "Phone"
-msgstr "Telefon"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
@@ -679,7 +679,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,position:0
 msgid "Position"
-msgstr "Položaj"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,positive_sign:0
@@ -690,7 +690,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Posted"
-msgstr "Knjiženo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,previous_number:0
@@ -702,7 +702,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Processed"
-msgstr "Obdelano"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
@@ -712,7 +712,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Recalculate"
-msgstr "Preračunaj"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:143
@@ -723,7 +723,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,repeat:0
 msgid "Repeat"
-msgstr "Ponovi"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,repeat_expression:0
@@ -733,7 +733,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Report"
-msgstr "Poročilo"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,name:0
@@ -744,22 +744,22 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,res_id:0
 msgid "Resource ID"
-msgstr "ID vira"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
 msgid "Right"
-msgstr "Desno"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,sequence:0
 msgid "Sequence"
-msgstr "Zaporedje"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.tax.line:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
 msgid "Show journal items"
-msgstr "Prikaz dnevniških postavk"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -784,7 +784,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,state:0
 #: field:l10n.es.aeat.report.tax.mapping,state:0
 msgid "State"
-msgstr "Stanje"
+msgstr "State"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,type:0
@@ -893,7 +893,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:account.move.line:l10n_es_aeat.view_move_line_tree
 msgid "Total"
-msgstr "Skupaj"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,company_vat:0
@@ -905,7 +905,7 @@ msgstr ""
 #: view:aeat.model.export.config.line:l10n_es_aeat.aeat_model_export_config_line_form
 #: field:aeat.model.export.config.line,value:0
 msgid "Value"
-msgstr "Vrednost"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,bool_no:0
@@ -954,12 +954,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
 msgid "open"
-msgstr "odprtje"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "or"
-msgstr "ali"
+msgstr "or"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
