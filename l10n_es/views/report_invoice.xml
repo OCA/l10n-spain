@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document" priority="9999">
+        <xpath expr="//span[contains(@t-esc, 'x.description or x.name')]" position="attributes">
+            <attribute name="t-esc">', '.join(map(lambda x: x.name, l.invoice_line_tax_ids))</attribute>
+        </xpath>
+        <xpath expr="//span[contains(@t-esc, 'o.tax_line_ids.tax_id.description or o.tax_line_ids.tax_id.name')]" position="attributes">
+            <attribute name="t-esc">amount_by_group[0] if len(o.tax_line_ids) > 1 else o.tax_line_ids.tax_id.name</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='t.tax_id.description']" position="attributes">
+            <attribute name="t-field">t.tax_id.name</attribute>
+        </xpath>
+    </template>
+</odoo>
