@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# coding: utf-8
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -55,17 +55,17 @@ class ResPartner(models.Model):
         string='AEAT Certificate Expiration')
     certificate_expired_aeat = fields.Boolean(
         string='AEAT Certificate Expirated',
-        compute='_certificate_expired_aeat')
+        compute='_compute_certificate_expired_aeat')
     certificate_expiration_ss = fields.Date(string='SS Certificate Expiration')
     certificate_expired_ss = fields.Boolean(
         string='SS Certificate Expirated',
-        compute='_certificate_expired_ss')
+        compute='_compute_certificate_expired_ss')
 
-    def _certificate_expired_aeat(self):
+    def _compute_certificate_expired_aeat(self):
         self.certificate_expired_aeat = self.certificate_expiration_aeat and \
             (self.certificate_expiration_aeat < fields.Date.today())
 
-    def _certificate_expired_ss(self):
+    def _compute_certificate_expired_ss(self):
         self.certificate_expired_ss = self.certificate_expiration_ss and \
             (self.certificate_expiration_ss < fields.Date.today())
 

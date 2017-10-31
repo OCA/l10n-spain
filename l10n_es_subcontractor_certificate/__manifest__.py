@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# coding: utf-8
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -25,6 +25,7 @@
     "version": "10.0.1.0.0",
     "author": "Domatix,Odoo Community Association (OCA)",
     "website": "www.domatix.com",
+    "license": "AGPL-3",
     "category": "Accounting",
     "depends": ["purchase"],
     "data": ["views/subcontractor_certificate_view.xml"],

@@ -3,7 +3,7 @@
     :alt: License: AGPL-3
 ================================================================
 Certificado de subcontratista
-================================================================
+=============================
 Este módulo permite gestionar el certificado de subcontratista de los
 proveedores, en su ficha la caducidad del certificado.
 
