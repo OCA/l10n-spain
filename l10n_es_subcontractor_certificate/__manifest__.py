@@ -2,9 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2014 Domatix Technologies  S.L. (http://www.domatix.com)
+#    Copyright (c) 2017 Domatix Technologies  S.L. (http://www.domatix.com)
 #                       info <info@domatix.com>
-#                        Angel Moya <angel.moya@domatix.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -23,7 +22,7 @@
 
 {
     "name": "Certificado de subcontratista",
-    "version": "8.0.1.0.0",
+    "version": "10.0.1.0.0",
     "author": "Domatix,Odoo Community Association (OCA)",
     "website": "www.domatix.com",
     "category": "Accounting",
@@ -31,5 +30,5 @@
     "data": ["views/subcontractor_certificate_view.xml"],
     "demo": [],
     "auto_install": False,
-    'installable': False,
+    'installable': True,
 }

@@ -2,9 +2,8 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2014 Domatix Technologies  S.L. (http://www.domatix.com)
+#    Copyright (c) 2017 Domatix Technologies  S.L. (http://www.domatix.com)
 #                       info <info@domatix.com>
-#                        Angel Moya <angel.moya@domatix.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,7 +20,7 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api, _
+from odoo import models, fields, api, _
 
 EXPIRED_WARNING_AEAT = {
     'title': _('Warning!'),
