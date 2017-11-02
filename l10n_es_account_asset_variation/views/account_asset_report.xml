@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_asset_asset_document">
+        <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+            <t t-call="report.external_layout">
+<!--                 <xpath expr="//div[@class='header']//div[@t-field='company.partner_id']/.." position="after"> -->
+                    <div class="header">
+                        <div><h2>ASSET FORM</h2></div>
+                        <div class="col-xs-12">
+                            <div class="col-xs-8">
+                                <strong>Company</strong>  <span t-field="o.partner_id.ref"/> - <span t-field="o.partner_id.name"/>
+                                <br/>
+                                <strong>Asset</strong>  <span t-field="o.code"/>  <span t-field="o.name"/>
+                                <br/>
+                                <strong>Remarks</strong>
+                            </div>
+                            <div class="col-xs-4 pull-right">
+                                <strong>Page</strong>  <span class="page" /> <br/>
+                                <strong>Printing Date</strong> <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page">
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                            <th colspan="4"><h3><strong>ASSET DATA</strong></h3></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Asset Code</strong></td>
+                            <td class="text-left"><span t-field="o.code"/></td>
+                            <td class="text-left"><strong>Description</strong></td>
+                            <td class="text-left"><span t-field="o.name"/></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Type</strong></td>
+                            <td class="text-left" colspan="3"><span t-field="o.category_id"/></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br/>
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                            <th width="60%" colspan="4"><h4><strong>Purchase</strong></h4></th>
+                            <th width="40%" colspan="2"><h4><strong>Asset Drop</strong></h4></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Purchase Date</strong></td>
+                            <td class="text-left"><span t-field="o.purchase_date"/></td>
+                            <td class="text-left"><strong>Invoice Number</strong></td>
+                            <td class="text-left"><span t-field="o.invoice_id.number"/></td>
+                            <td class="text-right"><strong>Drop Date</strong></td>
+                            <td class="text-left"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Purchase Amount</strong></td>
+                            <td class="text-left"><span t-field="o.purchase_value"/></td>
+                            <td class="text-left"><strong>Tax Amount</strong></td>
+                            <td class="text-left"><span t-field="o.invoice_id.amount_untaxed"/></td>
+                            <td class="text-right"><strong>Reason</strong></td>
+                            <td class="text-left"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left"><strong>Asset Account</strong></td>
+                            <td colspan="5" class="text-left"><span t-field="o.category_id.account_depreciation_id.code"/> <span t-field="o.category_id.account_depreciation_id.name"/></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br/>
+                    <br/>
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                            <th colspan="6"><h4><strong>Depreciation Plan</strong></h4></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td class="text-left"><strong>Percentage</strong></td>
+                            <td class="text-left"><span t-field="o.method_percentage"/></td>
+                            <td class="text-left"><strong>Start Date</strong></td>
+                            <td class="text-left"><t t-if="o.start_depreciation_date"><span t-field="o.start_depreciation_date"/></t><t t-if="not o.start_depreciation_date"><span t-field="o.purchase_date"/></t></td>
+                            <td class="text-left"><strong>Depreciation amount</strong></td>
+                            <td class="text-left"><span t-field="o.purchase_value"/></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <br/>
+                    <table class="table table-condensed">
+                      <thead>
+                        <tr>
+                            <th class="text-right"><strong>Year</strong></th>
+                            <th class="text-right"><strong>Percentage</strong></th>
+                            <th class="text-right"><strong>Depreciation Amount</strong></th>
+                            <th class="text-right"><strong>Accumulated Amount</strong></th>
+                            <th class="text-right"><strong>Pending Amount</strong></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr t-foreach="o.depreciation_line_ids" t-as="line">
+                            <td class="text-right"><span t-esc="datetime.datetime.strptime(line.depreciation_date, '%Y-%m-%d').year"/></td>
+                            <td class="text-right"><span t-field="line.method_percentage"/></td>
+                            <td class="text-right"><span t-field="line.amount"/></td>
+                            <td class="text-right"><span t-esc="line.amount + line.depreciated_value"/></td>
+                            <td class="text-right"><span t-field="line.remaining_value"/></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+            </t>
+            </t>
+            </t>
+        </template>
+
+        <report 
+            string="Asset Report" 
+            id="report_asset_asset" 
+            model="account.asset.asset" 
+            report_type="qweb-pdf"
+            name="l10n_es_account_asset_variation.report_asset_asset_document" 
+            file="l10n_es_account_asset_variation.report_asset_asset_document" 
+        />
+    </data>
+</openerp>
