@@ -7,7 +7,7 @@
     "name": u"Cierre de ejercicio fiscal para España",
     "summary": u"Configuraciones para el asistente de cierre contable según "
                u"la contabilidad española",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Localisation/Accounting",
     'website': "https://odoospain.odoo.com",
     "author": "Tecnativa, "
