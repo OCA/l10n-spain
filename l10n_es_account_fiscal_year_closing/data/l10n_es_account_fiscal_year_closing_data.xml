@@ -1,0 +1,444 @@
+<odoo>
+
+    <!-- PYMEs y ONGs -->
+
+    <record id="fyc_spanish_pymes" model="account.fiscalyear.closing.template">
+        <field name="name">España - PYMEs y ONGs</field>
+        <field name="check_draft_moves" eval="True"/>
+        <field name="chart_template_ids" eval="[(4, ref('l10n_es.account_chart_template_pymes')), (4, ref('l10n_es.account_chart_template_assoc')), (4, ref('l10n_es.account_chart_template_common'))]"/>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_loss_profit" model="account.fiscalyear.closing.config.template">
+        <field name="template_id" ref="fyc_spanish_pymes"/>
+        <field name="name">Asiento de pérdidas y ganancias</field>
+        <field name="sequence" eval="10"/>
+        <field name="code">LP</field>
+        <field name="move_type">loss_profit</field>
+        <field name="closing_type_default">balance</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_loss_profit_mapping_1" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_loss_profit"/>
+        <field name="name">Compras y gastos</field>
+        <field name="src_accounts">6%</field>
+        <field name="dest_account">129%</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_loss_profit_mapping_2" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_loss_profit"/>
+        <field name="name">Ventas e ingresos</field>
+        <field name="src_accounts">7%</field>
+        <field name="dest_account">129%</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing" model="account.fiscalyear.closing.config.template">
+        <field name="template_id" ref="fyc_spanish_pymes"/>
+        <field name="name">Asiento de cierre</field>
+        <field name="sequence" eval="50"/>
+        <field name="code">C</field>
+        <field name="move_type">closing</field>
+        <field name="closing_type_default">balance</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing_mapping_1" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_closing"/>
+        <field name="name">Financiación básica</field>
+        <field name="src_accounts">1%</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing_mapping_2" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_closing"/>
+        <field name="name">Activo no corriente</field>
+        <field name="src_accounts">2%</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing_mapping_3" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_closing"/>
+        <field name="name">Existencias</field>
+        <field name="src_accounts">3%</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing_mapping_4" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_closing"/>
+        <field name="name">Acreedores y deudores</field>
+        <field name="src_accounts">4%</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing_mapping_5" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_closing"/>
+        <field name="name">Cuentas financieras</field>
+        <field name="src_accounts">5%</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing_type_1" model="account.fiscalyear.closing.type.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_closing"/>
+        <field name="account_type_id" ref="account.data_account_type_receivable"/>
+        <field name="closing_type">unreconciled</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_closing_type_2" model="account.fiscalyear.closing.type.template">
+        <field name="template_config_id" ref="fyc_spanish_pymes_config_closing"/>
+        <field name="account_type_id" ref="account.data_account_type_payable"/>
+        <field name="closing_type">unreconciled</field>
+    </record>
+
+    <record id="fyc_spanish_pymes_config_opening" model="account.fiscalyear.closing.config.template">
+        <field name="template_id" ref="fyc_spanish_pymes"/>
+        <field name="name">Asiento de apertura</field>
+        <field name="sequence" eval="90"/>
+        <field name="code">O</field>
+        <field name="inverse">C</field>
+        <field name="move_type">opening</field>
+        <field name="reconcile" eval="True"/>
+        <field name="closing_type_default">balance</field>
+    </record>
+
+    <!-- Gran empresa (Plan completo) -->
+
+    <record id="fyc_spanish_full" model="account.fiscalyear.closing.template">
+        <field name="name">España - Grandes empresas (PGCE completo)</field>
+        <field name="check_draft_moves" eval="True"/>
+        <field name="chart_template_ids" eval="[(4, ref('l10n_es.account_chart_template_full'))]"/>
+    </record>
+
+    <record id="fyc_spanish_full_config_loss_profit" model="account.fiscalyear.closing.config.template">
+        <field name="template_id" ref="fyc_spanish_full"/>
+        <field name="name">Asiento de pérdidas y ganancias</field>
+        <field name="sequence" eval="10"/>
+        <field name="code">LP</field>
+        <field name="move_type">loss_profit</field>
+        <field name="closing_type_default">balance</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_loss_profit_mapping_1" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_loss_profit"/>
+        <field name="name">Compras y gastos</field>
+        <field name="src_accounts">6%</field>
+        <field name="dest_account">129%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_loss_profit_mapping_2" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_loss_profit"/>
+        <field name="name">Ventas e ingresos</field>
+        <field name="src_accounts">7%</field>
+        <field name="dest_account">129%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit" model="account.fiscalyear.closing.config.template">
+        <field name="template_id" ref="fyc_spanish_full"/>
+        <field name="name">Asiento de pérdidas y ganancias neto</field>
+        <field name="sequence" eval="20"/>
+        <field name="code">NLP</field>
+        <field name="move_type">loss_profit</field>
+        <field name="closing_type_default">balance</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_1" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">800%</field>
+        <field name="dest_account">133%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_2" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">802%</field>
+        <field name="dest_account">133%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_3" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">810%</field>
+        <field name="dest_account">1340%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_4" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">811%</field>
+        <field name="dest_account">1341%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_5" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">812%</field>
+        <field name="dest_account">1340%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_6" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">813%</field>
+        <field name="dest_account">1341%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_7" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">820%</field>
+        <field name="dest_account">135%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_8" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">821%</field>
+        <field name="dest_account">135%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_9" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">830%</field>
+        <field name="dest_account">13%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_10" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">833%</field>
+        <field name="dest_account">13%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_11" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">834%</field>
+        <field name="dest_account">137%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_12" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">835%</field>
+        <field name="dest_account">137%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_13" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">838%</field>
+        <field name="dest_account">133%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_14" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">840%</field>
+        <field name="dest_account">130%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_15" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">841%</field>
+        <field name="dest_account">131%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_16" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">842%</field>
+        <field name="dest_account">132%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_17" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">850%</field>
+        <field name="dest_account">115%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_18" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">851%</field>
+        <field name="dest_account">115%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_19" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">860%</field>
+        <field name="dest_account">136%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_20" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">862%</field>
+        <field name="dest_account">136%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_21" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">890%</field>
+        <field name="dest_account">133%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_22" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">892%</field>
+        <field name="dest_account">133%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_23" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">900%</field>
+        <field name="dest_account">133%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_24" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">902%</field>
+        <field name="dest_account">133%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_25" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">910%</field>
+        <field name="dest_account">1340%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_26" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">911%</field>
+        <field name="dest_account">1341%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_27" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">912%</field>
+        <field name="dest_account">1340%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_28" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">913%</field>
+        <field name="dest_account">1341%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_29" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">920%</field>
+        <field name="dest_account">135%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_30" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">921%</field>
+        <field name="dest_account">135%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_31" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">940%</field>
+        <field name="dest_account">130%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_32" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">941%</field>
+        <field name="dest_account">131%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_33" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">942%</field>
+        <field name="dest_account">132%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_34" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">950%</field>
+        <field name="dest_account">115%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_35" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">951%</field>
+        <field name="dest_account">115%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_36" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">960%</field>
+        <field name="dest_account">136%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_37" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">962%</field>
+        <field name="dest_account">136%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_38" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">990%</field>
+        <field name="dest_account">133%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_39" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">991%</field>
+        <field name="dest_account">133%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_40" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">992%</field>
+        <field name="dest_account">133%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_net_loss_profit_mapping_41" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_net_loss_profit"/>
+        <field name="src_accounts">993%</field>
+        <field name="dest_account">133%0</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing" model="account.fiscalyear.closing.config.template">
+        <field name="template_id" ref="fyc_spanish_full"/>
+        <field name="name">Asiento de cierre</field>
+        <field name="sequence" eval="50"/>
+        <field name="code">C</field>
+        <field name="move_type">closing</field>
+        <field name="closing_type_default">balance</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing_mapping_1" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_closing"/>
+        <field name="name">Financiación básica</field>
+        <field name="src_accounts">1%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing_mapping_2" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_closing"/>
+        <field name="name">Activo no corriente</field>
+        <field name="src_accounts">2%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing_mapping_3" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_closing"/>
+        <field name="name">Existencias</field>
+        <field name="src_accounts">3%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing_mapping_4" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_closing"/>
+        <field name="name">Acreedores y deudores</field>
+        <field name="src_accounts">4%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing_mapping_5" model="account.fiscalyear.closing.mapping.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_closing"/>
+        <field name="name">Cuentas financieras</field>
+        <field name="src_accounts">5%</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing_type_1" model="account.fiscalyear.closing.type.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_closing"/>
+        <field name="account_type_id" ref="account.data_account_type_receivable"/>
+        <field name="closing_type">unreconciled</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_closing_type_2" model="account.fiscalyear.closing.type.template">
+        <field name="template_config_id" ref="fyc_spanish_full_config_closing"/>
+        <field name="account_type_id" ref="account.data_account_type_payable"/>
+        <field name="closing_type">unreconciled</field>
+    </record>
+
+    <record id="fyc_spanish_full_config_opening" model="account.fiscalyear.closing.config.template">
+        <field name="template_id" ref="fyc_spanish_full"/>
+        <field name="name">Asiento de apertura</field>
+        <field name="sequence" eval="90"/>
+        <field name="code">O</field>
+        <field name="inverse">C</field>
+        <field name="move_type">opening</field>
+        <field name="reconcile" eval="True"/>
+        <field name="closing_type_default">balance</field>
+    </record>
+
+</odoo>
