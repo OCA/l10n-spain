@@ -3,19 +3,19 @@
 # * l10n_es_partner
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-29 03:40+0000\n"
-"PO-Revision-Date: 2017-12-29 03:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
+"POT-Creation-Date: 2018-02-10 03:41+0000\n"
+"PO-Revision-Date: 2018-02-10 03:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_partner
@@ -52,17 +52,17 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_uid
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr "Creado por"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_date
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr "Creado elCreado el"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_display_name
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr "Nombre a mostrar"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/res_partner_bank.py:72
@@ -126,17 +126,17 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard___last_update
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr "Última modificación en"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_date
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
