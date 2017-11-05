@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!-- Import wizard -->
+        <record model="ir.ui.view" id="l10n_es_partner_import_wizard">
+            <field name="name">l10n.es.partner.import.form</field>
+            <field name="model">l10n.es.partner.import.wizard</field>
+            <field name="inherit_id" ref="base.res_config_installer"/>
+            <field name="arch" type="xml">
+                <data>
+                    <form position="inside">
+                        <field name="import_fail" invisible="1"/>
+                    </form>
+                    <form position="attributes">
+                        <attribute name="string">Import spanish bank data</attribute>
+                    </form>
+                    <separator position="replace">
+                        <group attrs="{'invisible': [('import_fail', '=', True)]}">
+                            <p colspan="4">This wizard will import spanish bank data. You can choose to import it from:</p>
+                            <ul>
+                                <li>Internet (from Bank of Spain). Maybe this source will be not available from certain moment in time. You will need xlrd Python library.</li>
+                                <li>Local file mirror. This copy was updated last time on 26/10/2017.</li>
+                            </ul>
+                        </group>
+                        <label colspan="4"
+                               attrs="{'invisible': [('import_fail', '=', False)]}"
+                               string="Something has failed importing data from Internet. You will need to import local data instead."/>
+                    </separator>
+                    <button name="action_next" position="after">
+                        <button name="import_local"
+                                string="Import from local file"
+                                type="object" />
+                    </button>
+                    <button name="action_next" position="attributes">
+                        <attribute name="string">Import from Internet</attribute>
+                        <attribute name="attrs">{'invisible': [('import_fail', '=', True)]}</attribute>
+                    </button>
+                </data>
+            </field>
+        </record>
+    
+        <record id="action_l10n_es_partner_import" model="ir.actions.act_window">
+            <field name="name">Import spanish bank data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.partner.import.wizard</field>
+            <field name="view_id" ref="l10n_es_partner_import_wizard"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    
+        <!-- register on configuration -->
+        <record id="config_wizard_l10n_es_partner" model="ir.actions.todo">
+            <field name="name">Import spanish bank data</field>
+            <field name="action_id" ref="action_l10n_es_partner_import"/>
+            <field name="sequence">20</field>
+        </record>
+
+    </data>
+</openerp>
