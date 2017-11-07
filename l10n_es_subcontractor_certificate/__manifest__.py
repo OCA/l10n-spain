@@ -28,7 +28,7 @@
     "license": "AGPL-3",
     "category": "Accounting",
     "depends": ["purchase"],
-    "data": ["views/subcontractor_certificate_view.xml"],
+    "data": ["views/res_partner_views.xml"],
     "demo": [],
     "auto_install": False,
     'installable': True,

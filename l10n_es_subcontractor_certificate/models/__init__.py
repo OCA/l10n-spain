@@ -20,4 +20,6 @@
 #
 ##############################################################################
 
-from . import subcontractor_certificate
+from . import account_invoice
+from . import purchase_order
+from . import res_partner

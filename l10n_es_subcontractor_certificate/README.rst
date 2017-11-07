@@ -1,16 +1,19 @@
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+   :target: https://www.gnu.org/licenses/agpl
+   :alt: License: AGPL-3
 
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-    :alt: License: AGPL-3
-================================================================
+=============================
 Certificado de subcontratista
 =============================
 Este módulo permite gestionar el certificado de subcontratista de los
 proveedores, en su ficha la caducidad del certificado.
 
+Usage
+=====
+
 En pedidos de compra y facturas, al seleccionar el proveedor, si este
 tiene fecha de caducidad del certificado y es anterior a la fecha actual
 devolverá un aviso indicando que tiene el certificado caducado.
-
 
 Bug Tracker
 ===========
