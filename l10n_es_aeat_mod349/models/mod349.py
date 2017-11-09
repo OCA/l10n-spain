@@ -5,24 +5,12 @@
 # Copyright 2014 - Serv. Tecnol. Avanzados
 #                - Pedro M. Baeza (http://www.serviciosbaeza.com)
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
+# Copyright 2017 - Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import re
 from odoo import models, fields, api, exceptions, _
 from .account_invoice import OPERATION_KEYS
-
-
-# TODO: Quitarlo de aquí y pasarlo a l10n_es_aeat con sustituciones
-NAME_RESTRICTIVE_REGEXP = re.compile(
-    r"^[a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
-    r"àÀèÈìÌòÒùÙâÂêÊîÎôÔûÛ\.,-_&'´\\:;:/]*$", re.UNICODE | re.X)
-
-
-def _check_valid_string(text_to_check):
-    """Checks if string fits with RegExp"""
-    if text_to_check and NAME_RESTRICTIVE_REGEXP.match(text_to_check):
-        return True
-    return False
 
 
 def _format_partner_vat(partner_vat=None, country=None):
@@ -140,8 +128,9 @@ class Mod349(models.Model):
             for origin_inv in refund.origin_invoice_ids:
                 if origin_inv.state in ('open', 'paid'):
                     # searches for details of another 349s to restore
-                    refund_details = partner_detail_obj.search(
-                        [('invoice_id', '=', origin_inv.id)])
+                    refund_details = partner_detail_obj.search([
+                        ('invoice_id', '=', origin_inv.id),
+                    ], limit=1)
                     if refund_details:
                         # creates a dictionary key with partner_record id to
                         # after recover it
@@ -153,20 +142,23 @@ class Mod349(models.Model):
                         break
         # recorremos nuestro diccionario y vamos creando registros
         for partner_rec in record:
-            record_created = obj.create(
-                {'report_id': self.id,
-                 'partner_id': partner.id,
-                 'partner_vat': _format_partner_vat(
-                     partner_vat=partner.vat, country=partner_country),
-                 'operation_key': operation_key,
-                 'country_id': partner_country.id,
-                 'total_operation_amount': (
-                     partner_rec.total_operation_amount - sum(
-                         [x.amount_untaxed_signed for x in record[partner_rec]]
-                     )
-                 ),
-                 'total_origin_amount': partner_rec.total_operation_amount,
-                 'periot_type': partner_rec.report_id.periot_type})
+            record_created = obj.create({
+                'report_id': self.id,
+                'partner_id': partner.id,
+                'partner_vat': _format_partner_vat(
+                    partner_vat=partner.vat, country=partner_country
+                ),
+                'operation_key': operation_key,
+                'country_id': partner_country.id,
+                'total_operation_amount': (
+                    partner_rec.total_operation_amount - sum(
+                        [x.amount_untaxed_signed for x in record[partner_rec]]
+                    )
+                ),
+                'total_origin_amount': partner_rec.total_operation_amount,
+                'period_type': partner_rec.report_id.period_type,
+                'year': partner_rec.report_id.year,
+            })
             # Creation of partner detail lines
             for refund in record[partner_rec]:
                 obj_detail.create(
@@ -245,34 +237,10 @@ class Mod349(models.Model):
                     _('Contact name (Full name) must have name and surname'))
 
     @api.multi
-    def _check_restrictive_names(self):
-        """Checks if names have not allowed characters and returns a message"""
-        for item in self:
-            if not _check_valid_string(item.contact_name):
-                raise exceptions.Warning(
-                    _("Name '%s' have not allowed characters.\nPlease, fix it "
-                      "before confirm the report") % item.contact_name)
-            # Check partner record partner names
-            for partner_record in item.partner_record_ids:
-                if not _check_valid_string(partner_record.partner_id.name):
-                    raise exceptions.Warning(
-                        _("Partner name '%s' in partner records is not valid "
-                          "due to incorrect characters") %
-                        partner_record.partner_id.name)
-            # Check partner refund partner names
-            for partner_refund in item.partner_refund_ids:
-                if not _check_valid_string(partner_refund.partner_id.name):
-                    raise exceptions.Warning(
-                        _("Partner name '%s' in refund lines is not valid due "
-                          "to incorrect characters") %
-                        partner_refund.partner_id.name)
-
-    @api.multi
     def button_confirm(self):
         """Checks if all the fields of the report are correctly filled"""
         self._check_names()
         self._check_report_lines()
-        self._check_restrictive_names()
         return super(Mod349, self).button_confirm()
 
 
