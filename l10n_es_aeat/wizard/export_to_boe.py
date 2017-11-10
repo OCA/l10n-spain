@@ -41,11 +41,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return fill * length
         # Replace accents and convert to upper
         from unidecode import unidecode
-        text = unicode(text).upper()
+        text = text.upper()
         text = ''.join([unidecode(x) if x not in (u'Ñ', u'Ç') else x
                         for x in text])
         text = re.sub(
-            ur"[^A-Z0-9\s\.,-_&'´\\:;/\(\)ÑÇ\"]", '', text, re.UNICODE | re.X)
+            r"[^A-Z0-9\s\.,-_&'´\\:;/\(\)ÑÇ\"]", '', text, re.UNICODE | re.X)
         ascii_string = text.encode('iso-8859-1')
         # Cut the string if it is too long
         if len(ascii_string) > length:
