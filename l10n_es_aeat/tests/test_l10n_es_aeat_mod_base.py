@@ -91,7 +91,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         _logger.debug('Creating sale invoice: date = %s' % dt)
         if self.debug:
             _logger.debug('%14s %9s' % ('SALE TAX', 'PRICE'))
-        for desc, values in self.taxes_sale.iteritems():
+        for desc, values in self.taxes_sale.items():
             if self.debug:
                 _logger.debug('%14s %9s' % (desc, values[0]))
             tax = self.env['account.tax'].search([
@@ -124,7 +124,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         _logger.debug('Creating purchase invoice: date = %s' % dt)
         if self.debug:
             _logger.debug('%14s %9s' % ('PURCHASE TAX', 'PRICE'))
-        for desc, values in self.taxes_purchase.iteritems():
+        for desc, values in self.taxes_purchase.items():
             if self.debug:
                 _logger.debug('%14s %9s' % (desc, values[0]))
             tax = self.env['account.tax'].search([

@@ -9,7 +9,7 @@
 {
     'name': "AEAT Base",
     'summary': "Modulo base para declaraciones de la AEAT",
-    'version': "10.0.1.0.3",
+    'version': "11.0.1.0.0",
     'author': "Pexego,"
               "Acysos,"
               "AvanzOSC,"
@@ -19,7 +19,7 @@
     'website': "https://odoo-community.org/",
     'category': "Accounting & Finance",
     'depends': [
-        'account',
+        'account_invoicing',
         'base_iban',
         'account_tax_balance',
     ],
