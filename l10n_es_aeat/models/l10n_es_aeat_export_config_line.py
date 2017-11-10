@@ -93,9 +93,9 @@ class AeatModelExportConfigLine(models.Model):
             elif line.expression:
                 line.value = _('Expression: ')
                 if len(line.expression) > 35:
-                    line.value += u'"%s…"' % line.expression[:34]
+                    line.value += '"%s…"' % line.expression[:34]
                 else:
-                    line.value += u'"%s"' % line.expression
+                    line.value += '"%s"' % line.expression
             else:
                 line.value = _('Fixed: {}').format(
                     line.fixed_value or _('<blank>')
