@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <menuitem id="menu_spanish_financial_reports"
+              name="Spanish Financial Reports"
+              parent="account.menu_finance_reports"
+    />
+
+    <menuitem id="menu_account_balance_reporting_templates"
+              name="Spanish Financial Reports"
+              parent="account.account_management_menu"
+              action="action_view_account_balance_reporting_template"
+    />
+
+    <menuitem id="menu_account_balance_reporting_reports"
+              name="Financial Reports"
+              parent="menu_spanish_financial_reports"
+              action="action_view_account_balance_reporting"
+    />
+
+</odoo>
+

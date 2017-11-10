@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!-- Copyright 2009 Pexego Sistemas Informáticos - Borja López Soilán
+     Copyright 2013-2017 Tecnativa
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <!-- Template form view -->
+    <record model="ir.ui.view" id="view_account_balance_reporting_template_form">
+        <field name="name">account.balance.reporting.template.form</field>
+        <field name="model">account.balance.reporting.template</field>
+        <field name="arch" type="xml">
+            <form string="Account balance report template">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group col="4">
+                        <field name="report_xml_id" domain="[('model','=','account.balance.reporting')]"/>
+                        <field name="balance_mode"/>
+                    </group>
+                    <notebook>
+                        <page string="Information">
+                            <field name="description" nolabel="1"/>
+                        </page>
+                        <page string="Lines">
+                            <field name="line_ids" nolabel="1" context="{'template_id':active_id}">
+                                <tree string="Template lines" colors="blue:css_class in ('l1')" version="7.0" editable="top">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="current_value"/>
+                                    <field name="previous_value"/>
+                                    <field name="negate"/>
+                                    <field name="template_id" invisible="1"/>
+                                    <field name="parent_id" domain="[('template_id', '=', template_id)]"/>
+                                    <field name="css_class"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!-- Template tree view -->
+        <record model="ir.ui.view" id="view_account_balance_reporting_template_tree">
+            <field name="name">account.balance.reporting.template.tree</field>
+            <field name="model">account.balance.reporting.template</field>
+            <field name="arch" type="xml">
+                <tree string="Account balance report templates">
+                    <field name="name"/>
+                    <field name="report_xml_id"/>
+                    <field name="balance_mode"/>
+                    <field name="tmpl_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Window action -->
+
+        <record model="ir.actions.act_window" id="action_view_account_balance_reporting_template">
+            <field name="name">Account balance templates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.balance.reporting.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_account_balance_reporting_template_tree"/>
+        </record>
+
+</odoo>
