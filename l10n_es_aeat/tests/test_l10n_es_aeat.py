@@ -11,7 +11,7 @@ class TestL10nEsAeat(common.TransactionCase):
         self.export_model = self.env["l10n.es.aeat.report.export_to_boe"]
 
     def test_format_string(self):
-        text = u" &'(),-./01:;abAB_ÇÑ\"áéíóúÁÉÍÓÚ+!"
+        text = " &'(),-./01:;abAB_ÇÑ\"áéíóúÁÉÍÓÚ+!"
         self.assertEqual(
             self.export_model._format_string(text, len(text)),
-            u" &'(),-./01:;ABAB_ÇÑ\"AEIOUAEIOU  ".encode('iso-8859-1'))
+            " &'(),-./01:;ABAB_ÇÑ\"AEIOUAEIOU  ".encode('iso-8859-1'))
