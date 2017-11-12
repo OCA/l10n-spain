@@ -16,7 +16,7 @@ class PrintWizard(models.TransientModel):
     def xlsx_export(self):
         self.ensure_one()
         data = self.read()[0]
-        report_name = 'account_balance_reporting_xls.generic_report'
+        report_name = 'account_balance_reporting_xlsx.generic_report'
         return {
             'type': 'ir.actions.report.xml',
             'report_name': report_name,

@@ -136,6 +136,6 @@ class AccountBalanceReportingXlsx(ReportXlsx):
 
 if ReportXlsx != object:
     AccountBalanceReportingXlsx(
-        'report.account_balance_reporting_xls.generic_report',
+        'report.account_balance_reporting_xlsx.generic_report',
         'account.balance.reporting', parser=report_sxw.rml_parse
     )

@@ -2,7 +2,7 @@
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-from odoo.addons.account_balance_reporting.tests.test_account_balance \
+from openerp.addons.account_balance_reporting.tests.test_account_balance \
     import TestAccountBalanceBase
 
 

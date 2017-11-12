@@ -363,5 +363,5 @@ class TestAccountBalance(TestAccountBalanceBase):
             report_action,
         )
         # Check if report template is correct
-        report_html = self.env['report'].get_html(self.report.id, report_name)
+        report_html = self.env['report'].get_html(self.report, report_name)
         self.assertIn('<tbody class="balance_reporting">', report_html)
