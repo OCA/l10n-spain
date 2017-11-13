@@ -51,10 +51,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]
         # Format the string
+        ascii_fill = fill.encode('iso-8859-1')
         if align == '<':
-            ascii_string = ascii_string.ljust(length, fill)
+            ascii_string = ascii_string.ljust(length, ascii_fill)
         elif align == '>':
-            ascii_string = ascii_string.rjust(length, fill)
+            ascii_string = ascii_string.rjust(length, ascii_fill)
         else:
             assert False, _('Wrong aling option. It should be < or >')
         # Sanity-check
