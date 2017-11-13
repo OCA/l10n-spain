@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2016 Pedro M. Baeza
+# Copyright 2016 Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
@@ -308,7 +307,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         if self.debug:
             self._print_tax_lines(model303.tax_line_ids)
         # Check tax lines
-        for box, result in self.taxes_result.iteritems():
+        for box, result in self.taxes_result.items():
             _logger.debug('Checking tax line: %s' % box)
             lines = model303.tax_line_ids.filtered(
                 lambda x: x.field_number == int(box))
