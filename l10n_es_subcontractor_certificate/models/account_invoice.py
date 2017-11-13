@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from odoo import models, fields, api, _
+from odoo import models, api, _
 
 EXPIRED_WARNING_AEAT = {
     'title': _('Warning!'),

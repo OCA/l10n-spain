@@ -20,7 +20,7 @@
 #
 ##############################################################################
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 
 
 class ResPartner(models.Model):
@@ -37,12 +37,14 @@ class ResPartner(models.Model):
         string='SS Certificate Expirated',
         compute='_compute_certificate_expired_ss')
 
-    @api.one
+    @api.multi
     def _compute_certificate_expired_aeat(self):
-        self.certificate_expired_aeat = self.certificate_expiration_aeat and \
-            (self.certificate_expiration_aeat < fields.Date.today())
+        for partner in self:
+            self.certificate_expired_aeat = self.certificate_expiration_aeat \
+                and (self.certificate_expiration_aeat < fields.Date.today())
 
-    @api.one
+    @api.multi
     def _compute_certificate_expired_ss(self):
-        self.certificate_expired_ss = self.certificate_expiration_ss and \
-            (self.certificate_expiration_ss < fields.Date.today())
+        for partner in self:
+            self.certificate_expired_ss = self.certificate_expiration_ss and \
+                (self.certificate_expiration_ss < fields.Date.today())
