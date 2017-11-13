@@ -824,7 +824,7 @@ class AccountInvoice(osv.Model):
                 if company.sii_test:
                     port_name += 'Pruebas'
             serv = client.bind('siiService', port_name)
-            if not invoice.sii_state == 'no_sent':
+            if not invoice.sii_state == 'not_sent':
                 tipo_comunicacion = 'A0'
                 if invoice.sii_travel_tax_free:
                     tipo_comunicacion = 'A4'
