@@ -6,7 +6,7 @@
 {
     'name': "Importaciones con DUA",
     'category': 'Localization/Account Charts',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'depends': [
         'product',
         'l10n_es',
@@ -19,7 +19,7 @@
     ],
     'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.antiun.com',
+    'website': 'https://github.com/OCA/l10n-spain',
     'license': 'AGPL-3',
     'installable': True,
 }

@@ -76,7 +76,7 @@ anterior
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/10.0
+   :target: https://runbot.odoo-community.org/runbot/189/11.0
 
 
 Procedimiento
@@ -111,23 +111,23 @@ Al validar ambas facturas nos crea los siguientes asientos:
 
 1. Asiento factura proveedor extranjero
 
-.. csv-table::
-   :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
-   :widths: 30, 10, 10, 30, 10
+    .. csv-table::
+       :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
+       :widths: 30, 10, 10, 30, 10
 
-   "400000 Proveedores", 0.00, 100.00
-   "600000 Compras", 100.00, 0.00
+       "400000 Proveedores", 0.00, 100.00
+       "600000 Compras", 100.00, 0.00
 
 2. Asiento factura empresa de tránsito
 
-.. csv-table::
-   :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
-   :widths: 30, 10, 10, 30, 10
+    .. csv-table::
+       :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
+       :widths: 30, 10, 10, 30, 10
 
-   "410000 Acreedores", 0.00, 31.50
-   "472000 IVA Soportado", 31.50, 0.00, "Importaciones. Cuota 21%", 31.50
-   "600000 Compras", 0.00, 150.00
-   "600000 Compras", 150.00, 0.00, "Importaciones. Base 21%", 150.00
+       "410000 Acreedores", 0.00, 31.50
+       "472000 IVA Soportado", 31.50, 0.00, "Importaciones. Cuota 21%", 31.50
+       "600000 Compras", 0.00, 150.00
+       "600000 Compras", 150.00, 0.00, "Importaciones. Base 21%", 150.00
 
 
 Créditos
@@ -136,9 +136,9 @@ Créditos
 Contribuidores
 --------------
 
-* Rafael Blasco <rafabn@antiun.com>
-* Antonio Espinosa <antonioea@antiun.com>
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Rafael Blasco <rafael.blasco@tecnativa.com>
+* Antonio Espinosa <antonio.espinosa@tecnativa.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Albert Cabedo <albert@gafic.com>
 * Luis M. Ontalba <luis.martinez@tecnativa.com>
 
