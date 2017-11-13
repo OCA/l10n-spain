@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -8,7 +7,6 @@ import werkzeug
 
 from odoo import http
 from odoo.http import request
-from odoo.addons.website_sale.controllers.main import WebsiteSale
 
 _logger = logging.getLogger(__name__)
 
@@ -49,18 +47,5 @@ class RedsysController(http.Controller):
                 'order': order,
             }
             return request.render('payment_redsys.%s' % str(page), res)
-        except:
+        except Exception:
             return request.render('website.404')
-
-
-class WebsiteSaleRedsys(WebsiteSale):
-    @http.route(['/shop/payment/transaction/<int:acquirer_id>'], type='json',
-                auth="public", website=True)
-    def payment_transaction(self, acquirer_id, tx_type='form', token=None,
-                            **kwargs):
-        tx_id = super(WebsiteSaleRedsys, self).payment_transaction(
-            acquirer_id, tx_type, token, **kwargs)
-        acquirer = request.env['payment.acquirer'].browse(acquirer_id)
-        if acquirer.provider == 'redsys':
-            request.env['website'].sale_reset()
-        return tx_id
