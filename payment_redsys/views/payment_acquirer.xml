@@ -36,13 +36,9 @@
         <field name="model">payment.transaction</field>
         <field name="inherit_id" ref="payment.transaction_form"/>
         <field name="arch" type="xml">
-            <xpath expr='//notebook' position='inside'>
-                <page string="Redsys TX Details">
-                    <group>
-                        <field name="redsys_txnid"/>
-                    </group>
-                </page>
-            </xpath>
+            <field name="date_validate" position='after'>
+                <field name="redsys_txnid"/>
+            </field>
         </field>
     </record>
 
