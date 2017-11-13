@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013 Alberto Martín Cortada (Guadaltech)
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa <antonio.espinosa@tecnativa.com>
@@ -7,13 +6,13 @@
 
 {
     "name": "AEAT modelo 303",
-    "version": "10.0.1.2.0",
-    'category': "Accounting & Finance",
-    'author': "Guadaltech,"
+    "version": "11.0.1.0.0",
+    "category": "Accounting",
+    "author": "Guadaltech,"
               "AvanzOSC,"
               "Tecnativa,"
               "Odoo Community Association (OCA)",
-    'website': "https://odoo-community.org/",
+    "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
         "l10n_es",
@@ -27,5 +26,5 @@
         "security/l10n_es_aeat_mod303_security.xml",
         "security/ir.model.access.csv",
     ],
-    'installable': True,
+    "installable": True,
 }
