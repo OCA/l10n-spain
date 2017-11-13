@@ -51,9 +51,8 @@ class AccountInvoice(models.Model):
     _inherit = ['account.invoice']
 
     @api.onchange('partner_id')
-    def onchange_partner_id(self):
-        # res = super(AccountInvoice, self).onchange_partner_id()
-        res = {}
+    def _onchange_partner_id(self):
+        res = super(AccountInvoice, self)._onchange_partner_id()
         if not self.partner_id:
             return res
         if self.type == 'in_invoice':
