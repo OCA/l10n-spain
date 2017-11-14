@@ -122,7 +122,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if not active_id or not active_model:
             return False
         report = self.env[active_model].browse(active_id)
-        contents = ''
+        contents = b''
         if report.export_config_id:
             contents += self.action_get_file_from_config(report)
         else:
@@ -165,7 +165,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     @api.multi
     def _export_config(self, obj, export_config):
         self.ensure_one()
-        contents = ''
+        contents = b''
         for line in export_config.config_line_ids:
             contents += self._export_line_process(obj, line)
         return contents
@@ -188,7 +188,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             result = merge_eval(exp)
             return result and tools.ustr(result) or ''
 
-        val = ''
+        val = b''
         if line.conditional_expression:
             if not merge_eval(line.conditional_expression):
                 return ''
@@ -204,7 +204,10 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                     field_val = EXPRESSION_PATTERN.sub(merge, line.expression)
                 else:
                     field_val = line.fixed_value
-                val += self._export_simple_record(line, field_val)
+                record = self._export_simple_record(line, field_val)
+                if isinstance(record, str):
+                    record = record.encode('iso-8859-1')
+                val += record
         return val
 
     @api.multi
