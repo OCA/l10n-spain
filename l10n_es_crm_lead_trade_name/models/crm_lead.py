@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería, S.L.
-# © 2017 QubiQ 2010, S.L.
+# Copyright 2015 Antiun Ingeniería, S.L.
+# Copyright 2017 QubiQ 2010, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class CrmLead(models.Model):
@@ -11,18 +11,17 @@ class CrmLead(models.Model):
 
     trade_name = fields.Char()
 
-    @api.model
-    def _lead_create_contact(self, lead, name, is_company, parent_id=False):
+    def _lead_create_contact(self, name, is_company, parent_id=False):
         """Add trade name to partner."""
-        ctx = {"default_comercial": lead.trade_name}
+        ctx = {"default_comercial": self.trade_name}
         return (super(CrmLead, self.with_context(**ctx))
-                ._lead_create_contact(lead, name, is_company, parent_id))
+                ._lead_create_contact(name, is_company, parent_id))
 
-    @api.multi
-    def on_change_partner_id(self, partner_id):
+    @api.onchange('partner_id')
+    def _onchange_partner_id(self):
         """Recover trade name from partner if available."""
-        result = super(CrmLead, self).on_change_partner_id(partner_id)
-        if partner_id:
-            partner = self.env['res.partner'].browse(partner_id)
-            result["value"]["trade_name"] = partner.comercial
-        return result
+        values = self._onchange_partner_id_values(
+            self.partner_id.id if self.partner_id else False)
+        if self.partner_id:
+            values["trade_name"] = self.partner_id.comercial
+        self.update(values)

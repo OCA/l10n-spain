@@ -25,4 +25,18 @@
             </data>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="view_create_opportunity_simplified">
+        <field name="name">crm.lead.form.simple</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_create_opportunity_simplified"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='phone']" position="after">
+                    <field name="trade_name" invisible="1"/>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
 </odoo>

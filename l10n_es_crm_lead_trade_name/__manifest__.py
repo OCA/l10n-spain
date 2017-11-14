@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-# © 2015 Antiun Ingeniería, S.L.
-# © 2017 QubiQ 2010, S.L.
+# Copyright 2015 Antiun Ingeniería, S.L.
+# Copyright 2017 QubiQ 2010, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Trade name in leads",
     "summary": "Add trade name field to leads",
-    "version": "9.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Customer Relationship Management",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Antiun Ingeniería S.L.,"
