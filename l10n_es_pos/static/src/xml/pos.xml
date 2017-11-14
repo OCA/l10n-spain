@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
+
     <t t-extend="PosTicket">
-        <t t-jquery=".pos-center-align t:first" t-operation="after">
-            <br/><t t-esc="order.name" />
+        <t t-jquery="div.pos-center-align:first" t-operation="after">
+            <div class="pos-center-align" t-if="!order.is_to_invoice()">
+                  Simplified invoice: <t t-esc="order.simplified_invoice"/>
+            </div>
         </t>
-        <t t-jquery="[t-esc='widget.pos.company.name']" t-operation="after">
-            <br />VAT: <t t-esc="widget.pos.company.vat || ''"/>
-        </t>
-        <t t-jquery="[t-esc='widget.pos.shop.name']" t-operation="after">
-            <t t-if="order.attributes.client">
-                <br/><br/>
-                <span class="customer_title">Customer data</span><br />
-                Name: <t t-esc="order.attributes.client.name ? order.attributes.client.name : ''"/><br />
-                VAT: <t t-esc="order.attributes.client.vat ? order.attributes.client.vat : ''"/><br />
-                Address: <t t-esc="order.attributes.client.street ? order.attributes.client.street : ''"/>
+        <t t-jquery="t[t-esc='widget.pos.company.name']" t-operation="after">
+            <t t-if="widget.pos.company.vat">
+                <br />
+                VAT: <t t-esc="widget.pos.company.vat"/>
             </t>
         </t>
-        <t t-jquery="[t-esc='widget.format_currency(order.getSubtotal())']" t-operation="replace">
-            <t t-esc="widget.format_currency(order.getTotalTaxExcluded())"/>
+        <t t-jquery='t[t-esc="widget.pos.company.phone || &apos;&apos;"]' t-operation="after">
+            <br />
+            <t t-esc="widget.pos.company.street" t-if="widget.pos.company.street" /><br />
+            <t t-esc="widget.pos.company.zip" t-if="widget.pos.company.zip"  />
+            <t t-esc="widget.pos.company.city" t-if="widget.pos.company.city"  />
+            <t t-if="widget.pos.company.state_id">
+                (<t t-esc="widget.pos.company.state_id[1]" />)
+            </t>
+            <br />
+        </t>
+        <t t-jquery="table.receipt-orderlines" t-operation="before">
+            <t t-if="order.get_client()">
+                Customer: <t t-esc="order.get_client().name" /><br />
+                <t t-if="order.get_client().vat">
+                    VAT: <t t-esc="order.get_client().vat" /><br />
+                </t>
+                <t t-if="order.get_client().address != ',  , '">
+                    <t t-esc="order.get_client().address" />
+                </t>
+                <br /><br />
+            </t>
         </t>
     </t>
+
 </templates>
