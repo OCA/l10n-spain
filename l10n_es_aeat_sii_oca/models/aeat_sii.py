@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # (c) 2017 Diagram Software S.L.
 # (c) 2017 Consultoría Informática Studio 73 S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
