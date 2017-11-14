@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- POS order form -->
+        <record id="view_pos_pos_form_simplified_invoice" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <field name="pos_reference" position="after">
+                    <field name="simplified_invoice" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- POS order search -->
+        <record id="view_pos_order_filter_simplified_invoice" model="ir.ui.view">
+            <field name="name">POS Order (add filters for simplified field)</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <field name="user_id" position="before">
+                    <separator/>
+                    <filter string="Invoices" name="invoices" domain="[('simplified_invoice', '=', False)]"/>
+                    <filter string="Simplified invoices" name="invoices" domain="[('simplified_invoice', '!=', False)]"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- POS config form -->
+        <record id="pos_config_view_form" model="ir.ui.view">
+            <field name="name">pos.config.form</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <div id="receipt" position="after">
+                    <h2>Simplified Invoices</h2>
+                    <div class="row mt16 o_settings_container" id="simplified_invoice">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="simple_invoice_prefix"/>
+                                <div class="content-group mt16">
+                                    <field name="simple_invoice_prefix" placeholder="TPVXXX#"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="simple_invoice_padding"/>
+                                <div class="content-group mt16">
+                                    <field name="simple_invoice_padding"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="simple_invoice_number"/>
+                                <div class="content-group mt16">
+                                    <field name="simple_invoice_number"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="simplified_invoice_limit"/>
+                                <div class="text-muted">
+                                   Over this amount is not legally possible to create a simplified invoice
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="simplified_invoice_limit"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>
