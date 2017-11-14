@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class AccountInvoiceRefund(models.TransientModel):

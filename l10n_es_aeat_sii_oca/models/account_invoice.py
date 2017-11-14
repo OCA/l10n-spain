@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73>
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
@@ -10,7 +9,7 @@ import json
 from odoo import _, api, fields, exceptions, models
 from requests import Session
 
-from odoo.modules.registry import RegistryManager
+from odoo.modules.registry import Registry
 
 _logger = logging.getLogger(__name__)
 
@@ -839,9 +838,9 @@ class AccountInvoice(models.Model):
             public_crt = sii_config.public_key
             private_key = sii_config.private_key
         else:
-            public_crt = self.env['ir.config_parameter'].get_param(
+            public_crt = self.env['ir.config_parameter'].sudo().get_param(
                 'l10n_es_aeat_sii.publicCrt', False)
-            private_key = self.env['ir.config_parameter'].get_param(
+            private_key = self.env['ir.config_parameter'].sudo().get_param(
                 'l10n_es_aeat_sii.privateKey', False)
         session = Session()
         session.cert = (public_crt, private_key)
@@ -885,13 +884,13 @@ class AccountInvoice(models.Model):
             port_name = ''
             wsdl = ''
             if invoice.type in ['out_invoice', 'out_refund']:
-                wsdl = self.env['ir.config_parameter'].get_param(
+                wsdl = self.env['ir.config_parameter'].sudo().get_param(
                     'l10n_es_aeat_sii.wsdl_out', False)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type in ['in_invoice', 'in_refund']:
-                wsdl = self.env['ir.config_parameter'].get_param(
+                wsdl = self.env['ir.config_parameter'].sudo().get_param(
                     'l10n_es_aeat_sii.wsdl_in', False)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
@@ -945,13 +944,13 @@ class AccountInvoice(models.Model):
                 inv_vals['sii_return'] = res
                 send_error = False
                 if res_line['CodigoErrorRegistro']:
-                    send_error = u"{} | {}".format(
-                        unicode(res_line['CodigoErrorRegistro']),
-                        unicode(res_line['DescripcionErrorRegistro'])[:60])
+                    send_error = "{} | {}".format(
+                        str(res_line['CodigoErrorRegistro']),
+                        str(res_line['DescripcionErrorRegistro'])[:60])
                 inv_vals['sii_send_error'] = send_error
                 invoice.write(inv_vals)
             except Exception as fault:
-                new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
+                new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env['account.invoice'].browse(self.id)
                 inv_vals.update({
@@ -999,13 +998,13 @@ class AccountInvoice(models.Model):
             port_name = ''
             wsdl = ''
             if invoice.type in ['out_invoice', 'out_refund']:
-                wsdl = self.env['ir.config_parameter'].get_param(
+                wsdl = self.env['ir.config_parameter'].sudo().get_param(
                     'l10n_es_aeat_sii.wsdl_out', False)
                 port_name = 'SuministroFactEmitidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
             elif invoice.type in ['in_invoice', 'in_refund']:
-                wsdl = self.env['ir.config_parameter'].get_param(
+                wsdl = self.env['ir.config_parameter'].sudo().get_param(
                     'l10n_es_aeat_sii.wsdl_in', False)
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
@@ -1036,12 +1035,12 @@ class AccountInvoice(models.Model):
                 send_error = False
                 res_line = res['RespuestaLinea'][0]
                 if res_line['CodigoErrorRegistro']:
-                    send_error = u"{} | {}".format(
-                        unicode(res_line['CodigoErrorRegistro']),
-                        unicode(res_line['DescripcionErrorRegistro'])[:60])
+                    send_error = "{} | {}".format(
+                        str(res_line['CodigoErrorRegistro']),
+                        str(res_line['DescripcionErrorRegistro'])[:60])
                 invoice.sii_send_error = send_error
             except Exception as fault:
-                new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
+                new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env['account.invoice'].browse(self.id)
                 invoice.sii_send_error = fault
@@ -1120,10 +1119,10 @@ class AccountInvoice(models.Model):
         partner_ident = self.fiscal_position_id.sii_partner_identification_type
         if partner_ident:
             res = int(partner_ident)
-        elif self.fiscal_position_id.name == u'Régimen Intracomunitario':
+        elif self.fiscal_position_id.name == 'Régimen Intracomunitario':
             res = 2
         elif (self.fiscal_position_id.name ==
-              u'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
+              'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
             res = 3
         else:
             res = 1
