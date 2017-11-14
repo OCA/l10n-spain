@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Diagram Software S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 
-from openerp import _, api, exceptions, fields, models
-from openerp.exceptions import ValidationError
-from openerp.tools import config
-from openerp import release
+from odoo import _, api, exceptions, fields, models
+from odoo.exceptions import ValidationError
+from odoo.tools import config
+from odoo import release
 import contextlib
 import os
 import tempfile
