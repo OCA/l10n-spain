@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Tecnativa - Antonio Espinosa
 # Copyright 2015 Tecnativa - Jairo Llopis
 # Copyright 2017 Tecnativa - David Vidal
