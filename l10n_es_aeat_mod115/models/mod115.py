@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2015 Pedro M. Baeza
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
