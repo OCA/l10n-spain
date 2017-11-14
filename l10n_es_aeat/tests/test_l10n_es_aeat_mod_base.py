@@ -46,6 +46,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             'currency_id': self.ref('base.EUR'),
             'transfer_account_id': self.chart.transfer_account_id.id,
         })
+        wizard.onchange_chart_template_id()
         wizard.execute()
         return True
 
