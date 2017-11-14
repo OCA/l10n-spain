@@ -181,19 +181,11 @@
             <field name="type">ir.actions.server</field>
             <field name="state">code</field>
             <field name="model_id" ref="account.model_account_invoice" />
+            <field name="binding_model_id" ref="model_account_invoice" />
             <field name="code">
 if records:
     action = records.send_sii()
             </field>
-        </record>
-
-        <record id="action_send_sii_invoices_value" model="ir.values">
-            <field name="name">Send Invoices to SII</field>
-            <field name="key">action</field>
-            <field name="key2">client_action_multi</field>
-            <field name="model">account.invoice</field>
-            <field name="value"
-                   eval="'ir.actions.server,%d' % ref('l10n_es_aeat_sii.action_send_sii_invoices')" />
         </record>
 
 </odoo>
