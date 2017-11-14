@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="aeat_model_export_config_tree" model="ir.ui.view">
+    <field name="name">aeat.model.export.config.tree</field>
+    <field name="model">aeat.model.export.config</field>
+    <field name="arch" type="xml">
+        <tree string="BOE export configurations">
+            <field name="name"/>
+            <field name="model_number"/>
+            <field name="model_id"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+        </tree>
+    </field>
+</record>
+
+<record id="aeat_model_export_config_form" model="ir.ui.view">
+    <field name="name">aeat.model.export.config.form</field>
+    <field name="model">aeat.model.export.config</field>
+    <field name="arch" type="xml">
+        <form string="BOE export configuration">
+            <group>
+                <group>
+                    <field name="name"/>
+                    <field name="model_number"/>
+                    <field name="model_id"/>
+                </group>
+                <group>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                </group>
+            </group>
+            <group string="Configuration lines">
+                <field name="config_line_ids" nolabel="1"/>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record id="aeat_model_export_config_line_tree" model="ir.ui.view">
+    <field name="name">aeat.model.export.config.line.tree</field>
+    <field name="model">aeat.model.export.config.line</field>
+    <field name="arch" type="xml">
+        <tree string="AEAT export configurationline">
+            <field name="sequence" widget="handle"/>
+            <field name="name"/>
+            <field name="position"/>
+            <field name="size"/>
+            <field name="export_type"/>
+            <field name="value"/>
+            <field name="repeat"/>
+            <field name="conditional"/>
+            <field name="subconfig_id"/>
+        </tree>
+    </field>
+</record>
+
+<record id="aeat_model_export_config_line_form" model="ir.ui.view">
+    <field name="name">aeat.model.export.config.line.form</field>
+    <field name="model">aeat.model.export.config.line</field>
+    <field name="arch" type="xml">
+        <form string="AEAT export configuration line">
+            <h1>
+                <field name="name"/>
+            </h1>
+            <group>
+                <group string='Basic configuration' colspan="2" col="4">
+                    <field name="position"/>
+                    <field name="sequence"/>
+                    <field name="size"/>
+                    <field name="alignment"/>
+                </group>
+                <field name="export_config_id" invisible="1"/>
+                <group name="group_field_specification"
+                       string='Field especification'
+                       colspan="2"
+                        >
+                    <field name="export_type"/>
+                    <field name="subconfig_id"
+                           domain="[('id', '!=', export_config_id)]"
+                           attrs="{'invisible': [('export_type', '!=', 'subconfig')], 'required': [('export_type', '=', 'subconfig')]}"
+                            />
+                    <field name="repeat_expression"/>
+                    <field name="conditional_expression"/>
+                </group>
+                <group name="group_value"
+                       string='Value'
+                       colspan="4"
+                       col="4"
+                       attrs="{'invisible': [('export_type', '=', 'subconfig')]}"
+                        >
+                    <field name="fixed_value"
+                           attrs="{'readonly': [('expression', '!=', False)]}"
+                            />
+                    <field name="expression"
+                           attrs="{'readonly': [('fixed_value', '!=', False)]}"
+                            />
+                </group>
+                <group name="group_advanced_configuration"
+                       string="Advanced configuration"
+                       colspan="4"
+                       attrs="{'invisible': [('export_type', 'in', ('string', 'subconfig'))]}"
+                        >
+                   <group attrs="{'invisible': [('export_type', 'not in', ('float', 'integer'))]}"
+                          colspan="2">
+                       <group>
+                           <field name="apply_sign"/>
+                       </group>
+                       <group attrs="{'invisible':[('apply_sign', '=', False)]}">
+                           <field name="positive_sign"/>
+                           <field name="negative_sign"/>
+                           <field name="decimal_size"
+                                  attrs="{'invisible':[('export_type', '!=', 'float')]}"/>
+                       </group>
+                   </group>
+                    <group attrs="{'invisible':[('export_type', '!=', 'boolean')]}">
+                        <group>
+                            <field name="bool_no"/>
+                        </group>
+                        <group>
+                            <field name="bool_yes"/>
+                        </group>
+                    </group>
+                </group>
+            </group>
+        </form>
+    </field>
+</record>
+
+<record model="ir.actions.act_window" id="action_aeat_export_config">
+    <field name="name">Export config</field>
+    <field name="res_model">aeat.model.export.config</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="menu_aeat_export_config"
+          parent="menu_l10n_es_aeat_config"
+          action="action_aeat_export_config"
+          name="BOE export configuration"/>
+
+</odoo>

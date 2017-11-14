@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+
+<record id="res_partner_aeat" model="res.partner">
+    <field name="name">Agencia Estatal de Administración Tributaria (AEAT)</field>
+    <field name="supplier">1</field>
+    <field name="customer" eval="False"/>
+    <field name="is_company">1</field>
+    <field name="city">Madrid</field>
+    <field name="zip">28020</field>
+    <field name="country_id" ref="base.es"/>
+    <field name="vat">ESQ2826000H</field>
+    <field name="street">C/ Lérida 32-34 </field>
+    <field name="phone">91 583 80 72</field>
+    <field name="fax">91 583 70 05</field>
+    <field name="website">https://www.agenciatributaria.gob.es</field>
+    <field name="image" type="base64" file="l10n_es_aeat/static/description/icon.png"/>
+</record>
+
+</odoo>
