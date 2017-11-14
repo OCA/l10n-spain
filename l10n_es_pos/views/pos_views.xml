@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <!-- POS order form -->
+        <record id="view_pos_pos_form_simplified_invoice" model="ir.ui.view">
+            <field name="name">pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <field name="pos_reference" position="after">
+                    <field name="simplified_invoice" readonly="1"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- POS order search -->
+        <record id="view_pos_order_filter_simplified_invoice" model="ir.ui.view">
+            <field name="name">POS Order (add filters for simplified field)</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <field name="user_id" position="before">
+                    <separator/>
+                    <filter string="Invoices" name="invoices" domain="[('simplified_invoice', '=', False)]"/>
+                    <filter string="Simplified invoices" name="invoices" domain="[('simplified_invoice', '!=', False)]"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- POS config form -->
+        <record id="view_pos_config_form" model="ir.ui.view">
+            <field name="name">pos.config.form</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='features']" position="after">
+                    <group name="l10n_es" string="Spanish Legislation">
+                        <group name="simple_invoice">
+                            <field name="simple_invoice_prefix" placeholder="TPVXXX#" class="oe_inline"/>
+                            <field name="simple_invoice_padding" class="oe_inline"/>
+                            <field name="simple_invoice_number" class="oe_inline"/>
+                            <field name="simplified_invoice_limit" class="oe_inline"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
