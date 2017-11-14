@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
