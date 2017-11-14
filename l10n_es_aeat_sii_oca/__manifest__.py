@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Acysos - Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2017 Diagram Software S.L.
 # Copyright 2017 MINORISA - <ramon.guiu@minorisa.net>
@@ -11,7 +10,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "10.0.2.0.1",
+    "version": "11.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://odoospain.odoo.com",
     "author": "Acysos S.L.,"
