@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Ainara Galdona (http://www.avanzosc.es)
 # Copyright 2016 RGB Consulting SL (http://www.rgbconsulting.com)
 # Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
@@ -6,7 +5,7 @@
 # Copyright 2016 Jose Maria Alzaga (http://www.aselcis.com)
 # Copyright 2016 Ismael Calvo (http://factorlibre.com)
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
 from odoo import api, fields, models
 

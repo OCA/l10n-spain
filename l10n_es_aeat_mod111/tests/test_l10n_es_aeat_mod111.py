@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 # © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
@@ -112,7 +111,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
             self._print_tax_lines(self.model111.tax_line_ids)
 
         # Check tax lines
-        for box, result in self.taxes_result.iteritems():
+        for box, result in self.taxes_result.items():
             _logger.debug('Checking tax line: %s' % box)
             lines = self.model111.tax_line_ids.filtered(
                 lambda x: x.field_number == int(box))
