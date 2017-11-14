@@ -65,8 +65,6 @@ class L10nEsAeatMod340CalculateRecords(models.TransientModel):
             sign = 1
             if invoice.type in ('out_refund', 'in_refund'):
                 sign = -1
-            if invoice.id in [2069, 2070, 1227, 1233]:
-                print invoice.tax_line.mapped('base_code_id.id')
             if not any(
                 invoice.tax_line.filtered('base').mapped('base_code_id.mod340')
             ):
