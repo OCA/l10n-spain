@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015 Tecnativa - Antonio Espinosa
 # Copyright 2015 Tecnativa - Jairo Llopis
 # Copyright 2017 Tecnativa - David Vidal
@@ -6,9 +5,9 @@
 {
     'name': 'NUTS Regions for Spain',
     'summary': 'NUTS specific options for Spain',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Localisation/Europe',
-    'website': 'https://www.tecnativa.com',
+    'website': 'https://github.com/OCA/l10n-spain',
     'author': 'Tecnativa, '
               'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
