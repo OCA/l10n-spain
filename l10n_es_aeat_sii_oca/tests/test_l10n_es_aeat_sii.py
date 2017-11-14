@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from openerp.tests import common
-from openerp import exceptions, fields
+from odoo.tests import common
+from odoo import exceptions, fields
 
 
 def _deep_sort(obj):
@@ -114,10 +113,10 @@ class TestL10nEsAeatSii(common.SavepointCase):
             expedida_recibida: {
                 'TipoFactura': invoice_type,
                 'Contraparte': {
-                    'NombreRazon': u'Test partner',
-                    'NIF': u'F35999705',
+                    'NombreRazon': 'Test partner',
+                    'NIF': 'F35999705',
                 },
-                'DescripcionOperacion': u'/',
+                'DescripcionOperacion': '/',
                 'ClaveRegimenEspecialOTrascendencia': special_regime,
                 'ImporteTotal': 110,
             },
@@ -129,8 +128,8 @@ class TestL10nEsAeatSii(common.SavepointCase):
         }
         if self.invoice.type in ['out_invoice', 'out_refund']:
             res['IDFactura'].update({
-                'NumSerieFacturaEmisor': u'INV001',
-                'IDEmisorFactura': {'NIF': u'U2687761C'},
+                'NumSerieFacturaEmisor': 'INV001',
+                'IDEmisorFactura': {'NIF': 'U2687761C'},
             })
             res[expedida_recibida].update({
                 'TipoDesglose': {},
@@ -138,8 +137,8 @@ class TestL10nEsAeatSii(common.SavepointCase):
             })
         else:
             res['IDFactura'].update({
-                'NumSerieFacturaEmisor': u'sup0001',
-                'IDEmisorFactura': {'NIF': u'F35999705'},
+                'NumSerieFacturaEmisor': 'sup0001',
+                'IDEmisorFactura': {'NIF': 'F35999705'},
             })
             res[expedida_recibida].update({
                 "FechaRegContable": self.invoice._change_date_format(
@@ -175,7 +174,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.partner.vat = vat
         invoices = self.invoice._get_sii_invoice_dict()
         test_out_inv = self._get_invoices_test('F1', '01')
-        for key in invoices.keys():
+        for key in list(invoices.keys()):
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
                 _deep_sort(test_out_inv.get(key)),
@@ -184,7 +183,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.invoice.sii_refund_type = 'S'
         invoices = self.invoice._get_sii_invoice_dict()
         test_out_refund = self._get_invoices_test('R4', '01')
-        for key in invoices.keys():
+        for key in list(invoices.keys()):
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
                 _deep_sort(test_out_refund.get(key)),
@@ -193,7 +192,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.invoice.reference = 'sup0001'
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_invoice = self._get_invoices_test('F1', '01')
-        for key in invoices.keys():
+        for key in list(invoices.keys()):
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
                 _deep_sort(test_in_invoice.get(key)),
@@ -205,7 +204,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.invoice.origin_invoice_ids.type = 'in_invoice'
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_refund = self._get_invoices_test('R4', '01')
-        for key in invoices.keys():
+        for key in list(invoices.keys()):
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
                 _deep_sort(test_in_refund.get(key)),
