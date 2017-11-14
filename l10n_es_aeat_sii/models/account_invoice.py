@@ -1135,7 +1135,7 @@ class AccountInvoiceLine(osv.Model):
 
     def _get_sii_line_price_subtotal(self, cr, uid, line):
         """Obtain the effective invoice line price after discount."""
-        return round(line.price_unit * (1 - (line.discount or 0.0) / 100.0), 2)
+        return line.price_unit * (1 - (line.discount or 0.0) / 100.0)
 
     def _get_sii_tax_line_req(self, cr, uid, line):
         """Get any possible tax amounts for 'Recargo equivalencia'."""
