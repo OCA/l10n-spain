@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!--<record id="aeat_349_map_view_tree" model="ir.ui.view">-->
+            <!--<field name="name">aeat.349.map.view.tree</field>-->
+            <!--<field name="model">aeat.349.map</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Aeat 349 Map">-->
+                    <!--<field name="name"/>-->
+                    <!--<field name="date_from"/>-->
+                    <!--<field name="date_to"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="aeat_349_map_view_form" model="ir.ui.view">-->
+            <!--<field name="name">aeat.349.map.view.form</field>-->
+            <!--<field name="model">aeat.349.map</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="Aeat 349 Map">-->
+                    <!--<group col="4">-->
+                        <!--<field name="name"/>-->
+                        <!--<field name="date_from"/>-->
+                        <!--<field name="date_to"/>-->
+                    <!--</group>-->
+                    <!--<group string="Mapping Lines" col="4">-->
+                        <!--<field name='map_lines' nolabel="1"/>-->
+                    <!--</group>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record model="ir.actions.act_window" id="action_aeat_349_mapping">-->
+            <!--<field name="name">Aeat 349 Map</field>-->
+            <!--<field name="res_model">aeat.349.map</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+        <!--</record>-->
+        <record model="ir.actions.act_window" id="action_aeat_349_mapping">
+            <field name="name">aeat 349 Map</field>
+            <field name="res_model">aeat.349.map.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_aeat_349_map"
+                  parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+                  action="action_aeat_349_mapping"
+                  name="Aeat 349 Map"/>
+
+        <record id="l10n_es_aeat_349_map_lines_view_tree" model="ir.ui.view">
+            <field name="name">aeat.349.map.lines.view.tree</field>
+            <field name="model">aeat.349.map.line</field>
+            <field name="arch" type="xml">
+                <tree string="Aeat 349 Map" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="taxes" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+</odoo>

@@ -11,9 +11,10 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position_id" position="after">
-                    <field name="operation_key"/>
+                <field name="invoice_line_tax_ids" position="after">
+                    <field name="aeat_349_operation_key"/>
                 </field>
+
             </field>
         </record>
 
@@ -24,9 +25,10 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position_id" position="after">
-                    <field name="operation_key"/>
+                <field name="invoice_line_tax_ids" position="after">
+                    <field name="aeat_349_operation_key"/>
                 </field>
+
             </field>
         </record>
 
