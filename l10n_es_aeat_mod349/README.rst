@@ -78,8 +78,10 @@ Contributors
 * Omar Castiñeira Saavedra<omar@pexego.es>
 * Miguel López (Top Consultant)
 * Ignacio Martínez (Top Consultant)
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
-* Angel Moya <odoo@tecnativa.com>
+* Tecnativa (https://www.tecnativa.com):
+  * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+  * Angel Moya <odoo@tecnativa.com>
+  * Luis M. Ontalba <luis.martinez@tecnativa.com>
 
 Maintainer
 ----------
