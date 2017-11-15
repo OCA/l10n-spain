@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_partner
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,36 +12,15 @@ msgstr ""
 "PO-Revision-Date: 2017-12-29 03:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
 msgid "Bank"
-msgstr ""
-
-#. module: l10n_es_partner
-#: model:ir.model,name:l10n_es_partner.model_res_partner_bank
-msgid "Bank Accounts"
-msgstr ""
-
-#. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:77
-#, python-format
-msgid "Bank account should have 20 digits."
-msgstr ""
-
-#. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_account_journal_bank_acc_country_id
-msgid "Bank country"
-msgstr ""
-
-#. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_code
-msgid "Code"
 msgstr ""
 
 #. module: l10n_es_partner
@@ -65,22 +44,9 @@ msgid "Display Name"
 msgstr "Te tonen naam"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:72
-#, python-format
-msgid "IBAN account is not valid"
-msgstr ""
-
-#. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_es_partner
-#: model:ir.model.fields,help:l10n_es_partner.field_account_journal_bank_acc_country_id
-msgid ""
-"If the country of the bank is Spain, it validates the bank code or IBAN, "
-"formatting it accordingly."
-msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_import_fail
@@ -110,17 +76,6 @@ msgstr ""
 msgid ""
 "Internet (from Bank of Spain). Maybe this source will be not available from "
 "certain moment in time. You will need xlrd Python library."
-msgstr ""
-
-#. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:81
-#, python-format
-msgid "Invalid bank account."
-msgstr ""
-
-#. module: l10n_es_partner
-#: model:ir.model,name:l10n_es_partner.model_account_journal
-msgid "Journal"
 msgstr ""
 
 #. module: l10n_es_partner
@@ -177,13 +132,6 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model.fields,help:l10n_es_partner.field_res_bank_vat
 msgid "Value Added Tax number"
-msgstr ""
-
-#. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/account_journal.py:26
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:101
-#, python-format
-msgid "Warning"
 msgstr ""
 
 #. module: l10n_es_partner
