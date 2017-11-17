@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2014 Anubía, soluciones en la nube,SL (http://www.anubia.es)
+Copyright Juan Formoso <jfv@anubia.es>
+Copyright Alejandro Santana <alejandrosantana@anubia.es>
+Copyright Pedro M. Baeza <pedro.baeza@tecnativa.com>
+Copyright 2017 Qubiq - valentin vinagre <valentin.vinagre@qubiq.es>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+    <!-- Account Balance Report XLSX Form-->
+    <report
+        id="account_balance_reporting_generic_report_xlsx"
+        model="account.balance.reporting"
+        string="Report financial Xlsx"
+        report_type="xlsx"
+        name="account_balance_reporting_xlsx.generic_report"
+        file="generic_report"
+        attachment_use="False"
+    />
+    <!-- Account Balance Report XLSX Wizard-->
+    <report
+        id="wizard_account_balance_reporting_generic_report_xlsx"
+        model="account.balance.reporting.print.wizard"
+        string="Report financial Xlsx"
+        report_type="xlsx"
+        name="account_balance_reporting_xlsx.wizard_generic_report"
+        file="generic_report"
+        attachment_use="False"
+    />
+</odoo>
