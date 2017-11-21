@@ -83,12 +83,9 @@ class L10nEsAeatMod303Report(models.Model):
         selection=[
             ('I', 'To enter'),
             ('D', 'To return'),
-            ('N', 'No activity/Zero result')
+            ('C', 'To compensate'),
+            ('N', 'No activity/Zero result'),
         ], string="Result type", compute='_compute_result_type')
-    compensate = fields.Boolean(
-        string="Compensate", states={'done': [('readonly', True)]},
-        help="If checked, the return amount will be compensate in "
-             "future statements")
     bank_account_id = fields.Many2one(
         comodel_name="res.partner.bank", string="Bank account",
         states={'done': [('readonly', True)]}, oldname='bank_account')
@@ -150,7 +147,11 @@ class L10nEsAeatMod303Report(models.Model):
             report.allow_posting = True
 
     @api.multi
-    @api.depends('resultado_liquidacion')
+    @api.depends(
+        'resultado_liquidacion',
+        'period_type',
+        'devolucion_mensual',
+    )
     def _compute_result_type(self):
         for report in self:
             if report.resultado_liquidacion == 0:
@@ -158,7 +159,11 @@ class L10nEsAeatMod303Report(models.Model):
             elif report.resultado_liquidacion > 0:
                 report.result_type = 'I'
             else:
-                report.result_type = 'D'
+                if (report.devolucion_mensual or
+                        report.period_type in ('4T', '12')):
+                    report.result_type = 'D'
+                else:
+                    report.result_type = 'C'
 
     @api.onchange('year', 'period_type')
     def onchange_period_type(self):
@@ -170,11 +175,6 @@ class L10nEsAeatMod303Report(models.Model):
     def onchange_type(self):
         if self.type != 'C':
             self.previous_result = 0
-
-    @api.onchange('result_type')
-    def onchange_result_type(self):
-        if self.result_type != 'D':
-            self.compensate = False
 
     @api.multi
     def button_confirm(self):
