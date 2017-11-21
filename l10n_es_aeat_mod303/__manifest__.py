@@ -7,13 +7,13 @@
 
 {
     "name": "AEAT modelo 303",
-    "version": "10.0.1.2.0",
+    "version": "10.0.1.3.0",
     'category': "Accounting & Finance",
     'author': "Guadaltech,"
               "AvanzOSC,"
               "Tecnativa,"
               "Odoo Community Association (OCA)",
-    'website': "https://odoo-community.org/",
+    'website': "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
         "l10n_es",
