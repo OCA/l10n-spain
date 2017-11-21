@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_confirm_toponyms_es_form" model="ir.ui.view">
+        <field name="name">config.es.toponyms</field>
+        <field name="model">config.es.toponyms</field>
+        <field name="inherit_id" ref="base.res_config_installer"/>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <form position="attributes">
+                <attribute name="string">Spanish cities configuration</attribute>
+            </form>
+            <separator position="replace">
+                <group col="2" colspan="4" string="This wizard will add city and state information to zip codes">
+                    <label colspan="2" string="Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."/>
+                </group>
+            </separator>
+            <button name="action_next" position="after">
+                <button string="Configure from local"
+                        type="object"
+                        name="execute_local"
+                />
+            </button>
+            <button name="action_next" position="attributes">
+                <attribute name="string">Configure from GeoNames</attribute>
+            </button>
+       </field>
+    </record>
+
+    <record id="action_config_toponyms_es_form" model="ir.actions.act_window">
+        <field name="name">Spanish toponyms configuration</field>
+        <field name="res_model">config.es.toponyms</field>
+        <field name="view_id" ref="view_confirm_toponyms_es_form"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- register on configuration -->
+    <record id="config_wizard_toponyms_es" model="ir.actions.todo">
+        <field name="name">Spanish toponyms configuration</field>
+        <field name="action_id" ref="action_config_toponyms_es_form"/>
+        <field name="sequence">20</field>
+    </record>
+
+</odoo>

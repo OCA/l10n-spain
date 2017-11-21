@@ -1,0 +1,103 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_toponyms
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-29 22:48+0000\n"
+"PO-Revision-Date: 2017-06-29 22:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_toponyms
+#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Configure from GeoNames"
+msgstr "Configurar desde GeoNames"
+
+#. module: l10n_es_toponyms
+#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Configure from local"
+msgstr "Configurar desde local"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_date
+msgid "Created on"
+msgstr "Creado o"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_toponyms
+#: model:ir.model,name:l10n_es_toponyms.model_better_zip_geonames_import
+msgid "Import Better Zip from Geonames"
+msgstr "Importar CPs de GeoNames"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms___last_update
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_uid
+msgid "Last Updated by"
+msgstr "Derradeira actualización feita por"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_date
+msgid "Last Updated on"
+msgstr "Actualizado por derradeira vez o"
+
+#. module: l10n_es_toponyms
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: l10n_es_toponyms
+#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "Spanish cities configuration"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model:ir.actions.act_window,name:l10n_es_toponyms.action_config_toponyms_es_form
+msgid "Spanish toponyms configuration"
+msgstr "Configuración dos topónimos españois"
+
+#. module: l10n_es_toponyms
+#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid "This wizard will add city and state information to zip codes"
+msgstr ""
+
+#. module: l10n_es_toponyms
+#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+msgid ""
+"Warning! Adding this bunch of records can take a lot of time. If you are "
+"behind a SSL proxy, check your timeout."
+msgstr ""
+"¡Aviso! Engadir máis de 54000 rexistros pode  tardar moito tempo. Se está "
+"detrás dun proxy SSL, comprobe o 'timeout'."
+
+#. module: l10n_es_toponyms
+#: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
+msgid "config.es.toponyms"
+msgstr ""
