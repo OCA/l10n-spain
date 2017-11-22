@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 # © 2017 Creu Blanca
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime
 from lxml import etree
@@ -9,7 +8,7 @@ import pytz
 import random
 import base64
 import hashlib
-import urllib2
+import urllib
 import logging
 
 try:
@@ -210,6 +209,7 @@ class AccountInvoice(models.Model):
                                     'politica_de_firma_formato_facturae/' \
                                     'politica_de_firma_formato_facturae_v3_1' \
                                     '.pdf'
+            sig_policy_hash_value = 'Ohixl6upD6av8N7pEvDABhEL6hM='
             root = etree.fromstring(request)
             sign = xmlsig.template.create(
                 c14n_method=xmlsig.constants.TransformInclC14N,
@@ -309,16 +309,11 @@ class AccountInvoice(models.Model):
                 signing_certificate_cert,
                 etree.QName(etsi, 'IssuerSerial')
             )
-            issuer = ''
-            comps = certificate.get_certificate().get_issuer().get_components()
-            for entry in comps:
-                issuer = entry[0] + '=' + entry[1] + (
-                    (',' + issuer) if len(issuer) > 0 else ''
-                )
             etree.SubElement(
                 issuer_serial,
                 etree.QName(xmlsig.constants.DSigNs, 'X509IssuerName')
-            ).text = issuer
+            ).text = xmlsig.utils.get_rdns_name(
+                certificate.get_certificate().to_cryptography().issuer.rdns)
             etree.SubElement(
                 issuer_serial,
                 etree.QName(xmlsig.constants.DSigNs, 'X509SerialNumber')
@@ -342,7 +337,7 @@ class AccountInvoice(models.Model):
             etree.SubElement(
                 sig_policy_id,
                 etree.QName(etsi, 'Description')
-            ).text = u"Política de Firma FacturaE v3.1"
+            ).text = "Política de Firma FacturaE v3.1"
             sig_policy_hash = etree.SubElement(
                 signature_policy_id,
                 etree.QName(etsi, 'SigPolicyHash')
@@ -354,11 +349,16 @@ class AccountInvoice(models.Model):
                     'Algorithm': 'http://www.w3.org/2000/09/xmldsig#sha1'
                 }
             )
-            remote = urllib2.urlopen(sig_policy_identifier)
+            try:
+                remote = urllib.request.urlopen(sig_policy_identifier)
+                hash_value = base64.b64encode(
+                    hashlib.sha1(remote.read()).digest())
+            except urllib.request.HTTPError:
+                hash_value = sig_policy_hash_value
             etree.SubElement(
                 sig_policy_hash,
                 etree.QName(xmlsig.constants.DSigNs, 'DigestValue')
-            ).text = base64.b64encode(hashlib.sha1(remote.read()).digest())
+            ).text = hash_value
             signer_role = etree.SubElement(
                 signed_signature_properties,
                 etree.QName(etsi, 'SignerRole')
@@ -404,8 +404,7 @@ class AccountInvoice(models.Model):
         self.validate_facturae_fields()
 
         report = self.env.ref('l10n_es_facturae.report_facturae')
-        xml_facturae = self.env['report'].get_html([self.id],
-                                                   report.report_name)
+        xml_facturae = report.render_qweb_xml(self.ids, {})[0]
         # Quitamos espacios en blanco, para asegurar que el XML final quede
         # totalmente libre de ellos.
         tree = etree.fromstring(
@@ -436,7 +435,7 @@ class AccountInvoice(models.Model):
             etree.parse(self._get_facturae_schema_file()))
         try:
             facturae_schema.assertValid(etree.fromstring(xml_string))
-        except Exception, e:
+        except Exception as e:
             logger.warning(
                 "The XML file is invalid against the XML Schema Definition")
             logger.warning(xml_string)
@@ -446,5 +445,5 @@ class AccountInvoice(models.Model):
                   "XML Schema Definition. The generated XML file and the "
                   "full error have been written in the server logs. Here "
                   "is the error, which may give you an idea on the cause "
-                  "of the problem : %s") % unicode(e))
+                  "of the problem : %s") % str(e))
         return True
