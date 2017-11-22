@@ -77,7 +77,7 @@
     <template id="address_contact">
         <AddressInSpain t-if="partner.country_id.code == 'ES'">
             <Address t-length="80" t-esc="partner.street + (partner.street2 or '')"/>
-            <PostCode t-length="5" t-esc="partner.zip"/>
+            <PostCode t-length="5" t-esc="'00000' + partner.zip"/>
             <Town t-length="50" t-esc="partner.city"/>
             <Province t-length="20" t-esc="partner.state_id.name"/>
             <CountryCode t-esc="partner.country_id.code_alpha3"/>
@@ -90,7 +90,7 @@
         </OverseasAddress>
         <ContactDetails>
             <Telephone t-length="15" t-esc="partner.phone" t-if="partner.phone"/>
-            <TeleFax t-length="15" t-esc="partner.fax" t-if="partner.fax"/>
+            <TeleFax t-length="15" t-if="False"/>
             <WebAddress t-length="60" t-esc="partner.website" t-if="partner.website"/>
             <ElectronicMail t-length="60" t-esc="partner.email" t-if="partner.email"/>
             <ContactPersons t-length="40" t-esc="partner.name"/>

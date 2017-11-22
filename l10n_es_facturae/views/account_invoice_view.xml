@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <button name="action_invoice_cancel" position="before">
+            <button name="action_invoice_draft" position="before">
                 <button name="action_integrations" type="object"
                         string="Integrate"
                         groups="account.group_account_invoice"
