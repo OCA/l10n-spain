@@ -7,8 +7,6 @@ from odoo import exceptions
 from ..hooks import post_init_hook
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestCreateChart(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
