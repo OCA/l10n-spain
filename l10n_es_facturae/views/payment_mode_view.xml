@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_payment_mode_form_add_face_code" model="ir.ui.view">
+        <field name="name">payment.mode.form.add_face_code</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_mode_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_method_id" position="after">
+                <field name="facturae_code"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

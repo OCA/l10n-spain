@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name='company_id' position="after">
+                <field name="facturae"/>
+            </field>
+            <page name="sales_purchases" position="after">
+                  <page string='FACe' attrs="{'invisible': [('facturae', '=', False)]}">
+                    <group>
+                        <field name="invoice_integration_method_ids" widget="many2many_checkboxes"/>
+                        <field name="organo_gestor" attrs="{'required': [('facturae', '=', True)]}"/>
+                        <field name="unidad_tramitadora" attrs="{'required': [('facturae', '=', True)]}" />
+                        <field name="oficina_contable" attrs="{'required': [('facturae', '=', True)]}"/>
+                        <field name="organo_proponente"/>
+                    </group>
+                  </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
