@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
 =================================================================
@@ -43,13 +43,7 @@ español instalado, habrá que actualizar los impuestos usando el módulo
 https://github.com/OCA/account-financial-tools.
 
 En el caso de querer firmar el formato FacturaE desde Odoo, debe instalarse la
-última versión de xmlsec1, disponible en el repositorio
-https://github.com/lsh123/xmlsec, que debe compilarse e instalarse con todas
-sus dependencias.
-Para que funcione, debe añadirse el parámetro LD_LIBRARY_PATH con el valor
-/usr/local/lib.
-Posteriormente deberá instalarse la libreria xmlsec de Python.
-
+última versión de xmlsig medicante el comando ´pip install xmlsig´
 
 
 Configuración
@@ -73,7 +67,7 @@ denominado "Crear fichero Factura-E"
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/10.0
+   :target: https://runbot.odoo-community.org/runbot/189/11.0
 
 Problemas conocidos / Hoja de ruta
 ==================================
