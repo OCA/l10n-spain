@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # © 2009 Alejandro Sanchez <alejandro@asr-oss.com>
 # © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
 # © 2015 Tecon
 # © 2015 Omar Castiñeira (Comunitea)
 # © 2016 Tecnativa
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Creación de Factura-e",
@@ -21,7 +20,6 @@
     "license": "AGPL-3",
     "depends": [
         "account_payment_partner",
-        "account_accountant",
         "l10n_es_partner",
         "l10n_es",
         "base_iso3166",

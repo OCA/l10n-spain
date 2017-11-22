@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 # © 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
 # © 2017 Creu Blanca
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
 import logging
@@ -155,23 +154,23 @@ class TestL10nEsFacturae(common.TransactionCase):
             'invoice_line_tax_ids': [(6, 0, self.tax.ids)],
         })
         self.invoice_02._onchange_invoice_line_ids()
-
-    def test_facturae_generation(self):
-        main_partner = self.partner
-        main_partner.vat = 'ES05680675C'
-        main_partner.is_company = False
-        main_partner.firstname = 'Cliente'
-        main_partner.lastname = "de Prueba"
-        main_partner.country_id = self.ref('base.us'),
-        main_partner.state_id = self.ref('base.state_us_2')
+        self.partner.vat = 'ES05680675C'
+        self.partner.is_company = False
+        self.partner.firstname = 'Cliente'
+        self.partner.lastname = "de Prueba"
+        self.partner.country_id = self.ref('base.us')
+        self.partner.state_id = self.ref('base.state_us_2')
         self.invoice.action_invoice_open()
         self.invoice.number = '2999/99999'
-        wizard = self.env['create.facturae'].create({})
-        wizard.with_context(
+        self.main_company = self.env.ref('base.main_company')
+        self.wizard = self.env['create.facturae'].create({})
+
+    def test_facturae_generation(self):
+        self.wizard.with_context(
             active_ids=self.invoice.ids,
             active_model='account.invoice').create_facturae_file()
         generated_facturae = etree.fromstring(
-            base64.b64decode(wizard.facturae))
+            base64.b64decode(self.wizard.facturae))
         fe = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
         self.assertEqual(
             generated_facturae.xpath(
@@ -185,7 +184,8 @@ class TestL10nEsFacturae(common.TransactionCase):
                 namespaces={'fe': fe})[0].text,
             self.invoice.number
         )
-        main_company = self.env.ref('base.main_company')
+
+    def test_bank(self):
         self.bank.bank_id.bic = "CAIXESBB"
         with self.assertRaises(exceptions.ValidationError):
             self.invoice.validate_facturae_fields()
@@ -198,11 +198,15 @@ class TestL10nEsFacturae(common.TransactionCase):
         with self.assertRaises(exceptions.ValidationError):
             self.invoice_02.validate_facturae_fields()
         self.bank.acc_number = "BE96 9988 7766 5544"
-        main_company.partner_id.country_id = False
+
+    def test_validation_error(self):
+        self.main_company.partner_id.country_id = False
         with self.assertRaises(exceptions.UserError):
-            wizard.with_context(
+            self.env['create.facturae'].with_context(
                 active_ids=self.invoice.ids,
                 active_model='account.invoice').create_facturae_file()
+
+    def test_signature(self):
         pkcs12 = crypto.PKCS12()
         pkey = crypto.PKey()
         pkey.generate_key(crypto.TYPE_RSA, 512)
@@ -216,25 +220,25 @@ class TestL10nEsFacturae(common.TransactionCase):
         x509.sign(pkey, 'md5')
         pkcs12.set_privatekey(pkey)
         pkcs12.set_certificate(x509)
-
-        main_company.facturae_cert = base64.b64encode(
+        self.main_company.facturae_cert = base64.b64encode(
             pkcs12.export(passphrase='password'))
-        main_company.facturae_cert_password = 'password'
-        main_company.partner_id.country_id = self.ref('base.es')
-        wizard.with_context(
+        self.main_company.facturae_cert_password = 'password'
+        self.main_company.partner_id.country_id = self.ref('base.es')
+        self.wizard.with_context(
             active_ids=self.invoice.ids,
             active_model='account.invoice').create_facturae_file()
         generated_facturae = etree.fromstring(
-            base64.b64decode(wizard.facturae))
+            base64.b64decode(self.wizard.facturae))
         ns = 'http://www.w3.org/2000/09/xmldsig#'
-        self.assertEqual(len(generated_facturae.xpath('//ds:Signature',
-                                                      namespaces={'ds': ns})),
-                         1)
+        self.assertEqual(
+            len(generated_facturae.xpath(
+                '//ds:Signature', namespaces={'ds': ns})),
+            1)
 
         node = generated_facturae.find(".//ds:Signature", {'ds': ns})
         ctx = xmlsig.SignatureContext()
         certificate = crypto.load_pkcs12(
-            base64.b64decode(main_company.facturae_cert), 'password')
+            base64.b64decode(self.main_company.facturae_cert), 'password')
         certificate.set_ca_certificates(None)
         verification_error = False
         error_message = ''
@@ -244,11 +248,13 @@ class TestL10nEsFacturae(common.TransactionCase):
             verification_error = True
             error_message = e.message
             pass
-        self.assertEquals(
+        self.assertEqual(
             verification_error,
             False,
             'Error found during verification of the signature of ' +
             'the invoice: %s' % error_message)
+
+    def test_refund(self):
         motive = 'Description motive'
         refund = self.env['account.invoice.refund'].create(
             {'refund_reason': '01',
@@ -257,18 +263,20 @@ class TestL10nEsFacturae(common.TransactionCase):
             active_ids=self.invoice.ids).invoice_refund()
         refund_inv = self.env['account.invoice'].search(
             refund_result['domain'])
-        self.assertEquals(refund_inv.name, motive)
-        self.assertEquals(refund_inv.facturae_refund_reason, '01')
+        self.assertEqual(refund_inv.name, motive)
+        self.assertEqual(refund_inv.facturae_refund_reason, '01')
         refund_inv.partner_bank_id = self.bank
         refund_inv.action_invoice_open()
         refund_inv.number = '2998/99999'
-        wizard.with_context(
+        self.wizard.with_context(
             active_ids=refund_inv.ids,
             active_model='account.invoice').create_facturae_file()
         with self.assertRaises(exceptions.UserError):
-            wizard.with_context(active_ids=[
+            self.wizard.with_context(active_ids=[
                 self.invoice_02.id, self.invoice.id
             ], active_model='account.invoice').create_facturae_file()
+
+    def test_integration(self):
         self.assertTrue(self.invoice.can_integrate)
         self.assertEqual(self.invoice.integration_count, 0)
         integrations = self.invoice.action_integrations()
