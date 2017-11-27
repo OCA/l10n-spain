@@ -880,7 +880,10 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                if self.env.context.get('no_eta'):
+                    eta = 0
+                else:
+                    eta = company._get_sii_eta()
                 ctx = self.env.context.copy()
                 ctx.update(company_id=company.id)
                 session = ConnectorSession(

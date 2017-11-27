@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Send first semester wizard -->
+        <record model="ir.ui.view" id="aeat_sii_send_first_semester_wizard">
+            <field name="name">sii.first.semester.form</field>
+            <field name="model">l10n.es.sii.first.semester</field>
+            <field name="arch" type="xml">
+                <form string="Send First Semester">
+                    <separator string="Send Invoices" />
+                    <p colspan="4">This wizard will send to SII the invoices in the first semester.
+                        You can choose to the date until you want to send:</p>
+                    <field name="date_to"/>
+                    <button name="execute" string="Send to SII" type="object" />
+                </form>
+            </field>
+
+        </record>
+    
+        <record id="action_aeat_sii_send_first_semester" model="ir.actions.act_window">
+            <field name="name">Send invoices first semester</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">l10n.es.sii.first.semester</field>
+            <field name="view_id" ref="aeat_sii_send_first_semester_wizard"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    
+      <menuitem id="action_aeat_sii_send_first_semester"
+                  parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+                  action="action_aeat_sii_send_first_semester"
+                  name="Aeat SII Send Firs Semester"/>
+
+    </data>
+</openerp>
