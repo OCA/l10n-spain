@@ -11,7 +11,7 @@
             <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner record detail">
-                    <field name="invoice_line_id"/>
+                    <field name="move_line_id"/>
                     <field name="amount_untaxed"/>
                     <field name="date"/>
                 </tree>
@@ -25,7 +25,7 @@
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner record">
                     <group>
-                        <field name="invoice_line_id"/>
+                        <field name="move_line_id"/>
                         <field name="amount_untaxed"/>
                         <field name="date"/>
                     </group>
@@ -85,7 +85,7 @@
             <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner refund detail">
-                    <field name="invoice_line_id"/>
+                    <field name="refund_line_id"/>
                     <field name="amount_untaxed"/>
                     <field name="date"/>
                 </tree>
@@ -99,7 +99,7 @@
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner refund">
                     <group>
-                        <field name="invoice_line_id"/>
+                        <field name="refund_line_id"/>
                         <field name="amount_untaxed"/>
                         <field name="date"/>
                     </group>

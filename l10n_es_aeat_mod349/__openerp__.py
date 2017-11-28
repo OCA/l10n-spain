@@ -21,13 +21,13 @@
     "depends": [
         "account_invoice_refund_link",
         "l10n_es_aeat",
+        "l10n_es",
     ],
     'data': [
         "data/aeat_349_map_data.xml",
         "data/aeat_export_mod349_partner_refund_data.xml",
         "data/aeat_export_mod349_partner_data.xml",
         "data/aeat_export_mod349_data.xml",
-        "views/account_invoice_view.xml",
         "views/account_tax_view.xml",
         "views/aeat_349_map_view.xml",
         "views/mod349_view.xml",

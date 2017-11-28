@@ -101,17 +101,15 @@ class Mod349(models.Model):
                 report.mapped('partner_refund_ids.total_operation_amount')
             )
 
-    def _create_349_partner_records(self, invoice_lines, partner,
+    def _create_349_partner_records(self, move_lines, partner,
                                     operation_key):
         """creates partner records in 349"""
         rec_obj = self.env['l10n.es.aeat.mod349.partner_record']
         partner_country = partner.country_id
-        sum_credit = sum([inv_line.price_subtotal for inv_line in
-                          invoice_lines if inv_line.invoice_id.type not in (
-                              'in_refund', 'out_refund')])
-        sum_debit = sum([inv_line.price_subtotal for inv_line in
-                         invoice_lines if inv_line.invoice_id.type in (
-                             'in_refund', 'out_refund')])
+        sum_credit = sum([move_line.credit for move_line in
+                          move_lines])
+        sum_debit = sum([move_line.debit for move_line in
+                         move_lines])
         record_created = rec_obj.create(
             {'report_id': self.id,
              'partner_id': partner.id,
@@ -119,15 +117,17 @@ class Mod349(models.Model):
                                                 country=partner_country),
              'operation_key': operation_key.id,
              'country_id': partner_country.id or False,
-             'total_operation_amount': sum_credit - sum_debit
+             'total_operation_amount': abs(sum_credit - sum_debit)
              })
-        for invoice_line in invoice_lines:
+        for move_line in move_lines:
+            if move_line.invoice_id.type not in ('in_refund', 'out_refund'):
+                balance = abs(move_line.balance)
+            else:
+                balance = -abs(move_line.balance)
             detail_obj = self.env['l10n.es.aeat.mod349.partner_record_detail']
             detail_obj.create({'partner_record_id': record_created.id,
-                               'invoice_line_id': invoice_line.id,
-                               'amount_untaxed': (
-                                   invoice_line.price_subtotal_signed)
-                               })
+                               'move_line_id': move_line.id,
+                               'amount_untaxed': balance})
         return record_created
 
     def _create_349_refund_records(self, refund_lines, partner, operation_key):
@@ -137,52 +137,37 @@ class Mod349(models.Model):
         obj = self.env['l10n.es.aeat.mod349.partner_refund']
         obj_detail = self.env['l10n.es.aeat.mod349.partner_refund_detail']
         partner_country = partner.country_id
-        record = {}
-        for refund_line in refund_lines:
-            for origin_inv in refund_line.invoice_id.origin_invoice_ids:
-                if origin_inv.state in ('open', 'paid'):
-                    refund_details = partner_detail_obj.search(
-                        [('invoice_line_id.invoice_id', '=', origin_inv.id)])
-                    if refund_details:
-                        # creates a dictionary key with partner_record id to
-                        # after recover it
-                        key = refund_details.partner_record_id
-                        if record.get(key, False):
-                            record[key].append(refund_line)
-                        else:
-                            record[key] = [refund_line]
-                        break
-        # recorremos nuestro diccionario y vamos creando registros
-        for partner_rec in record:
-            record_created = obj.create(
-                {'report_id': self.id,
-                 'partner_id': partner.id,
-                 'partner_vat': _format_partner_vat(
-                     partner_vat=partner.vat, country=partner_country),
-                 'operation_key': operation_key.id,
-                 'country_id': partner_country.id,
-                 'total_operation_amount': (
-                     partner_rec.total_operation_amount - sum(
-                         [x.price_subtotal for x in record[partner_rec]]
-                     )
-                 ),
-                 'total_origin_amount': partner_rec.total_operation_amount,
-                 'periot_type': partner_rec.report_id.periot_type})
-            # Creation of partner detail lines
-            # for refund in record[partner_rec]:
-            for refund_line in record[partner_rec]:
-                obj_detail.create(
-                    {'refund_id': record_created.id,
-                     'invoice_line_id': refund_line.id,
-                     'amount_untaxed': refund_line.price_subtotal_signed})
+        origin_invoices = refund_lines.mapped('invoice_id.origin_invoice_ids')
+        refund_details = partner_detail_obj.search(
+            [('move_line_id.invoice_id', 'in', origin_invoices.ids),
+             ('partner_record_id.operation_key', '=', operation_key.id)])
+        if refund_details:
+            partner_record = refund_details[0].partner_record_id
+            obj_created = obj.create({
+                'report_id': self.id,
+                'partner_id': partner.id,
+                'partner_vat': _format_partner_vat(
+                    partner_vat=partner.vat, country=partner_country),
+                'operation_key': operation_key.id,
+                'country_id': partner_country.id,
+                'total_operation_amount': (
+                    partner_record.total_operation_amount - sum(
+                        [abs(x.balance) for x in refund_lines])),
+                'total_origin_amount': partner_record.total_operation_amount,
+                'period_type': partner_record.report_id.period_type,
+                'year': partner_record.report_id.year})
+            for refund_line in refund_lines:
+                obj_detail.create({
+                     'refund_id': obj_created.id,
+                     'refund_line_id': refund_line.id,
+                     'amount_untaxed': -refund_line.balance})
         return True
 
     @api.multi
     def calculate(self):
         """Computes the records in report."""
         partner_obj = self.env['res.partner']
-        invoice_line_obj = self.env['account.invoice.line']
-
+        move_line_obj = self.env['account.move.line']
         op_keys = self.env['aeat.349.map.line'].search([])
         for mod349 in self:
             # Remove previous partner records and partner refunds in report
@@ -193,20 +178,20 @@ class Mod349(models.Model):
                 [('parent_id', '=', False)])
             for partner in partners:
                 for op_key in op_keys:
-                    # Invoice lines
-                    invoice_lines_total = (
-                        invoice_line_obj._get_invoice_lines_by_type(
-                            partner, operation_key=op_key,
-                            date_start=mod349.date_start,
-                            date_end=mod349.date_end))
-                    # Separates normal invoice lines from restitution
-                    invoice_lines, refund_lines = (
-                        invoice_lines_total.clean_refund_invoice_lines(
+                    # Move lines
+                    move_lines_total = (
+                        move_line_obj._get_move_lines_by_type(
+                            partner, op_key,
+                            mod349.date_start,
+                            mod349.date_end))
+                    # Separates normal move lines from restitution
+                    move_lines, refund_lines = (
+                        move_lines_total.clean_refund_move_lines(
                             partner,
-                            date_start=mod349.date_start,
-                            date_end=mod349.date_end,))
-                    if invoice_lines:
-                        mod349._create_349_partner_records(invoice_lines,
+                            mod349.date_start,
+                            mod349.date_end,))
+                    if move_lines:
+                        mod349._create_349_partner_records(move_lines,
                                                            partner,
                                                            op_key)
                     if refund_lines:
@@ -347,11 +332,11 @@ class Mod349PartnerRecordDetail(models.Model):
         comodel_name='l10n.es.aeat.mod349.partner_record',
         default=lambda self: self.env.context.get('partner_record_id'),
         string='Partner record', required=True, ondelete='cascade', select=1)
-    invoice_line_id = fields.Many2one(
-        comodel_name='account.invoice.line', string='Invoice Line',
+    move_line_id = fields.Many2one(
+        comodel_name='account.move.line', string='Move Line',
         required=True)
     amount_untaxed = fields.Float(string='Amount untaxed')
-    date = fields.Date(related='invoice_line_id.invoice_id.date_invoice',
+    date = fields.Date(related='move_line_id.invoice_id.date_invoice',
                        string="Date",
                        readonly=True)
 
@@ -422,10 +407,10 @@ class Mod349PartnerRefundDetail(models.Model):
     refund_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod349.partner_refund',
         string='Partner refund ID', ondelete="cascade")
-    invoice_line_id = fields.Many2one(
-        comodel_name='account.invoice.line', string='Invoice Line ID',
+    refund_line_id = fields.Many2one(
+        comodel_name='account.move.line', string='Move Line ID',
         required=True)
     amount_untaxed = fields.Float(string='Amount untaxed')
-    date = fields.Date(related='invoice_line_id.invoice_id.date_invoice',
+    date = fields.Date(related='refund_line_id.invoice_id.date_invoice',
                        string="Date",
                        readonly=True)

@@ -32,3 +32,6 @@ class AccountTax(models.Model):
                     if (tax.name == tax_template.name) or (
                                 tax.description == tax_template.name):
                         tax.aeat_349_operation_key = line
+                        break
+                if tax.aeat_349_operation_key:
+                    break
