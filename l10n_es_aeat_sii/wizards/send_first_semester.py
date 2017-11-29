@@ -11,29 +11,41 @@ SII_SEMESTER_DATE_END = '2017-06-30'
 class L10nEsSiiFirstSemester(models.TransientModel):
     _name = 'l10n.es.sii.first.semester'
 
-    date_to = fields.Date('Date to',  default=SII_SEMESTER_DATE_END)
+    date_to = fields.Date('Date to', default=SII_SEMESTER_DATE_END,
+                          required=True)
+    out_invoices = fields.Boolean('Send out invoices', default=True)
+    in_invoices = fields.Boolean('Send in invoices', default=True)
 
     @api.multi
     def execute(self):
-        # Quizás los filtro deberían ser por períodos y no por fecha?
-        out_invoices = self.env['account.invoice'].search([
-                ('date_invoice', '<=', self.date_to),
-                ('date_invoice', '>=', SII_SEMESTER_DATE_INI),
-                ('sii_state', 'not in', ['sent', 'cancel']),
-                ('type', 'in', ['out_invoice', 'out_refund'])])
-        in_invoices = self.env['account.invoice'].search([
-                ('date_invoice', '<=', self.date_to),
-                ('date_invoice', '>=', SII_SEMESTER_DATE_END),
-                ('sii_state', 'not in', ['sent', 'cancel']),
-                ('type', 'in', ['in_invoice', 'in_refund'])])
-        sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
-        sale_key_id = sii_key_obj.sudo().search([('code', '=', '16'),
-                                                ('type', '=', 'sale')],
-                                                limit=1)[0].id
-        purchase_key_id = sii_key_obj.sudo().search([('code', '=', '14'),
-                                                    ('type', '=', 'purchase')],
-                                                    limit=1)[0].id
-        out_invoices.write({'sii_registration_key': sale_key_id})
-        out_invoices.with_context(no_eta=True).send_sii()
-        in_invoices.write({'sii_registration_key': purchase_key_id})
-        in_invoices.with_context(no_eta=True).send_sii()
+        self.ensure_one()
+        if self.out_invoices:
+            out_invoices = self.env['account.invoice'].\
+                search([('period_id.date_start', '<=', self.date_to),
+                        ('period_id.date_stop', '>=', SII_SEMESTER_DATE_INI),
+                        ('state', 'in', ['open', 'paid']),
+                        ('sii_state', 'not in', ['sent', 'cancelled']),
+                        ('type', 'in', ['out_invoice', 'out_refund'])])
+            sale_key_id = self.env.\
+                ref('l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_29').\
+                id
+            out_invoices.write({'sii_registration_key': sale_key_id,
+                                'sii_manual_description': (
+                                    "Registro del Primer semestre")})
+            out_invoices.with_context(override_eta=0).send_sii()
+        if self.in_invoices:
+            in_invoices = self.env['account.invoice'].\
+                search([('period_id.date_start', '<=', self.date_to),
+                        ('period_id.date_stop', '>=', SII_SEMESTER_DATE_INI),
+                        ('state', 'in', ['open', 'paid']),
+                        ('sii_state', 'not in', ['sent', 'cancelled']),
+                        ('type', 'in', ['in_invoice', 'in_refund'])])
+            purchase_key_id = self.env.\
+                ref('l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_30').\
+                id
+            in_invoices.write({'sii_registration_key': purchase_key_id,
+                               'sii_manual_description': (
+                                   "Registro del Primer semestre"),
+                               'sii_account_registration_date': (
+                                   fields.Date.today())})
+            in_invoices.with_context(override_eta=0).send_sii()

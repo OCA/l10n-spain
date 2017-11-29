@@ -81,7 +81,6 @@ Known issues / Roadmap
 * Asistente para consultar los documentos comunicados.
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte).
 * Regímenes especiales de seguros y de agencias de viaje.
-* Comunicación de las facturas del primer semestre.
 
 Bug Tracker
 ===========
@@ -111,6 +110,7 @@ Contributors
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
 * Juanjo Algaz <jalgaz@gmail.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Santiago Argüeso - Comunitea S.L. <santi@comunitea.com>
 
 Maintainer
 ----------

@@ -9,14 +9,23 @@
                 <form string="Send First Semester">
                     <separator string="Send Invoices" />
                     <p colspan="4">This wizard will send to SII the invoices in the first semester.
-                        You can choose to the date until you want to send:</p>
-                    <field name="date_to"/>
-                    <button name="execute" string="Send to SII" type="object" />
+                        You can choose to the date until you want to send and the type of the invoices.
+                        For in invoices will send all the invoices in the periods until the date selected:</p>
+                    <group>
+                        <field name="date_to"/>
+                        <field name="out_invoices"/>
+                        <field name="in_invoices"/>
+                    </group>
+                    <footer>
+                        <button name="execute" string="Send to SII" type="object"/>
+                        or
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
                 </form>
             </field>
 
         </record>
-    
+
         <record id="action_aeat_sii_send_first_semester" model="ir.actions.act_window">
             <field name="name">Send invoices first semester</field>
             <field name="type">ir.actions.act_window</field>
@@ -26,11 +35,11 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
-    
-      <menuitem id="action_aeat_sii_send_first_semester"
+
+      <menuitem id="menu_aeat_sii_send_first_semester"
                   parent="l10n_es_aeat.menu_l10n_es_aeat_config"
                   action="action_aeat_sii_send_first_semester"
-                  name="Aeat SII Send Firs Semester"/>
+                  name="Aeat SII Send First Semester"/>
 
     </data>
 </openerp>
