@@ -15,6 +15,7 @@ from requests import Session
 from openerp import _, api, exceptions, fields, models, SUPERUSER_ID
 from openerp.modules.registry import RegistryManager
 from openerp.tools.float_utils import float_round
+from openerp.tools import ustr
 
 _logger = logging.getLogger(__name__)
 
@@ -1055,8 +1056,8 @@ class AccountInvoice(models.Model):
                 invoice = env['account.invoice'].browse(self.id)
                 inv_vals.update({
                     'sii_send_failed': True,
-                    'sii_send_error': fault,
-                    'sii_return': fault,
+                    'sii_send_error': ustr(fault),
+                    'sii_return': ustr(fault),
                 })
                 invoice.write(inv_vals)
                 new_cr.commit()
