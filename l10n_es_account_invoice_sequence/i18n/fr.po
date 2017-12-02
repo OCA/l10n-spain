@@ -1,0 +1,90 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_invoice_sequence
+# 
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-30 20:58+0000\n"
+"PO-Revision-Date: 2017-11-30 20:58+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/models/account_chart_template.py:39
+#, python-format
+msgid " (Refund)"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_invoice_invoice_number
+msgid "Invoice number"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal_invoice_sequence_id
+msgid "Invoice sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/hooks.py:21
+#: code:addons/l10n_es_account_invoice_sequence/models/account_chart_template.py:26
+#: code:addons/l10n_es_account_invoice_sequence/wizards/wizard_multi_charts_accounts.py:26
+#, python-format
+msgid "Journal Entries Sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:29
+#, python-format
+msgid "Journal company and invoice sequence company do not match."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:39
+#, python-format
+msgid "Journal company and refund sequence company do not match."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal_refund_inv_sequence_id
+msgid "Refund sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_chart_template
+msgid "Templates for Account Chart"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal_invoice_sequence_id
+msgid "The sequence used for invoice numbers in this journal."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal_refund_inv_sequence_id
+msgid "The sequence used for refund invoices numbers in this journal."
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_wizard_multi_charts_accounts
+msgid "wizard.multi.charts.accounts"
+msgstr ""

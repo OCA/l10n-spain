@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 02:50+0000\n"
-"PO-Revision-Date: 2017-07-29 02:50+0000\n"
+"POT-Creation-Date: 2017-11-30 20:58+0000\n"
+"PO-Revision-Date: 2017-11-30 20:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -99,19 +99,19 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Calculate"
-msgstr "Calcula"
+msgstr "Calcular"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_calc_date
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_calc_date
 msgid "Calculation date"
-msgstr "Data de càlcul"
+msgstr "Fecha de cálculo"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 #: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr "Cancelar"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -133,7 +133,7 @@ msgstr "Codi"
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_company_id
 msgid "Company"
-msgstr "Companyia"
+msgstr "Compañía"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_code
@@ -155,7 +155,7 @@ msgstr "Configuració"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Confirm"
-msgstr "Confirma"
+msgstr "Confirmar"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_create_uid
@@ -241,22 +241,21 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_display_name
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Display Name"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Done"
-msgstr "Realitzat"
+msgstr "Realizada"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Draft"
-msgstr "Esborrany"
+msgstr "Borrador"
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
-#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
 msgid "Financial Reports"
 msgstr ""
 
@@ -330,7 +329,7 @@ msgid ""
 msgstr ""
 
 #. module: account_balance_reporting
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:427
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:435
 #, python-format
 msgid "Journal Items"
 msgstr ""
@@ -412,7 +411,7 @@ msgstr "Línia de plantilla"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_ids
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_form
 msgid "Lines"
-msgstr "Línies"
+msgstr "Líneas"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_sequence
@@ -431,7 +430,7 @@ msgstr "NOTES"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_name
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_name
 msgid "Name"
-msgstr "Nom"
+msgstr "Nombre"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_negate
@@ -477,7 +476,7 @@ msgstr "Imprimeix informe"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Processed"
-msgstr "Processat"
+msgstr "Calculada"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -489,7 +488,7 @@ msgstr "Recalcular"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_report_id
 #: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Report"
-msgstr "Informe"
+msgstr "Declaración"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_report_xml_id
@@ -505,7 +504,7 @@ msgstr "Línies d'informe"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_sequence
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_sequence
 msgid "Sequence"
-msgstr "Seqüència"
+msgstr "Secuencia"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -513,6 +512,7 @@ msgid "Show journal items"
 msgstr "Mostrar apuntes contables"
 
 #. module: account_balance_reporting
+#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
 #: model:ir.ui.menu,name:account_balance_reporting.menu_spanish_financial_reports
 msgid "Spanish Financial Reports"
 msgstr ""
@@ -520,7 +520,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_state
 msgid "State"
-msgstr "Estat"
+msgstr "Estado"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_css_class
@@ -533,7 +533,7 @@ msgid "System"
 msgstr "Sistema"
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3803
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3865
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr "Plantilla"

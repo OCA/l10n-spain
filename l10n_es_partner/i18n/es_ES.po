@@ -1,0 +1,204 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_partner
+# 
+# Translators:
+# Gelo Joga Landoo <gj@landoo.es>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-30 20:59+0000\n"
+"PO-Revision-Date: 2017-11-30 20:59+0000\n"
+"Last-Translator: Gelo Joga Landoo <gj@landoo.es>, 2017\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_bank
+msgid "Bank"
+msgstr "Banco"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Cuentas Bancarias"
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:84
+#, python-format
+msgid "Bank account should have 20 digits."
+msgstr "La cuenta del banco debe tener 20 dígitos."
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_account_journal_bank_acc_country_id
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_bank_acc_country_id
+msgid "Bank country"
+msgstr "País del Banco"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_date
+msgid "Created on"
+msgstr "Creado elCreado el"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:79
+#, python-format
+msgid "IBAN account is not valid"
+msgstr "IBAN de cuenta no válido"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,help:l10n_es_partner.field_account_journal_bank_acc_country_id
+#: model:ir.model.fields,help:l10n_es_partner.field_res_partner_bank_acc_country_id
+msgid ""
+"If the country of the bank is Spain, it validates the bank code or IBAN, "
+"formatting it accordingly."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_import_fail
+msgid "Import fail"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from Internet"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Import from local file"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:48
+#: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
+#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#, python-format
+msgid "Import spanish bank data"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Internet (from Bank of Spain). Maybe this source will be not available from "
+"certain moment in time. You will need xlrd Python library."
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:88
+#, python-format
+msgid "Invalid bank account."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid "Local file mirror. This copy was updated last time on 20/01/2017."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_lname
+msgid "Long name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_es_partner
+#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"Something has failed importing data from Internet. You will need to import "
+"local data instead."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
+msgid "This wizard will import spanish bank data."
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+msgid ""
+"This wizard will import spanish bank data. You can choose to import it from:"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_comercial
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_users_comercial
+#: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_form
+#: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_simple_form
+msgid "Trade name"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_vat
+msgid "VAT code"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,help:l10n_es_partner.field_res_bank_vat
+msgid "Value Added Tax number"
+msgstr ""
+
+#. module: l10n_es_partner
+#: code:addons/l10n_es_partner/models/account_journal.py:39
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:104
+#, python-format
+msgid "Warning"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_website
+msgid "Website"
+msgstr ""
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
+msgid "l10n.es.partner.import.wizard"
+msgstr ""

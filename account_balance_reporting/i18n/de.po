@@ -3,14 +3,14 @@
 # * account_balance_reporting
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# Niki Waibel <niki.waibel@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 02:50+0000\n"
-"PO-Revision-Date: 2017-07-29 02:50+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2017-11-30 20:58+0000\n"
+"PO-Revision-Date: 2017-11-30 20:58+0000\n"
+"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -254,7 +254,6 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
-#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
 msgid "Financial Reports"
 msgstr ""
 
@@ -328,7 +327,7 @@ msgid ""
 msgstr ""
 
 #. module: account_balance_reporting
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:427
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:435
 #, python-format
 msgid "Journal Items"
 msgstr ""
@@ -511,6 +510,7 @@ msgid "Show journal items"
 msgstr ""
 
 #. module: account_balance_reporting
+#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
 #: model:ir.ui.menu,name:account_balance_reporting.menu_spanish_financial_reports
 msgid "Spanish Financial Reports"
 msgstr ""
@@ -531,7 +531,7 @@ msgid "System"
 msgstr "System"
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3803
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3865
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr "Vorlage"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2017-06-29 22:48+0000\n"
+"POT-Creation-Date: 2017-11-30 20:58+0000\n"
+"PO-Revision-Date: 2017-11-30 20:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Basque (https://www.transifex.com/oca/teams/23907/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -133,7 +133,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_company_id
 msgid "Company"
-msgstr "Enpresa"
+msgstr "Compañía"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_code
@@ -254,7 +254,6 @@ msgstr "Borrador"
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
-#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
 msgid "Financial Reports"
 msgstr ""
 
@@ -328,7 +327,7 @@ msgid ""
 msgstr ""
 
 #. module: account_balance_reporting
-#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:427
+#: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:435
 #, python-format
 msgid "Journal Items"
 msgstr ""
@@ -429,7 +428,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_name
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_name
 msgid "Name"
-msgstr "Izena"
+msgstr "Nombre"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_negate
@@ -511,6 +510,7 @@ msgid "Show journal items"
 msgstr "Mostrar apuntes contables"
 
 #. module: account_balance_reporting
+#: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
 #: model:ir.ui.menu,name:account_balance_reporting.menu_spanish_financial_reports
 msgid "Spanish Financial Reports"
 msgstr ""
@@ -531,7 +531,7 @@ msgid "System"
 msgstr ""
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3737
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3865
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr ""
