@@ -1288,8 +1288,9 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_sii_sign(self):
         self.ensure_one()
-        return -1.0 if self.sii_refund_type == 'I' and 'refund' in self.type \
-            else 1.0
+        return -1.0 if (self.sii_refund_type == 'I' and 'refund' in self.type)\
+            or (self.type == 'out_invoice' and
+                self.amount_total_company_signed < 0) else 1.0
 
     @job
     @api.multi
