@@ -355,26 +355,26 @@ class AccountInvoice(models.Model):
         """
         tax = tax_line.tax_id
         if tax.amount_type == 'group':
-            tax_type = abs(tax.children_tax_ids.filtered('amount')[:1].amount)
+            tax_type = tax.children_tax_ids.filtered('amount')[:1].amount
         else:
-            tax_type = abs(tax.amount)
+            tax_type = tax.amount
         tax_dict = {
             'TipoImpositivo': str(tax_type),
-            'BaseImponible': sign * abs(round(tax_line.base, 2)),
+            'BaseImponible': sign * round(tax_line.base, 2),
         }
         if self.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
-        tax_dict[key] = sign * abs(round(tax_line.amount, 2))
+        tax_dict[key] = sign * round(tax_line.amount, 2)
         # Recargo de equivalencia
         re_tax_line = self._get_sii_tax_line_req(tax)
         if re_tax_line:
             tax_dict['TipoRecargoEquivalencia'] = (
-                abs(re_tax_line.tax_id.amount)
+                re_tax_line.tax_id.amount
             )
             tax_dict['CuotaRecargoEquivalencia'] = (
-                sign * abs(round(re_tax_line.amount, 2))
+                sign * round(re_tax_line.amount, 2)
             )
         return tax_dict
 
@@ -544,7 +544,7 @@ class AccountInvoice(models.Model):
                 isp_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-                tax_amount += abs(round(tax_line.amount, 2))
+                tax_amount += tax_line.amount
             elif tax in taxes_sfrs:
                 sfrs_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
@@ -552,7 +552,7 @@ class AccountInvoice(models.Model):
                 sfrs_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-                tax_amount += abs(round(tax_line.amount, 2))
+                tax_amount += round(tax_line.amount, 2)
             elif tax in taxes_sfrns:
                 sfrns_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
@@ -665,6 +665,9 @@ class AccountInvoice(models.Model):
                 tipo_factura = 'R5' if self.type == 'out_refund' else 'F2'
             else:
                 tipo_factura = 'R4' if self.type == 'out_refund' else 'F1'
+            total_amount = self.amount_total_company_signed
+            if self.type == 'out_refund' and total_amount < 0:
+                total_amount = abs(total_amount)
             inv_dict["FacturaExpedida"] = {
                 "TipoFactura": tipo_factura,
                 "ClaveRegimenEspecialOTrascendencia": (
@@ -672,7 +675,7 @@ class AccountInvoice(models.Model):
                 ),
                 "DescripcionOperacion": self.sii_description,
                 "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
+                "ImporteTotal": total_amount * sign,
             }
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaExpedida"].\
@@ -702,15 +705,15 @@ class AccountInvoice(models.Model):
                 exp_dict['TipoRectificativa'] = self.sii_refund_type
                 if self.sii_refund_type == 'S':
                     exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': abs(sum(self.mapped(
+                        'BaseRectificada': sum(self.mapped(
                             'origin_invoice_ids.amount_untaxed_signed'
-                        ))),
-                        'CuotaRectificada': abs(sum(self.mapped(
+                        )),
+                        'CuotaRectificada': sum(self.mapped(
                             'origin_invoice_ids'
                         ).mapped(lambda x: (
                             x.amount_total_company_signed -
                             x.amount_untaxed_signed
-                        )))),
+                        ))),
                     }
         return inv_dict
 
@@ -753,6 +756,10 @@ class AccountInvoice(models.Model):
         else:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
+            total_amount = self.amount_total_company_signed
+            if self.type == 'in_refund' and total_amount < 0:
+                total_amount = abs(total_amount)
+
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
@@ -769,7 +776,7 @@ class AccountInvoice(models.Model):
                     )
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
+                "ImporteTotal": total_amount * sign,
                 "CuotaDeducible": tax_amount * sign,
             }
             if self.sii_registration_key_additional1:
@@ -791,9 +798,9 @@ class AccountInvoice(models.Model):
                 ])
                 if self.sii_refund_type == 'S':
                     rec_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': abs(sum(self.mapped(
+                        'BaseRectificada': sum(self.mapped(
                             'origin_invoice_ids.amount_untaxed_signed'
-                        ))),
+                        )),
                         'CuotaRectificada': refund_tax_amount,
                     }
         return inv_dict
@@ -1289,8 +1296,7 @@ class AccountInvoice(models.Model):
     def _get_sii_sign(self):
         self.ensure_one()
         return -1.0 if (self.sii_refund_type == 'I' and 'refund' in self.type)\
-            or (self.type == 'out_invoice' and
-                self.amount_total_company_signed < 0) else 1.0
+            else 1.0
 
     @job
     @api.multi
