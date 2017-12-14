@@ -107,8 +107,7 @@ class TestL10nEsAeatExportConfig(common.TransactionCase):
                     'fixed_value': '>',
                     'size': 1,
                     'alignment': 'left'
-                })
-                ,
+                }),
                 (0, 0, {
                     'sequence': 8,
                     'name': 'False expression',
