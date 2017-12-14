@@ -35,6 +35,19 @@ class TestL10nEsAeatExportConfig(common.TransactionCase):
                              'Apply sign must be False for a subtype line')
 
     def test_export_config_file(self):
+        export_subconfig = self.env['aeat.model.export.config'].create({
+            'name': 'Test Export Sub Config',
+            'model_number': '000',
+            'config_line_ids': [
+                (0, 0, {
+                    'sequence': 1,
+                    'name': '<T',
+                    'fixed_value': '<T',
+                    'export_type': 'string',
+                    'size': 3,
+                    'alignment': 'left'
+                })]
+        })
         export_config = self.env['aeat.model.export.config'].create({
             'name': 'Test Export Config',
             'model_number': '000',
@@ -94,6 +107,15 @@ class TestL10nEsAeatExportConfig(common.TransactionCase):
                     'fixed_value': '>',
                     'size': 1,
                     'alignment': 'left'
+                }),
+                (0, 0, {
+                    'sequence': 8,
+                    'name': 'False expression',
+                    'export_type': 'subconfig',
+                    'alignment': 'left',
+                    'subconfig_id': export_subconfig.id,
+                    'conditional_expression': 'False',
+
                 })
             ]
         })
