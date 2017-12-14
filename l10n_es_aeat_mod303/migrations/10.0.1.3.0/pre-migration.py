@@ -10,6 +10,6 @@ def migrate(cr, version):
     from openupgradelib import openupgrade
     openupgrade.rename_columns(
         cr, {
-            'l10n_es_aeat_mod303_report': ('compensate', None),
+            'l10n_es_aeat_mod303_report': [('compensate', None)],
         }
     )
