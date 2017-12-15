@@ -177,6 +177,24 @@ class L10nEsAeatMod303Report(models.Model):
             self.previous_result = 0
 
     @api.multi
+    def calculate(self):
+        res = super(L10nEsAeatMod303Report, self).calculate()
+        for mod303 in self:
+            if mod303.result_type in ['C', 'D']:
+                mod303.counterpart_account_id = \
+                    self.env['account.account'].search([
+                        ('code', 'like', '4700%'),
+                        ('company_id', '=', mod303.company_id.id),
+                    ])[:1]
+            elif mod303.result_type == 'I':
+                mod303.counterpart_account_id = \
+                    self.env['account.account'].search([
+                        ('code', 'like', '4750%'),
+                        ('company_id', '=', mod303.company_id.id),
+                    ])[:1]
+        return res
+
+    @api.multi
     def button_confirm(self):
         """Check records"""
         msg = ""
