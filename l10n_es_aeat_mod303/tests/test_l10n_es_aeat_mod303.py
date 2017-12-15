@@ -264,7 +264,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Create model
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
-        model303 = self.env['l10n.es.aeat.mod303.report'].new({
+        self.model303 = self.env['l10n.es.aeat.mod303.report'].new({
             'name': '9990000000303',
             'company_id': self.company.id,
             'company_vat': '1234567890',
