@@ -5,7 +5,7 @@
 # Copyright 2014-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api, _
+from odoo import api, exceptions, fields, models, _
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -131,7 +131,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _compute_casilla_69(self):
         for report in self:
             report.casilla_69 = (
-                report.atribuible_estado + report.casilla_77 +
+                report.atribuible_estado + report.casilla_77 -
                 report.cuota_compensar + report.regularizacion_anual)
 
     @api.multi
@@ -190,3 +190,12 @@ class L10nEsAeatMod303Report(models.Model):
             # raise exceptions.Warning(msg)
             pass
         return super(L10nEsAeatMod303Report, self).button_confirm()
+
+    @api.multi
+    @api.constrains('cuota_compensar')
+    def check_qty(self):
+        for record in self:
+            if record.cuota_compensar < 0.0:
+                raise exceptions.ValidationError(
+                    _('The fee to compensate must be indicated '
+                      'as a positive number. '))

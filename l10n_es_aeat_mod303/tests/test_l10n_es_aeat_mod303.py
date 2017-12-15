@@ -5,6 +5,7 @@
 import logging
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
+from odoo import exceptions
 
 _logger = logging.getLogger('aeat.303')
 
@@ -307,7 +308,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             '29', '31', '33', '35', '37', '39', '41', '42', '43', '44')])
         subtotal = round(devengado - deducir, 3)
         estado = round(subtotal * 0.95, 3)
-        result = round(estado + 455 + 250, 3)
+        result = round(estado + 455 - 250, 3)
         self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
         self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
         self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
@@ -315,3 +316,5 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         self.assertAlmostEqual(self.model303.casilla_69, result, 2)
         self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
         self.assertEqual(self.model303.result_type, 'I')
+        with self.assertRaises(exceptions.ValidationError):
+            self.model303.cuota_compensar = -250
