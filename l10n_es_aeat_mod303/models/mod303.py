@@ -14,8 +14,10 @@ class L10nEsAeatMod303Report(models.Model):
     _aeat_number = '303'
 
     def _default_counterpart_303(self):
+        company = self._default_company_id()
         return self.env['account.account'].search([
             ('code', 'like', '4750%'),
+            ('company_id', '=', company.id)
         ])[:1]
 
     devolucion_mensual = fields.Boolean(
@@ -84,7 +86,8 @@ class L10nEsAeatMod303Report(models.Model):
         ], string="Result type", compute='_compute_result_type')
     counterpart_account_id = fields.Many2one(
         comodel_name='account.account', string="Counterpart account",
-        default=_default_counterpart_303, oldname='counterpart_account')
+        default=_default_counterpart_303, oldname='counterpart_account',
+        domain="[('company_id', '=', company_id)]")
     allow_posting = fields.Boolean(string="Allow posting", default=True)
 
     @api.multi

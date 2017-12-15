@@ -264,7 +264,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Create model
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
-        self.model303 = self.env['l10n.es.aeat.mod303.report'].create({
+        model303 = self.env['l10n.es.aeat.mod303.report'].new({
             'name': '9990000000303',
             'company_id': self.company.id,
             'company_vat': '1234567890',
@@ -280,6 +280,13 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
+        self.assertEqual(self.model303.company_id, self.company.id)
+        self.assertEqual(self.model303.counterpart_account_id,
+                         self.accounts['475000'].id)
+        self.assertEqual(self.model303.journal_id,
+                         self.journal_misc.id)
+        self.model303._convert_to_write(model303._cache)
+
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
         # Fill manual fields
