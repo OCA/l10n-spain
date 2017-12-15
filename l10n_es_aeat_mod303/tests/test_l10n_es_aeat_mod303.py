@@ -5,6 +5,7 @@
 import logging
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
+from odoo import exceptions
 
 _logger = logging.getLogger('aeat.303')
 
@@ -265,10 +266,12 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         self._invoice_sale_create('2017-01-12')
         sale = self._invoice_sale_create('2017-01-13')
         self._invoice_refund(sale, '2017-01-14')
+
+    def test_model_303(self):
         # Create model
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
-        self.model303 = self.env['l10n.es.aeat.mod303.report'].create({
+        model303 = self.env['l10n.es.aeat.mod303.report'].new({
             'name': '9990000000303',
             'company_id': self.company.id,
             'company_vat': '1234567890',
@@ -282,16 +285,23 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'date_end': '2017-03-31',
             'export_config_id': export_config.id,
             'journal_id': self.journal_misc.id,
-            'counterpart_account_id': self.accounts['475000'].id
         })
-
-
-class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
-    def test_model_303(self):
+        model303.counterpart_account_id \
+            = model303._default_counterpart_303()
+        self.assertEqual(model303.counterpart_account_id.id,
+                         self.accounts['475000'].id)
+        model303 = self.env[
+            'l10n.es.aeat.mod303.report'].create(
+            model303._convert_to_write(model303._cache))
         _logger.debug('Calculate AEAT 303 1T 2017')
-        self.model303.button_calculate()
+        model303.button_calculate()
+        self.assertEqual(model303.state, 'calculated')
+        model303.button_recover()
+        self.assertEqual(model303.state, 'draft')
+        self.assertEqual(model303.calculation_date, False)
+        model303.button_calculate()
         # Fill manual fields
-        self.model303.write({
+        model303.write({
             # % atribuible al Estado
             'porcentaje_atribuible_estado': 95,
             # Cuotas a compensar
@@ -299,8 +309,10 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             # Iva Diferido (Liquidado por aduana)
             'casilla_77': 455,
         })
+        model303.button_recalculate()
+        self.assertEqual(model303.state, 'calculated')
         if self.debug:
-            self._print_tax_lines(self.model303.tax_line_ids)
+            self._print_tax_lines(model303.tax_line_ids)
         # Check tax lines
         for field, result in self.taxes_result.iteritems():
             _logger.debug('Checking tax line: %s' % field)
@@ -318,14 +330,14 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             '29', '31', '33', '35', '37', '39', '41', '42', '43', '44')])
         subtotal = round(devengado - deducir, 3)
         estado = round(subtotal * 0.95, 3)
-        result = round(estado + 455 + 250, 3)
-        self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
-        self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
-        self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
-        self.assertAlmostEqual(self.model303.atribuible_estado, estado, 2)
-        self.assertAlmostEqual(self.model303.casilla_69, result, 2)
-        self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
-        self.assertEqual(self.model303.result_type, 'I')
+        result = round(estado + 455 - 250, 3)
+        self.assertAlmostEqual(model303.total_devengado, devengado, 2)
+        self.assertAlmostEqual(model303.total_deducir, deducir, 2)
+        self.assertAlmostEqual(model303.casilla_46, subtotal, 2)
+        self.assertAlmostEqual(model303.atribuible_estado, estado, 2)
+        self.assertAlmostEqual(model303.casilla_69, result, 2)
+        self.assertAlmostEqual(model303.resultado_liquidacion, result, 2)
+        self.assertEqual(model303.result_type, 'I')
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
             'name': 'test_export_to_boe.txt',
@@ -338,5 +350,19 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
             self.assertTrue(
-                export_to_boe._export_config(self.model303, export_config)
+                export_to_boe._export_config(model303, export_config)
             )
+
+        with self.assertRaises(exceptions.ValidationError):
+            model303.cuota_compensar = -250
+        model303.button_post()
+        self.assertFalse(not model303.move_id)
+        self.assertEqual(model303.move_id.ref, model303.name)
+        self.assertEqual(model303.move_id.state, 'draft')
+        self.assertEqual(model303.move_id.journal_id, model303.journal_id)
+        self.assertEqual(model303.move_id.partner_id,
+                         self.env.ref('l10n_es_aeat.res_partner_aeat'))
+        codes = model303.move_id.line_ids.mapped('account_id').mapped('code')
+        self.assertTrue('475000' in codes)
+        self.assertTrue('477000' in codes)
+        self.assertTrue('472000' in codes)
