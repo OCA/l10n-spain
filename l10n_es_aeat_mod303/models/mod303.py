@@ -18,9 +18,6 @@ class L10nEsAeatMod303Report(models.Model):
             ('code', 'like', '4750%'),
         ])[:1]
 
-    company_partner_id = fields.Many2one(
-        comodel_name='res.partner', string="Partner",
-        relation='company_id.partner_id', store=True)
     devolucion_mensual = fields.Boolean(
         string="Montly Return", states={'done': [('readonly', True)]},
         help="Registered in the Register of Monthly Return")
@@ -85,9 +82,6 @@ class L10nEsAeatMod303Report(models.Model):
             ('C', 'To compensate'),
             ('N', 'No activity/Zero result'),
         ], string="Result type", compute='_compute_result_type')
-    bank_account_id = fields.Many2one(
-        comodel_name="res.partner.bank", string="Bank account",
-        states={'done': [('readonly', True)]}, oldname='bank_account')
     counterpart_account_id = fields.Many2one(
         comodel_name='account.account', string="Counterpart account",
         default=_default_counterpart_303, oldname='counterpart_account')
@@ -198,9 +192,9 @@ class L10nEsAeatMod303Report(models.Model):
         """Check records"""
         msg = ""
         for mod303 in self:
-            if mod303.result_type == 'I' and not mod303.bank_account_id:
+            if mod303.result_type == 'I' and not mod303.partner_bank_id:
                 msg = _('Select an account for making the charge')
-            if mod303.result_type == 'D' and not mod303.bank_account_id:
+            if mod303.result_type == 'D' and not mod303.partner_bank_id:
                 msg = _('Select an account for receiving the money')
         if msg:
             # Don't raise error, because data is not used
