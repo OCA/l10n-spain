@@ -285,7 +285,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                          self.accounts['475000'].id)
         self.assertEqual(self.model303.journal_id,
                          self.journal_misc.id)
-        self.model303._convert_to_write(model303._cache)
+        self.model303._convert_to_write(self.model303._cache)
 
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
