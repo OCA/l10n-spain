@@ -25,6 +25,9 @@
     <field name="model">l10n.es.aeat.mod303.report</field>
     <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
     <field name="arch" type="xml">
+        <field name="partner_bank_id" position="attributes">
+            <attribute name="attrs">{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}</attribute>
+        </field>
         <field name="previous_number" position="after">
             <field name="devolucion_mensual"/>
         </field>
@@ -90,11 +93,6 @@
                        options="{'currency_field': 'currency_id'}"
                         />
                 <field name="result_type"/>
-                <field name="company_partner_id" invisible="1"/>
-                <field name="bank_account_id"
-                       domain="[('partner_id', '=', company_partner_id)]"
-                       attrs="{'invisible': [('result_type', 'not in', ('D', 'B', 'I'))], 'required': [('result_type', '=', 'D')]}"
-                />
             </group>
             <group string="Tax lines"
                    name="group_tax_lines"
