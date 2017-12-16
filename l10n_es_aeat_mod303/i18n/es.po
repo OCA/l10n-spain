@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 17:14+0000\n"
-"PO-Revision-Date: 2017-04-19 17:14+0000\n"
+"POT-Creation-Date: 2017-12-14 20:12+0000\n"
+"PO-Revision-Date: 2017-12-14 20:12+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -78,11 +78,6 @@ msgstr "Compañía"
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_partner_bank_id
 msgid "Company bank account used for the presentation"
 msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
-msgid "Compensate"
-msgstr "Compensar"
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,type:0
@@ -176,13 +171,6 @@ msgstr "Nombre completo"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_id
 msgid "ID"
 msgstr "ID"
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_compensate
-msgid "If checked, the return amount will be compensate in future statements"
-msgstr ""
-"Si se marca, indicará que el importe a devolver se compensará en posteriores"
-" declaraciones"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
@@ -398,7 +386,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To compensate"
-msgstr "Solicitud de compensación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
