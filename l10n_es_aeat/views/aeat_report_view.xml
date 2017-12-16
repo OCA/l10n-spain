@@ -48,6 +48,11 @@
                        statusbar_colors="{'cancelled': 'red', 'done': 'blue', 'posted': 'blue'}"
                        />
             </header>
+            <div class="alert alert-warning"
+                     role="alert" style="margin-bottom:0px;"
+                     attrs="{'invisible':[('exception_msg','=', False)]}">
+                <bold><field name="exception_msg"/></bold>
+            </div>
             <sheet>
                 <field name="allow_posting" invisible="1"/>
                 <field name="number" invisible="1"/>
