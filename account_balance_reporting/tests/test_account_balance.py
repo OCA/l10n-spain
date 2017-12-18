@@ -256,12 +256,28 @@ class TestAccountBalance(TestAccountBalanceBase):
         line_obj = self.env['account.balance.reporting.template.line']
         self.assertTrue(line_obj.name_search('account'))
         self.assertTrue(line_obj.name_search('1600'))
+        self.assertTrue(line_obj.name_search(
+            args=[('template_id', '=', self.template.id)]))
+        self.assertListEqual(
+            line_obj.name_search(self.line5.code),
+            line_obj.name_search(args=[('code', 'ilike', self.line5.code)]))
+        self.assertListEqual(
+            line_obj.name_search(self.line5.name),
+            line_obj.name_search(args=[('name', 'ilike', self.line5.name)]))
 
     def test_report_line_name_search(self):
         self.report.action_calculate()
         line_obj = self.env['account.balance.reporting.line']
         self.assertTrue(line_obj.name_search('account'))
         self.assertTrue(line_obj.name_search('1600'))
+        self.assertTrue(line_obj.name_search(
+            args=[('template_line_id', '=', self.line5.id)]))
+        self.assertListEqual(
+            line_obj.name_search(self.line5.code),
+            line_obj.name_search(args=[('code', 'ilike', self.line5.code)]))
+        self.assertListEqual(
+            line_obj.name_search(self.line5.name),
+            line_obj.name_search(args=[('name', 'ilike', self.line5.name)]))
 
     def test_account_balance_mode_0(self):
         """ Check results for debit-credit report. """
