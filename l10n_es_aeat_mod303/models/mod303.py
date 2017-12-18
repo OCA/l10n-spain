@@ -155,6 +155,7 @@ class L10nEsAeatMod303Report(models.Model):
             elif report.resultado_liquidacion > 0:
                 report.result_type = 'I'
             else:
+
                 if (report.devolucion_mensual or
                         report.period_type in ('4T', '12')):
                     report.result_type = 'D'

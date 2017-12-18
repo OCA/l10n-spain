@@ -288,7 +288,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         self.model303 = self.env[
             'l10n.es.aeat.mod303.report'].create(
             model303_new._convert_to_write(model303_new._cache))
-
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
         # Fill manual fields
