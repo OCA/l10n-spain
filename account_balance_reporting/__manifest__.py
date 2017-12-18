@@ -8,7 +8,7 @@
 
 {
     "name": "Account balance reporting engine",
-    "version": "10.0.1.3.2",
+    "version": "10.0.1.3.3",
     "author": "Pexego, "
               "AvanzOSC, "
               "Tecnativa, "
@@ -21,6 +21,7 @@
         "Pedro M. Baeza <pedro.baeza@tecnativa.com>",
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
         "Vicent Cubells <vicent.cubells@tecnativa.com>",
+        "Javi Melendez <javimelex@gmail.com>",
     ],
     "license": 'AGPL-3',
     "depends": [
