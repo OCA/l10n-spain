@@ -4,7 +4,7 @@
 # Copyright 2014-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api, _
+from odoo import api, exceptions, fields, models, _
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -14,13 +14,12 @@ class L10nEsAeatMod303Report(models.Model):
     _aeat_number = '303'
 
     def _default_counterpart_303(self):
+        company = self._default_company_id()
         return self.env['account.account'].search([
             ('code', 'like', '4750%'),
+            ('company_id', '=', company.id)
         ])[:1]
 
-    company_partner_id = fields.Many2one(
-        comodel_name='res.partner', string="Partner",
-        relation='company_id.partner_id', store=True)
     devolucion_mensual = fields.Boolean(
         string="Montly Return", states={'done': [('readonly', True)]},
         help="Registered in the Register of Monthly Return")
@@ -82,18 +81,13 @@ class L10nEsAeatMod303Report(models.Model):
         selection=[
             ('I', 'To enter'),
             ('D', 'To return'),
-            ('N', 'No activity/Zero result')
+            ('C', 'To compensate'),
+            ('N', 'No activity/Zero result'),
         ], string="Result type", compute='_compute_result_type')
-    compensate = fields.Boolean(
-        string="Compensate", states={'done': [('readonly', True)]},
-        help="If checked, the return amount will be compensate in "
-             "future statements")
-    bank_account_id = fields.Many2one(
-        comodel_name="res.partner.bank", string="Bank account",
-        states={'done': [('readonly', True)]}, oldname='bank_account')
     counterpart_account_id = fields.Many2one(
         comodel_name='account.account', string="Counterpart account",
-        default=_default_counterpart_303, oldname='counterpart_account')
+        default=_default_counterpart_303, oldname='counterpart_account',
+        domain="[('company_id', '=', company_id)]")
     allow_posting = fields.Boolean(string="Allow posting", default=True)
 
     @api.multi
@@ -133,7 +127,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _compute_casilla_69(self):
         for report in self:
             report.casilla_69 = (
-                report.atribuible_estado + report.casilla_77 +
+                report.atribuible_estado + report.casilla_77 -
                 report.cuota_compensar + report.regularizacion_anual)
 
     @api.multi
@@ -149,7 +143,11 @@ class L10nEsAeatMod303Report(models.Model):
             report.allow_posting = True
 
     @api.multi
-    @api.depends('resultado_liquidacion')
+    @api.depends(
+        'resultado_liquidacion',
+        'period_type',
+        'devolucion_mensual',
+    )
     def _compute_result_type(self):
         for report in self:
             if report.resultado_liquidacion == 0:
@@ -157,7 +155,12 @@ class L10nEsAeatMod303Report(models.Model):
             elif report.resultado_liquidacion > 0:
                 report.result_type = 'I'
             else:
-                report.result_type = 'D'
+
+                if (report.devolucion_mensual or
+                        report.period_type in ('4T', '12')):
+                    report.result_type = 'D'
+                else:
+                    report.result_type = 'C'
 
     @api.onchange('year', 'period_type')
     def onchange_period_type(self):
@@ -170,22 +173,44 @@ class L10nEsAeatMod303Report(models.Model):
         if self.type != 'C':
             self.previous_result = 0
 
-    @api.onchange('result_type')
-    def onchange_result_type(self):
-        if self.result_type != 'D':
-            self.compensate = False
+    @api.multi
+    def calculate(self):
+        res = super(L10nEsAeatMod303Report, self).calculate()
+        for mod303 in self:
+            if mod303.result_type in ['C', 'D']:
+                mod303.counterpart_account_id = \
+                    self.env['account.account'].search([
+                        ('code', 'like', '4700%'),
+                        ('company_id', '=', mod303.company_id.id),
+                    ])[:1]
+            elif mod303.result_type == 'I':
+                mod303.counterpart_account_id = \
+                    self.env['account.account'].search([
+                        ('code', 'like', '4750%'),
+                        ('company_id', '=', mod303.company_id.id),
+                    ])[:1]
+        return res
 
     @api.multi
     def button_confirm(self):
         """Check records"""
         msg = ""
         for mod303 in self:
-            if mod303.result_type == 'I' and not mod303.bank_account_id:
+            if mod303.result_type == 'I' and not mod303.partner_bank_id:
                 msg = _('Select an account for making the charge')
-            if mod303.result_type == 'D' and not mod303.bank_account_id:
+            if mod303.result_type == 'D' and not mod303.partner_bank_id:
                 msg = _('Select an account for receiving the money')
         if msg:
             # Don't raise error, because data is not used
             # raise exceptions.Warning(msg)
             pass
         return super(L10nEsAeatMod303Report, self).button_confirm()
+
+    @api.multi
+    @api.constrains('cuota_compensar')
+    def check_qty(self):
+        for record in self:
+            if record.cuota_compensar < 0.0:
+                raise exceptions.ValidationError(
+                    _('The fee to compensate must be indicated '
+                      'as a positive number. '))

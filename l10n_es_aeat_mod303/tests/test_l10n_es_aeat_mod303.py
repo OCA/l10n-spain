@@ -4,6 +4,7 @@
 import logging
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
+from odoo import exceptions
 
 _logger = logging.getLogger('aeat.303')
 
@@ -263,7 +264,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Create model
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
-        self.model303 = self.env['l10n.es.aeat.mod303.report'].create({
+        model303_new = self.env['l10n.es.aeat.mod303.report'].new({
             'name': '9990000000303',
             'company_id': self.company.id,
             'company_vat': '1234567890',
@@ -279,6 +280,14 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
+        self.assertEqual(model303_new.company_id, self.company.id)
+        self.assertEqual(model303_new.counterpart_account_id,
+                         self.accounts['475000'].id)
+        self.assertEqual(model303_new.journal_id,
+                         self.journal_misc.id)
+        self.model303 = self.env[
+            'l10n.es.aeat.mod303.report'].create(
+            model303_new._convert_to_write(model303_new._cache))
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
         # Fill manual fields
@@ -306,7 +315,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             '29', '31', '33', '35', '37', '39', '41', '42', '43', '44')])
         subtotal = round(devengado - deducir, 3)
         estado = round(subtotal * 0.95, 3)
-        result = round(estado + 455 + 250, 3)
+        result = round(estado + 455 - 250, 3)
         self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
         self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
         self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
@@ -315,3 +324,5 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
         self.assertEqual(self.model303.result_type, 'I')
         self.assertTrue(self.model303.allow_posting)
+        with self.assertRaises(exceptions.ValidationError):
+            self.model303.cuota_compensar = -250
