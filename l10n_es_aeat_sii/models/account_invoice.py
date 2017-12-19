@@ -1201,7 +1201,9 @@ class AccountInvoice(models.Model):
             return 'E2'
         else:
             product_exempt_causes = self.mapped(
-                'invoice_line_ids.product_id.sii_exempt_cause'
+                'invoice_line_ids.product_id'
+            ).filtered(lambda x: x.sii_exempt_cause != 'none').mapped(
+                'sii_exempt_cause'
             )
             if product_exempt_causes:
                 return product_exempt_causes[0]
