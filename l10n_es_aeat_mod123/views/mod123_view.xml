@@ -1,114 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-        <record id="view_l10n_es_aeat_mod123_report_form" model="ir.ui.view">
-            <field name="name">l10n_es.aeat.mod123.report.form</field>
-            <field name="model">l10n.es.aeat.mod123.report</field>
-            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
-            <field name="arch" type="xml">
-                <field name="fiscalyear_id" position="after">
-                    <field name="currency_id" invisible="1"/>
-                </field>
-                <field name="previous_number" position="after">
-                    <field name="tipo_declaracion"/>
-                </field>
-                <group string="Declaración" position="after">
-                    <group string="Resultado" colspan="4" states="calculated,done,cancelled">
-                        <group string="Retenciones e ingresos a cuenta">
-                            <field name="casilla_01"/>
-                            <field name="casilla_02"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                            />
-                            <button name="show_move_lines"
-                                    class="oe_link"
-                                    string="(show move lines)"
-                                    type="object"
-                                    context="{'move_lines02': True}"
-                            />
-                            <separator/>
-                            <field name="casilla_03"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                            />
-                            <button name="show_move_lines"
-                                    class="oe_link"
-                                    string="(show move lines)"
-                                    type="object"
-                                    context="{'move_lines03': True}"
-                            />
-                        </group>
-                        <group string="Periodificación">
-                            <field name="casilla_04"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                            />
-                            <field name="casilla_05"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                            />
-                        </group>
-                        <group string="Total liquidación">
-                            <field name="casilla_06"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                            />
-                            <field name="casilla_07"
-                                   widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                                   attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('type', '!=', 'C')]}"
-                            />
-                            <field name="casilla_08" widget="monetary"
-                                   options="{'currency_field': 'currency_id'}"
-                            />
-                        </group>
+<odoo>
+
+    <record id="view_l10n_es_aeat_mod123_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod123.report.form</field>
+        <field name="model">l10n.es.aeat.mod123.report</field>
+        <field name="inherit_id"
+               ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+        <field name="arch" type="xml">
+            <field name="previous_number" position="after">
+                <field name="tipo_declaracion"/>
+            </field>
+            <group name="group_declaration" position="after">
+                <group string="Resultado" colspan="4"
+                       states="calculated,done,cancelled">
+                    <group string="Retenciones e ingresos a cuenta">
+                        <field name="casilla_01"/>
+                        <field name="casilla_02"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"
+                        />
+                        <field name="casilla_03"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group string="Periodificación">
+                        <field name="casilla_04"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"
+                        />
+                        <field name="casilla_05"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <group string="Total liquidación">
+                        <field name="casilla_06"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"
+                        />
+                        <field name="casilla_07"
+                               widget="monetary"
+                               options="{'currency_field': 'currency_id'}"
+                               attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('type', '!=', 'C')]}"
+                        />
+                        <field name="casilla_08" widget="monetary"
+                               options="{'currency_field': 'currency_id'}"
+                        />
                     </group>
                 </group>
+
+                <group string="Tax lines"
+                       name="group_tax_lines"
+                       colspan="4"
+                       attrs="{'invisible': [('state', '=', 'draft')]}">
+                    <field name="tax_line_ids" nolabel="1" readonly="1"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_mod123_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod123.report.tree</field>
+        <field name="model">l10n.es.aeat.mod123.report</field>
+        <field name="inherit_id"
+               ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">Declaraciones AEAT 123</attribute>
+            </tree>
+            <field name="period_type" position="after">
+                <field name="casilla_08" string="Resultado"/>
             </field>
-        </record>
+        </field>
+    </record>
 
-        <record id="view_l10n_es_aeat_mod123_report_tree" model="ir.ui.view">
-            <field name="name">l10n_es.aeat.mod123.report.tree</field>
-            <field name="model">l10n.es.aeat.mod123.report</field>
-            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
-            <field name="arch" type="xml">
-                <tree position="attributes">
-                    <attribute name="string">Declaraciones AEAT 123</attribute>
-                </tree>
-                <field name="period_type" position="after">
-                    <field name="casilla_08" string="Resultado"/>
-                </field>
-            </field>
-        </record>
+    <record id="action_l10n_es_aeat_mod123_report"
+            model="ir.actions.act_window">
+        <field name="name">Declaración AEAT 123</field>
+        <field name="res_model">l10n.es.aeat.mod123.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Crea y consulta las declaraciones del modelo 123 de
+            la AEAT.
+        </field>
+    </record>
 
-        <record id="action_l10n_es_aeat_mod123_report" model="ir.actions.act_window">
-            <field name="name">Declaración AEAT 123</field>
-            <field name="res_model">l10n.es.aeat.mod123.report</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">form,tree</field>
-            <field name="help">Crea y consulta las declaraciones del modelo 123 de la AEAT.</field>
-        </record>
+    <!-- Needed because of inheritance issues -->
+    <record id="action_l10n_es_aeat_mod123_report_form"
+            model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod123_report_form"/>
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod123_report"/>
+    </record>
 
-        <!-- Needed because of inheritance issues -->
-        <record id="action_l10n_es_aeat_mod123_report_form" model="ir.actions.act_window.view">
-            <field name="sequence" eval="3"/>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod123_report_form"/>
-            <field name="act_window_id" ref="action_l10n_es_aeat_mod123_report"/>
-        </record>
+    <!-- Needed because of inheritance issues -->
+    <record id="action_l10n_es_aeat_mod123_report_tree"
+            model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod123_report_tree"/>
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod123_report"/>
+    </record>
 
-        <!-- Needed because of inheritance issues -->
-        <record id="action_l10n_es_aeat_mod123_report_tree" model="ir.actions.act_window.view">
-            <field name="sequence" eval="2"/>
-            <field name="view_mode">tree</field>
-            <field name="view_id" ref="view_l10n_es_aeat_mod123_report_tree"/>
-            <field name="act_window_id" ref="action_l10n_es_aeat_mod123_report"/>
-        </record>
+    <menuitem id="menu_aeat_mod123_report"
+              parent="l10n_es_aeat.menu_root_aeat"
+              action="action_l10n_es_aeat_mod123_report"
+              sequence="123"
+              name="Modelo 123"/>
 
-        <menuitem id="menu_aeat_mod123_report"
-                  parent="l10n_es_aeat.menu_root_aeat"
-                  action="action_l10n_es_aeat_mod123_report"
-                  sequence="123"
-                  name="Modelo 123"/>
-    </data>
-</openerp>
+</odoo>
