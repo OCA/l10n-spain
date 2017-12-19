@@ -8,6 +8,7 @@ from odoo import exceptions
 
 class TestL10nEsAeatReport(common.TransactionCase):
     def setUp(self):
+
         super(TestL10nEsAeatReport, self).setUp()
         self.AeatReport = self.env["l10n.es.aeat.report"]
         self.period_types = {
@@ -29,6 +30,28 @@ class TestL10nEsAeatReport(common.TransactionCase):
             '11': ('2016-11-01', '2016-11-30'),
             '12': ('2016-12-01', '2016-12-31'),
         }
+
+    def test_onchange_company_id(self):
+        test_company1 = self.env['res.company'].create(
+            {'name': 'Test company 1',
+             'vat': 'ES12345678Z',
+             })
+        test_company2 = self.env['res.company'].create(
+            {'name': 'Test company 2',
+             'vat': 'ESN7326987J',
+             })
+
+        self.env.user.partner_id.phone = '93 555 67 01'
+
+        report = self.AeatReport.new({
+            'year': 2016,
+            'company_id': test_company1.id,
+        })
+        report.company_id = test_company2
+        report.onchange_company_id()
+        self.assertEqual(report.company_vat, 'N7326987J')
+        self.assertEqual(report.contact_name, 'Administrator')
+        self.assertEqual(report.contact_phone, '935556701')
 
     def test_onchange_period_type(self):
         with self.env.do_in_onchange():
