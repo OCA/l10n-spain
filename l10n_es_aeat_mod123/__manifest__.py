@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'AEAT modelo 123',
-    'version': '8.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': "Localisation/Accounting",
     'author': "Tecnativa, "
               "Spanish Localization Team, "
@@ -17,6 +16,7 @@
     ],
     'data': [
         'data/aeat_export_mod123_data.xml',
+        'data/tax_code_map_mod123.xml',
         'views/mod123_view.xml',
         'security/ir.model.access.csv',
     ],
