@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_vat_book_invoices_issued"
+            model="ir.actions.client">
+        <field name="name">VAT Book Invoices Issued</field>
+        <field name="tag">aeat_report_client_action</field>
+        <field name="params"
+               eval="{'template_name': 'l10n_es_vat_book.report_vat_book_invoices_issued_html'}"/>
+    </record>
+    <record id="action_report_vat_book_invoices_received"
+            model="ir.actions.client">
+        <field name="name">VAT Book Invoices Received</field>
+        <field name="tag">aeat_report_client_action</field>
+        <field name="params"
+               eval="{'template_name': 'l10n_es_vat_book.report_vat_book_invoices_received_html'}"/>
+    </record>
+
+    <report
+        id="act_report_vat_book_invoices_issued_pdf"
+        model="l10n.es.vat.book"
+        string="Vat book invoices issued"
+        report_type="qweb-pdf"
+        name="l10n_es_vat_book.report_vat_book_invoices_issued_pdf"
+        file="l10n_es_vat_book.report_vat_book_invoices_issued"
+        attachment_use="False"
+    />
+
+    <report
+        id="act_report_vat_book_invoices_received_pdf"
+        model="l10n.es.vat.book"
+        string="Vat book invoices received"
+        report_type="qweb-pdf"
+        name="l10n_es_vat_book.report_vat_book_invoices_received_pdf"
+        file="l10n_es_vat_book.report_vat_book_invoices_received"
+        attachment_use="False"
+    />
+
+</odoo>
