@@ -94,10 +94,10 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if not text:
             return fill * length
         # Replace accents and convert to upper
-            ascii_string = self._formatString(text, length * 100, fill=fill,
-                                              align=align)
-            ascii_string = re.sub(ur"[^A-ZÑÇ]", '', ascii_string,
-                                  re.UNICODE | re.X)
+        ascii_string = self._formatString(text, length * 100, fill=fill,
+                                          align=align)
+        ascii_string = re.sub(ur"[^A-ZÑÇ]", '', ascii_string,
+                              re.UNICODE | re.X)
         # Cut the string if it is too long
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]
