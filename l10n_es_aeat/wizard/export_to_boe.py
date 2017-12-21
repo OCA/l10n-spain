@@ -332,6 +332,10 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             return self._formatString(val or '', line.size, align=align)
         elif line.export_type == 'boolean':
             return self._formatBoolean(val, line.bool_yes, line.bool_no)
+        elif line.export_type == 'alphabetic':
+            align = '>' if line.alignment == 'right' else '<'
+            return self._formatAlphabeticString(val or '', line.size,
+                                                align=align)
         else:
             decimal_size = (0 if line.export_type == 'integer' else
                             line.decimal_size)
