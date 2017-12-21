@@ -78,6 +78,45 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Return string
         return ascii_string
 
+    def _formatAlphabeticString(self, text, length, fill=' ', align='<'):
+        """Formats the string into a fixed length ASCII (iso-8859-1) record
+        with only alphabetic characters.
+
+        Note:
+            'Todos los campos alfanuméricos y alfabéticos se presentarán
+            alineados a la izquierda y rellenos de blancos por la derecha,
+            en mayúsculas sin caracteres especiales, y sin vocales acentuadas.
+            Para los caracteres específicos del idioma se utilizará la
+            codificación ISO-8859-1. De esta forma la letra “Ñ” tendrá el
+            valor ASCII 209 (Hex. D1) y la “Ç” (cedilla mayúscula) el valor
+            ASCII 199 (Hex. C7).'
+        """
+        if not text:
+            return fill * length
+        # Replace accents and convert to upper
+        from unidecode import unidecode
+        text = unicode(text).upper()
+        text = ''.join([unidecode(x) if x not in (u'Ñ', u'Ç') else x
+                        for x in text])
+        text = re.sub(
+            ur"[^A-ZÑÇ]", '', text, re.UNICODE | re.X)
+        ascii_string = text.encode('iso-8859-1')
+        # Cut the string if it is too long
+        if len(ascii_string) > length:
+            ascii_string = ascii_string[:length]
+        # Format the string
+        if align == '<':
+            ascii_string = ascii_string.ljust(length, fill)
+        elif align == '>':
+            ascii_string = ascii_string.rjust(length, fill)
+        else:
+            assert False, _('Wrong aling option. It should be < or >')
+        # Sanity-check
+        assert len(ascii_string) == length, \
+            _("The formated string must match the given length")
+        # Return string
+        return ascii_string
+
     def _formatFiscalName(self, text, length, fill=' ', align='<'):
         name = re.sub(
             ur"[^a-zA-Z0-9\sáÁéÉíÍóÓúÚñÑçÇäÄëËïÏüÜöÖ"
