@@ -94,28 +94,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if not text:
             return fill * length
         # Replace accents and convert to upper
-        from unidecode import unidecode
         text = unicode(text).upper()
-        text = ''.join([unidecode(x) if x not in (u'Ñ', u'Ç') else x
-                        for x in text])
-        text = re.sub(
-            ur"[^A-ZÑÇ]", '', text, re.UNICODE | re.X)
-        ascii_string = text.encode('iso-8859-1')
-        # Cut the string if it is too long
-        if len(ascii_string) > length:
-            ascii_string = ascii_string[:length]
-        # Format the string
-        if align == '<':
-            ascii_string = ascii_string.ljust(length, fill)
-        elif align == '>':
-            ascii_string = ascii_string.rjust(length, fill)
-        else:
-            assert False, _('Wrong aling option. It should be < or >')
-        # Sanity-check
-        assert len(ascii_string) == length, \
-            _("The formated string must match the given length")
-        # Return string
-        return ascii_string
+        text = re.sub(ur"[^A-ZÑÇ]", '', text, re.UNICODE | re.X)
+        return self._formatString(text, length, fill=fill, align=align)
 
     def _formatFiscalName(self, text, length, fill=' ', align='<'):
         name = re.sub(
