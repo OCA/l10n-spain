@@ -56,6 +56,7 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
             'counterpart_account_id': self.accounts['475000'].id
         })
         self.model115.button_calculate()
+        self.assertEqual(self.model115.tipo_declaracion, 'I')
         # Fill manual fields
         self.model115.write({
             # Resultados a ingresar anteriores
