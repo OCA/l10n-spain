@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import _, api, fields, models
-from openerp.exceptions import UserError
+from openerp.exceptions import UserError, ValidationError
 
 
 class L10nEsAeatMod115Report(models.Model):
@@ -37,8 +37,57 @@ class L10nEsAeatMod115Report(models.Model):
             ('U', "Direct debit"),
             ('G', "To enter on CCT"),
             ('N', "To return"),
-        ], string="Result type", readonly=True, default='I',
+        ], string="Result type", default='N',
+        readonly=True,
         states={'draft': [('readonly', False)]}, required=True)
+    tipo_declaracion_positiva = fields.Selection(
+        selection=[
+            ('I', "To enter"),
+            ('U', "Direct debit"),
+            ('G', "To enter on CCT")],
+        string='Result type (positive)',
+        compute='_compute_tipo_declaracion',
+        inverse='_inverse_tipo_declaracion',
+    )
+    tipo_declaracion_negativa = fields.Selection(
+        selection=[
+            ('N', "To return")],
+        string='Result type (negative)',
+        compute='_compute_tipo_declaracion',
+        inverse='_inverse_tipo_declaracion',
+    )
+
+    @api.multi
+    @api.depends('tipo_declaracion')
+    def _compute_tipo_declaracion(self):
+        for rec in self:
+            rec.tipo_declaracion_positiva = False
+            rec.tipo_declaracion_negativa = False
+            if rec.tipo_declaracion == 'N':
+                rec.tipo_declaracion_negativa = rec.tipo_declaracion
+            if rec.tipo_declaracion != 'N':
+                rec.tipo_declaracion_positiva = rec.tipo_declaracion
+
+    @api.multi
+    def _inverse_tipo_declaracion(self):
+        for rec in self:
+            if rec.casilla_05 > 0.0:
+                rec.tipo_declaracion = rec.tipo_declaracion_positiva
+            else:
+                rec.tipo_declaracion = rec.tipo_declaracion_negativa
+
+    @api.multi
+    @api.constrains('tipo_declaracion')
+    def _check_tipo_declaracion(self):
+        for rec in self:
+            if rec.casilla_05 <= 0.0 and rec.tipo_declaracion != 'N':
+                raise ValidationError(_(
+                    'The result of the declaration is negative. '
+                    'You should select another Result type'))
+            elif rec.casilla_05 > 0.0 and rec.tipo_declaracion == 'N':
+                raise ValidationError(_(
+                    'The result of the declaration is positive. '
+                    'You should select another Result type'))
 
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.move_line_ids')
@@ -78,3 +127,13 @@ class L10nEsAeatMod115Report(models.Model):
         if msg:
             raise UserError(msg)
         return super(L10nEsAeatMod115Report, self).button_confirm()
+
+    @api.multi
+    def calculate(self):
+        super(L10nEsAeatMod115Report, self).calculate()
+        self.refresh()
+        for rec in self:
+            if rec.casilla_05 <= 0.0:
+                rec.tipo_declaracion = 'N'
+            else:
+                rec.tipo_declaracion = 'I'
