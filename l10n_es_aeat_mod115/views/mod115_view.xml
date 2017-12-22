@@ -25,7 +25,11 @@
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
         <field name="arch" type="xml">
             <field name="previous_number" position="after">
-                <field name="tipo_declaracion"/>
+                <field name="tipo_declaracion_positiva" string="Result type"
+                       attrs="{'invisible': [('casilla_05', '&lt;=', 0.0)]}"/>
+                <field name="tipo_declaracion_negativa" string="Result type"
+                       attrs="{'invisible': [('casilla_05', '&gt;', 0.0)]}"/>
+                <field name="tipo_declaracion" invisible="True"/>
             </field>
             <group name="group_declaration" position="after">
                 <group string="Result"
