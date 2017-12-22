@@ -21,7 +21,6 @@
         'data/aeat_export_mod115_data.xml',
         'data/tax_code_map_mod115_data.xml',
         'views/mod115_view.xml',
-        'security/ir.model.access.csv',
     ],
     'installable': True,
 }
