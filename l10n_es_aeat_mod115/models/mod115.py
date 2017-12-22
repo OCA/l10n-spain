@@ -37,7 +37,7 @@ class L10nEsAeatMod115Report(models.Model):
             ('U', "Direct debit"),
             ('G', "To enter on CCT"),
             ('N', "To return"),
-        ], string="Result type", readonly=True, default='I',
+        ], string="Result type", default='I',
         states={'draft': [('readonly', False)]}, required=True)
 
     @api.multi
@@ -78,3 +78,12 @@ class L10nEsAeatMod115Report(models.Model):
         if msg:
             raise UserError(msg)
         return super(L10nEsAeatMod115Report, self).button_confirm()
+
+    @api.multi
+    def calculate(self):
+        super(L10nEsAeatMod115Report, self).calculate()
+        for rec in self:
+            if rec.casilla_05 < 0.0:
+                rec.tipo_declaracion = 'N'
+            else:
+                rec.tipo_declaracion = 'I'
