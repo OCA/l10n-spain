@@ -596,7 +596,7 @@ class AccountInvoice(models.Model):
         # sujeta y exenta o no exenta) deberá informarse en cualquier caso
         # como factura sujeta y no exenta, en el caso de ser una factura del
         # primer semestre.
-        if self.date_invoice < SII_START_DATE:
+        if self.date < SII_START_DATE:
             return self._sii_adjust_first_semester(taxes_dict)
         return taxes_dict
 
@@ -848,8 +848,10 @@ class AccountInvoice(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": self.date_invoice >= SII_START_DATE and
-                float_round(tax_amount * sign, 2) or 0.0,
+                "CuotaDeducible": (
+                    self.date >= SII_START_DATE and
+                    round(tax_amount * sign, 2) or 0.0
+                ),
             }
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
@@ -934,13 +936,14 @@ class AccountInvoice(models.Model):
         configuration parameters and invoice availability for SII. If the
         invoice is to be sent the decides the send method: direct send or
         via connector depending on 'Use connector' configuration"""
-        # De momento evitamos enviar facturas del primer semestre si no estamos
-        # en entorno de pruebas
         invoices = self.filtered(
             lambda i: (
                 i.company_id.sii_test or
-                i.date_invoice >= SII_START_DATE or
-                i.sii_registration_key.code in ['16', '14']
+                i.date >= SII_START_DATE or
+                (i.sii_registration_key.type == 'sale' and
+                 i.sii_registration_key.code == '16') or
+                (i.sii_registration_key.type == 'purchase' and
+                 i.sii_registration_key.code == '14')
             )
         )
         queue_obj = self.env['queue.job'].sudo()
