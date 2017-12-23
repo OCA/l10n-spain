@@ -40,6 +40,7 @@ addon | version | summary
 [l10n_es_aeat](l10n_es_aeat/) | 8.0.1.9.4 | AEAT Base
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 8.0.2.1.0 | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 8.0.1.3.0 | AEAT modelo 115
+[l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 8.0.1.0.0 | AEAT modelo 123
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 8.0.0.9.0 | AEAT modelo 130
 [l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 8.0.1.3.1 | AEAT modelo 216
 [l10n_es_aeat_mod296](l10n_es_aeat_mod296/) | 8.0.1.3.0 | AEAT modelo 296
