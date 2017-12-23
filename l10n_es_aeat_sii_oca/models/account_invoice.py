@@ -867,9 +867,11 @@ class AccountInvoice(models.Model):
                 invoice._send_invoice_to_sii()
             else:
                 eta = company._get_sii_eta()
-                new_delay = self.sudo().with_context(
+                new_delay = invoice.sudo().with_context(
                     company_id=company.id
-                ).with_delay(eta=eta).confirm_one_invoice()
+                ).with_delay(
+                    eta=eta if not invoice.sii_send_failed else False,
+                ).confirm_one_invoice()
                 job = queue_obj.search([
                     ('uuid', '=', new_delay.uuid)
                 ], limit=1)
