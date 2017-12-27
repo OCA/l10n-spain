@@ -111,6 +111,7 @@ Contributors
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
 * Juanjo Algaz <jalgaz@gmail.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Javi Melendez <javimelex@gmail.com>
 
 Maintainer
 ----------
