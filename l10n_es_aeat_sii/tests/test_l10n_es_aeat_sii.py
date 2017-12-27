@@ -64,7 +64,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
-            'date_invoice': '2017-06-19',
+            'date_invoice': '2017-07-19',
             'type': 'out_invoice',
             'account_id': cls.partner.property_account_payable_id.id,
             'invoice_line_ids': [
@@ -108,7 +108,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
             expedida_recibida = 'FacturaRecibida'
         res = {
             'IDFactura': {
-                'FechaExpedicionFacturaEmisor': '19-06-2017',
+                'FechaExpedicionFacturaEmisor': '19-07-2017',
             },
             expedida_recibida: {
                 'TipoFactura': invoice_type,
@@ -121,7 +121,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'ImporteTotal': 110,
             },
             'PeriodoImpositivo': {
-                'Periodo': '06',
+                'Periodo': '07',
                 'Ejercicio': 2017,
             }
         }
@@ -140,7 +140,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'IDEmisorFactura': {'NIF': u'F35999705'},
             })
             res[expedida_recibida].update({
-                "FechaRegContable": '19-06-2017',
+                "FechaRegContable": '19-07-2017',
                 "DesgloseFactura": {
                     'DesgloseIVA': {
                         'DetalleIVA': [

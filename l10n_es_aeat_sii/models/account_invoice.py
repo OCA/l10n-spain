@@ -408,6 +408,76 @@ class AccountInvoice(models.Model):
             return True
         return False
 
+    @api.model
+    def _sii_adjust_first_semester(self, taxes_dict):
+        if 'DesgloseFactura' in taxes_dict:
+            tax_breakdown = taxes_dict['DesgloseFactura']
+            if 'NoSujeta' in tax_breakdown:
+                del tax_breakdown['NoSujeta']
+            if 'Sujeta' not in tax_breakdown:
+                sub_dict = tax_breakdown.setdefault('Sujeta', {})
+                sub_dict.setdefault(
+                    'NoExenta', {
+                        'TipoNoExenta': 'S1',
+                        'DesgloseIVA': {
+                            'DetalleIVA': [{
+                                "BaseImponible": 0,
+                                "CuotaRepercutida": 0,
+                                "TipoImpositivo": "0",
+                                "CuotaSoportada": 0}]}
+                    })
+            elif 'Exenta' in tax_breakdown['Sujeta']:
+                BI = tax_breakdown['Sujeta']['Exenta']['BaseImponible']
+                del tax_breakdown['Sujeta']['Exenta']
+                tax_breakdown['Sujeta'].setdefault(
+                    'NoExenta', {
+                        'TipoNoExenta': 'S1',
+                        'DesgloseIVA': {
+                            'DetalleIVA': [{
+                                "BaseImponible": BI,
+                                "CuotaRepercutida": 0,
+                                "TipoImpositivo": "0",
+                                "CuotaSoportada": 0}]}})
+
+        if 'DesgloseTipoOperacion' in taxes_dict:
+            type_breakdown = taxes_dict['DesgloseTipoOperacion']
+            # key puede ser PrestacionServicios, Entrega o ambas
+            keys = type_breakdown.keys()
+            for key in keys:
+                if 'NoSujeta' in type_breakdown[key]:
+                    del type_breakdown[key]['NoSujeta']
+                if 'Sujeta' not in type_breakdown[key]:
+                    sub_dict = type_breakdown[key].setdefault('Sujeta', {})
+                    sub_dict.setdefault(
+                        'NoExenta', {
+                            'TipoNoExenta': 'S1',
+                            'DesgloseIVA': {
+                                'DetalleIVA': [{
+                                    "BaseImponible": 0,
+                                    "CuotaRepercutida": 0,
+                                    "TipoImpositivo": "0",
+                                    "CuotaSoportada": 0}],
+                            },
+                        },
+                    )
+                elif 'Exenta' in type_breakdown[key]['Sujeta']:
+                    BI = type_breakdown[key]['Sujeta']['Exenta'][
+                        'BaseImponible']
+                    del type_breakdown[key]['Sujeta']['Exenta']
+                    type_breakdown[key]['Sujeta'].setdefault(
+                        'NoExenta', {
+                            'TipoNoExenta': 'S1',
+                            'DesgloseIVA': {
+                                'DetalleIVA': [{
+                                    "BaseImponible": BI,
+                                    "CuotaRepercutida": 0,
+                                    "TipoImpositivo": "0",
+                                    "CuotaSoportada": 0}],
+                            },
+                        },
+                    )
+        return taxes_dict
+
     @api.multi
     def _get_sii_out_taxes(self):
         """Get the taxes for sales invoices.
@@ -521,6 +591,13 @@ class AccountInvoice(models.Model):
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
             del taxes_dict['DesgloseFactura']
+
+        # Con independencia del tipo de operación informado (no sujeta,
+        # sujeta y exenta o no exenta) deberá informarse en cualquier caso
+        # como factura sujeta y no exenta, en el caso de ser una factura del
+        # primer semestre.
+        if self.date < SII_START_DATE:
+            return self._sii_adjust_first_semester(taxes_dict)
         return taxes_dict
 
     @api.multi
@@ -771,7 +848,10 @@ class AccountInvoice(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": tax_amount * sign,
+                "CuotaDeducible": (
+                    self.date >= SII_START_DATE and
+                    round(tax_amount * sign, 2) or 0.0
+                ),
             }
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
@@ -856,10 +936,15 @@ class AccountInvoice(models.Model):
         configuration parameters and invoice availability for SII. If the
         invoice is to be sent the decides the send method: direct send or
         via connector depending on 'Use connector' configuration"""
-        # De momento evitamos enviar facturas del primer semestre si no estamos
-        # en entorno de pruebas
         invoices = self.filtered(
-            lambda i: (i.company_id.sii_test or i.date >= SII_START_DATE)
+            lambda i: (
+                i.company_id.sii_test or
+                i.date >= SII_START_DATE or
+                (i.sii_registration_key.type == 'sale' and
+                 i.sii_registration_key.code == '16') or
+                (i.sii_registration_key.type == 'purchase' and
+                 i.sii_registration_key.code == '14')
+            )
         )
         queue_obj = self.env['queue.job'].sudo()
         for invoice in invoices:
@@ -867,7 +952,9 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                eta = self.env.context.get(
+                    'override_eta', company._get_sii_eta(),
+                )
                 ctx = self.env.context.copy()
                 ctx.update(company_id=company.id)
                 session = ConnectorSession(
