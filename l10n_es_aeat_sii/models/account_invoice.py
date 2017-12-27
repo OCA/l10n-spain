@@ -58,8 +58,8 @@ class AccountInvoice(models.Model):
 
     def _default_sii_registration_key(self):
         sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
-        type = self.env.context.get('type')
-        if type in ['in_invoice', 'in_refund']:
+        invoice_type = self.env.context.get('type')
+        if invoice_type in ['in_invoice', 'in_refund']:
             key = sii_key_obj.search(
                 [('code', '=', '01'), ('type', '=', 'purchase')], limit=1)
         else:
@@ -820,6 +820,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _connect_sii(self, wsdl):
+        self.ensure_one()
         today = fields.Date.today()
         sii_config = self.env['l10n.es.aeat.sii'].search([
             ('company_id', '=', self.company_id.id),
@@ -892,7 +893,7 @@ class AccountInvoice(models.Model):
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
-            client = self._connect_sii(wsdl)
+            client = invoice._connect_sii(wsdl)
             serv = client.bind('siiService', port_name)
             if invoice.sii_state == 'not_sent':
                 tipo_comunicacion = 'A0'
@@ -1006,7 +1007,7 @@ class AccountInvoice(models.Model):
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
-            client = self._connect_sii(wsdl)
+            client = invoice._connect_sii(wsdl)
             serv = client.bind('siiService', port_name)
             header = invoice._get_sii_header(cancellation=True)
             try:
