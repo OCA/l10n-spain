@@ -322,14 +322,14 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         estado = round(subtotal * 0.95, 3)
         result = round(estado + 455 - 250, 3)
 
-        self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
-        self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
-        self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
-        self.assertAlmostEqual(self.model303.atribuible_estado, estado, 2)
-        self.assertAlmostEqual(self.model303.casilla_69, result, 2)
-        self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
-        self.assertEqual(self.model303.result_type, 'I')
-        self.assertTrue(self.model303.allow_posting)
+        self.assertAlmostEqual(model303.total_devengado, devengado, 2)
+        self.assertAlmostEqual(model303.total_deducir, deducir, 2)
+        self.assertAlmostEqual(model303.casilla_46, subtotal, 2)
+        self.assertAlmostEqual(model303.atribuible_estado, estado, 2)
+        self.assertAlmostEqual(model303.casilla_69, result, 2)
+        self.assertAlmostEqual(model303.resultado_liquidacion, result, 2)
+        self.assertEqual(model303.result_type, 'I')
+        self.assertTrue(model303.allow_posting)
         with self.assertRaises(exceptions.ValidationError):
             model303.cuota_compensar = -250
         model303.button_post()
