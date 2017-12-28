@@ -40,7 +40,8 @@ class AccountTaxTemplate(models.Model):
         ], string='Facturae code'
     )
 
-    def _get_tax_vals(self, company):
-        val = super(AccountTaxTemplate, self)._get_tax_vals(company)
+    def _get_tax_vals(self, company, tax_template_to_tax):
+        val = super(AccountTaxTemplate, self)._get_tax_vals(
+            company, tax_template_to_tax)
         val['facturae_code'] = self.facturae_code
         return val
