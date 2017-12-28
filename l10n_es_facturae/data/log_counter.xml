@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Copyright 2017 Creu Blanca
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+
+<odoo noupdate="1">
+    <record id="seq_account_invoice_integration_log" model="ir.sequence">
+        <field name="name">Integration Log</field>
+        <field name="code">account.invoice.integration.log</field>
+        <field name="prefix">INT-LOG</field>
+        <field name="padding">8</field>
+    </record>
+</odoo>
