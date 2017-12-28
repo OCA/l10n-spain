@@ -33,10 +33,10 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
             action['context']['statement_ids'][0],
         )
         self.assertEqual(len(statement.line_ids), 3)
-        self.assertEqual(statement.line_ids[2].date, '2016-05-25')
+        self.assertEqual(statement.line_ids[0].date, '2016-05-25')
         self.assertAlmostEqual(statement.balance_start, 0, 2)
         self.assertAlmostEqual(statement.balance_end, 101.96, 2)
-        self.assertEqual(statement.line_ids[1].partner_id, self.partner)
+        self.assertEqual(statement.line_ids[2].partner_id, self.partner)
 
     def test_import_n43_fecha_oper(self):
         self.journal.n43_date_type = 'fecha_oper'
@@ -48,4 +48,4 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
         statement = self.env['account.bank.statement'].browse(
             action['context']['statement_ids'][0],
         )
-        self.assertEqual(statement.line_ids[2].date, '2016-05-26')
+        self.assertEqual(statement.line_ids[0].date, '2016-05-26')
