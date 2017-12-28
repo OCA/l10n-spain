@@ -39,6 +39,7 @@ Contribudores
 
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
+* Valentin Vinagre Urteaga <valentin.vinagre@qubiq.es>
 
 Financiadores
 -------------

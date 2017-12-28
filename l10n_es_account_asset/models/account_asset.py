@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2012-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2017 Valentin Vinagre Urteaga <valentin.vinagre@qubiq.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import calendar
 from odoo import api, fields, models
 from odoo.tools import float_is_zero
 from dateutil.relativedelta import relativedelta
+import datetime
 
 
 class AccountAssetCategory(models.Model):
@@ -26,6 +28,19 @@ class AccountAssetCategory(models.Model):
 
 class AccountAssetAsset(models.Model):
     _inherit = 'account.asset.asset'
+
+    def onchange_category_id_values(self, category_id):
+        if category_id:
+            asset = super(AccountAssetAsset, self).\
+                onchange_category_id_values(category_id)
+            if asset and asset['value']['method_time'] == 'percentage':
+                category = self.env['account.asset.category'].\
+                    browse(category_id)
+                asset['value']['method_percentage'] =\
+                    category.method_percentage
+                asset['value']['annual_percentage'] = (
+                    category.method_percentage * 12 / category.method_period)
+            return asset
 
     @api.multi
     def _get_last_depreciation_date(self):
