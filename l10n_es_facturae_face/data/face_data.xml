@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record id="account_invoice_face_server" model="ir.config_parameter">
+        <field name="key">account.invoice.face.server</field>
+        <field name="value">https://se-face-webservice.redsara.es/facturasspp2?wsdl</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+    <record id="face_certificate" model="ir.attachment">
+        <field name="name">account.invoice.face.certificate</field>
+        <field name="datas_fname">face_certificate.crt</field>
+        <field name="datas">LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUYvVENDQk9XZ0F3SUJBZ0lRVWo1b2Z5N1RZ
+WGhXc0tCWlZ6Nmx4REFOQmdrcWhraUc5dzBCQVFzRkFEQkgKTVFzd0NRWURWUVFHRXdKRlV6RVJN
+QThHQTFVRUNnd0lSazVOVkMxU1EwMHhKVEFqQmdOVkJBc01IRUZESUVOdgpiWEJ2Ym1WdWRHVnpJ
+RWx1Wm05eWJjT2hkR2xqYjNNd0hoY05NVFl3TWpBeU1USXlOakF4V2hjTk1Ua3dNakF5Ck1USXlO
+VFU1V2pDQjJERUxNQWtHQTFVRUJoTUNSVk14RHpBTkJnTlZCQWNNQmsxQlJGSkpSREU4TURvR0Ex
+VUUKQ2d3elRVbE9TVk5VUlZKSlR5QkVSU0JJUVVOSlJVNUVRU0JaSUVGRVRVbE9TVk5VVWtGRFNV
+OU9SVk1nVU1PYQpRa3hKUTBGVE1Vc3dTUVlEVlFRTERFSkVTVkpGUTBOSnc1Tk9JRVJGSUZSRlEw
+NVBURTlIdzQxQlV5QkVSU0JNClFTQkpUa1pQVWsxQlEwbkRrMDRnV1NCTVFWTWdRMDlOVlU1SlEw
+RkRTVTlPUlZNeEVqQVFCZ05WQkFVVENWTXkKT0RNek1EQXlSVEVaTUJjR0ExVUVBd3dRUkZSSlF5
+QkJSMFVnVUZKVlJVSkJVekNDQVNJd0RRWUpLb1pJaHZjTgpBUUVCQlFBRGdnRVBBRENDQVFvQ2dn
+RUJBTEJjb3V5NXdrMVAxTHdxMzhiK21WYlpmb3Fza1BCZXBhd2llSGFyClExTnJrSkpWK2hJWU9u
+Z0dYLzREZHBvVUtyL2V6QXFyTml1MG1IMVd4UEkrZVJMc2UxbG9VYmp3UVRneG5KSTkKUVAwdjc5
+TDZnMFVxTHlGY3d5eTcvZEl4VmtKVUlxN3FQSFhianZsZ3U1ZkN3NnVCOGgwRVEySmxycEtmcXRk
+awpoK2lwRG1VZmluYWdlTTExc01YRWViUytZeE8waWlxSzBXZ0hQRzI3ZFN6ZDBUZm8yU0tRL1hI
+c2d1VHRySW9WCjRra3RHaGtiN0lFcE84K0c4UXpIZDM0N0hpUUF5L01ydXplTEFKamFCaGNZemtD
+bU1GdzV4V2M3azZQQjBTODIKaGVGQjZSTis0UkdZUDE0OVZJTkdTUXJTMFdxSVhyWEpDSExRYjVj
+N0hCZU5wbTBDQXdFQUFhT0NBbEV3Z2dKTgpNQWtHQTFVZEV3UUNNQUF3Z1lFR0NDc0dBUVVGQndF
+QkJIVXdjekE3QmdnckJnRUZCUWN3QVlZdmFIUjBjRG92CkwyOWpjM0JqYjIxd0xtTmxjblF1Wm01
+dGRDNWxjeTl2WTNOd0wwOWpjM0JTWlhOd2IyNWtaWEl3TkFZSUt3WUIKQlFVSE1BS0dLR2gwZEhB
+Nkx5OTNkM2N1WTJWeWRDNW1ibTEwTG1WekwyTmxjblJ6TDBGRFEwOU5VQzVqY25RdwpSQVlEVlIw
+Z0JEMHdPekE1QmdvckJnRUVBYXhtQXdrQ01Dc3dLUVlJS3dZQkJRVUhBZ0VXSFdoMGRIQTZMeTkz
+CmQzY3VZMlZ5ZEM1bWJtMTBMbVZ6TDJSd1kzTXZNQzRHQTFVZEVRUW5NQ1drSXpBaE1SOHdIUVlK
+S3dZQkJBR3MKWmdFSURCQkVWRWxESUVGSFJTQlFVbFZGUWtGVE1CTUdBMVVkSlFRTU1Bb0dDQ3NH
+QVFVRkJ3TUNNQTRHQTFVZApEd0VCL3dRRUF3SUVzREFkQmdOVkhRNEVGZ1FVbVVQYUNLUzFHWFVM
+UnY3VFlHRk1HNkJ4bWNRd0h3WURWUjBqCkJCZ3dGb0FVR2ZoWUx4VFdwc3liQkpnSURVelhxd0Nu
+ZzJVd2dlQUdBMVVkSHdTQjJEQ0IxVENCMHFDQno2Q0IKeklhQm5teGtZWEE2THk5c1pHRndZMjl0
+Y0M1alpYSjBMbVp1YlhRdVpYTXZRMDQ5UTFKTU1TeFBWVDFCUXlVeQpNRU52YlhCdmJtVnVkR1Z6
+SlRJd1NXNW1iM0p0WVhScFkyOXpMRTg5Ums1TlZDMVNRMDBzUXoxRlV6OWpaWEowCmFXWnBZMkYw
+WlZKbGRtOWpZWFJwYjI1TWFYTjBPMkpwYm1GeWVUOWlZWE5sUDI5aWFtVmpkR05zWVhOelBXTlMK
+VEVScGMzUnlhV0oxZEdsdmJsQnZhVzUwaGlsb2RIUndPaTh2ZDNkM0xtTmxjblF1Wm01dGRDNWxj
+eTlqY214egpZMjl0Y0M5RFVrd3hMbU55YkRBTkJna3Foa2lHOXcwQkFRc0ZBQU9DQVFFQVRsWjNE
+UEZ6MWdRMzJZT1lJSUx6CmY5OWt1azJ3RllVTGcrWGFEcWlzL3kvUzZicGhLRjN4YnR5eHNJWCts
+eDB6STE3ZHlEVEtBKzZzV05IaWl1SDQKWWpYa3FieGJJOEVZSGZlUnpiUkszUzRHajF5YXRHVnRo
+c0NLNndEcmxyOFJyajhRZ250RkFNKy9rZnlzR0psSApFaUZzZ1ROMmlYZk9zam1YTk5LMUx3U2JR
+M0dDd1BhTFlLWm9uTnNFajhQL1M1cjkxSUNlamZHbFZacDFBRVh5ClAzakp6aWJyMFNLeHdFdDMy
+ci8rWmpUbVFnckx1QW1HcmdjVnNqQUFtMkNwN3VzSllhUy9TeVBGajFRRFVsWm8KVk91bzRkZmdG
+VVpMQ1ZCZk1VQlk3M1dOYXpWQW9qcVpoRzlkOHRBZ2cyYzY0bnVzdU1EWSsyNU1MVUtGenNiegpG
+Zz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KCg==</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+    <record id="seq_account_invoice_face" model="ir.sequence">
+        <field name="name">Integration FACe</field>
+        <field name="code">account.invoice.integration.face</field>
+        <field name="prefix">FACe</field>
+        <field name="padding">8</field>
+    </record>
+    <record id="integration_face" model="account.invoice.integration.method">
+        <field name="name">FACe</field>
+        <field name="code">FACe</field>
+        <field name="sequence_id" ref="l10n_es_facturae_face.seq_account_invoice_face"/>
+    </record>
+</odoo>
