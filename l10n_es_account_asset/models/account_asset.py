@@ -8,7 +8,6 @@ import calendar
 from odoo import api, fields, models
 from odoo.tools import float_is_zero
 from dateutil.relativedelta import relativedelta
-import datetime
 
 
 class AccountAssetCategory(models.Model):
