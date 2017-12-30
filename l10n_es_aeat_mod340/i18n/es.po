@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-19 04:14+0000\n"
-"PO-Revision-Date: 2017-08-21 07:13+0000\n"
+"POT-Creation-Date: 2017-12-02 05:59+0000\n"
+"PO-Revision-Date: 2017-12-22 09:49+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-7-0/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr "Número declaración"
 #: field:l10n.es.aeat.mod340.issued,tax_line_ids:0
 #: field:l10n.es.aeat.mod340.received,tax_line_ids:0
 msgid "Tax lines"
-msgstr ""
+msgstr "Líneas de impuesto"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:0
@@ -348,7 +348,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod340
 #: reportreport mod340:0
 msgid "Tipo de declaración"
-msgstr ""
+msgstr "Resultado declaración"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.report,calculation_date:0
