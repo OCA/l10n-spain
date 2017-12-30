@@ -6,10 +6,10 @@
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2017-06-29 22:48+0000\n"
+"POT-Creation-Date: 2017-12-29 03:40+0000\n"
+"PO-Revision-Date: 2017-12-29 03:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -29,14 +29,13 @@ msgid "Bank Accounts"
 msgstr "Comptes bancaris"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:84
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:77
 #, python-format
 msgid "Bank account should have 20 digits."
 msgstr "Bank account should have 20 digits."
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_account_journal_bank_acc_country_id
-#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_bank_acc_country_id
 msgid "Bank country"
 msgstr "País del compte"
 
@@ -44,6 +43,11 @@ msgstr "País del compte"
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_code
 msgid "Code"
 msgstr "Codi"
+
+#. module: l10n_es_partner
+#: model:ir.model,name:l10n_es_partner.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_uid
@@ -61,7 +65,7 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:79
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:72
 #, python-format
 msgid "IBAN account is not valid"
 msgstr "El compte IBAN no és vàlid"
@@ -73,7 +77,6 @@ msgstr "ID"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,help:l10n_es_partner.field_account_journal_bank_acc_country_id
-#: model:ir.model.fields,help:l10n_es_partner.field_res_partner_bank_acc_country_id
 msgid ""
 "If the country of the bank is Spain, it validates the bank code or IBAN, "
 "formatting it accordingly."
@@ -81,7 +84,7 @@ msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_import_fail
-msgid "Import fail"
+msgid "Import Fail"
 msgstr ""
 
 #. module: l10n_es_partner
@@ -95,7 +98,7 @@ msgid "Import from local file"
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:48
+#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:47
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format
@@ -110,7 +113,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:88
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:81
 #, python-format
 msgid "Invalid bank account."
 msgstr "Invalid bank account."
@@ -146,20 +149,10 @@ msgid "Long name"
 msgstr "Nom complert"
 
 #. module: l10n_es_partner
-#: model:ir.model,name:l10n_es_partner.model_res_partner
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
 "Something has failed importing data from Internet. You will need to import "
 "local data instead."
-msgstr ""
-
-#. module: l10n_es_partner
-#: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
-msgid "This wizard will import spanish bank data."
 msgstr ""
 
 #. module: l10n_es_partner
@@ -187,8 +180,8 @@ msgid "Value Added Tax number"
 msgstr "Codi d'Indentificació Fiscal"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/models/account_journal.py:39
-#: code:addons/l10n_es_partner/models/res_partner_bank.py:104
+#: code:addons/l10n_es_partner/models/account_journal.py:26
+#: code:addons/l10n_es_partner/models/res_partner_bank.py:101
 #, python-format
 msgid "Warning"
 msgstr "Warning"
