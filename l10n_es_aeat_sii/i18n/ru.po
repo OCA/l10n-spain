@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-14 08:12+0000\n"
-"PO-Revision-Date: 2017-07-14 08:12+0000\n"
+"POT-Creation-Date: 2017-12-28 00:00+0000\n"
+"PO-Revision-Date: 2017-12-28 00:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Russian (https://www.transifex.com/oca/teams/23907/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,16 @@ msgid "Active"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_registration_key_additional2
+msgid "Additional 2 SII registration key"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_registration_key_additional1
+msgid "Additional SII registration key"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys
 msgid "Aeat SII Invoice Registration Keys"
 msgstr ""
@@ -65,6 +75,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_tree
 msgid "Aeat SII Registration Keys"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_send_first_semester
+msgid "Aeat SII Send First Semester"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -120,6 +135,7 @@ msgid "By substitution"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "Cancel"
 msgstr "Отменена"
@@ -159,6 +175,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_registration_key_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_code
 msgid "Code"
@@ -192,6 +209,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_create_uid
 msgid "Created by"
 msgstr ""
 
@@ -201,6 +219,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_create_date
 msgid "Created on"
 msgstr ""
 
@@ -211,6 +230,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_to
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_date_to
 msgid "Date to"
 msgstr ""
 
@@ -240,6 +260,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_display_name
 msgid "Display Name"
 msgstr ""
 
@@ -252,7 +273,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_fiscal_position_sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_enabled
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_partner_sii_enabled
 msgid "Enable SII"
 msgstr ""
 
@@ -314,6 +334,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_id
 msgid "ID"
 msgstr ""
 
@@ -322,6 +343,14 @@ msgstr ""
 msgid ""
 "Indicates that the last attempt to communicate this invoice to the SII has "
 "failed. See SII return for details"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice_sii_account_registration_date
+msgid ""
+"Indicates the account registration date set at the SII, which must be the "
+"date when the invoice is recorded in the system and is independent of the "
+"date of the accounting entry of the invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -374,6 +403,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password___last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester___last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -383,6 +413,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_write_uid
 msgid "Last Updated by"
 msgstr ""
 
@@ -392,6 +423,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_write_date
 msgid "Last Updated on"
 msgstr ""
 
@@ -456,7 +488,7 @@ msgid "Never sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:275
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:311
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
@@ -531,6 +563,16 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_queue_job
 msgid "Queue Job"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_property_cadastrial_code
+msgid "Real property cadastrial code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_property_location
+msgid "Real property location"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -629,6 +671,11 @@ msgid "SII Supplier header"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_account_registration_date
+msgid "SII account registration date"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "SII cancelled"
 msgstr ""
@@ -704,6 +751,16 @@ msgid "Sale"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid "Send First Semester"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid "Send Invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.actions.server,name:l10n_es_aeat_sii.action_send_sii_invoices
 msgid "Send Invoices to SII"
 msgstr ""
@@ -712,6 +769,16 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_sii_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Send cancellation to SII"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_in_invoices
+msgid "Send in invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_send_first_semester
+msgid "Send invoices first semester"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -725,6 +792,12 @@ msgid "Send now"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_out_invoices
+msgid "Send out invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_sii_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Send to SII"
@@ -738,6 +811,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sent_time
 msgid "Sent time"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_partner_sii_enabled
+msgid "Sii enabled"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -784,33 +862,41 @@ msgid "The last attemp to sent to SII has failed"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:518
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:680
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:534
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:696
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:305
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:341
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:526
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:688
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:530
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:692
 #, python-format
 msgid "This invoice is not SII enabled."
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid ""
+"This wizard will send to SII the invoices in the first semester.\n"
+"                        You can choose to the date until you want to send and the type of the invoices.\n"
+"                        For in invoices will send all the invoices with acconting date until the date selected:"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -835,13 +921,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:964
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1186
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:934
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1152
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -849,7 +935,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:862
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1080
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -857,19 +943,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:979
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1201
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:513
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:675
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:161
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:197
 #, python-format
 msgid ""
 "You cannot change the invoice date of an invoice already registered at the "
@@ -877,7 +963,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:178
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:214
 #, python-format
 msgid ""
 "You cannot change the supplier invoice number of an invoice already "
@@ -886,7 +972,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:171
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:207
 #, python-format
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
@@ -894,21 +980,44 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:195
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:231
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:521
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:683
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:129
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:165
 #, python-format
 msgid "You must have at least one refunded invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid ""
+"[1]-Real property with cadastral code located within the Spanish territory "
+"except Basque Country or Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid "[2]-Real property located in the Basque Country or Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid ""
+"[3]-Real property in any of the above situations but without cadastral code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid "[4]-Real property located in a foreign country"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -957,6 +1066,12 @@ msgid "l10n.es.aeat.sii.password"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_l10n_es_sii_first_semester
+msgid "l10n.es.sii.first.semester"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "or"
 msgstr ""
