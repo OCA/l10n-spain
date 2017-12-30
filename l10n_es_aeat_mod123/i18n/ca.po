@@ -4,86 +4,87 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Fernando Lara <gennesis45@gmail.com>, 2017
+# Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017
+# Carles Antoli <carlesantoli@hotmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 01:48+0000\n"
 "PO-Revision-Date: 2017-12-28 01:48+0000\n"
-"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>, 2017\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod123
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "(show move lines)"
-msgstr "(mostrar apuntes)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model,name:l10n_es_aeat_mod123.model_l10n_es_aeat_mod123_report
 msgid "AEAT 123 report"
-msgstr "Declaración AEAT 123"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: code:addons/l10n_es_aeat_mod123/models/mod123.py:104
 #, python-format
 msgid "Account Move Lines"
-msgstr "Apuntes contables"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,move_id:0
 msgid "Account entry"
-msgstr "Asiento"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,allow_posting:0
 msgid "Allow posting"
-msgstr "Permitir asentar"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,partner_bank_id:0
 msgid "Bank account"
-msgstr "Cuenta bancaria"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,calculation_date:0
 msgid "Calculation date"
-msgstr "Calculation date"
+msgstr "Data de càlcul"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,state:0
 msgid "Cancelled"
-msgstr "Cancelada"
+msgstr "Cancel·lat "
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,casilla_01:0
 msgid "Casilla [01] Número de perceptores"
-msgstr "Casilla [01] Número de perceptores"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,casilla_02:0
 msgid "Casilla [02] Base de la retención y/o del ingreso a cuenta"
-msgstr "Casilla [02] Base de la retención y/o del ingreso a cuenta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,casilla_03:0
 msgid "Casilla [03] Retenciones e ingresos a cuenta"
-msgstr "Casilla [03] Retenciones e ingresos a cuenta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,casilla_04:0
 msgid "Casilla [04] Periodificación - Ingresos ejercicios anteriores"
-msgstr "Casilla [04] Periodificación - Ingresos ejercicios anteriores"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,casilla_05:0
 msgid "Casilla [05] Periodificación - Regularización"
-msgstr "Casilla [05] Periodificación - Regularización"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,casilla_06:0
@@ -91,8 +92,6 @@ msgid ""
 "Casilla [06] Suma de retenciones e ingresos a cuenta y regularización, en su"
 " caso ([3] + [5])"
 msgstr ""
-"Casilla [06] Suma de retenciones e ingresos a cuenta y regularización, en su"
-" caso ([3] + [5])"
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,casilla_07:0
@@ -101,44 +100,41 @@ msgid ""
 "complementaria) Resultados a ingresar de anteriores declaraciones por el "
 "mismo concepto, ejercicio y período"
 msgstr ""
-"Casilla [07] A deducir (exclusivamente en caso de declaración "
-"complementaria) Resultados a ingresar de anteriores declaraciones por el "
-"mismo concepto, ejercicio y período"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,company_id:0
 msgid "Company"
-msgstr "Compañía"
+msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,partner_bank_id:0
 msgid "Company bank account used for the presentation"
-msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,type:0
 msgid "Complementary"
-msgstr "Complementaria"
+msgstr "Complementària"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,counterpart_account:0
 msgid "Counterpart account"
-msgstr "Cuenta contrapartida"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
 msgid "Crea y consulta las declaraciones del modelo 123 de la AEAT."
-msgstr "Crea y consulta las declaraciones del modelo 123 de la AEAT."
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Creat per"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creat el"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,support_type:0
@@ -148,57 +144,57 @@ msgstr "DVD"
 #. module: l10n_es_aeat_mod123
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_tree
 msgid "Declaraciones AEAT 123"
-msgstr "Declaraciones AEAT 123"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Declaración"
-msgstr "Declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
 msgid "Declaración AEAT 123"
-msgstr "Declaración AEAT 123"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,number:0
 msgid "Declaration number"
-msgstr "Nº declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,display_name:0
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Veure el nom"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Domiciliación"
-msgstr "Domiciliación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,state:0
 msgid "Done"
-msgstr "Realizada"
+msgstr "Fet"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,state:0
 msgid "Draft"
-msgstr "Borrador"
+msgstr "Esborrany"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,export_config:0
 msgid "Export config"
-msgstr "Configuración de exportación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,fiscalyear_id:0
 msgid "Fiscal year"
-msgstr "Ejercicio fiscal"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,contact_name:0
 msgid "Full Name"
-msgstr "Nombre completo"
+msgstr "Cognoms i nom"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,id:0
@@ -208,82 +204,82 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Ingreso"
-msgstr "Ingreso"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Ingreso a anotar en CCT"
-msgstr "Ingreso a anotar en CCT"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,journal_id:0
 msgid "Journal"
-msgstr "Diario"
+msgstr "Diari"
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,journal_id:0
 msgid "Journal in which post the move."
-msgstr "Diario en el cual registrar el asiento."
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,representative_vat:0
 msgid "L.R. VAT number"
-msgstr "NIF R. L."
+msgstr "NIF R.L."
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,__last_update:0
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Darrera modificació el"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Darrera Actualització per"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,write_date:0
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Darrera Actualització el"
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,representative_vat:0
 msgid "Legal Representative VAT number."
-msgstr "NIF del representante legal."
+msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,model:0
 msgid "Model"
-msgstr "Modelo"
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
 msgid "Modelo 123"
-msgstr "Modelo 123"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,currency_id:0
 msgid "Moneda"
-msgstr "Moneda"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,move_lines_02:0
 msgid "Move lines 02"
-msgstr "Apuntes casilla 02"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,move_lines_03:0
 msgid "Move lines 03"
-msgstr "Apuntes casilla 03"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,contact_name:0
 msgid "Must have name and surname."
-msgstr "Debe tener nombre y apellidos."
+msgstr "Ha de contenir nom i cognoms"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Negativa"
-msgstr "Negativa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,type:0
@@ -293,83 +289,83 @@ msgstr "Normal"
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,period_type:0
 msgid "Period type"
-msgstr "Tipo de periodo"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,periods:0
 msgid "Period(s)"
-msgstr "Periodo(s)"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Periodificación"
-msgstr "Periodificación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,contact_phone:0
 msgid "Phone"
-msgstr "Teléfono"
+msgstr "Telèfon"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,state:0
 msgid "Posted"
-msgstr "Contabilizada"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,previous_number:0
 msgid "Previous declaration number"
-msgstr "Nº de declaración previa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,state:0
 msgid "Processed"
-msgstr "Procesada"
+msgstr "Processat"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,name:0
 msgid "Report identifier"
-msgstr "Identificador de la declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_tree
 msgid "Resultado"
-msgstr "Resultado"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Retenciones e ingresos a cuenta"
-msgstr "Retenciones e ingresos a cuenta"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,state:0
 msgid "State"
-msgstr "Estado"
+msgstr "Estat"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,type:0
 msgid "Statement Type"
-msgstr "Tipo de declaración"
+msgstr "Tipus declaració"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,type:0
 msgid "Substitutive"
-msgstr "Sustitutiva"
+msgstr "Substitutiva"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,support_type:0
 msgid "Support Type"
-msgstr "Tipo de soporte"
+msgstr "Tipus de suport"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,tax_lines:0
 msgid "Tax lines"
-msgstr "Líneas de impuesto"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,support_type:0
 msgid "Telematics"
-msgstr "Telemática"
+msgstr "Telemàtica"
 
 #. module: l10n_es_aeat_mod123
 #: help:l10n.es.aeat.mod123.report,counterpart_account:0
@@ -377,60 +373,58 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
-"Esta cuenta será la contrapartida para todos los elementos del diario que "
-"están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Tipo de declaración"
-msgstr "Resultado declaración"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: view:l10n.es.aeat.mod123.report:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Total liquidación"
-msgstr "Total liquidación"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,company_vat:0
 msgid "VAT number"
-msgstr "NIF"
+msgstr "NIF / CIF"
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_01:0
 msgid "[01] Número de perceptores"
-msgstr "[01] Número de perceptores"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_02:0
 msgid "[02] Base retenciones"
-msgstr "[02] Base retenciones"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_03:0
 msgid "[03] Retenciones"
-msgstr "[03] Retenciones"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_04:0
 msgid "[04] Ingresos ejercicios anteriores"
-msgstr "[04] Ingresos ejercicios anteriores"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_05:0
 msgid "[05] Regularización"
-msgstr "[05] Regularización"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_06:0
 msgid "[06] Total retenciones"
-msgstr "[06] Total retenciones"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_07:0
 msgid "[07] Ingresos ejercicios anteriores"
-msgstr "[07] Ingresos ejercicios anteriores"
+msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: field:l10n.es.aeat.mod123.report,casilla_08:0
 msgid "[08] Resultado a ingresar"
-msgstr "[08] Resultado a ingresar"
+msgstr ""

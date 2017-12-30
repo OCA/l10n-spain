@@ -4,14 +4,13 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
-# Jaroslav Helemik Nemec <nemec@helemik.cz>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-15 00:55+0000\n"
-"PO-Revision-Date: 2017-07-15 00:55+0000\n"
-"Last-Translator: Jaroslav Helemik Nemec <nemec@helemik.cz>, 2017\n"
+"POT-Creation-Date: 2017-12-28 01:48+0000\n"
+"PO-Revision-Date: 2017-12-28 01:48+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Czech (https://www.transifex.com/oca/teams/23907/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,6 +39,21 @@ msgid "Active"
 msgstr "Aktivní"
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_registration_key_additional2:0
+msgid "Additional 2 SII registration key"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_registration_key_additional1:0
+msgid "Additional SII registration key"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_24
+msgid "Adquisiciones intracomunitarias de bienes y prestaciones de servicios"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys
 msgid "Aeat SII Invoice Registration Keys"
 msgstr ""
@@ -66,6 +80,11 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_mapping_registration_keys
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_mapping_registration_keys
 msgid "Aeat SII Registration Keys"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_send_first_semester
+msgid "Aeat SII Send First Semester"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -122,6 +141,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -165,6 +185,17 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_10
+msgid ""
+"Cobros por cuenta de terceros de honorarios profesionales o de derechos "
+"derivados de la propiedad industrial, de autor u otros por cuenta de sus "
+"socios, asociados o colegiados efectuados por sociedades, asociaciones, "
+"colegios profesionales u otras entidades que realicen estas funciones de "
+"cobro"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_registration_key_code:0
 #: field:aeat.sii.map.lines,code:0
 #: field:aeat.sii.mapping.registration.keys,code:0
 msgid "Code"
@@ -202,6 +233,7 @@ msgstr ""
 #: field:aeat.sii.mapping.registration.keys,create_uid:0
 #: field:l10n.es.aeat.sii,create_uid:0
 #: field:l10n.es.aeat.sii.password,create_uid:0
+#: field:l10n.es.sii.first.semester,create_uid:0
 msgid "Created by"
 msgstr "Vytvořil(a)"
 
@@ -210,6 +242,7 @@ msgstr "Vytvořil(a)"
 #: field:aeat.sii.mapping.registration.keys,create_date:0
 #: field:l10n.es.aeat.sii,create_date:0
 #: field:l10n.es.aeat.sii.password,create_date:0
+#: field:l10n.es.sii.first.semester,create_date:0
 msgid "Created on"
 msgstr "Vytvořeno"
 
@@ -219,7 +252,7 @@ msgid "Date from"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,date_to:0
+#: field:aeat.sii.map,date_to:0 field:l10n.es.sii.first.semester,date_to:0
 msgid "Date to"
 msgstr ""
 
@@ -248,6 +281,7 @@ msgstr ""
 #: field:aeat.sii.mapping.registration.keys,display_name:0
 #: field:l10n.es.aeat.sii,display_name:0
 #: field:l10n.es.aeat.sii.password,display_name:0
+#: field:l10n.es.sii.first.semester,display_name:0
 msgid "Display Name"
 msgstr "Zobrazovaný název"
 
@@ -285,6 +319,36 @@ msgid "Export"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_02
+msgid "Exportación"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_14
+msgid ""
+"Factura con IVA pendiente de devengo en certificaciones de obra cuyo "
+"destinatario sea una Administración Pública"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_15
+msgid "Factura con IVA pendiente de devengo en operaciones de tracto sucesivo"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_28
+msgid ""
+"Factura correspondiente a una importación (informada sin asociar a un DUA)"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_09
+msgid ""
+"Facturación de las prestaciones de servicios de agencias de viaje que actúan"
+" como mediadoras en nombre y por cuenta ajena (D.A.4ª RD1619/2012)"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: field:l10n.es.aeat.sii,file:0
 msgid "File"
 msgstr ""
@@ -318,7 +382,7 @@ msgstr "Seskupit..."
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map,id:0 field:aeat.sii.map.lines,id:0
 #: field:aeat.sii.mapping.registration.keys,id:0 field:l10n.es.aeat.sii,id:0
-#: field:l10n.es.aeat.sii.password,id:0
+#: field:l10n.es.aeat.sii.password,id:0 field:l10n.es.sii.first.semester,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -327,6 +391,14 @@ msgstr "ID"
 msgid ""
 "Indicates that the last attempt to communicate this invoice to the SII has "
 "failed. See SII return for details"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: help:account.invoice,sii_account_registration_date:0
+msgid ""
+"Indicates the account registration date set at the SII, which must be the "
+"date when the invoice is recorded in the system and is independent of the "
+"date of the accounting entry of the invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -383,6 +455,7 @@ msgstr ""
 #: field:aeat.sii.mapping.registration.keys,__last_update:0
 #: field:l10n.es.aeat.sii,__last_update:0
 #: field:l10n.es.aeat.sii.password,__last_update:0
+#: field:l10n.es.sii.first.semester,__last_update:0
 msgid "Last Modified on"
 msgstr "Naposled upraveno"
 
@@ -391,6 +464,7 @@ msgstr "Naposled upraveno"
 #: field:aeat.sii.mapping.registration.keys,write_uid:0
 #: field:l10n.es.aeat.sii,write_uid:0
 #: field:l10n.es.aeat.sii.password,write_uid:0
+#: field:l10n.es.sii.first.semester,write_uid:0
 msgid "Last Updated by"
 msgstr "Naposled upraveno"
 
@@ -399,6 +473,7 @@ msgstr "Naposled upraveno"
 #: field:aeat.sii.mapping.registration.keys,write_date:0
 #: field:l10n.es.aeat.sii,write_date:0
 #: field:l10n.es.aeat.sii.password,write_date:0
+#: field:l10n.es.sii.first.semester,write_date:0
 msgid "Last Updated on"
 msgstr "Naposled upraveno"
 
@@ -463,7 +538,7 @@ msgid "Never sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:279
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:316
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
@@ -501,8 +576,61 @@ msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_03
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_18
+msgid ""
+"Operaciones a las que se aplique el régimen especial de bienes usados, "
+"objetos de arte, antigüedades y objetos de colección"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_27
+msgid "Operaciones de arrendamiento de local de negocio"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_12
+msgid ""
+"Operaciones de arrendamiento de local de negocio no  sujetos a retención"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_11
+msgid "Operaciones de arrendamiento de local de negocio sujetas a retención"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_13
+msgid ""
+"Operaciones de arrendamiento de local de negocio sujetas y no sujetas a "
+"retención"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: selection:account.fiscal.position,sii_no_taxable_cause:0
 msgid "Operaciones no sujetas en el TAI por reglas de localización"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_17
+msgid ""
+"Operaciones por las que los empresarios satisfacen compensaciones en las "
+"adquisiciones a personas acogidas al Régimen especial de la agricultura, "
+"ganaderia y pesca"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_08
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_23
+msgid ""
+"Operaciones sujetas al IPSI / IGIC (Impuesto sobre la Producción, los "
+"Servicios y la Importación / Impuesto General Indirecto Canario)"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_01
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_16
+msgid "Operación de régimen general"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -513,6 +641,12 @@ msgstr "Společník"
 #. module: l10n_es_aeat_sii
 #: field:l10n.es.aeat.sii.password,password:0
 msgid "Password"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_29
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_30
+msgid "Primer semestre 2017"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -547,6 +681,16 @@ msgid "Re-Open"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_property_cadastrial_code:0
+msgid "Real property cadastrial code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_property_location:0
+msgid "Real property location"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: selection:account.invoice,sii_state:0
 msgid "Registered in SII but last modifications not sent"
 msgstr ""
@@ -554,6 +698,30 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: view:queue.job:l10n_es_aeat_sii.view_queue_job_sii
 msgid "Requeue"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_05
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_20
+msgid "Régimen especial agencias de viajes"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_07
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_22
+msgid "Régimen especial criterio de caja"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_06
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_21
+msgid "Régimen especial grupo de entidades en IVA (Nivel Avanzado)"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_04
+#: model:aeat.sii.mapping.registration.keys,name:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_19
+msgid "Régimen especial oro de inversión"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -642,6 +810,11 @@ msgid "SII Supplier header"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: field:account.invoice,sii_account_registration_date:0
+msgid "SII account registration date"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "SII cancelled"
 msgstr ""
@@ -717,6 +890,16 @@ msgid "Sale"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid "Send First Semester"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid "Send Invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.actions.server,name:l10n_es_aeat_sii.action_send_sii_invoices
 msgid "Send Invoices to SII"
 msgstr ""
@@ -725,6 +908,16 @@ msgstr ""
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Send cancellation to SII"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.sii.first.semester,in_invoices:0
+msgid "Send in invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_send_first_semester
+msgid "Send invoices first semester"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -738,8 +931,14 @@ msgid "Send now"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: field:l10n.es.sii.first.semester,out_invoices:0
+msgid "Send out invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 msgid "Send to SII"
 msgstr ""
 
@@ -797,27 +996,35 @@ msgid "The last attemp to sent to SII has failed"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:493
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:683
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:510
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:700
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:501
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:691
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:505
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:695
 #, python-format
 msgid "This invoice is not SII enabled."
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid ""
+"This wizard will send to SII the invoices in the first semester.\n"
+"                        You can choose to the date until you want to send and the type of the invoices.\n"
+"                        For in invoices will send all the invoices in the periods until the date selected:"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -842,13 +1049,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:951
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1196
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:921
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1162
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -856,7 +1063,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:849
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1090
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -864,19 +1071,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:966
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1211
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:488
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:678
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:165
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:202
 #, python-format
 msgid ""
 "You cannot change the invoice date of an invoice already registered at the "
@@ -884,7 +1091,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:182
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:219
 #, python-format
 msgid ""
 "You cannot change the supplier invoice number of an invoice already "
@@ -893,7 +1100,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:175
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:212
 #, python-format
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
@@ -901,21 +1108,44 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:199
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:236
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:496
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:686
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:131
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:168
 #, python-format
 msgid "You must have at least one refunded invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid ""
+"[1]-Real property with cadastral code located within the Spanish territory "
+"except Basque Country or Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid "[2]-Real property located in the Basque Country or Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid ""
+"[3]-Real property in any of the above situations but without cadastral code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:account.invoice,sii_property_location:0
+msgid "[4]-Real property located in a foreign country"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -955,6 +1185,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 msgid "or"
 msgstr "nebo"
 
