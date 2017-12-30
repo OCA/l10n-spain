@@ -6,10 +6,10 @@
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-01 19:20+0000\n"
-"PO-Revision-Date: 2017-05-01 19:20+0000\n"
+"POT-Creation-Date: 2017-12-29 03:40+0000\n"
+"PO-Revision-Date: 2017-12-29 03:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -36,15 +36,15 @@ msgid "Commercial Registry"
 msgstr "Registro Mercantil"
 
 #. module: l10n_es_partner_mercantil
+#: model:ir.model,name:l10n_es_partner_mercantil.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_folio
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_folio
 msgid "Page"
 msgstr "Folio"
-
-#. module: l10n_es_partner_mercantil
-#: model:ir.model,name:l10n_es_partner_mercantil.model_res_partner
-msgid "Partner"
-msgstr "Empresa"
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_seccion
