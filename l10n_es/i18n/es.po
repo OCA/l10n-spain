@@ -3,14 +3,15 @@
 # * l10n_es
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2016
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# TonySpain <acl.disval@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2017-06-29 22:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"POT-Creation-Date: 2017-12-28 00:09+0000\n"
+"PO-Revision-Date: 2017-12-28 00:09+0000\n"
+"Last-Translator: TonySpain <acl.disval@gmail.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,6 +43,11 @@ msgstr "Gastos patrimonio neto"
 #: model:account.account.type,name:l10n_es.account_type_ingresos_neto
 msgid "Ingresos patrimonio neto"
 msgstr "Ingresos patrimonio neto"
+
+#. module: l10n_es
+#: model:ir.ui.menu,name:l10n_es.account_reports_es_statements_menu
+msgid "Spanish Statements"
+msgstr "Declaraciones Españolas"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_tax
