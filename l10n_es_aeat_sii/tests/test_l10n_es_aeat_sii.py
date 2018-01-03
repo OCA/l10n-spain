@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from openerp.tests import common
-from openerp import exceptions
+from openerp import exceptions, fields
 
 
 def _deep_sort(obj):
@@ -64,7 +64,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
-            'date_invoice': '2017-07-19',
+            'date_invoice': fields.Date.today(),
             'type': 'out_invoice',
             'account_id': cls.partner.property_account_payable_id.id,
             'invoice_line_ids': [
@@ -103,12 +103,13 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.assertTrue(self.invoice.invoice_jobs_ids)
 
     def _get_invoices_test(self, invoice_type, special_regime):
+        str_today = self.invoice._change_date_format(fields.Date.today())
         expedida_recibida = 'FacturaExpedida'
         if self.invoice.type in ['in_invoice', 'in_refund']:
             expedida_recibida = 'FacturaRecibida'
         res = {
             'IDFactura': {
-                'FechaExpedicionFacturaEmisor': '19-07-2017',
+                'FechaExpedicionFacturaEmisor': str_today,
             },
             expedida_recibida: {
                 'TipoFactura': invoice_type,
@@ -140,7 +141,8 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'IDEmisorFactura': {'NIF': u'F35999705'},
             })
             res[expedida_recibida].update({
-                "FechaRegContable": '19-07-2017',
+                "FechaRegContable": self.invoice._change_date_format(
+                    self.invoice.date_invoice),
                 "DesgloseFactura": {
                     'DesgloseIVA': {
                         'DetalleIVA': [
