@@ -122,8 +122,9 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'ImporteTotal': 110,
             },
             'PeriodoImpositivo': {
-                'Periodo': '%02d' % fields.Date.today().month,
-                'Ejercicio': fields.Date.today().year,
+                'Periodo': '%02d' % fields.Date.from_string(
+                    fields.Date.today()).month,
+                'Ejercicio': fields.Date.from_string(fields.Date.today()).year,
             }
         }
         if self.invoice.type in ['out_invoice', 'out_refund']:
