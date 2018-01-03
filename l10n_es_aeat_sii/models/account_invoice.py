@@ -802,7 +802,8 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.date_invoice)
-        reg_date = self._change_date_format(self.date)
+        reg_date = self._change_date_format(
+            self._get_account_registration_date())
         ejercicio = fields.Date.from_string(self.date).year
         periodo = '%02d' % fields.Date.from_string(self.date).month
         desglose_factura, tax_amount = self._get_sii_in_taxes()
