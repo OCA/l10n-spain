@@ -122,8 +122,8 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'ImporteTotal': 110,
             },
             'PeriodoImpositivo': {
-                'Periodo': '07',
-                'Ejercicio': 2017,
+                'Periodo': '%02d' % fields.Date.today().month,
+                'Ejercicio': fields.Date.today().year,
             }
         }
         if self.invoice.type in ['out_invoice', 'out_refund']:
@@ -142,7 +142,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
             })
             res[expedida_recibida].update({
                 "FechaRegContable": self.invoice._change_date_format(
-                    self.invoice.date_invoice),
+                    fields.Date.today()),
                 "DesgloseFactura": {
                     'DesgloseIVA': {
                         'DetalleIVA': [
