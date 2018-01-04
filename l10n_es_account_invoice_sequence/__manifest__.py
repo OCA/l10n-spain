@@ -2,12 +2,12 @@
 # Copyright 2011 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Ángel Moya (Domatix)
 # Copyright 2014 Roberto Lizana (Trey)
-# Copyright 2013-2016 Pedro M. Baeza
+# Copyright 2013-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Secuencia para facturas separada de la secuencia de asientos",
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.0.1",
     "author": "Spanish Localization Team, "
               "NaN·Tic, "
               "Trey, "

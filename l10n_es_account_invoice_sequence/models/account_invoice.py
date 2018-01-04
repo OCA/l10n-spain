@@ -13,6 +13,19 @@ class AccountInvoice(models.Model):
     number = fields.Char(related=False, size=32, copy=False)
     invoice_number = fields.Char(copy=False)
 
+    def _get_seq_number_next_stuff(self):
+        self.ensure_one()
+        chart = self.company_id.chart_template_id
+        journal_sequence, domain = super(
+            AccountInvoice, self,
+        )._get_seq_number_next_stuff()
+        if chart in chart._get_spanish_charts():
+            if self.type in ['in_refund', 'out_refund']:
+                journal_sequence = self.journal_id.refund_inv_sequence_id
+            else:
+                journal_sequence = self.journal_id.invoice_sequence_id
+        return journal_sequence, domain
+
     @api.multi
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()

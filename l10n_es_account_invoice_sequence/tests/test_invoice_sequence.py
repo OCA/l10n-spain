@@ -19,11 +19,13 @@ class TestInvoiceSequence(common.SavepointCase):
             'name': 'Test invoice sequence',
             'padding': 3,
             'prefix': 'tINV',
+            'number_next': 5,
         })
         cls.refund_sequence = cls.env['ir.sequence'].create({
             'name': 'Test refund sequence',
             'padding': 3,
             'prefix': 'tREF',
+            'number_next': 10,
         })
         cls.journal = cls.env['account.journal'].create({
             'name': 'Test Sales Journal',
@@ -58,6 +60,9 @@ class TestInvoiceSequence(common.SavepointCase):
             'user_type_id': cls.env['account.account.type'].create(
                 {'name': 'Test income'}).id,
         })
+        cls.env.user.company_id.chart_template_id = cls.env.ref(
+            'l10n_es.account_chart_template_pymes'
+        ).id  # trick the installed chart template
 
     def test_move_sequence(self):
         move = self.env['account.move'].create({
@@ -96,6 +101,7 @@ class TestInvoiceSequence(common.SavepointCase):
                 'quantity': 10,
             })]
         })
+        self.assertEqual(invoice.sequence_number_next, '005')
         invoice.action_invoice_open()
         self.assertEqual(invoice.number[:4], 'tINV')
         self.assertEqual(invoice.move_id.name[:3], 'tAM')
@@ -122,6 +128,7 @@ class TestInvoiceSequence(common.SavepointCase):
                 'quantity': 10,
             })]
         })
+        self.assertEqual(invoice.sequence_number_next, '010')
         invoice.action_invoice_open()
         self.assertEqual(invoice.number[:4], 'tREF')
         self.assertEqual(invoice.move_id.name[:3], 'tAM')
