@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models
+from odoo import fields, models
 
 
 class AccountJournal(models.Model):
@@ -11,5 +11,5 @@ class AccountJournal(models.Model):
         string='Date type for N43 Import',
         selection=[('fecha_valor', 'Value Date'),
                    ('fecha_oper', 'Operation Date')],
-        required=True, default='fecha_valor',
+        default='fecha_valor',
     )
