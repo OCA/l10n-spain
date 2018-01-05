@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_account_bank_statement_import_n43
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-12-29 03:40+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_account_bank_statement_import_n43
@@ -46,8 +46,8 @@ msgstr "O importe do debe non cadra co definido no último rexistro da conta."
 #: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:134
 #, python-format
 msgid ""
-"Final balance amount = (initial balance + credit - debit) doesn't match with"
-" the defined in the last record of account."
+"Final balance amount = (initial balance + credit - debit) doesn't match with "
+"the defined in the last record of account."
 msgstr ""
 "O importe final do saldo = (saldo inicial + haber - debe) non cadra co "
 "definido no último rexistro da conta."
@@ -81,8 +81,8 @@ msgstr ""
 #: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:113
 #, python-format
 msgid ""
-"Number of debit records doesn't match with the defined in the last record of"
-" account."
+"Number of debit records doesn't match with the defined in the last record of "
+"account."
 msgstr ""
 "O número de rexistros do debe non cadra co definido no último rexistro da "
 "conta."
