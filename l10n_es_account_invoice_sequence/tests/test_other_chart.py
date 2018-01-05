@@ -8,43 +8,42 @@ from ..hooks import post_init_hook
 
 @common.at_install(False)
 @common.post_install(True)
-class TestOtherChart(common.SavepointCase):
-    @classmethod
-    def setUpClass(cls):
-        super(TestOtherChart, cls).setUpClass()
-        cls.company = cls.env['res.company'].create({
+class TestOtherChart(common.HttpCase):
+    def setUp(self):
+        super(TestOtherChart, self).setUp()
+        self.company = self.env['res.company'].create({
             'name': 'Other chart company',
         })
-        cls.account_type = cls.env['account.account.type'].create({
+        self.account_type = self.env['account.account.type'].create({
             'name': 'Test account type',
         })
-        cls.transfer_account = cls.env['account.account.template'].create({
+        self.transfer_account = self.env['account.account.template'].create({
             'name': 'Test transfer account template',
             'code': 'TTA',
-            'user_type_id': cls.account_type.id,
+            'user_type_id': self.account_type.id,
         })
         # An XML-ID is needed
-        cls.env['ir.model.data'].create({
+        self.env['ir.model.data'].create({
             'module': 'l10n_es_account_invoice_sequence',
             'name': 'test_transfer_account_template',
-            'model': cls.transfer_account._name,
-            'res_id': cls.transfer_account.id,
+            'model': self.transfer_account._name,
+            'res_id': self.transfer_account.id,
         })
-        cls.chart = cls.env['account.chart.template'].create({
+        self.chart = self.env['account.chart.template'].create({
             'name': 'Other chart',
-            'currency_id': cls.env.ref('base.EUR').id,
-            'transfer_account_id': cls.transfer_account.id,
+            'currency_id': self.env.ref('base.EUR').id,
+            'transfer_account_id': self.transfer_account.id,
         })
-        cls.transfer_account.chart_template_id = cls.chart.id
-        cls.journal_obj = cls.env['account.journal']
-        cls.wizard = cls.env['wizard.multi.charts.accounts'].create({
-            'company_id': cls.company.id,
-            'chart_template_id': cls.chart.id,
+        self.transfer_account.chart_template_id = self.chart.id
+        self.journal_obj = self.env['account.journal']
+        self.wizard = self.env['wizard.multi.charts.accounts'].create({
+            'company_id': self.company.id,
+            'chart_template_id': self.chart.id,
             'code_digits': 6,
-            'currency_id': cls.env.ref('base.EUR').id,
-            'transfer_account_id': cls.chart.transfer_account_id.id,
+            'currency_id': self.env.ref('base.EUR').id,
+            'transfer_account_id': self.chart.transfer_account_id.id,
         })
-        cls.wizard.execute()
+        self.wizard.execute()
 
     def test_create_chart_of_accounts(self):
         journals = self.journal_obj.search([
