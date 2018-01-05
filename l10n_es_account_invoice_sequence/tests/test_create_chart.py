@@ -9,23 +9,22 @@ from ..hooks import post_init_hook
 
 @common.at_install(False)
 @common.post_install(True)
-class TestCreateChart(common.SavepointCase):
-    @classmethod
-    def setUpClass(cls):
-        super(TestCreateChart, cls).setUpClass()
-        cls.company = cls.env['res.company'].create(
+class TestCreateChart(common.HttpCase):
+    def setUp(self):
+        super(TestCreateChart, self).setUp()
+        self.company = self.env['res.company'].create(
             {'name': 'Spanish company'},
         )
-        cls.chart = cls.env.ref('l10n_es.account_chart_template_pymes')
-        cls.journal_obj = cls.env['account.journal']
-        cls.wizard = cls.env['wizard.multi.charts.accounts'].create({
-            'company_id': cls.company.id,
-            'chart_template_id': cls.chart.id,
+        self.chart = self.env.ref('l10n_es.account_chart_template_pymes')
+        self.journal_obj = self.env['account.journal']
+        self.wizard = self.env['wizard.multi.charts.accounts'].create({
+            'company_id': self.company.id,
+            'chart_template_id': self.chart.id,
             'code_digits': 6,
-            'currency_id': cls.env.ref('base.EUR').id,
-            'transfer_account_id': cls.chart.transfer_account_id.id,
+            'currency_id': self.env.ref('base.EUR').id,
+            'transfer_account_id': self.chart.transfer_account_id.id,
         })
-        cls.wizard.execute()
+        self.wizard.execute()
 
     def test_create_chart_of_accounts(self):
         journals = self.journal_obj.search([
