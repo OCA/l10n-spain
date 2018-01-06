@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<openerp>
+    <data>
+
+        <record id="view_account_position_form" model="ir.ui.view">
+            <field name="name">account.fiscal.position.form</field>
+            <field name="model">account.fiscal.position</field>
+            <field name="inherit_id" ref="account.view_account_position_form"/>
+            <field name="arch" type="xml">
+                <field name="company_id" position="after">
+                    <field name="sii_enabled" invisible="1"/>
+                    <group string="SII" name="group_sii" attrs="{'invisible': [('sii_enabled', '=', False)]}">
+                        <field name="sii_active"/>
+                        <field name="sii_registration_key_sale"/>
+                        <field name="sii_registration_key_purchase"/>
+                        <field name="sii_no_taxable_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                        <field name="sii_exempt_cause" attrs="{'invisible': [('sii_active', '!=', True)]}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

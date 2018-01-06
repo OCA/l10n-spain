@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+		<!-- Tree view -->
+        <record id="aeat_sii_mapping_registration_keys_view_tree" model="ir.ui.view">
+            <field name="name">aeat.sii.mapping.registration.keys.view.tree</field>
+            <field name="model">aeat.sii.mapping.registration.keys</field>
+            <field name="arch" type="xml">
+                <tree string="Aeat SII Registration Keys" editable="bottom">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Search view -->
+       	<record id="aeat_sii_mapping_registration_keys_view_search" model="ir.ui.view">
+            <field name="name">aeat.sii.mapping.registration.keys.view.search</field>
+            <field name="model">aeat.sii.mapping.registration.keys</field>
+            <field name="arch" type="xml">
+            	<search string="Aeat SII Registration Keys">
+            	 	<field name="name" />
+                    <field name="code" />
+                    <field name="type"/>
+            	
+            
+					<group expand="0" string="Group By...">
+						<filter string="Type" name="type" context="{'group_by':'type'}"/>
+					</group>
+				</search>
+            </field>
+        </record>
+        
+        
+        <record model="ir.actions.act_window" id="action_aeat_sii_mapping_registration_keys">
+            <field name="name">Aeat SII Registration Keys</field>
+            <field name="res_model">aeat.sii.mapping.registration.keys</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+	
+
+        <menuitem id="menu_aeat_sii_mapping_registration_keys"
+                  parent="menu_aeat_sii_conf"
+                  action="action_aeat_sii_mapping_registration_keys"
+                  name="Aeat SII Registration Keys"/>
+	
+	
+	
+	
+	</data>
+</openerp>
