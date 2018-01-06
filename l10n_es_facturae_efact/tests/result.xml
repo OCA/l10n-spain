@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DeliveryFeedback>
+    <StatusFeedback>
+        <HubFeedback>
+            <HubId>12</HubId>
+        </HubFeedback>
+        <InvoiceFeedback>
+            <InvoiceId>R/0001</InvoiceId>
+            <InvoiceDate>2017-07-13</InvoiceDate>
+            <Feedback>
+                <RegisterNumber>111</RegisterNumber>
+                <Status>DELIVERED</Status>
+                <StatusDate>2017-07-20T13:30:50</StatusDate>
+                <Reason>
+                    <Code></Code>
+                    <Description></Description>
+                </Reason>
+                <ElectronicAcknowledgment>
+                    <formatType>txt</formatType>
+                    <document>AAAAB3NzaC1yc2EAAAADAQABAAABAQC+3KviUE0FJhHkwuYaJS53NUuFNkuIV5T35rgHXoQFFVi4X0NgZrXNl5Y/7645FRxN1xUSGoi5x9WWPNXCEiX5whe4grKRKzzdnCKF3t2VXqwxX0OZNBffY182P0VVavdfqt+bmQR0OTS0to03rUstaJdmuSJbAAO8iS+f6Dz23qUZhJdwAAoRHXoUfSzr5+ofNtwW6viuy4Slh3SSuJ8xe4qst6jpGMxPobs96B2cuhv332NI0ivAXqyEAz4lq6IveCavHSRxEjlLJ4OtI4rB5D653bth6vsf5Dx9+QbpLqkc2fFlkDr2levM47QjL4YpOAJQQYVG66YjV7L2bUkH</document>
+                </ElectronicAcknowledgment>
+            </Feedback>
+        </InvoiceFeedback>
+    </StatusFeedback>
+</DeliveryFeedback>
