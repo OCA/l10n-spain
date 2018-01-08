@@ -280,10 +280,10 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
-        self.assertEqual(model303_new.company_id, self.company.id)
-        self.assertEqual(model303_new.counterpart_account_id,
+        self.assertEqual(model303_new.company_id.id, self.company.id)
+        self.assertEqual(model303_new.counterpart_account_id.id,
                          self.accounts['475000'].id)
-        self.assertEqual(model303_new.journal_id,
+        self.assertEqual(model303_new.journal_id.id,
                          self.journal_misc.id)
         self.model303 = self.env[
             'l10n.es.aeat.mod303.report'].create(
