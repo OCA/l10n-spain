@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # © 2017 Creu Blanca
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
 
 
-class AccountConfigSettings(models.TransientModel):
-    _inherit = 'account.config.settings'
+class ResConfigSettings(models.TransientModel):
+    _inherit = 'res.config.settings'
 
     efact_server = fields.Char(string="e.Fact server location")
     efact_port = fields.Char(string="e.Fact SSH port")
@@ -14,49 +13,32 @@ class AccountConfigSettings(models.TransientModel):
     efact_password = fields.Char(string="e.Fact password")
 
     @api.model
-    def get_default_efact_server(self, fields):
-        face_server = self.env["ir.config_parameter"].get_param(
+    def get_values(self):
+        res = super(ResConfigSettings, self).get_values()
+        efact_server = self.env["ir.config_parameter"].get_param(
             "account.invoice.efact.server", default=None)
-        return {'efact_server': face_server or False}
-
-    @api.multi
-    def set_efact_server(self):
-        for record in self:
-            self.env['ir.config_parameter'].set_param(
-                "account.invoice.efact.server", record.efact_server or '')
-
-    @api.model
-    def get_default_efact_port(self, fields):
         efact_port = self.env["ir.config_parameter"].get_param(
             "account.invoice.efact.port", default=None)
-        return {'efact_port': efact_port or False}
-
-    @api.multi
-    def set_efact_port(self):
-        for record in self:
-            self.env['ir.config_parameter'].set_param(
-                "account.invoice.efact.port", record.efact_port or '')
-
-    @api.model
-    def get_default_efact_user(self, fields):
         efact_user = self.env["ir.config_parameter"].get_param(
             "account.invoice.efact.user", default=None)
-        return {'efact_user': efact_user or False}
-
-    @api.multi
-    def set_efact_user(self):
-        for record in self:
-            self.env['ir.config_parameter'].set_param(
-                "account.invoice.efact.user", record.efact_user or '')
-
-    @api.model
-    def get_default_efact_password(self, fields):
         efact_password = self.env["ir.config_parameter"].get_param(
             "account.invoice.efact.password", default=None)
-        return {'efact_password': efact_password or False}
+        res.update({
+            'efact_server': efact_server,
+            'efact_port': efact_port,
+            'efact_user': efact_user,
+            'efact_password': efact_password,
+        })
+        return res
 
     @api.multi
-    def set_efact_password(self):
-        for record in self:
-            self.env['ir.config_parameter'].set_param(
-                "account.invoice.efact.password", record.efact_password or '')
+    def set_values(self):
+        super(ResConfigSettings, self).set_values()
+        self.env['ir.config_parameter'].sudo().set_param(
+            "account.invoice.efact.server", self.efact_server or '')
+        self.env['ir.config_parameter'].set_param(
+            "account.invoice.efact.port", self.efact_port or '')
+        self.env['ir.config_parameter'].set_param(
+            "account.invoice.efact.user", self.efact_user or '')
+        self.env['ir.config_parameter'].set_param(
+            "account.invoice.efact.password", self.efact_password or '')
