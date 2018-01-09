@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 # © 2017 Creu Blanca
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
 from odoo import models, fields
 import logging
 try:
-    from paramiko.client import SSHClient, RSAKey
+    from paramiko.client import SSHClient
 except (ImportError, IOError) as err:
     logging.info(err)
 import base64
@@ -24,18 +23,7 @@ class AccountInvoiceIntegration(models.Model):
 
     def _efact_connect(self):
         connection = SSHClient()
-        connection.get_host_keys().add(
-            '[%s]:%s' % (
-                self.env["ir.config_parameter"].get_param(
-                    "account.invoice.efact.server", default=None),
-                self.env["ir.config_parameter"].get_param(
-                    "account.invoice.efact.port", default=None)
-            ),
-            'ssh-rsa',
-            RSAKey(data=base64.b64decode(
-                self.env["ir.config_parameter"].get_param(
-                    "account.invoice.efact.key", default=None)))
-        )
+        connection.load_system_host_keys()
         connection.connect(
             hostname=self.env["ir.config_parameter"].get_param(
                 "account.invoice.efact.server", default=None),
@@ -113,24 +101,24 @@ class AccountInvoiceIntegration(models.Model):
             try:
                 path = sftp.normalize('.')
                 sftp.chdir(path + in_path)
-                file = sftp.open(self.get_filename(), 'w')
-                file.write(
-                    base64.b64decode(self.integration_id.attachment_id.datas)
+                file = sftp.open(self.get_filename(), 'wb')
+                encoded = base64.b64decode(
+                    self.integration_id.attachment_id.datas
                 )
+                file.write(encoded)
                 file.flush()
                 file.close()
                 sftp.chdir(path + adjin_path)
                 if self.integration_id.attachment_ids:
                     integer = 1
                     for attachment in self.integration_id.attachment_ids:
-                        logging.info(attachment.name.split('.'))
                         annex = sftp.open(
                             self.get_filename(
                                 '%03d.%s' % (
                                     integer,
                                     attachment.name.split('.')[-1])
                             ),
-                            'w'
+                            'wb'
                         )
                         annex.write(base64.b64decode(attachment.datas))
                         annex.flush()
@@ -154,7 +142,7 @@ class AccountInvoiceIntegration(models.Model):
 
     def efact_check_history(self):
         connection, sftp = self._efact_connect()
-        path = sftp.normalize('ssh')
+        path = sftp.normalize('.')
         sftp.chdir(path + statout_path)
         attrs = sftp.listdir_attr('.')
         attrs.sort(key=lambda attr: attr.st_atime)
