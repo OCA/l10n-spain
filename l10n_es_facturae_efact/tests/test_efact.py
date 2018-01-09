@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
 # © 2017 Creu Blanca
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
 from odoo.tests import common
@@ -9,7 +8,7 @@ from mock import patch
 from datetime import datetime
 import base64
 import logging
-from StringIO import StringIO
+from io import BytesIO
 try:
     from OpenSSL import crypto
 except (ImportError, IOError) as err:
@@ -68,7 +67,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         main_company.partner_id.facturae_efact_code = '012345678901234567'
         main_company.vat = "ESA12345674"
         main_company.partner_id.country_id = self.ref('base.uk')
-        main_company.currency_id = self.ref('base.USD')
+        main_company.currency_id = self.ref('base.EUR')
         self.env['res.currency.rate'].search(
             [('currency_id', '=', main_company.currency_id.id)]
         ).write({'company_id': False})
@@ -170,6 +169,9 @@ class TestL10nEsFacturae(common.TransactionCase):
             def close(self):
                 return
 
+            def load_system_host_keys(self):
+                return
+
             def get_host_keys(self):
                 return Keys()
 
@@ -192,7 +194,7 @@ class TestL10nEsFacturae(common.TransactionCase):
                 return
 
             def open(self, path, type=''):
-                return StringIO(self.data)
+                return BytesIO(self.data)
 
             def listdir_attr(self, path):
                 return [TestAttribute(self.filename)]
@@ -215,7 +217,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.assertEqual(integration.can_send, True)
         attachment = self.env['ir.attachment'].create({
             'name': "attach.txt",
-            'datas': base64.b64encode("attachment"),
+            'datas': base64.b64encode("attachment".encode('utf-8')),
             'datas_fname': "attach.txt",
             'res_model': 'account.invoice',
             'res_id': self.invoice.id,
@@ -223,7 +225,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         })
         integration.attachment_ids = [(6, 0, attachment.ids)]
         with patch(patch_class) as mock:
-            mock.return_value = TestConnection('')
+            mock.return_value = TestConnection(bytes(''.encode('utf-8')))
             integration.send_action()
         self.assertEqual(integration.state, 'sent')
         with self.assertRaises(exceptions.UserError):
@@ -234,10 +236,10 @@ class TestL10nEsFacturae(common.TransactionCase):
             }).cancel_integration()
         with patch(patch_class) as mock:
             mock.return_value = TestConnection(
-                tools.file_open(
+                bytes(tools.file_open(
                     'result.xml',
                     subdir="addons/l10n_es_facturae_efact/tests"
-                ).read(),
+                ).read().encode('utf-8')),
                 integration.efact_reference + '@001')
             self.env['account.invoice.integration.log'].efact_check_history()
         self.assertEqual(integration.efact_hub_id, '12')
