@@ -6,6 +6,8 @@ from openerp.tests import common
 from openerp import fields
 
 
+@common.at_install(False)
+@common.post_install(True)
 class TestInvoiceSequence(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
