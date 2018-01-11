@@ -24,6 +24,7 @@ class TestCreateChart(common.HttpCase):
             'currency_id': self.env.ref('base.EUR').id,
             'transfer_account_id': self.chart.transfer_account_id.id,
         })
+        self.wizard.onchange_chart_template_id()
         self.wizard.execute()
 
     def test_create_chart_of_accounts(self):
