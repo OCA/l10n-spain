@@ -2,6 +2,7 @@
 # Copyright 2015 Ainara Galdona - AvanzOSC
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2012-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2017 Valentin Vinagre Urteaga <valentin.vinagre@qubiq.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
