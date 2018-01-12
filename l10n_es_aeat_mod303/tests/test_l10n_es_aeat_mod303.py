@@ -250,7 +250,8 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         '75': 0,
     }
 
-    def test_model_303(self):
+    def setUp(self):
+        super(TestL10nEsAeatMod303Base, self).setUp()
         # Purchase invoices
         self._invoice_purchase_create('2017-01-01')
         self._invoice_purchase_create('2017-01-02')
@@ -280,6 +281,10 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
+
+
+class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
+    def test_model_303(self):
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
         # Fill manual fields
