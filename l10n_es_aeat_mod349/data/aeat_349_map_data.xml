@@ -7,6 +7,7 @@
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva0_ic')
             ])]"/>
+            <field name="physical_product">True</field>
             <field name="name">Intra-Community supplies</field>
         </record>
 
@@ -32,11 +33,13 @@
                 ref('l10n_es.account_tax_template_p_iva10_ic_bi_2'),
                 ref('l10n_es.account_tax_template_p_iva10_ic_bi'),
             ])]"/>
+            <field name="physical_product">True</field>
             <field name="name">Intra-Community acquisition</field>
         </record>
 
         <record id="aeat_349_map_line_T" model="aeat.349.map.line">
             <field name="code">T</field>
+            <field name="physical_product">True</field>
             <field name="name">Triangular operations</field>
         </record>
 

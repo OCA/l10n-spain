@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Luis M. Ontalba <luis.martinez@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from openerp import api, models, fields
 
@@ -11,6 +11,7 @@ class Aeat349MapLines(models.Model):
 
     code = fields.Char(string='Code', required=True)
     name = fields.Char(string='Name')
+    physical_product = fields.Boolean(string='Involves physical product')
     taxes = fields.One2many(
         comodel_name='account.tax.template',
         inverse_name='aeat_349_operation_key',
