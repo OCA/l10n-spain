@@ -6,6 +6,8 @@
     <record id="aeat_mod349_main_export_config" model="aeat.model.export.config">
         <field name="name">Exportación modelo 349</field>
         <field name="model_number">349</field>
+        <field name="model_id"
+               ref="l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_report"/>
     </record>
     <!--          Posiciones  Naturaleza      Descripción-->
     <!--          1           Numérico        Tipo de Registro      Constante = '1'-->
