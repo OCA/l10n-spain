@@ -1,5 +1,5 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+   :target: https://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
 =====================
@@ -61,19 +61,44 @@ presentar el modelo 349:
    Miembro (salvo medios de transporte nuevos) exentas de IVA no sea superior
    a 15.000 €.
 
-Installation
-============
+Instalación
+===========
+Para instalar este módulo es necesario instalar previamente el módulo
+'account_invoice_refund_link', disponible en:
+https://github.com/OCA/account-invoicing
 
-Para instalar este módulo, es necesario instalar el módulo
-*account_invoice_currency*, que se encuentra en el repositorio de GitHub:
 
-https://github.com/OCA/account-financial-tools
+Uso
+===
 
-Credits
-=======
+Ir a:
 
-Contributors
-------------
+* Contabilidad / Informes AEAT / Modelo 349
+* Crear un nuevo registro e informar los datos básicos de la declaración.
+* Pulsar 'Calcular' y revisar el resultado. Pulsar el botón 'Imprimir' para
+  obtener el resultado en PDF.
+* Para excluir ciertas operaciones de la declaración, ir a las pestañas
+  'Registros de empresas' o 'Rectificaciones', y eliminar, en la seccion
+  'Detalles', las operaciones que se desee excluir de la declaración.
+
+Consideraciones importantes:
+* En caso de indicar el tipo de declaración 'Suplementaria' o 'Normal' se
+  propondrán todas las operaciones que apliquen para el periodo.
+* En caso de indicar 'Complementaria', se propondrán únicamente aquellas
+  operaciones que no hubieran sido aún presentadas en otra declaración.
+
+
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: https://runbot.odoo-community.org/runbot/189/9.0
+
+
+Créditos
+========
+
+Contribudores
+-------------
+
 * Luis Manuel Angueira Blanco (Pexego)
 * Omar Castiñeira Saavedra<omar@pexego.es>
 * Miguel López (Top Consultant)
@@ -82,13 +107,15 @@ Contributors
   * Pedro M. Baeza <pedro.baeza@tecnativa.com>
   * Angel Moya <odoo@tecnativa.com>
   * Luis M. Ontalba <luis.martinez@tecnativa.com>
+* Eficent (http://www.eficent.com)
+  * Jordi Ballester <jordi.ballester@eficent.com>
 
-Maintainer
+Mantenedor
 ----------
 
-.. image:: http://odoo-community.org/logo.png
+.. image:: https://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
@@ -96,4 +123,4 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-To contribute to this module, please visit http://odoo-community.org.
+To contribute to this module, please visit https://odoo-community.org.
