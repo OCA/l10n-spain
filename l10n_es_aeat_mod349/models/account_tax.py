@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Luis M. Ontalba <luis.martinez@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from openerp import api, models, fields
 
@@ -30,7 +30,7 @@ class AccountTax(models.Model):
             for line in map_349:
                 for tax_template in line.taxes:
                     if (tax.name == tax_template.name) or (
-                                tax.description == tax_template.name):
+                            tax.description == tax_template.name):
                         tax.aeat_349_operation_key = line
                         break
                 if tax.aeat_349_operation_key:

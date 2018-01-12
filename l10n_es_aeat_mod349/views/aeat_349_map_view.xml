@@ -20,6 +20,7 @@
             <tree string="Aeat 349 Map" editable="bottom">
                 <field name="code"/>
                 <field name="name"/>
+                <field name="physical_product"/>
                 <field name="taxes" widget="many2many_tags"/>
             </tree>
         </field>
