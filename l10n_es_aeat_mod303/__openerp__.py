@@ -24,6 +24,7 @@
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         "data/aeat_export_mod303_2017_data.xml",
+        "data/aeat_export_mod303_2018_data.xml",
         "views/mod303_view.xml",
         "security/ir.model.access.csv",
         "security/ir_rule.xml"
