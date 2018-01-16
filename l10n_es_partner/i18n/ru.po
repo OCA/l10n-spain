@@ -6,10 +6,10 @@
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-04 03:39+0000\n"
-"PO-Revision-Date: 2017-01-04 03:39+0000\n"
+"POT-Creation-Date: 2018-01-15 03:47+0000\n"
+"PO-Revision-Date: 2018-01-15 03:47+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Russian (https://www.transifex.com/oca/teams/23907/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -48,12 +48,12 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Создано"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_date
 msgid "Created on"
-msgstr ""
+msgstr "Создан"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_display_name
@@ -69,7 +69,7 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,help:l10n_es_partner.field_account_journal_bank_acc_country_id
@@ -128,16 +128,16 @@ msgstr ""
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Последний раз обновлено"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
-msgid "Local file mirror. This copy was updated last time on 04/04/2016."
+msgid "Local file mirror. This copy was updated last time on 20/01/2017."
 msgstr ""
 
 #. module: l10n_es_partner
@@ -170,6 +170,7 @@ msgstr ""
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_comercial
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_users_comercial
 #: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_form
 #: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_simple_form
 msgid "Trade name"

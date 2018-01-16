@@ -3,20 +3,20 @@
 # * account_balance_reporting
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 03:46+0000\n"
 "PO-Revision-Date: 2018-01-15 03:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ca_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -111,7 +111,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 #: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancel·la"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -162,7 +162,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_create_uid
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_create_date
@@ -171,7 +171,7 @@ msgstr "Criado por"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_create_date
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -239,7 +239,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_display_name
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -311,7 +311,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_id
 msgid "ID"
-msgstr "Identificação"
+msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_form
@@ -349,7 +349,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template___last_update
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_write_uid
@@ -358,7 +358,7 @@ msgstr "Última atualização em"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_write_uid
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_write_date
@@ -367,7 +367,7 @@ msgstr "Última atualização por"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_write_date
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -428,7 +428,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_name
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_name
 msgid "Name"
-msgstr "Nome"
+msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_negate

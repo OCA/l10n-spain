@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 00:10+0000\n"
-"PO-Revision-Date: 2017-12-28 00:10+0000\n"
+"POT-Creation-Date: 2018-01-15 03:47+0000\n"
+"PO-Revision-Date: 2018-01-15 03:47+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -263,7 +263,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: l10n_es_aeat_sii
 #: selection:l10n.es.aeat.sii,state:0
@@ -406,7 +406,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester___last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Son değişiklik"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_write_uid
@@ -926,13 +926,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1177
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1178
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1147
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1148
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -940,7 +940,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1075
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1076
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -948,7 +948,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1192
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1193
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
@@ -1079,4 +1079,4 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "or"
-msgstr ""
+msgstr "ya da"

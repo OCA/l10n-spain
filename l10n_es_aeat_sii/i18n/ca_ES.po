@@ -3,19 +3,19 @@
 # * l10n_es_aeat_sii
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 03:47+0000\n"
 "PO-Revision-Date: 2018-01-15 03:47+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/teams/23907/es_CR/)\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/ca_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_CR\n"
+"Language: ca_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_sii
@@ -138,7 +138,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancel·la"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_queue_job_sii
@@ -212,7 +212,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_create_date
@@ -222,7 +222,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_from
@@ -337,7 +337,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice_sii_send_failed
@@ -376,7 +376,7 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice
 msgid "Invoice"
-msgstr "Factura"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice_refund
@@ -416,7 +416,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_write_uid
 msgid "Last Updated by"
-msgstr "Ultima actualización por"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_write_date
@@ -426,7 +426,7 @@ msgstr "Ultima actualización por"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_write_date
 msgid "Last Updated on"
-msgstr "Ultima actualización en"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_map_lines
@@ -476,7 +476,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_name
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: selection:account.fiscal.position,sii_partner_identification_type:0
