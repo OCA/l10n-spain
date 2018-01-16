@@ -15,5 +15,6 @@ class L10nEsAeatMod111Report(models.Model):
         res = super(L10nEsAeatMod111Report, self)._get_partner_domain()
         partners = self.env['res.partner'].search(
             [('is_non_resident', '=', False)])
-        res += [('partner_id', 'in', partners.ids)]
+        res += ['|', ('partner_id', 'in', partners.ids),
+                ('partner_id', '=', False)]
         return res
