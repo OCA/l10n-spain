@@ -3,20 +3,20 @@
 # * l10n_es_aeat_vat_prorrate
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
+# Gelo Joga Landoo <gj@landoo.es>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-15 03:47+0000\n"
 "PO-Revision-Date: 2018-01-15 03:47+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/23907/pt_BR/)\n"
+"Last-Translator: Gelo Joga Landoo <gj@landoo.es>, 2018\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es_ES\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
@@ -26,12 +26,12 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model,name:l10n_es_aeat_vat_prorrate.model_l10n_es_aeat_mod303_report
 msgid "AEAT 303 Report"
-msgstr ""
+msgstr "Informe 303 AEAT"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
@@ -47,17 +47,17 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr "Creado por"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr "Creado elCreado el"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr "Nombre a mostrar"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
@@ -67,22 +67,22 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_id
 msgid "ID"
-msgstr "Identificação"
+msgstr "ID"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr "Última modificación en"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
@@ -184,4 +184,4 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "or"
-msgstr "ou"
+msgstr ""
