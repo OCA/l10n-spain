@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 00:00+0000\n"
-"PO-Revision-Date: 2017-12-28 00:00+0000\n"
+"POT-Creation-Date: 2018-01-03 20:03+0000\n"
+"PO-Revision-Date: 2018-01-03 20:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -946,13 +946,13 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1186
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1187
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1152
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1153
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -962,7 +962,7 @@ msgstr ""
 " un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1080
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1081
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -972,7 +972,7 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1201
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1202
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
