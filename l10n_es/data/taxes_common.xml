@@ -590,7 +590,9 @@
     <record id="account_tax_template_s_iva0_sp_i" model="account.tax.template">
         <field name="description">S_IVA0_SP_I</field>
         <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="pgc_477_child"/>
         <field name="name">IVA 0% Prestación de servicios intracomunitario</field>
+        <field name="refund_account_id" ref="pgc_477_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -600,7 +602,9 @@
     <record id="account_tax_template_s_iva_ns" model="account.tax.template">
         <field name="description">S_IVA_NS</field>
         <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="pgc_477_child"/>
         <field name="name">No sujeto Repercutido</field>
+        <field name="refund_account_id" ref="pgc_477_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -610,7 +614,9 @@
     <record id="account_tax_template_s_iva_e" model="account.tax.template">
         <field name="description">S_IVA_SP_E</field>
         <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="pgc_477_child"/>
         <field name="name">IVA 0% Prestación de servicios extracomunitaria</field>
+        <field name="refund_account_id" ref="pgc_477_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -752,7 +758,9 @@
     <record id="account_tax_template_s_iva0" model="account.tax.template">
         <field name="description">S_IVA0</field>
         <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="pgc_477_child"/>
         <field name="name">IVA Exento Repercutido</field>
+        <field name="refund_account_id" ref="pgc_477_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -798,6 +806,7 @@
         <field name="description">P_IVA0_ND</field>
         <field name="type_tax_use">purchase</field>
         <field name="name">IVA Soportado no deducible</field>
+        <field name="refund_account_id" ref="pgc_472_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="21"/>
         <field name="amount_type">percent</field>
@@ -854,7 +863,9 @@
     <record id="account_tax_template_p_iva0_bc" model="account.tax.template">
         <field name="description">P_IVA0_BC</field>
         <field name="type_tax_use">purchase</field>
+        <field name="account_id" ref="pgc_472_child"/>
         <field name="name">IVA Soportado exento (operaciones corrientes)</field>
+        <field name="refund_account_id" ref="pgc_472_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -863,7 +874,9 @@
     <record id="account_tax_template_p_iva0_ns" model="account.tax.template">
         <field name="description">P_IVA0_NS</field>
         <field name="type_tax_use">purchase</field>
+        <field name="account_id" ref="pgc_472_child"/>
         <field name="name">IVA Soportado no sujeto</field>
+        <field name="refund_account_id" ref="pgc_472_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -1059,7 +1072,9 @@
     <record id="account_tax_template_s_iva0_e" model="account.tax.template">
         <field name="description">S_IVA0_E</field>
         <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="pgc_477_child"/>
         <field name="name">IVA 0% Exportaciones</field>
+        <field name="refund_account_id" ref="pgc_477_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -1069,7 +1084,9 @@
     <record id="account_tax_template_s_iva0_ic" model="account.tax.template">
         <field name="description">S_IVA0_IC</field>
         <field name="type_tax_use">sale</field>
+        <field name="account_id" ref="pgc_477_child"/>
         <field name="name">IVA 0% Entregas Intracomunitarias exentas</field>
+        <field name="refund_account_id" ref="pgc_477_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
@@ -1349,7 +1366,9 @@
     </record>
     <record id="account_tax_template_s_iva0_isp" model="account.tax.template">
         <field name="description">S_IVA0_ISP</field>
+        <field name="account_id" ref="pgc_477_child"/>
         <field name="name">IVA 0% Venta con Inversión del Sujeto Pasivo</field>
+        <field name="refund_account_id" ref="pgc_477_child"/>
         <field name="type_tax_use">sale</field>
         <field name="amount_type">percent</field>
         <field name="amount" eval="0"/>
