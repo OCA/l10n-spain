@@ -56,7 +56,7 @@ class ResPartner(models.Model):
     @api.multi
     def name_get(self):
         result = []
-        name_pattern = self.env['ir.config_parameter'].get_param(
+        name_pattern = self.env['ir.config_parameter'].sudo().get_param(
             'l10n_es_partner.name_pattern', default='')
         orig_name = dict(super(ResPartner, self).name_get())
         for partner in self:
