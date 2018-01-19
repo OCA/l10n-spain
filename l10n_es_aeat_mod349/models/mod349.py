@@ -11,7 +11,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 
 def _format_partner_vat(partner_vat=None, country=None):
@@ -168,6 +168,8 @@ class Mod349(models.Model):
         move_line_obj = self.env['account.move.line']
         taxes = self._get_taxes()
         data = {}
+        # This is for avoiding to find same lines several times
+        visited_move_lines = self.env['account.move.line']
         for refund_detail in self.partner_refund_detail_ids:
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
@@ -180,28 +182,35 @@ class Mod349(models.Model):
                 continue
             # Fetch the latest presentation made for this move
             original_detail = detail_obj.search([
-                ('move_line_id.invoice_id', 'in', origin_invoice.ids),
+                ('move_line_id.invoice_id', '=', origin_invoice.id),
                 ('partner_record_id.operation_key', '=', op_key)
             ], limit=1, order='report_id desc')
             if original_detail:
-                # There's a previous 439 declaration report
+                # There's a previous 349 declaration report
                 origin_amount = original_detail.amount_untaxed
                 period_type = original_detail.report_id.period_type
                 year = original_detail.report_id.year
             else:
-                # There's no previous 439 declaration report in Odoo
-                original_move = move_line_obj.search([
+                # There's no previous 349 declaration report in Odoo
+                original_amls = move_line_obj.search([
                     ('tax_ids', 'in', taxes.ids),
                     ('l10n_es_aeat_349_operation_key', '=', op_key),
-                    ('invoice_id', 'in', origin_invoice.ids),
-                ], limit=1)
-                origin_amount = original_move.balance
+                    ('invoice_id', '=', origin_invoice.id),
+                ])
+                origin_amount = abs(sum(
+                    (original_amls - visited_move_lines).mapped('balance')
+                ))
+                visited_move_lines |= original_amls
                 # We have to guess the period type, as we don't have that info
                 # through move lines. Inferred from:
                 # * current record period scheme (monthly/quarterly/yearly)
                 # * date of the move line
-                year = original_move.date[:4]
-                month = original_move.date[5:7]
+                if original_amls:
+                    original_move = original_amls[:1]
+                    year = original_move.date[:4]
+                    month = original_move.date[5:7]
+                else:
+                    continue  # We can't find information to attach to
                 if self.period_type == '0A':
                     period_type = '0A'
                 elif self.period_type in ('1T', '2T', '3T', '4T'):
@@ -499,10 +508,10 @@ class Mod349PartnerRefund(models.Model):
     def _compute_total_operation_amount(self):
         for record in self:
             rectified_amount = sum(
-                record.mapped('refund_detail_ids.refund_line_id.balance')
+                record.mapped('refund_detail_ids.amount_untaxed')
             )
             record.total_operation_amount = (
-                record.total_origin_amount + rectified_amount
+                record.total_origin_amount - rectified_amount
             )
 
     @api.multi
