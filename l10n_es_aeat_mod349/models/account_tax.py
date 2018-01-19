@@ -3,7 +3,7 @@
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from openerp import api, models, fields
+from odoo import api, models, fields
 
 
 class AccountTax(models.Model):
