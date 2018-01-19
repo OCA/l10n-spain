@@ -4,8 +4,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import logging
-from openerp import SUPERUSER_ID
-from openerp.api import Environment
+from odoo import SUPERUSER_ID
+from odoo.api import Environment
 
 logger = logging.getLogger(__name__)
 
