@@ -106,7 +106,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 'quantity': 1,
                 'invoice_line_tax_ids': [(6, 0, [tax.id])],
             }))
-        inv = self.env['account.invoice'].create(data)
+        inv = self.env['account.invoice'].sudo(self.billing_user).create(data)
         inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
@@ -141,7 +141,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 'quantity': 1,
                 'invoice_line_tax_ids': [(6, 0, [tax.id])],
             }))
-        inv = self.env['account.invoice'].create(data)
+        inv = self.env['account.invoice'].sudo(self.billing_user).create(data)
         inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
@@ -149,7 +149,8 @@ class TestL10nEsAeatModBase(common.TransactionCase):
 
     def _invoice_refund(self, invoice, dt):
         _logger.debug('Refund %s invoice: date = %s' % (invoice.type, dt))
-        inv = invoice.refund(date_invoice=dt, journal_id=self.journal_misc.id)
+        inv = invoice.sudo(self.billing_user).refund(
+            date_invoice=dt, journal_id=self.journal_misc.id)
         inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
@@ -213,3 +214,30 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         self._journals_create()
         # Create partners
         self._partners_create()
+
+        invocing_grp = self.env.ref('account.group_account_invoice')
+        account_user_grp = self.env.ref('account.group_account_user')
+        account_manager_grp = self.env.ref('account.group_account_manager')
+        aeat_grp = self.env.ref('l10n_es_aeat.group_account_aeat')
+
+        # Create test user
+        Users = self.env['res.users'].with_context(
+            {'no_reset_password': True, 'mail_create_nosubscribe': True})
+        self.billing_user = Users.create({
+            'name': 'Billing user',
+            'login': 'billing_user',
+            'email': 'billing.user@example.com',
+            'notify_email': 'none',
+            'groups_id': [(6, 0, [invocing_grp.id])]})
+        self.account_user = Users.create({
+            'name': 'Account user',
+            'login': 'account_user',
+            'email': 'account.user@example.com',
+            'notify_email': 'none',
+            'groups_id': [(6, 0, [account_user_grp.id])]})
+        self.account_manager = Users.create({
+            'name': 'Account manager',
+            'login': 'account_manager',
+            'email': 'account.user@example.com',
+            'notify_email': 'none',
+            'groups_id': [(6, 0, [account_manager_grp.id, aeat_grp.id])]})
