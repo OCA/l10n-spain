@@ -11,7 +11,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
-from openerp import models, fields, api, exceptions, _
+from odoo import models, fields, api, exceptions, _
 
 
 def _format_partner_vat(partner_vat=None, country=None):

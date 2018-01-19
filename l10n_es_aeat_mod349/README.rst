@@ -82,6 +82,7 @@ Ir a:
   'Detalles', las operaciones que se desee excluir de la declaración.
 
 Consideraciones importantes:
+
 * En caso de indicar el tipo de declaración 'Suplementaria' o 'Normal' se
   propondrán todas las operaciones que apliquen para el periodo.
 * En caso de indicar 'Complementaria', se propondrán únicamente aquellas
@@ -90,7 +91,7 @@ Consideraciones importantes:
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/9.0
+   :target: https://runbot.odoo-community.org/runbot/189/10.0
 
 
 Créditos
