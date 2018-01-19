@@ -4,7 +4,7 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
-from openerp.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
 
 _logger = logging.getLogger('aeat.349')
@@ -43,7 +43,9 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         s2 = self._invoice_sale_create('2017-01-02')
         self._invoice_refund(s2, '2017-01-02')
         # Create model
-        model349 = self.env['l10n.es.aeat.mod349.report'].create({
+        model349_model = self.env['l10n.es.aeat.mod349.report'].sudo(
+            self.account_manager)
+        model349 = model349_model.create({
             'name': '3490000000001',
             'company_id': self.company.id,
             'company_vat': '1234567890',
@@ -92,7 +94,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         # Create a complementary presentation for 1T 2017. We expect the
         #  application to propose the records that were not included in the
         # first presentation.
-        model349_c = self.env['l10n.es.aeat.mod349.report'].create({
+        model349_c = model349_model.create({
             'name': '3490000000002',
             'company_id': self.company.id,
             'company_vat': '1234567890',
@@ -119,7 +121,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertEqual(a_record.total_operation_amount, 300)
         # Create a substitutive presentation for 1T 2017. We expect that all
         # records for 1T are proposed.
-        model349_s = self.env['l10n.es.aeat.mod349.report'].create({
+        model349_s = model349_model.create({
             'name': '3490000000003',
             'company_id': self.company.id,
             'company_vat': '1234567890',
@@ -146,7 +148,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         # We create a refund of p1, and a new sale
         self._invoice_refund(p1, '2017-04-01')
         self._invoice_sale_create('2017-04-01')
-        model349_2t = self.env['l10n.es.aeat.mod349.report'].create({
+        model349_2t = model349_model.create({
             'name': '3490000000004',
             'company_id': self.company.id,
             'company_vat': '1234567890',
