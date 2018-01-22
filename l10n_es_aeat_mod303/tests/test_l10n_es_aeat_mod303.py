@@ -331,3 +331,17 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         self.assertEqual(
             round(self.model303.resultado_liquidacion, 2), round(result, 2))
         self.assertEqual(self.model303.result_type, 'I')
+        # Export to BOE
+        export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
+            'name': 'test_export_to_boe.txt',
+        })
+        export_config_xml_ids = [
+            'l10n_es_aeat_mod303.aeat_mod303_main_export_config',
+            'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config',
+            'l10n_es_aeat_mod303.aeat_mod303_2018_main_export_config',
+        ]
+        for xml_id in export_config_xml_ids:
+            export_config = self.env.ref(xml_id)
+            self.assertTrue(
+                export_to_boe._export_config(self.model303, export_config)
+            )
