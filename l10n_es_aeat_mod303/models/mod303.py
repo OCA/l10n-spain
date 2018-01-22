@@ -171,22 +171,22 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.multi
     def _compute_allow_posting(self):
-        self.ensure_one()
-        self.allow_posting = True
+        for report in self:
+            report.allow_posting = True
 
     @api.multi
     @api.depends('resultado_liquidacion')
     def _compute_result_type(self):
-        self.ensure_one()
-        if self.resultado_liquidacion == 0:
-            self.result_type = 'N'
-        elif self.resultado_liquidacion > 0:
-            self.result_type = 'I'
-        else:
-            if self.devolucion_mensual:
-                self.result_type = 'D'
+        for report in self:
+            if report.resultado_liquidacion == 0:
+                report.result_type = 'N'
+            elif report.resultado_liquidacion > 0:
+                report.result_type = 'I'
             else:
-                self.result_type = 'C'
+                if report.devolucion_mensual:
+                    report.result_type = 'D'
+                else:
+                    report.result_type = 'C'
 
     @api.onchange('period_type', 'fiscalyear_id')
     def onchange_period_type(self):
