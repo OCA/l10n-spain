@@ -15,7 +15,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _get_export_conf(self):
         try:
             return self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config').id
+                'l10n_es_aeat_mod303.aeat_mod303_2017_last_period_main_export_config').id
         except ValueError:
             return self.env['aeat.model.export.config']
 
