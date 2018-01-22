@@ -158,13 +158,15 @@ class L10nEsAeatMod303Report(models.Model):
         self._aeat_number = '303'
         super(L10nEsAeatMod303Report, self).__init__(pool, cr)
 
-    @api.one
+    @api.multi
     def _compute_allow_posting(self):
+        self.ensure_one()
         self.allow_posting = True
 
-    @api.one
+    @api.multi
     @api.depends('resultado_liquidacion')
     def _compute_result_type(self):
+        self.ensure_one()
         if self.resultado_liquidacion == 0:
             self.result_type = 'N'
         elif self.resultado_liquidacion > 0:

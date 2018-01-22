@@ -1994,7 +1994,7 @@
             <field name="alignment">right</field>
         </record>
 
-		<record id="aeat_mod303_2018_sub03_export_line_08" model="aeat.model.export.config.line">
+        <record id="aeat_mod303_2018_sub03_export_line_08" model="aeat.model.export.config.line">
             <field name="sequence">08</field>
             <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
             <field name="name">Información adicional - Importes devengados en período de liquidación sgún art. 75 LIVA. - Base Imponible [62]</field>
@@ -2042,7 +2042,7 @@
             <field name="alignment">right</field>
         </record>
 
-		<record id="aeat_mod303_2018_sub03_export_line_12" model="aeat.model.export.config.line">
+        <record id="aeat_mod303_2018_sub03_export_line_12" model="aeat.model.export.config.line">
             <field name="sequence">12</field>
             <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
             <field name="name">Resultado - Regularización cuotas rt. 80 cinco. 5ª LIVA [76]</field>
@@ -2102,7 +2102,7 @@
             <field name="alignment">right</field>
         </record>
 
-		<record id="aeat_mod303_2018_sub03_export_line_16" model="aeat.model.export.config.line">
+        <record id="aeat_mod303_2018_sub03_export_line_16" model="aeat.model.export.config.line">
             <field name="sequence">16</field>
             <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
             <field name="name">Resultado - IVA a la importación liquidado por la Aduana pendiente de ingreso [77]</field>
@@ -2209,7 +2209,7 @@
             <field name="alignment">left</field>
         </record>
 
-		<record id="aeat_mod303_2018_sub03_export_line_25" model="aeat.model.export.config.line">
+        <record id="aeat_mod303_2018_sub03_export_line_25" model="aeat.model.export.config.line">
             <field name="sequence">25</field>
             <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
             <field name="name">Devolución. SWIFT-BIC</field>
@@ -2476,7 +2476,7 @@
             <field name="alignment">right</field>
         </record>
 
-		<record id="aeat_mod303_2018_sub03_export_line_49" model="aeat.model.export.config.line">
+        <record id="aeat_mod303_2018_sub03_export_line_49" model="aeat.model.export.config.line">
             <field name="sequence">49</field>
             <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
             <field name="name">Reservado para la AEAT</field>
