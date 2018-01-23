@@ -198,6 +198,10 @@ class L10nEsAeatMod303Report(models.Model):
             self.export_config = self.env.ref(
                 'l10n_es_aeat_mod303.'
                 'aeat_mod303_2017_main_export_config')
+        else:
+            self.export_config = self.env.ref(
+                'l10n_es_aeat_mod303.'
+                'aeat_mod303_2018_main_export_config')
 
     @api.onchange('type')
     def onchange_type(self):
