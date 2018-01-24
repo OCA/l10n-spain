@@ -34,8 +34,3 @@ class AccountInvoice(models.Model):
             invl = self.env['account.invoice.line'].browse(invl_id)
             ml_dict['aeat_349_operation_key'] = invl.aeat_349_operation_key.id
         return ml_dicts
-
-    @api.onchange('eu_triangular_deal')
-    def _onchange_invoice_line_tax_ids(self):
-        for line in self.invoice_line_ids:
-            line._update_operation_key()
