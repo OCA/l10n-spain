@@ -26,9 +26,22 @@
             <field name="arch" type="xml">
                 <field name="previous_number" position="after">
                     <field name="devolucion_mensual"/>
+                    <field name="exonerated_390" attrs="{'invisible': [('period_type', 'not in', ('4T', '12'))]}"/>
+                    <field name="clave_B_quarters" attrs="{'invisible': ['|',('exonerated_390', '=', False),('period_type', 'not in', ('4T'))], 'required': [('exonerated_390', '=', True), ('period_type', 'in', ('4T'))]}"/>
+                    <field name="clave_B_months" attrs="{'invisible': ['|',('exonerated_390', '=', False),('period_type', 'not in', ('12'))], 'required': [('exonerated_390', '=', True), ('period_type', 'in', ('12'))]}"/>
+                    <field name="epigrafe_IAE" attrs="{'invisible': [('exonerated_390', '=', False)], 'required': ['&amp;', ('exonerated_390', '=', True), '|', ('clave_B_quarters', 'not in', [0, False]), ('clave_B_months', 'not in', [0, False])]}"/>
                 </field>
                 <group name="group_declaration" position="after">
                     <field name="currency_id" invisible="1"/>
+                    <group string="Resumen anual (exonerados modelo 390)" name="group_anual_summary" colspan="4" col="4" attrs="{'invisible': [('exonerated_390', '=', False)]}">
+                        <field name="casilla_80"/>
+                        <field name="casilla_93"/>
+                        <field name="casilla_83"/>
+                        <field name="casilla_94"/>
+                        <field name="casilla_84"/>
+                        <field name="casilla_96"/>
+                        <field name="casilla_88"/>
+                    </group>
                     <group string="Resultado"
                            name="group_result"
                            attrs="{'invisible': [('state', '=', 'draft')]}"
@@ -96,7 +109,7 @@
                         <field name="company_partner_id" invisible="1"/>
                         <field name="bank_account"
                                domain="[('partner_id', '=', company_partner_id)]"
-                               attrs="{'invisible': [('result_type', 'not in', ('B', 'I')), ('compensate', '=', False)]}"
+                               attrs="{'invisible': [('result_type', 'not in', ('D', 'I'))], 'required': [('result_type', '=', 'D')]}"
                                 />
                     </group>
                     <group string="Tax lines"

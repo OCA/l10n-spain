@@ -2,6 +2,7 @@
 # © 2013 - Guadaltech - Alberto Martín Cortada
 # © 2015 - AvanzOSC - Ainara Galdona
 # © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# © 2018 - Otherway Creatives - Pedro Rodriguez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
@@ -65,6 +66,165 @@ class L10nEsAeatMod303Report(models.Model):
             report.casilla_69 = (
                 report.atribuible_estado + report.casilla_77 +
                 report.cuota_compensar + report.regularizacion_anual)
+
+    @api.multi
+    @api.depends('casilla_88', 'exonerated_390')
+    def _compute_exonerated_390_val(self):
+        for report in self:
+            report.exonerated_390_val = 0
+            if (report.period_type in ('4T', '12') and
+                    report.exonerated_390):
+                if report.casilla_88 != 0.:
+                    report.exonerated_390_val = 1
+                else:
+                    report.exonerated_390_val = 2
+
+    @api.multi
+    @api.depends('clave_B_quarters', 'clave_B_months')
+    def _compute_clave_B(self):
+        for report in self:
+            report.clave_B = ''
+            if report.period_type == '4T':
+                report.clave_B = report.clave_B_quarters
+            elif report.period_type == '12':
+                report.clave_B = report.clave_B_months
+
+    @api.multi
+    @api.depends('tax_lines', 'exonerated_390')
+    def _compute_casilla_80(self):
+        casillas_base_devengado = (1, 4, 7)
+        casillas_base_modif = (14,)
+        for report in self:
+            if not report.exonerated_390:
+                report.casilla_80 = 0
+                continue
+            tax_lines_devengado = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_base_devengado)
+            tax_lines_modif = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_base_modif)
+            if not (tax_lines_devengado or tax_lines_modif):
+                report.casilla_80 = 0
+                continue
+            codes_devengado = []
+            for tax_line in tax_lines_devengado:
+                codes_devengado += tax_line.map_line.\
+                    mapped('tax_codes.code')
+            codes_modif = []
+            for tax_line in tax_lines_modif:
+                codes_modif += tax_line.map_line.\
+                    mapped('tax_codes.code')
+            move_lines_devengado = (report._get_tax_code_lines(
+                codes=codes_devengado))
+            # Obtenemos las lineas de minoración de bases sin incluir
+            # hijos para evitar sumar las deducciones de facturas
+            # rectificativas de proveedor con ISP (MBYCRBIISN)
+            move_lines_modif = (report._get_tax_code_lines(
+                codes=codes_modif, include_children=False))
+            report.casilla_80 = (
+                sum(move_lines_devengado.mapped('tax_amount')) +
+                sum(move_lines_modif.mapped('tax_amount')))
+
+    @api.multi
+    @api.depends('tax_lines', 'exonerated_390')
+    def _compute_casilla_83(self):
+        for report in self:
+            codes_devengado = ['OESDAD']
+            move_lines_devengado = (report._get_tax_code_lines(
+                codes=codes_devengado))
+            report.casilla_83 = sum(
+                move_lines_devengado.mapped('tax_amount'))
+
+    @api.multi
+    @api.depends('tax_lines', 'exonerated_390')
+    def _compute_casilla_84(self):
+        casillas_base_devengado = (61,)
+        for report in self:
+            if not report.exonerated_390:
+                report.casilla_84 = 0
+                continue
+            tax_lines_devengado = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_base_devengado)
+            codes_devengado = []
+            for tax_line in tax_lines_devengado:
+                codes_devengado += tax_line.map_line.\
+                    mapped('tax_codes.code')
+            move_lines_devengado = (report._get_tax_code_lines(
+                codes=codes_devengado))
+            report.casilla_84 = sum(
+                move_lines_devengado.mapped('tax_amount'))
+
+    @api.multi
+    @api.depends('tax_lines', 'exonerated_390')
+    def _compute_casilla_93(self):
+        casillas_base_devengado = (59,)
+        for report in self:
+            if not report.exonerated_390:
+                report.casilla_93 = 0
+                continue
+            tax_lines_devengado = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_base_devengado)
+            if not tax_lines_devengado:
+                report.casilla_93 = 0
+                continue
+            codes_devengado = []
+            for tax_line in tax_lines_devengado:
+                codes_devengado += tax_line.map_line.\
+                    mapped('tax_codes.code')
+            move_lines_devengado = (report._get_tax_code_lines(
+                codes=codes_devengado))
+            report.casilla_93 = sum(
+                move_lines_devengado.mapped('tax_amount'))
+
+    @api.multi
+    @api.depends('tax_lines', 'exonerated_390')
+    def _compute_casilla_94(self):
+        for report in self:
+            codes_devengado = ['EYOA']
+            move_lines_devengado = (report._get_tax_code_lines(
+                codes=codes_devengado))
+            report.casilla_94 = sum(
+                move_lines_devengado.mapped('tax_amount'))
+
+    @api.multi
+    @api.depends('tax_lines', 'exonerated_390')
+    def _compute_casilla_96(self):
+        casillas_base_devengado = (16, 19, 22)
+        casillas_base_modif = (25,)
+        for report in self:
+            if not report.exonerated_390:
+                report.casilla_96 = 0
+                continue
+            tax_lines_devengado = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_base_devengado)
+            tax_lines_modif = report.tax_lines.filtered(
+                lambda x: x.field_number in casillas_base_modif)
+            if not (tax_lines_devengado or tax_lines_modif):
+                report.casilla_96 = 0
+                continue
+            codes_devengado = []
+            for tax_line in tax_lines_devengado:
+                codes_devengado += tax_line.map_line.\
+                    mapped('tax_codes.code')
+            codes_modif = []
+            for tax_line in tax_lines_modif:
+                codes_modif += tax_line.map_line.\
+                    mapped('tax_codes.code')
+            move_lines_devengado = (report._get_tax_code_lines(
+                codes=codes_devengado))
+            move_lines_modif = (report._get_tax_code_lines(
+                codes=codes_modif))
+            report.casilla_96 = (
+                sum(move_lines_devengado.mapped('tax_amount')) +
+                sum(move_lines_modif.mapped('tax_amount')))
+
+    @api.multi
+    @api.depends('casilla_80', 'casilla_83', 'casilla_84', 'casilla_93',
+                 'casilla_94', 'casilla_96')
+    def _compute_casilla_88(self):
+        for report in self:
+            report.casilla_88 = (report.casilla_80 + report.casilla_83 +
+                                 report.casilla_84 + report.casilla_93 +
+                                 report.casilla_94 + report.casilla_96)
 
     @api.multi
     @api.depends('casilla_69', 'previous_result')
@@ -164,6 +324,102 @@ class L10nEsAeatMod303Report(models.Model):
     counterpart_account = fields.Many2one(
         default=_default_counterpart_303)
     allow_posting = fields.Boolean(default=True)
+    exonerated_390 = fields.Boolean(
+        states={'done': [('readonly', True)]},
+        string="Exonerado de presentar el modelo 390",
+        help="Si se marca, indicará que la empresa está exonerada de "
+             "presentar la Declaración-resumen anual del IVA, modelo "
+             "390")
+    exonerated_390_val = fields.Integer(
+        string="Valor de casilla exonerado 390",
+        compute='_compute_exonerated_390_val',
+        help="Será 0 para todos los periodos menos el 4T ó 12. En 4T "
+             "ó 12 será 0 para los no exonerados; para exonerados será "
+             "1 si hay volumen de operaciones y 2 si no hay volumen de "
+             "operaciones")
+    clave_B = fields.Char(compute='_compute_clave_B',
+                          string="B Clave")
+    clave_B_quarters = fields.Selection(
+        string="Clave de actividad",
+        states={'done': [('readonly', True)]},
+        selection=[(0, 'Sin epígrafe'),
+                   (1, 'Actividades sujetas a I.A.E'),
+                   (2, 'Actividades Agrícolas, Ganaderas, Forestales '
+                       'o  Pesqueras no sujetas al I.A.E'),
+                   (3, 'Arrendadores de bienes inmuebles de naturaleza '
+                       'urbana')],
+        default=0,
+        help="Seleccione en función de la actividad ejercida")
+    clave_B_months = fields.Selection(
+        string="Clave de actividad",
+        states={'done': [('readonly', True)]},
+        selection=[(0, 'Sin epígrafe'),
+                   (1, 'Actividades sujetas al Impuesto sobre '
+                       'Actividades Económicas (Activ. Empresariales)'),
+                   (2, 'Actividades sujetas al Impuesto sobre '
+                       'Actividades Económicas (Activ. Profesionales y '
+                       'Artísticas)'),
+                   (3, 'Arrendadores de Locales de Negocios y garajes'),
+                   (4, 'Actividades  Agrícolas,  Ganaderas  o  '
+                       'Pesqueras,  no  sujetas  al IAE'),
+                   (5, 'Sujeto pasivos sin iniciar actividad y no dado '
+                       'de alta en IAE'),
+                   (6, 'Otras actividades no sujetas al IAE')],
+        default=0,
+        help="Seleccione en función de la actividad ejercida")
+    epigrafe_IAE = fields.Char(
+        string='Epígrafe IAE', size=4,
+        states={'done': [('readonly', True)]},
+        help="Indique, en su caso, el Epígrafe del Impuesto sobre "
+             "Actividades Económicas de la actividad desarrollada")
+    casilla_80 = fields.Float(
+        string="[80] Operaciones en régimen general", readonly=True,
+        compute="_compute_casilla_80", store=True,
+        help="Volumen de operaciones realizadas en el ejercicio, "
+             "excluido el propio IVA y, en su caso, el recargo de "
+             "equivalencia, de las entregas de bienes y prestaciones "
+             "de servicios en régimen general")
+    casilla_83 = fields.Float(
+        string="[83] Operaciones exentas sin derecho a deducción",
+        readonly=True, compute="_compute_casilla_83", store=True,
+        help="Importe de las operaciones realizadas en el ejercicio "
+             "exentas sin derecho a deducción, como las mencionadas en "
+             "el artículo 20 de la Ley del IVA")
+    casilla_84 = fields.Float(
+        compute="_compute_casilla_84",
+        readonly=True, store=True,
+        string="[84] Operaciones no sujetas por reglas de localización "
+               "o con ISP",
+        help="Importe de las entregas de bienes y prestaciones de "
+             "servicios realizadas en el ejercicio no sujetas por "
+             "aplicación de las reglas de localización o con inversión "
+             "del sujeto pasivo")
+    casilla_93 = fields.Float(
+        string="[93] Entregas intracomunitatias exentas", readonly=True,
+        compute="_compute_casilla_93", store=True,
+        help="Importe de las entregas comunitarias realizadas en el "
+             "ejercicio exentas en virtud de lo dispuesto en el "
+             "artículo 25 de la Ley del IVA")
+    casilla_94 = fields.Float(
+        compute="_compute_casilla_94",
+        readonly=True, store=True,
+        string="[94] Exportaciones y otras operaciones exentas con "
+               "derecho a deducción",
+        help="Importe de las contraprestaciones correspondienete a las "
+             "exportaciones y operaciones asimiladas a la exportación "
+             "realizadas en el ejercicio")
+    casilla_96 = fields.Float(
+        compute="_compute_casilla_96",
+        string="[96] Operaciones con recargo de equivalencia",
+        readonly=True, store=True,
+        help="Importe de las entregas de bienes realizadas en el "
+             "ejercicio en el ámbito del regimen especial del recargo "
+             "de equivalencia")
+    casilla_88 = fields.Float(
+        string="[88] Total volumen de operaciones",
+        compute='_compute_casilla_88', readonly=True, store=True,
+        help="Importe total del volumen de operaciones determinado de "
+             "acuerdo con el artículo 121 de la Ley del IVA")
 
     def __init__(self, pool, cr):
         self._aeat_number = '303'
@@ -183,7 +439,8 @@ class L10nEsAeatMod303Report(models.Model):
             elif report.resultado_liquidacion > 0:
                 report.result_type = 'I'
             else:
-                if report.devolucion_mensual:
+                if (report.devolucion_mensual or
+                        report.period_type in ('4T', '12')):
                     report.result_type = 'D'
                 else:
                     report.result_type = 'C'
@@ -193,6 +450,7 @@ class L10nEsAeatMod303Report(models.Model):
         super(L10nEsAeatMod303Report, self).onchange_period_type()
         if self.period_type not in ('4T', '12'):
             self.regularizacion_anual = 0
+            self.exonerated_390 = False
         if (not self.fiscalyear_id or
                 self.fiscalyear_id.date_start < '2018-01-01'):
             self.export_config = self.env.ref(
@@ -212,6 +470,12 @@ class L10nEsAeatMod303Report(models.Model):
     def onchange_result_type(self):
         if self.result_type != 'C':
             self.compensate = False
+
+    @api.onchange('exonerated_390')
+    def onchange_exonerated_390(self):
+        self.clave_B_quarters = False
+        self.clave_B_months = False
+        self.epigrafe_IAE = False
 
     @api.multi
     def button_confirm(self):

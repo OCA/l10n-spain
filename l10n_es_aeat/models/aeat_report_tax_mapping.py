@@ -92,7 +92,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             periods = self.env['account.period'].search(
                 [('fiscalyear_id', '=', self.fiscalyear_id.id)])
         move_line_domain = [('company_id', 'child_of', self.company_id.id),
-                            ('tax_code_id', 'child_of', tax_codes.ids),
+                            ('tax_code_id', 'in', tax_codes.ids),
                             ('period_id', 'in', periods.ids)]
         move_line_domain += self._get_partner_domain()
         return move_line_domain
