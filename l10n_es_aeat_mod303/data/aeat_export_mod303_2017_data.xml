@@ -2608,6 +2608,7 @@
         <record id="aeat_mod303_2017_main_export_config" model="aeat.model.export.config">
             <field name="name">Exportación modelo 303 2017</field>
             <field name="date_start">2017-10-01</field>
+            <field name="date_end">2017-12-31</field>
             <field name="model_number">303</field>
             <field name="model" ref="l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report"/>
         </record>
