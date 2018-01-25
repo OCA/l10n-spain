@@ -14,6 +14,8 @@ Es posible imprimir por separado los libros de:
 * Facturas rectificativas emitidas
 * Facturas rectificativas recibidas
 
+Basado en el Modelo 340 
+https://github.com/OCA/l10n-spain/tree/8.0/l10n_es_aeat_mod340
 
 Instalación
 ===========
@@ -76,6 +78,7 @@ Contribuidores
 --------------
 
 * Daniel Rodriguez <drl.9319@gmail.com>
+* Ignacio Ibeas <ignacio@acysos.com>
 
 
 Mantenedor
