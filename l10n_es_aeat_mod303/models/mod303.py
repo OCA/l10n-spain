@@ -128,6 +128,9 @@ class L10nEsAeatMod303Report(models.Model):
     @api.depends('tax_lines', 'exonerated_390')
     def _compute_casilla_83(self):
         for report in self:
+            if not report.exonerated_390:
+                report.casilla_83 = 0
+                continue
             codes_devengado = ['OESDAD']
             move_lines_devengado = (report._get_tax_code_lines(
                 codes=codes_devengado))
@@ -179,6 +182,9 @@ class L10nEsAeatMod303Report(models.Model):
     @api.depends('tax_lines', 'exonerated_390')
     def _compute_casilla_94(self):
         for report in self:
+            if not report.exonerated_390:
+                report.casilla_94 = 0
+                continue
             codes_devengado = ['EYOA']
             move_lines_devengado = (report._get_tax_code_lines(
                 codes=codes_devengado))
@@ -222,6 +228,9 @@ class L10nEsAeatMod303Report(models.Model):
                  'casilla_94', 'casilla_96')
     def _compute_casilla_88(self):
         for report in self:
+            if not report.exonerated_390:
+                report.casilla_88 = 0
+                continue
             report.casilla_88 = (report.casilla_80 + report.casilla_83 +
                                  report.casilla_84 + report.casilla_93 +
                                  report.casilla_94 + report.casilla_96)
