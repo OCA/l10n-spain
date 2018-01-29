@@ -13,7 +13,8 @@
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Antiun Ingeniería S.L.,"
               "Comunitea,"
-              "Odoo Community Association (OCA)",
+              "Odoo Community Association (OCA),"
+              "Otherway Creatives S.L.",
     'website': "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
@@ -24,6 +25,7 @@
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         "data/aeat_export_mod303_2017_data.xml",
+        "data/aeat_export_mod303_2018_data.xml",
         "views/mod303_view.xml",
         "security/ir.model.access.csv",
         "security/ir_rule.xml"

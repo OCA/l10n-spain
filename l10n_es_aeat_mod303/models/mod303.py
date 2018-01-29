@@ -15,7 +15,8 @@ class L10nEsAeatMod303Report(models.Model):
     def _get_export_conf(self):
         try:
             return self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config').id
+                'l10n_es_aeat_mod303.'
+                'aeat_mod303_2017_main_export_config').id
         except ValueError:
             return self.env['aeat.model.export.config']
 
@@ -45,14 +46,16 @@ class L10nEsAeatMod303Report(models.Model):
     @api.depends('total_devengado', 'total_deducir')
     def _compute_casilla_46(self):
         for report in self:
-            report.casilla_46 = report.total_devengado - report.total_deducir
+            report.casilla_46 = (report.total_devengado -
+                                 report.total_deducir)
 
     @api.multi
     @api.depends('porcentaje_atribuible_estado', 'casilla_46')
     def _compute_atribuible_estado(self):
         for report in self:
             report.atribuible_estado = (
-                report.casilla_46 * report.porcentaje_atribuible_estado / 100)
+                report.casilla_46 *
+                report.porcentaje_atribuible_estado / 100)
 
     @api.multi
     @api.depends('atribuible_estado', 'cuota_compensar',
@@ -75,11 +78,14 @@ class L10nEsAeatMod303Report(models.Model):
         related='company_id.currency_id', store=True, readonly=True)
     number = fields.Char(default='303')
     export_config = fields.Many2one(default=_get_export_conf)
-    company_partner_id = fields.Many2one('res.partner', string='Partner',
-                                         relation='company_id.partner_id',
-                                         store=True)
+    company_partner_id = fields.Many2one(
+        'res.partner',
+        string='Partner',
+        relation='company_id.partner_id',
+        store=True)
     devolucion_mensual = fields.Boolean(
-        string="Devolución mensual", states={'done': [('readonly', True)]},
+        string="Devolución mensual",
+        states={'done': [('readonly', True)]},
         help="Inscrito en el Registro de Devolución Mensual")
     total_devengado = fields.Float(
         string="[27] IVA devengado", readonly=True,
@@ -88,17 +94,19 @@ class L10nEsAeatMod303Report(models.Model):
         string="[45] IVA a deducir", readonly=True,
         compute="_compute_total_deducir", store=True)
     casilla_46 = fields.Float(
-        string="[46] Resultado régimen general", readonly=True, store=True,
-        help="(IVA devengado - IVA deducible)", compute="_compute_casilla_46")
+        string="[46] Resultado régimen general", readonly=True,
+        store=True,
+        help="(IVA devengado - IVA deducible)",
+        compute="_compute_casilla_46")
     porcentaje_atribuible_estado = fields.Float(
         string="[65] % atribuible al Estado",
         states={'done': [('readonly', True)]},
         help="Los sujetos pasivos que tributen conjuntamente a la "
-             "Administración del Estado y a las Diputaciones Forales del País "
-             "Vasco o a la Comunidad Foral de Navarra, consignarán en esta "
-             "casilla el porcentaje del volumen de operaciones en territorio "
-             "común. Los demás sujetos pasivos consignarán en esta casilla el "
-             "100%", default=100)
+             "Administración del Estado y a las Diputaciones Forales "
+             "del País Vasco o a la Comunidad Foral de Navarra, "
+             "consignarán en esta casilla el porcentaje del volumen "
+             "de operaciones en territorio común. Los demás sujetos "
+             "pasivos consignarán en esta casilla el 100%", default=100)
     atribuible_estado = fields.Float(
         string="[66] Atribuible a la Administración", readonly=True,
         compute="_compute_atribuible_estado", store=True)
@@ -111,29 +119,31 @@ class L10nEsAeatMod303Report(models.Model):
     regularizacion_anual = fields.Float(
         string="[68] Regularización anual",
         states={'done': [('readonly', True)]},
-        help="En la última autoliquidación del año (la del período 4T o mes "
-             "12) se hará constar, con el signo que corresponda, el resultado "
-             "de la regularización anual conforme disponen las Leyes por las "
-             "que se aprueban el Concierto Económico entre el Estado y la "
-             "Comunidad Autónoma del País Vasco y el Convenio Económico entre "
-             "el Estado y la Comunidad Foral de Navarra.""")
+        help="En la última autoliquidación del año (la del período 4T "
+             "o mes 12) se hará constar, con el signo que corresponda, "
+             "el resultado de la regularización anual conforme "
+             "disponen las Leyes por las que se aprueban el Concierto "
+             "Económico entre el Estado y la Comunidad Autónoma del "
+             "País Vasco y el Convenio Económico entre el Estado y la "
+             "Comunidad Foral de Navarra.")
     casilla_69 = fields.Float(
-        string="[69] Resultado", readonly=True, compute="_compute_casilla_69",
-        help="Atribuible a la Administración [66] - Cuotas a compensar [67] + "
-             "Regularización anual [68]""", store=True)
+        string="[69] Resultado", readonly=True,
+        compute="_compute_casilla_69",
+        help="Atribuible a la Administración [66] - Cuotas a "
+             "compensar [67] + Regularización anual [68]""", store=True)
     casilla_77 = fields.Float(
         string="[77] Iva Diferido (Liquidado por aduana)",
-        help="Se hará constar el importe de las cuotas del Impuesto a la "
-             "importación incluidas en los documentos en los que conste la "
-             "liquidación practicada por la Administración recibidos en el "
-             "periodo de liquidación. Solamente podrá cumplimentarse esta "
-             "casilla cuando se cumplan los requisitos establecidos en el "
-             "artículo 74.1 del Reglamento del Impuesto sobre el Valor "
-             "Añadido. ")
+        help="Se hará constar el importe de las cuotas del Impuesto "
+             "a la importación incluidas en los documentos en los que "
+             "conste la liquidación practicada por la Administración "
+             "recibidos en el periodo de liquidación. Solamente podrá "
+             "cumplimentarse esta casilla cuando se cumplan los "
+             "requisitos establecidos en el artículo 74.1 del "
+             "Reglamento del Impuesto sobre el Valor Añadido. ")
     previous_result = fields.Float(
         string="[70] A deducir",
-        help="Resultado de la anterior o anteriores declaraciones del mismo "
-             "concepto, ejercicio y periodo",
+        help="Resultado de la anterior o anteriores declaraciones del "
+             "mismo concepto, ejercicio y periodo",
         states={'done': [('readonly', True)]})
     resultado_liquidacion = fields.Float(
         string="[71] Liquidación", readonly=True,
@@ -146,49 +156,52 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_result_type")
     compensate = fields.Boolean(
         string="Compensate", states={'done': [('readonly', True)]},
-        help="Si se marca, indicará que el importe a devolver se compensará "
-             "en posteriores declaraciones")
+        help="Si se marca, indicará que el importe a devolver se "
+             "compensará en posteriores declaraciones")
     bank_account = fields.Many2one(
         comodel_name="res.partner.bank", string="Bank account",
         states={'done': [('readonly', True)]})
-    counterpart_account = fields.Many2one(default=_default_counterpart_303)
+    counterpart_account = fields.Many2one(
+        default=_default_counterpart_303)
     allow_posting = fields.Boolean(default=True)
 
     def __init__(self, pool, cr):
         self._aeat_number = '303'
         super(L10nEsAeatMod303Report, self).__init__(pool, cr)
 
-    @api.one
+    @api.multi
     def _compute_allow_posting(self):
-        self.allow_posting = True
+        for report in self:
+            report.allow_posting = True
 
-    @api.one
+    @api.multi
     @api.depends('resultado_liquidacion')
     def _compute_result_type(self):
-        if self.resultado_liquidacion == 0:
-            self.result_type = 'N'
-        elif self.resultado_liquidacion > 0:
-            self.result_type = 'I'
-        else:
-            if self.devolucion_mensual:
-                self.result_type = 'D'
+        for report in self:
+            if report.resultado_liquidacion == 0:
+                report.result_type = 'N'
+            elif report.resultado_liquidacion > 0:
+                report.result_type = 'I'
             else:
-                self.result_type = 'C'
+                if report.devolucion_mensual:
+                    report.result_type = 'D'
+                else:
+                    report.result_type = 'C'
 
     @api.onchange('period_type', 'fiscalyear_id')
     def onchange_period_type(self):
         super(L10nEsAeatMod303Report, self).onchange_period_type()
         if self.period_type not in ('4T', '12'):
             self.regularizacion_anual = 0
-        if not self.fiscalyear_id:
+        if (not self.fiscalyear_id or
+                self.fiscalyear_id.date_start < '2018-01-01'):
             self.export_config = self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config')
-        elif self.fiscalyear_id.date_start < '2017-01-01':
-            self.export_config = self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
+                'l10n_es_aeat_mod303.'
+                'aeat_mod303_2017_main_export_config')
         else:
             self.export_config = self.env.ref(
-                'l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config')
+                'l10n_es_aeat_mod303.'
+                'aeat_mod303_2018_main_export_config')
 
     @api.onchange('type')
     def onchange_type(self):
@@ -197,7 +210,7 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.onchange('result_type')
     def onchange_result_type(self):
-        if self.result_type != 'B':
+        if self.result_type != 'C':
             self.compensate = False
 
     @api.multi
@@ -207,7 +220,7 @@ class L10nEsAeatMod303Report(models.Model):
         for mod303 in self:
             if mod303.result_type == 'I' and not mod303.bank_account:
                 msg = _('Select an account for making the charge')
-            if mod303.result_type == 'B' and not not mod303.bank_account:
+            if mod303.result_type == 'D' and not mod303.bank_account:
                 msg = _('Select an account for receiving the money')
         if msg:
             # Don't raise error, because data is not used

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-27 00:55+0000\n"
-"PO-Revision-Date: 2017-10-27 00:55+0000\n"
+"POT-Creation-Date: 2017-12-28 01:48+0000\n"
+"PO-Revision-Date: 2017-12-28 01:48+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: English (United States) (https://www.transifex.com/oca/teams/23907/en_US/)\n"
 "MIME-Version: 1.0\n"
@@ -83,6 +83,11 @@ msgid "Aeat SII Registration Keys"
 msgstr "Aeat SII Registration Keys"
 
 #. module: l10n_es_aeat_sii
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_send_first_semester
+msgid "Aeat SII Send First Semester"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "Already sent but with local changes not sent yet"
 msgstr "Already sent but with local changes not sent yet"
@@ -142,6 +147,7 @@ msgstr "By substitution"
 
 #. module: l10n_es_aeat_sii
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -241,6 +247,7 @@ msgstr "Connector config"
 #: field:aeat.sii.mapping.registration.keys,create_uid:0
 #: field:l10n.es.aeat.sii,create_uid:0
 #: field:l10n.es.aeat.sii.password,create_uid:0
+#: field:l10n.es.sii.first.semester,create_uid:0
 msgid "Created by"
 msgstr "Created by"
 
@@ -249,6 +256,7 @@ msgstr "Created by"
 #: field:aeat.sii.mapping.registration.keys,create_date:0
 #: field:l10n.es.aeat.sii,create_date:0
 #: field:l10n.es.aeat.sii.password,create_date:0
+#: field:l10n.es.sii.first.semester,create_date:0
 msgid "Created on"
 msgstr "Created on"
 
@@ -258,7 +266,7 @@ msgid "Date from"
 msgstr "Date from"
 
 #. module: l10n_es_aeat_sii
-#: field:aeat.sii.map,date_to:0
+#: field:aeat.sii.map,date_to:0 field:l10n.es.sii.first.semester,date_to:0
 msgid "Date to"
 msgstr "Date to"
 
@@ -287,6 +295,7 @@ msgstr "Description config"
 #: field:aeat.sii.mapping.registration.keys,display_name:0
 #: field:l10n.es.aeat.sii,display_name:0
 #: field:l10n.es.aeat.sii.password,display_name:0
+#: field:l10n.es.sii.first.semester,display_name:0
 msgid "Display Name"
 msgstr ""
 
@@ -391,7 +400,7 @@ msgstr "Group By..."
 #. module: l10n_es_aeat_sii
 #: field:aeat.sii.map,id:0 field:aeat.sii.map.lines,id:0
 #: field:aeat.sii.mapping.registration.keys,id:0 field:l10n.es.aeat.sii,id:0
-#: field:l10n.es.aeat.sii.password,id:0
+#: field:l10n.es.aeat.sii.password,id:0 field:l10n.es.sii.first.semester,id:0
 msgid "ID"
 msgstr "ID"
 
@@ -471,6 +480,7 @@ msgstr "Is Test Environment?"
 #: field:aeat.sii.mapping.registration.keys,__last_update:0
 #: field:l10n.es.aeat.sii,__last_update:0
 #: field:l10n.es.aeat.sii.password,__last_update:0
+#: field:l10n.es.sii.first.semester,__last_update:0
 msgid "Last Modified on"
 msgstr ""
 
@@ -479,6 +489,7 @@ msgstr ""
 #: field:aeat.sii.mapping.registration.keys,write_uid:0
 #: field:l10n.es.aeat.sii,write_uid:0
 #: field:l10n.es.aeat.sii.password,write_uid:0
+#: field:l10n.es.sii.first.semester,write_uid:0
 msgid "Last Updated by"
 msgstr "Last Updated by"
 
@@ -487,6 +498,7 @@ msgstr "Last Updated by"
 #: field:aeat.sii.mapping.registration.keys,write_date:0
 #: field:l10n.es.aeat.sii,write_date:0
 #: field:l10n.es.aeat.sii.password,write_date:0
+#: field:l10n.es.sii.first.semester,write_date:0
 msgid "Last Updated on"
 msgstr "Last Updated on"
 
@@ -557,7 +569,7 @@ msgid "Never sent to SII"
 msgstr "Never sent to SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:315
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:316
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr "No VAT configured for the company '{}'"
@@ -915,6 +927,16 @@ msgid "Sale"
 msgstr "Sale"
 
 #. module: l10n_es_aeat_sii
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid "Send First Semester"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid "Send Invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.actions.server,name:l10n_es_aeat_sii.action_send_sii_invoices
 msgid "Send Invoices to SII"
 msgstr "Send Invoices to SII"
@@ -924,6 +946,16 @@ msgstr "Send Invoices to SII"
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Send cancellation to SII"
 msgstr "Send cancellation to SII"
+
+#. module: l10n_es_aeat_sii
+#: field:l10n.es.sii.first.semester,in_invoices:0
+msgid "Send in invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.action_aeat_sii_send_first_semester
+msgid "Send invoices first semester"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: field:res.company,send_mode:0
@@ -936,8 +968,14 @@ msgid "Send now"
 msgstr "Send now"
 
 #. module: l10n_es_aeat_sii
+#: field:l10n.es.sii.first.semester,out_invoices:0
+msgid "Send out invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: view:account.invoice:l10n_es_aeat_sii.invoice_sii_form
 #: view:account.invoice:l10n_es_aeat_sii.invoice_supplier_sii_form
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 msgid "Send to SII"
 msgstr "Send to SII"
 
@@ -997,28 +1035,36 @@ msgid "The last attemp to sent to SII has failed"
 msgstr "The last attemp to sent to SII has failed"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:605
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:683
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "The partner has not a VAT configured."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:622
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:700
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr "The supplier number invoice is required"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:613
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:691
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr "This company doesn't have SII enabled."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:617
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:695
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr "This invoice is not SII enabled."
+
+#. module: l10n_es_aeat_sii
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
+msgid ""
+"This wizard will send to SII the invoices in the first semester.\n"
+"                        You can choose to the date until you want to send and the type of the invoices.\n"
+"                        For in invoices will send all the invoices in the periods until the date selected:"
+msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: view:aeat.sii.mapping.registration.keys:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
@@ -1042,13 +1088,13 @@ msgid "With modifications not sent to SII"
 msgstr "With modifications not sent to SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1112
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1196
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "You can not cancel this invoice because there is a job running!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1078
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1162
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -1058,7 +1104,7 @@ msgstr ""
 "because there is a job running!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1006
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1090
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -1068,19 +1114,19 @@ msgstr ""
 "running!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1127
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1211
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr "You can not set to draft this invoice because there is a job running!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:600
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:678
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr "You can't make a supplier simplified invoice."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:201
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:202
 #, python-format
 msgid ""
 "You cannot change the invoice date of an invoice already registered at the "
@@ -1090,7 +1136,7 @@ msgstr ""
 "SII. You must cancel the invoice and create a new one with the correct date"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:218
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:219
 #, python-format
 msgid ""
 "You cannot change the supplier invoice number of an invoice already "
@@ -1102,7 +1148,7 @@ msgstr ""
 " the correct number"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:211
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:212
 #, python-format
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
@@ -1112,19 +1158,19 @@ msgstr ""
 "You must cancel the invoice and create a new one with the correct supplier"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:235
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:236
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr "You cannot delete an invoice already registered at the SII."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:608
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:686
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "You have to select what account chart template use this company."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:167
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:168
 #, python-format
 msgid "You must have at least one refunded invoice"
 msgstr "You must have at least one refunded invoice"
@@ -1197,6 +1243,7 @@ msgstr "[E6] Otros"
 
 #. module: l10n_es_aeat_sii
 #: view:l10n.es.aeat.sii.password:l10n_es_aeat_sii.l10n_es_sii_password_wizard_view
+#: view:l10n.es.sii.first.semester:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 msgid "or"
 msgstr "or"
 
