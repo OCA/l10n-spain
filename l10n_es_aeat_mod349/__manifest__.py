@@ -1,18 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
-# Copyright 2013 - Top Consultant Software Creations S.L.
-#                - (http://www.topconsultant.es/)
-# Copyright 2014-2015 - Serv. Tecnol. Avanzados
-#                     - Pedro M. Baeza (http://www.serviciosbaeza.com)
+# Copyright 2013 - Top Consultant (http://www.topconsultant.es/)
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
-# Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
-#                  <contact@eficent.com>
+# Copyright 2017 Eficent Business & IT Consult. Services <contact@eficent.com>
+# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "9.0.2.0.0",
+    "version": "9.0.2.1.0",
     "author": "Pexego, "
               "Top Consultant, "
               "Tecnativa, "
