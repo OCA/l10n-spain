@@ -375,10 +375,12 @@ class AccountBalanceReportingLine(models.Model):
             # Exclude closing moves (if account_fiscal_year_closing installed)
             if 'closing_type' in self.env['account.move']._fields:
                 domain_current.append(
-                    ('move_id.closing_type', '!=', 'closing')
+                    ('move_id.closing_type', 'not in', [
+                        'closing', 'loss_profit'])
                 )
                 domain_previous.append(
-                    ('move_id.closing_type', '!=', 'closing')
+                    ('move_id.closing_type', 'not in', [
+                        'closing', 'loss_profit'])
                 )
             for line in self.filtered(lambda l: l.report_id == report):
                 if (line.calc_date and
