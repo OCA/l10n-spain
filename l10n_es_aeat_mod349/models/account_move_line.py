@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 Luis M. Ontalba <luis.martinez@tecnativa.com>
-# Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
-#                  <contact@eficent.com>
+# Copyright 2017 Eficent Business & IT Consult. Services <contact@eficent.com>
+# Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from openerp import fields, models
@@ -13,7 +13,13 @@ class AccountMoveLine(models.Model):
     """
     _inherit = 'account.move.line'
 
-    aeat_349_operation_key = fields.Many2one(
+    l10n_es_aeat_349_operation_key = fields.Selection(
+        selection=[
+            ('A', 'A - Intra-Community acquisition'),
+            ('E', 'E - Intra-Community supplies'),
+            ('I', 'I - Intra-Community services acquisitions'),
+            ('S', 'S - Intra-Community services'),
+            ('T', 'T - Triangular operations'),
+        ],
         string='AEAT 349 Operation key',
-        comodel_name='aeat.349.map.line',
     )

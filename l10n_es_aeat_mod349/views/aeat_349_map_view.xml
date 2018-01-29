@@ -18,10 +18,9 @@
         <field name="model">aeat.349.map.line</field>
         <field name="arch" type="xml">
             <tree string="Aeat 349 Map" editable="bottom">
-                <field name="code"/>
-                <field name="name"/>
+                <field name="operation_key"/>
                 <field name="physical_product"/>
-                <field name="taxes" widget="many2many_tags"/>
+                <field name="tax_tmpl_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
