@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <!-- #######################################
         ### AEAT MODEL 349 PARTNER RECORD DETAIL ###
@@ -222,7 +221,7 @@
                                        nolabel="1"/>
                             </group>
                         </page>
-                        <page string="Refunds">
+                        <page string="Refunds from other periods">
                             <group name="summary_refund_records" string="Summary">
                                 <field name="partner_refund_ids" nolabel="1"/>
                             </group>
@@ -266,5 +265,4 @@
             sequence="349"
             name="AEAT 349 Model"/>
 
-    </data>
-</openerp>
+</odoo>
