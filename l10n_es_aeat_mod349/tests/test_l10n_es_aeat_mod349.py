@@ -25,17 +25,23 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
 
     def test_model_349(self):
         # Add some test data
-        self.customer.vat = 'BE0411905847'
-        self.customer.country_id = self.env.ref('base.be')
-        self.supplier.vat = 'BG0000100159'
-        self.supplier.country_id = self.env.ref('base.bg')
+        self.customer.write({
+            'vat': 'BE0411905847',
+            'country_id': self.env.ref('base.be').id,
+        })
+        self.supplier.write({
+            'vat': 'BG0000100159',
+            'country_id': self.env.ref('base.bg').id,
+        })
         # Data for 1T 2017
         # Purchase invoices
         p1 = self._invoice_purchase_create('2017-01-01')
-        self._invoice_purchase_create('2017-01-02')
+        p2 = self._invoice_purchase_create('2017-01-02')
+        self._invoice_refund(p2, '2017-01-02')
         # Sale invoices
         s1 = self._invoice_sale_create('2017-01-01')
-        self._invoice_sale_create('2017-01-02')
+        s2 = self._invoice_sale_create('2017-01-02')
+        self._invoice_refund(s2, '2017-01-02')
         # Create model
         model349 = self.env['l10n.es.aeat.mod349.report'].create({
             'name': '3490000000001',
@@ -54,42 +60,35 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         _logger.debug('Calculate AEAT 349 1T 2017')
         model349.button_calculate()
         self.assertEqual(model349.total_partner_records, 2)
-        # p1 + p2 + s1 + s2 = 2400 + 2400 + 300 + 300
-        self.assertEqual(model349.total_partner_records_amount, 5400.00)
+        # p1 + p2 -p3 + s1 + s2 - s3 = 2400 + 2400 - 2400 + 300 + 300 - 300
+        self.assertEqual(model349.total_partner_records_amount, 2700.00)
         self.assertEqual(model349.total_partner_refunds, 0)
         self.assertEqual(model349.total_partner_refunds_amount, 0.0)
-        a_records = model349.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'A')
-        self.assertEqual(len(a_records), 1)
-        a_record = a_records[0]
-        self.assertTrue(a_record.partner_vat,  self.supplier.vat)
-        self.assertTrue(a_record.country_id, self.supplier.country_id)
-        # s1 + s2 = 300 + 300
-        self.assertTrue(a_record.total_operation_amount, 600)
-        e_records = model349.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'E')
-        self.assertEqual(len(a_records), 1)
-        e_record = e_records[0]
-        self.assertTrue(e_record.partner_vat, self.customer.vat)
-        self.assertTrue(e_record.country_id, self.customer.country_id)
-        # p1 + p2
-        self.assertTrue(e_record.total_operation_amount, 4800)
-        # Now we delete p1 and recompute
-        record = model349.partner_record_detail_ids.filtered(
-            lambda x: x.invoice_id == p1)
-        record.unlink()
-        e_records = model349.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'E')
-        e_record = e_records[0]
-        self.assertTrue(e_record.total_operation_amount, 2400)
-        record = model349.partner_record_detail_ids.filtered(
-            lambda x: x.invoice_id == s1)
-        record.unlink()
-        a_records = model349.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'A')
-        a_record = a_records[0]
-        self.assertTrue(a_record.total_operation_amount, 300)
-
+        a_record = model349.partner_record_ids.filtered(
+            lambda x: x.operation_key == 'A')
+        self.assertEqual(len(a_record), 1)
+        self.assertEqual(len(a_record.record_detail_ids), 3)
+        self.assertEqual(a_record.partner_vat,  self.supplier.vat)
+        self.assertEqual(a_record.country_id, self.supplier.country_id)
+        # p1 + p2 - p3 = 300 + 300 - 300
+        self.assertEqual(a_record.total_operation_amount, 300)
+        e_record = model349.partner_record_ids.filtered(
+            lambda x: x.operation_key == 'E')
+        self.assertEqual(len(e_record), 1)
+        self.assertEqual(len(e_record.record_detail_ids), 3)
+        self.assertEqual(e_record.partner_vat, self.customer.vat)
+        self.assertEqual(e_record.country_id, self.customer.country_id)
+        # s1 + s2 - s3 = 2400 + 2400 - 2400
+        self.assertEqual(e_record.total_operation_amount, 2400)
+        # Now we delete detailed records to see if totals are recomputed
+        model349.partner_record_detail_ids.filtered(
+            lambda x: x.invoice_id == p1
+        ).unlink()
+        self.assertEqual(a_record.total_operation_amount, 0)
+        model349.partner_record_detail_ids.filtered(
+            lambda x: x.invoice_id == s1
+        ).unlink()
+        self.assertEqual(e_record.total_operation_amount, 0)
         # Create a complementary presentation for 1T 2017. We expect the
         #  application to propose the records that were not included in the
         # first presentation.
@@ -110,15 +109,14 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         # Calculate
         _logger.debug('Calculate AEAT 349 1T 2017 - complementary')
         model349_c.button_calculate()
-        e_records = model349_c.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'E')
-        e_record = e_records[0]
-        self.assertTrue(e_record.total_operation_amount, 2400)
-        a_records = model349_c.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'A')
-        a_record = a_records[0]
-        self.assertTrue(a_record.total_operation_amount, 300)
-
+        e_record = model349_c.partner_record_ids.filtered(
+            lambda x: x.operation_key == 'E')
+        self.assertEqual(len(e_record), 1)
+        self.assertEqual(e_record.total_operation_amount, 2400)
+        a_record = model349_c.partner_record_ids.filtered(
+            lambda x: x.operation_key == 'A')
+        self.assertEqual(len(a_record), 1)
+        self.assertEqual(a_record.total_operation_amount, 300)
         # Create a substitutive presentation for 1T 2017. We expect that all
         # records for 1T are proposed.
         model349_s = self.env['l10n.es.aeat.mod349.report'].create({
@@ -138,14 +136,12 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         # Calculate
         _logger.debug('Calculate AEAT 349 1T 2017 - substitutive')
         model349_s.button_calculate()
-        e_records = model349_s.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'E')
-        e_record = e_records[0]
-        self.assertTrue(e_record.total_operation_amount, 4800)
-        a_records = model349_s.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'A')
-        a_record = a_records[0]
-        self.assertTrue(a_record.total_operation_amount, 600)
+        e_record = model349_s.partner_record_ids.filtered(
+            lambda x: x.operation_key == 'E')
+        self.assertEqual(e_record.total_operation_amount, 2400)
+        a_record = model349_s.partner_record_ids.filtered(
+            lambda x: x.operation_key == 'A')
+        self.assertEqual(a_record.total_operation_amount, 300)
         # Create a substitutive presentation for 2T 2017.
         # We create a refund of p1, and a new sale
         self._invoice_refund(p1, '2017-04-01')
@@ -168,20 +164,30 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         model349_2t.button_calculate()
         self.assertEqual(model349_2t.total_partner_records, 1)
         self.assertEqual(model349_2t.total_partner_refunds, 1)
-        e_records = model349_2t.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'E')
-        e_record = e_records[0]
-        self.assertTrue(e_record.total_operation_amount, 2400)
+        e_record = model349_2t.partner_record_ids.filtered(
+            lambda x: x.operation_key == 'E')
+        self.assertEqual(e_record.total_operation_amount, 2400)
         a_records = model349_2t.partner_record_ids.filtered(
-            lambda x: x.operation_key.code == 'A')
+            lambda x: x.operation_key == 'A')
         self.assertEqual(len(a_records), 0)
         e_refunds = model349_2t.partner_refund_ids.filtered(
-            lambda x: x.operation_key.code == 'E')
+            lambda x: x.operation_key == 'E')
         self.assertEqual(len(e_refunds), 0)
-        a_refunds = model349_2t.partner_refund_ids.filtered(
-            lambda x: x.operation_key.code == 'A')
-        self.assertEqual(len(a_refunds), 1)
-        a_refund = a_refunds[0]
-        self.assertTrue(a_refund.total_operation_amount, 0)
-        self.assertTrue(a_refund.total_origin_amount, 300)
-        self.assertTrue(a_refund.period_type, model349_s.period_type)
+        a_refund = model349_2t.partner_refund_ids.filtered(
+            lambda x: x.operation_key == 'A')
+        self.assertEqual(len(a_refund), 1)
+        self.assertEqual(a_refund.total_origin_amount, 300)
+        self.assertEqual(a_refund.total_operation_amount, 0)
+        self.assertEqual(a_refund.period_type, model349_s.period_type)
+        # Export to BOE
+        export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
+            'name': 'test_export_to_boe.txt',
+        })
+        export_config_xml_ids = [
+            'l10n_es_aeat_mod349.aeat_mod349_main_export_config',
+        ]
+        for xml_id in export_config_xml_ids:
+            export_config = self.env.ref(xml_id)
+            self.assertTrue(
+                export_to_boe._export_config(model349, export_config)
+            )
