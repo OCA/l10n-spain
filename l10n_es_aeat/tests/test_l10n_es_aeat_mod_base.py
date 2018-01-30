@@ -227,17 +227,14 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             'name': 'Billing user',
             'login': 'billing_user',
             'email': 'billing.user@example.com',
-            'notify_email': 'none',
             'groups_id': [(6, 0, [invocing_grp.id])]})
         self.account_user = Users.create({
             'name': 'Account user',
             'login': 'account_user',
             'email': 'account.user@example.com',
-            'notify_email': 'none',
             'groups_id': [(6, 0, [account_user_grp.id])]})
         self.account_manager = Users.create({
             'name': 'Account manager',
             'login': 'account_manager',
-            'email': 'account.user@example.com',
-            'notify_email': 'none',
+            'email': 'account.manager@example.com',
             'groups_id': [(6, 0, [account_manager_grp.id, aeat_grp.id])]})
