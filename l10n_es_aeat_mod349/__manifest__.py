@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2013 - Top Consultant (http://www.topconsultant.es/)
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
@@ -9,7 +8,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "10.0.2.1.1",
+    "version": "11.0.1.0.0",
     "author": "Pexego, "
               "Top Consultant, "
               "Tecnativa, "

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2013 - Top Consultant Software Creations S.L.
 #                - (http://www.topconsultant.es/)
@@ -141,8 +140,8 @@ class Mod349(models.Model):
                 op_key, {'record_details': detail_obj},
             )
             op_key_dict['record_details'] += record_detail
-        for partner in data.keys():
-            for op_key in data[partner].keys():
+        for partner in list(data.keys()):
+            for op_key in list(data[partner].keys()):
                 record_created = rec_obj.create({
                     'report_id': self.id,
                     'partner_id': partner.id,
@@ -224,7 +223,7 @@ class Mod349(models.Model):
             })
             key_vals['original_amount'] += origin_amount
             key_vals['refund_details'] += refund_detail
-        for key, key_vals in data.iteritems():
+        for key, key_vals in data.items():
             partner, op_key, period_type, year = key
             partner_refund = obj.create({
                 'report_id': self.id,
