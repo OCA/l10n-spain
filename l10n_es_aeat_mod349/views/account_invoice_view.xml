@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
+<odoo>
     <data>
 
-        <!-- ##################
-        ### ACCOUNT INVOICE ###
-        ################### -->
-        <!-- #### Customer invoices #### -->
-
-        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
-        <record id="view_customer_account_invoice_form__add_operation_key" model="ir.ui.view">
-            <field name="name">Account invoice (customer) | add 'operation_key' field (form)</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_form"/>
-            <field name="arch" type="xml">
-                <field name="fiscal_position" position="after">
-                    <field name="operation_key"/>
-                </field>
-            </field>
-        </record>
-
-
-        <!-- #### Supplier invoices #### -->
-
-        <!-- ### Inheritance to add an on_change method to fiscal_position field ### -->
-        <record id="view_supplier_account_invoice_form__add_operation_key" model="ir.ui.view">
-            <field name="name">Account invoice (supplier) | add 'operation_key' field (form)</field>
+        <record id="invoice_supplier_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form</field>
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_supplier_form"/>
             <field name="arch" type="xml">
-                <field name="fiscal_position" position="after">
-                    <field name="operation_key"/>
+                <field name="fiscal_position_id" position="after">
+                    <field name="eu_triangular_deal"
+                           groups="l10n_es_aeat.group_account_aeat"/>
                 </field>
             </field>
         </record>
-            
+
+        <record id="invoice_form" model="ir.ui.view">
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="fiscal_position_id" position="after">
+                    <field name="eu_triangular_deal"
+                           groups="l10n_es_aeat.group_account_aeat"/>
+                </field>
+                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position="after">
+                    <field name="l10n_es_aeat_349_operation_key"
+                           invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_line_form" model="ir.ui.view">
+            <field name="model">account.invoice.line</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+                <field name="invoice_line_tax_ids" position="after">
+                    <field name="l10n_es_aeat_349_operation_key"
+                           groups="l10n_es_aeat.group_account_aeat"/>
+                </field>
+            </field>
+        </record>
+
     </data>
-</openerp>
+</odoo>

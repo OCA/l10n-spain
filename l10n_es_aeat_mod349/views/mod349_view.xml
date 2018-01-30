@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
         <!-- #######################################
         ### AEAT MODEL 349 PARTNER RECORD DETAIL ###
@@ -11,7 +10,9 @@
             <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner record detail">
+                    <field name="move_line_id"/>
                     <field name="invoice_id"/>
+                    <field name="partner_id"/>
                     <field name="amount_untaxed"/>
                     <field name="date"/>
                 </tree>
@@ -25,6 +26,9 @@
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner record">
                     <group>
+                        <field name="partner_record_id"/>
+                        <field name="move_line_id"/>
+                        <field name="partner_id"/>
                         <field name="invoice_id"/>
                         <field name="amount_untaxed"/>
                         <field name="date"/>
@@ -43,10 +47,10 @@
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner records" colors="red:partner_record_ok==False">
                     <field name="partner_record_ok" invisible="1"/>
-                    <field name="operation_key"/>
                     <field name="country_id"/>
                     <field name="partner_vat"/>
                     <field name="partner_id"/>
+                    <field name="operation_key"/>
                     <field name="total_operation_amount"/>
                 </tree>
             </field>
@@ -69,7 +73,7 @@
                             </group>
                         </page>
                         <page string="Detail lines">
-                            <field name="record_detail_ids" nolabel="1"/>
+                            <field name="record_detail_ids" nolabel="1" create="0"/>
                         </page>
                     </notebook>
                 </form>
@@ -85,7 +89,9 @@
             <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner refund detail">
+                    <field name="refund_line_id"/>
                     <field name="invoice_id"/>
+                    <field name="partner_id"/>
                     <field name="amount_untaxed"/>
                     <field name="date"/>
                 </tree>
@@ -99,6 +105,9 @@
             <field name="arch" type="xml">
                 <form string="AEAT 349 Partner refund">
                     <group>
+                        <field name="refund_id"/>
+                        <field name="refund_line_id"/>
+                        <field name="partner_id"/>
                         <field name="invoice_id"/>
                         <field name="amount_untaxed"/>
                         <field name="date"/>
@@ -117,14 +126,14 @@
             <field name="arch" type="xml">
                 <tree string="AEAT 349 Partner refunds" colors="red:partner_refund_ok==False">
                     <field name="partner_refund_ok" invisible="1"/>
-                    <field name="operation_key"/>
                     <field name="country_id"/>
                     <field name="partner_vat"/>
                     <field name="partner_id"/>
+                    <field name="operation_key"/>
+                    <field name="year"/>
+                    <field name="period_type"/>
                     <field name="total_operation_amount"/>
                     <field name="total_origin_amount"/>
-                    <field name="period_type"/>
-                    <field name="fiscalyear_id"/>
                 </tree>
             </field>
         </record>
@@ -138,20 +147,19 @@
                     <notebook>
                         <page string="Info">
                             <group colspan="4">
-                                <field name="operation_key"/>
-                                <field name="partner_id"/>
+                                <field name="partner_refund_ok" invisible="1"/>
                                 <field name="country_id"/>
-                                <field name="partner_vat" on_change="onchange_format_partner_vat(partner_vat,country_id)"/>
+                                <field name="partner_vat"/>
+                                <field name="partner_id"/>
+                                <field name="operation_key"/>
+                                <field name="year"/>
+                                <field name="period_type"/>
                                 <field name="total_operation_amount"/>
                                 <field name="total_origin_amount"/>
                             </group>
-                            <group string="Refund data" colspan="4">
-                                <field name="fiscalyear_id"/>
-                                <field name="period_type"/>
-                            </group>
                         </page>
                         <page string="Details">
-                            <field name="refund_detail_ids" nolabel="1"/>
+                            <field name="refund_detail_ids" nolabel="1" create="0"/>
                         </page>
                     </notebook>
                 </form>
@@ -170,7 +178,7 @@
                 <tree position="attributes">
                     <attribute name="string">AEAT 349 reports</attribute>=
                 </tree>
-                <field name="fiscalyear_id" position="after">
+                <field name="period_type" position="after">
                     <field name="total_partner_records"/>
                     <field name="total_partner_records_amount"/>
                     <field name="total_partner_refunds"/>
@@ -185,16 +193,7 @@
             <field name="model">l10n.es.aeat.mod349.report</field>
             <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
-                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-                    <attribute name="name">%(action_wizard_aeat_mod349_export)d</attribute>
-                </button>
-                <field name="period_type" position="replace">
-                    <group colspan="2" col="4">
-                        <field name="period_type"/>
-                        <field name="calculate_date"/>
-                    </group>
-                </field>
-                <group string="Declaración" position="after">
+                <group name="group_declaration" position="after">
                     <notebook colspan="4">
                         <page string="General">
                             <group string="Resultado">
@@ -212,10 +211,25 @@
                             </group>
                         </page>
                         <page string="Partner records">
-                            <field name="partner_record_ids" nolabel="1"/>
+                            <group name="summary_partner_records"
+                                   string="Summary">
+                                <field name="partner_record_ids" nolabel="1"/>
+                            </group>
+                            <group name="detail_partner_records"
+                                   string="Details" create="0">
+                                <field name="partner_record_detail_ids"
+                                       nolabel="1"/>
+                            </group>
                         </page>
-                        <page string="Refunds">
-                            <field name="partner_refund_ids" nolabel="1"/>
+                        <page string="Refunds from other periods">
+                            <group name="summary_refund_records" string="Summary">
+                                <field name="partner_refund_ids" nolabel="1"/>
+                            </group>
+                            <group name="detail_refund_records"
+                                   sting="Details" create="0">
+                                <field name="partner_refund_detail_ids"
+                                       nolabel="1"/>
+                            </group>
                         </page>
                     </notebook>
                 </group>
@@ -251,5 +265,4 @@
             sequence="349"
             name="AEAT 349 Model"/>
 
-    </data>
-</openerp>
+</odoo>
