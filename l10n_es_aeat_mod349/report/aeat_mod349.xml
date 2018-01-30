@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="l10n_es_aeat_mod349.report_aeat_mod349_document">
-        <t t-call="report.html_container">
+        <t t-call="web.html_container">
             <div class="page">
                 <div class="row">
                     <div class="col-xs-12 text-center" id="title">
@@ -49,7 +49,7 @@
     </template>
 
     <template id="report_l10n_es_mod349_pdf">
-        <t t-call="report.html_container">
+        <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="l10n_es_aeat_mod349.report_aeat_mod349_document"/>
             </t>
