@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2013 - Top Consultant Software Creations S.L.
 #                - (http://www.topconsultant.es/)
@@ -101,10 +100,10 @@ class Mod349(models.Model):
             if move_line.invoice_id.type in ('in_refund', 'out_refund'):
                 # Check for refunds if the origin invoice period is different
                 # from the declaration
-                origin_invoice = move_line.invoice_id.origin_invoice_ids[:1]
-                if move_line.invoice_id.origin_invoice_ids:
-                    if (origin_invoice.date <= self.date_start or
-                            origin_invoice.date >= self.date_end):
+                origin_invoice = move_line.invoice_id.refund_invoice_id
+                if origin_invoice:
+                    if (origin_invoice.date < self.date_start or
+                            origin_invoice.date > self.date_end):
                         self._create_349_refund_detail(move_line)
                         continue
             self._create_349_record_detail(move_line)
@@ -141,8 +140,8 @@ class Mod349(models.Model):
                 op_key, {'record_details': detail_obj},
             )
             op_key_dict['record_details'] += record_detail
-        for partner in data.keys():
-            for op_key in data[partner].keys():
+        for partner in list(data.keys()):
+            for op_key in list(data[partner].keys()):
                 record_created = rec_obj.create({
                     'report_id': self.id,
                     'partner_id': partner.id,
@@ -174,9 +173,7 @@ class Mod349(models.Model):
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
             op_key = move_line.l10n_es_aeat_349_operation_key
-            origin_invoice = move_line.invoice_id.mapped(
-                'origin_invoice_ids'
-            )[:1]
+            origin_invoice = move_line.invoice_id.refund_invoice_id
             if not origin_invoice:
                 # TODO: Instead continuing, generate an empty record and a msg
                 continue
@@ -224,7 +221,7 @@ class Mod349(models.Model):
             })
             key_vals['original_amount'] += origin_amount
             key_vals['refund_details'] += refund_detail
-        for key, key_vals in data.iteritems():
+        for key, key_vals in data.items():
             partner, op_key, period_type, year = key
             partner_refund = obj.create({
                 'report_id': self.id,
