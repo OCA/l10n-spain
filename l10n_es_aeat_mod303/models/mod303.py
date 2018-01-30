@@ -322,7 +322,7 @@ class L10nEsAeatMod303Report(models.Model):
                    ('D', 'A devolver'),
                    ('C', 'A compensar'),
                    ('N', 'Sin actividad/Resultado cero')],
-        compute="_compute_result_type")
+        compute="_compute_result_type", store=True, readonly=False)
     compensate = fields.Boolean(
         string="Compensate", states={'done': [('readonly', True)]},
         help="Si se marca, indicará que el importe a devolver se "
@@ -448,8 +448,7 @@ class L10nEsAeatMod303Report(models.Model):
             elif report.resultado_liquidacion > 0:
                 report.result_type = 'I'
             else:
-                if (report.devolucion_mensual or
-                        report.period_type in ('4T', '12')):
+                if report.devolucion_mensual:
                     report.result_type = 'D'
                 else:
                     report.result_type = 'C'

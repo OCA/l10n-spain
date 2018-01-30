@@ -32,6 +32,10 @@ Contribuidores
 * AvanzOSC (http://www.avanzosc.es)
 * Comunitea (http://www.comunitea.com)
 * Daniel Rodriguez <drl.9319@gmail.com>
+* Francisco Peiro <francisco.peiro@factorlibre.com>
+* Zahra Velasco <zahra.velasco@factorlibre>
+* Victor Rodrigo <victor.rodrigo@factorlibre.com>
+
 
 Maintainer
 ----------
