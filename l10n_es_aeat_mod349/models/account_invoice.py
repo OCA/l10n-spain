@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Tecnativa - Luis M. Ontalba
 # Copyright 2017 Eficent Business & IT Consult. Services <contact@eficent.com>
 # Copyright 2018 Tecnativa - Pedro M. Baeza
