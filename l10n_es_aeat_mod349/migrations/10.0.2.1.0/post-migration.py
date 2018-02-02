@@ -16,7 +16,7 @@ def migrate(cr, version):
         return
     openupgrade.logged_query(
         cr, """
-        UPDATE account_move_line
+        UPDATE account_move_line aml
         SET l10n_es_aeat_operation_key = ml.operation_key
         FROM aeat_349_map_line ml
         WHERE ml.id = aml.%s
