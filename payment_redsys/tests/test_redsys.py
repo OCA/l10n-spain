@@ -7,7 +7,7 @@ import logging
 import urllib
 from lxml import objectify
 import json
-from mock import patch
+from mock import ANY, patch
 
 from openerp import http
 from openerp.tests.common import HttpCase
@@ -349,11 +349,9 @@ class RedsysCase(HttpCase):
             url='/payment/redsys/return', data=redsys_post_data)
         with self.cursor() as cr:
             mock_confirm.assert_called_once_with(
-                cr, self.env.uid, tx.sale_order_id.ids,
-                context={
-                    'lang': self.env.user.lang or 'en_US',
-                    'send_email': True}
+                cr, self.env.uid, tx.sale_order_id.ids, context=ANY
             )
+            self.assertTrue(mock_confirm.call_args[1]["context"]["send_email"])
             mock_quo_send.assert_not_called()
             env = self.env(cr)
             tx = self.tx.with_env(env)
