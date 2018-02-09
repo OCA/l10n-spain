@@ -233,12 +233,6 @@ class AcquirerRedsys(models.Model):
 class TxRedsys(models.Model):
     _inherit = 'payment.transaction'
 
-    # Redsys status
-    _redsys_valid_tx_status = list(range(0, 100))
-    _redsys_pending_tx_status = list(range(101, 203))
-    _redsys_cancel_tx_status = [912, 9912]
-    _redsys_error_tx_status = list(range(9064, 9095))
-
     redsys_txnid = fields.Char('Transaction ID')
 
     def merchant_params_json2dict(self, data):
@@ -323,54 +317,42 @@ class TxRedsys(models.Model):
             return []
         return invalid_parameters
 
-    @api.multi
-    def _redsys_form_validate(self, data):
-        parameters_dic = self.merchant_params_json2dict(data)
-        status_code = int(parameters_dic.get('Ds_Response', '29999'))
-        if status_code in self._redsys_valid_tx_status:
-            self.write({
-                'state': 'done',
-                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': _('Ok: %s') % parameters_dic.get(
-                    'Ds_Response'),
-            })
-            if self.acquirer_id.send_quotation:
-                self.sale_order_ids.force_quotation_send()
-            return True
-        if status_code in self._redsys_pending_tx_status:
-            # 'Payment error: code: %s.'
-            self.write({
-                'state': 'pending',
-                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': _('Error: %s (%s)') % (
-                    parameters_dic.get('Ds_Response'),
-                    parameters_dic.get('Ds_ErrorCode')
-                ),
-            })
-            return True
-        if status_code in self._redsys_cancel_tx_status:
-            # 'Payment error: bank unavailable.'
-            self.write({
-                'state': 'cancel',
-                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': _('Bank Error: %s (%s)') % (
-                    parameters_dic.get('Ds_Response'),
-                    parameters_dic.get('Ds_ErrorCode')
-                ),
-            })
-            return True
+    @api.model
+    def _get_redsys_state(self, status_code):
+        if 0 <= status_code <= 100:
+            return "done"
+        elif status_code <= 203:
+            return "pending"
+        elif 912 <= status_code <= 9912:
+            return "cancel"
         else:
-            error = _('Redsys: feedback error %s (%s)') % (
-                parameters_dic.get('Ds_Response'),
-                parameters_dic.get('Ds_ErrorCode')
+            return "error"
+
+    def _redsys_form_validate(self, data):
+        params = self.merchant_params_json2dict(data)
+        status_code = int(params.get('Ds_Response', '29999'))
+        state = self._get_redsys_state(status_code)
+        vals = {
+            'state': state,
+            'redsys_txnid': params.get('Ds_AuthorisationCode'),
+        }
+        state_message = ""
+        if state == 'done':
+            vals['state_message'] = _('Ok: %s') % params.get('Ds_Response')
+        elif state == 'pending':  # 'Payment error: code: %s.'
+            state_message = _('Error: %s (%s)')
+        elif state == 'cancel':  # 'Payment error: bank unavailable.'
+            state_message = _('Bank Error: %s (%s)')
+        else:
+            state_message = _('Redsys: feedback error %s (%s)')
+        if state_message:
+            vals['state_message'] = state_message % (
+                params.get('Ds_Response'), params.get('Ds_ErrorCode'),
             )
-            _logger.info(error)
-            self.write({
-                'state': 'error',
-                'redsys_txnid': parameters_dic.get('Ds_AuthorisationCode'),
-                'state_message': error,
-            })
-            return False
+            if state == 'error':
+                _logger.warning(vals['state_message'])
+        self.write(vals)
+        return state != 'error'
 
     @api.model
     def form_feedback(self, data, acquirer_name):
