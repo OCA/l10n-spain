@@ -94,7 +94,7 @@ msgid "Back to shop"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:356
+#: code:addons/payment_redsys/models/redsys.py:345
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -125,7 +125,7 @@ msgid "En error ocurred. <br/>Please contact with us and inform you about your o
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:345
+#: code:addons/payment_redsys/models/redsys.py:343
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -196,7 +196,7 @@ msgid "Merchant code"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:334
+#: code:addons/payment_redsys/models/redsys.py:341
 #, python-format
 msgid "Ok: %s"
 msgstr ""
@@ -269,7 +269,7 @@ msgid "Redsys Signature Version"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:363
+#: code:addons/payment_redsys/models/redsys.py:347
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
