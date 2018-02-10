@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:41+0000\n"
+"POT-Creation-Date: 2018-01-27 06:34+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -209,12 +209,12 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_direct_pay_order:0
@@ -224,7 +224,7 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: l10n_es_payment_order
 #: help:payment.mode,csb34_text1:0 help:payment.mode,csb34_text2:0
@@ -349,17 +349,17 @@ msgstr ""
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: l10n_es_payment_order
 #: field:banking.export.csb.wizard,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: l10n_es_payment_order
 #: field:payment.mode,csb34_text1:0

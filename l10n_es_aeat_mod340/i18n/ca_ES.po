@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-28 16:22+0000\n"
+"POT-Creation-Date: 2018-01-27 06:34+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -220,7 +220,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,create_uid:0
 #: field:l10n.es.aeat.mod340.tax_summary,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,create_date:0
@@ -234,7 +234,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,create_date:0
 #: field:l10n.es.aeat.mod340.tax_summary,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: l10n_es_aeat_mod340
 #: reportvat book:0
@@ -305,7 +305,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,display_name:0
 #: field:l10n.es.aeat.mod340.tax_summary,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: l10n_es_aeat_mod340
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_report_search
@@ -533,7 +533,7 @@ msgid "Issued invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/models/mod340.py:270
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:271
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_form
 #: view:l10n.es.aeat.mod340.issued:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_issued_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form
@@ -601,7 +601,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,__last_update:0
 #: field:l10n.es.aeat.mod340.tax_summary,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,write_uid:0
@@ -615,7 +615,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,write_uid:0
 #: field:l10n.es.aeat.mod340.tax_summary,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: l10n_es_aeat_mod340
 #: field:l10n.es.aeat.mod340.calculate_records,write_date:0
@@ -629,7 +629,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_received,write_date:0
 #: field:l10n.es.aeat.mod340.tax_summary,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: l10n_es_aeat_mod340
 #: field:account.invoice,last_ticket:0
@@ -722,12 +722,12 @@ msgstr ""
 #: field:l10n.es.aeat.mod340.tax_line_issued,name:0
 #: field:l10n.es.aeat.mod340.tax_line_received,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.report,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: l10n_es_aeat_mod340
 #: field:account.invoice,number_tickets:0
@@ -846,6 +846,11 @@ msgid "RESUMEN FACTURAS RECIBIDAS"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
+#: reportvat book:0
+msgid "Recargo"
+msgstr ""
+
+#. module: l10n_es_aeat_mod340
 #: selection:l10n.es.aeat.mod340.tax_summary,summary_type:0
 msgid "Received"
 msgstr ""
@@ -861,7 +866,7 @@ msgid "Received invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod340
-#: code:addons/l10n_es_aeat_mod340/models/mod340.py:274
+#: code:addons/l10n_es_aeat_mod340/models/mod340.py:275
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_form
 #: view:l10n.es.aeat.mod340.received:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_invoice_received_tree
 #: view:l10n.es.aeat.mod340.report:l10n_es_aeat_mod340.view_l10n_es_aeat_mod340_form

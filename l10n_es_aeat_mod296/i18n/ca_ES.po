@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:41+0000\n"
+"POT-Creation-Date: 2018-01-27 06:34+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -371,14 +371,14 @@ msgstr ""
 #: field:l10n.es.aeat.mod296.report,create_uid:0
 #: field:l10n.es.aeat.mod296.report.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod296.report,create_date:0
 #: field:l10n.es.aeat.mod296.report.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,codigo:0
@@ -462,7 +462,7 @@ msgstr ""
 #: field:l10n.es.aeat.mod296.report,display_name:0
 #: field:l10n.es.aeat.mod296.report.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report.line,domicilio:0
@@ -566,21 +566,21 @@ msgstr ""
 #: field:l10n.es.aeat.mod296.report,__last_update:0
 #: field:l10n.es.aeat.mod296.report.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod296.report,write_uid:0
 #: field:l10n.es.aeat.mod296.report.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod296.report,write_date:0
 #: field:l10n.es.aeat.mod296.report.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: l10n_es_aeat_mod296
 #: help:l10n.es.aeat.mod296.report,representative_vat:0
@@ -590,7 +590,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: field:l10n.es.aeat.mod296.report,lines296:0
 msgid "Lines"
-msgstr ""
+msgstr "Linies"
 
 #. module: l10n_es_aeat_mod296
 #: view:l10n.es.aeat.mod296.report:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
@@ -645,7 +645,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report.line,tipo_codigo:0

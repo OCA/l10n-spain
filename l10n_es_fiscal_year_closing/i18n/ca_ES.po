@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-29 01:00+0000\n"
-"PO-Revision-Date: 2017-08-21 07:26+0000\n"
+"POT-Creation-Date: 2018-01-27 06:34+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -214,7 +214,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,create_uid:0
 #: field:account.fiscalyear.closing.nlp_account_map,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,create_date:0
@@ -224,7 +224,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,create_date:0
 #: field:account.fiscalyear.closing.nlp_account_map,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,c_date:0
@@ -265,7 +265,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,name:0
 #: field:account.fiscalyear.closing.nlp_account_map,name:0
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing.account_map,dest_account_id:0
@@ -284,7 +284,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,display_name:0
 #: field:account.fiscalyear.closing.nlp_account_map,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: l10n_es_fiscal_year_closing
 #: selection:account.fiscalyear.closing,state:0
@@ -420,7 +420,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,__last_update:0
 #: field:account.fiscalyear.closing.nlp_account_map,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,write_uid:0
@@ -430,7 +430,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,write_uid:0
 #: field:account.fiscalyear.closing.nlp_account_map,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: l10n_es_fiscal_year_closing
 #: field:account.fiscalyear.closing,write_date:0
@@ -440,7 +440,7 @@ msgstr ""
 #: field:account.fiscalyear.closing.lp_account_map,write_date:0
 #: field:account.fiscalyear.closing.nlp_account_map,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: l10n_es_fiscal_year_closing
 #: code:addons/l10n_es_fiscal_year_closing/models/fiscalyear_closing.py:300

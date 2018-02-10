@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:41+0000\n"
+"POT-Creation-Date: 2018-01-27 06:34+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -69,7 +69,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: sql_constraint:l10n.es.aeat.report:0
 #: sql_constraint:l10n.es.aeat.report.tax.mapping:0
-msgid "AEAT report identifier must be unique"
+msgid "AEAT report identifier must be unique by company"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -253,7 +253,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.tax.line,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,create_date:0
@@ -263,7 +263,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,create_date:0
 #: field:l10n.es.aeat.tax.line,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
@@ -292,7 +292,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,display_name:0
 #: field:l10n.es.aeat.tax.line,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -520,7 +520,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.tax.mapping,__last_update:0
 #: field:l10n.es.aeat.tax.line,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_uid:0
@@ -530,7 +530,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.tax.line,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,write_date:0
@@ -540,7 +540,7 @@ msgstr ""
 #: field:l10n.es.aeat.report.export_to_boe,write_date:0
 #: field:l10n.es.aeat.tax.line,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,alignment:0
@@ -556,7 +556,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,config_lines:0
 msgid "Lines"
-msgstr ""
+msgstr "Linies"
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.tax.line,map_line:0
@@ -602,7 +602,7 @@ msgstr ""
 #: field:aeat.model.export.config.line,name:0
 #: field:l10n.es.aeat.tax.line,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,negative_sign:0
@@ -613,7 +613,7 @@ msgstr ""
 #: selection:l10n.es.aeat.report,type:0
 #: selection:l10n.es.aeat.report.tax.mapping,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,decimal_size:0
@@ -715,7 +715,7 @@ msgid "Recalculate"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:132
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:143
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -931,7 +931,7 @@ msgid "Wrong aling option. It should be < or >"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:165
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:176
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:41+0000\n"
+"POT-Creation-Date: 2018-01-27 06:34+0000\n"
+"PO-Revision-Date: 2018-02-02 14:11+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -46,17 +46,17 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,create_uid:0
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,create_date:0
 msgid "Created on"
-msgstr ""
+msgstr "Creat a"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,fiscalyear_id:0
@@ -76,17 +76,17 @@ msgstr ""
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,__last_update:0
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació en"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,write_uid:0
 msgid "Last Updated by"
-msgstr ""
+msgstr "Darrera actualització per"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.compute.vat.prorrate,write_date:0
 msgid "Last Updated on"
-msgstr ""
+msgstr "Darrera actualització el"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
@@ -115,13 +115,13 @@ msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:203
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:302
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:73
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:147
 #, python-format
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
@@ -152,7 +152,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:59
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:133
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr ""
