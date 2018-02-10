@@ -3,14 +3,14 @@
 # * l10n_es_aeat_mod303
 # 
 # Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-14 20:10+0000\n"
-"PO-Revision-Date: 2017-12-14 20:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-02-10 03:41+0000\n"
+"PO-Revision-Date: 2018-02-10 03:41+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,11 +47,6 @@ msgstr "Modelo AEAT 303"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_allow_posting
 msgid "Allow posting"
 msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_bank_account_id
-msgid "Bank account"
-msgstr "Conta bancaria"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_77
@@ -107,6 +102,15 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:115
+#, python-format
+msgid ""
+"In previous declarations this year you reported a Result Type 'To "
+"Compensate'. You might need to fill field '[67] Fees to compensate' in this "
+"declaration."
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
 msgid ""
 "In the last auto settlement of the year, shall be recorded (the fourth "
@@ -147,11 +151,6 @@ msgid "No activity/Zero result"
 msgstr "Sin actividad/Resultado cero"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_partner_id
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
 msgstr "Inscrito no Rexistro de Devolución Mensual"
@@ -176,13 +175,13 @@ msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:185
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:232
 #, python-format
 msgid "Select an account for making the charge"
 msgstr "Seleccione unha conta bancaria para realiza-lo cargo"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:187
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:234
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione unha conta bancaria para recibi-lo diñeiro"
@@ -204,6 +203,12 @@ msgstr ""
 "ás Diputacións Forais do País Vasco ou á Comunidade Foral de Navarra, "
 "consignarán nesta casa a porcentaxe do volumen de operacións no territorio "
 "común. Os demáis suxeitos pasivos consignarán nesta casa o 100%"
+
+#. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:247
+#, python-format
+msgid "The fee to compensate must be indicated as a positive number. "
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_counterpart_account_id
