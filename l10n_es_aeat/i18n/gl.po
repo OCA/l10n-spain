@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-24 10:34+0000\n"
-"PO-Revision-Date: 2018-01-24 10:34+0000\n"
+"POT-Creation-Date: 2018-02-10 03:55+0000\n"
+"PO-Revision-Date: 2018-02-10 03:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -94,6 +94,7 @@ msgstr "Declaracións AEAT"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_move_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_move_id
 msgid "Account entry"
 msgstr ""
 
@@ -119,6 +120,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_allow_posting
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_allow_posting
 msgid "Allow posting"
 msgstr ""
 
@@ -167,6 +169,7 @@ msgstr "Contas bancarias"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_partner_bank_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_partner_bank_id
 msgid "Bank account"
 msgstr "Conta bancaria"
 
@@ -221,6 +224,7 @@ msgstr "Cancelar"
 #: selection:l10n.es.aeat.mod349.report,state:0
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
+#: selection:l10n.es.vat.book,state:0
 msgid "Cancelled"
 msgstr "Cancelada"
 
@@ -242,6 +246,7 @@ msgstr "Pechar"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_company_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_company_id
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Company"
 msgstr "Compañía"
@@ -254,6 +259,7 @@ msgstr "Compañía"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod349_report_partner_bank_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_partner_bank_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_partner_bank_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_vat_book_partner_bank_id
 msgid "Company bank account used for the presentation"
 msgstr ""
 
@@ -265,6 +271,7 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.report,type:0
 #: selection:l10n.es.aeat.report,type:0
 #: selection:l10n.es.aeat.report.tax.mapping,type:0
+#: selection:l10n.es.vat.book,type:0
 msgid "Complementary"
 msgstr "Complementaria"
 
@@ -310,6 +317,7 @@ msgstr "Datos de contacto"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_counterpart_account_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_counterpart_account_id
 msgid "Counterpart account"
 msgstr ""
 
@@ -351,6 +359,7 @@ msgstr "Haber"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_currency_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_currency_id
 msgid "Currency"
 msgstr ""
 
@@ -362,6 +371,7 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.report,support_type:0
 #: selection:l10n.es.aeat.report,support_type:0
 #: selection:l10n.es.aeat.report.tax.mapping,support_type:0
+#: selection:l10n.es.vat.book,support_type:0
 msgid "DVD"
 msgstr "DVD"
 
@@ -401,6 +411,7 @@ msgstr "Display Name"
 #: selection:l10n.es.aeat.mod349.report,state:0
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
+#: selection:l10n.es.vat.book,state:0
 msgid "Done"
 msgstr "Realizada"
 
@@ -414,6 +425,7 @@ msgstr "Realizada"
 #: selection:l10n.es.aeat.mod349.report,state:0
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
+#: selection:l10n.es.vat.book,state:0
 msgid "Draft"
 msgstr "Borrador"
 
@@ -431,6 +443,7 @@ msgstr "Declaracións borrador"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_date_end
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_date_end
 msgid "Ending date"
 msgstr "Fecha final"
 
@@ -448,6 +461,7 @@ msgstr "¡Erro! As datas dos rexistros solápanse cun rexistro existente."
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_exception_msg
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_exception_msg
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_exception_msg
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_exception_msg
 msgid "Exception message"
 msgstr ""
 
@@ -476,6 +490,7 @@ msgstr "Exportar a formato BOE"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_export_config_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_config_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_export_config_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_export_config_id
 msgid "Export config"
 msgstr "Padrón de exportación"
 
@@ -565,6 +580,7 @@ msgstr "Desde a data"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_contact_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_contact_name
 msgid "Full Name"
 msgstr "Nome completo"
 
@@ -635,6 +651,7 @@ msgstr "Invertir el signo de la suma"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_journal_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_journal_id
 msgid "Journal"
 msgstr "Diario"
 
@@ -646,6 +663,7 @@ msgstr "Diario"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod349_report_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_journal_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_vat_book_journal_id
 msgid "Journal in which post the move."
 msgstr ""
 
@@ -662,6 +680,7 @@ msgstr "Apuntes contables"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_representative_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_representative_vat
 msgid "L.R. VAT number"
 msgstr "NIF repr. legal"
 
@@ -710,6 +729,7 @@ msgstr "Esquerda"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod349_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_representative_vat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_vat_book_representative_vat
 msgid "Legal Representative VAT number."
 msgstr "NIF do representante legal."
 
@@ -748,6 +768,7 @@ msgstr "Liñas de mapeo"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_model_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_model
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_model_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_model_id
 msgid "Model"
 msgstr ""
 
@@ -776,6 +797,7 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod349_report_contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_contact_name
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_vat_book_contact_name
 msgid "Must have name and surname."
 msgstr "Debe conter nome e apelidos"
 
@@ -806,6 +828,7 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.report,type:0
 #: selection:l10n.es.aeat.report,type:0
 #: selection:l10n.es.aeat.report.tax.mapping,type:0
+#: selection:l10n.es.vat.book,type:0
 msgid "Normal"
 msgstr "Normal"
 
@@ -854,6 +877,7 @@ msgstr "Outros parámetros"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_partner_id
 msgid "Partner"
 msgstr "Empresa"
 
@@ -865,6 +889,7 @@ msgstr "Empresa"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_period_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_period_type
 msgid "Period type"
 msgstr "Tipo de período"
 
@@ -876,6 +901,7 @@ msgstr "Tipo de período"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_contact_phone
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_contact_phone
 msgid "Phone"
 msgstr "Teléfono"
 
@@ -907,6 +933,7 @@ msgstr ""
 #: selection:l10n.es.aeat.mod349.report,state:0
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
+#: selection:l10n.es.vat.book,state:0
 msgid "Posted"
 msgstr ""
 
@@ -918,6 +945,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_previous_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_previous_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_previous_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_previous_number
 msgid "Previous declaration number"
 msgstr "Nº da declaración anterior"
 
@@ -929,6 +957,7 @@ msgstr "Nº da declaración anterior"
 #: selection:l10n.es.aeat.mod349.report,state:0
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
+#: selection:l10n.es.vat.book,state:0
 msgid "Processed"
 msgstr "Procesada"
 
@@ -985,6 +1014,7 @@ msgstr "Informe"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_name
 msgid "Report identifier"
 msgstr ""
 
@@ -1022,6 +1052,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_date_start
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_date_start
 msgid "Starting date"
 msgstr "Data de inicio"
 
@@ -1034,6 +1065,7 @@ msgstr "Data de inicio"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_state
 msgid "State"
 msgstr "Estado"
 
@@ -1045,6 +1077,7 @@ msgstr "Estado"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_type
 msgid "Statement Type"
 msgstr "Tipo de declaración"
 
@@ -1062,6 +1095,7 @@ msgstr "Sub-configuración"
 #: selection:l10n.es.aeat.mod349.report,type:0
 #: selection:l10n.es.aeat.report,type:0
 #: selection:l10n.es.aeat.report.tax.mapping,type:0
+#: selection:l10n.es.vat.book,type:0
 msgid "Substitutive"
 msgstr "Substitutiva"
 
@@ -1078,6 +1112,7 @@ msgstr "Tipo de suma"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_support_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_support_type
 msgid "Support Type"
 msgstr "Tipo de soporte"
 
@@ -1133,6 +1168,7 @@ msgstr "Plantillas de impuestos"
 #: selection:l10n.es.aeat.mod349.report,support_type:0
 #: selection:l10n.es.aeat.report,support_type:0
 #: selection:l10n.es.aeat.report.tax.mapping,support_type:0
+#: selection:l10n.es.vat.book,support_type:0
 msgid "Telematics"
 msgstr "Telemática"
 
@@ -1150,6 +1186,7 @@ msgstr "A cadea formateada debe satisface-lo tamaño dado."
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod349_report_counterpart_account_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_counterpart_account_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_counterpart_account_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_vat_book_counterpart_account_id
 msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
@@ -1192,6 +1229,7 @@ msgstr "Total impuestos (Cuota)"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_company_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_company_vat
 msgid "VAT number"
 msgstr "NIF"
 
@@ -1225,6 +1263,7 @@ msgstr "Opción de aliñamento errada. Debería ser < ou >"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_year
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_year
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_year
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_year
 msgid "Year"
 msgstr "Año"
 
