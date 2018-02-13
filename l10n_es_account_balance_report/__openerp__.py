@@ -33,32 +33,11 @@
         "Juanjo Algaz <juanjoa@malagatic.com>",
         "Joaquín Gutierrez <joaquing.pedrosa@gmail.com>",
         "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Ignacio Ibeas <ignacio@acysos.com>"
     ],
     "license": "AGPL-3",
     "website": "http://www.pexego.es",
     "category": "Localisation/Accounting",
-    "description": """
-Informes de cuentas anuales oficiales españoles.
-================================================
-
-Incluye las siguientes plantillas para el motor de informes de cuentas provisto
-por el módulo *account_balance_reporting*:
-
-    * Balance PYMEs (PGCE 2008)
-    * Cuenta de pérdidas y ganancias PYMEs (PGCE 2008)
-    * Balance abreviado (PGCE 2008)
-    * Cuenta de pérdidas y ganancias abreviado (PGCE 2008)
-    * Balance normal (PGCE 2008)
-    * Cuenta de pérdidas y ganancias completo (PGCE 2008)
-    * Estado de ingresos y gastos reconocidos (PGCE 2008)
-
-Las plantillas están basadas en los modelos para el depósito de cuentas anuales
-del Registro Mercantil:
-
-* *Normal*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306020
-* *Abreviado*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306005
-* *PYMEs*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306035
-    """,
     "depends": [
         'l10n_es',
         'account_balance_reporting',
@@ -72,6 +51,8 @@ del Registro Mercantil:
         'data/balance_normal.xml',
         'data/pyg_normal.xml',
         'data/estado_ingresos_gastos_normal.xml',
+        'data/balance_pymesfl.xml',
+        'data/pyg_pymesfl.xml',
     ],
     "installable": True,
 }
