@@ -203,7 +203,7 @@ class AccountInvoice(models.Model):
                       "already registered at the SII. You must cancel the "
                       "invoice and create a new one with the correct date")
                 )
-            if (invoice.type in ['in_invoice', 'in refund']):
+            if (invoice.type in ['in_invoice', 'in_refund']):
                 if 'partner_id' in vals:
                     correct_partners = invoice.partner_id.commercial_partner_id
                     correct_partners |= correct_partners.child_ids
