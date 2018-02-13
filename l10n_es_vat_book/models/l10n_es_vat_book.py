@@ -3,6 +3,7 @@
 #
 #    Copyright (c) 2017 Praxya (http://praxya.com/)
 #                       Daniel Rodriguez Lijo <drl.9319@gmail.com>
+#                       Ignacio Ibeas <ignacio@acysos.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -137,19 +138,6 @@ class L10nEsVatBook(models.Model):
         string="Received tax summary",
         readonly="True")
 
-    @api.model
-    def create(self, vals):
-        if not vals.get('name'):
-            fy = self.env['account.fiscalyear'].browse(
-                vals['fiscalyear_id'])[0]
-            period = vals['period_type']
-            if vals['period_type'] == '0A':
-                period = '00'
-
-            vals['name'] = _('vat_book') + "_" + fy.name + period + self.\
-                _report_identifier_get(vals)
-        return super(L10nEsVatBook, self).create(vals)
-
     @api.multi
     def button_calculate(self):
         """
@@ -158,23 +146,24 @@ class L10nEsVatBook(models.Model):
         self._calculate_vat_book()
         return True
 
-    def proximo(self, final, numeros):
+    def nearby(self, final, numbers):
         """
             Inerhit from mod 340
+            Author: XASSIZ
         """
-        def el_menor(numeros):
-            menor = numeros[0]
-            retorno = 0
-            for x in range(len(numeros)):
-                if numeros[x] < menor:
-                    menor = numeros[x]
-                    retorno = x
-            return retorno
+        def minor(numbers):
+            minor = numbers[0]
+            result = 0
+            for x in range(len(numbers)):
+                if numbers[x] < minor:
+                    minor = numbers[x]
+                    result = x
+            return result
 
-        diferencia = []
-        for x in range(len(numeros)):
-            diferencia.append(abs(final - numeros[x]))
-        return numeros[el_menor(diferencia)]
+        difference = []
+        for x in range(len(numbers)):
+            difference.append(abs(final - numbers[x]))
+        return numbers[minor(difference)]
 
     def _get_vals_invoice_line(self, invoice_id):
         """
@@ -256,7 +245,7 @@ class L10nEsVatBook(models.Model):
         """
         tax_percentage = 0
         if invoice_tax_line.amount > 0 and invoice_tax_line.base > 0:
-            tax_percentage = self.proximo(
+            tax_percentage = self.nearby(
                 round(abs(invoice_tax_line.amount / invoice_tax_line.base), 4),
                 VALID_TYPES,
             )
@@ -330,7 +319,7 @@ class L10nEsVatBook(models.Model):
                 vals: values to create a summary tax line
         """
         if invoice_tax_line.amount > 0 and invoice_tax_line.base > 0:
-            tax_percentage = self.proximo(
+            tax_percentage = self.nearby(
                 round(abs(invoice_tax_line.amount / invoice_tax_line.base), 4),
                 VALID_TYPES,
             )
