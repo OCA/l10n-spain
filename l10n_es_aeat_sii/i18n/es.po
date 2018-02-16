@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_sii
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # Ismael Calvo <ismaelcj@gmail.com>, 2017
@@ -95,6 +95,11 @@ msgid "Already sent to SII. It includes cancelled invoices"
 msgstr "Ya enviadas al SII. Incluye facturas canceladas"
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_tax_amount_company
+msgid "Amount in company currency"
+msgstr "Cuota en la moneda de la compañía"
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company_sii_header_customer
 msgid ""
 "An optional header description for customer invoices. Applied on all the SII"
@@ -122,6 +127,11 @@ msgstr "A una hora fija"
 #: selection:res.company,sii_method:0
 msgid "Automatic"
 msgstr "Automático"
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_tax_base_company
+msgid "Base in company currency"
+msgstr "Base en la moneda de la compañía"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company_sii_method
