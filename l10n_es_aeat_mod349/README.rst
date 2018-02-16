@@ -94,6 +94,13 @@ Consideraciones importantes:
    :target: https://runbot.odoo-community.org/runbot/189/10.0
 
 
+Problemas conocidos / Hoja de ruta
+==================================
+
+* Las facturas rectificativas que no se hayan realizado desde otra factura
+  quedarán descolgadas y no se presentarán en el 349.
+* Añadir aclaración de cuál es el error en los registros.
+
 Créditos
 ========
 
