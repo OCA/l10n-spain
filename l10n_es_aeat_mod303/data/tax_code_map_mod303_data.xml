@@ -26,9 +26,10 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
-    <!-- Cuota facturas de venta (haber): S_IVA4B, S_IVA4S -->
+    <!-- Cuota facturas de venta (haber) - Descuentos en facturas de venta(debe):
+     S_IVA4B, S_IVA4S -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s')])]"/>
 </record>
 <record id="aeat_mod303_map_line_04" model="l10n.es.aeat.map.tax.line">
@@ -51,9 +52,10 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
-    <!-- Cuota facturas de venta (haber): S_IVA10B, S_IVA10S -->
+    <!-- Cuota facturas de venta (haber) - Descuentos en facturas de venta (debe):
+     S_IVA10B, S_IVA10S -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s')])]"/>
 </record>
 <record id="aeat_mod303_map_line_07" model="l10n.es.aeat.map.tax.line">
@@ -76,9 +78,10 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
-    <!-- Cuota facturas de venta (haber): S_IVA21B, S_IVA21S, S_IVA21ISP -->
+    <!-- Cuota facturas de venta (haber) - Descuentos en facturas de venta(debe):
+     S_IVA21B, S_IVA21S, S_IVA21ISP -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s'), ref('l10n_es.account_tax_template_s_iva21isp')])]"/>
 </record>
 <record id="aeat_mod303_map_line_10" model="l10n.es.aeat.map.tax.line">
