@@ -55,6 +55,7 @@ Contribuidores
 * AvanzOSC (http://www.avanzosc.es)
 * Comunitea (http://www.comunitea.com)
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
+* Luis M. Ontalba <luis.martinez@tecnativa.com>
 
 Maintainer
 ----------
