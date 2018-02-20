@@ -16,10 +16,13 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
     taxes_sale = {
         # tax code: (base, tax_amount)
         'S_IVA4B': (1000, 40),
+        'S_IVA4B//neg': (-100, -4),
         'S_IVA4S': (1100, 44),
         'S_IVA10B': (1200, 120),
+        'S_IVA10B//neg': (-120, -12),
         'S_IVA10S': (1300, 130),
         'S_IVA21B': (1400, 294),
+        'S_IVA21B//neg': (-140, -29.4),
         'S_IVA21S': (1500, 315),
         'S_IVA21ISP': (1600, 336),
         'S_REQ05': (1700, 8.5),
@@ -71,19 +74,19 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
     }
     taxes_result = {
         # Régimen General - Base imponible 4%
-        '1': (3 * 1000) + (3 * 1100),  # S_IVA4B, S_IVA4S
+        '1': (3 * 1000) + (3 * 1100) - 3 * 100,  # S_IVA4B, S_IVA4S
         # Régimen General - Cuota 4%
-        '3': (3 * 40) + (3 * 44),  # S_IVA4B, S_IVA4S
+        '3': (3 * 40) + (3 * 44) - 3 * 4,  # S_IVA4B, S_IVA4S
         # Régimen General - Base imponible 10%
-        '4': (3 * 1200) + (3 * 1300),  # S_IVA10B, S_IVA10S
+        '4': (3 * 1200) + (3 * 1300) - 3 * 120,  # S_IVA10B, S_IVA10S
         # Régimen General - Cuota 10%
-        '6': (3 * 120) + (3 * 130),  # S_IVA10B, S_IVA10S
+        '6': (3 * 120) + (3 * 130) - 3 * 12,  # S_IVA10B, S_IVA10S
         # Régimen General - Base imponible 21%
-        '7': (3 * 1400) + (3 * 1500) + (3 * 1600),  # S_IVA21B, S_IVA21S,
-                                                    # S_IVA21ISP
+        # S_IVA21B, S_IVA21S, S_IVA21ISP
+        '7': (3 * 1400) + (3 * 1500) + (3 * 1600) - 3 * 140,
         # Régimen General - Cuota 21%
-        '9': (3 * 294) + (3 * 315) + (3 * 336),  # S_IVA21B, S_IVA21S,
-                                                 # S_IVA21ISP
+        # S_IVA21B, S_IVA21S, S_IVA21ISP
+        '9': (3 * 294) + (3 * 315) + (3 * 336) - 3 * 29.4,
         # Adq. intracomunitarias de bienes y servicios - Base
         '10': (
             (3 * 100) + (3 * 200) + (3 * 300) +  # P_IVAx_IC_BC_2
@@ -108,9 +111,9 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         ),
         # Modificación bases y cuotas - Base (Compras y ventas)
         '14': (
-            (-1) * (1000 + 1100 +  # S_IVA4B, S_IVA4S
-                    1200 + 1300 +  # S_IVA10B, S_IVA10S
-                    1400 + 1500 + 1600 +  # S_IVA21B, S_IVA21S, S_IVA21ISP
+            (-1) * (1000 + 1100 - 100 +  # S_IVA4B, S_IVA4S
+                    1200 + 1300 - 120 +  # S_IVA10B, S_IVA10S
+                    1400 + 1500 + 1600 - 140 +  # S_IVA21B,S_IVA21S,S_IVA21ISP
                     100 + 200 + 300 +  # P_IVAx_IC_BC_2
                     400 + 500 + 600 +  # P_IVAx_SP_IN_1
                     700 + 800 + 900 +  # P_IVAx_IC_BI_2
@@ -119,9 +122,9 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         ),
         # Modificación bases y cuotas - Cuota (Compras y ventas)
         '15': (
-            (-1) * (40 + 44 +    # S_IVA4B, S_IVA4S
-                    120 + 130 +  # S_IVA10B, S_IVA10S
-                    294 + 315 + 336 +  # S_IVA21B, S_IVA21S, S_IVA21ISP
+            (-1) * (40 + 44 - 4 +  # S_IVA4B, S_IVA4S
+                    120 + 130 - 12 +  # S_IVA10B, S_IVA10S
+                    294 + 315 + 336 - 29.4 +  # S_IVA21B, S_IVA21S, S_IVA21ISP
                     4 + 20 + 63 +      # P_IVAx_IC_BC_2
                     16 + 50 + 126 +    # P_IVAx_SP_IN_1
                     28 + 80 + 189 +    # P_IVAx_IC_BI_2
@@ -299,11 +302,14 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         if self.debug:
             self._print_tax_lines(self.model303.tax_line_ids)
         # Check tax lines
-        for box, result in self.taxes_result.iteritems():
-            _logger.debug('Checking tax line: %s' % box)
+        for field, result in self.taxes_result.iteritems():
+            _logger.debug('Checking tax line: %s' % field)
             lines = self.model303.tax_line_ids.filtered(
-                lambda x: x.field_number == int(box))
-            self.assertAlmostEqual(sum(lines.mapped('amount')), result, 2)
+                lambda x: x.field_number == int(field))
+            self.assertAlmostEqual(
+                sum(lines.mapped('amount')), result, 2,
+                "Incorrect result in field %s" % field
+            )
         # Check result
         _logger.debug('Checking results')
         devengado = sum([self.taxes_result.get(b, 0.) for b in (
