@@ -512,8 +512,8 @@ class AccountInvoice(models.Model):
                     sub_dict.setdefault('Exenta', {'BaseImponible': 0})
                     if exempt_cause:
                         sub_dict['Exenta']['CausaExencion'] = exempt_cause
-                    sub_dict['Exenta']['BaseImponible'] += \
-                        tax_line.base_company * sign
+                    sub_dict['Exenta']['BaseImponible'] += (
+                        tax_line.base_company * sign)
                 else:
                     sub_dict.setdefault('NoExenta', {
                         'TipoNoExenta': (
@@ -538,8 +538,8 @@ class AccountInvoice(models.Model):
                 nsub_dict = tax_breakdown.setdefault(
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
-                nsub_dict[default_no_taxable_cause] += \
-                    tax_line.base_company * sign
+                nsub_dict[default_no_taxable_cause] += (
+                    tax_line.base_company * sign)
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
                     'DesgloseTipoOperacion', {
@@ -557,8 +557,8 @@ class AccountInvoice(models.Model):
                     )
                     if exempt_cause:
                         exempt_dict['CausaExencion'] = exempt_cause
-                    exempt_dict['BaseImponible'] += \
-                        tax_line.base_company * sign
+                    exempt_dict['BaseImponible'] += (
+                        tax_line.base_company * sign)
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
