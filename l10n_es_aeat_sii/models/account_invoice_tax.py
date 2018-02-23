@@ -24,7 +24,8 @@ class AccountInvoiceTax(models.Model):
             if (tax.invoice_id.currency_id !=
                     tax.invoice_id.company_id.currency_id):
                 currency = tax.invoice_id.currency_id.with_context(
-                    date=tax.invoice_id.date_invoice)
+                    date=tax.invoice_id.date_invoice,
+                    company_id=tax.invoice_id.company_id.id)
                 tax.base_company = currency.compute(
                     tax.base, tax.invoice_id.company_id.currency_id)
                 tax.amount_company = currency.compute(
