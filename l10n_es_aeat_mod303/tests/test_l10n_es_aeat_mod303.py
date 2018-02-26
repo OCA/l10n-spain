@@ -310,7 +310,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         if self.debug:
             self._print_tax_lines(model303.tax_line_ids)
         # Check tax lines
-        for field, result in self.taxes_result.iteritems():
+        for field, result in iter(self.taxes_result.items()):
             _logger.debug('Checking tax line: %s' % field)
             lines = model303.tax_line_ids.filtered(
                 lambda x: x.field_number == int(field))
