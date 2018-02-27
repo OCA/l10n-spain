@@ -296,16 +296,14 @@
                                    context="{'report_id': active_id}"
                                    readonly="True"/>
                         </page>
-                        <!-- Disable Real State records, because you can not
-                             add manually a partner record related with it -->
-                        <!--page string="Real Estate records">
+                        <page string="Real Estate records">
                             <button name="button_list_real_estate_records"
                                     string="Edit records"
                                     type="object" colspan="1"/>
                             <field name="real_estate_record_ids" nolabel="1"
                                    context="{'report_id': active_id}"
                                    attrs="{'readonly': [('state', '!=', 'calculated')]}"/>
-                        </page-->
+                        </page>
                     </notebook>
                 </group>
             </field>
