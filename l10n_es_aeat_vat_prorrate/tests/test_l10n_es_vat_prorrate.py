@@ -57,7 +57,7 @@ class TestL10nEsAeatVatProrrate(TestL10nEsAeatMod303Base):
         line_counterpart = lines.filtered(
             lambda x: x.account_id == self.counterpart_account
         )
-        self.assertAlmostEqual(line_counterpart.credit, 2126.98, 2)
+        self.assertAlmostEqual(line_counterpart.credit, 2036.18, 2)
         # Last semester
         wizard = self.env['l10n.es.aeat.compute.vat.prorrate'].with_context(
             active_id=self.model303_4t.id,
