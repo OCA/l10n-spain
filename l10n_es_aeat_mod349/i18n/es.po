@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2018-02-10 03:55+0000\n"
+"POT-Creation-Date: 2018-02-20 20:56+0000\n"
+"PO-Revision-Date: 2018-02-20 20:56+0000\n"
 "Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2018\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
@@ -130,7 +130,7 @@ msgid "Aeat 349 Map Line"
 msgstr "Mapeo de Línea Aeat 349"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:304
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:313
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
@@ -138,7 +138,7 @@ msgstr ""
 " rellenados."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:309
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:318
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
@@ -213,7 +213,7 @@ msgid "Complementary or substitutive:"
 msgstr "Complementaria o sustitutiva:"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:320
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:329
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr ""
@@ -487,7 +487,7 @@ msgid "New (Rectified) Amount"
 msgstr "Importe rectificado"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:253
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:262
 #, python-format
 msgid "No Tax Mapping was found"
 msgstr "No se encontró Mapeo de Impuestos"
