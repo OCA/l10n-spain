@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# enjolras <yo@miguelrevilla.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2018-02-10 03:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-03-01 14:50+0000\n"
+"PO-Revision-Date: 2018-03-01 14:50+0000\n"
+"Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -466,7 +467,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_exception_msg
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_exception_msg
 msgid "Exception message"
-msgstr ""
+msgstr "Mensaje de excepción"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -624,6 +625,8 @@ msgid ""
 "If this declaration is complementary or substitutive, a previous declaration"
 " number should be provided."
 msgstr ""
+"Si esta declaración es complementaria o sustitutiva, se debe proporcionar un"
+" número de declaración previa."
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -823,7 +826,7 @@ msgstr "Carácter del signo negativo"
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:128
 #, python-format
 msgid "No export configuration selected."
-msgstr ""
+msgstr "No se ha seleccionado configuración para la exportación."
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.mod111.report,type:0

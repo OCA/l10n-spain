@@ -4,13 +4,14 @@
 # 
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
+# enjolras <yo@miguelrevilla.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 00:10+0000\n"
-"PO-Revision-Date: 2017-12-28 00:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"POT-Creation-Date: 2018-03-01 14:51+0000\n"
+"PO-Revision-Date: 2018-03-01 14:51+0000\n"
+"Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,37 +22,37 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
 msgid "AEAT 115 model"
-msgstr ""
+msgstr "Modelo AEAT 115"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model,name:l10n_es_aeat_mod115.model_l10n_es_aeat_mod115_report
 msgid "AEAT 115 report"
-msgstr ""
+msgstr "Declaración AEAT 115"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_tree
 msgid "AEAT 115 reports"
-msgstr ""
+msgstr "Declaraciones AEAT 115"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
 msgid "AEAT model 115"
-msgstr ""
+msgstr "Modelo AEAT 115"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_03
 msgid "Amount of retentions"
-msgstr ""
+msgstr "Importe de las retenciones"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Amounts retained"
-msgstr ""
+msgstr "Importe de los ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
 msgid "Create and query AEAT Model 115 reports."
-msgstr ""
+msgstr "Crea y consulta declaraciones del modelo 115 de la AEAT."
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_create_uid
@@ -107,7 +108,7 @@ msgstr "Última actualización en"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_01
 msgid "Number of recipients"
-msgstr ""
+msgstr "Nº de perceptores"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
@@ -122,7 +123,7 @@ msgstr "Tipo de resultado"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_05
 msgid "Result: ([03] - [04])"
-msgstr ""
+msgstr "Resultado: ([03] - [04])"
 
 #. module: l10n_es_aeat_mod115
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:75
@@ -174,9 +175,9 @@ msgstr "[03] Importe de las retenciones"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_04
 msgid "[04] Fees to compensate"
-msgstr ""
+msgstr "[04] A deducir"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_05
 msgid "[05] Result"
-msgstr ""
+msgstr "[05] Resultado"

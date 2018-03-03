@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_dua
+# 
+# Translators:
+# enjolras <yo@miguelrevilla.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-01 14:52+0000\n"
+"PO-Revision-Date: 2018-03-01 14:52+0000\n"
+"Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_dua
+#: model:product.product,name:l10n_es_dua.producto_dua_compensacion
+#: model:product.template,name:l10n_es_dua.producto_dua_compensacion_product_template
+msgid "DUA Compensación"
+msgstr "DUA Compensación"
+
+#. module: l10n_es_dua
+#: model:product.product,name:l10n_es_dua.producto_dua_valoracion_10
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_10_product_template
+msgid "DUA Valoración IVA 10%"
+msgstr "DUA Valoración IVA 10%"
+
+#. module: l10n_es_dua
+#: model:product.product,name:l10n_es_dua.producto_dua_valoracion_21
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_21_product_template
+msgid "DUA Valoración IVA 21%"
+msgstr "DUA Valoración IVA 21%"
+
+#. module: l10n_es_dua
+#: model:product.product,name:l10n_es_dua.producto_dua_valoracion_4
+#: model:product.template,name:l10n_es_dua.producto_dua_valoracion_4_product_template
+msgid "DUA Valoración IVA 4%"
+msgstr "DUA Valoración IVA 4%"
