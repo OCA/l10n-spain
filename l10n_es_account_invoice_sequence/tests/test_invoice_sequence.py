@@ -8,48 +8,47 @@ from openerp import fields
 
 @common.at_install(False)
 @common.post_install(True)
-class TestInvoiceSequence(common.SavepointCase):
-    @classmethod
-    def setUpClass(cls):
-        super(TestInvoiceSequence, cls).setUpClass()
-        cls.sequence = cls.env['ir.sequence'].create({
+class TestInvoiceSequence(common.HttpCase):
+    def setUp(self):
+        super(TestInvoiceSequence, self).setUp()
+        self.sequence = self.env['ir.sequence'].create({
             'name': 'Test account move sequence',
             'padding': 3,
             'prefix': 'tAM',
         })
-        cls.invoice_sequence = cls.env['ir.sequence'].create({
+        self.invoice_sequence = self.env['ir.sequence'].create({
             'name': 'Test invoice sequence',
             'padding': 3,
             'prefix': 'tINV',
         })
-        cls.refund_sequence = cls.env['ir.sequence'].create({
+        self.refund_sequence = self.env['ir.sequence'].create({
             'name': 'Test refund sequence',
             'padding': 3,
             'prefix': 'tREF',
         })
-        cls.journal = cls.env['account.journal'].create({
+        self.journal = self.env['account.journal'].create({
             'name': 'Test Sales Journal',
             'code': 'tVEN',
             'type': 'sale',
-            'sequence_id': cls.sequence.id,
+            'sequence_id': self.sequence.id,
             'update_posted': True,
-            'invoice_sequence_id': cls.invoice_sequence.id,
-            'refund_inv_sequence_id': cls.refund_sequence.id,
+            'invoice_sequence_id': self.invoice_sequence.id,
+            'refund_inv_sequence_id': self.refund_sequence.id,
         })
-        cls.account_type = cls.env['account.account.type'].create({
+        self.account_type = self.env['account.account.type'].create({
             'name': 'Test',
             'type': 'receivable',
         })
-        cls.account = cls.env['account.account'].create({
+        self.account = self.env['account.account'].create({
             'name': 'Test account',
             'code': 'TEST',
-            'user_type_id': cls.account_type.id,
+            'user_type_id': self.account_type.id,
             'reconcile': True,
         })
-        cls.account_income = cls.env['account.account'].create({
+        self.account_income = self.env['account.account'].create({
             'name': 'Test income account',
             'code': 'INCOME',
-            'user_type_id': cls.env['account.account.type'].create(
+            'user_type_id': self.env['account.account.type'].create(
                 {'name': 'Test income'}).id,
         })
 
