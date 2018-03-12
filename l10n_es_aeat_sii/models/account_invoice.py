@@ -1232,10 +1232,11 @@ class AccountInvoice(models.Model):
         country_code = self._get_sii_country_code()
         if gen_type == 1:
             if '1117' in (self.sii_send_error or ''):
+                nie = vat[:2] == 'ES' and vat[2] in ['X', 'Y', 'Z']
                 return {
                     "IDOtro": {
                         "CodigoPais": country_code,
-                        "IDType": '07',
+                        "IDType": nie and '06' or '07',
                         "ID": vat[2:],
                     }
                 }
