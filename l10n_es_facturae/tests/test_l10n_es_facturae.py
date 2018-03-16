@@ -50,7 +50,6 @@ class TestL10nEsFacturae(common.TransactionCase):
         main_company = self.env.ref('base.main_company')
         main_company.vat = "ESA12345674"
         main_company.partner_id.country_id = self.ref('base.uk')
-        main_company.currency_id = self.ref('base.USD')
         self.env['res.currency.rate'].search(
             [('currency_id', '=', main_company.currency_id.id)]
         ).write({'company_id': False})
