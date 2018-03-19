@@ -13,8 +13,8 @@
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "https://odoo-community.org/",
-    "category": "Accounting & Finance",
+    "website": "https://github.com/OCA/l10n-spain",
+    "category": "Accounting",
     "data": [
         "views/account_asset_view.xml",
     ],
