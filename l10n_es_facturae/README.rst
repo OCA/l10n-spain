@@ -30,20 +30,14 @@ Informacion sobre el formato:
 Instalación
 ===========
 
-Este módulo depende del módulo *account_payment_partner* y sus dependencias,
-que se encuentran en https://github.com/OCA/bank-payment.
+Este módulo depende del módulo *account_payment_partner*, *account_banking_mandate* y sus 
+dependencias, que se encuentran en https://github.com/OCA/bank-payment.
 
 Para generar el archivo XML, hace falta el módulo *report_xml* que se encuentra
 en https://github.com/OCA/reporting-engine.
 
-Este módulo añade cambios en las plantillas de impuestos. En caso de
-instalarlo sobre una base de datos que ya tenga el plan de cuentas contable
-español instalado, habrá que actualizar los impuestos usando el módulo
-*account_chart_update*, disponible en
-https://github.com/OCA/account-financial-tools.
-
 En el caso de querer firmar el formato FacturaE desde Odoo, debe instalarse la
-última versión de xmlsig medicante el comando ´pip install xmlsig´
+última versión de xmlsig mediante el comando ´pip install xmlsig´
 
 
 Configuración
