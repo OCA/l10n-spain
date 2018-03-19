@@ -102,8 +102,8 @@ class Mod349(models.Model):
                 # from the declaration
                 origin_invoice = move_line.invoice_id.origin_invoice_ids[:1]
                 if move_line.invoice_id.origin_invoice_ids:
-                    if (origin_invoice.date <= self.date_start or
-                            origin_invoice.date >= self.date_end):
+                    if (origin_invoice.date < self.date_start or
+                            origin_invoice.date > self.date_end):
                         self._create_349_refund_detail(move_line)
                         continue
             self._create_349_record_detail(move_line)
