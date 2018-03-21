@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- © 2018 Victor Rodrigo <victor.rodrigo@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<openerp>
+  <data>
+    <record id="account_invoice_form_view" model="ir.ui.view">
+        <field name="name">account.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="sii_description" position="before">
+                <field name="is_invoice_summary"/>
+                <field name="sii_invoice_summary_start"/>
+                <field name="sii_invoice_summary_end"/>
+            </field>
+        </field>
+    </record>
+  </data>
+</openerp>
