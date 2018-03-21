@@ -1,0 +1,2 @@
+from . import test_l10n_es_aeat_sii_invoice_summary_common
+from . import test_l10n_es_aeat_sii_invoice_summary
