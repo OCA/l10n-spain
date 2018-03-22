@@ -10,7 +10,7 @@
 
 {
     'name': "Modelo 347 AEAT",
-    'version': "8.0.1.4.0",
+    'version': "10.0.1.4.0",
     'author': "Pexego,"
               "ASR-OSS,"
               "NaN·tic,"
