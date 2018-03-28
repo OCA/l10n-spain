@@ -76,6 +76,7 @@ Contribuidores
 * Rafael Blasco <rafabn@antiun.com>
 * David Gómez <david.gomez@aselcis.com>
 * Miguel Paraíso <miguel.paraiso@aselcis.com>
+* Ignacio Ibeas <ignacio@acysos.com>
 
 
 Mantenedor
