@@ -15,6 +15,7 @@ Añade todo lo necesario para adaptar el TPV a la legislación Española.
     'author': "Antiun Ingeniería S.L., "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Aselcis Consulting, "
+              "Acysos S.L., "
               "Spanish Localization Team, "
               "Odoo Community Association (OCA)",
     'version': '10.0.1.0.0',
