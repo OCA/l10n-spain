@@ -651,7 +651,7 @@ class AccountInvoice(models.Model):
                 },
                 # On cancelled invoices, number is not filled
                 "NumSerieFacturaEmisor": (
-                    self.number or self.internal_number or ''
+                    self.number or self.move_name or ''
                 )[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
