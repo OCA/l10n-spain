@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-19 17:14+0000\n"
-"PO-Revision-Date: 2017-04-19 17:14+0000\n"
+"POT-Creation-Date: 2018-02-10 03:55+0000\n"
+"PO-Revision-Date: 2018-02-10 03:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgid "AEAT manager"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:254
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:255
 #, python-format
 msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
@@ -304,7 +304,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Devise"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,support_type:0
@@ -510,7 +510,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:194
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:195
 #, python-format
 msgid ""
 "If this declaration is complementary or substitutive, a previous declaration"
@@ -645,7 +645,7 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:392
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:393
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
@@ -702,7 +702,7 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:361
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:362
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -795,7 +795,7 @@ msgid "Regular"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:151
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:162
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -1015,7 +1015,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:185
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:196
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""

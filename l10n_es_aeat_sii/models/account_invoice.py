@@ -62,8 +62,8 @@ class AccountInvoice(models.Model):
 
     def _default_sii_registration_key(self):
         sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
-        type = self.env.context.get('type')
-        if type in ['in_invoice', 'in_refund']:
+        invoice_type = self.env.context.get('type')
+        if invoice_type in ['in_invoice', 'in_refund']:
             key = sii_key_obj.search(
                 [('code', '=', '01'), ('type', '=', 'purchase')], limit=1)
         else:
@@ -364,13 +364,13 @@ class AccountInvoice(models.Model):
             tax_type = abs(tax.amount)
         tax_dict = {
             'TipoImpositivo': str(tax_type),
-            'BaseImponible': sign * abs(round(tax_line.base, 2)),
+            'BaseImponible': sign * abs(round(tax_line.base_company, 2)),
         }
         if self.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
-        tax_dict[key] = sign * abs(round(tax_line.amount, 2))
+        tax_dict[key] = sign * abs(round(tax_line.amount_company, 2))
         # Recargo de equivalencia
         re_tax_line = self._get_sii_tax_line_req(tax)
         if re_tax_line:
@@ -378,7 +378,7 @@ class AccountInvoice(models.Model):
                 abs(re_tax_line.tax_id.amount)
             )
             tax_dict['CuotaRecargoEquivalencia'] = (
-                sign * abs(round(re_tax_line.amount, 2))
+                sign * abs(round(re_tax_line.amount_company, 2))
             )
         return tax_dict
 
@@ -407,6 +407,76 @@ class AccountInvoice(models.Model):
             # has a NIF which starts with 'N'
             return True
         return False
+
+    @api.model
+    def _sii_adjust_first_semester(self, taxes_dict):
+        if 'DesgloseFactura' in taxes_dict:
+            tax_breakdown = taxes_dict['DesgloseFactura']
+            if 'NoSujeta' in tax_breakdown:
+                del tax_breakdown['NoSujeta']
+            if 'Sujeta' not in tax_breakdown:
+                sub_dict = tax_breakdown.setdefault('Sujeta', {})
+                sub_dict.setdefault(
+                    'NoExenta', {
+                        'TipoNoExenta': 'S1',
+                        'DesgloseIVA': {
+                            'DetalleIVA': [{
+                                "BaseImponible": 0,
+                                "CuotaRepercutida": 0,
+                                "TipoImpositivo": "0",
+                                "CuotaSoportada": 0}]}
+                    })
+            elif 'Exenta' in tax_breakdown['Sujeta']:
+                BI = tax_breakdown['Sujeta']['Exenta']['BaseImponible']
+                del tax_breakdown['Sujeta']['Exenta']
+                tax_breakdown['Sujeta'].setdefault(
+                    'NoExenta', {
+                        'TipoNoExenta': 'S1',
+                        'DesgloseIVA': {
+                            'DetalleIVA': [{
+                                "BaseImponible": BI,
+                                "CuotaRepercutida": 0,
+                                "TipoImpositivo": "0",
+                                "CuotaSoportada": 0}]}})
+
+        if 'DesgloseTipoOperacion' in taxes_dict:
+            type_breakdown = taxes_dict['DesgloseTipoOperacion']
+            # key puede ser PrestacionServicios, Entrega o ambas
+            keys = type_breakdown.keys()
+            for key in keys:
+                if 'NoSujeta' in type_breakdown[key]:
+                    del type_breakdown[key]['NoSujeta']
+                if 'Sujeta' not in type_breakdown[key]:
+                    sub_dict = type_breakdown[key].setdefault('Sujeta', {})
+                    sub_dict.setdefault(
+                        'NoExenta', {
+                            'TipoNoExenta': 'S1',
+                            'DesgloseIVA': {
+                                'DetalleIVA': [{
+                                    "BaseImponible": 0,
+                                    "CuotaRepercutida": 0,
+                                    "TipoImpositivo": "0",
+                                    "CuotaSoportada": 0}],
+                            },
+                        },
+                    )
+                elif 'Exenta' in type_breakdown[key]['Sujeta']:
+                    BI = type_breakdown[key]['Sujeta']['Exenta'][
+                        'BaseImponible']
+                    del type_breakdown[key]['Sujeta']['Exenta']
+                    type_breakdown[key]['Sujeta'].setdefault(
+                        'NoExenta', {
+                            'TipoNoExenta': 'S1',
+                            'DesgloseIVA': {
+                                'DetalleIVA': [{
+                                    "BaseImponible": BI,
+                                    "CuotaRepercutida": 0,
+                                    "TipoImpositivo": "0",
+                                    "CuotaSoportada": 0}],
+                            },
+                        },
+                    )
+        return taxes_dict
 
     @api.multi
     def _get_sii_out_taxes(self):
@@ -446,7 +516,8 @@ class AccountInvoice(models.Model):
                     sub_dict.setdefault('Exenta', {'BaseImponible': 0})
                     if exempt_cause:
                         sub_dict['Exenta']['CausaExencion'] = exempt_cause
-                    sub_dict['Exenta']['BaseImponible'] += tax_line.base * sign
+                    sub_dict['Exenta']['BaseImponible'] += (
+                        tax_line.base_company * sign)
                 else:
                     sub_dict.setdefault('NoExenta', {
                         'TipoNoExenta': (
@@ -471,7 +542,8 @@ class AccountInvoice(models.Model):
                 nsub_dict = tax_breakdown.setdefault(
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
-                nsub_dict[default_no_taxable_cause] += tax_line.base * sign
+                nsub_dict[default_no_taxable_cause] += (
+                    tax_line.base_company * sign)
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
                     'DesgloseTipoOperacion', {
@@ -489,7 +561,8 @@ class AccountInvoice(models.Model):
                     )
                     if exempt_cause:
                         exempt_dict['CausaExencion'] = exempt_cause
-                    exempt_dict['BaseImponible'] += tax_line.base * sign
+                    exempt_dict['BaseImponible'] += (
+                        tax_line.base_company * sign)
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
@@ -521,6 +594,13 @@ class AccountInvoice(models.Model):
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
             del taxes_dict['DesgloseFactura']
+
+        # Con independencia del tipo de operación informado (no sujeta,
+        # sujeta y exenta o no exenta) deberá informarse en cualquier caso
+        # como factura sujeta y no exenta, en el caso de ser una factura del
+        # primer semestre.
+        if self.date < SII_START_DATE:
+            return self._sii_adjust_first_semester(taxes_dict)
         return taxes_dict
 
     @api.multi
@@ -548,7 +628,7 @@ class AccountInvoice(models.Model):
                 isp_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-                tax_amount += abs(round(tax_line.amount, 2))
+                tax_amount += abs(round(tax_line.amount_company, 2))
             elif tax in taxes_sfrs:
                 sfrs_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
@@ -556,13 +636,13 @@ class AccountInvoice(models.Model):
                 sfrs_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-                tax_amount += abs(round(tax_line.amount, 2))
+                tax_amount += abs(round(tax_line.amount_company, 2))
             elif tax in taxes_sfrns:
                 sfrns_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
                 sfrns_dict['DetalleIVA'].append({
-                    'BaseImponible': sign * tax_line.base,
+                    'BaseImponible': sign * tax_line.base_company,
                 })
             elif tax in taxes_sfrsa:
                 sfrsa_dict = taxes_dict.setdefault(
@@ -726,7 +806,8 @@ class AccountInvoice(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.date_invoice)
-        reg_date = self._change_date_format(self.date)
+        reg_date = self._change_date_format(
+            self._get_account_registration_date())
         ejercicio = fields.Date.from_string(self.date).year
         periodo = '%02d' % fields.Date.from_string(self.date).month
         desglose_factura, tax_amount = self._get_sii_in_taxes()
@@ -771,7 +852,10 @@ class AccountInvoice(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": tax_amount * sign,
+                "CuotaDeducible": (
+                    self.date >= SII_START_DATE and
+                    round(tax_amount * sign, 2) or 0.0
+                ),
             }
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
@@ -821,6 +905,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _connect_sii(self, wsdl):
+        self.ensure_one()
         today = fields.Date.today()
         sii_config = self.env['l10n.es.aeat.sii'].search([
             ('company_id', '=', self.company_id.id),
@@ -855,10 +940,15 @@ class AccountInvoice(models.Model):
         configuration parameters and invoice availability for SII. If the
         invoice is to be sent the decides the send method: direct send or
         via connector depending on 'Use connector' configuration"""
-        # De momento evitamos enviar facturas del primer semestre si no estamos
-        # en entorno de pruebas
         invoices = self.filtered(
-            lambda i: (i.company_id.sii_test or i.date >= SII_START_DATE)
+            lambda i: (
+                i.company_id.sii_test or
+                i.date >= SII_START_DATE or
+                (i.sii_registration_key.type == 'sale' and
+                 i.sii_registration_key.code == '16') or
+                (i.sii_registration_key.type == 'purchase' and
+                 i.sii_registration_key.code == '14')
+            )
         )
         queue_obj = self.env['queue.job'].sudo()
         for invoice in invoices:
@@ -866,7 +956,9 @@ class AccountInvoice(models.Model):
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
             else:
-                eta = company._get_sii_eta()
+                eta = self.env.context.get(
+                    'override_eta', company._get_sii_eta(),
+                )
                 ctx = self.env.context.copy()
                 ctx.update(company_id=company.id)
                 session = ConnectorSession(
@@ -898,7 +990,7 @@ class AccountInvoice(models.Model):
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
-            client = self._connect_sii(wsdl)
+            client = invoice._connect_sii(wsdl)
             serv = client.bind('siiService', port_name)
             if invoice.sii_state == 'not_sent':
                 tipo_comunicacion = 'A0'
@@ -1012,7 +1104,7 @@ class AccountInvoice(models.Model):
                 port_name = 'SuministroFactRecibidas'
                 if company.sii_test:
                     port_name += 'Pruebas'
-            client = self._connect_sii(wsdl)
+            client = invoice._connect_sii(wsdl)
             serv = client.bind('siiService', port_name)
             header = invoice._get_sii_header(cancellation=True)
             try:
@@ -1201,7 +1293,9 @@ class AccountInvoice(models.Model):
             return 'E2'
         else:
             product_exempt_causes = self.mapped(
-                'invoice_line_ids.product_id.sii_exempt_cause'
+                'invoice_line_ids.product_id'
+            ).filtered(lambda x: x.sii_exempt_cause != 'none').mapped(
+                'sii_exempt_cause'
             )
             if product_exempt_causes:
                 return product_exempt_causes[0]

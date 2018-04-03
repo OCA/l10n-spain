@@ -46,6 +46,7 @@
         "views/aeat_sii_view.xml",
         "wizards/aeat_sii_password_view.xml",
         "wizards/account_invoice_refund_views.xml",
+        "wizards/send_first_semester.xml",
         "views/aeat_sii_mapping_registration_keys_view.xml",
         "data/aeat_sii_mapping_registration_keys_data.xml",
         "views/aeat_sii_map_view.xml",
