@@ -107,3 +107,17 @@ class TestL10nEsAccountAsset(common.SavepointCase):
                 line_date.day,
                 calendar.monthrange(line_date.year, line_date.month)[1],
                 "Depreciation date is not the end of period.")
+
+    def test_prorated_percentage_asset_different_years(self):
+        start_depreciation_date = fields.Date.from_string('2017-11-15')
+        self.asset_percentage.write(
+            {'prorata': True,
+             'method_percentage': 70,
+             'start_depreciation_date': start_depreciation_date})
+        self.asset_linear.write(
+            {'date': '2017-11-15',
+             'method_time': 'percentage'})
+        self.asset_percentage.compute_depreciation_board()
+        self.assertGreater(
+            self.asset_percentage.depreciation_line_ids[-1:].amount, 0,
+            "Last depreciation amount is not correct.")
