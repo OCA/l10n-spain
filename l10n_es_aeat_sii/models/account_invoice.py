@@ -533,14 +533,13 @@ class AccountInvoice(models.Model):
                             inv_line._get_sii_line_price_subtotal() * sign
                         )
         for val in taxes_f.values() + taxes_to.values():
-            val['CuotaRepercutida'] = float_round(
-                val['CuotaRepercutida'] * sign, 2,
-            )
-            val['BaseImponible'] = float_round(val['BaseImponible'] * sign, 2)
+            val['CuotaRepercutida'] = round(
+                float_round(val['CuotaRepercutida'] * sign, 2), 2)
+            val['BaseImponible'] = round(
+                float_round(val['BaseImponible'] * sign, 2), 2)
             if 'CuotaRecargoEquivalencia' in val:
-                val['CuotaRecargoEquivalencia'] = float_round(
-                    val['CuotaRecargoEquivalencia'] * sign, 2,
-                )
+                val['CuotaRecargoEquivalencia'] = round(
+                    float_round(val['CuotaRecargoEquivalencia'] * sign, 2), 2)
         if taxes_f:
             breakdown = tax_breakdown['Sujeta']['NoExenta']['DesgloseIVA']
             breakdown['DetalleIVA'] = taxes_f.values()
@@ -550,23 +549,28 @@ class AccountInvoice(models.Model):
         if 'Sujeta' in tax_breakdown and 'Exenta' in tax_breakdown['Sujeta']:
             exempt_dict = tax_breakdown['Sujeta']['Exenta']
             exempt_dict['BaseImponible'] = \
-                float_round(exempt_dict['BaseImponible'] * sign, 2)
+                round(
+                    float_round(exempt_dict['BaseImponible'] * sign, 2), 2)
         if 'NoSujeta' in tax_breakdown:
             nsub_dict = tax_breakdown['NoSujeta']
             nsub_dict[default_no_taxable_cause] = \
-                float_round(nsub_dict[default_no_taxable_cause] * sign, 2)
+                round(
+                    float_round(nsub_dict[default_no_taxable_cause] * sign, 2),
+                    2)
         if type_breakdown:
             services_dict = type_breakdown['PrestacionServicios']
             if 'Sujeta' in services_dict \
                     and 'Exenta' in services_dict['Sujeta']:
                 exempt_dict = services_dict['Sujeta']['Exenta']
                 exempt_dict['BaseImponible'] = \
-                    float_round(exempt_dict['BaseImponible'] * sign, 2)
+                    round(
+                        float_round(exempt_dict['BaseImponible'] * sign, 2), 2)
             if 'NoSujeta' in services_dict:
                 nsub_dict = services_dict['NoSujeta']
                 nsub_dict["ImporteTAIReglasLocalizacion"] = \
-                    float_round(nsub_dict["ImporteTAIReglasLocalizacion"] *
-                                sign, 2)
+                    round(
+                        float_round(nsub_dict["ImporteTAIReglasLocalizacion"] *
+                                    sign, 2), 2)
 
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
@@ -631,26 +635,25 @@ class AccountInvoice(models.Model):
                                                taxes_nd.values())},
             )
         for val in taxes_isp.values() + taxes_f.values() + taxes_fa.values():
-            val['CuotaSoportada'] = float_round(
-                val['CuotaSoportada'] * sign, 2,
-            )
-            val['BaseImponible'] = float_round(val['BaseImponible'] * sign, 2)
+            val['CuotaSoportada'] = round(
+                float_round(val['CuotaSoportada'] * sign, 2), 2)
+            val['BaseImponible'] = round(
+                float_round(val['BaseImponible'] * sign, 2), 2)
             if 'CuotaRecargoEquivalencia' in val:
-                val['CuotaRecargoEquivalencia'] = float_round(
-                    val['CuotaRecargoEquivalencia'] * sign, 2,
-                )
+                val['CuotaRecargoEquivalencia'] = round(
+                    float_round(val['CuotaRecargoEquivalencia'] * sign, 2), 2)
             tax_amount += val['CuotaSoportada']
         for val in taxes_nd.values():
-            val['CuotaSoportada'] = float_round(
-                val['CuotaSoportada'] * sign, 2,
-            )
-            val['BaseImponible'] = float_round(val['BaseImponible'] * sign, 2)
+            val['CuotaSoportada'] = round(
+                float_round(val['CuotaSoportada'] * sign, 2), 2)
+            val['BaseImponible'] = round(
+                float_round(val['BaseImponible'] * sign, 2), 2)
             if 'CuotaRecargoEquivalencia' in val:
-                val['CuotaRecargoEquivalencia'] = float_round(
-                    val['CuotaRecargoEquivalencia'] * sign, 2,
-                )
+                val['CuotaRecargoEquivalencia'] = round(
+                    float_round(val['CuotaRecargoEquivalencia'] * sign, 2), 2)
         for reg in taxes_ns.values():
-            reg['BaseImponible'] = float_round(reg['BaseImponible'] * sign, 2)
+            reg['BaseImponible'] = round(
+                float_round(reg['BaseImponible'] * sign, 2), 2)
         if taxes_fa:
             # Régimen especial agricultura - Cambiar claves
             for tax_fa in taxes_fa.values():
@@ -860,7 +863,8 @@ class AccountInvoice(models.Model):
                 "FechaRegContable": reg_date,
                 "ImporteTotal": self.cc_amount_total * sign,
                 "CuotaDeducible": self.period_id.date_start >=
-                SII_START_DATE and float_round(tax_amount * sign, 2) or 0.0,
+                SII_START_DATE and round(
+                    float_round(tax_amount * sign, 2), 2) or 0.0,
             }
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
@@ -1403,7 +1407,8 @@ class AccountInvoiceLine(models.Model):
             from_currency = self.invoice_id.currency_id.\
                 with_context(date=self.invoice_id.date_invoice)
             price_unit = from_currency.\
-                compute(price_unit, self.invoice_id.company_id.currency_id)
+                compute(price_unit, self.invoice_id.company_id.currency_id,
+                        round=False)
         return price_unit
 
     @api.multi
