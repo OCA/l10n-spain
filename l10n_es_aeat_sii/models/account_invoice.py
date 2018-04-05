@@ -1177,11 +1177,11 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _cancel_invoice_jobs(self):
-        for queue in self.mapped('invoice_jobs_ids'):
+        for queue in self.sudo().mapped('invoice_jobs_ids'):
             if queue.state == 'started':
                 return False
             elif queue.state in ('pending', 'enqueued', 'failed'):
-                queue.sudo().unlink()
+                queue.unlink()
         return True
 
     @api.multi
