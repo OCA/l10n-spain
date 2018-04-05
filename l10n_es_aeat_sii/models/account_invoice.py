@@ -1168,11 +1168,11 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _cancel_invoice_jobs(self):
-        for queue in self.mapped('invoice_jobs_ids'):
+        for queue in self.sudo().mapped('invoice_jobs_ids'):
             if queue.state == 'started':
                 return False
             elif queue.state in ('pending', 'enqueued', 'failed'):
-                queue.sudo().unlink()
+                queue.unlink()
         return True
 
     @api.multi
@@ -1386,12 +1386,12 @@ class AccountInvoice(models.Model):
         return -1.0 if self.sii_refund_type == 'I' and 'refund' in self.type \
             else 1.0
 
-    @job
+    @job(default_channel='root.invoice_validate_sii')
     @api.multi
     def confirm_one_invoice(self):
         self._send_invoice_to_sii()
 
-    @job
+    @job(default_channel='root.invoice_validate_sii')
     @api.multi
     def cancel_one_invoice(self):
         self._cancel_invoice_to_sii()
