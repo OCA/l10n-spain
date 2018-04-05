@@ -88,7 +88,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         })
         cls.invoice.action_invoice_open()
         cls.invoice.number = 'INV001'
-        cls.invoice.origin_invoice_ids = cls.invoice.copy()
+        cls.invoice.refund_invoice_id = cls.invoice.copy()
         cls.user = cls.env['res.users'].create({
             'name': 'Test user',
             'login': 'test_user',
@@ -201,7 +201,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.invoice.sii_refund_type = 'S'
         self.invoice.reference = 'sup0001'
         self.invoice.compute_taxes()
-        self.invoice.origin_invoice_ids.type = 'in_invoice'
+        self.invoice.refund_invoice_id.type = 'in_invoice'
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_refund = self._get_invoices_test('R4', '01')
         for key in list(invoices.keys()):
