@@ -11,10 +11,10 @@ Este módulo añade la opción de pago a través de la pasarela de Redsys.
 Instalación
 ===========
 
-Para utilizar este módulo, necesita la biblioteca `pycrypto
-<https://pypi.python.org/pypi/pycrypto>`_ instalada en su sistema::
+Para utilizar este módulo, necesita la biblioteca `pycryptodome
+<https://pypi.python.org/pypi/pycryptodome>`_ instalada en su sistema::
 
-    pip install pycrypto
+    pip install pycryptodome
 
 Configuración
 =============

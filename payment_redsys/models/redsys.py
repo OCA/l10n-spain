@@ -20,7 +20,7 @@ _logger = logging.getLogger(__name__)
 try:
     from Crypto.Cipher import DES3
 except ImportError:
-    _logger.info("Missing dependency (pycrypto). See README.")
+    _logger.info("Missing dependency (pycryptodome). See README.")
 
 
 class AcquirerRedsys(models.Model):
@@ -185,7 +185,9 @@ class AcquirerRedsys(models.Model):
             IV=b'\0\0\0\0\0\0\0\0')
         diff_block = len(order) % 8
         zeros = diff_block and (b'\0' * (8 - diff_block)) or ''
-        key = cipher.encrypt(order + zeros.decode())
+        key = cipher.encrypt(
+            str.encode(order + zeros.decode())
+        )
         if isinstance(params64, str):
             params64 = params64.encode()
         dig = hmac.new(
