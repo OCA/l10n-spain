@@ -67,7 +67,7 @@
         <field name="code">129</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Resultado del ejercicio</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_unaffected_earnings"/>
         <field name="chart_template_id" ref="account_chart_template_pymes"/>
     </record>
     <record id="pgc_pymes_130_child" model="account.account.template">
