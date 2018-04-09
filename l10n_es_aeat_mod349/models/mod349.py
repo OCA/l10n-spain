@@ -100,8 +100,8 @@ class Mod349(models.Model):
             if move_line.invoice_id.type in ('in_refund', 'out_refund'):
                 # Check for refunds if the origin invoice period is different
                 # from the declaration
-                origin_invoice = move_line.invoice_id.origin_invoice_ids[:1]
-                if move_line.invoice_id.origin_invoice_ids:
+                origin_invoice = move_line.invoice_id.refund_invoice_id
+                if origin_invoice:
                     if (origin_invoice.date < self.date_start or
                             origin_invoice.date > self.date_end):
                         self._create_349_refund_detail(move_line)
@@ -173,9 +173,7 @@ class Mod349(models.Model):
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
             op_key = move_line.l10n_es_aeat_349_operation_key
-            origin_invoice = move_line.invoice_id.mapped(
-                'origin_invoice_ids'
-            )[:1]
+            origin_invoice = move_line.invoice_id.refund_invoice_id
             if not origin_invoice:
                 # TODO: Instead continuing, generate an empty record and a msg
                 continue
