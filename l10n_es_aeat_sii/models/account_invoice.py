@@ -153,7 +153,7 @@ class AccountInvoice(models.Model):
     @api.onchange('sii_refund_type')
     def onchange_sii_refund_type(self):
         if (self.sii_enabled and self.sii_refund_type == 'S' and
-                not self.origin_invoice_ids):
+                not self.refund_invoice_id):
             self.sii_refund_type = False
             return {
                 'warning': {
@@ -702,17 +702,14 @@ class AccountInvoice(models.Model):
                 exp_dict['Contraparte'].update(self._get_sii_identifier())
             if self.type == 'out_refund':
                 exp_dict['TipoRectificativa'] = self.sii_refund_type
+                origin = self.refund_invoice_id
                 if self.sii_refund_type == 'S':
                     exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': abs(sum(self.mapped(
-                            'origin_invoice_ids.amount_untaxed_signed'
-                        ))),
-                        'CuotaRectificada': abs(sum(self.mapped(
-                            'origin_invoice_ids'
-                        ).mapped(lambda x: (
-                            x.amount_total_company_signed -
-                            x.amount_untaxed_signed
-                        )))),
+                        'BaseRectificada': abs(origin.amount_untaxed_signed),
+                        'CuotaRectificada': abs(
+                            origin.amount_total_company_signed -
+                            origin.amount_untaxed_signed
+                        ),
                     }
         return inv_dict
 
@@ -788,15 +785,14 @@ class AccountInvoice(models.Model):
             if self.type == 'in_refund':
                 rec_dict = inv_dict['FacturaRecibida']
                 rec_dict['TipoRectificativa'] = self.sii_refund_type
-                refund_tax_amount = sum([
-                    x._get_sii_in_taxes()[1]
-                    for x in self.origin_invoice_ids
-                ])
+                refund_tax_amount = (
+                    self.refund_invoice_id._get_sii_in_taxes()[1]
+                )
                 if self.sii_refund_type == 'S':
                     rec_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': abs(sum(self.mapped(
-                            'origin_invoice_ids.amount_untaxed_signed'
-                        ))),
+                        'BaseRectificada': abs(
+                            self.refund_invoice_id.amount_untaxed_signed
+                        ),
                         'CuotaRectificada': refund_tax_amount,
                     }
         return inv_dict
