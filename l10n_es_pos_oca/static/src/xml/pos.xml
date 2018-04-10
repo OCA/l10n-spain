@@ -3,7 +3,8 @@
 
     <t t-extend="PosTicket">
         <t t-jquery="div.pos-center-align:first" t-operation="after">
-            <div class="pos-center-align" t-if="!order.is_to_invoice()">
+            <div class="pos-center-align"
+                 t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice() and order.simplified_invoice">
                   Simplified invoice: <t t-esc="order.simplified_invoice"/>
             </div>
         </t>
@@ -35,15 +36,31 @@
                 <br /><br />
             </t>
         </t>
+        <t t-jquery=".receipt-orderlines colgroup" t-operation="replace">
+            <thead>
+                <th>Product</th>
+                <th class="pos-right-align">Qty</th>
+                <th class="pos-right-align">Unit</th>
+                <th class="pos-right-align">Subt</th>
+            </thead>
+        </t>
+        <t t-jquery="tr[t-foreach='orderlines'] > td:nth-child(2)" t-operation="after">
+            <td class="pos-right-align">
+                <t t-esc="widget.format_currency(orderline.get_unit_price())"/>
+            </td>
+        </t>
+        <t t-jquery="t[t-esc='taxdetail.name']" t-operation="after">
+            on <t t-esc="widget.format_currency(order.get_base_by_tax()[taxdetail.tax.id])" />
+        </t>
     </t>
 
     <t t-extend="XmlReceipt">
         <t t-jquery="[t-if='!receipt.company.logo']" t-operation="after">
+            <t t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice() and order.simplified_invoice">
             <br/>
-            <t t-if="!order.is_to_invoice()">
                 Simplified invoice <t t-esc="order.simplified_invoice"/>
-            </t>
             <br/>
+            </t>
         </t>
         <t t-jquery="[t-if='receipt.header']" t-operation="after">
              <t t-if="order.get_client()">
