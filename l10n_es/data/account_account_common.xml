@@ -6,413 +6,413 @@
         <field name="code">101</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Fondo social</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_102_child" model="account.account.template">
         <field name="code">102</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Capital</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_108_child" model="account.account.template">
         <field name="code">108</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acciones o participaciones propias en situaciones especiales</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_109_child" model="account.account.template">
         <field name="code">109</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acciones o participaciones propias para reducci&#243;n de capital</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_110_child" model="account.account.template">
         <field name="code">110</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Prima de emisi&#243;n o asunci&#243;n</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_112_child" model="account.account.template">
         <field name="code">112</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Reserva legal</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_113_child" model="account.account.template">
         <field name="code">113</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Reservas voluntarias</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1140_child" model="account.account.template">
         <field name="code">1140</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Reservas para acciones o participaciones de la sociedad dominante</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1141_child" model="account.account.template">
         <field name="code">1141</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Reservas estatutarias</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1142_child" model="account.account.template">
         <field name="code">1142</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Reserva por capital amortizado</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1144_child" model="account.account.template">
         <field name="code">1144</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Reservas por acciones propias aceptadas en garant&#237;a</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_118_child" model="account.account.template">
         <field name="code">118</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Aportaciones de socios o propietarios</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_119_child" model="account.account.template">
         <field name="code">119</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Diferencias por ajuste del capital a euros</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_131_child" model="account.account.template">
         <field name="code">131</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Donaciones y legados de capital</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1370_child" model="account.account.template">
         <field name="code">1370</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Ingresos fiscales por diferencias permanentes a distribuir en varios ejercicios</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1371_child" model="account.account.template">
         <field name="code">1371</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Ingresos fiscales por deducciones y bonificaciones a distribuir en varios ejercicios</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_141_child" model="account.account.template">
         <field name="code">141</field>
         <field name="reconcile" eval="True"/>
         <field name="name">Provisi&#243;n para impuestos</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_142_child" model="account.account.template">
         <field name="code">142</field>
         <field name="reconcile" eval="True"/>
         <field name="name">Provisi&#243;n para otras responsabilidades</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_143_child" model="account.account.template">
         <field name="code">143</field>
         <field name="reconcile" eval="True"/>
         <field name="name">Provisi&#243;n por desmantelamiento, retiro o rehabilitaci&#243;n del inmovilizado</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_145_child" model="account.account.template">
         <field name="code">145</field>
         <field name="reconcile" eval="True"/>
         <field name="name">Provisi&#243;n para actuaciones medioambientales</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_150_child" model="account.account.template">
         <field name="code">150</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acciones o participaciones consideradas como pasivos financieros</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1533_child" model="account.account.template">
         <field name="code">1533</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Desembolsos no exigidos, empresas del grupo</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1534_child" model="account.account.template">
         <field name="code">1534</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Desembolsos no exigidos, empresas asociadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1535_child" model="account.account.template">
         <field name="code">1535</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Desembolsos no exigidos, otras partes vinculadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1536_child" model="account.account.template">
         <field name="code">1536</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Otros desembolsos no exigidos</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1543_child" model="account.account.template">
         <field name="code">1543</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Aportaciones no dinerarias pendientes, empresas del grupo</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1544_child" model="account.account.template">
         <field name="code">1544</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Aportaciones no dinerarias pendientes, empresas asociadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1545_child" model="account.account.template">
         <field name="code">1545</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Aportaciones no dinerarias pendientes, otras partes vinculadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1546_child" model="account.account.template">
         <field name="code">1546</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Otras aportaciones no dinerarias pendientes</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1603_child" model="account.account.template">
         <field name="code">1603</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Deudas con entidades de cr&#233;dito vinculadas, empresas del grupo</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1604_child" model="account.account.template">
         <field name="code">1604</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Deudas con entidades de cr&#233;dito vinculadas, empresas asociadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1605_child" model="account.account.template">
         <field name="code">1605</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Deudas con otras entidades de cr&#233;dito vinculadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1613_child" model="account.account.template">
         <field name="code">1613</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Proveedores de inmovilizado, empresas del grupo</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1614_child" model="account.account.template">
         <field name="code">1614</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Proveedores de inmovilizado, empresas asociadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1615_child" model="account.account.template">
         <field name="code">1615</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Proveedores de inmovilizado, otras partes vinculadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1623_child" model="account.account.template">
         <field name="code">1623</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acreedores por arrendamiento financiero, empresas de grupo</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1624_child" model="account.account.template">
         <field name="code">1624</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acreedores por arrendamiento financiero, empresas asociadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1625_child" model="account.account.template">
         <field name="code">1625</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acreedores por arrendamiento financiero, otras partes vinculadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1633_child" model="account.account.template">
         <field name="code">1633</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Otras deudas, empresas del grupo</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1634_child" model="account.account.template">
         <field name="code">1634</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Otras deudas, empresas asociadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_1635_child" model="account.account.template">
         <field name="code">1635</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Otras deudas, con otras partes vinculadas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_170_child" model="account.account.template">
         <field name="code">170</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Deudas con entidades de cr&#233;dito</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_171_child" model="account.account.template">
         <field name="code">171</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Deudas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_172_child" model="account.account.template">
         <field name="code">172</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Deudas transformables en subvenciones, donaciones y legados</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_173_child" model="account.account.template">
         <field name="code">173</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Proveedores de inmovilizado</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_174_child" model="account.account.template">
         <field name="code">174</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acreedores por arrendamiento financiero</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_175_child" model="account.account.template">
         <field name="code">175</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Efectos a pagar</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_176_child" model="account.account.template">
         <field name="code">176</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Pasivos por derivados financieros</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_177_child" model="account.account.template">
         <field name="code">177</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Obligaciones y bonos</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_179_child" model="account.account.template">
         <field name="code">179</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Deudas representadas en otros valores negociables</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_180_child" model="account.account.template">
         <field name="code">180</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Fianzas recibidas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_181_child" model="account.account.template">
         <field name="code">181</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Anticipos recibidos por ventas o prestaciones de servicios</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_185_child" model="account.account.template">
         <field name="code">185</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Dep&#243;sitos recibidos</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_190_child" model="account.account.template">
         <field name="code">190</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acciones o participaciones emitidas</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_192_child" model="account.account.template">
         <field name="code">192</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Suscriptores de acciones</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_194_child" model="account.account.template">
         <field name="code">194</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Capital emitido pendiente de inscripci&#243;n</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_195_child" model="account.account.template">
         <field name="code">195</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acciones o participaciones emitidas consideradas como pasivos financieros</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_197_child" model="account.account.template">
         <field name="code">197</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Suscriptores de acciones consideradas como pasivos financieros</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_199_child" model="account.account.template">
         <field name="code">199</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Acciones o participaciones emitidas consideradas como pasivos financieros pendientes de inscripci&#243;n</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_200_child" model="account.account.template">
@@ -2365,42 +2365,42 @@
         <field name="code">570</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Caja, euros</field>
-        <field name="user_type_id" ref="account_type_financieras"/>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_571_child" model="account.account.template">
         <field name="code">571</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Caja, moneda extranjera</field>
-        <field name="user_type_id" ref="account_type_financieras"/>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_572_child" model="account.account.template">
         <field name="code">572</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Bancos e instituciones de cr&#233;dito c/c vista, euros</field>
-        <field name="user_type_id" ref="account_type_financieras"/>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_573_child" model="account.account.template">
         <field name="code">573</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Bancos e instituciones de cr&#233;dito c/c vista, moneda extranjera</field>
-        <field name="user_type_id" ref="account_type_financieras"/>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_574_child" model="account.account.template">
         <field name="code">574</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Bancos e instituciones de cr&#233;dito, cuentas de ahorro, euros</field>
-        <field name="user_type_id" ref="account_type_financieras"/>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_575_child" model="account.account.template">
         <field name="code">575</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Bancos e instituciones de cr&#233;dito, cuentas de ahorro, moneda extranjera</field>
-        <field name="user_type_id" ref="account_type_financieras"/>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
     </record>
     <record id="pgc_576_child" model="account.account.template">
