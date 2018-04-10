@@ -1,34 +1,12 @@
-/****************************************************************************
- *
- *    OpenERP, Open Source Management Solution
- *    Copyright (C) 2016 Aselcis Consulting (http://www.aselcis.com). All Rights Reserved
- *    Copyright (C) 2016 David Gómez Quilón (http://www.aselcis.com). All Rights Reserved
- *
- *    This program is free software: you can redistribute it and/or modify
- *    it under the terms of the GNU Affero General Public License as
- *    published by the Free Software Foundation, either version 3 of the
- *    License, or (at your option) any later version.
- *
- *    This program is distributed in the hope that it will be useful,
- *    but WITHOUT ANY WARRANTY; without even the implied warranty of
- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *    GNU Affero General Public License for more details.
- *
- *    You should have received a copy of the GNU Affero General Public License
- *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- ******************************************************************************/
+/* Copyright 2016 David Gómez Quilón <david.gomez@aselcis.com>
+   License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+*/
 
 odoo.define('l10n_es_pos.models', function (require) {
     "use strict";
 
-    var ajax = require('web.ajax');
-    var core = require('web.core');
     var models = require('point_of_sale.models');
-    var Model = require('web.DataModel');
-    var QWeb = core.qweb;
-    var _t = core._t;
-    var exports = {};
+
 
     var pos_super = models.PosModel.prototype;
     models.PosModel = models.PosModel.extend({
@@ -37,18 +15,14 @@ odoo.define('l10n_es_pos.models', function (require) {
             this.pushed_simple_invoices = [];
             return this;
         },
-        after_load_server_data: function () {
-            ++this.config.simple_invoice_number;
-            return pos_super.after_load_server_data.apply(this, arguments);
-        },
         get_simple_inv_next_number: function () {
-            if (this.pushed_simple_invoices.indexOf(this.config.simple_invoice_number) > -1) {
-                ++this.config.simple_invoice_number;
+            if (this.pushed_simple_invoices.indexOf(this.config.l10n_es_simplified_invoice_number) > -1) {
+                ++this.config.l10n_es_simplified_invoice_number;
             }
-            return this.config.simple_invoice_prefix+this.get_padding_simple_inv(this.config.simple_invoice_number);
+            return this.config.l10n_es_simplified_invoice_prefix+this.get_padding_simple_inv(this.config.l10n_es_simplified_invoice_number);
         },
         get_padding_simple_inv: function (number) {
-            var diff = this.config.simple_invoice_padding - number.toString().length;
+            var diff = this.config.l10n_es_simplified_invoice_padding - number.toString().length;
             var result = '';
             if (diff <= 0) {
                 result = number;
@@ -58,25 +32,22 @@ odoo.define('l10n_es_pos.models', function (require) {
                 }
                 result += number;
             }
-
             return result;
         },
         push_simple_invoice: function (order) {
             if (this.pushed_simple_invoices.indexOf(order.data.simplified_invoice) === -1) {
                 this.pushed_simple_invoices.push(order.data.simplified_invoice);
-                ++this.config.simple_invoice_number;
+                ++this.config.l10n_es_simplified_invoice_number;
             }
         },
         _flush_orders: function (orders, options) {
             var self = this;
-
             // Save pushed orders numbers
             _.each(orders, function (order) {
                 if (!order.data.to_invoice) {
                     self.push_simple_invoice(order);
                 }
             });
-
             return pos_super._flush_orders.apply(this, arguments);
         }
     });
@@ -85,6 +56,23 @@ odoo.define('l10n_es_pos.models', function (require) {
     models.Order = models.Order.extend({
         set_simple_inv_number: function () {
             this.simplified_invoice = this.pos.get_simple_inv_next_number();
+        },
+        get_base_by_tax: function () {
+            var base_by_tax = {};
+            this.get_orderlines().forEach(function (line) {
+                var tax_detail = line.get_tax_details();
+                var base_price = line.get_price_without_tax();
+                if (tax_detail) {
+                    Object.keys(tax_detail).forEach(function (tax) {
+                        if (Object.keys(base_by_tax).includes(tax)) {
+                            base_by_tax[tax] += base_price;
+                        } else {
+                            base_by_tax[tax] = base_price;
+                        }
+                    });
+                }
+            });
+            return base_by_tax;
         },
         init_from_JSON: function (json) {
             order_super.init_from_JSON.apply(this, arguments);
@@ -103,5 +91,4 @@ odoo.define('l10n_es_pos.models', function (require) {
 
     models.load_fields('res.company', ['street', 'city', 'state_id', 'zip']);
 
-    return exports;
 });

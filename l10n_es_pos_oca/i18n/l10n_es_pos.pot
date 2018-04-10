@@ -1,0 +1,200 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Above this limit the simplified invoice won't be made"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:70
+#, python-format
+msgid "Address:"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_sequence_id
+msgid "Autogenerate for each POS created"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
+#, python-format
+msgid "Customer data"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:28
+#, python-format
+msgid "Customer:"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Invoices"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
+#, python-format
+msgid "Name:"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_limit
+msgid "Over this amount is not legally posible to create a simplified invoice"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
+#, python-format
+msgid "Product"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
+#, python-format
+msgid "Qty"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Set simplified invoice sequence for this POS"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_limit
+msgid "Sim.Inv limit amount"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_number
+msgid "Sim.Inv number"
+msgstr ""
+
+#. module: l10n_es_pos
+#: code:addons/l10n_es_pos/models/pos_config.py:65
+#: code:addons/l10n_es_pos/models/pos_config.py:110
+#, python-format
+msgid "Simplified Invoice %s"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_sequence_id
+msgid "Simplified Invoice IDs Sequence"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Simplified Invoice Limit"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Simplified Invoice Sequence"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_padding
+msgid "Simplified Invoice padding"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_prefix
+msgid "Simplified Invoice prefix"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:60
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order_l10n_es_simplified_invoice_number
+#, python-format
+msgid "Simplified invoice"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:7
+#, python-format
+msgid "Simplified invoice:"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Simplified invoices"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:44
+#, python-format
+msgid "Subt"
+msgstr ""
+
+#. module: l10n_es_pos
+#: code:addons/l10n_es_pos/models/ir_sequence.py:20
+#, python-format
+msgid "There is already a simplified invoice sequence with that prefix and it should be unique."
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
+#, python-format
+msgid "Unit"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_iface_l10n_es_simplified_invoice
+msgid "Use simplified invoices for this POS"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:13
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:30
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:69
+#, python-format
+msgid "VAT:"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_ir_sequence
+msgid "ir.sequence"
+msgstr ""
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:52
+#, python-format
+msgid "on"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_config
+msgid "pos.config"
+msgstr ""
+
