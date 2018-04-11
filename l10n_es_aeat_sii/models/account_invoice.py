@@ -705,10 +705,14 @@ class AccountInvoice(models.Model):
                 origin = self.refund_invoice_id
                 if self.sii_refund_type == 'S':
                     exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': abs(origin.amount_untaxed_signed),
-                        'CuotaRectificada': abs(
-                            origin.amount_total_company_signed -
-                            origin.amount_untaxed_signed
+                        'BaseRectificada': round(
+                            abs(origin.amount_untaxed_signed), 2,
+                        ),
+                        'CuotaRectificada': round(
+                            abs(
+                                origin.amount_total_company_signed -
+                                origin.amount_untaxed_signed
+                            ), 2,
                         ),
                     }
         return inv_dict
