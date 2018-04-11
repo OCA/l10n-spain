@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # © 2017 FactorLibre - Hugo Santos <hugo.santos@factorlibre.com>
 # © 2018 FactorLibre - Victor Rodrigo <victor.rodrigo@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, fields, exceptions, models, _
+from openerp import api, fields, models
 
 
 class AccountInvoice(models.Model):
@@ -27,7 +28,7 @@ class AccountInvoice(models.Model):
                     inv_dict['IDFactura']['NumSerieFacturaEmisor'] =\
                         self.sii_invoice_summary_start
                     inv_dict['IDFactura'][
-                        'NumSerieFacturaEmisorsummarynFin'] =\
+                        'NumSerieFacturaEmisorResumenFin'] =\
                         self.sii_invoice_summary_end
             if 'FacturaExpedida' in inv_dict:
                 if 'TipoFactura' in inv_dict['FacturaExpedida']:
@@ -36,31 +37,3 @@ class AccountInvoice(models.Model):
                     if 'Contraparte' in inv_dict['FacturaExpedida']:
                         del inv_dict['FacturaExpedida']['Contraparte']
         return inv_dict
-
-    def _vat_required(self):
-        res = super(AccountInvoice, self)._vat_required()
-        if self.is_invoice_summary:
-            res = False
-        return res
-
-    @api.multi
-    def _sii_check_exceptions(self):
-        """Inheritable method for exceptions control when sending SII invoices.
-        """
-        self.ensure_one()
-        if (not self.fiscal_position_id and not self.partner_id.vat and
-                not self.is_invoice_summary) or \
-                (self.fiscal_position_id and
-                 self.fiscal_position_id.vat_required and not
-                 self.partner_id.vat):
-            raise exceptions.Warning(
-                _("The partner has not a VAT configured.")
-            )
-        if not self.company_id.chart_template_id:
-            raise exceptions.Warning(_(
-                'You have to select what account chart template use this'
-                ' company.'))
-        if not self.company_id.sii_enabled:
-            raise exceptions.Warning(
-                _("This company doesn't have SII enabled.")
-            )
