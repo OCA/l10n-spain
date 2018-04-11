@@ -36,21 +36,3 @@ msgstr "Resumen facturas simplificadas SII: Primera factura"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_invoice_sii_invoice_summary_end
 msgid "SII Invoice Summary: Last Invoice"
 msgstr "Resumen facturas simplificadas SII: Última factura"
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_invoice.py:54
-#, python-format
-msgid "The partner has not a VAT configured."
-msgstr "El cliente no tiene un CIF/NIF configurado"
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_invoice.py:62
-#, python-format
-msgid "This company doesn't have SII enabled."
-msgstr "Esta compañía no tiene el SII habilitado"
-
-#. module: l10n_es_aeat_sii_invoice_summary
-#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_invoice.py:57
-#, python-format
-msgid "You have to select what account chart template use this company."
-msgstr "Debe seleccionar el plan de cuentas que está utilizando esta compañía."
