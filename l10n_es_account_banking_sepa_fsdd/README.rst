@@ -26,7 +26,7 @@ al identificador del fichero.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/10.0
+   :target: https://runbot.odoo-community.org/runbot/189/11.0
 
 Bug Tracker
 ===========
@@ -49,6 +49,7 @@ Contributors
 
 * Omar Castiñeira Saavedra <omar@comunitea.com>
 * Luis M. Ontalba <luis.martinez@tecnativa.com>
+* Jaume Planas <jaume.planas@minorisa.net>
 
 Maintainer
 ----------
