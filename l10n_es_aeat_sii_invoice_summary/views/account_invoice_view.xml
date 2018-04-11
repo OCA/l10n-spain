@@ -6,7 +6,7 @@
     <record id="account_invoice_form_view" model="ir.ui.view">
         <field name="name">account.invoice.form</field>
         <field name="model">account.invoice</field>
-        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_sii_form"/>
         <field name="arch" type="xml">
             <field name="sii_description" position="before">
                 <field name="is_invoice_summary"/>
