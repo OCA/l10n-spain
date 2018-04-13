@@ -305,7 +305,7 @@ class L10nEsAeatReport(models.AbstractModel):
     def _prepare_move_vals(self):
         self.ensure_one()
         return {
-            'date': fields.Date.today(),
+            'date': self.date_end,
             'journal_id': self.journal_id.id,
             'ref': self.name,
             'company_id': self.company_id.id,
