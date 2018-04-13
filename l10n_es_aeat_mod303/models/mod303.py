@@ -105,17 +105,20 @@ class L10nEsAeatMod303Report(models.Model):
             # Get result from previous declarations, in order to identify if
             # there is an amount to compensate.
             prev_reports = mod303._get_previous_fiscalyear_reports(
-                mod303.date_start)
-            prev_reports.filtered(lambda x: x.state not in ['draft',
-                                                            'cancelled'])
+                mod303.date_start
+            ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
             for prev_report in prev_reports:
-                if prev_report.result_type == 'C' and not \
-                        mod303.cuota_compensar:
-                    mod303.exception_msg = \
-                        _("In previous declarations this year you "
-                          "reported a Result Type 'To Compensate'. "
-                          "You might need to fill field '[67] "
-                          "Fees to compensate' in this declaration.")
+                if (prev_report.result_type == 'C' and not
+                        mod303.cuota_compensar):
+                    if mod303.exception_msg:
+                        mod303.exception_msg += "\n"
+                    else:
+                        mod303.exception_msg = ""
+                    mod303.exception_msg += _(
+                        "In previous declarations this year you reported a "
+                        "Result Type 'To Compensate'. You might need to fill "
+                        "field '[67] Fees to compensate' in this declaration."
+                    )
 
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
@@ -202,25 +205,26 @@ class L10nEsAeatMod303Report(models.Model):
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
-        account_pattern_mapping = _ACCOUNT_PATTERN_MAP
         for mod303 in self:
             mod303.counterpart_account_id = \
                 self.env['account.account'].search([
-                    ('code', 'like', '%s%%' % account_pattern_mapping.get(
-                        mod303.result_type)),
+                    ('code', 'like', '%s%%' % _ACCOUNT_PATTERN_MAP.get(
+                        mod303.result_type, '4750')),
                     ('company_id', '=', mod303.company_id.id),
-                ])[:1]
+                ], limit=1)
             prev_reports = mod303._get_previous_fiscalyear_reports(
-                mod303.date_start)
-            if prev_reports:
-                prev_reports = prev_reports.filtered(
-                    lambda x: x.state != 'cancelled')
-                prev_report = min(prev_reports, key=lambda x: abs(
+                mod303.date_start
+            ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
+            if not prev_reports:
+                continue
+            prev_report = min(
+                prev_reports, key=lambda x: abs(
                     fields.Date.from_string(x.date_end) -
-                    fields.Date.from_string(mod303.date_start)))
-                if prev_report.resultado_liquidacion < 0.0:
-                    mod303.cuota_compensar = abs(
-                        prev_report.resultado_liquidacion)
+                    fields.Date.from_string(mod303.date_start)
+                ),
+            )
+            if prev_report.resultado_liquidacion < 0.0:
+                mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
         return res
 
     @api.multi
@@ -228,21 +232,16 @@ class L10nEsAeatMod303Report(models.Model):
         """Check records"""
         msg = ""
         for mod303 in self:
-            if mod303.result_type == 'I' and not mod303.bank_account_id:
-                msg = _('Select an account for making the charge')
-            if mod303.result_type == 'D' and not mod303.bank_account_id:
+            if mod303.result_type == 'D' and not mod303.partner_bank_id:
                 msg = _('Select an account for receiving the money')
         if msg:
-            # Don't raise error, because data is not used
-            # raise exceptions.Warning(msg)
-            pass
+            raise exceptions.Warning(msg)
         return super(L10nEsAeatMod303Report, self).button_confirm()
 
     @api.multi
     @api.constrains('cuota_compensar')
     def check_qty(self):
-        for record in self:
-            if record.cuota_compensar < 0.0:
-                raise exceptions.ValidationError(
-                    _('The fee to compensate must be indicated '
-                      'as a positive number. '))
+        if self.filtered(lambda x: x.cuota_compensar < 0.0):
+            raise exceptions.ValidationError(_(
+                'The fee to compensate must be indicated as a positive number.'
+            ))
