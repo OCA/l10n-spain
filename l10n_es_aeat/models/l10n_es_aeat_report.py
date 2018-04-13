@@ -288,7 +288,7 @@ class L10nEsAeatReport(models.AbstractModel):
         return self.search([
             ('year', '=', self.year),
             ('date_start', '<', date),
-        ]) or None
+        ])
 
     @api.multi
     def calculate(self):
