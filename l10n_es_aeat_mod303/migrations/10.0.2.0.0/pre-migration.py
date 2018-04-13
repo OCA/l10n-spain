@@ -9,7 +9,6 @@ def migrate(cr, version):
     cr.execute("""
         UPDATE l10n_es_aeat_mod303_report
         SET cuota_compensar = abs(cuota_compensar)""")
-
     cr.execute("""
         UPDATE l10n_es_aeat_mod303_report
         SET partner_bank_id = bank_account_id
