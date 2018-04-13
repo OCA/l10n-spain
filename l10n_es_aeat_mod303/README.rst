@@ -56,6 +56,7 @@ Contribuidores
 * Comunitea (http://www.comunitea.com)
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Luis M. Ontalba <luis.martinez@tecnativa.com>
+* Jordi Ballester <jordi.ballester@eficent.com>
 
 Maintainer
 ----------
