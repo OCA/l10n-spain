@@ -5,6 +5,7 @@
 import logging
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
+from odoo import exceptions
 
 _logger = logging.getLogger('aeat.303')
 
@@ -265,9 +266,9 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         self._invoice_sale_create('2017-01-12')
         sale = self._invoice_sale_create('2017-01-13')
         self._invoice_refund(sale, '2017-01-14')
-        # Create model
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
+        # Create model
         self.model303 = self.env['l10n.es.aeat.mod303.report'].create({
             'name': '9990000000303',
             'company_id': self.company.id,
@@ -282,21 +283,22 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'date_end': '2017-03-31',
             'export_config_id': export_config.id,
             'journal_id': self.journal_misc.id,
-            'counterpart_account_id': self.accounts['475000'].id
         })
 
 
 class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
+    def test_default_counterpart(self):
+        self.assertEqual(self.model303._default_counterpart_303().id,
+                         self.accounts['475000'].id)
+
     def test_model_303(self):
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
+        self.assertEqual(self.model303.state, 'calculated')
         # Fill manual fields
         self.model303.write({
-            # % atribuible al Estado
             'porcentaje_atribuible_estado': 95,
-            # Cuotas a compensar
             'cuota_compensar': 250,
-            # Iva Diferido (Liquidado por aduana)
             'casilla_77': 455,
         })
         if self.debug:
@@ -318,7 +320,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             '29', '31', '33', '35', '37', '39', '41', '42', '43', '44')])
         subtotal = round(devengado - deducir, 3)
         estado = round(subtotal * 0.95, 3)
-        result = round(estado + 455 + 250, 3)
+        result = round(estado + 455 - 250, 3)
         self.assertAlmostEqual(self.model303.total_devengado, devengado, 2)
         self.assertAlmostEqual(self.model303.total_deducir, deducir, 2)
         self.assertAlmostEqual(self.model303.casilla_46, subtotal, 2)
@@ -340,3 +342,25 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             self.assertTrue(
                 export_to_boe._export_config(self.model303, export_config)
             )
+        with self.assertRaises(exceptions.ValidationError):
+            self.model303.cuota_compensar = -250
+        self.model303.button_post()
+        self.assertTrue(self.model303.move_id)
+        self.assertEqual(self.model303.move_id.ref, self.model303.name)
+        self.assertEqual(
+            self.model303.move_id.journal_id, self.model303.journal_id,
+        )
+        self.assertEqual(self.model303.move_id.partner_id,
+                         self.env.ref('l10n_es_aeat.res_partner_aeat'))
+        codes = self.model303.move_id.mapped('line_ids.account_id.code')
+        self.assertIn('475000', codes)
+        self.assertIn('477000', codes)
+        self.assertIn('472000', codes)
+        self.model303.button_unpost()
+        self.assertFalse(self.model303.move_id)
+        self.assertEqual(self.model303.state, 'cancelled')
+        self.model303.button_recover()
+        self.assertEqual(self.model303.state, 'draft')
+        self.assertEqual(self.model303.calculation_date, False)
+        self.model303.button_cancel()
+        self.assertEqual(self.model303.state, 'cancelled')

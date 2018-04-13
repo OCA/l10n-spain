@@ -2190,7 +2190,7 @@
         <field name="sequence">26</field>
         <field name="export_config_id" ref="aeat_mod303_2017_sub03_export_config"/>
         <field name="name">Devolución. SWIFT-BIC</field>
-        <field name="expression">${object.bank_account_id.bank_bic}</field>
+        <field name="expression">${object.partner_bank_id.bank_bic}</field>
         <field name="fixed_value"/>
         <field name="export_type">string</field>
         <field name="size">11</field>
@@ -2201,7 +2201,7 @@
         <field name="sequence">27</field>
         <field name="export_config_id" ref="aeat_mod303_2017_sub03_export_config"/>
         <field name="name">Domiciliación/Devolución - IBAN</field>
-        <field name="expression">${object.bank_account_id and object.bank_account_id.acc_number.replace(' ', '') or ''}</field>
+        <field name="expression">${object.partner_bank_id and object.partner_bank_id.acc_number.replace(' ', '') or ''}</field>
         <field name="fixed_value"/>
         <field name="export_type">string</field>
         <field name="size">34</field>

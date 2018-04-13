@@ -5,7 +5,14 @@
 # Copyright 2014-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api, _
+from odoo import api, exceptions, fields, models, _
+
+_ACCOUNT_PATTERN_MAP = {
+    'C': '4700',
+    'D': '4700',
+    'N': '4700',
+    'I': '4750',
+}
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -17,11 +24,9 @@ class L10nEsAeatMod303Report(models.Model):
     def _default_counterpart_303(self):
         return self.env['account.account'].search([
             ('code', 'like', '4750%'),
+            ('company_id', '=', self._default_company_id().id)
         ])[:1]
 
-    company_partner_id = fields.Many2one(
-        comodel_name='res.partner', string="Partner",
-        relation='company_id.partner_id', store=True)
     devolucion_mensual = fields.Boolean(
         string="Montly Return", states={'done': [('readonly', True)]},
         help="Registered in the Register of Monthly Return")
@@ -86,13 +91,35 @@ class L10nEsAeatMod303Report(models.Model):
             ('C', 'To compensate'),
             ('N', 'No activity/Zero result'),
         ], string="Result type", compute='_compute_result_type')
-    bank_account_id = fields.Many2one(
-        comodel_name="res.partner.bank", string="Bank account",
-        states={'done': [('readonly', True)]}, oldname='bank_account')
     counterpart_account_id = fields.Many2one(
         comodel_name='account.account', string="Counterpart account",
-        default=_default_counterpart_303, oldname='counterpart_account')
+        default=_default_counterpart_303,
+        domain="[('company_id', '=', company_id)]",
+        oldname='counterpart_account')
     allow_posting = fields.Boolean(string="Allow posting", default=True)
+
+    @api.multi
+    @api.depends('date_start', 'cuota_compensar')
+    def _compute_exception_msg(self):
+        super(L10nEsAeatMod303Report, self)._compute_exception_msg()
+        for mod303 in self:
+            # Get result from previous declarations, in order to identify if
+            # there is an amount to compensate.
+            prev_reports = mod303._get_previous_fiscalyear_reports(
+                mod303.date_start
+            ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
+            for prev_report in prev_reports:
+                if (prev_report.result_type == 'C' and not
+                        mod303.cuota_compensar):
+                    if mod303.exception_msg:
+                        mod303.exception_msg += "\n"
+                    else:
+                        mod303.exception_msg = ""
+                    mod303.exception_msg += _(
+                        "In previous declarations this year you reported a "
+                        "Result Type 'To Compensate'. You might need to fill "
+                        "field '[67] Fees to compensate' in this declaration."
+                    )
 
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
@@ -131,7 +158,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _compute_casilla_69(self):
         for report in self:
             report.casilla_69 = (
-                report.atribuible_estado + report.casilla_77 +
+                report.atribuible_estado + report.casilla_77 -
                 report.cuota_compensar + report.regularizacion_anual)
 
     @api.multi
@@ -177,16 +204,45 @@ class L10nEsAeatMod303Report(models.Model):
             self.previous_result = 0
 
     @api.multi
+    def calculate(self):
+        res = super(L10nEsAeatMod303Report, self).calculate()
+        for mod303 in self:
+            mod303.counterpart_account_id = \
+                self.env['account.account'].search([
+                    ('code', 'like', '%s%%' % _ACCOUNT_PATTERN_MAP.get(
+                        mod303.result_type, '4750')),
+                    ('company_id', '=', mod303.company_id.id),
+                ], limit=1)
+            prev_reports = mod303._get_previous_fiscalyear_reports(
+                mod303.date_start
+            ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
+            if not prev_reports:
+                continue
+            prev_report = min(
+                prev_reports, key=lambda x: abs(
+                    fields.Date.from_string(x.date_end) -
+                    fields.Date.from_string(mod303.date_start)
+                ),
+            )
+            if prev_report.resultado_liquidacion < 0.0:
+                mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
+        return res
+
+    @api.multi
     def button_confirm(self):
         """Check records"""
         msg = ""
         for mod303 in self:
-            if mod303.result_type == 'I' and not mod303.bank_account_id:
-                msg = _('Select an account for making the charge')
-            if mod303.result_type == 'D' and not mod303.bank_account_id:
+            if mod303.result_type == 'D' and not mod303.partner_bank_id:
                 msg = _('Select an account for receiving the money')
         if msg:
-            # Don't raise error, because data is not used
-            # raise exceptions.Warning(msg)
-            pass
+            raise exceptions.Warning(msg)
         return super(L10nEsAeatMod303Report, self).button_confirm()
+
+    @api.multi
+    @api.constrains('cuota_compensar')
+    def check_qty(self):
+        if self.filtered(lambda x: x.cuota_compensar < 0.0):
+            raise exceptions.ValidationError(_(
+                'The fee to compensate must be indicated as a positive number.'
+            ))

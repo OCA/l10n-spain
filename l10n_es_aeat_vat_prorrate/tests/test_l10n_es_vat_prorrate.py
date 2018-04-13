@@ -38,7 +38,6 @@ class TestL10nEsAeatVatProrrate(TestL10nEsAeatMod303Base):
             'vat_prorrate_type': 'general',
             'vat_prorrate_percent': 80,
             'journal_id': self.journal.id,
-            'counterpart_account_id': self.counterpart_account.id,
         })
         self.model303_4t = self.model303.copy({
             'name': '9994000000303',
@@ -50,6 +49,7 @@ class TestL10nEsAeatVatProrrate(TestL10nEsAeatMod303Base):
     def test_vat_prorrate(self):
         # First semester
         self.model303.button_calculate()
+        self.model303.counterpart_account_id = self.counterpart_account.id
         self.assertAlmostEqual(self.model303.total_deducir, 2043.82, 2)
         self.model303.create_regularization_move()
         self.assertAlmostEqual(len(self.model303.move_id.line_ids), 82, 2)
