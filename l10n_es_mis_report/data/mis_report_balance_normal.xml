@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+a<?xml version="1.0" encoding="utf-8"?>
 <odoo>
    <data>
       <record id="mis_report_es_balance_normal_summary" model="mis.report">
@@ -609,7 +609,7 @@
          <field name="sequence">610</field>
          <field name="name">es12450</field>
          <field name="description">5. Otros activos financieros</field>
-         <field name="expression">+bale[5353%,5354%]+bale[5523%,5524%][('debit', '&gt;', 0.0)]</field>
+         <field name="expression">+bale[5353%,5354%]+bale[5523%] if bale[5523%]>0 else 0 + bale[5524%] if bale[5524%] >0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l4"/>
       </record>
       <record id="mis_report_kpi_es_balance_normal_12460_summary" model="mis.report.kpi">
@@ -679,7 +679,7 @@
          <field name="sequence">680</field>
          <field name="name">es12550</field>
          <field name="description">5. Otros activos financieros</field>
-         <field name="expression">+bale[5355%,545%,548%,565%,566%]+bale[550%,551%,554%,5525%][('debit', '&gt;', 0.0)]</field>
+         <field name="expression">+bale[5355%,545%,548%,565%,566%]+bale[550%] if bale[550%]>0 else 0+bale[551%] if bale[551%]>0 else 0+bale[554%] if bale[554%]>0 else 0+bale[5525%] if bale[5525%]>0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l4"/>
       </record>
       <record id="mis_report_kpi_es_balance_normal_12560_summary" model="mis.report.kpi">
@@ -1239,7 +1239,7 @@
          <field name="sequence">1240</field>
          <field name="name">es32350</field>
          <field name="description">5. Otros pasivos financieros</field>
-         <field name="expression">-bale[1034%,1044%,190%,192%,194%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,5530%,5532%,555%,5565%,5566%,560%,561%,569%]-bale[550%,551%,554%,5525%][('credit', '&gt;', 0.0)]</field>
+         <field name="expression">-bale[1034%,1044%,190%,192%,194%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,5530%,5532%,555%,5565%,5566%,560%,561%,569%]-bale[550%%] if bale[550%%]<0 else 0 - bale[551%] if bale[551%]<0 else 0 - bale[554%] if bale[554%]<0 else 0 - bale[5525%] if bale[5525%]<0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l4"/>
       </record>
       <record id="mis_report_kpi_es_balance_normal_32400_summary" model="mis.report.kpi">
@@ -1249,7 +1249,7 @@
          <field name="sequence">1250</field>
          <field name="name">es32400</field>
          <field name="description">IV. Deudas con empresas del grupo y asociadas a corto plazo</field>
-         <field name="expression">-bale[5103%,5104%,5113%,5114%,5123%,5124%,5133%,5134%,5143%,5144%,5563%,5564%]-bale[5523%,5524%][('credit', '&gt;', 0.0)]</field>
+         <field name="expression">-bale[5103%,5104%,5113%,5114%,5123%,5124%,5133%,5134%,5143%,5144%,5563%,5564%]-bale[5523%] if bale[5523%]<0 else 0 - bale[5524%] if bale[5524%]<0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l3"/>
       </record>
       <record id="mis_report_kpi_es_balance_normal_32500_summary" model="mis.report.kpi">

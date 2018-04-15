@@ -182,7 +182,7 @@
          <field name="sequence">180</field>
          <field name="name">es12400</field>
          <field name="description">IV. Inversiones en empresas del grupo y asociadas a corto plazo</field>
-         <field name="expression">+bale[5303%,5304%,5313%,5314%,5323%,5324%,5333%,5334%,5343%,5344%,5353%,5354%,5393%,5394%,593%,5943%,5944%,5953%,5954%]+bale[5523%,5524%][('debit', '&gt;', 0.0)]</field>
+         <field name="expression">+bale[5303%,5304%,5313%,5314%,5323%,5324%,5333%,5334%,5343%,5344%,5353%,5354%,5393%,5394%,593%,5943%,5944%,5953%,5954%]+bale[5523%] if bale[5523%]>0 else 0 + bale[5524%] if bale[5524%] >0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l3"/>
       </record>
       <record id="mis_report_kpi_es_balance_abreviado_12500_summary" model="mis.report.kpi">
@@ -192,7 +192,7 @@
          <field name="sequence">190</field>
          <field name="name">es12500</field>
          <field name="description">V. Inversiones financieras a corto plazo</field>
-         <field name="expression">+bale[5305%,5315%,5325%,5335%,5345%,5355%,5395%,540%,541%,542%,543%,545%,546%,547%,548%,549%,5590%,5593%,565%,566%,5945%,5955%,597%,598%]+bale[551%,5525%][('debit', '&gt;', 0.0)]</field>
+         <field name="expression">+bale[5305%,5315%,5325%,5335%,5345%,5355%,5395%,540%,541%,542%,543%,545%,546%,547%,548%,549%,5590%,5593%,565%,566%,5945%,5955%,597%,598%]+bale[551%] if bale[551%]>0 else 0+bale[5525%] if bale[5525%] >0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l3"/>
       </record>
       <record id="mis_report_kpi_es_balance_abreviado_12600_summary" model="mis.report.kpi">
@@ -552,7 +552,7 @@
          <field name="sequence">550</field>
          <field name="name">es32390</field>
          <field name="description">3. Otras deudas a corto plazo</field>
-         <field name="expression">-bale[1034%,1044%,190%,192%,194%,500%,501%,505%,506%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,5530%,5532%,555%,5565%,5566%,5595%,5598%,560%,561%,569%]-bale[551%,5525%][('credit', '&gt;', 0.0)]</field>
+         <field name="expression">-bale[1034%,1044%,190%,192%,194%,500%,501%,505%,506%,509%,5115%,5135%,5145%,521%,522%,523%,525%,526%,528%,5530%,5532%,555%,5565%,5566%,5595%,5598%,560%,561%,569%]-bale[551%] if bale[551%]<0 else 0-bale[5525%] if bale[5525%]<0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l4"/>
       </record>
       <record id="mis_report_kpi_es_balance_abreviado_32400_summary" model="mis.report.kpi">
@@ -562,7 +562,7 @@
          <field name="sequence">560</field>
          <field name="name">es32400</field>
          <field name="description">IV. Deudas con empresas del grupo y asociadas a corto plazo</field>
-         <field name="expression">-bale[5103%,5104%,5113%,5114%,5123%,5124%,5133%,5134%,5143%,5144%,5563%,5564%]-bale[5523%,5524%][('credit', '&gt;', 0.0)]</field>
+         <field name="expression">-bale[5103%,5104%,5113%,5114%,5123%,5124%,5133%,5134%,5143%,5144%,5563%,5564%]-bale[5523%] if bale[5523%]<0 else 0 - bale[5524%] if bale[5524%]<0 else 0</field>
          <field name="style_id" ref="mis_report_style_l10n_es_l3"/>
       </record>
       <record id="mis_report_kpi_es_balance_abreviado_32500_summary" model="mis.report.kpi">
