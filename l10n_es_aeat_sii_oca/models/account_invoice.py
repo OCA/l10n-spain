@@ -546,7 +546,7 @@ class AccountInvoice(models.Model):
                 isp_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-                tax_amount += abs(round(tax_line.amount_company, 2))
+                tax_amount += abs(tax_line.amount_company)
             elif tax in taxes_sfrs:
                 sfrs_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
@@ -554,7 +554,7 @@ class AccountInvoice(models.Model):
                 sfrs_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-                tax_amount += abs(round(tax_line.amount_company, 2))
+                tax_amount += abs(tax_line.amount_company)
             elif tax in taxes_sfrns:
                 sfrns_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
@@ -774,7 +774,7 @@ class AccountInvoice(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": tax_amount * sign,
+                "CuotaDeducible": round(tax_amount * sign, 2),
             }
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
