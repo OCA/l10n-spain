@@ -33,9 +33,8 @@ Configuración
   indicando los periodos deseados, y usando una de las plantillas
   proporcionadas por este módulo.
 
-Para cada informe hay una versión con sufijo 'Expandido' que incluye el
-desglose de todas las subcuentas, más alla de la los niveles oficiales
-definidos por el PGCE.
+* Por defecto en los informes se desglosarán todas las cuentas. Puede
+  deshabilitar el desglose de cuentas al crear el informe.
 
 El informe sólamente considera las cuentas numeradas de acuerdo con el
 formato establecido por el PGCE.

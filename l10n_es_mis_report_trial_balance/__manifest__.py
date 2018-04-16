@@ -9,18 +9,18 @@
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-spain',
     'category': 'Reporting',
-    'version': '10.0.2.0.0',
+    'version': '10.0.3.0.0',
     'license': 'AGPL-3',
     'depends': [
         'l10n_es_mis_report',  # OCA/account-financial-reporting
     ],
     'data': [
-        'data/mis_report_trial_balance_full_summary.xml',
-        'data/mis_report_trial_balance_full_summary_subkpi.xml',
-        'data/mis_report_trial_balance_pymes_summary.xml',
-        'data/mis_report_trial_balance_pymes_summary_subkpi.xml',
-        'data/mis_report_trial_balance_asoc_summary.xml',
-        'data/mis_report_trial_balance_asoc_summary_subkpi.xml',
+        'data/mis_report_trial_balance_full.xml',
+        'data/mis_report_trial_balance_full_subkpi.xml',
+        'data/mis_report_trial_balance_pymes.xml',
+        'data/mis_report_trial_balance_pymes_subkpi.xml',
+        'data/mis_report_trial_balance_asoc.xml',
+        'data/mis_report_trial_balance_asoc_subkpi.xml',
     ],
     'installable': True,
 }
