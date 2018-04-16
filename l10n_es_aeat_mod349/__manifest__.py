@@ -21,7 +21,6 @@
     "depends": [
         "l10n_es_aeat",
         "l10n_es",
-        'account_invoice_refund_link',
     ],
     'data': [
         "data/aeat_349_map_data.xml",
