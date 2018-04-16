@@ -37,6 +37,9 @@ Uso
 #. Cree un nuevo informe,
 #. Seleccione una de las plantillas que se corresponde con los informes
    financieros españoles.
+#. Desmarque la opción de evitar auto-expansión de cuentas si desea que
+   se oculten las cuentas contables y se muestren solamente los niveles
+   predefinidos por el formato oficial.
 #. Para seleccionar los periodos puede:
 
    * Seleccionar directamente el intervalo de fechas deseado o el nombre del
