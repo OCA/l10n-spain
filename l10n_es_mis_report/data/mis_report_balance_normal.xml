@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <data>
       <record id="mis_report_es_balance_normal" model="mis.report">
          <field name="name">Balance completo (PGCE 2008)</field>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_base"/>
@@ -1604,5 +1603,4 @@
          <field name="auto_expand_accounts_style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1i"/>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"/>
       </record>
-   </data>
 </odoo>

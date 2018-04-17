@@ -2,7 +2,6 @@
 <!-- Copyright 2017 Eficent Business and IT Consulting Services, S.L.
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-  <data>
 
     <record id="mis_report_style_l10n_es_base" model="mis.report.style">
       <field name="name">l10n_es base</field>
@@ -118,5 +117,4 @@
       <field name="hide_empty" eval="0"/>
     </record>
 
-  </data>
 </odoo>
