@@ -9,7 +9,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "10.0.2.1.2",
+    "version": "10.0.2.2.0",
     "author": "Pexego, "
               "Top Consultant, "
               "Tecnativa, "
@@ -19,6 +19,7 @@
     "category": 'Localisation/Accounting',
     'website': 'https://github.com/OCA/l10n-spain',
     "depends": [
+        "account_invoice_refund_link",
         "l10n_es_aeat",
         "l10n_es",
     ],
