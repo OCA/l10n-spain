@@ -19,6 +19,7 @@
     "category": 'Localisation/Accounting',
     'website': 'https://github.com/OCA/l10n-spain',
     "depends": [
+        "account_invoice_refund_link",
         "l10n_es_aeat",
         "l10n_es",
     ],
