@@ -168,6 +168,7 @@ class Mod349(models.Model):
         taxes = self._get_taxes()
         data = {}
         # This is for avoiding to find same lines several times
+        visited_details = self.env['l10n.es.aeat.mod349.partner_record_detail']
         visited_move_lines = self.env['account.move.line']
         for refund_detail in self.partner_refund_detail_ids:
             move_line = refund_detail.refund_line_id
@@ -180,13 +181,15 @@ class Mod349(models.Model):
             # Fetch the latest presentation made for this move
             original_detail = detail_obj.search([
                 ('move_line_id.invoice_id', '=', origin_invoice.id),
-                ('partner_record_id.operation_key', '=', op_key)
+                ('partner_record_id.operation_key', '=', op_key),
+                ('id', 'not in', visited_details.ids)
             ], limit=1, order='report_id desc')
             if original_detail:
                 # There's a previous 349 declaration report
                 origin_amount = original_detail.amount_untaxed
                 period_type = original_detail.report_id.period_type
                 year = original_detail.report_id.year
+                visited_details |= original_detail
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
