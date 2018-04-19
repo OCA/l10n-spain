@@ -101,24 +101,30 @@ class L10nEsAeatMod303Report(models.Model):
     @api.depends('date_start', 'cuota_compensar')
     def _compute_exception_msg(self):
         super(L10nEsAeatMod303Report, self)._compute_exception_msg()
-        for mod303 in self:
+        for mod303 in self.filtered(lambda x: x.state != 'draft'):
             # Get result from previous declarations, in order to identify if
             # there is an amount to compensate.
             prev_reports = mod303._get_previous_fiscalyear_reports(
                 mod303.date_start
             ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
-            for prev_report in prev_reports:
-                if (prev_report.result_type == 'C' and not
-                        mod303.cuota_compensar):
-                    if mod303.exception_msg:
-                        mod303.exception_msg += "\n"
-                    else:
-                        mod303.exception_msg = ""
-                    mod303.exception_msg += _(
-                        "In previous declarations this year you reported a "
-                        "Result Type 'To Compensate'. You might need to fill "
-                        "field '[67] Fees to compensate' in this declaration."
-                    )
+            if not prev_reports:
+                continue
+            prev_report = min(
+                prev_reports, key=lambda x: abs(
+                    fields.Date.from_string(x.date_end) -
+                    fields.Date.from_string(mod303.date_start)
+                ),
+            )
+            if prev_report.result_type == 'C' and not mod303.cuota_compensar:
+                if mod303.exception_msg:
+                    mod303.exception_msg += "\n"
+                else:
+                    mod303.exception_msg = ""
+                mod303.exception_msg += _(
+                    "In previous declarations this year you reported a "
+                    "Result Type 'To Compensate'. You might need to fill "
+                    "field '[67] Fees to compensate' in this declaration."
+                )
 
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
@@ -223,7 +229,7 @@ class L10nEsAeatMod303Report(models.Model):
                     fields.Date.from_string(mod303.date_start)
                 ),
             )
-            if prev_report.resultado_liquidacion < 0.0:
+            if prev_report.result_type == 'C':
                 mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
         return res
 
