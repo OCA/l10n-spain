@@ -108,6 +108,8 @@ class L10nEsAeatMod303Report(models.Model):
             prev_reports = mod303._get_previous_fiscalyear_reports(
                 mod303.date_start
             ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
+            if not prev_reports:
+                continue
             prev_report = min(
                 prev_reports, key=lambda x: abs(
                     fields.Date.from_string(x.date_end) -
