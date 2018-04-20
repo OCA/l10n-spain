@@ -12,14 +12,14 @@ por el módulo *mis_builder*:
     * Balance de Sumas y Saldos abreviado (PGCE 2008)
     * Balance de Sumas y Saldos normal (PGCE 2008)
 
+
 Permite mostrar el Balance de Sumas y Saldos usando la jerarquía del PGCE.
 
 
 Instalación
 ===========
 Este módulo depende del módulo 'l10n_es_mis_report' y del 'mis_builder' que
-puede obtenerse en https://apps.odoo.com, o bien en https://github
-.com/OCA/mis-builder.
+puede obtenerse en https://apps.odoo.com, o bien en https://github.com/OCA/mis-builder.
 
 Configuración
 =============
@@ -46,6 +46,7 @@ Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-belgium/issues>`
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
 `here <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_be_mis_reports%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+
 
 Problemas conocidos / Hoja de ruta
 ==================================
