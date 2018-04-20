@@ -170,9 +170,9 @@ class L10nEsVatBook(models.Model):
             Returns:
                 dictionary: Vals from the new record.
         """
-        invoice = min(move.line_ids.mapped('invoice_id'))
         ref = move.ref
         ext_ref = ''
+        invoice = move.line_ids.mapped('invoice_id')[:1]
         if invoice:
             ref = invoice.number
             ext_ref = invoice.reference
