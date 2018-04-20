@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_vat_book
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-02-10 03:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
 "Language-Team: Czech (https://www.transifex.com/oca/teams/23907/cs/)\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: l10n_es_vat_book
@@ -296,7 +296,7 @@ msgid "NIF"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:315
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:322
 #, python-format
 msgid "No AEAT Tax Mapping was found"
 msgstr ""
@@ -429,7 +429,7 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:299
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:306
 #, python-format
 msgid "This company doesn't have VAT"
 msgstr ""
@@ -473,6 +473,11 @@ msgid "VAT:"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_vat_book_line_id
+msgid "Vat Book Line"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_vat_book_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_vat_book_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_vat_book_id
@@ -480,18 +485,13 @@ msgid "Vat Book id"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.actions.report.xml,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf
+#: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf
 msgid "Vat book invoices issued"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.actions.report.xml,name:l10n_es_vat_book.act_report_vat_book_invoices_received_pdf
+#: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_received_pdf
 msgid "Vat book invoices received"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_vat_book_line_id
-msgid "Vat book line id"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -530,7 +530,7 @@ msgid "l10n.es.vat.book.tax.summary"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:251
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:258
 #, python-format
-msgid "¡The partner haven't VAT!"
+msgid "Â¡The partner haven't VAT!"
 msgstr ""

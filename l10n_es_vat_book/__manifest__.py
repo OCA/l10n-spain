@@ -2,7 +2,7 @@
 
 {
     "name": "Libro de IVA",
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.0.1",
     "author": "PRAXYA, "
               "Eficent, "
               "Odoo Community Association (OCA)",
