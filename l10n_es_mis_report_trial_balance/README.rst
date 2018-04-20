@@ -12,12 +12,7 @@ por el módulo *mis_builder*:
     * Balance de Sumas y Saldos abreviado (PGCE 2008)
     * Balance de Sumas y Saldos normal (PGCE 2008)
 
-Las plantillas están basadas en los modelos para el depósito de cuentas anuales
-del Registro Mercantil:
-
-* *Normal*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306020
-* *Abreviado*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306005
-* *PYMEs*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306035
+Permite mostrar el Balance de Sumas y Saldos usando la jerarquía del PGCE.
 
 
 Instalación
@@ -51,6 +46,13 @@ Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-belgium/issues>`
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
 `here <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_be_mis_reports%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+
+Problemas conocidos / Hoja de ruta
+==================================
+
+* A partir de la versión 11.0 este módulo desaparece, y deberá usarse el módulo
+  'account_financial_report' disponible en https://github.com/OCA/account-financial-reporting
+
 
 Créditos
 ========
