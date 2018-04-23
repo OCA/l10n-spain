@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="aeat_report_assets_backend"
+              name="aeat assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link href="/l10n_es_aeat/static/src/css/report.css" rel="stylesheet"/>
+            <script type="text/javascript"
+                    src="/l10n_es_aeat/static/src/js/aeat_report_client_action.js"/>
+
+            <script type="text/javascript"
+                    src="/l10n_es_aeat/static/src/js/aeat_report_widgets.js"/>
+        </xpath>
+    </template>
+
+</odoo>
