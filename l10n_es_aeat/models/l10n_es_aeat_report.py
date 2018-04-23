@@ -416,3 +416,16 @@ class L10nEsAeatReport(models.AbstractModel):
         if not date:
             return ''
         return datetime.strftime(fields.Date.from_string(date), "%d%m%Y")
+
+    @api.model
+    def get_html(self):
+        """ Render dynamic view from ir.action.client"""
+        result = {}
+        rcontext = {}
+        rec = self.browse(self.env.context.get('active_id'))
+        if rec:
+            rcontext['o'] = rec
+            result['html'] = self.env.ref(self.env.context.get(
+                'template_name')).render(
+                rcontext)
+        return result
