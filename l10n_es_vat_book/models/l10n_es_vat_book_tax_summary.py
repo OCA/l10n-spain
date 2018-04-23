@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Praxya (http://praxya.com/)
 #                Daniel Rodriguez Lijo <drl.9319@gmail.com>
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
