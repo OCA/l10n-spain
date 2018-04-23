@@ -37,6 +37,7 @@
         'views/aeat_export_configuration_view.xml',
         'views/aeat_tax_code_mapping_view.xml',
         'views/account_move_line_view.xml',
+        'views/report_template.xml',
     ],
     'installable': True,
 }
