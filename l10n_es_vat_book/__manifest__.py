@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # See README.rst file on addon root folder for license details
 
 {
     "name": "Libro de IVA",
-    "version": "10.0.1.0.2",
+    "version": "11.0.1.0.0",
     "author": "PRAXYA, "
               "Eficent, "
               "Odoo Community Association (OCA)",
