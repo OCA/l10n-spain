@@ -34,7 +34,7 @@ Consideraciones adicionales:
   evitar que los usuarios olviden informarlo es recomendable instalar el
   módulo 'account_invoice_tax_required', disponible en
   `account_invoice_tax_required <https://github.com/OCA/account-financial-
-  tools/tree/10.0>`_.
+  tools/tree/11.0>`_.
 
 
 Configuración
@@ -56,10 +56,10 @@ Funcionalidades del Libro Registro de IVA no incluídas por el momento:
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_pos%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+Bugs are tracked on `GitHub Issues
+<https://github.com/OCA/l10n-spain/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smash it by providing detailed and welcomed feedback.
 
 
 Créditos
