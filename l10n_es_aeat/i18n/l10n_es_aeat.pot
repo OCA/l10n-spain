@@ -195,6 +195,11 @@ msgid "Both (Credit - Debit)"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Both exigible and non-exigible amounts"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Calculate"
 msgstr ""
@@ -475,6 +480,11 @@ msgstr ""
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:45
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_exigible_type
+msgid "Exigibility"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -863,6 +873,16 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only exigible amounts"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only non-exigible amounts"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:366
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
@@ -992,7 +1012,7 @@ msgid "Regular"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:162
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:164
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -1280,7 +1300,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:196
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:198
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""
