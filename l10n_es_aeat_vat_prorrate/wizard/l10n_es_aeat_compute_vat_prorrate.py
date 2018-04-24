@@ -31,19 +31,21 @@ class ComputeVatProrrate(models.TransientModel):
             'S_IVA10B', 'S_IVA10S',
             'S_IVA21B', 'S_IVA21S', 'S_IVA21ISP',
         ]
+        MapLine = self.env['l10n.es.aeat.map.tax.line']
+        map_line = MapLine.new({
+            'move_type': 'all',
+            'field_type': 'base',
+            'sum_type': 'both',
+            'exigible_type': 'yes',
+        })
         move_lines = mod303._get_tax_lines(
-            taxed_taxes_codes, date_from, date_to, 'regular', 'base', 'both',
+            taxed_taxes_codes, date_from, date_to, map_line,
         )
         taxed = (sum(move_lines.mapped('credit')) -
                  sum(move_lines.mapped('debit')))
-        move_lines = mod303._get_tax_lines(
-            taxed_taxes_codes, date_from, date_to, 'refund', 'base', 'both',
-        )
-        taxed += (sum(move_lines.mapped('credit')) -
-                  sum(move_lines.mapped('debit')))
         # Get base amount of exempt operations
         move_lines = mod303._get_tax_lines(
-            ['S_IVA0'], date_from, date_to, 'all', 'base', 'both',
+            ['S_IVA0'], date_from, date_to, map_line,
         )
         exempt = (sum(move_lines.mapped('credit')) -
                   sum(move_lines.mapped('debit')))
