@@ -59,9 +59,8 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         self.ensure_one()
         move_lines = self._get_tax_lines(
             map_line.mapped('tax_ids.description'),
-            self.date_start, self.date_end,
-            map_line.move_type, map_line.field_type, map_line.sum_type)
-        amount = 0.0
+            self.date_start, self.date_end, map_line,
+        )
         if map_line.sum_type == 'credit':
             amount = sum(move_lines.mapped('credit'))
         elif map_line.sum_type == 'debit':
@@ -84,8 +83,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         return []
 
     @api.multi
-    def _get_move_line_domain(self, codes, date_start, date_end,
-                              move_type, field_type, sum_type):
+    def _get_move_line_domain(self, codes, date_start, date_end, map_line):
         self.ensure_one()
         tax_model = self.env['account.tax']
         taxes = tax_model.search(
@@ -96,39 +94,43 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             ('date', '>=', date_start),
             ('date', '<=', date_end)
         ]
-        if move_type == 'regular':
+        if map_line.move_type == 'regular':
             move_line_domain.append(
                 ('move_id.move_type', 'in',
                  ('receivable', 'payable', 'liquidity'))
             )
-        elif move_type == 'refund':
+        elif map_line.move_type == 'refund':
             move_line_domain.append(
                 ('move_id.move_type', 'in', ('receivable_refund',
                                              'payable_refund')))
-        if field_type == 'base':
+        if map_line.field_type == 'base':
             move_line_domain.append(('tax_ids', 'in', taxes.ids))
         else:  # field_type == 'amount'
             move_line_domain.append(('tax_line_id', 'in', taxes.ids))
-        if sum_type == 'debit':
+        if map_line.sum_type == 'debit':
             move_line_domain.append(('debit', '>', 0))
-        elif sum_type == 'credit':
+        elif map_line.sum_type == 'credit':
             move_line_domain.append(('credit', '>', 0))
+        if map_line.exigible_type == 'yes':
+            move_line_domain.append(('tax_exigible', '=', True))
+        elif map_line.exigible_type == 'no':
+            move_line_domain.append(('tax_exigible', '=', False))
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
     @api.model
-    def _get_tax_lines(self, codes, date_start, date_end,
-                       move_type, field_type, sum_type):
+    def _get_tax_lines(self, codes, date_start, date_end, map_line):
         """Get the move lines for the codes and periods associated
 
         :param codes: List of strings for the tax codes
         :param date_start: Start date of the period
         :param date_stop: Stop date of the period
-        :param field_type: 'base' or 'amount'.
+        :param map_line: Mapping line record
         :return: Move lines recordset that matches the criteria.
         """
         domain = self._get_move_line_domain(
-            codes, date_start, date_end, move_type, field_type, sum_type)
+            codes, date_start, date_end, map_line,
+        )
         return self.env['account.move.line'].search(domain)
 
     @api.model

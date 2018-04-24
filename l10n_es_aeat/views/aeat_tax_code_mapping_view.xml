@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     Copyright 2018 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -37,6 +38,11 @@
             <field name="name"/>
             <field name="to_regularize"/>
             <field name="tax_ids" widget="many2many_tags"/>
+            <field name="move_type"/>
+            <field name="field_type"/>
+            <field name="sum_type"/>
+            <field name="exigible_type"/>
+            <field name="inverse"/>
         </tree>
     </field>
 </record>
@@ -50,9 +56,14 @@
                     <field name="name"/>
                     <field name="field_number"/>
                     <field name="to_regularize"/>
+                    <field name="inverse"/>
                 </group>
                 <group>
                     <field name="tax_ids"/>
+                    <field name="move_type"/>
+                    <field name="field_type"/>
+                    <field name="sum_type"/>
+                    <field name="exigible_type"/>
                 </group>
             </group>
         </form>
