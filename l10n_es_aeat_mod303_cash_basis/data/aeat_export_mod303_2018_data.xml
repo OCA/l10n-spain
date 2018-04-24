@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2018 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2018_sub01_export_line_18" model="aeat.model.export.config.line">
+        <field name="name">Identificación: Opción por el régimen especial de criterio de Caja</field>
+        <!-- Made this way for avoiding error in case of uninstalling the module -->
+        <field name="expression">${'cash_basis_receivable' in object._fields.keys() and object.cash_basis_receivable and '1' or '2'}</field>
+    </record>
+
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2018_sub01_export_line_19" model="aeat.model.export.config.line">
+        <field name="name">Identificación: Destinatario de las operaciones a las que se aplique el régimen especial del criterio de Caja</field>
+        <!-- Made this way for avoiding error in case of uninstalling the module -->
+        <field name="expression">${'cash_basis_payable' in object._fields.keys() and object.cash_basis_payable and '1' or '2'}</field>
+    </record>
+
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2018_sub03_export_line_08" model="aeat.model.export.config.line">
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==62).amount}</field>
+        <field name="fixed_value"/>
+    </record>
+
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2018_sub03_export_line_09" model="aeat.model.export.config.line">
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==63).amount}</field>
+        <field name="fixed_value"/>
+    </record>
+
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2018_sub03_export_line_10" model="aeat.model.export.config.line">
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==74).amount}</field>
+        <field name="fixed_value"/>
+    </record>
+
+    <record id="l10n_es_aeat_mod303.aeat_mod303_2018_sub03_export_line_11" model="aeat.model.export.config.line">
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==75).amount}</field>
+        <field name="fixed_value"/>
+    </record>
+
+</odoo>
