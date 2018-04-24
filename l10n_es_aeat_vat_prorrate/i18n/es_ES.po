@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_vat_prorrate
-# 
+#
 # Translators:
 # Gelo Joga Landoo <gj@landoo.es>, 2018
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2018-01-15 03:47+0000\n"
 "PO-Revision-Date: 2018-01-15 03:47+0000\n"
 "Last-Translator: Gelo Joga Landoo <gj@landoo.es>, 2018\n"
-"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/es_ES/)\n"
+"Language-Team: Spanish (Spain) (https://www.transifex.com/oca/teams/23907/"
+"es_ES/)\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_vat_prorrate
@@ -143,7 +144,8 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid ""
 "This wizard will compute the VAT prorrate for a year.\n"
-"                        You have to use the prorrate of the previous year as\n"
+"                        You have to use the prorrate of the previous year "
+"as\n"
 "                        provisional value for all the AEAT reports of the\n"
 "                        following year up to last period, in which the\n"
 "                        definitive prorrate percentage has to be calculated\n"
