@@ -196,6 +196,11 @@ msgid "Both (Credit - Debit)"
 msgstr "Ambos (Haber - Debe)"
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Both exigible and non-exigible amounts"
+msgstr "Ambos (exigible y no exigible)"
+
+#. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Calculate"
 msgstr "Calcular"
@@ -460,6 +465,17 @@ msgstr "Fecha final"
 msgid "Error! The dates of the record overlap with an existing record."
 msgstr ""
 "Error! Las fechas de los registros se solapan con un registro existente."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_exception_msg
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_exception_msg
+msgid "Exception message"
+msgstr "Mensaje de excepción"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_exigible_type
+msgid "Exigibility"
+msgstr "Exigibilidad"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -849,7 +865,17 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:362
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only exigible amounts"
+msgstr "Sólo cantidades exigibles"
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only non-exigible amounts"
+msgstr "Sólo cantidades no exigibles"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:369
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
