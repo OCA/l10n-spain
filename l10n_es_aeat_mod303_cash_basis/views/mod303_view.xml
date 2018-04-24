@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="view_l10n_es_aeat_mod303_report_form">
+        <field name="model">l10n.es.aeat.mod303.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="cash_basis_receivable"/>
+                <field name="cash_basis_payable"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
