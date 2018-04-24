@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     Copyright 2018 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -524,18 +525,6 @@
     -->
     <field name="tax_ids" eval="[(6, False, [])]"/>
 </record>
-<record id="aeat_mod303_map_line_44" model="l10n.es.aeat.map.tax.line">
-    <field name="map_parent_id" ref="aeat_mod303_map"/>
-    <field name="field_number">44</field>
-    <field name="name">Regularización por aplicación del porcentaje definitivo de prorrata</field>
-    <field name="to_regularize" eval="True"/>
-    <!-- TODO: Asignar un impuesto para poder filtrar los apuntes relacionados
-    <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
-    <field name="inverse" eval="True"/>
-    -->
-    <field name="tax_ids" eval="[(6, False, [])]"/>
-</record>
 <record id="aeat_mod303_map_line_59" model="l10n.es.aeat.map.tax.line">
     <field name="map_parent_id" ref="aeat_mod303_map"/>
     <field name="field_number">59</field>
@@ -574,53 +563,5 @@
     <!-- Base facturas de venta (haber) - Base facturas rectificativas de venta (debe):
          S_IVA_SP_E, S_IVA_NS, S_IVA0_ISP -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva_e'), ref('l10n_es.account_tax_template_s_iva_ns'), ref('l10n_es.account_tax_template_s_iva0_isp')])]"/>
-</record>
-<record id="aeat_mod303_map_line_62" model="l10n.es.aeat.map.tax.line">
-    <field name="map_parent_id" ref="aeat_mod303_map"/>
-    <field name="field_number">62</field>
-    <field name="name">Importes de las entregas de bienes y prestaciones de servicios a las que habiéndoles sido aplicado el régimen especial del criterio de caja hubieran resultado devengadas conforme a la regla general de devengo contenida en el art. 75 LIVA - Base imponible</field>
-    <field name="to_regularize" eval="False"/>
-    <!-- TODO: Asignar un impuesto para poder filtrar los apuntes relacionados
-    <field name="field_type">base</field>
-    <field name="sum_type">credit</field>
-    <field name="inverse" eval="False"/>
-    -->
-    <field name="tax_ids" eval="[(6, False, [])]"/>
-</record>
-<record id="aeat_mod303_map_line_63" model="l10n.es.aeat.map.tax.line">
-    <field name="map_parent_id" ref="aeat_mod303_map"/>
-    <field name="field_number">63</field>
-    <field name="name">Importes de las entregas de bienes y prestaciones de servicios a las que habiéndoles sido aplicado el régimen especial del criterio de caja hubieran resultado devengadas conforme a la regla general de devengo contenida en el art. 75 LIVA - Cuota</field>
-    <field name="to_regularize" eval="True"/>
-    <!-- TODO: Asignar un impuesto para poder filtrar los apuntes relacionados
-    <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
-    <field name="inverse" eval="False"/>
-    -->
-    <field name="tax_ids" eval="[(6, False, [])]"/>
-</record>
-<record id="aeat_mod303_map_line_74" model="l10n.es.aeat.map.tax.line">
-    <field name="map_parent_id" ref="aeat_mod303_map"/>
-    <field name="field_number">74</field>
-    <field name="name">Importe de las adquisiciones de bienes y servicios a las que sea de aplicación o afecte el régimen especial del criterio de caja conforme a la ley general de devengo contenida en el artículo 75 de LIVA - Base imponible</field>
-    <field name="to_regularize" eval="False"/>
-    <!-- TODO: Asignar un impuesto para poder filtrar los apuntes relacionados
-    <field name="field_type">base</field>
-    <field name="sum_type">debit</field>
-    <field name="inverse" eval="False"/>
-    -->
-    <field name="tax_ids" eval="[(6, False, [])]"/>
-</record>
-<record id="aeat_mod303_map_line_75" model="l10n.es.aeat.map.tax.line">
-    <field name="map_parent_id" ref="aeat_mod303_map"/>
-    <field name="field_number">75</field>
-    <field name="name">Importe de las adquisiciones de bienes y servicios a las que sea de aplicación o afecte el régimen especial del criterio de caja conforme a la ley general de devengo contenida en el artículo 75 de LIVA - Cuota</field>
-    <field name="to_regularize" eval="True"/>
-    <!-- TODO: Asignar un impuesto para poder filtrar los apuntes relacionados
-    <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
-    <field name="inverse" eval="False"/>
-    -->
-    <field name="tax_ids" eval="[(6, False, [])]"/>
 </record>
 </odoo>
