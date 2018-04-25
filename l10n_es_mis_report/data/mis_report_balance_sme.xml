@@ -367,8 +367,7 @@
          <field name="name">es21700</field>
          <field name="description">VII. Resultado del ejercicio</field>
          <field name="expression">-bale[129%,6%,7%]-balu[6%,7%]</field>
-         <field name="auto_expand_accounts">True</field>
-         <field name="auto_expand_accounts_style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"/>
+         <field name="auto_expand_accounts">False</field>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"/>
       </record>
       <record id="mis_report_kpi_es_balance_pymes_21800" model="mis.report.kpi">
