@@ -51,6 +51,19 @@ SII_COUNTRY_CODE_MAPPING = {
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+    SII_WDSL_MAPPING = {
+        'out_invoice': 'l10n_es_aeat_sii.wsdl_out',
+        'out_refund': 'l10n_es_aeat_sii.wsdl_out',
+        'in_invoice': 'l10n_es_aeat_sii.wsdl_in',
+        'in_refund': 'l10n_es_aeat_sii.wsdl_in',
+    }
+    SII_PORT_NAME_MAPPING = {
+        'out_invoice': 'SuministroFactEmitidas',
+        'out_refund': 'SuministroFactEmitidas',
+        'in_invoice': 'SuministroFactRecibidas',
+        'in_refund': 'SuministroFactRecibidas',
+    }
+
     def _default_sii_refund_type(self):
         inv_type = self.env.context.get('type')
         return 'S' if inv_type in ['out_refund', 'in_refund'] else False
@@ -822,8 +835,15 @@ class AccountInvoice(models.Model):
         return {}
 
     @api.multi
-    def _connect_sii(self, wsdl):
+    def _connect_sii(self, mapping_key):
         self.ensure_one()
+        company = self.company_id
+        wsdl = self.env['ir.config_parameter'].sudo().get_param(
+            self.SII_WDSL_MAPPING[mapping_key], False
+        )
+        port_name = self.SII_PORT_NAME_MAPPING[mapping_key]
+        if company.sii_test:
+            port_name += 'Pruebas'
         today = fields.Date.today()
         sii_config = self.env['l10n.es.aeat.sii'].search([
             ('company_id', '=', self.company_id.id),
@@ -850,7 +870,7 @@ class AccountInvoice(models.Model):
         transport = Transport(session=session)
         history = HistoryPlugin()
         client = Client(wsdl=wsdl, transport=transport, plugins=[history])
-        return client
+        return client.bind('siiService', port_name)
 
     @api.multi
     def _process_invoice_for_sii_send(self):
@@ -883,23 +903,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def _send_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ['open', 'paid']):
-            company = invoice.company_id
-            port_name = ''
-            wsdl = ''
-            if invoice.type in ['out_invoice', 'out_refund']:
-                wsdl = self.env['ir.config_parameter'].sudo().get_param(
-                    'l10n_es_aeat_sii.wsdl_out', False)
-                port_name = 'SuministroFactEmitidas'
-                if company.sii_test:
-                    port_name += 'Pruebas'
-            elif invoice.type in ['in_invoice', 'in_refund']:
-                wsdl = self.env['ir.config_parameter'].sudo().get_param(
-                    'l10n_es_aeat_sii.wsdl_in', False)
-                port_name = 'SuministroFactRecibidas'
-                if company.sii_test:
-                    port_name += 'Pruebas'
-            client = invoice._connect_sii(wsdl)
-            serv = client.bind('siiService', port_name)
+            serv = invoice._connect_sii(invoice.type)
             if invoice.sii_state == 'not_sent':
                 tipo_comunicacion = 'A0'
             else:
@@ -955,10 +959,10 @@ class AccountInvoice(models.Model):
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
-                invoice = env['account.invoice'].browse(self.id)
+                invoice = env['account.invoice'].browse(invoice.id)
                 inv_vals.update({
                     'sii_send_failed': True,
-                    'sii_send_error': fault,
+                    'sii_send_error': fault[:60],
                     'sii_return': fault,
                 })
                 invoice.write(inv_vals)
@@ -997,58 +1001,47 @@ class AccountInvoice(models.Model):
     @api.multi
     def _cancel_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ['cancel']):
-            company = invoice.company_id
-            port_name = ''
-            wsdl = ''
-            if invoice.type in ['out_invoice', 'out_refund']:
-                wsdl = self.env['ir.config_parameter'].sudo().get_param(
-                    'l10n_es_aeat_sii.wsdl_out', False)
-                port_name = 'SuministroFactEmitidas'
-                if company.sii_test:
-                    port_name += 'Pruebas'
-            elif invoice.type in ['in_invoice', 'in_refund']:
-                wsdl = self.env['ir.config_parameter'].sudo().get_param(
-                    'l10n_es_aeat_sii.wsdl_in', False)
-                port_name = 'SuministroFactRecibidas'
-                if company.sii_test:
-                    port_name += 'Pruebas'
-            client = invoice._connect_sii(wsdl)
-            serv = client.bind('siiService', port_name)
+            serv = invoice._connect_sii(invoice.type)
             header = invoice._get_sii_header(cancellation=True)
+            inv_vals = {
+                'sii_send_failed': True,
+                'sii_send_error': False,
+            }
             try:
                 inv_dict = invoice._get_cancel_sii_invoice_dict()
                 if invoice.type in ['out_invoice', 'out_refund']:
-                    res = serv.AnulacionLRFacturasEmitidas(
-                        header, inv_dict)
-                elif invoice.type in ['in_invoice', 'in_refund']:
-                    res = serv.AnulacionLRFacturasRecibidas(
-                        header, inv_dict)
+                    res = serv.AnulacionLRFacturasEmitidas(header, inv_dict)
+                else:
+                    res = serv.AnulacionLRFacturasRecibidas(header, inv_dict)
                 # TODO Facturas intracomunitarias 66 RIVA
                 # elif invoice.fiscal_position_id.id == self.env.ref(
                 #     'account.fp_intra').id:
                 #     res = serv.AnulacionLRDetOperacionIntracomunitaria(
                 #         header, invoices)
+                inv_vals['sii_return'] = res
                 if res['EstadoEnvio'] == 'Correcto':
-                    invoice.sii_state = 'cancelled'
-                    invoice.sii_csv = res['CSV']
-                    invoice.sii_send_failed = False
-                else:
-                    invoice.sii_send_failed = True
-                invoice.sii_return = res
-                send_error = False
+                    inv_vals.update({
+                        'sii_state': 'cancelled',
+                        'sii_csv': res['CSV'],
+                        'sii_send_failed': False,
+                    })
                 res_line = res['RespuestaLinea'][0]
                 if res_line['CodigoErrorRegistro']:
-                    send_error = "{} | {}".format(
+                    inv_vals['sii_send_error'] = u"{} | {}".format(
                         str(res_line['CodigoErrorRegistro']),
-                        str(res_line['DescripcionErrorRegistro'])[:60])
-                invoice.sii_send_error = send_error
+                        str(res_line['DescripcionErrorRegistro'])[:60],
+                    )
+                invoice.write(inv_vals)
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
-                invoice = env['account.invoice'].browse(self.id)
-                invoice.sii_send_error = fault
-                invoice.sii_send_failed = True
-                invoice.sii_return = fault
+                invoice = env['account.invoice'].browse(invoice.id)
+                inv_vals.update({
+                    'sii_send_failed': True,
+                    'sii_send_error': fault[:60],
+                    'sii_return': fault,
+                })
+                invoice.write(inv_vals)
                 new_cr.commit()
                 new_cr.close()
                 raise
@@ -1095,12 +1088,13 @@ class AccountInvoice(models.Model):
                 'You can not cancel this invoice because'
                 ' there is a job running!'))
         res = super(AccountInvoice, self).action_cancel()
-        if self.sii_state == 'sent':
-            self.sii_state = 'sent_modified'
-        elif self.sii_state == 'cancelled_modified':
-            # Case when repoen a cancelled invoice, validate and cancel again
-            # without any SII communication.
-            self.sii_state = 'cancelled'
+        for invoice in self:
+            if invoice.sii_state == 'sent':
+                invoice.sii_state = 'sent_modified'
+            elif invoice.sii_state == 'cancelled_modified':
+                # Case when repoen a cancelled invoice, validate and cancel
+                # again without any SII communication.
+                invoice.sii_state = 'cancelled'
         return res
 
     @api.multi
