@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+    <data>
+
+        <record id="view_payment_mode_sii_form" model="ir.ui.view">
+            <field name="name">payment.mode.sii.form</field>
+            <field name="model">payment.mode</field>
+            <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
+            <field name="arch" type="xml">
+                <field name="bank_id" position="after">
+                    <field name="sii_key"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

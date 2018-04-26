@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+
+<openerp>
+    <data>
+
+        <record id="invoice_supplier_sii_form" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.sii.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_supplier_sii_form" />
+            <field name="arch" type="xml">
+                <field name="sii_return" position="after">
+                    <field name="sii_recc_sent" />
+                    <field name="sii_recc_csv"/>
+                    <field name="sii_recc_return" />
+                </field>
+            </field>
+        </record>
+
+        <record id="invoice_sii_form" model="ir.ui.view">
+            <field name="name">account.invoice.sii.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_sii_form" />
+            <field name="arch" type="xml">
+                <field name="sii_return" position="after">
+                    <field name="sii_recc_sent" />
+                    <field name="sii_recc_csv"/>
+                    <field name="sii_recc_return" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
