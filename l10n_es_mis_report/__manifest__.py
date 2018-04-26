@@ -11,7 +11,7 @@
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-spain',
     'category': 'Reporting',
-    'version': '10.0.2.0.1',
+    'version': '10.0.2.0.2',
     'license': 'AGPL-3',
     'depends': [
         'mis_builder',  # OCA/account-financial-reporting
