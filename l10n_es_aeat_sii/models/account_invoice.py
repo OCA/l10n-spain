@@ -1028,8 +1028,8 @@ class AccountInvoice(models.Model):
                 res_line = res['RespuestaLinea'][0]
                 if res_line['CodigoErrorRegistro']:
                     inv_vals['sii_send_error'] = u"{} | {}".format(
-                        unicode(res_line['CodigoErrorRegistro']),
-                        unicode(res_line['DescripcionErrorRegistro'])[:60],
+                        str(res_line['CodigoErrorRegistro']),
+                        str(res_line['DescripcionErrorRegistro'])[:60],
                     )
                 invoice.write(inv_vals)
             except Exception as fault:
