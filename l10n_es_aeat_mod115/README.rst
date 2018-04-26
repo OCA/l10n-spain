@@ -41,7 +41,7 @@ Créditos
 Contribuidores
 --------------
 
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Ainara Galdona <ainaragaldona@avanzosc.es>
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Factor Libre - Kiko Peiro <francisco.peiro@factorlibre.com>
