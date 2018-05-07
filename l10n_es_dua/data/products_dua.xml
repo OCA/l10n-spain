@@ -7,7 +7,7 @@
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
 </record>
 
-<record id="producto_dua_valoracion_21" model="product.product">
+<record id="producto_dua_valoracion_21" model="product.template">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
@@ -19,7 +19,7 @@
     <field name="purchase_ok" eval="False"/>
 </record>
 
-<record id="producto_dua_valoracion_10" model="product.product">
+<record id="producto_dua_valoracion_10" model="product.template">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
@@ -31,7 +31,7 @@
     <field name="purchase_ok" eval="False"/>
 </record>
 
-<record id="producto_dua_valoracion_4" model="product.product">
+<record id="producto_dua_valoracion_4" model="product.template">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
@@ -43,7 +43,7 @@
     <field name="purchase_ok" eval="False"/>
 </record>
 
-<record id="producto_dua_compensacion" model="product.product">
+<record id="producto_dua_compensacion" model="product.template">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
