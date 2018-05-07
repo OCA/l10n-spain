@@ -6,6 +6,9 @@
 Account balance reporting engine
 ================================
 
+**WARNING**: This engine is deprecated in favor of *mis_builder* +
+*l10n_es_mis_report*, so please install those.
+
 The module allows the user to create account balance reports and templates,
 comparing the values of 'accounting concepts' between two fiscal years
 or a set of fiscal periods.
