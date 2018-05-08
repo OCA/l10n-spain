@@ -32,7 +32,7 @@ Una vez actualizado el plan contable (Impuestos y Posiciones fiscales) es
 necesario asignar los impuestos a los productos DUA que crea este addon para
 facilitar la contabilidad de las facturas de la empresa de tránsito:
 
-1. Ir a Compras > Productos > Productos
+1. Ir a Compras > Compra > Productos
 2. Quitar el filtro por defecto y buscar "DUA"
 3. Asignar los siguientes impuestos en el campo "Impuestos proveedor"
     * DUA Compensación: "DUA Exento"
@@ -76,7 +76,7 @@ anterior
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/8.0
+   :target: https://runbot.odoo-community.org/runbot/189/9.0
 
 
 Procedimiento
@@ -140,6 +140,7 @@ Contribuidores
 * Antonio Espinosa <antonioea@antiun.com>
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Albert Cabedo <albert@gafic.com>
+* Nacho Muñoz <nacmuro@gmail.com>
 
 Maintainer
 ----------
