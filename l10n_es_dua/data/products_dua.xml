@@ -7,7 +7,7 @@
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
 </record>
 
-<record id="producto_dua_valoracion_21" model="product.template">
+<record id="producto_dua_valoracion_21" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
@@ -15,11 +15,9 @@
     <field name="name">DUA Valoración IVA 21%</field>
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
-    <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
 </record>
 
-<record id="producto_dua_valoracion_10" model="product.template">
+<record id="producto_dua_valoracion_10" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
@@ -27,11 +25,9 @@
     <field name="name">DUA Valoración IVA 10%</field>
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
-    <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
 </record>
 
-<record id="producto_dua_valoracion_4" model="product.template">
+<record id="producto_dua_valoracion_4" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
@@ -39,11 +35,9 @@
     <field name="name">DUA Valoración IVA 4%</field>
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
-    <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
 </record>
 
-<record id="producto_dua_compensacion" model="product.template">
+<record id="producto_dua_compensacion" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
     <field name="uom_po_id" ref="product.product_uom_unit"/>
     <field name="supplier_taxes_id" eval="False"/>
@@ -51,8 +45,6 @@
     <field name="name">DUA Compensación</field>
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
-    <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
 </record>
 
 </data>
