@@ -8,6 +8,8 @@ from openerp.addons.l10n_es_account_invoice_sequence.constants import \
 
 
 class TestL10nEsAccountInvoiceSequence(common.TransactionCase):
+    at_install = False
+    post_install = True
 
     def test_create_chart_of_accounts(self):
         company = self.env['res.company'].create(

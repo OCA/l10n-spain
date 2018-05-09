@@ -6,6 +6,9 @@ from openerp import fields
 
 
 class TestInvoiceSequence(common.TransactionCase):
+    at_install = False
+    post_install = True
+
     def setUp(self):
         super(TestInvoiceSequence, self).setUp()
         self.sequence = self.env['ir.sequence'].create({
