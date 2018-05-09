@@ -143,6 +143,7 @@ Contributors
 * Javi Melendez <javimelex@gmail.com>
 * Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
+* Nacho Muñoz <nacmuro@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
