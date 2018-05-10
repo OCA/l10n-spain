@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo9-addon-l10n_es_cnae',
         'odoo9-addon-l10n_es_crm_lead_trade_name',
         'odoo9-addon-l10n_es_dua',
+        'odoo9-addon-l10n_es_dua_sii',
         'odoo9-addon-l10n_es_irnr',
         'odoo9-addon-l10n_es_partner',
         'odoo9-addon-l10n_es_partner_mercantil',
