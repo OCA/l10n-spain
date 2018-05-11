@@ -230,7 +230,8 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             'login': 'billing_user',
             'email': 'billing.user@example.com',
             'notify_email': 'none',
-            'groups_id': [(6, 0, [invocing_grp.id])]})
+            'groups_id': [(6, 0, [invocing_grp.id]),
+                          (6, 0, [account_user_grp.id])]})
         self.account_user = Users.create({
             'name': 'Account user',
             'login': 'account_user',
