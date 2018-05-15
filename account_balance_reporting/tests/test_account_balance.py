@@ -3,11 +3,13 @@
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3.0).
 
-from odoo.tests import common
+from odoo.tests import at_install, post_install, SavepointCase
 from odoo import fields
 
 
-class TestAccountBalanceBase(common.SavepointCase):
+@at_install(False)
+@post_install(True)
+class TestAccountBalanceBase(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestAccountBalanceBase, cls).setUpClass()
