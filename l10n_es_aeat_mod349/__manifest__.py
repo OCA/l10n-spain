@@ -5,11 +5,12 @@
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 Eficent Business & IT Consult. Services <contact@eficent.com>
 # Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2018 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "10.0.2.2.0",
+    "version": "10.0.2.2.1",
     "author": "Pexego, "
               "Top Consultant, "
               "Tecnativa, "
