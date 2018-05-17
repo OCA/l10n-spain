@@ -115,6 +115,7 @@ Contribudores
   * Pedro M. Baeza <pedro.baeza@tecnativa.com>
   * Angel Moya <odoo@tecnativa.com>
   * Luis M. Ontalba <luis.martinez@tecnativa.com>
+  * Carlos Dauden
 * Eficent (http://www.eficent.com)
   * Jordi Ballester <jordi.ballester@eficent.com>
 
