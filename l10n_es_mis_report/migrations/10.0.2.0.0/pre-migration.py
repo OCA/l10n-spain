@@ -6,8 +6,7 @@
 def migrate(cr, version):
     if not version:
         return
-
-    list = {
+    mapping = {
         'mis_report_es_balance_abreviado_summary':
             'mis_report_es_balance_abreviado',
         'mis_report_es_balance_normal_summary':
@@ -23,10 +22,10 @@ def migrate(cr, version):
         'mis_report_es_eiyg_normal_summary':
             'mis_report_es_eiyg_normal',
     }
-    for key in list.keys():
+    for key in mapping.keys():
         cr.execute("""
             UPDATE ir_model_data
-            SET name = '%s'
-            WHERE name = '%s'
+            SET name = %s
+            WHERE name = %s
             AND module = 'l10n_es_mis_report'
-            """ % (list[key], key))
+            """, (mapping[key], key))
