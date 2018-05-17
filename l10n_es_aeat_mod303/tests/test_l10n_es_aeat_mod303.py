@@ -256,16 +256,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
 
     def setUp(self):
         super(TestL10nEsAeatMod303Base, self).setUp()
-        # Purchase invoices
-        self._invoice_purchase_create('2017-01-01')
-        self._invoice_purchase_create('2017-01-02')
-        purchase = self._invoice_purchase_create('2017-01-03')
-        self._invoice_refund(purchase, '2017-01-18')
-        # Sale invoices
-        self._invoice_sale_create('2017-01-11')
-        self._invoice_sale_create('2017-01-12')
-        sale = self._invoice_sale_create('2017-01-13')
-        self._invoice_refund(sale, '2017-01-14')
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
         # Create model
@@ -287,6 +277,19 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
 
 
 class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
+    def setUp(self):
+        super(TestL10nEsAeatMod303, self).setUp()
+        # Purchase invoices
+        self._invoice_purchase_create('2017-01-01')
+        self._invoice_purchase_create('2017-01-02')
+        purchase = self._invoice_purchase_create('2017-01-03')
+        self._invoice_refund(purchase, '2017-01-18')
+        # Sale invoices
+        self._invoice_sale_create('2017-01-11')
+        self._invoice_sale_create('2017-01-12')
+        sale = self._invoice_sale_create('2017-01-13')
+        self._invoice_refund(sale, '2017-01-14')
+
     def test_default_counterpart(self):
         self.assertEqual(self.model303._default_counterpart_303().id,
                          self.accounts['475000'].id)

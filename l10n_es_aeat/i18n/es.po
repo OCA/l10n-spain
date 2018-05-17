@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 # enjolras <yo@miguelrevilla.com>, 2018
@@ -195,6 +195,11 @@ msgstr "Booleano"
 #: selection:l10n.es.aeat.map.tax.line,sum_type:0
 msgid "Both (Credit - Debit)"
 msgstr "Ambos (Haber - Debe)"
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Both exigible and non-exigible amounts"
+msgstr "Ambos (exigible y no exigible)"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -468,6 +473,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_exception_msg
 msgid "Exception message"
 msgstr "Mensaje de excepción"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_exigible_type
+msgid "Exigibility"
+msgstr "Exigibilidad"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -859,6 +869,16 @@ msgstr "Número sin decimales"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_model_id
 msgid "Odoo model"
 msgstr "Modelo Odoo"
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only exigible amounts"
+msgstr "Sólo cantidades exigibles"
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only non-exigible amounts"
+msgstr "Sólo cantidades no exigibles"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:369
