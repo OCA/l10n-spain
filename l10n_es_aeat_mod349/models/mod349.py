@@ -7,10 +7,12 @@
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
 #                  <contact@eficent.com>
+# Copyright 2018 - Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import re
 from odoo import models, fields, api, exceptions, _
+from odoo.tools import float_is_zero
 
 
 def _format_partner_vat(partner_vat=None, country=None):
@@ -154,6 +156,10 @@ class Mod349(models.Model):
                 })
                 for record_detail in data[partner][op_key]['record_details']:
                     record_detail.partner_record_id = record_created
+        rounding = self.env.user.company_id.currency_id.rounding
+        self.partner_record_ids.filtered(
+            lambda r: float_is_zero(r.total_operation_amount,
+                                    precision_rounding=rounding)).unlink()
         return True
 
     def _create_349_refund_records(self):
