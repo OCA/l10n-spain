@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- © 2009-2011 Jordi Esteve - Zikzakmedia
-     © 2011 Ignacio Ibeas - Acysos
+     © 2011-2018 Ignacio Ibeas - Acysos
      © 2014 Pablo Cayuela - Aserti Global Solutions
      © 2014 Ángel Moya - Domatix
      © 2015 Carlos Liébana - Factor Libre
@@ -794,6 +794,17 @@
         <field name="amount_type">percent</field>
         <field name="include_base_amount" eval="1"/>
     </record>
+    <record id="account_tax_template_p_iva105_gan" model="account.tax.template">
+        <field name="description">P_IVA105_GAN</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="account_id" ref="pgc_472_child"/>
+        <field name="name">10,5% IVA Soportado régimen ganadero o pesca</field>
+        <field name="refund_account_id" ref="pgc_472_child"/>
+        <field name="chart_template_id" ref="account_chart_template_common"/>
+        <field name="amount" eval="10.5"/>
+        <field name="amount_type">percent</field>
+        <field name="include_base_amount" eval="1"/>
+    </record>
     <record id="account_tax_template_s_iva0_e" model="account.tax.template">
         <field name="description">S_IVA0_E</field>
         <field name="type_tax_use">sale</field>
@@ -1042,6 +1053,7 @@
         <field name="refund_account_id" ref="pgc_4751_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
         <field name="amount" eval="-2"/>
+        <field name="sequence" eval="2"/>
         <field name="amount_type">percent</field>
     </record>
     <record id="account_tax_template_s_iva0_isp" model="account.tax.template">

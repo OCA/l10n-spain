@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # © 2008-2010 Jordi Esteve - Zikzakmedia S.L.
-# © 2011 Ignacio - Ibeas - Acysos
+# © 2011-2018 Ignacio - Ibeas - Acysos
 # © 2012-2013 Grupo Opentia
 # © 2014 Pablo Cayuela - Aserti Global Solutions
 # © 2014 Ángel Moya - Domatix
@@ -12,7 +12,7 @@
 
 {
     "name": "Planes de cuentas españoles (según PGCE 2008)",
-    "version": "10.0.1.2.0",
+    "version": "10.0.1.3.0",
     "author": "Spanish Localization Team, "
               "Odoo Community Association (OCA)",
     "website": 'https://github.com/OCA/l10n-spain',
