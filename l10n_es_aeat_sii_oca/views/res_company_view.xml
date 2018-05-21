@@ -18,6 +18,7 @@
                         <group name="sii_config">
                             <field name="sii_test" />
                             <field name="sii_method"/>
+                            <field name="sii_tax_agency_id"/>
                         </group>
                         <group name="sii_description" string="Description config">
                             <field name="sii_description_method"/>
