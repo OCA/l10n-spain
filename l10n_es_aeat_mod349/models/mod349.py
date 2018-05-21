@@ -157,9 +157,10 @@ class Mod349(models.Model):
                 })
                 for record_detail in data[partner][op_key]['record_details']:
                     record_detail.partner_record_id = record_created
-        prec = self.env.user.company_id.currency_id.rounding
+        rounding = self.env.user.company_id.currency_id.rounding
         self.partner_record_ids.filtered(
-            lambda r: float_is_zero(r.total_operation_amount, prec)).unlink()
+            lambda r: float_is_zero(r.total_operation_amount,
+                                    precision_rounding=rounding)).unlink()
         return True
 
     def _create_349_refund_records(self):
