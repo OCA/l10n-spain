@@ -3,8 +3,21 @@
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from openerp.tests import common
-from openerp import exceptions, fields
+import base64
+
+from odoo import exceptions, fields
+from odoo.tests import common
+from odoo.modules.module import get_resource_path
+
+try:
+    from zeep.client import ServiceProxy
+except (ImportError, IOError) as err:
+    ServiceProxy = object
+
+CERTIFICATE_PATH = get_resource_path(
+    'l10n_es_aeat_sii', 'tests', 'cert', 'entidadspj_act.p12',
+)
+CERTIFICATE_PASSWD = '794613'
 
 
 def _deep_sort(obj):
@@ -98,6 +111,14 @@ class TestL10nEsAeatSii(common.SavepointCase):
             ],
             'email': 'somebody@somewhere.com',
         })
+        with open(CERTIFICATE_PATH) as certificate:
+            content = certificate.read()
+        cls.sii_cert = cls.env['l10n.es.aeat.sii'].create({
+            'name': 'Test Certificate',
+            'file': base64.b64encode(content),
+            'company_id': cls.invoice.company_id.id,
+        })
+        cls.tax_agencies = cls.env['aeat.sii.tax.agency'].search([])
 
     def test_job_creation(self):
         self.assertTrue(self.invoice.invoice_jobs_ids)
@@ -249,3 +270,62 @@ class TestL10nEsAeatSii(common.SavepointCase):
     def test_permissions(self):
         """This should work without errors"""
         self.invoice.sudo(self.user).action_invoice_open()
+
+    def _activate_certificate(self, passwd=None):
+        """Obtain Keys from .pfx and activate the cetificate"""
+        if passwd:
+            wizard = self.env['l10n.es.aeat.sii.password'].create({
+                'password': passwd,
+                'folder': 'test',
+            })
+            wizard.with_context(active_id=self.sii_cert.id).get_keys()
+        self.sii_cert.action_activate()
+        self.sii_cert.company_id.write({
+            'name': 'ENTIDAD FICTICIO ACTIVO',
+            'vat': 'ESJ7102572J',
+        })
+
+    def test_certificate(self):
+        self.assertRaises(
+            exceptions.ValidationError,
+            self._activate_certificate,
+            'Wrong passwd',
+        )
+        self._activate_certificate(CERTIFICATE_PASSWD)
+        self.assertEqual(self.sii_cert.state, 'active')
+        proxy = self.invoice._connect_sii(self.invoice.type)
+        self.assertIsInstance(proxy, ServiceProxy)
+
+    def _test_binding_address(self, invoice):
+        company = invoice.company_id
+        tax_agency = company.sii_tax_agency_id
+        self.sii_cert.company_id.sii_tax_agency_id = tax_agency
+        proxy = invoice._connect_sii(invoice.type)
+        address = proxy._binding_options['address']
+        self.assertTrue(address)
+        if company.sii_test and tax_agency:
+            params = tax_agency._connect_params_sii(invoice.type)
+            if params['address']:
+                self.assertEqual(address, params['address'])
+
+    def _test_tax_agencies(self, invoice):
+        for tax_agency in self.tax_agencies:
+            invoice.company_id.sii_tax_agency_id = tax_agency
+            self._test_binding_address(invoice)
+        else:
+            invoice.company_id.sii_tax_agency_id = False
+            self._test_binding_address(invoice)
+
+    def test_tax_agencies_sandbox(self):
+        self._activate_certificate(CERTIFICATE_PASSWD)
+        self.invoice.company_id.sii_test = True
+        for inv_type in ['out_invoice', 'in_invoice']:
+            self.invoice.type = inv_type
+            self._test_tax_agencies(self.invoice)
+
+    def test_tax_agencies_production(self):
+        self._activate_certificate(CERTIFICATE_PASSWD)
+        self.invoice.company_id.sii_test = False
+        for inv_type in ['out_invoice', 'in_invoice']:
+            self.invoice.type = inv_type
+            self._test_tax_agencies(self.invoice)

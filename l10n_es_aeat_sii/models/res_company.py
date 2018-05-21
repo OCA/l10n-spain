@@ -2,6 +2,7 @@
 # Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2017 Studio73 - Pablo Fuentes <pablo@studio73.es>
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
+# Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
@@ -60,6 +61,8 @@ class ResCompany(models.Model):
     )
     sent_time = fields.Float(string="Sent time")
     delay_time = fields.Float(string="Delay time")
+    sii_tax_agency_id = fields.Many2one(
+        'aeat.sii.tax.agency', string='Tax Agency')
 
     def _get_sii_eta(self):
         if self.send_mode == 'fixed':
