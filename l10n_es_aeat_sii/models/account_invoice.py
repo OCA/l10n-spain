@@ -1198,12 +1198,13 @@ class AccountInvoice(models.Model):
                 'You can not cancel this invoice because'
                 ' there is a job running!'))
         res = super(AccountInvoice, self).action_cancel()
-        if self.sii_state == 'sent':
-            self.sii_state = 'sent_modified'
-        elif self.sii_state == 'cancelled_modified':
-            # Case when repoen a cancelled invoice, validate and cancel again
-            # without any SII communication.
-            self.sii_state = 'cancelled'
+        for invoice in self:
+            if invoice.sii_state == 'sent':
+                invoice.sii_state = 'sent_modified'
+            elif invoice.sii_state == 'cancelled_modified':
+                # Case when repoen a cancelled invoice, validate and cancel
+                # again without any SII communication.
+                invoice.sii_state = 'cancelled'
         return res
 
     @api.multi
