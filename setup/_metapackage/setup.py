@@ -21,6 +21,7 @@ setuptools.setup(
         'odoo11-addon-l10n_es_aeat_sii',
         'odoo11-addon-l10n_es_dua',
         'odoo11-addon-l10n_es_facturae',
+        'odoo11-addon-l10n_es_location_nuts',
         'odoo11-addon-l10n_es_mis_report',
         'odoo11-addon-l10n_es_partner',
         'odoo11-addon-l10n_es_partner_mercantil',
