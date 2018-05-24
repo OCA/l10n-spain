@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo9-addon-l10n_es_dua',
         'odoo9-addon-l10n_es_dua_sii',
         'odoo9-addon-l10n_es_irnr',
+        'odoo9-addon-l10n_es_mis_report',
         'odoo9-addon-l10n_es_partner',
         'odoo9-addon-l10n_es_partner_mercantil',
         'odoo9-addon-l10n_es_toponyms',
