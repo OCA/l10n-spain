@@ -38,10 +38,11 @@ def _deep_sort(obj):
     return _sorted
 
 
-class TestL10nEsAeatSii(common.SavepointCase):
+class TestL10nEsAeatSiiBase(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestL10nEsAeatSii, cls).setUpClass()
+        super(TestL10nEsAeatSiiBase, cls).setUpClass()
+        cls.maxDiff = None
         cls.partner = cls.env['res.partner'].create({
             'name': 'Test partner',
             'vat': 'ESF35999705'
@@ -77,7 +78,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
-            'date_invoice': fields.Date.today(),
+            'date_invoice': '2018-02-01',
             'type': 'out_invoice',
             'account_id': cls.partner.property_account_payable_id.id,
             'invoice_line_ids': [
@@ -100,6 +101,12 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'l10n_es.account_chart_template_pymes').id,
             'vat': 'ESU2687761C',
         })
+
+
+class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
+    @classmethod
+    def setUpClass(cls):
+        super(TestL10nEsAeatSii, cls).setUpClass()
         cls.invoice.action_invoice_open()
         cls.invoice.number = 'INV001'
         cls.invoice.refund_invoice_id = cls.invoice.copy()
@@ -124,13 +131,12 @@ class TestL10nEsAeatSii(common.SavepointCase):
         self.assertTrue(self.invoice.invoice_jobs_ids)
 
     def _get_invoices_test(self, invoice_type, special_regime):
-        str_today = self.invoice._change_date_format(fields.Date.today())
         expedida_recibida = 'FacturaExpedida'
         if self.invoice.type in ['in_invoice', 'in_refund']:
             expedida_recibida = 'FacturaRecibida'
         res = {
             'IDFactura': {
-                'FechaExpedicionFacturaEmisor': str_today,
+                'FechaExpedicionFacturaEmisor': '01-02-2018',
             },
             expedida_recibida: {
                 'TipoFactura': invoice_type,
@@ -143,9 +149,8 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'ImporteTotal': 110,
             },
             'PeriodoLiquidacion': {
-                'Periodo': '%02d' % fields.Date.from_string(
-                    fields.Date.today()).month,
-                'Ejercicio': fields.Date.from_string(fields.Date.today()).year,
+                'Periodo': '02',
+                'Ejercicio': 2018,
             }
         }
         if self.invoice.type in ['out_invoice', 'out_refund']:
