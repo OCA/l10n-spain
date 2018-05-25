@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="account_payment_method_form" model="ir.ui.view">
+        <field name="model">account.payment.method</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_method_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_type" position="after">
+                <field name="sii_payment_mode_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_payment_method_tree" model="ir.ui.view">
+        <field name="model">account.payment.method</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_method_tree"/>
+        <field name="arch" type="xml">
+            <field name="payment_type" position="after">
+                <field name="sii_payment_mode_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
