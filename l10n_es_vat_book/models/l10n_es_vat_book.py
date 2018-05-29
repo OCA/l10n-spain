@@ -2,6 +2,7 @@
 #                Daniel Rodriguez Lijo <drl.9319@gmail.com>
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 #                <contact@eficent.com>
+# Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import datetime
 
@@ -427,3 +428,17 @@ class L10nEsVatBook(models.Model):
         date_format = lang.date_format
         return datetime.datetime.strftime(
             fields.Date.from_string(date), date_format)
+
+    @api.multi
+    def export_xlsx(self):
+        self.ensure_one()
+        context = dict(self.env.context, active_ids=self.ids)
+        return {
+            'name': 'VAT book XLSX report',
+            'model': 'l10n.es.vat.book',
+            'type': 'ir.actions.report',
+            'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
+            'report_type': 'xlsx',
+            'report_file': 'l10n.es.vat.book',
+            'context': context,
+        }
