@@ -20,6 +20,10 @@
                         string="View Received Invoices"
                         type="object"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>
+                <button name="export_xlsx"
+                        string="Export XLSX"
+                        type="object"
+                        attrs="{'invisible':[('state', '=', 'draft')]}"/>
             </header>
             <field name="name" position="attributes">
                 <attribute name="readonly">False</attribute>
