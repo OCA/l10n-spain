@@ -2,7 +2,7 @@
 
 {
     "name": "Libro de IVA",
-    "version": "11.0.1.0.1",
+    "version": "11.0.1.1.0",
     "author": "PRAXYA, "
               "Eficent, "
               "Odoo Community Association (OCA)",
@@ -14,6 +14,7 @@
         'base_vat',
         'l10n_es',
         'l10n_es_aeat',
+        'report_xlsx',
     ],
     'data': [
         'security/ir_rule.xml',
@@ -27,6 +28,7 @@
         'report/report_views.xml',
         'report/vat_book_invoices_issued.xml',
         'report/vat_book_invoices_received.xml',
+        'report/vat_book_xlsx.xml',
     ],
     "installable": True,
 }
