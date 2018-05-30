@@ -1,0 +1,188 @@
+<fe:Facturae xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae">
+    <FileHeader>
+        <SchemaVersion>3.2</SchemaVersion>
+        <Modality>I</Modality>
+        <InvoiceIssuerType>EM</InvoiceIssuerType>
+        <Batch>
+            <BatchIdentifier>DE12345678818972</BatchIdentifier>
+            <InvoicesCount>1</InvoicesCount>
+            <TotalInvoicesAmount>
+                <TotalAmount>121.00</TotalAmount>
+            </TotalInvoicesAmount>
+            <TotalOutstandingAmount>
+                <TotalAmount>121.00</TotalAmount>
+            </TotalOutstandingAmount>
+            <TotalExecutableAmount>
+                <TotalAmount>121.00</TotalAmount>
+            </TotalExecutableAmount>
+            <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+        </Batch>
+    </FileHeader>
+    <Parties>
+        <SellerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>U</ResidenceTypeCode>
+                <TaxIdentificationNumber>DE123456788</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>TEST</CorporateName>
+                <TradeName>TEst</TradeName>
+                <OverseasAddress>
+                    <Address>street</Address>
+                    <PostCodeAndTown>08001</PostCodeAndTown>
+                    <Province>Barcelona</Province>
+                    <CountryCode>DEU</CountryCode>
+                </OverseasAddress>
+            </LegalEntity>
+        </SellerParty>
+        <BuyerParty>
+            <TaxIdentification>
+                <PersonTypeCode>J</PersonTypeCode>
+                <ResidenceTypeCode>R</ResidenceTypeCode>
+                <TaxIdentificationNumber>Q3831135C</TaxIdentificationNumber>
+            </TaxIdentification>
+            <LegalEntity>
+                <CorporateName>TEST</CorporateName>
+                <TradeName>TEST</TradeName>
+                <AddressInSpain>
+                    <Address>Street</Address>
+                    <PostCode>08001</PostCode>
+                    <Town>Barcelona</Town>
+                    <Province>Barcelona</Province>
+                    <CountryCode>ESP</CountryCode>
+                </AddressInSpain>
+            </LegalEntity>
+        </BuyerParty>
+    </Parties>
+    <Invoices>
+        <Invoice>
+            <InvoiceHeader>
+                <InvoiceNumber>18972</InvoiceNumber>
+                <InvoiceDocumentType>FC</InvoiceDocumentType>
+                <InvoiceClass>OO</InvoiceClass>
+            </InvoiceHeader>
+            <InvoiceIssueData>
+                <IssueDate>2017-12-04</IssueDate>
+                <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+                <TaxCurrencyCode>EUR</TaxCurrencyCode>
+                <LanguageName>es</LanguageName>
+            </InvoiceIssueData>
+            <TaxesOutputs>
+                <Tax>
+                    <TaxTypeCode>01</TaxTypeCode>
+                    <TaxRate>21.00</TaxRate>
+                    <TaxableBase>
+                        <TotalAmount>21.00</TotalAmount>
+                    </TaxableBase>
+                    <TaxAmount>
+                        <TotalAmount>0.00</TotalAmount>
+                    </TaxAmount>
+                </Tax>
+            </TaxesOutputs>
+            <InvoiceTotals>
+                <TotalGrossAmount>100.00</TotalGrossAmount>
+                <TotalGeneralDiscounts>0.00</TotalGeneralDiscounts>
+                <TotalGeneralSurcharges>0.00</TotalGeneralSurcharges>
+                <TotalGrossAmountBeforeTaxes>100.00
+                </TotalGrossAmountBeforeTaxes>
+                <TotalTaxOutputs>21.00</TotalTaxOutputs>
+                <TotalTaxesWithheld>0.00</TotalTaxesWithheld>
+                <InvoiceTotal>121.00</InvoiceTotal>
+                <TotalOutstandingAmount>121.00</TotalOutstandingAmount>
+                <TotalExecutableAmount>121.00</TotalExecutableAmount>
+            </InvoiceTotals>
+            <Items>
+                <InvoiceLine>
+                    <ItemDescription>Invoice Line</ItemDescription>
+                    <Quantity>1.0</Quantity>
+                    <UnitOfMeasure>01</UnitOfMeasure>
+                    <UnitPriceWithoutTax>100.000000</UnitPriceWithoutTax>
+                    <TotalCost>100.000000</TotalCost>
+                    <GrossAmount>100.000000</GrossAmount>
+                    <TaxesOutputs>
+                        <Tax>
+                            <TaxTypeCode>01</TaxTypeCode>
+                            <TaxRate>21.00</TaxRate>
+                            <TaxableBase>
+                                <TotalAmount>100.00</TotalAmount>
+                            </TaxableBase>
+                            <TaxAmount>
+                                <TotalAmount>21.00</TotalAmount>
+                            </TaxAmount>
+                        </Tax>
+                    </TaxesOutputs>
+                    <ArticleCode>RX</ArticleCode>
+                </InvoiceLine>
+            </Items>
+        </Invoice>
+    </Invoices>
+<ds:Signature Id="Signature14287">
+<ds:SignedInfo>
+<ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+<ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+<ds:Reference URI="#Signature14287-SignedProperties78466" Type="http://uri.etsi.org/01903#SignedProperties">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>txS47IeFy16Yde/RPiuNGM2JOyQ=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference URI="#KeyInfo57633">
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>4KQOQKnZpiG4atl5tLEFf6Yb6EA=</ds:DigestValue>
+</ds:Reference>
+<ds:Reference Id="Reference59208">
+<ds:Transforms>
+<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+</ds:Transforms>
+<ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+<ds:DigestValue>Y/qOQO5YMlmd65uweG2YdihN9fQ=</ds:DigestValue>
+</ds:Reference>
+</ds:SignedInfo>
+<ds:SignatureValue>QTca7gVLa3AgDEJAXi5B4GAsBU26vEEvUhD+Tsw/TscVj1hcSim5/Q8USWWRR1GI
+WfZKqmfac+voysRXp0yEZbu5KKT/TmOxHQnGhXcpvto//8GzhP4b6QQVTHpJ+fjX
+uxXbQ7tNMl9j0IEv1vIQsmGeSyRzqUenX+GU4Tv0bdM0g6XiwYhG7mwS7ELiGue6
+m0hVya9FD/7UP4Z43+/2gfLj90jj/pBu+4PY0QHKb8DeA377E3td+hDuJfm95Fh6
+YYJ2coS/ge4H6L8hfxU60C+n1hZbhkzAbXULlQtgIVLqSfg1VSntyKg7QhwGy5D8
+NTaUAVQkY64m+iiKA1E4mg==</ds:SignatureValue>
+<ds:KeyInfo Id="KeyInfo57633">
+<ds:X509Data>
+<ds:X509Certificate>MIIE3zCCBEigAwIBAgIBBTANBgkqhkiG9w0BAQQFADCByzELMAkGA1UEBhMCVVMx
+EzARBgNVBAgTCkNhbGlmb3JuaWExEjAQBgNVBAcTCVN1bm55dmFsZTE9MDsGA1UE
+ChM0WE1MIFNlY3VyaXR5IExpYnJhcnkgKGh0dHA6Ly93d3cuYWxla3NleS5jb20v
+eG1sc2VjKTEZMBcGA1UECxMQUm9vdCBDZXJ0aWZpY2F0ZTEWMBQGA1UEAxMNQWxl
+a3NleSBTYW5pbjEhMB8GCSqGSIb3DQEJARYSeG1sc2VjQGFsZWtzZXkuY29tMB4X
+DTAzMDMzMTA0MDIyMloXDTEzMDMyODA0MDIyMlowgb8xCzAJBgNVBAYTAlVTMRMw
+EQYDVQQIEwpDYWxpZm9ybmlhMT0wOwYDVQQKEzRYTUwgU2VjdXJpdHkgTGlicmFy
+eSAoaHR0cDovL3d3dy5hbGVrc2V5LmNvbS94bWxzZWMpMSEwHwYDVQQLExhFeGFt
+cGxlcyBSU0EgQ2VydGlmaWNhdGUxFjAUBgNVBAMTDUFsZWtzZXkgU2FuaW4xITAf
+BgkqhkiG9w0BCQEWEnhtbHNlY0BhbGVrc2V5LmNvbTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAJe4/rQ/gzV4FokE7CthjL/EXwCBSkXm2c3p4jyXO0Wt
+quaNC3dxBwFPfPl94hmq3ZFZ9PHPPbp4RpYRnLZbRjlzVSOq954AXOXpSew7nD+E
+mTqQrd9+ZIbGJnLOMQh5fhMVuOW/1lYCjWAhTCcYZPv7VXD2M70vVXDVXn6ZrqTg
+qkVHE6gw1aCKncwg7OSOUclUxX8+Zi10v6N6+PPslFc5tKwAdWJhVLTQ4FKG+F53
+7FBDnNK6p4xiWryy/vPMYn4jYGvHUUk3eH4lFTCr+rSuJY8i/KNIf/IKim7g/o3w
+Ae3GM8xrof2mgO8GjK/2QDqOQhQgYRIf4/wFsQXVZcMCAwEAAaOCAVcwggFTMAkG
+A1UdEwQCMAAwLAYJYIZIAYb4QgENBB8WHU9wZW5TU0wgR2VuZXJhdGVkIENlcnRp
+ZmljYXRlMB0GA1UdDgQWBBQkhCzy1FkgYosuXIaQo6owuicanDCB+AYDVR0jBIHw
+MIHtgBS0ue+a5pcOaGUemM76VQ2JBttMfKGB0aSBzjCByzELMAkGA1UEBhMCVVMx
+EzARBgNVBAgTCkNhbGlmb3JuaWExEjAQBgNVBAcTCVN1bm55dmFsZTE9MDsGA1UE
+ChM0WE1MIFNlY3VyaXR5IExpYnJhcnkgKGh0dHA6Ly93d3cuYWxla3NleS5jb20v
+eG1sc2VjKTEZMBcGA1UECxMQUm9vdCBDZXJ0aWZpY2F0ZTEWMBQGA1UEAxMNQWxl
+a3NleSBTYW5pbjEhMB8GCSqGSIb3DQEJARYSeG1sc2VjQGFsZWtzZXkuY29tggEA
+MA0GCSqGSIb3DQEBBAUAA4GBALU/mzIxSv8vhDuomxFcplzwdlLZbvSQrfoNkMGY
+1UoS3YJrN+jZLWKSyWE3mIaPpElqXiXQGGkwD5iPQ1iJMbI7BeLvx6ZxX/f+c8Wn
+ss0uc1NxfahMaBoyG15IL4+beqO182fosaKJTrJNG3mc//ANGU9OsQM9mfBEt4oL
+NJ2D</ds:X509Certificate>
+</ds:X509Data>
+<ds:KeyValue>
+<ds:RSAKeyValue>
+<ds:Modulus>l7j+tD+DNXgWiQTsK2GMv8RfAIFKRebZzeniPJc7Ra2q5o0Ld3EHAU98+X3iGard
+kVn08c89unhGlhGctltGOXNVI6r3ngBc5elJ7DucP4SZOpCt335khsYmcs4xCHl+
+ExW45b/WVgKNYCFMJxhk+/tVcPYzvS9VcNVefpmupOCqRUcTqDDVoIqdzCDs5I5R
+yVTFfz5mLXS/o3r48+yUVzm0rAB1YmFUtNDgUob4XnfsUEOc0rqnjGJavLL+88xi
+fiNga8dRSTd4fiUVMKv6tK4ljyL8o0h/8gqKbuD+jfAB7cYzzGuh/aaA7waMr/ZA
+Oo5CFCBhEh/j/AWxBdVlww==</ds:Modulus>
+<ds:Exponent>AQAB</ds:Exponent>
+</ds:RSAKeyValue>
+</ds:KeyValue>
+</ds:KeyInfo>
+<ds:Object xmlns:etsi="http://uri.etsi.org/01903/v1.3.2#" Id="Object07046"><etsi:QualifyingProperties Target="#Signature14287"><etsi:SignedProperties Id="Signature14287-SignedProperties78466"><etsi:SignedSignatureProperties><etsi:SigningTime>2018-05-30T14:59:09+00:00</etsi:SigningTime><etsi:SigningCertificate><etsi:Cert><etsi:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>TPesYk8WpgA6XYuEkaJVFLe3cZk=</ds:DigestValue></etsi:CertDigest><etsi:IssuerSerial><ds:X509IssuerName>C=US,stateOrProvinceName=California,L=Sunnyvale,O=XML Security Library (http://www.aleksey.com/xmlsec),OU=Root Certificate,CN=Aleksey Sanin,E=xmlsec@aleksey.com</ds:X509IssuerName><ds:X509SerialNumber>5</ds:X509SerialNumber></etsi:IssuerSerial></etsi:Cert></etsi:SigningCertificate><etsi:SignaturePolicyIdentifier><etsi:SignaturePolicyId><etsi:SigPolicyId><etsi:Identifier>http://www.facturae.es/politica_de_firma_formato_facturae/politica_de_firma_formato_facturae_v3_1.pdf</etsi:Identifier><etsi:Description>Pol&#237;tica de Firma FacturaE v3.1</etsi:Description></etsi:SigPolicyId><etsi:SigPolicyHash><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>Ohixl6upD6av8N7pEvDABhEL6hM=</ds:DigestValue></etsi:SigPolicyHash></etsi:SignaturePolicyId></etsi:SignaturePolicyIdentifier><etsi:SignerRole><etsi:ClaimedRoles><etsi:ClaimedRole>supplier</etsi:ClaimedRole></etsi:ClaimedRoles></etsi:SignerRole></etsi:SignedSignatureProperties><etsi:SignedDataObjectProperties><etsi:DataObjectFormat ObjectReference="#Reference59208"><etsi:Description>Factura</etsi:Description><etsi:MimeType>text/xml</etsi:MimeType></etsi:DataObjectFormat></etsi:SignedDataObjectProperties></etsi:SignedProperties></etsi:QualifyingProperties></ds:Object></ds:Signature></fe:Facturae>
