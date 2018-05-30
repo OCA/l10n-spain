@@ -92,8 +92,7 @@ class AccountInvoice(models.Model):
                     lambda r: r.method_id == method
                 ):
                     inv.can_integrate = True
-                else:
-                    inv.can_integrate = False
+                    break
 
     can_integrate = fields.Boolean(compute="_compute_can_integrate")
 
