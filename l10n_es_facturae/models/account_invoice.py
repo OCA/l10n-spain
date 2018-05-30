@@ -73,23 +73,26 @@ class AccountInvoice(models.Model):
         copy=False
     )
 
+    @api.multi
     @api.depends('integration_ids')
     def _compute_integrations_count(self):
-        self.integration_count = len(self.integration_ids)
+        for inv in self:
+            inv.integration_count = len(inv.integration_ids)
 
     integration_count = fields.Integer(
         compute="_compute_integrations_count",
         string='# of Integrations', copy=False, default=0)
 
+    @api.multi
     @api.depends('integration_ids', 'partner_id')
     def _compute_can_integrate(self):
-        for method in self.partner_id.invoice_integration_method_ids:
-            if not self.env['account.invoice.integration'].search(
-                    [('invoice_id', '=', self.id),
-                     ('method_id', '=', method.id)]):
-                self.can_integrate = True
-                return
-        self.can_integrate = False
+        for inv in self:
+            for method in inv.partner_id.invoice_integration_method_ids:
+                if not inv.integration_ids.filtered(
+                    lambda r: r.method_id == method
+                ):
+                    inv.can_integrate = True
+                    break
 
     can_integrate = fields.Boolean(compute="_compute_can_integrate")
 
