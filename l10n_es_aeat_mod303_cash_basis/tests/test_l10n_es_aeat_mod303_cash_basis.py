@@ -51,7 +51,7 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
             'date_end': '2017-06-30',
         })
 
-    def _register_payment(self, invoice):
+    def _register_payment(self, invoice, date):
         wizard = self.env['account.register.payments'].with_context(
             active_model='account.invoice',
             active_ids=invoice.ids,
@@ -60,22 +60,24 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
             'payment_method_id': (
                 self.env.ref('account.account_payment_method_manual_in').id
             ),
-            'payment_date': '2017-04-01',
+            'payment_date': date,
             'communication': 'Test payment',
         })
         wizard.create_payment()
 
     def _check_results(self, model, tax_results):
-        for field, result in tax_results.iteritems():
+        for field, expected_result in tax_results.items():
             lines = model.tax_line_ids.filtered(
                 lambda x: x.field_number == int(field)
             )
             self.assertAlmostEqual(
-                sum(lines.mapped('amount')), result, 2,
-                "Incorrect result in field %s" % field
+                expected_result, sum(lines.mapped('amount')), 2,
+                "Incorrect result in field %s" % field,
             )
 
     def test_mod303_cash_basis(self):
+        self._register_payment(self.sale_invoice, '2017-04-01')
+        self._register_payment(self.purchase_invoice, '2017-04-01')
         # Defaults
         self.assertTrue(self.model303._default_cash_basis_receivable())
         self.assertTrue(self.model303._default_cash_basis_payable())
@@ -92,14 +94,32 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
             '75': 420,
         }
         self._check_results(self.model303, tax_results)
-        # Last trimester
-        self._register_payment(self.sale_invoice)
-        self._register_payment(self.purchase_invoice)
+        # Second trimester
         self.model303_2t.button_calculate()
         tax_results = {
             '7': 1000,
             '9': 210,
             '28': 2000,
             '29': 420,
+            '62': 0,
+            '63': 0,
+            '74': 0,
+            '75': 0,
         }
         self._check_results(self.model303_2t, tax_results)
+
+    def test_mod303_cash_basis_same_period(self):
+        self._register_payment(self.sale_invoice, '2017-03-30')
+        self._register_payment(self.purchase_invoice, '2017-03-30')
+        self.model303.button_calculate()
+        tax_results = {
+            '7': 1000,
+            '9': 210,
+            '28': 2000,
+            '29': 420,
+            '62': 0,
+            '63': 0,
+            '74': 0,
+            '75': 0,
+        }
+        self._check_results(self.model303, tax_results)
