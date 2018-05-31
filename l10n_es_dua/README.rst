@@ -32,13 +32,14 @@ Una vez actualizado el plan contable (Impuestos y Posiciones fiscales) es
 necesario asignar los impuestos a los productos DUA que crea este addon para
 facilitar la contabilidad de las facturas de la empresa de tránsito:
 
-1. Ir a Compras > Productos > Productos
-2. Quitar el filtro por defecto y buscar "DUA"
-3. Asignar los siguientes impuestos en el campo "Impuestos proveedor"
-    * DUA Compensación: "DUA Exento"
-    * DUA Valoración IVA 10%: "IVA 10% Importaciones bienes corrientes"
-    * DUA Valoración IVA 21%: "IVA 21% Importaciones bienes corrientes"
-    * DUA Valoración IVA 4%: "IVA 4% Importaciones bienes corrientes"
+#. Ir a Compras > Productos > Productos
+#. Quitar el filtro por defecto y buscar "DUA"
+#. Asignar los siguientes impuestos en el campo "Impuestos proveedor"
+
+   * DUA Compensación: "DUA Exento"
+   * DUA Valoración IVA 10%: "IVA 10% Importaciones bienes corrientes"
+   * DUA Valoración IVA 21%: "IVA 21% Importaciones bienes corrientes"
+   * DUA Valoración IVA 4%: "IVA 4% Importaciones bienes corrientes"
 
 
 Uso
@@ -48,31 +49,31 @@ Este addon crea los siguientes objetos contables:
 
 * Impuesto: DUA Exento
 
-Este nuevo impuesto es un impuesto "inocuo" que es equivalente a no poner
-ningún impuesto. Sirve para cumplir con el requisitos de definir al menos un
-impuesto por cada línea en la factura (si está instalado el addon
-OCA/account-financial-tools/account_invoice_tax_required).
+  Este nuevo impuesto es un impuesto "inocuo" que es equivalente a no poner
+  ningún impuesto. Sirve para cumplir con el requisitos de definir al menos un
+  impuesto por cada línea en la factura (si está instalado el addon
+  OCA/account-financial-tools/account_invoice_tax_required).
 
 * Posicion fiscal: Importación con DUA
 
-Esta posición fiscal cambia los impuestos de compras por el impuesto
-"DUA Exento" para que las líneas de la factura de proveedor no generen
-información de impuestos
+  Esta posición fiscal cambia los impuestos de compras por el impuesto
+  "DUA Exento" para que las líneas de la factura de proveedor no generen
+  información de impuestos
 
-Además, crea los siguientes productos para facilitar la creación de la
-factura emitida por la empresa de tránsito:
+  Además, crea los siguientes productos para facilitar la creación de la
+  factura emitida por la empresa de tránsito:
 
 * Producto: DUA Valoración xx %
 
-Productos para indicar la nueva valoración de la mercancía importada realizada
-por la empresa de tránsito. Esta valoración es la base imponible para calcular
-el IVA a abonar.
+  Productos para indicar la nueva valoración de la mercancía importada realizada
+  por la empresa de tránsito. Esta valoración es la base imponible para calcular
+  el IVA a abonar.
 
 * Producto: DUA Compensación
 
-Producto para indicar la misma valoración pero con signo negativo para
-compensar el apunte al debe que genera el producto "DUA Valoración xx %"
-anterior
+  Producto para indicar la misma valoración pero con signo negativo para
+  compensar el apunte al debe que genera el producto "DUA Valoración xx %"
+  anterior
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
@@ -111,7 +112,7 @@ Al validar ambas facturas nos crea los siguientes asientos:
 
 1. Asiento factura proveedor extranjero
 
-.. csv-table::
+  .. csv-table::
    :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
    :widths: 30, 10, 10, 30, 10
 
@@ -120,7 +121,7 @@ Al validar ambas facturas nos crea los siguientes asientos:
 
 2. Asiento factura empresa de tránsito
 
-.. csv-table::
+  .. csv-table::
    :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
    :widths: 30, 10, 10, 30, 10
 
