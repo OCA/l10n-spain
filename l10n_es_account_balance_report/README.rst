@@ -48,10 +48,10 @@ Contribuidores
 
 * Borja Soilán <borjals@pexego.es>
 * Raimon Esteve (Zikzakmedia) <resteve@zikzakmedia.com>
-# Juanjo Algaz
-# Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
-# Pedro M. Baeza <pedro.baeza@tecnativa.com>
-# Vicent Cubells <vicent.cubells@tecnativa.com>
+* Juanjo Algaz
+* Joaquín Gutierrez <joaquing.pedrosa@gmail.com>
+* Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Vicent Cubells <vicent.cubells@tecnativa.com>
 
 Financiadores
 -------------

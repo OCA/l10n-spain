@@ -9,8 +9,8 @@ Nombre comercial en las iniciativas
 Este módulo se escribió para extender la funcionalidad de las iniciativas del
 CRM y permitir establecerles un nombre comercial.
 
-Usage
-=====
+Uso
+===
 
 Para usar este módulo:
 
