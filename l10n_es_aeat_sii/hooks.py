@@ -31,7 +31,3 @@ def add_key_to_existing_invoices(cr, registry):
                     SET sii_registration_key = %s
                     WHERE type NOT IN ('in_invoice', 'in_refund');""",
                            (sale_key[0].id,))
-            cr.execute("""
-                ALTER TABLE account_invoice
-                ALTER COLUMN sii_registration_key SET NOT NULL;
-                """)
