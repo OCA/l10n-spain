@@ -30,6 +30,7 @@ class AeatModelExportConfigLine(models.Model):
         oldname='sub_config')
     export_type = fields.Selection(
         selection=[('string', 'Alphanumeric'),
+                   ('alphabetic', 'Alphabetic'),
                    ('float', 'Number with decimals'),
                    ('integer', 'Number without decimals'),
                    ('boolean', 'Boolean'),
