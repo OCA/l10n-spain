@@ -317,7 +317,7 @@
                             <TransactionDate t-if="False"/>
                             <AdditionalLineItemInformation t-length="2500" t-if="False"/>
                             <SpecialTaxableEvent t-if="False"/>
-                            <ArticleCode t-length="20" t-if="False"/>
+                            <ArticleCode t-length="20" t-esc="line.product_id.default_code" t-if="line.product_id.default_code"/>
                             <Extensions t-if="False"/>
                         </InvoiceLine>
                     </Items>

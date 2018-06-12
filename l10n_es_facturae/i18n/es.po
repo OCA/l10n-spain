@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_facturae
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-02-26 12:00+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_facturae
@@ -31,13 +31,16 @@ msgstr "&lt;/fe:Facturae&gt;"
 #. module: l10n_es_facturae
 #: model:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae "
-"xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\" "
-"xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
-"&lt;fe:Facturae "
-"xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\" "
-"xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Accepted"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_attachment_ids
@@ -134,6 +137,29 @@ msgid "Cancellation Status"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+#, fuzzy
+msgid "Cancellation accepted"
+msgstr "Cancelada"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+msgid "Cancellation approved"
+msgstr "Cancelada"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+#, fuzzy
+msgid "Cancellation rejected"
+msgstr "Cancelada"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Cancellation requested"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
 msgid "Cancelled"
 msgstr "Cancelada"
@@ -176,13 +202,13 @@ msgid "Companies"
 msgstr "Compañías"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:171
+#: code:addons/l10n_es_facturae/models/account_invoice.py:174
 #, python-format
 msgid "Company vat is too small"
 msgstr "El identificador fiscal de la compañía es demasiado corto"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:165
+#: code:addons/l10n_es_facturae/models/account_invoice.py:168
 #, python-format
 msgid "Company vat not provided"
 msgstr ""
@@ -392,7 +418,7 @@ msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_4901
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7099
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_id
 msgid "ID"
 msgstr "ID"
@@ -407,11 +433,11 @@ msgstr "IE: Impuestos especiales"
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
 msgid ""
-"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en"
-" la Comunidad Autonoma Canaria"
+"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
+"la Comunidad Autonoma Canaria"
 msgstr ""
-"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en"
-" la Comunidad Autonoma Canaria"
+"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
+"la Comunidad Autonoma Canaria"
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
@@ -423,21 +449,21 @@ msgstr "IGIC: Impuesto general indirecto de Canarias"
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
 msgid ""
-"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta"
-" y Melilla"
+"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
+"y Melilla"
 msgstr ""
-"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta"
-" y Melilla"
+"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
+"y Melilla"
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
 msgid ""
-"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente"
-" en la Baleares"
+"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
+"en la Baleares"
 msgstr ""
-"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente"
-" en la Baleares"
+"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
+"en la Baleares"
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
@@ -612,19 +638,19 @@ msgid "Main file"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:180
+#: code:addons/l10n_es_facturae/models/account_invoice.py:183
 #, python-format
 msgid "Mandate account BIC must be 11"
 msgstr "El BIC del banco de la cuenta del mandato es demasiado corto"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:182
+#: code:addons/l10n_es_facturae/models/account_invoice.py:185
 #, python-format
 msgid "Mandate account is too small"
 msgstr "La cuenta del mandato es demasiado corta"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:176
+#: code:addons/l10n_es_facturae/models/account_invoice.py:179
 #, python-format
 msgid "Mandate is missing"
 msgstr ""
@@ -683,6 +709,11 @@ msgid "Nombre y apellidos/Razón social - Receptor"
 msgstr "Nombre y apellidos/Razón social - Receptor"
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Not requested"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Número de la factura"
@@ -701,33 +732,38 @@ msgid "Otro"
 msgstr "Otro"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:178
+#: code:addons/l10n_es_facturae/models/account_invoice.py:181
 #, python-format
 msgid "Partner bank in mandate is missing"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:185
+#: code:addons/l10n_es_facturae/models/account_invoice.py:188
 #, python-format
 msgid "Partner bank is missing"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:169
+#: code:addons/l10n_es_facturae/models/account_invoice.py:172
 #, python-format
 msgid "Partner state not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:167
+#: code:addons/l10n_es_facturae/models/account_invoice.py:170
 #, python-format
 msgid "Partner vat is too small"
 msgstr "El identificador fiscal del Cliente es demasiado corto"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:163
+#: code:addons/l10n_es_facturae/models/account_invoice.py:166
 #, python-format
 msgid "Partner vat not provided"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Payed"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -736,7 +772,7 @@ msgid "Payment Modes"
 msgstr "Modos de pago"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:173
+#: code:addons/l10n_es_facturae/models/account_invoice.py:176
 #, python-format
 msgid "Payment mode is required"
 msgstr ""
@@ -813,6 +849,21 @@ msgid "Register Number"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on RCF"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on REC"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Rejected"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,help:l10n_es_facturae.field_create_facturae_firmar_facturae
 msgid "Requiere certificado en la ficha de la compañía"
 msgstr "Requiere certificado en la ficha de la compañía"
@@ -828,13 +879,13 @@ msgid "Second"
 msgstr "Segundo"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:188
+#: code:addons/l10n_es_facturae/models/account_invoice.py:191
 #, python-format
 msgid "Selected account BIC must be 11"
 msgstr "El BIC del banco de la cuenta debe tener 11 carácteres"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:190
+#: code:addons/l10n_es_facturae/models/account_invoice.py:193
 #, python-format
 msgid "Selected account is too small"
 msgstr "La cuenta seleccionada es demasiado corta"
@@ -891,7 +942,7 @@ msgid "Tax"
 msgstr "Impuesto"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:160
+#: code:addons/l10n_es_facturae/models/account_invoice.py:163
 #, python-format
 msgid "Taxes not provided in invoice line %s"
 msgstr ""
@@ -902,7 +953,7 @@ msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:444
+#: code:addons/l10n_es_facturae/models/account_invoice.py:447
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
@@ -944,7 +995,7 @@ msgid "Vat must be defined"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:192
+#: code:addons/l10n_es_facturae/models/account_invoice.py:195
 #, python-format
 msgid ""
 "You can only create Factura-E files for invoices that have been validated."
@@ -1072,8 +1123,8 @@ msgid "create.facturae"
 msgstr "Crear factura electrónica"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:416
-#: code:addons/l10n_es_facturae/models/account_invoice.py:424
+#: code:addons/l10n_es_facturae/models/account_invoice.py:419
+#: code:addons/l10n_es_facturae/models/account_invoice.py:427
 #, python-format
 msgid "facturae"
 msgstr "facturae"
