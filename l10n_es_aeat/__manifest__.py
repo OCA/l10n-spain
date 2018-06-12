@@ -16,7 +16,6 @@
               "AvanzOSC,"
               "Tecnativa,"
               "Odoo Community Association (OCA)",
-    'contributors': "Punt Sistemes",
     'license': "AGPL-3",
     'website': "https://odoo-community.org/",
     'category': "Accounting & Finance",
