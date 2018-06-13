@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="l10n_es_mis_report_kpi.mis_report_es_pyg_pymes" model="mis.report">
+         <field name="name">Ratios de Pérdidas y ganancias PYMEs (PGCE 2008)</field>
+      </record>
+      <record id="mis_report_es_pyg_pymes_ratios_group_ventas" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_pyg_pymes"/>
+         <field name="type">str</field>
+         <field name="compare_method">none</field>
+         <field name="sequence">5010</field>
+         <field name="name">ratios_ventas</field>
+         <field name="description">1) RATIOS DE VENTAS</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_group_l2"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_ventas" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_pyg_pymes"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5020</field>
+         <field name="name">expansion_ventas</field>
+         <field name="description">Expansión de ventas</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression"> -balp[70%]</field>
+         <field name="budgetable" eval="0"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_evolucion_beneficio_neto" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_pyg_pymes"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5030</field>
+         <field name="name">evolucion_beneficio_neto</field>
+         <field name="description">Evolución del beneficio neto</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">es49500</field>
+         <field name="budgetable" eval="0"/>
+      </record>
+</odoo>

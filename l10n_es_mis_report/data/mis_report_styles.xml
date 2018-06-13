@@ -118,5 +118,10 @@
       <field name="hide_empty" eval="0"/>
     </record>
 
+    <record id="mis_report_style_l10n_es_hide" model="mis.report.style">
+      <field name="name">l10n_es hide</field>
+      <field name="hide_always" eval="True"/>
+    </record>
+
   </data>
 </odoo>

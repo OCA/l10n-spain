@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="l10n_es_mis_report_kpi.mis_report_es_balance_abreviado" model="mis.report">
+         <field name="name">Ratios de balance abreviado (PGCE 2008)</field>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratios_group_liquidez" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">str</field>
+         <field name="compare_method">none</field>
+         <field name="sequence">5010</field>
+         <field name="name">ratios_liquidez</field>
+         <field name="description">1) RATIOS DE LIQUIDEZ</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_group_l2"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_liquidez" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5020</field>
+         <field name="name">ratio_liquidez</field>
+         <field name="description">Ratio de liquidez</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression"> es12000 / es32000</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_disponibilidad" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5030</field>
+         <field name="name">ratio_disponibilidad</field>
+         <field name="description">Ratio de disponibilidad</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression"> es12700 / es32000</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_tesoreria" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5040</field>
+         <field name="name">ratio_tesoreria</field>
+         <field name="description">Ratio de tesorería</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es12300+ es12700) / es32000</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_endeudamiento" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5050</field>
+         <field name="name">ratio_endeudamiento</field>
+         <field name="description">Ratio de endeudamiento</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es32000+es31000) / (es20000 + es32000+es31000)</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_autonomia" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5060</field>
+         <field name="name">ratio_autonomia</field>
+         <field name="description">Ratio de autonomía</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">es21000 / (es32000+es31000)</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_fondo_maniobra_activo)" model="mis.report.kpi">
+          <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+          <field name="type">num</field>
+          <field name="compare_method">pct</field>
+          <field name="sequence">5070</field>
+          <field name="name">ratio_fondo_maniobra_activo</field>
+          <field name="description">Ratio de fondo de maniobra sobre activo</field>
+          <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+          <field name="expression">(es12000-es32000) / es10000</field>
+          <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_fondo_maniobra_corto)" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5080</field>
+         <field name="name">ratio_fondo_maniobra_deuda_corto</field>
+         <field name="description">Ratio de fondo de maniobra sobre deudas a corto plazo</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es12000-es32000) / es32000</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_fondo_maniobra" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5090</field>
+         <field name="name">ratio_fondo_maniobra</field>
+         <field name="description">Fondo de maniobra</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">es12000-es32000</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_fondo_maniobra_ventas" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5100</field>
+         <field name="name">ratio_fondo_maniobra_ventas</field>
+         <field name="description">Fondo de maniobra sobre ventas</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es12000-es32000)/balp[70%]</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_fondo_maniobra_activo_corriente_circulante" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">5110</field>
+         <field name="name">ratio_fondo_maniobra_activo_corriente_circulante</field>
+         <field name="description">Fondo de maniobra sobre activo corriente o circulante</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es12000-es32000) / es12000</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratios_group_endeudamiento" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">str</field>
+         <field name="compare_method">none</field>
+         <field name="sequence">6000</field>
+         <field name="name">ratios_endeudamiento</field>
+         <field name="description">2) RATIOS DE ENDEUDAMIENTO</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_group_l2"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_endeudamiento" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">6010</field>
+         <field name="name">ratio_endeudamiento</field>
+         <field name="description">Ratio de endeudamiento</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es32000+es31000) / (es20000 + es32000+es31000)</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_autonomia" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">6020</field>
+         <field name="name">ratio_autonomia</field>
+         <field name="description">Ratio de autonomía</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">es21000 / (es32000+es31000)</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_calidad_deuda" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">6030</field>
+         <field name="name">ratio_calidad_deuda</field>
+         <field name="description">Ratio de calidad de la deuda</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es32000 / es30000)</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_peso_recursos_permanentes" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">6040</field>
+         <field name="name">peso_recursos_permanentes</field>
+         <field name="description">Peso de los recursos permanentes</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">(es20000+es31000) / (es32000+es31000)</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratios_group_rotacion_activos" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">str</field>
+         <field name="compare_method">none</field>
+         <field name="sequence">7000</field>
+         <field name="name">ratios_rotacion_activos</field>
+         <field name="description">3) RATIOS DE ROTACIÓN DE ACTIVOS</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_group_l2"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_pymes_ratio_rotacion_activo_no_corriente" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">7010</field>
+         <field name="name">ratio_rotacion_activo_no_corriente</field>
+         <field name="description">Rotación del activo no corriente</field>
+         <field name="style_id" ref="mis_report_style_l10n_es_ratio"/>
+         <field name="expression">balp[70%] / es11000</field>
+         <field name="budgetable" eval="1"/>
+      </record>
+      <record id="mis_report_es_balance_abreviado_ventas" model="mis.report.kpi">
+         <field name="report_id" ref="mis_report_es_balance_abreviado"/>
+         <field name="type">num</field>
+         <field name="compare_method">pct</field>
+         <field name="sequence">4000</field>
+         <field name="name">ventas</field>
+         <field name="description">Ventas</field>
+         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_hide"/>
+         <field name="expression"> balp[700%,701%,702%,703%,704%,706%,708%,709%]</field>
+      </record>
+</odoo>
