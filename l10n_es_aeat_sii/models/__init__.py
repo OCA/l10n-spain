@@ -7,6 +7,8 @@ from . import aeat_sii_tax_agency
 from . import res_company
 from . import aeat_sii
 from . import aeat_sii_mapping_registration_keys
+from . import aeat_sii_match_differences
+from . import aeat_sii_match_report
 from . import aeat_sii_map
 from . import product_product
 from . import queue_job
