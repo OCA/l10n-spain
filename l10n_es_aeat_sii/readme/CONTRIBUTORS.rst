@@ -11,3 +11,4 @@
 * Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
 * Nacho Muñoz <nacmuro@gmail.com>
+* Abraham Anes <abraham@studio73.es>
