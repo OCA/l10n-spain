@@ -27,6 +27,7 @@ def _deep_sort(obj):
 class TestL10nEsAeatSii(common.TransactionCase):
     def setUp(self):
         super(TestL10nEsAeatSii, self).setUp()
+        self.maxDiff = None
         self.partner = self.env['res.partner'].create({
             'name': 'Test partner',
             'vat': 'ESF35999705'
@@ -99,7 +100,8 @@ class TestL10nEsAeatSii(common.TransactionCase):
             'name': 'Test user',
             'login': 'test_user',
             'groups_id': [
-                (4, self.env.ref('account.group_account_invoice').id)
+                (4, self.env.ref('account.group_account_manager').id),
+                (4, self.env.ref('l10n_es_aeat.group_account_aeat').id)
             ],
             'email': 'somebody@somewhere.com',
         })
@@ -145,7 +147,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
                 'ClaveRegimenEspecialOTrascendencia': special_regime,
                 'ImporteTotal': self.invoice.cc_amount_total,
             },
-            'PeriodoImpositivo': {
+            'PeriodoLiquidacion': {
                 'Periodo': str(self.invoice.period_id.code[:2]),
                 'Ejercicio': int(self.invoice.period_id.code[-4:])
             }
@@ -267,5 +269,5 @@ class TestL10nEsAeatSii(common.TransactionCase):
         )
 
     def test_permissions(self):
-        """This should work without errors"""
+        """Test permissions"""
         self.invoice.sudo(self.user).signal_workflow('invoice_open')

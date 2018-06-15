@@ -10,9 +10,12 @@ class AeatSiiMap(models.Model):
     _name = 'aeat.sii.map'
     _description = 'Aeat SII Map'
 
-    @api.one
     @api.constrains('date_from', 'date_to')
     def _unique_date_range(self):
+        for rec in self:
+            rec._unique_date_range_single()
+
+    def _unique_date_range_single(self):
         # Based in l10n_es_aeat module
         domain = [('id', '!=', self.id)]
         if self.date_from and self.date_to:
@@ -36,8 +39,8 @@ class AeatSiiMap(models.Model):
         date_lst = self.search(domain)
         if date_lst:
             raise exceptions.Warning(
-                _("Error! The dates of the record overlap with an existing "
-                  "record."))
+                _("Error! The dates of the record overlap with an existing"
+                  " record."))
 
     name = fields.Char(string='Model', required=True)
     date_from = fields.Date(string='Date from')
