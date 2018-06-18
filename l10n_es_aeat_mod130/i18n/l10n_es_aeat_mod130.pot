@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_aeat_mod130
+#	* l10n_es_aeat_mod130
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-03-31 05:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (Costa Rica) (http://www.transifex.com/oca/OCA-l10n-"
-"spain-8-0/language/es_CR/)\n"
-"Language: es_CR\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
@@ -176,7 +171,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_id:0
 msgid "Company"
-msgstr "Compañía"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,partner_bank_id:0
@@ -202,13 +197,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.mod130.report,create_uid:0
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,create_date:0
 #: field:l10n.es.aeat.mod130.report,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,currency_id:0
@@ -222,10 +217,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,previous_electronic_code:0
-msgid ""
-"Código electrónico de la declaración anterior (si se presentó "
-"telemáticamente). A cumplimentar sólo en el caso de declaración "
-"complementaria"
+msgid "Código electrónico de la declaración anterior (si se presentó telemáticamente). A cumplimentar sólo en el caso de declaración complementaria"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -262,7 +254,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Draft"
-msgstr "Borrador"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod130.action_wizard_aeat_mod130_export
@@ -313,12 +305,12 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,id:0
 #: field:l10n.es.aeat.mod130.report,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,journal_id:0
 msgid "Journal"
-msgstr "Diario"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,journal_id:0
@@ -340,13 +332,13 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.mod130.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Ultima actualización por"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.export_to_boe,write_date:0
 #: field:l10n.es.aeat.mod130.report,write_date:0
 msgid "Last Updated on"
-msgstr "Ultima actualización en"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,representative_vat:0
@@ -387,7 +379,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,company_partner_id:0
 msgid "Partner"
-msgstr "Empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,period:0
@@ -406,28 +398,14 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,has_prestamo:0
-msgid ""
-"Permite indicar si destina cantidades al pago de préstamos para la "
-"adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, "
-"se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con "
-"un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un "
-"máximo de 660,14 euros anuales. \n"
-"Debe consultar las excepciones para las que no se computaría la deducción a "
-"pesar del préstamo."
+msgid "Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. \n"
+"Debe consultar las excepciones para las que no se computaría la deducción a pesar del préstamo."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,has_deduccion_80:0
-msgid ""
-"Permite indicar si puede beneficiarse de la deducción por obtención de "
-"rendimientos de actividades económicas a efectos del pago fraccionado por "
-"cumplir el siguiente requisito:\n"
-" Que, en el primer trimestre del ejercicio o en el primer trimestre de "
-"inicio de actividades, la suma del resultado de elevar al año el importe de "
-"la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 "
-"de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de "
-"inicio de la actividad a lo largo del ejercicio en la elevación al año se "
-"tendrán en consideración los días que resten hasta el final del año."
+msgid "Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
+" Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio de actividades, la suma del resultado de elevar al año el importe de la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de inicio de la actividad a lo largo del ejercicio en la elevación al año se tendrán en consideración los días que resten hasta el final del año."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -438,7 +416,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,state:0
 msgid "Posted"
-msgstr "Contabilizado"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: field:l10n.es.aeat.mod130.report,complementary:0
@@ -468,10 +446,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,complementary:0
-msgid ""
-"Se marcará si esta declaración es complementaria de otra u otras "
-"declaraciones presentadas anteriormente por el mismo concepto y "
-"correspondientes al mismo ejercicio y período."
+msgid "Se marcará si esta declaración es complementaria de otra u otras declaraciones presentadas anteriormente por el mismo concepto y correspondientes al mismo ejercicio y período."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -512,9 +487,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: help:l10n.es.aeat.mod130.report,counterpart_account:0
-msgid ""
-"This account will be the counterpart for all the journal items that are "
-"regularized when posting the report."
+msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -631,3 +604,4 @@ msgstr ""
 #: field:l10n.es.aeat.mod130.report,has_prestamo:0
 msgid "¿Préstamo para vivienda habitual?"
 msgstr ""
+
