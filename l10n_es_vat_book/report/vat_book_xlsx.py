@@ -1,7 +1,7 @@
 # Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import models
+from odoo import _, models
 
 
 class VatNumberXlsx(models.AbstractModel):
@@ -12,8 +12,8 @@ class VatNumberXlsx(models.AbstractModel):
         book = objects[0]
         bold = workbook.add_format({'bold': True})
 
-        def fill_table(report_name, lines):
-            sheet = workbook.add_worksheet(report_name[:31])
+        def fill_table(sheet_name, lines):
+            sheet = workbook.add_worksheet(sheet_name[:31])
             row = col = 0
             sheet.write(row, col, 'Invoice', bold)
             col += 1
@@ -52,18 +52,18 @@ class VatNumberXlsx(models.AbstractModel):
                     row += 1
 
         if book.issued_line_ids:
-            report_name = 'Issued Invoices'
+            report_name = _('Issued Invoices')
             lines = book.issued_line_ids
             fill_table(report_name, lines)
         if book.rectification_issued_line_ids:
-            report_name = 'Issued Rectification Invoices'
+            report_name = _('Issued Refund Invoices')
             lines = book.rectification_issued_line_ids
             fill_table(report_name, lines)
         if book.received_line_ids:
-            report_name = 'Received Invoices'
+            report_name = _('Received Invoices')
             lines = book.received_line_ids
             fill_table(report_name, lines)
         if book.rectification_received_line_ids:
-            report_name = 'Received Rectification Invoices'
+            report_name = _('Received Refund Invoices')
             lines = book.rectification_received_line_ids
             fill_table(report_name, lines)
