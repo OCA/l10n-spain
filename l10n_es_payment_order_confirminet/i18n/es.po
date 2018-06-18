@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_payment_order_confirminet
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # Carles Antolí <carlesantoli@hotmail.com>, 2015
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-01-19 01:41+0000\n"
 "PO-Revision-Date: 2016-01-16 14:46+0000\n"
 "Last-Translator: Antonio Trueba\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_payment_order_confirminet
@@ -24,7 +25,9 @@ msgstr ""
 #, python-format
 msgid ""
 "Bank account of supplier %s, which is of outside of Spain, should be IBAN."
-msgstr "La cuenta bancaria del proveedor %s, que no está en España, debería ser un IBAN."
+msgstr ""
+"La cuenta bancaria del proveedor %s, que no está en España, debería ser un "
+"IBAN."
 
 #. module: l10n_es_payment_order_confirminet
 #: selection:payment.mode,confirminet_type:0
@@ -42,7 +45,9 @@ msgstr "Opciones Confirminet"
 msgid ""
 "Error: Contract number (Account number) is not valid. It should start with "
 "'0128'."
-msgstr "Error: el número de contrato (número de cuenta) no es válido. Debería empezar con «0128»."
+msgstr ""
+"Error: el número de contrato (número de cuenta) no es válido. Debería "
+"empezar con «0128»."
 
 #. module: l10n_es_payment_order_confirminet
 #: code:addons/l10n_es_payment_order_confirminet/wizard/confirminet.py:271
@@ -78,6 +83,12 @@ msgstr "Error: el proveedor %s no tiene CIF."
 #: model:ir.model,name:l10n_es_payment_order_confirminet.model_banking_export_csb_wizard
 msgid "Export CSB File"
 msgstr "Exportar archivo CSB"
+
+#. module: l10n_es_payment_order_confirminet
+#: field:payment.mode,is_confirminet:0
+#, fuzzy
+msgid "Is confirminet"
+msgstr "Opciones Confirminet"
 
 #. module: l10n_es_payment_order_confirminet
 #: code:addons/l10n_es_payment_order_confirminet/wizard/confirminet.py:218
