@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_toponyms
-# 
+#
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-13 10:45+0000\n"
 "PO-Revision-Date: 2016-10-11 09:51+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/eu/)\n"
+"Language-Team: Basque (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/eu/)\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_toponyms
@@ -70,7 +71,8 @@ msgstr "Izena erakutsi"
 #: view:config.es.toponyms:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid ""
 "For example: Official (Girona), Spanish (Gerona), Both (Gerona / Girona)"
-msgstr "Adibidez: Ofiziala (Girona), Gaztelaniaz (Gerona), Bietan (Gerona / Girona)"
+msgstr ""
+"Adibidez: Ofiziala (Girona), Gaztelaniaz (Gerona), Bietan (Gerona / Girona)"
 
 #. module: l10n_es_toponyms
 #: field:config.es.toponyms,id:0
@@ -157,8 +159,8 @@ msgstr "Bai"
 #. module: l10n_es_toponyms
 #: model:ir.actions.todo,note:l10n_es_toponyms.config_wizard_toponyms_es
 msgid ""
-"You can select the toponym version of the spanish states and add the spanish"
-" cities associated to the zip codes."
+"You can select the toponym version of the spanish states and add the spanish "
+"cities associated to the zip codes."
 msgstr ""
 
 #. module: l10n_es_toponyms
