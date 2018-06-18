@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod347
-# 
+#
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2013
@@ -12,11 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2016-11-13 10:45+0000\n"
 "PO-Revision-Date: 2016-11-25 14:58+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/gl/)\n"
+"Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/gl/)\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod347
@@ -57,7 +58,8 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Click to create a AEAT Model 347 Reports.\n"
 "              </p><p>\n"
-"                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban\n"
+"                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el "
+"que se aprueban\n"
 "                los diseños físicos y lógicos del 347.\n"
 "              </p>\n"
 "              "
@@ -313,7 +315,8 @@ msgstr "Creado o"
 msgid ""
 "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
 "límite (1)"
-msgstr "D - Adquisicións feitas por entidades públicas (...) superiores ó límite (1)"
+msgstr ""
+"D - Adquisicións feitas por entidades públicas (...) superiores ó límite (1)"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,support_type:0
@@ -376,7 +379,9 @@ msgstr "Dup"
 msgid ""
 "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
 "al límite (1)"
-msgstr "E - Subvencións, auxilios e axudas satisfeitas por Ad. Públicas superiores ó límite (1)"
+msgstr ""
+"E - Subvencións, auxilios e axudas satisfeitas por Ad. Públicas superiores ó "
+"límite (1)"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_wizard_aeat_mod347_export
@@ -508,14 +513,18 @@ msgstr "ID"
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
-msgstr "Se marca este campo, esta factura non se incluirá nos informes do modelo AEAT 347."
+msgstr ""
+"Se marca este campo, esta factura non se incluirá nos informes do modelo "
+"AEAT 347."
 
 #. module: l10n_es_aeat_mod347
 #: help:res.partner,not_in_mod347:0
 msgid ""
 "If you mark this field, this partner will not be included in any AEAT 347 "
 "model report, independently from the total amount of its operations."
-msgstr "Se marca esta casa, a empresa non se incluirá nas declaracións AEAT modelo 347, independentemente do importe total das suas operacións."
+msgstr ""
+"Se marca esta casa, a empresa non se incluirá nas declaracións AEAT modelo "
+"347, independentemente do importe total das suas operacións."
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -698,28 +707,37 @@ msgstr "Só provedores"
 msgid ""
 "Only for cash basis operations. Set to identify cash basis operations aside "
 "from the rest."
-msgstr "Só para operacións con criterio de caixa. Marque para identifica-las operacións con criterio de caixa."
+msgstr ""
+"Só para operacións con criterio de caixa. Marque para identifica-las "
+"operacións con criterio de caixa."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,insurance_operation:0
 msgid ""
 "Only for insurance companies. Set to identify insurance operations aside "
 "from the rest."
-msgstr "Só entidades aseguradoras. As entidades aseguradoras marcarán esta opción para identifica-las operacións de seguros, debendo consignalas separadamente do resto de operacións."
+msgstr ""
+"Só entidades aseguradoras. As entidades aseguradoras marcarán esta opción "
+"para identifica-las operacións de seguros, debendo consignalas separadamente "
+"do resto de operacións."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
 msgid ""
 "Only for related goods operations. Set to identify related goods operations "
 "aside from the rest."
-msgstr "Só para operacións de mercadorías. Marque para identifica-las operacións de mercadorías."
+msgstr ""
+"Só para operacións de mercadorías. Marque para identifica-las operacións de "
+"mercadorías."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,tax_person_operation:0
 msgid ""
 "Only for taxable person operations. Set to identify taxable person "
 "operations aside from the rest."
-msgstr "Só para operacións de suxeito pasivo. Maque para identifica-las operacións de suxeito pasivo."
+msgstr ""
+"Só para operacións de suxeito pasivo. Maque para identifica-las operacións "
+"de suxeito pasivo."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.partner_record,operation_key:0
@@ -827,7 +845,8 @@ msgstr "Teléfono"
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:373
 #, python-format
 msgid ""
-"Please review partner and real estate records, some of them are in red color:\n"
+"Please review partner and real estate records, some of them are in red "
+"color:\n"
 "\n"
 msgstr ""
 
@@ -986,10 +1005,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
 msgid ""
-"Set to identify real estate rent operations aside from the rest. You'll need"
-" to fill in the real estate info only when you are the one that receives the"
-" money."
-msgstr "(Só arrendadores e arrendatarios de locais de negocio). Marcarán esta opción para identifica-las operacións de arrendamento de locais de negocio, debendo consignalas separadamente do resto. Ademáis os arrendadores deberán cumplimenta-los campos que compoñen o REXISTRO DE INMOBLE, consignando o Importe Total de cada arrendamento correspondente ó ano natural ó que se refire a declaración, independentemente de que este xa teña sido incluído na clave 'B' (ventas)."
+"Set to identify real estate rent operations aside from the rest. You'll need "
+"to fill in the real estate info only when you are the one that receives the "
+"money."
+msgstr ""
+"(Só arrendadores e arrendatarios de locais de negocio). Marcarán esta opción "
+"para identifica-las operacións de arrendamento de locais de negocio, debendo "
+"consignalas separadamente do resto. Ademáis os arrendadores deberán "
+"cumplimenta-los campos que compoñen o REXISTRO DE INMOBLE, consignando o "
+"Importe Total de cada arrendamento correspondente ó ano natural ó que se "
+"refire a declaración, independentemente de que este xa teña sido incluído na "
+"clave 'B' (ventas)."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,stairway:0
@@ -1048,19 +1074,24 @@ msgstr "Telemática"
 msgid ""
 "The declaration will include partners from which we received payments, on "
 "behalf of third parties, over this limit"
-msgstr "A declaración incluirá as empresas ás que temos realizado cobros por conta de terceiros superiores ó límite."
+msgstr ""
+"A declaración incluirá as empresas ás que temos realizado cobros por conta "
+"de terceiros superiores ó límite."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,operations_limit:0
 msgid ""
-"The declaration will include partners with the total of operations over this"
-" limit"
-msgstr "A declaración incluirá aquelas empresas nas que a suma das suas operacións supere este límite."
+"The declaration will include partners with the total of operations over this "
+"limit"
+msgstr ""
+"A declaración incluirá aquelas empresas nas que a suma das suas operacións "
+"supere este límite."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,received_cash_limit:0
 msgid "The declaration will show the total of cash operations over this limit"
-msgstr "A declaración amosará o total de operacións de caixa por riba deste límite."
+msgstr ""
+"A declaración amosará o total de operacións de caixa por riba deste límite."
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:68
@@ -1228,7 +1259,8 @@ msgstr "NIF"
 msgid ""
 "VAT number for professionals established in other state member without "
 "national VAT"
-msgstr "NIE para profesionais establecidos noutro estado membro sen NIF nacional"
+msgstr ""
+"NIE para profesionais establecidos noutro estado membro sen NIF nacional"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_estate_record,number_type:0

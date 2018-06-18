@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod347
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 00:56+0000\n"
 "PO-Revision-Date: 2017-08-11 11:54+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod347
@@ -55,7 +56,8 @@ msgid ""
 "<p class=\"oe_view_nocontent_create\">\n"
 "                Click to create a AEAT Model 347 Reports.\n"
 "              </p><p>\n"
-"                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban\n"
+"                Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el "
+"que se aprueban\n"
 "                los diseños físicos y lógicos del 347.\n"
 "              </p>\n"
 "              "
@@ -311,7 +313,9 @@ msgstr "Creat el"
 msgid ""
 "D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
 "límite (1)"
-msgstr "D - Adquisicions efectuades per Entitats Públiques (...) superiors al límit (1)"
+msgstr ""
+"D - Adquisicions efectuades per Entitats Públiques (...) superiors al límit "
+"(1)"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,support_type:0
@@ -374,7 +378,9 @@ msgstr "Dup"
 msgid ""
 "E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
 "al límite (1)"
-msgstr "E - Subvencions, auxilis i ajuts satisfets per Ad. Públiques superiors al límit (1)"
+msgstr ""
+"E - Subvencions, auxilis i ajuts satisfets per Ad. Públiques superiors al "
+"límit (1)"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_wizard_aeat_mod347_export
@@ -506,7 +512,9 @@ msgstr "ID"
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
-msgstr "Si marca aquest camp, aquesta factura no s'inclourà als informes del model AEAT 347."
+msgstr ""
+"Si marca aquest camp, aquesta factura no s'inclourà als informes del model "
+"AEAT 347."
 
 #. module: l10n_es_aeat_mod347
 #: help:res.partner,not_in_mod347:0
@@ -703,7 +711,10 @@ msgstr ""
 msgid ""
 "Only for insurance companies. Set to identify insurance operations aside "
 "from the rest."
-msgstr "Només entitats asseguradores. Les entitats asseguradores marcaran aquesta casella per identificar les operacions d'assegurances, i s'hauran de consignar separadament de la resta d'operacions."
+msgstr ""
+"Només entitats asseguradores. Les entitats asseguradores marcaran aquesta "
+"casella per identificar les operacions d'assegurances, i s'hauran de "
+"consignar separadament de la resta d'operacions."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,related_goods_operation:0
@@ -825,7 +836,8 @@ msgstr "Telèfon"
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:373
 #, python-format
 msgid ""
-"Please review partner and real estate records, some of them are in red color:\n"
+"Please review partner and real estate records, some of them are in red "
+"color:\n"
 "\n"
 msgstr ""
 
@@ -984,10 +996,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.partner_record,bussiness_real_estate_rent:0
 msgid ""
-"Set to identify real estate rent operations aside from the rest. You'll need"
-" to fill in the real estate info only when you are the one that receives the"
-" money."
-msgstr "(Només arrendadors i arrendataris de Locals de Negoci). Marcaran aquesta casella per identificar les operacions d'arrendament de locals de negoci, i s'han de consignar separadament de la resta. A més a més els arrendadors han d'emplenar els camps que componen el REGISTRE D'IMMOBLE, consignant l'Import Total de cada arrendament corresponent a l'any natural al qual es refereix la declaració, amb independència que aquest ja hagi estat inclòs en la clau 'B' (vendes)."
+"Set to identify real estate rent operations aside from the rest. You'll need "
+"to fill in the real estate info only when you are the one that receives the "
+"money."
+msgstr ""
+"(Només arrendadors i arrendataris de Locals de Negoci). Marcaran aquesta "
+"casella per identificar les operacions d'arrendament de locals de negoci, i "
+"s'han de consignar separadament de la resta. A més a més els arrendadors han "
+"d'emplenar els camps que componen el REGISTRE D'IMMOBLE, consignant l'Import "
+"Total de cada arrendament corresponent a l'any natural al qual es refereix "
+"la declaració, amb independència que aquest ja hagi estat inclòs en la clau "
+"'B' (vendes)."
 
 #. module: l10n_es_aeat_mod347
 #: field:l10n.es.aeat.mod347.real_estate_record,stairway:0
@@ -1046,14 +1065,18 @@ msgstr "Telemàtica"
 msgid ""
 "The declaration will include partners from which we received payments, on "
 "behalf of third parties, over this limit"
-msgstr "La declaració inclourà les empreses que la seva suma d'operacions superi aquest límit."
+msgstr ""
+"La declaració inclourà les empreses que la seva suma d'operacions superi "
+"aquest límit."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,operations_limit:0
 msgid ""
-"The declaration will include partners with the total of operations over this"
-" limit"
-msgstr "La declaració inclourà les empreses que la suma d'operacions superi aquest límit."
+"The declaration will include partners with the total of operations over this "
+"limit"
+msgstr ""
+"La declaració inclourà les empreses que la suma d'operacions superi aquest "
+"límit."
 
 #. module: l10n_es_aeat_mod347
 #: help:l10n.es.aeat.mod347.report,received_cash_limit:0
@@ -1070,13 +1093,15 @@ msgstr "El tipus de registre 1 ha de ser de 502 caràcters de llargada"
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:202
 #, python-format
 msgid "The type 2-D record (partner) must be 502 characters long"
-msgstr "El tipus de registre 2-D (empresa) ha de ser de 502 caràcters de llargada"
+msgstr ""
+"El tipus de registre 2-D (empresa) ha de ser de 502 caràcters de llargada"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/wizard/export_mod347_to_boe.py:308
 #, python-format
 msgid "The type 2-I record (real estate) must be 502 characters long"
-msgstr "El tipus de registre 2-I (estat real) ha de ser de 502 caràcters de llargada"
+msgstr ""
+"El tipus de registre 2-I (estat real) ha de ser de 502 caràcters de llargada"
 
 #. module: l10n_es_aeat_mod347
 #: selection:account.period,quarter:0
