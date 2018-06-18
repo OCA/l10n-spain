@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod349
+# 	* l10n_es_aeat_mod349
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2018-01-29 15:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -100,7 +101,7 @@ msgstr "Declaraciones AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
-#: model:ir.actions.report.xml,name:l10n_es_aeat_mod349.act_report_aeat_mod349_pdf
+#: model:ir.actions.report,name:l10n_es_aeat_mod349.act_report_aeat_mod349_pdf
 msgid "AEAT Model 349"
 msgstr "Modelo 349"
 
@@ -121,16 +122,20 @@ msgid "Aeat 349 Map Line"
 msgstr "Mapeo de Línea Aeat 349"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:339
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:319
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
-msgstr "Todos los campos de los registros de empresas (país, número NIF) deben estar rellenados."
+msgstr ""
+"Todos los campos de los registros de empresas (país, número NIF) deben estar "
+"rellenados."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:347
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:324
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
-msgstr "Todos los campos de las rectificaciones (país, número, NIF) deben estar rellenados."
+msgstr ""
+"Todos los campos de las rectificaciones (país, número, NIF) deben estar "
+"rellenados."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_amount_untaxed
@@ -165,10 +170,11 @@ msgid "Complementary or substitutive:"
 msgstr "Complementaria o sustitutiva:"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:362
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:335
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
-msgstr "El nombre del contacto (Nombre completo) debe contener nombre y apellidos"
+msgstr ""
+"El nombre del contacto (Nombre completo) debe contener nombre y apellidos"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -255,9 +261,11 @@ msgstr "Año Fiscal:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.report_aeat_mod349_document
-msgid "Form 349. Information Return. Recapitulatory\n"
+msgid ""
+"Form 349. Information Return. Recapitulatory\n"
 "                            return of intracommunity transactions."
-msgstr "Modelo 349. Declaración Informativa. Declaración recapitulativa\n"
+msgstr ""
+"Modelo 349. Declaración Informativa. Declaración recapitulativa\n"
 "                            de operaciones intracomunitarias."
 
 #. module: l10n_es_aeat_mod349
@@ -366,7 +374,7 @@ msgid "New (Rectified) Amount"
 msgstr "Importe rectificado"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:279
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:268
 #, python-format
 msgid "No Tax Mapping was found"
 msgstr "No se encontró Mapeo de Impuestos"
@@ -378,11 +386,16 @@ msgstr "Importe Operación"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line_operation_key
+msgid "Operation Key"
+msgstr "Clave de operación"
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_operation_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_operation_key
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
-msgid "Operation Key"
+#, fuzzy
+msgid "Operation key"
 msgstr "Clave de operación"
 
 #. module: l10n_es_aeat_mod349
@@ -578,8 +591,12 @@ msgstr "Ya hay otro registro con la misma clave de operación"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_invoice_eu_triangular_deal
-msgid "This invoice constitutes a triangular operation for the purposes of intra-community operations."
-msgstr "Esta factura constituye una operación triangular para los propósitos de operaciones intracomunitarias."
+msgid ""
+"This invoice constitutes a triangular operation for the purposes of intra-"
+"community operations."
+msgstr ""
+"Esta factura constituye una operación triangular para los propósitos de "
+"operaciones intracomunitarias."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -633,4 +650,3 @@ msgstr "Año"
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr "Mapeo aeat 349"
-
