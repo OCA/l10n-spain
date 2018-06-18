@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_facturae
+#	* l10n_es_facturae
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2018-02-26 12:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Dutch (https://www.transifex.com/oca/teams/23907/nl/)\n"
-"Language: nl\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_count
@@ -30,9 +25,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
-msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
-"\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+msgid "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -60,9 +53,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
-msgid ""
-"Base imponible modificada cuotas repercutidas no satisfechas. Auto de "
-"declaración de concurso"
+msgid "Base imponible modificada cuotas repercutidas no satisfechas. Auto de declaración de concurso"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -80,8 +71,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
-msgid ""
-"Base imponible modificada por resolución firme, judicial o administrativa"
+msgid "Base imponible modificada por resolución firme, judicial o administrativa"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -109,7 +99,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_facturae.account_invoice_integration_form
 #: model:ir.ui.view,arch_db:l10n_es_facturae.view_account_invoice_integration_cancel
 msgid "Cancel"
-msgstr "Annuleren"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.actions.act_window,name:l10n_es_facturae.action_account_invoice_integration_cancel
@@ -244,7 +234,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_create_uid
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_create_uid
 msgid "Created by"
-msgstr "Aangemaakt door"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_create_date
@@ -253,7 +243,7 @@ msgstr "Aangemaakt door"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_create_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_create_date
 msgid "Created on"
-msgstr "Aangemaakt op"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_refund
@@ -284,6 +274,11 @@ msgid "Cálculo de cuotas retenidas"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Delivered"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Detalle Operación"
@@ -296,7 +291,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_display_name
 msgid "Display Name"
-msgstr "Te tonen naam"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
@@ -323,11 +318,11 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:68
 #, python-format
-msgid ""
-"Export successful\n"
+msgid "Export successful\n"
 "\n"
 "Summary:\n"
 "Invoice number: %s\n"
+""
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -406,10 +401,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7099
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7198
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
@@ -420,9 +415,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
-msgid ""
-"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
-"la Comunidad Autonoma Canaria"
+msgid "IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en la Comunidad Autonoma Canaria"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -434,17 +427,13 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
-msgid ""
-"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
-"y Melilla"
+msgid "IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta y Melilla"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
-msgid ""
-"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
-"en la Baleares"
+msgid "IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente en la Baleares"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -486,9 +475,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
-msgid ""
-"ITPAJD: Impuesto sobre transmisiones patrimoniales y actos jurídicos "
-"documentados"
+msgid "ITPAJD: Impuesto sobre transmisiones patrimoniales y actos jurídicos documentados"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -578,7 +565,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method___last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae___last_update
 msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_write_uid
@@ -587,7 +574,7 @@ msgstr "Laatst bijgewerkt op"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_write_uid
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_write_uid
 msgid "Last Updated by"
-msgstr "Laatst bijgewerkt door"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_write_date
@@ -596,7 +583,7 @@ msgstr "Laatst bijgewerkt door"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_write_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_write_date
 msgid "Last Updated on"
-msgstr "Laatst bijgewerkt op"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
@@ -656,7 +643,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_name
 msgid "Name"
-msgstr "Naam"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice_integration_log.py:76
@@ -709,6 +696,11 @@ msgstr ""
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
 msgid "Otro"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Paid"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -801,8 +793,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.invoice,correction_method:0
 #: selection:account.invoice.refund,correction_method:0
-msgid ""
-"Rectificación por descuento por volumen de operaciones durante un periodo"
+msgid "Rectificación por descuento por volumen de operaciones durante un periodo"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -825,6 +816,11 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_register_number
 msgid "Register Number"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -934,11 +930,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:447
 #, python-format
-msgid ""
-"The generated XML file is not valid against the official XML Schema "
-"Definition. The generated XML file and the full error have been written in "
-"the server logs. Here is the error, which may give you an idea on the cause "
-"of the problem : %s"
+msgid "The generated XML file is not valid against the official XML Schema Definition. The generated XML file and the full error have been written in the server logs. Here is the error, which may give you an idea on the cause of the problem : %s"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -973,8 +965,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:195
 #, python-format
-msgid ""
-"You can only create Factura-E files for invoices that have been validated."
+msgid "You can only create Factura-E files for invoices that have been validated."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -1126,3 +1117,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users_organo_proponente
 msgid "Órgano proponente"
 msgstr ""
+
