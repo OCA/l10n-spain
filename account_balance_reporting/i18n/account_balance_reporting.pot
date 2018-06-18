@@ -1,23 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * account_balance_reporting
+#	* account_balance_reporting
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Croatian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
-"language/hr/)\n"
-"Language: hr\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: \n"
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_account
@@ -31,12 +25,7 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_line
-msgid ""
-"Account balance report line / Accounting concept. One line of detail of the "
-"balance report representing an accounting concept with its values. The "
-"accounting concepts follow a parent-children hierarchy. Its values (current "
-"and previous) are calculated based on the 'value' formula of the linked "
-"template line."
+msgid "Account balance report line / Accounting concept. One line of detail of the balance report representing an accounting concept with its values. The accounting concepts follow a parent-children hierarchy. Its values (current and previous) are calculated based on the 'value' formula of the linked template line."
 msgstr ""
 
 #. module: account_balance_reporting
@@ -46,19 +35,12 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template_line
-msgid ""
-"Account balance report template line / Accounting concept template One line "
-"of detail of the balance report representing an accounting concept with the "
-"formulas to calculate its values. The accounting concepts follow a parent-"
-"children hierarchy."
+msgid "Account balance report template line / Accounting concept template One line of detail of the balance report representing an accounting concept with the formulas to calculate its values. The accounting concepts follow a parent-children hierarchy."
 msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
-msgid ""
-"Account balance report template. It stores the header fields of an account "
-"balance report template, and the linked lines of detail with the formulas to "
-"calculate the accounting concepts of the report."
+msgid "Account balance report template. It stores the header fields of an account balance report template, and the linked lines of detail with the formulas to calculate the accounting concepts of the report."
 msgstr ""
 
 #. module: account_balance_reporting
@@ -118,7 +100,7 @@ msgstr ""
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Cancel"
-msgstr "Odustani"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -135,12 +117,12 @@ msgstr ""
 #: field:account.balance.reporting.line,code:0
 #: field:account.balance.reporting.template.line,code:0
 msgid "Code"
-msgstr "Šifra"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,company_id:0
 msgid "Company"
-msgstr "Poduzeće"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,check_filter:0
@@ -165,7 +147,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 msgid "Confirm"
-msgstr "Potvrdi"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,create_uid:0
@@ -174,7 +156,7 @@ msgstr "Potvrdi"
 #: field:account.balance.reporting.template,create_uid:0
 #: field:account.balance.reporting.template.line,create_uid:0
 msgid "Created by"
-msgstr "Kreirao"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,create_date:0
@@ -183,7 +165,7 @@ msgstr "Kreirao"
 #: field:account.balance.reporting.template,create_date:0
 #: field:account.balance.reporting.template.line,create_date:0
 msgid "Created on"
-msgstr "Kreirano"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -236,7 +218,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,description:0
 msgid "Description"
-msgstr "Opis"
+msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.print.wizard:account_balance_reporting.wizard_account_balance_reporting_print
@@ -250,7 +232,7 @@ msgstr ""
 #: field:account.balance.reporting.template,display_name:0
 #: field:account.balance.reporting.template.line,display_name:0
 msgid "Display Name"
-msgstr "Naziv "
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.account,not_level_expand:0
@@ -260,13 +242,13 @@ msgstr ""
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
 msgid "Done"
-msgstr "Izvršeno"
+msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
 #: selection:account.balance.reporting,state:0
 msgid "Draft"
-msgstr "Skica"
+msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
@@ -315,9 +297,7 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template,balance_mode:0
-msgid ""
-"Formula calculation mode: Depending on it, the balance is calculated as "
-"follows:\n"
+msgid "Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
 "Mode 0: debit-credit (default);\n"
 "Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
 "Mode 2: credit-debit;\n"
@@ -341,15 +321,11 @@ msgstr ""
 #: field:account.balance.reporting.template,id:0
 #: field:account.balance.reporting.template.line,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: account_balance_reporting
 #: help:account.account,not_level_expand:0
-msgid ""
-"If you mark this field, when expanding account balances by levels on "
-"financial reports, this account won't be shown. This only serves when "
-"displaying the account itself, but not when showing parent accounts, which "
-"will include this account balance as part of the result."
+msgid "If you mark this field, when expanding account balances by levels on financial reports, this account won't be shown. This only serves when displaying the account itself, but not when showing parent accounts, which will include this account balance as part of the result."
 msgstr ""
 
 #. module: account_balance_reporting
@@ -359,10 +335,7 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting
-msgid ""
-"It stores the configuration/header fields of an account balance report, and "
-"the linked lines of detail with the values of the accounting concepts "
-"(values generated from the selected template lines of detail formulas)"
+msgid "It stores the configuration/header fields of an account balance report, and the linked lines of detail with the values of the accounting concepts (values generated from the selected template lines of detail formulas)"
 msgstr ""
 
 #. module: account_balance_reporting
@@ -388,7 +361,7 @@ msgstr ""
 #: field:account.balance.reporting.template,__last_update:0
 #: field:account.balance.reporting.template.line,__last_update:0
 msgid "Last Modified on"
-msgstr "Zadnje modificirano"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_uid:0
@@ -397,7 +370,7 @@ msgstr "Zadnje modificirano"
 #: field:account.balance.reporting.template,write_uid:0
 #: field:account.balance.reporting.template.line,write_uid:0
 msgid "Last Updated by"
-msgstr "Zadnji ažurirao"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,write_date:0
@@ -406,7 +379,7 @@ msgstr "Zadnji ažurirao"
 #: field:account.balance.reporting.template,write_date:0
 #: field:account.balance.reporting.template.line,write_date:0
 msgid "Last Updated on"
-msgstr "Zadnje ažuriranje"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting,level:0
@@ -472,7 +445,7 @@ msgstr ""
 #: field:account.balance.reporting.template,name:0
 #: field:account.balance.reporting.template.line,name:0
 msgid "Name"
-msgstr "Naziv"
+msgstr ""
 
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template.line,negate:0
@@ -487,7 +460,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.line,notes:0
 msgid "Notes"
-msgstr "Bilješke"
+msgstr ""
 
 #. module: account_balance_reporting
 #: view:website:account_balance_reporting.report_generic
@@ -551,7 +524,7 @@ msgstr ""
 #: field:account.balance.reporting.line,sequence:0
 #: field:account.balance.reporting.template.line,sequence:0
 msgid "Sequence"
-msgstr "Sekvenca"
+msgstr ""
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting:account_balance_reporting.view_account_balance_reporting_form
@@ -561,7 +534,7 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting,state:0
 msgid "State"
-msgstr "Status"
+msgstr ""
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,css_class:0
@@ -596,26 +569,23 @@ msgstr ""
 #. module: account_balance_reporting
 #: field:account.balance.reporting.template,type:0
 msgid "Type"
-msgstr "Tip"
+msgstr ""
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,type:0
 msgid "User"
-msgstr "Korisnik"
+msgstr ""
 
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template.line,current_value:0
 #: help:account.balance.reporting.template.line,previous_value:0
-msgid ""
-"Value calculation formula: Depending on this formula the final value is\n"
+msgid "Value calculation formula: Depending on this formula the final value is\n"
 "    calculated as follows:\n"
 "      Empy template value: sum of (this concept) children values.\n"
 "      Number with decimal point (\"10.2\"): that value (constant).\n"
-"      Account numbers separated by commas (\"430,431,(437)\"): Sum of the "
-"account\n"
+"      Account numbers separated by commas (\"430,431,(437)\"): Sum of the account\n"
 "          balances (the sign of the balance depends on the balance mode).\n"
-"      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those "
-"concepts\n"
+"      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
 "      values.\n"
 "    "
 msgstr ""
@@ -627,7 +597,6 @@ msgstr ""
 
 #. module: account_balance_reporting
 #: view:website:account_balance_reporting.report_generic_non_zero
-msgid ""
-"o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != "
-"0.0)"
+msgid "o.line_ids.filtered(lambda x: x.current_value != 0.0 or x.previous_value != 0.0)"
 msgstr ""
+

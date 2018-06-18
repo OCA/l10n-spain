@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_balance_reporting
-# 
+#
 # Translators:
 # Matjaž Mozetič <m.mozetic@matmoz.si>, 2015-2016
 msgid ""
@@ -11,12 +11,14 @@ msgstr ""
 "POT-Creation-Date: 2017-08-29 00:59+0000\n"
 "PO-Revision-Date: 2017-08-21 07:26+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/sl/)\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/sl/)\n"
+"Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: sl\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3);\n"
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_account
@@ -36,7 +38,12 @@ msgid ""
 "accounting concepts follow a parent-children hierarchy. Its values (current "
 "and previous) are calculated based on the 'value' formula of the linked "
 "template line."
-msgstr "Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo nadrejeni-podrejeni. Vrednosti (tekoče in prejšnje) se računajo na osnovi formule 'vrednosti' povezane postavke predloge."
+msgstr ""
+"Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična "
+"vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s "
+"pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo "
+"nadrejeni-podrejeni. Vrednosti (tekoče in prejšnje) se računajo na osnovi "
+"formule 'vrednosti' povezane postavke predloge."
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_form
@@ -50,15 +57,22 @@ msgid ""
 "of detail of the balance report representing an accounting concept with the "
 "formulas to calculate its values. The accounting concepts follow a parent-"
 "children hierarchy."
-msgstr "Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo nadrejeni-podrejeni."
+msgstr ""
+"Postavka poročila knjigovodske bilance / knjigovodski koncept. Posamična "
+"vrstice bilančnega poročila, ki predstavlja knjigovodski koncept s "
+"pripadajočimi vrednostmi. Knjigovodski koncepti upoštevajo hierarhijo "
+"nadrejeni-podrejeni."
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
 msgid ""
 "Account balance report template. It stores the header fields of an account "
-"balance report template, and the linked lines of detail with the formulas to"
-" calculate the accounting concepts of the report."
-msgstr "Predloga poročila knjigovodske bilance. Vsebuje polja glave predloge bilančnega poročila in povezane postavke podrobnosti s formulami za izračun knjigovodskih konceptov v poročilu."
+"balance report template, and the linked lines of detail with the formulas to "
+"calculate the accounting concepts of the report."
+msgstr ""
+"Predloga poročila knjigovodske bilance. Vsebuje polja glave predloge "
+"bilančnega poročila in povezane postavke podrobnosti s formulami za izračun "
+"knjigovodskih konceptov v poročilu."
 
 #. module: account_balance_reporting
 #: view:account.balance.reporting.template:account_balance_reporting.view_account_balance_reporting_template_tree
@@ -315,12 +329,18 @@ msgstr "Obdobja za fiskalno leto 2"
 #. module: account_balance_reporting
 #: help:account.balance.reporting.template,balance_mode:0
 msgid ""
-"Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
+"Formula calculation mode: Depending on it, the balance is calculated as "
+"follows:\n"
 "Mode 0: debit-credit (default);\n"
 "Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
 "Mode 2: credit-debit;\n"
 "Mode 3: credit-debit, debit-credit for accounts in brackets."
-msgstr "Način izračuna formule: osnova, po kateri se izračuna bilanca, kot sledi:\nNačin 0: breme-dobro (privzeto);\nNačin 1:  breme-dobro, dobro-breme za konte v oklepajih;\nNačin 2: dobro-breme;\nNačin 3: dobro-breme, breme-dobro za konte v oklepajih."
+msgstr ""
+"Način izračuna formule: osnova, po kateri se izračuna bilanca, kot sledi:\n"
+"Način 0: breme-dobro (privzeto);\n"
+"Način 1:  breme-dobro, dobro-breme za konte v oklepajih;\n"
+"Način 2: dobro-breme;\n"
+"Način 3: dobro-breme, breme-dobro za konte v oklepajih."
 
 #. module: account_balance_reporting
 #: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_generic
@@ -361,7 +381,10 @@ msgid ""
 "It stores the configuration/header fields of an account balance report, and "
 "the linked lines of detail with the values of the accounting concepts "
 "(values generated from the selected template lines of detail formulas)"
-msgstr "Hrani polja nastavitev/glave za poročilo knjigovodske bilance in povezanih postavk podrobnosti z vrednostmi knjigovodskih konceptov (vrednosti ustvarjene iz postavk formul podrobnosti iz izbrane predloge)"
+msgstr ""
+"Hrani polja nastavitev/glave za poročilo knjigovodske bilance in povezanih "
+"postavk podrobnosti z vrednostmi knjigovodskih konceptov (vrednosti "
+"ustvarjene iz postavk formul podrobnosti iz izbrane predloge)"
 
 #. module: account_balance_reporting
 #: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:528
@@ -609,12 +632,23 @@ msgid ""
 "    calculated as follows:\n"
 "      Empy template value: sum of (this concept) children values.\n"
 "      Number with decimal point (\"10.2\"): that value (constant).\n"
-"      Account numbers separated by commas (\"430,431,(437)\"): Sum of the account\n"
+"      Account numbers separated by commas (\"430,431,(437)\"): Sum of the "
+"account\n"
 "          balances (the sign of the balance depends on the balance mode).\n"
-"      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
+"      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those "
+"concepts\n"
 "      values.\n"
 "    "
-msgstr "Formula za izračun vrednosti: na tej osnovi se izračuna končna\n    vrednost, kot sledi:\n      Vrednost prazne predloge: vsota podrejenih vrednosti (temu konceptu).\n      Številka z decimalnim ločilom (\"10.2\"): tista vrednost (konstanta).\n      Številke kontov ločene z vejicami (\"430,431,(437)\"): vsota kontnih\n          bilanc (predznak bilance je odvisen od bilančnega načina).\n      Kode koncepta ločene z \"+\" (\"11000+12000\"): vsota vrednosti teh\n      konceptov.\n    "
+msgstr ""
+"Formula za izračun vrednosti: na tej osnovi se izračuna končna\n"
+"    vrednost, kot sledi:\n"
+"      Vrednost prazne predloge: vsota podrejenih vrednosti (temu konceptu).\n"
+"      Številka z decimalnim ločilom (\"10.2\"): tista vrednost (konstanta).\n"
+"      Številke kontov ločene z vejicami (\"430,431,(437)\"): vsota kontnih\n"
+"          bilanc (predznak bilance je odvisen od bilančnega načina).\n"
+"      Kode koncepta ločene z \"+\" (\"11000+12000\"): vsota vrednosti teh\n"
+"      konceptov.\n"
+"    "
 
 #. module: account_balance_reporting
 #: view:website:account_balance_reporting.report_generic_non_zero
