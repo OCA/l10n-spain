@@ -1,24 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_account_financial_report
+#	* l10n_es_account_financial_report
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
-# Carlos Hormigo, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-27 06:34+0000\n"
-"PO-Revision-Date: 2018-01-27 06:34+0000\n"
-"Last-Translator: Carlos Hormigo, 2018\n"
-"Language-Team: Catalan (Spain) (https://www.transifex.com/oca/teams/23907/"
-"ca_ES/)\n"
-"Language: ca_ES\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
@@ -48,17 +41,17 @@ msgstr ""
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
 msgid "Cancel"
-msgstr "Cancel·la"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,create_uid:0
 msgid "Created by"
-msgstr "Creat per"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,create_date:0
 msgid "Created on"
-msgstr "Creat a"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
@@ -78,13 +71,13 @@ msgstr ""
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
 msgid "Description"
-msgstr "Descripció"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,display_name:0
 #: field:report.l10n_es_account_financial_report.journal_entries,display_name:0
 msgid "Display Name"
-msgstr "Nom visible"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,sort_selection:0
@@ -106,7 +99,7 @@ msgstr ""
 #: field:account.journal.entries.report,journal_ids:0
 #: view:website:l10n_es_account_financial_report.journal_entries
 msgid "Journal"
-msgstr "Diari"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
@@ -132,17 +125,17 @@ msgstr ""
 #: field:account.journal.entries.report,__last_update:0
 #: field:report.l10n_es_account_financial_report.journal_entries,__last_update:0
 msgid "Last Modified on"
-msgstr "Darrera modificació en"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,write_uid:0
 msgid "Last Updated by"
-msgstr "Darrera actualització per"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,write_date:0
 msgid "Last Updated on"
-msgstr "Darrera actualització el"
+msgstr ""
 
 #. module: l10n_es_account_financial_report
 #: code:addons/l10n_es_account_financial_report/wizard/wizard_print_journal_entries.py:58
@@ -194,3 +187,4 @@ msgstr ""
 #: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
 msgid "or"
 msgstr ""
+
