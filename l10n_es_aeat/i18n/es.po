@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
@@ -16,11 +16,12 @@ msgstr ""
 "POT-Creation-Date: 2017-07-27 00:51+0000\n"
 "PO-Revision-Date: 2017-07-24 23:27+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
@@ -329,7 +330,8 @@ msgstr "Fecha final"
 #: code:addons/l10n_es_aeat/models/aeat_tax_code_mapping.py:56
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
-msgstr "Error! Las fechas de los registros se solapan con un registro existente."
+msgstr ""
+"Error! Las fechas de los registros se solapan con un registro existente."
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
@@ -454,14 +456,17 @@ msgstr "ID"
 msgid ""
 "If set, this expression will be used for getting the list of elements to "
 "iterate on"
-msgstr "Si está establecida, esta expresión se usará para obtener una lista de los elementos por los que iterar"
+msgstr ""
+"Si está establecida, esta expresión se usará para obtener una lista de los "
+"elementos por los que iterar"
 
 #. module: l10n_es_aeat
 #: help:aeat.model.export.config.line,conditional_expression:0
 msgid ""
-"If set, this expression will be used to evaluate if this line should be "
-"added"
-msgstr "Si está establecida, esta expresión será usada para evaluar si la línea debe ser añadida"
+"If set, this expression will be used to evaluate if this line should be added"
+msgstr ""
+"Si está establecida, esta expresión será usada para evaluar si la línea debe "
+"ser añadida"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -482,16 +487,21 @@ msgstr "Informativas"
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_tax_mapping
 msgid ""
 "Inheritable abstract model to add taxes by code mapping in any AEAT report"
-msgstr "Modelo abstracto hereditario para agregar impuestos por mapeo de código en cualquier informe AEAT"
+msgstr ""
+"Modelo abstracto hereditario para agregar impuestos por mapeo de código en "
+"cualquier informe AEAT"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid ""
-"It seems that you have defined quarterly periods or periods in the middle of"
-" the month. This cannot be automatically handled. You should select manually"
-" the periods."
-msgstr "Parece que ha definido periodos trimestrales o periodos en mitad del mes. Esto no se puede gestionar automáticamente, por lo que deberá seleccionar a mano los periodos."
+"It seems that you have defined quarterly periods or periods in the middle of "
+"the month. This cannot be automatically handled. You should select manually "
+"the periods."
+msgstr ""
+"Parece que ha definido periodos trimestrales o periodos en mitad del mes. "
+"Esto no se puede gestionar automáticamente, por lo que deberá seleccionar a "
+"mano los periodos."
 
 #. module: l10n_es_aeat
 #: field:l10n.es.aeat.report,journal_id:0
@@ -645,7 +655,8 @@ msgstr "Modelo Odoo"
 #: code:addons/l10n_es_aeat/models/aeat_report.py:341
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
-msgstr "Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
+msgstr ""
+"Sólo los informes en estado 'borrador' or 'cancelado' pueden ser eliminados"
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
@@ -680,7 +691,9 @@ msgstr "Teléfono"
 msgid ""
 "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
 "programa"
-msgstr "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el programa"
+msgstr ""
+"Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
+"programa"
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config.line,position:0
@@ -778,7 +791,9 @@ msgstr "Ver movimiento"
 msgid ""
 "Split fiscal years cannot be automatically handled. You should select "
 "manually the periods."
-msgstr "Los ejercicios fiscales separados no pueden ser gestionados automáticamente. Debe seleccionar manualmente los periodos."
+msgstr ""
+"Los ejercicios fiscales separados no pueden ser gestionados automáticamente. "
+"Debe seleccionar manualmente los periodos."
 
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_start:0
@@ -864,7 +879,9 @@ msgstr "La cadena formateada debe satisfacer el tamaño dado."
 msgid ""
 "There is no period defined for the report. Please set at least one period "
 "and try again."
-msgstr "No hay periodo definido para el informe. Establezca un periodo y vuelva a intentarlo."
+msgstr ""
+"No hay periodo definido para el informe. Establezca un periodo y vuelva a "
+"intentarlo."
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:259
@@ -878,12 +895,15 @@ msgstr "No hay una declaración previa para el periodo %s."
 msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
-msgstr "Esta cuenta será la contrapartida para todos los elementos del diario que están regularizados al contabilizar el informe."
+msgstr ""
+"Esta cuenta será la contrapartida para todos los elementos del diario que "
+"están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "This button creates the regularization move for the selected report"
-msgstr "Este botón crea el movimiento de regularización para el informe seleccionado"
+msgstr ""
+"Este botón crea el movimiento de regularización para el informe seleccionado"
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_to:0
