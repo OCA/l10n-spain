@@ -18,6 +18,12 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 
 #. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expired_aeat:0
+#, fuzzy
+msgid "AEAT Certificate Expirated"
+msgstr "Fecha de certificado de AEAT"
+
+#. module: l10n_es_subcontractor_certificate
 #: field:res.partner,certificate_expiration_aeat:0
 msgid "AEAT Certificate Expiration"
 msgstr "Fecha de certificado de AEAT"
@@ -41,6 +47,12 @@ msgstr "Empresa"
 #: model:ir.model,name:l10n_es_subcontractor_certificate.model_purchase_order
 msgid "Purchase Order"
 msgstr "Pedido de compra"
+
+#. module: l10n_es_subcontractor_certificate
+#: field:res.partner,certificate_expired_ss:0
+#, fuzzy
+msgid "SS Certificate Expirated"
+msgstr "Fecha de certificado de Seguridad Social"
 
 #. module: l10n_es_subcontractor_certificate
 #: field:res.partner,certificate_expiration_ss:0
