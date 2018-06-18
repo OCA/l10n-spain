@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod349
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 00:56+0000\n"
 "PO-Revision-Date: 2017-08-11 11:54+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod349
@@ -129,13 +130,17 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:194
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
-msgstr "Tots els camps dels registres d'empresa (país, número CIF/NIF) han d'estar omplerts."
+msgstr ""
+"Tots els camps dels registres d'empresa (país, número CIF/NIF) han d'estar "
+"omplerts."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:202
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
-msgstr "Tots els camps de les rectificacions (país, número CIF/NIF) han d'estar omplerts."
+msgstr ""
+"Tots els camps de les rectificacions (país, número CIF/NIF) han d'estar "
+"omplerts."
 
 #. module: l10n_es_aeat_mod349
 #: field:l10n.es.aeat.mod349.report,allow_posting:0
