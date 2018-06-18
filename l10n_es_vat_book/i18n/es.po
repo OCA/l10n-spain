@@ -1,22 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_vat_book
+#	* l10n_es_vat_book
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2018-02-10 03:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
-"Language: es\n"
+"POT-Creation-Date: 2018-06-18 20:09+0000\n"
+"PO-Revision-Date: 2018-06-18 20:09+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
@@ -31,7 +28,7 @@ msgstr "Impuesto"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_auto_renumber
 msgid "Auto renumber invoices received"
-msgstr ""
+msgstr "Auto-renumerar facturas recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
@@ -69,13 +66,13 @@ msgstr "Fecha de cálculo"
 
 #. module: l10n_es_vat_book
 #: model:ir.actions.act_window,help:l10n_es_vat_book.l10n_es_vat_book_action
-msgid "Click to create a new Libro de IVA."
-msgstr "Pulse para crear un nuevo Libro de IVA."
+msgid "Click to create a new VAT book."
+msgstr "Pulse para crear un nuevo libro de IVA."
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
 msgid "Company Name"
-msgstr "Nombre Compañía"
+msgstr "Nombre compañía"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
@@ -103,7 +100,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_create_date
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_create_date
 msgid "Created on"
-msgstr "Creado el"
+msgstr "Creado en"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
@@ -116,8 +113,9 @@ msgstr "Rango de fechas:"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx_display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nombre mostrado"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_partner_id
@@ -127,7 +125,7 @@ msgstr "Empresa"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_entry_number
 msgid "Entry number"
-msgstr ""
+msgstr "Nº entrada"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_exception
@@ -140,9 +138,14 @@ msgid "Exception text"
 msgstr "Texto de excepción"
 
 #. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Export to XLSX"
+msgstr "Exportar a XLSX"
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_external_ref
 msgid "External Reference"
-msgstr "Referencia Externa"
+msgstr "Referencia externa"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
@@ -153,7 +156,7 @@ msgstr "Cuota"
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
 msgid "Fiscal Year:"
-msgstr "Año Fiscal:"
+msgstr "Año fiscal:"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_id
@@ -161,8 +164,9 @@ msgstr "Año Fiscal:"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx_id
 msgid "ID"
-msgstr "ID"
+msgstr "ID (identificación)"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_invoice_id
@@ -173,16 +177,6 @@ msgstr "Factura"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_invoice_date
 msgid "Invoice Date"
 msgstr "Fecha factura"
-
-#. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
-msgid "Invoices Issued"
-msgstr "Facturas emitidas"
-
-#. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
-msgid "Invoices Received"
-msgstr "Facturas recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
@@ -197,18 +191,20 @@ msgid "Issued"
 msgstr "Emitida"
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:55
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
 msgid "Issued Invoices"
 msgstr "Facturas emitidas"
 
 #. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "Issued Rectification Invoices"
-msgstr "Facturas rectificativas emitidas"
-
-#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:59
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_issued_line_ids
-msgid "Issued Rectification invoices"
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
+msgid "Issued Refund Invoices"
 msgstr "Facturas rectificativas emitidas"
 
 #. module: l10n_es_vat_book
@@ -244,6 +240,7 @@ msgstr "Asiento contable"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax___last_update
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary___last_update
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary___last_update
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx___last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -254,7 +251,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_write_uid
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización por"
+msgstr "Última actualización de"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_write_date
@@ -263,7 +260,7 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_write_date
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_write_date
 msgid "Last Updated on"
-msgstr "Última actualización el"
+msgstr "Última actualización en"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.menu,name:l10n_es_vat_book.menu_vat_book_report
@@ -281,13 +278,9 @@ msgid "Model number"
 msgstr "Nº modelo"
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_move_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
 msgid "Move Lines"
-msgstr "Apuntes Contables"
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_move_line_ids
-msgid "Move lines"
 msgstr "Apuntes contables"
 
 #. module: l10n_es_vat_book
@@ -296,7 +289,7 @@ msgid "NIF"
 msgstr "NIF"
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:322
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:323
 #, python-format
 msgid "No AEAT Tax Mapping was found"
 msgstr "No se encontró Mapeo de Impuestos AEAT"
@@ -314,29 +307,31 @@ msgid "Received"
 msgstr "Recibida"
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:63
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
 msgid "Received Invoices"
-msgstr "Facturas Recibidas"
+msgstr "Facturas recibidas"
 
 #. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "Received Rectification Invoices"
-msgstr "Facturas Rectificativas Recibidas"
-
-#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:67
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_received_line_ids
-msgid "Received Rectification invoices"
-msgstr "Facturas Rectificativas recibidas"
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
+msgid "Received Refund Invoices"
+msgstr "Facturas rectificativas recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_received_summary_ids
 msgid "Received Summary"
-msgstr "Resumen Recibidas"
+msgstr "Resumen recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_received_tax_summary_ids
 msgid "Received Tax Summary"
-msgstr "Resumen Impuestos Recibidas"
+msgstr "Resumen impuestos recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_received_line_ids
@@ -344,29 +339,19 @@ msgid "Received invoices"
 msgstr "Facturas recibidas"
 
 #. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
-msgid "Rectification Invoices Issued"
-msgstr "Facturas Rectificativas Emitidas"
-
-#. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
-msgid "Rectification Invoices Received"
-msgstr "Facturas Recitificativas Recibidas"
-
-#. module: l10n_es_vat_book
-#: selection:l10n.es.vat.book.line,line_type:0
-msgid "Rectification Issued"
-msgstr "Rectificativa Emitida"
-
-#. module: l10n_es_vat_book
-#: selection:l10n.es.vat.book.line,line_type:0
-msgid "Rectification Received"
-msgstr "Rectificativa Recibida"
-
-#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_ref
 msgid "Reference"
 msgstr "Referencia"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line,line_type:0
+msgid "Refund Issued"
+msgstr "Rectificativa emitida"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line,line_type:0
+msgid "Refund Received"
+msgstr "Rectificativa recibida"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_ids
@@ -405,7 +390,7 @@ msgstr "Tipo Impositivo (%)"
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_tax_summary_form
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_tax_summary_tree
 msgid "Tax Summary"
-msgstr "Resumen de Impuestos"
+msgstr "Resumen de impuestos"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_tax_amount
@@ -429,10 +414,16 @@ msgid "Taxes"
 msgstr "Impuestos"
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:306
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:259
+#, python-format
+msgid "The partner doesn't have a VAT number"
+msgstr "La empresa no tiene NIF"
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:307
 #, python-format
 msgid "This company doesn't have VAT"
-msgstr "Esta empresa no tiene NIF"
+msgstr "Esta compañía no tiene NIF"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_total_amount
@@ -468,42 +459,46 @@ msgid "VAT Book Invoices Received"
 msgstr "Libro de IVA Facturas Recibidas"
 
 #. module: l10n_es_vat_book
+#: model:ir.actions.report,name:l10n_es_vat_book.l10n_es_vat_book_xlsx
+msgid "VAT book XLSX report"
+msgstr "Informe XLSX de libro de IVA"
+
+#. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_contact
 msgid "VAT:"
 msgstr "NIF:"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_vat_book_line_id
-#, fuzzy
 msgid "Vat Book Line"
-msgstr "id Libro IVA"
+msgstr "Línea de libro de IVA"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_vat_book_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_vat_book_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_vat_book_id
 msgid "Vat Book id"
-msgstr "id Libro IVA"
+msgstr "Id de libro de IVA"
 
 #. module: l10n_es_vat_book
 #: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf
 msgid "Vat book invoices issued"
-msgstr "Libro de iva facturas emitidas"
+msgstr "Libro de IVA de facturas emitidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_received_pdf
 msgid "Vat book invoices received"
-msgstr "Libro de iva facturas recibidas"
+msgstr "Libro de IVA de facturas recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 msgid "View Issued Invoices"
-msgstr "Ver Facturas Emitidas"
+msgstr "Ver facturas emitidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 msgid "View Received Invoices"
-msgstr "Ver Facturas Recibidas"
+msgstr "Ver facturas recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book
@@ -531,10 +526,7 @@ msgid "l10n.es.vat.book.tax.summary"
 msgstr "l10n.es.vat.book.tax.summary"
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:258
-#, fuzzy, python-format
-msgid "Â¡The partner haven't VAT!"
-msgstr "¡El interlocutor no tiene NIF!"
+#: model:ir.model,name:l10n_es_vat_book.model_report_l10n_es_vat_book_l10n_es_vat_book_xlsx
+msgid "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
+msgstr "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
 
-#~ msgid "Vat book line id"
-#~ msgstr "id línea libro de iva"

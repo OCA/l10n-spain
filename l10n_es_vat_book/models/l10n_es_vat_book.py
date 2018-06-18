@@ -39,7 +39,7 @@ class L10nEsVatBook(models.Model):
         comodel_name='l10n.es.vat.book.line',
         inverse_name='vat_book_id',
         domain=[('line_type', '=', 'rectification_issued')],
-        string='Issued Rectification invoices',
+        string='Issued Refund Invoices',
         copy=False,
         readonly="True")
 
@@ -55,7 +55,7 @@ class L10nEsVatBook(models.Model):
         comodel_name='l10n.es.vat.book.line',
         inverse_name='vat_book_id',
         domain=[('line_type', '=', 'rectification_received')],
-        string='Received Rectification invoices',
+        string='Received Refund Invoices',
         copy=False,
         readonly="True")
 
@@ -256,7 +256,7 @@ class L10nEsVatBook(models.Model):
         exception = False
         if vals['invoice_id'] and not vals['vat_number']:
             exception = True
-            exception_text += _("¡The partner haven't VAT!")
+            exception_text += _("The partner doesn't have a VAT number")
 
         if exception:
             vals.update({
