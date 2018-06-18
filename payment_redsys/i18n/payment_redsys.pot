@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * payment_redsys
+#	* payment_redsys
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-07 03:30+0000\n"
-"PO-Revision-Date: 2017-01-12 19:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Turkish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
-"language/tr/)\n"
-"Language: tr\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -205,7 +200,7 @@ msgstr ""
 #. module: payment_redsys
 #: view:website:payment_redsys.order
 msgid "Product"
-msgstr "Ürün"
+msgstr ""
 
 #. module: payment_redsys
 #: field:payment.acquirer,redsys_merchant_description:0
@@ -251,7 +246,7 @@ msgstr ""
 #. module: payment_redsys
 #: view:website:payment_redsys.order
 msgid "Shipping Address"
-msgstr "Teslimat Adresi"
+msgstr ""
 
 #. module: payment_redsys
 #: view:website:payment_redsys.order
@@ -301,7 +296,7 @@ msgstr ""
 #. module: payment_redsys
 #: view:website:payment_redsys.order
 msgid "Unit Price"
-msgstr "Birim Fiyatı"
+msgstr ""
 
 #. module: payment_redsys
 #: view:website:payment_redsys.order
@@ -320,13 +315,11 @@ msgstr ""
 
 #. module: payment_redsys
 #: help:payment.acquirer,redsys_percent_partial:0
-msgid ""
-"Write percent reduction payment, for this method payment.With this option "
-"you can allow partial payments in your shop online, the residual amount in "
-"pending for do a manual payment later."
+msgid "Write percent reduction payment, for this method payment.With this option you can allow partial payments in your shop online, the residual amount in pending for do a manual payment later."
 msgstr ""
 
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ok
 msgid "Your order has been paid correctly"
 msgstr ""
+

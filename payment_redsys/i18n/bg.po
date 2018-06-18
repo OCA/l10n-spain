@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * payment_redsys
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2016-09-17 19:27+0000\n"
 "PO-Revision-Date: 2016-09-25 14:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/bg/)\n"
+"Language-Team: Bulgarian (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/bg/)\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
@@ -28,7 +29,7 @@ msgid "Back to shop"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:311
+#: code:addons/payment_redsys/models/redsys.py:306
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -69,7 +70,7 @@ msgid "En error ocurred."
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:300
+#: code:addons/payment_redsys/models/redsys.py:295
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -145,7 +146,7 @@ msgid "Merchant code"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:289
+#: code:addons/payment_redsys/models/redsys.py:284
 #, python-format
 msgid "Ok: %s"
 msgstr ""
@@ -227,7 +228,7 @@ msgid "Redsys signature version"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:318
+#: code:addons/payment_redsys/models/redsys.py:313
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""

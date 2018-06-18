@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * payment_redsys
-# 
+#
 # Translators:
 # Alejandro Santana <alejandrosantana@anubia.es>, 2015
 # Antonio Trueba, 2016
@@ -16,11 +16,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-05 14:48+0000\n"
 "PO-Revision-Date: 2016-11-11 18:07+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
@@ -329,7 +330,10 @@ msgid ""
 "Write percent reduction payment, for this method payment.With this option "
 "you can allow partial payments in your shop online, the residual amount in "
 "pending for do a manual payment later."
-msgstr "Indica un porcentaje de pago para este método de pago. Con esta opción puedes permitir pagos parciales en la tienda online dejando el resto como pendiente para realizar el pago manualmente más tarde."
+msgstr ""
+"Indica un porcentaje de pago para este método de pago. Con esta opción "
+"puedes permitir pagos parciales en la tienda online dejando el resto como "
+"pendiente para realizar el pago manualmente más tarde."
 
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ok

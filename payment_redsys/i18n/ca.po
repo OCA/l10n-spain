@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * payment_redsys
-# 
+#
 # Translators:
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
@@ -13,11 +13,12 @@ msgstr ""
 "POT-Creation-Date: 2016-12-05 14:48+0000\n"
 "PO-Revision-Date: 2016-09-09 11:31+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
@@ -192,7 +193,9 @@ msgstr "Transacció de pagament"
 #. module: payment_redsys
 #: view:website:payment_redsys.redsys_result_ko
 msgid "Please contact with us and inform you about your order."
-msgstr "Si us plau, poseu-vos en contacte amb nosaltres i l'informarem sobre la seva comanda."
+msgstr ""
+"Si us plau, poseu-vos en contacte amb nosaltres i l'informarem sobre la seva "
+"comanda."
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
