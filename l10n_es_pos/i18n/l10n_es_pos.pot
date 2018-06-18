@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_pos
+#	* l10n_es_pos
 #
-# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: l10n-spain (8.0)\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-27 00:56+0000\n"
-"PO-Revision-Date: 2017-09-30 10:34+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: English (United States) (http://www.transifex.com/oca/OCA-"
-"l10n-spain-8-0/language/en_US/)\n"
-"Language: en_US\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -44,7 +39,7 @@ msgstr ""
 #. module: l10n_es_pos
 #: view:website:point_of_sale.report_receipt
 msgid "Invoice"
-msgstr "Invoice"
+msgstr ""
 
 #. module: l10n_es_pos
 #: view:pos.order:l10n_es_pos.view_pos_order_filter
@@ -68,9 +63,7 @@ msgstr ""
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/js/main.js:100
 #, python-format
-msgid ""
-"Please select a client for this order. This can be done by clicking the "
-"order tab"
+msgid "Please select a client for this order. This can be done by clicking the order tab"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -89,7 +82,8 @@ msgid "Simplified"
 msgstr ""
 
 #. module: l10n_es_pos
-#: field:pos.order,simplified:0 view:website:point_of_sale.report_receipt
+#: field:pos.order,simplified:0
+#: view:website:point_of_sale.report_receipt
 msgid "Simplified invoice"
 msgstr ""
 
@@ -116,3 +110,4 @@ msgstr ""
 #: view:website:point_of_sale.report_receipt
 msgid "display:none;"
 msgstr ""
+

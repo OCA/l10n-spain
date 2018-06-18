@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_pos
+# 	* l10n_es_pos
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2015-09-25 11:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -59,14 +60,20 @@ msgstr "Nombre:"
 #. module: l10n_es_pos
 #: help:pos.config,simplified_invoice_limit:0
 msgid "Over this amount is not legally posible to create a simplified invoice"
-msgstr "Por encima de esta cantidad no es posible legalmente crear una factura simplificada"
+msgstr ""
+"Por encima de esta cantidad no es posible legalmente crear una factura "
+"simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/js/main.js:100
 #, python-format
-msgid "Please select a client for this order. This can be done by clicking the order tab"
-msgstr "Seleccione un cliente para este pedido. Esto se puede hacer pulsando en la pestaña."
+msgid ""
+"Please select a client for this order. This can be done by clicking the "
+"order tab"
+msgstr ""
+"Seleccione un cliente para este pedido. Esto se puede hacer pulsando en la "
+"pestaña."
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
@@ -84,8 +91,7 @@ msgid "Simplified"
 msgstr "Simplificada"
 
 #. module: l10n_es_pos
-#: field:pos.order,simplified:0
-#: view:website:point_of_sale.report_receipt
+#: field:pos.order,simplified:0 view:website:point_of_sale.report_receipt
 msgid "Simplified invoice"
 msgstr "Factura simplificada"
 
@@ -112,4 +118,3 @@ msgstr "NIF:"
 #: view:website:point_of_sale.report_receipt
 msgid "display:none;"
 msgstr "display:none;"
-
