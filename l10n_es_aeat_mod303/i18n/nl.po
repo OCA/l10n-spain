@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod303
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
@@ -10,11 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-08-19 00:55+0000\n"
 "PO-Revision-Date: 2017-08-11 11:56+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/nl/)\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/nl/)\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod303
@@ -246,8 +247,8 @@ msgstr ""
 #: help:l10n.es.aeat.mod303.report,porcentaje_atribuible_estado:0
 msgid ""
 "Los sujetos pasivos que tributen conjuntamente a la Administración del "
-"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de"
-" Navarra, consignarán en esta casilla el porcentaje del volumen de "
+"Estado y a las Diputaciones Forales del País Vasco o a la Comunidad Foral de "
+"Navarra, consignarán en esta casilla el porcentaje del volumen de "
 "operaciones en territorio común. Los demás sujetos pasivos consignarán en "
 "esta casilla el 100%"
 msgstr ""
@@ -330,18 +331,18 @@ msgid ""
 "Se hará constar el importe de las cuotas del Impuesto a la importación "
 "incluidas en los documentos en los que conste la liquidación practicada por "
 "la Administración recibidos en el periodo de liquidación. Solamente podrá "
-"cumplimentarse esta casilla cuando se cumplan los requisitos establecidos en"
-" el artículo 74.1 del Reglamento del Impuesto sobre el Valor Añadido. "
+"cumplimentarse esta casilla cuando se cumplan los requisitos establecidos en "
+"el artículo 74.1 del Reglamento del Impuesto sobre el Valor Añadido. "
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:209
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:222
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:211
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:224
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -349,8 +350,8 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: help:l10n.es.aeat.mod303.report,compensate:0
 msgid ""
-"Si se marca, indicará que el importe a devolver se compensará en posteriores"
-" declaraciones"
+"Si se marca, indicará que el importe a devolver se compensará en posteriores "
+"declaraciones"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
