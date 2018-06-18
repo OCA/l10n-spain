@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_vat_prorrate
-# 
+#
 # Translators:
 # Antonio Trueba, 2016
 # Antonio Trueba, 2016
@@ -14,11 +14,12 @@ msgstr ""
 "POT-Creation-Date: 2017-07-27 00:52+0000\n"
 "PO-Revision-Date: 2017-06-27 01:52+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/es/)\n"
+"Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_vat_prorrate
@@ -101,7 +102,8 @@ msgstr "Ninguno"
 #: view:l10n.es.aeat.compute.vat.prorrate:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid ""
 "Please select the fiscal year that corresponds to your previous fiscal year."
-msgstr "Por favor, seleccione el año fiscal que corresponde a su anterior año fiscal."
+msgstr ""
+"Por favor, seleccione el año fiscal que corresponde a su anterior año fiscal."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: field:l10n.es.aeat.mod303.report,prorrate_regularization_account_id:0
@@ -130,14 +132,17 @@ msgstr "Regularización prorrata IVA"
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
 "before making this one."
-msgstr "Hay al menos otro informe previo en estado de borrador. Por favor confírmelo antes de hacer este."
+msgstr ""
+"Hay al menos otro informe previo en estado de borrador. Por favor confírmelo "
+"antes de hacer este."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: help:l10n.es.aeat.mod303.report,prorrate_regularization_account_id:0
 msgid ""
 "This account will be the one where charging the regularization of VAT "
 "prorrate."
-msgstr "Esta cuenta será en la que se cargue la regularización de la prorrata de IVA."
+msgstr ""
+"Esta cuenta será en la que se cargue la regularización de la prorrata de IVA."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: help:l10n.es.aeat.mod303.report,prorrate_regularization_analytic_account_id:0
@@ -153,7 +158,11 @@ msgid ""
 "which is applicable as the provisional one for the AEAT reports of the "
 "following fiscal year up to last period, in which the definitive prorrate "
 "percentage has to be calculated and the difference must be compensated."
-msgstr "ESte asistente calculará la prorrata de IVA para el año fiscal seleccionado, que se puede aplicar como el valor provisional para los informes de AEAT para el año fiscal siguiente hasta el último período, en que se debe calcular la prorrata definitiva y compensar la diferencia."
+msgstr ""
+"ESte asistente calculará la prorrata de IVA para el año fiscal seleccionado, "
+"que se puede aplicar como el valor provisional para los informes de AEAT "
+"para el año fiscal siguiente hasta el último período, en que se debe "
+"calcular la prorrata definitiva y compensar la diferencia."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:133
