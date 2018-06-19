@@ -3,6 +3,7 @@
 #                Daniel Rodriguez Lijo <drl.9319@gmail.com>
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 #                <contact@eficent.com>
+# Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import datetime
 
@@ -39,7 +40,7 @@ class L10nEsVatBook(models.Model):
         comodel_name='l10n.es.vat.book.line',
         inverse_name='vat_book_id',
         domain=[('line_type', '=', 'rectification_issued')],
-        string='Issued Rectification invoices',
+        string='Issued Refund Invoices',
         copy=False,
         readonly="True")
 
@@ -55,7 +56,7 @@ class L10nEsVatBook(models.Model):
         comodel_name='l10n.es.vat.book.line',
         inverse_name='vat_book_id',
         domain=[('line_type', '=', 'rectification_received')],
-        string='Received Rectification invoices',
+        string='Received Refund Invoices',
         copy=False,
         readonly="True")
 
@@ -256,7 +257,7 @@ class L10nEsVatBook(models.Model):
         exception = False
         if vals['invoice_id'] and not vals['vat_number']:
             exception = True
-            exception_text += _("¡The partner haven't VAT!")
+            exception_text += _("The partner doesn't have a VAT number")
 
         if exception:
             vals.update({
@@ -428,3 +429,17 @@ class L10nEsVatBook(models.Model):
         date_format = lang.date_format
         return datetime.datetime.strftime(
             fields.Date.from_string(date), date_format)
+
+    @api.multi
+    def export_xlsx(self):
+        self.ensure_one()
+        context = dict(self.env.context, active_ids=self.ids)
+        return {
+            'name': 'VAT book XLSX report',
+            'model': 'l10n.es.vat.book',
+            'type': 'ir.actions.report.xml',
+            'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
+            'report_type': 'xlsx',
+            'report_file': 'l10n.es.vat.book',
+            'context': context,
+        }

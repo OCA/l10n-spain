@@ -28,7 +28,7 @@ class L10nEsVatBookLineTax(models.Model):
         string='Total')
 
     move_line_ids = fields.Many2many(
-        comodel_name='account.move.line', string='Move lines')
+        comodel_name='account.move.line', string='Move Lines')
 
     @api.multi
     @api.depends('tax_id')

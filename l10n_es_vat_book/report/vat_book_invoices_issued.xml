@@ -28,7 +28,7 @@
                   <t t-call="l10n_es_vat_book.vat_book_contact"/>
 
                   <div class="col-xs-12" id="title_invoices_issued">
-                    <h4>Invoices Issued</h4>
+                    <h4>Issued Invoices</h4>
                   </div>
                   <div class="col-xs-12" id="invoices_issued_detail_div">
                     <table class="table table-condensed"
@@ -43,7 +43,7 @@
                   </div>
                   <div class="col-xs-12"
                        id="title_rectification_invoices_issued">
-                    <h4>Rectification Invoices Issued</h4>
+                    <h4>Issued Refund Invoices</h4>
                   </div>
                   <div class="col-xs-12"
                        id="rectification_invoices_issued_detail_div">

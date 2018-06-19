@@ -20,6 +20,10 @@
                         string="View Received Invoices"
                         type="object"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>
+                <button name="export_xlsx"
+                        string="Export to XLSX"
+                        type="object"
+                        attrs="{'invisible':[('state', '=', 'draft')]}"/>
             </header>
             <field name="name" position="attributes">
                 <attribute name="readonly">False</attribute>
@@ -34,7 +38,7 @@
                            name="issued_invoices">
                         <field name="issued_line_ids" nolabel="1"/>
                     </group>
-                    <group string="Issued Rectification Invoices"
+                    <group string="Issued Refund Invoices"
                            name="issued_rectification_invoices">
                         <field name="rectification_issued_line_ids"
                                nolabel="1"/>
@@ -55,7 +59,7 @@
                          name="received_invoices">
                     <field name="received_line_ids" nolabel="1"/>
                   </group>
-                  <group string="Received Rectification Invoices"
+                  <group string="Received Refund Invoices"
                          name="received_rectification_invoices">
                     <field name="rectification_received_line_ids"
                            nolabel="1"/>
@@ -81,7 +85,7 @@
       <field name="view_mode">tree,form</field>
       <field name="help" type="html">
         <p class="oe_view_nocontent_create">
-          Click to create a new Libro de IVA.
+          Click to create a new VAT book.
         </p>
       </field>
     </record>

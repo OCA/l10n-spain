@@ -3,9 +3,10 @@
 
 {
     "name": "Libro de IVA",
-    "version": "10.0.1.0.3",
+    "version": "10.0.2.0.0",
     "author": "PRAXYA, "
               "Eficent, "
+              "Tecnativa, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
@@ -15,6 +16,7 @@
         'base_vat',
         'l10n_es',
         'l10n_es_aeat',
+        'report_xlsx',
     ],
     'data': [
         'security/ir_rule.xml',
@@ -28,6 +30,7 @@
         'report/report_views.xml',
         'report/vat_book_invoices_issued.xml',
         'report/vat_book_invoices_received.xml',
+        'report/vat_book_xlsx.xml',
     ],
     "installable": True,
 }

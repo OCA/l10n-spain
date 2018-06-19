@@ -19,8 +19,8 @@ class L10nEsVatBookLine(models.Model):
     line_type = fields.Selection(selection=[
         ('issued', 'Issued'),
         ('received', 'Received'),
-        ('rectification_issued', 'Rectification Issued'),
-        ('rectification_received', 'Rectification Received')],
+        ('rectification_issued', 'Refund Issued'),
+        ('rectification_received', 'Refund Received')],
         string='Line type')
     invoice_date = fields.Date(
         string='Invoice Date')
