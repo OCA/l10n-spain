@@ -67,6 +67,7 @@ addon | version | summary
 [l10n_es_pos](l10n_es_pos/) | 8.0.1.0.0 | Punto de venta adaptado a la legislación española
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 8.0.1.0.0 | Certificado de subcontratista
 [l10n_es_toponyms](l10n_es_toponyms/) | 8.0.2.0.1 | Topónimos españoles
+[l10n_es_vat_book](l10n_es_vat_book/) | 8.0.1.0.0 | Libro de IVA
 [payment_redsys](payment_redsys/) | 8.0.1.0.2 | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
