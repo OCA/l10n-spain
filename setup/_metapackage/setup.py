@@ -49,6 +49,7 @@ setuptools.setup(
         'odoo8-addon-l10n_es_pos',
         'odoo8-addon-l10n_es_subcontractor_certificate',
         'odoo8-addon-l10n_es_toponyms',
+        'odoo8-addon-l10n_es_vat_book',
         'odoo8-addon-payment_redsys',
     ],
     classifiers=[
