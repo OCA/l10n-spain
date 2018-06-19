@@ -437,7 +437,7 @@ class L10nEsVatBook(models.Model):
         return {
             'name': 'VAT book XLSX report',
             'model': 'l10n.es.vat.book',
-            'type': 'ir.actions.report',
+            'type': 'ir.actions.report.xml',
             'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
             'report_type': 'xlsx',
             'report_file': 'l10n.es.vat.book',

@@ -63,17 +63,13 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
         for line in vat_book.issued_tax_summary_ids:
             self.assertEqual(line.base_amount, 0.0)
             self.assertEqual(line.tax_amount, 0.0)
-        # Print to PDF
-        report_pdf = self.env.ref(
-            'l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf'
-        ).render(vat_book.ids)
-        self.assertGreaterEqual(len(report_pdf[0]), 1)
-        report_pdf = self.env.ref(
-            'l10n_es_vat_book.act_report_vat_book_invoices_received_pdf'
-        ).render(vat_book.ids)
-        self.assertGreaterEqual(len(report_pdf[0]), 1)
         # Export to XLSX
         report_name = 'l10n_es_vat_book.l10n_es_vat_book_xlsx'
-        report_xlsx = self.env.ref(report_name).render(vat_book.ids)
+        report_xlsx = self.env.ref(report_name).render_report(
+            vat_book.ids, report_name, {
+                'report_id': [vat_book.id, vat_book.name],
+                'report_type': 'xlsx',
+            },
+        )
         self.assertGreaterEqual(len(report_xlsx[0]), 1)
         self.assertEqual(report_xlsx[1], 'xlsx')

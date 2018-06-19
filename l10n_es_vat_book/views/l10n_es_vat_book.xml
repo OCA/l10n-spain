@@ -23,7 +23,6 @@
                 <button name="export_xlsx"
                         string="Export to XLSX"
                         type="object"
-                        icon="fa-file-excel"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>
             </header>
             <field name="name" position="attributes">

@@ -1,12 +1,16 @@
 # Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
+# Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, models
+try:
+    from odoo.addons.report_xlsx.report.report_xlsx import ReportXlsx
+except ImportError:
+    ReportXlsx = object
+from odoo import _
+from odoo.report import report_sxw
 
 
-class VatNumberXlsx(models.AbstractModel):
-    _name = 'report.l10n_es_vat_book.l10n_es_vat_book_xlsx'
-    _inherit = 'report.report_xlsx.abstract'
+class VatNumberXlsx(ReportXlsx):
 
     def generate_xlsx_report(self, workbook, data, objects):
         book = objects[0]
@@ -67,3 +71,10 @@ class VatNumberXlsx(models.AbstractModel):
             report_name = _('Received Refund Invoices')
             lines = book.rectification_received_line_ids
             fill_table(report_name, lines)
+
+
+if ReportXlsx != object:
+    VatNumberXlsx(
+        'report.l10n_es_vat_book.l10n_es_vat_book_xlsx',
+        'l10n.es.vat.book', parser=report_sxw.rml_parse,
+    )
