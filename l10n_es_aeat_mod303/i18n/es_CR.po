@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod303
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2018-01-15 03:47+0000\n"
 "PO-Revision-Date: 2018-01-15 03:47+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/teams/23907/es_CR/)\n"
+"Language-Team: Spanish (Costa Rica) (https://www.transifex.com/oca/"
+"teams/23907/es_CR/)\n"
+"Language: es_CR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_CR\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod303
@@ -49,15 +50,10 @@ msgid "Allow posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_bank_account_id
-msgid "Bank account"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_77
 msgid ""
-"Contributions of import tax included in the documents evidencing the payment"
-" made by the Administration and received in the settlement period. You can "
+"Contributions of import tax included in the documents evidencing the payment "
+"made by the Administration and received in the settlement period. You can "
 "only complete this box when the requirements of Article 74.1 of the Tax "
 "Regulations Value Added are met."
 msgstr ""
@@ -100,6 +96,15 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:124
+#, python-format
+msgid ""
+"In previous declarations this year you reported a Result Type 'To "
+"Compensate'. You might need to fill field '[67] Fees to compensate' in this "
+"declaration."
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
 msgid ""
 "In the last auto settlement of the year, shall be recorded (the fourth "
@@ -135,11 +140,6 @@ msgid "No activity/Zero result"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_company_partner_id
-msgid "Partner"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_devolucion_mensual
 msgid "Registered in the Register of Monthly Return"
 msgstr ""
@@ -147,8 +147,8 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_previous_result
 msgid ""
-"Result of the previous or prior statements of the same concept, exercise and"
-" period"
+"Result of the previous or prior statements of the same concept, exercise and "
+"period"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -162,13 +162,7 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:185
-#, python-format
-msgid "Select an account for making the charge"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:187
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:243
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -185,6 +179,12 @@ msgid ""
 "Councils of the Basque Country or the Autonomous Community of Navarra, will "
 "enter in this box the percentage of volume operations in the common "
 "territory. Other taxpayers will enter in this box 100%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:252
+#, python-format
+msgid "The fee to compensate must be indicated as a positive number."
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
