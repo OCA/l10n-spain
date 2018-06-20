@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es
+# 	* l10n_es
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2017-06-29 15:02+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -41,6 +42,11 @@ msgid "Ingresos patrimonio neto"
 msgstr ""
 
 #. module: l10n_es
+#: model:ir.ui.menu,name:l10n_es.account_reports_es_statements_menu
+msgid "Spanish Statements"
+msgstr ""
+
+#. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_tax
 msgid "Tax"
 msgstr ""
@@ -49,4 +55,3 @@ msgstr ""
 #: model:account.account.type,name:l10n_es.account_type_terceros
 msgid "Terceros"
 msgstr ""
-
