@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-02-10 03:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat
@@ -192,6 +192,11 @@ msgstr "Booleano"
 #: selection:l10n.es.aeat.map.tax.line,sum_type:0
 msgid "Both (Credit - Debit)"
 msgstr "Ambos (Haber - Debe)"
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Both exigible and non-exigible amounts"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -467,6 +472,11 @@ msgid "Exception message"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_exigible_type
+msgid "Exigibility"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 msgid "Export"
 msgstr "Exportar"
@@ -609,18 +619,17 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_aeat_model_export_config_line_conditional_expression
 msgid ""
-"If set, this expression will be used to evaluate if this line should be "
-"added"
+"If set, this expression will be used to evaluate if this line should be added"
 msgstr ""
-"Si está establecida, esta expresión será usada para evaluar si la línea debe"
-" ser añadida"
+"Si está establecida, esta expresión será usada para evaluar si la línea debe "
+"ser añadida"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:202
 #, python-format
 msgid ""
-"If this declaration is complementary or substitutive, a previous declaration"
-" number should be provided."
+"If this declaration is complementary or substitutive, a previous declaration "
+"number should be provided."
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -854,6 +863,16 @@ msgid "Odoo model"
 msgstr "Modelo Odoo"
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only exigible amounts"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+msgid "Only non-exigible amounts"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:369
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
@@ -988,7 +1007,7 @@ msgid "Regular"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:162
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:164
 #, python-format
 msgid "Regularization"
 msgstr "Regularización"
@@ -1270,7 +1289,7 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:196
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:198
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr "Debe rellenar tanto el diario como la cuenta de contrapartida."
