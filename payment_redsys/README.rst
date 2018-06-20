@@ -36,7 +36,7 @@ Parámetros
   de dos URLs que pueden ser proporcionadas por el comercio.
 
 * **Porcentaje de pago**: Indicar el porcentaje de pago que se permite, si
-se deja a 0.0 se entiende 100%
+  se deja a 0.0 se entiende 100%
 
 Nota
 ----

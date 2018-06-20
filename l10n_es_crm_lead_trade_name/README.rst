@@ -9,30 +9,14 @@ Nombre comercial en las iniciativas
 Este módulo se escribió para extender la funcionalidad de las iniciativas del
 CRM y permitir establecerles un nombre comercial.
 
-Usage
-=====
+Uso
+===
 
 Para usar este módulo:
 
 * Vaya a *Ventas > Iniciativas*.
 * Abra una iniciativa.
 * Ahí verá el nuevo campo.
-
-===================
-Trade name in leads
-===================
-
-This module was written to extend the functionality of CRM leads to support
-setting the trade name.
-
-Usage
-=====
-
-To use this module, you need to:
-
-* Go to *Sales > Leads*.
-* Open a lead.
-* You will see the new field.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
