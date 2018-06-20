@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * account_balance_reporting
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -11,11 +11,12 @@ msgstr ""
 "POT-Creation-Date: 2018-01-15 03:46+0000\n"
 "PO-Revision-Date: 2018-01-15 03:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (Colombia) (https://www.transifex.com/oca/teams/23907/es_CO/)\n"
+"Language-Team: Spanish (Colombia) (https://www.transifex.com/oca/teams/23907/"
+"es_CO/)\n"
+"Language: es_CO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es_CO\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: account_balance_reporting
@@ -50,8 +51,8 @@ msgstr ""
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
 msgid ""
 "Account balance report template. It stores the header fields of an account "
-"balance report template, and the linked lines of detail with the formulas to"
-" calculate the accounting concepts of the report."
+"balance report template, and the linked lines of detail with the formulas to "
+"calculate the accounting concepts of the report."
 msgstr ""
 
 #. module: account_balance_reporting
@@ -287,7 +288,8 @@ msgstr ""
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_balance_mode
 msgid ""
-"Formula calculation mode: Depending on it, the balance is calculated as follows:\n"
+"Formula calculation mode: Depending on it, the balance is calculated as "
+"follows:\n"
 "Mode 0: debit-credit (default);\n"
 "Mode 1: debit-credit, credit-debit for accounts in brackets;\n"
 "Mode 2: credit-debit;\n"
@@ -531,7 +533,7 @@ msgid "System"
 msgstr ""
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_3867
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_4221
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr ""
@@ -568,9 +570,11 @@ msgid ""
 "    calculated as follows:\n"
 "      Empy template value: sum of (this concept) children values.\n"
 "      Number with decimal point (\"10.2\"): that value (constant).\n"
-"      Account numbers separated by commas (\"430,431,(437)\"): Sum of the account\n"
+"      Account numbers separated by commas (\"430,431,(437)\"): Sum of the "
+"account\n"
 "          balances (the sign of the balance depends on the balance mode).\n"
-"      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those concepts\n"
+"      Concept codes separated by \"+\" (\"11000+12000\"): Sum of those "
+"concepts\n"
 "      values.\n"
 "    "
 msgstr ""
