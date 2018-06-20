@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_sii
-# 
+#
 # Translators:
 # Niki Waibel <niki.waibel@gmail.com>, 2017
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2017-12-28 00:10+0000\n"
 "Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
 "Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_sii
@@ -83,6 +83,11 @@ msgid "Aeat SII Send First Semester"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_tax_agency
+msgid "Aeat SII Tax Agency"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "Already sent but with local changes not sent yet"
 msgstr ""
@@ -93,17 +98,22 @@ msgid "Already sent to SII. It includes cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_tax_amount_company
+msgid "Amount in company currency"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company_sii_header_customer
 msgid ""
-"An optional header description for customer invoices. Applied on all the SII"
-" description methods"
+"An optional header description for customer invoices. Applied on all the SII "
+"description methods"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company_sii_header_supplier
 msgid ""
-"An optional header description for supplier invoices. Applied on all the SII"
-" description methods"
+"An optional header description for supplier invoices. Applied on all the SII "
+"description methods"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -115,6 +125,11 @@ msgstr ""
 #: selection:res.company,sii_description_method:0
 #: selection:res.company,sii_method:0
 msgid "Automatic"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_tax_base_company
+msgid "Base in company currency"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -208,6 +223,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_create_uid
@@ -218,6 +234,7 @@ msgstr "Erstellt von"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_create_date
@@ -259,6 +276,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_display_name
@@ -333,6 +351,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_id
@@ -357,8 +376,8 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice_sii_state
 msgid ""
-"Indicates the state of this invoice in relation with the presentation at the"
-" SII"
+"Indicates the state of this invoice in relation with the presentation at the "
+"SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -384,6 +403,11 @@ msgid "Invoice Refund"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice_tax
+msgid "Invoice Tax"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_refund_sii_refund_type_required
 msgid "Is SII Refund Type required?"
 msgstr ""
@@ -402,6 +426,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys___last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester___last_update
@@ -412,6 +437,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_write_uid
@@ -422,6 +448,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_lines_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys_write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_write_date
@@ -459,11 +486,14 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company_sii_description_method
 msgid ""
 "Method for the SII invoices description, can be one of these:\n"
-"- Automatic: the description will be the join of the invoice   lines description\n"
+"- Automatic: the description will be the join of the invoice   lines "
+"description\n"
 "- Fixed: the description write on the below field 'SII   Description'\n"
-"- Manual (by default): It will be necessary to manually enter   the description on each invoice\n"
+"- Manual (by default): It will be necessary to manually enter   the "
+"description on each invoice\n"
 "\n"
-"For all the options you can append a header text using the below fields 'SII Sale header' and 'SII Purchase header'"
+"For all the options you can append a header text using the below fields 'SII "
+"Sale header' and 'SII Purchase header'"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -489,7 +519,7 @@ msgid "Never sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:307
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:321
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
@@ -674,6 +704,12 @@ msgid "SII Supplier header"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.actions.act_window,name:l10n_es_aeat_sii.aeat_sii_tax_agency_action
+#: model:ir.ui.menu,name:l10n_es_aeat_sii.aeat_sii_tax_agency_menu
+msgid "SII Tax Agencies"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_account_registration_date
 msgid "SII account registration date"
 msgstr ""
@@ -839,8 +875,119 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Suministro Bienes de Inversión"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Suministro Cobros Emitidas"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Suministro Factura Recibidas"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Suministro Facturas Emitidas"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Suministro Operaciones Intracomunitarias"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Suministro Operaciones con Trascendencia Tributaria"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Suministro Pagos Recibidas"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_pi_test_address
+msgid "SuministroBienesInversion Test Address"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_pi
+msgid "SuministroBienesInversion WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_pr_test_address
+msgid "SuministroCobrosEmitidas Test Address"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_pr
+msgid "SuministroCobrosEmitidas WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_out_test_address
+msgid "SuministroFactEmitidas Test Address"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_out
+msgid "SuministroFactEmitidas WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_in_test_address
+msgid "SuministroFactRecibidas Test Address"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_in
+msgid "SuministroFactRecibidas WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_ic_test_address
+msgid "SuministroOpIntracomunitarias Test Address"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_ic
+msgid "SuministroOpIntracomunitarias WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_ott_test_address
+msgid "SuministroOpTrascendTribu Test Address"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_ott
+msgid "SuministroOpTrascendTribu WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_ps_test_address
+msgid "SuministroPagosRecibidas Test Address"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_wsdl_ps
+msgid "SuministroPagosRecibidas WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_refund_supplier_invoice_number_refund
 msgid "Supplier Invoice Number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_tax_agency_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_tax_agency_id
+msgid "Tax Agency"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -852,6 +999,11 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_sii_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.invoice_supplier_sii_form
 msgid "Technical"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "Test Address"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -867,31 +1019,31 @@ msgid "The last attemp to sent to SII has failed"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:676
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:693
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:692
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:709
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:337
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:351
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:684
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:701
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:688
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:705
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr ""
@@ -900,8 +1052,10 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_send_first_semester_wizard
 msgid ""
 "This wizard will send to SII the invoices in the first semester.\n"
-"                        You can choose to the date until you want to send and the type of the invoices.\n"
-"                        For in invoices will send all the invoices with acconting date until the date selected:"
+"                        You can choose to the date until you want to send "
+"and the type of the invoices.\n"
+"                        For in invoices will send all the invoices with "
+"acconting date until the date selected:"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -916,6 +1070,11 @@ msgid "Use connector"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_tax_agency_form_view
+msgid "WSDL"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: selection:res.company,send_mode:0
 msgid "With delay"
 msgstr ""
@@ -926,13 +1085,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1177
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1200
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1147
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1170
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -940,7 +1099,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1075
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1109
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -948,19 +1107,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1192
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1216
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:671
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:688
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:193
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:207
 #, python-format
 msgid ""
 "You cannot change the invoice date of an invoice already registered at the "
@@ -968,16 +1127,16 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:210
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:224
 #, python-format
 msgid ""
 "You cannot change the supplier invoice number of an invoice already "
-"registered at the SII. You must cancel the invoice and create a new one with"
-" the correct number"
+"registered at the SII. You must cancel the invoice and create a new one with "
+"the correct number"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:203
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:217
 #, python-format
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
@@ -985,19 +1144,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:227
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:241
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:679
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:696
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:161
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:175
 #, python-format
 msgid "You must have at least one refunded invoice"
 msgstr ""
