@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Creu Blanca
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="paperformat_check_caixabank" model="report.paperformat">
+        <field name="name">Caixabank Check Letter</field>
+        <field name="default" eval="False"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="paperformat_caixabank_parameter_disable_smart_shrinking"
+            model="report.paperformat.parameter">
+        <field name="paperformat_id"
+               ref="paperformat_check_caixabank"/>
+        <field name="name">--disable-smart-shrinking</field>
+    </record>
+</odoo>
