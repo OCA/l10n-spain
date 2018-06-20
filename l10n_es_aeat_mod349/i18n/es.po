@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_aeat_mod349
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 # enjolras <yo@miguelrevilla.com>, 2018
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2018-03-01 14:51+0000\n"
 "Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod349
@@ -125,15 +125,15 @@ msgid "Aeat 349 Map Line"
 msgstr "Mapeo de Línea Aeat 349"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:313
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:320
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
-"Todos los campos de los registros de empresas (país, número NIF) deben estar"
-" rellenados."
+"Todos los campos de los registros de empresas (país, número NIF) deben estar "
+"rellenados."
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:318
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:325
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
@@ -173,7 +173,7 @@ msgid "Complementary or substitutive:"
 msgstr "Complementaria o sustitutiva:"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:329
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:336
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr ""
@@ -377,7 +377,7 @@ msgid "New (Rectified) Amount"
 msgstr "Importe rectificado"
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:262
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:269
 #, python-format
 msgid "No Tax Mapping was found"
 msgstr "No se encontró Mapeo de Impuestos"
