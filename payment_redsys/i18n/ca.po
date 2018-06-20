@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * payment_redsys
-# 
+#
 # Translators:
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
 # Carles Antoli <carlesantoli@hotmail.com>, 2016
@@ -13,12 +13,93 @@ msgstr ""
 "POT-Creation-Date: 2016-08-26 16:03+0000\n"
 "PO-Revision-Date: 2016-08-21 12:03+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
-"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<i class=\"fa fa-file-pdf-o\"/> Order"
+msgstr ""
+
+#. module: payment_redsys
+#: model:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
+msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
+msgid ""
+"<span><i>Done,</i> Your online payment has been successfully processed. "
+"Thank you for your order.</span>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:payment.acquirer,error_msg:payment_redsys.payment_acquirer_redsys
+msgid ""
+"<span><i>Error,</i> Please be aware that an error occurred during the "
+"transaction. The order has been confirmed but will not be paid. Do not "
+"hesitate to contact us if you have any questions on the status of your order."
+"</span>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:payment.acquirer,pending_msg:payment_redsys.payment_acquirer_redsys
+msgid ""
+"<span><i>Pending,</i> Your online payment has been successfully processed. "
+"But your order is not validated yet.</span>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<strong>Date:</strong>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<strong>Discount (%)</strong>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+#, fuzzy
+msgid "<strong>Invoicing Address</strong>"
+msgstr "Adreça de facturació"
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<strong>Product</strong>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<strong>Quantity</strong>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+#, fuzzy
+msgid "<strong>Shipping Address</strong>"
+msgstr "Adreça d'enviament"
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<strong>Total:</strong>"
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.order
+msgid "<strong>Unit Price</strong>"
+msgstr ""
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -26,12 +107,12 @@ msgid "Alemán"
 msgstr "Alemany"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
+#: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "Back to shop"
 msgstr "Tornar a la botiga"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:311
+#: code:addons/payment_redsys/models/redsys.py:339
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr "Error del banc: %s (%s)"
@@ -47,19 +128,9 @@ msgid "Catalán"
 msgstr "Català"
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_currency:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_currency
 msgid "Currency"
 msgstr "Moneda"
-
-#. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Date:"
-msgstr "Data:"
-
-#. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Discount (%)"
-msgstr "Descompte (%)"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_pay_method:0
@@ -67,12 +138,17 @@ msgid "Domiciliacion"
 msgstr "Domiciliació"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.redsys_result_ko
-msgid "En error ocurred."
-msgstr "S'ha produït un error."
+#: model:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
+#, fuzzy
+msgid ""
+"En error ocurred. <br/>Please contact with us and inform you about your "
+"order."
+msgstr ""
+"Si us plau, poseu-vos en contacte amb nosaltres i l'informarem sobre la seva "
+"comanda."
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:300
+#: code:addons/payment_redsys/models/redsys.py:328
 #, python-format
 msgid "Error: %s (%s)"
 msgstr "Error: %s (%s)"
@@ -108,53 +184,43 @@ msgid "Inglés"
 msgstr "Anglès"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Invoicing Address"
-msgstr "Adreça de facturació"
-
-#. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Italiano"
 msgstr "Italià"
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_merchant_lang
 msgid "Merchant Consumer Language"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_merchant_data:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_merchant_data
 msgid "Merchant Data"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_merchant_name:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_merchant_name
 msgid "Merchant Name"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_merchant_titular:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_merchant_titular
 msgid "Merchant Titular"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_merchant_url:0
-msgid "Merchant URL"
-msgstr ""
-
-#. module: payment_redsys
-#: field:payment.acquirer,redsys_merchant_code:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_merchant_code
 msgid "Merchant code"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:289
+#: code:addons/payment_redsys/models/redsys.py:317
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
+#: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "Order"
 msgstr "Comanda"
 
@@ -169,7 +235,7 @@ msgid "Pago por Transferencia"
 msgstr "Pagament per transferència"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:100
+#: code:addons/payment_redsys/models/redsys.py:99
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr ""
@@ -180,7 +246,7 @@ msgid "Payment Acquirer"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_pay_method:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_pay_method
 msgid "Payment Method"
 msgstr "Mètode de pagament"
 
@@ -188,11 +254,6 @@ msgstr "Mètode de pagament"
 #: model:ir.model,name:payment_redsys.model_payment_transaction
 msgid "Payment Transaction"
 msgstr "Transacció de pagament"
-
-#. module: payment_redsys
-#: view:website:payment_redsys.redsys_result_ko
-msgid "Please contact with us and inform you about your order."
-msgstr "Si us plau, poseu-vos en contacte amb nosaltres i l'informarem sobre la seva comanda."
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -205,60 +266,45 @@ msgid "Portugués"
 msgstr "Portuguès"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Product"
-msgstr "Producte"
-
-#. module: payment_redsys
-#: field:payment.acquirer,redsys_merchant_description:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_merchant_description
 msgid "Product Description"
 msgstr "Descripció del producte"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Quantity"
-msgstr "Quantitat"
+#: model:payment.acquirer,name:payment_redsys.payment_acquirer_redsys
+msgid "Redsys"
+msgstr ""
 
 #. module: payment_redsys
-#: view:payment.transaction:payment_redsys.transaction_form_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.transaction_form_redsys
 msgid "Redsys TX Details"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_signature_version:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_signature_version
 msgid "Redsys signature version"
 msgstr "Versió de signatura Redsys"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:318
+#: code:addons/payment_redsys/models/redsys.py:346
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_percent_partial:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_percent_partial
 msgid "Reduction percent"
 msgstr ""
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_secret_key:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_secret_key
 msgid "Secret Key"
 msgstr "Clau secreta"
 
 #. module: payment_redsys
-#: field:payment.acquirer,send_quotation:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_send_quotation
 msgid "Send quotation"
 msgstr "Enviar pressupost"
-
-#. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Shipping Address"
-msgstr "Adreça d'enviament"
-
-#. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Subtotal"
-msgstr "Subtotal"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -266,47 +312,38 @@ msgid "Sueco"
 msgstr "Suec"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
+#: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "Taxes:"
 msgstr "Impostos:"
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_terminal:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_terminal
 msgid "Terminal"
 msgstr "Terminal"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.redsys_result_ok
-msgid "Thanks for you order."
-msgstr "Gràcies per la teva comanda."
+#: model:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
+#, fuzzy
+msgid "Thanks for you order. <br/>We will inform you of your order status"
+msgstr "T'informarem sobre l'estat de la comanda"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.redsys_result_ko
+#: model:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
 msgid "The payment of your order has failed"
 msgstr "El pagament de la teva comanda ha fallat"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Total:"
-msgstr "Total:"
-
-#. module: payment_redsys
-#: field:payment.transaction,redsys_txnid:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction_redsys_txnid
 msgid "Transaction ID"
 msgstr "ID de transacció"
 
 #. module: payment_redsys
-#: field:payment.acquirer,redsys_transaction_type:0
+#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer_redsys_transaction_type
 msgid "Transtaction Type"
 msgstr "Tipus de transacció"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.order
-msgid "Unit Price"
-msgstr "Preu unitari"
-
-#. module: payment_redsys
-#: view:website:payment_redsys.order
+#: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "Untaxed Amount:"
 msgstr "Import sense impostos:"
 
@@ -316,12 +353,7 @@ msgid "Valenciano"
 msgstr "Valencià"
 
 #. module: payment_redsys
-#: view:website:payment_redsys.redsys_result_ok
-msgid "We will inform you of your order status"
-msgstr "T'informarem sobre l'estat de la comanda"
-
-#. module: payment_redsys
-#: help:payment.acquirer,redsys_percent_partial:0
+#: model:ir.model.fields,help:payment_redsys.field_payment_acquirer_redsys_percent_partial
 msgid ""
 "Write percent reduction payment, for this method payment.With this option "
 "you can allow partial payments in your shop online, the residual amount in "
@@ -329,6 +361,40 @@ msgid ""
 msgstr ""
 
 #. module: payment_redsys
-#: view:website:payment_redsys.redsys_result_ok
+#: model:payment.acquirer,pre_msg:payment_redsys.payment_acquirer_redsys
+msgid ""
+"You will be redirected to the Redsys payment gateway after clicking on the "
+"payment button."
+msgstr ""
+
+#. module: payment_redsys
+#: model:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
 msgid "Your order has been paid correctly"
 msgstr "La teva comanda s'ha pagat correctament"
+
+#~ msgid "Date:"
+#~ msgstr "Data:"
+
+#~ msgid "Discount (%)"
+#~ msgstr "Descompte (%)"
+
+#~ msgid "En error ocurred."
+#~ msgstr "S'ha produït un error."
+
+#~ msgid "Product"
+#~ msgstr "Producte"
+
+#~ msgid "Quantity"
+#~ msgstr "Quantitat"
+
+#~ msgid "Subtotal"
+#~ msgstr "Subtotal"
+
+#~ msgid "Thanks for you order."
+#~ msgstr "Gràcies per la teva comanda."
+
+#~ msgid "Total:"
+#~ msgstr "Total:"
+
+#~ msgid "Unit Price"
+#~ msgstr "Preu unitari"
