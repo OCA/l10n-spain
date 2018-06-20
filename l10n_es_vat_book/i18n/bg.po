@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_vat_book
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-02-10 03:55+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
 "Language-Team: Bulgarian (https://www.transifex.com/oca/teams/23907/bg/)\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_vat_book
@@ -69,7 +69,7 @@ msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.actions.act_window,help:l10n_es_vat_book.l10n_es_vat_book_action
-msgid "Click to create a new Libro de IVA."
+msgid "Click to create a new VAT book."
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -140,6 +140,11 @@ msgid "Exception text"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Export to XLSX"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_external_ref
 msgid "External Reference"
 msgstr ""
@@ -175,16 +180,6 @@ msgid "Invoice Date"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
-msgid "Invoices Issued"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
-msgid "Invoices Received"
-msgstr ""
-
-#. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
 msgid "Issue Date"
 msgstr ""
@@ -197,18 +192,20 @@ msgid "Issued"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:59
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
 msgid "Issued Invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "Issued Rectification Invoices"
-msgstr ""
-
-#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:63
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_issued_line_ids
-msgid "Issued Rectification invoices"
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
+msgid "Issued Refund Invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -281,13 +278,9 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_move_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
 msgid "Move Lines"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_move_line_ids
-msgid "Move lines"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -296,7 +289,7 @@ msgid "NIF"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:315
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:324
 #, python-format
 msgid "No AEAT Tax Mapping was found"
 msgstr ""
@@ -314,18 +307,20 @@ msgid "Received"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:67
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
 msgid "Received Invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
-msgid "Received Rectification Invoices"
-msgstr ""
-
-#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:71
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_received_line_ids
-msgid "Received Rectification invoices"
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#, python-format
+msgid "Received Refund Invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -344,28 +339,18 @@ msgid "Received invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
-msgid "Rectification Invoices Issued"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
-msgid "Rectification Invoices Received"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: selection:l10n.es.vat.book.line,line_type:0
-msgid "Rectification Issued"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: selection:l10n.es.vat.book.line,line_type:0
-msgid "Rectification Received"
-msgstr ""
-
-#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_ref
 msgid "Reference"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line,line_type:0
+msgid "Refund Issued"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line,line_type:0
+msgid "Refund Received"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -429,7 +414,13 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:299
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:260
+#, python-format
+msgid "The partner doesn't have a VAT number"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:308
 #, python-format
 msgid "This company doesn't have VAT"
 msgstr ""
@@ -465,6 +456,11 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.actions.client,name:l10n_es_vat_book.action_report_vat_book_invoices_received
 msgid "VAT Book Invoices Received"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.l10n_es_vat_book_xlsx
+msgid "VAT book XLSX report"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -527,10 +523,4 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_tax_summary
 msgid "l10n.es.vat.book.tax.summary"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:251
-#, python-format
-msgid "¡The partner haven't VAT!"
 msgstr ""

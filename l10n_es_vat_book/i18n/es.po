@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_vat_book
+# 	* l10n_es_vat_book
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2018-06-19 08:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -189,7 +190,7 @@ msgid "Issued"
 msgstr "Emitida"
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:60
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:59
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 #, python-format
@@ -197,7 +198,7 @@ msgid "Issued Invoices"
 msgstr "Facturas emitidas"
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:64
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:63
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_issued_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
@@ -304,7 +305,7 @@ msgid "Received"
 msgstr "Recibida"
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:68
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:67
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 #, python-format
@@ -312,7 +313,7 @@ msgid "Received Invoices"
 msgstr "Facturas recibidas"
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:72
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:71
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_received_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
@@ -521,4 +522,3 @@ msgstr "l10n.es.vat.book.summary"
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_tax_summary
 msgid "l10n.es.vat.book.tax.summary"
 msgstr "l10n.es.vat.book.tax.summary"
-
