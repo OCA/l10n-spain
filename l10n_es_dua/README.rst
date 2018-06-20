@@ -112,23 +112,23 @@ Al validar ambas facturas nos crea los siguientes asientos:
 
 #. Asiento factura proveedor extranjero
 
-   .. csv-table::
-   :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
-   :widths: 30, 10, 10, 30, 10
+  .. csv-table::
+    :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
+    :widths: 30, 10, 10, 30, 10
 
-   "400000 Proveedores", 0.00, 100.00
-   "600000 Compras", 100.00, 0.00
+    "400000 Proveedores", 0.00, 100.00
+    "600000 Compras", 100.00, 0.00
 
 #. Asiento factura empresa de tránsito
 
-   .. csv-table::
-   :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
-   :widths: 30, 10, 10, 30, 10
+  .. csv-table::
+    :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
+    :widths: 30, 10, 10, 30, 10
 
-   "410000 Acreedores", 0.00, 31.50
-   "472000 IVA Soportado", 31.50, 0.00, "Importaciones. Cuota 21%", 31.50
-   "600000 Compras", 0.00, 150.00
-   "600000 Compras", 150.00, 0.00, "Importaciones. Base 21%", 150.00
+    "410000 Acreedores", 0.00, 31.50
+    "472000 IVA Soportado", 31.50, 0.00, "Importaciones. Cuota 21%", 31.50
+    "600000 Compras", 0.00, 150.00
+    "600000 Compras", 150.00, 0.00, "Importaciones. Base 21%", 150.00
 
 
 Créditos
