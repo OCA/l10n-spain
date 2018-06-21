@@ -176,7 +176,7 @@ class L10nEsVatBook(models.Model):
         invoice = move.line_ids.mapped('invoice_id')[:1]
         partner = move.partner_id
         if invoice:
-            partner = invoice.partner_id
+            partner = invoice.commercial_partner_id
             ref = invoice.number
             ext_ref = invoice.reference
         return {
