@@ -1,22 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_aeat_mod216
+#	* l10n_es_aeat_mod216
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 00:00+0000\n"
-"PO-Revision-Date: 2017-12-28 00:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Vietnamese (https://www.transifex.com/oca/teams/23907/vi/)\n"
-"Language: vi\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
@@ -96,12 +91,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_create_uid
 msgid "Created by"
-msgstr "Được tạo bởi"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_create_date
 msgid "Created on"
-msgstr "Được tạo vào"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_currency_id
@@ -121,7 +116,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_display_name
 msgid "Display Name"
-msgstr "Tên hiển thị"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,state:0
@@ -145,10 +140,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_06
-msgid ""
-"Fee to compensate for prior results with same subject, fiscal year and "
-"period (in which his statement was to return and compensation back option "
-"was chosen)."
+msgid "Fee to compensate for prior results with same subject, fiscal year and period (in which his statement was to return and compensation back option was chosen)."
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -159,7 +151,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -214,17 +206,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report___last_update
 msgid "Last Modified on"
-msgstr "Sửa lần cuối vào"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_write_date
 msgid "Last Updated on"
-msgstr "Cập nhật lần cuối vào"
+msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_representative_vat
@@ -340,9 +332,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_counterpart_account_id
-msgid ""
-"This account will be the counterpart for all the journal items that are "
-"regularized when posting the report."
+msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -404,3 +394,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
 msgid "[07] Result"
 msgstr ""
+
