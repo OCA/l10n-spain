@@ -1,23 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_aeat_mod115
+#	* l10n_es_aeat_mod115
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-29 03:05+0000\n"
-"PO-Revision-Date: 2017-07-29 03:05+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
-"teams/23907/pt_BR/)\n"
-"Language: pt_BR\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
@@ -62,7 +56,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_partner_bank_id
 msgid "Bank account"
-msgstr "Conta Bancária"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_calculation_date
@@ -77,7 +71,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_company_id
 msgid "Company"
-msgstr "Empresa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_partner_bank_id
@@ -102,12 +96,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_create_uid
 msgid "Created by"
-msgstr "Criado por"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_create_date
 msgid "Created on"
-msgstr "Criado em"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_currency_id
@@ -127,7 +121,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_display_name
 msgid "Display Name"
-msgstr "Nome para Mostrar"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
@@ -137,7 +131,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,state:0
 msgid "Draft"
-msgstr "Rascunho"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_date_end
@@ -151,10 +145,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_04
-msgid ""
-"Fee to compensate for prior results with same subject, fiscal year and "
-"period (in which his statement was to return and compensation back option "
-"was chosen)."
+msgid "Fee to compensate for prior results with same subject, fiscal year and period (in which his statement was to return and compensation back option was chosen)."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -165,7 +156,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_id
 msgid "ID"
-msgstr "Identificação"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_journal_id
@@ -185,17 +176,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report___last_update
 msgid "Last Modified on"
-msgstr "Última atualização em"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_write_uid
 msgid "Last Updated by"
-msgstr "Última atualização por"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_write_date
 msgid "Last Updated on"
-msgstr "Última atualização em"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_representative_vat
@@ -205,7 +196,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_model_id
 msgid "Model"
-msgstr "Modelo"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_number
@@ -230,7 +221,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_partner_id
 msgid "Partner"
-msgstr "Parceiro"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_period_type
@@ -297,7 +288,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_state
 msgid "State"
-msgstr "Estado"
+msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_type
@@ -327,9 +318,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_counterpart_account_id
-msgid ""
-"This account will be the counterpart for all the journal items that are "
-"regularized when posting the report."
+msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -381,3 +370,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_05
 msgid "[05] Result"
 msgstr ""
+
