@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * l10n_es_toponyms
-# 
+#
 # Translators:
 # Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2016
 # OCA Transbot <transbot@odoo-community.org>, 2016
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2017-03-17 17:32+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_toponyms
@@ -26,8 +26,8 @@ msgid ""
 "partner, contact and company screens when you enter a zip code or the city "
 "name if this information is associated. Do you want to associate this data?"
 msgstr ""
-"Els camps 'Província', 'Població', 'Codi Postal' i 'País' poden ser omplerta"
-" automàticament a les pantalles de socis, contactes i empresa quan "
+"Els camps 'Província', 'Població', 'Codi Postal' i 'País' poden ser omplerta "
+"automàticament a les pantalles de socis, contactes i empresa quan "
 "s'introdueixi el codi postal o el nom de la població, si aquesta informació "
 "està disponible. Voleu associar aquestes dades?"
 
@@ -160,8 +160,8 @@ msgstr "Sí"
 #. module: l10n_es_toponyms
 #: model:ir.actions.todo,note:l10n_es_toponyms.config_wizard_toponyms_es
 msgid ""
-"You can select the toponym version of the spanish states and add the spanish"
-" cities associated to the zip codes."
+"You can select the toponym version of the spanish states and add the spanish "
+"cities associated to the zip codes."
 msgstr ""
 "Podeu seleccionar la versió dels topònims de les províncies espanyoles i "
 "afegir les poblacions associades als codis postals."
