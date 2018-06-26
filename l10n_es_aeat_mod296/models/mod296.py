@@ -1,20 +1,9 @@
-# -*- encoding: utf-8 -*-
-##############################################################################
-#
-#  This program is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU Affero General Public License as
-#  published by the Free Software Foundation, either version 3 of the
-#  License, or (at your option) any later version.
-#
-#  This program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#  GNU Affero General Public License for more details.
-#
-#  You should have received a copy of the GNU Affero General Public License
-#  along with this program. If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# -*- coding: utf-8 -*-
+# Copyright AvanzOSC - Ainara Galdona
+# Copyright 2016 - Tecnativa - Antonio Espinosa
+# Copyright 2016-2017 - Tecnativa - Pedro M. Baeza
+# Copyright 2018 Valentin Vinagre <valentin.vinagre@qubiq.es>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from openerp import fields, models, api
 
@@ -24,37 +13,32 @@ class L10nEsAeatMod296Report(models.Model):
     _description = 'AEAT 296 report'
     _inherit = 'l10n.es.aeat.report.tax.mapping'
     _name = 'l10n.es.aeat.mod296.report'
+    _aeat_number = '296'
 
-    number = fields.Char(default='296')
     casilla_01 = fields.Integer(
-        string='[01] Número de perceptores', readonly=True,
+        string='[01] # Recipients', readonly=True,
         states={'calculated': [('readonly', False)]},
-        help='Casilla [01] Resumen de los datos incluidos en la declaración - '
-             'Número total de perceptores')
+        help='[01] Summary of the data included in the statement - '
+             'Total number of perceivers')
     casilla_02 = fields.Float(
-        string='[02] Base retenciones', readonly=True,
+        string='[02] Base retentions', readonly=True,
         states={'calculated': [('readonly', False)]},
-        help='Casilla [02] Resumen de los datos incluidos en la declaración - '
-             'Base retenciones e ingresos a cuenta')
+        help='[02] Summary of the data included in the statement - '
+             'Base retention and income on account')
     casilla_03 = fields.Float(
-        string='[03] Retenciones', readonly=True,
+        string='[03] Retentions', readonly=True,
         states={'calculated': [('readonly', False)]},
-        help='Casilla [03] Resumen de los datos incluidos en la declaración - '
-             'Retenciones e ingresos a cuenta')
+        help='[03] Summary of the data included in the statement - '
+             'Retention and income on account')
     casilla_04 = fields.Float(
-        string='[04] Retenciones ingresadas', readonly=True,
+        string='[04] Retentions entered', readonly=True,
         states={'calculated': [('readonly', False)]},
-        help='Casilla [04] Resumen de los datos incluidos en la declaración - '
-             'Retenciones e ingresos a cuenta ingresados')
-    currency_id = fields.Many2one(
-        comodel_name='res.currency', string='Moneda', readonly=True,
-        related='company_id.currency_id', store=True)
-    lines296 = fields.One2many('l10n.es.aeat.mod296.report.line', 'mod296_id',
-                               string="Lines")
-
-    def __init__(self, pool, cr):
-        self._aeat_number = '296'
-        super(L10nEsAeatMod296Report, self).__init__(pool, cr)
+        help='[04] Summary of the data included in the statement - '
+             'Retentions and income on account entered')
+    lines296 = fields.One2many(
+        'l10n.es.aeat.mod296.report.line',
+        'mod296_id',
+        string="Lines")
 
     @api.multi
     def _get_partner_domain(self):
@@ -65,38 +49,74 @@ class L10nEsAeatMod296Report(models.Model):
         return res
 
     @api.multi
+    def partner_group(self, move_lines_base_ids, move_lines_cuota_ids):
+        partner_groups = {}
+        for group in self.env['account.move.line'].read_group(
+                [('id', 'in', move_lines_base_ids)],
+                ['partner_id', 'credit', 'debit'],
+                ['partner_id'],
+        ):
+            partner_groups[group['partner_id'][0]] =\
+                {'base': {
+                    'credit': group['credit'],
+                    'debit': group['debit']
+                }
+            }
+        for group in self.env['account.move.line'].read_group(
+                [('id', 'in', move_lines_cuota_ids)],
+                ['partner_id', 'credit', 'debit'],
+                ['partner_id'],
+        ):
+            partner_groups[group['partner_id'][0]]['cuota'] =\
+                {
+                    'credit': group['credit'],
+                    'debit': group['debit']
+                }
+        return partner_groups
+
+    @api.multi
     def calculate(self):
-        self.ensure_one()
-        self.lines296.unlink()
-        line_lst = []
-        move_lines_base = self._get_tax_code_lines(['IRPBI'])
-        move_lines_cuota = self._get_tax_code_lines(['ITRPC'])
-        partner_lst = set([x.partner_id for x in
-                           (move_lines_base + move_lines_cuota)])
-        for partner in partner_lst:
-            part_base_lines = move_lines_base.filtered(
-                lambda x: x.partner_id == partner)
-            part_cuota_lines = move_lines_cuota.filtered(
-                lambda x: x.partner_id == partner)
-            line_lst.append({
-                'mod296_id': self.id,
-                'partner_id': partner.id,
-                'domicilio': partner.street,
-                'complemento_domicilio': partner.street2,
-                'poblacion': partner.city,
-                'provincia': partner.state_id,
-                'zip': partner.zip,
-                'pais': partner.country_id,
-                'move_line_ids': part_base_lines + part_cuota_lines,
-                'base_retenciones_ingresos': sum([x.tax_amount for x in
-                                                  part_base_lines]),
-                'retenciones_ingresos': sum([x.tax_amount for x in
-                                             part_cuota_lines])
-            })
-        self.lines296 = line_lst
-        self.casilla_01 = len(partner_lst)
-        self.casilla_02 = sum([x.tax_amount for x in move_lines_base])
-        self.casilla_03 = sum([x.tax_amount for x in move_lines_cuota])
+        res = super(L10nEsAeatMod296Report, self).calculate()
+        for report in self:
+            report.lines296.unlink()
+            line_lst = []
+            move_lines_base = report.tax_line_ids.filtered(
+                lambda x: x.field_number == 2).mapped(
+                'move_line_ids')
+            move_lines_cuota = report.tax_line_ids.filtered(
+                lambda x: x.field_number == 3).mapped(
+                'move_line_ids')
+            partner_groups = self.partner_group(
+                move_lines_base.ids, move_lines_cuota.ids)
+            for partner_id in partner_groups:
+                partner = self.env['res.partner'].browse(partner_id)
+                line_lst.append({
+                    'mod296_id': report.id,
+                    'partner_id': partner_id,
+                    'domicilio': partner.street,
+                    'complemento_domicilio': partner.street2,
+                    'poblacion': partner.city,
+                    'provincia': partner.state_id,
+                    'zip': partner.zip,
+                    'pais': partner.country_id,
+                    'move_line_ids': move_lines_base.filtered(
+                        lambda x: x.partner_id == partner) +
+                    move_lines_cuota.filtered(
+                        lambda x: x.partner_id == partner),
+                    'base_retenciones_ingresos':
+                    partner_groups[partner_id]['base']['debit'] -
+                    partner_groups[partner_id]['base']['credit'],
+                    'retenciones_ingresos':
+                    partner_groups[partner_id]['cuota']['credit'] -
+                    partner_groups[partner_id]['cuota']['debit'],
+                })
+            report.lines296 = line_lst
+            report.casilla_01 = len(partner_groups)
+            report.casilla_02 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number == 2).mapped('amount'))
+            report.casilla_03 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number == 3).mapped('amount'))
+        return res
 
 
 class L10nEsAeatMod296ReportLine(models.Model):
@@ -106,127 +126,152 @@ class L10nEsAeatMod296ReportLine(models.Model):
     mod296_id = fields.Many2one('l10n.es.aeat.mod296.report', string='Mod 296')
     partner_id = fields.Many2one('res.partner', string='Partner')
     move_line_ids = fields.Many2many('account.move.line', string='Move Lines')
-    base_retenciones_ingresos = fields.Float(string='Base retenciones e '
-                                             'ingresos a cuenta')
-    porcentaje_retencion = fields.Float(string='% retención')
-    retenciones_ingresos = fields.Float(string='Retenciones e ingresos a '
-                                        'cuenta')
-    fisica_juridica = fields.Selection([('F', 'Persona fisica'),
-                                        ('J', 'Persona Juridica o entidad')],
+    base_retenciones_ingresos = fields.Float(string='Base retention and '
+                                             'income on account')
+    porcentaje_retencion = fields.Float(string='% retention')
+    retenciones_ingresos = fields.Float(string='Retention and income on '
+                                        'account')
+    fisica_juridica = fields.Selection([('F', 'Physical person'),
+                                        ('J', 'Legal person or entity')],
                                        string='F/J')
-    naturaleza = fields.Selection([('D', 'Renta dineraria'),
-                                   ('E', 'Renta en especie')],
-                                  string='Naturaleza')
-    fecha_devengo = fields.Date(string='Fecha devengo')
-    clave = fields.Selection(
-        [('1', '1 - Dividendos y otras rentas derivadas de la participación '
-          'en fondos propios de entidades.'),
-         ('2', '2 - Intereses y otras rentas derivadas de la cesión a terceros'
-          ' de capitales propios.'),
-         ('3', '3 - Cánones derivados de patentes, marcas de fábrica o de '
-          'comercio, dibujos o meodelos, planos, fórmulas o procedimientos '
-          'secretos.'),
-         ('4', '4 - Cánones derivados de derechos sobre obras literarias y '
-          'artísticas.'),
-         ('5', '5 - Cánones derivados de derechos sobre obras científicas.'),
-         ('6', '6 - Cánones derivados de derechos sobre películas '
-          'cinematográficas y obras sonoras o visuales grabadas.'),
-         ('7', '7 - Cánones derivados de informaciones relativas a '
-          'experiencias industriales, comerciales o científicas (know-how).'),
-         ('8', '8 - Cánones derivados de derechos sobre programas '
-          'informáticos.'),
-         ('9', '9 - Cánones derivados de derechos personales susceptibles de '
-          'cesión, tales como los derechos de imagen.'),
-         ('10', '10 - Cánones derivados de equipos industriales, comerciales '
-          'o científicos.'),
-         ('11', '11 - Otros cánones no relacionados anteriormente.'),
-         ('12', '12 - Rendimientos de capital mobiliario de operaciones de '
-          'capitalización y de contratos de seguros de vida o invalidez.'),
-         ('13', '13 - Otros rendimientos de capital mobiliario no citados '
-          'anteriormente.'),
-         ('14', '14 - Rendimientos de bienes inmuebles.'),
-         ('15', '15 - Rendimientos de actividades empresariales.'),
-         ('16', '16 - Rentas derivadas de prestaciones de asistencia técnica.'
-          ), ('17', '17 - Rentas de actividades artísticas.'),
-         ('18', '18 - Rentas de actividades deportivas.'),
-         ('19', '19 - Rentas de actividades profesionales.'),
-         ('20', '20 - Rentas del trabajo.'),
-         ('21', '21 - Pensiones y haberes pasivos.'),
-         ('22', '22 - Retribuciones de administradores y miembros de consejos '
-          'de Administración.'),
-         ('23', '23 - Rendimientos derivados de operaciones de reaseguros.'),
-         ('24', '24 - Entidades de navegación marítima o aérea.'),
-         ('25', '25 - Otras rentas')], string='Clave')
-    subclave = fields.Selection(
-        [('1', '1 - Retención practicada a los tipos generales o escalas de '
-          'tributación del artículo 25 del texto refundido de la Ley del '
-          'Impuesto sobre la Renta de no Residentes.'),
-         ('2', '2 - Retención practicada aplicando límites de imposición de '
-          'Convenios.'),
-         ('3', '3 - Exención interna (principalmente: artículo 14 del texto '
-          'refundido de la Ley del Impuesto sobre la Renta de no Residentes)'),
-         ('4', '4 - Exención por aplicación de un Convenio.'),
-         ('5', '5 - Sin retención por previo pago del Impuesto por el '
-          'contribuyente o su representante.'),
-         ('6', '6 - El perceptor declarado es una entidad extranjera de '
-          'gestión colectiva de derechos de la propiedad intelectual, '
-          'habiéndose practicado retención aplicando el límite de imposición, '
-          'o la exención, de un Convenio.'),
-         ('7', '7 - El perceptor es un contribuyente del Impuesto sobre la '
-          'Renta de las Personas Físicas del régimen especial aplicable a los '
-          'trabajadores desplazados a territorio español.'),
-         ('8', '8 - El perceptor declarado es una entidad residente en el '
-          'extranjero comercializadora de acciones o participaciones de '
-          'instituciones de inversión colectiva españolas, habiéndose '
-          'practicado retención aplicando un límite de imposición fijado en '
-          'el Convenio inferior.'),
-         ('9', '9 - El perceptor declarado es una entidad residente en el '
-          'extranjero comercializadora de acciones o participaciones de '
-          'instituciones de inversión colectiva españoas, habiéndose '
-          'practicado retención aplicando el tipo de gravamen.')],
-        string='Subclave')
-    mediador = fields.Boolean(string='Mediador')
-    codigo = fields.Selection(
-        [('1', '1. El código emisor corresponde a un N.I.F.'),
-         ('2', '2. El código emisor corresponde a un código I.S.I.N.'),
-         ('3', '3. El código emisor corresponde a valores extranjeros que no '
-          'tienen asignado I.S.I.N., cuyo emisor no dispone de NIF')],
-        string='Código')
-    codigo_emisor = fields.Char(string='Código emisor', size=12)
-    pago = fields.Selection([('1', 'Como emisor'),
-                             ('2', 'Como mediador')], string='Pago')
-    tipo_codigo = fields.Selection([('C', 'Identificación con el Código Cuenta'
-                                     ' Valores (C.C.V.)'),
-                                    ('O', 'Otra identificación')],
-                                   string='Tipo código')
+    naturaleza = fields.Selection([('D', 'Money income'),
+                                   ('E', 'Income in kind')],
+                                  string='Nature')
+    fecha_devengo = fields.Date(string='Devengo date')
+    clave = fields.Selection([
+        ('1', '1 - Dividends and other income derived from the participation '
+            'in own funds of entities.'),
+        ('2', '2 - Interest and other income derived from the transfer to '
+            'parties of own capital.'),
+        ('3', '3 - Canons derived from patents, trademarks, drawings or '
+            'models, plans, formulas or secret procedures.'),
+        ('4', '4 - Fees derived from rights on literary and artistic works.'),
+        ('5', '5 - Canons derived from rights on scientific works.'),
+        ('6', '6 - Fees derived from rights on cinematographic films '
+            'and recorded sound or visual works.'),
+        ('7', '7 - Canons derived from information related to industrial, '
+            'commercial or scientific experiences (know-how).'),
+        ('8', '8 - Fees derived from rights on computer programs.'),
+        ('9', '9 - Fees derived from personal rights susceptible to '
+            'transfer, such as image rights.'),
+        ('10', '10 - Canons derived from industrial, commercial or '
+            'scientific equipment.'),
+        ('11', '11 - Other canons not previously mentioned.'),
+        ('12', '12 - Capital income from capitalization operations and '
+            'life or disability insurance contracts.'),
+        ('13', '13 - Other income from movable capital not mentioned above.'),
+        ('14', '14 - Real estate performance.'),
+        ('15', '15 - Performance of business activities.'),
+        ('16', '16 - Rents derived from technical assistance benefits.'),
+        ('17', '17 - Rents of artistic activities.'),
+        ('18', '18 - Rents of sports activities.'),
+        ('19', '19 - Rents of professional activities.'),
+        ('20', '20 - Rents of work.'),
+        ('21', '21 - Pensions and passive assets.'),
+        ('22', '22 - Remuneration of administrators and members of boards of '
+            'directors.'),
+        ('23', '23 - Performance derived from reinsurance operations.'),
+        ('24', '24 - Maritime or air navigation entities.'),
+        ('25', '25 - Other rents')], string='Key')
+    subclave = fields.Selection([
+        ('1', '1 - Retention practiced at the general rates or scales of '
+            'taxation of article 25 of the rewritten text of the '
+            'Non-Resident Income Tax Law.'),
+        ('2', '2 - Retention practiced applying limits of imposition of '
+            'Agreements.'),
+        ('3', '3 - Internal exemption (mainly: article 14 of the revised '
+            'text of the Law on Non-Resident Income Tax)'),
+        ('4', '4 - Exemption by application of a Convention.'),
+        ('5', '5 - No Retention for previous payment of the Tax by '
+            'the taxpayer or his representative..'),
+        ('6', '6 - The declared recipient is a foreign entity '
+            'for the collective management of intellectual property rights, '
+            'with a retention having applied the limit of taxation, or '
+            'the exemption, of a Convention.'),
+        ('7', '7 - The recipient is a taxpayer of the Personal Income Tax of '
+            'the special regime applicable to workers displaced '
+            'to Spanish territory.'),
+        ('8', '8 - The declared recipient is an entity resident abroad that '
+            'sells shares or units of Spanish collective investment '
+            'institutions, with a withholding tax applying a limit '
+            'of taxation established in the lower Agreement.'),
+        ('9', '9 - The declared recipient is an entity residing abroad '
+            'selling shares or participations of Spanish collective investment'
+            ' institutions, with a retention having applied the type of lien.')
+        ],
+        string='Subkey')
+    mediador = fields.Boolean(string='Mediator')
+    codigo = fields.Selection([
+        ('1', '1. Emisor code corresponds to an N.I.F.'),
+        ('2', '2. Emisor code corresponds to an code I.S.I.N.'),
+        ('3', '3. Emisor code corresponds to values foreign that have not '
+            'been assigned I.S.I.N., whose emisor does not have a NIF')
+        ],
+        string='Code')
+    codigo_emisor = fields.Char(string='Emisor code', size=12)
+    pago = fields.Selection([('1', 'As transmitter'),
+                             ('2', 'As mediator')], string='Payment')
+    tipo_codigo = fields.Selection([('C', 'Identification with the Account '
+                                     'Code Values (C.C.V.)'),
+                                    ('O', 'Other identification')],
+                                   string='Code type')
     cuenta_valores = fields.Many2one('res.partner.bank',
-                                     string='Código Cuenta Valores')
-    pendiente = fields.Boolean(string='Pendiente')
-    ejercicio_devengo = fields.Many2one('account.fiscalyear',
-                                        string='Ejercicio devengo')
-    domicilio = fields.Char(string='Domicilio', size=50)
-    complemento_domicilio = fields.Char(string='Complemento del domicilio',
+                                     string='Code Account Values')
+    pendiente = fields.Boolean(string='Pending')
+    domicilio = fields.Char(string='Domicile', size=50)
+    complemento_domicilio = fields.Char(string='Domicile Complement',
                                         size=40)
-    poblacion = fields.Char(string='Problación/Ciudad', size=30)
+    poblacion = fields.Char(string='Population/City', size=30)
     provincia = fields.Many2one('res.country.state',
-                                string='Provincia/Región/Estado')
-    zip = fields.Char(string='Código postal', size=10)
-    pais = fields.Many2one('res.country', string='Pais')
-    nif_pais_residencia = fields.Char(string='Nif en el país de residencia',
+                                string='Province/Region/State')
+    zip = fields.Char(string='Postal Code', size=10)
+    pais = fields.Many2one('res.country', string='Country')
+    nif_pais_residencia = fields.Char(string='Nif in the country of residence',
                                       size=20)
-    fecha_nacimiento = fields.Date(string='Fecha de nacimiento')
-    ciudad_nacimiento = fields.Char(string='Ciudad nacimiento', size=35)
-    pais_nacimiento = fields.Many2one('res.country', string='Pais nacimiento')
-    pais_residencia_fiscal = fields.Many2one('res.country', string='Pais o '
-                                             'territorio de residencia fiscal')
+    fecha_nacimiento = fields.Date(string='Date of birth')
+    ciudad_nacimiento = fields.Char(string='Birth city', size=35)
+    pais_nacimiento = fields.Many2one('res.country', string='Country of birth')
+    pais_residencia_fiscal = fields.Many2one('res.country', string='Country '
+                                             'territory of fiscal residence')
+    fecha_devengo_export = fields.Char(
+        string="Devengo date export",
+        compute="_compute_get_fecha_devengo_export"
+    )
+    fecha_nacimiento_export = fields.Char(
+        string="Date of birth export",
+        compute="_compute_get_fecha_nacimiento_export"
+    )
 
-    @api.one
+    @api.multi
+    @api.depends('fecha_nacimiento')
+    def _compute_get_fecha_devengo_export(self):
+        for sel in self:
+            res = ''
+            if sel.fecha_nacimiento:
+                res = fields.Date.from_string(
+                    sel.fecha_nacimiento).strftime("%d%m%Y")
+            sel.fecha_nacimiento_export = res
+
+    @api.multi
+    @api.depends('fecha_devengo')
+    def _compute_get_fecha_nacimiento_export(self):
+        for sel in self:
+            res = ''
+            if sel.fecha_devengo:
+                res =\
+                    fields.Date.from_string(
+                        sel.fecha_devengo).strftime("%d%m%Y")
+            sel.fecha_devengo_export = res
+
+    @api.multi
     @api.onchange('partner_id')
     def onchange_partner(self):
-        if self.partner_id:
-            self.domicilio = self.partner_id.street
-            self.complemento_domicilio = self.partner_id.street2
-            self.poblacion = self.partner_id.city
-            self.provincia = self.partner_id.state_id
-            self.zip = self.partner_id.zip
-            self.pais = self.partner_id.country_id
+        for sel in self.filtered(lambda x: x.partner_id):
+            sel.write({
+                'domicilio': sel.partner_id.street,
+                'complemento_domicilio': sel.partner_id.street2,
+                'poblacion': sel.partner_id.city,
+                'provincia': sel.partner_id.state_id,
+                'zip': sel.partner_id.zip,
+                'pais': sel.partner_id.country_id,
+                })
