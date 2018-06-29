@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-14 20:12+0000\n"
-"PO-Revision-Date: 2018-06-29 21:06+0000\n"
+"PO-Revision-Date: 2018-06-30 03:47+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -161,7 +161,7 @@ msgid ""
 "and compensation back option was chosen"
 msgstr ""
 "Quota a compensar dels períodes anteriors, en els que la declaració va ser a "
-"tornar i s'escollí l'opció de compensació posterior."
+"tornar i s'escollí l'opció de compensació posterior"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_name
@@ -196,7 +196,7 @@ msgstr "Diari"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_journal_id
 msgid "Journal in which post the move."
-msgstr "Diari on es publicarà el moviment"
+msgstr "Diari on es publicarà el moviment."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_representative_vat
@@ -241,7 +241,7 @@ msgstr "Devolució mensual"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_contact_name
 msgid "Must have name and surname."
-msgstr "Ha d'haber-hi nom i cognoms"
+msgstr "Ha d'haver-hi nom i cognoms."
 
 #. module: l10n_es_aeat_mod303
 #: selection:l10n.es.aeat.mod303.report,result_type:0
@@ -354,7 +354,7 @@ msgstr "Tipus de suport"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_tax_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod303.view_l10n_es_aeat_mod303_report_form
 msgid "Tax lines"
-msgstr "Línies d'impostos"
+msgstr "Línies d'imposts"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_porcentaje_atribuible_estado
@@ -417,7 +417,7 @@ msgstr "[27] IVA meritable"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_total_deducir
 msgid "[45] VAT receivable"
-msgstr "[45] IVA deduïble "
+msgstr "[45] IVA deduïble"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_46
@@ -461,7 +461,7 @@ msgstr "[69] Resultat"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_previous_result
 msgid "[70] To be deducted"
-msgstr "[70] A deduir "
+msgstr "[70] A deduir"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_resultado_liquidacion
