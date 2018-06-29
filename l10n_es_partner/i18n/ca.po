@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-17 17:32+0000\n"
-"PO-Revision-Date: 2017-03-17 17:32+0000\n"
-"Last-Translator: Marc Tormo i Bochaca <mtbochaca@gmail.com>, 2017\n"
+"PO-Revision-Date: 2018-06-30 03:47+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
@@ -111,14 +112,14 @@ msgid ""
 "Internet (from Bank of Spain). Maybe this source will be not available from "
 "certain moment in time. You will need xlrd Python library."
 msgstr ""
-"Internet (des del Banc d'Espanya), Potser aquest origen no estarà disponible "
-"a partir d'un cert període. Necessitareu la llibreria xlrd Python. "
+"Internet (des del Banc d'Espanya). Potser aquest origen no estarà disponible "
+"a partir d'un cert període. Necessitareu la llibreria xlrd Python."
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/res_partner_bank.py:88
 #, python-format
 msgid "Invalid bank account."
-msgstr "Compte bancari incorrecte"
+msgstr "Compte bancari incorrecte."
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_account_journal
@@ -176,8 +177,8 @@ msgstr "Aquest assistent importarà les dades bancaries espanyoles."
 msgid ""
 "This wizard will import spanish bank data. You can choose to import it from:"
 msgstr ""
-"Aquest assistent importarà les dades bancaries espanyoles. Heu de triar d'on "
-"importar-les: "
+"Aquest assistent importarà les dades bancaries espanyoles. Podeu importar-"
+"les des de:"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_comercial
