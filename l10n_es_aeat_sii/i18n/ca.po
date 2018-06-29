@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 00:00+0000\n"
-"PO-Revision-Date: 2017-12-28 00:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-06-30 03:47+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_company_sii_form
 msgid "AEAT SII Configuration"
-msgstr "Configuració SII AEAT "
+msgstr "Configuració SII AEAT"
 
 #. module: l10n_es_aeat_sii
 #: selection:account.invoice,sii_state:0
@@ -46,7 +47,7 @@ msgstr "Clau de registre adicional 2 SII"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_registration_key_additional1
 msgid "Additional SII registration key"
-msgstr "Clau de registre adicional SII "
+msgstr "Clau de registre adicional SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_aeat_sii_mapping_registration_keys
@@ -75,7 +76,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_search
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.aeat_sii_mapping_registration_keys_view_tree
 msgid "Aeat SII Registration Keys"
-msgstr "SII - Taula de claus "
+msgstr "SII - Taula de claus"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.menu,name:l10n_es_aeat_sii.menu_aeat_sii_send_first_semester
@@ -90,7 +91,7 @@ msgstr "Enviada prèviament al SII però els canvis locals no s'han enviat"
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "Already sent to SII. It includes cancelled invoices"
-msgstr "Ja enviades al SII. Inclou les factures cancel·lades "
+msgstr "Ja enviades al SII. Inclou les factures cancel·lades"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_tax_amount_company
@@ -118,7 +119,7 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: selection:res.company,send_mode:0
 msgid "At fixed time"
-msgstr "A una hora fixa "
+msgstr "A una hora fixa"
 
 #. module: l10n_es_aeat_sii
 #: selection:res.company,sii_description_method:0
@@ -138,7 +139,7 @@ msgid ""
 "method, there's a button to send the invoice."
 msgstr ""
 "Per defecte, la factura s'envia/fa cua al procés de validació. Amb el mètode "
-"manual, hi ha un botó per enviar la factura.  "
+"manual, hi ha un botó per enviar la factura."
 
 #. module: l10n_es_aeat_sii
 #: selection:account.invoice,sii_refund_type:0
@@ -159,7 +160,7 @@ msgstr "Cancel·lar"
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_queue_job_sii
 msgid "Cancel sending"
-msgstr "Cancel·lar enviament "
+msgstr "Cancel·lar enviament"
 
 #. module: l10n_es_aeat_sii
 #: selection:account.invoice,sii_state:0
@@ -174,7 +175,7 @@ msgstr "Anul·lada al SII amb modificacions pendents de comunicar"
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_account_invoice_sii_filter
 msgid "Cancelled invoices at SII"
-msgstr "Factures anul·lades al SII "
+msgstr "Factures anul·lades al SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company_use_connector
@@ -248,7 +249,7 @@ msgstr "Data des de"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_to
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_sii_first_semester_date_to
 msgid "Date to"
-msgstr "Data fins a "
+msgstr "Data fins a"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_fiscal_position_sii_registration_key_purchase
@@ -327,7 +328,7 @@ msgstr "Posició Fiscal"
 #. module: l10n_es_aeat_sii
 #: selection:res.company,sii_description_method:0
 msgid "Fixed"
-msgstr "Fix "
+msgstr "Fix"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password_folder
@@ -401,9 +402,8 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model,name:l10n_es_aeat_sii.model_account_invoice_tax
-#, fuzzy
 msgid "Invoice Tax"
-msgstr "Factura"
+msgstr "Imposts de factura"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_refund_sii_refund_type_required
@@ -458,7 +458,7 @@ msgstr "Línies"
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.l10n_es_sii_form_view
 msgid "Load Certificate"
-msgstr "Carregar Certificat "
+msgstr "Carregar Certificat"
 
 #. module: l10n_es_aeat_sii
 #: selection:res.company,sii_description_method:0
@@ -474,7 +474,7 @@ msgstr "Línies d'assignació"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_company_sii_method
 msgid "Method"
-msgstr "Mètode "
+msgstr "Mètode"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice_sii_description_method
