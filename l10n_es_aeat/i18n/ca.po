@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-18 11:09+0000\n"
-"PO-Revision-Date: 2018-06-29 20:56+0000\n"
+"PO-Revision-Date: 2018-06-30 03:47+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -82,7 +82,7 @@ msgstr "Mòdul base per a declaracions AEAT"
 #: sql_constraint:l10n.es.aeat.report:0
 #: sql_constraint:l10n.es.aeat.report.tax.mapping:0
 msgid "AEAT report identifier must be unique"
-msgstr "L'identificador d'informe AEAT ha de ser únic."
+msgstr "L'identificador d'informe AEAT ha de ser únic"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
@@ -103,7 +103,7 @@ msgstr "Configuració avançada"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line_alignment
 msgid "Alignment"
-msgstr "Alineació  "
+msgstr "Alineació"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,move_type:0
@@ -250,7 +250,7 @@ msgstr "Configuració pare"
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
 msgid "Configuration lines"
-msgstr "Línies de configuració "
+msgstr "Línies de configuració"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -276,7 +276,7 @@ msgstr "Compte de la contrapartida"
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Create move"
-msgstr "Crear assentament "
+msgstr "Crear assentament"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_create_uid
@@ -524,12 +524,12 @@ msgid ""
 "number should be provided."
 msgstr ""
 "Si aquesta declaració és complementaria o substitutiva, haureu d'especificar "
-"un número de declaració previ. "
+"un número de declaració previ."
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "In process"
-msgstr "En procés "
+msgstr "En procés"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -542,7 +542,7 @@ msgid ""
 "Inheritable abstract model to add taxes by code mapping in any AEAT report"
 msgstr ""
 "Model abstracte heretable per afegir imposts per assignacions de codi en "
-"cada declaració AEAT "
+"cada declaració AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_inverse
@@ -570,7 +570,7 @@ msgstr "Apunts comptables"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_representative_vat
 msgid "L.R. VAT number"
-msgstr "NIF repr. legal"
+msgstr "NIF del R.L."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config___last_update
@@ -613,7 +613,7 @@ msgstr "Esquerra"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_representative_vat
 msgid "Legal Representative VAT number."
-msgstr "NIF del representant legal"
+msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_config_line_ids
@@ -684,7 +684,7 @@ msgstr "Caràcter de signe negatiu"
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:128
 #, python-format
 msgid "No export configuration selected."
-msgstr "No s'ha seleccionat una configuració d'exportació"
+msgstr "No s'ha seleccionat una configuració d'exportació."
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
@@ -918,7 +918,7 @@ msgstr "Línia d'assignació d'imposts"
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_tree
 msgid "Tax code mapping lines"
-msgstr "Línies d'assignació d'imposts "
+msgstr "Línies d'assignació d'imposts"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_tax_line_ids
@@ -961,7 +961,7 @@ msgstr "Telemàtica"
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:98
 #, python-format
 msgid "The formated string must match the given length"
-msgstr "El format de la cadena ha de coincidir amb la mida donada "
+msgstr "El format de la cadena ha de coincidir amb la mida donada"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_counterpart_account_id
@@ -988,7 +988,7 @@ msgstr "Fins a la data"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_to_regularize
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_to_regularize
 msgid "To regularize"
-msgstr "Per a regularitzar "
+msgstr "Per a regularitzar"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
@@ -1038,7 +1038,7 @@ msgstr "Any"
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:196
 #, python-format
 msgid "You must fill both journal and counterpart account."
-msgstr "Heu d'emplenar tan el diari com el compte de la contrapartida. "
+msgstr "Heu d'emplenar tan el diari com el compte de la contrapartida."
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_aeat_model_export_config
