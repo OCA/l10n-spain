@@ -6,7 +6,7 @@
 
 {
     'name': 'AEAT modelo 216',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': "Localisation/Accounting",
     'author': "AvanzOSC,"
               "Tecnativa,"
@@ -23,5 +23,9 @@
         'views/mod216_view.xml',
         'views/res_partner_view.xml',
     ],
+    'maintainers': [
+        'pedrobaeza',
+    ],
+    'development_status': 'Mature',
     'installable': True,
 }
