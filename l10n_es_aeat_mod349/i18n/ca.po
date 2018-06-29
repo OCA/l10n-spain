@@ -10,44 +10,45 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2018-02-10 03:55+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2018-06-29 22:37+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
 msgid "A - Intra-Community acquisition"
-msgstr ""
+msgstr "A - Adquisició intracomunitària"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.menu,name:l10n_es_aeat_mod349.menu_aeat_mod349_report
 msgid "AEAT 349 Model"
-msgstr ""
+msgstr "Model AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_record
 msgid "AEAT 349 Model - Partner record"
-msgstr ""
+msgstr "Model AEAT 349 - Registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_record_detail
 msgid "AEAT 349 Model - Partner record detail"
-msgstr ""
+msgstr "Model AEAT 349 - Detall del registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_refund
 msgid "AEAT 349 Model - Partner refund"
-msgstr ""
+msgstr "Model AEAT 349 - Rectificativa d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_refund_detail
 msgid "AEAT 349 Model - Partner refund detail"
-msgstr ""
+msgstr "Model AEAT 349 - Detall de rectificació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_invoice_line_l10n_es_aeat_349_operation_key
@@ -55,39 +56,39 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_l10n_es_aeat_349_operation_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template_aeat_349_map_line
 msgid "AEAT 349 Operation key"
-msgstr ""
+msgstr "AEAT 349 Clau d'operació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_detail_form
 msgid "AEAT 349 Partner record"
-msgstr ""
+msgstr "AEAT 349 registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_detail_tree
 msgid "AEAT 349 Partner record detail"
-msgstr ""
+msgstr "AEAT 349 Detall del registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_tree
 msgid "AEAT 349 Partner records"
-msgstr ""
+msgstr "AEAT 349 Registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_detail_form
 msgid "AEAT 349 Partner refund"
-msgstr ""
+msgstr "AEAT 349 Rectificacions d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_detail_tree
 msgid "AEAT 349 Partner refund detail"
-msgstr ""
+msgstr "AEAT 349 Detall de la rectificació d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_tree
 msgid "AEAT 349 Partner refunds"
-msgstr ""
+msgstr "AEAT 349 Rectificacions d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_report_id
@@ -95,23 +96,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail_report_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_report_id
 msgid "AEAT 349 Report ID"
-msgstr ""
+msgstr "AEAT 349 ID de declaració"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_tree
 msgid "AEAT 349 reports"
-msgstr ""
+msgstr "Declaracions AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod349.act_report_aeat_mod349_pdf
 msgid "AEAT Model 349"
-msgstr ""
+msgstr "Model AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_report
 msgid "AEAT Model 349 Report"
-msgstr ""
+msgstr "Declaració Model AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_move_id
@@ -122,24 +123,24 @@ msgstr "Compte de l'assentament"
 #: model:ir.ui.menu,name:l10n_es_aeat_mod349.menu_aeat_349_map
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.l10n_es_aeat_349_map_lines_view_tree
 msgid "Aeat 349 Map"
-msgstr ""
+msgstr "Mapatge AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_aeat_349_map_line
 msgid "Aeat 349 Map Line"
-msgstr ""
+msgstr "Mapatge de línies AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:322
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
-msgstr ""
+msgstr "Tots els camps del registre d'empresa (país, NIF) s'han d'emplenar."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:327
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
-msgstr ""
+msgstr "Tots els camps de les rectificacions (país, NIF) s'han d'emplenar."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_allow_posting
@@ -150,7 +151,7 @@ msgstr "Permetre la publicació"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_amount_untaxed
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail_amount_untaxed
 msgid "Amount untaxed"
-msgstr ""
+msgstr "Import sense impostos"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_partner_bank_id
@@ -170,12 +171,12 @@ msgstr "Cancel·lada"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_partner_record_ok
 msgid "Checked if partner record is OK"
-msgstr ""
+msgstr "Marcat si el registre d'empresa està correcte"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_partner_refund_ok
 msgid "Checked if refund record is OK"
-msgstr ""
+msgstr "Marcat si el registre de rectificació està bé"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_company_id
@@ -186,7 +187,7 @@ msgstr "Empresa"
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "Company Name"
-msgstr ""
+msgstr "Nom d'Empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_partner_bank_id
@@ -196,7 +197,7 @@ msgstr "Compte bancari de l'empresa utilitzat per a la presentació"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Company:"
-msgstr ""
+msgstr "Empresa:"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
@@ -206,18 +207,18 @@ msgstr "Complementària"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Complementary or substitutive:"
-msgstr ""
+msgstr "Complementària o substitutiva:"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:338
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
-msgstr ""
+msgstr "El nom del contacte (Nom complert) ha de tenir nom i cognom"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Contact phone:"
-msgstr ""
+msgstr "Telèfon de contacte:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_counterpart_account_id
@@ -228,12 +229,12 @@ msgstr "Compte de la contrapartida"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_country_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_country_id
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
 msgid "Create and query AEAT Model 349 reports"
-msgstr ""
+msgstr "Crear i consultar declaracions del Model AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line_create_uid
@@ -269,23 +270,23 @@ msgstr "DVD"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail_date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Declaration number:"
-msgstr ""
+msgstr "Número de declaració:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_form
 msgid "Detail lines"
-msgstr ""
+msgstr "Línies de detall"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Details"
-msgstr ""
+msgstr "Detalls"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line_display_name
@@ -310,12 +311,12 @@ msgstr "Esborrany"
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
 msgid "E - Intra-Community supplies"
-msgstr ""
+msgstr "E - Entregues intracomunitàries"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_invoice_eu_triangular_deal
 msgid "EU Triangular deal"
-msgstr ""
+msgstr "Acord triangular UE"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_date_end
@@ -330,7 +331,7 @@ msgstr "Configuració d'exportació"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Fiscal Year:"
-msgstr ""
+msgstr "Any Fiscal:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.report_aeat_mod349_document
@@ -338,11 +339,13 @@ msgid ""
 "Form 349. Information Return. Recapitulatory\n"
 "                            return of intracommunity transactions."
 msgstr ""
+"Model 349. Declaració Informativa. Declaració recapitulativa\n"
+"                            d'operacions intracomunitàries."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_frequency_change
 msgid "Frequency change"
-msgstr ""
+msgstr "Canvi de freqüència"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_contact_name
@@ -357,7 +360,7 @@ msgstr "General"
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
 msgid "I - Intra-Community services acquisitions"
-msgstr ""
+msgstr "I - Adquisició de serveis intracomunitaris"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line_id
@@ -373,7 +376,7 @@ msgstr "ID"
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice
@@ -385,12 +388,12 @@ msgstr "Factura"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice_line
 msgid "Invoice Line"
-msgstr ""
+msgstr "Línia de Factura"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line_physical_product
 msgid "Involves physical product"
-msgstr ""
+msgstr "Implica producte físic"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_journal_id
@@ -402,7 +405,7 @@ msgstr "Diari"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_move_line_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail_refund_line_id
 msgid "Journal Item"
-msgstr ""
+msgstr "Apunt comptable"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_journal_id
@@ -412,7 +415,7 @@ msgstr "Diari on publicar el moviment"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_date
 msgid "Keep empty to use the current date"
-msgstr ""
+msgstr "Deixar buit per utilitzar la data actual"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_representative_vat
@@ -457,7 +460,7 @@ msgstr "NIF del representant legal"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Legal representative VAT:"
-msgstr ""
+msgstr "NIF del representant legal:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_model_id
@@ -477,13 +480,13 @@ msgstr "Ha de tenir nom i cognoms"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "New (Rectified) Amount"
-msgstr ""
+msgstr "Nou (rectificat) Import"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:271
 #, python-format
 msgid "No Tax Mapping was found"
-msgstr ""
+msgstr "No s'ha trobat cap mapat d'impostos"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
@@ -493,7 +496,7 @@ msgstr "Normal"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
 msgid "Operation Amount"
-msgstr ""
+msgstr "Import d'Operació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line_operation_key
@@ -502,17 +505,17 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "Operation key"
-msgstr ""
+msgstr "Clau d'Operació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Options"
-msgstr ""
+msgstr "Opcions"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_total_origin_amount
 msgid "Original amount"
-msgstr ""
+msgstr "Import original"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_partner_id
@@ -526,74 +529,74 @@ msgstr "Empresa"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_partner_record_ok
 msgid "Partner Record OK"
-msgstr ""
+msgstr "Registre d'empresa correcte"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_partner_record_id
 msgid "Partner record"
-msgstr ""
+msgstr "Registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_record_detail_ids
 msgid "Partner record detail IDS"
-msgstr ""
+msgstr "IDs del detall del registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_partner_record_detail_ids
 msgid "Partner record details"
-msgstr ""
+msgstr "Detalls del registre d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_partner_record_ids
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.report_aeat_mod349_document
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Partner records"
-msgstr ""
+msgstr "Registres d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail_refund_id
 msgid "Partner refund ID"
-msgstr ""
+msgstr "ID de rectificació d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_partner_refund_ids
 msgid "Partner refund IDS"
-msgstr ""
+msgstr "IDS de rectificació d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_partner_refund_ok
 msgid "Partner refund OK"
-msgstr ""
+msgstr "Registre d'empresa correcte"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_refund_detail_ids
 msgid "Partner refund detail IDS"
-msgstr ""
+msgstr "IDs dels detalla de rectificacions"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_partner_refund_detail_ids
 msgid "Partner refund details"
-msgstr ""
+msgstr "Detalls de rectificació d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_total_partner_records
 msgid "Partners records"
-msgstr ""
+msgstr "Registres d'empreses"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_total_partner_records_amount
 msgid "Partners records amount"
-msgstr ""
+msgstr "Imports dels registres d'empreses"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_total_partner_refunds
 msgid "Partners refunds"
-msgstr ""
+msgstr "Rectificacions d'empreses"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_total_partner_refunds_amount
 msgid "Partners refunds amount"
-msgstr ""
+msgstr "Imports de rectificacions d'empreses"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_period_type
@@ -604,7 +607,7 @@ msgstr "Tipus de període"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Period:"
-msgstr ""
+msgstr "Període:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_contact_phone
@@ -624,12 +627,12 @@ msgstr "No previ de declaració"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Previous declaration:"
-msgstr ""
+msgstr "Declaració anterior:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "Previously Reported Amount"
-msgstr ""
+msgstr "Import declarat anteriorment"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
@@ -639,27 +642,27 @@ msgstr "Processat"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "Rectifying Period Type"
-msgstr ""
+msgstr "Tipus de període rectificat"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "Rectifying Year"
-msgstr ""
+msgstr "Any rectificat"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_total_origin_amount
 msgid "Refund original amount"
-msgstr ""
+msgstr "Import de l'operació original"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.report_aeat_mod349_document
 msgid "Refund records"
-msgstr ""
+msgstr "Registres de rectificacions"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Refunds from other periods"
-msgstr ""
+msgstr "Rectificacions d'altres períodes"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_name
@@ -674,7 +677,7 @@ msgstr "Resultat"
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
 msgid "S - Intra-Community services"
-msgstr ""
+msgstr "S - Serveis intracomunitaris"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_date_start
@@ -701,7 +704,7 @@ msgstr "Substitutiva"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
 msgid "Summary"
-msgstr ""
+msgstr "Resum"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_support_type
@@ -711,17 +714,17 @@ msgstr "Tipus de suport"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Support type:"
-msgstr ""
+msgstr "Tipus de suport:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Surnames and name contact:"
-msgstr ""
+msgstr "Cognoms i nom de contacte:"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
 msgid "T - Triangular operations"
-msgstr ""
+msgstr "T - Operacions triangulars"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_tax
@@ -731,7 +734,7 @@ msgstr "Impost"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line_tax_tmpl_ids
 msgid "Taxes"
-msgstr ""
+msgstr "Imposts"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
@@ -741,12 +744,12 @@ msgstr "Telemàtica"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_tax_template
 msgid "Templates for Taxes"
-msgstr ""
+msgstr "Plantilla d'imposts"
 
 #. module: l10n_es_aeat_mod349
 #: sql_constraint:aeat.349.map.line:0
 msgid "There's already another record with the same operation key"
-msgstr ""
+msgstr "Hi ha un altre registre amb la mateixa clau d'operació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_counterpart_account_id
@@ -763,36 +766,38 @@ msgid ""
 "This invoice constitutes a triangular operation for the purposes of intra-"
 "community operations."
 msgstr ""
+"Aquesta factura constitueix una operació triangular per als propòsits "
+"d'operacions intracomunitàries."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Total amount of intra-community operations:"
-msgstr ""
+msgstr "Total bases operacions intracomunitàries:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Total amount of rectifications:"
-msgstr ""
+msgstr "Total bases de rectificacions:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Total number of intra-community operators with rectifications:"
-msgstr ""
+msgstr "Nombre total d'operadors intracomunitaris amb rectificacions:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Total number of intra-community operators:"
-msgstr ""
+msgstr "Nombre total d'operadors intracomunitaris:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_total_operation_amount
 msgid "Total operation amount"
-msgstr ""
+msgstr "Import total d'operació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_total_operation_amount
 msgid "Total rectified amount"
-msgstr ""
+msgstr "Import total de rectificació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_partner_vat
@@ -800,7 +805,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "VAT"
-msgstr ""
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report_company_vat
@@ -810,7 +815,7 @@ msgstr "NIF / CIF"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "VAT:"
-msgstr ""
+msgstr "NIF:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_year
@@ -821,4 +826,4 @@ msgstr "Any"
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
-msgstr ""
+msgstr "Mapat AEAT 349"
