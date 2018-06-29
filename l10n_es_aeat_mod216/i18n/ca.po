@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 00:00+0000\n"
-"PO-Revision-Date: 2017-12-28 00:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-06-29 21:42+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
@@ -27,22 +28,22 @@ msgstr "Declaració AEAT 111"
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
 msgid "AEAT 216 model"
-msgstr ""
+msgstr "Model AEAT 216"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod216_report
 msgid "AEAT 216 report"
-msgstr ""
+msgstr "Declaració AEAT 216"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_tree
 msgid "AEAT 216 reports"
-msgstr ""
+msgstr "Declaracions AEAT 216"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
 msgid "AEAT model 216"
-msgstr ""
+msgstr "Model 216 AEAT"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_move_id
@@ -92,7 +93,7 @@ msgstr "Compte de la contrapartida"
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
 msgid "Create and query AEAT Model 216 reports."
-msgstr ""
+msgstr "Crear i consultar les declaracions del model 216 de la AEAT."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_create_uid
@@ -168,37 +169,37 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Income not subject to retention"
-msgstr ""
+msgstr "Rendes no subjectes a retenció"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_05
 msgid "Income not subject to retention - Base amount"
-msgstr ""
+msgstr "Rendes no subjectes a retenció - Base imponible"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_04
 msgid "Income not subject to retention - Number of recipients"
-msgstr ""
+msgstr "Rendes no subjectes a retenció - Número de rendes"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Income subject to retention"
-msgstr ""
+msgstr "Rendes subjectes a retenció"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_03
 msgid "Income subject to retention - Amount of retentions"
-msgstr ""
+msgstr "Rendes subjectes a retenció - Import de les retencions"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_01
 msgid "Income subject to retention - Number of recipients"
-msgstr ""
+msgstr "Rendes subjectes a retencions - Número de rendes"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_partner_is_non_resident
 msgid "Is non-resident"
-msgstr ""
+msgstr "No és resident"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_journal_id
@@ -304,7 +305,7 @@ msgstr "Tipus de resultat"
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
 msgid "Result: ([03] - [06])"
-msgstr ""
+msgstr "Resultat: ([03] - [06])"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_date_start
@@ -399,14 +400,14 @@ msgstr "[04] No de destinataris "
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_05
 msgid "[05] Base amount"
-msgstr ""
+msgstr "[05] Base imponible"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_06
 msgid "[06] Fees to compensate"
-msgstr ""
+msgstr "[06] Resultats anteriors a compensar"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
 msgid "[07] Result"
-msgstr ""
+msgstr "[07] Resultat"
