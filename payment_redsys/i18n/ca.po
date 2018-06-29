@@ -9,24 +9,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:56+0000\n"
-"PO-Revision-Date: 2018-02-10 03:56+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"PO-Revision-Date: 2018-06-30 03:47+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<i class=\"fa fa-file-pdf-o\"/> Order"
-msgstr ""
+msgstr "<i class=\"fa fa-file-pdf-o\"/> Comanda"
 
 #. module: payment_redsys
 #: model:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
 msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
-msgstr ""
+msgstr "<span><i>Cancel·lar,</i> El vostre pagament ha estat cancel·lat.</span>"
 
 #. module: payment_redsys
 #: model:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
