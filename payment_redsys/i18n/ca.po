@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:56+0000\n"
-"PO-Revision-Date: 2018-06-30 03:47+0000\n"
+"PO-Revision-Date: 2018-07-01 20:04+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -35,6 +35,8 @@ msgid ""
 "<span><i>Done,</i> Your online payment has been successfully processed. "
 "Thank you for your order.</span>"
 msgstr ""
+"<span><i>Fet,</i> El vostre pagament en línia s'ha processat correctament. "
+"Gràcies per la seva comanda.</span>"
 
 #. module: payment_redsys
 #: model:payment.acquirer,error_msg:payment_redsys.payment_acquirer_redsys
@@ -50,51 +52,53 @@ msgid ""
 "<span><i>Pending,</i> Your online payment has been successfully processed. "
 "But your order is not validated yet.</span>"
 msgstr ""
+"<span><i>Pendent,</i> El vostre pagament en línia s'ha processat "
+"correctament. Encara que la vostra comanda no està encara validada.</span>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Date:</strong>"
-msgstr ""
+msgstr "<strong>Data:</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Discount (%)</strong>"
-msgstr ""
+msgstr "<strong>Descompte (%)</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Invoicing Address</strong>"
-msgstr ""
+msgstr "<strong>Adreça de Facturació</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Product</strong>"
-msgstr ""
+msgstr "<strong>Producte</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Quantity</strong>"
-msgstr ""
+msgstr "<strong>Quantitat</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Shipping Address</strong>"
-msgstr ""
+msgstr "<strong>Adreça d'enviament</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Subtotal</strong>"
-msgstr ""
+msgstr "<strong>Subtotal</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Total:</strong>"
-msgstr ""
+msgstr "<strong>Total:</strong>"
 
 #. module: payment_redsys
 #: model:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Unit Price</strong>"
-msgstr ""
+msgstr "<strong>Preu unitari</strong>"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
