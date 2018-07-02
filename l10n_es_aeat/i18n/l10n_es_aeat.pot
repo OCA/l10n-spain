@@ -52,7 +52,7 @@ msgid "AEAT manager"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:255
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:259
 #, python-format
 msgid "AEAT model sequence not found. You can try to restart your Odoo service for recreating the sequences."
 msgstr ""
@@ -301,6 +301,18 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Contact data"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod349_report_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_contact_email
+msgid "Contact email"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -587,7 +599,7 @@ msgid "If set, this expression will be used to evaluate if this line should be a
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:195
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:198
 #, python-format
 msgid "If this declaration is complementary or substitutive, a previous declaration number should be provided."
 msgstr ""
@@ -752,7 +764,7 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:391
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:395
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
@@ -821,7 +833,7 @@ msgid "Odoo model"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:362
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:366
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
