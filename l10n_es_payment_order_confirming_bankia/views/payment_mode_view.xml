@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_payment_mode_form" model="ir.ui.view">
+            <field name="name">Payment mode form (Confirming Bankia)</field>
+            <field name="model">payment.mode</field>
+            <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
+            <field name="arch" type="xml">
+                <group position="after">
+                    <group string="Opciones Confirming" attrs="{'invisible': [('is_conf_bankia', '=', False)]}">
+                        <field name="conf_bankia_type"/>
+                        <field name="is_conf_bankia" invisible="1"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>
