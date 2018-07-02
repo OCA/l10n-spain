@@ -86,6 +86,7 @@ Contribudores
 * AvanzOSC (http://www.avanzosc.es)
 * Ainara Galdona
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
+* Juan Vicente Pascual <jvpascual@puntsistemes.es>
 
 Maintainer
 ----------
