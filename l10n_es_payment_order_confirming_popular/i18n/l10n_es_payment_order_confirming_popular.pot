@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_payment_order_confirming_popular
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_payment_order_confirming_popular
+#: selection:payment.mode,gastos:0
+msgid "Beneficiario"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: selection:payment.mode,forma_pago:0
+msgid "Cheque"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: selection:payment.mode,conf_popular_type:0
+msgid "Cheques"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:109
+#, python-format
+msgid "Error: El Ordenante %s no tiene                         establecido el Domicilio.                         "
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:121
+#, python-format
+msgid "Error: El Ordenante %s no tiene establecida la                         Ciudad."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:225
+#, python-format
+msgid "Error: El Proveedor %s no tiene                         establecido el Domicilio.                         "
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:154
+#, python-format
+msgid "Error: El Proveedor %s no tiene                         establecido el NIF."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:252
+#, python-format
+msgid "Error: El Proveedor %s no tiene establecida                         la Ciudad."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:242
+#, python-format
+msgid "Error: El Proveedor %s no tiene establecido                         el C.P."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:285
+#, python-format
+msgid "Error: El Proveedor %s no tiene establecido                 el NIF."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:45
+#, python-format
+msgid "Error: Fecha planificada no                         establecida en la Orden de pago."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: code:addons/l10n_es_payment_order_confirming_popular/wizard/confirming_popular.py:97
+#, python-format
+msgid "Error: Propietario de la cuenta no establecido para                        la cuenta %s."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: model:ir.model,name:l10n_es_payment_order_confirming_popular.model_banking_export_csb_wizard
+msgid "Export CSB File"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: field:payment.mode,forma_pago:0
+msgid "Forma de pago"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: field:payment.mode,gastos:0
+msgid "Gastos de la operación a cuenta de"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: field:payment.mode,is_conf_popular:0
+msgid "Is conf popular"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: view:payment.mode:l10n_es_payment_order_confirming_popular.view_payment_mode_form
+msgid "Opciones Confirming"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: selection:payment.mode,gastos:0
+msgid "Ordenante"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: selection:payment.mode,conf_popular_type:0
+msgid "Pagos confirmados"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: model:ir.model,name:l10n_es_payment_order_confirming_popular.model_payment_mode
+msgid "Payment Mode"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: field:payment.mode,conf_popular_type:0
+msgid "Tipo de pago"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: selection:payment.mode,conf_popular_type:0
+msgid "Tranferencia"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_popular
+#: selection:payment.mode,forma_pago:0
+msgid "Transferencia"
+msgstr ""
+
