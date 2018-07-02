@@ -16,6 +16,9 @@ addons:
       - unixodbc-dev
       - python-mysqldb
       - libxmlsec1-dev
+      - libxml2-dev
+      - libxmlsec1-openssl
+      - openssl
 
 env:
   global:
