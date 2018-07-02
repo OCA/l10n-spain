@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_payment_mode_form" model="ir.ui.view">
+            <field name="name">Payment mode form (Confirming Sabadell)</field>
+            <field name="model">payment.mode</field>
+            <field name="inherit_id" ref="account_payment.view_payment_mode_form"/>
+            <field name="arch" type="xml">
+                <group position="after">
+                    <group string="Opciones Confirming" attrs="{'invisible': [('is_conf_sabadell', '=', False)]}">
+                        <field name="conf_sabadell_type"/>
+                        <field name="contrato_bsconfirming" attrs="{'required': [('is_conf_sabadell', '=', True)]}"/>
+                        <field name="tipo_envio_info" attrs="{'required': [('is_conf_sabadell', '=', True)]}"/>
+                        <field name="codigo_estadistico" attrs="{'required': [('conf_sabadell_type', '=', '58')],'invisible': [('conf_sabadell_type', '!=', '58')]}"/>
+                        <field name="is_conf_sabadell" invisible="1"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</openerp>
