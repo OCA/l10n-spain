@@ -181,7 +181,7 @@
         <field name="name">Retenciones IRPF (Trabajadores) dinerarios</field>
         <field name="refund_account_id" ref="pgc_4751_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
-        <field name="amount" eval="-21"/>
+        <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
     </record>
     <record id="account_tax_template_p_iva4_sp_ex_1" model="account.tax.template">
@@ -926,10 +926,10 @@
         <field name="description">P_IRPFT</field>
         <field name="type_tax_use">purchase</field>
         <field name="account_id" ref="pgc_4751_child"/>
-        <field name="name">Retenciones IRPF 21% (Trabajadores)</field>
+        <field name="name">Retenciones IRPF (Trabajadores)</field>
         <field name="refund_account_id" ref="pgc_4751_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
-        <field name="amount" eval="-21"/>
+        <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
     </record>
     <record id="account_tax_template_p_iva10_sp_in_1" model="account.tax.template">
@@ -1001,7 +1001,7 @@
         <field name="name">Retenciones IRPF (Trabajadores) en especie</field>
         <field name="refund_account_id" ref="pgc_4751_child"/>
         <field name="chart_template_id" ref="account_chart_template_common"/>
-        <field name="amount" eval="-21"/>
+        <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
     </record>
     <record id="account_tax_template_p_irpf20" model="account.tax.template">
