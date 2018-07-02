@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_payment_order_confirming_bankia
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: selection:payment.mode,conf_bankia_type:0
+msgid "Cheque bancario"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:141
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecida la Ciudad."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:130
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecido el C.P."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:119
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecido el Domicilio."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:96
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecido el NIF."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:45
+#, python-format
+msgid "Error: Fecha planificada no                         establecida en la Orden de pago."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:63
+#, python-format
+msgid "Error: Propietario de la cuenta no                     establecido para la cuenta %s."
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: model:ir.model,name:l10n_es_payment_order_confirming_bankia.model_banking_export_csb_wizard
+msgid "Export CSB File"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: field:payment.mode,is_conf_bankia:0
+msgid "Is conf bankia"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: view:payment.mode:l10n_es_payment_order_confirming_bankia.view_payment_mode_form
+msgid "Opciones Confirming"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: selection:payment.mode,conf_bankia_type:0
+msgid "Pago domiciliado"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: model:ir.model,name:l10n_es_payment_order_confirming_bankia.model_payment_mode
+msgid "Payment Mode"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: field:payment.mode,conf_bankia_type:0
+msgid "Tipo de pago"
+msgstr ""
+
+#. module: l10n_es_payment_order_confirming_bankia
+#: selection:payment.mode,conf_bankia_type:0
+msgid "Tranferencia"
+msgstr ""
+
