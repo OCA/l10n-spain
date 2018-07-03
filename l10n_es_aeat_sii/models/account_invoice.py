@@ -1416,7 +1416,11 @@ class AccountInvoiceLine(models.Model):
         """Obtain the effective invoice line price after discount. Needed as
         we can modify the unit price via inheritance."""
         self.ensure_one()
-        return self._get_sii_line_price_unit() * self.quantity
+        price = self._get_sii_line_price_unit()
+        taxes = self.invoice_line_tax_id.compute_all(
+            price, self.quantity, product=self.product_id,
+            partner=self.invoice_id.partner_id)
+        return taxes['total']
 
     @api.multi
     def _get_sii_tax_line_req(self):
