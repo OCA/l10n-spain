@@ -569,8 +569,8 @@ class AccountInvoice(models.Model):
                 nsub_dict = services_dict['NoSujeta']
                 nsub_dict["ImporteTAIReglasLocalizacion"] = \
                     round(
-                        float_round(nsub_dict["ImporteTAIReglasLocalizacion"] *
-                                    sign, 2), 2)
+                        float_round(nsub_dict["ImporteTAIReglasLocalizacion"],
+                                    2), 2)
 
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
