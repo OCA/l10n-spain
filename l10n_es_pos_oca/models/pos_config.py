@@ -42,7 +42,7 @@ class PosConfig(models.Model):
         'Simplified Invoice prefix',
         readonly=True,
         compute='_compute_simplified_invoice_sequence',
-        olname='simple_invoice_prefix',
+        oldname='simple_invoice_prefix',
     )
     l10n_es_simplified_invoice_padding = fields.Integer(
         'Simplified Invoice padding',
