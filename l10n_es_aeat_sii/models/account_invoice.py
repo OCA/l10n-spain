@@ -527,10 +527,9 @@ class AccountInvoice(models.Model):
                         type_breakdown['PrestacionServicios'].setdefault(
                             'Sujeta', {}
                         )
-                    service_dict = type_breakdown[
-                        'PrestacionServicios']['Sujeta']
+                    service_dict = type_breakdown['PrestacionServicios']
                     if tax_line in taxes_sfesse:
-                        service_dict = service_dict.setdefault(
+                        service_dict = service_dict['Sujeta'].setdefault(
                             'Exenta',
                             {'DetalleExenta': []})
                         det_dict = {'BaseImponible':
