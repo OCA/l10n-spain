@@ -14,6 +14,11 @@ class ResPartner(models.Model):
 
     comercial = fields.Char('Trade name', size=128, index=True)
 
+    @api.depends('comercial')
+    def _compute_display_name(self):
+        """Include dependencies of comercial"""
+        super(ResPartner, self)._compute_display_name()
+
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
         """Include commercial name in direct name search."""
