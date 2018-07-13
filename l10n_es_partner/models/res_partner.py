@@ -12,6 +12,11 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     comercial = fields.Char('Trade name', size=128, index=True)
+    display_name = fields.Char(compute='_compute_display_name')
+
+    @api.depends('comercial')
+    def _compute_display_name(self):
+        super(ResPartner, self)._compute_display_name()
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
