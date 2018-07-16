@@ -1094,17 +1094,19 @@ class AccountInvoice(models.Model):
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         for invoice in self.filtered('sii_enabled'):
-            if self._sii_invoice_dict_modified():
-                if invoice.sii_state == 'sent':
-                    invoice.sii_state = 'sent_modified'
-                elif invoice.sii_state == 'cancelled':
-                    invoice.sii_state = 'cancelled_modified'
-                company = invoice.company_id
-                if company.sii_method != 'auto':
-                    continue
-                invoice._process_invoice_for_sii_send()
-            else:
-                invoice.sii_state = 'sent'
+            if invoice.sii_state in ['sent_modified', 'sent'] and \
+                    self._sii_invoice_dict_modified():
+                if invoice.sii_state == 'sent_modified':
+                    invoice.sii_state = 'sent'
+                continue
+            if invoice.sii_state == 'sent':
+                invoice.sii_state = 'sent_modified'
+            elif invoice.sii_state == 'cancelled':
+                invoice.sii_state = 'cancelled_modified'
+            company = invoice.company_id
+            if company.sii_method != 'auto':
+                continue
+            invoice._process_invoice_for_sii_send()
         return res
 
     @api.multi
