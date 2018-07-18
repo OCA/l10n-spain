@@ -5,6 +5,7 @@
 # Copyright 2017 Otherway - Pedro Rodríguez Gil
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # Copyright 2017 Comunitea - Omar Castiñeira <omar@comunitea.com>
+# Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -14,6 +15,7 @@ from requests import Session
 
 from openerp import _, api, exceptions, fields, models, SUPERUSER_ID
 from openerp.modules.registry import RegistryManager
+from openerp.tools.float_utils import float_compare
 
 _logger = logging.getLogger(__name__)
 
@@ -43,7 +45,7 @@ SII_STATES = [
     ('cancelled', 'Cancelled'),
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
 ]
-SII_VERSION = '1.0'
+SII_VERSION = '1.1'
 SII_START_DATE = '2017-07-01'
 SII_COUNTRY_CODE_MAPPING = {
     'RE': 'FR',
@@ -51,6 +53,7 @@ SII_COUNTRY_CODE_MAPPING = {
     'MQ': 'FR',
     'GF': 'FR',
 }
+SII_MACRODATA_LIMIT = 100000000.0
 
 
 class AccountInvoice(models.Model):
@@ -150,10 +153,25 @@ class AccountInvoice(models.Model):
     sii_property_cadastrial_code = fields.Char(
         string="Real property cadastrial code", size=25, copy=False,
     )
+    sii_macrodata = fields.Boolean(
+        string="MacroData",
+        help="Check to confirm that the invoice has an absolute amount "
+             "greater o equal to 100 000 000,00 euros.",
+        compute='_compute_macrodata', store=True
+    )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
         string="Connector Jobs", copy=False,
     )
+
+    @api.depends('amount_total')
+    def _compute_macrodata(self):
+        for inv in self:
+            inv.sii_macrodata = True if float_compare(
+                inv.amount_total,
+                SII_MACRODATA_LIMIT,
+                precision_digits=2
+            ) >= 0 else False
 
     @api.onchange('sii_refund_type')
     def onchange_sii_refund_type(self):
@@ -737,7 +755,7 @@ class AccountInvoice(models.Model):
                 )[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
-            "PeriodoImpositivo": {
+            "PeriodoLiquidacion": {
                 "Ejercicio": ejercicio,
                 "Periodo": periodo,
             },
@@ -825,7 +843,7 @@ class AccountInvoice(models.Model):
                     (self.reference or '')[:60]
                 ),
                 "FechaExpedicionFacturaEmisor": invoice_date},
-            "PeriodoImpositivo": {
+            "PeriodoLiquidacion": {
                 "Ejercicio": ejercicio,
                 "Periodo": periodo
             },
@@ -864,6 +882,8 @@ class AccountInvoice(models.Model):
                     round(tax_amount * sign, 2) or 0.0
                 ),
             }
+            if self.sii_macrodata:
+                inv_dict["FacturaExpedida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
