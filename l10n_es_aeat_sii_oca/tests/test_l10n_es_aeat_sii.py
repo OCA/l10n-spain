@@ -1,5 +1,6 @@
 # Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
 # Copyright 2017 Tecnativa - Pedro M. Baeza
+# Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import base64
@@ -141,7 +142,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 'ClaveRegimenEspecialOTrascendencia': special_regime,
                 'ImporteTotal': 110,
             },
-            'PeriodoImpositivo': {
+            'PeriodoLiquidacion': {
                 'Periodo': '%02d' % fields.Date.from_string(
                     fields.Date.today()).month,
                 'Ejercicio': fields.Date.from_string(fields.Date.today()).year,
