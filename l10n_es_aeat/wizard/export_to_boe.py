@@ -71,7 +71,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if not text:
             return fill * length
         # Replace numbers
-        name = re.sub(ur"[\d-]", '', text, re.UNICODE | re.X)
+        name = re.sub(r"[\d-]", '', text, re.UNICODE | re.X)
         return self._format_string(name, length, fill=fill, align=align)
 
     def _format_number(self, number, int_length, dec_length=0,
