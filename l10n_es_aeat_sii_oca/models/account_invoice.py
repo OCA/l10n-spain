@@ -470,10 +470,13 @@ class AccountInvoice(models.Model):
                 # corrientes nacionales
                 ex_taxes = taxes_sfesbe
                 if tax in ex_taxes:
-                    sub_dict.setdefault('Exenta', {'BaseImponible': 0})
+                    exempt_dict = sub_dict.setdefault(
+                        'Exenta', {'DetalleExenta': [{'BaseImponible': 0}]},
+                    )
+                    det_dict = exempt_dict['DetalleExenta'][0]
                     if exempt_cause:
-                        sub_dict['Exenta']['CausaExencion'] = exempt_cause
-                    sub_dict['Exenta']['BaseImponible'] += (
+                        det_dict['CausaExencion'] = exempt_cause
+                    det_dict['BaseImponible'] += (
                         tax_line.base_company * sign)
                 else:
                     sub_dict.setdefault('NoExenta', {
@@ -514,11 +517,12 @@ class AccountInvoice(models.Model):
                 service_dict = type_breakdown['PrestacionServicios']
                 if tax in taxes_sfesse:
                     exempt_dict = service_dict['Sujeta'].setdefault(
-                        'Exenta', {'BaseImponible': 0},
+                        'Exenta', {'DetalleExenta': [{'BaseImponible': 0}]},
                     )
+                    det_dict = exempt_dict['DetalleExenta'][0]
                     if exempt_cause:
-                        exempt_dict['CausaExencion'] = exempt_cause
-                    exempt_dict['BaseImponible'] += (
+                        det_dict['CausaExencion'] = exempt_cause
+                    det_dict['BaseImponible'] += (
                         tax_line.base_company * sign)
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
@@ -708,6 +712,8 @@ class AccountInvoice(models.Model):
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
             }
+            if self.sii_macrodata:
+                inv_dict["FacturaExpedida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaExpedida"].\
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
@@ -809,7 +815,7 @@ class AccountInvoice(models.Model):
                 "CuotaDeducible": round(tax_amount * sign, 2),
             }
             if self.sii_macrodata:
-                inv_dict["FacturaExpedida"].update(Macrodato="S")
+                inv_dict["FacturaRecibida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
