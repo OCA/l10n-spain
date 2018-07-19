@@ -14,13 +14,13 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:131
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:141
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:101
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:102
 #, python-format
 msgid "<blank>"
 msgstr ""
@@ -117,6 +117,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_allow_posting
 msgid "Allow posting"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:aeat.model.export.config.line,export_type:0
+msgid "Alphabetic"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -534,7 +539,7 @@ msgid "Expression"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:94
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:95
 #, python-format
 msgid "Expression: "
 msgstr ""
@@ -581,7 +586,7 @@ msgid "Fixed value"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:100
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:101
 #, python-format
 msgid "Fixed: {}"
 msgstr ""
@@ -831,7 +836,7 @@ msgid "Negative sign character"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:128
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:138
 #, python-format
 msgid "No export configuration selected."
 msgstr ""
@@ -1205,7 +1210,7 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:62
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:98
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:108
 #, python-format
 msgid "The formated string must match the given length"
 msgstr ""
