@@ -1241,11 +1241,12 @@ class AccountInvoice(models.Model):
             return 'E2'
         else:
             product_exempt_causes = self.mapped(
-                'invoice_line_ids.product_id'
+                'invoice_line_ids'
             ).filtered(lambda x: (
-                any(tax in x.tax_line_ids for tax in applied_taxes) and
-                x.sii_exempt_cause and x.sii_exempt_cause != 'none'
-            )).mapped('sii_exempt_cause')
+                any(tax in x.invoice_line_tax_ids for tax in applied_taxes) and
+                x.product_id.sii_exempt_cause and
+                x.product_id.sii_exempt_cause != 'none'
+            )).mapped('product_id.sii_exempt_cause')
             product_exempt_causes = set(product_exempt_causes)
             if len(product_exempt_causes) > 1:
                 raise exceptions.UserError(
