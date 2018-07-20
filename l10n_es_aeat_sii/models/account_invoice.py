@@ -161,7 +161,7 @@ class AccountInvoice(models.Model):
         string="MacroData",
         help="Check to confirm that the invoice has an absolute amount "
              "greater o equal to 100 000 000,00 euros.",
-        compute='_compute_macrodata', store=True
+        compute='_compute_macrodata',
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
