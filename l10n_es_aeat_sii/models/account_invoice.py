@@ -906,7 +906,7 @@ class AccountInvoice(models.Model):
                                                          2), 2) or 0.0),
             }
             if self.sii_macrodata:
-                inv_dict["FacturaExpedida"].update(Macrodato="S")
+                inv_dict["FacturaRecibida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"]. \
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
