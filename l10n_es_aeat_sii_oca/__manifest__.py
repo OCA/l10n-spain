@@ -28,6 +28,10 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    "development_status": "Production/Stable",
+    "maintainers": [
+        'pedrobaeza',
+    ],
     "external_dependencies": {
         "python": [
             "zeep",
