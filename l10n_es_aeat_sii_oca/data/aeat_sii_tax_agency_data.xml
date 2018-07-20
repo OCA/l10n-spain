@@ -42,7 +42,7 @@
         <field name="wsdl_ps_test_address">https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/fr/SiiFactPAGV1SOAP</field>
     </record>
 
-    <record id="aeat_sii_tax_agency_gipuzkoa" model="aeat.sii.tax.agency">
+    <record id="aeat_sii_tax_agency_gipuzkoa_1_0" model="aeat.sii.tax.agency">
         <field name="name">Hacienda Foral de Gipuzkoa (antiguo WDSL 1.0)</field>
         <field name="wsdl_out">https://egoitza.gipuzkoa.eus/ogasuna/sii/ficheros/v1.0/SuministroFactEmitidas.wsdl</field>
         <field name="wsdl_out_test_address">https://prep9.gipuzkoa.eus/JBS/HACI/SSII-FACT/ws/fe/SiiFactFEV1SOAP</field>
