@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_aeat_sii_payment_key_admin,aeat.sii.payment.mode.key admin,model_aeat_sii_payment_mode_key,base.group_system,1,1,1,1
+access_model_aeat_sii_payment_key_aeat,aeat.sii.payment.mode.key aeat,model_aeat_sii_payment_mode_key,l10n_es_aeat.group_account_aeat,1,0,0,0

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_supplier_sii_form" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_supplier_sii_form" />
+        <field name="arch" type="xml">
+            <!-- <button name="cancel_sii" position="after">
+                <button type="object" string="Send payment to SII"
+                        name="send_payment_sii"
+                        groups="l10n_es_aeat.group_account_aeat"
+                        attrs="{'invisible': ['|', '|', ('sii_enabled', '=', False), ('sii_cash_basis_send_error', '=', False), ('sii_cash_basis_sent', '=', True)]}" />
+            </button> -->
+            <field name="sii_csv" position="after">
+                <field name="sii_cash_basis_sent" />
+                <field name="sii_cash_basis_csv" />
+                <field name="sii_cash_basis_send_error" attrs="{'invisible': [('sii_cash_basis_sent', '=', True), ('sii_cash_basis_send_error', '=', False)]}" />
+            </field>
+            <field name="sii_return" position="after">
+                <group><label for="sii_cash_basis_return"/></group>
+                <field name="sii_cash_basis_return" />
+            </field>
+        </field>
+    </record>
+
+    <record id="invoice_sii_form" model="ir.ui.view">
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="l10n_es_aeat_sii.invoice_sii_form" />
+        <field name="arch" type="xml">
+            <field name="sii_csv" position="after">
+                <field name="sii_cash_basis_sent" />
+                <field name="sii_cash_basis_csv" />
+                <field name="sii_cash_basis_send_error" attrs="{'invisible': [('sii_cash_basis_sent', '=', True), ('sii_cash_basis_send_error', '=', False)]}" />
+            </field>
+            <field name="sii_return" position="after">
+                <group><label for="sii_cash_basis_return"/></group>
+                <field name="sii_cash_basis_return" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_sii_filter" model="ir.ui.view">
+        <field name="name">account.invoice.select.sii</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="inside">
+                <separator/>
+                <filter string="SII payment error"
+                        name="filter_sii_payment_error"
+                        domain="[('sii_cash_basis_sent', '=', False), ('sii_cash_basis_send_error', '!=', False)]"
+                        context="{'group_by': 'sii_cash_basis_send_error'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

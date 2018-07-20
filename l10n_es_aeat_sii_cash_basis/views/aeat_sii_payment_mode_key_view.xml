@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_tree_aeat_sii_payment_mode_key" model="ir.ui.view">
+        <field name="model">aeat.sii.payment.mode.key</field>
+        <field name="arch" type="xml">
+            <tree string="Aeat SII Registration Keys" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_search_aeat_sii_payment_mode_key" model="ir.ui.view">
+        <field name="model">aeat.sii.payment.mode.key</field>
+        <field name="arch" type="xml">
+            <search string="Aeat SII Registration Keys">
+                <field name="name" />
+                <field name="code" />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_aeat_sii_payment_mode_key" model="ir.actions.act_window">
+        <field name="name">Aeat SII Payment Mode Keys</field>
+        <field name="res_model">aeat.sii.payment.mode.key</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_aeat_sii_payment_mode_key"
+              parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+              action="action_aeat_sii_payment_mode_key"
+              name="Aeat SII Payment Mode Keys"/>
+
+</odoo>
