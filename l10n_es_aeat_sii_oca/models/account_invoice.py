@@ -166,7 +166,7 @@ class AccountInvoice(models.Model):
         string="MacroData",
         help="Check to confirm that the invoice has an absolute amount "
              "greater o equal to 100 000 000,00 euros.",
-        compute='_compute_macrodata', store=True
+        compute='_compute_macrodata',
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
@@ -454,7 +454,7 @@ class AccountInvoice(models.Model):
         default_no_taxable_cause = self._get_no_taxable_cause()
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
-        exempt_cause = self._get_sii_exempt_cause()
+        exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
             breakdown_taxes = (
@@ -468,8 +468,7 @@ class AccountInvoice(models.Model):
                 sub_dict = tax_breakdown.setdefault('Sujeta', {})
                 # TODO l10n_es no tiene impuesto exento de bienes
                 # corrientes nacionales
-                ex_taxes = taxes_sfesbe
-                if tax in ex_taxes:
+                if tax in taxes_sfesbe:
                     exempt_dict = sub_dict.setdefault(
                         'Exenta', {'DetalleExenta': [{'BaseImponible': 0}]},
                     )
@@ -1229,8 +1228,11 @@ class AccountInvoice(models.Model):
             return {"NIF": vat[2:]}
 
     @api.multi
-    def _get_sii_exempt_cause(self):
-        """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII."""
+    def _get_sii_exempt_cause(self, applied_taxes):
+        """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII.
+
+        :param applied_taxes: Taxes that are exempt for filtering the lines.
+        """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
         if gen_type == 2:
@@ -1240,12 +1242,19 @@ class AccountInvoice(models.Model):
         else:
             product_exempt_causes = self.mapped(
                 'invoice_line_ids.product_id'
-            ).filtered(lambda x: x.sii_exempt_cause != 'none').mapped(
-                'sii_exempt_cause'
-            )
+            ).filtered(lambda x: (
+                any(tax in x.tax_line_ids for tax in applied_taxes) and
+                x.sii_exempt_cause and x.sii_exempt_cause != 'none'
+            )).mapped('sii_exempt_cause')
+            product_exempt_causes = set(product_exempt_causes)
+            if len(product_exempt_causes) > 1:
+                raise exceptions.UserError(
+                    _("Currently there's no support for multiple exempt "
+                      "causes.")
+                )
             if product_exempt_causes:
-                return product_exempt_causes[0]
-            elif (self.fiscal_position_id and
+                return product_exempt_causes.pop()
+            elif (self.fiscal_position_id.sii_exempt_cause and
                     self.fiscal_position_id.sii_exempt_cause != 'none'):
                 return self.fiscal_position_id.sii_exempt_cause
 
