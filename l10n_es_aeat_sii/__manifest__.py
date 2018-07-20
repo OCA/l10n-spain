@@ -12,7 +12,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Suministro Inmediato de Información en el IVA",
+    "name": u"Suministro Inmediato de Información en el IVA",
     "version": "10.0.3.1.0",
     "category": "Accounting & Finance",
     "website": "https://odoospain.odoo.com",
@@ -29,6 +29,10 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    "development_status": "Production/Stable",
+    "maintainers": [
+        'pedrobaeza',
+    ],
     "external_dependencies": {
         "python": [
             "zeep",
