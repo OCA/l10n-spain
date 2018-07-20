@@ -467,6 +467,7 @@ class AccountInvoice(models.Model):
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         distinct_exempt_causes = {}
+        distinct_exempt_causes_serv = {}
         for inv_line in self.invoice_line:
             exempt_cause = self._get_sii_exempt_cause(inv_line.product_id)
             for tax_line in inv_line.invoice_line_tax_id:
@@ -542,8 +543,18 @@ class AccountInvoice(models.Model):
                                     inv_line._get_sii_line_price_subtotal()
                                     }
                         if exempt_cause:
-                            det_dict['CausaExencion'] = exempt_cause
-                        service_dict['DetalleExenta'].append(det_dict)
+                            if exempt_cause not in distinct_exempt_causes_serv:
+                                det_dict['CausaExencion'] = exempt_cause
+                                distinct_exempt_causes_serv[exempt_cause] = (
+                                    det_dict)
+                                service_dict['DetalleExenta'].append(det_dict)
+                            else:
+                                ex_dict = (
+                                    distinct_exempt_causes_serv[exempt_cause])
+                                ex_dict['BaseImponible'] += (
+                                    det_dict['BaseImponible'])
+                        else:
+                            service_dict['DetalleExenta'].append(det_dict)
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
                         # if tax_line in taxes_sfesisps:
