@@ -1618,7 +1618,7 @@ class AccountInvoice(models.Model):
         periodo = '%02d' % fields.Date.from_string(self.date).month
         inv_dict = {
             "FiltroConsulta": {},
-            "PeriodoImpositivo": {
+            "PeriodoLiquidacion": {
                 "Ejercicio": ejercicio,
                 "Periodo": periodo,
             },
@@ -1659,7 +1659,7 @@ class AccountInvoice(models.Model):
                     (self.reference or '')[:60]
                 ),
                 "FechaExpedicionFacturaEmisor": invoice_date},
-            "PeriodoImpositivo": {
+            "PeriodoLiquidacion": {
                 "Ejercicio": ejercicio,
                 "Periodo": periodo
             },

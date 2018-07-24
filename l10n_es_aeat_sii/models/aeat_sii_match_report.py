@@ -33,7 +33,7 @@ except ImportError:
         return functools.partial
     job = empty_decorator_factory
 
-SII_VERSION = '1.0'
+SII_VERSION = '1.1'
 
 
 class SiiMatchReport(models.Model):
@@ -155,7 +155,7 @@ class SiiMatchReport(models.Model):
         self.ensure_one()
         inv_dict = {
             "FiltroConsulta": {},
-            "PeriodoImpositivo": {
+            "PeriodoLiquidacion": {
                 "Ejercicio": str(self.fiscalyear),
                 "Periodo": self.period_type,
             },
