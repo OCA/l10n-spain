@@ -538,23 +538,18 @@ class AccountInvoice(models.Model):
                     if tax_line in taxes_sfesse:
                         service_dict = service_dict['Sujeta'].setdefault(
                             'Exenta',
-                            {'DetalleExenta': []})
-                        det_dict = {'BaseImponible':
-                                    inv_line._get_sii_line_price_subtotal()
-                                    }
+                            {'DetalleExenta': [{'BaseImponible': 0}]})
+                        det_dict = service_dict['DetalleExenta'][0]
                         if exempt_cause:
                             if exempt_cause not in distinct_exempt_causes_serv:
                                 det_dict['CausaExencion'] = exempt_cause
                                 distinct_exempt_causes_serv[exempt_cause] = (
                                     det_dict)
-                                service_dict['DetalleExenta'].append(det_dict)
                             else:
-                                ex_dict = (
+                                det_dict = (
                                     distinct_exempt_causes_serv[exempt_cause])
-                                ex_dict['BaseImponible'] += (
-                                    det_dict['BaseImponible'])
-                        else:
-                            service_dict['DetalleExenta'].append(det_dict)
+                        det_dict['BaseImponible'] += (
+                            inv_line._get_sii_line_price_subtotal())
                     if tax_line in taxes_sfess:
                         # TODO l10n_es_ no tiene impuesto ISP de servicios
                         # if tax_line in taxes_sfesisps:
