@@ -12,28 +12,24 @@ class VatNumberXlsx(models.AbstractModel):
         book = objects[0]
         bold = workbook.add_format({'bold': True})
 
-        def fill_table(sheet_name, lines):
+        def fill_table(sheet_name, lines, received_lines=False):
             sheet = workbook.add_worksheet(sheet_name[:31])
             row = col = 0
-            sheet.write(row, col, 'Invoice', bold)
-            col += 1
-            sheet.write(row, col, 'Date', bold)
-            col += 1
-            sheet.write(row, col, 'Partner', bold)
-            col += 1
-            sheet.write(row, col, 'VAT', bold)
-            col += 1
-            sheet.write(row, col, 'Base', bold)
-            col += 1
-            sheet.write(row, col, 'Tax', bold)
-            col += 1
-            sheet.write(row, col, 'Fee', bold)
-            col += 1
-            sheet.write(row, col, 'Total', bold)
+            xlsx_header = ['Invoice', 'Date', 'Partner', 'VAT', 'Base',
+                           'Tax', 'Fee', 'Total']
+            if received_lines:
+                xlsx_header.insert(0, 'Reference')
+            for col_header in xlsx_header:
+                sheet.write(row, col, col_header, bold)
+                col += 1
+
             row = 1
             for line in lines:
                 for tax_line in line.tax_line_ids:
                     col = 0
+                    if received_lines:
+                        sheet.write(row, col, line.invoice_id.reference)
+                        col += 1
                     sheet.write(row, col, line.invoice_id.number)
                     col += 1
                     sheet.write(row, col, line.invoice_date)
@@ -62,8 +58,8 @@ class VatNumberXlsx(models.AbstractModel):
         if book.received_line_ids:
             report_name = _('Received Invoices')
             lines = book.received_line_ids
-            fill_table(report_name, lines)
+            fill_table(report_name, lines, received_lines=True)
         if book.rectification_received_line_ids:
             report_name = _('Received Refund Invoices')
             lines = book.rectification_received_line_ids
-            fill_table(report_name, lines)
+            fill_table(report_name, lines, received_lines=True)
