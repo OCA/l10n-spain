@@ -56,6 +56,7 @@ class AeatModelExportConfigLine(models.Model):
         comodel_name='aeat.model.export.config', string='Sub-configuration')
     export_type = fields.Selection(
         selection=[('string', 'Alphanumeric'),
+                   ('alphabetic', 'Alphabetic'),
                    ('float', 'Number with decimals'),
                    ('integer', 'Number without decimals'),
                    ('boolean', 'Boolean'),
