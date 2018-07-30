@@ -71,7 +71,7 @@ class AccountInvoice(models.Model):
 
     def _default_sii_refund_type(self):
         inv_type = self.env.context.get('type')
-        return 'S' if inv_type in ['out_refund', 'in_refund'] else False
+        return 'I' if inv_type in ['out_refund', 'in_refund'] else False
 
     def _default_sii_registration_key(self):
         sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
@@ -117,7 +117,10 @@ class AccountInvoice(models.Model):
              "the SII has failed. See SII return for details",
     )
     sii_refund_type = fields.Selection(
-        selection=[('S', 'By substitution'), ('I', 'By differences')],
+        selection=[
+            # ('S', 'By substitution'), - Removed as not fully supported
+            ('I', 'By differences'),
+        ],
         string="SII Refund Type", default=_default_sii_refund_type,
         oldname='refund_type',
     )
@@ -818,6 +821,7 @@ class AccountInvoice(models.Model):
             if self.type == 'out_refund':
                 exp_dict['TipoRectificativa'] = self.sii_refund_type
                 if self.sii_refund_type == 'S':
+                    origin = self.refund_invoice_id
                     exp_dict['ImporteRectificacion'] = {
                         'BaseRectificada': round(
                             abs(sum(self.mapped(
@@ -912,11 +916,10 @@ class AccountInvoice(models.Model):
             if self.type == 'in_refund':
                 rec_dict = inv_dict['FacturaRecibida']
                 rec_dict['TipoRectificativa'] = self.sii_refund_type
-                refund_tax_amount = sum([
-                    x._get_sii_in_taxes()[1]
-                    for x in self.origin_invoice_ids
-                ])
                 if self.sii_refund_type == 'S':
+                    refund_tax_amount = (
+                        self.refund_invoice_id._get_sii_in_taxes()[1]
+                    )
                     rec_dict['ImporteRectificacion'] = {
                         'BaseRectificada': abs(sum(self.mapped(
                             'origin_invoice_ids.amount_untaxed_signed'

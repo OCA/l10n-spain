@@ -100,6 +100,7 @@ Known issues / Roadmap
 * Asistente para consultar los documentos comunicados.
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte).
 * Regímenes especiales de seguros y de agencias de viaje.
+* Facturas rectificativas por sustitución.
 
 Bug Tracker
 ===========
