@@ -821,7 +821,6 @@ class AccountInvoice(models.Model):
             if self.type == 'out_refund':
                 exp_dict['TipoRectificativa'] = self.sii_refund_type
                 if self.sii_refund_type == 'S':
-                    origin = self.refund_invoice_id
                     exp_dict['ImporteRectificacion'] = {
                         'BaseRectificada': round(
                             abs(sum(self.mapped(
