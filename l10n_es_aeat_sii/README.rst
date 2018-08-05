@@ -160,7 +160,7 @@ promote its widespread use.
     :target: https://github.com/pedrobaeza
     :alt: pedrobaeza
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`_:
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
