@@ -13,7 +13,8 @@ class PosConfig(models.Model):
     def _compute_simplified_invoice_sequence(self):
         for pos in self:
             pos.l10n_es_simplified_invoice_number = (
-                pos.l10n_es_simplified_invoice_sequence_id._get_current_sequence().number_next_actual)
+                pos.l10n_es_simplified_invoice_sequence_id.
+                    _get_current_sequence().number_next_actual)
             pos.l10n_es_simplified_invoice_prefix = (
                 pos.l10n_es_simplified_invoice_sequence_id
                 ._get_prefix_suffix()[0])
