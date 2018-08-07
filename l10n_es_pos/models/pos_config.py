@@ -12,13 +12,12 @@ class PosConfig(models.Model):
                  'l10n_es_simplified_invoice_sequence_id.padding')
     def _compute_simplified_invoice_sequence(self):
         for pos in self:
+            seq = pos.l10n_es_simplified_invoice_sequence_id
             pos.l10n_es_simplified_invoice_number = (
-                pos.l10n_es_simplified_invoice_sequence_id.number_next_actual)
+                seq._get_current_sequence().number_next_actual)
             pos.l10n_es_simplified_invoice_prefix = (
-                pos.l10n_es_simplified_invoice_sequence_id
-                ._get_prefix_suffix()[0])
-            pos.l10n_es_simplified_invoice_padding = (
-                pos.l10n_es_simplified_invoice_sequence_id.padding)
+                seq._get_prefix_suffix()[0])
+            pos.l10n_es_simplified_invoice_padding = seq.padding
 
     iface_l10n_es_simplified_invoice = fields.Boolean(
         string='Use simplified invoices for this POS',

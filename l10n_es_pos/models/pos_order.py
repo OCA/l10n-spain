@@ -45,8 +45,5 @@ class PosOrder(models.Model):
             pos_order.update({
                 'l10n_es_simplified_invoice_number': simplified_invoice_number,
             })
-            sequence = pos.l10n_es_simplified_invoice_sequence_id
-            sequence.number_next_actual = int(
-                simplified_invoice_number.replace(
-                    pos.l10n_es_simplified_invoice_prefix, '')) + 1
+            pos.l10n_es_simplified_invoice_sequence_id.next_by_id()
         return super(PosOrder, self)._process_order(pos_order)
