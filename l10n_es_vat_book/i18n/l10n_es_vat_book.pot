@@ -39,9 +39,11 @@ msgid "BOOK REGISTER OF INVOICES RECEIVED"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:23
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_base_amount
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+#, python-format
 msgid "Base"
 msgstr ""
 
@@ -101,6 +103,12 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:20
+#, python-format
+msgid "Date"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
 msgid "Date Range:"
 msgstr ""
@@ -146,8 +154,10 @@ msgid "External Reference"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:25
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+#, python-format
 msgid "Fee"
 msgstr ""
 
@@ -167,7 +177,9 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:19
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_invoice_id
+#, python-format
 msgid "Invoice"
 msgstr ""
 
@@ -189,7 +201,7 @@ msgid "Issued"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:55
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:59
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 #, python-format
@@ -197,7 +209,7 @@ msgid "Issued Invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:59
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:63
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_issued_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
@@ -298,6 +310,12 @@ msgid "Number"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:21
+#, python-format
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: selection:l10n.es.vat.book.line,line_type:0
 #: selection:l10n.es.vat.book.summary,book_type:0
 #: selection:l10n.es.vat.book.tax.summary,book_type:0
@@ -305,7 +323,7 @@ msgid "Received"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:63
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:67
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 #, python-format
@@ -313,7 +331,7 @@ msgid "Received Invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:67
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:71
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_received_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
@@ -337,7 +355,9 @@ msgid "Received invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:29
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_ref
+#, python-format
 msgid "Reference"
 msgstr ""
 
@@ -367,9 +387,11 @@ msgid "Surnames and name contact:"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:24
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_tax_id
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+#, python-format
 msgid "Tax"
 msgstr ""
 
@@ -424,9 +446,11 @@ msgid "This company doesn't have VAT"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:26
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_total_amount
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+#, python-format
 msgid "Total"
 msgstr ""
 
@@ -437,7 +461,9 @@ msgid "Total amount"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/report/vat_book_xlsx.py:22
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+#, python-format
 msgid "VAT"
 msgstr ""
 
