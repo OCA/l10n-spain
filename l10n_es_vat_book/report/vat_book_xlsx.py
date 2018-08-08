@@ -15,10 +15,18 @@ class VatNumberXlsx(models.AbstractModel):
         def fill_table(sheet_name, lines, received_lines=False):
             sheet = workbook.add_worksheet(sheet_name[:31])
             row = col = 0
-            xlsx_header = ['Invoice', 'Date', 'Partner', 'VAT', 'Base',
-                           'Tax', 'Fee', 'Total']
+            xlsx_header = [
+                _('Invoice'),
+                _('Date'),
+                _('Partner'),
+                _('VAT'),
+                _('Base'),
+                _('Tax'),
+                _('Fee'),
+                _('Total'),
+            ]
             if received_lines:
-                xlsx_header.insert(0, 'Reference')
+                xlsx_header.insert(0, _('Reference'))
             for col_header in xlsx_header:
                 sheet.write(row, col, col_header, bold)
                 col += 1
