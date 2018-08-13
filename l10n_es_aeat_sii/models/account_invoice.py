@@ -913,7 +913,7 @@ class AccountInvoice(models.Model):
                 "ImporteTotal": self.cc_amount_total * sign,
                 "CuotaDeducible": (self.period_id.date_start >=
                                    SII_START_DATE
-                                   and round(float_round(tax_amount * sign,
+                                   and round(float_round(tax_amount,
                                                          2), 2) or 0.0),
             }
             if self.sii_macrodata:
