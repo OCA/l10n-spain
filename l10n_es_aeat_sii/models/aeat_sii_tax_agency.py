@@ -40,12 +40,15 @@ class AeatSiiTaxAgency(models.Model):
         string='SuministroPagosRecibidas Test Address')
 
     @api.multi
-    def _connect_params_sii(self, mapping_key):
+    def _connect_params_sii(self, mapping_key, company):
         self.ensure_one()
         wsdl_key = self.env['account.invoice'].SII_WDSL_MAPPING[mapping_key]
         wsdl_field = wsdl_key.split('.')[1]
         wsdl_test_field = wsdl_field + '_test_address'
         return {
             'wsdl': getattr(self, wsdl_field),
-            'address': getattr(self, wsdl_test_field),
+            'address': (
+                getattr(self, wsdl_test_field) if company.sii_test
+                else False
+            ),
         }
