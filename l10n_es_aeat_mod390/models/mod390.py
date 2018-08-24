@@ -13,24 +13,24 @@ EDITABLE_ON_CALCULATED = {
 }
 ACTIVITY_CODE_SELECTION = [
     ("1",
-     u"1: Actividades sujetas al Impuesto sobre Actividades Económicas "
-     u"(Activ. Empresariales)"),
+     "1: Actividades sujetas al Impuesto sobre Actividades Económicas "
+     "(Activ. Empresariales)"),
     ("2",
-     u"2: Actividades sujetas al Impuesto sobre Actividades Económicas "
-     u"(Activ. Profesionales y Artísticas)"),
-    ("3", u"3: Arrendadores de Locales de Negocios y garajes"),
+     "2: Actividades sujetas al Impuesto sobre Actividades Económicas "
+     "(Activ. Profesionales y Artísticas)"),
+    ("3", "3: Arrendadores de Locales de Negocios y garajes"),
     ("4",
-     u"4: Actividades Agrícolas, Ganaderas o Pesqueras, no sujetas al IAE"),
+     "4: Actividades Agrícolas, Ganaderas o Pesqueras, no sujetas al IAE"),
     ("5",
-     u"5: Sujetos pasivos que no hayan iniciado la realización de entregas de "
-     u"bienes o prestaciones de servicios correspondientes a actividades "
-     u"empresariales o profesionales y no estén dados de alta en el IAE"),
-    ("6", u"6: Otras actividades no sujetas al IAE"),
+     "5: Sujetos pasivos que no hayan iniciado la realización de entregas de "
+     "bienes o prestaciones de servicios correspondientes a actividades "
+     "empresariales o profesionales y no estén dados de alta en el IAE"),
+    ("6", "6: Otras actividades no sujetas al IAE"),
 ]
-REPRESENTATIVE_HELP = _(u"Nombre y apellidos del representante")
+REPRESENTATIVE_HELP = _("Nombre y apellidos del representante")
 NOTARY_CODE_HELP = _(
-    u"Código de la notaría en la que se concedió el poder de representación "
-    u"para esta persona."
+    "Código de la notaría en la que se concedió el poder de representación "
+    "para esta persona."
 )
 
 
@@ -45,224 +45,224 @@ class L10nEsAeatMod390Report(models.Model):
 
     # 3. Datos estadísticos
     has_347 = fields.Boolean(
-        string=u"¿Obligación del 347?", default=True,
-        help=u"Marque la casilla si el sujeto pasivo ha efectuado con alguna "
-             u"persona o entidad operaciones por las que tenga obligación de "
-             u"presentar la declaración anual de operaciones con terceras "
-             u"personas (modelo 347).",
+        string="¿Obligación del 347?", default=True,
+        help="Marque la casilla si el sujeto pasivo ha efectuado con alguna "
+             "persona o entidad operaciones por las que tenga obligación de "
+             "presentar la declaración anual de operaciones con terceras "
+             "personas (modelo 347).",
     )
     main_activity = fields.Char(
-        string=u"Actividad principal", readonly=True, size=40,
+        string="Actividad principal", readonly=True, size=40,
         states=REQUIRED_ON_CALCULATED,
     )
     main_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION, states=REQUIRED_ON_CALCULATED,
-        string=u"Código actividad principal", readonly=True,
+        string="Código actividad principal", readonly=True,
     )
     main_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. actividad principal", readonly=True, size=4,
+        string="Epígrafe I.A.E. actividad principal", readonly=True, size=4,
         states=REQUIRED_ON_CALCULATED,
     )
     other_first_activity = fields.Char(
-        string=u"1ª actividad", readonly=True, size=40,
+        string="1ª actividad", readonly=True, size=40,
         states=EDITABLE_ON_CALCULATED,
     )
     other_first_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION, states=EDITABLE_ON_CALCULATED,
-        string=u"Código 1ª actividad", readonly=True,
+        string="Código 1ª actividad", readonly=True,
     )
     other_first_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 1ª actividad", readonly=True, size=4,
+        string="Epígrafe I.A.E. 1ª actividad", readonly=True, size=4,
         states=EDITABLE_ON_CALCULATED,
     )
     other_second_activity = fields.Char(
-        string=u"2ª actividad", readonly=True, size=40,
+        string="2ª actividad", readonly=True, size=40,
         states=EDITABLE_ON_CALCULATED,
     )
     other_second_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION, states=EDITABLE_ON_CALCULATED,
-        string=u"Código 2ª actividad", readonly=True,
+        string="Código 2ª actividad", readonly=True,
     )
     other_second_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 2ª actividad", readonly=True, size=4,
+        string="Epígrafe I.A.E. 2ª actividad", readonly=True, size=4,
         states=EDITABLE_ON_CALCULATED,
     )
     other_third_activity = fields.Char(
-        string=u"3ª actividad", readonly=True, size=40,
+        string="3ª actividad", readonly=True, size=40,
         states=EDITABLE_ON_CALCULATED,
     )
     other_third_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION, states=EDITABLE_ON_CALCULATED,
-        string=u"Código 3ª actividad", readonly=True,
+        string="Código 3ª actividad", readonly=True,
     )
     other_third_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 3ª actividad", readonly=True, size=4,
+        string="Epígrafe I.A.E. 3ª actividad", readonly=True, size=4,
         states=EDITABLE_ON_CALCULATED,
     )
     other_fourth_activity = fields.Char(
-        string=u"4ª actividad", readonly=True, size=40,
+        string="4ª actividad", readonly=True, size=40,
         states=EDITABLE_ON_CALCULATED,
     )
     other_fourth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION, states=EDITABLE_ON_CALCULATED,
-        string=u"Código 4ª actividad", readonly=True,
+        string="Código 4ª actividad", readonly=True,
     )
     other_fourth_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 4ª actividad", readonly=True, size=4,
+        string="Epígrafe I.A.E. 4ª actividad", readonly=True, size=4,
         states=EDITABLE_ON_CALCULATED,
     )
     other_fifth_activity = fields.Char(
-        string=u"5ª actividad", readonly=True, size=40,
+        string="5ª actividad", readonly=True, size=40,
         states=EDITABLE_ON_CALCULATED,
     )
     other_fifth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION, states=EDITABLE_ON_CALCULATED,
-        string=u"Código 5ª actividad", readonly=True,
+        string="Código 5ª actividad", readonly=True,
     )
     other_fifth_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 5ª actividad", readonly=True, size=4,
+        string="Epígrafe I.A.E. 5ª actividad", readonly=True, size=4,
         states=EDITABLE_ON_CALCULATED,
     )
     # 4. Representantes
     first_representative_name = fields.Char(
-        string=u"Nombre del primer representante", readonly=True, size=80,
+        string="Nombre del primer representante", readonly=True, size=80,
         states=REQUIRED_ON_CALCULATED, help=REPRESENTATIVE_HELP,
     )
     first_representative_vat = fields.Char(
-        string=u"NIF del primer representante", readonly=True, size=9,
+        string="NIF del primer representante", readonly=True, size=9,
         states=REQUIRED_ON_CALCULATED,
     )
     first_representative_date = fields.Date(
-        string=u"Fecha poder del primer representante", readonly=True,
+        string="Fecha poder del primer representante", readonly=True,
         states=REQUIRED_ON_CALCULATED,
     )
     first_representative_notary = fields.Char(
-        string=u"Notaría del primer representante", readonly=True, size=12,
+        string="Notaría del primer representante", readonly=True, size=12,
         states=REQUIRED_ON_CALCULATED, help=NOTARY_CODE_HELP,
     )
     second_representative_name = fields.Char(
-        string=u"Nombre del segundo representante", readonly=True, size=80,
+        string="Nombre del segundo representante", readonly=True, size=80,
         states=EDITABLE_ON_CALCULATED, help=REPRESENTATIVE_HELP,
     )
     second_representative_vat = fields.Char(
-        string=u"NIF del segundo representante", readonly=True, size=9,
+        string="NIF del segundo representante", readonly=True, size=9,
         states=EDITABLE_ON_CALCULATED,
     )
     second_representative_date = fields.Date(
-        string=u"Fecha poder del segundo representante", readonly=True,
+        string="Fecha poder del segundo representante", readonly=True,
         states=EDITABLE_ON_CALCULATED,
     )
     second_representative_notary = fields.Char(
-        string=u"Notaría del segundo representante", readonly=True, size=12,
+        string="Notaría del segundo representante", readonly=True, size=12,
         states=EDITABLE_ON_CALCULATED, help=NOTARY_CODE_HELP,
     )
     third_representative_name = fields.Char(
-        string=u"Nombre del tercer representante", readonly=True, size=80,
+        string="Nombre del tercer representante", readonly=True, size=80,
         states=EDITABLE_ON_CALCULATED, help=REPRESENTATIVE_HELP,
     )
     third_representative_vat = fields.Char(
-        string=u"NIF del tercer representante", readonly=True, size=9,
+        string="NIF del tercer representante", readonly=True, size=9,
         states=EDITABLE_ON_CALCULATED,
     )
     third_representative_date = fields.Date(
-        string=u"Fecha poder del tercer representante", readonly=True,
+        string="Fecha poder del tercer representante", readonly=True,
         states=EDITABLE_ON_CALCULATED,
     )
     third_representative_notary = fields.Char(
-        string=u"Notaría del tercer representante", readonly=True, size=12,
+        string="Notaría del tercer representante", readonly=True, size=12,
         states=EDITABLE_ON_CALCULATED, help=NOTARY_CODE_HELP,
     )
     # 5. Régimen general
     casilla_33 = fields.Float(
-        compute="_compute_casilla_33", string=u"[33] Total bases IVA",
+        compute="_compute_casilla_33", string="[33] Total bases IVA",
         store=True,
     )
     casilla_34 = fields.Float(
-        compute="_compute_casilla_34", string=u"[34] Total cuotas IVA",
+        compute="_compute_casilla_34", string="[34] Total cuotas IVA",
         store=True,
     )
     casilla_47 = fields.Float(
         compute="_compute_casilla_47", store=True,
-        string=u"[47] Total cuotas IVA y recargo de equivalencia",
+        string="[47] Total cuotas IVA y recargo de equivalencia",
     )
     casilla_48 = fields.Float(
         compute="_compute_casilla_48", store=True,
-        string=u"[48] Total base deducible operaciones corrientes",
+        string="[48] Total base deducible operaciones corrientes",
     )
     casilla_49 = fields.Float(
         compute="_compute_casilla_49", store=True,
-        string=u"[49] Total cuota deducible operaciones corrientes",
+        string="[49] Total cuota deducible operaciones corrientes",
     )
     casilla_52 = fields.Float(
         compute="_compute_casilla_52", store=True,
-        string=u"[52] Total base deducible importaciones corrientes",
+        string="[52] Total base deducible importaciones corrientes",
     )
     casilla_53 = fields.Float(
         compute="_compute_casilla_53", store=True,
-        string=u"[53] Total cuota deducible importaciones corrientes",
+        string="[53] Total cuota deducible importaciones corrientes",
     )
     casilla_56 = fields.Float(
         compute="_compute_casilla_56", store=True,
-        string=u"[56] Total base deducible adq. intracomunitarias bienes",
+        string="[56] Total base deducible adq. intracomunitarias bienes",
     )
     casilla_57 = fields.Float(
         compute="_compute_casilla_57", store=True,
-        string=u"[57] Total cuota deducible adq. intracomunitarias bienes",
+        string="[57] Total cuota deducible adq. intracomunitarias bienes",
     )
     casilla_597 = fields.Float(
         compute="_compute_casilla_597", store=True,
-        string=u"[597] Total base deducible adq. intracomunitarias servicios",
+        string="[597] Total base deducible adq. intracomunitarias servicios",
     )
     casilla_598 = fields.Float(
         compute="_compute_casilla_598", store=True,
-        string=u"[598] Total cuota deducible adq. intracomunitarias servicios",
+        string="[598] Total cuota deducible adq. intracomunitarias servicios",
     )
     casilla_64 = fields.Float(
         compute="_compute_casilla_64", store=True,
-        string=u"[64] Suma de deducciones",
+        string="[64] Suma de deducciones",
     )
     casilla_65 = fields.Float(
         compute="_compute_casilla_65", store=True,
-        string=u"[65] Result. rég. gral.",
+        string="[65] Result. rég. gral.",
     )
     casilla_85 = fields.Float(
-        string=u"[85] Compens. ejercicio anterior", readonly=True,
+        string="[85] Compens. ejercicio anterior", readonly=True,
         states=EDITABLE_ON_CALCULATED,
-        help=u"Si en la autoliquidación del último período del ejercicio "
-             u"anterior resultó un saldo a su favor y usted optó por la "
-             u"compensación, consigne en esta casilla la cantidad a "
-             u"compensar, salvo que la misma haya sido modificada por la "
-             u"Administración, en cuyo caso se consignará esta última.",
+        help="Si en la autoliquidación del último período del ejercicio "
+             "anterior resultó un saldo a su favor y usted optó por la "
+             "compensación, consigne en esta casilla la cantidad a "
+             "compensar, salvo que la misma haya sido modificada por la "
+             "Administración, en cuyo caso se consignará esta última.",
     )
     casilla_86 = fields.Float(
         compute="_compute_casilla_86", store=True,
-        string=u"[86] Result. liquidación",
+        string="[86] Result. liquidación",
     )
     # 9. Resultado de las liquidaciones
     casilla_95 = fields.Float(
-        string=u"[95] Total resultados a ingresar modelo 303",
-        help=u"Se consignará la suma de las cantidades a ingresar por el "
-             u"Impuesto como resultado de las autoliquidaciones periódicas "
-             u"del ejercicio que no tributen en el régimen especial del grupo "
-             u"de entidades, incluyendo aquellas para las que se hubiese "
-             u"solicitado aplazamiento, fraccionamiento o no se hubiese "
-             u"efectuado el pago.",
+        string="[95] Total resultados a ingresar modelo 303",
+        help="Se consignará la suma de las cantidades a ingresar por el "
+             "Impuesto como resultado de las autoliquidaciones periódicas "
+             "del ejercicio que no tributen en el régimen especial del grupo "
+             "de entidades, incluyendo aquellas para las que se hubiese "
+             "solicitado aplazamiento, fraccionamiento o no se hubiese "
+             "efectuado el pago.",
         states=REQUIRED_ON_CALCULATED, readonly=True,
     )
     casilla_97 = fields.Float(
-        string=u"[97] Result. 303 último periodo a compensar",
-        help=u"Si el resultado de la última autoliquidación fue a compensar, "
-             u"consignará en esta casilla el importe de la misma.",
+        string="[97] Result. 303 último periodo a compensar",
+        help="Si el resultado de la última autoliquidación fue a compensar, "
+             "consignará en esta casilla el importe de la misma.",
         states=REQUIRED_ON_CALCULATED, readonly=True,
     )
     casilla_98 = fields.Float(
-        string=u"[98] Result. 303 último periodo a devolver",
-        help=u"Si el resultado de la última autoliquidación fue a devolver, "
-             u"consignará en esta casilla el importe de la misma.",
+        string="[98] Result. 303 último periodo a devolver",
+        help="Si el resultado de la última autoliquidación fue a devolver, "
+             "consignará en esta casilla el importe de la misma.",
         states=REQUIRED_ON_CALCULATED, readonly=True,
     )
     casilla_108 = fields.Float(
-        string=u"[108] Total vol. oper.",
+        string="[108] Total vol. oper.",
         compute="_compute_casilla_108", store=True,
     )
 
