@@ -1,10 +1,9 @@
-# -*- encoding: utf-8 -*-
+# coding: utf-8
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    Copyright (c) 2014 Domatix Technologies  S.L. (http://www.domatix.com)
+#    Copyright (c) 2017 Domatix Technologies  S.L. (http://www.domatix.com)
 #                       info <info@domatix.com>
-#                        Angel Moya <angel.moya@domatix.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,4 +20,6 @@
 #
 ##############################################################################
 
-from . import subcontractor_certificate
+from . import account_invoice
+from . import purchase_order
+from . import res_partner
