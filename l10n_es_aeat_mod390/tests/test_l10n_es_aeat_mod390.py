@@ -242,7 +242,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
             self.model390.type = 'C'
         self.model390.button_calculate()
         # Check tax lines
-        for field, result in self.taxes_result.iteritems():
+        for field, result in self.taxes_result.items():
             lines = self.model390.tax_line_ids.filtered(
                 lambda x: x.field_number == int(field)
             )
