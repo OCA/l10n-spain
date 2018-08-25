@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo9-addon-l10n_es_aeat_mod296',
         'odoo9-addon-l10n_es_aeat_mod303',
         'odoo9-addon-l10n_es_aeat_mod349',
+        'odoo9-addon-l10n_es_aeat_mod390',
         'odoo9-addon-l10n_es_aeat_sii',
         'odoo9-addon-l10n_es_cnae',
         'odoo9-addon-l10n_es_crm_lead_trade_name',
