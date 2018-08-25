@@ -25,6 +25,7 @@ setuptools.setup(
         'odoo10-addon-l10n_es_aeat_mod303',
         'odoo10-addon-l10n_es_aeat_mod303_cash_basis',
         'odoo10-addon-l10n_es_aeat_mod349',
+        'odoo10-addon-l10n_es_aeat_mod390',
         'odoo10-addon-l10n_es_aeat_sii',
         'odoo10-addon-l10n_es_aeat_sii_cash_basis',
         'odoo10-addon-l10n_es_aeat_vat_prorrate',
