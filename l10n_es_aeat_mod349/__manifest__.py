@@ -9,7 +9,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "11.0.1.0.5",
+    "version": "11.0.1.0.6",
     "author": "Pexego, "
               "Top Consultant, "
               "Tecnativa, "
