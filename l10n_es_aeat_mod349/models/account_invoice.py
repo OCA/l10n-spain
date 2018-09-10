@@ -32,6 +32,8 @@ class AccountInvoice(models.Model):
         """We pass on the operation key from invoice line to the move line"""
         ml_dicts = super(AccountInvoice, self).invoice_line_move_line_get()
         for ml_dict in ml_dicts:
+            if 'invl_id' not in ml_dict:
+                continue
             invl = self.env['account.invoice.line'].browse(ml_dict['invl_id'])
             ml_dict['l10n_es_aeat_349_operation_key'] = (
                 invl.l10n_es_aeat_349_operation_key
