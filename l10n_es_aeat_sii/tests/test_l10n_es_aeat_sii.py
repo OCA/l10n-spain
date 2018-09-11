@@ -305,7 +305,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         address = proxy._binding_options['address']
         self.assertTrue(address)
         if company.sii_test and tax_agency:
-            params = tax_agency._connect_params_sii(invoice.type)
+            params = tax_agency._connect_params_sii(invoice.type, company)
             if params['address']:
                 self.assertEqual(address, params['address'])
 

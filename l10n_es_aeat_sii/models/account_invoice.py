@@ -959,7 +959,8 @@ class AccountInvoice(models.Model):
         }
         agency = self.company_id.sii_tax_agency_id
         if agency:
-            params.update(agency._connect_params_sii(mapping_key))
+            params.update(agency._connect_params_sii(
+                mapping_key, self.company_id))
         if not params['address'] and self.company_id.sii_test:
             params['port_name'] += 'Pruebas'
         return params
