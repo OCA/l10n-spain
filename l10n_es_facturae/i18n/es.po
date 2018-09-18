@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2018-02-26 12:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2018-09-19 14:02+0000\n"
+"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.1.1\n"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_count
 msgid "# of Integrations"
-msgstr ""
+msgstr "# de intregraciones"
 
 #. module: l10n_es_facturae
 #: model:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
@@ -40,12 +41,12 @@ msgstr ""
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 msgid "Accepted"
-msgstr ""
+msgstr "Aceptado"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_attachment_ids
 msgid "Annexes"
-msgstr ""
+msgstr "Anexos"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice,correction_method:0
@@ -92,22 +93,22 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_can_cancel
 msgid "Can Cancel"
-msgstr ""
+msgstr "Puede cancelar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_can_integrate
 msgid "Can Integrate"
-msgstr ""
+msgstr "Puede integrar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_can_send
 msgid "Can Send"
-msgstr ""
+msgstr "Puede enviar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_can_update
 msgid "Can Update"
-msgstr ""
+msgstr "Puede actualizar"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration.log,type:0
@@ -119,45 +120,42 @@ msgstr "Cancelar"
 #. module: l10n_es_facturae
 #: model:ir.actions.act_window,name:l10n_es_facturae.action_account_invoice_integration_cancel
 msgid "Cancel integration"
-msgstr ""
+msgstr "Cancelar integración"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancellation_description
 msgid "Cancellation Description"
-msgstr ""
+msgstr "Descripción de la cancelación"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_cancellation_motive
 msgid "Cancellation Motive"
-msgstr ""
+msgstr "Motivo de la cancelación"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancellation_status
 msgid "Cancellation Status"
-msgstr ""
+msgstr "Estado de la cancelación"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,cancellation_status:0
-#, fuzzy
 msgid "Cancellation accepted"
-msgstr "Cancelada"
+msgstr "Cancelación aceptada"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
-#, fuzzy
 msgid "Cancellation approved"
-msgstr "Cancelada"
+msgstr "Cancelación aprobada"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,cancellation_status:0
-#, fuzzy
 msgid "Cancellation rejected"
-msgstr "Cancelada"
+msgstr "Cancelación rechazada"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,cancellation_status:0
 msgid "Cancellation requested"
-msgstr ""
+msgstr "Cancelación solicitada"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
@@ -167,13 +165,13 @@ msgstr "Cancelada"
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration_cancel
 msgid "Cancels a created integration"
-msgstr ""
+msgstr "Cancela una integración creada"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice_integration.py:82
 #, python-format
 msgid "Cannot update"
-msgstr ""
+msgstr "No puede actualizar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company_facturae_cert
@@ -211,12 +209,12 @@ msgstr "El identificador fiscal de la compañía es demasiado corto"
 #: code:addons/l10n_es_facturae/models/account_invoice.py:168
 #, python-format
 msgid "Company vat not provided"
-msgstr ""
+msgstr "Es necesario el identificador fiscal de la compañía"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company_facturae_cert_password
@@ -227,13 +225,13 @@ msgstr "Contraseña certificado"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_correction_method
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_refund_correction_method
 msgid "Correction Method"
-msgstr ""
+msgstr "Método de corrección"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/res_partner.py:39
 #, python-format
 msgid "Country must be defined"
-msgstr ""
+msgstr "Se debe definir el país"
 
 #. module: l10n_es_facturae
 #: model:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
