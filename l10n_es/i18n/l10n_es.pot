@@ -34,8 +34,103 @@ msgid "Gastos patrimonio neto"
 msgstr ""
 
 #. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_iva_0
+msgid "IVA 0%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_iva_10
+msgid "IVA 10%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_iva_10-5
+msgid "IVA 10,5% REAGYP"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_iva_12
+msgid "IVA 12%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_iva_21
+msgid "IVA 21%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_iva_4
+msgid "IVA 4%"
+msgstr ""
+
+#. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_ingresos_neto
 msgid "Ingresos patrimonio neto"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_recargo_0-5
+msgid "Recargo de Equivalencia 0,5%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_recargo_1-4
+msgid "Recargo de Equivalencia 1,4%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_recargo_5-2
+msgid "Recargo de Equivalencia 5,2%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_1
+msgid "Retenciones 1%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_15
+msgid "Retenciones 15%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_18
+msgid "Retenciones 18%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_19
+msgid "Retenciones 19%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_19-5
+msgid "Retenciones 19,5%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_2
+msgid "Retenciones 2%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_20
+msgid "Retenciones 20%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_21
+msgid "Retenciones 21%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_7
+msgid "Retenciones 7%"
+msgstr ""
+
+#. module: l10n_es
+#: model:account.tax.group,name:l10n_es.tax_group_retenciones_9
+msgid "Retenciones 9%"
 msgstr ""
 
 #. module: l10n_es
