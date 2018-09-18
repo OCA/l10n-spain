@@ -162,12 +162,14 @@
         ])]"/>
         <field name="name">SuministroFact Recargo Equivalencia</field>
     </record>
-    
+
     <record id="aeat_vat_book_map_line_SFRND" model="l10n.es.aeat.map.tax.line">
         <field name="field_number">14</field>
         <field name="map_parent_id" ref="aeat_vat_book_map"/>
         <field name="tax_ids" eval="[(6, 0, [
             ref('l10n_es.account_tax_template_p_iva0_nd'),
+            ref('l10n_es.account_tax_template_p_iva10_nd'),
+            ref('l10n_es.account_tax_template_p_iva4_nd'),
         ])]"/>
         <field name="name">SuministroFactRecibidas No Deducible</field>
     </record>
