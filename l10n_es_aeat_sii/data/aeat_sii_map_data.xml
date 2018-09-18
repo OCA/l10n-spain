@@ -165,6 +165,8 @@
             <field name="code">SFRND</field>
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_p_iva0_nd'),
+                ref('l10n_es.account_tax_template_p_iva10_nd'),
+                ref('l10n_es.account_tax_template_p_iva4_nd'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactRecibidas No Deducible</field>
