@@ -130,6 +130,8 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         for desc, values in self.taxes_purchase.iteritems():
             if self.debug:
                 _logger.debug('%14s %9s' % (desc, values[0]))
+            # Allow to duplicate taxes skipping the unique key constraint
+            desc = desc.split('//')[0]
             tax = self.env['account.tax'].search([
                 ('company_id', '=', self.company.id),
                 ('description', '=', desc),
