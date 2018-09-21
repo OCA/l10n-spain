@@ -1,0 +1,1784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="l10n_es.pgc_101_child" model="account.account.template">
+        <field name="group_id" ref="account_group_101" />
+    </record>
+    <record id="l10n_es.pgc_102_child" model="account.account.template">
+        <field name="group_id" ref="account_group_102" />
+    </record>
+    <record id="l10n_es.pgc_108_child" model="account.account.template">
+        <field name="group_id" ref="account_group_108" />
+    </record>
+    <record id="l10n_es.pgc_109_child" model="account.account.template">
+        <field name="group_id" ref="account_group_109" />
+    </record>
+    <record id="l10n_es.pgc_110_child" model="account.account.template">
+        <field name="group_id" ref="account_group_110" />
+    </record>
+    <record id="l10n_es.pgc_112_child" model="account.account.template">
+        <field name="group_id" ref="account_group_112" />
+    </record>
+    <record id="l10n_es.pgc_113_child" model="account.account.template">
+        <field name="group_id" ref="account_group_113" />
+    </record>
+    <record id="l10n_es.pgc_1140_child" model="account.account.template">
+        <field name="group_id" ref="account_group_114" />
+    </record>
+    <record id="l10n_es.pgc_1141_child" model="account.account.template">
+        <field name="group_id" ref="account_group_114" />
+    </record>
+    <record id="l10n_es.pgc_1142_child" model="account.account.template">
+        <field name="group_id" ref="account_group_114" />
+    </record>
+    <record id="l10n_es.pgc_1144_child" model="account.account.template">
+        <field name="group_id" ref="account_group_114" />
+    </record>
+    <record id="l10n_es.pgc_118_child" model="account.account.template">
+        <field name="group_id" ref="account_group_118" />
+    </record>
+    <record id="l10n_es.pgc_119_child" model="account.account.template">
+        <field name="group_id" ref="account_group_119" />
+    </record>
+    <record id="l10n_es.pgc_131_child" model="account.account.template">
+        <field name="group_id" ref="account_group_131" />
+    </record>
+    <record id="l10n_es.pgc_1370_child" model="account.account.template">
+        <field name="group_id" ref="account_group_137" />
+    </record>
+    <record id="l10n_es.pgc_1371_child" model="account.account.template">
+        <field name="group_id" ref="account_group_137" />
+    </record>
+    <record id="l10n_es.pgc_141_child" model="account.account.template">
+        <field name="group_id" ref="account_group_141" />
+    </record>
+    <record id="l10n_es.pgc_142_child" model="account.account.template">
+        <field name="group_id" ref="account_group_142" />
+    </record>
+    <record id="l10n_es.pgc_143_child" model="account.account.template">
+        <field name="group_id" ref="account_group_143" />
+    </record>
+    <record id="l10n_es.pgc_145_child" model="account.account.template">
+        <field name="group_id" ref="account_group_145" />
+    </record>
+    <record id="l10n_es.pgc_150_child" model="account.account.template">
+        <field name="group_id" ref="account_group_150" />
+    </record>
+    <record id="l10n_es.pgc_1533_child" model="account.account.template">
+        <field name="group_id" ref="account_group_153" />
+    </record>
+    <record id="l10n_es.pgc_1534_child" model="account.account.template">
+        <field name="group_id" ref="account_group_153" />
+    </record>
+    <record id="l10n_es.pgc_1535_child" model="account.account.template">
+        <field name="group_id" ref="account_group_153" />
+    </record>
+    <record id="l10n_es.pgc_1536_child" model="account.account.template">
+        <field name="group_id" ref="account_group_153" />
+    </record>
+    <record id="l10n_es.pgc_1543_child" model="account.account.template">
+        <field name="group_id" ref="account_group_154" />
+    </record>
+    <record id="l10n_es.pgc_1544_child" model="account.account.template">
+        <field name="group_id" ref="account_group_154" />
+    </record>
+    <record id="l10n_es.pgc_1545_child" model="account.account.template">
+        <field name="group_id" ref="account_group_154" />
+    </record>
+    <record id="l10n_es.pgc_1546_child" model="account.account.template">
+        <field name="group_id" ref="account_group_154" />
+    </record>
+    <record id="l10n_es.pgc_1603_child" model="account.account.template">
+        <field name="group_id" ref="account_group_160" />
+    </record>
+    <record id="l10n_es.pgc_1604_child" model="account.account.template">
+        <field name="group_id" ref="account_group_160" />
+    </record>
+    <record id="l10n_es.pgc_1605_child" model="account.account.template">
+        <field name="group_id" ref="account_group_160" />
+    </record>
+    <record id="l10n_es.pgc_1613_child" model="account.account.template">
+        <field name="group_id" ref="account_group_161" />
+    </record>
+    <record id="l10n_es.pgc_1614_child" model="account.account.template">
+        <field name="group_id" ref="account_group_161" />
+    </record>
+    <record id="l10n_es.pgc_1615_child" model="account.account.template">
+        <field name="group_id" ref="account_group_161" />
+    </record>
+    <record id="l10n_es.pgc_1623_child" model="account.account.template">
+        <field name="group_id" ref="account_group_162" />
+    </record>
+    <record id="l10n_es.pgc_1624_child" model="account.account.template">
+        <field name="group_id" ref="account_group_162" />
+    </record>
+    <record id="l10n_es.pgc_1625_child" model="account.account.template">
+        <field name="group_id" ref="account_group_162" />
+    </record>
+    <record id="l10n_es.pgc_1633_child" model="account.account.template">
+        <field name="group_id" ref="account_group_163" />
+    </record>
+    <record id="l10n_es.pgc_1634_child" model="account.account.template">
+        <field name="group_id" ref="account_group_163" />
+    </record>
+    <record id="l10n_es.pgc_1635_child" model="account.account.template">
+        <field name="group_id" ref="account_group_163" />
+    </record>
+    <record id="l10n_es.pgc_170_child" model="account.account.template">
+        <field name="group_id" ref="account_group_170" />
+    </record>
+    <record id="l10n_es.pgc_171_child" model="account.account.template">
+        <field name="group_id" ref="account_group_171" />
+    </record>
+    <record id="l10n_es.pgc_172_child" model="account.account.template">
+        <field name="group_id" ref="account_group_172" />
+    </record>
+    <record id="l10n_es.pgc_173_child" model="account.account.template">
+        <field name="group_id" ref="account_group_173" />
+    </record>
+    <record id="l10n_es.pgc_174_child" model="account.account.template">
+        <field name="group_id" ref="account_group_174" />
+    </record>
+    <record id="l10n_es.pgc_175_child" model="account.account.template">
+        <field name="group_id" ref="account_group_175" />
+    </record>
+    <record id="l10n_es.pgc_176_child" model="account.account.template">
+        <field name="group_id" ref="account_group_176" />
+    </record>
+    <record id="l10n_es.pgc_177_child" model="account.account.template">
+        <field name="group_id" ref="account_group_177" />
+    </record>
+    <record id="l10n_es.pgc_179_child" model="account.account.template">
+        <field name="group_id" ref="account_group_179" />
+    </record>
+    <record id="l10n_es.pgc_180_child" model="account.account.template">
+        <field name="group_id" ref="account_group_180" />
+    </record>
+    <record id="l10n_es.pgc_181_child" model="account.account.template">
+        <field name="group_id" ref="account_group_181" />
+    </record>
+    <record id="l10n_es.pgc_185_child" model="account.account.template">
+        <field name="group_id" ref="account_group_185" />
+    </record>
+    <record id="l10n_es.pgc_190_child" model="account.account.template">
+        <field name="group_id" ref="account_group_190" />
+    </record>
+    <record id="l10n_es.pgc_192_child" model="account.account.template">
+        <field name="group_id" ref="account_group_192" />
+    </record>
+    <record id="l10n_es.pgc_194_child" model="account.account.template">
+        <field name="group_id" ref="account_group_194" />
+    </record>
+    <record id="l10n_es.pgc_195_child" model="account.account.template">
+        <field name="group_id" ref="account_group_195" />
+    </record>
+    <record id="l10n_es.pgc_197_child" model="account.account.template">
+        <field name="group_id" ref="account_group_197" />
+    </record>
+    <record id="l10n_es.pgc_199_child" model="account.account.template">
+        <field name="group_id" ref="account_group_199" />
+    </record>
+    <record id="l10n_es.pgc_200_child" model="account.account.template">
+        <field name="group_id" ref="account_group_200" />
+    </record>
+    <record id="l10n_es.pgc_201_child" model="account.account.template">
+        <field name="group_id" ref="account_group_201" />
+    </record>
+    <record id="l10n_es.pgc_202_child" model="account.account.template">
+        <field name="group_id" ref="account_group_202" />
+    </record>
+    <record id="l10n_es.pgc_203_child" model="account.account.template">
+        <field name="group_id" ref="account_group_203" />
+    </record>
+    <record id="l10n_es.pgc_205_child" model="account.account.template">
+        <field name="group_id" ref="account_group_205" />
+    </record>
+    <record id="l10n_es.pgc_206_child" model="account.account.template">
+        <field name="group_id" ref="account_group_206" />
+    </record>
+    <record id="l10n_es.pgc_209_child" model="account.account.template">
+        <field name="group_id" ref="account_group_209" />
+    </record>
+    <record id="l10n_es.pgc_210_child" model="account.account.template">
+        <field name="group_id" ref="account_group_210" />
+    </record>
+    <record id="l10n_es.pgc_211_child" model="account.account.template">
+        <field name="group_id" ref="account_group_211" />
+    </record>
+    <record id="l10n_es.pgc_212_child" model="account.account.template">
+        <field name="group_id" ref="account_group_212" />
+    </record>
+    <record id="l10n_es.pgc_213_child" model="account.account.template">
+        <field name="group_id" ref="account_group_213" />
+    </record>
+    <record id="l10n_es.pgc_214_child" model="account.account.template">
+        <field name="group_id" ref="account_group_214" />
+    </record>
+    <record id="l10n_es.pgc_215_child" model="account.account.template">
+        <field name="group_id" ref="account_group_215" />
+    </record>
+    <record id="l10n_es.pgc_216_child" model="account.account.template">
+        <field name="group_id" ref="account_group_216" />
+    </record>
+    <record id="l10n_es.pgc_217_child" model="account.account.template">
+        <field name="group_id" ref="account_group_217" />
+    </record>
+    <record id="l10n_es.pgc_218_child" model="account.account.template">
+        <field name="group_id" ref="account_group_218" />
+    </record>
+    <record id="l10n_es.pgc_219_child" model="account.account.template">
+        <field name="group_id" ref="account_group_219" />
+    </record>
+    <record id="l10n_es.pgc_220_child" model="account.account.template">
+        <field name="group_id" ref="account_group_220" />
+    </record>
+    <record id="l10n_es.pgc_221_child" model="account.account.template">
+        <field name="group_id" ref="account_group_221" />
+    </record>
+    <record id="l10n_es.pgc_230_child" model="account.account.template">
+        <field name="group_id" ref="account_group_230" />
+    </record>
+    <record id="l10n_es.pgc_231_child" model="account.account.template">
+        <field name="group_id" ref="account_group_231" />
+    </record>
+    <record id="l10n_es.pgc_232_child" model="account.account.template">
+        <field name="group_id" ref="account_group_232" />
+    </record>
+    <record id="l10n_es.pgc_233_child" model="account.account.template">
+        <field name="group_id" ref="account_group_233" />
+    </record>
+    <record id="l10n_es.pgc_237_child" model="account.account.template">
+        <field name="group_id" ref="account_group_237" />
+    </record>
+    <record id="l10n_es.pgc_239_child" model="account.account.template">
+        <field name="group_id" ref="account_group_239" />
+    </record>
+    <record id="l10n_es.pgc_2413_child" model="account.account.template">
+        <field name="group_id" ref="account_group_241" />
+    </record>
+    <record id="l10n_es.pgc_2414_child" model="account.account.template">
+        <field name="group_id" ref="account_group_241" />
+    </record>
+    <record id="l10n_es.pgc_2415_child" model="account.account.template">
+        <field name="group_id" ref="account_group_241" />
+    </record>
+    <record id="l10n_es.pgc_2423_child" model="account.account.template">
+        <field name="group_id" ref="account_group_242" />
+    </record>
+    <record id="l10n_es.pgc_2424_child" model="account.account.template">
+        <field name="group_id" ref="account_group_242" />
+    </record>
+    <record id="l10n_es.pgc_2425_child" model="account.account.template">
+        <field name="group_id" ref="account_group_242" />
+    </record>
+    <record id="l10n_es.pgc_250_child" model="account.account.template">
+        <field name="group_id" ref="account_group_250" />
+    </record>
+    <record id="l10n_es.pgc_251_child" model="account.account.template">
+        <field name="group_id" ref="account_group_251" />
+    </record>
+    <record id="l10n_es.pgc_252_child" model="account.account.template">
+        <field name="group_id" ref="account_group_252" />
+    </record>
+    <record id="l10n_es.pgc_253_child" model="account.account.template">
+        <field name="group_id" ref="account_group_253" />
+    </record>
+    <record id="l10n_es.pgc_254_child" model="account.account.template">
+        <field name="group_id" ref="account_group_254" />
+    </record>
+    <record id="l10n_es.pgc_258_child" model="account.account.template">
+        <field name="group_id" ref="account_group_258" />
+    </record>
+    <record id="l10n_es.pgc_259_child" model="account.account.template">
+        <field name="group_id" ref="account_group_259" />
+    </record>
+    <record id="l10n_es.pgc_260_child" model="account.account.template">
+        <field name="group_id" ref="account_group_260" />
+    </record>
+    <record id="l10n_es.pgc_265_child" model="account.account.template">
+        <field name="group_id" ref="account_group_265" />
+    </record>
+    <record id="l10n_es.pgc_2800_child" model="account.account.template">
+        <field name="group_id" ref="account_group_280" />
+    </record>
+    <record id="l10n_es.pgc_2801_child" model="account.account.template">
+        <field name="group_id" ref="account_group_280" />
+    </record>
+    <record id="l10n_es.pgc_2802_child" model="account.account.template">
+        <field name="group_id" ref="account_group_280" />
+    </record>
+    <record id="l10n_es.pgc_2803_child" model="account.account.template">
+        <field name="group_id" ref="account_group_280" />
+    </record>
+    <record id="l10n_es.pgc_2805_child" model="account.account.template">
+        <field name="group_id" ref="account_group_280" />
+    </record>
+    <record id="l10n_es.pgc_2806_child" model="account.account.template">
+        <field name="group_id" ref="account_group_280" />
+    </record>
+    <record id="l10n_es.pgc_2811_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2812_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2813_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2814_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2815_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2816_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2817_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2818_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_2819_child" model="account.account.template">
+        <field name="group_id" ref="account_group_281" />
+    </record>
+    <record id="l10n_es.pgc_282_child" model="account.account.template">
+        <field name="group_id" ref="account_group_282" />
+    </record>
+    <record id="l10n_es.pgc_2900_child" model="account.account.template">
+        <field name="group_id" ref="account_group_290" />
+    </record>
+    <record id="l10n_es.pgc_2901_child" model="account.account.template">
+        <field name="group_id" ref="account_group_290" />
+    </record>
+    <record id="l10n_es.pgc_2902_child" model="account.account.template">
+        <field name="group_id" ref="account_group_290" />
+    </record>
+    <record id="l10n_es.pgc_2903_child" model="account.account.template">
+        <field name="group_id" ref="account_group_290" />
+    </record>
+    <record id="l10n_es.pgc_2905_child" model="account.account.template">
+        <field name="group_id" ref="account_group_290" />
+    </record>
+    <record id="l10n_es.pgc_2906_child" model="account.account.template">
+        <field name="group_id" ref="account_group_290" />
+    </record>
+    <record id="l10n_es.pgc_2910_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2911_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2912_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2913_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2914_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2915_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2916_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2917_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2918_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2919_child" model="account.account.template">
+        <field name="group_id" ref="account_group_291" />
+    </record>
+    <record id="l10n_es.pgc_2920_child" model="account.account.template">
+        <field name="group_id" ref="account_group_292" />
+    </record>
+    <record id="l10n_es.pgc_2921_child" model="account.account.template">
+        <field name="group_id" ref="account_group_292" />
+    </record>
+    <record id="l10n_es.pgc_2933_child" model="account.account.template">
+        <field name="group_id" ref="account_group_293" />
+    </record>
+    <record id="l10n_es.pgc_2934_child" model="account.account.template">
+        <field name="group_id" ref="account_group_293" />
+    </record>
+    <record id="l10n_es.pgc_2943_child" model="account.account.template">
+        <field name="group_id" ref="account_group_294" />
+    </record>
+    <record id="l10n_es.pgc_2944_child" model="account.account.template">
+        <field name="group_id" ref="account_group_294" />
+    </record>
+    <record id="l10n_es.pgc_2945_child" model="account.account.template">
+        <field name="group_id" ref="account_group_294" />
+    </record>
+    <record id="l10n_es.pgc_2953_child" model="account.account.template">
+        <field name="group_id" ref="account_group_295" />
+    </record>
+    <record id="l10n_es.pgc_2954_child" model="account.account.template">
+        <field name="group_id" ref="account_group_295" />
+    </record>
+    <record id="l10n_es.pgc_2955_child" model="account.account.template">
+        <field name="group_id" ref="account_group_295" />
+    </record>
+    <record id="l10n_es.pgc_297_child" model="account.account.template">
+        <field name="group_id" ref="account_group_297" />
+    </record>
+    <record id="l10n_es.pgc_298_child" model="account.account.template">
+        <field name="group_id" ref="account_group_298" />
+    </record>
+    <record id="l10n_es.pgc_300_child" model="account.account.template">
+        <field name="group_id" ref="account_group_300" />
+    </record>
+    <record id="l10n_es.pgc_301_child" model="account.account.template">
+        <field name="group_id" ref="account_group_301" />
+    </record>
+    <record id="l10n_es.pgc_310_child" model="account.account.template">
+        <field name="group_id" ref="account_group_310" />
+    </record>
+    <record id="l10n_es.pgc_311_child" model="account.account.template">
+        <field name="group_id" ref="account_group_311" />
+    </record>
+    <record id="l10n_es.pgc_320_child" model="account.account.template">
+        <field name="group_id" ref="account_group_320" />
+    </record>
+    <record id="l10n_es.pgc_321_child" model="account.account.template">
+        <field name="group_id" ref="account_group_321" />
+    </record>
+    <record id="l10n_es.pgc_322_child" model="account.account.template">
+        <field name="group_id" ref="account_group_322" />
+    </record>
+    <record id="l10n_es.pgc_325_child" model="account.account.template">
+        <field name="group_id" ref="account_group_325" />
+    </record>
+    <record id="l10n_es.pgc_326_child" model="account.account.template">
+        <field name="group_id" ref="account_group_326" />
+    </record>
+    <record id="l10n_es.pgc_327_child" model="account.account.template">
+        <field name="group_id" ref="account_group_327" />
+    </record>
+    <record id="l10n_es.pgc_328_child" model="account.account.template">
+        <field name="group_id" ref="account_group_328" />
+    </record>
+    <record id="l10n_es.pgc_330_child" model="account.account.template">
+        <field name="group_id" ref="account_group_330" />
+    </record>
+    <record id="l10n_es.pgc_331_child" model="account.account.template">
+        <field name="group_id" ref="account_group_331" />
+    </record>
+    <record id="l10n_es.pgc_340_child" model="account.account.template">
+        <field name="group_id" ref="account_group_340" />
+    </record>
+    <record id="l10n_es.pgc_341_child" model="account.account.template">
+        <field name="group_id" ref="account_group_341" />
+    </record>
+    <record id="l10n_es.pgc_350_child" model="account.account.template">
+        <field name="group_id" ref="account_group_350" />
+    </record>
+    <record id="l10n_es.pgc_351_child" model="account.account.template">
+        <field name="group_id" ref="account_group_351" />
+    </record>
+    <record id="l10n_es.pgc_360_child" model="account.account.template">
+        <field name="group_id" ref="account_group_360" />
+    </record>
+    <record id="l10n_es.pgc_361_child" model="account.account.template">
+        <field name="group_id" ref="account_group_361" />
+    </record>
+    <record id="l10n_es.pgc_365_child" model="account.account.template">
+        <field name="group_id" ref="account_group_365" />
+    </record>
+    <record id="l10n_es.pgc_366_child" model="account.account.template">
+        <field name="group_id" ref="account_group_366" />
+    </record>
+    <record id="l10n_es.pgc_368_child" model="account.account.template">
+        <field name="group_id" ref="account_group_368" />
+    </record>
+    <record id="l10n_es.pgc_369_child" model="account.account.template">
+        <field name="group_id" ref="account_group_369" />
+    </record>
+    <record id="l10n_es.pgc_390_child" model="account.account.template">
+        <field name="group_id" ref="account_group_390" />
+    </record>
+    <record id="l10n_es.pgc_391_child" model="account.account.template">
+        <field name="group_id" ref="account_group_391" />
+    </record>
+    <record id="l10n_es.pgc_392_child" model="account.account.template">
+        <field name="group_id" ref="account_group_392" />
+    </record>
+    <record id="l10n_es.pgc_393_child" model="account.account.template">
+        <field name="group_id" ref="account_group_393" />
+    </record>
+    <record id="l10n_es.pgc_394_child" model="account.account.template">
+        <field name="group_id" ref="account_group_394" />
+    </record>
+    <record id="l10n_es.pgc_395_child" model="account.account.template">
+        <field name="group_id" ref="account_group_395" />
+    </record>
+    <record id="l10n_es.pgc_396_child" model="account.account.template">
+        <field name="group_id" ref="account_group_396" />
+    </record>
+    <record id="l10n_es.pgc_4000_child" model="account.account.template">
+        <field name="group_id" ref="account_group_400" />
+    </record>
+    <record id="l10n_es.pgc_4004_child" model="account.account.template">
+        <field name="group_id" ref="account_group_400" />
+    </record>
+    <record id="l10n_es.pgc_4009_child" model="account.account.template">
+        <field name="group_id" ref="account_group_400" />
+    </record>
+    <record id="l10n_es.pgc_401_child" model="account.account.template">
+        <field name="group_id" ref="account_group_401" />
+    </record>
+    <record id="l10n_es.pgc_4030_child" model="account.account.template">
+        <field name="group_id" ref="account_group_403" />
+    </record>
+    <record id="l10n_es.pgc_4031_child" model="account.account.template">
+        <field name="group_id" ref="account_group_403" />
+    </record>
+    <record id="l10n_es.pgc_4034_child" model="account.account.template">
+        <field name="group_id" ref="account_group_403" />
+    </record>
+    <record id="l10n_es.pgc_4036_child" model="account.account.template">
+        <field name="group_id" ref="account_group_403" />
+    </record>
+    <record id="l10n_es.pgc_4039_child" model="account.account.template">
+        <field name="group_id" ref="account_group_403" />
+    </record>
+    <record id="l10n_es.pgc_404_child" model="account.account.template">
+        <field name="group_id" ref="account_group_404" />
+    </record>
+    <record id="l10n_es.pgc_405_child" model="account.account.template">
+        <field name="group_id" ref="account_group_405" />
+    </record>
+    <record id="l10n_es.pgc_406_child" model="account.account.template">
+        <field name="group_id" ref="account_group_406" />
+    </record>
+    <record id="l10n_es.pgc_407_child" model="account.account.template">
+        <field name="group_id" ref="account_group_407" />
+    </record>
+    <record id="l10n_es.pgc_4100_child" model="account.account.template">
+        <field name="group_id" ref="account_group_410" />
+    </record>
+    <record id="l10n_es.pgc_4104_child" model="account.account.template">
+        <field name="group_id" ref="account_group_410" />
+    </record>
+    <record id="l10n_es.pgc_4109_child" model="account.account.template">
+        <field name="group_id" ref="account_group_410" />
+    </record>
+    <record id="l10n_es.pgc_411_child" model="account.account.template">
+        <field name="group_id" ref="account_group_411" />
+    </record>
+    <record id="l10n_es.pgc_419_child" model="account.account.template">
+        <field name="group_id" ref="account_group_419" />
+    </record>
+    <record id="l10n_es.pgc_4300_child" model="account.account.template">
+        <field name="group_id" ref="account_group_430" />
+    </record>
+    <record id="l10n_es.pgc_4304_child" model="account.account.template">
+        <field name="group_id" ref="account_group_430" />
+    </record>
+    <record id="l10n_es.pgc_4309_child" model="account.account.template">
+        <field name="group_id" ref="account_group_430" />
+    </record>
+    <record id="l10n_es.pgc_4310_child" model="account.account.template">
+        <field name="group_id" ref="account_group_431" />
+    </record>
+    <record id="l10n_es.pgc_4311_child" model="account.account.template">
+        <field name="group_id" ref="account_group_431" />
+    </record>
+    <record id="l10n_es.pgc_4312_child" model="account.account.template">
+        <field name="group_id" ref="account_group_431" />
+    </record>
+    <record id="l10n_es.pgc_4315_child" model="account.account.template">
+        <field name="group_id" ref="account_group_431" />
+    </record>
+    <record id="l10n_es.pgc_432_child" model="account.account.template">
+        <field name="group_id" ref="account_group_432" />
+    </record>
+    <record id="l10n_es.pgc_4330_child" model="account.account.template">
+        <field name="group_id" ref="account_group_433" />
+    </record>
+    <record id="l10n_es.pgc_4331_child" model="account.account.template">
+        <field name="group_id" ref="account_group_433" />
+    </record>
+    <record id="l10n_es.pgc_4332_child" model="account.account.template">
+        <field name="group_id" ref="account_group_433" />
+    </record>
+    <record id="l10n_es.pgc_4334_child" model="account.account.template">
+        <field name="group_id" ref="account_group_433" />
+    </record>
+    <record id="l10n_es.pgc_4336_child" model="account.account.template">
+        <field name="group_id" ref="account_group_433" />
+    </record>
+    <record id="l10n_es.pgc_4337_child" model="account.account.template">
+        <field name="group_id" ref="account_group_433" />
+    </record>
+    <record id="l10n_es.pgc_4339_child" model="account.account.template">
+        <field name="group_id" ref="account_group_433" />
+    </record>
+    <record id="l10n_es.pgc_434_child" model="account.account.template">
+        <field name="group_id" ref="account_group_434" />
+    </record>
+    <record id="l10n_es.pgc_435_child" model="account.account.template">
+        <field name="group_id" ref="account_group_435" />
+    </record>
+    <record id="l10n_es.pgc_436_child" model="account.account.template">
+        <field name="group_id" ref="account_group_436" />
+    </record>
+    <record id="l10n_es.pgc_437_child" model="account.account.template">
+        <field name="group_id" ref="account_group_437" />
+    </record>
+    <record id="l10n_es.pgc_438_child" model="account.account.template">
+        <field name="group_id" ref="account_group_438" />
+    </record>
+    <record id="l10n_es.pgc_4400_child" model="account.account.template">
+        <field name="group_id" ref="account_group_440" />
+    </record>
+    <record id="l10n_es.pgc_4404_child" model="account.account.template">
+        <field name="group_id" ref="account_group_440" />
+    </record>
+    <record id="l10n_es.pgc_4409_child" model="account.account.template">
+        <field name="group_id" ref="account_group_440" />
+    </record>
+    <record id="l10n_es.pgc_4410_child" model="account.account.template">
+        <field name="group_id" ref="account_group_441" />
+    </record>
+    <record id="l10n_es.pgc_4411_child" model="account.account.template">
+        <field name="group_id" ref="account_group_441" />
+    </record>
+    <record id="l10n_es.pgc_4412_child" model="account.account.template">
+        <field name="group_id" ref="account_group_441" />
+    </record>
+    <record id="l10n_es.pgc_4415_child" model="account.account.template">
+        <field name="group_id" ref="account_group_441" />
+    </record>
+    <record id="l10n_es.pgc_446_child" model="account.account.template">
+        <field name="group_id" ref="account_group_446" />
+    </record>
+    <record id="l10n_es.pgc_449_child" model="account.account.template">
+        <field name="group_id" ref="account_group_449" />
+    </record>
+    <record id="l10n_es.pgc_460_child" model="account.account.template">
+        <field name="group_id" ref="account_group_460" />
+    </record>
+    <record id="l10n_es.pgc_465_child" model="account.account.template">
+        <field name="group_id" ref="account_group_465" />
+    </record>
+    <record id="l10n_es.pgc_4700_child" model="account.account.template">
+        <field name="group_id" ref="account_group_470" />
+    </record>
+    <record id="l10n_es.pgc_4708_child" model="account.account.template">
+        <field name="group_id" ref="account_group_470" />
+    </record>
+    <record id="l10n_es.pgc_4709_child" model="account.account.template">
+        <field name="group_id" ref="account_group_470" />
+    </record>
+    <record id="l10n_es.pgc_471_child" model="account.account.template">
+        <field name="group_id" ref="account_group_471" />
+    </record>
+    <record id="l10n_es.pgc_472_child" model="account.account.template">
+        <field name="group_id" ref="account_group_472" />
+    </record>
+    <record id="l10n_es.pgc_473_child" model="account.account.template">
+        <field name="group_id" ref="account_group_473" />
+    </record>
+    <record id="l10n_es.pgc_4740_child" model="account.account.template">
+        <field name="group_id" ref="account_group_474" />
+    </record>
+    <record id="l10n_es.pgc_4742_child" model="account.account.template">
+        <field name="group_id" ref="account_group_474" />
+    </record>
+    <record id="l10n_es.pgc_4745_child" model="account.account.template">
+        <field name="group_id" ref="account_group_474" />
+    </record>
+    <record id="l10n_es.pgc_4750_child" model="account.account.template">
+        <field name="group_id" ref="account_group_475" />
+    </record>
+    <record id="l10n_es.pgc_4751_child" model="account.account.template">
+        <field name="group_id" ref="account_group_475" />
+    </record>
+    <record id="l10n_es.pgc_4752_child" model="account.account.template">
+        <field name="group_id" ref="account_group_475" />
+    </record>
+    <record id="l10n_es.pgc_4758_child" model="account.account.template">
+        <field name="group_id" ref="account_group_475" />
+    </record>
+    <record id="l10n_es.pgc_4759_child" model="account.account.template">
+        <field name="group_id" ref="account_group_475" />
+    </record>
+    <record id="l10n_es.pgc_476_child" model="account.account.template">
+        <field name="group_id" ref="account_group_476" />
+    </record>
+    <record id="l10n_es.pgc_477_child" model="account.account.template">
+        <field name="group_id" ref="account_group_477" />
+    </record>
+    <record id="l10n_es.pgc_479_child" model="account.account.template">
+        <field name="group_id" ref="account_group_479" />
+    </record>
+    <record id="l10n_es.pgc_480_child" model="account.account.template">
+        <field name="group_id" ref="account_group_480" />
+    </record>
+    <record id="l10n_es.pgc_485_child" model="account.account.template">
+        <field name="group_id" ref="account_group_485" />
+    </record>
+    <record id="l10n_es.pgc_4933_child" model="account.account.template">
+        <field name="group_id" ref="account_group_493" />
+    </record>
+    <record id="l10n_es.pgc_4934_child" model="account.account.template">
+        <field name="group_id" ref="account_group_493" />
+    </record>
+    <record id="l10n_es.pgc_4935_child" model="account.account.template">
+        <field name="group_id" ref="account_group_493" />
+    </record>
+    <record id="l10n_es.pgc_4994_child" model="account.account.template">
+        <field name="group_id" ref="account_group_499" />
+    </record>
+    <record id="l10n_es.pgc_4999_child" model="account.account.template">
+        <field name="group_id" ref="account_group_499" />
+    </record>
+    <record id="l10n_es.pgc_500_child" model="account.account.template">
+        <field name="group_id" ref="account_group_500" />
+    </record>
+    <record id="l10n_es.pgc_502_child" model="account.account.template">
+        <field name="group_id" ref="account_group_502" />
+    </record>
+    <record id="l10n_es.pgc_505_child" model="account.account.template">
+        <field name="group_id" ref="account_group_505" />
+    </record>
+    <record id="l10n_es.pgc_506_child" model="account.account.template">
+        <field name="group_id" ref="account_group_506" />
+    </record>
+    <record id="l10n_es.pgc_507_child" model="account.account.template">
+        <field name="group_id" ref="account_group_507" />
+    </record>
+    <record id="l10n_es.pgc_5090_child" model="account.account.template">
+        <field name="group_id" ref="account_group_509" />
+    </record>
+    <record id="l10n_es.pgc_5095_child" model="account.account.template">
+        <field name="group_id" ref="account_group_509" />
+    </record>
+    <record id="l10n_es.pgc_5103_child" model="account.account.template">
+        <field name="group_id" ref="account_group_510" />
+    </record>
+    <record id="l10n_es.pgc_5104_child" model="account.account.template">
+        <field name="group_id" ref="account_group_510" />
+    </record>
+    <record id="l10n_es.pgc_5105_child" model="account.account.template">
+        <field name="group_id" ref="account_group_510" />
+    </record>
+    <record id="l10n_es.pgc_5113_child" model="account.account.template">
+        <field name="group_id" ref="account_group_511" />
+    </record>
+    <record id="l10n_es.pgc_5114_child" model="account.account.template">
+        <field name="group_id" ref="account_group_511" />
+    </record>
+    <record id="l10n_es.pgc_5115_child" model="account.account.template">
+        <field name="group_id" ref="account_group_511" />
+    </record>
+    <record id="l10n_es.pgc_5123_child" model="account.account.template">
+        <field name="group_id" ref="account_group_512" />
+    </record>
+    <record id="l10n_es.pgc_5124_child" model="account.account.template">
+        <field name="group_id" ref="account_group_512" />
+    </record>
+    <record id="l10n_es.pgc_5125_child" model="account.account.template">
+        <field name="group_id" ref="account_group_512" />
+    </record>
+    <record id="l10n_es.pgc_5133_child" model="account.account.template">
+        <field name="group_id" ref="account_group_513" />
+    </record>
+    <record id="l10n_es.pgc_5134_child" model="account.account.template">
+        <field name="group_id" ref="account_group_513" />
+    </record>
+    <record id="l10n_es.pgc_5135_child" model="account.account.template">
+        <field name="group_id" ref="account_group_513" />
+    </record>
+    <record id="l10n_es.pgc_5143_child" model="account.account.template">
+        <field name="group_id" ref="account_group_514" />
+    </record>
+    <record id="l10n_es.pgc_5144_child" model="account.account.template">
+        <field name="group_id" ref="account_group_514" />
+    </record>
+    <record id="l10n_es.pgc_5145_child" model="account.account.template">
+        <field name="group_id" ref="account_group_514" />
+    </record>
+    <record id="l10n_es.pgc_5200_child" model="account.account.template">
+        <field name="group_id" ref="account_group_520" />
+    </record>
+    <record id="l10n_es.pgc_5201_child" model="account.account.template">
+        <field name="group_id" ref="account_group_520" />
+    </record>
+    <record id="l10n_es.pgc_5208_child" model="account.account.template">
+        <field name="group_id" ref="account_group_520" />
+    </record>
+    <record id="l10n_es.pgc_5209_child" model="account.account.template">
+        <field name="group_id" ref="account_group_520" />
+    </record>
+    <record id="l10n_es.pgc_521_child" model="account.account.template">
+        <field name="group_id" ref="account_group_521" />
+    </record>
+    <record id="l10n_es.pgc_522_child" model="account.account.template">
+        <field name="group_id" ref="account_group_522" />
+    </record>
+    <record id="l10n_es.pgc_523_child" model="account.account.template">
+        <field name="group_id" ref="account_group_523" />
+    </record>
+    <record id="l10n_es.pgc_524_child" model="account.account.template">
+        <field name="group_id" ref="account_group_524" />
+    </record>
+    <record id="l10n_es.pgc_525_child" model="account.account.template">
+        <field name="group_id" ref="account_group_525" />
+    </record>
+    <record id="l10n_es.pgc_526_child" model="account.account.template">
+        <field name="group_id" ref="account_group_526" />
+    </record>
+    <record id="l10n_es.pgc_527_child" model="account.account.template">
+        <field name="group_id" ref="account_group_527" />
+    </record>
+    <record id="l10n_es.pgc_528_child" model="account.account.template">
+        <field name="group_id" ref="account_group_528" />
+    </record>
+    <record id="l10n_es.pgc_5290_child" model="account.account.template">
+        <field name="group_id" ref="account_group_529" />
+    </record>
+    <record id="l10n_es.pgc_5291_child" model="account.account.template">
+        <field name="group_id" ref="account_group_529" />
+    </record>
+    <record id="l10n_es.pgc_5292_child" model="account.account.template">
+        <field name="group_id" ref="account_group_529" />
+    </record>
+    <record id="l10n_es.pgc_5293_child" model="account.account.template">
+        <field name="group_id" ref="account_group_529" />
+    </record>
+    <record id="l10n_es.pgc_5295_child" model="account.account.template">
+        <field name="group_id" ref="account_group_529" />
+    </record>
+    <record id="l10n_es.pgc_5303_child" model="account.account.template">
+        <field name="group_id" ref="account_group_530" />
+    </record>
+    <record id="l10n_es.pgc_5304_child" model="account.account.template">
+        <field name="group_id" ref="account_group_530" />
+    </record>
+    <record id="l10n_es.pgc_5305_child" model="account.account.template">
+        <field name="group_id" ref="account_group_530" />
+    </record>
+    <record id="l10n_es.pgc_5313_child" model="account.account.template">
+        <field name="group_id" ref="account_group_531" />
+    </record>
+    <record id="l10n_es.pgc_5314_child" model="account.account.template">
+        <field name="group_id" ref="account_group_531" />
+    </record>
+    <record id="l10n_es.pgc_5315_child" model="account.account.template">
+        <field name="group_id" ref="account_group_531" />
+    </record>
+    <record id="l10n_es.pgc_5323_child" model="account.account.template">
+        <field name="group_id" ref="account_group_532" />
+    </record>
+    <record id="l10n_es.pgc_5324_child" model="account.account.template">
+        <field name="group_id" ref="account_group_532" />
+    </record>
+    <record id="l10n_es.pgc_5325_child" model="account.account.template">
+        <field name="group_id" ref="account_group_532" />
+    </record>
+    <record id="l10n_es.pgc_5333_child" model="account.account.template">
+        <field name="group_id" ref="account_group_533" />
+    </record>
+    <record id="l10n_es.pgc_5334_child" model="account.account.template">
+        <field name="group_id" ref="account_group_533" />
+    </record>
+    <record id="l10n_es.pgc_5335_child" model="account.account.template">
+        <field name="group_id" ref="account_group_533" />
+    </record>
+    <record id="l10n_es.pgc_5343_child" model="account.account.template">
+        <field name="group_id" ref="account_group_534" />
+    </record>
+    <record id="l10n_es.pgc_5344_child" model="account.account.template">
+        <field name="group_id" ref="account_group_534" />
+    </record>
+    <record id="l10n_es.pgc_5345_child" model="account.account.template">
+        <field name="group_id" ref="account_group_534" />
+    </record>
+    <record id="l10n_es.pgc_5353_child" model="account.account.template">
+        <field name="group_id" ref="account_group_535" />
+    </record>
+    <record id="l10n_es.pgc_5354_child" model="account.account.template">
+        <field name="group_id" ref="account_group_535" />
+    </record>
+    <record id="l10n_es.pgc_5355_child" model="account.account.template">
+        <field name="group_id" ref="account_group_535" />
+    </record>
+    <record id="l10n_es.pgc_5393_child" model="account.account.template">
+        <field name="group_id" ref="account_group_539" />
+    </record>
+    <record id="l10n_es.pgc_5394_child" model="account.account.template">
+        <field name="group_id" ref="account_group_539" />
+    </record>
+    <record id="l10n_es.pgc_5395_child" model="account.account.template">
+        <field name="group_id" ref="account_group_539" />
+    </record>
+    <record id="l10n_es.pgc_540_child" model="account.account.template">
+        <field name="group_id" ref="account_group_540" />
+    </record>
+    <record id="l10n_es.pgc_541_child" model="account.account.template">
+        <field name="group_id" ref="account_group_541" />
+    </record>
+    <record id="l10n_es.pgc_542_child" model="account.account.template">
+        <field name="group_id" ref="account_group_542" />
+    </record>
+    <record id="l10n_es.pgc_543_child" model="account.account.template">
+        <field name="group_id" ref="account_group_543" />
+    </record>
+    <record id="l10n_es.pgc_544_child" model="account.account.template">
+        <field name="group_id" ref="account_group_544" />
+    </record>
+    <record id="l10n_es.pgc_545_child" model="account.account.template">
+        <field name="group_id" ref="account_group_545" />
+    </record>
+    <record id="l10n_es.pgc_546_child" model="account.account.template">
+        <field name="group_id" ref="account_group_546" />
+    </record>
+    <record id="l10n_es.pgc_547_child" model="account.account.template">
+        <field name="group_id" ref="account_group_547" />
+    </record>
+    <record id="l10n_es.pgc_548_child" model="account.account.template">
+        <field name="group_id" ref="account_group_548" />
+    </record>
+    <record id="l10n_es.pgc_549_child" model="account.account.template">
+        <field name="group_id" ref="account_group_549" />
+    </record>
+    <record id="l10n_es.pgc_550_child" model="account.account.template">
+        <field name="group_id" ref="account_group_550" />
+    </record>
+    <record id="l10n_es.pgc_5523_child" model="account.account.template">
+        <field name="group_id" ref="account_group_552" />
+    </record>
+    <record id="l10n_es.pgc_5524_child" model="account.account.template">
+        <field name="group_id" ref="account_group_552" />
+    </record>
+    <record id="l10n_es.pgc_5525_child" model="account.account.template">
+        <field name="group_id" ref="account_group_552" />
+    </record>
+    <record id="l10n_es.pgc_554_child" model="account.account.template">
+        <field name="group_id" ref="account_group_554" />
+    </record>
+    <record id="l10n_es.pgc_555_child" model="account.account.template">
+        <field name="group_id" ref="account_group_555" />
+    </record>
+    <record id="l10n_es.pgc_5563_child" model="account.account.template">
+        <field name="group_id" ref="account_group_556" />
+    </record>
+    <record id="l10n_es.pgc_5564_child" model="account.account.template">
+        <field name="group_id" ref="account_group_556" />
+    </record>
+    <record id="l10n_es.pgc_5565_child" model="account.account.template">
+        <field name="group_id" ref="account_group_556" />
+    </record>
+    <record id="l10n_es.pgc_5566_child" model="account.account.template">
+        <field name="group_id" ref="account_group_556" />
+    </record>
+    <record id="l10n_es.pgc_557_child" model="account.account.template">
+        <field name="group_id" ref="account_group_557" />
+    </record>
+    <record id="l10n_es.pgc_5580_child" model="account.account.template">
+        <field name="group_id" ref="account_group_558" />
+    </record>
+    <record id="l10n_es.pgc_5585_child" model="account.account.template">
+        <field name="group_id" ref="account_group_558" />
+    </record>
+    <record id="l10n_es.pgc_5590_child" model="account.account.template">
+        <field name="group_id" ref="account_group_559" />
+    </record>
+    <record id="l10n_es.pgc_5595_child" model="account.account.template">
+        <field name="group_id" ref="account_group_559" />
+    </record>
+    <record id="l10n_es.pgc_560_child" model="account.account.template">
+        <field name="group_id" ref="account_group_560" />
+    </record>
+    <record id="l10n_es.pgc_561_child" model="account.account.template">
+        <field name="group_id" ref="account_group_561" />
+    </record>
+    <record id="l10n_es.pgc_565_child" model="account.account.template">
+        <field name="group_id" ref="account_group_565" />
+    </record>
+    <record id="l10n_es.pgc_566_child" model="account.account.template">
+        <field name="group_id" ref="account_group_566" />
+    </record>
+    <record id="l10n_es.pgc_567_child" model="account.account.template">
+        <field name="group_id" ref="account_group_567" />
+    </record>
+    <record id="l10n_es.pgc_568_child" model="account.account.template">
+        <field name="group_id" ref="account_group_568" />
+    </record>
+    <record id="l10n_es.pgc_570_child" model="account.account.template">
+        <field name="group_id" ref="account_group_570" />
+    </record>
+    <record id="l10n_es.pgc_571_child" model="account.account.template">
+        <field name="group_id" ref="account_group_571" />
+    </record>
+    <record id="l10n_es.pgc_572_child" model="account.account.template">
+        <field name="group_id" ref="account_group_572" />
+    </record>
+    <record id="l10n_es.pgc_573_child" model="account.account.template">
+        <field name="group_id" ref="account_group_573" />
+    </record>
+    <record id="l10n_es.pgc_574_child" model="account.account.template">
+        <field name="group_id" ref="account_group_574" />
+    </record>
+    <record id="l10n_es.pgc_575_child" model="account.account.template">
+        <field name="group_id" ref="account_group_575" />
+    </record>
+    <record id="l10n_es.pgc_576_child" model="account.account.template">
+        <field name="group_id" ref="account_group_576" />
+    </record>
+    <record id="l10n_es.pgc_5933_child" model="account.account.template">
+        <field name="group_id" ref="account_group_593" />
+    </record>
+    <record id="l10n_es.pgc_5934_child" model="account.account.template">
+        <field name="group_id" ref="account_group_593" />
+    </record>
+    <record id="l10n_es.pgc_5943_child" model="account.account.template">
+        <field name="group_id" ref="account_group_594" />
+    </record>
+    <record id="l10n_es.pgc_5944_child" model="account.account.template">
+        <field name="group_id" ref="account_group_594" />
+    </record>
+    <record id="l10n_es.pgc_5945_child" model="account.account.template">
+        <field name="group_id" ref="account_group_594" />
+    </record>
+    <record id="l10n_es.pgc_5953_child" model="account.account.template">
+        <field name="group_id" ref="account_group_595" />
+    </record>
+    <record id="l10n_es.pgc_5954_child" model="account.account.template">
+        <field name="group_id" ref="account_group_595" />
+    </record>
+    <record id="l10n_es.pgc_5955_child" model="account.account.template">
+        <field name="group_id" ref="account_group_595" />
+    </record>
+    <record id="l10n_es.pgc_597_child" model="account.account.template">
+        <field name="group_id" ref="account_group_597" />
+    </record>
+    <record id="l10n_es.pgc_598_child" model="account.account.template">
+        <field name="group_id" ref="account_group_598" />
+    </record>
+    <record id="l10n_es.pgc_600_child" model="account.account.template">
+        <field name="group_id" ref="account_group_600" />
+    </record>
+    <record id="l10n_es.pgc_601_child" model="account.account.template">
+        <field name="group_id" ref="account_group_601" />
+    </record>
+    <record id="l10n_es.pgc_602_child" model="account.account.template">
+        <field name="group_id" ref="account_group_602" />
+    </record>
+    <record id="l10n_es.pgc_6060_child" model="account.account.template">
+        <field name="group_id" ref="account_group_606" />
+    </record>
+    <record id="l10n_es.pgc_6061_child" model="account.account.template">
+        <field name="group_id" ref="account_group_606" />
+    </record>
+    <record id="l10n_es.pgc_6062_child" model="account.account.template">
+        <field name="group_id" ref="account_group_606" />
+    </record>
+    <record id="l10n_es.pgc_607_child" model="account.account.template">
+        <field name="group_id" ref="account_group_607" />
+    </record>
+    <record id="l10n_es.pgc_6080_child" model="account.account.template">
+        <field name="group_id" ref="account_group_608" />
+    </record>
+    <record id="l10n_es.pgc_6081_child" model="account.account.template">
+        <field name="group_id" ref="account_group_608" />
+    </record>
+    <record id="l10n_es.pgc_6082_child" model="account.account.template">
+        <field name="group_id" ref="account_group_608" />
+    </record>
+    <record id="l10n_es.pgc_6090_child" model="account.account.template">
+        <field name="group_id" ref="account_group_609" />
+    </record>
+    <record id="l10n_es.pgc_6091_child" model="account.account.template">
+        <field name="group_id" ref="account_group_609" />
+    </record>
+    <record id="l10n_es.pgc_6092_child" model="account.account.template">
+        <field name="group_id" ref="account_group_609" />
+    </record>
+    <record id="l10n_es.pgc_610_child" model="account.account.template">
+        <field name="group_id" ref="account_group_610" />
+    </record>
+    <record id="l10n_es.pgc_611_child" model="account.account.template">
+        <field name="group_id" ref="account_group_611" />
+    </record>
+    <record id="l10n_es.pgc_612_child" model="account.account.template">
+        <field name="group_id" ref="account_group_612" />
+    </record>
+    <record id="l10n_es.pgc_620_child" model="account.account.template">
+        <field name="group_id" ref="account_group_620" />
+    </record>
+    <record id="l10n_es.pgc_621_child" model="account.account.template">
+        <field name="group_id" ref="account_group_621" />
+    </record>
+    <record id="l10n_es.pgc_622_child" model="account.account.template">
+        <field name="group_id" ref="account_group_622" />
+    </record>
+    <record id="l10n_es.pgc_623_child" model="account.account.template">
+        <field name="group_id" ref="account_group_623" />
+    </record>
+    <record id="l10n_es.pgc_624_child" model="account.account.template">
+        <field name="group_id" ref="account_group_624" />
+    </record>
+    <record id="l10n_es.pgc_625_child" model="account.account.template">
+        <field name="group_id" ref="account_group_625" />
+    </record>
+    <record id="l10n_es.pgc_626_child" model="account.account.template">
+        <field name="group_id" ref="account_group_626" />
+    </record>
+    <record id="l10n_es.pgc_627_child" model="account.account.template">
+        <field name="group_id" ref="account_group_627" />
+    </record>
+    <record id="l10n_es.pgc_628_child" model="account.account.template">
+        <field name="group_id" ref="account_group_628" />
+    </record>
+    <record id="l10n_es.pgc_629_child" model="account.account.template">
+        <field name="group_id" ref="account_group_629" />
+    </record>
+    <record id="l10n_es.pgc_6300_child" model="account.account.template">
+        <field name="group_id" ref="account_group_630" />
+    </record>
+    <record id="l10n_es.pgc_6301_child" model="account.account.template">
+        <field name="group_id" ref="account_group_630" />
+    </record>
+    <record id="l10n_es.pgc_631_child" model="account.account.template">
+        <field name="group_id" ref="account_group_631" />
+    </record>
+    <record id="l10n_es.pgc_633_child" model="account.account.template">
+        <field name="group_id" ref="account_group_633" />
+    </record>
+    <record id="l10n_es.pgc_6341_child" model="account.account.template">
+        <field name="group_id" ref="account_group_634" />
+    </record>
+    <record id="l10n_es.pgc_6342_child" model="account.account.template">
+        <field name="group_id" ref="account_group_634" />
+    </record>
+    <record id="l10n_es.pgc_636_child" model="account.account.template">
+        <field name="group_id" ref="account_group_636" />
+    </record>
+    <record id="l10n_es.pgc_638_child" model="account.account.template">
+        <field name="group_id" ref="account_group_638" />
+    </record>
+    <record id="l10n_es.pgc_6391_child" model="account.account.template">
+        <field name="group_id" ref="account_group_639" />
+    </record>
+    <record id="l10n_es.pgc_6392_child" model="account.account.template">
+        <field name="group_id" ref="account_group_639" />
+    </record>
+    <record id="l10n_es.pgc_640_child" model="account.account.template">
+        <field name="group_id" ref="account_group_640" />
+    </record>
+    <record id="l10n_es.pgc_641_child" model="account.account.template">
+        <field name="group_id" ref="account_group_641" />
+    </record>
+    <record id="l10n_es.pgc_642_child" model="account.account.template">
+        <field name="group_id" ref="account_group_642" />
+    </record>
+    <record id="l10n_es.pgc_649_child" model="account.account.template">
+        <field name="group_id" ref="account_group_649" />
+    </record>
+    <record id="l10n_es.pgc_660_child" model="account.account.template">
+        <field name="group_id" ref="account_group_660" />
+    </record>
+    <record id="l10n_es.pgc_6610_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6611_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6612_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6613_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6615_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6616_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6617_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6618_child" model="account.account.template">
+        <field name="group_id" ref="account_group_661" />
+    </record>
+    <record id="l10n_es.pgc_6620_child" model="account.account.template">
+        <field name="group_id" ref="account_group_662" />
+    </record>
+    <record id="l10n_es.pgc_6621_child" model="account.account.template">
+        <field name="group_id" ref="account_group_662" />
+    </record>
+    <record id="l10n_es.pgc_6622_child" model="account.account.template">
+        <field name="group_id" ref="account_group_662" />
+    </record>
+    <record id="l10n_es.pgc_6623_child" model="account.account.template">
+        <field name="group_id" ref="account_group_662" />
+    </record>
+    <record id="l10n_es.pgc_6624_child" model="account.account.template">
+        <field name="group_id" ref="account_group_662" />
+    </record>
+    <record id="l10n_es.pgc_6640_child" model="account.account.template">
+        <field name="group_id" ref="account_group_664" />
+    </record>
+    <record id="l10n_es.pgc_6641_child" model="account.account.template">
+        <field name="group_id" ref="account_group_664" />
+    </record>
+    <record id="l10n_es.pgc_6642_child" model="account.account.template">
+        <field name="group_id" ref="account_group_664" />
+    </record>
+    <record id="l10n_es.pgc_6643_child" model="account.account.template">
+        <field name="group_id" ref="account_group_664" />
+    </record>
+    <record id="l10n_es.pgc_6650_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6651_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6652_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6653_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6654_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6655_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6656_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6657_child" model="account.account.template">
+        <field name="group_id" ref="account_group_665" />
+    </record>
+    <record id="l10n_es.pgc_6660_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6661_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6662_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6663_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6665_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6666_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6667_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6668_child" model="account.account.template">
+        <field name="group_id" ref="account_group_666" />
+    </record>
+    <record id="l10n_es.pgc_6670_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_6671_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_6672_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_6673_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_6675_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_6676_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_6677_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_6678_child" model="account.account.template">
+        <field name="group_id" ref="account_group_667" />
+    </record>
+    <record id="l10n_es.pgc_668_child" model="account.account.template">
+        <field name="group_id" ref="account_group_668" />
+    </record>
+    <record id="l10n_es.pgc_669_child" model="account.account.template">
+        <field name="group_id" ref="account_group_669" />
+    </record>
+    <record id="l10n_es.pgc_670_child" model="account.account.template">
+        <field name="group_id" ref="account_group_670" />
+    </record>
+    <record id="l10n_es.pgc_672_child" model="account.account.template">
+        <field name="group_id" ref="account_group_672" />
+    </record>
+    <record id="l10n_es.pgc_6733_child" model="account.account.template">
+        <field name="group_id" ref="account_group_673" />
+    </record>
+    <record id="l10n_es.pgc_6734_child" model="account.account.template">
+        <field name="group_id" ref="account_group_673" />
+    </record>
+    <record id="l10n_es.pgc_6735_child" model="account.account.template">
+        <field name="group_id" ref="account_group_673" />
+    </record>
+    <record id="l10n_es.pgc_675_child" model="account.account.template">
+        <field name="group_id" ref="account_group_675" />
+    </record>
+    <record id="l10n_es.pgc_678_child" model="account.account.template">
+        <field name="group_id" ref="account_group_678" />
+    </record>
+    <record id="l10n_es.pgc_680_child" model="account.account.template">
+        <field name="group_id" ref="account_group_680" />
+    </record>
+    <record id="l10n_es.pgc_681_child" model="account.account.template">
+        <field name="group_id" ref="account_group_681" />
+    </record>
+    <record id="l10n_es.pgc_682_child" model="account.account.template">
+        <field name="group_id" ref="account_group_682" />
+    </record>
+    <record id="l10n_es.pgc_690_child" model="account.account.template">
+        <field name="group_id" ref="account_group_690" />
+    </record>
+    <record id="l10n_es.pgc_692_child" model="account.account.template">
+        <field name="group_id" ref="account_group_692" />
+    </record>
+    <record id="l10n_es.pgc_6930_child" model="account.account.template">
+        <field name="group_id" ref="account_group_693" />
+    </record>
+    <record id="l10n_es.pgc_6931_child" model="account.account.template">
+        <field name="group_id" ref="account_group_693" />
+    </record>
+    <record id="l10n_es.pgc_6932_child" model="account.account.template">
+        <field name="group_id" ref="account_group_693" />
+    </record>
+    <record id="l10n_es.pgc_6933_child" model="account.account.template">
+        <field name="group_id" ref="account_group_693" />
+    </record>
+    <record id="l10n_es.pgc_6954_child" model="account.account.template">
+        <field name="group_id" ref="account_group_695" />
+    </record>
+    <record id="l10n_es.pgc_6959_child" model="account.account.template">
+        <field name="group_id" ref="account_group_695" />
+    </record>
+    <record id="l10n_es.pgc_6960_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6961_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6962_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6963_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6965_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6966_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6967_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6968_child" model="account.account.template">
+        <field name="group_id" ref="account_group_696" />
+    </record>
+    <record id="l10n_es.pgc_6970_child" model="account.account.template">
+        <field name="group_id" ref="account_group_697" />
+    </record>
+    <record id="l10n_es.pgc_6971_child" model="account.account.template">
+        <field name="group_id" ref="account_group_697" />
+    </record>
+    <record id="l10n_es.pgc_6972_child" model="account.account.template">
+        <field name="group_id" ref="account_group_697" />
+    </record>
+    <record id="l10n_es.pgc_6973_child" model="account.account.template">
+        <field name="group_id" ref="account_group_697" />
+    </record>
+    <record id="l10n_es.pgc_6980_child" model="account.account.template">
+        <field name="group_id" ref="account_group_698" />
+    </record>
+    <record id="l10n_es.pgc_6981_child" model="account.account.template">
+        <field name="group_id" ref="account_group_698" />
+    </record>
+    <record id="l10n_es.pgc_6985_child" model="account.account.template">
+        <field name="group_id" ref="account_group_698" />
+    </record>
+    <record id="l10n_es.pgc_6986_child" model="account.account.template">
+        <field name="group_id" ref="account_group_698" />
+    </record>
+    <record id="l10n_es.pgc_6987_child" model="account.account.template">
+        <field name="group_id" ref="account_group_698" />
+    </record>
+    <record id="l10n_es.pgc_6988_child" model="account.account.template">
+        <field name="group_id" ref="account_group_698" />
+    </record>
+    <record id="l10n_es.pgc_6990_child" model="account.account.template">
+        <field name="group_id" ref="account_group_699" />
+    </record>
+    <record id="l10n_es.pgc_6991_child" model="account.account.template">
+        <field name="group_id" ref="account_group_699" />
+    </record>
+    <record id="l10n_es.pgc_6992_child" model="account.account.template">
+        <field name="group_id" ref="account_group_699" />
+    </record>
+    <record id="l10n_es.pgc_6993_child" model="account.account.template">
+        <field name="group_id" ref="account_group_699" />
+    </record>
+    <record id="l10n_es.pgc_7000_child" model="account.account.template">
+        <field name="group_id" ref="account_group_700" />
+    </record>
+    <record id="l10n_es.pgc_7001_child" model="account.account.template">
+        <field name="group_id" ref="account_group_700" />
+    </record>
+    <record id="l10n_es.pgc_7002_child" model="account.account.template">
+        <field name="group_id" ref="account_group_700" />
+    </record>
+    <record id="l10n_es.pgc_7010_child" model="account.account.template">
+        <field name="group_id" ref="account_group_701" />
+    </record>
+    <record id="l10n_es.pgc_7011_child" model="account.account.template">
+        <field name="group_id" ref="account_group_701" />
+    </record>
+    <record id="l10n_es.pgc_7012_child" model="account.account.template">
+        <field name="group_id" ref="account_group_701" />
+    </record>
+    <record id="l10n_es.pgc_7020_child" model="account.account.template">
+        <field name="group_id" ref="account_group_702" />
+    </record>
+    <record id="l10n_es.pgc_7021_child" model="account.account.template">
+        <field name="group_id" ref="account_group_702" />
+    </record>
+    <record id="l10n_es.pgc_7022_child" model="account.account.template">
+        <field name="group_id" ref="account_group_702" />
+    </record>
+    <record id="l10n_es.pgc_7030_child" model="account.account.template">
+        <field name="group_id" ref="account_group_703" />
+    </record>
+    <record id="l10n_es.pgc_7031_child" model="account.account.template">
+        <field name="group_id" ref="account_group_703" />
+    </record>
+    <record id="l10n_es.pgc_7032_child" model="account.account.template">
+        <field name="group_id" ref="account_group_703" />
+    </record>
+    <record id="l10n_es.pgc_7040_child" model="account.account.template">
+        <field name="group_id" ref="account_group_704" />
+    </record>
+    <record id="l10n_es.pgc_7041_child" model="account.account.template">
+        <field name="group_id" ref="account_group_704" />
+    </record>
+    <record id="l10n_es.pgc_7042_child" model="account.account.template">
+        <field name="group_id" ref="account_group_704" />
+    </record>
+    <record id="l10n_es.pgc_7050_child" model="account.account.template">
+        <field name="group_id" ref="account_group_705" />
+    </record>
+    <record id="l10n_es.pgc_7051_child" model="account.account.template">
+        <field name="group_id" ref="account_group_705" />
+    </record>
+    <record id="l10n_es.pgc_7052_child" model="account.account.template">
+        <field name="group_id" ref="account_group_705" />
+    </record>
+    <record id="l10n_es.pgc_7060_child" model="account.account.template">
+        <field name="group_id" ref="account_group_706" />
+    </record>
+    <record id="l10n_es.pgc_7061_child" model="account.account.template">
+        <field name="group_id" ref="account_group_706" />
+    </record>
+    <record id="l10n_es.pgc_7062_child" model="account.account.template">
+        <field name="group_id" ref="account_group_706" />
+    </record>
+    <record id="l10n_es.pgc_7063_child" model="account.account.template">
+        <field name="group_id" ref="account_group_706" />
+    </record>
+    <record id="l10n_es.pgc_7080_child" model="account.account.template">
+        <field name="group_id" ref="account_group_708" />
+    </record>
+    <record id="l10n_es.pgc_7081_child" model="account.account.template">
+        <field name="group_id" ref="account_group_708" />
+    </record>
+    <record id="l10n_es.pgc_7082_child" model="account.account.template">
+        <field name="group_id" ref="account_group_708" />
+    </record>
+    <record id="l10n_es.pgc_7083_child" model="account.account.template">
+        <field name="group_id" ref="account_group_708" />
+    </record>
+    <record id="l10n_es.pgc_7084_child" model="account.account.template">
+        <field name="group_id" ref="account_group_708" />
+    </record>
+    <record id="l10n_es.pgc_7090_child" model="account.account.template">
+        <field name="group_id" ref="account_group_709" />
+    </record>
+    <record id="l10n_es.pgc_7091_child" model="account.account.template">
+        <field name="group_id" ref="account_group_709" />
+    </record>
+    <record id="l10n_es.pgc_7092_child" model="account.account.template">
+        <field name="group_id" ref="account_group_709" />
+    </record>
+    <record id="l10n_es.pgc_7093_child" model="account.account.template">
+        <field name="group_id" ref="account_group_709" />
+    </record>
+    <record id="l10n_es.pgc_7094_child" model="account.account.template">
+        <field name="group_id" ref="account_group_709" />
+    </record>
+    <record id="l10n_es.pgc_710_child" model="account.account.template">
+        <field name="group_id" ref="account_group_710" />
+    </record>
+    <record id="l10n_es.pgc_711_child" model="account.account.template">
+        <field name="group_id" ref="account_group_711" />
+    </record>
+    <record id="l10n_es.pgc_712_child" model="account.account.template">
+        <field name="group_id" ref="account_group_712" />
+    </record>
+    <record id="l10n_es.pgc_713_child" model="account.account.template">
+        <field name="group_id" ref="account_group_713" />
+    </record>
+    <record id="l10n_es.pgc_730_child" model="account.account.template">
+        <field name="group_id" ref="account_group_730" />
+    </record>
+    <record id="l10n_es.pgc_731_child" model="account.account.template">
+        <field name="group_id" ref="account_group_731" />
+    </record>
+    <record id="l10n_es.pgc_732_child" model="account.account.template">
+        <field name="group_id" ref="account_group_732" />
+    </record>
+    <record id="l10n_es.pgc_733_child" model="account.account.template">
+        <field name="group_id" ref="account_group_733" />
+    </record>
+    <record id="l10n_es.pgc_740_child" model="account.account.template">
+        <field name="group_id" ref="account_group_740" />
+    </record>
+    <record id="l10n_es.pgc_746_child" model="account.account.template">
+        <field name="group_id" ref="account_group_746" />
+    </record>
+    <record id="l10n_es.pgc_747_child" model="account.account.template">
+        <field name="group_id" ref="account_group_747" />
+    </record>
+    <record id="l10n_es.pgc_7510_child" model="account.account.template">
+        <field name="group_id" ref="account_group_751" />
+    </record>
+    <record id="l10n_es.pgc_7511_child" model="account.account.template">
+        <field name="group_id" ref="account_group_751" />
+    </record>
+    <record id="l10n_es.pgc_752_child" model="account.account.template">
+        <field name="group_id" ref="account_group_752" />
+    </record>
+    <record id="l10n_es.pgc_753_child" model="account.account.template">
+        <field name="group_id" ref="account_group_753" />
+    </record>
+    <record id="l10n_es.pgc_754_child" model="account.account.template">
+        <field name="group_id" ref="account_group_754" />
+    </record>
+    <record id="l10n_es.pgc_755_child" model="account.account.template">
+        <field name="group_id" ref="account_group_755" />
+    </record>
+    <record id="l10n_es.pgc_759_child" model="account.account.template">
+        <field name="group_id" ref="account_group_759" />
+    </record>
+    <record id="l10n_es.pgc_7600_child" model="account.account.template">
+        <field name="group_id" ref="account_group_760" />
+    </record>
+    <record id="l10n_es.pgc_7601_child" model="account.account.template">
+        <field name="group_id" ref="account_group_760" />
+    </record>
+    <record id="l10n_es.pgc_7602_child" model="account.account.template">
+        <field name="group_id" ref="account_group_760" />
+    </record>
+    <record id="l10n_es.pgc_7603_child" model="account.account.template">
+        <field name="group_id" ref="account_group_760" />
+    </record>
+    <record id="l10n_es.pgc_7610_child" model="account.account.template">
+        <field name="group_id" ref="account_group_761" />
+    </record>
+    <record id="l10n_es.pgc_7611_child" model="account.account.template">
+        <field name="group_id" ref="account_group_761" />
+    </record>
+    <record id="l10n_es.pgc_7612_child" model="account.account.template">
+        <field name="group_id" ref="account_group_761" />
+    </record>
+    <record id="l10n_es.pgc_7613_child" model="account.account.template">
+        <field name="group_id" ref="account_group_761" />
+    </record>
+    <record id="l10n_es.pgc_76200_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_76201_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_76202_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_76203_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_76210_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_76211_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_76212_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_76213_child" model="account.account.template">
+        <field name="group_id" ref="account_group_762" />
+    </record>
+    <record id="l10n_es.pgc_7660_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_7661_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_7662_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_7663_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_7665_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_7666_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_7667_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_7668_child" model="account.account.template">
+        <field name="group_id" ref="account_group_766" />
+    </record>
+    <record id="l10n_es.pgc_768_child" model="account.account.template">
+        <field name="group_id" ref="account_group_768" />
+    </record>
+    <record id="l10n_es.pgc_769_child" model="account.account.template">
+        <field name="group_id" ref="account_group_769" />
+    </record>
+    <record id="l10n_es.pgc_770_child" model="account.account.template">
+        <field name="group_id" ref="account_group_770" />
+    </record>
+    <record id="l10n_es.pgc_771_child" model="account.account.template">
+        <field name="group_id" ref="account_group_771" />
+    </record>
+    <record id="l10n_es.pgc_772_child" model="account.account.template">
+        <field name="group_id" ref="account_group_772" />
+    </record>
+    <record id="l10n_es.pgc_7733_child" model="account.account.template">
+        <field name="group_id" ref="account_group_773" />
+    </record>
+    <record id="l10n_es.pgc_7734_child" model="account.account.template">
+        <field name="group_id" ref="account_group_773" />
+    </record>
+    <record id="l10n_es.pgc_7735_child" model="account.account.template">
+        <field name="group_id" ref="account_group_773" />
+    </record>
+    <record id="l10n_es.pgc_775_child" model="account.account.template">
+        <field name="group_id" ref="account_group_775" />
+    </record>
+    <record id="l10n_es.pgc_778_child" model="account.account.template">
+        <field name="group_id" ref="account_group_778" />
+    </record>
+    <record id="l10n_es.pgc_790_child" model="account.account.template">
+        <field name="group_id" ref="account_group_790" />
+    </record>
+    <record id="l10n_es.pgc_792_child" model="account.account.template">
+        <field name="group_id" ref="account_group_792" />
+    </record>
+    <record id="l10n_es.pgc_7930_child" model="account.account.template">
+        <field name="group_id" ref="account_group_793" />
+    </record>
+    <record id="l10n_es.pgc_7931_child" model="account.account.template">
+        <field name="group_id" ref="account_group_793" />
+    </record>
+    <record id="l10n_es.pgc_7932_child" model="account.account.template">
+        <field name="group_id" ref="account_group_793" />
+    </record>
+    <record id="l10n_es.pgc_7933_child" model="account.account.template">
+        <field name="group_id" ref="account_group_793" />
+    </record>
+    <record id="l10n_es.pgc_7951_child" model="account.account.template">
+        <field name="group_id" ref="account_group_795" />
+    </record>
+    <record id="l10n_es.pgc_7952_child" model="account.account.template">
+        <field name="group_id" ref="account_group_795" />
+    </record>
+    <record id="l10n_es.pgc_79544_child" model="account.account.template">
+        <field name="group_id" ref="account_group_795" />
+    </record>
+    <record id="l10n_es.pgc_79549_child" model="account.account.template">
+        <field name="group_id" ref="account_group_795" />
+    </record>
+    <record id="l10n_es.pgc_7955_child" model="account.account.template">
+        <field name="group_id" ref="account_group_795" />
+    </record>
+    <record id="l10n_es.pgc_7960_child" model="account.account.template">
+        <field name="group_id" ref="account_group_796" />
+    </record>
+    <record id="l10n_es.pgc_7961_child" model="account.account.template">
+        <field name="group_id" ref="account_group_796" />
+    </record>
+    <record id="l10n_es.pgc_7965_child" model="account.account.template">
+        <field name="group_id" ref="account_group_796" />
+    </record>
+    <record id="l10n_es.pgc_7966_child" model="account.account.template">
+        <field name="group_id" ref="account_group_796" />
+    </record>
+    <record id="l10n_es.pgc_7967_child" model="account.account.template">
+        <field name="group_id" ref="account_group_796" />
+    </record>
+    <record id="l10n_es.pgc_7968_child" model="account.account.template">
+        <field name="group_id" ref="account_group_796" />
+    </record>
+    <record id="l10n_es.pgc_7970_child" model="account.account.template">
+        <field name="group_id" ref="account_group_797" />
+    </record>
+    <record id="l10n_es.pgc_7971_child" model="account.account.template">
+        <field name="group_id" ref="account_group_797" />
+    </record>
+    <record id="l10n_es.pgc_7972_child" model="account.account.template">
+        <field name="group_id" ref="account_group_797" />
+    </record>
+    <record id="l10n_es.pgc_7973_child" model="account.account.template">
+        <field name="group_id" ref="account_group_797" />
+    </record>
+    <record id="l10n_es.pgc_7980_child" model="account.account.template">
+        <field name="group_id" ref="account_group_798" />
+    </record>
+    <record id="l10n_es.pgc_7981_child" model="account.account.template">
+        <field name="group_id" ref="account_group_798" />
+    </record>
+    <record id="l10n_es.pgc_7985_child" model="account.account.template">
+        <field name="group_id" ref="account_group_798" />
+    </record>
+    <record id="l10n_es.pgc_7986_child" model="account.account.template">
+        <field name="group_id" ref="account_group_798" />
+    </record>
+    <record id="l10n_es.pgc_7987_child" model="account.account.template">
+        <field name="group_id" ref="account_group_798" />
+    </record>
+    <record id="l10n_es.pgc_7988_child" model="account.account.template">
+        <field name="group_id" ref="account_group_798" />
+    </record>
+    <record id="l10n_es.pgc_7990_child" model="account.account.template">
+        <field name="group_id" ref="account_group_799" />
+    </record>
+    <record id="l10n_es.pgc_7991_child" model="account.account.template">
+        <field name="group_id" ref="account_group_799" />
+    </record>
+    <record id="l10n_es.pgc_7992_child" model="account.account.template">
+        <field name="group_id" ref="account_group_799" />
+    </record>
+    <record id="l10n_es.pgc_7993_child" model="account.account.template">
+        <field name="group_id" ref="account_group_799" />
+    </record>
+
+</odoo>
