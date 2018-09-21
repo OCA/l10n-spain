@@ -179,7 +179,7 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">refund</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="True"/>
     <!-- Cuotas de facturas rectificativas de venta (debe):
          S_IVA4B, S_IVA4S, S_IVA10B, S_IVA10S, S_IVA21B, S_IVA21S, S_IVA21ISP -->
@@ -192,7 +192,7 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">refund</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="True"/>
     <!-- Cuota facturas rectificativas de compra (debe):
             P_IVA4_IC_BC_2,  P_IVA4_SP_IN_1,  P_IVA4_IC_BI_2, P_IVA4_SP_EX_1, P_IVA4_ISP_2
