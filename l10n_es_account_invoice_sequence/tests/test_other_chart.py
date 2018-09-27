@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015-2017 Pedro M. Baeza
+# Copyright 2015-2018 Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo.tests import common
@@ -18,33 +17,16 @@ class TestOtherChart(common.SavepointCase):
         cls.account_type = cls.env['account.account.type'].create({
             'name': 'Test account type',
         })
-        cls.transfer_account = cls.env['account.account.template'].create({
-            'name': 'Test transfer account template',
-            'code': 'TTA',
-            'user_type_id': cls.account_type.id,
-        })
-        # An XML-ID is needed
-        cls.env['ir.model.data'].create({
-            'module': 'l10n_es_account_invoice_sequence',
-            'name': 'test_transfer_account_template',
-            'model': cls.transfer_account._name,
-            'res_id': cls.transfer_account.id,
-        })
         cls.chart = cls.env['account.chart.template'].create({
             'name': 'Other chart',
             'currency_id': cls.env.ref('base.EUR').id,
-            'transfer_account_id': cls.transfer_account.id,
+            'bank_account_code_prefix': '572',
+            'cash_account_code_prefix': '570',
+            'transfer_account_code_prefix': '572',
         })
-        cls.transfer_account.chart_template_id = cls.chart.id
         cls.journal_obj = cls.env['account.journal']
-        cls.wizard = cls.env['wizard.multi.charts.accounts'].create({
-            'company_id': cls.company.id,
-            'chart_template_id': cls.chart.id,
-            'code_digits': 6,
-            'currency_id': cls.env.ref('base.EUR').id,
-            'transfer_account_id': cls.chart.transfer_account_id.id,
-        })
-        cls.wizard.execute()
+        cls.env.user.company_id = cls.company.id
+        cls.chart.try_loading_for_current_company()
 
     def test_create_chart_of_accounts(self):
         journals = self.journal_obj.search([
