@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2011 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2013-2017 Pedro M. Baeza
 
