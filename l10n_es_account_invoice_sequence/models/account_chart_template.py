@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015-2017 Pedro M. Baeza
+# Copyright 2015-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import _, api, models, tools
@@ -7,6 +6,23 @@ from odoo import _, api, models, tools
 
 class AccountChartTemplate(models.Model):
     _inherit = "account.chart.template"
+
+    @api.multi
+    def _create_bank_journals(self, company, acc_template_ref):
+        """Write the same sequence also for the bank and cash journals."""
+        bank_journals = super()._create_bank_journals(
+            company, acc_template_ref,
+        )
+        if self.is_spanish_chart():
+            sequence = self.env['ir.sequence'].search([
+                ('name', '=', _('Journal Entries Sequence')),
+                ('company_id', '=', company.id)
+            ], limit=1)
+            bank_journals.write({
+                'sequence_id': sequence.id,
+                'refund_sequence': False,
+            })
+        return bank_journals
 
     @api.multi
     def _prepare_all_journals(self, acc_template_ref, company_id,

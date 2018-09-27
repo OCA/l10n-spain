@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015-2017 Pedro M. Baeza
+# Copyright 2015-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo.tests import common
@@ -8,6 +7,9 @@ from ..hooks import post_init_hook
 
 
 class TestCreateChart(common.SavepointCase):
+    at_install = False
+    post_install = True
+
     @classmethod
     def setUpClass(cls):
         super(TestCreateChart, cls).setUpClass()
@@ -16,16 +18,8 @@ class TestCreateChart(common.SavepointCase):
         )
         cls.chart = cls.env.ref('l10n_es.account_chart_template_pymes')
         cls.journal_obj = cls.env['account.journal']
-        cls.wizard = cls.env['wizard.multi.charts.accounts'].create({
-            'company_id': cls.company.id,
-            'chart_template_id': cls.chart.id,
-            'sale_tax_id': False,
-            'purchase_tax_id': False,
-            'code_digits': 6,
-            'currency_id': cls.env.ref('base.EUR').id,
-            'transfer_account_id': cls.chart.transfer_account_id.id,
-        })
-        cls.wizard.execute()
+        cls.env.user.company_id = cls.company.id
+        cls.chart.try_loading_for_current_company()
 
     def test_create_chart_of_accounts(self):
         journals = self.journal_obj.search([

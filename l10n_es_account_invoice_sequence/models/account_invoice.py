@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2011 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2014 Ángel Moya (Domatix)
 # Copyright 2014 Roberto Lizana (Trey)
