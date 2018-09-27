@@ -7,7 +7,7 @@ sudo: false
 cache: pip
 
 addons:
-  postgresql: "9.2" # minimal postgresql version for the daterange method
+  postgresql: "9.5"
   apt:
     packages:
       - expect-dev  # provides unbuffer utility
