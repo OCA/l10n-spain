@@ -28,7 +28,7 @@ Uso
 Para introducir datos válidos para el modelo:
 
 #. Realizar una factura de proveedor de los intereses cobrados por la empresa
-   o particular prestatario con impuesto "Retenciones 21% (préstamos)".
+   o particular prestatario con impuesto "Retenciones 19% (préstamos)".
 #. O también puede realizar una factura de proveedor del reparto de dividendos
    con el impuesto "Retenciones 19% (dividendos)".
 #. Validarla.
