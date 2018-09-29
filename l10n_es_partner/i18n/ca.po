@@ -29,113 +29,114 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_uid
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__create_uid
 msgid "Created by"
 msgstr "Creat per"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_date
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__create_date
 msgid "Created on"
 msgstr "Creat el"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_display_name
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_id
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_import_fail
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__import_fail
 msgid "Import Fail"
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import from Internet"
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import from local file"
 msgstr ""
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:47
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
-#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format
 msgid "Import spanish bank data"
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
 "Internet (from Bank of Spain). Maybe this source will be not available from "
 "certain moment in time. You will need xlrd Python library."
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard___last_update
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard____last_update
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_uid
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Darrera Actualització per"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_write_date
+#: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__write_date
 msgid "Last Updated on"
 msgstr "Darrera Actualització el"
 
 #. module: l10n_es_partner
-#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Local file mirror. This copy was updated last time on 26/10/2017."
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_lname
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__lname
 msgid "Long name"
 msgstr "Nom complert"
 
 #. module: l10n_es_partner
-#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
 "Something has failed importing data from Internet. You will need to import "
 "local data instead."
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
 "This wizard will import spanish bank data. You can choose to import it from:"
 msgstr ""
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_comercial
-#: model:ir.model.fields,field_description:l10n_es_partner.field_res_users_comercial
-#: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_form
-#: model:ir.ui.view,arch_db:l10n_es_partner.view_partner_simple_form
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner__comercial
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_users__comercial
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.view_partner_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner.view_partner_simple_form
 msgid "Trade name"
 msgstr "Nom comercial"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_vat
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__vat
 msgid "VAT code"
 msgstr "CIF"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,help:l10n_es_partner.field_res_bank_vat
+#: model:ir.model.fields,help:l10n_es_partner.field_res_bank__vat
 msgid "Value Added Tax number"
 msgstr "Codi d'Indentificació Fiscal"
 
 #. module: l10n_es_partner
-#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_website
+#: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank__website
 msgid "Website"
 msgstr "Lloc web"
 
