@@ -24,6 +24,7 @@
                             </ul>
                         </group>
                         <label colspan="4"
+                               for="import_fail"
                                attrs="{'invisible': [('import_fail', '=', False)]}"
                                string="Something has failed importing data from Internet. You will need to import local data instead."/>
                     </separator>
@@ -39,7 +40,7 @@
                 </data>
             </field>
         </record>
-    
+
         <record id="action_l10n_es_partner_import" model="ir.actions.act_window">
             <field name="name">Import spanish bank data</field>
             <field name="type">ir.actions.act_window</field>
@@ -49,7 +50,7 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
-    
+
         <!-- register on configuration -->
         <record id="config_wizard_l10n_es_partner" model="ir.actions.todo">
             <field name="name">Import spanish bank data</field>
