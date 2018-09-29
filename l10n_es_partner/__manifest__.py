@@ -2,12 +2,12 @@
 # Copyright 2013 Ignacio Ibeas <ignacio@acysos.com>
 # Copyright 2015 Tecnativa - Sergio Teruel
 # Copyright 2016 Tecnativa - Carlos Dauden
-# Copyright 2013-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2013-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 {
     "name": "Adaptación de los clientes, proveedores y bancos para España",
-    "version": "11.0.2.1.0",
+    "version": "12.0.1.0.0",
     "author": "ZikZak,"
               "Acysos,"
               "Tecnativa,"
@@ -15,6 +15,8 @@
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Localisation/Europe",
     "license": "AGPL-3",
+    "development_status": "Mature",
+    "maintainers": ['pedrobaeza'],
     "external_dependencies": {
         'python': [
             'requests',
