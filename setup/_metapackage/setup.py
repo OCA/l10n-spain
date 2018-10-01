@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo10-addon-l10n_es_account_bank_statement_import_n43',
         'odoo10-addon-l10n_es_account_banking_sepa_fsdd',
         'odoo10-addon-l10n_es_account_fiscal_year_closing',
+        'odoo10-addon-l10n_es_account_group',
         'odoo10-addon-l10n_es_account_invoice_sequence',
         'odoo10-addon-l10n_es_aeat',
         'odoo10-addon-l10n_es_aeat_mod111',
