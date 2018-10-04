@@ -1,12 +1,14 @@
 # Copyright 2016 Comunitea - Omar Castiñeira
-# Copyright 2013-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2013-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'Importación de extractos bancarios españoles (Norma 43)',
     'category': 'Accounting & Finance',
-    'version': '11.0.1.0.1',
+    'version': '12.0.1.0.0',
     'license': 'AGPL-3',
+    'development_status': 'Mature',
+    'maintainers': ['pedrobaeza'],
     'author': 'Spanish Localization Team,'
               'Tecnativa,'
               'Odoo Community Association (OCA)',
