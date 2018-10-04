@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2018 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
@@ -8,6 +7,7 @@ from odoo import fields, models
 class L10nEsAeatMapTaxLine(models.Model):
     _name = 'l10n.es.aeat.map.tax.line'
     _order = "field_number asc, id asc"
+    _description = 'AEAT tax mapping line'
 
     field_number = fields.Integer(string="Field number", required=True)
     tax_ids = fields.Many2many(
