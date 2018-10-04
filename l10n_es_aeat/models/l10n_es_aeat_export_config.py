@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
@@ -7,6 +6,7 @@ from odoo import models, fields
 
 class AeatModelExportConfig(models.Model):
     _name = 'aeat.model.export.config'
+    _description = 'AEAT export configuration'
 
     name = fields.Char(string='Name')
     model_number = fields.Char(string='Model number', size=3)

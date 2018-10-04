@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2004-2011 Pexego Sistemas Informáticos - Luis Manuel Angueira
 # Copyright 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
 # Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>

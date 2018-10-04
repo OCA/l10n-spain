@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -10,6 +9,7 @@ import openerp.addons.decimal_precision as dp
 class L10nEsAeatTaxLine(models.Model):
     _name = "l10n.es.aeat.tax.line"
     _order = "field_number asc, id asc"
+    _description = "AEAT tax line"
 
     res_id = fields.Integer(
         string="Resource ID", index=True, required=True, ondelete='cascade')
@@ -30,7 +30,9 @@ class L10nEsAeatTaxLine(models.Model):
     to_regularize = fields.Boolean(
         related='map_line_id.to_regularize', readonly=True,
     )
-    model = fields.Char(index=True, readonly=True, required=True)
+    model = fields.Char(
+        index=True, readonly=True, required=True, string="Model name",
+    )
     model_id = fields.Many2one(
         comodel_name='ir.model', string='Model',
         compute="_compute_model_id", store=True)
