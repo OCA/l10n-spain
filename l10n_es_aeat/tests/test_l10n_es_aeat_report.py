@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import fields
 from odoo.tests import common
 from odoo import exceptions
 
@@ -40,11 +40,11 @@ class TestL10nEsAeatReport(common.TransactionCase):
                 report.onchange_period_type()
                 date_start, date_end = self.period_types[period_type]
                 self.assertEqual(
-                    report.date_start, date_start,
+                    report.date_start, fields.Date.to_date(date_start),
                     "Incorrect start date for period %s: %s." % (
                         period_type, report.date_start))
                 self.assertEqual(
-                    report.date_end, date_end,
+                    report.date_end, fields.Date.to_date(date_end),
                     "Incorrect end date for period %s: %s." % (
                         period_type, report.date_end))
 

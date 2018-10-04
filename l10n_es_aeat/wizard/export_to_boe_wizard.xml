@@ -5,7 +5,7 @@
     <field name="name">Export AEAT BOE file</field>
     <field name="model">l10n.es.aeat.report.export_to_boe</field>
     <field name="arch" type="xml">
-        <form string="Export AEAT BOE file" version="7.0">
+        <form string="Export AEAT BOE file">
             <field invisible="1" name="state"/>
             <field name="name" invisible="1"/>
             <div states="open">
@@ -18,7 +18,6 @@
             </div>
             <footer states="open">
                 <button name="action_get_file" string="Export" type="object" class="oe_highlight"/>
-                <label string="or"/>
                 <button special="cancel" string="Cancel" type="object" class="oe_link"/>
             </footer>
             <footer states="get">

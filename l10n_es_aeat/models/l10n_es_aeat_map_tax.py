@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
@@ -8,6 +7,7 @@ from odoo import models, fields, api, exceptions, _
 
 class L10nEsAeatMapTax(models.Model):
     _name = 'l10n.es.aeat.map.tax'
+    _description = 'AEAT tax mapping'
 
     date_from = fields.Date(string="From Date")
     date_to = fields.Date(string="To Date")
