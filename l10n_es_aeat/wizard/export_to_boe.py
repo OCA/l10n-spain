@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2004-2011 Luis Manuel Angueira Blanco (http://pexego.es)
 # Copyright 2013 Ignacio Ibeas (http://acysos.com)
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
