@@ -53,7 +53,7 @@
                 <field name="number" invisible="1"/>
                 <field name="currency_id" invisible="1"/>
                 <h1>
-                    <label string="Report "/>
+                    <label string="Report " for="name"/>
                     <field name="name" class="oe_inline" readonly="1"/>
                 </h1>
                 <group string="Declaración"
@@ -115,12 +115,12 @@
     <field name="model">l10n.es.aeat.report</field>
     <field name="arch" type="xml">
         <search string="AEAT">
-            <filter string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
-            <filter string="In process" domain="[('state', '=', 'calculated')]" help="In process models"/>
-            <filter string="Done" domain="[('state', '=', 'done')]" help="Confirmed models"/>
-            <filter string="Cancelled" domain="[('state', '=', 'cancelled')]" help="Cancelled models"/>
-            <filter string="Fiscal year" domain="[]" context="{'group_by':'year'}"/>
-            <filter string="Company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+            <filter name="filter_draft" string="Draft" domain="[('state','=','draft')]" help="Draft models"/>
+            <filter name="filter_in_process" string="In process" domain="[('state', '=', 'calculated')]" help="In process models"/>
+            <filter name="filter_done" string="Done" domain="[('state', '=', 'done')]" help="Confirmed models"/>
+            <filter name="filter_cancel" string="Cancelled" domain="[('state', '=', 'cancelled')]" help="Cancelled models"/>
+            <filter name="group_by_year" string="Fiscal year" domain="[]" context="{'group_by':'year'}"/>
+            <filter name="group_by_company" string="Company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
         </search>
     </field>
 </record>

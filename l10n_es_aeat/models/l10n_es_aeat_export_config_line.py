@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
@@ -9,6 +8,7 @@ from odoo import models, fields, api, _
 class AeatModelExportConfigLine(models.Model):
     _name = 'aeat.model.export.config.line'
     _order = 'sequence'
+    _description = 'AEAT export configuration line'
 
     sequence = fields.Integer(string="Sequence")
     export_config_id = fields.Many2one(
