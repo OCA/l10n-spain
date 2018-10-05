@@ -36,17 +36,11 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             'company_ids': [(4, self.company.id)],
             'company_id': self.company.id,
         })
+        chart = self.env.ref('l10n_es.account_chart_template_pymes')
+        chart.try_loading_for_current_company()
         self.with_context(
-            company_id=self.company.id, force_company=self.company.id)
-        wizard = self.env['wizard.multi.charts.accounts'].create({
-            'company_id': self.company.id,
-            'chart_template_id': self.chart.id,
-            'code_digits': 6,
-            'currency_id': self.ref('base.EUR'),
-            'transfer_account_id': self.chart.transfer_account_id.id,
-        })
-        wizard.onchange_chart_template_id()
-        wizard.execute()
+            company_id=self.company.id, force_company=self.company.id,
+        )
         return True
 
     def _accounts_search(self):
