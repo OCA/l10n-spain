@@ -50,7 +50,7 @@ addon | version | summary
 [l10n_es_aeat_mod340_type0](l10n_es_aeat_mod340_type0/) | 8.0.1.0.0 | Generación de fichero modelo 340. Registro tipo 0
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 8.0.1.5.0 | Modelo 347 AEAT
 [l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 8.0.2.2.0 | Modelo 349 AEAT
-[l10n_es_aeat_sii](l10n_es_aeat_sii/) | 8.0.2.17.3 | Suministro Inmediato de Información en el IVA
+[l10n_es_aeat_sii](l10n_es_aeat_sii/) | 8.0.2.17.5 | Suministro Inmediato de Información en el IVA
 [l10n_es_aeat_vat_prorrate](l10n_es_aeat_vat_prorrate/) | 8.0.2.0.2 | AEAT - Prorrata de IVA
 [l10n_es_aeat_vat_prorrate_asset](l10n_es_aeat_vat_prorrate_asset/) | 8.0.1.0.1 | AEAT - Prorrata de IVA - Extensión para los activos
 [l10n_es_cnae](l10n_es_cnae/) | 8.0.1.0.0 | Extiende los códigos NACE europeos con los CNAE españoles
@@ -64,6 +64,9 @@ addon | version | summary
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 8.0.1.0.0 | Partner Mercantil
 [l10n_es_payment_order](l10n_es_payment_order/) | 8.0.1.7.0 | Exportación de ficheros bancarios CSB 19, 32, 34 y 58
 [l10n_es_payment_order_confirminet](l10n_es_payment_order_confirminet/) | 8.0.1.0.0 | Exportación de fichero bancario Confirminet
+[l10n_es_payment_order_confirming_bankia](l10n_es_payment_order_confirming_bankia/) | 8.0.1.0.0 | Exportación de fichero bancario Confirming para Bankia
+[l10n_es_payment_order_confirming_popular](l10n_es_payment_order_confirming_popular/) | 8.0.1.0.0 | Exportación de fichero bancario Confirming para Banco Popular
+[l10n_es_payment_order_confirming_sabadell](l10n_es_payment_order_confirming_sabadell/) | 8.0.1.0.0 | Exportación de fichero bancario Confirming para Banco Sabadell
 [l10n_es_pos](l10n_es_pos/) | 8.0.1.0.0 | Punto de venta adaptado a la legislación española
 [l10n_es_subcontractor_certificate](l10n_es_subcontractor_certificate/) | 8.0.1.0.0 | Certificado de subcontratista
 [l10n_es_toponyms](l10n_es_toponyms/) | 8.0.2.0.1 | Topónimos españoles
