@@ -35,19 +35,23 @@
                        colspan="4">
                     <group string="Work income">
                         <label string="Monetary:"
+                               for="casilla_01"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_01"/>
                         <separator/>
                         <label string="In kind:"
+                               for="casilla_04"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_04"/>
                     </group>
                     <group string="Business income">
                         <label string="Monetary:"
+                               for="casilla_07"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_07"/>
                         <separator/>
                         <label string="In kind:"
+                               for="casilla_10"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_10"/>
                         <field name="casilla_11" widget="monetary"
@@ -57,6 +61,7 @@
                     </group>
                     <group string="Awards">
                         <label string="Monetary:"
+                               for="casilla_13"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_13"/>
                         <field name="casilla_14" widget="monetary"
@@ -64,6 +69,7 @@
                         <field name="casilla_15" widget="monetary"
                                options="{'currency_field': 'currency_id'}"/>
                         <label string="In kind:"
+                               for="casilla_16"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_16"/>
                         <field name="casilla_17" widget="monetary"
@@ -73,6 +79,7 @@
                     </group>
                     <group string="Capital gains derived from the forest exploitation">
                         <label string="Monetary:"
+                               for="casilla_19"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_19"/>
                         <field name="casilla_20" widget="monetary"
@@ -80,6 +87,7 @@
                         <field name="casilla_21" widget="monetary"
                                options="{'currency_field': 'currency_id'}"/>
                         <label string="In kind:"
+                               for="casilla_22"
                                class="oe_force_bold" colspan="2"/>
                         <field name="casilla_22"/>
                         <field name="casilla_23" widget="monetary"
