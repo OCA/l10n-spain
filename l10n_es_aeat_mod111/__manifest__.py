@@ -1,10 +1,10 @@
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2017-2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
 {
     'name': 'AEAT modelo 111',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': "Localisation/Accounting",
     'author': "AvanzOSC,"
               "RGB Consulting SL,"
