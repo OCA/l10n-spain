@@ -2,7 +2,7 @@
 <odoo>
 
     <template id="l10n_es_aeat_mod349.report_aeat_mod349_document">
-        <t t-call="web.html_container">
+        <t t-call="web.external_layout">
             <div class="page">
                 <div class="row">
                     <div class="col-xs-12 text-center" id="title">
