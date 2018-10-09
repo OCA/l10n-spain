@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <record id="aeat_state_code_mapping_keys_01" model="aeat.state.code.mapping">
+            <field name="aeat_code">01</field>
+            <field name="state_code">VI</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_02" model="aeat.state.code.mapping">
+            <field name="aeat_code">02</field>
+            <field name="state_code">AB</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_03" model="aeat.state.code.mapping">
+            <field name="aeat_code">03</field>
+            <field name="state_code">A</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_04" model="aeat.state.code.mapping">
+            <field name="aeat_code">04</field>
+            <field name="state_code">AL</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_33" model="aeat.state.code.mapping">
+            <field name="aeat_code">33</field>
+            <field name="state_code">O</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_05" model="aeat.state.code.mapping">
+            <field name="aeat_code">05</field>
+            <field name="state_code">AV</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_06" model="aeat.state.code.mapping">
+            <field name="aeat_code">06</field>
+            <field name="state_code">BA</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_08" model="aeat.state.code.mapping">
+            <field name="aeat_code">08</field>
+            <field name="state_code">B</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_09" model="aeat.state.code.mapping">
+            <field name="aeat_code">09</field>
+            <field name="state_code">BU</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_10" model="aeat.state.code.mapping">
+            <field name="aeat_code">10</field>
+            <field name="state_code">CC</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_11" model="aeat.state.code.mapping">
+            <field name="aeat_code">11</field>
+            <field name="state_code">CA</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_39" model="aeat.state.code.mapping">
+            <field name="aeat_code">39</field>
+            <field name="state_code">S</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_12" model="aeat.state.code.mapping">
+            <field name="aeat_code">12</field>
+            <field name="state_code">CS</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_51" model="aeat.state.code.mapping">
+            <field name="aeat_code">51</field>
+            <field name="state_code">CE</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_13" model="aeat.state.code.mapping">
+            <field name="aeat_code">13</field>
+            <field name="state_code">CR</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_14" model="aeat.state.code.mapping">
+            <field name="aeat_code">14</field>
+            <field name="state_code">CO</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_15" model="aeat.state.code.mapping">
+            <field name="aeat_code">15</field>
+            <field name="state_code">C</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_16" model="aeat.state.code.mapping">
+            <field name="aeat_code">16</field>
+            <field name="state_code">CU</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_17" model="aeat.state.code.mapping">
+            <field name="aeat_code">17</field>
+            <field name="state_code">GI</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_18" model="aeat.state.code.mapping">
+            <field name="aeat_code">18</field>
+            <field name="state_code">GR</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_19" model="aeat.state.code.mapping">
+            <field name="aeat_code">19</field>
+            <field name="state_code">GU</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_20" model="aeat.state.code.mapping">
+            <field name="aeat_code">20</field>
+            <field name="state_code">SS</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_21" model="aeat.state.code.mapping">
+            <field name="aeat_code">21</field>
+            <field name="state_code">H</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_22" model="aeat.state.code.mapping">
+            <field name="aeat_code">22</field>
+            <field name="state_code">HU</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_07" model="aeat.state.code.mapping">
+            <field name="aeat_code">07</field>
+            <field name="state_code">PM</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_23" model="aeat.state.code.mapping">
+            <field name="aeat_code">23</field>
+            <field name="state_code">J</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_24" model="aeat.state.code.mapping">
+            <field name="aeat_code">24</field>
+            <field name="state_code">LE</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_25" model="aeat.state.code.mapping">
+            <field name="aeat_code">25</field>
+            <field name="state_code">L</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_27" model="aeat.state.code.mapping">
+            <field name="aeat_code">27</field>
+            <field name="state_code">LU</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_28" model="aeat.state.code.mapping">
+            <field name="aeat_code">28</field>
+            <field name="state_code">M</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_29" model="aeat.state.code.mapping">
+            <field name="aeat_code">29</field>
+            <field name="state_code">MA</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_52" model="aeat.state.code.mapping">
+            <field name="aeat_code">52</field>
+            <field name="state_code">ME</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_30" model="aeat.state.code.mapping">
+            <field name="aeat_code">30</field>
+            <field name="state_code">MU</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_31" model="aeat.state.code.mapping">
+            <field name="aeat_code">31</field>
+            <field name="state_code">NA</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_32" model="aeat.state.code.mapping">
+            <field name="aeat_code">321</field>
+            <field name="state_code">OR</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_34" model="aeat.state.code.mapping">
+            <field name="aeat_code">34</field>
+            <field name="state_code">P</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_35" model="aeat.state.code.mapping">
+            <field name="aeat_code">35</field>
+            <field name="state_code">GC</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_36" model="aeat.state.code.mapping">
+            <field name="aeat_code">36</field>
+            <field name="state_code">PO</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_26" model="aeat.state.code.mapping">
+            <field name="aeat_code">26</field>
+            <field name="state_code">LO</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_37" model="aeat.state.code.mapping">
+            <field name="aeat_code">37</field>
+            <field name="state_code">SA</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_38" model="aeat.state.code.mapping">
+            <field name="aeat_code">38</field>
+            <field name="state_code">TF</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_40" model="aeat.state.code.mapping">
+            <field name="aeat_code">40</field>
+            <field name="state_code">SG</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_41" model="aeat.state.code.mapping">
+            <field name="aeat_code">41</field>
+            <field name="state_code">SE</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_42" model="aeat.state.code.mapping">
+            <field name="aeat_code">42</field>
+            <field name="state_code">SO</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_43" model="aeat.state.code.mapping">
+            <field name="aeat_code">43</field>
+            <field name="state_code">T</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_44" model="aeat.state.code.mapping">
+            <field name="aeat_code">44</field>
+            <field name="state_code">TE</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_45" model="aeat.state.code.mapping">
+            <field name="aeat_code">45</field>
+            <field name="state_code">TO</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_46" model="aeat.state.code.mapping">
+            <field name="aeat_code">46</field>
+            <field name="state_code">V</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_47" model="aeat.state.code.mapping">
+            <field name="aeat_code">47</field>
+            <field name="state_code">VI</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_48" model="aeat.state.code.mapping">
+            <field name="aeat_code">48</field>
+            <field name="state_code">BI</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_49" model="aeat.state.code.mapping">
+            <field name="aeat_code">49</field>
+            <field name="state_code">ZA</field>
+        </record>
+
+        <record id="aeat_state_code_mapping_keys_50" model="aeat.state.code.mapping">
+            <field name="aeat_code">50</field>
+            <field name="state_code">Z</field>
+        </record>
+
+</odoo>
