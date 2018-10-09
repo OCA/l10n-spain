@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_mod190_form" model="ir.ui.view">
+            <field name="name">res.partner.mod190.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="groups_id" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]"/>
+            <field name="arch" type="xml">
+                <page name="sales_purchases" position="after">
+                    <page string="Modelo 190" name="mod190" >
+                        <form>
+                            <sheet>
+                                <group>
+                                    <group>
+                                        <field name="incluir_190"/>
+                                    </group>
+                                </group>
+
+                                <group string="Performance key" name="acc_sale"
+                                       attrs="{'invisible':[('incluir_190', '=', False)]}">
+                                    <field name="performance_key" widget="selection"/>
+                                    <field name="subclave" widget="selection"
+                                           attrs="{'invisible': ['|', ('performance_key', '=', 1), ('performance_key', '=', False)]}"/>
+                                    <field name="ad_required" invisible="1"/>
+                                </group>
+                                <div class="row" attrs="{'invisible':[('incluir_190', '=', False)]}">
+                                    <h3 style="border-bottom: 1px solid black;">
+                                        <span>Perception data</span>
+                                    </h3>
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="a_nacimiento" attrs="{'required': [('ad_required', '=', 2)]}"/>
+                                            <field name="discapacidad"/>
+                                            <field name="ceuta_melilla"/>
+                                            <field name="movilidad_geografica"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="representante_legal_vat"/>
+                                            <field name="situacion_familiar"
+                                                   attrs="{'required': [('ad_required', '=', 2)]}"/>
+                                            <field name="nif_conyuge"/>
+                                            <field name="contrato_o_relacion"
+                                                   attrs="{'required': [('performance_key', '=', 1)]}"/>
+                                        </group>
+                                    </div>
+                                </div>
+                                <div class="row" attrs="{'invisible':[('incluir_190', '=', False)]}">
+                                    <h3 style="border-bottom: 1px solid black;">
+                                        <span>Sons and other decendents</span>
+                                    </h3>
+                                    <div class="col-xs-4">
+                                        <group string="Lower than 3 years">
+                                            <field name="hijos_y_descendientes_m"/>
+                                            <field name="hijos_y_descendientes_m_entero"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <group string="Rest">
+                                            <field name="hijos_y_descendientes"/>
+                                            <field name="hijos_y_descendientes_entero"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <group string="First 3 compute">
+                                            <field name="computo_primeros_hijos_1" string="1"/>
+                                            <field name="computo_primeros_hijos_2" string="2"/>
+                                            <field name="computo_primeros_hijos_3" string="3"/>
+                                        </group>
+                                    </div>
+                                </div>
+
+                                <div class="row" attrs="{'invisible':[('incluir_190', '=', False)]}">
+                                    <h3 style="border-bottom: 1px solid black;">
+                                        <span>Sons and other decendents with discapacity</span>
+                                    </h3>
+                                    <div class="col-xs-4">
+                                        <group string="Between 33% and 65%">
+                                            <field name="hijos_y_desc_discapacidad_33"/>
+                                            <field name="hijos_y_desc_discapacidad_entero_33"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <group string="Reduced mobility">
+                                            <field name="hijos_y_desc_discapacidad_mr"/>
+                                            <field name="hijos_y_desc_discapacidad_entero_mr"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <group string="Bigger than 65%">
+                                            <field name="hijos_y_desc_discapacidad_66"/>
+                                            <field name="hijos_y_desc_discapacidad_entero_66"/>
+                                        </group>
+                                    </div>
+                                </div>
+
+                                <div class="row" attrs="{'invisible':[('incluir_190', '=', False)]}">
+                                    <h3 style="border-bottom: 1px solid black;">
+                                        <span>Ascendents</span>
+                                    </h3>
+                                    <div class="col-xs-6">
+                                        <group string="Lower than 75 years">
+                                            <field name="ascendientes"/>
+                                            <field name="ascendientes_entero"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <group string="Bigger than 75 years">
+                                            <field name="ascendientes_m75"/>
+                                            <field name="ascendientes_entero_m75"/>
+                                        </group>
+                                    </div>
+                                </div>
+
+                                <div class="row" attrs="{'invisible':[('incluir_190', '=', False)]}">
+                                    <h3 style="border-bottom: 1px solid black;">
+                                        <span>Ascendents with discapacity</span>
+                                    </h3>
+                                    <div class="col-xs-4">
+                                        <group string="Between 33% and 65%">
+                                            <field name="ascendientes_discapacidad_33"/>
+                                            <field name="ascendientes_discapacidad_entero_33"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <group string="Reduced mobility">
+                                            <field name="ascendientes_discapacidad_mr"/>
+                                            <field name="ascendientes_discapacidad_entero_mr"/>
+                                        </group>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <group string="Bigger than 65%">
+                                            <field name="ascendientes_discapacidad_66"/>
+                                            <field name="ascendientes_discapacidad_entero_66"/>
+                                        </group>
+                                    </div>
+                                </div>
+                            </sheet>
+                        </form>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+    </data>
+</odoo>
