@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="view_l10n_es_aeat_mod190_report_line_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.line.tree</field>
+        <field name="model">l10n.es.aeat.mod190.report.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_mod190_report_line_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.line.form</field>
+        <field name="model">l10n.es.aeat.mod190.report.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <group>
+                                <field name="partner_id" string="Razón social"
+                                       options="{'no_create_edit': True}"
+                                       style="max-width: 350px;  width: 350px"/>
+                                <field name="partner_vat"
+                                       string="NIF perceptor"
+                                       style="max-width: 100px;  width: 100px"/>
+                                <field name="representante_legal_vat"
+                                       string="NIF representante legal"
+                                       style="max-width: 100px;  width: 100px"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-4">
+                            <group>
+                                <field name="codigo_provincia"
+                                       string="Provincia"/>
+                            </group>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3 style="border-bottom: 1px solid black;">
+                            Datos de la percepción
+                        </h3>
+                        <div class="col-xs-9">
+                            <group>
+                                <field name="clave_percepcion" string="Clave"
+                                       widget="selection"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-3">
+                            <group>
+                                <field name="subclave" string="Subclave"
+                                       options="{'no_create_edit': True}"
+                                       style="max-width: 50px;  width: 50px"/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <group>
+                                <field name="ceuta_melilla"
+                                       string="Ceuta o Melilla"
+                                       style="max-width: 50px;  width: 50px"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-3">
+                            <group>
+                                <field name="ejercicio_devengo"
+                                       string="Ejercicio de devengo"
+                                       style="max-width: 75px;  width: 75px"/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <group string="Percepciones dinerarias NO derivadas de incapacidad laboral">
+                                <field name="percepciones_dinerarias"
+                                       string="Percepción integra"/>
+                                <field name="retenciones_dinerarias"
+                                       string="Retenciones practicadas"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-6">
+                            <group string="Percepciones en especie NO derivadas de incapacidad laboral">
+                                <field name="percepciones_en_especie"
+                                       string="Percepción integra"/>
+                                <field name="ingresos_a_cuenta_efectuados"
+                                       string="Ingresos a cuenta efectuados"/>
+                                <field name="ingresos_a_cuenta_repercutidos"
+                                       string="Ingresos a cuenta repercutidos"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-6">
+                            <group string="Percepciones dinerarias derivadas de incapacidad laboral">
+                                <field name="percepciones_dinerarias_incap"
+                                       string="Percepción integra"/>
+                                <field name="retenciones_dinerarias_incap"
+                                       string="Retenciones practicadas"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-6">
+                            <group string="Percepciones en especie derivadas de incapacidad laboral">
+                                <field name="percepciones_en_especie_incap"
+                                       string="Percepción integra"/>
+                                <field name="ingresos_a_cuenta_efectuados_incap"
+                                       string="Retenciones practicadas"/>
+                                <field name="ingresos_a_cuenta_repercutidos_incap"
+                                       string="Ingresos a cuenta en especie"/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3 style="border-bottom: 1px solid black;">
+                            <span>
+                                Datos adicionales (solo en las claves A, B.01, B.03, C, E.01 y E.02)
+                            </span>
+                        </h3>
+                        <div class="col-xs-6">
+                            <group>
+                                <field name="a_nacimiento"
+                                       string="Año de nacimiento"/>
+                                <field name="discapacidad"
+                                       string="Discapacidad"/>
+                                <field name="movilidad_geografica"
+                                       string="Movilidad geográfica"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-6">
+                            <group>
+                                <field name="situacion_familiar"
+                                       string="Situación familiar"/>
+                                <field name="nif_conyuge"
+                                       string="NIF del conyuge"/>
+                                <field name="contrato_o_relacion"
+                                       string="Contrato o relación"/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <group>
+                                <field name="reduccion_aplicable"
+                                       string="Reducciones aplicables"/>
+                                <field name="gastos_deducibles"
+                                       string="Gastos deducibles"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-6">
+                            <group>
+                                <field name="pensiones_compensatorias"
+                                       string="Pensiones compensatorias"/>
+                                <field name="anualidades_por_alimentos"
+                                       string="Anualidades por alimentos"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-12">
+                            <group>
+                                <field name="prestamos_vh"
+                                       string="Comunicación por el perceptor que ha destinado cantidades
+                                                para la adquisición o rehabilitación de su vivienda habitual
+                                                utilizando financiación ajena."/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3 style="border-bottom: 1px solid black;">
+                            <span>Sons and other decendents</span>
+                        </h3>
+                        <div class="col-xs-4">
+                            <group string="Lower than 3 years">
+                                <field name="hijos_y_descendientes_m"/>
+                                <field name="hijos_y_descendientes_m_entero"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-4">
+                            <group string="Rest">
+                                <field name="hijos_y_descendientes"/>
+                                <field name="hijos_y_descendientes_entero"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-4">
+                            <group string="First 3 compute">
+                                <field name="computo_primeros_hijos_1" string="1"/>
+                                <field name="computo_primeros_hijos_2" string="2"/>
+                                <field name="computo_primeros_hijos_3" string="3"/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3 style="border-bottom: 1px solid black;">
+                            <span>Sons and other decendents with discapacity</span>
+                        </h3>
+                        <div class="col-xs-4">
+                            <group string="Between 33% and 65%">
+                                <field name="hijos_y_desc_discapacidad_33"/>
+                                <field name="hijos_y_desc_discapacidad_entero_33"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-4">
+                            <group string="Reduced mobility">
+                                <field name="hijos_y_desc_discapacidad_mr"/>
+                                <field name="hijos_y_desc_discapacidad_entero_mr"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-4">
+                            <group string="Bigger than 65%">
+                                <field name="hijos_y_desc_discapacidad_66"/>
+                                <field name="hijos_y_desc_discapacidad_entero_66"/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3 style="border-bottom: 1px solid black;">
+                            <span>Ascendents</span>
+                        </h3>
+                        <div class="col-xs-6">
+                            <group string="Lower than 75 years">
+                                <field name="ascendientes"/>
+                                <field name="ascendientes_entero"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-6">
+                            <group string="Bigger than 75 years">
+                                <field name="ascendientes_m75"/>
+                                <field name="ascendientes_entero_m75"/>
+                            </group>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3 style="border-bottom: 1px solid black;">
+                            <span>Ascendents with discapacity</span>
+                        </h3>
+                        <div class="col-xs-4">
+                            <group string="Between 33% and 65%">
+                                <field name="ascendientes_discapacidad_33"/>
+                                <field name="ascendientes_discapacidad_entero_33"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-4">
+                            <group string="Reduced mobility">
+                                <field name="ascendientes_discapacidad_mr"/>
+                                <field name="ascendientes_discapacidad_entero_mr"/>
+                            </group>
+                        </div>
+                        <div class="col-xs-4">
+                            <group string="Bigger than 65%">
+                                <field name="ascendientes_discapacidad_66"/>
+                                <field name="ascendientes_discapacidad_entero_66"/>
+                            </group>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>
