@@ -144,3 +144,9 @@ class TestL10nEsPartner(common.SavepointCase):
         self.assertEqual(
             partner2.display_name, 'Nombre comercial (Empresa de prueba)',
         )
+        partner2.write({
+            'comercial': 'Nuevo nombre',
+        })
+        self.assertEqual(
+            partner2.display_name, 'Nuevo nombre (Empresa de prueba)',
+        )
