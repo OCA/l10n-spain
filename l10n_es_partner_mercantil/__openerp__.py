@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
 # Copyright 2009 Spanish Localization Team
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Partner Mercantil",
     "summary": u"Añade los datos del registro mercantil a la empresa",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Spanish Localization Team, "
               "Tecnativa, "
               "Odoo Community Association (OCA)",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Localization/Europe",
     "license": "AGPL-3",
     "depends": [
