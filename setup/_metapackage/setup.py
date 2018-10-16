@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_mod111',
         'odoo12-addon-l10n_es_aeat_mod303',
         'odoo12-addon-l10n_es_partner',
+        'odoo12-addon-l10n_es_partner_mercantil',
     ],
     classifiers=[
         'Programming Language :: Python',
