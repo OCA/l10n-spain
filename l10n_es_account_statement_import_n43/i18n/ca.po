@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: model:ir.ui.view,arch_db:l10n_es_account_bank_statement_import_n43.account_bank_statement_import_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_bank_statement_import_n43.account_bank_statement_import_view
 msgid "AEB norm 43 (.n43)"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_journal_n43_date_type
+#: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_journal__n43_date_type
 msgid "Date type for N43 Import"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgid "Journal"
 msgstr "Diari"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: model:ir.ui.view,arch_db:l10n_es_account_bank_statement_import_n43.view_account_journal_form_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_bank_statement_import_n43.view_account_journal_form_n43
 msgid "Norm 43 options"
 msgstr ""
 
