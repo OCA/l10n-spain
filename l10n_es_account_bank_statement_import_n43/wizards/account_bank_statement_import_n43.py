@@ -180,7 +180,7 @@ class AccountBankStatementImport(models.TransientModel):
                 # CTRL-Z (^Z), is often used as an end-of-file marker in DOS
                 continue
             else:  # pragma: no cover
-                raise exceptions.UserError(
+                raise exceptions.ValidationError(
                     _('Record type %s is not valid.') % raw_line[0:2])
             # Update the record counter
             st_data['_num_records'] += 1
