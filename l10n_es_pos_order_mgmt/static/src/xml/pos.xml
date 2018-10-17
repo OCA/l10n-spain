@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="OrderListScreenWidget">
+        <t t-if="widget.pos.config.iface_l10n_es_simplified_invoice"
+           t-jquery="th[name='th_ol_ref']" t-operation="replace">
+            <th name="th_ol_l10n_simp_inv">Simp. Inv.</th>
+        </t>
+    </t>
+
+    <t t-extend="OrderLine">
+        <t t-if="widget.pos.config.iface_l10n_es_simplified_invoice"
+           t-jquery="td[name='td_ol_name']" t-operation="replace">
+            <td name="td_ol_l10n_simp_inv"><t t-esc='order.l10n_es_simplified_invoice_number or order.simplified_invoice'/></td>
+        </t>
+    </t>
+
+    <t t-extend="PosTicket">
+        <t t-jquery="t[t-esc='order.simplified_invoice']" t-operation="after">
+            <br/>
+            <t t-if="order.origin_simplified_invoice">
+                Origin Simp. Inv.: <t t-esc="order.origin_simplified_invoice"/>
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="OrderWidget">
+        <t t-if="order.origin_simplified_invoice" t-jquery="t[name='order-return-uid']" t-operation="replace">
+            <t t-esc="order.origin_simplified_invoice"/>
+        </t>
+    </t>
+
+</templates>
