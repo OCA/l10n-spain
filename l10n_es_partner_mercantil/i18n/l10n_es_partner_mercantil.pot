@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,19 +14,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_partner_mercantil
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_libro
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_libro
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_libro
 msgid "Book"
 msgstr ""
 
 #. module: l10n_es_partner_mercantil
-#: model:ir.ui.view,arch_db:l10n_es_partner_mercantil.view_partner_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_partner_mercantil.view_partner_form
 msgid "Commercial Info"
 msgstr ""
 
 #. module: l10n_es_partner_mercantil
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_registro_mercantil
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_registro_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_registro_mercantil
 msgid "Commercial Registry"
 msgstr ""
 
@@ -36,26 +34,22 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_partner_mercantil
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_folio
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_folio
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_folio
 msgid "Page"
 msgstr ""
 
 #. module: l10n_es_partner_mercantil
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_seccion
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_seccion
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_seccion
 msgid "Section"
 msgstr ""
 
 #. module: l10n_es_partner_mercantil
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_hoja
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_hoja
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_hoja
 msgid "Sheet"
 msgstr ""
 
 #. module: l10n_es_partner_mercantil
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner_es_tomo
-#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users_es_tomo
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_tomo
 msgid "Volume"
 msgstr ""
 
