@@ -1,0 +1,1807 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.es/Facturae/Extensions/Utilities" targetNamespace="http://www.facturae.es/Facturae/Extensions/Utilities">
+	<xs:element name="UtilitiesExtension">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"> Element ORIGIN of Utilities Extension. </xs:documentation>
+			<xs:documentation xml:lang="es"> Elemento ORIGEN de la Extension de las Utilities. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Version" type="TextMax10Type">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Version. </xs:documentation>
+						<xs:documentation xml:lang="es"> Version. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="DatosDelSuministro" type="DatosDelSuministroType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Data supply. </xs:documentation>
+						<xs:documentation xml:lang="es"> Datos del suministro. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesMedida" type="UtilitiesMedidaType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Measure. </xs:documentation>
+						<xs:documentation xml:lang="es"> Medida. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesDesgloseConsumos" type="UtilitiesDesgloseConsumosType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Breakdown of charges/consumptions. </xs:documentation>
+						<xs:documentation xml:lang="es"> Desglose de consumos. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesDesglosePrecios" type="UtilitiesDesglosePreciosType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Breakdown of prices. </xs:documentation>
+						<xs:documentation xml:lang="es"> Desglose de precios. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesHistoricoConsumos" type="UtilitiesHistoricoConsumosType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Charges/Consumptions history. </xs:documentation>
+						<xs:documentation xml:lang="es"> Histórico de consumos. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesMensajesReglamentarios" type="UtilitiesMensajesReglamentariosType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Statutory messages. </xs:documentation>
+						<xs:documentation xml:lang="es"> Mensajes reglamentarios. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesMensajesNoReglamentarios" type="UtilitiesMensajesNoReglamentariosType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> No statutory messages. </xs:documentation>
+						<xs:documentation xml:lang="es"> Mensajes no reglamentarios. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesAtrAsociado" type="UtilitiesAtrAsociadoType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Third Party Network Access associated. </xs:documentation>
+						<xs:documentation xml:lang="es"> Acceso de Terceros a la Red asociado. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="UtilitiesConformidades" type="UtilitiesConformidadesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Consents. </xs:documentation>
+						<xs:documentation xml:lang="es"> Conformidades. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CYIIRecapFactura" type="CYIIRecapFacturaType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Invoice summary of CYII. </xs:documentation>
+						<xs:documentation xml:lang="es"> Recapitulación de la factura del Canal de Isabel II. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ConceptosFacturaAgrupada" type="ConceptosFacturaAgrupadaType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Group invoice items. </xs:documentation>
+						<xs:documentation xml:lang="es"> Conceptos de factura agrupada. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="DatosPagoAdicionales" type="DatosPagoAdicionalesType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Additional payment details. </xs:documentation>
+						<xs:documentation xml:lang="es"> Datos de pago adicionales. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Complex Types -->
+	<xs:complexType name="DatosDelSuministroType">
+		<xs:sequence>
+			<xs:element name="CUPS" type="TextMax24Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Universal Supply Point Code. </xs:documentation>
+					<xs:documentation xml:lang="es"> Código Universal de Punto de Suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DireccionSuministro" type="DireccionSuministroType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply address. </xs:documentation>
+					<xs:documentation xml:lang="es"> Dirección de suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contrato" type="ContratoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Contract. </xs:documentation>
+					<xs:documentation xml:lang="es"> Contrato. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PotenciasCaudales" type="PotenciasCaudalesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Caudal powers. </xs:documentation>
+					<xs:documentation xml:lang="es"> Potencias caudales. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Distribuidora" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Distributor. </xs:documentation>
+					<xs:documentation xml:lang="es"> Distribuidora. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReferenciaLegal" type="ReferenciaLegalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Legal reference. </xs:documentation>
+					<xs:documentation xml:lang="es"> Referencia legal. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tarifa" type="TarifaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Tariff. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tarifa. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Usos" type="UsosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Uses. </xs:documentation>
+					<xs:documentation xml:lang="es"> Usos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Bonificaciones" type="BonificacionesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Bonuses. </xs:documentation>
+					<xs:documentation xml:lang="es"> Bonificaciones. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroMeses" type="DoubleFourDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Number of months. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de meses. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TitularRed" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Network holder. </xs:documentation>
+					<xs:documentation xml:lang="es"> Titular de la red. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoInstalacionTP" type="TextMax3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> TP instalation type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de instalación TP. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContratoTP" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> TP Contract. </xs:documentation>
+					<xs:documentation xml:lang="es"> Contrato TP. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoReparto" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Distribution charge/consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo de reparto. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroServicio" type="TextMax13Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Service number. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de servicio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZonaUrbana" type="SiNoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Urban zone. </xs:documentation>
+					<xs:documentation xml:lang="es"> Zona urbana. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OT" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> OT. </xs:documentation>
+					<xs:documentation xml:lang="es"> OT. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Saneamiento" type="SiNoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Cleaning-up. </xs:documentation>
+					<xs:documentation xml:lang="es"> Saneamiento. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SaldoContrato" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Contract balance. </xs:documentation>
+					<xs:documentation xml:lang="es"> Saldo del contrato. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NombreBanco" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Bank name. </xs:documentation>
+					<xs:documentation xml:lang="es"> Nombre del banco. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TitularBancario" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Bank holder. </xs:documentation>
+					<xs:documentation xml:lang="es"> Titular bancario. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OrigenFactura" type="TextMax2Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Invoice origin. </xs:documentation>
+					<xs:documentation xml:lang="es"> Origen de factura. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IDDocumento" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Document ID. </xs:documentation>
+					<xs:documentation xml:lang="es"> ID del documento. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAPagar" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Total to pay. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total a pagar. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImporteCanal" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Canal amount. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe del canal. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImporteNoCanal" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> No canal amount. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe que no pertenece al canal. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Agrupacion" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Association. </xs:documentation>
+					<xs:documentation xml:lang="es"> Agrupación. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoefK" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> K Coefficient. </xs:documentation>
+					<xs:documentation xml:lang="es"> Coeficiente K. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ModoCalculoConsumo" type="TextMax3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumption calculation way. </xs:documentation>
+					<xs:documentation xml:lang="es"> Modo de cálculo del consumo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DireccionSuministroType">
+		<xs:sequence>
+			<xs:element name="Direccion" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply address. </xs:documentation>
+					<xs:documentation xml:lang="es"> Dirección de suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoPostal" type="TextMax5Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply postal code. </xs:documentation>
+					<xs:documentation xml:lang="es"> Codigo postal del suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Poblacion" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply city. </xs:documentation>
+					<xs:documentation xml:lang="es"> Ciudad del suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Provincia" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply province. </xs:documentation>
+					<xs:documentation xml:lang="es"> Provincia del suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pais" type="TextMax3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply country. </xs:documentation>
+					<xs:documentation xml:lang="es"> País del suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RefCatastral" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply catastral reference. </xs:documentation>
+					<xs:documentation xml:lang="es"> Referencia catastral del Suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContratoType">
+		<xs:sequence>
+			<xs:element name="RefContratoEmpresa" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Company contract reference. </xs:documentation>
+					<xs:documentation xml:lang="es"> Referencia del contrato de empresa. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReferenciaPropiaCliente" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Client own reference. </xs:documentation>
+					<xs:documentation xml:lang="es"> Referencia propia de cliente. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PotenciasCaudalesType">
+		<xs:sequence>
+			<xs:element name="PotenciaCaudal" type="PotenciaCaudalType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Caudal power. </xs:documentation>
+					<xs:documentation xml:lang="es"> Potencia caudal. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PotenciaCaudalType">
+		<xs:sequence>
+			<xs:element name="Tipo" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Valor" type="DoubleFourDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Value. </xs:documentation>
+					<xs:documentation xml:lang="es"> Valor. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnidadMedida" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Unit of measure. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidad de medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferenciaLegalType">
+		<xs:sequence>
+			<xs:element name="BOEBOCA" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> BOE / BOCA. </xs:documentation>
+					<xs:documentation xml:lang="es"> Boletin Oficial del Estado / Boletín Oficial de Canarias. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaBOEBOCA" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> BOE / BOCA date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha del Boletín Oficial del Estado / Islas Canarias. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TarifaType">
+		<xs:sequence>
+			<xs:element name="CodigoTarifa" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Tariff code. </xs:documentation>
+					<xs:documentation xml:lang="es"> Código de tarifa. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaCambioTarifa" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Change tariff date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha de cambio de tarifa. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoTarifa" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Tariff type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de tarifa. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UsosType">
+		<xs:sequence>
+			<xs:element name="NumeroViviendas" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Number of homes. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de viviendas. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroLocales" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Number of businesses. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de locales. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroAsimilados" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Number of assimilateds. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de asimilados. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BonificacionesType">
+		<xs:sequence>
+			<xs:element name="FamiliasNumerosasA" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Large family A type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Familia numerosa de tipo A. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FamiliasNumerosasB" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Large family B type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Familia numerosa de tipo B. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ViviendasNumerosasA" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Large home A type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Vivienda numerosa de tipo A. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ViviendasNumerosasB" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Large home B type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Vivienda numerosa de tipo B. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExencionSocial" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Social exemption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Exención social. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesMedidaType">
+		<xs:sequence>
+			<xs:element name="MedidasSobreEquipo" type="MedidasSobreEquipoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Measures over the equipment. </xs:documentation>
+					<xs:documentation xml:lang="es"> Medidas sobre el equipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cisternas" type="CisternasType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Cisterns. </xs:documentation>
+					<xs:documentation xml:lang="es"> Cisternas. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatosCalculoDeLaQd" type="DatosCalculoDeLaQdType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Qd calculation data. </xs:documentation>
+					<xs:documentation xml:lang="es"> Datos de cálculo de la Qd. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MedidasSobreEquipoType">
+		<xs:sequence>
+			<xs:element name="MedidaSobreEquipo" type="MedidaSobreEquipoType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Measure over the equipment. </xs:documentation>
+					<xs:documentation xml:lang="es"> Medida sobre el equipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MedidaSobreEquipoType">
+		<xs:sequence>
+			<xs:element name="TipoMedida" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Measure type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IndAltaMedidoEnBaja" type="TextMax1Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> IndAltaMedidoEnBaja. </xs:documentation>
+					<xs:documentation xml:lang="es"> IndAltaMedidoEnBaja. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoAparatoDeMedida" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Measurement equipment type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de aparato de medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoDeMedicionDelAparatoDeMedida" type="TextMax5Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Measurement type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de medicion del aparato de medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Marca" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Brand. </xs:documentation>
+					<xs:documentation xml:lang="es"> Marca. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroSerie" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Series number. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número serie. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoDH" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> DH Code. </xs:documentation>
+					<xs:documentation xml:lang="es"> Codigo DH. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Magnitud" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Magnitude. </xs:documentation>
+					<xs:documentation xml:lang="es"> Magnitud. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConstanteMultiplicadora" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Multiplier constant. </xs:documentation>
+					<xs:documentation xml:lang="es"> Constante multiplicadora. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroRuedasEnteras" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Number of entire wheels. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de ruedas enteras. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroRuedasDecimales" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Number of decimal wheels. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de ruedas decimales. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LecturaDesde" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Reading from (reading index). </xs:documentation>
+					<xs:documentation xml:lang="es"> Lectura desde (índice de lectura). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaHoraDesde" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Date and time from. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha y hora desde. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProcedenciaDesde" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Arriving from. </xs:documentation>
+					<xs:documentation xml:lang="es"> Procedencia desde. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LecturaHasta" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Reading to (reading index). </xs:documentation>
+					<xs:documentation xml:lang="es"> Lectura hasta (índice de lectura). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaHoraHasta" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Date and time to. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha y hora hasta. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProcedenciaHasta" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Arriving to. </xs:documentation>
+					<xs:documentation xml:lang="es"> Procedencia hasta. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoDeLecturaActual" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Current reading type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de lectura actual. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoDeLecturaAnterior" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Previous reading type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de lectura anterior. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoLeido" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Read consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo leido. </xs:documentation>
+				</xs:annotation>
+			</xs:element><xs:element name="ConsumoCalculado" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Calculated consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo calculado. </xs:documentation>
+				</xs:annotation>
+			</xs:element><xs:element name="RegularizacionConsumoDelPeriodo" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Period consumption regularization. </xs:documentation>
+					<xs:documentation xml:lang="es"> Regularizacion del consumo del periodo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoeficienteConversorkWh" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> kWh conversor coefficient. </xs:documentation>
+					<xs:documentation xml:lang="es"> Coeficiente conversor kWh. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CoeficientePresion" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Pressure coefficient. </xs:documentation>
+					<xs:documentation xml:lang="es"> Coeficiente de presion. </xs:documentation>
+				</xs:annotation>
+			</xs:element><xs:element name="FactorK" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> K factor. </xs:documentation>
+					<xs:documentation xml:lang="es"> Factor K. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnidadDePresion" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Pressure unit. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidad de presion. </xs:documentation>
+				</xs:annotation>
+			</xs:element><xs:element name="PresionAtmosferica" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Atmospheric pressure. </xs:documentation>
+					<xs:documentation xml:lang="es"> Presion atmosférica. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PresionRelativa" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Relative pressure. </xs:documentation>
+					<xs:documentation xml:lang="es"> Presion relativa. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Temperatura" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Temperature. </xs:documentation>
+					<xs:documentation xml:lang="es"> Temperatura. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PCS" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> PCS. </xs:documentation>
+					<xs:documentation xml:lang="es"> PCS. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Zeta" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Zeta. </xs:documentation>
+					<xs:documentation xml:lang="es"> Zeta. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PCI" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> PCI. </xs:documentation>
+					<xs:documentation xml:lang="es"> PCI. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Densidad" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Density. </xs:documentation>
+					<xs:documentation xml:lang="es"> Densidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Nitrogeno" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Nitrogen. </xs:documentation>
+					<xs:documentation xml:lang="es"> Nitrógeno. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CO2" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> CO2. </xs:documentation>
+					<xs:documentation xml:lang="es"> CO2. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="H2" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> H2. </xs:documentation>
+					<xs:documentation xml:lang="es"> H2. </xs:documentation>
+				</xs:annotation>
+			</xs:element><xs:element name="RelevanciaDelAparatoMedidor" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> . </xs:documentation>
+					<xs:documentation xml:lang="es"> RelevanciaDelAparatoMedidor. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CaudalMedio" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> . </xs:documentation>
+					<xs:documentation xml:lang="es"> CaudalMedio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ajuste" type="AjusteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Adjustment. </xs:documentation>
+					<xs:documentation xml:lang="es"> Ajuste. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Anomalia" type="AnomaliaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Anomaly. </xs:documentation>
+					<xs:documentation xml:lang="es"> Anomalia. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Calibre" type="xs:integer" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Caliber. </xs:documentation>
+					<xs:documentation xml:lang="es"> Calibre. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaProximaLectura" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Next reading date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha proxima lectura. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Serializada" type="TextMax5Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Serialized. </xs:documentation>
+					<xs:documentation xml:lang="es"> Serializada. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RestaDeserializada" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Deserialized subtraction. </xs:documentation>
+					<xs:documentation xml:lang="es"> Resta deserializada. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CUPSresta" type="TextMax24Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> CUPS subtraction. </xs:documentation>
+					<xs:documentation xml:lang="es"> Resta del CUPS. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumosNocturnos" type="ConsumosNocturnosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Night consumptions/charges. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumos nocturnos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AjusteType">
+		<xs:sequence>
+			<xs:element name="MotivoAjuste" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Adjustemnt reason. </xs:documentation>
+					<xs:documentation xml:lang="es"> Motivo del ajuste. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AjustePorIntegrador" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Adjustment by integrator. </xs:documentation>
+					<xs:documentation xml:lang="es"> Ajuste por integrator. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnomaliaType">
+		<xs:sequence>
+			<xs:element name="MotivoAnomalia" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Anomaly reason. </xs:documentation>
+					<xs:documentation xml:lang="es"> Motivo de la anomalía. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AjusteAnomalia" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Anomaly adjustment. </xs:documentation>
+					<xs:documentation xml:lang="es"> Ajuste de la anomalía. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConsumosNocturnosType">
+		<xs:sequence>
+			<xs:element name="LecturasConsumosNocturnos" type="LecturasConsumosNocturnosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Night consumptions readings. </xs:documentation>
+					<xs:documentation xml:lang="es"> Lecturas de consumos nocturnos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoNocturnoLeido" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Read night consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo nocturno leido. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoNocturnoCalculado" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Calculated night consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo nocturno calculado. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LecturasConsumosNocturnosType">
+		<xs:sequence>
+			<xs:element name="LecturaConsumosNocturnos" type="LecturaConsumosNocturnosType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Night consumptions reading. </xs:documentation>
+					<xs:documentation xml:lang="es"> Lectura de consumos nocturnos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LecturaConsumosNocturnosType">
+		<xs:sequence>
+			<xs:element name="HoraInicio" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Start time. </xs:documentation>
+					<xs:documentation xml:lang="es"> Hora de inicio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LecturaInicio" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Start reading. </xs:documentation>
+					<xs:documentation xml:lang="es"> Lectura de inicio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HoraFin" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> End time. </xs:documentation>
+					<xs:documentation xml:lang="es"> Hora de fin. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LecturaFin" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> End reading. </xs:documentation>
+					<xs:documentation xml:lang="es"> Lectura de fin. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CisternasType">
+		<xs:sequence>
+			<xs:element name="Cisterna" type="CisternaType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Cistern. </xs:documentation>
+					<xs:documentation xml:lang="es"> Cisterna. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CisternaType">
+		<xs:sequence>
+			<xs:element name="FechaEntrega" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Delivery date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha de entrega. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumAlbaran" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Delivery note number. </xs:documentation>
+					<xs:documentation xml:lang="es"> Número de albarán. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PlantaSuministro" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Supply plant. </xs:documentation>
+					<xs:documentation xml:lang="es"> Planta de suministro. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Peso" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Weight. </xs:documentation>
+					<xs:documentation xml:lang="es"> Peso. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PCS" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> PCS. </xs:documentation>
+					<xs:documentation xml:lang="es"> PCS. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kWh" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> kWh. </xs:documentation>
+					<xs:documentation xml:lang="es"> kWh. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatosCalculoDeLaQdType">
+		<xs:sequence>
+			<xs:element name="TotalConsumo" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Total consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo total. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoDeAjuste" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Adjustment type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de ajuste. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QdContratada" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Contracted Qd. </xs:documentation>
+					<xs:documentation xml:lang="es"> Qd contratada. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QdMedia" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Average Qd. </xs:documentation>
+					<xs:documentation xml:lang="es"> Qd media. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QdAplicada" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Applied Qd. </xs:documentation>
+					<xs:documentation xml:lang="es"> Qd aplicada. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QdMaxima" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Maximum Qd. </xs:documentation>
+					<xs:documentation xml:lang="es"> Qd máxima. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiaQdMaxima" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Maximum Qd day. </xs:documentation>
+					<xs:documentation xml:lang="es"> Día de Qd máxima. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QdMaximaCalculada" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Maximum Calculated Qd . </xs:documentation>
+					<xs:documentation xml:lang="es"> Qd máxima calculada. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="QdMaximaPenalizacion" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Maximum Qd penalization . </xs:documentation>
+					<xs:documentation xml:lang="es"> Penalización de Qd máxima. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesDesgloseConsumosType">
+		<xs:sequence>
+			<xs:element name="DesglosesConsumos" type="DesglosesConsumosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumptions/Charges breakdowns. </xs:documentation>
+					<xs:documentation xml:lang="es"> Desgloses de consumos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CurvasDeCarga" type="CurvasDeCargaType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Load curves. </xs:documentation>
+					<xs:documentation xml:lang="es"> Curvas de carga. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ComentariosDesgloseConsumos" type="ComentariosDesgloseConsumosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumptions breakdowns remarks. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentarios a los desgloses de consumos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DesglosesConsumosType">
+		<xs:sequence>
+			<xs:element name="DesgloseConsumos" type="DesgloseConsumosType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumptions breakdown. </xs:documentation>
+					<xs:documentation xml:lang="es"> Desglose de consumos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DesgloseConsumosType">
+		<xs:sequence>
+			<xs:element name="Tipo" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoLeido" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Read consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo leido. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoCalculado" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Calculated consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo calculado. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnidadMedida" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Unit of measure. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidad de medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoMedio" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Average consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo medio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImporteMedio" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Average amount. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe medio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoMaximo" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Maximum consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo máximo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ConsumoMinimo" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Minimum consumption. </xs:documentation>
+					<xs:documentation xml:lang="es"> Consumo mínimo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CurvasDeCargaType">
+		<xs:sequence>
+			<xs:element name="CurvaDeCarga" type="CurvaDeCargaType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Load curve. </xs:documentation>
+					<xs:documentation xml:lang="es"> Curva de carga. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CurvaDeCargaType">
+		<xs:sequence>
+			<xs:element name="FechaCurva" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Curve date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha de curva. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatosCurva" type="TextMax2000Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Curve data. </xs:documentation>
+					<xs:documentation xml:lang="es"> Datos de curva. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComentariosDesgloseConsumosType">
+		<xs:sequence>
+			<xs:element name="ComentarioDesgloseConsumos" type="TextMax250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumptions breakdown remark. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentario de desglose de consumos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesDesglosePreciosType">
+		<xs:sequence>
+			<xs:element name="DesglosesPrecios" type="DesglosesPreciosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Prices breakdowns. </xs:documentation>
+					<xs:documentation xml:lang="es"> Desgloses de precios. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalesTipo" type="TotalesTipoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Totals group by type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Totales por tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ComentariosDesglosePrecios" type="ComentariosDesglosePreciosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Prices breakdowns remarks. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentarios a los desgloses de precios. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DesglosesPreciosType">
+		<xs:sequence>
+			<xs:element name="DesglosePrecios" type="DesglosePreciosType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Prices breakdown. </xs:documentation>
+					<xs:documentation xml:lang="es"> Desglose de precios. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DesglosePreciosType">
+		<xs:sequence>
+			<xs:element name="Tipo" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Unidad" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Unit. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Medida" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Measure. </xs:documentation>
+					<xs:documentation xml:lang="es"> Medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Excesos" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Excess. </xs:documentation>
+					<xs:documentation xml:lang="es"> Excesos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AFacturar" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> To invoice. </xs:documentation>
+					<xs:documentation xml:lang="es"> A facturar. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Precio" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Price. </xs:documentation>
+					<xs:documentation xml:lang="es"> Precio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrecioMedio" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Average price. </xs:documentation>
+					<xs:documentation xml:lang="es"> Precio medio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalesTipoType">
+		<xs:sequence>
+			<xs:element name="TotalTipo" type="TotalTipoType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Total group by type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total por tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalTipoType">
+		<xs:sequence>
+			<xs:element name="Tipo" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalMedida" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Measure total. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalExcesos" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Excess total. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalAFacturar" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Invoicing total. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total a facturar. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComentariosDesglosePreciosType">
+		<xs:sequence>
+			<xs:element name="ComentarioDesglosePrecios" type="TextMax250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Prices breakdown remark. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentario de desglose de precios. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesHistoricoConsumosType">
+		<xs:sequence>
+			<xs:element name="HistoricoConsumo" type="HistoricoConsumoType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumptions history. </xs:documentation>
+					<xs:documentation xml:lang="es"> Histórico de consumos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HistoricoConsumoType">
+		<xs:sequence>
+			<xs:element name="Periodo" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Period. </xs:documentation>
+					<xs:documentation xml:lang="es"> Periodo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Descripcion" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Description. </xs:documentation>
+					<xs:documentation xml:lang="es"> Descripción. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Valor" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Value. </xs:documentation>
+					<xs:documentation xml:lang="es"> Valor. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="UnidadMedida" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Unit of measure. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidad de medida. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaIniPeriodo" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Start period date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha de inicio del periodo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaFinPeriodo" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> End period date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha del fin del periodo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TipoCalculo" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Calculation type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de cálculo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ComentariosHistConsumos" type="ComentariosHistConsumosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumptions history remarks. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentarios de histórico de consumos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComentariosHistConsumosType">
+		<xs:sequence>
+			<xs:element name="ComentarioHistConsumos" type="TextMax250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consumptions history remark. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentario de histórico de consumos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesMensajesReglamentariosType">
+		<xs:sequence>
+			<xs:element name="ListaMensajes" type="ListaMensajesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Messages list. </xs:documentation>
+					<xs:documentation xml:lang="es"> Lista de mensajes. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListaMensajesType">
+		<xs:sequence>
+			<xs:element name="Mensaje" type="MensajeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Message. </xs:documentation>
+					<xs:documentation xml:lang="es"> Mensaje. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MensajeType">
+		<xs:sequence>
+			<xs:element name="Fecha" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MensajeID" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Identifier. </xs:documentation>
+					<xs:documentation xml:lang="es"> Identificador. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contenido" type="TextMax2500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Content. </xs:documentation>
+					<xs:documentation xml:lang="es"> Contenido. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesMensajesNoReglamentariosType">
+		<xs:sequence>
+			<xs:element name="ListaMensajes" type="ListaMensajesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Messages list. </xs:documentation>
+					<xs:documentation xml:lang="es"> Lista de mensajes. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoBarrasCobroVentanilla" type="TextMax250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Barcode in cashing at the counter. </xs:documentation>
+					<xs:documentation xml:lang="es"> Código de barras de cobro en ventanilla. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesAtrAsociadoType">
+		<xs:sequence>
+			<xs:element name="TarifaDeAccesoATR" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> ATR access tariff. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tarifa de acceso ATR. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContratoDeAcceso" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Access contract. </xs:documentation>
+					<xs:documentation xml:lang="es"> Contrato de acceso. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FechaFinContratoAcceso" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Access contract end date. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha de fin de contrato de acceso. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatosTecnicosATR" type="TextMax250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> ATR technic data. </xs:documentation>
+					<xs:documentation xml:lang="es"> Datos técnicos ATR. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Importes" type="ImportesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amounts. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importes. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TotalesImportes" type="TotalesImportesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amount totals. </xs:documentation>
+					<xs:documentation xml:lang="es"> Totales de importes. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatosTUR" type="DatosTURType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> TUR data. </xs:documentation>
+					<xs:documentation xml:lang="es"> Datos TUR. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Decreto" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Decree. </xs:documentation>
+					<xs:documentation xml:lang="es"> Decreto. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ComentariosATRAsociado" type="ComentariosATRAsociadoType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">  Associated ATR remarks. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentarios sobre ATR asociado. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImportesType">
+		<xs:sequence>
+			<xs:element name="Importe" type="ImporteType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amount. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalesImportesType">
+		<xs:sequence>
+			<xs:element name="TotalImportes" type="TotalImportesType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amount total. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total importes. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatosTURType">
+		<xs:sequence>
+			<xs:element name="DescuentoSobreTarifaTUR" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Discounts over TUR tariff. </xs:documentation>
+					<xs:documentation xml:lang="es"> Descuentos sobre tarifa TUR. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DescuentoPorcSobreTarifaTUR" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Discount percent (%) over TUR tariff . </xs:documentation>
+					<xs:documentation xml:lang="es"> Descuento porcentual (%) sobre la tarifa TUR. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ComentariosATRAsociadoType">
+		<xs:sequence>
+			<xs:element name="ComentarioATRAsociado" type="TextMax250Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Associated ATR remark. </xs:documentation>
+					<xs:documentation xml:lang="es"> Comentario de ATR asociado. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ImporteType">
+		<xs:sequence>
+			<xs:element name="Tipo" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Codigo" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Code. </xs:documentation>
+					<xs:documentation xml:lang="es"> Código. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AFacturar" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> To invoice. </xs:documentation>
+					<xs:documentation xml:lang="es"> A facturar. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Unidad" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Unit. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Precio" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Price. </xs:documentation>
+					<xs:documentation xml:lang="es"> Precio. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImporteSinImpuestos" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amount without taxes. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe sin impuestos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalImportesType">
+		<xs:sequence>
+			<xs:element name="Tipo" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Type. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImporteSinImpuestos" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amount without taxes. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe sin impuestos. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="UtilitiesConformidadesType">
+		<xs:sequence>
+			<xs:element name="Conformidad" type="ConformidadType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consent. </xs:documentation>
+					<xs:documentation xml:lang="es"> Conformidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConformidadType">
+		<xs:sequence>
+			<xs:element name="PCT" type="TextMax250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> . </xs:documentation>
+					<xs:documentation xml:lang="es"> PCT. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fase" type="TextMax250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Phase. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fase. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DireccionConformidad" type="DireccionConformidadType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consent address. </xs:documentation>
+					<xs:documentation xml:lang="es"> Dirección de conformidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DireccionConformidadType">
+		<xs:sequence>
+			<xs:element name="Direccion" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consent address. </xs:documentation>
+					<xs:documentation xml:lang="es"> Dirección de conformidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CodigoPostal" type="TextMax5Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consent postal code. </xs:documentation>
+					<xs:documentation xml:lang="es"> Codigo postal de conformidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Poblacion" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consent city. </xs:documentation>
+					<xs:documentation xml:lang="es"> Ciudad de conformidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Provincia" type="TextMax50Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consent province. </xs:documentation>
+					<xs:documentation xml:lang="es"> Provincia de conformidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Pais" type="TextMax3Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Consent country. </xs:documentation>
+					<xs:documentation xml:lang="es"> País de conformidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CYIIRecapFacturaType">
+		<xs:sequence>
+			<xs:element name="Conceptos" type="ConceptosType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Items. </xs:documentation>
+					<xs:documentation xml:lang="es"> Concepto. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Totales" type="TotalesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Totals. </xs:documentation>
+					<xs:documentation xml:lang="es"> Totales. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConceptosType">
+		<xs:sequence>
+			<xs:element name="Concepto" type="ConceptoType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Item. </xs:documentation>
+					<xs:documentation xml:lang="es"> Concepto. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConceptoType">
+		<xs:sequence>
+			<xs:element name="Descripcion" type="TextMax30Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Description. </xs:documentation>
+					<xs:documentation xml:lang="es"> Descripción. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Importe" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amount. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IVA" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> VAT. </xs:documentation>
+					<xs:documentation xml:lang="es"> IVA. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Total" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Total. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotalesType">
+		<xs:sequence>
+			<xs:element name="Importe" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Amount. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IVA" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> VAT. </xs:documentation>
+					<xs:documentation xml:lang="es"> IVA. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Total" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Total. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConceptosFacturaAgrupadaType">
+		<xs:sequence>
+			<xs:element name="ConceptoFacturaAgrupada" type="ConceptoFacturaAgrupadaType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Group invoice item. </xs:documentation>
+					<xs:documentation xml:lang="es"> Concepto de factura agrupada. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConceptoFacturaAgrupadaType">
+		<xs:sequence>
+			<xs:element name="ConceptoFacturado" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Invoiced item. </xs:documentation>
+					<xs:documentation xml:lang="es"> Concepto facturado. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cantidad" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Quantity. </xs:documentation>
+					<xs:documentation xml:lang="es"> Cantidad. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Unidades" type="TextMax10Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Units. </xs:documentation>
+					<xs:documentation xml:lang="es"> Unidades. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NumeroDeMeses" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Number of months. </xs:documentation>
+					<xs:documentation xml:lang="es"> Numero de meses. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PrecioUnitario" type="DoubleEightDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Unit price. </xs:documentation>
+					<xs:documentation xml:lang="es"> Precio unitario. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ImporteParcial" type="DoubleTwoDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Partial amount. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe parcial. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DatosPagoAdicionalesType">
+		<xs:sequence>
+			<xs:element name="Ubicacion" type="TextMax80Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Payment location (example: "pay at the counter"). </xs:documentation>
+					<xs:documentation xml:lang="es"> Ubicación del pago (ejemplo: "pago en ventanilla"). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Simple Types -->
+	<!-- Text Types -->
+	<xs:simpleType name="TextMax1Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax2Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax3Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax5Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax10Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax13Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="13"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax20Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax24Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="24"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax30Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="30"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax50Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax80Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="80"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax250Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="250"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax2000Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax2500Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Number Types -->
+	<xs:simpleType name="DoubleTwoDecimalType">
+		<xs:restriction base="xs:double">
+			<xs:pattern value="[0-9][0-9]*\.[0-9]{2}|-[0-9][0-9]*\.[0-9]{2}">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Always to two decimal places.</xs:documentation>
+					<xs:documentation xml:lang="es">Siempre con dos decimales.</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DoubleFourDecimalType">
+		<xs:restriction base="xs:double">
+			<xs:pattern value="[0-9][0-9]*\.[0-9]{4}">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Always to four decimal places.</xs:documentation>
+					<xs:documentation xml:lang="es">Siempre con cuatro decimales.</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DoubleEightDecimalType">
+		<xs:restriction base="xs:double">
+			<xs:pattern value="[0-9][0-9]*\.[0-9]{8}">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Always to eight decimal places.</xs:documentation>
+					<xs:documentation xml:lang="es">Siempre con ocho decimales.</xs:documentation>
+				</xs:annotation>
+			</xs:pattern>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Enumerations -->
+	<xs:simpleType name="SiNoType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="N"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

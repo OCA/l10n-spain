@@ -16,31 +16,41 @@ try:
 except(ImportError, IOError) as err:
     logging.info(err)
 
-facturae_ns = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
-
 
 class AccountInvoiceImport(models.TransientModel):
     _inherit = 'account.invoice.import'
 
+    @api.model
+    def get_facturae_map(self):
+        ns_32 = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
+        ns_321 = 'http://www.facturae.es/Facturae/2014/v3.2.1/Facturae'
+        return {
+            ns_321: 'Facturaev3_2_1_wrapper.xsd',
+            ns_32: 'Facturaev3_2.xsd'
+        }
+
     @api.multi
-    def parse_invoice(self):
+    def parse_invoice(self, invoice_file_b64, invoice_filename):
         mimetypes.add_type('application/xml', '.xsig')
-        return super().parse_invoice()
+        return super().parse_invoice(invoice_file_b64, invoice_filename)
 
     @api.model
     def parse_xml_invoice(self, xml_root):
-        if (
-            xml_root.tag and
-            xml_root.tag.startswith('{%s}Facturae' % facturae_ns)
-        ):
-            return self.parse_facturae_invoice(xml_root)
+        FACTURAE_NS_MAP = self.get_facturae_map()
+        for facturae_ns in FACTURAE_NS_MAP:
+            if (
+                xml_root.tag and
+                xml_root.tag.startswith('{%s}Facturae' % facturae_ns)
+            ):
+                return self.parse_facturae_invoice(
+                    xml_root, FACTURAE_NS_MAP[facturae_ns])
         return super().parse_xml_invoice(xml_root)
 
     @api.model
-    def parse_facturae_invoice(self, xml_root):
+    def parse_facturae_invoice(self, xml_root, xsd_file):
         facturae_schema = etree.XMLSchema(
             etree.parse(tools.file_open(
-                "Facturaev3_2.xsd",
+                xsd_file,
                 subdir="addons/account_invoice_import_facturae/data"
             )))
         facturae_schema.assertValid(xml_root)
@@ -92,7 +102,7 @@ class AccountInvoiceImport(models.TransientModel):
             'lines': res_lines,
             'attachments': attachments,
         }
-        logger.info('Result of UBL XML parsing: %s', res)
+        logger.info('Result of Facturae XML parsing: %s', res)
         return res
 
     def facturae_parse_partner(self, xml_root, partner):

@@ -11,7 +11,9 @@ configurations = {
     'facturae_02.xsig': {
         'country': 'BEL', 'vat': 'BE0477472701', 'product_code': 'RX'},
     'facturae_03.xsig': {
-        'country': 'DEU', 'vat': 'DE123456788', 'product_code': 'RX'}
+        'country': 'DEU', 'vat': 'DE123456788', 'product_code': 'RX'},
+    'facturae_04.xsig': {
+        'country': 'DEU', 'vat': 'DE111111125', 'product_code': 'RX'},
 }
 
 
@@ -40,7 +42,7 @@ class TestImportFacturae(TransactionCase):
         country.ensure_one()
         partner = self.env['res.partner'].create({
             'name': 'Partner',
-            'invoice_import_id': self.config.id,
+            'invoice_import_ids': [(4, self.config.id)],
             'country_id': country.id,
             'vat': vals['vat'],
             'supplier': True,
