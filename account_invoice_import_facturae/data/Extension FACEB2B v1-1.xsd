@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<xs:schema
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="http://www.facturae.es/Facturae/Extensions/FaceB2BExtensionv1_1"
+targetNamespace="http://www.facturae.es/Facturae/Extensions/FaceB2BExtensionv1_1" version="1.1">
+
+    <xs:element name="FaceB2BExtension">
+        <xs:annotation>
+            <xs:documentation xml:lang="es">Elemento ORIGEN de la extensión de FaceB2B que permite especificar undiades
+            del Directorio de Entidades DIRe como Centros Administrativos. </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="publicSectorInformation" type="PublicSectorInformationType" minOccurs="0"/>
+            	<xs:element name="buyerCentres" type="buyerCentresType"/>
+            	<xs:element name="sellerCentres" type="sellerCentresType" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Complex Types -->
+    <xs:complexType name="PublicSectorInformationType">
+            <xs:annotation>
+                <xs:documentation xml:lang="es">Información sobre la licitación del organismo público que deriva
+                    en de la subcontratación.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element name="publicOrganismCode" type="TextMax30Type"/>
+				<xs:element name="contractReference" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="buyerCentresType">
+            <xs:annotation>
+                <xs:documentation xml:lang="es">Información sobre los organos de contratación del receptor. </xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element name="receiverAdministrativeCentre" type="ReceiverAdministrativeCentreType"/>
+                <xs:element name="administrativeCentres" type="DIReAdministrativeCentresType" minOccurs="0"/>
+            </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="sellerCentresType">
+        <xs:annotation>
+            <xs:documentation xml:lang="es">Información sobre los organos de contratación del emisor. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="administrativeCentres" type="DIReAdministrativeCentresType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DIReAdministrativeCentresType">
+            <xs:annotation>
+                <xs:documentation xml:lang="es">Centros administrativos de unidades DIRe. </xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element name="centre" type="DIReAdministrativeCentreType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DIReAdministrativeCentreType">
+            <xs:annotation>
+                <xs:documentation xml:lang="es">Centro administrativo correspondiente a una undidad de una entidad privada
+                registrada en el Sistema DIRe (Directorio de Entidades). </xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element name="code" type="TextMax30Type" />
+                <xs:element name="name" type="xs:string" minOccurs="0"/>
+                <xs:element name="role" type="AdministrativeCentreRoleType" />
+            </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ReceiverAdministrativeCentreType">
+            <xs:annotation>
+                <xs:documentation xml:lang="es">Centro administrativo correspondiente a la unidad de una entidad privada
+                 registrada en el Sistema DIRe que cuenta con el role Receiver o Receptor.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element name="code" type="TextMax30Type" />
+                <xs:element name="name" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+    </xs:complexType>
+    <!-- Complex Types -->
+
+
+    <!-- Simple Types -->
+    <xs:simpleType name="TextMax30Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="30"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="AdministrativeCentreRoleType">
+		<xs:annotation>
+			<xs:documentation xml:lang="es">Posibles roles con los que puede actuar un Centro Administrativo.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Fiscal" />
+			<xs:enumeration value="Payer" />
+			<xs:enumeration value="Buyer" />
+			<xs:enumeration value="Collector" />
+			<xs:enumeration value="Seller" />
+			<xs:enumeration value="Payment receiver" />
+			<xs:enumeration value="Collection receiver" />
+			<xs:enumeration value="Issuer" />
+		</xs:restriction>
+	</xs:simpleType>
+    <!-- Simple Types -->
+
+</xs:schema>

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.es/Facturae/2009/v3.2/Facturae" targetNamespace="http://www.facturae.es/Facturae/2009/v3.2/Facturae" version="3.2">
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" targetNamespace="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" version="3.2.1">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
 	<xs:element name="Facturae">
 		<xs:annotation>
@@ -45,7 +45,7 @@
 	<!--XMLFacturae -->
 	<xs:complexType name="FileHeaderType">
 		<xs:sequence>
-			<xs:element name="SchemaVersion" type="SchemaVersionType" default="3.2">
+			<xs:element name="SchemaVersion" type="SchemaVersionType" default="3.2.1">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Code indicating the XSD version used. There will be compatibility of versions.          </xs:documentation>
 					<xs:documentation xml:lang="es"> Código que indica versión utilizada. Existirá compatibilidad de versiones.                                        </xs:documentation>
@@ -60,7 +60,7 @@
 			<xs:element name="InvoiceIssuerType" type="InvoiceIssuerTypeType">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Party who signs the invoice. If the value "TE" (Issuer type) is chosen, all sections of group ThirdParty must be filled in.</xs:documentation>
-					<xs:documentation xml:lang="es"> Tipo Emisor Factura. Actor que firma la factura. Si toma el valor "TE" el grupo ThirdParty será obligatorio cumplimentarlo en todos sus apartados.</xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo Emisor Factura. Puede tomar 3 valores (EM, RE y TE), que se describen como “Proveedor (antes denominado emisor)”, “Destinatario (antes denominado cliente o receptor)” y “Tercero”, respectivamente. Si toma el valor "TE" el grupo ThirdParty será obligatorio cumplimentarlo en todos sus apartados.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="ThirdParty" type="ThirdPartyType" minOccurs="0">
@@ -88,14 +88,14 @@
 		<xs:sequence>
 			<xs:element name="TaxIdentification" type="TaxIdentificationType">
 				<xs:annotation>
-				    <xs:documentation xml:lang="en"> Tax identification.</xs:documentation>
+					<xs:documentation xml:lang="en"> Tax identification.</xs:documentation>
 					<xs:documentation xml:lang="es"> Identificación fiscal.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:choice>
 				<xs:element name="LegalEntity" type="LegalEntityType">
 					<xs:annotation>
-					    <xs:documentation xml:lang="en"> Legal entity and others.</xs:documentation>
+						<xs:documentation xml:lang="en"> Legal entity and others.</xs:documentation>
 						<xs:documentation xml:lang="es"> Persona jurídica y otras.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
@@ -130,14 +130,14 @@
 			</xs:element>
 			<xs:element name="TotalOutstandingAmount" type="AmountType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of the amounts TotalOutstandingAmount of the File, to two decimal points. It is the amount which will be effectively debited deducted the payments on account made and non-inclusive of any amount withheld.       </xs:documentation>
-					<xs:documentation xml:lang="es"> Total a pagar. Suma de los importes TotalOutstandingAmount del Fichero, con dos decimales. Es el importe que efectivamente se adeuda, una vez descontados los anticipos y sin tener en cuenta las retenciones.</xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of the amounts TotalOutstandingAmount of the File, up to eight decimal points. It is the amount which will be effectively debited deducted the payments on account made and non-inclusive of any amount withheld.       </xs:documentation>
+					<xs:documentation xml:lang="es"> Total a pagar. Suma de los importes TotalOutstandingAmount del Fichero, hasta ocho decimales. Es el importe que efectivamente se adeuda, una vez descontados los anticipos y sin tener en cuenta las retenciones.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TotalExecutableAmount" type="AmountType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of the differences of the amounts (TotalOutstandingAmount and WithholdingAmount) of the file = Sum of the amounts TotalExecutableAmount, to two decimal points. It is the amount that is debited less any amount withheld as a performance guarantee.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total a Ejecutar. Sumatorio de las diferencias de los importes (TotalOutstandingAmount y WithholdingAmount) del fichero = Sumatorio de los Importes TotalExecutableAmount, con dos decimales. Es el importe que se adeuda minorado en un posible importe retenido en garantía de cumplimientos contractuales.</xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of the differences of the amounts (TotalOutstandingAmount and WithholdingAmount) of the file = Sum of the amounts TotalExecutableAmount, up to eight decimal points. It is the amount that is debited less any amount withheld as a performance guarantee.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total a Ejecutar. Sumatorio de las diferencias de los importes (TotalOutstandingAmount y WithholdingAmount) del fichero = Sumatorio de los Importes TotalExecutableAmount, hasta ocho decimales. Es el importe que se adeuda minorado en un posible importe retenido en garantía de cumplimientos contractuales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="InvoiceCurrencyCode" type="CurrencyCodeType">
@@ -346,13 +346,13 @@
 			<xs:element name="InvoiceDocumentType" type="InvoiceDocumentTypeType">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> It can be a complete, abbreviated or self invoice, a payment on account, ticket... In this standard tickets are not considered.</xs:documentation>
-					<xs:documentation xml:lang="es"> Tipo documento factura. Puede ser una factura completa, abreviada, autofactura, anticipo, tique… En este estándar no se va a contemplar el tique.</xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo documento factura. Puede tomar 3 valores (FC, FA y AF), que se describen como “Factura completa u ordinaria”, “Factura simplificada” y “Código sin uso desde la entrada en vigor del RD 1789/2010. Se mantiene por compatibilidad hacia atrás. Antes significaba autofactura. Para indicar que se trata de una factura expedida por el destinatario, se recomienda emplear el elemento InvoiceIssuerType empleando el valor RE, que significa Destinatario”, respectivamente.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="InvoiceClass" type="InvoiceClassType">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> This piece of information states the type of invoice, that is: "OO" - Original, "OR" - corrective, "OC" – summary original, "CO" – copy of the original, "CR" – copy of the corrective, "CC" – copy of the summary. A corrective invoice can only correct an original invoice, or credit an amount due to volume in a deferred period, or for any other reason allowed by the Tax Agency. When the “type” takes the value “OR” or “CR” (correctives), fields of group Corrective must be filled in.</xs:documentation>
-					<xs:documentation xml:lang="es"> Clase de Factura. Este dato refleja la clase de factura, a saber: "OO" - Original, "OR" - rectificativa, "OC" - original recapitulativa, "CO" - copia de la original, "CR" - copia de la rectificativa, "CC" - copia recapitulativa. Una factura rectificativa sólo puede rectificar a una factura original, o bien realizar un abono por volumen correspondiente a un periodo diferido, o algún otro motivo autorizado por la Agencia Tributaria. Cuando la "clase" se corresponda con alguno de los valores "OR" ó "CR" (rectificativas), deberán estar cumplimentados los campos del grupo Corrective</xs:documentation>
+					<xs:documentation xml:lang="es"> Clase de Factura. Puede tomar 6 valores (OO, OR, OC, CO, CR y CC), que se describen como “Original”, “Original rectificativa”, “Original recapitulativa”, “Duplicado original”, “Duplicado rectificativa” y “Duplicado recapitulativa”.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="Corrective" type="CorrectiveType" minOccurs="0">
@@ -403,8 +403,8 @@
 			</xs:element>
 			<xs:element name="TaxCurrencyCode" type="CurrencyCodeType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> ISO 4217:2001 Alpha-3 code of the currency in which the tax is paid. It will always be in EURO.</xs:documentation>
-					<xs:documentation xml:lang="es"> Moneda del Impuesto. Código ISO 4217:2001 Alpha-3 de la moneda en la que se liquida el impuesto. Siempre en Euros. </xs:documentation>
+					<xs:documentation xml:lang="en"> ISO 4217:2001 Alpha-3 code of the currency in which the tax is paid. </xs:documentation>
+					<xs:documentation xml:lang="es"> Moneda del Impuesto. Código ISO 4217:2001 Alpha-3 de la moneda en la que se liquida el impuesto.  </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="LanguageName" type="LanguageCodeType">
@@ -427,10 +427,10 @@
 	</xs:complexType>
 	<xs:complexType name="ExchangeRateDetailsType">
 		<xs:sequence>
-			<xs:element name="ExchangeRate" type="DoubleTwoDecimalType">
+			<xs:element name="ExchangeRate" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Art. 79.eleven of Law 37/92 of 28th December on the Value Added Tax. Always to two decimal points. Seller rate fixed by Banco de España in force when the chargeable event occurs.</xs:documentation>
-					<xs:documentation xml:lang="es"> Tipo de Cambio. Artº 79.once de la Ley 37/92 de 28 de diciembre del Impuesto sobre el Valor Añadido. Siempre con dos decimales. Cambio vendedor fijado por el Banco de España y vigente en el momento del devengo.</xs:documentation>
+					<xs:documentation xml:lang="en"> Art. 79.eleven of Law 37/92 of 28th December on the Value Added Tax. Seller rate fixed by Banco de España in force when the chargeable event occurs. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de Cambio. Artº 79.once de la Ley 37/92 de 28 de diciembre del Impuesto sobre el Valor Añadido. Cambio vendedor fijado por el Banco de España y vigente en el momento del devengo. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="ExchangeRateDate" type="xs:date">
@@ -506,7 +506,7 @@
 			<xs:element name="PlaceOfIssueDescription" type="TextMax20Type" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Name of the town.</xs:documentation>
-					<xs:documentation xml:lang="es"> Texto del nombre de la plaza.</xs:documentation>
+					<xs:documentation xml:lang="es"> Texto del nombre del lugar.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -604,16 +604,16 @@
 					<xs:documentation xml:lang="es"> Unidad en que está referida la Cantidad. Recomendación 20, Revisión 4 y Recomendación 21, Revisión 5 de UN/CEFACT.                             </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="UnitPriceWithoutTax" type="DoubleSixDecimalType">
+			<xs:element name="UnitPriceWithoutTax" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Unit price of the goods or service rendered, in the currency indicated in the Header of the Invoice. Always without Taxes. Always with six decimal places. </xs:documentation>
-					<xs:documentation xml:lang="es"> Precio de la unidad de bien o servicio servido/prestado, en la moneda indicada en la Cabecera de la Factura. Siempre sin Impuestos. Siempre con seis decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Unit price of the goods or service rendered, in the currency indicated in the Header of the Invoice. Always without Taxes. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Precio de la unidad de bien o servicio servido/prestado, en la moneda indicada en la Cabecera de la Factura. Siempre sin Impuestos. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalCost" type="DoubleSixDecimalType">
+			<xs:element name="TotalCost" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result: Quantity x UnitPriceWithoutTax Always to six decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Coste Total. Resultado: Quantity x UnitPriceWithoutTax Siempre con seis decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Result: Quantity x UnitPriceWithoutTax. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Coste Total. Resultado: Quantity x UnitPriceWithoutTax. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="DiscountsAndRebates" type="DiscountsAndRebatesType" minOccurs="0">
@@ -628,23 +628,23 @@
 					<xs:documentation xml:lang="es"> Cargos. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="GrossAmount" type="DoubleSixDecimalType">
+			<xs:element name="GrossAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result: TotalCost - DiscountAmount + ChargeAmount Always to six decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Importe bruto. Resultado: TotalCost - DiscountAmount + ChargeAmount Siempre con seis decimales.</xs:documentation>
+					<xs:documentation xml:lang="en"> Result: TotalCost - DiscountAmount + ChargeAmount. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Importe bruto. Resultado: TotalCost - DiscountAmount + ChargeAmount. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TaxesWithheld" type="TaxesType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> The “total amount” element of this block – item level – is provided only for informative purposes.</xs:documentation>
-					<xs:documentation xml:lang="es"> Impuestos retenidos. El elemento "importe total" de este bloque - nivel de detalle - se considerará sólo a efectos informativos. </xs:documentation>
+					<xs:documentation xml:lang="es"> Impuestos retenidos. Es una secuencia de elementos, cada uno de los cuales contiene la información de un impuesto retenido. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<!-- <xs:element name="TaxesOutputs" type="TaxesType"> -->
 			<xs:element name="TaxesOutputs">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> The “total amount” element of this block – item level – is provided only for informative purposes. </xs:documentation>
-					<xs:documentation xml:lang="es"> Impuestos repercutidos. El elemento "importe total" de este bloque - nivel de detalle - se considerará sólo a efectos informativos. </xs:documentation>
+					<xs:documentation xml:lang="es"> Impuestos repercutidos. Es una secuencia de elementos, cada uno de los cuales contiene la información de un impuesto repercutido. </xs:documentation>
 				</xs:annotation>
 				<xs:complexType>
 					<xs:sequence>
@@ -739,7 +739,7 @@
 			<xs:element name="SpecialTaxableEventReason" type="TextMax2500Type">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Free text to explain why a special code applies.</xs:documentation>
-					<xs:documentation xml:lang="es"> Justificación de la fiscalidad especial que se aplica en esta operación. </xs:documentation>
+					<xs:documentation xml:lang="es"> Justificación de la fiscalidad especial que se aplica en esta operación. Como este elemento se define a nivel de línea, no de impuesto, es necesario especificar a qué impuesto se refiere. Para establecer esta relación, al comienzo de este elemento se indicará el código del impuesto al que corresponde según la lista de código de impuestos del tipo “TaxTypeCodeType”. Si hubiera varios impuestos con el código “05” (“Otro”), se añadirán los valores de sus campos “TaxRate”, “TaxableBase” y “TaxAmount”, en este orden, hasta que sea posible discernirlos; es decir: 05 [valor “TaxRate”] [valor “TaxableBase”] [valor “TaxAmount”]…   </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -747,64 +747,64 @@
 	<!-- Invoices - Invoice - Items - InvoiceTotals -  -->
 	<xs:complexType name="InvoiceTotalsType">
 		<xs:sequence>
-			<xs:element name="TotalGrossAmount" type="DoubleTwoDecimalType">
+			<xs:element name="TotalGrossAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> (TGA) Total sum of the gross amounts of the invoice items. Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total Importe Bruto. Suma total de importes brutos de los detalles de la factura. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> (TGA) Total sum of the gross amounts of the invoice items. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total Importe Bruto. Suma total de importes brutos de los detalles de la factura. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="GeneralDiscounts" type="DiscountsAndRebatesType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Discounts on the Total Gross Amount. There will be as many blocks of fields GeneralDiscounts as there are different discount types applied to the same invoice. When there are different taxable bases, they will be applied proportionally, the final round-up to the nearest cent being carried out on the tax type of greatest value.      </xs:documentation>
-					<xs:documentation xml:lang="es"> Descuentos sobre el Total Importe Bruto. Habrá tantos bloques de campos GeneralDiscounts como clases de descuentos diferentes se apliquen, a nivel de factura. Cuando existan diversas bases imponibles, se aplicarán proporcionalmente, efectúandose el redondeo final al céntimo sobre el tipo impositivo de mayor valor. </xs:documentation>
+					<xs:documentation xml:lang="en"> Discounts on the Total Gross Amount. There will be as many blocks of fields GeneralDiscounts as there are different discount types applied to the same invoice. </xs:documentation>
+					<xs:documentation xml:lang="es"> Descuentos sobre el Total Importe Bruto. Habrá tantos bloques de campos GeneralDiscounts como clases de descuentos diferentes se apliquen a nivel de factura. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="GeneralSurcharges" type="ChargesType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Charges on the Total Gross Amount. There will be as many blocks of fields GeneralSurcharges as types of charges/surcharges  are applied to the invoice. When there are different taxable bases, they will be applied proportionally, the final round-up to the nearest cent being carried out on the tax type of greatest value.</xs:documentation>
-					<xs:documentation xml:lang="es"> Cargos sobre el Total Importe Bruto. Habrá tantos bloques de campos GeneralSurcharges como clases de cargos/recargos se apliquen, a nivel de factura. Cuando existan diversas bases imponibles, se aplicarán proporcionalmente, efectuándose el redondeo final al céntimo sobre el tipo impositivo de mayor valor. </xs:documentation>
+					<xs:documentation xml:lang="en"> Charges on the Total Gross Amount. There will be as many blocks of fields GeneralSurcharges as types of charges/surcharges  are applied to the invoice. </xs:documentation>
+					<xs:documentation xml:lang="es"> Cargos sobre el Total Importe Bruto. Habrá tantos bloques de campos GeneralSurcharges como clases de cargos/recargos se apliquen, a nivel de factura. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalGeneralDiscounts" type="DoubleTwoDecimalType" minOccurs="0">
+			<xs:element name="TotalGeneralDiscounts" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of different fields  GeneralDiscounts. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Total general de descuentos. Sumatorio de los diferentes campos GeneralDiscounts Siempre con dos decimales.                                                </xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of different fields  GeneralDiscounts. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total general de descuentos. Sumatorio de los importes de los diferentes campos GeneralDiscounts. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalGeneralSurcharges" type="DoubleTwoDecimalType" minOccurs="0">
+			<xs:element name="TotalGeneralSurcharges" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of different fields  GeneralSurcharges Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total general de cargos. Sumatorio de los diferentes campos GeneralSurcharges Siempre con dos decimales.                                                       </xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of different fields  GeneralSurcharges. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total general de cargos. Sumatorio de los importes de los diferentes campos GeneralSurcharges. Hasta ocho decimales</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalGrossAmountBeforeTaxes" type="DoubleTwoDecimalType">
+			<xs:element name="TotalGrossAmountBeforeTaxes" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result: TotalGrossAmount - TotalGeneralDiscounts + TotalGeneralSurcharges Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total importe bruto antes de impuestos. Resultado de: TotalGrossAmount - TotalGeneralDiscounts + TotalGeneralSurcharges Siempre con dos decimales.                                      </xs:documentation>
+					<xs:documentation xml:lang="en"> Result: TotalGrossAmount - TotalGeneralDiscounts + TotalGeneralSurcharges. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total importe bruto antes de impuestos. Resultado de: TotalGrossAmount - TotalGeneralDiscounts + TotalGeneralSurcharges. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalTaxOutputs" type="DoubleTwoDecimalType">
+			<xs:element name="TotalTaxOutputs" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of different fields Tax Amounts + Total Equivalence Surcharges. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Total impuestos repercutidos. Sumatorio de las diferentes Cuotas + Total Recargos de Equivalencia. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of different fields Tax Amounts + Total Equivalence Surcharges. Up to eight decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total impuestos repercutidos. Sumatorio de todas Cuotas y Recargos de Equivalencia. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalTaxesWithheld" type="DoubleTwoDecimalType">
+			<xs:element name="TotalTaxesWithheld" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of different fields TaxAmount. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Total impuestos retenidos. Sumatorio de los diferentes TaxAmount. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of different fields TaxAmount. Up to eight decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Total impuestos retenidos. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="InvoiceTotal" type="DoubleTwoDecimalType">
+			<xs:element name="InvoiceTotal" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result: TotalGrossAmountBeforeTaxes + TotalTaxOutputs - TotalTaxesWithheld. Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total factura. Resultado de: TotalGrossAmountBeforeTaxes + TotalTaxOutputs - TotalTaxesWithheld. Siempre con dos decimales.                                 </xs:documentation>
+					<xs:documentation xml:lang="en"> Result: TotalGrossAmountBeforeTaxes + TotalTaxOutputs - TotalTaxesWithheld. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total factura. Resultado de: TotalGrossAmountBeforeTaxes + TotalTaxOutputs - TotalTaxesWithheld. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="Subsidies" type="SubsidiesType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Subsidies, grants or aids for acquisition of certain goods granted by General government.</xs:documentation>
-					<xs:documentation xml:lang="es"> Subvenciones por adquisición de determinados bienes. Administraciones Públicas.                                   </xs:documentation>
+					<xs:documentation xml:lang="es"> Subvenciones por adquisición de determinados bienes. Habrá tantos bloques de campos Subsidies como subvenciones se apliquen. En el caso de que la subvención se aplique solo a parte de las operaciones facturadas, en el subelemento SubsidyDescription se especificará también a qué operación corresponde.                                  </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="PaymentsOnAccount" type="PaymentsOnAccountType" minOccurs="0">
@@ -822,37 +822,37 @@
 			<xs:element name="TotalFinancialExpenses" type="DoubleTwoDecimalType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Total de gastos financieros. Siempre con dos decimales.                                       </xs:documentation>
+					<xs:documentation xml:lang="es"> Total de gastos financieros. Siempre con dos decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalOutstandingAmount" type="DoubleTwoDecimalType">
+			<xs:element name="TotalOutstandingAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result: InvoiceTotal - (SubsidyAmount + TotalPaymentsOnAccount). Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total a pagar. Resultado: InvoiceTotal - (SubsidyAmount + TotalPaymentsOnAccount). Siempre con dos decimales.                                     </xs:documentation>
+					<xs:documentation xml:lang="en"> Result: InvoiceTotal - (SubsidyAmount + TotalPaymentsOnAccount). Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total a pagar. Resultado de: InvoiceTotal - (Total subvenciones + TotalPaymentsOnAccount). En Total subvenciones se suman las cantidades especificadas en los bloques Subsidies. Hasta ocho decimales.                                     </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalPaymentsOnAccount" type="DoubleTwoDecimalType" minOccurs="0">
+			<xs:element name="TotalPaymentsOnAccount" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of the fields PaymentOnAccountAmount. Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total de anticipos. Sumatorio de los campos PaymentOnAccountAmount. Siempre con dos decimales.                                                                       </xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of the fields PaymentOnAccountAmount. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total de anticipos. Sumatorio de los campos PaymentOnAccountAmount. Hasta ocho decimales.                                                                       </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="AmountsWithheld" type="AmountsWithheldType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Amounts withheld by the payer  subject to the normal fulfilment of the transaction. </xs:documentation>
-					<xs:documentation xml:lang="es"> Retenciones. Cantidades que retiene el pagador hasta el buen fin de la operación.</xs:documentation>
+					<xs:documentation xml:lang="es"> Cantidades que retiene el pagador hasta el buen fin de la operación.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalExecutableAmount" type="DoubleTwoDecimalType">
+			<xs:element name="TotalExecutableAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result: TotalOutstandingAmount - WithholdingAmount + Reimbursable expenses + Financial expenses. Always to two decimal points</xs:documentation>
-					<xs:documentation xml:lang="es"> Total a ejecutar. Resultado de: Total a pagar - Importe a retener sobre el total a pagar + Suplidos + Gastos financieros. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Result: TotalOutstandingAmount - WithholdingAmount + Reimbursable expenses + Financial expenses. Up to eight points</xs:documentation>
+					<xs:documentation xml:lang="es"> Total a ejecutar. Resultado de: TotalOutstandingAmount - Total de Cantidades retenidas + TotalReimbursableExpenses  + TotalFinancialExpenses. En Total de Cantidades retenidas se sumaran las cantidades especificadas en los bloques AmountsWithheld. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TotalReimbursableExpenses" type="DoubleTwoDecimalType" minOccurs="0">
+			<xs:element name="TotalReimbursableExpenses" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total de suplidos. Siempre con dos decimales.                                       </xs:documentation>
+					<xs:documentation xml:lang="en"> Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total de suplidos. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -876,16 +876,16 @@
 					<xs:documentation xml:lang="es"> Detalle de la Subvención aplicada.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="SubsidyRate" type="DoubleFourDecimalType" minOccurs="0">
+			<xs:element name="SubsidyRate" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Rate applied to the Invoice Total. Percentages are reflected to four decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Porcentaje de la Subvención. Porcentaje a aplicar al Total Factura. Los porcentajes se reflejan con 4 decimales.                                    </xs:documentation>
+					<xs:documentation xml:lang="en"> Rate applied to the Invoice Total. Percentages are reflected up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Porcentaje de la Subvención. Porcentaje a aplicar al Total Factura. Los porcentajes se reflejan con hasta 8 decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="SubsidyAmount" type="DoubleTwoDecimalType">
+			<xs:element name="SubsidyAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Amount to be applied to the Invoice Total. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Importe de la Subvención. Importe a aplicar al Total Factura. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Amount to be applied to the Invoice Total. Up to eight decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe de la Subvención. Importe a aplicar al Total Factura. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -909,10 +909,10 @@
 					<xs:documentation xml:lang="es"> Fecha/s del/os anticipo/s. ISO 8601:2004.                                        </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="PaymentOnAccountAmount" type="DoubleTwoDecimalType">
+			<xs:element name="PaymentOnAccountAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Amount of each payment on account. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Importe de cada anticipo. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Amount of each payment on account. Up to eight decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe de cada anticipo. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -926,16 +926,16 @@
 					<xs:documentation xml:lang="es"> Motivo de Retención. Descripción de la finalidad de la Retención.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="WithholdingRate" type="DoubleFourDecimalType" minOccurs="0">
+			<xs:element name="WithholdingRate" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Rate withheld on Payment Total. Percentages are reflected always to four decimal points.   </xs:documentation>
-					<xs:documentation xml:lang="es"> Porcentaje de Retención. Porcentaje sobre el Total a Pagar. Los porcentajes se reflejan con 4 decimales.                                 		  </xs:documentation>
+					<xs:documentation xml:lang="en"> Rate withheld on Payment Total. Percentages are reflected up to eight decimal points.   </xs:documentation>
+					<xs:documentation xml:lang="es"> Porcentaje de Retención. Porcentaje sobre el Total a Pagar. Los porcentajes se reflejan con hasta 8 decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="WithholdingAmount" type="DoubleTwoDecimalType">
+			<xs:element name="WithholdingAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Amount to be withheld on Payment Total. Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Importe de Retención. Importe a retener sobre el Total a Pagar. Siempre con dos decimales.                                       		 		  </xs:documentation>
+					<xs:documentation xml:lang="en"> Amount to be withheld on Payment Total. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Importe de Retención. Importe a retener sobre el Total a Pagar. Hasta ocho decimales.                                       		 		  </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -958,7 +958,7 @@
 			<xs:element name="IssueDate" type="xs:date" minOccurs="0"/>
 			<xs:element name="InvoiceNumber" type="TextMax20Type" minOccurs="0"/>
 			<xs:element name="InvoiceSeriesCode" type="TextMax20Type" minOccurs="0"/>
-			<xs:element name="ReimbursableExpensesAmount" type="DoubleTwoDecimalType"/>
+			<xs:element name="ReimbursableExpensesAmount" type="DoubleUpToEightDecimalType"/>
 		</xs:sequence>
 	</xs:complexType>
 	<!-- Invoices - Invoice - PaymentDetails -->
@@ -1035,8 +1035,8 @@
 		<xs:sequence>
 			<xs:element name="LegalReference" type="TextMax250Type" minOccurs="0" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Established legal Literals: Donations, Subsidies, Irrevocability of the subsidy, Please make payment in the currency agreed, Resident providers, Directive 77/388/CEE of 17 May 1977, Sixth Council Directive on the harmonization of VAT provisions, Triangular Transaction, Chain Transaction, Special scheme, Article 26 of Directive 77/388/EEC, Special scheme for travel agents, Waiver of the exemption on the Special VAT Scheme (article 163.sexies. cinco of Law 36/2006 of 29th November  on Measures to prevent tax evasion), etc. </xs:documentation>
-					<xs:documentation xml:lang="es"> Literales legales establecidos: Donaciones, Subvenciones, Carácter irreversible subvenciones, Atención pago moneda prevista, Proveedores residentes, directiva 77/388/CEE de 17 de Mayo, Sexta Directiva del Consejo en materia de IVA, Operación Triangular, Operación en Cadena, Régimen Especial, Artº 26 de la Directiva 77/388/CEE, Agencias de Viajes, Renuncia a la exención en régimen especial de IVA (artículo 163.sexies cinco de la Ley 36/2006 de 29 de noviembre de medidas para la prevención del fraude fiscal), etc.</xs:documentation>
+					<xs:documentation xml:lang="en"> Established legal Literals: Exempt transaction pursuant to Article [fill in with the relevant Article number] of the Law No 37/1992 of 28 December 1992 on value added tax;Means of transport [fill in with a brief description, for example, Jaguar S-Type automobile] the date of first start-up [fill in with the date] and the distance covered or hours of navigation [fill in with the distance covered or hours of navigation, for example, 5,900 km or 48 hours];Invoiced by the recipient;Taxpayer reversal;Special scheme for travel agencies;Special scheme of second-hand goods;Special scheme of works of art;Special scheme of antiques and collectibles;Special scheme on cash basis. NOTE: The ability to fill this field with any alphanumeric string up to 250 characters entered by the user in case new legal literals are established in the future shall be allowed. </xs:documentation>
+					<xs:documentation xml:lang="es"> Textos literales que deben figurar obligatoriamente en determinadas facturas. Los textos establecidos en la legislación vigente son: Operación exenta por aplicación del artículo [indicar el artículo] de la Ley 37/1992, de 28 de diciembre, del Impuesto sobre el Valor Añadido; Medio de transporte [describir el medio, por ejemplo automóvil turismo Seat Ibiza TDI 2.0] fecha 1ª puesta en servicio [indicar la fecha] distancias/horas recorridas [indicar la distancia o las horas, por ejemplo, 5.900 km o 48 horas]; Facturación por el destinatario;Inversión del sujeto pasivo; Régimen especial de las agencias de viajes; Régimen especial de los bienes usados; Régimen especial de los objetos de arte; Régimen especial de las antigüedades y objetos de colección; Régimen especial del criterio de caja. NOTA 1: Salvo el texto “Inversión del sujeto pasivo”, los demás se refieren no a la factura en su conjunto, sino a una determinada operación (línea) de la factura. Se deberá especificar a cuál corresponde. NOTA 2: Debe permitirse la posibilidad de cumplimentar este campo con cualquier cadena alfanumérica de hasta 250 caracteres introducida por el usuario por si se establecen nuevos textos literales obligatorios en el futuro. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1242,7 +1242,7 @@
 				</xs:element>
 				<xs:element name="OverseasAddress" type="OverseasAddressType">
 					<xs:annotation>
-							<xs:documentation xml:lang="en"> Overseas address.</xs:documentation>
+						<xs:documentation xml:lang="en"> Overseas address.</xs:documentation>
 						<xs:documentation xml:lang="es"> Dirección en el extranjero.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
@@ -1515,16 +1515,16 @@
 					<xs:documentation xml:lang="es"> Concepto por el que se aplica descuento.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="DiscountRate" type="DoubleFourDecimalType" minOccurs="0">
+			<xs:element name="DiscountRate" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Rate to be applied to the Total Gross Amount (TGA). Percentages are reflected to 4 decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Porcentaje a descontar del Total Importe Bruto (TIB). Los porcentajes se reflejan con 4 decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Rate to be applied to the Total Gross Amount (TGA). Percentages are reflected up to 8 decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Porcentaje a descontar del Total Importe Bruto (TIB). Los porcentajes se reflejan con hasta 8 decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="DiscountAmount" type="DoubleSixDecimalType">
+			<xs:element name="DiscountAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Amount to be discounted from the TGA. Always to six decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Importe a descontar sobre el TIB. Siempre con seis decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Amount to be discounted from the TGA. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Importe a descontar sobre el TIB. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1547,16 +1547,16 @@
 					<xs:documentation xml:lang="es"> Concepto por el que se aplica el cargo.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ChargeRate" type="DoubleFourDecimalType" minOccurs="0">
+			<xs:element name="ChargeRate" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Rate to be charged to the TGA. Percentages are reflected to 4 decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan con 4 decimales.                                       </xs:documentation>
+					<xs:documentation xml:lang="en"> Rate to be charged to the TGA. Percentages are reflected up to 8 decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Porcentaje a cargar sobre el TIB. Los porcentajes se reflejan con hasta 8 decimales.                                       </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="ChargeAmount" type="DoubleSixDecimalType">
+			<xs:element name="ChargeAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Amount to be charged to the TGA. Always to six decimal places. </xs:documentation>
-					<xs:documentation xml:lang="es"> Importe a cargar sobre el TIB. Siempre con seis decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Amount to be charged to the TGA. Always up to eight decimal places. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe a cargar sobre el TIB. Hasta 8 decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1576,25 +1576,25 @@
 			<xs:element name="TaxTypeCode" type="TaxTypeCodeType">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Name of the chargeable tax or the tax applicable to the amounts withheld. When appropriate, the reason why it is “not liable for tax” or “exempt from tax” must be stated in the element “Additional information”. </xs:documentation>
-					<xs:documentation xml:lang="es"> Clase de impuesto. Concepto fiscal por el que se tributa o retención a cuenta. Cuando haya lugar, debe recogerse en el elemento "observaciones" el motivo por lo que este impuesto está "no sujeto" o "exento". </xs:documentation>
+					<xs:documentation xml:lang="es"> Identificador del impuesto por cuenta del cual se retiene. En caso de que el impuesto no corresponda a ninguno de los relacionados en “TaxTypeCodeType”, utilícese el código “05”, definido como “otro”. En este caso, se empleará el elemento “AditionalLineItemInformation” para identificar el impuesto, donde se incluirá, para ello, la siguiente cadena de caracteres: 05 = [nombre del impuesto]. Si hubiera varios impuestos con el código “05”, se añadirán los valores de sus campos “TaxRate”, “TaxableBase” y “TaxAmount”, en este orden, hasta que sea posible discernirlos; es decir: 05 [valor “TaxRate”] [valor “TaxableBase”] [valor “TaxAmount”] = [nombre del impuesto]. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TaxRate" type="DoubleTwoDecimalType">
+			<xs:element name="TaxRate" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Rate to be applied in each case. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Porcentaje a aplicar en cada caso. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Rate to be applied in each case. Up to eight decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo impositivo. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TaxableBase" type="AmountType">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> This is the taxable base at market price = Total Gross Amount + Surcharges – Global Discounts/invoice, for each type and rate. Taxable base of the taxes. Always to two decimal points.       </xs:documentation>
-					<xs:documentation xml:lang="es"> Base imponible a precio de mercado = Total Importe Bruto + Recargos - Descuentos Globales/factura, por cada clase y porcentaje. Base imponible de los impuestos. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="es"> Base de retención. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TaxAmount" type="AmountType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Amount resulting from applying the corresponding rate to the taxable base. Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Cuota. Importe resultante de aplicar a la Base Imponible el porcentaje correspondiente. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="es"> Importe de la retención. Siempre con dos decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1604,49 +1604,49 @@
 			<xs:element name="TaxTypeCode" type="TaxTypeCodeType">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Name of the chargeable tax or the tax applicable to the amounts withheld. When appropriate, the reason why it is “not liable for tax” or “exempt from tax” must be stated in the element “Additional information”. </xs:documentation>
-					<xs:documentation xml:lang="es"> Clase de impuesto. Concepto Fiscal por el que se tributa o retención a cuenta. Cuando haya lugar, debe recogerse en el elemento "observaciones" el motivo por lo que este impuesto está "no sujeto" o "exento". </xs:documentation>
+					<xs:documentation xml:lang="es"> Identificador del impuesto por el que se tributa. En caso de que el impuesto no corresponda a ninguno de los relacionados en “TaxTypeCodeType”, utilícese el código “05”, definido como “otro”. En este caso, se empleará el elemento “AditionalLineItemInformation” para identificar el impuesto, donde se incluirá, para ello, la siguiente cadena de caracteres: 05 = [nombre del impuesto]. Si hubiera varios impuestos con el código “05”, se añadirán los valores de sus campos “TaxRate”, “TaxableBase” y “TaxAmount”, en este orden, hasta que sea posible discernirlos; es decir: 05 [valor “TaxRate”] [valor “TaxableBase”] [valor “TaxAmount”] = [nombre del impuesto]. Cuando la operación esté exenta del impuesto o se encuentre en régimen suspensivo, deberá indicarse el motivo en el elemento “AditionalLineItemInformation”. Este elemento se define a nivel de línea, no de impuesto; por ello, para identificar cuál es el impuesto del que está exenta, el motivo irá precedido del código del impuesto; por ejemplo: 07 exenta por…. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element name="TaxRate" type="DoubleTwoDecimalType">
+			<xs:element name="TaxRate" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Rate to be applied in each case. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Porcentaje a aplicar en cada caso. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Rate to be applied in each case. Up to eight decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo impositivo. Téngase en cuenta que no siempre son porcentajes. La legislación del impuesto correspondiente permitirá identificar las unidades y dimensiones del tipo impositivo. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TaxableBase" type="AmountType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Total Gross Amount + Surcharges – Global Discounts/invoice, for each type, rate and Equivalence Surcharge. Taxable base of the taxes. Always to two decimal points.       </xs:documentation>
-					<xs:documentation xml:lang="es"> Base imponible = Total Importe Bruto + Recargos - Descuentos Globales/factura, por cada clase, porcentaje y recargo de equivalencia. Base imponible de los impuestos. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Total Gross Amount + Surcharges – Global Discounts/invoice, for each type, rate and Equivalence Surcharge. Taxable base of the taxes. Up to eight decimal points.       </xs:documentation>
+					<xs:documentation xml:lang="es"> Base imponible. La legislación del impuesto correspondiente determina cómo se calcula la base imponible.Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TaxAmount" type="AmountType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Amount resulting from applying the corresponding rate to the taxable base. Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Cuota. Importe resultante de aplicar a la Base Imponible el porcentaje correspondiente. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Amount resulting from applying the corresponding rate to the taxable base. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Cuota. La legislación del impuesto correspondiente determina cómo se calcula la cuota. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="SpecialTaxableBase" type="AmountType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Taxable base at cost price = Total Gross Amount + Surcharges – Global discounts/invoice, for each type and rate (article 3.5 of Law 36/2006). Taxable base of the taxes at cost price. Always to two decimal points. Where used, it is entered into the books, but taxable base at market price must also be provided for informational purposes only.  </xs:documentation>
-					<xs:documentation xml:lang="es"> Base imponible especial (artículo tercero punto 5 Ley 36/2006) = Total Importe Bruto + Recargos - Descuentos Globales/factura, por cada clase y porcentaje. Base imponible a precio de coste de los impuestos. Siempre con dos decimales. Si se rellena también hay que rellenar la base imponible a precio de mercado a efectos informativos pero la que se contabiliza es ésta.</xs:documentation>
+					<xs:documentation xml:lang="en"> Taxable base at cost price = Total Gross Amount + Surcharges – Global discounts/invoice, for each type and rate (article 3.5 of Law 36/2006). Taxable base of the taxes at cost price. Up to eight decimal points. Where used, it is entered into the books, but taxable base at market price must also be provided for informational purposes only.  </xs:documentation>
+					<xs:documentation xml:lang="es"> Base imponible del régimen especial del grupo de entidades (Arts. 163 quinquies a 163 nonies de la Ley 37/1992, de 28 de diciembre, del IVA). En el caso de aplicar el régimen especial habrán de consignar en factura no sólo la base conforme al coste de adquisición de los bienes y servicios sino, además, la base que hubiera correspondido tener en cuenta de no aplicarse el régimen especial. Es decir: deben consignarse dos bases distintas para la misma operación aunque el cálculo de la cuota sólo debe efectuarse respecto de la base imponible del régimen especial. En el caso en el que se expida factura con repercusión del impuesto a pesar de tratarse de una de las operaciones exentas de las reguladas en el artículo 20.Uno de la Ley 37/1992, de 28 de diciembre, se tiene que especificar que se está repercutiendo el impuesto porque se ha renunciado a la exención tal y como habilita el artículo 163.sexies.Cinco de la Ley del impuesto. Esto se indicará en el elemento “AdditionalLineItemInformation” con la siguiente expresión: “Renuncia a la exención en virtud artículo 163.sexies.Cinco de la Ley 37/1992”. Hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="SpecialTaxAmount" type="AmountType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Special amount resulting from applying the corresponding rate to the special taxable base. Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Cuota especial. Importe resultante de aplicar a la Base Imponible especial el porcentaje correspondiente. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Special amount resulting from applying the corresponding rate to the special taxable base. Up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Cuota especial. Importe resultante de aplicar el tipo de gravamen sobre la base imponible del régimen especial del grupo de entidades. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="EquivalenceSurcharge" type="DoubleTwoDecimalType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Always to two decimal points.</xs:documentation>
-					<xs:documentation xml:lang="es"> Recargo de Equivalencia. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="es"> Tipo de recargo de Equivalencia. Siempre con dos decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="EquivalenceSurchargeAmount" type="AmountType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result of applying the Equivalence Surcharge percentage to the Taxable Base. Always to two decimal points. </xs:documentation>
-					<xs:documentation xml:lang="es"> Cuota. Importe resultante de aplicar a la Base Imponible el porcentaje del Recargo de Equivalencia. Siempre con dos decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Result of applying the Equivalence Surcharge percentage to the Taxable Base. Up to eight decimal points. </xs:documentation>
+					<xs:documentation xml:lang="es"> Cuota. Importe resultante de aplicar a la Base Imponible, la misma que para el IVA, el porcentaje indicado en “EquivalenceSurchage”. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1654,7 +1654,7 @@
 	<!-- -->
 	<xs:complexType name="AmountType">
 		<xs:sequence>
-			<xs:element name="TotalAmount" type="DoubleTwoDecimalType">
+			<xs:element name="TotalAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Amount in the original currency of the invoice. Where the currency is not EURO, the element EquivalentInEuros must be filled in pursuant to Art.10.1 of Regulation on invoicing, RD1496/2003 of 28th November.</xs:documentation>
 					<xs:documentation xml:lang="es"> Importe en la moneda original de la facturación. Siempre que la divisa de facturación sea distinta de EURO, el elemento EquivalentInEuros deberá cumplimentarse para satisfacer los requerimientos del Art.10.1 del Reglamento sobre facturación, RD 1496/2003 de 28 de Noviembre.</xs:documentation>
@@ -1751,7 +1751,7 @@
 	</xs:simpleType>
 	<xs:simpleType name="SchemaVersionType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="3.2"/>
+			<xs:enumeration value="3.2.1"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="PostCodeType">
@@ -1794,7 +1794,7 @@
 	</xs:simpleType>
 	<xs:simpleType name="DoubleTwoDecimalType">
 		<xs:restriction base="xs:double">
-			<xs:pattern value="[0-9][0-9]*\.[0-9]{2}|-[0-9][0-9]*\.[0-9]{2}">
+			<xs:pattern value="-?[0-9]+\.[0-9]{2}">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">Always to two decimal places.</xs:documentation>
 					<xs:documentation xml:lang="es">Siempre con dos decimales.</xs:documentation>
@@ -1802,22 +1802,12 @@
 			</xs:pattern>
 		</xs:restriction>
 	</xs:simpleType>
-	<xs:simpleType name="DoubleFourDecimalType">
+	<xs:simpleType name="DoubleUpToEightDecimalType">
 		<xs:restriction base="xs:double">
-			<xs:pattern value="[0-9][0-9]*\.[0-9]{4}">
+			<xs:pattern value="-?[0-9]+(\.[0-9]{1,8})?">
 				<xs:annotation>
-					<xs:documentation xml:lang="en">Always to four decimal places.</xs:documentation>
-					<xs:documentation xml:lang="es">Siempre con cuatro decimales.</xs:documentation>
-				</xs:annotation>
-			</xs:pattern>
-		</xs:restriction>
-	</xs:simpleType>
-	<xs:simpleType name="DoubleSixDecimalType">
-		<xs:restriction base="xs:double">
-			<xs:pattern value="[0-9][0-9]*\.[0-9]{6}|-[0-9][0-9]*\.[0-9]{6}">
-				<xs:annotation>
-					<xs:documentation xml:lang="en">Always to six decimal places.</xs:documentation>
-					<xs:documentation xml:lang="es">Siempre con seis decimales.</xs:documentation>
+					<xs:documentation xml:lang="en">Cero to Eight decimal places.</xs:documentation>
+					<xs:documentation xml:lang="es">Entre 0 y 8 decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:pattern>
 		</xs:restriction>
@@ -1924,7 +1914,7 @@
 	</xs:simpleType>
 	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 	<!--Enumerations /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+	<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 	<xs:simpleType name="RoleTypeCodeType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="01">
@@ -2700,7 +2690,7 @@
 			<xs:enumeration value="11">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">IIIMAB: Tax on premises that affect the environment in the Balearic Islands</xs:documentation>
-					<xs:documentation xml:lang="es">IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente en la Baleares</xs:documentation>
+					<xs:documentation xml:lang="es">IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente en las Baleares</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 			<xs:enumeration value="12">
@@ -2749,6 +2739,66 @@
 				<xs:annotation>
 					<xs:documentation xml:lang="en">REIPSI: Special IPSI for travel agencies</xs:documentation>
 					<xs:documentation xml:lang="es">REIPSI: Régimen especial de IPSI para agencias de viajes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="20">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">IPS: Insurance premiums Tax</xs:documentation>
+					<xs:documentation xml:lang="es">IPS: Impuestos sobre las primas de seguros</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="21">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">SWUA: Surcharge for Winding Up Activity</xs:documentation>
+					<xs:documentation xml:lang="es">RLEA: Recargo destinado a financiar las funciones de liquidación de entidades aseguradoras</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="22">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">IVPEE: Tax on the value of electricity generation</xs:documentation>
+					<xs:documentation xml:lang="es">IVPEE: Impuesto sobre el valor de la producción de la energía eléctrica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="23">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Tax on the production of spent nuclear fuel and radioactive waste from the generation of nuclear electric power</xs:documentation>
+					<xs:documentation xml:lang="es">Impuesto sobre la producción de combustible nuclear gastado y residuos radiactivos resultantes de la generación de energía nucleoeléctrica</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="24">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Tax on the storage of spent nuclear energy and radioactive waste in centralised facilities</xs:documentation>
+					<xs:documentation xml:lang="es">Impuesto sobre el almacenamiento de combustible nuclear gastado y residuos radioactivos en instalaciones centralizadas</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="25">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">IDEC: Tax on bank deposits</xs:documentation>
+					<xs:documentation xml:lang="es">IDEC: Impuesto sobre los Depósitos en las Entidades de Crédito</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="26">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Excise duty applied to manufactured tobacco in Canaries</xs:documentation>
+					<xs:documentation xml:lang="es">Impuesto sobre las labores del tabaco en la Comunidad Autónoma de Canarias</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="27">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">IGFEI: Tax on Fluorinated Greenhouse Gases</xs:documentation>
+					<xs:documentation xml:lang="es">IGFEI: Impuesto sobre los Gases Fluorados de Efecto Invernadero</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="28">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">IRNR: Non-resident Income Tax</xs:documentation>
+					<xs:documentation xml:lang="es">IRNR: Impuesto sobre la Renta de No Residentes</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="29">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Corporation Tax</xs:documentation>
+					<xs:documentation xml:lang="es">Impuesto sobre Sociedades</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>

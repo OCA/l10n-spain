@@ -6,12 +6,12 @@
     'version': '11.0.1.0.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
-    'summary': 'Import supplier invoices/refunds in facturae syntaxis',
+    'summary': 'Import supplier invoices/refunds in facturae format',
     'author': 'Creu Blanca, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-spain',
     'depends': [
         'account_invoice_import',
-        'base_iso3166'
+        'base_iso3166',
     ],
     'data': [
     ],
