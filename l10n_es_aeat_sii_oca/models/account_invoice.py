@@ -123,6 +123,16 @@ class AccountInvoice(models.Model):
         string="SII Refund Type", default=_default_sii_refund_type,
         oldname='refund_type',
     )
+    sii_refund_specific_invoice_type = fields.Selection(
+        selection=[
+            ('R1', 'Error based on law and Art. 80 One and Two LIVA (R1)'),
+            ('R2', 'Art. 80 Three LIVA - Bankruptcy (R2)'),
+            ('R3', 'Art. 80 Four LIVA - Bad debt (R3)'),
+        ],
+        help="Fill this field when the refund are one of the specific cases"
+             " of article 80 of LIVA for notifying to SII with the proper"
+             " invoice type.",
+    )
     sii_account_registration_date = fields.Date(
         string='SII account registration date', readonly=True, copy=False,
         help="Indicates the account registration date set at the SII, which "
@@ -701,10 +711,14 @@ class AccountInvoice(models.Model):
         if not cancel:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
-            if partner.sii_simplified_invoice:
-                tipo_factura = 'R5' if self.type == 'out_refund' else 'F2'
+            simplied = partner.sii_simplified_invoice
+            if self.type == 'out_refund':
+                if self.sii_refund_specific_invoice_type:
+                    tipo_factura = self.sii_refund_specific_invoice_type
+                else:
+                    tipo_factura = 'R5' if simplied else 'R4'
             else:
-                tipo_factura = 'R4' if self.type == 'out_refund' else 'F1'
+                tipo_factura = 'F2' if simplied else 'F1'
             inv_dict["FacturaExpedida"] = {
                 "TipoFactura": tipo_factura,
                 "ClaveRegimenEspecialOTrascendencia": (
