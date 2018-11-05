@@ -17,6 +17,7 @@
     'website': 'http://www.sdatos.com',
     'depends' : ['l10n_es'],
     'data': ['data/account_account_common_igic.xml',
+             'data/account_tax_group_data.xml',
              'data/taxes_common_igic.xml',
              'data/fiscal_position_common_igic.xml'],
     'installable': True,
