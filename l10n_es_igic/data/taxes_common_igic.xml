@@ -13,7 +13,8 @@
     	<field name="refund_account_id" ref="pgc_4777_child"/>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="0"/>
-        <field name="amount_type">percent</field>    
+        <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>  
     <record id="account_tax_template_igic_r_3" model="account.tax.template">
     	<field name="squence" eval="5"/>
@@ -25,6 +26,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="3"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>    
     <record id="account_tax_template_igic_r_7" model="account.tax.template">
     	<field name="squence" eval="0"/>
@@ -36,6 +38,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="7"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
 	<record id="account_tax_template_igic_r_9_5" model="account.tax.template">
     	<field name="description">S_IGIC_R95</field>
@@ -46,6 +49,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="9.5"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
 	</record>
     <record id="account_tax_template_igic_r_13_5" model="account.tax.template">
     	<field name="description">S_IGIC_R135</field>
@@ -56,6 +60,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="13.5"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_r_200" model="account.tax.template">
         <field name="description">S_IGIC_R200</field>
@@ -66,6 +71,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="20"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>    
 				    
     <!-- Recargo de Eqivalencia -->
@@ -78,7 +84,8 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0.30" name="amount"/>
         <field name="amount_type">percent</field>
-    </record>    
+        <field name="tax_group_id" ref="tax_group_igic_re_03"/>
+    </record>
     <record id="account_tax_template_igic_re_07" model="account.tax.template">
     	<field name="description">S_IGIC_RE07</field>
     	<field name="type_tax_use">sale</field>
@@ -88,6 +95,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0.70" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_07"/>
     </record>
     <record id="account_tax_template_igic_re_095" model="account.tax.template">
     	<field name="description">S_IGIC_RE095</field>
@@ -98,6 +106,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0.95" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_095"/>
     </record>
     <record id="account_tax_template_igic_re_13_5" model="account.tax.template">
     	<field name="description">S_IGIC_RE135</field>
@@ -108,6 +117,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="1.35" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_135"/>
     </record>
     <record id="account_tax_template_igic_re_20" model="account.tax.template">
     	<field name="description">S_IGIC_RE20</field>
@@ -118,6 +128,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="2" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_200"/>
     </record> 
     
     <!-- Inversión del Sujeto Pasivo -->
@@ -130,6 +141,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_s_ISP0_2" model="account.tax.template">
     	<field name="description">S_IGIC_ISP0_2</field>
@@ -140,6 +152,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_s_ISP0" model="account.tax.template">
     	<field name="description">S_IGIC_ISP0</field>
@@ -149,6 +162,7 @@
         <field name="amount_type">group</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP0_1'), ref('account_tax_template_igic_s_ISP0_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_s_ISP3_1" model="account.tax.template">
     	<field name="description">S_IGIC_ISP3_1</field>
@@ -159,6 +173,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_s_ISP3_2" model="account.tax.template">
     	<field name="description">S_IGIC_ISP3_2</field>
@@ -169,6 +184,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_s_ISP3" model="account.tax.template">
     	<field name="description">S_IGIC_ISP3</field>
@@ -178,6 +194,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP3_1'), ref('account_tax_template_igic_s_ISP3_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_s_ISP7_1" model="account.tax.template">
     	<field name="description">S_IGIC_ISP7_1</field>
@@ -188,6 +205,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_s_ISP7_2" model="account.tax.template">
     	<field name="description">S_IGIC_ISP7_2</field>
@@ -198,6 +216,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_s_ISP7" model="account.tax.template">
     	<field name="description">S_IGIC_ISP7</field>
@@ -207,6 +226,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP7_1'), ref('account_tax_template_igic_s_ISP7_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_s_ISP95_1" model="account.tax.template">
     	<field name="description">S_IGIC_ISP95_1</field>
@@ -217,6 +237,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_s_ISP95_2" model="account.tax.template">
     	<field name="description">S_IGIC_ISP95_2</field>
@@ -227,6 +248,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-9.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_s_ISP95" model="account.tax.template">
     	<field name="description">S_IGIC_ISP95</field>
@@ -236,6 +258,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP95_1'), ref('account_tax_template_igic_s_ISP95_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_s_ISP135_1" model="account.tax.template">
     	<field name="description">S_IGIC_ISP135_1</field>
@@ -246,6 +269,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_s_ISP135_2" model="account.tax.template">
     	<field name="description">S_IGIC_ISP135_2</field>
@@ -256,6 +280,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-13.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_s_ISP135" model="account.tax.template">
     	<field name="description">S_IGIC_ISP135</field>
@@ -265,6 +290,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP135_1'), ref('account_tax_template_igic_s_ISP135_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_s_ISP200_1" model="account.tax.template">
     	<field name="description">S_IGIC_ISP200_1</field>
@@ -275,6 +301,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     <record id="account_tax_template_igic_s_ISP200_2" model="account.tax.template">
     	<field name="description">S_IGIC_ISP200_2</field>
@@ -285,6 +312,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     <record id="account_tax_template_igic_s_ISP200" model="account.tax.template">
     	<field name="description">S_IGIC_ISP200</field>
@@ -294,6 +322,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP200_1'), ref('account_tax_template_igic_s_ISP200_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     
     <!-- Exportaciones -->
@@ -304,6 +333,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0.00" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     
     <!-- Operaciones exentas -->
@@ -314,6 +344,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_ex"/>
     </record>
 				    
     <!-- ======================== -->
@@ -329,6 +360,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_sop_3" model="account.tax.template">
     	<field name="description">P_IGIC_BC3</field>
@@ -339,6 +371,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_sop_7" model="account.tax.template">
     	<field name="sequence" eval="0"/>
@@ -350,6 +383,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_sop_9_5" model="account.tax.template">
     	<field name="description">P_IGIC_BC95</field>
@@ -360,6 +394,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.50" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_sop_13_5" model="account.tax.template">
     	<field name="description">P_IGIC_BC135</field>
@@ -370,6 +405,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.50" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_sop_200" model="account.tax.template">
     	<field name="description">P_IGIC_BC200</field>
@@ -380,6 +416,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     
     <!-- Operaciones inversion -->
@@ -392,6 +429,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_sop_3_inv" model="account.tax.template">
     	<field name="description">P_IGIC_BI3</field>
@@ -402,6 +440,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_sop_7_inv" model="account.tax.template">
     	<field name="description">P_IGIC_BI7</field>
@@ -412,6 +451,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
 	<record id="account_tax_template_igic_sop_9_5_inv" model="account.tax.template">
 		<field name="description">P_IGIC_BI95</field>
@@ -422,6 +462,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
 	</record>
     <record id="account_tax_template_igic_sop_13_5_inv" model="account.tax.template">
     	<field name="description">P_IGIC_BI135</field>
@@ -432,6 +473,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>    
     <record id="account_tax_template_igic_sop_200_inv" model="account.tax.template">
     	<field name="description">P_IGIC_BI200</field>
@@ -442,6 +484,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     
     <!-- Importaciones Operaciones corrientes -->
@@ -454,6 +497,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_sop_i_3" model="account.tax.template">
     	<field name="description">P_IGIC_IBC3</field>
@@ -464,6 +508,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_sop_i_7" model="account.tax.template">
     	<field name="description">P_IGIC_IBC7</field>
@@ -474,6 +519,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_sop_i_9_5" model="account.tax.template">
     	<field name="description">P_IGIC_IBC95</field>
@@ -484,6 +530,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.50" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_sop_i_13_5" model="account.tax.template">
     	<field name="description">P_IGIC_IBC135</field>
@@ -494,6 +541,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.50" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_sop_i_200" model="account.tax.template">
     	<field name="description">P_IGIC_IBC200</field>
@@ -504,6 +552,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     
     <!-- Importaciones Operaciones inversion -->
@@ -516,6 +565,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_sop_i_3_inv" model="account.tax.template">
     	<field name="description">P_IGIC_IBI3</field>
@@ -526,6 +576,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_sop_i_7_inv" model="account.tax.template">
     	<field name="description">P_IGIC_IBI7</field>
@@ -536,6 +587,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
 	<record id="account_tax_template_igic_sop_i_9_5_inv" model="account.tax.template">
 		<field name="description">P_IGIC_IBI95</field>
@@ -546,6 +598,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
 	</record>
     <record id="account_tax_template_igic_sop_i_13_5_inv" model="account.tax.template">
     	<field name="description">P_IGIC_IBI135</field>
@@ -556,6 +609,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>    
     <record id="account_tax_template_igic_sop_i_200_inv" model="account.tax.template">
     	<field name="description">P_IGIC_IBI200</field>
@@ -566,6 +620,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
         		    
     <!-- Inversión del Sujeto Pasivo -->
@@ -578,6 +633,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_ISP0_2" model="account.tax.template">
     	<field name="description">P_IGIC_ISP0_2</field>
@@ -588,6 +644,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_ISP0" model="account.tax.template">
     	<field name="description">P_IGIC_ISP0</field>
@@ -597,6 +654,7 @@
         <field name="amount_type">group</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP0_1'), ref('account_tax_template_igic_ISP0_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_ISP3_1" model="account.tax.template">
     	<field name="description">P_IGIC_ISP3_1</field>
@@ -607,6 +665,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_ISP3_2" model="account.tax.template">
     	<field name="description">P_IGIC_ISP3_2</field>
@@ -617,6 +676,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-3" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_ISP3" model="account.tax.template">
     	<field name="description">P_IGIC_ISP3</field>
@@ -626,6 +686,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP3_1'), ref('account_tax_template_igic_ISP3_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_ISP7_1" model="account.tax.template">
     	<field name="description">P_IGIC_ISP7_1</field>
@@ -636,6 +697,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_ISP7_2" model="account.tax.template">
     	<field name="description">P_IGIC_ISP7_2</field>
@@ -646,6 +708,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-7" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_ISP7" model="account.tax.template">
     	<field name="description">P_IGIC_ISP7</field>
@@ -655,6 +718,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP7_1'), ref('account_tax_template_igic_ISP7_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_7"/>
     </record>
     <record id="account_tax_template_igic_ISP95_1" model="account.tax.template">
     	<field name="description">P_IGIC_ISP95_1</field>
@@ -665,6 +729,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_ISP95_2" model="account.tax.template">
     	<field name="description">P_IGIC_ISP95_2</field>
@@ -675,6 +740,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-9.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_ISP95" model="account.tax.template">
     	<field name="description">P_IGIC_ISP95</field>
@@ -684,6 +750,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP95_1'), ref('account_tax_template_igic_ISP95_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_95"/>
     </record>
     <record id="account_tax_template_igic_ISP135_1" model="account.tax.template">
     	<field name="description">P_IGIC_ISP135_1</field>
@@ -694,6 +761,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_ISP135_2" model="account.tax.template">
     	<field name="description">P_IGIC_ISP135_2</field>
@@ -704,6 +772,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-13.5" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_ISP135" model="account.tax.template">
     	<field name="description">P_IGIC_ISP135</field>
@@ -713,6 +782,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP135_1'), ref('account_tax_template_igic_ISP135_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_135"/>
     </record>
     <record id="account_tax_template_igic_ISP200_1" model="account.tax.template">
     	<field name="description">P_IGIC_ISP200_1</field>
@@ -723,6 +793,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     <record id="account_tax_template_igic_ISP200_2" model="account.tax.template">
     	<field name="description">P_IGIC_ISP200_2</field>
@@ -733,6 +804,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-20" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
     <record id="account_tax_template_igic_ISP200" model="account.tax.template">
     	<field name="description">P_IGIC_ISP200</field>
@@ -742,6 +814,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP200_1'), ref('account_tax_template_igic_ISP200_2')])]"/>
+        <field name="tax_group_id" ref="tax_group_igic_200"/>
     </record>
    
     <!-- Recargo de equivalencias -->
@@ -754,6 +827,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="0.3"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_03"/>
     </record>    
     <record id="account_tax_template_igic_p_re07" model="account.tax.template">
     	<field name="description">P_IGIC_RE07</field>
@@ -764,6 +838,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="0.7"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_07"/>
     </record>
     <record id="account_tax_template_igic_p_re95" model="account.tax.template">
     	<field name="description">P_IGIC_RE95</field>
@@ -774,6 +849,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="0.95"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_095"/>
     </record>
     <record id="account_tax_template_igic_p_re135" model="account.tax.template">
     	<field name="description">P_IGIC_RE135</field>
@@ -784,6 +860,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="0.135"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_135"/>
     </record>
     <record id="account_tax_template_igic_p_re20" model="account.tax.template">
     	<field name="description">P_IGIC_RE20</field>
@@ -794,6 +871,7 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="2"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_re_200"/>
     </record>
     
 	<!-- Operaciones exentas -->    
@@ -804,5 +882,6 @@
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
+        <field name="tax_group_id" ref="tax_group_igic_ex"/>
     </record>
 </odoo>
