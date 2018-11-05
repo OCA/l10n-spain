@@ -106,6 +106,8 @@
                             <field name="sii_description" attrs="{'required': [('sii_enabled', '=', True)], 'readonly': [('sii_description_method', '!=', 'manual')]}"/>
                             <field name="sii_refund_type"
                                    attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"/>
+                            <field name="sii_refund_specific_invoice_type"
+                                   attrs="{'invisible': [('type', '!=', 'out_refund')]}"/>
                             <field name="sii_registration_key" domain="[('type', '=', 'sale')]" attrs="{'required': [('sii_enabled', '=', True)]}" widget="selection"/>
                             <field name="sii_registration_key_additional1" domain="[('type', '=', 'sale')]" widget="selection"/>
                             <field name="sii_registration_key_additional2" domain="[('type', '=', 'sale')]" widget="selection"/>
