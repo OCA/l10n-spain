@@ -6,6 +6,7 @@
     <field name="name">Agencia Estatal de Administración Tributaria (AEAT)</field>
     <field name="supplier">1</field>
     <field name="customer" eval="False"/>
+    <field name="company_id"/>
     <field name="is_company">1</field>
     <field name="city">Madrid</field>
     <field name="zip">28020</field>
