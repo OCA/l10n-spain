@@ -5,6 +5,11 @@
 def migrate(cr, version):
     if not version:
         return
+    # Add new column in advance
+    cr.execute("""
+        ALTER TABLE pos_order
+        ADD COLUMN is_l10n_es_simplified_invoice BOOLEAN;
+    """)
     # Move simplified invoice info to pos_reference field.
     cr.execute("""
         UPDATE pos_order SET
