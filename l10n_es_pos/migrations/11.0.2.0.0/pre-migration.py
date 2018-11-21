@@ -10,11 +10,20 @@ def migrate(cr, version):
         ALTER TABLE pos_order
         ADD COLUMN is_l10n_es_simplified_invoice BOOLEAN;
     """)
+    # If migrated directly from 10.0.1.0.0
+    simplified_invoice_field = 'simplified_invoice'
+    cr.execute("""
+        SELECT column_name
+        FROM information_schema.columns
+        WHERE table_name='pos_order' AND column_name='simplified_invoice';
+    """)
+    # Otherwise it's migrated from 11.0.1.0.0
+    if not cr.fetchone():
+        simplified_invoice_field = 'l10n_es_simplified_invoice_number'
     # Move simplified invoice info to pos_reference field.
     cr.execute("""
         UPDATE pos_order SET
-            pos_reference = l10n_es_simplified_invoice_number,
+            pos_reference = %s,
             is_l10n_es_simplified_invoice = TRUE
-        WHERE (l10n_es_simplified_invoice_number IS NOT NULL OR
-               l10n_es_simplified_invoice_number <> '')
-    """)
+        WHERE (%s IS NOT NULL OR %s <> '');
+    """ % simplified_invoice_field)

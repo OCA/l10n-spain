@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
         <field name="arch" type="xml">
             <field name="pos_reference" position="before">
-                <field name="is_l10n_es_simplified_invoice" invisible="1"/>
+                <field name="is_l10n_es_simplified_invoice"/>
             </field>
         </field>
     </record>
@@ -34,7 +34,6 @@
                 <separator/>
                 <filter string="Invoices" name="invoices" domain="[('is_l10n_es_simplified_invoice', '=', False)]"/>
                 <filter string="Simplified invoices" name="invoices" domain="[('is_l10n_es_simplified_invoice', '!=', False)]"/>
-                <field name="is_l10n_es_simplified_invoice"/>
             </field>
         </field>
     </record>
