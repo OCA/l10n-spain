@@ -104,6 +104,8 @@ Contributors
 
   * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 
+* Jose Maria Alzaga <jose.alzaga@aselcis.com>
+
 Other credits
 ~~~~~~~~~~~~~
 

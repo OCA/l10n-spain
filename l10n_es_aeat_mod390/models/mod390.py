@@ -42,6 +42,7 @@ class L10nEsAeatMod390Report(models.Model):
     _period_quarterly = False
     _period_monthly = False
     _period_yearly = True
+    _substitutive = True
 
     # 3. Datos estadísticos
     has_347 = fields.Boolean(
