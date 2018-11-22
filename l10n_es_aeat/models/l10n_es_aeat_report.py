@@ -20,6 +20,7 @@ class L10nEsAeatReport(models.AbstractModel):
     _period_quarterly = True
     _period_monthly = True
     _period_yearly = False
+    _substitutive = False
 
     def _default_company_id(self):
         company_obj = self.env['res.company']
@@ -76,6 +77,17 @@ class L10nEsAeatReport(models.AbstractModel):
     def _default_export_config_id(self):
         return self._get_export_config(fields.Date.today())
 
+    def get_type_selection(self):
+        types = []
+        if self._substitutive:
+            types += [('N', 'Normal'),
+                      ('C', 'Complementaria'),
+                      ('S', 'Sustitutiva')]
+        else:
+            types += [('N', 'Normal'),
+                      ('C', 'Complementaria')]
+        return types
+
     company_id = fields.Many2one(
         comodel_name='res.company', string="Company", required=True,
         readonly=True, default=_default_company_id,
@@ -106,11 +118,8 @@ class L10nEsAeatReport(models.AbstractModel):
         string="Year", default=_default_year, required=True, readonly=True,
         states={'draft': [('readonly', False)]})
     type = fields.Selection(
-        selection=[
-            ('N', 'Normal'),
-            ('C', 'Complementary'),
-            ('S', 'Substitutive'),
-        ], string="Statement Type", default='N', readonly=True, required=True,
+        selection='get_type_selection'
+        , string="Statement Type", default='N', readonly=True, required=True,
         states={'draft': [('readonly', False)]})
     support_type = fields.Selection(
         selection=[

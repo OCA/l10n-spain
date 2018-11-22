@@ -27,6 +27,9 @@ Configuración
 Todos aquellos modelos que se especifiquen en los módulos adicionales y
 hereden el AEAT base, deberán definir una variable interna que se llame
 '_aeat_number' asignándole como valor, el número del modelo (130, 340, 347...).
+Así mismo, todos los modelos de la AEAT que incluyan la sustitutiva como tipo
+de declaración deberán definir una variable interna que se llame
+'_substitutive' asignándole el valor True.
 
 Para poder utilizar el motor genérico de cálculo de casillas por impuestos
 (como el 303), hay que heredar del modelo "l10n.es.aeat.report.tax.mapping" en
@@ -88,6 +91,7 @@ Contribudores
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Juan Vicente Pascual <jvpascual@puntsistemes.es>
 * Abraham Anes <abraham@studio73.es>
+* Jose Maria Alzaga <jose.alzaga@aselcis.com>
 
 Maintainer
 ----------
