@@ -126,6 +126,7 @@ Contribudores
   * Jordi Ballester <jordi.ballester@eficent.com>
 
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Jose Maria Alzaga <jose.alzaga@aselcis.com>
 
 Mantenedor
 ----------

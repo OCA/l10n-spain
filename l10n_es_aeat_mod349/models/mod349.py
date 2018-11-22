@@ -32,6 +32,7 @@ class Mod349(models.Model):
     _period_monthly = True
     _period_quarterly = True
     _period_yearly = True
+    _substitutive = True
     _aeat_number = '349'
 
     frequency_change = fields.Boolean(
