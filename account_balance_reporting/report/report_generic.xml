@@ -8,7 +8,7 @@
         <t t-call="report.html_container">
             <t t-foreach="docs" t-as="o">
                 <div class="header" style="font-size:120%;width:100%;text-align:center;background-color:#ccc;border:1px solid black;">
-                    <strong><span t-esc="o.name"/></strong>
+                    <strong><span t-field="o.name"/></strong>
                 </div>
                 <div class="page">
                     <div class="row">
@@ -26,16 +26,16 @@
                                 <tr t-foreach="o.line_ids" t-as="line" style="font-size:90%;page-break-inside:avoid;">
                                     <td style="border-right:1px solid black;">
                                         <t t-if="line.css_class == 'l4'">
-                                            <span t-esc="line.name"/>
+                                            <span t-field="line.name"/>
                                         </t>
                                         <t t-if="line.css_class != 'l4'">
-                                            <strong><span t-esc="line.name"/></strong>
+                                            <strong><span t-field="line.name"/></strong>
                                         </t>
                                     </td>
-                                    <td style="text-align:center;border-right:1px solid black;"><strong><span t-esc="line.code"/></strong></td>
-                                    <td style="text-align:center;border-right:1px solid black;"><span t-esc="line.notes"/></td>
-                                    <td style="text-align:right;border-right:1px solid black;padding-right:3px;"><span t-esc="'%.2f' % line.current_value"/></td>
-                                    <td style="text-align:right;padding-right:3px;"><span t-esc="'%.2f' % line.previous_value"/></td>
+                                    <td style="text-align:center;border-right:1px solid black;"><strong><span t-field="line.code"/></strong></td>
+                                    <td style="text-align:center;border-right:1px solid black;"><span t-field="line.notes"/></td>
+                                    <td style="text-align:right;border-right:1px solid black;padding-right:3px;"><span t-field="line.current_value"/></td>
+                                    <td style="text-align:right;padding-right:3px;"><span t-field="line.previous_value"/></td>
                                 </tr>
                             </tbody>
                         </table>
