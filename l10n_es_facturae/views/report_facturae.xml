@@ -77,7 +77,7 @@
     <template id="address_contact">
         <AddressInSpain t-if="partner.country_id.code == 'ES'">
             <Address t-length="80" t-esc="partner.street + (partner.street2 or '')"/>
-            <PostCode t-length="5" t-esc="'00000' + partner.zip"/>
+            <PostCode t-length="5" t-esc="partner.zip.zfill(5)"/>
             <Town t-length="50" t-esc="partner.city"/>
             <Province t-length="20" t-esc="partner.state_id.name"/>
             <CountryCode t-esc="partner.country_id.code_alpha3"/>
