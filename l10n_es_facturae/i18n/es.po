@@ -290,6 +290,11 @@ msgid "Cálculo de cuotas retenidas"
 msgstr "Cálculo de cuotas retenidas"
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Delivered"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Detalle Operación"
@@ -416,7 +421,7 @@ msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7099
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7220
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_id
 msgid "ID"
 msgstr "ID"
@@ -730,6 +735,11 @@ msgid "Otro"
 msgstr "Otro"
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Paid"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:181
 #, python-format
 msgid "Partner bank in mandate is missing"
@@ -845,6 +855,12 @@ msgstr "Motivo de reembolso"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_register_number
 msgid "Register Number"
 msgstr "Número de registro"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+msgid "Registered"
+msgstr "Registrado en RCF"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
