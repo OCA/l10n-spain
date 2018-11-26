@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -15,7 +14,7 @@ class TestL10nEsToponyms(common.SavepointCase):
 
     def test_import(self):
         self.wizard.with_context(max_import=10).execute()
-        zips = self.env['res.better.zip'].search([
+        zips = self.env['res.city.zip'].search([
             ('country_id', '=', self.env.ref('base.es').id)
         ])
         self.assertTrue(zips)
