@@ -11,15 +11,9 @@
             </form>
             <separator position="replace">
                 <group col="2" colspan="4" string="This wizard will add city and state information to zip codes">
-                    <label colspan="2" string="Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."/>
+                    <label for="" colspan="2" string="Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."/>
                 </group>
             </separator>
-            <button name="action_next" position="after">
-                <button string="Configure from local"
-                        type="object"
-                        name="execute_local"
-                />
-            </button>
             <button name="action_next" position="attributes">
                 <attribute name="string">Configure from GeoNames</attribute>
             </button>
