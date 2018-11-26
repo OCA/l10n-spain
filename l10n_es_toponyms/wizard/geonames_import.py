@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2013-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
@@ -6,7 +5,7 @@ from odoo import models, api
 
 
 class BetterZipGeonamesImport(models.TransientModel):
-    _inherit = 'better.zip.geonames.import'
+    _inherit = 'city.zip.geonames.import'
 
     @api.model
     def transform_city_name(self, city, country):
