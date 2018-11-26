@@ -23,7 +23,7 @@ def migrate(cr, version):
     # Move simplified invoice info to pos_reference field.
     cr.execute("""
         UPDATE pos_order SET
-            pos_reference = %s,
+            pos_reference = %(s)s,
             is_l10n_es_simplified_invoice = TRUE
-        WHERE (%s IS NOT NULL OR %s <> '');
-    """ % simplified_invoice_field)
+        WHERE COALESCE(%(s)s, '') <> '';
+    """ % {'s': simplified_invoice_field})
