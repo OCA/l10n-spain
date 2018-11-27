@@ -10,11 +10,11 @@ msgstr ""
 "PO-Revision-Date: 2018-01-25 17:49+0100\n"
 "Last-Translator: Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: es\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
 #. module: l10n_es_vat_book
@@ -705,8 +705,12 @@ msgstr "La factura no puede ser de 0 € \n"
 
 #. module: l10n_es_vat_book
 #: help:l10n.es.vat.book,counterpart_account:0
-msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
-msgstr "Esta cuenta será la contrapartida para los apuntes que se regularicen cuando se confirme el informe."
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Esta cuenta será la contrapartida para los apuntes que se regularicen cuando "
+"se confirme el informe."
 
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:528
