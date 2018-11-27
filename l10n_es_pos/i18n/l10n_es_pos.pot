@@ -20,7 +20,7 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:70
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:69
 #, python-format
 msgid "Address:"
 msgstr ""
@@ -32,14 +32,14 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
 #, python-format
 msgid "Customer data"
 msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:28
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:27
 #, python-format
 msgid "Customer:"
 msgstr ""
@@ -51,7 +51,7 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
 #, python-format
 msgid "Name:"
 msgstr ""
@@ -68,14 +68,14 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:40
 #, python-format
 msgid "Product"
 msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
 #, python-format
 msgid "Qty"
 msgstr ""
@@ -129,8 +129,8 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:60
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order_l10n_es_simplified_invoice_number
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:59
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order_is_l10n_es_simplified_invoice
 #, python-format
 msgid "Simplified invoice"
 msgstr ""
@@ -149,7 +149,7 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:44
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
 #, python-format
 msgid "Subt"
 msgstr ""
@@ -162,7 +162,7 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
 #, python-format
 msgid "Unit"
 msgstr ""
@@ -174,9 +174,9 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:13
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:30
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:69
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:12
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:29
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
 #, python-format
 msgid "VAT:"
 msgstr ""
@@ -188,7 +188,7 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:52
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:51
 #, python-format
 msgid "on"
 msgstr ""
