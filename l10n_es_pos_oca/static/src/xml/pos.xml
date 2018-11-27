@@ -2,11 +2,10 @@
 <templates id="template" xml:space="preserve">
 
     <t t-extend="PosTicket">
-        <t t-jquery="div.pos-center-align:first" t-operation="after">
-            <div class="pos-center-align"
-                 t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice() and order.simplified_invoice">
-                  Simplified invoice: <t t-esc="order.simplified_invoice"/>
-            </div>
+        <t t-jquery="t[t-esc='order.name']" t-operation="before">
+            <t t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice()">
+                <br/><span>Simplified invoice: </span>
+            </t>
         </t>
         <t t-jquery="t[t-esc='widget.pos.company.name']" t-operation="after">
             <t t-if="widget.pos.company.vat">
@@ -56,7 +55,7 @@
 
     <t t-extend="XmlReceipt">
         <t t-jquery="[t-if='!receipt.company.logo']" t-operation="after">
-            <t t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice() and order.simplified_invoice">
+            <t t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice()">
             <br/>
                 Simplified invoice <t t-esc="order.simplified_invoice"/>
             <br/>

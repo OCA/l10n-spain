@@ -49,13 +49,21 @@ odoo.define('l10n_es_pos.models', function (require) {
                 }
             });
             return pos_super._flush_orders.apply(this, arguments);
-        }
+        },
     });
 
     var order_super = models.Order.prototype;
     models.Order = models.Order.extend({
+        get_total_with_tax: function () {
+            var total = order_super.get_total_with_tax.apply(this, arguments);
+            var below_limit = total <= this.pos.config.l10n_es_simplified_invoice_limit;
+            this.is_simplified_invoice = below_limit && this.pos.config.iface_l10n_es_simplified_invoice;
+            return total;
+        },
         set_simple_inv_number: function () {
             this.simplified_invoice = this.pos.get_simple_inv_next_number();
+            this.name = this.simplified_invoice;
+            this.is_simplified_invoice = true;
         },
         get_base_by_tax: function () {
             var base_by_tax = {};
@@ -86,7 +94,7 @@ odoo.define('l10n_es_pos.models', function (require) {
                 res.simplified_invoice = this.simplified_invoice;
             }
             return res;
-        }
+        },
     });
 
     models.load_fields('res.company', ['street', 'city', 'state_id', 'zip']);
