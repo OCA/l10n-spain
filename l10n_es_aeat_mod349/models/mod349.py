@@ -430,7 +430,8 @@ class Mod349PartnerRecordDetail(models.Model):
         string='Partner record', ondelete='set null', index=True)
     move_line_id = fields.Many2one(
         comodel_name='account.move.line', string='Journal Item',
-        required=True)
+        required=True, ondelete="cascade",
+    )
     invoice_id = fields.Many2one(
         comodel_name='account.invoice', string='Invoice',
         related='move_line_id.invoice_id',
@@ -551,7 +552,8 @@ class Mod349PartnerRefundDetail(models.Model):
     )
     refund_line_id = fields.Many2one(
         comodel_name='account.move.line', string='Journal Item',
-        required=True)
+        required=True, ondelete="cascade",
+    )
     invoice_id = fields.Many2one(
         comodel_name='account.invoice', string='Invoice',
         related='refund_line_id.invoice_id',
