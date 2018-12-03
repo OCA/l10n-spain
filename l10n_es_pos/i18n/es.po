@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_pos
-#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Above this limit the simplified invoice won't be made"
 msgstr "Por encima de este límite no se creará factura simplificada"
 
@@ -29,7 +29,7 @@ msgid "Address:"
 msgstr "Dirección:"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,help:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 msgid "Autogenerate for each POS created"
 msgstr "Autogenerada por cada TPV creado"
 
@@ -48,7 +48,7 @@ msgid "Customer:"
 msgstr "Cliente:"
 
 #. module: l10n_es_pos
-#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Invoices"
 msgstr "Facturas"
 
@@ -60,9 +60,15 @@ msgid "Name:"
 msgstr "Nombre:"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,help:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
 msgid "Over this amount is not legally posible to create a simplified invoice"
 msgstr "Por encima de esta cantidad no es legal crear una factura simplificada"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_config
+#, fuzzy
+msgid "Point of Sale Configuration"
+msgstr "Pedidos del Punto de Venta"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
@@ -84,17 +90,23 @@ msgid "Qty"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+#: model:ir.model,name:l10n_es_pos.model_ir_sequence
+#, fuzzy
+msgid "Sequence"
+msgstr "ir.sequence"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Set simplified invoice sequence for this POS"
 msgstr "Establecer secuencia de factura simplificada para este TPV"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_limit
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
 msgid "Sim.Inv limit amount"
 msgstr "Límite de factura simplificada"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_number
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_number
 msgid "Sim.Inv number"
 msgstr "Número de factura simplificada"
 
@@ -106,34 +118,34 @@ msgid "Simplified Invoice %s"
 msgstr "Factura simplificada %s"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_sequence_id
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 msgid "Simplified Invoice IDs Sequence"
 msgstr "Secuencia de Factura Simplificada"
 
 #. module: l10n_es_pos
-#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Simplified Invoice Limit"
 msgstr "Límite de Factura Simplificada"
 
 #. module: l10n_es_pos
-#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Simplified Invoice Sequence"
 msgstr "Secuencia de Factura Simplificada"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_padding
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_padding
 msgid "Simplified Invoice padding"
 msgstr "Relleno de Factura Simplificada"
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_prefix
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_prefix
 msgid "Simplified Invoice prefix"
 msgstr "Prefijo de Factura Simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:59
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order_is_l10n_es_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
 msgid "Simplified invoice"
 msgstr "Factura simplificada"
@@ -146,7 +158,7 @@ msgid "Simplified invoice:"
 msgstr "Factura Simplificada:"
 
 #. module: l10n_es_pos
-#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Simplified invoices"
 msgstr "Facturas simplificadas"
 
@@ -175,7 +187,7 @@ msgid "Unit"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_iface_l10n_es_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
 msgid "Use simplified invoices for this POS"
 msgstr "Usar Facturas Simplificadas en este Punto de Venta"
 
@@ -189,21 +201,14 @@ msgid "VAT:"
 msgstr "NIF/CIF:"
 
 #. module: l10n_es_pos
-#: model:ir.model,name:l10n_es_pos.model_ir_sequence
-msgid "ir.sequence"
-msgstr "ir.sequence"
-
-#. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:51
 #, python-format
 msgid "on"
 msgstr "sobre"
 
-#. module: l10n_es_pos
-#: model:ir.model,name:l10n_es_pos.model_pos_config
-msgid "pos.config"
-msgstr "pos.config"
+#~ msgid "pos.config"
+#~ msgstr "pos.config"
 
 #~ msgid ""
 #~ "There's already another POS config using the same Simplified Invoice "
