@@ -14,7 +14,7 @@ odoo.define('l10n_es_pos.screens', function (require) {
             var below_limit = this.pos.get_order().get_total_with_tax() <= this.pos.config.l10n_es_simplified_invoice_limit;
             if (this.pos.config.iface_l10n_es_simplified_invoice) {
                 var order = this.pos.get_order();
-                if (below_limit) {
+                if (below_limit && !order.to_invoice) {
                     order.set_simple_inv_number();
                 } else {
                     // Force invoice above limit. Online is needed.
