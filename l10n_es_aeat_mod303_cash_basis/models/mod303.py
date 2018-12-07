@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -13,14 +12,14 @@ class L10nEsAeatMod303Report(models.Model):
         return bool(self.env['account.tax'].search_count([
             ('company_id', '=', self._default_company_id().id),
             ('type_tax_use', '=', 'sale'),
-            ('use_cash_basis', '=', True),
+            ('tax_exigibility', '=', 'on_payment'),
         ]))
 
     def _default_cash_basis_payable(self):
         return bool(self.env['account.tax'].search_count([
             ('company_id', '=', self._default_company_id().id),
             ('type_tax_use', '=', 'purchase'),
-            ('use_cash_basis', '=', True),
+            ('tax_exigibility', '=', 'on_payment'),
         ]))
 
     cash_basis_receivable = fields.Boolean(
@@ -72,7 +71,7 @@ class L10nEsAeatMod303Report(models.Model):
             if element[0] == 'move_id.move_type':
                 domain[i:i] = [
                     '|',
-                    ('move_id.tax_cash_basis_rec_id', '!=', False),
+                    ('move_id.move_type_cash_basis', 'in', element[2]),
                 ]
                 break
         if map_line.field_number == 42:

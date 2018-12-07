@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
@@ -66,7 +65,7 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
         wizard.create_payment()
 
     def _check_results(self, model, tax_results):
-        for field, expected_result in tax_results.items():
+        for field, expected_result in list(tax_results.items()):
             lines = model.tax_line_ids.filtered(
                 lambda x: x.field_number == int(field)
             )
