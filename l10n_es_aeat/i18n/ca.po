@@ -20,13 +20,13 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:131
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:141
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:101
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:102
 #, python-format
 msgid "<blank>"
 msgstr "<blank>"
@@ -115,6 +115,12 @@ msgstr "Tot"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_allow_posting
 msgid "Allow posting"
 msgstr "Permetre la publicació"
+
+#. module: l10n_es_aeat
+#: selection:aeat.model.export.config.line,export_type:0
+#, fuzzy
+msgid "Alphabetic"
+msgstr "Alfanumèric"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -424,7 +430,7 @@ msgid "Expression"
 msgstr "Expressió"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:94
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:95
 #, python-format
 msgid "Expression: "
 msgstr "Expressió: "
@@ -471,7 +477,7 @@ msgid "Fixed value"
 msgstr "Valor fixe"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:100
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:101
 #, python-format
 msgid "Fixed: {}"
 msgstr "Fixat: {}"
@@ -681,7 +687,7 @@ msgid "Negative sign character"
 msgstr "Caràcter de signe negatiu"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:128
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:138
 #, python-format
 msgid "No export configuration selected."
 msgstr "No s'ha seleccionat una configuració d'exportació."
@@ -958,7 +964,7 @@ msgstr "Telemàtica"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:62
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:98
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:108
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "El format de la cadena ha de coincidir amb la mida donada"
