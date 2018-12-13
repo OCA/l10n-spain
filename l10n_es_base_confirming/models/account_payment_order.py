@@ -1,5 +1,6 @@
 # © 2018 Comunitea
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import re
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -45,21 +46,23 @@ class AccountPaymentOrder(models.Model):
     def convert_float(self, number, size):
         text = str(int(round(number * 100, 0)))
         if len(text) > size:
-            raise UserError(_('Error:\n\nCan not convert float number %(number).2f '
-                        'to fit in %(size)d characters.') % {
-                'number': number,
-                'size': size
-            })
+            raise UserError(
+                _('Error:\n\nCan not convert float number %(number).2f '
+                  'to fit in %(size)d characters.') % {
+                    'number': number,
+                    'size': size
+                    })
         return text.zfill(size)
 
     def convert_int(self, number, size):
         text = str(number)
         if len(text) > size:
-            raise UserError(_('Error:\n\nCan not convert integer number %(number)d '
-                        'to fit in %(size)d characters.') % {
-                'number': number,
-                'size': size
-            })
+            raise UserError(
+                _('Error:\n\nCan not convert integer number %(number)d '
+                  'to fit in %(size)d characters.') % {
+                    'number': number,
+                    'size': size
+                    })
         return text.zfill(size)
 
     def convert(self, value, size, justified='left'):
@@ -75,7 +78,8 @@ class AccountPaymentOrder(models.Model):
     def convert_vat(self, partner):
         # Copied from mod349
         if partner.country_id.code:
-            country_pattern = "%s|%s.*" % (partner.country_id.code, partner.country_id.code.lower())
+            country_pattern = "%s|%s.*" % (partner.country_id.code,
+                                           partner.country_id.code.lower())
             vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
             if partner.vat and vat_regex.match(partner.vat):
                 return partner.vat[2:]
