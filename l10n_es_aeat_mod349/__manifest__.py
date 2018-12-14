@@ -9,7 +9,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "11.0.1.1.0",
+    "version": "12.0.1.0.0",
     "author": "Tecnativa, "
               "Eficent, "
               "Odoo Community Association (OCA)",
@@ -35,6 +35,10 @@
         "report/report_views.xml",
         "security/ir.model.access.csv",
         "security/mod_349_security.xml",
+    ],
+    'development_status': 'Mature',
+    'maintainers': [
+        'pedrobaeza',
     ],
     'post_init_hook': 'post_init_hook',
     'installable': True,
