@@ -1,0 +1,147 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_payment_order_confirming_caixabank
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-14 13:41+0000\n"
+"PO-Revision-Date: 2018-12-14 13:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: selection:account.payment.mode,conf_caixabank_type:0
+msgid "Cheques"
+msgstr "Cheques"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: model:account.payment.method,name:l10n_es_payment_order_confirming_caixabank.confirming_caixabank
+msgid "Confirming Caixabank"
+msgstr "Confirming Caixabank"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:114
+#, python-format
+msgid "Error: El Ordenante %s no tiene                         establecido el Domicilio.                         "
+msgstr "Error: El Ordenante %s no tiene                         establecido el Domicilio.                         "
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:126
+#, python-format
+msgid "Error: El Ordenante %s no tiene establecida la                         Ciudad."
+msgstr "Error: El Ordenante %s no tiene establecida la                         Ciudad."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:264
+#, python-format
+msgid "Error: El Proveedor %s no tiene                         establecido el Domicilio.                         "
+msgstr "Error: El Proveedor %s no tiene                         establecido el Domicilio.                         "
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/wizard/confirming_bankia.py:141
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecida la Ciudad."
+msgstr "Error: El Proveedor %s no tiene                     establecida la Ciudad."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/wizard/confirming_bankia.py:130
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecido el C.P."
+msgstr "Error: El Proveedor %s no tiene                     establecido el C.P."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/wizard/confirming_bankia.py:119
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecido el Domicilio."
+msgstr "Error: El Proveedor %s no tiene                     establecido el Domicilio."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/wizard/confirming_bankia.py:96
+#, python-format
+msgid "Error: El Proveedor %s no tiene                     establecido el NIF."
+msgstr "Error: El Proveedor %s no tiene                     establecido el NIF."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:318
+#, python-format
+msgid "Error: El Proveedor %s no tiene establecida                         el país."
+msgstr "Error: El Proveedor %s no tiene establecida                         el país."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:294
+#, python-format
+msgid "Error: El Proveedor %s no tiene establecida                         la Ciudad."
+msgstr "Error: El Proveedor %s no tiene establecida                         la Ciudad."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:282
+#, python-format
+msgid "Error: El Proveedor %s no tiene establecido                         el C.P."
+msgstr "Error: El Proveedor %s no tiene establecido                         el C.P."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:158
+#, python-format
+msgid "Error: El Proveedor %s no tiene establecido                 el NIF."
+msgstr "Error: El Proveedor %s no tiene establecido                 el NIF."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:41
+#: code:addons/l10n_es_payment_order_confirming_caixabank/wizard/confirming_bankia.py:45
+#, python-format
+msgid "Error: Fecha planificada no                         establecida en la Orden de pago."
+msgstr "Error: Fecha planificada no                         establecida en la Orden de pago."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/wizard/confirming_bankia.py:63
+#, python-format
+msgid "Error: Propietario de la cuenta no                     establecido para la cuenta %s."
+msgstr "Error: Propietario de la cuenta no                     establecido para la cuenta %s."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: code:addons/l10n_es_payment_order_confirming_caixabank/models/account_payment_order.py:101
+#, python-format
+msgid "Error: Propietario de la cuenta no establecido para                        la cuenta %s."
+msgstr "Error: Propietario de la cuenta no establecido para                        la cuenta %s."
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_caixabank.field_account_payment_mode_is_conf_caixabank
+msgid "Is Conf Caixabank"
+msgstr "Is Conf Caixabank"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_caixabank.field_account_payment_mode_num_contract
+msgid "Num Contract"
+msgstr "Nº Contrato"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: model:ir.ui.view,arch_db:l10n_es_payment_order_confirming_caixabank.view_payment_mode_form_caixabank
+msgid "Opciones Confirming"
+msgstr "Opciones Confirming"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: model:ir.model,name:l10n_es_payment_order_confirming_caixabank.model_account_payment_mode
+msgid "Payment Modes"
+msgstr "Modos de pago"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: model:ir.model,name:l10n_es_payment_order_confirming_caixabank.model_account_payment_order
+msgid "Payment Order"
+msgstr "Orden de pago"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: model:ir.model.fields,field_description:l10n_es_payment_order_confirming_caixabank.field_account_payment_mode_conf_caixabank_type
+msgid "Tipo de pago"
+msgstr "Tipo de pago"
+
+#. module: l10n_es_payment_order_confirming_caixabank
+#: selection:account.payment.mode,conf_caixabank_type:0
+msgid "Tranferencia"
+msgstr "Tranferencia"
+
