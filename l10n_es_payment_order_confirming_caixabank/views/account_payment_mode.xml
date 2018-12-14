@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_payment_mode_form_caixabank" model="ir.ui.view">
+        <field name="name">Payment mode form (Confirming Caixabank)</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_mode_form"/>
+        <field name="arch" type="xml">
+            <group position="after">
+                <group string="Opciones Confirming" attrs="{'invisible': [('is_conf_caixabank', '=', False)]}">
+                    <field name="conf_caixabank_type"/>
+                    <field name="is_conf_caixabank" invisible="1"/>
+                    <field name="num_contract" attrs="{'invisible': [('is_conf_caixabank', '=', False)],
+                                                       'required': [('is_conf_caixabank', '=', True)]}"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
