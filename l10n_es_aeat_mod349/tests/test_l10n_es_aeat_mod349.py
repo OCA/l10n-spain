@@ -14,11 +14,9 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
     taxes_sale = {
-        # tax code: (base, tax_amount)
         'S_IVA0_IC': (2400, 0),
     }
     taxes_purchase = {
-        # tax code: (base, tax_amount)
         'P_IVA21_IC_BC': (300, 0),
     }
 
