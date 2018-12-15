@@ -5,8 +5,6 @@ from odoo.tests import common
 from ..hooks import post_init_hook
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestOtherChart(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
