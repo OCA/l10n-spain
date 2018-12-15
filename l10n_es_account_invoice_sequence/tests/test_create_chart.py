@@ -7,9 +7,6 @@ from ..hooks import post_init_hook
 
 
 class TestCreateChart(common.SavepointCase):
-    at_install = False
-    post_install = True
-
     @classmethod
     def setUpClass(cls):
         super(TestCreateChart, cls).setUpClass()
