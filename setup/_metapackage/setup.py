@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-l10n_es_account_bank_statement_import_n43',
+        'odoo12-addon-l10n_es_account_banking_sepa_fsdd',
         'odoo12-addon-l10n_es_account_invoice_sequence',
         'odoo12-addon-l10n_es_aeat',
         'odoo12-addon-l10n_es_aeat_mod111',
