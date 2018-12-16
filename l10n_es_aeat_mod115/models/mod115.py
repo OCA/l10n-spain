@@ -61,12 +61,12 @@ class L10nEsAeatMod115Report(models.Model):
     @api.depends('tipo_declaracion')
     def _compute_tipo_declaracion(self):
         for rec in self:
-            rec.tipo_declaracion_positiva = False
-            rec.tipo_declaracion_negativa = False
             if rec.tipo_declaracion == 'N':
                 rec.tipo_declaracion_negativa = rec.tipo_declaracion
-            if rec.tipo_declaracion != 'N':
+                rec.tipo_declaracion_positiva = False
+            else:
                 rec.tipo_declaracion_positiva = rec.tipo_declaracion
+                rec.tipo_declaracion_negativa = False
 
     @api.multi
     def _inverse_tipo_declaracion(self):
