@@ -63,9 +63,9 @@ class AccountPaymentOrder(models.Model):
             # 15 - 26: Libre
             text += 12 * ' '
             # 27 - 29: Numero del dato
-            dato = '00'+str(i+1)
+            dato = '00' + str(i + 1)
             text += dato
-            if (i+1) == 1:  # Tipo registro 1, línea 1
+            if (i + 1) == 1:  # Tipo registro 1, línea 1
                 # 30 - 35: Fecha creación del fichero
                 text += date.today().strftime('%d%m%y')
                 # 36 - 41: Libre
@@ -94,7 +94,7 @@ class AccountPaymentOrder(models.Model):
                 text += 2 * ' '
                 # 66 - 72: Libre
                 text += 7 * ' '
-            if (i+1) == 2:
+            if (i + 1) == 2:
                 ordenante = self.company_partner_bank_id.partner_id.name
                 if not ordenante:
                     raise UserError(
@@ -107,7 +107,7 @@ class AccountPaymentOrder(models.Model):
                 elif len(ordenante) > 36:
                     ordenante = ordenante[:36]
                 text += ordenante.upper()
-            if (i+1) == 3:
+            if (i + 1) == 3:
                 domicilio_pro = self.company_partner_bank_id.partner_id.street
                 if not domicilio_pro:
                     raise UserError(
@@ -119,7 +119,7 @@ class AccountPaymentOrder(models.Model):
                         relleno = 36 - len(domicilio_pro)
                         domicilio_pro += relleno * ' '
                     text += domicilio_pro.upper()
-            if (i+1) == 4:
+            if (i + 1) == 4:
                 ciudad_pro = self.company_partner_bank_id.partner_id.city
                 if not ciudad_pro:
                     raise UserError(
@@ -136,6 +136,32 @@ class AccountPaymentOrder(models.Model):
             all_text += text
         return all_text
 
+    def _get_signed_amount(self, amount_text):
+        """
+        Añade el signo al importe negativo
+        """
+        sign_text = ''
+        for i in range(0, len(amount_text)):
+            if i < (len(amount_text) - 1) and \
+                    amount_text[i] == '0' and \
+                    amount_text[i + 1] != '0':
+               sign_text += '-'
+               continue
+            sign_text += amount_text[i]
+        return sign_text
+    
+    def _get_text_with_size(self, text, size):
+        """
+        Devuelvo el texto con espacios al final hasta completar size
+        """
+        if text:
+            if len(text) < size:
+                relleno = size - len(text)
+                text += relleno * ' '
+            elif len(text) > size:
+                text = text[:size]
+        return text 
+
     def _pop_beneficiarios(self, line):
         all_text = ''
         bloque_registros = [
@@ -151,11 +177,11 @@ class AccountPaymentOrder(models.Model):
         vat = self.convert_vat(self.company_partner_bank_id.partner_id)
         fixed_text += self.convert(vat, 10)
         # 15 - 26: Nif del proveedor o referencia interna
-        nif = line['partner_id']['vat']
+        nif = line.partner_id.vat
         if not nif:
             raise UserError(
                 _("Error: El Proveedor %s no tiene establecido\
-                 el NIF.") % line['partner_id']['name'])
+                 el NIF.") % line.partner_id.name)
         nif = self.convert_vat(self.company_partner_bank_id.partner_id)
 
         fixed_text += self.convert(vat, 12)
@@ -166,22 +192,22 @@ class AccountPaymentOrder(models.Model):
             # 27 - 29 Numero de dato
             text += tipo_dato
 
+            # TODO siempre saco la fasctura asi?
+            invoice = line.payment_line_ids[0].move_line_id.invoice_id
+
             ###################################################################
             if tipo_dato == '010':
                 # 30 - 41 Importe
-                amount_text = self.convert(abs(line['amount_currency']), 12)
+                amount_text = self.convert(abs(line.amount_currency), 12)
                 # Poner el signo negativo si procede
-                if line.amount_currency > 0:
-                    for i in range(0, len(amount_text)):
-                        if i < len(amount_text) - 1 and \
-                                amount_text[i] == '0' and \
-                                amount_text[i + 1] != '0':
-                            amount_text[i] == '-'
+                if line.amount_currency < 0:
+                    amount_text = self._get_signed_amount(amount_text)
+
                 text += amount_text
                 # 42 - 59 Num banco, Num sucursal, Num cuenta
                 control = ''
                 if self.payment_mode_id.conf_caixabank_type == 'T':
-                    cuenta = line['partner_bank_id']['acc_number']
+                    cuenta = line.partner_bank_id.acc_number
                     cuenta = cuenta.replace(' ', '')
                     tipo_cuenta = self.company_partner_bank_id.acc_type
                     if tipo_cuenta == 'iban':
@@ -219,7 +245,7 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             if tipo_dato == '043':
                 # 30 - 63: Cuenta de pago para proveedores
-                cuenta = line['partner_bank_id']['acc_number']
+                cuenta = line.partner_bank_id.acc_number
                 cuenta = cuenta.replace(' ', '')
                 text += cuenta
                 # 64: Concepto de la ordern
@@ -233,13 +259,21 @@ class AccountPaymentOrder(models.Model):
                 # 30: Clave de gastos
                 text += '1'
                 # 31 - 32: Código ISO pais destino
-                # TODO comprobar que es iban
-                text += line['partner_bank_id']['acc_number'][:2]
+                # TODO lo dejo siempre a ES?
+                text +='ES'
                 # 63 - 38 Libre
                 text += 6 * ' '
                 # 39 - 50: Código SWIFT del banco destino (bic)
-                # TODO Comprobar que hay banco y bic
-                text += line['partner_bank_id']['bank_id']['bic']
+                if not line.partner_bank_id.bank_id:
+                     raise UserError(
+                        _("Error: No hay banco configurado para la cuenta \
+                          %s") % line.partner_bank_id.acc_number)
+                if not line.partner_bank_id.bank_id.bic:
+                     raise UserError(
+                        _("Error: No hay bic configurado para el banco \
+                          %s") % line.partner_bank_id.name)
+
+                text += line.partner_bank_id.bank_id.bic
                 # 51 - 72 Libre
                 text += 6 * ' '
             ###################################################################
@@ -247,14 +281,8 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             if tipo_dato == '011':
                 # 30 - 65 Nombre del proveedor
-                nombre_pro = line['partner_id']['name']
-                if nombre_pro:
-                    if len(nombre_pro) < 36:
-                        relleno = 36 - len(nombre_pro)
-                        nombre_pro += relleno * ' '
-                    elif len(nombre_pro) > 36:
-                        nombre_pro = nombre_pro[:36]
-                    text += nombre_pro.upper()
+                nombre_pro = self._get_text_with_size(line.partner_id.name, 36)
+                text += nombre_pro.upper()
                 # 66 - 72 Libre
                 text += 7 * ' '
             ###################################################################
@@ -262,17 +290,14 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             if tipo_dato == '012':
                 # 30 - 65 Domicilio del proveedor
-                domicilio_pro = line['partner_id']['street']
-                if not domicilio_pro:
+                if not line.partner_id.street:
                     raise UserError(
                         _("Error: El Proveedor %s no tiene\
                          establecido el Domicilio.\
-                         ") % line['partner_id']['name'])
-                else:
-                    if len(domicilio_pro) < 36:
-                        relleno = 36 - len(domicilio_pro)
-                        domicilio_pro += relleno * ' '
-                    text += domicilio_pro.upper()
+                         ") % line.partner_id.name)
+                domicilio_pro = self._get_text_with_size(
+                    line.partner_id.street, 36)
+                text += domicilio_pro.upper()
                 # 66 - 72 Libre
                 text += 7 * ' '
             ###################################################################
@@ -280,28 +305,21 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             if tipo_dato == '014':
                 # 30 - 34 CP
-                cp_pro = line['partner_id']['zip']
-                if not cp_pro:
+                if not line.partner_id.zip:
                     raise UserError(
                         _("Error: El Proveedor %s no tiene establecido\
-                         el C.P.") % line['partner_id']['name'])
-                else:
-                    if len(cp_pro) < 5:
-                        relleno = 5 - len(cp_pro)
-                        cp_pro += relleno * ' '
-                    text += cp_pro
+                         el C.P.") % line.partner_id.name)
+                cp_pro = self._get_text_with_size(line.partner_id.zip, 5)
+                text += cp_pro.upper()
 
                 # 35 - 65 Plaza del proveedor
-                ciudad_pro = line['partner_id']['city']
-                if not ciudad_pro:
+                # TODO REVISAR SI CORTO POR 31
+                if not line.partner_id.city:
                     raise UserError(
                         _("Error: El Proveedor %s no tiene establecida\
-                         la Ciudad.") % line['partner_id']['name'])
-                else:
-                    if len(ciudad_pro) < 31:
-                        relleno = 31 - len(ciudad_pro)
-                        ciudad_pro += relleno * ' '
-                    text += ciudad_pro
+                         la Ciudad.") % line.partner_id.name)
+                ciudad_pro = self._get_text_with_size(line.partner_id.city, 31)
+                text += ciudad_pro.upper()
                 # 66 - 72 Libre
                 text += 7 * ' '
             ###################################################################
@@ -309,8 +327,14 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             if tipo_dato == '015':
                 # 30 - 44: Código interno proveedor
-                text += line.payment_line_ids[0].\
-                    move_line_id.invoice_id.reference
+                # TODO seguro que esto es la referencia del proveedor?
+                invoice = line.payment_line_ids[0].move_line_id.invoice_id
+                if not line.partner_id.ref:
+                    raise UserError(
+                        _("Error: El proveedor %s no tiene establecido\
+                         su código de referencia.") %  line.partner_id.name)
+                # TODO comprobar si corto a 15
+                text += self._get_text_with_size(line.partner_id.ref, 15)
                 # 45 - 66: Nif de la factura si está endosada
                 text += 12 * ' '  # TODO
                 # 57 Clasificación proveedor
@@ -320,10 +344,11 @@ class AccountPaymentOrder(models.Model):
                 if not pais:
                     raise UserError(
                         _("Error: El Proveedor %s no tiene establecida\
-                         el país.") % line['partner_id']['name'])
+                         el país.") % line.partner_id.name)
                 text += pais.code.upper()
                 # 60 - 68: País destino
-                text += pais.name.upper()
+                # TODO ver si está bien acotado
+                text += self._get_text_with_size(pais.code.upper(), 9)
                 # 69 - 72 Libre
                 text += 4 * ' '
             ###################################################################
@@ -331,10 +356,8 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             if tipo_dato == '016':
                 # 30: Forma de pago
-                if self.payment_mode_id.conf_caixabank_type == 'T':
-                    text += 'T'
-                else:
-                    text = 'C'
+                text += 'T' if self.payment_mode_id.conf_caixabank_type == 'T'\
+                    else 'C'
                 # 31 - 36: Fecha factura
                 fecha_factura = 6 * ' '
                 invoice = line.payment_line_ids[0].move_line_id.invoice_id
@@ -349,12 +372,8 @@ class AccountPaymentOrder(models.Model):
                 num_factura = 15 * ' '
                 if invoice:
                     num_factura = invoice.number.replace('-', '')
-                    if len(num_factura) < 15:
-                        relleno = 15 - len(num_factura)
-                        num_factura += relleno * ' '
-                    if len(num_factura) > 15:
-                        num_factura = num_factura[-15:]
-                    text += num_factura
+                    text += self._get_text_with_size(num_factura, 15)
+
                 # 52 - 57: Fecha de vencimiento
                 fecha_vencimiento = 6 * ' '
                 if line.payment_line_ids.ml_maturity_date:
@@ -378,19 +397,15 @@ class AccountPaymentOrder(models.Model):
                 referencia_factura = 15 * ' '
                 if invoice:
                     referencia_factura = invoice.reference.replace('-', '')
-                    if len(referencia_factura) < 15:
-                        relleno = 15 - len(referencia_factura)
-                        referencia_factura += relleno * ' '
-                    elif len(referencia_factura) > 15:
-                        referencia_factura = referencia_factura[:15]
-                text += referencia_factura
+                    if not invoice.reference:
+                        raise UserError(
+                            _("Error: La factura %s no tiene establecida\
+                               la referencia de proveedor.") % invoice.number)
+                    text += self._get_text_with_size(referencia_factura, 15)
+
                 # 45 - 59 Orden de pago, contenido libre
-                orden_pago = self.name
-                if len(orden_pago) < 15:
-                    relleno = 15 - len(orden_pago)
-                    orden_pago += relleno * ' '
-                elif len(orden_pago) > 15:
-                    orden_pago = orden_pago[:15]
+                text += self._get_text_with_size(self.name, 15)
+               
                 # 60 - 65 Libre
                 text += 6 * ' '
                 # 66 - 72 Libre
