@@ -30,16 +30,10 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
         ),
     }
 
-    def test_model_115(self):
-        # Purchase invoices
-        self._invoice_purchase_create('2015-01-01')
-        self._invoice_purchase_create('2015-01-02')
-        purchase = self._invoice_purchase_create('2015-01-03')
-        self._invoice_refund(purchase, '2015-01-18')
-        # Create model
+    def _create_model_115(self):
         export_config = self.env.ref(
             'l10n_es_aeat_mod115.aeat_mod115_main_export_config')
-        self.model115 = self.env['l10n.es.aeat.mod115.report'].create({
+        return self.env['l10n.es.aeat.mod115.report'].create({
             'name': '9990000000115',
             'company_id': self.company.id,
             'company_vat': '1234567890',
@@ -55,13 +49,25 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
+
+    def test_model_115(self):
+        # Purchase invoices
+        self._invoice_purchase_create('2015-01-01')
+        self._invoice_purchase_create('2015-01-02')
+        purchase = self._invoice_purchase_create('2015-01-03')
+        self._invoice_refund(purchase, '2015-01-18')
+        self.model115 = self._create_model_115()
         self.model115.button_calculate()
         self.assertEqual(self.model115.tipo_declaracion, 'I')
+        self.assertEqual(self.model115.tipo_declaracion_positiva, 'I')
+        self.assertFalse(self.model115.tipo_declaracion_negativa)
+        with self.assertRaises(exceptions.ValidationError):
+            self.model115.tipo_declaracion = 'N'
         # Fill manual fields
         self.model115.write({
             # Resultados a ingresar anteriores
             'casilla_04': 145,
-            'tipo_declaracion': 'U',
+            'tipo_declaracion_positiva': 'U',
         })
         # Check tax lines
         for box, result in self.taxes_result.items():
@@ -82,3 +88,17 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
             self.model115.button_confirm()
         self.model115.partner_bank_id = self.customer_bank.id
         self.model115.button_confirm()
+
+    def test_negative_model_115(self):
+        # Make the invoice in a different period for having negative result
+        purchase = self._invoice_purchase_create('2014-01-01')
+        self._invoice_refund(purchase, '2015-01-18')
+        self.model115 = self._create_model_115()
+        self.model115.button_calculate()
+        self.assertEqual(self.model115.tipo_declaracion, 'N')
+        self.assertEqual(self.model115.tipo_declaracion_negativa, 'N')
+        self.assertFalse(self.model115.tipo_declaracion_positiva)
+        with self.assertRaises(exceptions.ValidationError):
+            self.model115.tipo_declaracion = 'I'
+        # this doesn't rise any error
+        self.model115.tipo_declaracion_negativa = 'N'
