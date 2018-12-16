@@ -29,7 +29,7 @@ msgid "AEAT 115 report"
 msgstr "Declaración AEAT 115"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_tree
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_tree
 msgid "AEAT 115 reports"
 msgstr ""
 
@@ -39,29 +39,89 @@ msgid "AEAT model 115"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_03
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__move_id
+msgid "Account entry"
+msgstr "Entrada cuenta"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__allow_posting
+msgid "Allow Posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_03
 msgid "Amount of retentions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Amounts retained"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_bank_id
+msgid "Bank account"
+msgstr "Conta bancaria"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__calculation_date
+msgid "Calculation date"
+msgstr "Data de cálculo"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,type:0
+msgid "Complementary"
+msgstr "Complementaria"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_email
+msgid "Contact email"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod115.action_l10n_es_aeat_mod115_report
 msgid "Create and query AEAT Model 115 reports."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__create_date
 msgid "Created on"
 msgstr "Creado o"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,support_type:0
+msgid "DVD"
+msgstr "DVD"
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
@@ -70,12 +130,32 @@ msgid "Direct debit"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__display_name
 msgid "Display Name"
 msgstr "Display Name"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_04
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Done"
+msgstr "Realizado"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__date_end
+msgid "Ending date"
+msgstr "Fecha final"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__export_config_id
+msgid "Export config"
+msgstr "Padrón de exportación"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_04
 msgid ""
 "Fee to compensate for prior results with same subject, fiscal year and "
 "period (in which his statement was to return and compensation back option "
@@ -83,55 +163,136 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_name
+msgid "Full Name"
+msgstr "Nome completo"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report___last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__journal_id
+msgid "Journal in which post the move."
+msgstr "Diario en el que publicar el movimiento."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__representative_vat
+msgid "L.R. VAT number"
+msgstr "NIF repr. legal"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report____last_update
 msgid "Last Modified on"
 msgstr "Modificado por última vez o"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__write_uid
 msgid "Last Updated by"
 msgstr "Derradeira actualización feita por"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__write_date
 msgid "Last Updated on"
 msgstr "Actualizado por derradeira vez o"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_01
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__representative_vat
+msgid "Legal Representative VAT number."
+msgstr "NIF do representante legal."
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
+msgid "Model"
+msgstr "Modelo"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__number
+#, fuzzy
+msgid "Model number"
+msgstr "NIF"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_name
+msgid "Must have name and surname."
+msgstr "Debe conter nome e apelidos"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,type:0
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
 msgid "Number of recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__period_type
+msgid "Period type"
+msgstr "Tipo de período"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_phone
+msgid "Phone"
+msgstr "Teléfono"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Posted"
+msgstr "Contabilizado"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__previous_number
+msgid "Previous declaration number"
+msgstr "Nº da declaración anterior"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,state:0
+msgid "Processed"
+msgstr "Procesada"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__name
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Result"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_tipo_declaracion
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Result type"
 msgstr "Tipo de resultado"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_tipo_declaracion_negativa
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion_negativa
 #, fuzzy
 msgid "Result type (negative)"
 msgstr "Tipo de resultado"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_tipo_declaracion_positiva
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion_positiva
 #, fuzzy
 msgid "Result type (positive)"
 msgstr "Tipo de resultado"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_05
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
 msgid "Result: ([03] - [04])"
 msgstr ""
 
@@ -148,9 +309,40 @@ msgid "Select an account for receiving the money"
 msgstr "Seleccione unha conta bancaria para recibi-lo diñeiro"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__date_start
+msgid "Starting date"
+msgstr "Fecha inicial"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__state
+msgid "State"
+msgstr "Provincia"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__type
+msgid "Statement Type"
+msgstr "Tipo de declaración"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,type:0
+msgid "Substitutive"
+msgstr "Substitutiva"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__support_type
+msgid "Support Type"
+msgstr "Tipo de soporte"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tax_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Tax lines"
 msgstr "Liñas de impostos"
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,support_type:0
+msgid "Telematics"
+msgstr "Telemática"
 
 #. module: l10n_es_aeat_mod115
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:84
@@ -167,6 +359,15 @@ msgid ""
 "The result of the declaration is positive. You should select another Result "
 "type"
 msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Esta cuenta será la contrapartida para todos los elementos del diario que "
+"están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
@@ -187,135 +388,36 @@ msgid "To return"
 msgstr "A devolver"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Totals"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_01
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_vat
+msgid "VAT number"
+msgstr "NIF"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__year
+msgid "Year"
+msgstr "Año"
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
 msgid "[01] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_03
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_03
 msgid "[03] Amount of retentions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_04
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_04
 msgid "[04] Fees to compensate"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report_casilla_05
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
 msgid "[05] Result"
 msgstr ""
-
-#~ msgid "Account entry"
-#~ msgstr "Entrada cuenta"
-
-#~ msgid "Bank account"
-#~ msgstr "Conta bancaria"
-
-#~ msgid "Calculation date"
-#~ msgstr "Data de cálculo"
-
-#~ msgid "Cancelled"
-#~ msgstr "Cancelada"
-
-#~ msgid "Company"
-#~ msgstr "Compañía"
-
-#~ msgid "Complementary"
-#~ msgstr "Complementaria"
-
-#~ msgid "Currency"
-#~ msgstr "Moeda"
-
-#~ msgid "DVD"
-#~ msgstr "DVD"
-
-#~ msgid "Done"
-#~ msgstr "Realizado"
-
-#~ msgid "Draft"
-#~ msgstr "Borrador"
-
-#~ msgid "Ending date"
-#~ msgstr "Fecha final"
-
-#~ msgid "Export config"
-#~ msgstr "Padrón de exportación"
-
-#~ msgid "Full Name"
-#~ msgstr "Nome completo"
-
-#~ msgid "Journal"
-#~ msgstr "Diario"
-
-#~ msgid "Journal in which post the move."
-#~ msgstr "Diario en el que publicar el movimiento."
-
-#~ msgid "L.R. VAT number"
-#~ msgstr "NIF repr. legal"
-
-#~ msgid "Legal Representative VAT number."
-#~ msgstr "NIF do representante legal."
-
-#~ msgid "Model"
-#~ msgstr "Modelo"
-
-#~ msgid "Must have name and surname."
-#~ msgstr "Debe conter nome e apelidos"
-
-#~ msgid "Normal"
-#~ msgstr "Normal"
-
-#~ msgid "Partner"
-#~ msgstr "Empresa"
-
-#~ msgid "Period type"
-#~ msgstr "Tipo de período"
-
-#~ msgid "Phone"
-#~ msgstr "Teléfono"
-
-#~ msgid "Posted"
-#~ msgstr "Contabilizado"
-
-#~ msgid "Previous declaration number"
-#~ msgstr "Nº da declaración anterior"
-
-#~ msgid "Processed"
-#~ msgstr "Procesada"
-
-#~ msgid "Starting date"
-#~ msgstr "Fecha inicial"
-
-#~ msgid "State"
-#~ msgstr "Provincia"
-
-#~ msgid "Statement Type"
-#~ msgstr "Tipo de declaración"
-
-#~ msgid "Substitutive"
-#~ msgstr "Substitutiva"
-
-#~ msgid "Support Type"
-#~ msgstr "Tipo de soporte"
-
-#~ msgid "Telematics"
-#~ msgstr "Telemática"
-
-#~ msgid ""
-#~ "This account will be the counterpart for all the journal items that are "
-#~ "regularized when posting the report."
-#~ msgstr ""
-#~ "Esta cuenta será la contrapartida para todos los elementos del diario que "
-#~ "están regularizados al contabilizar el informe."
-
-#~ msgid "VAT number"
-#~ msgstr "NIF"
-
-#~ msgid "Year"
-#~ msgstr "Año"
