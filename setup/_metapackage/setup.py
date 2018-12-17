@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_account_invoice_sequence',
         'odoo12-addon-l10n_es_aeat',
         'odoo12-addon-l10n_es_aeat_mod111',
+        'odoo12-addon-l10n_es_aeat_mod115',
         'odoo12-addon-l10n_es_aeat_mod303',
         'odoo12-addon-l10n_es_aeat_mod349',
         'odoo12-addon-l10n_es_partner',
