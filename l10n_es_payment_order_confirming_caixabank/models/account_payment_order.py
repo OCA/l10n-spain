@@ -194,7 +194,7 @@ class AccountPaymentOrder(models.Model):
                  el NIF.") % line.partner_id.name)
         nif = self.convert_vat(self.company_partner_bank_id.partner_id)
 
-        fixed_text += self.convert(vat, 12)
+        fixed_text += self.convert(nif, 12)
 
         for tipo_dato in bloque_registros:
             text = ''
