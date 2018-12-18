@@ -10,6 +10,18 @@ from datetime import date
 class AccountPaymentOrder(models.Model):
     _inherit = "account.payment.order"
 
+    def strim_txt(self, text, size):
+        """
+        Devuelvo el texto con espacios al final hasta completar size
+        """
+        if text:
+            if len(text) < size:
+                relleno = size - len(text)
+                text += relleno * ' '
+            elif len(text) > size:
+                text = text[:size]
+        return text
+
     @api.multi
     def generate_payment_file(self):
         self.ensure_one()
@@ -23,6 +35,9 @@ class AccountPaymentOrder(models.Model):
         return str.encode(txt_file), self.name + '.CAX'
 
     def _pop_cabecera(self):
+        """
+        Devuelve las 4 líneas de la cabecera
+        """
         if self.date_prefered == 'due':
             fecha_planificada = self.payment_line_ids \
                 and self.payment_line_ids[0].ml_maturity_date \
@@ -65,6 +80,9 @@ class AccountPaymentOrder(models.Model):
             # 27 - 29: Numero del dato
             dato = '00' + str(i + 1)
             text += dato
+
+            # LINEA 1
+            ###################################################################
             if (i + 1) == 1:  # Tipo registro 1, línea 1
                 # 30 - 35: Fecha creación del fichero
                 text += date.today().strftime('%d%m%y')
@@ -94,6 +112,10 @@ class AccountPaymentOrder(models.Model):
                 text += 2 * ' '
                 # 66 - 72: Libre
                 text += 7 * ' '
+            ###################################################################
+
+            # LINEA 2
+            ###################################################################
             if (i + 1) == 2:
                 ordenante = self.company_partner_bank_id.partner_id.name
                 if not ordenante:
@@ -101,12 +123,12 @@ class AccountPaymentOrder(models.Model):
                         _("Error: Propietario de la cuenta no establecido para\
                         la cuenta %s.") %
                         self.company_partner_bank_id.acc_number)
-                if len(ordenante) <= 36:
-                    relleno = 36 - len(ordenante)
-                    ordenante += relleno * ' '
-                elif len(ordenante) > 36:
-                    ordenante = ordenante[:36]
+                ordenante = self.strim_txt(ordenante, 36)
                 text += ordenante.upper()
+            ###################################################################
+
+            # LINEA 3
+            ###################################################################
             if (i + 1) == 3:
                 domicilio_pro = self.company_partner_bank_id.partner_id.street
                 if not domicilio_pro:
@@ -114,11 +136,13 @@ class AccountPaymentOrder(models.Model):
                         _("Error: El Ordenante %s no tiene \
                         establecido el Domicilio.\
                          ") % self.company_partner_bank_id.partner_id.name)
-                else:
-                    if len(domicilio_pro) < 36:
-                        relleno = 36 - len(domicilio_pro)
-                        domicilio_pro += relleno * ' '
-                    text += domicilio_pro.upper()
+                domicilio_pro = self.strim_txt(domicilio_pro, 36)
+
+                text += domicilio_pro.upper()
+            ###################################################################
+
+            # LINEA 4
+            ###################################################################
             if (i + 1) == 4:
                 ciudad_pro = self.company_partner_bank_id.partner_id.city
                 if not ciudad_pro:
@@ -126,11 +150,9 @@ class AccountPaymentOrder(models.Model):
                         _("Error: El Ordenante %s no tiene establecida la \
                         Ciudad.") %
                         self.company_partner_bank_id.partner_id.name)
-                else:
-                    if len(ciudad_pro) < 36:
-                        relleno = 36 - len(ciudad_pro)
-                        ciudad_pro += relleno * ' '
-                    text += ciudad_pro.upper()
+                ciudad_pro = self.strim_txt(ciudad_pro, 36)
+                text += ciudad_pro.upper()
+            ###################################################################
 
             text = text.ljust(100)+'\n'
             all_text += text
@@ -149,18 +171,6 @@ class AccountPaymentOrder(models.Model):
                 continue
             sign_text += amount_text[i]
         return sign_text
-
-    def strim_txt(self, text, size):
-        """
-        Devuelvo el texto con espacios al final hasta completar size
-        """
-        if text:
-            if len(text) < size:
-                relleno = size - len(text)
-                text += relleno * ' '
-            elif len(text) > size:
-                text = text[:size]
-        return text
 
     def _pop_beneficiarios(self, line):
         all_text = ''
@@ -192,9 +202,13 @@ class AccountPaymentOrder(models.Model):
             # 27 - 29 Numero de dato
             text += tipo_dato
 
-            # TODO siempre saco la fasctura asi?
+            # Supongo que en el confirming siempre hay una factura
             invoice = line.payment_line_ids[0].move_line_id.invoice_id
+            if not invoice:
+                raise UserError(_(
+                    'No existe factura relacionada con la línea de pago'))
 
+            # LÍNEA 1
             ###################################################################
             if tipo_dato == '010':
                 # 30 - 41 Importe
@@ -202,8 +216,8 @@ class AccountPaymentOrder(models.Model):
                 # Poner el signo negativo si procede
                 if line.amount_currency < 0:
                     amount_text = self._get_signed_amount(amount_text)
-
                 text += amount_text
+
                 # 42 - 59 Num banco, Num sucursal, Num cuenta
                 control = ''
                 if self.payment_mode_id.conf_caixabank_type == 'T':
@@ -242,6 +256,7 @@ class AccountPaymentOrder(models.Model):
                 text += 2 * ' '
             ###################################################################
 
+            # LÍNEA 2
             ###################################################################
             if tipo_dato == '043':
                 # 30 - 63: Cuenta de pago para proveedores
@@ -254,6 +269,7 @@ class AccountPaymentOrder(models.Model):
                 text += 8 * ' '
             ###################################################################
 
+            # LÍNEA 3
             ###################################################################
             if tipo_dato == '044':
                 # 30: Clave de gastos
@@ -278,6 +294,7 @@ class AccountPaymentOrder(models.Model):
                 text += 6 * ' '
             ###################################################################
 
+            # LÍNEA 4
             ###################################################################
             if tipo_dato == '011':
                 # 30 - 65 Nombre del proveedor
@@ -287,6 +304,7 @@ class AccountPaymentOrder(models.Model):
                 text += 7 * ' '
             ###################################################################
 
+            # LÍNEA 5
             ###################################################################
             if tipo_dato == '012':
                 # 30 - 65 Domicilio del proveedor
@@ -302,6 +320,7 @@ class AccountPaymentOrder(models.Model):
                 text += 7 * ' '
             ###################################################################
 
+            # LÍNEA 6
             ###################################################################
             if tipo_dato == '014':
                 # 30 - 34 CP
@@ -313,7 +332,6 @@ class AccountPaymentOrder(models.Model):
                 text += cp_pro.upper()
 
                 # 35 - 65 Plaza del proveedor
-                # TODO REVISAR SI CORTO POR 31
                 if not line.partner_id.city:
                     raise UserError(
                         _("Error: El Proveedor %s no tiene establecida\
@@ -324,19 +342,17 @@ class AccountPaymentOrder(models.Model):
                 text += 7 * ' '
             ###################################################################
 
+            # LÍNEA 7
             ###################################################################
             if tipo_dato == '015':
                 # 30 - 44: Código interno proveedor
-                # TODO seguro que esto es la referencia del proveedor?
-                invoice = line.payment_line_ids[0].move_line_id.invoice_id
                 if not line.partner_id.ref:
                     raise UserError(
                         _("Error: El proveedor %s no tiene establecido\
                           su código de referencia.") % line.partner_id.name)
-                # TODO comprobar si corto a 15
                 text += self.strim_txt(line.partner_id.ref, 15)
                 # 45 - 66: Nif de la factura si está endosada
-                text += 12 * ' '  # TODO
+                text += 12 * ' '  # TODO ?? es blanco
                 # 57 Clasificación proveedor
                 text += ' '
                 # 58 - 59: Código ISO país destino
@@ -347,12 +363,12 @@ class AccountPaymentOrder(models.Model):
                          el país.") % line.partner_id.name)
                 text += pais.code.upper()
                 # 60 - 68: País destino
-                # TODO ver si está bien acotado
-                text += self.strim_txt(pais.code.upper(), 9)
+                text += self.strim_txt(pais.name.upper(), 9)
                 # 69 - 72 Libre
                 text += 4 * ' '
             ###################################################################
 
+            # LÍNEA 8
             ###################################################################
             if tipo_dato == '016':
                 # 30: Forma de pago
@@ -360,14 +376,14 @@ class AccountPaymentOrder(models.Model):
                     else 'C'
                 # 31 - 36: Fecha factura
                 fecha_factura = 6 * ' '
-                invoice = line.payment_line_ids[0].move_line_id.invoice_id
-                if invoice:
+                if invoice.date_invoice:
                     fecha_factura = invoice.date_invoice.replace('-', '')
                     dia = fecha_factura[6:]
                     mes = fecha_factura[4:6]
                     ano = fecha_factura[2:4]
                     fecha_factura = dia + mes + ano
                 text += fecha_factura
+
                 # 37 - 51: Número factura
                 num_factura = 15 * ' '
                 if invoice:
@@ -376,9 +392,9 @@ class AccountPaymentOrder(models.Model):
 
                 # 52 - 57: Fecha de vencimiento
                 fecha_vencimiento = 6 * ' '
-                if line.payment_line_ids.ml_maturity_date:
-                    fecha_vencimiento = line.payment_line_ids.ml_maturity_date\
-                        .replace('-', '')
+                if line.payment_line_ids[0].ml_maturity_date:
+                    fecha_vencimiento = line.payment_line_ids[0]\
+                    .ml_maturity_date.replace('-', '')
                     dia = fecha_vencimiento[6:]
                     mes = fecha_vencimiento[4:6]
                     ano = fecha_vencimiento[2:4]
@@ -391,6 +407,7 @@ class AccountPaymentOrder(models.Model):
                 text += 7 * ' '
             ###################################################################
 
+            # LÍNEA 9
             ###################################################################
             if tipo_dato == '017':
                 # 30 - 44 Referencia o número de la factura
@@ -410,17 +427,23 @@ class AccountPaymentOrder(models.Model):
                 text += 6 * ' '
                 # 66 - 72 Libre
                 text += 7 * ' '
+            ###################################################################
 
+            # LÍNEA 10
             ###################################################################
             if tipo_dato == '018':
                 # 30 - 44: Teléfono proveedor
-                if line.partner_id.phone:  # TODO no coincide con el ejemplo
-                    text += self.strim_text(line.partner_id.phone, 15)
+                # TODO no coincide con el ejemplo si no existe el teléfono
+                if line.partner_id.phone:
+                    text += self.strim_txt(line.partner_id.phone, 15)
                 else:
                     text += 15 * ' '
+
                 # 60 - 65 FAX proveedor
                 if line.partner_id.fax:
-                    text += self.strim_text(line.partner_id.fax, 15)
+                    text += self.strim_txt(line.partner_id.fax, 15)
+                else:
+                    text += 15 * ' '
                 # 60 - 65 Libre
                 text += 6 * ' '
                 # 66 - 72 Libre
