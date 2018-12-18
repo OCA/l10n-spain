@@ -15,6 +15,7 @@
     'depends': [
         'account_payment_order',
         'l10n_es_base_confirming'
+        'partner_fax'
     ],
     'data': [
         'data/account_payment_method.xml',

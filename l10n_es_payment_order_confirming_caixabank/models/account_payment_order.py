@@ -145,11 +145,11 @@ class AccountPaymentOrder(models.Model):
             if i < (len(amount_text) - 1) and \
                     amount_text[i] == '0' and \
                     amount_text[i + 1] != '0':
-               sign_text += '-'
-               continue
+                sign_text += '-'
+                continue
             sign_text += amount_text[i]
         return sign_text
-    
+
     def _get_text_with_size(self, text, size):
         """
         Devuelvo el texto con espacios al final hasta completar size
@@ -160,7 +160,7 @@ class AccountPaymentOrder(models.Model):
                 text += relleno * ' '
             elif len(text) > size:
                 text = text[:size]
-        return text 
+        return text
 
     def _pop_beneficiarios(self, line):
         all_text = ''
@@ -260,16 +260,16 @@ class AccountPaymentOrder(models.Model):
                 text += '1'
                 # 31 - 32: Código ISO pais destino
                 # TODO lo dejo siempre a ES?
-                text +='ES'
+                text += 'ES'
                 # 63 - 38 Libre
                 text += 6 * ' '
                 # 39 - 50: Código SWIFT del banco destino (bic)
                 if not line.partner_bank_id.bank_id:
-                     raise UserError(
+                    raise UserError(
                         _("Error: No hay banco configurado para la cuenta \
                           %s") % line.partner_bank_id.acc_number)
                 if not line.partner_bank_id.bank_id.bic:
-                     raise UserError(
+                    raise UserError(
                         _("Error: No hay bic configurado para el banco \
                           %s") % line.partner_bank_id.name)
 
@@ -332,7 +332,7 @@ class AccountPaymentOrder(models.Model):
                 if not line.partner_id.ref:
                     raise UserError(
                         _("Error: El proveedor %s no tiene establecido\
-                         su código de referencia.") %  line.partner_id.name)
+                          su código de referencia.") % line.partner_id.name)
                 # TODO comprobar si corto a 15
                 text += self._get_text_with_size(line.partner_id.ref, 15)
                 # 45 - 66: Nif de la factura si está endosada
@@ -405,7 +405,7 @@ class AccountPaymentOrder(models.Model):
 
                 # 45 - 59 Orden de pago, contenido libre
                 text += self._get_text_with_size(self.name, 15)
-               
+
                 # 60 - 65 Libre
                 text += 6 * ' '
                 # 66 - 72 Libre
