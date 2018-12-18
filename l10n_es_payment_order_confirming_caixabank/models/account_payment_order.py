@@ -150,7 +150,7 @@ class AccountPaymentOrder(models.Model):
             sign_text += amount_text[i]
         return sign_text
 
-    def _get_text_with_size(self, text, size):
+    def strim_txt(self, text, size):
         """
         Devuelvo el texto con espacios al final hasta completar size
         """
@@ -281,7 +281,7 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             if tipo_dato == '011':
                 # 30 - 65 Nombre del proveedor
-                nombre_pro = self._get_text_with_size(line.partner_id.name, 36)
+                nombre_pro = self.strim_txt(line.partner_id.name, 36)
                 text += nombre_pro.upper()
                 # 66 - 72 Libre
                 text += 7 * ' '
@@ -295,7 +295,7 @@ class AccountPaymentOrder(models.Model):
                         _("Error: El Proveedor %s no tiene\
                          establecido el Domicilio.\
                          ") % line.partner_id.name)
-                domicilio_pro = self._get_text_with_size(
+                domicilio_pro = self.strim_txt(
                     line.partner_id.street, 36)
                 text += domicilio_pro.upper()
                 # 66 - 72 Libre
@@ -309,7 +309,7 @@ class AccountPaymentOrder(models.Model):
                     raise UserError(
                         _("Error: El Proveedor %s no tiene establecido\
                          el C.P.") % line.partner_id.name)
-                cp_pro = self._get_text_with_size(line.partner_id.zip, 5)
+                cp_pro = self.strim_txt(line.partner_id.zip, 5)
                 text += cp_pro.upper()
 
                 # 35 - 65 Plaza del proveedor
@@ -318,7 +318,7 @@ class AccountPaymentOrder(models.Model):
                     raise UserError(
                         _("Error: El Proveedor %s no tiene establecida\
                          la Ciudad.") % line.partner_id.name)
-                ciudad_pro = self._get_text_with_size(line.partner_id.city, 31)
+                ciudad_pro = self.strim_txt(line.partner_id.city, 31)
                 text += ciudad_pro.upper()
                 # 66 - 72 Libre
                 text += 7 * ' '
@@ -334,7 +334,7 @@ class AccountPaymentOrder(models.Model):
                         _("Error: El proveedor %s no tiene establecido\
                           su código de referencia.") % line.partner_id.name)
                 # TODO comprobar si corto a 15
-                text += self._get_text_with_size(line.partner_id.ref, 15)
+                text += self.strim_txt(line.partner_id.ref, 15)
                 # 45 - 66: Nif de la factura si está endosada
                 text += 12 * ' '  # TODO
                 # 57 Clasificación proveedor
@@ -348,7 +348,7 @@ class AccountPaymentOrder(models.Model):
                 text += pais.code.upper()
                 # 60 - 68: País destino
                 # TODO ver si está bien acotado
-                text += self._get_text_with_size(pais.code.upper(), 9)
+                text += self.strim_txt(pais.code.upper(), 9)
                 # 69 - 72 Libre
                 text += 4 * ' '
             ###################################################################
@@ -372,7 +372,7 @@ class AccountPaymentOrder(models.Model):
                 num_factura = 15 * ' '
                 if invoice:
                     num_factura = invoice.number.replace('-', '')
-                    text += self._get_text_with_size(num_factura, 15)
+                    text += self.strim_txt(num_factura, 15)
 
                 # 52 - 57: Fecha de vencimiento
                 fecha_vencimiento = 6 * ' '
@@ -401,10 +401,10 @@ class AccountPaymentOrder(models.Model):
                         raise UserError(
                             _("Error: La factura %s no tiene establecida\
                                la referencia de proveedor.") % invoice.number)
-                    text += self._get_text_with_size(referencia_factura, 15)
+                    text += self.strim_txt(referencia_factura, 15)
 
                 # 45 - 59 Orden de pago, contenido libre
-                text += self._get_text_with_size(self.name, 15)
+                text += self.strim_txt(self.name, 15)
 
                 # 60 - 65 Libre
                 text += 6 * ' '
@@ -415,10 +415,12 @@ class AccountPaymentOrder(models.Model):
             if tipo_dato == '018':
                 # 30 - 44: Teléfono proveedor
                 if line.partner_id.phone:  # TODO no coincide con el ejemplo
-                    text += line.partner_id.phone
+                    text += self.strim_text(line.partner_id.phone, 15)
+                else:
+                    text += 15 * ' '
                 # 60 - 65 FAX proveedor
-                if line.partner_id.mobile:
-                    text += line.partner_id.mobile[:5]  # TODO FAX, no hay?
+                if line.partner_id.fax:
+                    text += self.strim_text(line.partner_id.fax, 15)
                 # 60 - 65 Libre
                 text += 6 * ' '
                 # 66 - 72 Libre

@@ -14,7 +14,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account_payment_order',
-        'l10n_es_base_confirming'
+        'l10n_es_base_confirming',
         'partner_fax'
     ],
     'data': [
