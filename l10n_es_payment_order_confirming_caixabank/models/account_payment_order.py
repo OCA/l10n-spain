@@ -27,14 +27,14 @@ class AccountPaymentOrder(models.Model):
         self.ensure_one()
         if self.payment_method_id.code != 'conf_caixabank':
             return super(AccountPaymentOrder, self).generate_payment_file()
-        self.num_lineas = 0
-        txt_file = self._pop_cabecera()
+        self.num_records = 0
+        txt_file = self._pop_cabecera_conf_caix()
         for line in self.bank_line_ids:
-            txt_file += self._pop_beneficiarios(line)
-        txt_file += self._pop_totales(line, self.num_lineas)
+            txt_file += self._pop_beneficiarios_conf_caix(line)
+        txt_file += self._pop_totales(line, self.num_records)
         return str.encode(txt_file), self.name + '.CAX'
 
-    def _pop_cabecera(self):
+    def _pop_cabecera_conf_caix(self):
         """
         Devuelve las 4 líneas de la cabecera
         """
@@ -176,7 +176,7 @@ class AccountPaymentOrder(models.Model):
             sign_text += amount_text[i]
         return sign_text
 
-    def _pop_beneficiarios(self, line):
+    def _pop_beneficiarios_conf_caix(self, line):
         all_text = ''
         bloque_registros = [
             '010', '043', '044', '011', '012', '014',
@@ -398,7 +398,7 @@ class AccountPaymentOrder(models.Model):
                 fecha_vencimiento = 6 * ' '
                 if line.payment_line_ids[0].ml_maturity_date:
                     fecha_vencimiento = line.payment_line_ids[0]\
-                    .ml_maturity_date.replace('-', '')
+                        .ml_maturity_date.replace('-', '')
                     dia = fecha_vencimiento[6:]
                     mes = fecha_vencimiento[4:6]
                     ano = fecha_vencimiento[2:4]
