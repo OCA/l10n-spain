@@ -96,12 +96,15 @@ class AccountPaymentOrder(models.Model):
                     cuenta = cuenta[4:]
                 entidad = '2100' or cuenta[0:4]
                 oficina = '6202' or cuenta[5:9]
-                num_contrato = self.payment_mode_id.num_contract
                 # 42 - 45: Entidad de destino del soporte
                 text += entidad
                 # 46 - 49: Oficina de destino del soporte
                 text += oficina
                 # 50 - 59: Número de contrato de confirming
+                num_contrato = self.payment_mode_id.num_contract
+                if not num_contrato:
+                    raise UserError(
+                        _("Error: Falta el número de contrato en confirming"))
                 text += num_contrato
 
                 # 60: Detalle del cargo
