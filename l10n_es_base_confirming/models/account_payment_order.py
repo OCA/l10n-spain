@@ -16,7 +16,7 @@ class AccountPaymentOrder(models.Model):
         'payment_line_ids', 'payment_line_ids.amount_currency')
     def _compute_total_amount(self):
         for rec in self:
-            rec.total_company_currency = sum(
+            rec.total_amount = sum(
                 rec.mapped('payment_line_ids.amount_currency') or
                 [0.0])
 
