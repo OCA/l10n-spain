@@ -471,7 +471,7 @@ class AccountPaymentOrder(models.Model):
             text += 3 * ' '
 
             # 30 - 41: Suma importes ajustado derecha completado con 0s
-            text += self.convert(abs(self.total_amount), 12)
+            text += self.convert(abs(self.total_company_currency), 12)
             # 42 - 49 Num de registros de dato 010
             num = str(num_records)
             text += num.zfill(8)
