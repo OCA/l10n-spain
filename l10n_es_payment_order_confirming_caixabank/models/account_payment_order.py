@@ -27,11 +27,11 @@ class AccountPaymentOrder(models.Model):
         self.ensure_one()
         if self.payment_method_id.code != 'conf_caixabank':
             return super(AccountPaymentOrder, self).generate_payment_file()
-        self.num_records = 0
+        self.num_lineas = 0
         txt_file = self._pop_cabecera()
         for line in self.bank_line_ids:
             txt_file += self._pop_beneficiarios(line)
-        txt_file += self._pop_totales(line, self.num_records)
+        txt_file += self._pop_totales(line, self.num_lineas)
         return str.encode(txt_file), self.name + '.CAX'
 
     def _pop_cabecera(self):
@@ -156,6 +156,7 @@ class AccountPaymentOrder(models.Model):
 
             text = text.ljust(100)+'\n'
             all_text += text
+            self.num_lineas += 1
         return all_text
 
     def _get_signed_amount(self, amount_text):
@@ -451,10 +452,10 @@ class AccountPaymentOrder(models.Model):
             ###################################################################
             text = text.ljust(100)+'\n'
             all_text += text
-        self.num_records += 1
+            self.num_lineas += 1
         return all_text
 
-    def _pop_totales(self, line, num_records):
+    def _pop_totales(self, line, num_lineas):
             text = ''
             # 1 - 2: Código registro
             text += '01'
@@ -473,10 +474,10 @@ class AccountPaymentOrder(models.Model):
             # 30 - 41: Suma importes ajustado derecha completado con 0s
             text += self.convert(abs(self.total_company_currency), 12)
             # 42 - 49 Num de registros de dato 010
-            num = str(num_records)
+            num = str(self.bank_line_count)
             text += num.zfill(8)
             # 50 - 59: Número total de registros del cuaderno (cab y totales)
-            total_reg = num_records + 2
+            total_reg = num_lineas + 1
             total_reg = str(total_reg)
             text += total_reg.zfill(10)
             # 60 - 65 Libre
