@@ -38,29 +38,17 @@ class AccountPaymentOrder(models.Model):
         """
         Devuelve las 4 líneas de la cabecera
         """
-        if self.date_prefered == 'due':
-            fecha_planificada = self.payment_line_ids \
-                and self.payment_line_ids[0].ml_maturity_date \
-                or date.today().strftime('%Y-%d-%m')
+
+        if self.date_prefered != 'fixed':
+            raise UserError(
+                _("Error: El tipo de fecha de ejecución deber ser del\
+                  pago debe ser fijo"))
+            fecha_planificada = self.date_scheduled
             fecha_planificada = fecha_planificada.replace('-', '')
             dia = fecha_planificada[6:]
             mes = fecha_planificada[4:6]
-            ano = fecha_planificada[:4]
+            ano = fecha_planificada[2:4]
             fecha_planificada = dia + mes + ano
-        elif self.date_prefered == 'now':
-            fecha_planificada = date.today().strftime('%d%m%Y')
-        else:
-            fecha_planificada = self.date_scheduled
-            if not fecha_planificada:
-                raise UserError(
-                    _("Error: Fecha planificada no \
-                        establecida en la Orden de pago."))
-            else:
-                fecha_planificada = fecha_planificada.replace('-', '')
-                dia = fecha_planificada[6:]
-                mes = fecha_planificada[4:6]
-                ano = fecha_planificada[:4]
-                fecha_planificada = dia + mes + ano
 
         all_text = ''
         for i in range(4):
@@ -94,8 +82,8 @@ class AccountPaymentOrder(models.Model):
                 tipo_cuenta = self.company_partner_bank_id.acc_type
                 if tipo_cuenta == 'iban':
                     cuenta = cuenta[4:]
-                entidad = '2100' or cuenta[0:4]
-                oficina = '6202' or cuenta[5:9]
+                entidad = '2100'
+                oficina = '6202'
                 # 42 - 45: Entidad de destino del soporte
                 text += entidad
                 # 46 - 49: Oficina de destino del soporte
@@ -180,7 +168,7 @@ class AccountPaymentOrder(models.Model):
         all_text = ''
         bloque_registros = [
             '010', '043', '044', '011', '012', '014',
-            '015', '016', '017', '018'
+            '015', '016', '017', '018', '019'
         ]
         fixed_text = ''
         # 1 - 2: Código registro
@@ -251,7 +239,7 @@ class AccountPaymentOrder(models.Model):
                 else:
                     text += '  '
                 # 66: Proveedor no residente
-                text += 'S'  # TODO: Quizás sea N
+                text += 'N'
                 # 67: Indicador confirmación
                 text += 'C'
                 # 68 - 70: Moneda de factura
@@ -355,8 +343,8 @@ class AccountPaymentOrder(models.Model):
                         _("Error: El proveedor %s no tiene establecido\
                           su código de referencia.") % line.partner_id.name)
                 text += self.strim_txt(line.partner_id.ref, 15)
-                # 45 - 66: Nif de la factura si está endosada
-                text += 12 * ' '  # TODO ?? es blanco
+                # 45 - 66: Nif de la factura si está endosada, libre
+                text += 12 * ' '
                 # 57 Clasificación proveedor
                 text += ' '
                 # 58 - 59: Código ISO país destino
@@ -395,14 +383,17 @@ class AccountPaymentOrder(models.Model):
                     text += self.strim_txt(num_factura, 15)
 
                 # 52 - 57: Fecha de vencimiento
+                # TODO cambiar por fecha de post financiación
                 fecha_vencimiento = 6 * ' '
-                if line.payment_line_ids[0].ml_maturity_date:
-                    fecha_vencimiento = line.payment_line_ids[0]\
-                        .ml_maturity_date.replace('-', '')
-                    dia = fecha_vencimiento[6:]
-                    mes = fecha_vencimiento[4:6]
-                    ano = fecha_vencimiento[2:4]
-                    fecha_vencimiento = dia + mes + ano
+                if not self.post_financing_date:
+                    raise UserError(
+                        _("Error: La fecha de post financiación no está \
+                           establecida"))
+                fecha_vencimiento = self.post_financing_date.replace('-', '')
+                dia = fecha_vencimiento[6:]
+                mes = fecha_vencimiento[4:6]
+                ano = fecha_vencimiento[2:4]
+                fecha_vencimiento = dia + mes + ano
                 text += fecha_vencimiento
 
                 # 58 - 65 Libre
@@ -450,6 +441,17 @@ class AccountPaymentOrder(models.Model):
                     text += 15 * ' '
                 # 60 - 65 Libre
                 text += 6 * ' '
+                # 66 - 72 Libre
+                text += 7 * ' '
+            ###################################################################
+
+            # LÍNEA 11, opcional, solo si tiene mail
+            ###################################################################
+            if tipo_dato == '019' and line.partner_id.email:
+                # 30 - 65 Email del proveedor
+                email_pro = self.strim_txt(
+                    line.partner_id.email, 36)
+                text += email_pro
                 # 66 - 72 Libre
                 text += 7 * ' '
             ###################################################################
