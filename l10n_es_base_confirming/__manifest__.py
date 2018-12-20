@@ -12,5 +12,8 @@
     'depends': [
         'account_payment_order',
     ],
+    'data': [
+        'views/account_payment_order.xml'
+    ],
     'installable': True,
 }
