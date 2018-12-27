@@ -377,13 +377,15 @@ class AccountPaymentOrder(models.Model):
                 text += fecha_factura
 
                 # 37 - 51: Número factura
-                num_factura = 15 * ' '
                 if invoice:
-                    num_factura = invoice.number.replace('-', '')
-                    text += self.strim_txt(num_factura, 15)
+                    referencia_factura = invoice.reference.replace('-', '')
+                    if not invoice.reference:
+                        raise UserError(
+                            _("Error: La factura %s no tiene establecida\
+                               la referencia de proveedor.") % invoice.number)
+                    text += self.strim_txt(referencia_factura, 15)
 
                 # 52 - 57: Fecha de vencimiento
-                # TODO cambiar por fecha de post financiación
                 fecha_vencimiento = 6 * ' '
                 if not self.post_financing_date:
                     raise UserError(
@@ -405,18 +407,11 @@ class AccountPaymentOrder(models.Model):
             # LÍNEA 9
             ###################################################################
             if tipo_dato == '017':
-                # 30 - 44 Referencia o número de la factura
-                referencia_factura = 15 * ' '
-                if invoice:
-                    referencia_factura = invoice.reference.replace('-', '')
-                    if not invoice.reference:
-                        raise UserError(
-                            _("Error: La factura %s no tiene establecida\
-                               la referencia de proveedor.") % invoice.number)
-                    text += self.strim_txt(referencia_factura, 15)
+                # 30 - 44 Libre
+                text += 15 * ' '
 
-                # 45 - 59 Orden de pago, contenido libre
-                text += self.strim_txt(self.name, 15)
+                # 45 - 59 Nif Proveedor para agrupar
+                text += self.convert(nif, 15)
 
                 # 60 - 65 Libre
                 text += 6 * ' '
