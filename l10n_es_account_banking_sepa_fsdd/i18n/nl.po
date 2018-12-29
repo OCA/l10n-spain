@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_account_banking_sepa_fsdd
-#: model:ir.model.fields,help:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode_charge_financed
+#: model:ir.model.fields,help:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
 msgid "Adds FSDD prefix to sepa file id"
 msgstr ""
 
 #. module: l10n_es_account_banking_sepa_fsdd
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode_charge_financed
+#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
 msgid "Financed Charge"
 msgstr ""
 
