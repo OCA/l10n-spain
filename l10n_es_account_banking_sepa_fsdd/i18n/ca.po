@@ -20,12 +20,12 @@ msgstr ""
 "X-Generator: Weblate 3.0.1\n"
 
 #. module: l10n_es_account_banking_sepa_fsdd
-#: model:ir.model.fields,help:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode_charge_financed
+#: model:ir.model.fields,help:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
 msgid "Adds FSDD prefix to sepa file id"
 msgstr "Afegir el prefix FSDD al identificador de fitxer SEPA"
 
 #. module: l10n_es_account_banking_sepa_fsdd
-#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode_charge_financed
+#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
 msgid "Financed Charge"
 msgstr "Càrrec finançat"
 
