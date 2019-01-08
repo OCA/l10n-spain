@@ -883,7 +883,7 @@ class AccountInvoice(models.Model):
     def _connect_params_sii(self, mapping_key):
         self.ensure_one()
         params = {
-            'wsdl': self.env['ir.config_parameter'].get_param(
+            'wsdl': self.env['ir.config_parameter'].sudo().get_param(
                 self.SII_WDSL_MAPPING[mapping_key], False
             ),
             'port_name': self.SII_PORT_NAME_MAPPING[mapping_key],
