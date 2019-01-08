@@ -489,7 +489,7 @@ class AccountInvoice(models.Model):
                     if exempt_cause:
                         det_dict['CausaExencion'] = exempt_cause
                     det_dict['BaseImponible'] += (
-                        tax_line.base_company * sign)
+                        round(tax_line.base_company, 2) * sign)
                 else:
                     sub_dict.setdefault('NoExenta', {
                         'TipoNoExenta': (
@@ -515,7 +515,7 @@ class AccountInvoice(models.Model):
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
                 nsub_dict[default_no_taxable_cause] += (
-                    tax_line.base_company * sign)
+                    round(tax_line.base_company, 2) * sign)
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
                     'DesgloseTipoOperacion', {
@@ -535,7 +535,7 @@ class AccountInvoice(models.Model):
                     if exempt_cause:
                         det_dict['CausaExencion'] = exempt_cause
                     det_dict['BaseImponible'] += (
-                        tax_line.base_company * sign)
+                        round(tax_line.base_company, 2) * sign)
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
@@ -608,7 +608,7 @@ class AccountInvoice(models.Model):
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
                 sfrns_dict['DetalleIVA'].append({
-                    'BaseImponible': sign * tax_line.base_company,
+                    'BaseImponible': sign * round(tax_line.base_company, 2),
                 })
             elif tax in taxes_sfrsa:
                 sfrsa_dict = taxes_dict.setdefault(
@@ -883,7 +883,7 @@ class AccountInvoice(models.Model):
     def _connect_params_sii(self, mapping_key):
         self.ensure_one()
         params = {
-            'wsdl': self.env['ir.config_parameter'].get_param(
+            'wsdl': self.env['ir.config_parameter'].sudo().get_param(
                 self.SII_WDSL_MAPPING[mapping_key], False
             ),
             'port_name': self.SII_PORT_NAME_MAPPING[mapping_key],
