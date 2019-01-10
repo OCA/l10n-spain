@@ -31,8 +31,9 @@ class AccountPaymentOrder(models.Model):
         txt_file = self._pop_cabecera_conf_caix()
         for line in self.bank_line_ids:
             txt_file += self._pop_beneficiarios_conf_caix(line)
-        txt_file += self._pop_totales(line, self.num_records)
-        return str.encode(txt_file), self.name + '.CAX'
+        txt_file += self._pop_totales_conf_caix(line, self.num_lineas)
+        # return str.encode(txt_file, 'ascii'), self.name + '.CAX'
+        return txt_file.encode('ascii','ignore'), self.name + '.CAX'
 
     def _pop_cabecera_conf_caix(self):
         """
@@ -458,7 +459,7 @@ class AccountPaymentOrder(models.Model):
     def _pop_totales(self, line, num_lineas):
             text = ''
             # 1 - 2: Código registro
-            text += '01'
+            text += '08'
             # 3 - 4: Codigo operación
             text += '56'
 
@@ -485,5 +486,5 @@ class AccountPaymentOrder(models.Model):
             # 66 - 72 Libre
             text += 7 * ' '
 
-            text = text.ljust(100)+'\n'
+            text = text.ljust(72)+'\n'
             return text
