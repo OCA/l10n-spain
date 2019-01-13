@@ -297,6 +297,7 @@ class AccountBankStatementImport(models.TransientModel):
         journal = self.env['account.journal'].browse(
             self.env.context.get('journal_id', [])
         )
+        vals_bank_statements = []
         transactions = []
         for group in n43:
             for line in group['lines']:
@@ -320,12 +321,15 @@ class AccountBankStatementImport(models.TransientModel):
                 if not vals_line['name']:
                     vals_line['name'] = vals_line['ref']
                 transactions.append(vals_line)
-        vals_bank_statement = {
-            'transactions': transactions,
-            'balance_start': n43 and n43[0]['saldo_ini'] or 0.0,
-            'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
-        }
-        return None, None, [vals_bank_statement]
+            vals_bank_statements.append({
+                'name': self.filename + '  ('
+                    + group['fecha_ini'].strftime('%Y.%m.%d') + ' - '
+                    + group['fecha_fin'].strftime('%Y.%m.%d') + ')',
+                'transactions': transactions,
+                'balance_start': group['saldo_ini'] or 0.0,
+                'balance_end_real': group['saldo_fin'] or 0.0,
+            })
+        return None, None, vals_bank_statements
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):
         """Match partner_id if if hasn't been deducted yet."""
