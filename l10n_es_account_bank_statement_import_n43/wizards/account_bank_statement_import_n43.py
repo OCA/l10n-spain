@@ -298,8 +298,8 @@ class AccountBankStatementImport(models.TransientModel):
             self.env.context.get('journal_id', [])
         )
         vals_bank_statements = []
-        transactions = []
         for group in n43:
+            transactions = []
             for line in group['lines']:
                 conceptos = []
                 for concept_line in line['conceptos']:
