@@ -49,3 +49,25 @@ class PosOrder(models.Model):
             })
             pos.l10n_es_simplified_invoice_sequence_id.next_by_id()
         return super(PosOrder, self)._process_order(pos_order)
+
+    @api.model
+    def create_from_ui(self, orders):
+        """Provide a context with the current session id"""
+        if not orders:
+            return super().create_from_ui(orders)
+        # We take the session from the first order in queue
+        pos_session_id = orders and orders[0]['data']['pos_session_id']
+        self_ctx = self.with_context(l10n_es_pos_session_id=pos_session_id)
+        return super(PosOrder, self_ctx).create_from_ui(orders)
+
+    @api.model
+    def search(self, args, offset=0, limit=0, order=None, count=False):
+        """If the context provided from create_from_ui() is given, we add
+           the session to the domain filter. This way, we prevent missing
+           orders if a sequence is reset. If they belong to another session
+           we grant them for valid despite the duped sequence number"""
+        pos_session_id = self.env.context.get('l10n_es_pos_session_id')
+        if pos_session_id:
+            args += [('session_id', '=', pos_session_id)]
+        return super().search(args, offset=offset, limit=limit,
+                              order=order, count=count)
