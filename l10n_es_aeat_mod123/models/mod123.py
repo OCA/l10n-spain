@@ -67,12 +67,12 @@ class L10nEsAeatMod123Report(models.Model):
     @api.depends('casilla_03', 'casilla_05')
     def _compute_casilla06(self):
         for report in self:
-            report.casilla_06 = self.casilla_03 + self.casilla_05
+            report.casilla_06 = report.casilla_03 + report.casilla_05
 
     @api.depends('casilla_03', 'casilla_05')
     def _compute_casilla08(self):
         for report in self:
-            report.casilla_08 = self.casilla_06 + self.casilla_07
+            report.casilla_08 = report.casilla_06 + report.casilla_07
 
     def __init__(self, pool, cr):
         self._aeat_number = '123'
