@@ -42,10 +42,14 @@ Para instalar esté módulo necesita:
 #. Libreria Python Requests, se puede instalar con el comando 'pip install requests'
 #. Libreria pyOpenSSL, versión 0.15 o posterior
 
+y el módulo `queue_job` que se encuentra en:
+
+https://github.com/OCA/queue
+
 Configuration
 =============
 
-Para configurar este módulo necesitas:
+Para configurar este módulo es necesario:
 
 #. En la compañia se almacenan las URLs del servicio SOAP de hacienda.
    Estas URLs pueden cambiar según comunidades
@@ -60,28 +64,28 @@ En Linux se pueden usar los siguientes comandos:
 - Clave pública: "openssl pkcs12 -in Certificado.p12 -nokeys -out publicCert.crt -nodes"
 - Clave privada: "openssl pkcs12 -in Certifcado.p12 -nocerts -out privateKey.pem -nodes"
 
-Connector:
+Además, el módulo `queue_job` necesita estar configurado de una de estas formas:
 
-#. Ajustar variables de entorno:
+#. Ajustando variables de entorno:
 
-     ODOO_CONNECTOR_CHANNELS=root:4
+     ODOO_QUEUE_JOB_CHANNELS=root:4
 
    u otro canal de configuración. Por defecto es root:1
 
-   Si xmlrpc_port no esta definido: ODOO_CONNECTOR_PORT=8069
+   Si xmlrpc_port no está definido: ODOO_QUEUE_JOB_PORT=8069
 
 #. Otra alternativa es usuando un fichero de configuración:
 
      [options]
      (...)
      workers = 4
-     server_wide_modules = web,web_kanban,connector
+     server_wide_modules = web,base_sparse_field,queue_job
 
      (...)
-     [options-connector]
+     [queue_job]
      channels = root:4
 
-#. Arranca Odoo con --load=web,web_kanban,connector y --workers más grande que 1.
+#. Por último, arrancando Odoo con --load=web,base_sparse_field,queue_job y --workers más grande que 1.
 
 Más información http://odoo-connector.com
 
