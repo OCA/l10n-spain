@@ -45,7 +45,7 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
         self.sale_invoice = self._invoice_purchase_create('2017-01-03')
         self.purchase_invoice = self._invoice_sale_create('2017-01-13')
         self.model303_2t = self.model303.copy({
-            'name': '9994000000303',
+            'name': '9992000000303',
             'period_type': '2T',
             'date_start': '2017-04-01',
             'date_end': '2017-06-30',

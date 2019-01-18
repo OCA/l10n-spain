@@ -279,6 +279,12 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'export_config_id': export_config.id,
             'journal_id': self.journal_misc.id,
         })
+        self.model303_4t = self.model303.copy({
+            'name': '9994000000303',
+            'period_type': '4T',
+            'date_start': '2017-09-01',
+            'date_end': '2017-12-31',
+        })
 
 
 class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
@@ -295,11 +301,10 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         sale = self._invoice_sale_create('2017-01-13')
         self._invoice_refund(sale, '2017-01-14')
 
-    def test_default_counterpart(self):
+    def test_model_303(self):
+        # Test default counterpart
         self.assertEqual(self.model303._default_counterpart_303().id,
                          self.accounts['475000'].id)
-
-    def test_model_303(self):
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
         self.assertEqual(self.model303.state, 'calculated')
@@ -335,6 +340,11 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(self.model303.atribuible_estado, estado, 2)
         self.assertAlmostEqual(self.model303.casilla_69, result, 2)
         self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 0,
+        )
         self.assertEqual(self.model303.result_type, 'I')
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
@@ -372,3 +382,25 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertEqual(self.model303.calculation_date, False)
         self.model303.button_cancel()
         self.assertEqual(self.model303.state, 'cancelled')
+        # Check 4T without exonerated
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 0,
+        )
+        # Check 4T with exonerated
+        self.model303_4t.exonerated_390 = '1'
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 14280.0,
+        )
+        self.assertAlmostEqual(
+            self.model303_4t.casilla_88, 25080.0,
+        )
+        # Check change of period type
+        self.model303_4t.period_type = '1T'
+        self.model303_4t.onchange_period_type()
+        self.assertEqual(self.model303_4t.exonerated_390, '2')
