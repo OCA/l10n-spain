@@ -623,4 +623,54 @@
     -->
     <field name="tax_ids" eval="[(6, False, [])]"/>
 </record>
+    <record id="aeat_mod303_map_line_80" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod303_map"/>
+        <field name="field_number">80</field>
+        <field name="name">Operaciones en régimen general</field>
+        <field name="move_type">all</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva21b'), ref('l10n_es.account_tax_template_s_iva21s'), ref('l10n_es.account_tax_template_s_iva10b'), ref('l10n_es.account_tax_template_s_iva10s'), ref('l10n_es.account_tax_template_s_iva4b'), ref('l10n_es.account_tax_template_s_iva4s')])]"/>
+    </record>
+    <record id="aeat_mod390_map_line_83" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod303_map"/>
+        <field name="field_number">83</field>
+        <field name="name">Operaciones exentas sin derecho a deducción</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0')])]"/>
+    </record>
+    <record id="aeat_mod303_map_line_93" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod303_map"/>
+        <field name="field_number">93</field>
+        <field name="name">Entregas intracomunitarias exentas</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0_ic'), ref('l10n_es.account_tax_template_s_iva0_sp_i')])]"/>
+    </record>
+    <record id="aeat_mod390_map_line_94" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod303_map"/>
+        <field name="field_number">94</field>
+        <field name="name">Exportaciones y otras operaciones exentas con derecho a deducción</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0_e'), ref('l10n_es.account_tax_template_s_iva_e')])]"/>
+    </record>
+    <record id="aeat_mod390_map_line_96" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod303_map"/>
+        <field name="field_number">96</field>
+        <field name="name">Operaciones realizadas por sujetos pasivos acogidos al régimen especial del recargo de equivalencia</field>
+        <field name="move_type">regular</field>
+        <field name="field_type">base</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"/>
+    </record>
 </odoo>
