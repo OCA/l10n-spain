@@ -2,7 +2,7 @@
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 from odoo.osv.expression import normalize_domain, AND, OR
 
 
@@ -32,7 +32,6 @@ class L10nEsAeatMod303Report(models.Model):
         default=_default_cash_basis_payable,
     )
 
-    @api.model
     def _get_tax_lines(self, codes, date_start, date_end, map_line):
         """Hide cash basis lines that are payment entries for the same period
         of their counterpart, for not declaring twice the amount.
