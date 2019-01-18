@@ -774,10 +774,9 @@
     <record id="aeat_mod303_2018_sub01_export_line_68" model="aeat.model.export.config.line">
         <field name="sequence">68</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub01_export_config"/>
-        <field name="name">Identificación - Exonerados de la Declaración-resumen anual del IVA, modelo 390: Volumen de operaciones (art. 121 LIVA) - Fijado como no exonerado</field>
-        <field name="expression">0</field>
+        <field name="name">Identificación (1) - ¿Existe volumen de operaciones (art. 121 LIVA)?</field>
+        <field name="expression">${0 if (object.period_type not in ('4T', '12') or object.exonerated_390 == '2') else (1 if object.has_operation_volume else 2)}</field>
         <field name="export_type">integer</field>
-        <field name="apply_sign" eval="False"/>
         <field name="size">1</field>
         <field name="alignment">left</field>
     </record>
@@ -796,10 +795,11 @@
     <record id="aeat_mod303_2018_sub01_export_line_70" model="aeat.model.export.config.line">
         <field name="sequence">70</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub01_export_config"/>
-        <field name="name">¿Ha llevado voluntariamente los Libros registro del IVA a través de la Sede electrónica de la AEAT durante el ejercicio? - Fijado a NO</field>
-        <field name="expression">2</field>
-        <field name="export_type">integer</field>
-        <field name="apply_sign" eval="False"/>
+        <field name="name">¿Ha llevado voluntariamente los Libros registro del IVA a través de la Sede electrónica de la AEAT durante el ejercicio?</field>
+        <field name="expression">${object.is_voluntary_sii}</field>
+        <field name="export_type">boolean</field>
+        <field name="bool_yes">1</field>
+        <field name="bool_no">2</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
     </record>
@@ -807,15 +807,26 @@
     <record id="aeat_mod303_2018_sub01_export_line_71" model="aeat.model.export.config.line">
         <field name="sequence">71</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub01_export_config"/>
-        <field name="name">Reservado para la AEAT</field>
-        <field name="fixed_value"> </field>
-        <field name="export_type">string</field>
-        <field name="size">579</field>
+        <field name="name">Identificación (1) - ¿Está exonerado de la Declaración-resumen anual del IVA, modelo 390?</field>
+        <field name="expression">${0 if object.period_type not in ('4T', '12') else int(object.exonerated_390)}</field>
+        <field name="apply_sign" eval="False"/>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
         <field name="alignment">left</field>
     </record>
 
     <record id="aeat_mod303_2018_sub01_export_line_72" model="aeat.model.export.config.line">
         <field name="sequence">72</field>
+        <field name="export_config_id" ref="aeat_mod303_2018_sub01_export_config"/>
+        <field name="name">Reservado para la AEAT</field>
+        <field name="fixed_value"> </field>
+        <field name="export_type">string</field>
+        <field name="size">578</field>
+        <field name="alignment">left</field>
+    </record>
+
+    <record id="aeat_mod303_2018_sub01_export_line_73" model="aeat.model.export.config.line">
+        <field name="sequence">73</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub01_export_config"/>
         <field name="name">Reservado para la AEAT: Sello electrónico reservado para la AEAT</field>
         <field name="fixed_value"> </field>
@@ -824,8 +835,8 @@
         <field name="alignment">left</field>
     </record>
 
-    <record id="aeat_mod303_2018_sub01_export_line_73" model="aeat.model.export.config.line">
-        <field name="sequence">73</field>
+    <record id="aeat_mod303_2018_sub01_export_line_74" model="aeat.model.export.config.line">
+        <field name="sequence">74</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub01_export_config"/>
         <field name="name">Indicador de fin de registro: &lt;/T30301&gt;</field>
         <field name="fixed_value">&lt;/T30301000&gt;</field>
@@ -2234,7 +2245,7 @@
         <field name="sequence">28</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - B- Clave - Principal</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.main_activity_code.code}</field>
         <field name="export_type">integer</field>
         <field name="apply_sign" eval="False"/>
         <field name="size">1</field>
@@ -2245,7 +2256,7 @@
         <field name="sequence">29</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - C- Epígrafe IAE - Principal</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.main_activity_iae or ''}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">left</field>
@@ -2255,7 +2266,7 @@
         <field name="sequence">30</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - B- Clave - Otras 1ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_first_activity_code.code}</field>
         <field name="export_type">integer</field>
         <field name="apply_sign" eval="False"/>
         <field name="size">1</field>
@@ -2266,7 +2277,7 @@
         <field name="sequence">31</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - C- Epígrafe IAE - Otras 1ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_first_activity_iae or ''}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">left</field>
@@ -2276,7 +2287,7 @@
         <field name="sequence">32</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - B- Clave - Otras 2ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_second_activity_code.code}</field>
         <field name="export_type">integer</field>
         <field name="apply_sign" eval="False"/>
         <field name="size">1</field>
@@ -2287,7 +2298,7 @@
         <field name="sequence">33</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - C- Epígrafe IAE - Otras 2ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_second_activity_iae or ''}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">left</field>
@@ -2297,7 +2308,7 @@
         <field name="sequence">34</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - B- Clave - Otras 3ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_third_activity_code.code}</field>
         <field name="export_type">integer</field>
         <field name="apply_sign" eval="False"/>
         <field name="size">1</field>
@@ -2308,7 +2319,7 @@
         <field name="sequence">35</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - C- Epígrafe IAE - Otras 3ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_third_activity_iae or ''}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">left</field>
@@ -2318,7 +2329,7 @@
         <field name="sequence">36</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - B- Clave - Otras 4ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_fourth_activity_code.code}</field>
         <field name="export_type">integer</field>
         <field name="apply_sign" eval="False"/>
         <field name="size">1</field>
@@ -2329,7 +2340,7 @@
         <field name="sequence">37</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - C- Epígrafe IAE - Otras 4ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_fourth_activity_iae or ''}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">left</field>
@@ -2339,7 +2350,7 @@
         <field name="sequence">38</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - B- Clave - Otras 5ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_fifth_activity_code.code}</field>
         <field name="export_type">integer</field>
         <field name="apply_sign" eval="False"/>
         <field name="size">1</field>
@@ -2350,7 +2361,7 @@
         <field name="sequence">39</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - C- Epígrafe IAE - Otras 5ª</field>
-        <field name="fixed_value"/>
+        <field name="expression">${object.other_fifth_activity_iae or ''}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">left</field>
@@ -2360,9 +2371,11 @@
         <field name="sequence">40</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - D- Marque si ha efectuado operaciones por las que tenga obligación de presentar la declaración anual de operaciones con terceras personas</field>
-        <field name="fixed_value"/>
-        <field name="export_type">string</field>
+        <field name="expression">${object.has_347}</field>
+        <field name="export_type">boolean</field>
         <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
         <field name="alignment">left</field>
     </record>
 
@@ -2370,7 +2383,7 @@
         <field name="sequence">41</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones en régimen general [80]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==80).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2382,7 +2395,7 @@
         <field name="sequence">42</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones en régimen especial del criterio de caja conforme art.75 LIVA [81]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==81).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2394,7 +2407,7 @@
         <field name="sequence">43</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Entregas intracomunitarias exentas [93]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==93).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2406,7 +2419,7 @@
         <field name="sequence">44</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones exentas sin derecho a deducción [83]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==83).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2418,7 +2431,7 @@
         <field name="sequence">45</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones no sujetas por reglas de localización o con inversión del sujeto pasivo [84]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==84).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2430,7 +2443,7 @@
         <field name="sequence">46</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Entregas de bienes objeto de instalación o montaje en otros Estados miembros [85]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==85).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2442,7 +2455,7 @@
         <field name="sequence">47</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones de régimen simplificado [86]</field>
-        <field name="fixed_value">0</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==86).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2453,9 +2466,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_48" model="aeat.model.export.config.line">
         <field name="sequence">48</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Entregas de bienes inmuebles y operaciones financieras no habituales  [79]</field>
-        <field name="fixed_value">0</field>
-        <field name="expression"/>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Entregas de bienes inmuebles no habituales, operaciones financieras y relativas al oro de inversión no habituales [79]</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==79).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2466,8 +2478,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_49" model="aeat.model.export.config.line">
         <field name="sequence">49</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99]) [88]</field>
-        <field name="fixed_value">0</field>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99]) [88]</field>
+        <field name="expression">${object.casilla_88}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2536,8 +2548,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_55" model="aeat.model.export.config.line">
         <field name="sequence">55</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Exportaciones y otras operaciones exentas con derecho a deducción [94]</field>
-        <field name="fixed_value">0</field>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Exportaciones y otras operaciones exentas con derecho a deducción [94]</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==94).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2548,8 +2560,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_56" model="aeat.model.export.config.line">
         <field name="sequence">56</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Operaciones en régimen especial de la agricultura, ganadería y pesca [95]</field>
-        <field name="fixed_value">0</field>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones en régimen especial de la agricultura, ganadería y pesca [95]</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==95).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2560,8 +2572,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_57" model="aeat.model.export.config.line">
         <field name="sequence">57</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Operaciones realizadas por sujetos pasivos acogidos al régimen especial del recargo de equivalencia [96]</field>
-        <field name="fixed_value">0</field>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones realizadas por sujetos pasivos acogidos al régimen especial del recargo de equivalencia [96]</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==96).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2572,8 +2584,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_58" model="aeat.model.export.config.line">
         <field name="sequence">58</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Operaciones en Régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección [97]</field>
-        <field name="fixed_value">0</field>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones en Régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección [97]</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==97).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2584,8 +2596,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_59" model="aeat.model.export.config.line">
         <field name="sequence">59</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Operaciones en régimen especial de Agencias de Viajes [98]</field>
-        <field name="fixed_value">0</field>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Operaciones en régimen especial de Agencias de Viajes [98]</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==98).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2596,8 +2608,8 @@
     <record id="aeat_mod303_2018_sub03_export_line_60" model="aeat.model.export.config.line">
         <field name="sequence">60</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Información adicional - Exclusivamente a cumplimentar en el último periodo exonerados de la Declaración-resumen anual del IVA - Operaciones realizadas en el ejercicio - Entregas de bienes de inversión [99]</field>
-        <field name="fixed_value">0</field>
+        <field name="name">Información adicional - Operaciones realizadas en el ejercicio - Entregas de bienes de inversión [99]</field>
+        <field name="expression">${object.tax_line_ids.filtered(lambda r: r.field_number==99).amount}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">17</field>
@@ -2608,15 +2620,27 @@
     <record id="aeat_mod303_2018_sub03_export_line_61" model="aeat.model.export.config.line">
         <field name="sequence">61</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
-        <field name="name">Reservado para la AEAT</field>
-        <field name="fixed_value"> </field>
-        <field name="export_type">string</field>
-        <field name="size">468</field>
-        <field name="alignment">left</field>
+        <field name="name">Información de la tributación por razón de territorio: Territorio común [107] - Fijado a 0</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False"/>
+        <field name="size">5</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
     </record>
 
     <record id="aeat_mod303_2018_sub03_export_line_62" model="aeat.model.export.config.line">
         <field name="sequence">62</field>
+        <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
+        <field name="name">Reservado para la AEAT</field>
+        <field name="fixed_value"> </field>
+        <field name="export_type">string</field>
+        <field name="size">463</field>
+        <field name="alignment">left</field>
+    </record>
+
+    <record id="aeat_mod303_2018_sub03_export_line_63" model="aeat.model.export.config.line">
+        <field name="sequence">63</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Indicador de fin de registro: &lt;/T30303&gt;</field>
         <field name="fixed_value">&lt;/T30303000&gt;</field>
