@@ -52,11 +52,10 @@ class TestL10nEsAeatVatProrrate(TestL10nEsAeatMod303Base):
             'vat_prorrate_percent': 80,
             'journal_id': self.journal.id,
         })
-        self.model303_4t = self.model303.copy({
-            'name': '9994000000303',
-            'period_type': '4T',
-            'date_start': '2017-09-01',
-            'date_end': '2017-12-31',
+        self.model303_4t.write({
+            'vat_prorrate_type': 'general',
+            'vat_prorrate_percent': 80,
+            'journal_id': self.journal.id,
         })
 
     def test_vat_prorrate(self):
