@@ -51,6 +51,22 @@ SII_COUNTRY_CODE_MAPPING = {
 SII_MACRODATA_LIMIT = 100000000.0
 
 
+def round_by_keys(elem, search_keys, prec=2):
+    """ This uses ``round`` method directly as if has been tested that Odoo's
+        ``float_round`` still returns incorrect amounts for certain values. Try
+        3 units x 3,77 €/unit with 10% tax and you will be hit by the error
+        (on regular x86 architectures)."""
+    if isinstance(elem, dict):
+        for key, value in elem.items():
+            if key in search_keys:
+                elem[key] = round(elem[key], prec)
+            else:
+                round_by_keys(value, search_keys)
+    elif isinstance(elem, list):
+        for value in elem:
+            round_by_keys(value, search_keys)
+
+
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
@@ -386,11 +402,6 @@ class AccountInvoice(models.Model):
     def _get_sii_tax_dict(self, tax_line, sign):
         """Get the SII tax dictionary for the passed tax line.
 
-        This uses ``round`` method directly as if has been tested that Odoo's
-        ``float_round`` still returns incorrect amounts for certain values. Try
-        3 units x 3,77 €/unit with 10% tax and you will be hit by the error
-        (on regular x86 architectures).
-
         :param self: Single invoice record.
         :param tax_line: Tax line that is being analyzed.
         :param sign: Sign of the operation (only refund by differences is
@@ -404,13 +415,13 @@ class AccountInvoice(models.Model):
             tax_type = abs(tax.amount)
         tax_dict = {
             'TipoImpositivo': str(tax_type),
-            'BaseImponible': sign * abs(round(tax_line.base_company, 2)),
+            'BaseImponible': sign * abs(tax_line.base_company),
         }
         if self.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
-        tax_dict[key] = sign * abs(round(tax_line.amount_company, 2))
+        tax_dict[key] = sign * abs(tax_line.amount_company)
         # Recargo de equivalencia
         re_tax_line = self._get_sii_tax_line_req(tax)
         if re_tax_line:
@@ -418,7 +429,7 @@ class AccountInvoice(models.Model):
                 abs(re_tax_line.tax_id.amount)
             )
             tax_dict['CuotaRecargoEquivalencia'] = (
-                sign * abs(round(re_tax_line.amount_company, 2))
+                sign * abs(re_tax_line.amount_company)
             )
         return tax_dict
 
@@ -489,7 +500,7 @@ class AccountInvoice(models.Model):
                     if exempt_cause:
                         det_dict['CausaExencion'] = exempt_cause
                     det_dict['BaseImponible'] += (
-                        round(tax_line.base_company, 2) * sign)
+                        tax_line.base_company * sign)
                 else:
                     sub_dict.setdefault('NoExenta', {
                         'TipoNoExenta': (
@@ -515,7 +526,7 @@ class AccountInvoice(models.Model):
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
                 nsub_dict[default_no_taxable_cause] += (
-                    round(tax_line.base_company, 2) * sign)
+                    tax_line.base_company * sign)
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
                     'DesgloseTipoOperacion', {
@@ -535,7 +546,7 @@ class AccountInvoice(models.Model):
                     if exempt_cause:
                         det_dict['CausaExencion'] = exempt_cause
                     det_dict['BaseImponible'] += (
-                        round(tax_line.base_company, 2) * sign)
+                        tax_line.base_company * sign)
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
@@ -567,6 +578,13 @@ class AccountInvoice(models.Model):
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
             del taxes_dict['DesgloseFactura']
+        round_by_keys(taxes_dict, [
+            'BaseImponible', 'CuotaRepercutida', 'CuotaSoportada',
+            'TipoRecargoEquivalencia', 'CuotaRecargoEquivalencia',
+            'ImportePorArticulos7_14_Otros', 'ImporteTAIReglasLocalizacion',
+            'ImporteTotal', 'BaseRectificada', 'CuotaRectificada',
+            'CuotaDeducible'
+        ])
         return taxes_dict
 
     @api.multi
@@ -608,7 +626,7 @@ class AccountInvoice(models.Model):
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
                 sfrns_dict['DetalleIVA'].append({
-                    'BaseImponible': sign * round(tax_line.base_company, 2),
+                    'BaseImponible': sign * tax_line.base_company,
                 })
             elif tax in taxes_sfrsa:
                 sfrsa_dict = taxes_dict.setdefault(
@@ -727,7 +745,7 @@ class AccountInvoice(models.Model):
                 "DescripcionOperacion": self.sii_description,
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": abs(
-                    round(self.amount_total_company_signed, 2)
+                    self.amount_total_company_signed
                 ) * sign,
             }
             if self.sii_macrodata:
@@ -761,14 +779,12 @@ class AccountInvoice(models.Model):
                 if self.sii_refund_type == 'S':
                     origin = self.refund_invoice_id
                     exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': round(
-                            abs(origin.amount_untaxed_signed), 2,
+                        'BaseRectificada': abs(
+                            origin.amount_untaxed_signed
                         ),
-                        'CuotaRectificada': round(
-                            abs(
-                                origin.amount_total_company_signed -
-                                origin.amount_untaxed_signed
-                            ), 2,
+                        'CuotaRectificada': abs(
+                            origin.amount_total_company_signed -
+                            origin.amount_untaxed_signed
                         ),
                     }
         return inv_dict
@@ -830,7 +846,7 @@ class AccountInvoice(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": round(tax_amount * sign, 2),
+                "CuotaDeducible": tax_amount * sign,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
