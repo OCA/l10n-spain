@@ -118,7 +118,6 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
-    @api.model
     def _get_tax_lines(self, codes, date_start, date_end, map_line):
         """Get the move lines for the codes and periods associated
 
