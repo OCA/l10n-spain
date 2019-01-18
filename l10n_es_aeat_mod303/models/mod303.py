@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-# © 2013 - Guadaltech - Alberto Martín Cortada
-# © 2015 - AvanzOSC - Ainara Galdona
-# © 2014-2016 - Serv. Tecnol. Avanzados - Pedro M. Baeza
+# Copyright 2013 - Guadaltech - Alberto Martín Cortada
+# Copyright 2015 - AvanzOSC - Ainara Galdona
+# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import models, fields, api, _
+
+NON_EDITABLE_ON_DONE = {'done': [('readonly', True)]}
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -164,10 +166,129 @@ class L10nEsAeatMod303Report(models.Model):
     counterpart_account = fields.Many2one(
         default=_default_counterpart_303)
     allow_posting = fields.Boolean(default=True)
+    exonerated_390 = fields.Selection(
+        selection=[
+            ('1', u'Exonerado'),
+            ('2', u'No exonerado'),
+        ],
+        default='2',
+        required=True,
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Exonerado mod. 390",
+        help=u"Exonerado de la Declaración-resumen anual del IVA, modelo 390: "
+             u"Volumen de operaciones (art. 121 LIVA)",
+    )
+    has_operation_volume = fields.Boolean(
+        string=u"¿Volumen de operaciones?",
+        default=True,
+        states=NON_EDITABLE_ON_DONE,
+        help=u"¿Existe volumen de operaciones (art. 121 LIVA)?",
+    )
+    has_347 = fields.Boolean(
+        string=u"¿Obligación del 347?",
+        default=True,
+        states=NON_EDITABLE_ON_DONE,
+        help=u"Marque la casilla si el sujeto pasivo ha efectuado con alguna "
+             u"persona o entidad operaciones por las que tenga obligación de "
+             u"presentar la declaración anual de operaciones con terceras "
+             u"personas (modelo 347).",
+    )
+    is_voluntary_sii = fields.Boolean(
+        string=u"¿SII voluntario?",
+        states=NON_EDITABLE_ON_DONE,
+        help=u"¿Ha llevado voluntariamente los Libros registro del IVA a "
+             u"través de la Sede electrónica de la AEAT durante el ejercicio?",
+    )
+    main_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código actividad principal",
+    )
+    main_activity_iae = fields.Char(
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Epígrafe I.A.E. actividad principal",
+        size=4,
+    )
+    other_first_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 1ª actividad",
+    )
+    other_first_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 1ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_second_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 2ª actividad",
+    )
+    other_second_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 2ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_third_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 3ª actividad",
+    )
+    other_third_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 3ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_fourth_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 4ª actividad",
+    )
+    other_fourth_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 4ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_fifth_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 5ª actividad",
+    )
+    other_fifth_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 5ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    casilla_88 = fields.Float(
+        string=u"[88] Total volumen operaciones",
+        compute='_compute_casilla_88',
+        help=u"Información adicional - Operaciones realizadas en el ejercicio"
+             u" - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]+"
+             u"[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
+        store=True)
 
     def __init__(self, pool, cr):
         self._aeat_number = '303'
         super(L10nEsAeatMod303Report, self).__init__(pool, cr)
+
+    @api.depends('tax_lines', 'tax_lines.amount')
+    def _compute_casilla_88(self):
+        for report in self:
+            report.casilla_88 = sum(
+                report.tax_lines.filtered(lambda x: x.field_number in (
+                    80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98,
+                )).mapped('amount')
+            ) - sum(
+                report.tax_lines.filtered(lambda x: x.field_number in (
+                    79, 99,
+                )).mapped('amount')
+            )
 
     @api.multi
     def _compute_allow_posting(self):
@@ -193,6 +314,7 @@ class L10nEsAeatMod303Report(models.Model):
         super(L10nEsAeatMod303Report, self).onchange_period_type()
         if self.period_type not in ('4T', '12'):
             self.regularizacion_anual = 0
+            self.exonerated_390 = '2'
         if (not self.fiscalyear_id or
                 self.fiscalyear_id.date_start < '2018-01-01'):
             self.export_config = self.env.ref(
@@ -227,3 +349,55 @@ class L10nEsAeatMod303Report(models.Model):
             # raise exceptions.Warning(msg)
             pass
         return super(L10nEsAeatMod303Report, self).button_confirm()
+
+    @api.multi
+    def _get_tax_code_lines(self, codes, periods=None, include_children=True):
+        """Don't populate results for fields 79-99 for reports different from
+        last of the year one or when not exonerated of presenting model 390.
+        """
+        if 79 <= self.env.context.get('field_number', 0) <= 99:
+            if (self.exonerated_390 == '2' or not self.has_operation_volume
+                    or self.period_type not in ('4T', '12')):
+                return self.env['account.move.line']
+        return super(L10nEsAeatMod303Report, self)._get_tax_code_lines(
+            codes, periods=periods, include_children=include_children,
+        )
+
+    @api.multi
+    def _get_move_line_domain(self, codes, periods=None,
+                              include_children=True):
+        """Changes periods to full year when the summary on last report of the
+        year for the corresponding fields. Only field number is checked as
+        the complete check for not bringing results is done on
+        `_get_tax_code_lines`.
+        """
+        if 79 <= self.env.context.get('field_number', 0) <= 99:
+            # TODO: Get proper periods when fiscal year is not the natural one
+            periods = periods[:1].fiscalyear_id.period_ids.filtered(
+                lambda x: not x.special
+            )
+        return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
+            codes, periods=periods, include_children=include_children,
+        )
+
+
+class L10nEsAeatMod303ReportActivityCode(models.Model):
+    _name = "l10n.es.aeat.mod303.report.activity.code"
+    _order = "period_type,code,id"
+
+    period_type = fields.Selection(
+        selection=[
+            ('4T', '4T'),
+            ('12', 'December'),
+        ],
+        required=True,
+    )
+    code = fields.Integer(
+        string="Activity code",
+        required=True,
+    )
+    name = fields.Char(
+        string="Activity name",
+        translate=True,
+        required=True,
+    )

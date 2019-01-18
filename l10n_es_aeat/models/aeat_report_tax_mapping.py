@@ -62,7 +62,9 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     @api.multi
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
-        move_lines = self._get_tax_code_lines(
+        move_lines = self.with_context(
+            field_number=map_line.field_number,
+        )._get_tax_code_lines(
             map_line.mapped('tax_codes.code'), periods=self.periods)
         return {
             'model': self._name,
@@ -97,7 +99,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
-    @api.model
+    @api.multi
     def _get_tax_code_lines(self, codes, periods=None, include_children=True):
         """
         Get the move lines for the codes and periods associated
