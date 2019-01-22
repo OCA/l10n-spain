@@ -31,6 +31,7 @@
         'security/ir.model.access.csv',
         'data/aeat_partner.xml',
         'wizard/export_to_boe_wizard.xml',
+        'wizard/compare_boe_file_views.xml',
         'views/aeat_menuitem.xml',
         'views/aeat_report_view.xml',
         'views/aeat_tax_line_view.xml',
