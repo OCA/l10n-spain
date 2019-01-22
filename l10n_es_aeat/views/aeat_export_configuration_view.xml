@@ -22,20 +22,31 @@
     <field name="model">aeat.model.export.config</field>
     <field name="arch" type="xml">
         <form string="BOE export configuration">
-            <group>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button
+                        class="oe_stat_button"
+                        name="%(action_wizard_compare_boe_file)d"
+                        type="action"
+                        string="Compare file"
+                        icon="fa-magic"
+                        />
+                </div>
                 <group>
-                    <field name="name"/>
-                    <field name="model_number"/>
-                    <field name="model_id"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_number"/>
+                        <field name="model_id"/>
+                    </group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
                 </group>
-                <group>
-                    <field name="date_start"/>
-                    <field name="date_end"/>
+                <group string="Configuration lines">
+                    <field name="config_line_ids" nolabel="1"/>
                 </group>
-            </group>
-            <group string="Configuration lines">
-                <field name="config_line_ids" nolabel="1"/>
-            </group>
+            </sheet>
         </form>
     </field>
 </record>
@@ -93,10 +104,12 @@
                        attrs="{'invisible': [('export_type', '=', 'subconfig')]}"
                         >
                     <field name="fixed_value"
-                           attrs="{'readonly': [('expression', '!=', False)]}"
+                           attrs="{'readonly': [('expression', '!=', False), ('fixed_value', '=', False)]}"
+                           force_save="1"
                             />
                     <field name="expression"
-                           attrs="{'readonly': [('fixed_value', '!=', False)]}"
+                           attrs="{'readonly': [('fixed_value', '!=', False), ('expression', '=', False)]}"
+                           force_save="1"
                             />
                 </group>
                 <group name="group_advanced_configuration"
