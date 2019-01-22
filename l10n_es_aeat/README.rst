@@ -36,6 +36,7 @@ Módulo base para declaraciones de la AEAT, que incluye:
   modelos.
 * Motor de exportación paramétrica basado en una configuración que puede ser
   introducida por datos XML o por interfaz.
+* Visor de archivos BOE asociados a la configuración de exportación.
 * Motor de cálculo de importes por impuestos.
 * Generador del asiento de regularización con cargo a un proveedor "Agencia
   Estatal de Administración Tributaria" creado al efecto.
@@ -78,6 +79,20 @@ dependencia en la definición del cálculo de un campo (entrada con
 mismo ID que el del registro en curso, lo que puede ser un problema en entornos
 multi-compañía. Una solución a ello (aunque no evita el recálculo), es poner en
 esos campos calculados `compute_sudo=True`.
+
+Usage
+=====
+
+Para poder visualizar un archivo BOE, hay que:
+
+#. Entrar en *Facturación > Configuración > AEAT > Configuración de exportación a BOE*.
+#. Entrar en el detalle de la configuración de exportación principal para
+   el modelo.
+#. Pulsar en el smart-button "Comparar archivo".
+#. Seleccionar el archivo correspondiente y pulsar en "Comparar".
+#. Aparecerá una ventana con cada una de las líneas de exportación, la cadena
+   correspondiente a dicha línea, y si es un importe numérico, su cifra
+   asociada.
 
 Known issues / Roadmap
 ======================
