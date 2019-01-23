@@ -2371,7 +2371,7 @@
         <field name="sequence">40</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config"/>
         <field name="name">Información adicional - D- Marque si ha efectuado operaciones por las que tenga obligación de presentar la declaración anual de operaciones con terceras personas</field>
-        <field name="expression">${object.has_347}</field>
+        <field name="expression">${object.period_type in ('4T', '12') and object.exonerated_390 == '1' and object.has_347}</field>
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
