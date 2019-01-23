@@ -20,6 +20,7 @@ msgstr ""
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_libro
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_libro
 msgid "Book"
 msgstr "Llibre"
 
@@ -30,6 +31,7 @@ msgstr "Informació Mercantil"
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_registro_mercantil
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_registro_mercantil
 msgid "Commercial Registry"
 msgstr "Registre Mercantil"
 
@@ -40,20 +42,24 @@ msgstr ""
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_folio
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_folio
 msgid "Page"
 msgstr "Foli"
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_seccion
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_seccion
 msgid "Section"
 msgstr "Secció"
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_hoja
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_hoja
 msgid "Sheet"
 msgstr "Full"
 
 #. module: l10n_es_partner_mercantil
 #: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_partner__es_tomo
+#: model:ir.model.fields,field_description:l10n_es_partner_mercantil.field_res_users__es_tomo
 msgid "Volume"
 msgstr "Volum"
