@@ -1,7 +1,7 @@
 # Copyright 2013 - Guadaltech - Alberto Martín Cortada
 # Copyright 2015 - AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
-# Copyright 2014-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, exceptions, fields, models, _
@@ -12,6 +12,8 @@ _ACCOUNT_PATTERN_MAP = {
     'N': '4700',
     'I': '4750',
 }
+
+NON_EDITABLE_ON_DONE = {'done': [('readonly', True)]}
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -27,7 +29,8 @@ class L10nEsAeatMod303Report(models.Model):
         ])[:1]
 
     devolucion_mensual = fields.Boolean(
-        string="Montly Return", states={'done': [('readonly', True)]},
+        string="Montly Return",
+        states=NON_EDITABLE_ON_DONE,
         help="Registered in the Register of Monthly Return")
     total_devengado = fields.Float(
         string="[27] VAT payable", readonly=True, compute_sudo=True,
@@ -40,7 +43,7 @@ class L10nEsAeatMod303Report(models.Model):
         help="(VAT payable - VAT receivable)", compute='_compute_casilla_46')
     porcentaje_atribuible_estado = fields.Float(
         string="[65] % attributable to State", default=100,
-        states={'done': [('readonly', True)]},
+        states=NON_EDITABLE_ON_DONE,
         help="Taxpayers who pay jointly to the Central Government and "
              "the Provincial Councils of the Basque Country or the "
              "Autonomous Community of Navarra, will enter in this box the "
@@ -51,12 +54,12 @@ class L10nEsAeatMod303Report(models.Model):
         compute='_compute_atribuible_estado', store=True)
     cuota_compensar = fields.Float(
         string="[67] Fees to compensate", default=0,
-        states={'done': [('readonly', True)]},
+        states=NON_EDITABLE_ON_DONE,
         help="Fee to compensate for prior periods, in which his statement "
              "was to return and compensation back option was chosen")
     regularizacion_anual = fields.Float(
         string="[68] Annual regularization",
-        states={'done': [('readonly', True)]},
+        states=NON_EDITABLE_ON_DONE,
         help="In the last auto settlement of the year, shall be recorded "
              "(the fourth period or 12th month), with the appropriate sign, "
              "the result of the annual adjustment as have the laws by the "
@@ -79,7 +82,7 @@ class L10nEsAeatMod303Report(models.Model):
         string="[70] To be deducted",
         help="Result of the previous or prior statements of the same concept, "
              "exercise and period",
-        states={'done': [('readonly', True)]})
+        states=NON_EDITABLE_ON_DONE)
     resultado_liquidacion = fields.Float(
         string="[71] Settlement result", readonly=True,
         compute='_compute_resultado_liquidacion', store=True)
@@ -96,6 +99,112 @@ class L10nEsAeatMod303Report(models.Model):
         domain="[('company_id', '=', company_id)]",
         oldname='counterpart_account')
     allow_posting = fields.Boolean(string="Allow posting", default=True)
+    exonerated_390 = fields.Selection(
+        selection=[
+            ('1', u'Exonerado'),
+            ('2', u'No exonerado'),
+        ],
+        default='2',
+        required=True,
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Exonerado mod. 390",
+        help=u"Exonerado de la Declaración-resumen anual del IVA, modelo 390: "
+             u"Volumen de operaciones (art. 121 LIVA)",
+    )
+    has_operation_volume = fields.Boolean(
+        string=u"¿Volumen de operaciones?",
+        default=True,
+        states=NON_EDITABLE_ON_DONE,
+        help=u"¿Existe volumen de operaciones (art. 121 LIVA)?",
+    )
+    has_347 = fields.Boolean(
+        string=u"¿Obligación del 347?",
+        default=True,
+        states=NON_EDITABLE_ON_DONE,
+        help=u"Marque la casilla si el sujeto pasivo ha efectuado con alguna "
+             u"persona o entidad operaciones por las que tenga obligación de "
+             u"presentar la declaración anual de operaciones con terceras "
+             u"personas (modelo 347).",
+    )
+    is_voluntary_sii = fields.Boolean(
+        string=u"¿SII voluntario?",
+        states=NON_EDITABLE_ON_DONE,
+        help=u"¿Ha llevado voluntariamente los Libros registro del IVA a "
+             u"través de la Sede electrónica de la AEAT durante el ejercicio?",
+    )
+    main_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código actividad principal",
+    )
+    main_activity_iae = fields.Char(
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Epígrafe I.A.E. actividad principal",
+        size=4,
+    )
+    other_first_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 1ª actividad",
+    )
+    other_first_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 1ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_second_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 2ª actividad",
+    )
+    other_second_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 2ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_third_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 3ª actividad",
+    )
+    other_third_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 3ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_fourth_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 4ª actividad",
+    )
+    other_fourth_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 4ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    other_fifth_activity_code = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod303.report.activity.code",
+        domain="[('period_type', '=', period_type)]",
+        states=NON_EDITABLE_ON_DONE,
+        string=u"Código 5ª actividad",
+    )
+    other_fifth_activity_iae = fields.Char(
+        string=u"Epígrafe I.A.E. 5ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
+    )
+    casilla_88 = fields.Float(
+        string=u"[88] Total volumen operaciones",
+        compute='_compute_casilla_88',
+        help=u"Información adicional - Operaciones realizadas en el ejercicio"
+             u" - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]+"
+             u"[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
+        store=True)
 
     @api.multi
     @api.depends('date_start', 'cuota_compensar')
@@ -173,6 +282,19 @@ class L10nEsAeatMod303Report(models.Model):
             report.resultado_liquidacion = (
                 report.casilla_69 - report.previous_result)
 
+    @api.depends('tax_line_ids', 'tax_line_ids.amount')
+    def _compute_casilla_88(self):
+        for report in self:
+            report.casilla_88 = sum(
+                report.tax_line_ids.filtered(lambda x: x.field_number in (
+                    80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98,
+                )).mapped('amount')
+            ) - sum(
+                report.tax_line_ids.filtered(lambda x: x.field_number in (
+                    79, 99,
+                )).mapped('amount')
+            )
+
     @api.multi
     def _compute_allow_posting(self):
         for report in self:
@@ -202,6 +324,7 @@ class L10nEsAeatMod303Report(models.Model):
         super(L10nEsAeatMod303Report, self).onchange_period_type()
         if self.period_type not in ('4T', '12'):
             self.regularizacion_anual = 0
+            self.exonerated_390 = '2'
 
     @api.onchange('type')
     def onchange_type(self):
@@ -251,3 +374,50 @@ class L10nEsAeatMod303Report(models.Model):
             raise exceptions.ValidationError(_(
                 'The fee to compensate must be indicated as a positive number.'
             ))
+
+    def _get_tax_lines(self, codes, date_start, date_end, map_line):
+        """Don't populate results for fields 79-99 for reports different from
+        last of the year one or when not exonerated of presenting model 390.
+        """
+        if 79 <= map_line.field_number <= 99:
+            if (self.exonerated_390 == '2' or not self.has_operation_volume
+                    or self.period_type not in ('4T', '12')):
+                return self.env['account.move.line']
+        return super(L10nEsAeatMod303Report, self)._get_tax_lines(
+            codes, date_start, date_end, map_line,
+        )
+
+    def _get_move_line_domain(self, codes, date_start, date_end, map_line):
+        """Changes dates to full year when the summary on last report of the
+        year for the corresponding fields. Only field number is checked as
+        the complete check for not bringing results is done on
+        `_get_tax_lines`.
+        """
+        if 79 <= map_line.field_number <= 99:
+            date_start = date_start[:4] + '-01-01'
+            date_end = date_end[:4] + '-12-31'
+        return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
+            codes, date_start, date_end, map_line,
+        )
+
+
+class L10nEsAeatMod303ReportActivityCode(models.Model):
+    _name = "l10n.es.aeat.mod303.report.activity.code"
+    _order = "period_type,code,id"
+
+    period_type = fields.Selection(
+        selection=[
+            ('4T', '4T'),
+            ('12', 'December'),
+        ],
+        required=True,
+    )
+    code = fields.Integer(
+        string="Activity code",
+        required=True,
+    )
+    name = fields.Char(
+        string="Activity name",
+        translate=True,
+        required=True,
+    )
