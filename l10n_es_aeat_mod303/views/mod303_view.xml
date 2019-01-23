@@ -37,16 +37,16 @@
         <group name="group_declaration" position="after">
             <group string="Datos extra exonerados modelo 390"
                 name="group_exonerated_390"
-                attrs="{'invisible': [('exonerated_390', '=', '0')]}"
+                attrs="{'invisible': [('exonerated_390', '=', '2')]}"
             >
                 <group>
                     <group string="Actividad principal" name="group_main_activity">
                         <field name="main_activity_code"
                             widget="selection"
-                            attrs="{'required': [('exonerated_390', '!=', '0')]}"
+                            attrs="{'required': [('exonerated_390', '!=', '2')]}"
                         />
                         <field name="main_activity_iae"
-                            attrs="{'required': [('exonerated_390', '!=', '0')]}"
+                            attrs="{'required': [('exonerated_390', '!=', '2')]}"
                         />
                     </group>
                     <group name="group_others_390" string="Otros">
@@ -150,7 +150,7 @@
                 <field name="casilla_88"
                     class="oe_subtotal_footer_separator"
                     widget="monetary"
-                    attrs="{'invisible': [('exonerated_390', '=', '0')]}"
+                    attrs="{'invisible': [('exonerated_390', '=', '2')]}"
                     options="{'currency_field': 'currency_id'}"
                 />
                 <field name="result_type"/>
