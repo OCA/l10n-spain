@@ -4,11 +4,11 @@
     'name': 'Redsys Payment Acquirer',
     'category': 'Payment Acquirer',
     'summary': 'Payment Acquirer: Redsys Implementation',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'author': "Tecnativa,"
               "Odoo Community Association (OCA)",
     'depends': [
-        'website_payment',
+        'payment',
         'website_sale',
     ],
     "external_dependencies": {
