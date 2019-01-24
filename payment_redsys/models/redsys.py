@@ -11,6 +11,7 @@ import urllib
 from odoo import models, fields, api, _
 from odoo.addons.payment.models.payment_acquirer import ValidationError
 from odoo.addons import decimal_precision as dp
+from odoo.tools import config
 from odoo.tools.float_utils import float_compare
 from odoo import exceptions
 from odoo import http
@@ -108,15 +109,24 @@ class AcquirerRedsys(models.Model):
 
     @api.model
     def _get_website_url(self):
-        website_id = self.env.context.get('website_id', False)
-        if website_id:
+        """
+        For a single website setting the domain website name is not accesible
+        for the user, by default is localhost so the system get domain from
+        system parameters instead of domain of website record.
+        """
+        if config['test_enable']:
+            return self.env['ir.config_parameter'].sudo().get_param(
+                'web.base.url')
+
+        domain = http.request.website.domain
+        if domain and domain != 'localhost':
             base_url = '%s://%s' % (
                 http.request.httprequest.environ['wsgi.url_scheme'],
-                self.env['website'].browse(website_id).domain
+                http.request.website.domain
             )
         else:
-            get_param = self.env['ir.config_parameter'].sudo().get_param
-            base_url = get_param('web.base.url')
+            base_url = self.env['ir.config_parameter'].sudo().get_param(
+                'web.base.url')
         return base_url or ''
 
     def _prepare_merchant_parameters(self, tx_values):
@@ -184,10 +194,8 @@ class AcquirerRedsys(models.Model):
             mode=DES3.MODE_CBC,
             IV=b'\0\0\0\0\0\0\0\0')
         diff_block = len(order) % 8
-        zeros = diff_block and (b'\0' * (8 - diff_block)) or ''
-        key = cipher.encrypt(
-            str.encode(order + zeros.decode())
-        )
+        zeros = diff_block and (b'\0' * (8 - diff_block)) or b''
+        key = cipher.encrypt(str.encode(order + zeros.decode()))
         if isinstance(params64, str):
             params64 = params64.encode()
         dig = hmac.new(
@@ -327,7 +335,7 @@ class TxRedsys(models.Model):
                     'Ds_Response'),
             })
             if self.acquirer_id.send_quotation:
-                self.sale_order_id.force_quotation_send()
+                self.sale_order_ids.force_quotation_send()
             return True
         if status_code in self._redsys_pending_tx_status:
             # 'Payment error: code: %s.'
@@ -376,37 +384,37 @@ class TxRedsys(models.Model):
                 acquirer_name, tx.reference if tx else 'n/a',
                 tx.amount if tx else 'n/a')
             if tx.acquirer_id.redsys_percent_partial > 0:
-                if tx and tx.sale_order_id:
+                if tx and tx.sale_order_ids and tx.sale_order_ids.ensure_one():
                     percent_reduction = tx.acquirer_id.redsys_percent_partial
                     new_so_amount = (
-                        tx.sale_order_id.amount_total - (
-                            tx.sale_order_id.amount_total *
+                        tx.sale_order_ids.amount_total - (
+                            tx.sale_order_ids.amount_total *
                             percent_reduction / 100))
                     amount_matches = (
-                        tx.sale_order_id.state in ['draft', 'sent'] and
+                        tx.sale_order_ids.state in ['draft', 'sent'] and
                         float_compare(tx.amount, new_so_amount, 2) == 0)
                     if amount_matches:
                         if tx.state == 'done':
                             _logger.info(
                                 '<%s> transaction completed, confirming order '
                                 '%s (ID %s)', acquirer_name,
-                                tx.sale_order_id.name, tx.sale_order_id.id)
+                                tx.sale_order_ids.name, tx.sale_order_ids.id)
                             if not self.env.context.get('bypass_test', False):
-                                tx.sale_order_id.with_context(
+                                tx.sale_order_ids.with_context(
                                     send_email=True).action_confirm()
                         elif (tx.state != 'cancel' and
-                                tx.sale_order_id.state == 'draft'):
+                                tx.sale_order_ids.state == 'draft'):
                             _logger.info('<%s> transaction pending, sending '
                                          'quote email for order %s (ID %s)',
-                                         acquirer_name, tx.sale_order_id.name,
-                                         tx.sale_order_id.id)
+                                         acquirer_name, tx.sale_order_ids.name,
+                                         tx.sale_order_ids.id)
                             if not self.env.context.get('bypass_test', False):
-                                tx.sale_order_id.force_quotation_send()
+                                tx.sale_order_ids.force_quotation_send()
                     else:
                         _logger.warning('<%s> transaction MISMATCH for order '
                                         '%s (ID %s)', acquirer_name,
-                                        tx.sale_order_id.name,
-                                        tx.sale_order_id.id)
+                                        tx.sale_order_ids.name,
+                                        tx.sale_order_ids.id)
         except Exception:
             _logger.exception(
                 'Fail to confirm the order or send the confirmation email%s',

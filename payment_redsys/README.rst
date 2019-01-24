@@ -72,6 +72,7 @@ Contribuidores
 
 * Sergio Teruel <sergio.teruel@tecnativa.com>
 * Carlos Dauden <carlos.dauden@tecnativa.com>
+* Isaac Gallart <igallart@puntsistemes.es>
 
 Financiadores
 -------------
