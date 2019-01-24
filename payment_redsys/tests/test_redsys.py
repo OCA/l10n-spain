@@ -17,105 +17,103 @@ _logger = logging.getLogger(__name__)
 class RedsysCase(HttpCase):
     def setUp(self):
         super(RedsysCase, self).setUp()
-        with self.cursor() as cr:
-            env = self.env(cr)
-            self.currency_euro = env['res.currency'].search([
-                ('name', '=', 'EUR')
-            ], limit=1)
-            self.country_spain = env['res.country'].search([
-                ('code', '=', 'ES')
-            ], limit=1)
-            self.buyer_values = {
-                'partner_name': 'Norbert Buyer',
-                'partner_lang': 'en_US',
-                'partner_email': 'norbert.buyer@example.com',
-                'partner_address': 'Huge Street 2/543',
-                'partner_phone': '0032 12 34 56 78',
-                'partner_city': 'Sin City',
-                'partner_zip': '1000',
-                'partner_country': self.country_spain.id,
-                'partner_country_id': self.country_spain.id,
-                'partner_country_name': 'Belgium',
-                'billing_partner_name': 'Norbert Buyer',
-                'billing_partner_lang': 'en_US',
-                'billing_partner_email': 'norbert.buyer@example.com',
-                'billing_partner_address': 'Huge Street 2/543',
-                'billing_partner_phone': '0032 12 34 56 78',
-                'billing_partner_city': 'Sin City',
-                'billing_partner_zip': '1000',
-                'billing_partner_country': self.country_spain.id,
-                'billing_partner_country_id': self.country_spain.id,
-                'billing_partner_country_name': 'Belgium',
-            }
+        self.currency_euro = self.env['res.currency'].search([
+            ('name', '=', 'EUR')
+        ], limit=1)
+        self.country_spain = self.env['res.country'].search([
+            ('code', '=', 'ES')
+        ], limit=1)
+        self.buyer_values = {
+            'partner_name': 'Norbert Buyer',
+            'partner_lang': 'en_US',
+            'partner_email': 'norbert.buyer@example.com',
+            'partner_address': 'Huge Street 2/543',
+            'partner_phone': '0032 12 34 56 78',
+            'partner_city': 'Sin City',
+            'partner_zip': '1000',
+            'partner_country': self.country_spain.id,
+            'partner_country_id': self.country_spain.id,
+            'partner_country_name': 'Belgium',
+            'billing_partner_name': 'Norbert Buyer',
+            'billing_partner_lang': 'en_US',
+            'billing_partner_email': 'norbert.buyer@example.com',
+            'billing_partner_address': 'Huge Street 2/543',
+            'billing_partner_phone': '0032 12 34 56 78',
+            'billing_partner_city': 'Sin City',
+            'billing_partner_zip': '1000',
+            'billing_partner_country': self.country_spain.id,
+            'billing_partner_country_id': self.country_spain.id,
+            'billing_partner_country_name': 'Belgium',
+        }
 
-            # test partner
-            self.buyer = env['res.partner'].create({
-                'name': 'Norbert Buyer',
-                'lang': 'en_US',
-                'email': 'norbert.buyer@example.com',
-                'street': 'Huge Street',
-                'street2': '2/543',
-                'phone': '0032 12 34 56 78',
-                'city': 'Sin City',
-                'zip': '1000',
-                'country_id': self.country_spain.id
-            })
-            self.buyer_id = self.buyer.id
-            self.redsys = env.ref('payment_redsys.payment_acquirer_redsys')
-            self.redsys.redsys_merchant_code = '069611024'
-            self.redsys.redsys_secret_key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ8'
-            self.redsys.send_quotation = False
-            self.redsys_ds_parameters = {
-                'Ds_AuthorisationCode': '999999',
-                'Ds_Date': '14%2F05%2F2017',
-                'Ds_Card_Brand': '1',
-                'Ds_SecurePayment': '1',
-                'Ds_MerchantData': 'xxx',
-                'Ds_Card_Country': '724',
-                'Ds_Terminal': '001',
-                'Ds_MerchantCode': '069611024',
-                'Ds_ConsumerLanguage': '1',
-                'Ds_Response': '0000',
-                'Ds_Order': 'TST0001',
-                'Ds_Currency': '978',
-                'Ds_Amount': '10050',
-                'Ds_TransactionType': '0',
-                'Ds_Hour': '08%3A29',
-            }
-            self.vals_tx = {
-                'amount': 100.50,
-                'acquirer_id': self.redsys.id,
-                'currency_id': self.currency_euro.id,
-                'reference': 'TST0001',
-                'partner_id': self.buyer_id,
-            }
-            self.tx = env['payment.transaction'].create(self.vals_tx)
-            self.partner = env['res.partner'].create({
-                'name': 'Partner Test',
-            })
-            self.product = env['product.product'].create({
-                'name': 'Test Product',
-                'list_price': 100.50,
-            })
-            self.so = env['sale.order'].create({
-                'partner_id': self.partner.id,
-                'partner_invoice_id': self.partner.id,
-                'partner_shipping_id': self.partner.id,
-                'order_line': [
-                    (0, 0, {
-                        'name': 'Test',
-                        'product_id': self.product.id,
-                        'product_uom_qty': 1,
-                        'product_uom': self.product.uom_id.id,
-                        'price_unit': self.product.list_price,
-                        'tax_id': [(6, 0, [])],
-                    })],
-                'pricelist_id': env.ref('product.list0').id,
-            })
-            merchant_parameters = self.redsys._prepare_merchant_parameters(
-                self.vals_tx)
-            self.ds_signature = self.redsys.sign_parameters(
-                self.redsys.redsys_secret_key, merchant_parameters)
+        # test partner
+        self.buyer = self.env['res.partner'].create({
+            'name': 'Norbert Buyer',
+            'lang': 'en_US',
+            'email': 'norbert.buyer@example.com',
+            'street': 'Huge Street',
+            'street2': '2/543',
+            'phone': '0032 12 34 56 78',
+            'city': 'Sin City',
+            'zip': '1000',
+            'country_id': self.country_spain.id
+        })
+        self.buyer_id = self.buyer.id
+        self.redsys = self.env.ref('payment_redsys.payment_acquirer_redsys')
+        self.redsys.redsys_merchant_code = '069611024'
+        self.redsys.redsys_secret_key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ8'
+        self.redsys.send_quotation = False
+        self.redsys_ds_parameters = {
+            'Ds_AuthorisationCode': '999999',
+            'Ds_Date': '14%2F05%2F2017',
+            'Ds_Card_Brand': '1',
+            'Ds_SecurePayment': '1',
+            'Ds_MerchantData': 'xxx',
+            'Ds_Card_Country': '724',
+            'Ds_Terminal': '001',
+            'Ds_MerchantCode': '069611024',
+            'Ds_ConsumerLanguage': '1',
+            'Ds_Response': '0000',
+            'Ds_Order': 'TST0001',
+            'Ds_Currency': '978',
+            'Ds_Amount': '10050',
+            'Ds_TransactionType': '0',
+            'Ds_Hour': '08%3A29',
+        }
+        self.vals_tx = {
+            'amount': 100.50,
+            'acquirer_id': self.redsys.id,
+            'currency_id': self.currency_euro.id,
+            'reference': 'TST0001',
+            'partner_id': self.buyer_id,
+        }
+        self.tx = self.env['payment.transaction'].create(self.vals_tx)
+        self.partner = self.env['res.partner'].create({
+            'name': 'Partner Test',
+        })
+        self.product = self.env['product.product'].create({
+            'name': 'Test Product',
+            'list_price': 100.50,
+        })
+        self.so = self.env['sale.order'].create({
+            'partner_id': self.partner.id,
+            'partner_invoice_id': self.partner.id,
+            'partner_shipping_id': self.partner.id,
+            'order_line': [
+                (0, 0, {
+                    'name': 'Test',
+                    'product_id': self.product.id,
+                    'product_uom_qty': 1,
+                    'product_uom': self.product.uom_id.id,
+                    'price_unit': self.product.list_price,
+                    'tax_id': [(6, 0, [])],
+                })],
+            'pricelist_id': self.env.ref('product.list0').id,
+        })
+        merchant_parameters = self.redsys._prepare_merchant_parameters(
+            self.vals_tx)
+        self.ds_signature = self.redsys.sign_parameters(
+            self.redsys.redsys_secret_key, merchant_parameters)
 
     def data_post_redsys(self, url=None, data=None, timeout=10):
         doc = self.url_open(url, data=data, timeout=timeout)
@@ -164,7 +162,7 @@ class RedsysCase(HttpCase):
     def test_error(self):
         self.data_post_redsys(url='/payment/redsys/return')
 
-    def _test_20_redsys_form_management(self):
+    def test_20_redsys_form_management(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -198,7 +196,7 @@ class RedsysCase(HttpCase):
                 self.redsys_ds_parameters.get('Ds_AuthorisationCode'),
                 'Redsys: validation did not update tx payid')
 
-    def _test_30_redsys_form_management(self):
+    def test_30_redsys_form_management(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -224,7 +222,7 @@ class RedsysCase(HttpCase):
             'test with unknow transacction'
         )
 
-    def _test_40_redsys_form_error(self):
+    def test_40_redsys_form_error(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -252,7 +250,7 @@ class RedsysCase(HttpCase):
                 tx.state, 'done',
                 'Redsys: validation did not put tx into done state')
 
-    def _test_50_redsys_form_pending(self):
+    def test_50_redsys_form_pending(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -280,7 +278,7 @@ class RedsysCase(HttpCase):
                 tx.state, 'pending',
                 'Redsys: validation did not put tx into done state')
 
-    def _test_60_redsys_form_cancel(self):
+    def test_60_redsys_form_cancel(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -365,7 +363,7 @@ class RedsysCase(HttpCase):
                 self.redsys_ds_parameters.get('Ds_AuthorisationCode'),
                 'Redsys: validation did not update tx payid')
 
-    def _test_91_redsys_return_post(self):
+    def test_91_redsys_return_post(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -376,7 +374,7 @@ class RedsysCase(HttpCase):
         self.assertGreater(res.url.find('/shop'), 0,
                            'Redsys: Redirection to /shop')
 
-    def _test_91_redsys_result_page(self):
+    def test_91_redsys_result_page(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
