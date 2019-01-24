@@ -184,10 +184,8 @@ class AcquirerRedsys(models.Model):
             mode=DES3.MODE_CBC,
             IV=b'\0\0\0\0\0\0\0\0')
         diff_block = len(order) % 8
-        zeros = diff_block and (b'\0' * (8 - diff_block)) or ''
-        key = cipher.encrypt(
-            str.encode(order + zeros.decode())
-        )
+        zeros = diff_block and (b'\0' * (8 - diff_block)) or b''
+        key = cipher.encrypt(str.encode(order + zeros.decode()))
         if isinstance(params64, str):
             params64 = params64.encode()
         dig = hmac.new(
