@@ -439,9 +439,8 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,id:0 field:aeat.mod.map.tax.code.line,id:0
-#: field:aeat.model.export.config,id:0
-#: field:aeat.model.export.config.line,id:0 field:l10n.es.aeat.report,id:0
-#: field:l10n.es.aeat.report.export_to_boe,id:0
+#: field:aeat.model.export.config,id:0 field:aeat.model.export.config.line,id:0
+#: field:l10n.es.aeat.report,id:0 field:l10n.es.aeat.report.export_to_boe,id:0
 #: field:l10n.es.aeat.report.tax.mapping,id:0 field:l10n.es.aeat.tax.line,id:0
 msgid "ID"
 msgstr "ID"
@@ -717,7 +716,7 @@ msgid "Recalculate"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:143
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:145
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -933,7 +932,7 @@ msgid "Wrong aling option. It should be < or >"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:176
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:178
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""
