@@ -414,7 +414,9 @@ class L10nEsVatBook(models.Model):
         action = self.env.ref(
             'l10n_es_vat_book.action_report_vat_book_invoices_issued')
         vals = action.read()[0]
-        vals['context'] = self.env.context
+        ctx = self.env.context.copy()
+        ctx['context'] = {'lang': self.env.user.lang}
+        vals['context'] = ctx
         return vals
 
     @api.multi
@@ -423,7 +425,9 @@ class L10nEsVatBook(models.Model):
         action = self.env.ref(
             'l10n_es_vat_book.action_report_vat_book_invoices_received')
         vals = action.read()[0]
-        vals['context'] = self.env.context
+        ctx = self.env.context.copy()
+        ctx['context'] = {'lang': self.env.user.lang}
+        vals['context'] = ctx
         return vals
 
     def _format_date(self, date):
