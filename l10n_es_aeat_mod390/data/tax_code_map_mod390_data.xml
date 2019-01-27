@@ -671,7 +671,7 @@
         <field name="map_parent_id" ref="aeat_mod390_map"/>
         <field name="field_number">104</field>
         <field name="name">Exportaciones y otras operaciones exentas con derecho a deducción</field>
-        <field name="move_type">regular</field>
+        <field name="move_type">all</field>
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="False"/>
