@@ -4,8 +4,9 @@
 
     <!-- Tipo registro 2 – Registro de abono clientes: -->
     <record id="aeat_mod349_partner_refund_export_config" model="aeat.model.export.config">
-        <field name="name">Exportación modelo 349 - Registro de abono cliente</field>
+        <field name="name">Mod. 349 - Registro de abono cliente</field>
         <field name="model_number">349</field>
+        <field name="active" eval="False"/>
     </record>
 
     <!--            1           Numérico        Tipo de Registro       Constante = '2' -->
