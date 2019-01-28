@@ -3,8 +3,9 @@
 
         <!--  SUB-123-01  -->
         <record id="aeat_mod123_sub01_export_config" model="aeat.model.export.config">
-            <field name="name">Exportación modelo 123 2016</field>
+            <field name="name">Mod. 123 2016 - Página</field>
             <field name="model_number">123</field>
+            <field name="active" eval="False"/>
         </record>
 
         <record id="aeat_mod123_sub01_export_line_01" model="aeat.model.export.config.line">
@@ -276,7 +277,7 @@
 
         <!--  MAIN-123  -->
         <record id="aeat_mod123_main_export_config" model="aeat.model.export.config">
-            <field name="name">Exportación modelo 123 2016-actualidad</field>
+            <field name="name">Mod. 123 2016-actualidad</field>
             <field name="date_start">2016-01-01</field>
             <field name="model_number">123</field>
             <field name="model_id" ref="model_l10n_es_aeat_mod123_report"/>
@@ -401,7 +402,7 @@
             <field name="size">213</field>
             <field name="alignment">left</field>
         </record>
-        
+
         <record id="aeat_mod123_main_export_line_13" model="aeat.model.export.config.line">
             <field name="sequence">13</field>
             <field name="export_config_id" ref="aeat_mod123_main_export_config"/>
