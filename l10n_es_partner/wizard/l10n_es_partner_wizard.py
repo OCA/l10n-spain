@@ -6,6 +6,9 @@ from odoo import tools
 from ..gen_src.gen_data_banks import gen_bank_data_xml
 import tempfile
 import os
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class L10nEsPartnerImportWizard(models.TransientModel):
@@ -32,8 +35,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             response = requests.get(
                 'http://www.bde.es/f/webbde/IFI/servicio/regis/ficheros/es/'
                 'REGBANESP_CONESTAB_A.XLS')
-            if not response.ok:  # pragma: no cover
-                raise Exception()
+            response.raise_for_status()
             src_file.write(response.content)
             src_file.close()
             # Generate XML and reopen it
@@ -41,7 +43,8 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             tools.convert_xml_import(
                 self._cr, 'l10n_es_partner', dest_file.name, {}, 'init',
                 noupdate=True)
-        except Exception:  # pragma: no cover
+        except requests.exceptions.HTTPError:  # pragma: no cover
+            _logger.exception()
             self.import_fail = True
             return {
                 'name': _('Import spanish bank data'),
