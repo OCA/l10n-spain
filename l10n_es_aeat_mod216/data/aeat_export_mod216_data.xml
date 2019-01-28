@@ -7,6 +7,7 @@
     <record id="aeat_mod216_sub01_export_config" model="aeat.model.export.config">
         <field name="name">Mod.216 2016 - Página</field>
         <field name="model_number">216</field>
+        <field name="active" eval="False"/>
     </record>
 
     <record id="aeat_mod216_sub01_export_line_01" model="aeat.model.export.config.line">
