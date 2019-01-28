@@ -220,7 +220,7 @@ class Mod349(models.Model):
                 if self.period_type == '0A':
                     period_type = '0A'
                 elif self.period_type in ('1T', '2T', '3T', '4T'):
-                    period_type = '%sT' % int(month) % 4
+                    period_type = '%sT' % (int(month) % 4)
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)
