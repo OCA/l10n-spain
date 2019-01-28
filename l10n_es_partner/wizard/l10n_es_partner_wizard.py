@@ -10,6 +10,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+_logger = logging.getLogger(__name__)
+
 
 class L10nEsPartnerImportWizard(models.TransientModel):
     _name = 'l10n.es.partner.import.wizard'
