@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+<!-- Copyright 2017-2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
     <record id="aeat_mod390_sub05_export_config" model="aeat.model.export.config">
         <field name="name">Mod.390 2017 - Página 5</field>
         <field name="model_number">390</field>
+        <field name="active" eval="False"/>
     </record>
 
     <record id="aeat_mod390_sub05_export_line_01" model="aeat.model.export.config.line">
