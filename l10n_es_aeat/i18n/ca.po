@@ -123,6 +123,11 @@ msgid "Account entry"
 msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__active
+msgid "Active"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
 #, fuzzy
 msgid "Advanced configuration"
