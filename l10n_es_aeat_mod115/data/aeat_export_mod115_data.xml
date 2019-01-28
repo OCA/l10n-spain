@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     Copyright 2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -7,6 +8,7 @@
     <record id="aeat_mod115_sub01_export_config" model="aeat.model.export.config">
         <field name="name">Mod.115 2016 - Página</field>
         <field name="model_number">115</field>
+        <field name="active" eval="False"/>
     </record>
 
     <record id="aeat_mod115_sub01_export_line_01" model="aeat.model.export.config.line">
