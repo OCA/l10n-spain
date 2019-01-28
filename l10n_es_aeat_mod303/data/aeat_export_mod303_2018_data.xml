@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2018-2019 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
     <!--  SUB-303-01  -->
     <record id="aeat_mod303_2018_sub01_export_config" model="aeat.model.export.config">
         <field name="name">Exportación modelo 303 2017 - Régimen general/simplificado</field>
         <field name="model_number">303</field>
+        <field name="active" eval="False"/>
     </record>
 
     <record id="aeat_mod303_2018_sub01_export_line_01" model="aeat.model.export.config.line">
@@ -849,6 +852,7 @@
     <record id="aeat_mod303_2018_sub02_export_config" model="aeat.model.export.config">
         <field name="name">Exportación modelo 303 2017 - Régimen agrícola, ganadero y forestal (No implementado)</field>
         <field name="model_number">303</field>
+        <field name="active" eval="False"/>
     </record>
 
     <record id="aeat_mod303_2018_sub02_export_line_01" model="aeat.model.export.config.line">
@@ -1926,6 +1930,7 @@
     <record id="aeat_mod303_2018_sub03_export_config" model="aeat.model.export.config">
         <field name="name">Exportación modelo 303 2017 - Información adicional + Resultado</field>
         <field name="model_number">303</field>
+        <field name="active" eval="False"/>
     </record>
 
     <record id="aeat_mod303_2018_sub03_export_line_01" model="aeat.model.export.config.line">
