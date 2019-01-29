@@ -64,7 +64,10 @@ class TestL10nEsFacturaeFACe(common.TransactionCase):
         })
         main_company.vat = "ESA12345674"
         main_company.partner_id.country_id = self.ref('base.uk')
-        main_company.currency_id = self.ref('base.EUR')
+        self.env.cr.execute(
+            "UPDATE res_company SET currency_id = %s",
+            (self.ref('base.EUR'), ),
+        )
         bank_obj = self.env['res.partner.bank']
         self.bank = bank_obj.search([
             ('acc_number', '=', 'BE96 9988 7766 5544')], limit=1)
