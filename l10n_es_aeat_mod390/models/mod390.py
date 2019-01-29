@@ -198,7 +198,7 @@ class L10nEsAeatMod390Report(models.Model):
     )
     casilla_51 = fields.Float(
         compute="_compute_casilla_51", store=True,
-        string="[50] Total de cuotas deducibles en operaciones interiores de "
+        string="[51] Total de cuotas deducibles en operaciones interiores de "
                "bienes de inversión",
     )
     casilla_52 = fields.Float(
