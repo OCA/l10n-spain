@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2017-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from odoo import _, api, fields, exceptions, models
@@ -134,11 +133,10 @@ class L10nEsAeatMod390Report(models.Model):
     )
     first_representative_date = fields.Date(
         string="Fecha poder del primer representante", readonly=True,
-        states=REQUIRED_ON_CALCULATED,
     )
     first_representative_notary = fields.Char(
         string="Notaría del primer representante", readonly=True, size=12,
-        states=REQUIRED_ON_CALCULATED, help=NOTARY_CODE_HELP,
+        help=NOTARY_CODE_HELP,
     )
     second_representative_name = fields.Char(
         string="Nombre del segundo representante", readonly=True, size=80,
@@ -193,6 +191,16 @@ class L10nEsAeatMod390Report(models.Model):
         compute="_compute_casilla_49", store=True,
         string="[49] Total cuota deducible operaciones corrientes",
     )
+    casilla_50 = fields.Float(
+        compute="_compute_casilla_50", store=True,
+        string="[50] Total bases imponibles deducibles en operaciones "
+               "interiores de bienes de inversión",
+    )
+    casilla_51 = fields.Float(
+        compute="_compute_casilla_51", store=True,
+        string="[50] Total de cuotas deducibles en operaciones interiores de "
+               "bienes de inversión",
+    )
     casilla_52 = fields.Float(
         compute="_compute_casilla_52", store=True,
         string="[52] Total base deducible importaciones corrientes",
@@ -201,6 +209,14 @@ class L10nEsAeatMod390Report(models.Model):
         compute="_compute_casilla_53", store=True,
         string="[53] Total cuota deducible importaciones corrientes",
     )
+    casilla_54 = fields.Float(
+        compute="_compute_casilla_54", store=True,
+        string="[54] Total base deducible importaciones bienes de inversión",
+    )
+    casilla_55 = fields.Float(
+        compute="_compute_casilla_55", store=True,
+        string="[55] Total cuota deducible importaciones bienes de inversión",
+    )
     casilla_56 = fields.Float(
         compute="_compute_casilla_56", store=True,
         string="[56] Total base deducible adq. intracomunitarias bienes",
@@ -208,6 +224,16 @@ class L10nEsAeatMod390Report(models.Model):
     casilla_57 = fields.Float(
         compute="_compute_casilla_57", store=True,
         string="[57] Total cuota deducible adq. intracomunitarias bienes",
+    )
+    casilla_58 = fields.Float(
+        compute="_compute_casilla_58", store=True,
+        string="[58] Total base deducible adq. intracomunitarias bienes de "
+               "inversión",
+    )
+    casilla_59 = fields.Float(
+        compute="_compute_casilla_59", store=True,
+        string="[59] Total cuota deducible adq. intracomunitarias bienes de "
+               "inversión",
     )
     casilla_597 = fields.Float(
         compute="_compute_casilla_597", store=True,
@@ -363,6 +389,22 @@ class L10nEsAeatMod390Report(models.Model):
 
     @api.multi
     @api.depends('tax_line_ids')
+    def _compute_casilla_50(self):
+        for report in self:
+            report.casilla_50 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number in (196, 611, 613)
+            ).mapped('amount'))
+
+    @api.multi
+    @api.depends('tax_line_ids')
+    def _compute_casilla_51(self):
+        for report in self:
+            report.casilla_51 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number in (197, 612, 614)
+            ).mapped('amount'))
+
+    @api.multi
+    @api.depends('tax_line_ids')
     def _compute_casilla_52(self):
         for report in self:
             report.casilla_52 = sum(report.tax_line_ids.filtered(
@@ -379,6 +421,22 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda x: x.field_number in (
                     203, 205, 572, 620, 207, 574, 622,
                 )
+            ).mapped('amount'))
+
+    @api.multi
+    @api.depends('tax_line_ids')
+    def _compute_casilla_54(self):
+        for report in self:
+            report.casilla_54 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number in (208, 623, 625)
+            ).mapped('amount'))
+
+    @api.multi
+    @api.depends('tax_line_ids')
+    def _compute_casilla_55(self):
+        for report in self:
+            report.casilla_55 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number in (209, 624, 626)
             ).mapped('amount'))
 
     @api.multi
@@ -403,6 +461,22 @@ class L10nEsAeatMod390Report(models.Model):
 
     @api.multi
     @api.depends('tax_line_ids')
+    def _compute_casilla_58(self):
+        for report in self:
+            report.casilla_58 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number in (220, 631, 633)
+            ).mapped('amount'))
+
+    @api.multi
+    @api.depends('tax_line_ids')
+    def _compute_casilla_59(self):
+        for report in self:
+            report.casilla_59 = sum(report.tax_line_ids.filtered(
+                lambda x: x.field_number in (221, 632, 634)
+            ).mapped('amount'))
+
+    @api.multi
+    @api.depends('tax_line_ids')
     def _compute_casilla_597(self):
         for report in self:
             report.casilla_597 = sum(report.tax_line_ids.filtered(
@@ -422,13 +496,24 @@ class L10nEsAeatMod390Report(models.Model):
             ).mapped('amount'))
 
     @api.multi
-    @api.depends('casilla_49', 'casilla_53', 'casilla_57', 'casilla_598',
+    @api.depends('casilla_49',
+                 'casilla_51',
+                 'casilla_53',
+                 'casilla_55',
+                 'casilla_57',
+                 'casilla_59',
+                 'casilla_598',
                  'tax_line_ids')
     def _compute_casilla_64(self):
         for report in self:
             report.casilla_64 = (
-                report.casilla_49 + report.casilla_53 +
-                report.casilla_57 + report.casilla_598 +
+                report.casilla_49 +
+                report.casilla_51 +
+                report.casilla_53 +
+                report.casilla_55 +
+                report.casilla_57 +
+                report.casilla_59 +
+                report.casilla_598 +
                 sum(report.tax_line_ids.filtered(
                     lambda x: x.field_number == 62
                 ).mapped('amount'))
