@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
+from collections import OrderedDict
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
 
@@ -28,6 +28,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         'S_IVA0_ISP': (2300, 0),
         'S_IVA0_IC': (2400, 0),
         'S_IVA0_SP_I': (2500, 0),
+        'S_IVA0': (2600, 0),
     }
     taxes_purchase = {
         # tax code: (base, tax_amount)
@@ -64,147 +65,148 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         'P_IVA4_IBI': (370, 14.8),
         'P_IVA10_IBI': (380, 38),
         'P_IVA21_IBI': (390, 81.9),
+        'P_IVA0_BC': (400, 0),
         # 'P_IVA12_AGR': (410, 49.2),
+        'P_IVA0_ND': (420, 0),
     }
-    taxes_result = {
+    taxes_result = OrderedDict([
         # Régimen ordinario - Base imponible 4%
-        '1': 6000.0,
+        ('1', 6000.0),
         # Régimen ordinario - Cuota 4%
-        '2': 240.0,
+        ('2', 240.0),
         # Régimen ordinario - Base imponible 10%
-        '3': 7140.0,
+        ('3', 7140.0),
         # Régimen ordinario - Cuota 10%
-        '4': 714.0,
+        ('4', 714.0),
         # Régimen ordinario - Base imponible 21%
-        '5': 8280.0,
+        ('5', 8280.0),
         # Régimen ordinario - Cuota 21%
-        '6': 1738.8,
+        ('6', 1738.8),
         # Adquisiciones intracomunitarias de bienes - Base 4%
-        '21': 300.0,
+        ('21', 300.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 4%
-        '22': 12.0,
+        ('22', 12.0),
         # Adquisiciones intracomunitarias de bienes - Base 10%
-        '23': 600.0,
+        ('23', 600.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 10%
-        '24': 60.0,
+        ('24', 60.0),
         # Adquisiciones intracomunitarias de bienes - Base 21%
-        '25': 900.0,
+        ('25', 900.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 21%
-        '26': 189.0,
+        ('26', 189.0),
         # IVA devengado otros supuestos de inversión del sujeto pasivo - Base
-        '27': 1080.0,
+        ('27', 2430.0),  # (110 + 120 + 130 + 140 + 150 + 160) * 3
         # IVA devengado otros supuestos de inversión del sujeto pasivo - Cuota
-        '28': 131.1,
+        ('28', 293.7),  # (4.4 + 12 + 27,3 + 5.6 + 15 + 33.6) * 3
         # Modificación de bases
-        '29': -7140.0 - 4860.0,
+        ('29', -12450),  # -7140.0 - 4860.0 - 450.0
         # Modificación de cuotas
-        '30': -897.6 - 619.7,
+        ('30', -897.6 - 619.7),
         # Recargo de equivalencia - Base 0,5%
-        '35': 5100.0,
+        ('35', 5100.0),
         # Recargo de equivalencia - Cuota 0,5%
-        '36': 25.5,
+        ('36', 25.5),
         # Modificación recargo equivalencia - Base
-        '43': -5400.0,
+        ('43', -5400.0),
         # Modificación recargo equivalencia - Cuota
-        '44': -132.5,
+        ('44', -132.5),
         # Rectificación de deducciones - Cuota
-        '62': -1234.75,
+        ('62', -1234.75),
         # Volumen de operaciones
-        '99': 14280.0,
+        ('99', 14280.0),
         # Operaciones realizadas por sujetos pasivos acogidos al régimen
         # especial del recargo de equivalencia
-        '102': -16200.0,
+        ('102', -16200.0),
         # Entregas intracomunitarias exentas
-        '103': 14700.0,
+        ('103', 9800.0),
         # Exportaciones y otras operaciones exentas con derecho a deducción
-        '104': 12300.0,
+        ('104', 8200.0),
         # Operaciones exentas sin derecho a deducción
-        '105': 0,
+        ('105', 5200),
         # Adquisiciones intracomunitarias exentas
-        '109': 6300.0,
+        ('109', 6300.0),
         # IVA deducible en oper. corrientes de bienes y servicios - Base 4%
-        '190': 1680.0,
+        ('190', 2100.0),
         # IVA deducible en oper. corrientes de bienes y servicios - Cuota 4%
-        '191': 67.2,
+        ('191', 84),
+        # IVA deducible en oper. interiores de bienes de inversión - Base 4%
+        ('196', 930),
         # IVA deducible en importaciones de bienes corrientes - Base 4%
-        '202': 1020.0,
+        ('202', 1020.0),
         # IVA deducible en importaciones de bienes corrientes - Cuota 4%
-        '203': 40.8,
+        ('203', 40.8),
         # IVA deducible en adquisiciones intracom. bienes corrientes - Base 4%
-        '214': 300.0,
+        ('214', 300.0),
         # IVA deducible en adquisiciones intracomu. bienes corrientes -Cuota 4%
-        '215': 12.0,
+        ('215', 12.0),
         # Adquisiciones interiores exentas
-        '230': 0,
+        ('230', 1200),
         # Importaciones exentas
-        '231': -3150.0,
+        ('231', -3150.0),
         # Bases imponibles del IVA soportado no deducible
-        '232': 0,
+        ('232', 1260),
         # Adquisiciones intracomunitarias de servicios - Base 4%
-        '545': 1200.0,
+        ('545', 1200.0),
         # Adquisiciones intracomunitarias de servicios - Cuota 4%
-        '546': 48.0,
+        ('546', 48.0),
         # Adquisiciones intracomunitarias de servicios - Base 10%
-        '547': 1500.0,
+        ('547', 1500.0),
         # Adquisiciones intracomunitarias de servicios - Cuota 10%
-        '548': 150.0,
+        ('548', 150.0),
         # Adquisiciones intracomunitarias de servicios - Base 21%
-        '551': 1800.0,
+        ('551', 1800.0),
         # Adquisiciones intracomunitarias de servicios - Cuota 21%
-        '552': 378.0,
+        ('552', 378.0),
         # IVA deducible en adquisiciones intracom. de servicios - Base 4%
-        '587': 1200.0,
+        ('587', 1200.0),
         # IVA deducible en adquisiciones intracomu. de servicios - Cuota 4%
-        '588': 48.0,
+        ('588', 48.0),
         # Recargo de equivalencia - Base 1,4%
-        '599': 5400.0,
+        ('599', 5400.0),
         # Recargo de equivalencia - Cuota 1,4%
-        '600': 75.6,
+        ('600', 75.6),
         # Recargo de equivalencia - Base 5,2%
-        '601': 5700.0,
+        ('601', 5700.0),
         # Recargo de equivalencia - Cuota 5,2%
-        '602': 296.4,
+        ('602', 296.4),
         # IVA deducible operaciones corrientes bienes y servicios - Base 10%
-        '603': 1770.0,
+        ('603', 2220),
         # IVA deducible operaciones corrientes bienes y servicios - Cuota 10%
-        '604': 177.0,
+        ('604', 222.0),
         # IVA deducible operaciones corrientes bienes y servicios - Base 21%
-        '605': 1860.0,
+        ('605', 2340.0),  # (230 + 130 + 160 + 260) * 3
         # IVA deducible operaciones corrientes bienes y servicios - Cuota 21%
-        '606': 390.6,
+        ('606', 491.4),  # 2340 * 0.21
         # IVA deducible en importaciones de bienes corrientes - Base 10%
-        '619': 1050.0,
+        ('619', 1050.0),
         # IVA deducible en importaciones de bienes corrientes - Cuota 10%
-        '620': 105.0,
+        ('620', 105.0),
         # IVA deducible en importaciones de bienes corrientes - Base 21%
-        '621': 1080.0,
+        ('621', 1080.0),
         # IVA deducible en importaciones de bienes corrientes - Cuota 21%
-        '622': 226.8,
+        ('622', 226.8),
         # IVA deducible adquisiciones intracom. bienes corrientes - Base 10%
-        '627': 600.0,
+        ('627', 600.0),
         # IVA deducible adquisiciones intracom. bienes corrientes - Cuota 10%
-        '628': 60.0,
+        ('628', 60.0),
         # IVA deducible adquisiciones intracom. bienes corrientes - Base 21%
-        '629': 900.0,
+        ('629', 900.0),
         # IVA deducible adquisiciones intracom. bienes corrientes - Cuota 21%
-        '630': 189.0,
+        ('630', 189.0),
         # IVA deducible adquisiciones intracomunitarias servicios - Base 10%
-        '635': 1500.0,
+        ('635', 1500.0),
         # IVA deducible adquisiciones intracomunitarias servicios - Cuota 10%
-        '636': 150.0,
+        ('636', 150.0),
         # IVA deducible adquisiciones intracomunitarias servicios - Base 21%
-        '637': 1800.0,
+        ('637', 1800.0),
         # IVA deducible adquisiciones intracomunitarias servicios - Cuota 21%
-        '638': 378.0,
+        ('638', 378.0),
         # Rectificación de deducciones - Base
-        '639': -10710.0,
-    }
+        ('639', -10710.0),
+    ])
 
     def setUp(self):
         super(TestL10nEsAeatMod390Base, self).setUp()
-        self.export_config_name = (
-            'l10n_es_aeat_mod390.aeat_mod390_main_export_config'
-        )
         # Create model
         self.model390 = self.env['l10n.es.aeat.mod390.report'].create({
             'name': '9990000000390',
@@ -251,27 +253,34 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
                 "Incorrect result in field %s" % field
             )
         # Check computed fields
-        self.assertAlmostEqual(self.model390.casilla_33, 16800.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_34, 2143.6, 2)
-        self.assertAlmostEqual(self.model390.casilla_47, 2408.6, 2)
-        self.assertAlmostEqual(self.model390.casilla_48, 5310.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_49, 634.8, 2)
+        self.assertAlmostEqual(self.model390.casilla_33, 17700.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_34, 2306.2, 2)
+        self.assertAlmostEqual(self.model390.casilla_47, 2571.2, 2)
+        self.assertAlmostEqual(self.model390.casilla_48, 6660.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_49, 797.4, 2)
+        self.assertAlmostEqual(self.model390.casilla_50, 2880.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_51, 341.1, 2)
         self.assertAlmostEqual(self.model390.casilla_52, 3150.0, 2)
         self.assertAlmostEqual(self.model390.casilla_53, 372.6, 2)
+        self.assertAlmostEqual(self.model390.casilla_54, 3420.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_55, 404.1, 2)
         self.assertAlmostEqual(self.model390.casilla_56, 1800.0, 2)
         self.assertAlmostEqual(self.model390.casilla_57, 261.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_58, 7200.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_59, 891.0, 2)
         self.assertAlmostEqual(self.model390.casilla_597, 4500.0, 2)
         self.assertAlmostEqual(self.model390.casilla_598, 576.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_64, 609.65, 2)
-        self.assertAlmostEqual(self.model390.casilla_65, 1798.95, 2)
-        self.assertAlmostEqual(self.model390.casilla_86, 1798.95, 2)
-        self.assertAlmostEqual(self.model390.casilla_108, 25080.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_64, 2408.45, 2)
+        self.assertAlmostEqual(self.model390.casilla_65, 162.75, 2)
+        self.assertAlmostEqual(self.model390.casilla_86, 162.75, 2)
+        self.assertAlmostEqual(self.model390.casilla_108, 21280.0, 2)
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
             'name': 'test_export_to_boe.txt',
         })
         export_config_xml_ids = [
-            self.export_config_name,
+            'l10n_es_aeat_mod390.aeat_mod390_main_export_config',
+            'l10n_es_aeat_mod390.aeat_mod390_2018_main_export_config',
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
