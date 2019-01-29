@@ -178,7 +178,7 @@ def _verify_envelope_with_key(envelope, key):
     soap_env = detect_soap_env(envelope)
 
     header = envelope.find(QName(soap_env, 'Header'))
-    if not header:
+    if header is None:
         raise SignatureVerificationFailed()
 
     security = header.find(QName(ns.WSSE, 'Security'))
