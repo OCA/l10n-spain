@@ -451,7 +451,7 @@ msgid "Tercer representante"
 msgstr "Tercer representante"
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:474
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:560
 #, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr "No puede realizar declaraciones complementarias para este modelo."
@@ -487,6 +487,22 @@ msgid "[49] Total cuota deducible operaciones corrientes"
 msgstr "[49] Total cuota deducible operaciones corrientes"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_50
+#, fuzzy
+msgid ""
+"[50] Total bases imponibles deducibles en operaciones interiores de bienes "
+"de inversión"
+msgstr "[48] Total base deducible operaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_51
+#, fuzzy
+msgid ""
+"[51] Total de cuotas deducibles en operaciones interiores de bienes de "
+"inversión"
+msgstr "[49] Total cuota deducible operaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_52
 msgid "[52] Total base deducible importaciones corrientes"
 msgstr "[52] Total base deducible importaciones corrientes"
@@ -494,6 +510,18 @@ msgstr "[52] Total base deducible importaciones corrientes"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_53
 msgid "[53] Total cuota deducible importaciones corrientes"
+msgstr "[53] Total cuota deducible importaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_54
+#, fuzzy
+msgid "[54] Total base deducible importaciones bienes de inversión"
+msgstr "[52] Total base deducible importaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_55
+#, fuzzy
+msgid "[55] Total cuota deducible importaciones bienes de inversión"
 msgstr "[53] Total cuota deducible importaciones corrientes"
 
 #. module: l10n_es_aeat_mod390
@@ -507,6 +535,12 @@ msgid "[57] Total cuota deducible adq. intracomunitarias bienes"
 msgstr "[57] Total cuota deducible adq. intracomunitarias bienes"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_58
+#, fuzzy
+msgid "[58] Total base deducible adq. intracomunitarias bienes de inversión"
+msgstr "[56] Total base deducible adq. intracomunitarias bienes"
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_597
 msgid "[597] Total base deducible adq. intracomunitarias servicios"
 msgstr "[597] Total base deducible adq. intracomunitarias servicios"
@@ -515,6 +549,12 @@ msgstr "[597] Total base deducible adq. intracomunitarias servicios"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_598
 msgid "[598] Total cuota deducible adq. intracomunitarias servicios"
 msgstr "[598] Total cuota deducible adq. intracomunitarias servicios"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_59
+#, fuzzy
+msgid "[59] Total cuota deducible adq. intracomunitarias bienes de inversión"
+msgstr "[57] Total cuota deducible adq. intracomunitarias bienes"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_64
