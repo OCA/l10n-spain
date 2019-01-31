@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_partner',
         'odoo12-addon-l10n_es_partner_mercantil',
         'odoo12-addon-l10n_es_pos',
+        'odoo12-addon-l10n_es_toponyms',
     ],
     classifiers=[
         'Programming Language :: Python',
