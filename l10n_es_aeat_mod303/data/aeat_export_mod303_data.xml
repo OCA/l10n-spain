@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     Copyright 2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -7,6 +8,7 @@
 <record id="aeat_mod303_sub01_export_config" model="aeat.model.export.config">
     <field name="name">Mod.303 2014 - Régimen general</field>
     <field name="model_number">303</field>
+    <field name="active" eval="False"/>
 </record>
 
 <record id="aeat_mod303_sub01_export_line_01" model="aeat.model.export.config.line">
@@ -797,6 +799,7 @@
 <record id="aeat_mod303_sub02_export_config" model="aeat.model.export.config">
     <field name="name">Mod.303 2014 - Régimen agrícola, ganadero y forestal (No implementado)</field>
     <field name="model_number">303</field>
+    <field name="active" eval="False"/>
 </record>
 
 <record id="aeat_mod303_sub02_export_line_01" model="aeat.model.export.config.line">
@@ -1872,6 +1875,7 @@
 <record id="aeat_mod303_sub03_export_config" model="aeat.model.export.config">
     <field name="name">Mod.303 2014 - Información adicional + Resultado</field>
     <field name="model_number">303</field>
+    <field name="active" eval="False"/>
 </record>
 
 <record id="aeat_mod303_sub03_export_line_01" model="aeat.model.export.config.line">
