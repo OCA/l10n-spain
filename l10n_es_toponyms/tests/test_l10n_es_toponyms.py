@@ -1,4 +1,4 @@
-# Copyright 2013-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2013-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
@@ -14,7 +14,8 @@ class TestL10nEsToponyms(common.SavepointCase):
 
     def test_import(self):
         self.wizard.with_context(max_import=10).execute()
-        zips = self.env['res.city.zip'].search([
+        cities = self.env['res.city'].search([
             ('country_id', '=', self.env.ref('base.es').id)
         ])
-        self.assertTrue(zips)
+        self.assertTrue(cities)
+        self.assertTrue(cities.mapped('zip_ids'))
