@@ -285,11 +285,9 @@ class L10nEsVatBook(models.Model):
 
     def _get_account_moves(self, taxes):
         aml_obj = self.env['account.move.line']
-        account_move_obj = self.env['account.move']
         move_ids = aml_obj.read_group(
             self._account_move_line_domain(taxes), ['move_id'], ['move_id'])
-        move_ids = account_move_obj.browse([x['move_id'][0] for x in move_ids])
-        return move_ids
+        return self.env['account.move'].browse([x['move_id'][0] for x in move_ids])
 
     def _create_vat_book_records(self, move, line_type, taxes):
         line = self._create_vat_book_line(
