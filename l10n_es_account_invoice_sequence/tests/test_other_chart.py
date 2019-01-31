@@ -1,4 +1,4 @@
-# Copyright 2015-2018 Pedro M. Baeza
+# Copyright 2015-2019 Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo.tests import common
@@ -20,7 +20,22 @@ class TestOtherChart(common.SavepointCase):
             'currency_id': cls.env.ref('base.EUR').id,
             'bank_account_code_prefix': '572',
             'cash_account_code_prefix': '570',
-            'transfer_account_code_prefix': '572',
+            'transfer_account_code_prefix': '572999',
+        })
+        # This is needed for avoiding an error on the chart template loading
+        cls.transfer_acc_tmpl = cls.env['account.account.template'].create({
+            'name': 'Transfer account',
+            'code': '572999',
+            'user_type_id': cls.env.ref(
+                'account.data_account_type_liquidity'
+            ).id,
+            'chart_template_id': cls.chart.id,
+        })
+        cls.env['ir.model.data'].create({
+            'name': 'test_transfer_acc_tmpl',
+            'module': 'l10n_es_account_invoice_sequence',
+            'model': 'account.account.template',
+            'res_id': cls.transfer_acc_tmpl.id,
         })
         cls.journal_obj = cls.env['account.journal']
         cls.env.user.company_id = cls.company.id
