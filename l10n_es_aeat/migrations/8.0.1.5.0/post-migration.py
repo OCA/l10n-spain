@@ -5,6 +5,13 @@
 
 def migrate(cr, version):
     cr.execute(
+        """SELECT count(attname) FROM pg_attribute WHERE attrelid =
+        ( SELECT oid FROM pg_class WHERE relname = 'l10n_es_aeat_tax_line' )
+        AND attname = 'legacy_report_id'"""
+    )
+    if not cr.fetchone():
+        return
+    cr.execute(
         """
         UPDATE l10n_es_aeat_tax_line
         SET model = 'l10n.es.aeat.mod303.report',
