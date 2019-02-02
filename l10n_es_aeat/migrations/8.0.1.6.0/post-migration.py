@@ -8,6 +8,15 @@ from openerp.api import Environment
 
 
 def migrate(cr, version):
+    if not version:
+        return
+    cr.execute(
+        """SELECT count(attname) FROM pg_attribute WHERE attrelid =
+        ( SELECT oid FROM pg_class WHERE relname = 'l10n_es_aeat_tax_line' )
+        AND attname = 'legacy_report_id'"""
+    )
+    if not cr.fetchone():
+        return
     env = Environment(cr, SUPERUSER_ID, {})
     sequences = env['ir.sequence'].search([
         ('code', '=', 'aeat.sequence.type'),
