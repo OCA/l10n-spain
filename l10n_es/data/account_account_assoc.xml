@@ -26,49 +26,49 @@
         <field name="code">100</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Dotación fundacional</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_1030_child" model="account.account.template">
         <field name="code">1030</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Fundadores, parte no desembolsada en fundaciones</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_1034_child" model="account.account.template">
         <field name="code">1034</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Asociados, parte no desembolsada en asociaciones</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_1040_child" model="account.account.template">
         <field name="code">1040</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Fundadores, por aportaciones no dinerarias pendientes, en fundaciones</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_1044_child" model="account.account.template">
         <field name="code">1044</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Asociados, por aportaciones no dinerarias pendientes, en asociaciones</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_120_child" model="account.account.template">
         <field name="code">120</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Remanente</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_121_child" model="account.account.template">
         <field name="code">121</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Resultados negativos de ejercicios anteriores</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_129_child" model="account.account.template">
@@ -82,7 +82,7 @@
         <field name="code">1300</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Subvenciones del Estado</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_1301_child" model="account.account.template">
@@ -96,7 +96,7 @@
         <field name="code">1320</field>
         <field name="reconcile" eval="False"/>
         <field name="name">Otras subvenciones</field>
-        <field name="user_type_id" ref="account_type_capital"/>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
         <field name="chart_template_id" ref="account_chart_template_assoc"/>
     </record>
     <record id="pgc_assoc_1321_child" model="account.account.template">
