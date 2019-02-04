@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-29 03:05+0000\n"
-"PO-Revision-Date: 2017-07-29 03:05+0000\n"
-"Last-Translator: Fernando Lara <gennesis45@gmail.com>, 2017\n"
+"PO-Revision-Date: 2019-02-04 17:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
@@ -46,7 +47,6 @@ msgstr "Entrada cuenta"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__allow_posting
-#, fuzzy
 msgid "Allow Posting"
 msgstr "Permitir publicación"
 
@@ -93,7 +93,7 @@ msgstr "Complementaria"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_email
 msgid "Contact email"
-msgstr ""
+msgstr "Email Contacto"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
@@ -163,9 +163,9 @@ msgid ""
 "period (in which his statement was to return and compensation back option "
 "was chosen)."
 msgstr ""
-"A deducir (exclusivamente en caso de autoliquidación complementaria): "
-"Resultados a ingresar de anteriores autoliquidaciones por el mismo concepto, "
-"ejercicio y período"
+"Cuota a compensar para los resultados anteriores con el mismo concepto, "
+"ejercicio y período (en el caso de que la declaración fuese a devolver y la "
+"opción elegida fuese la devolución)."
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_name
@@ -235,7 +235,7 @@ msgstr "Normal"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
 msgid "Number of recipients"
-msgstr ""
+msgstr "Número de beneficiarios"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_id
@@ -285,15 +285,13 @@ msgstr "Tipo de resultado"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion_negativa
-#, fuzzy
 msgid "Result type (negative)"
-msgstr "Tipo de resultado"
+msgstr "Tipo de resultado (negativo)"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__tipo_declaracion_positiva
-#, fuzzy
 msgid "Result type (positive)"
-msgstr "Tipo de resultado"
+msgstr "Tipo de resultado (positivo)"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_05
@@ -355,6 +353,8 @@ msgid ""
 "The result of the declaration is negative. You should select another Result "
 "type"
 msgstr ""
+"El resultado de la declaración es negativo. Debe seleccionar otro tipo de "
+"resultado"
 
 #. module: l10n_es_aeat_mod115
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:88
@@ -363,6 +363,8 @@ msgid ""
 "The result of the declaration is positive. You should select another Result "
 "type"
 msgstr ""
+"El resultado de la declaración es positivo. Debe seleccionar otro Tipo de "
+"Resultado"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
