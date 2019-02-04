@@ -12,15 +12,16 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-23 16:40+0000\n"
-"PO-Revision-Date: 2017-02-23 12:15+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2019-02-04 17:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_report
@@ -530,12 +531,12 @@ msgstr "Apuntes casilla 03"
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,move_lines_05:0
 msgid "Move lines 05"
-msgstr ""
+msgstr "Apuntes casilla 05"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,move_lines_06:0
 msgid "Move lines 06"
-msgstr ""
+msgstr "Apuntes casilla 06"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,move_lines_08:0
@@ -735,7 +736,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_30:0
 msgid "Total liquidación - Resultado a ingresar: ([28] - [29])"
-msgstr ""
+msgstr "Total liquidación - Resultado a ingresar: ([28] - [29])"
 
 #. module: l10n_es_aeat_mod111
 #: help:l10n.es.aeat.mod111.report,casilla_28:0
@@ -743,6 +744,8 @@ msgid ""
 "Total liquidación - Suma de retenciones e ingresos a cuenta: ([03] + [06] + "
 "[09] + [12] + [15] + [18] + [21] + [24] + [27])"
 msgstr ""
+"Total liquidación - Suma de retenciones e ingresos a cuenta: ([03] + [06] + "
+"[09] + [12] + [15] + [18] + [21] + [24] + [27])"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,company_vat:0
@@ -887,7 +890,7 @@ msgstr "[27] Importe de los ingresos a cuenta"
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,casilla_28:0
 msgid "[28] Suma de retenciones"
-msgstr ""
+msgstr "[28] Suma de retenciones"
 
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,casilla_29:0
@@ -897,7 +900,7 @@ msgstr "[29] Resultados a ingresar anteriores"
 #. module: l10n_es_aeat_mod111
 #: field:l10n.es.aeat.mod111.report,casilla_30:0
 msgid "[30] Resultado a ingresar"
-msgstr ""
+msgstr "[30] Resultado a ingresar"
 
 #. module: l10n_es_aeat_mod111
 #: view:l10n.es.aeat.mod111.report:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
