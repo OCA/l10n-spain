@@ -255,9 +255,8 @@ class AccountPaymentOrder(models.Model):
                 # 30 - 63: Cuenta de pago para proveedores
                 cuenta = line.partner_bank_id.acc_number
                 cuenta = cuenta.replace(' ', '')
-                text += cuenta
                 # 64: Concepto de la ordern
-                text += '7'
+                text +=  self.strim_txt(cuenta, 34)
                 # 65 - 72 Libre
                 text += 8 * ' '
             ###################################################################
