@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-01 14:50+0000\n"
-"PO-Revision-Date: 2018-03-01 14:50+0000\n"
-"Last-Translator: enjolras <yo@miguelrevilla.com>, 2018\n"
+"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:141
@@ -106,7 +107,7 @@ msgstr "Asiento contable"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_active
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
@@ -138,9 +139,8 @@ msgstr "Permitir generar asiento"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
-#, fuzzy
 msgid "Alphabetic"
-msgstr "Alfanumérico"
+msgstr "Alfabético"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -301,26 +301,24 @@ msgstr "Cuenta bancaria de la compañía usada para la presentación"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
-#, fuzzy
 msgid "Compare"
-msgstr "Compañía"
+msgstr "Comparar"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_compare_boe_file
-#, fuzzy
 msgid "Compare AEAT BOE file"
-msgstr "Exportar archivo AEAT BOE"
+msgstr "Comparar archivo AEAT BOE"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_compare_boe_file
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_compare_boe_file_line
 msgid "Compare BOE file wizard"
-msgstr ""
+msgstr "Asistente comparar archivo BOE"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
 msgid "Compare file"
-msgstr ""
+msgstr "Comparar archivo"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.mod111.report,type:0
@@ -374,7 +372,7 @@ msgstr "Datos de contacto"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line_content
 msgid "Content"
-msgstr ""
+msgstr "Contenido"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_counterpart_account_id
@@ -545,6 +543,9 @@ msgid ""
 "Solo es válido de momento para formatos sin partes condicionales ni "
 "subpartes con bucle de repetición."
 msgstr ""
+"Escoja el archivo para comparar con el actual formato de exportación. NOTA: "
+"Por el momento sólo es válido para formatos sin partes condicionales ni sub-"
+"partes con bucle de repetición."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_exception_msg
@@ -603,9 +604,8 @@ msgstr "Tipo de campo de exportación"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line_export_line_id
-#, fuzzy
 msgid "Export line"
-msgstr "Exportar"
+msgstr "Exportar línea"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -922,7 +922,7 @@ msgstr "Nº modelo"
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:398
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
-msgstr "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
+msgstr "Modelo no válido: %s. Se debe declarar una variable '_aeat_number'"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod111_report_contact_name
@@ -1133,7 +1133,7 @@ msgid ""
 "Pulse el botón <strong>Exportar</strong> para iniciar el proceso de "
 "exportación del archivo BOE de la AEAT."
 msgstr ""
-"Pulse el botón <strong>Exportar</strong> para iniciar el proceso de "
+"Pulse el botón <strong> Exportar </strong> para iniciar el proceso de "
 "exportación del archivo BOE de la AEAT."
 
 #. module: l10n_es_aeat
@@ -1476,7 +1476,7 @@ msgstr "aeat.model.export.config.line"
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.compare_boe_file,state:0
 msgid "compare"
-msgstr ""
+msgstr "Comparar"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
