@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2018-11-14 23:19+0000\n"
-"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
+"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.2.2\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_count
@@ -292,7 +292,7 @@ msgstr "Cálculo de cuotas retenidas"
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 msgid "Delivered"
-msgstr ""
+msgstr "Entregado"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
@@ -737,7 +737,7 @@ msgstr "Otro"
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 msgid "Paid"
-msgstr ""
+msgstr "Pagado"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:181
@@ -858,9 +858,8 @@ msgstr "Número de registro"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
-#, fuzzy
 msgid "Registered"
-msgstr "Registrado en RCF"
+msgstr "Registrado"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
