@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-25 13:42+0000\n"
-"PO-Revision-Date: 2018-05-25 13:42+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat_sii_cash_basis
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii_cash_basis.action_aeat_sii_payment_mode_key
@@ -110,7 +111,6 @@ msgstr "Conciliación parcial"
 
 #. module: l10n_es_aeat_sii_cash_basis
 #: model:ir.model,name:l10n_es_aeat_sii_cash_basis.model_account_payment_method
-#, fuzzy
 msgid "Payment Methods"
 msgstr "Modos de pago"
 
