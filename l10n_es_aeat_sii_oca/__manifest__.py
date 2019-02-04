@@ -41,6 +41,7 @@
     },
     "depends": [
         "account_invoice_refund_link",
+        "l10n_es",
         "l10n_es_aeat",
         "queue_job",
     ],
