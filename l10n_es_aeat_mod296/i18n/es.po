@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-26 07:16+0000\n"
-"PO-Revision-Date: 2018-06-26 09:50+0100\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.7.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_porcentaje_retencion
@@ -134,7 +134,6 @@ msgstr "21 - Pensiones y haberes pasivos."
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report.line,clave:0
-#, fuzzy
 msgid "22 - Remuneration of administrators and members of boards of directors."
 msgstr ""
 "22 - Retribuciones de administradores y miembros de consejos de "
@@ -179,8 +178,8 @@ msgid ""
 "3. Emisor code corresponds to values foreign that have not been assigned I.S."
 "I.N., whose emisor does not have a NIF"
 msgstr ""
-"3. Emisor code corresponds to values foreign that have not been assigned I.S."
-"I.N., whose emisor does not have a NIF"
+"3. El Código emisor corresponde a los valores extranjeros que no tienen "
+"asignado I.S.I.N., cuyo emisor no tiene un NIF"
 
 #. module: l10n_es_aeat_mod296
 #: selection:l10n.es.aeat.mod296.report.line,subclave:0
@@ -301,7 +300,7 @@ msgstr "Línea de informe AEAT 296"
 #. module: l10n_es_aeat_mod296
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
 msgid "AEAT model 296"
-msgstr "AEAT model 296"
+msgstr "AEAT modelo 296"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
@@ -514,7 +513,7 @@ msgstr "Renta dineraria"
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_move_line_ids
 msgid "Move Lines"
-msgstr "Move Lines"
+msgstr "Apuntes Contables"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_naturaleza
