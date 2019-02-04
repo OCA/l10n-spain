@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:41+0000\n"
-"PO-Revision-Date: 2018-02-10 03:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:142
@@ -126,13 +127,12 @@ msgstr "Todos"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_allow_posting
 msgid "Allow Posting"
-msgstr ""
+msgstr "Permite el registro"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
-#, fuzzy
 msgid "Alphabetic"
-msgstr "Alfanumérico"
+msgstr "Alfabético"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -288,26 +288,24 @@ msgstr "Cuenta bancaria de la compañía usada para la presentación"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
-#, fuzzy
 msgid "Compare"
-msgstr "Compañía"
+msgstr "Comparar"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_compare_boe_file
-#, fuzzy
 msgid "Compare AEAT BOE file"
-msgstr "Exportar archivo AEAT BOE"
+msgstr "Comparar archivo AEAT BOE"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_compare_boe_file
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_compare_boe_file_line
 msgid "Compare BOE file wizard"
-msgstr ""
+msgstr "Asistente para comparar el archivo BOE"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
 msgid "Compare file"
-msgstr ""
+msgstr "Comparar archivo"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.mod111.report,type:0
@@ -373,7 +371,7 @@ msgstr "Correo electrónico"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line_content
 msgid "Content"
-msgstr ""
+msgstr "Contenido"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_counterpart_account_id
@@ -537,6 +535,9 @@ msgid ""
 "Solo es válido de momento para formatos sin partes condicionales ni "
 "subpartes con bucle de repetición."
 msgstr ""
+"Escoja el archivo para comparar con el formato actual de exportación. NOTA: "
+"Por el momento sólo es válido para formatos sin partes condicionales ni sub-"
+"partes con bucle de repetición."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_exigible_type
@@ -580,9 +581,8 @@ msgstr "Tipo de campo de exportación"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line_export_line_id
-#, fuzzy
 msgid "Export line"
-msgstr "Exportar"
+msgstr "Exportar línea"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -709,6 +709,8 @@ msgid ""
 "If this declaration is complementary or substitutive, a previous declaration "
 "number should be provided."
 msgstr ""
+"Si esta declaración es complementaria o substitutiva, debe proporcionar el "
+"número de la declaración anterior."
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -842,7 +844,7 @@ msgstr "Líneas"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line_map_parent_id
 msgid "Map Parent"
-msgstr ""
+msgstr "Mapa padre"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_map_line_id
@@ -923,7 +925,7 @@ msgstr "Carácter del signo negativo"
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:139
 #, python-format
 msgid "No export configuration selected."
-msgstr ""
+msgstr "Ninguna configuración de exportación seleccionada."
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.mod111.report,type:0
@@ -1424,7 +1426,7 @@ msgstr "aeat.model.export.config.line"
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.compare_boe_file,state:0
 msgid "compare"
-msgstr ""
+msgstr "Comparar"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
