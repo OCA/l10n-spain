@@ -111,6 +111,13 @@ msgid "AEAT tax mapping line"
 msgstr "Liña de mapeo de impostos da AEAT"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_setup_bank_manual_config__acc_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__acc_type
+#, fuzzy
+msgid "Acc Type"
+msgstr "Tipo Conta Bancaria"
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__move_id
 msgid "Account entry"
@@ -179,12 +186,6 @@ msgstr "Configuración de exportación a BOE"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_tree
 msgid "BOE export configurations"
 msgstr "Configuracións de exportación a BOE"
-
-#. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_setup_bank_manual_config__acc_type
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__acc_type
-msgid "Bank Account Type"
-msgstr "Tipo Conta Bancaria"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_partner_bank
