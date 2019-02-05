@@ -208,7 +208,7 @@ class AccountInvoice(models.Model):
             reference_id = 'Reference%05d' % random.randint(min, max)
             object_id = 'Object%05d' % random.randint(min, max)
             etsi = 'http://uri.etsi.org/01903/v1.3.2#'
-            sig_policy_identifier = 'http://www.facturae.es/' \
+            sig_policy_identifier = 'http://www.facturae.gob.es/' \
                                     'politica_de_firma_formato_facturae/' \
                                     'politica_de_firma_formato_facturae_v3_1' \
                                     '.pdf'
