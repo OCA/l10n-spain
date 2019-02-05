@@ -19,62 +19,57 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from GeoNames"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
-msgid "Configure from local"
-msgstr ""
-
-#. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_uid
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_uid
 msgid "Created by"
 msgstr "Oluşturan"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_date
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_date
 msgid "Created on"
 msgstr "Oluşturuldu"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_display_name
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_id
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_toponyms
-#: model:ir.model,name:l10n_es_toponyms.model_better_zip_geonames_import
-msgid "Import Better Zip from Geonames"
+#: model:ir.model,name:l10n_es_toponyms.model_city_zip_geonames_import
+msgid "Import City Zips from Geonames"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms___last_update
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_uid
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_uid
 msgid "Last Updated by"
 msgstr "Son güncelleyen"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_date
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_date
 msgid "Last Updated on"
 msgstr "Son güncelleme"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_name
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__name
 msgid "Name"
 msgstr "Adı"
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Spanish cities configuration"
 msgstr ""
 
@@ -84,12 +79,12 @@ msgid "Spanish toponyms configuration"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "This wizard will add city and state information to zip codes"
 msgstr ""
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid ""
 "Warning! Adding this bunch of records can take a lot of time. If you are "
 "behind a SSL proxy, check your timeout."
