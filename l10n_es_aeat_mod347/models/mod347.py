@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2012 NaN·Tic  (http://www.nan-tic.com)
 # Copyright 2013 Acysos (http://www.acysos.com)
@@ -6,14 +5,15 @@
 # Copyright 2016 - Tecnativa - Antonio Espinosa
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2014-2017 - Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2018 - PESOL - Angel Moya <info@pesol.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import fields, models, api, exceptions, _
+from odoo import fields, models, api, exceptions, _
 
 import re
 from datetime import datetime
 from calendar import monthrange
-from openerp.addons.decimal_precision import decimal_precision as dp
+import odoo.addons.decimal_precision as dp
 
 
 class L10nEsAeatMod347Report(models.Model):
@@ -143,19 +143,177 @@ class L10nEsAeatMod347Report(models.Model):
             'type': 'ir.actions.act_window',
         }
 
+    def _account_move_line_domain(self, taxes):
+        """Return domain for searching move lines.
+
+        :param: taxes: Taxes to look for in move lines.
+        """
+        return [('partner_id.not_in_mod347', '=', False),
+                ('invoice_id.not_in_mod347', '=', False),
+                ('move_id.force_not_in_mod347', '=', False),
+                ('date', '>=', self.date_start),
+                ('date', '<=', self.date_end),
+                '|',
+                ('tax_ids', 'in', taxes.ids),
+                ('tax_line_id', 'in', taxes.ids),
+                ]
+
+    @api.model
+    def _get_taxes(self, map):
+        tax_obj = self.env['account.tax']
+        # Obtain all the taxes to be considered
+        tax_templates = map.mapped('tax_ids').mapped('description')
+        if not tax_templates:
+            raise exceptions.Warning(_('No Tax Mapping was found'))
+        # search the account.tax referred to by the template
+        taxes = tax_obj.search(
+            [('description', 'in', tax_templates),
+             ('company_id', 'child_of', self.company_id.id)])
+        return taxes
+
+    def _create_partner_records(self, key, map_ref):
+        map = self.env.ref(map_ref)
+        taxes = self._get_taxes(map)
+        domain = self._account_move_line_domain(taxes)
+        records = self.env['account.move.line'].read_group(
+            domain,
+            ['partner_id', 'balance'],
+            ['partner_id']
+        )
+        if map_ref == 'l10n_es_aeat_mod347.aeat_mod347_map_a':
+            filtered_records = list(filter(
+                lambda d: d['balance'] > self.operations_limit, records)
+            )
+        else:
+            filtered_records = list(filter(
+                lambda d: d['balance'] < (-1 * self.operations_limit), records)
+            )
+        filtered_partners = [
+            record['partner_id'][0] for record in filtered_records]
+        domain.append(['partner_id', 'in', filtered_partners])
+        records = self.env['account.move.line'].read_group(
+            domain,
+            ['partner_id', 'move_id',
+             'balance', 'debit', 'credit'],
+            ['partner_id', 'move_id']
+        )
+        partner_obj = self.env['res.partner']
+        for record in records:
+            partner = partner_obj.browse(record['partner_id'][0])
+            address = self._get_default_address(partner)
+            partner_country_code, partner_vat = (
+                re.match(r"([A-Z]{0,2})(.*)", partner.vat or '').groups())
+            community_vat = ''
+            if not partner_country_code:
+                partner_country_code = address.country_id.code
+            partner_state_code = address.state_id.code
+            if partner_country_code != 'ES':
+                partner_vat = ''
+                community_vat = partner.vat
+                partner_state_code = 99
+            vals = {
+                'report_id': self.id,
+                'partner_id': partner.id,
+                'partner_vat': partner_vat,
+                'representative_vat': '',
+                'community_vat': community_vat,
+                'partner_state_code': partner_state_code,
+                'partner_country_code': partner_country_code,
+            }
+            partner_record_obj = self.env[
+                'l10n.es.aeat.mod347.partner_record']
+            vals['operation_key'] = key
+            amount = record['balance']
+            if amount:
+                vals['amount'] = abs(amount)
+                move_lines = self.env['account.move.line'].read_group(
+                    record['__domain'],
+                    ['move_id', 'balance'],
+                    record['__context']['group_by']
+                )
+                vals['move_record_ids'] = [
+                    (0, 0, {'move_id': move_line['move_id'][0],
+                            'amount': abs(move_line['balance'])})
+                    for move_line in move_lines]
+                partner_record_obj.create(vals)
+
+    def _create_cash_moves(self):
+        partner_obj = self.env['res.partner']
+        move_line_obj = self.env['account.move.line']
+        cash_journals = self.env['account.journal'].search(
+            [('type', '=', 'cash')],
+        )
+        if not self.only_supplier or cash_journals:
+
+            domain = [
+                ('account_id.internal_type', '=', 'receivable'),
+                ('journal_id', 'in', cash_journals.ids),
+                ('date', '>=', self.date_start),
+                ('date', '<=', self.date_end),
+                ('partner_id.not_in_mod347', '=', False),
+            ]
+            partner_cash = move_line_obj.read_group(
+                domain,
+                ['partner_id',
+                 'balance', 'debit', 'credit'],
+                ['partner_id']
+            )
+            partner_obj = self.env['res.partner']
+            for partner_data in partner_cash:
+                partner = partner_obj.browse(partner_data['partner_id'][0])
+                address = self._get_default_address(partner)
+                partner_country_code, partner_vat = (
+                    re.match(r"([A-Z]{0,2})(.*)", partner.vat or '').groups())
+                community_vat = ''
+                if not partner_country_code:
+                    partner_country_code = address.country_id.code
+                partner_state_code = address.state_id.code
+                if partner_country_code != 'ES':
+                    partner_vat = ''
+                    community_vat = partner.vat
+                    partner_state_code = 99
+                vals = {
+                    'report_id': self.id,
+                    'partner_id': partner.id,
+                    'partner_vat': partner_vat,
+                    'representative_vat': '',
+                    'community_vat': community_vat,
+                    'partner_state_code': partner_state_code,
+                    'partner_country_code': partner_country_code,
+                }
+                partner_record_obj = self.env[
+                    'l10n.es.aeat.mod347.partner_record']
+                vals['operation_key'] = 'C'
+                amount = partner_data['balance']
+                if amount:
+                    vals['amount'] = abs(amount)
+                    move_lines = self.env['account.move.line'].search(
+                        partner_data['__domain']
+                    ).read(
+                        ['id', 'balance', 'date'])
+                    vals['cash_record_ids'] = [
+                        (0, 0, {'move_line_id': move_line['id'],
+                                'amount': abs(move_line['balance']),
+                                'date': move_line['date']})
+                        for move_line in move_lines]
+                    partner_record_obj.search([
+                        ('partner_id', '=', partner.id),
+                        ('type', '=', 'B')
+                    ])
+                    partner_record_obj.create(vals)
+
     @api.multi
     def calculate(self):
         for report in self:
             # Delete previous partner records
             report.partner_record_ids.unlink()
-            partners = {}
-            # Read invoices: normal and refunds
-            # We have to call _invoices_search always first
-            partners = report._invoices_search(partners)
-            # Read cash movements
-            partners = report._cash_moves_search(partners)
-            for k, v in partners.iteritems():
-                report._partner_records_create(v)
+
+            self._create_partner_records(
+                'A', 'l10n_es_aeat_mod347.aeat_mod347_map_a')
+            self._create_partner_records(
+                'B', 'l10n_es_aeat_mod347.aeat_mod347_map_b')
+            self._create_cash_moves()
+
             report.partner_record_ids.calculate_quarter_totals()
             report.partner_record_ids.calculate_quarter_cash_totals()
         return True
@@ -171,232 +329,10 @@ class L10nEsAeatMod347Report(models.Model):
         else:
             return None
 
-    def _invoice_amount_get(self, invoices, refunds):
-        invoice_amount = sum(invoices.mapped('amount_total_wo_irpf'))
-        refund_amount = sum(refunds.mapped('amount_total_wo_irpf'))
-        amount = invoice_amount - refund_amount
-        if abs(amount) > self.operations_limit:
-            return amount
-        return 0
-
-    def _cash_amount_get(self, moves):
-        amount = sum([line.credit for line in moves])
-        if abs(amount) > self.received_cash_limit:
-            return amount
-        return 0
-
-    def _cash_moves_group(self, moves):
-        cash_moves = {}
-        # Group cash move lines by origin operation fiscalyear
-        for move_line in moves:
-            # FIXME: ugly group by reconciliation invoices, because there
-            # isn't any direct relationship between payments and invoice
-            invoices = []
-            if move_line.reconcile_id:
-                for line in move_line.reconcile_id.line_id:
-                    if line.invoice:
-                        invoices.append(line.invoice)
-            elif move_line.reconcile_partial_id:
-                for line in move_line.reconcile_partial_id.line_partial_ids:
-                    if line.invoice:
-                        invoices.append(line.invoice)
-            # Remove duplicates
-            invoices = list(set(invoices))
-            if invoices:
-                invoice = invoices[0]
-                year = fields.Date.from_string(invoice.date_invoice).year
-                if year not in cash_moves:
-                    cash_moves[year] = move_line
-                else:
-                    cash_moves[year] |= move_line
-        return cash_moves
-
-    def _partner_record_a_create(self, data, vals):
-        """Partner record type A: Adquisiciones de bienes y servicios
-
-        Create from income (from supplier) invoices
-        """
-        partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
-        record = False
-        vals['operation_key'] = 'A'
-        invoices = data.get('in_invoices', self.env['account.invoice'])
-        refunds = data.get('in_refunds', self.env['account.invoice'])
-        amount = self._invoice_amount_get(invoices, refunds)
-        if amount:
-            vals['amount'] = amount
-            vals['invoice_record_ids'] = [
-                (0, 0, {'invoice_id': x})
-                for x in (invoices.ids + refunds.ids)]
-            record = partner_record_obj.create(vals)
-        return record
-
-    def _partner_record_b_create(self, data, vals):
-        """Partner record type B: Entregas de bienes y servicios
-
-        Create from outcome (from customer) invoices and cash movements
-        """
-        partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
-        cash_record_obj = self.env['l10n.es.aeat.mod347.cash_record']
-        records = []
-        invoice_record = False
-        vals['operation_key'] = 'B'
-        invoices = data.get('out_invoices', self.env['account.invoice'])
-        refunds = data.get('out_refunds', self.env['account.invoice'])
-        moves = data.get('cash_moves', self.env['account.move.line'])
-        amount = self._invoice_amount_get(invoices, refunds)
-        if amount:
-            vals['amount'] = amount
-            vals['invoice_record_ids'] = [
-                (0, 0, {'invoice_id': x})
-                for x in (invoices.ids + refunds.ids)]
-            invoice_record = partner_record_obj.create(vals)
-            if invoice_record:
-                records.append(invoice_record)
-        if self._cash_amount_get(moves):
-            cash_moves = self._cash_moves_group(moves)
-            for year in cash_moves.keys():
-                amount = self._cash_amount_get(cash_moves[year])
-                if amount:
-                    if year != self.year or not invoice_record:
-                        vals['amount'] = 0.0
-                        vals['cash_amount'] = amount
-                        vals['origin_year'] = year
-                        partner_record = partner_record_obj.create(vals)
-                        if partner_record:
-                            records.append(partner_record)
-                    else:
-                        invoice_record.write({
-                            'cash_amount': amount,
-                            'origin_year': year,
-                        })
-                        partner_record = invoice_record
-                    for line in cash_moves[year]:
-                        cash_record_obj.create({
-                            'partner_record_id': partner_record.id,
-                            'move_line_id': line.id,
-                            'date': line.date,
-                            'amount': line.credit,
-                        })
-        return records
-
-    def _partner_records_create(self, data):
-        partner = data.get('partner')
-        address = self._get_default_address(partner)
-        partner_country_code, partner_vat = (
-            re.match(r"([A-Z]{0,2})(.*)", partner.vat or '').groups())
-        community_vat = ''
-        if not partner_country_code:
-            partner_country_code = address.country_id.code
-        partner_state_code = address.state_id.code
-        if partner_country_code != 'ES':
-            partner_vat = ''
-            community_vat = partner.vat
-            partner_state_code = 99
-        vals = {
-            'report_id': self.id,
-            'partner_id': partner.id,
-            'partner_vat': partner_vat,
-            'representative_vat': '',
-            'community_vat': community_vat,
-            'partner_state_code': partner_state_code,
-            'partner_country_code': partner_country_code,
-        }
-        # Create A record
-        self._partner_record_a_create(data, vals)
-        # Create B records
-        self._partner_record_b_create(data, vals)
-        return True
-
-    def _invoices_search(self, partners):
-        invoice_obj = self.env['account.invoice']
-        partner_obj = self.env['res.partner']
-        domain = [
-            ('state', 'in', ['open', 'paid']),
-            ('date_invoice', '>=', self.date_start),
-            ('date_invoice', '<=', self.date_end),
-            ('not_in_mod347', '=', False),
-            ('commercial_partner_id.not_in_mod347', '=', False),
-        ]
-        if self.only_supplier:
-            domain.append(('type', 'in', ('in_invoice', 'in_refund')))
-        key_field = 'id'
-        if self.group_by_vat:
-            key_field = 'vat'
-        groups = invoice_obj.read_group(
-            domain, ['commercial_partner_id'], ['commercial_partner_id'])
-        for group in groups:
-            partner = partner_obj.browse(group['commercial_partner_id'][0])
-            key_value = partner[key_field]
-            invoices = invoice_obj.search(group['__domain'])
-            in_invoices = invoices.filtered(
-                lambda x: x.type in 'in_invoice')
-            in_refunds = invoices.filtered(
-                lambda x: x.type in 'in_refund')
-            out_invoices = invoices.filtered(
-                lambda x: x.type in 'out_invoice')
-            out_refunds = invoices.filtered(
-                lambda x: x.type in 'out_refund')
-            if key_value not in partners:
-                partners[key_value] = {
-                    # Get first partner found when grouping by vat
-                    'partner': partner,
-                    'in_invoices': in_invoices,
-                    'in_refunds': in_refunds,
-                    'out_invoices': out_invoices,
-                    'out_refunds': out_refunds,
-                }
-            else:
-                # No need to check here if *_invoices exists,
-                # because this entry has been created in this method
-                partners[key_value]['in_invoices'] += in_invoices
-                partners[key_value]['in_refunds'] += in_refunds
-                partners[key_value]['out_invoices'] += out_invoices
-                partners[key_value]['out_refunds'] += out_refunds
-        return partners
-
-    def _cash_moves_search(self, partners):
-        partner_obj = self.env['res.partner']
-        move_line_obj = self.env['account.move.line']
-        cash_journals = self.env['account.journal'].search(
-            [('type', '=', 'cash')],
-        )
-        if not cash_journals or self.only_supplier:
-            return partners
-        domain = [
-            ('account_id.internal_type', '=', 'receivable'),
-            ('journal_id', 'in', cash_journals.ids),
-            ('date', '>=', self.date_start),
-            ('date', '<=', self.date_end),
-            ('partner_id.not_in_mod347', '=', False),
-        ]
-        groups = move_line_obj.read_group(
-            domain, ['partner_id'], ['partner_id'],
-        )
-        key_field = 'id'
-        if self.group_by_vat:
-            key_field = 'vat'
-        for group in groups:
-            partner = partner_obj.browse(group['partner_id'][0])
-            key_value = partner[key_field]
-            moves = move_line_obj.search(group['__domain'])
-            if key_value not in partners:
-                partners[key_value] = {
-                    # Get first partner found when grouping by vat
-                    'partner': partner,
-                    'cash_moves': moves,
-                }
-            else:
-                # Check here if cash_moves exists, maybe this entry
-                # has been created by _invoices_search
-                if partners[key_value].get('cash_moves'):
-                    partners[key_value]['cash_moves'] += moves
-                else:
-                    partners[key_value]['cash_moves'] = moves
-        return partners
-
 
 class L10nEsAeatMod347PartnerRecord(models.Model):
     _name = 'l10n.es.aeat.mod347.partner_record'
+    _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
     _description = 'Partner Record'
     _rec_name = "partner_vat"
 
@@ -408,6 +344,20 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         comodel_name='l10n.es.aeat.mod347.report', string='AEAT 347 Report',
         ondelete="cascade", default=_default_record_id,
     )
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='Salesperson',
+        track_visibility='onchange',
+        default=lambda self: self.env.user,
+        copy=False)
+    state = fields.Selection(
+        [('pending', 'Pending'),
+         ('sended', 'Sended'),
+         ('confirmed', 'Confirmed'),
+         ('exception', 'Exception'),
+         ],
+        default='pending',
+        string='State')
     operation_key = fields.Selection(
         selection=[
             ('A', u'A - Adquisiciones de bienes y servicios superiores al '
@@ -532,9 +482,9 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     origin_year = fields.Integer(
         string='Origin year', help="Origin cash operation year",
     )
-    invoice_record_ids = fields.One2many(
-        comodel_name='l10n.es.aeat.mod347.invoice_record',
-        inverse_name='partner_record_id', string='Invoice records',
+    move_record_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.mod347.move.record',
+        inverse_name='partner_record_id', string='Move records',
     )
     real_estate_record_ids = fields.Many2many(
         compute="_compute_real_estate_record_ids",
@@ -596,9 +546,8 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             self.partner_state_code = ''
 
     @api.multi
-    @api.depends('invoice_record_ids.invoice_id.date', 'report_id.year')
+    @api.depends('move_record_ids.move_id.date', 'report_id.year')
     def calculate_quarter_totals(self):
-
         def calc_amount_by_quarter(invoices, refunds, year, month_start):
             day_start = 1
             month_end = month_start + 2
@@ -611,22 +560,23 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             )
             return (
                 sum(invoices.filtered(
-                    lambda x: date_start <= x.invoice_id.date <= date_end
+                    lambda x: date_start <= x.move_id.date <= date_end
                 ).mapped('amount')) - sum(refunds.filtered(
-                    lambda x: date_start <= x.invoice_id.date <= date_end
+                    lambda x: date_start <= x.move_id.date <= date_end
                 ).mapped('amount'))
             )
 
         for record in self:
             year = record.report_id.year
-            invoices = record.invoice_record_ids.filtered(
+            invoices = record.move_record_ids.filtered(
                 lambda rec: (
-                    rec.invoice_id.type in ('out_invoice', 'in_invoice')
+                    rec.move_id.move_type in ('receivable', 'payable')
                 )
             )
-            refunds = record.invoice_record_ids.filtered(
+            refunds = record.move_record_ids.filtered(
                 lambda rec: (
-                    rec.invoice_id.type in ('out_refund', 'in_refund')
+                    rec.move_id.move_type in (
+                        'receivable_refund', 'payable_refund')
                 )
             )
             record.first_quarter = calc_amount_by_quarter(
@@ -655,7 +605,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                 datetime(year, month_end, day_end)
             )
             return sum(records.filtered(
-                lambda x: date_start <= x.invoice_id.date <= date_end
+                lambda x: date_start <= x.move_line_id.date <= date_end
             ).mapped('amount'))
 
         for record in self:
@@ -681,6 +631,58 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                 record.third_quarter_cash_amount,
                 record.fourth_quarter_cash_amount
             ])
+
+    @api.multi
+    def action_exception(self):
+        self.write({'state': 'exception'})
+
+    @api.multi
+    def action_confirm(self):
+        self.write({'state': 'confirmed'})
+
+    @api.multi
+    def action_send(self):
+        self.write({'state': 'sended'})
+        self.ensure_one()
+        template = self.env.ref(
+            'l10n_es_aeat_mod347.email_template_347', False)
+        compose_form = self.env.ref(
+            'mail.email_compose_message_wizard_form', False)
+        ctx = dict(
+            default_model='l10n.es.aeat.mod347.partner_record',
+            default_res_id=self.id,
+            default_use_template=bool(template),
+            default_template_id=template and template.id or False,
+            default_composition_mode='comment',
+            mark_invoice_as_sent=True,
+            force_email=True
+        )
+        return {
+            'name': _('Compose Email'),
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'mail.compose.message',
+            'views': [(compose_form.id, 'form')],
+            'view_id': compose_form.id,
+            'target': 'new',
+            'context': ctx,
+        }
+
+    @api.multi
+    def send_email_direct(self):
+        Mail = self.env['mail.compose.message']
+        for record in self:
+            wiz = record.action_send()
+            mail = Mail.with_context(wiz.get('context')).create({})
+            # TODO: correct template load.
+            # onchange_template_id(
+            #    self, template_id, composition_mode, model, res_id)
+            mail.send_mail_action()
+
+    @api.multi
+    def action_pending(self):
+        self.write({'state': 'pending'})
 
 
 class L10nEsAeatMod347RealStateRecord(models.Model):
@@ -776,9 +778,9 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
             self.partner_vat = ''
 
 
-class L10nEsAeatMod347InvoiceRecord(models.Model):
-    _name = 'l10n.es.aeat.mod347.invoice_record'
-    _description = 'Invoice Record'
+class L10nEsAeatMod347MoveRecord(models.Model):
+    _name = 'l10n.es.aeat.mod347.move.record'
+    _description = 'Move Record'
 
     @api.model
     def _default_partner_record(self):
@@ -786,20 +788,18 @@ class L10nEsAeatMod347InvoiceRecord(models.Model):
 
     partner_record_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod347.partner_record',
-        string='Partner record', required=True, ondelete="cascade", select=1,
+        string='Partner record', required=True, ondelete="cascade", index=True,
         default=_default_partner_record)
-    invoice_id = fields.Many2one(
-        comodel_name='account.invoice', string='Invoice', required=True,
+    move_id = fields.Many2one(
+        comodel_name='account.move', string='Move', required=True,
         ondelete="cascade")
-    invoice_type = fields.Selection(
-        related="invoice_id.type", readonly=True, store=True,
-    )
+
     date = fields.Date(
-        string='Date', related='invoice_id.date_invoice', store=True,
+        string='Date', related='move_id.date', store=True,
         readonly=True,
     )
     amount = fields.Float(
-        string='Amount', related="invoice_id.amount_total_wo_irpf", store=True,
+        string='Amount',
         readonly=True,
     )
 
@@ -815,7 +815,7 @@ class L10nEsAeatMod347CashRecord(models.Model):
 
     partner_record_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod347.partner_record',
-        string='Partner record', required=True, ondelete="cascade", select=1,
+        string='Partner record', required=True, ondelete="cascade", index=True,
         default=_default_partner_record)
     move_line_id = fields.Many2one(
         comodel_name='account.move.line', string='Account move line',

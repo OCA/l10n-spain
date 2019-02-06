@@ -88,7 +88,8 @@ Contributors
 * Acysos (http://www.acysos.com)
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Joaquín Gutierrez (http://gutierrezweb.es)
-* Angel Moya <odoo@tecnativa.com>
+* Angel Moya <angel.moya@pesol.es>
+* Albert Cabedo <albert@gafic.com>
 
 Maintainer
 ----------
