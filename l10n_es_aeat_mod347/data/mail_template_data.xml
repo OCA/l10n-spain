@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data noupdate="0">
+        <!--Email template -->
+        <record id="email_template_347" model="mail.template">
+            <field name="name">347</field>
+            <field name="email_from">${(object.user_id.email and '&quot;%s&quot; &lt;%s&gt;' % (object.user_id.name, object.user_id.email) or '')|safe}</field>
+            <field name="subject">Comprobación datos de 347 año ${object.report_id.year} ${user.company_id.name}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="347_partner"/>
+            <field name="report_name">347_details</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html" type="html">
+<div>
+<p>Estimado ${object.partner_id.name}
+</p>
+<p>
+  Le comunico que a efectos de comprobación del modelo 347:
+  </p>
+  <p>
+  Nuestros datos en dicha declaración son:<br/>
+  Nombre: ${object.report_id.company_id.name}<br/>
+  NIF: ${object.report_id.company_id.vat}<br/>
+  Provincia: ${object.report_id.company_id.state_id.name}<br/>
+  </p>
+  <p>
+  Los datos que vamos a declarar en relación a las operaciones habidas con su empresa son:<br/>
+  Nombre: ${object.partner_id.name}<br/>
+  NIF: ${object.partner_vat}<br/>
+  Código de país: ${object.partner_country_code}<br/>
+  Código de provincia: ${object.partner_state_code}<br/>
+  </p>
+  <p>
+  Tipo de operación: ${object.operation_key}
+  </p>
+
+  % if object.amount:
+  <p>
+  Importe de las operaciones ${object.amount}<br/>
+  Operaciones primer trimestre ${object.first_quarter}<br/>
+  Operaciones del segundo trimestre ${object.second_quarter}<br/>
+  Operaciones del tercer trimestre ${object.third_quarter}<br/>
+  Operaciones del cuarto trimestre ${object.fourth_quarter}<br/>
+  </p>
+  % endif
+  % if object.cash_amount:
+  <p>
+  Importe recibido en efectivo ${object.cash_amount}<br/>
+  Movimientos en efectivo del primer trimestre ${object.first_quarter_cash_amount}<br/>
+  Movimientos en efectivo del segundo trimestre ${object.second_quarter_cash_amount}<br/>
+  Movimientos en efectivo del tercer trimestre ${object.third_quarter_cash_amount}<br/>
+  Movimientos en efectivo del cuarto trimestre ${object.fourth_quarter_cash_amount}<br/>
+  </p>
+  % endif
+  % if object.real_estate_transmissions_amount:
+  <p>
+  Importe de transmisión de inmueble ${object.real_estate_transmissions_amount}<br/>
+  Inmuebles primer trimestre ${object.first_quarter_real_estate_transmission_amount}<br/>
+  Inmuebles del segundo trimestre ${object.second_quarter_real_estate_transmission_amount}<br/>
+  Inmuebles del tercer trimestre ${object.third_quarter_real_estate_transmission_amount}<br/>
+  Inmuebles del cuarto trimestre ${object.fourth_quarter_real_estate_transmission_amount}<br/>
+  </p>
+  % endif
+  <p>
+  En el documento adjunto se incluyen las facturas en base a las cuales se obtienen los importes anteriores.
+  </p>
+  <p>
+  Si los datos son correctos puede indicar su conformidad en el siguiente botón:
+  </p>
+  <p>
+  Para cualquier diferencia no dude en contactar con nosotros.
+  </p>
+<p style="color:#888888">
+% if user and user.signature:
+    ${user.signature | safe}
+% endif
+</p>
+</div></field>
+        </record>
+
+
+    </data>
+</odoo>
