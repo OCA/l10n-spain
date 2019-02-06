@@ -146,7 +146,7 @@ class AccountPaymentOrder(models.Model):
                 text += ciudad_pro.upper()
             ###################################################################
 
-            text = text.ljust(100)+'\n'
+            text += '\r\n'
             all_text += text
             self.num_lineas += 1
         return all_text
@@ -451,7 +451,7 @@ class AccountPaymentOrder(models.Model):
                 # 66 - 72 Libre
                 text += 7 * ' '
             ###################################################################
-            text = text.ljust(100)+'\n'
+            text += '\r\n'
             all_text += text
             self.num_lineas += 1
         return all_text
@@ -486,5 +486,5 @@ class AccountPaymentOrder(models.Model):
             # 66 - 72 Libre
             text += 7 * ' '
 
-            text = text.ljust(72)+'\n'
+            text += '\r\n'
             return text
