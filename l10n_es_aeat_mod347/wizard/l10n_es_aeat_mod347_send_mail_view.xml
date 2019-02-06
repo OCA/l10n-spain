@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="l10n_es_aeat_mod347_send_mail_wizard_view" model="ir.ui.view">
+            <field name="name">l10n.es.aeat.mod347.send.mail.wizard</field>
+            <field name="model">l10n.es.aeat.mod347.send.mail</field>
+            <field name="arch" type="xml">
+                <form string="Insert Password">
+                    <p>Are you sure you want to send email with 347 details to selected partners?</p>
+                    <footer>
+                        <button name="send_emails" type="object" string="Send" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                 </form>
+            </field>
+        </record>
+
+        <record id="l10n_es_aeat_mod347_send_mail_action" model="ir.actions.act_window">
+            <field name="name">Send Emails</field>
+            <field name="res_model">l10n.es.aeat.mod347.send.mail</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="l10n_es_aeat_mod347_send_mail_wizard_view"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record" />
+        </record>
+
+</odoo>
