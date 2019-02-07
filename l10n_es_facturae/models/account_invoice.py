@@ -242,7 +242,8 @@ class AccountInvoice(models.Model):
             ref = xmlsig.template.add_reference(
                 sign,
                 xmlsig.constants.TransformSha1,
-                name=reference_id
+                name=reference_id,
+                uri=""
             )
             xmlsig.template.add_transform(
                 ref,

@@ -30,7 +30,7 @@ Informacion sobre el formato:
 Instalación
 ===========
 
-Este módulo depende del módulo *account_payment_partner*, *account_banking_mandate* y sus 
+Este módulo depende del módulo *account_payment_partner*, *account_banking_mandate* y sus
 dependencias, que se encuentran en https://github.com/OCA/bank-payment.
 
 Para generar el archivo XML, hace falta el módulo *report_xml* que se encuentra
@@ -90,6 +90,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * Javi Melendez <javimelex@gmail.com>
 * Enric Tobella <etobella@creublanca.es>
+* Adrián Gómez <adrian.gomez@pesol.es>
 
 Maintainer
 ----------
