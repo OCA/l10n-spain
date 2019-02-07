@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-01 01:15+0000\n"
-"PO-Revision-Date: 2017-07-01 01:15+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-02-07 17:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_dua_sii
 #: model:ir.model,name:l10n_es_dua_sii.model_account_invoice
@@ -26,4 +27,4 @@ msgstr "Factura"
 #. module: l10n_es_dua_sii
 #: model:ir.model.fields,field_description:l10n_es_dua_sii.field_account_invoice_sii_dua_invoice
 msgid "SII DUA Invoice"
-msgstr ""
+msgstr "Factura DUA SII"
