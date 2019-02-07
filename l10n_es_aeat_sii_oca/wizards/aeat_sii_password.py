@@ -52,6 +52,7 @@ def pfx_to_crt(file, pfx_password, directory=None):
 
 class L10nEsAeatSiiPassword(models.TransientModel):
     _name = 'l10n.es.aeat.sii.password'
+    _description = 'Aeat SII password'
 
     password = fields.Char(string="Password", required=True)
     folder = fields.Char(string="Folder Name", required=True)
