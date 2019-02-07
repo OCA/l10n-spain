@@ -192,7 +192,7 @@
                 </filter>
                 <xpath expr="//group" position="inside">
                     <separator/>
-                    <filter string="SII error"
+                    <filter string="SII error" name="sii_error"
                             domain="[('sii_send_failed', '=', True)]"
                             context="{'group_by':'sii_send_error'}"
                     />
