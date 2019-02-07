@@ -7,6 +7,7 @@ from odoo import api, models, fields, _
 
 class L10nEsAeatSii(models.Model):
     _name = 'l10n.es.aeat.sii'
+    _description = 'Aeat SII'
 
     name = fields.Char(string="Name")
     state = fields.Selection([
