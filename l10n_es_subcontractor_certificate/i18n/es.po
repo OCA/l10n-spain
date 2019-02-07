@@ -7,21 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-13 08:40+0000\n"
-"PO-Revision-Date: 2015-01-13 09:43+0200\n"
-"Last-Translator: angel <angel.moya@domatix.com>\n"
+"PO-Revision-Date: 2019-02-07 17:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Domatix\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_subcontractor_certificate
 #: field:res.partner,certificate_expired_aeat:0
-#, fuzzy
 msgid "AEAT Certificate Expirated"
-msgstr "Fecha de certificado de AEAT"
+msgstr "Certificado de la AEAT expirado"
 
 #. module: l10n_es_subcontractor_certificate
 #: field:res.partner,certificate_expiration_aeat:0
@@ -50,9 +49,8 @@ msgstr "Pedido de compra"
 
 #. module: l10n_es_subcontractor_certificate
 #: field:res.partner,certificate_expired_ss:0
-#, fuzzy
 msgid "SS Certificate Expirated"
-msgstr "Fecha de certificado de Seguridad Social"
+msgstr "Certificado de la SS expirado"
 
 #. module: l10n_es_subcontractor_certificate
 #: field:res.partner,certificate_expiration_ss:0
