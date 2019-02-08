@@ -208,6 +208,11 @@ msgid "Boolean"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.map.tax.line,field_type:0
+msgid "Both"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,sum_type:0
 msgid "Both (Credit - Debit)"
 msgstr ""
@@ -914,7 +919,7 @@ msgid "Regular"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:162
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:168
 #, python-format
 msgid "Regularization"
 msgstr ""
@@ -1137,7 +1142,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:196
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:202
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr ""

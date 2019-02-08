@@ -30,6 +30,7 @@ class L10nEsAeatMapTaxLine(models.Model):
         selection=[
             ('base', 'Base'),
             ('amount', 'Amount'),
+            ('both', 'Both'),
         ],
         string="Field type",
         default='amount',
