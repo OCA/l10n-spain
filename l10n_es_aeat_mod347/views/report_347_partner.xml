@@ -58,10 +58,10 @@
                 </thead>
                 <tbody class="invoice_tbody">
                   <tr t-foreach="o.move_record_ids" t-as="l">
-                    <td><span t-field="l.move_id.name"/></td>
+                    <td><span t-esc="l.move_id.ref or l.move_id.name"/></td>
                     <td><span t-field="l.move_id.date"/></td>
                     <td class="text-right" id="subtotal">
-                      <span t-field="l.amount"/>
+                      <span t-field="l.amount_signed"/>
                     </td>
                   </tr>
                   <tr t-foreach="range(max(5-len(o.move_record_ids),0))" t-as="l">
@@ -111,7 +111,7 @@
                   <tr t-foreach="o.cash_record_ids" t-as="l">
                     <td><span t-field="l.date"/></td>
                     <td class="text-right" id="subtotal">
-                      <span t-field="l.amount"/>
+                      <span t-field="l.balance"/>
                     </td>
                   </tr>
                   <tr t-foreach="range(max(5-len(o.cash_record_ids),0))" t-as="l">
