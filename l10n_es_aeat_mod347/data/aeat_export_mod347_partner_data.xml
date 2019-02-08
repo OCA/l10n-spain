@@ -223,8 +223,8 @@
     <record id="aeat_mod347_partner_export_line_20" model="aeat.model.export.config.line">
         <field name="sequence">20</field>
         <field name="export_config_id" ref="aeat_mod347_partner_export_config"/>
-        <field name="name">Importe percibido por transmisiones de inmuebles sujates a Iva Primer Trimestre</field>
-        <field name="expression">${object.first_quarter_real_estate_transmission_amount}</field>
+        <field name="name">Importe percibido por transmisiones de inmuebles sujetas a Iva Primer Trimestre</field>
+        <field name="expression">${object.first_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="positive_sign"> </field>
@@ -253,7 +253,7 @@
         <field name="sequence">22</field>
         <field name="export_config_id" ref="aeat_mod347_partner_export_config"/>
         <field name="name">Importe percibido por transmisiones de inmuebles sujates a Iva Segundo Trimestre</field>
-        <field name="expression">${object.second_quarter_real_estate_transmission_amount}</field>
+        <field name="expression">${object.second_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="positive_sign"> </field>
@@ -282,7 +282,7 @@
         <field name="sequence">24</field>
         <field name="export_config_id" ref="aeat_mod347_partner_export_config"/>
         <field name="name">Importe percibido por transmisiones de inmuebles sujates a Iva Tercero Trimestre</field>
-        <field name="expression">${object.third_quarter_real_estate_transmission_amount}</field>
+        <field name="expression">${object.third_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="positive_sign"> </field>
@@ -311,7 +311,7 @@
         <field name="sequence">26</field>
         <field name="export_config_id" ref="aeat_mod347_partner_export_config"/>
         <field name="name">Importe percibido por transmisiones de inmuebles sujates a Iva Cuarto Trimestre</field>
-        <field name="expression">${object.fourth_quarter_real_estate_transmission_amount}</field>
+        <field name="expression">${object.fourth_quarter_real_estate_transmission}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="positive_sign"> </field>
