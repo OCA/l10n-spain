@@ -104,8 +104,14 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                                              'payable_refund')))
         if map_line.field_type == 'base':
             move_line_domain.append(('tax_ids', 'in', taxes.ids))
-        else:  # field_type == 'amount'
+        elif map_line.field_type == 'amount':
             move_line_domain.append(('tax_line_id', 'in', taxes.ids))
+        else:  # map_line.field_type == 'both'
+            move_line_domain += [
+                '|',
+                ('tax_line_id', 'in', taxes.ids),
+                ('tax_ids', 'in', taxes.ids)
+            ]
         if map_line.sum_type == 'debit':
             move_line_domain.append(('debit', '>', 0))
         elif map_line.sum_type == 'credit':
