@@ -33,7 +33,7 @@ class AccountPaymentOrder(models.Model):
             txt_file += self._pop_beneficiarios_conf_caix(line)
         txt_file += self._pop_totales_conf_caix(line, self.num_lineas)
         # return str.encode(txt_file, 'ascii'), self.name + '.CAX'
-        return txt_file.encode('ascii','ignore'), self.name + '.CAX'
+        return self.to_ascii(txt_file).encode('ascii','ignore'), self.name + '.CAX'
 
     def _pop_cabecera_conf_caix(self):
         """
@@ -173,7 +173,7 @@ class AccountPaymentOrder(models.Model):
         ]
         fixed_text = ''
         # 1 - 2: Código registro
-        fixed_text += '01'
+        fixed_text += '06'
         # 3 - 4: Codigo operación
         fixed_text += '56'
         # 5 - 14: NIF ordenante
