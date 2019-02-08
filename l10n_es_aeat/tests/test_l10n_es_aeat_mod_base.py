@@ -14,6 +14,18 @@ class TestL10nEsAeatModBase(common.TransactionCase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
+    # These 2 dictionaries below allows to define easily several taxes to apply
+    # to invoice lines through the methods _invoice_sale/purchase_create.
+    # The structure is:
+    # * One dictionary entry per invoice line.
+    # * The key of the entry will be the code of the tax.
+    # * You can duplicate invoice lines with the same tax using a suffix '//X',
+    #   being X any string.
+    # * You can include more than one tax in the same invoice line, splitting
+    #   each tax code by a comma.
+    # * The value of the entry will be a list, being the first element of the
+    #   the list, the price_unit amount. The rest of the elements can be for
+    #   reference, but not used, like the tax amount in second position.
     taxes_sale = {}
     taxes_purchase = {}
     taxes_result = {}
@@ -72,7 +84,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 line.field_number, line.amount)
             self._print_move_lines(line.move_line_ids)
 
-    def _invoice_sale_create(self, dt):
+    def _invoice_sale_create(self, dt, extra_vals=None):
         data = {
             'company_id': self.company.id,
             'partner_id': self.customer.id,
@@ -89,25 +101,33 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             if self.debug:
                 _logger.debug('%14s %9s' % (desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
-            desc = desc.split('//')[0]
-            tax = self.env['account.tax'].search([
-                ('company_id', '=', self.company.id),
-                ('description', '=', desc),
-            ])
-            data['invoice_line_ids'].append((0, 0, {
-                'name': 'Test for tax %s' % desc,
+            descs = desc.split('//')[0]
+            line_data = {
+                'name': 'Test for tax(es) %s' % descs,
                 'account_id': self.accounts['700000'].id,
                 'price_unit': values[0],
                 'quantity': 1,
-                'invoice_line_tax_ids': [(6, 0, [tax.id])],
-            }))
+                'invoice_line_tax_ids': [],
+            }
+            for desc in descs.split(','):
+                tax = self.env['account.tax'].search([
+                    ('company_id', '=', self.company.id),
+                    ('description', '=', desc),
+                ])
+                if tax:
+                    line_data['invoice_line_tax_ids'].append((4, tax.id))
+                else:
+                    _logger.error("Tax not found: {}".format(desc))
+            data['invoice_line_ids'].append((0, 0, line_data))
+        if extra_vals:
+            data.update(extra_vals)
         inv = self.env['account.invoice'].sudo(self.billing_user).create(data)
         inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
         return inv
 
-    def _invoice_purchase_create(self, dt):
+    def _invoice_purchase_create(self, dt, extra_vals=None):
         data = {
             'company_id': self.company.id,
             'partner_id': self.supplier.id,
@@ -124,20 +144,26 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             if self.debug:
                 _logger.debug('%14s %9s' % (desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
-            desc = desc.split('//')[0]
-            tax = self.env['account.tax'].search([
-                ('company_id', '=', self.company.id),
-                ('description', '=', desc),
-            ])
-            if not tax:
-                _logger.error("Tax not found: {}".format(desc))
-            data['invoice_line_ids'].append((0, 0, {
-                'name': 'Test for tax %s' % tax,
+            descs = desc.split('//')[0]
+            line_data = {
+                'name': 'Test for tax(es) %s' % descs,
                 'account_id': self.accounts['600000'].id,
                 'price_unit': values[0],
                 'quantity': 1,
-                'invoice_line_tax_ids': [(6, 0, [tax.id])],
-            }))
+                'invoice_line_tax_ids': [],
+            }
+            for desc in descs.split(','):
+                tax = self.env['account.tax'].search([
+                    ('company_id', '=', self.company.id),
+                    ('description', '=', desc),
+                ])
+                if tax:
+                    line_data['invoice_line_tax_ids'].append((4, tax.id))
+                else:
+                    _logger.error("Tax not found: {}".format(desc))
+            data['invoice_line_ids'].append((0, 0, line_data))
+        if extra_vals:
+            data.update(extra_vals)
         inv = self.env['account.invoice'].sudo(self.billing_user).create(data)
         inv.action_invoice_open()
         if self.debug:
@@ -175,6 +201,12 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             'name': 'Test journal for miscellanea',
             'type': 'general',
             'code': 'TMISC',
+        })
+        self.journal_cash = self.env['account.journal'].create({
+            'company_id': self.company.id,
+            'name': 'Test journal for cash',
+            'type': 'cash',
+            'code': 'TCSH',
         })
         return True
 
