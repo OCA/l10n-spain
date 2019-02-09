@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2012 NaN·Tic  (http://www.nan-tic.com)
 # Copyright 2013 Acysos (http://www.acysos.com)
@@ -10,7 +11,7 @@
 
 {
     'name': "AEAT modelo 347",
-    'version': "11.0.1.0.0",
+    'version': "10.0.1.0.0",
     'author': "Tecnativa,"
               "PESOL,"
               "Odoo Community Association (OCA)",
@@ -21,7 +22,6 @@
         "account_tax_balance",
         "base_vat",
         "l10n_es_aeat",
-        "portal",
     ],
     'data': [
         "data/aeat_export_mod347_partner_data.xml",

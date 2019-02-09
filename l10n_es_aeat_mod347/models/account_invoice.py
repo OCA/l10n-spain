@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -20,7 +21,7 @@ class AccountInvoice(models.Model):
 
     def action_move_create(self):
         """Propagate `not_in_347` field to the account move."""
-        res = super().action_move_create()
+        res = super(AccountInvoice, self).action_move_create()
         self.filtered('not_in_mod347').mapped('move_id').write({
             'not_in_mod347': True,
         })

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2012 NaN·Tic  (http://www.nan-tic.com)
 # Copyright 2013 Acysos (http://www.acysos.com)
@@ -323,7 +324,7 @@ class L10nEsAeatMod347Report(models.Model):
 
 class L10nEsAeatMod347PartnerRecord(models.Model):
     _name = 'l10n.es.aeat.mod347.partner_record'
-    _inherit = ['mail.thread', 'mail.activity.mixin', 'portal.mixin']
+    _inherit = 'mail.thread'
     _description = 'Partner Record'
     _rec_name = "partner_vat"
 
@@ -589,9 +590,9 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         }
 
     def button_print(self):
-        return self.env.ref(
-            'l10n_es_aeat_mod347.347_partner'
-        ).report_action(self)
+        return self.env['report'].get_action(
+            self, 'l10n_es_aeat_mod347.report_347_partner',
+        )
 
     def button_recompute(self):
         self.ensure_one()
@@ -618,7 +619,9 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         """Add the invoicing partner to the suggested recipients sending an
         email.
         """
-        recipients = super().message_get_suggested_recipients()
+        recipients = super(
+            L10nEsAeatMod347PartnerRecord, self,
+        ).message_get_suggested_recipients()
         partner_obj = self.env['res.partner']
         for record in self:
             partner = partner_obj.browse(
