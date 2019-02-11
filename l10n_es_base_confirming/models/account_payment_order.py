@@ -28,12 +28,12 @@ class AccountPaymentOrder(models.Model):
                      'ë', 'ï', 'ö', 'ü', 'â', 'ê', 'î', 'ô', 'û', 'Á', 'É',
                      'Í', 'Ú', 'Ó', 'À', 'È', 'Ì', 'Ò', 'Ù', 'Ä', 'Ë', 'Ï',
                      'Ö', 'Ü', 'Â', 'Ê', 'Î', 'Ô', 'Û', 'ñ', 'Ñ', 'ç', 'Ç',
-                     'ª', 'º', '·', '\n']
+                     'ª', 'º', '·']
         new_chars = ['a', 'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'a',
                      'e', 'i', 'o', 'u', 'a', 'e', 'i', 'o', 'u', 'A', 'E',
                      'I', 'U', 'O', 'A', 'E', 'I', 'O', 'U', 'A', 'E', 'I',
                      'O', 'U', 'A', 'E', 'I', 'O', 'U', 'n', 'N', 'c', 'C',
-                     'a', 'o', '.', ' ']
+                     'a', 'o', '.']
         for old, new in zip(old_chars, new_chars):
             text = text.replace(old, new)
         return text
