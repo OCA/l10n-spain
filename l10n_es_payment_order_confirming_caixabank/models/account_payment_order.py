@@ -2,7 +2,7 @@
 # (c) 2018 Comunitea Servicios Tecnológicos - Javier Colmenero
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import models, api, _
+from odoo import models, api, _, fields
 from odoo.exceptions import UserError
 from datetime import date
 
@@ -194,12 +194,8 @@ class AccountPaymentOrder(models.Model):
             text += fixed_text
             # 27 - 29 Numero de dato
             text += tipo_dato
-
             # Supongo que en el confirming siempre hay una factura
             invoice = line.payment_line_ids[0].move_line_id.invoice_id
-            if not invoice:
-                raise UserError(_(
-                    'No existe factura relacionada con la línea de pago'))
 
             # LÍNEA 1
             ###################################################################
@@ -375,16 +371,12 @@ class AccountPaymentOrder(models.Model):
                     mes = fecha_factura[4:6]
                     ano = fecha_factura[2:4]
                     fecha_factura = dia + mes + ano
+                else:
+                    fecha_factura = fields.Date.from_string(line.payment_line_ids[0].move_line_id.date).strftime('%d%m%y')
                 text += fecha_factura
 
                 # 37 - 51: Número factura
-                if invoice:
-                    referencia_factura = invoice.reference.replace('-', '')
-                    if not invoice.reference:
-                        raise UserError(
-                            _("Error: La factura %s no tiene establecida\
-                               la referencia de proveedor.") % invoice.number)
-                    text += self.strim_txt(referencia_factura, 15)
+                text += self.strim_txt(line.communication, 15)
 
                 # 52 - 57: Fecha de vencimiento
                 fecha_vencimiento = line.date.replace('-', '')
