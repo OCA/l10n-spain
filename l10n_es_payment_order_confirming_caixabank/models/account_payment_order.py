@@ -387,12 +387,7 @@ class AccountPaymentOrder(models.Model):
                     text += self.strim_txt(referencia_factura, 15)
 
                 # 52 - 57: Fecha de vencimiento
-                fecha_vencimiento = 6 * ' '
-                if not self.post_financing_date:
-                    raise UserError(
-                        _("Error: La fecha de post financiación no está \
-                           establecida"))
-                fecha_vencimiento = self.post_financing_date.replace('-', '')
+                fecha_vencimiento = line.date.replace('-', '')
                 dia = fecha_vencimiento[6:]
                 mes = fecha_vencimiento[4:6]
                 ano = fecha_vencimiento[2:4]
