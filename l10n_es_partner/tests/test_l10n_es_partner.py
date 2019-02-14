@@ -61,3 +61,9 @@ class TestL10nEsPartner(common.SavepointCase):
         self.assertEqual(
             partner2.display_name, 'Nuevo nombre (Empresa de prueba)',
         )
+        names = dict(partner2.with_context(
+            no_display_commercial=True).name_get())
+        self.assertEqual(names.get(partner2.id), 'Empresa de prueba')
+        names = dict(partner2.name_get())
+        self.assertEqual(
+            names.get(partner2.id), 'Nuevo nombre (Empresa de prueba)')

@@ -63,7 +63,10 @@ class ResPartner(models.Model):
         result = []
         name_pattern = self.env['ir.config_parameter'].sudo().get_param(
             'l10n_es_partner.name_pattern', default='')
-        orig_name = dict(super(ResPartner, self).name_get())
+        origin = super(ResPartner, self).name_get()
+        if self.env.context.get('no_display_commercial', False):
+            return origin
+        orig_name = dict(origin)
         for partner in self:
             name = orig_name[partner.id]
             comercial = partner.comercial

@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2018-02-26 12:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-02-05 14:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
@@ -26,7 +27,7 @@ msgstr "Banco"
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__create_uid
@@ -52,7 +53,7 @@ msgstr "ID (identificación)"
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard__import_fail
 msgid "Import Fail"
-msgstr ""
+msgstr "Importación Fallida"
 
 #. module: l10n_es_partner
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
@@ -65,7 +66,7 @@ msgid "Import from local file"
 msgstr "Importar desde el archivo local"
 
 #. module: l10n_es_partner
-#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:47
+#: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:52
 #: model:ir.actions.act_window,name:l10n_es_partner.action_l10n_es_partner_import
 #: model_terms:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format
