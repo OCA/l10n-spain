@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2019-01-26 13:41+0000\n"
+"PO-Revision-Date: 2019-02-16 09:50+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:112
@@ -583,7 +583,7 @@ msgstr "Última actualització a"
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record_representative_vat
 msgid "Legal Representative VAT number"
-msgstr "NIF del representant legal."
+msgstr "NIF del representant legal"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_representative_vat
@@ -795,6 +795,9 @@ msgid ""
 "color:\n"
 "\n"
 msgstr ""
+"Si us plau, revisi els registres d'empresa i immobles, alguns estan en "
+"vermell:\n"
+"\n"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record_portal
@@ -809,12 +812,12 @@ msgstr "Codi Postal"
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Comptabilitzat"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_previous_number
 msgid "Previous declaration number"
-msgstr ""
+msgstr "No previ de declaració"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,state:0
@@ -833,9 +836,8 @@ msgstr "Import T.I."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_real_estate_amount
-#, fuzzy
 msgid "Real Estate Amount"
-msgstr "Registre d'immoble"
+msgstr "Import immoble"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_estate_record
@@ -862,9 +864,8 @@ msgstr "Import transmissió immoble (T1|T2|T3|T4)"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_real_estate_transmissions_amount
-#, fuzzy
 msgid "Real Estate Transmissions Amount"
-msgstr "Import transmissió immoble"
+msgstr "Import de transmissions d'immobles"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
@@ -889,13 +890,12 @@ msgstr "Informació Immobles"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:129
-#, fuzzy, python-format
+#, python-format
 msgid "Real estate record errors:\n"
-msgstr "Registres d'immobles"
+msgstr "Errors de registres d'immobles:\n"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_real_estate_records
-#, fuzzy
 msgid "Real estate records"
 msgstr "Registres d'immobles"
 
@@ -912,38 +912,38 @@ msgstr "Import rebut en metàl·lic"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
 msgid "Record"
-msgstr ""
+msgstr "Registre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_check_ok
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record_check_ok
 msgid "Record is OK"
-msgstr ""
+msgstr "Registre correcte"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_related_goods_operation
 msgid "Related Goods Operation"
-msgstr ""
+msgstr "Operació de mercaderies fora de duana"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador de l'informe"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_second_quarter_cash_amount
 msgid "Second quarter cash movements"
-msgstr ""
+msgstr "Moviments en efectiu del segon trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_second_quarter
 msgid "Second quarter operations"
-msgstr ""
+msgstr "Operacions del segon trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_second_quarter_real_estate_transmission_amount
 msgid "Second quarter real estate"
-msgstr ""
+msgstr "Immobles del segon trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_bussiness_real_estate_rent
@@ -967,9 +967,8 @@ msgstr "Escala"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_date_start
-#, fuzzy
 msgid "Starting date"
-msgstr "Data de càlcul"
+msgstr "Data inicial"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_state
@@ -1010,7 +1009,7 @@ msgstr "Tipus de suport:"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_tax_person_operation
 msgid "Taxable Person Operation"
-msgstr ""
+msgstr "Operació subjecte passiu"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.report,support_type:0
@@ -1023,8 +1022,8 @@ msgid ""
 "The declaration will include partners from which we received payments, on "
 "behalf of third parties, over this limit"
 msgstr ""
-"La declaració inclourà les empreses que la seva suma d'operacions superi "
-"aquest límit."
+"La declaració inclourà les empreses a les que hem realitzat cobraments a "
+"compte de tercers superiors al límit"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_operations_limit
@@ -1033,27 +1032,29 @@ msgid ""
 "limit"
 msgstr ""
 "La declaració inclourà les empreses que la suma d'operacions superi aquest "
-"límit."
+"límit"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_received_cash_limit
 msgid "The declaration will show the total of cash operations over this limit"
 msgstr ""
+"La declaració mostrarà el total d'operacions en efectiu per sobre d'aquest "
+"límit"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_third_quarter_cash_amount
 msgid "Third quarter cash movements"
-msgstr ""
+msgstr "Moviments en efectiu del tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_third_quarter
 msgid "Third quarter operations"
-msgstr ""
+msgstr "Operacions del tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_third_quarter_real_estate_transmission_amount
 msgid "Third quarter real estate"
-msgstr ""
+msgstr "Immobles del tercer trimestre"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_counterpart_account_id
@@ -1061,79 +1062,105 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
+"Aquest compte serà la contrapartida per a tots els elements del diari que "
+"estiguin regularitzats al comptabilitzar l'informe."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_first_quarter_cash_amount
 msgid "Total amount of first quarter cash movements for this partner"
 msgstr ""
+"Import total dels moviments en efectiu del primer trimestre per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_first_quarter
 msgid ""
 "Total amount of first quarter in, out and refund invoices for this partner"
 msgstr ""
+"Import total del primer trimestre en les factures d'abonament per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_first_quarter_real_estate_transmission_amount
 msgid ""
 "Total amount of first quarter real estate transmissions for this partner"
 msgstr ""
+"Import total de transmissions immobiliàries del primer trimestre per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_fourth_quarter_cash_amount
 msgid "Total amount of fourth quarter cash movements for this partner"
 msgstr ""
+"Import total dels moviments en efectiu del quart trimestre per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_fourth_quarter
 msgid ""
 "Total amount of fourth quarter in, out and refund invoices for this partner"
 msgstr ""
+"Import total del quart trimestre de les factures de vendes, compres i "
+"abonaments per aquesta empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_fourth_quarter_real_estate_transmission_amount
 msgid ""
 "Total amount of fourth quarter real estate transmissions for this partner"
 msgstr ""
+"Import total del quart trimestre de les transmissions d'immobles per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_second_quarter_cash_amount
 msgid "Total amount of second quarter cash movements for this partner"
 msgstr ""
+"Import total del segon trimestre dels moviments en efectiu per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_second_quarter
 msgid ""
 "Total amount of second quarter in, out and refund invoices for this partner"
 msgstr ""
+"Import total del segon trimestre de les factures de venda, compra i "
+"abonaments per aquesta empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_second_quarter_real_estate_transmission_amount
 msgid ""
 "Total amount of second quarter real estate transmissions for this partner"
 msgstr ""
+"Import total del segon trimestre de les transmissions d'immobles per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_third_quarter_cash_amount
 msgid "Total amount of third quarter cash movements for this partner"
 msgstr ""
+"Import total del tercer trimestre dels moviments en efectiu per aquesta "
+"empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_third_quarter
 msgid ""
 "Total amount of third quarter in, out and refund invoices for this partner"
 msgstr ""
+"Import total del tercer trimestre de les factures de venda, compra i "
+"abonaments per aquesta empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_third_quarter_real_estate_transmission_amount
 msgid ""
 "Total amount of third quarter real estate transmissions for this partner"
 msgstr ""
+"Import total del tercer trimestre de les transmissions d'immobles per "
+"aquesta empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_invoice_amount_total_wo_irpf
 msgid "Total amount without IRPF taxes"
-msgstr ""
+msgstr "Import total sense IRPF"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record_township
@@ -1148,7 +1175,7 @@ msgstr "Codi de municipi"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_invoice_record_invoice_type
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: l10n_es_aeat_mod347
 #: report:report_l10n_es_aeat_mod347.report:0
@@ -1168,6 +1195,7 @@ msgid ""
 "VAT number for professionals established in other state member without "
 "national VAT"
 msgstr ""
+"NIE de professionals establerts en altres països membres sense NIF nacional"
 
 #. module: l10n_es_aeat_mod347
 #: selection:l10n.es.aeat.mod347.real_estate_record,number_type:0
