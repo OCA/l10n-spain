@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 00:00+0000\n"
-"PO-Revision-Date: 2018-07-09 13:40+0000\n"
+"PO-Revision-Date: 2019-02-16 09:50+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.ui.view,arch_db:l10n_es_aeat_sii.view_company_sii_form
@@ -187,6 +187,8 @@ msgid ""
 "Check to confirm that the invoice has an absolute amount greater o equal to "
 "100 000 000,00 euros."
 msgstr ""
+"Marcar per confirmar que aquesta factura te un valor absolut igual o "
+"superior a 100 000 000,00 euros."
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_partner_sii_simplified_invoice
@@ -250,7 +252,7 @@ msgstr "Creat el"
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1344
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
-msgstr ""
+msgstr "Actualment no hi ha suport per a múltiples causes d'exempció."
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_map_date_from
@@ -480,7 +482,7 @@ msgstr "Carregar Certificat"
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_account_invoice_sii_macrodata
 msgid "MacroData"
-msgstr ""
+msgstr "MacroData"
 
 #. module: l10n_es_aeat_sii
 #: selection:res.company,sii_description_method:0
