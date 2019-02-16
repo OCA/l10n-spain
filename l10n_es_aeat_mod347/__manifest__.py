@@ -10,7 +10,7 @@
 
 {
     'name': "AEAT modelo 347",
-    'version': "11.0.1.0.0",
+    'version': "12.0.1.0.0",
     'author': "Tecnativa,"
               "PESOL,"
               "Odoo Community Association (OCA)",
@@ -20,6 +20,7 @@
     'depends': [
         "account_tax_balance",
         "base_vat",
+        "l10n_es",
         "l10n_es_aeat",
         "portal",
     ],
