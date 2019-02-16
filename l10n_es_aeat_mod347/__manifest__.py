@@ -20,6 +20,7 @@
     'depends': [
         "account_tax_balance",
         "base_vat",
+        "l10n_es",
         "l10n_es_aeat",
         "portal",
     ],
