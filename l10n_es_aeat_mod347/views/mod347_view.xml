@@ -168,7 +168,7 @@
                 <filter name="filter_exception" string="Records in exception" domain="[('state', '=', 'exception')]"/>
                 <separator/>
                 <group  expand='0' string='Group by...'>
-                   <filter string='Operation key' domain="[]" context="{'group_by' : 'operation_key'}"/>
+                   <filter name="operation_key_group" string='Operation key' domain="[]" context="{'group_by' : 'operation_key'}"/>
                 </group>
             </search>
         </field>

@@ -11,7 +11,7 @@
 from odoo import fields, models, api, exceptions, _
 
 import re
-from datetime import datetime
+import datetime
 from calendar import monthrange
 import odoo.addons.decimal_precision as dp
 from .spanish_states_mapping import SPANISH_STATES
@@ -507,12 +507,8 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             day_start = 1
             month_end = month_start + 2
             day_end = monthrange(year, month_end)[1]
-            date_start = fields.Date.to_string(
-                datetime(year, month_start, day_start)
-            )
-            date_end = fields.Date.to_string(
-                datetime(year, month_end, day_end)
-            )
+            date_start = datetime.date(year, month_start, day_start)
+            date_end = datetime.date(year, month_end, day_end)
             return (
                 sum(invoices.filtered(
                     lambda x: date_start <= x.move_id.date <= date_end
