@@ -1,6 +1,6 @@
 # Copyright 2018 Eficent Business and IT Consulting Services, S.L.
 #                <contact@eficent.com>
-# Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2018-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
@@ -12,9 +12,10 @@
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-spain',
     'category': 'Reporting',
-    'version': '11.0.2.2.0',
+    'version': '12.0.1.0.0',
     'license': 'AGPL-3',
     'depends': [
+        'l10n_es',
         'mis_builder',  # OCA/mis-builder
     ],
     'data': [
