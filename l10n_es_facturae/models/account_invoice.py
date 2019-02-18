@@ -184,13 +184,15 @@ class AccountInvoice(models.Model):
             if len(self.mandate_id.partner_bank_id.acc_number) < 5:
                 raise ValidationError(_('Mandate account is too small'))
         else:
-            if not self.partner_bank_id:
+            bank = self.partner_banks_to_show()
+            if not bank and self.payment_mode_id.facturae_code == '04':
                 raise ValidationError(_('Partner bank is missing'))
-            if self.partner_bank_id.bank_id.bic and len(
-                    self.partner_bank_id.bank_id.bic) != 11:
-                raise ValidationError(_('Selected account BIC must be 11'))
-            if len(self.partner_bank_id.acc_number) < 5:
-                raise ValidationError(_('Selected account is too small'))
+            if bank:
+                bank = bank[0]
+                if bank.bank_id.bic and len(bank.bank_id.bic) != 11:
+                    raise ValidationError(_('Selected account BIC must be 11'))
+                if len(bank.acc_number) < 5:
+                    raise ValidationError(_('Selected account is too small'))
         if self.state not in self._get_valid_invoice_statuses():
             raise ValidationError(_('You can only create Factura-E files for '
                                     'invoices that have been validated.'))
