@@ -77,6 +77,7 @@ class L10nEsAeatMod347Report(models.Model):
 
         Create from income (from supplier) invoices
         """
+        vals = vals.copy()
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
         record = False
         vals['operation_key'] = 'A'
@@ -96,6 +97,7 @@ class L10nEsAeatMod347Report(models.Model):
 
         Create from outcome (from customer) invoices and cash movements
         """
+        vals = vals.copy()
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
         cash_record_obj = self.env['l10n.es.aeat.mod347.cash_record']
         records = []
