@@ -120,7 +120,7 @@ class AccountInvoiceIntegration(models.Model):
             )
             anexos_list = []
             if self.integration_id.attachment_ids:
-                for attachment in self.attachment_ids:
+                for attachment in self.integration_id.attachment_ids:
                     anexo = client.get_type('ns0:AnexoFile')(
                         attachment.datas,
                         attachment.datas_fname,
