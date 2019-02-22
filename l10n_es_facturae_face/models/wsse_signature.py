@@ -183,9 +183,10 @@ def _verify_envelope_with_key(envelope, key):
 
     security = header.find(QName(ns.WSSE, 'Security'))
     signature = security.find(QName(ns.DS, 'Signature'))
-
+    key_text = security.find(QName(ns.WSSE, 'BinarySecurityToken')).text
+    key = xmlsec.Key.from_memory(base64.b64decode(key_text),
+                                 xmlsec.KeyFormat.CERT_DER, None)
     ctx = xmlsec.SignatureContext()
-
     # Find each signed element and register its ID with the signing context.
     refs = signature.xpath(
         'ds:SignedInfo/ds:Reference', namespaces={'ds': ns.DS})
@@ -199,7 +200,6 @@ def _verify_envelope_with_key(envelope, key):
         ctx.register_id(referenced, 'Id', ns.WSU)
 
     ctx.key = key
-
     try:
         ctx.verify(signature)
     except xmlsec.Error:
