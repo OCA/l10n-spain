@@ -145,8 +145,7 @@ class AccountAssetAsset(models.Model):
             # Caso especial de cálculo que cambia
             # Debemos considerar también las cantidades ya depreciadas
             depreciated_amount = 0
-            depr_lin_obj = self.env['account.asset.depreciation.line']
-            for line in depr_lin_obj.browse(posted_depreciation_line_ids):
+            for line in posted_depreciation_line_ids:
                 depreciated_amount += line.amount
             amount = (amount_to_depr + depreciated_amount) \
                 / self.method_number
