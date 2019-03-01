@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-01 14:50+0000\n"
-"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"PO-Revision-Date: 2019-03-01 10:52+0000\n"
 "Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:141
 #, python-format
 msgid "%s_report_%s.txt"
-msgstr "%s_report_%s.txt"
+msgstr "'%s_report_%s.txt'"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:102
@@ -164,7 +164,7 @@ msgstr "Aplicar signo"
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 msgid "Aquí está el archivo BOE de la AEAT exportado:"
-msgstr "Aquí está el archivo BOE de la AEAT exportado:"
+msgstr "Archivo BOE de la AEAT exportado:"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_export_config
@@ -215,7 +215,7 @@ msgstr "Booleano"
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,field_type:0
 msgid "Both"
-msgstr ""
+msgstr "Ambos"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,sum_type:0
