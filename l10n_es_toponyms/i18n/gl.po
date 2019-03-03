@@ -20,62 +20,58 @@ msgstr ""
 "X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from GeoNames"
 msgstr "Configurar desde GeoNames"
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
-msgid "Configure from local"
-msgstr "Configurar desde local"
-
-#. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_uid
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_create_date
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_date
 msgid "Created on"
 msgstr "Creado o"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_display_name
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__display_name
 msgid "Display Name"
 msgstr "Display Name"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_id
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_toponyms
-#: model:ir.model,name:l10n_es_toponyms.model_better_zip_geonames_import
-msgid "Import Better Zip from Geonames"
+#: model:ir.model,name:l10n_es_toponyms.model_city_zip_geonames_import
+#, fuzzy
+msgid "Import City Zips from Geonames"
 msgstr "Importar CPs de GeoNames"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms___last_update
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
 msgid "Last Modified on"
 msgstr "Modificado por última vez o"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_uid
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_uid
 msgid "Last Updated by"
 msgstr "Derradeira actualización feita por"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_date
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__write_date
 msgid "Last Updated on"
 msgstr "Actualizado por derradeira vez o"
 
 #. module: l10n_es_toponyms
-#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_name
+#: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__name
 msgid "Name"
 msgstr "Nome"
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Spanish cities configuration"
 msgstr "Configuración de cidades españolas"
 
@@ -85,14 +81,14 @@ msgid "Spanish toponyms configuration"
 msgstr "Configuración dos topónimos españois"
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "This wizard will add city and state information to zip codes"
 msgstr ""
 "Este asistente engadirá a información de cidade e provincia aos códigos "
 "postais"
 
 #. module: l10n_es_toponyms
-#: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid ""
 "Warning! Adding this bunch of records can take a lot of time. If you are "
 "behind a SSL proxy, check your timeout."
@@ -104,3 +100,6 @@ msgstr ""
 #: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
 msgid "config.es.toponyms"
 msgstr "'config.es.toponyms'"
+
+#~ msgid "Configure from local"
+#~ msgstr "Configurar desde local"
