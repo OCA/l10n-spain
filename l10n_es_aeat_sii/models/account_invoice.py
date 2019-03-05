@@ -708,12 +708,12 @@ class AccountInvoice(models.Model):
         gen_type = self._get_sii_gen_type()
         partner = self.partner_id.commercial_partner_id
         country_code = self._get_sii_country_code()
-        if partner.sii_simplified_invoice and self.type[:2] == 'in':
+        if partner.simplified_invoice and self.type[:2] == 'in':
             raise exceptions.Warning(
                 _("You can't make a supplier simplified invoice.")
             )
         if ((gen_type != 3 or country_code == 'ES') and
-                not partner.vat and not partner.sii_simplified_invoice):
+                not partner.vat and not partner.simplified_invoice):
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
@@ -780,7 +780,7 @@ class AccountInvoice(models.Model):
         if not cancel:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
-            if partner.sii_simplified_invoice:
+            if partner.simplified_invoice:
                 tipo_factura = 'R5' if self.type == 'out_refund' else 'F2'
             else:
                 tipo_factura = 'R4' if self.type == 'out_refund' else 'F1'
@@ -812,7 +812,7 @@ class AccountInvoice(models.Model):
                     }
                 }
             exp_dict = inv_dict['FacturaExpedida']
-            if not partner.sii_simplified_invoice:
+            if not partner.simplified_invoice:
                 # Simplified invoices don't have counterpart
                 exp_dict["Contraparte"] = {
                     "NombreRazon": partner.name[0:120],
@@ -1267,7 +1267,7 @@ class AccountInvoice(models.Model):
             int: 1 (National), 2 (Intracom), 3 (Export)
         """
         self.ensure_one()
-        partner_ident = self.fiscal_position_id.sii_partner_identification_type
+        partner_ident = self.fiscal_position_id.partner_identification_type
         if partner_ident:
             res = int(partner_ident)
         elif self.fiscal_position_id.name == u'Régimen Intracomunitario':

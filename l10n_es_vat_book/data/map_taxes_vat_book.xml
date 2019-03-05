@@ -173,4 +173,38 @@
         ])]"/>
         <field name="name">SuministroFactRecibidas No Deducible</field>
     </record>
+
+    <record id="aeat_vat_book_map_line_SFRETENCIONES" model="l10n.es.aeat.map.tax.line">
+        <field name="field_number">15</field>
+        <field name="map_parent_id" ref="aeat_vat_book_map"/>
+        <field name="tax_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_irpf1'),
+            ref('l10n_es.account_tax_template_p_irpf15'),
+            ref('l10n_es.account_tax_template_p_irpf18'),
+            ref('l10n_es.account_tax_template_p_irpf19'),
+            ref('l10n_es.account_tax_template_p_irpf19a'),
+            ref('l10n_es.account_tax_template_p_irpf195a'),
+            ref('l10n_es.account_tax_template_p_irpf2'),
+            ref('l10n_es.account_tax_template_p_irpf20'),
+            ref('l10n_es.account_tax_template_p_irpf20a'),
+            ref('l10n_es.account_tax_template_p_irpf21a'),
+            ref('l10n_es.account_tax_template_p_irpf21p'),
+            ref('l10n_es.account_tax_template_p_irpf7'),
+            ref('l10n_es.account_tax_template_p_irpf9'),
+            ref('l10n_es.account_tax_template_s_irpf1'),
+            ref('l10n_es.account_tax_template_s_irpf15'),
+            ref('l10n_es.account_tax_template_s_irpf18'),
+            ref('l10n_es.account_tax_template_s_irpf19'),
+            ref('l10n_es.account_tax_template_s_irpf19a'),
+            ref('l10n_es.account_tax_template_s_irpf195a'),
+            ref('l10n_es.account_tax_template_s_irpf2'),
+            ref('l10n_es.account_tax_template_s_irpf20'),
+            ref('l10n_es.account_tax_template_s_irpf20a'),
+            ref('l10n_es.account_tax_template_s_irpf21a'),
+            ref('l10n_es.account_tax_template_s_irpf21'),
+            ref('l10n_es.account_tax_template_s_irpf7'),
+            ref('l10n_es.account_tax_template_s_irpf9'),
+        ])]"/>
+        <field name="name">SuministroFact Retenciones</field>
+    </record>
 </odoo>

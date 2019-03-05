@@ -76,7 +76,6 @@
                 <td class="text-right" id="detail_base">Base</td>
                 <td id="detail_tax">Tax</td>
                 <td class="text-right" id="detail_fee">Fee</td>
-                <td class="text-right" id="detail_total">Total</td>
             </tr>
         </thead>
     </template>
@@ -129,10 +128,6 @@
                       <span t-field="tax.tax_amount"
                             t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
                   </td>
-                  <td class="text-right" id="data_tax_total_amount">
-                      <span t-field="tax.total_amount"
-                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
-                  </td>
               </tr>
           </t>
           <t t-if="number_taxes == 0">
@@ -146,10 +141,6 @@
               <td class="text-right" id="data_tax_amount_first">
                   <span t-field="tax.tax_amount"
                         t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
-              </td>
-              <td class="text-right" id="data_tax_total_amount">
-                  <span t-field="tax.total_amount"
-                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
               </td>
           </t>
           <t t-set="number_taxes" t-value="number_taxes + 1" />
@@ -166,7 +157,6 @@
                 <td class="text-right" id="summary_base">Base</td>
                 <td id="summary_tax">Tax</td>
                 <td class="text-right" id="summary_fee">Fee</td>
-                <td class="text-right" id="summary_total">Total</td>
             </tr>
         </thead>
     </template>
@@ -187,29 +177,30 @@
             <span t-field="s.tax_amount"
                   t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
         </td>
-        <td class="text-right" id="data_summary_tax_total_amount">
-            <span t-field="s.total_amount"
-                  t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
-        </td>
+    </template>
+
+    <template id="l10n_es_vat_book.vat_book_summary_head">
+        <thead>
+            <tr>
+                <td class="text-right" id="summary_base_amount">Base amount</td>
+                <td class="text-right" id="summary_tax_amount">Tax amount</td>
+                <td class="text-right" id="summary_total_mount">Total amount</td>
+            </tr>
+        </thead>
     </template>
 
     <template id="l10n_es_vat_book.vat_book_summary">
-        <td id="total_summary_invoice_number"/>
-        <td id="total_summary_invoice_date"/>
-        <td id="total_summary_invoice_company"/>
-        <td id="total_summary_vat">
-            <strong>Total</strong>
+        <td class="text-right" id="total_summary_base_amount">
+            <span t-field="s.base_amount"
+                  t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
         </td>
-        <td class="text-right" id="total_summary_base_amount"/>
-        <td id="data_summary_tax_name"/>
         <td class="text-right" id="total_summary_tax_amount">
             <span t-field="s.tax_amount"
                   t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
         </td>
-        <td class="text-right" id="data_summary_tax_total_amount">
+        <td class="text-right" id="total_summary_total_amount">
             <span t-field="s.total_amount"
                   t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
         </td>
     </template>
-
 </odoo>

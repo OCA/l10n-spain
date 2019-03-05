@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <template id="report_vat_book_invoices_issued_document">
         <t t-call="web.layout">
-
             <div class="page">
                 <style type="text/css">
                    .detail_table {
@@ -58,7 +56,7 @@
                     </table>
                   </div>
                   <div class="col-xs-12" id="title_summary_invoices">
-                    <h4>Summary</h4>
+                    <h4>Tax summary</h4>
                   </div>
                   <div class="col-xs-12" id="div_summary_invoices">
                       <table class="table table-condensed" id="table_sumary_invoices">
@@ -68,6 +66,16 @@
                                 t-as="s">
                                 <t t-call="l10n_es_vat_book.vat_book_tax_summary"/>
                             </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                    <div class="col-xs-12" id="title_summary">
+                    <h4>Summary</h4>
+                  </div>
+                  <div class="col-xs-12" id="div_summary">
+                      <table class="table table-condensed" id="table_summary">
+                          <t t-call="l10n_es_vat_book.vat_book_summary_head"/>
+                          <tbody>
                             <tr t-foreach="o.issued_summary_ids" t-as="s">
                                 <t t-call="l10n_es_vat_book.vat_book_summary"/>
                             </tr>

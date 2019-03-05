@@ -7,13 +7,12 @@
     "author": "PRAXYA, "
               "Eficent, "
               "Tecnativa, "
+              "Punt Sistemes, "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting",
     "depends": [
-        'account',
-        'base_vat',
         'l10n_es',
         'l10n_es_aeat',
         'report_xlsx',

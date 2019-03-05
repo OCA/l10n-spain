@@ -123,7 +123,7 @@ class L10nEsVatBook(models.Model):
                 tax_line.base_amount
             tax_summary_data_recs[tax_line.tax_id]['tax_amount'] +=  \
                 tax_line.tax_amount
-            tax_summary_data_recs[tax_line.tax_id]['total_amount'] +=  \
+            tax_summary_data_recs[tax_line.tax_id]['total_amount'] += \
                 tax_line.total_amount
         return tax_summary_data_recs
 
@@ -137,9 +137,28 @@ class L10nEsVatBook(models.Model):
 
     @api.model
     def _prepare_vat_book_summary(self, tax_summary_recs, book_type):
-        base_amount = sum(tax_summary_recs.mapped('base_amount'))
+        tax_tmpl_obj = self.env["account.tax.template"]
+        taxes = self.env.ref(
+            "l10n_es_vat_book.aeat_vat_book_map_line_SFRETENCIONES"
+        ).tax_ids.ids
+        taxes += self.env.ref(
+            "l10n_es_vat_book.aeat_vat_book_map_line_RE"
+        ).tax_ids.ids
+        base_amount = 0
+        total_amount = 0
+        for summary in tax_summary_recs:
+            # Any better proposal?
+            if tax_tmpl_obj.search_count([
+                ("id", "in", taxes),
+                "|",
+                ("name", "=", summary.tax_id.name),
+                ("description", "=", summary.tax_id.description),
+            ]):
+                total_amount += summary.tax_amount
+            else:
+                base_amount += summary.base_amount
+                total_amount += summary.total_amount
         tax_amount = sum(tax_summary_recs.mapped('tax_amount'))
-        total_amount = sum(tax_summary_recs.mapped('total_amount'))
         return {
             'book_type': book_type,
             'base_amount': base_amount,
@@ -210,10 +229,10 @@ class L10nEsVatBook(models.Model):
             fee_amount_untaxed = sum(
                 x.credit - x.debit for x in fee_move_lines)
 
-        if vat_book_line.line_type == 'issued' and fee_amount_untaxed < 0.0:
+        if vat_book_line.invoice_id.type == 'out_refund':
             vat_book_line.line_type = 'rectification_issued'
 
-        if vat_book_line.line_type == 'received' and fee_amount_untaxed > 0.0:
+        if vat_book_line.invoice_id.type == 'in_refund':
             vat_book_line.line_type = 'rectification_received'
 
         if vat_book_line.line_type in ['received', 'rectification_received']:
@@ -277,7 +296,8 @@ class L10nEsVatBook(models.Model):
 
     def _account_move_line_domain(self, taxes):
         # search move lines that contain these tax codes
-        return [('date', '>=', self.date_start),
+        return [('invoice_id', '!=', False),
+                ('date', '>=', self.date_start),
                 ('date', '<=', self.date_end),
                 '|', ('tax_ids', 'in', taxes.ids),
                 ('tax_line_id', 'in', taxes.ids)]
@@ -434,8 +454,11 @@ class L10nEsVatBook(models.Model):
     def export_xlsx(self):
         self.ensure_one()
         context = dict(self.env.context, active_ids=self.ids)
+        name = "%s%sRE %s" % (
+            self.year, self.company_vat, self.partner_id.name
+        )
         return {
-            'name': 'VAT book XLSX report',
+            'name': name,
             'model': 'l10n.es.vat.book',
             'type': 'ir.actions.report.xml',
             'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',

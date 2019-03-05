@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2017 Tecnativa - Pedro M. Baeza
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_partner_form" model="ir.ui.view">
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base_vat.view_partner_form" />
         <field name="arch" type="xml">
             <div name="vat_info" position="after">
-                <field name="sii_enabled" invisible="1"/>
+                <field name="simplified_invoice"/>
             </div>
         </field>
     </record>
