@@ -25,6 +25,7 @@
         'views/l10n_es_vat_book_line.xml',
         'views/l10n_es_vat_book_tax_summary.xml',
         'views/l10n_es_vat_book_summary.xml',
+        'views/l10n_es_vat_book_map_view.xml',
         'report/common_templates.xml',
         'report/report_views.xml',
         'report/vat_book_invoices_issued.xml',

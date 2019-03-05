@@ -20,8 +20,12 @@
                         string="View Received Invoices"
                         type="object"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>
-                <button name="export_xlsx"
-                        string="Export to XLSX"
+                <button name="export_xlsx_received"
+                        string="Export to XLSX received"
+                        type="object"
+                        attrs="{'invisible':[('state', '=', 'draft')]}"/>
+                <button name="export_xlsx_issued"
+                        string="Export to XLSX issued"
                         type="object"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>
             </header>

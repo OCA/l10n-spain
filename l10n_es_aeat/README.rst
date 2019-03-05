@@ -100,6 +100,7 @@ Contribudores
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Abraham Anes <abraham@studio73.es>
 * Isaac Gallart <igallart@puntsistemes.es>
+* Pedro Ortega <portega@puntsistemes.es>
 
 Maintainer
 ----------

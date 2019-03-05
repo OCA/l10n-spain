@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_es_aeat_vat_book_map_view_tree" model="ir.ui.view">
+        <field name="name">aeat.vat_book.map.lines.view.tree</field>
+        <field name="model">l10n.es.vat.book.map</field>
+        <field name="arch" type="xml">
+            <tree string="Aeat Vat Book Map" editable="bottom">
+                <field name="tax_id"/>
+                <field name="tax_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_aeat_vat_book_mapping">
+        <field name="name">aeat vat_book Map</field>
+        <field name="res_model">l10n.es.vat.book.map</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="menu_aeat_vat_book_map"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_aeat_vat_book_mapping"
+        name="Aeat Vat Book Map"
+    />
+</odoo>

@@ -451,10 +451,27 @@ class L10nEsVatBook(models.Model):
             fields.Date.from_string(date), date_format)
 
     @api.multi
-    def export_xlsx(self):
+    def export_xlsx_received(self):
         self.ensure_one()
         context = dict(self.env.context, active_ids=self.ids)
-        name = "%s%sRE %s" % (
+        name = "%s%sE %s" % (
+            self.year, self.company_vat, self.partner_id.name
+        )
+        return {
+            'name': name,
+            'model': 'l10n.es.vat.book',
+            'type': 'ir.actions.report.xml',
+            'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
+            'report_type': 'xlsx',
+            'report_file': 'l10n.es.vat.book',
+            'context': context,
+        }
+
+    @api.multi
+    def export_xlsx_issued(self):
+        self.ensure_one()
+        context = dict(self.env.context, active_ids=self.ids)
+        name = "%s%sR %s" % (
             self.year, self.company_vat, self.partner_id.name
         )
         return {

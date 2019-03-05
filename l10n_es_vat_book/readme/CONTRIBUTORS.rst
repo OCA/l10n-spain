@@ -4,3 +4,7 @@
 * `Tecnativa <https://www.tecnativa.com/>`_:
 
   * Pedro M. Baeza
+* `Punt Sistemes <https://www.puntsistemes.es/>`_:
+
+  * Isaac Gallart <igallart@puntsistemes.es>
+  * Pedro Ortega <portega@puntsistemes.es>
