@@ -6,9 +6,10 @@
 {
     'name': "Importaciones con DUA",
     'category': 'Localization/Account Charts',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'depends': [
         'product',
+        'uom',
         'l10n_es',
     ],
     'data': [
@@ -21,10 +22,5 @@
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-spain',
     'license': 'AGPL-3',
-<<<<<<< HEAD
-    'demo': [],
-    'test': [],
-=======
->>>>>>> ce47bcd0... [MIG] l10n_es_dua: Migrationt to 10.0 (#633)
     'installable': True,
 }
