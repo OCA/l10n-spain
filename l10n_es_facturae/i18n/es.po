@@ -421,7 +421,7 @@ msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7273
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7439
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_id
 msgid "ID"
 msgstr "ID"
@@ -966,7 +966,7 @@ msgid "Templates for Taxes"
 msgstr "Plantillas para Impuestos"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:447
+#: code:addons/l10n_es_facturae/models/account_invoice.py:448
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
@@ -1136,8 +1136,8 @@ msgid "create.facturae"
 msgstr "Crear factura electrónica"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:419
-#: code:addons/l10n_es_facturae/models/account_invoice.py:427
+#: code:addons/l10n_es_facturae/models/account_invoice.py:420
+#: code:addons/l10n_es_facturae/models/account_invoice.py:428
 #, python-format
 msgid "facturae"
 msgstr "facturae"
