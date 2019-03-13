@@ -112,7 +112,8 @@ class AccountInvoice(models.Model):
     )
     sii_refund_type = fields.Selection(
         selection=[('S', 'By substitution'), ('I', 'By differences')],
-        string="SII Refund Type", default=_default_sii_refund_type,
+        string="SII Refund Type",
+        default=lambda self: self._default_sii_refund_type(),
         oldname='refund_type',
     )
     sii_account_registration_date = fields.Date(
