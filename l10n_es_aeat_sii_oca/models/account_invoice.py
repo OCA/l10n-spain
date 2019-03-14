@@ -42,7 +42,6 @@ SII_STATES = [
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
 ]
 SII_VERSION = '1.1'
-SII_START_DATE = '2017-07-01'
 SII_COUNTRY_CODE_MAPPING = {
     'RE': 'FR',
     'GP': 'FR',
@@ -946,13 +945,8 @@ class AccountInvoice(models.Model):
         configuration parameters and invoice availability for SII. If the
         invoice is to be sent the decides the send method: direct send or
         via connector depending on 'Use connector' configuration"""
-        # De momento evitamos enviar facturas del primer semestre si no estamos
-        # en entorno de pruebas
-        invoices = self.filtered(
-            lambda i: (i.company_id.sii_test or i.date >= SII_START_DATE)
-        )
         queue_obj = self.env['queue.job'].sudo()
-        for invoice in invoices:
+        for invoice in self:
             company = invoice.company_id
             if not company.use_connector:
                 invoice._send_invoice_to_sii()
