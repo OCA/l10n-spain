@@ -11,14 +11,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-29 02:56+0000\n"
-"Last-Translator: Alejandro Santana <alejandrosantana@anubia.es>, 2017\n"
+"PO-Revision-Date: 2019-02-07 17:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
@@ -28,22 +29,22 @@ msgstr "Conta"
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
 msgid "Account name"
-msgstr ""
+msgstr "Nome conta"
 
 #. module: l10n_es_account_financial_report
 #: selection:account.journal.entries.report,sort_selection:0
 msgid "By date"
-msgstr ""
+msgstr "Por data"
 
 #. module: l10n_es_account_financial_report
 #: selection:account.journal.entries.report,sort_selection:0
 msgid "By entry number"
-msgstr ""
+msgstr "Por nº asento"
 
 #. module: l10n_es_account_financial_report
 #: selection:account.journal.entries.report,sort_selection:0
 msgid "By reference number"
-msgstr ""
+msgstr "Por referencia"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
@@ -63,7 +64,7 @@ msgstr "Creado en"
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
 msgid "Credit"
-msgstr ""
+msgstr "Haber"
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
@@ -73,7 +74,7 @@ msgstr "Data"
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
 msgid "Debit"
-msgstr ""
+msgstr "Debe"
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
@@ -84,17 +85,17 @@ msgstr "Descrición"
 #: field:account.journal.entries.report,display_name:0
 #: field:report.l10n_es_account_financial_report.journal_entries,display_name:0
 msgid "Display Name"
-msgstr ""
+msgstr "Nome mostrado"
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,sort_selection:0
 msgid "Entries Sorted By"
-msgstr ""
+msgstr "Asentos ordeados por"
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
 msgid "Entry"
-msgstr ""
+msgstr "Asento"
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,id:0
@@ -111,12 +112,12 @@ msgstr "Diario"
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries
 msgid "Journal Ledger -"
-msgstr ""
+msgstr "Libro Maior -"
 
 #. module: l10n_es_account_financial_report
 #: model:ir.ui.menu,name:l10n_es_account_financial_report.menu_journal_entries_report
 msgid "Journal by entries"
-msgstr ""
+msgstr "Diario por apuntamentos"
 
 #. module: l10n_es_account_financial_report
 #: view:account.journal.entries.report:l10n_es_account_financial_report.account_journal_entries_report_view
@@ -126,7 +127,7 @@ msgstr "Xornais"
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,landscape:0
 msgid "Landscape mode"
-msgstr ""
+msgstr "Modo apaisado"
 
 #. module: l10n_es_account_financial_report
 #: field:account.journal.entries.report,__last_update:0
@@ -148,7 +149,7 @@ msgstr "Última actualización en"
 #: code:addons/l10n_es_account_financial_report/wizard/wizard_print_journal_entries.py:58
 #, python-format
 msgid "No data available"
-msgstr ""
+msgstr "Non hai datos dispoñibles"
 
 #. module: l10n_es_account_financial_report
 #: code:addons/l10n_es_account_financial_report/wizard/wizard_print_journal_entries.py:59
@@ -183,7 +184,7 @@ msgstr "Imprimir"
 #: model:ir.actions.report.xml,name:l10n_es_account_financial_report.account_journal_entries_report
 #: model:ir.model,name:l10n_es_account_financial_report.model_account_journal_entries_report
 msgid "Print journal by entries"
-msgstr ""
+msgstr "Imprimir libro diario"
 
 #. module: l10n_es_account_financial_report
 #: view:website:l10n_es_account_financial_report.journal_entries

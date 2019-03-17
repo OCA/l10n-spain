@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-10 01:44+0000\n"
-"PO-Revision-Date: 2017-02-10 00:46+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2019-02-07 17:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
@@ -32,9 +33,8 @@ msgstr "Factura"
 
 #. module: account_refund_original
 #: model:ir.model,name:account_refund_original.model_account_invoice_line
-#, fuzzy
 msgid "Invoice Line"
-msgstr "Factura"
+msgstr "Liña de Factura"
 
 #. module: account_refund_original
 #: help:account.invoice,origin_invoices_ids:0
@@ -45,12 +45,13 @@ msgstr ""
 #. module: account_refund_original
 #: field:account.invoice.line,origin_line_ids:0
 msgid "Original invoice line"
-msgstr ""
+msgstr "Liña da factura orixinal"
 
 #. module: account_refund_original
 #: help:account.invoice.line,origin_line_ids:0
 msgid "Original invoice line to which this refund invoice line is referred to"
 msgstr ""
+"Liña da factura orixinal á que esta liña de factura rectificativa se refire"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
@@ -65,28 +66,25 @@ msgstr "Factura rectificativa"
 
 #. module: account_refund_original
 #: field:account.invoice.line,refund_line_ids:0
-#, fuzzy
 msgid "Refund invoice line"
-msgstr "Factura rectificativa"
+msgstr "Liña de Factura rectificativa"
 
 #. module: account_refund_original
 #: help:account.invoice.line,refund_line_ids:0
 msgid "Refund invoice lines created from this invoice line"
-msgstr ""
+msgstr "Liñas de facturas rectificativas creadas dende esta liña de factura"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
 #: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
 #: field:account.invoice,refund_invoice_ids:0
-#, fuzzy
 msgid "Refund invoices"
-msgstr "Factura rectificativa"
+msgstr "Facturas rectificativas"
 
 #. module: account_refund_original
 #: help:account.invoice,refund_invoice_ids:0
-#, fuzzy
 msgid "Refund invoices created from this invoice"
-msgstr "Descrición de facturas rectificativas"
+msgstr "Facturas rectificativas creadas desde esta factura"
 
 #. module: account_refund_original
 #: field:account.invoice,refund_invoices_description:0

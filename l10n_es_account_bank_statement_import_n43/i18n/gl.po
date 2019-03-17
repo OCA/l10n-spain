@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2017-04-25 10:39+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2019-02-07 17:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/gl/)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:131
@@ -29,7 +30,7 @@ msgstr "O importe do haber non cadra co definido no último rexistro da conta."
 #. module: l10n_es_account_bank_statement_import_n43
 #: field:account.journal,n43_date_type:0
 msgid "Date type for N43 Import"
-msgstr ""
+msgstr "Tipo de data para importación N43"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:127
@@ -68,7 +69,7 @@ msgstr "Diario"
 #. module: l10n_es_account_bank_statement_import_n43
 #: view:account.journal:l10n_es_account_bank_statement_import_n43.view_account_journal_form_n43
 msgid "Norm 43 options"
-msgstr ""
+msgstr "Opcións norma 43"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:122
@@ -99,7 +100,7 @@ msgstr "O número de rexistros non cadra co definido no último rexistro."
 #. module: l10n_es_account_bank_statement_import_n43
 #: selection:account.journal,n43_date_type:0
 msgid "Operation Date"
-msgstr ""
+msgstr "Data operación"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: code:addons/l10n_es_account_bank_statement_import_n43/models/account_bank_statement_import_n43.py:187
@@ -110,4 +111,4 @@ msgstr "O tipo de rexistro %s non é válido."
 #. module: l10n_es_account_bank_statement_import_n43
 #: selection:account.journal,n43_date_type:0
 msgid "Value Date"
-msgstr ""
+msgstr "Data valor"
