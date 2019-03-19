@@ -32,6 +32,6 @@ class ResPartner(models.Model):
                         _('State must be defined in Spain in order to '
                           'send to e.Fact'))
             if not record.facturae_efact_code or len(
-                    record.facturae_efact_code) != 18:
+                    record.facturae_efact_code) != 22:
                 raise exceptions.ValidationError(
                     _('e.Fact code must be correctly defined'))
