@@ -154,11 +154,15 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.invoice.action_invoice_open()
         self.invoice.number = 'R/0001'
 
-    def test_constrain_factuare_code(self):
+    def test_constrain_facturae_code_01(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.partner.facturae_efact_code = '01234'
+            self.partner.facturae_efact_code = False
 
-    def test_constrain_factuare(self):
+    def test_constrain_facturae_code_02(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.facturae_efact_code = '1'
+
+    def test_constrain_facturae(self):
         with self.assertRaises(exceptions.ValidationError):
             self.partner.facturae = False
 

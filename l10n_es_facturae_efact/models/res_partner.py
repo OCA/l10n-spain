@@ -11,7 +11,7 @@ class ResPartner(models.Model):
     facturae_efact_code = fields.Char(string='e.Fact code')
 
     @api.constrains('facturae', 'vat', 'country_id', 'state_id',
-                    'invoice_integration_method_ids', )
+                    'invoice_integration_method_ids', 'facturae_efact_code')
     def constrain_efact(self):
         efact = self.env.ref('l10n_es_facturae_efact.integration_efact')
         for record in self.filtered(
