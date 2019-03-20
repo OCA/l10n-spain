@@ -59,12 +59,12 @@ class TestL10nEsFacturae(common.TransactionCase):
             'organo_gestor': 'U00000038',
             'unidad_tramitadora': 'U00000038',
             'oficina_contable': 'U00000038',
-            'facturae_efact_code': '012345678901234567',
+            'facturae_efact_code': '0123456789012345678901',
             'invoice_integration_method_ids': [(6, 0, [
                 self.env.ref('l10n_es_facturae_efact.integration_efact').id
             ])]
         })
-        main_company.partner_id.facturae_efact_code = '012345678901234567'
+        main_company.partner_id.facturae_efact_code = '0123456789012345678901'
         main_company.vat = "ESA12345674"
         main_company.partner_id.country_id = self.ref('base.uk')
         main_company.currency_id = self.ref('base.EUR')
@@ -153,6 +153,30 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.invoice._onchange_invoice_line_ids()
         self.invoice.action_invoice_open()
         self.invoice.number = 'R/0001'
+
+    def test_constrain_facturae_code_01(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.facturae_efact_code = False
+
+    def test_constrain_facturae_code_02(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.facturae_efact_code = '1'
+
+    def test_constrain_facturae(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.facturae = False
+
+    def test_constrain_vat(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.vat = False
+
+    def test_constrain_country(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.country_id = False
+
+    def test_constrain_state(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.state_id = False
 
     def test_efact_sending(self):
         class TestConnection:
