@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+<!-- Copyright 2016 Tecnativa - Antonio Espinosa
+     Copyright 2019 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
+
+<record id="aeat_model_export_config_search" model="ir.ui.view">
+    <field name="model">aeat.model.export.config</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <filter
+                name="Archived"
+                domain="[('active', '=', False)]"
+            />
+        </search>
+    </field>
+</record>
 
 <record id="aeat_model_export_config_tree" model="ir.ui.view">
     <field name="name">aeat.model.export.config.tree</field>
@@ -22,20 +36,41 @@
     <field name="model">aeat.model.export.config</field>
     <field name="arch" type="xml">
         <form string="BOE export configuration">
-            <group>
+            <sheet>
+                <div class="oe_button_box" name="button_box">
+                    <button name="toggle_active"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-archive"
+                    >
+                        <field name="active"
+                            widget="boolean_button"
+                            options="{'terminology': 'archive'}"
+                        />
+                    </button>
+                    <button
+                        class="oe_stat_button"
+                        name="%(action_wizard_compare_boe_file)d"
+                        type="action"
+                        string="Compare file"
+                        icon="fa-magic"
+                        />
+                </div>
                 <group>
-                    <field name="name"/>
-                    <field name="model_number"/>
-                    <field name="model_id"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="model_number"/>
+                        <field name="model_id"/>
+                    </group>
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
                 </group>
-                <group>
-                    <field name="date_start"/>
-                    <field name="date_end"/>
+                <group string="Configuration lines">
+                    <field name="config_line_ids" nolabel="1"/>
                 </group>
-            </group>
-            <group string="Configuration lines">
-                <field name="config_line_ids" nolabel="1"/>
-            </group>
+            </sheet>
         </form>
     </field>
 </record>
@@ -82,6 +117,7 @@
                     <field name="subconfig_id"
                            domain="[('id', '!=', export_config_id)]"
                            attrs="{'invisible': [('export_type', '!=', 'subconfig')], 'required': [('export_type', '=', 'subconfig')]}"
+                           context="{'active_test': False}"
                             />
                     <field name="repeat_expression"/>
                     <field name="conditional_expression"/>
@@ -93,10 +129,12 @@
                        attrs="{'invisible': [('export_type', '=', 'subconfig')]}"
                         >
                     <field name="fixed_value"
-                           attrs="{'readonly': [('expression', '!=', False)]}"
+                           attrs="{'readonly': [('expression', '!=', False), ('fixed_value', '=', False)]}"
+                           force_save="1"
                             />
                     <field name="expression"
-                           attrs="{'readonly': [('fixed_value', '!=', False)]}"
+                           attrs="{'readonly': [('fixed_value', '!=', False), ('expression', '=', False)]}"
+                           force_save="1"
                             />
                 </group>
                 <group name="group_advanced_configuration"

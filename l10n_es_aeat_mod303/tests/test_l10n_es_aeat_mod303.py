@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2016 Pedro M. Baeza
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
@@ -54,8 +53,11 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         'P_IVA10_ISP': (150, 0),
         'P_IVA21_ISP': (160, 0),
         'P_IVA4_SC': (210, 8.4),
+        'P_IVA4_SC//neg': (-21, -0.84),
         'P_IVA10_SC': (220, 22),
+        'P_IVA10_SC//neg': (-22, -2.2),
         'P_IVA21_SC': (230, 48.3),
+        'P_IVA21_SC//neg': (-23, -4.83),
         'P_IVA4_BC': (240, 9.6),
         'P_IVA10_BC': (250, 25),
         'P_IVA21_BC': (260, 54.6),
@@ -152,7 +154,8 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         '28': (
             (3 * 110) + (3 * 120) + (3 * 130) +  # P_IVAx_SP_EX_2
             (3 * 140) + (3 * 150) + (3 * 160) +  # P_IVAx_ISP_1
-            (3 * 210) + (3 * 220) + (3 * 230) +  # P_IVAx_SC
+            (3 * 210) + (3 * 220) + (3 * 230) +
+            (3 * -21) + (3 * -22) + (3 * -23) +  # P_IVAx_SC
             (3 * 240) + (3 * 250) + (3 * 260) +  # P_IVAx_BC
             (3 * 270) + (3 * 280) + (3 * 290)    # P_REQ05, P_REQ014, P_REQ5.2
         ),
@@ -160,7 +163,8 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         '29': (
             (3 * 4.4) + (3 * 12) + (3 * 27.3) +  # P_IVAx_SP_EX_2
             (3 * 5.6) + (3 * 15) + (3 * 33.6) +  # P_IVAx_ISP_1
-            (3 * 8.4) + (3 * 22) + (3 * 48.3) +  # P_IVAx_SC
+            (3 * 8.4) + (3 * 22) + (3 * 48.3) +
+            (3 * -0.84) + (3 * -2.2) + (3 * -4.83) +  # P_IVAx_SC
             (3 * 9.6) + (3 * 25) + (3 * 54.6) +  # P_IVAx_BC
             (3 * 1.35) + (3 * 3.92) +            # P_REQ05, P_REQ014
             (3 * 15.08)                          # P_REQ5.2
@@ -195,7 +199,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         '40': ((-1) * (
             270 + 280 + 290 +  # P_REQ05, P_REQ014, P_REQ5.2
             240 + 250 + 260 +  # P_IVAx_BC
-            210 + 220 + 230 +  # P_IVAx_SC
+            210 + 220 + 230 - 21 - 22 - 23 +  # P_IVAx_SC
             310 + 320 + 330 +  # P_IVAx_BI
             340 + 350 + 360 +  # P_IVAx_IBC
             370 + 380 + 390 +  # P_IVAx_IBI
@@ -209,7 +213,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         '41': ((-1) * (
             1.35 + 3.92 + 15.08 +  # P_REQ05, P_REQ014, P_REQ5.2
             9.6 + 25 + 54.6 +      # P_IVAx_BC
-            8.4 + 22 + 48.3 +      # P_IVAx_SC
+            8.4 + 22 + 48.3 - 0.84 - 2.2 - 4.83 +  # P_IVAx_SC
             12.4 + 32 + 69.3 +     # P_IVAx_BI
             13.6 + 35 + 75.6 +     # P_IVAx_IBC
             14.8 + 38 + 81.9 +     # P_IVAx_IBI
@@ -256,16 +260,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
 
     def setUp(self):
         super(TestL10nEsAeatMod303Base, self).setUp()
-        # Purchase invoices
-        self._invoice_purchase_create('2017-01-01')
-        self._invoice_purchase_create('2017-01-02')
-        purchase = self._invoice_purchase_create('2017-01-03')
-        self._invoice_refund(purchase, '2017-01-18')
-        # Sale invoices
-        self._invoice_sale_create('2017-01-11')
-        self._invoice_sale_create('2017-01-12')
-        sale = self._invoice_sale_create('2017-01-13')
-        self._invoice_refund(sale, '2017-01-14')
         export_config = self.env.ref(
             'l10n_es_aeat_mod303.aeat_mod303_main_export_config')
         # Create model
@@ -284,14 +278,32 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
             'export_config_id': export_config.id,
             'journal_id': self.journal_misc.id,
         })
+        self.model303_4t = self.model303.copy({
+            'name': '9994000000303',
+            'period_type': '4T',
+            'date_start': '2017-09-01',
+            'date_end': '2017-12-31',
+        })
 
 
 class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
-    def test_default_counterpart(self):
-        self.assertEqual(self.model303._default_counterpart_303().id,
-                         self.accounts['475000'].id)
+    def setUp(self):
+        super(TestL10nEsAeatMod303, self).setUp()
+        # Purchase invoices
+        self._invoice_purchase_create('2017-01-01')
+        self._invoice_purchase_create('2017-01-02')
+        purchase = self._invoice_purchase_create('2017-01-03')
+        self._invoice_refund(purchase, '2017-01-18')
+        # Sale invoices
+        self._invoice_sale_create('2017-01-11')
+        self._invoice_sale_create('2017-01-12')
+        sale = self._invoice_sale_create('2017-01-13')
+        self._invoice_refund(sale, '2017-01-14')
 
     def test_model_303(self):
+        # Test default counterpart
+        self.assertEqual(self.model303._default_counterpart_303().id,
+                         self.accounts['475000'].id)
         _logger.debug('Calculate AEAT 303 1T 2017')
         self.model303.button_calculate()
         self.assertEqual(self.model303.state, 'calculated')
@@ -327,6 +339,11 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertAlmostEqual(self.model303.atribuible_estado, estado, 2)
         self.assertAlmostEqual(self.model303.casilla_69, result, 2)
         self.assertAlmostEqual(self.model303.resultado_liquidacion, result, 2)
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 0,
+        )
         self.assertEqual(self.model303.result_type, 'I')
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
@@ -364,3 +381,25 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertEqual(self.model303.calculation_date, False)
         self.model303.button_cancel()
         self.assertEqual(self.model303.state, 'cancelled')
+        # Check 4T without exonerated
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 0,
+        )
+        # Check 4T with exonerated
+        self.model303_4t.exonerated_390 = '1'
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 14280.0,
+        )
+        self.assertAlmostEqual(
+            self.model303_4t.casilla_88, 25080.0,
+        )
+        # Check change of period type
+        self.model303_4t.period_type = '1T'
+        self.model303_4t.onchange_period_type()
+        self.assertEqual(self.model303_4t.exonerated_390, '2')

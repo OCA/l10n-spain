@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="move_supplier_form_mod347" model="ir.ui.view">
+          <field name="name">account.move.supplier.form.mod347</field>
+          <field name="model">account.move</field>
+          <field name="inherit_id" ref="account.view_move_form"/>
+          <field name="arch" type="xml">
+              <field name="currency_id" position="after">
+                  <field name="not_in_mod347"/>
+              </field>
+          </field>
+      </record>
+
+</odoo>
