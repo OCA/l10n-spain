@@ -121,11 +121,11 @@ class L10nEsAeatMod130Report(models.Model):
             if (report.complementary and
                     not report.previous_electronic_code and
                     not report.previous_number):
-                raise exceptions.Warning('Si se marca la casilla de '
-                                         'liquidación complementaria, debe '
-                                         'rellenar el código electrónico o el '
-                                         'nº de justifacnte de la declaración '
-                                         'anterior.')
+                raise exceptions.ValidationError(
+                    'Si se marca la casilla de liquidación complementaria, '
+                    'debe rellenar el código electrónico o el nº de '
+                    'justificante de la declaración anterior.'
+                )
 
     @api.onchange('casilla_18', 'casilla_17')
     def onchange_casilla_18(self):

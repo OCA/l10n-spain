@@ -198,7 +198,7 @@ class L10nEsAeatReport(models.AbstractModel):
     def _check_previous_number(self):
         for report in self:
             if report.type in ('C', 'S') and not report.previous_number:
-                raise exceptions.UserError(
+                raise exceptions.ValidationError(
                     _("If this declaration is complementary or substitutive, "
                       "a previous declaration number should be provided.")
                 )

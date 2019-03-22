@@ -25,7 +25,7 @@ class AccountJournal(models.Model):
         for journal in self:
             sequence_company = journal.invoice_sequence_id.company_id
             if sequence_company and sequence_company != journal.company_id:
-                raise exceptions.Warning(
+                raise exceptions.ValidationError(
                     _("Journal company and invoice sequence company do not "
                       "match."))
 
@@ -35,7 +35,7 @@ class AccountJournal(models.Model):
         for journal in self:
             sequence_company = journal.refund_inv_sequence_id.company_id
             if sequence_company and sequence_company != journal.company_id:
-                raise exceptions.Warning(
+                raise exceptions.ValidationError(
                     _("Journal company and refund sequence company do not "
                       "match."))
 

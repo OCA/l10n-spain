@@ -95,7 +95,7 @@ class AcquirerRedsys(models.Model):
     def check_redsys_percent_partial(self):
         if (self.redsys_percent_partial < 0 or
                 self.redsys_percent_partial > 100):
-            raise exceptions.Warning(
+            raise exceptions.ValidationError(
                 _('Partial payment percent must be between 0 and 100'))
 
     @api.model

@@ -556,6 +556,6 @@ class L10nEsAeatMod390Report(models.Model):
     @api.constrains('type')
     def _check_type(self):
         if 'C' in self.mapped('type'):
-            raise exceptions.UserError(
+            raise exceptions.ValidationError(
                 _("You cannot make complementary reports for this model.")
             )
