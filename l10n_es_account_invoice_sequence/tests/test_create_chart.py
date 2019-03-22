@@ -2,8 +2,9 @@
 # Copyright 2015-2017 Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from openerp.tests import common
-from openerp import exceptions
+from odoo.tests import common
+from odoo.tools import mute_logger
+from odoo import exceptions
 from ..hooks import post_init_hook
 
 
@@ -109,19 +110,20 @@ class TestCreateChart(common.HttpCase):
             'code': 'TEST',
             'company_id': other_company.id,
         })
-        with self.assertRaises(exceptions.ValidationError):
-            self.journal_obj.create({
-                'name': 'Test journal',
-                'code': 'T',
-                'type': 'general',
-                'invoice_sequence_id': sequence.id,
-                'company_id': self.company.id,
-            })
-        with self.assertRaises(exceptions.ValidationError):
-            self.journal_obj.create({
-                'name': 'Test journal 2',
-                'code': 'T 2',
-                'type': 'general',
-                'refund_inv_sequence_id': sequence.id,
-                'company_id': self.company.id,
-            })
+        with mute_logger('odoo.models'):
+            with self.assertRaises(exceptions.ValidationError):
+                self.journal_obj.create({
+                    'name': 'Test journal',
+                    'code': 'T',
+                    'type': 'general',
+                    'invoice_sequence_id': sequence.id,
+                    'company_id': self.company.id,
+                })
+            with self.assertRaises(exceptions.ValidationError):
+                self.journal_obj.create({
+                    'name': 'Test journal 2',
+                    'code': 'T 2',
+                    'type': 'general',
+                    'refund_inv_sequence_id': sequence.id,
+                    'company_id': self.company.id,
+                })

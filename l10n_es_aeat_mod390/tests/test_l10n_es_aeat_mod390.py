@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from collections import OrderedDict
+from odoo.tools import mute_logger
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
 
@@ -241,8 +242,9 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
 
     def test_model_390(self):
         # Test constraints
-        with self.assertRaises(Exception):
-            self.model390.type = 'C'
+        with mute_logger('odoo.models'):
+            with self.assertRaises(Exception):
+                self.model390.type = 'C'
         self.model390.button_calculate()
         # Check tax lines
         for field, result in self.taxes_result.iteritems():
