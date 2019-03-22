@@ -1,7 +1,7 @@
 # Copyright 2017 Tecnativa - Sergio Teruel
 
 {
-    'name': 'Redsys Payment Acquirer',
+    'name': 'Pasarela de pago Redsys',
     'category': 'Payment Acquirer',
     'summary': 'Payment Acquirer: Redsys Implementation',
     'version': '12.0.1.0.0',
@@ -15,7 +15,6 @@
         "python": [
             "Crypto.Cipher.DES3",
         ],
-        "bin": [],
     },
     'data': [
         'views/redsys.xml',
