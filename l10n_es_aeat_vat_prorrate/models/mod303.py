@@ -55,7 +55,7 @@ class L10nEsAeatMod303Report(models.Model):
     @api.constrains('vat_prorrate_percent')
     def check_vat_prorrate_percent(self):
         if not (0 < self.vat_prorrate_percent <= 100):
-            raise exceptions.Warning(
+            raise exceptions.ValidationError(
                 _('VAT prorrate percent must be between 0.01 and 100'))
 
     @api.multi
