@@ -78,5 +78,5 @@ class TestL10nEsAeatReport(common.TransactionCase):
             'type': 'S',
         })
         with mute_logger('odoo.models'):
-            with self.assertRaises(exceptions.UserError):
+            with self.assertRaises(exceptions.ValidationError):
                 report._check_previous_number()
