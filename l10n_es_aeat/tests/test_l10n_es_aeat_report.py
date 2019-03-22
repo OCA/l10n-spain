@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
+from odoo.tools import mute_logger
 from odoo import exceptions
 
 
@@ -76,5 +77,6 @@ class TestL10nEsAeatReport(common.TransactionCase):
             'year': 2016,
             'type': 'S',
         })
-        with self.assertRaises(exceptions.UserError):
-            report._check_previous_number()
+        with mute_logger('odoo.models'):
+            with self.assertRaises(exceptions.UserError):
+                report._check_previous_number()
