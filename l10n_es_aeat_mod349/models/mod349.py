@@ -13,7 +13,7 @@
 
 import re
 from odoo import models, fields, api, exceptions, _
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, float_round
 
 
 def _format_partner_vat(partner_vat=None, country=None):
@@ -504,11 +504,14 @@ class Mod349PartnerRefund(models.Model):
                  'total_origin_amount')
     def _compute_partner_refund_ok(self):
         """Checks if partner refund line have all fields filled."""
+        rounding = self.env.user.company_id.currency_id.rounding
         for record in self:
             record.partner_refund_ok = bool(
                 record.partner_vat and record.country_id and
-                record.total_operation_amount >= 0.0 and
-                record.total_origin_amount >= 0.0
+                float_round(record.total_operation_amount,
+                            precision_rounding=rounding) >= 0.0 and
+                float_round(record.total_origin_amount,
+                            precision_rounding=rounding) >= 0.0
             )
 
     @api.depends('refund_detail_ids')
