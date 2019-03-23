@@ -257,7 +257,7 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1348
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1360
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
 msgstr ""
@@ -1135,13 +1135,13 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1229
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1241
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "¡No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1199
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1211
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -1151,7 +1151,7 @@ msgstr ""
 "hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1138
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1150
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -1161,7 +1161,7 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1245
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1257
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
