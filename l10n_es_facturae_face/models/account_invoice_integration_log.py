@@ -28,7 +28,7 @@ class AccountInvoiceIntegration(models.Model):
             )
             cert.set_ca_certificates(None)
             client = Client(
-                wsdl=self.env["ir.config_parameter"].get_param(
+                wsdl=self.env["ir.config_parameter"].sudo().get_param(
                     "account.invoice.face.server", default=None),
                 wsse=MemorySignature(
                     cert.export(),
@@ -68,7 +68,7 @@ class AccountInvoiceIntegration(models.Model):
             )
             cert.set_ca_certificates(None)
             client = Client(
-                wsdl=self.env["ir.config_parameter"].get_param(
+                wsdl=self.env["ir.config_parameter"].sudo().get_param(
                     "account.invoice.face.server", default=None),
                 wsse=MemorySignature(
                     cert.export(),
@@ -103,7 +103,7 @@ class AccountInvoiceIntegration(models.Model):
             )
             cert.set_ca_certificates(None)
             client = Client(
-                wsdl=self.env["ir.config_parameter"].get_param(
+                wsdl=self.env["ir.config_parameter"].sudo().get_param(
                     "account.invoice.face.server", default=None),
                 wsse=MemorySignature(
                     cert.export(),
