@@ -1,4 +1,4 @@
-Módulo que calcula el libro de IVA español.
+Módulo que calcula el libro de IVA español con el nuevo formato electrónico
 
 Esto módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe ->
 Declaraciones AEAT -> Libro de IVA.

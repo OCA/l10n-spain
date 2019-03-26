@@ -213,7 +213,6 @@ class L10nEsVatBook(models.Model):
         base_move_lines = move.line_ids.filtered(
             lambda l: any(t == tax for t in l.tax_ids))
         base_amount_untaxed = sum(x.credit - x.debit for x in base_move_lines)
-
         parent_tax = self.env['account.tax'].search([
             ('children_tax_ids.id', '=', tax.id)], limit=1)
         taxes = self.env['account.tax']
@@ -222,23 +221,37 @@ class L10nEsVatBook(models.Model):
             tax = parent_tax
         else:
             taxes += tax
+        tax_ret = self.env.ref(
+            "l10n_es_vat_book.aeat_vat_book_map_line_SFRETENCIONES"
+        ).tax_ids
+        taxes2 = self.env["account.tax"].search([
+            "|",
+            ("name", "in", [x.name for x in tax_ret]),
+            ("description", "in", [x.description for x in tax_ret])])
+        #taxes = taxes - taxes2
         fee_move_lines = move.line_ids.filtered(
             lambda l: l.tax_line_id in taxes)
         fee_amount_untaxed = 0.0
         if fee_move_lines:
             fee_amount_untaxed = sum(
                 x.credit - x.debit for x in fee_move_lines)
-
-        if vat_book_line.invoice_id.type == 'out_refund':
+        lines = move.line_ids.mapped("tax_line_id") - taxes2
+        credit = sum(x.credit for x in move.line_ids.filtered(
+            lambda r: r.tax_line_id in lines)
+                     )
+        debit = sum(x.debit for x in move.line_ids.filtered(
+            lambda r: r.tax_line_id in lines)
+                    )
+        fee_amount = credit - debit
+        if vat_book_line.line_type == 'issued' and fee_amount < 0.0:
             vat_book_line.line_type = 'rectification_issued'
 
-        if vat_book_line.invoice_id.type == 'in_refund':
+        if vat_book_line.line_type == 'received' and fee_amount > 0.0:
             vat_book_line.line_type = 'rectification_received'
 
         if vat_book_line.line_type in ['received', 'rectification_received']:
             base_amount_untaxed *= -1
             fee_amount_untaxed *= -1
-
         return {
             'tax_id': tax.id,
             'base_amount': base_amount_untaxed,
@@ -296,8 +309,7 @@ class L10nEsVatBook(models.Model):
 
     def _account_move_line_domain(self, taxes):
         # search move lines that contain these tax codes
-        return [('invoice_id', '!=', False),
-                ('date', '>=', self.date_start),
+        return [('date', '>=', self.date_start),
                 ('date', '<=', self.date_end),
                 '|', ('tax_ids', 'in', taxes.ids),
                 ('tax_line_id', 'in', taxes.ids)]
@@ -454,6 +466,7 @@ class L10nEsVatBook(models.Model):
     def export_xlsx_received(self):
         self.ensure_one()
         context = dict(self.env.context, active_ids=self.ids)
+        context.update({"received": True})
         name = "%s%sE %s" % (
             self.year, self.company_vat, self.partner_id.name
         )
@@ -471,6 +484,7 @@ class L10nEsVatBook(models.Model):
     def export_xlsx_issued(self):
         self.ensure_one()
         context = dict(self.env.context, active_ids=self.ids)
+        context.update({"issued": True})
         name = "%s%sR %s" % (
             self.year, self.company_vat, self.partner_id.name
         )
@@ -481,5 +495,5 @@ class L10nEsVatBook(models.Model):
             'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
             'report_type': 'xlsx',
             'report_file': 'l10n.es.vat.book',
-            'context': context,
+            'context':  context,
         }
