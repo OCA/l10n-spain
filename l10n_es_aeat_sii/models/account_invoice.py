@@ -1030,8 +1030,8 @@ class AccountInvoice(models.Model):
                 invoice = env['account.invoice'].browse(invoice.id)
                 inv_vals.update({
                     'sii_send_failed': True,
-                    'sii_send_error': fault[:60],
-                    'sii_return': fault,
+                    'sii_send_error': repr(fault)[:60],
+                    'sii_return': repr(fault),
                 })
                 invoice.write(inv_vals)
                 new_cr.commit()
@@ -1118,8 +1118,8 @@ class AccountInvoice(models.Model):
                 invoice = env['account.invoice'].browse(invoice.id)
                 inv_vals.update({
                     'sii_send_failed': True,
-                    'sii_send_error': fault[:60],
-                    'sii_return': fault,
+                    'sii_send_error': repr(fault)[:60],
+                    'sii_return': repr(fault),
                 })
                 invoice.write(inv_vals)
                 new_cr.commit()
