@@ -112,13 +112,6 @@ msgid "AEAT tax mapping line"
 msgstr "Línea de mapeo de impuestos"
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_setup_bank_manual_config__acc_type
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__acc_type
-#, fuzzy
-msgid "Acc Type"
-msgstr "Cuenta bancaria"
-
-#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__move_id
 msgid "Account entry"
@@ -199,6 +192,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__partner_bank_id
 msgid "Bank account"
 msgstr "Cuenta bancaria"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_setup_bank_manual_config__acc_type
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner_bank__acc_type
+msgid ""
+"Bank account type: Normal or IBAN. Inferred from the bank account number."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,field_type:0
@@ -1127,6 +1127,13 @@ msgstr "Total impuestos (Base imponible)"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
 msgid "Total taxes (fee)"
 msgstr "Total impuestos (Cuota)"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_setup_bank_manual_config__acc_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__acc_type
+#, fuzzy
+msgid "Type"
+msgstr "Cuenta bancaria"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__company_vat
