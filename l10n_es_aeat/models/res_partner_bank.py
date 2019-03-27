@@ -7,4 +7,4 @@ from odoo import fields, models
 class ResPartnerBank(models.Model):
     _inherit = "res.partner.bank"
 
-    acc_type = fields.Char(store=True)
+    acc_type = fields.Selection(store=True)
