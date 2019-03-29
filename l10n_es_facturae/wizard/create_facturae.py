@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2009 Alejandro Sanchez <alejandro@asr-oss.com>
 # © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
 # © 2015 Tecon
@@ -65,7 +64,7 @@ class CreateFacturae(models.TransientModel):
             'res_id': invoice.id,
             'mimetype': 'application/xml'
         })
-        log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") %
+        log.add(_("Export successful\nInvoice number: %s\n\n") %
                 invoice.number)
         self.write({
             'note': log(),

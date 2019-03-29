@@ -336,14 +336,10 @@ msgstr "Exportar"
 #, python-format
 msgid ""
 "Export successful\n"
-"\n"
-"Summary:\n"
-"Invoice number: %s\n"
+"Invoice number: %s\n\n"
 msgstr ""
 "Exportación satisfactoria\n"
-"\n"
-"Resumen:\n"
-"Nº factura: %s\n"
+"Nº factura: %s\n\n"
 
 #. module: l10n_es_facturae
 #: model:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
