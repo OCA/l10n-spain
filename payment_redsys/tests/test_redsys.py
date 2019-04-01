@@ -115,7 +115,7 @@ class RedsysCase(HttpCase):
         self.ds_signature = self.redsys.sign_parameters(
             self.redsys.redsys_secret_key, merchant_parameters)
 
-    def data_post_redsys(self, url=None, data=None, timeout=10):
+    def data_post_redsys(self, url=None, data=None, timeout=60):
         doc = self.url_open(url, data=data, timeout=timeout)
         return doc
 
@@ -306,7 +306,7 @@ class RedsysCase(HttpCase):
                 tx.state, 'cancel',
                 'Redsys: validation did not put tx into done state')
 
-    def _test_80_redsys_partial_payment(self):
+    def test_80_redsys_partial_payment(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -325,7 +325,7 @@ class RedsysCase(HttpCase):
 
     @patch('odoo.addons.sale.models.sale.SaleOrder.action_confirm')
     @patch('odoo.addons.sale.models.sale.SaleOrder.force_quotation_send')
-    def _test_90_redsys_form_partial_payment(
+    def test_90_redsys_form_partial_payment(
             self, mock_quo_send, mock_confirm):
         with self.cursor() as cr:
             env = self.env(cr)
@@ -345,7 +345,7 @@ class RedsysCase(HttpCase):
                 'Ds_MerchantParameters': DS_parameters,
                 'Ds_SignatureVersion': u'HMAC_SHA256_V1',
             }
-            tx.sale_order_id = self.so.with_env(env).id
+            tx.sale_order_ids = [(6, 0, self.so.with_env(env).ids)]
             # Get transaction
         self.data_post_redsys(
             url='/payment/redsys/return', data=redsys_post_data)
