@@ -1,16 +1,56 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import models
 from odoo.tests import common
 from odoo import exceptions
 
+TEST_MODEL_NAME = 'l10n.es.aeat.mod999.report'
 
-class TestL10nEsAeatReport(common.TransactionCase):
-    def setUp(self):
-        super(TestL10nEsAeatReport, self).setUp()
-        self.AeatReport = self.env["l10n.es.aeat.report"]
-        self.period_types = {
+
+class L10nEsAeatTestReport(models.TransientModel):
+    _name = TEST_MODEL_NAME
+    _inherit = 'l10n.es.aeat.report'
+    _aeat_number = '999'
+
+
+class TestL10nEsAeatReport(common.SavepointCase):
+    post_install = True
+    at_install = False
+
+    def _init_test_model(cls, model_cls):
+        """ It builds a model from model_cls in order to test abstract models.
+        Note that this does not actually create a table in the database, so
+        there may be some unidentified edge cases.
+
+        Requirements: test to be executed at post_install.
+
+        : Args:
+            model_cls (odoo.models.BaseModel): Class of model to initialize
+        Returns:
+            Instance
+        """
+        registry = cls.env.registry
+        cls.env.cr.execute(
+            "INSERT INTO ir_model (model, name) VALUES (%s, %s)",
+            (TEST_MODEL_NAME, 'Test AEAT model'),
+        )
+        inst = model_cls._build_model(registry, cls.env.cr)
+        model = cls.env[model_cls._name].with_context(todo=[])
+        model._prepare_setup()
+        model._setup_base()
+        model._setup_fields()
+        model._setup_complete()
+        model._auto_init()
+        model.init()
+        return inst
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls._init_test_model(cls, L10nEsAeatTestReport)
+        cls.AeatReport = cls.env["l10n.es.aeat.report"]
+        cls.period_types = {
             '0A': ('2016-01-01', '2016-12-31'),
             '1T': ('2016-01-01', '2016-03-31'),
             '2T': ('2016-04-01', '2016-06-30'),
@@ -55,3 +95,13 @@ class TestL10nEsAeatReport(common.TransactionCase):
         })
         with self.assertRaises(exceptions.UserError):
             report._check_previous_number()
+
+    def test_new_company(self):
+        self.assertTrue(TEST_MODEL_NAME in self.env)
+        company = self.env['res.company'].create({'name': 'Test company'})
+        self.assertTrue(
+            self.env['ir.sequence'].search([
+                ('name', '=', "aeat999-sequence"),
+                ('company_id', '=', company.id),
+            ]),
+        )
