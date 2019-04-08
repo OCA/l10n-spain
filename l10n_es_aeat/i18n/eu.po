@@ -267,6 +267,13 @@ msgid "Close"
 msgstr "Cerrar"
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_res_company
+#, fuzzy
+#| msgid "Company"
+msgid "Companies"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__company_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -776,7 +783,7 @@ msgid "Model number"
 msgstr "Nº modelo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:394
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:395
 #, python-format
 msgid "Modelo no vÃ¡lido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
