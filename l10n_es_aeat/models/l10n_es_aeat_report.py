@@ -1,6 +1,6 @@
 # Copyright 2004-2011 Pexego Sistemas Informáticos - Luis Manuel Angueira
 # Copyright 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
-# Copyright 2014-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -384,8 +384,9 @@ class L10nEsAeatReport(models.AbstractModel):
         return (phone or '').replace(" ", "")[-9:]
 
     @api.model_cr
-    def _register_hook(self):
-        res = super(L10nEsAeatReport, self)._register_hook()
+    def _register_hook(self, companies=None):
+        if not companies:
+            res = super(L10nEsAeatReport, self)._register_hook()
         if self._name in ('l10n.es.aeat.report',
                           'l10n.es.aeat.report.tax.mapping'):
             return res
@@ -397,7 +398,8 @@ class L10nEsAeatReport(models.AbstractModel):
             ))
         seq_obj = self.env['ir.sequence']
         sequence = "aeat%s-sequence" % aeat_num
-        companies = self.env['res.company'].search([])
+        if not companies:
+            companies = self.env['res.company'].search([])
         for company in companies:
             seq = seq_obj.search([
                 ('name', '=', sequence), ('company_id', '=', company.id),
