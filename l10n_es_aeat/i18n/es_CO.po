@@ -278,6 +278,11 @@ msgid "Close"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_company_id
@@ -931,7 +936,7 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:398
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:399
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
