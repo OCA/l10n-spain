@@ -341,7 +341,7 @@ class TxRedsys(models.Model):
             )
             if state == 'error':
                 _logger.warning(vals['state_message'])
-        tx.write(vals)
+        self.write(vals)
         return state != 'error'
 
     @api.model
