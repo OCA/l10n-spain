@@ -10,7 +10,7 @@ class QueueJob(models.Model):
 
     @api.multi
     def do_now(self):
-        self.sudo().write({'eta': 0})
+        self.sudo().write({'eta': False})
 
     @api.multi
     def cancel_now(self):
