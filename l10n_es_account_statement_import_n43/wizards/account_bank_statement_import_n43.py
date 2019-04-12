@@ -185,7 +185,7 @@ class AccountBankStatementImport(models.TransientModel):
         return st_data['groups']
 
     def _check_n43(self, data_file):
-        data_file = data_file.decode('iso-8859-1')
+        data_file = data_file.decode('utf-8-sig')
         try:
             n43 = self._parse(data_file)
         except exceptions.ValidationError:  # pragma: no cover
