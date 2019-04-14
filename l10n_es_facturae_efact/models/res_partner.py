@@ -11,7 +11,7 @@ class ResPartner(models.Model):
     facturae_efact_code = fields.Char(string='e.Fact code')
 
     @api.constrains('facturae', 'vat', 'country_id', 'state_id',
-                    'invoice_integration_method_ids', )
+                    'invoice_integration_method_ids', 'facturae_efact_code')
     def constrain_efact(self):
         efact = self.env.ref('l10n_es_facturae_efact.integration_efact')
         for record in self.filtered(
@@ -32,6 +32,6 @@ class ResPartner(models.Model):
                         _('State must be defined in Spain in order to '
                           'send to e.Fact'))
             if not record.facturae_efact_code or len(
-                    record.facturae_efact_code) != 18:
+                    record.facturae_efact_code) != 22:
                 raise exceptions.ValidationError(
                     _('e.Fact code must be correctly defined'))

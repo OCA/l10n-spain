@@ -182,6 +182,19 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: l10n_es_aeat_mod390
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
+#, fuzzy, python-format
+#| msgid ""
+#| "Código de la notaría en la que se concedió el poder de representación "
+#| "para esta persona."
+msgid ""
+"CÃ³digo de la notarÃ­a en la que se concediÃ³ el poder de representaciÃ³n "
+"para esta persona."
+msgstr ""
+"Código de la notaría en la que se concedió el poder de representación para "
+"esta persona."
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_first_activity_code
 msgid "Código 1ª actividad"
 msgstr "Código 1ª actividad"
@@ -212,11 +225,9 @@ msgid "Código actividad principal"
 msgstr "Código actividad principal"
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:31
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_second_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_third_representative_notary
-#, python-format
 msgid ""
 "Código de la notaría en la que se concedió el poder de representación para "
 "esta persona."
@@ -336,7 +347,7 @@ msgid "Nombre del tercer representante"
 msgstr "Nombre del tercer representante"
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:29
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_first_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_second_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_third_representative_name
@@ -451,7 +462,7 @@ msgid "Tercer representante"
 msgstr "Tercer representante"
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:474
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:559
 #, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr "No puede realizar declaraciones complementarias para este modelo."
@@ -487,6 +498,24 @@ msgid "[49] Total cuota deducible operaciones corrientes"
 msgstr "[49] Total cuota deducible operaciones corrientes"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_50
+#, fuzzy
+#| msgid "[48] Total base deducible operaciones corrientes"
+msgid ""
+"[50] Total bases imponibles deducibles en operaciones interiores de bienes "
+"de inversión"
+msgstr "[48] Total base deducible operaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_51
+#, fuzzy
+#| msgid "[49] Total cuota deducible operaciones corrientes"
+msgid ""
+"[51] Total de cuotas deducibles en operaciones interiores de bienes de "
+"inversión"
+msgstr "[49] Total cuota deducible operaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_52
 msgid "[52] Total base deducible importaciones corrientes"
 msgstr "[52] Total base deducible importaciones corrientes"
@@ -494,6 +523,20 @@ msgstr "[52] Total base deducible importaciones corrientes"
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_53
 msgid "[53] Total cuota deducible importaciones corrientes"
+msgstr "[53] Total cuota deducible importaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_54
+#, fuzzy
+#| msgid "[52] Total base deducible importaciones corrientes"
+msgid "[54] Total base deducible importaciones bienes de inversión"
+msgstr "[52] Total base deducible importaciones corrientes"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_55
+#, fuzzy
+#| msgid "[53] Total cuota deducible importaciones corrientes"
+msgid "[55] Total cuota deducible importaciones bienes de inversión"
 msgstr "[53] Total cuota deducible importaciones corrientes"
 
 #. module: l10n_es_aeat_mod390
@@ -507,6 +550,13 @@ msgid "[57] Total cuota deducible adq. intracomunitarias bienes"
 msgstr "[57] Total cuota deducible adq. intracomunitarias bienes"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_58
+#, fuzzy
+#| msgid "[56] Total base deducible adq. intracomunitarias bienes"
+msgid "[58] Total base deducible adq. intracomunitarias bienes de inversión"
+msgstr "[56] Total base deducible adq. intracomunitarias bienes"
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_597
 msgid "[597] Total base deducible adq. intracomunitarias servicios"
 msgstr "[597] Total base deducible adq. intracomunitarias servicios"
@@ -515,6 +565,13 @@ msgstr "[597] Total base deducible adq. intracomunitarias servicios"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_598
 msgid "[598] Total cuota deducible adq. intracomunitarias servicios"
 msgstr "[598] Total cuota deducible adq. intracomunitarias servicios"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_59
+#, fuzzy
+#| msgid "[57] Total cuota deducible adq. intracomunitarias bienes"
+msgid "[59] Total cuota deducible adq. intracomunitarias bienes de inversión"
+msgstr "[57] Total cuota deducible adq. intracomunitarias bienes"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_casilla_64
