@@ -61,7 +61,7 @@
             <br/>
             </t>
         </t>
-        <t t-jquery="[t-if='receipt.header']" t-operation="after">
+        <t t-jquery="[t-if='receipt.header_xml']" t-operation="after">
              <t t-if="order.get_client()">
                  <br/>
                     <span class="customer_title">Customer data</span><br />
@@ -69,6 +69,9 @@
                     VAT: <t t-esc="order.get_client().vat ? order.get_client().vat : ''"/><br />
                     Address: <t t-esc="order.get_client().address ? order.get_client().address : ''"/>
              </t>
+        </t>
+        <t t-jquery="t[t-esc='tax.name']" t-operation="after">
+            on <t t-esc="widget.format_currency(order.get_base_by_tax()[tax.tax.id])" />
         </t>
     </t>
 
