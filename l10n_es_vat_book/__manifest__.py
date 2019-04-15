@@ -2,10 +2,11 @@
 
 {
     "name": "Libro de IVA",
-    "version": "11.0.2.1.0",
+    "version": "12.0.1.0.0",
     "author": "PRAXYA, "
               "Eficent, "
               "Tecnativa, "
+              "Acysos S.L., "
               "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
@@ -29,7 +30,8 @@
         'report/report_views.xml',
         'report/vat_book_invoices_issued.xml',
         'report/vat_book_invoices_received.xml',
-        'report/vat_book_xlsx.xml',
+        'report/vat_book_issued_xlsx.xml',
+        'report/vat_book_received_xlsx.xml'
     ],
     "installable": True,
 }
