@@ -433,17 +433,40 @@ class L10nEsVatBook(models.Model):
         date_format = lang.date_format
         return datetime.datetime.strftime(
             fields.Date.from_string(date), date_format)
+        
+    @api.multi
+    def _get_printed_report_name(self, book_type):
+        self.ensure_one()
+        filename = str(self.year)
+        filename += self.company_vat
+        filename += book_type
+        filename += self.company_id.name
+        return  filename
 
     @api.multi
-    def export_xlsx(self):
+    def issued_xlsx(self):
         self.ensure_one()
         context = dict(self.env.context, active_ids=self.ids)
         return {
-            'name': 'VAT book XLSX report',
+            'name': 'VAT book Issued XLSX report',
             'model': 'l10n.es.vat.book',
             'type': 'ir.actions.report',
-            'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
+            'report_name': 'l10n_es_vat_book.l10n_es_vat_book_issued_xlsx',
             'report_type': 'xlsx',
-            'report_file': 'l10n.es.vat.book',
+            'report_file': 'l10n.es.vat.book.issued',
+            'context': context,
+        }
+
+    @api.multi
+    def received_xlsx(self):
+        self.ensure_one()
+        context = dict(self.env.context, active_ids=self.ids)
+        return {
+            'name': 'VAT book Received XLSX report',
+            'model': 'l10n.es.vat.book',
+            'type': 'ir.actions.report',
+            'report_name': 'l10n_es_vat_book.l10n_es_vat_book_received_xlsx',
+            'report_type': 'xlsx',
+            'report_file': 'l10n.es.vat.book.received',
             'context': context,
         }

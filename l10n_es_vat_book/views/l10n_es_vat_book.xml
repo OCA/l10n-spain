@@ -20,8 +20,13 @@
                         string="View Received Invoices"
                         type="object"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>
-                <button name="export_xlsx"
-                        string="Export to XLSX"
+                <button name="issued_xlsx"
+                        string="BOE Issued XLSX"
+                        type="object"
+                        icon="fa-file-excel"
+                        attrs="{'invisible':[('state', '=', 'draft')]}"/>
+                <button name="received_xlsx"
+                        string="BOE Received XLSX"
                         type="object"
                         icon="fa-file-excel"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>

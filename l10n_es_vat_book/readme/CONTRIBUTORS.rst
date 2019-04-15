@@ -4,3 +4,7 @@
 * `Tecnativa <https://www.tecnativa.com/>`_:
 
   * Pedro M. Baeza
+
+* `Acysos S.L. <https://www.acysos.com/>`_:
+
+  * Ignacio Ibeas Izquierd <ignacio@acysos.com>

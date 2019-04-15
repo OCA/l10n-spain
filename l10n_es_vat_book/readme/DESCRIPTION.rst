@@ -12,3 +12,6 @@ Es posible exportar los registros a archivo con extensión xlsx.
 
 En el modo de visualización de los informes es posible navegar a los asientos
 contables relacionados con la factura.
+
+Exportación a Excel según la normativa del BOE: 
+https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/Mod_303/Formato_Electronico_Libros_Registro_IVA.pdf

@@ -40,6 +40,9 @@ Es posible exportar los registros a archivo con extensión xlsx.
 En el modo de visualización de los informes es posible navegar a los asientos
 contables relacionados con la factura.
 
+Exportación a Excel según la normativa del BOE: 
+https://www.agenciatributaria.es/static_files/AEAT_Desarrolladores/EEDD/IVA/Mod_303/Formato_Electronico_Libros_Registro_IVA.pdf
+
 **Table of contents**
 
 .. contents::
@@ -89,6 +92,7 @@ Funcionalidades del Libro Registro de IVA no incluídas por el momento:
 
 * Libro Registro de Bienes de Inversión
 * Libro Registro de Determinadas Operaciones Intracomunitarias
+* Exportación BOE XLSX Criterio de Caja
 
 Bug Tracker
 ===========
@@ -109,6 +113,7 @@ Authors
 * PRAXYA
 * Eficent
 * Tecnativa
+* Acysos S.L.
 
 Contributors
 ~~~~~~~~~~~~
@@ -119,6 +124,10 @@ Contributors
 * `Tecnativa <https://www.tecnativa.com/>`_:
 
   * Pedro M. Baeza
+
+* `Acysos S.L. <https://www.acysos.com/>`_:
+
+  * Ignacio Ibeas Izquierd <ignacio@acysos.com>
 
 Maintainers
 ~~~~~~~~~~~
