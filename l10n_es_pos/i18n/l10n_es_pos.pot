@@ -171,6 +171,11 @@ msgid "There is already a simplified invoice sequence with that prefix and it sh
 msgstr ""
 
 #. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
+msgid "Unique Order ID"
+msgstr ""
+
+#. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
 #, python-format
