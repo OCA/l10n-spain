@@ -166,7 +166,7 @@ msgstr "Facturas simplificadas"
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
 #, python-format
 msgid "Subt"
-msgstr "Subtotal"
+msgstr "Subt"
 
 #. module: l10n_es_pos
 #: code:addons/l10n_es_pos/models/ir_sequence.py:20
@@ -179,11 +179,16 @@ msgstr ""
 "debería ser único."
 
 #. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
+msgid "Unique Order ID"
+msgstr "ID único de pedido"
+
+#. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
 #, python-format
 msgid "Unit"
-msgstr "Unidad"
+msgstr "Ud."
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
@@ -207,15 +212,15 @@ msgstr "NIF/CIF:"
 msgid "on"
 msgstr "sobre"
 
+#~ msgid ""
+#~ "The current order is already queued and thus it shouldn't be changed. "
+#~ "Click on 'Validate' in order to finalize it."
+#~ msgstr ""
+#~ "Este pedido ya está en cola, de modo que no debería modificarse. Pulsa en "
+#~ "'Validar' para finalizarlo."
+
+#~ msgid "The order is already queued"
+#~ msgstr "El pedido ya está en cola"
+
 #~ msgid "pos.config"
 #~ msgstr "pos.config"
-
-#~ msgid ""
-#~ "There's already another POS config using the same Simplified Invoice "
-#~ "prefix. Try choosing another POS Name"
-#~ msgstr ""
-#~ "Ya existe otro TPV utilizando el mismo prefijo de Factura Simplifica. "
-#~ "Escoge otro nombre de Punto de Venta"
-
-#~ msgid "You need to define a simplified invoice prefix."
-#~ msgstr "Debes definir un prefijo de Factura Simplificada."

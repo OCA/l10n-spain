@@ -1,4 +1,5 @@
 /* Copyright 2016 David Gómez Quilón <david.gomez@aselcis.com>
+   Copyright 2018-19 Tecnativa - David Vidal
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
@@ -6,7 +7,6 @@ odoo.define('l10n_es_pos.models', function (require) {
     "use strict";
 
     var models = require('point_of_sale.models');
-
 
     var pos_super = models.PosModel.prototype;
     models.PosModel = models.PosModel.extend({
@@ -56,8 +56,10 @@ odoo.define('l10n_es_pos.models', function (require) {
     models.Order = models.Order.extend({
         get_total_with_tax: function () {
             var total = order_super.get_total_with_tax.apply(this, arguments);
-            var below_limit = total <= this.pos.config.l10n_es_simplified_invoice_limit;
-            this.is_simplified_invoice = below_limit && this.pos.config.iface_l10n_es_simplified_invoice;
+            var below_limit = total <=
+                this.pos.config.l10n_es_simplified_invoice_limit;
+            this.is_simplified_invoice =
+                below_limit && this.pos.config.iface_l10n_es_simplified_invoice;
             return total;
         },
         set_simple_inv_number: function () {
