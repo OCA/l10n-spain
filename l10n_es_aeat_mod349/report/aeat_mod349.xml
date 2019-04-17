@@ -4,46 +4,46 @@
     <template id="l10n_es_aeat_mod349.report_aeat_mod349_document">
         <t t-call="web.external_layout">
             <div class="page">
-                <div class="row">
+                <div class="oe_structure"/>
+
+                <div class="row mb32">
                     <div class="col-xs-12 text-center" id="title">
                         <h4>Form 349. Information Return. Recapitulatory
                             return of intracommunity transactions.</h4>
                     </div>
-                    <t t-call="l10n_es_aeat_mod349.mod349_summary"/>
-                    <div/>
-                    <newline/>
-                    <div class="col-xs-12"
-                         id="title_partner_records">
+                </div>
+
+                <t t-call="l10n_es_aeat_mod349.mod349_summary"/>
+
+                <div class="row mt32 mb32">
+                    <div class="col-xs-12" id="title_partner_records">
                         <h4>Partner records</h4>
                     </div>
-                    <div class="col-xs-12"
-                       id="partner_record_detail_div">
-                    <table class="table table-condensed"
-                           id="partner_record_table">
-                        <t t-call="l10n_es_aeat_mod349.mod349_partner_record_head"/>
-                        <tbody>
-                            <tr t-foreach="o.partner_record_ids" t-as="l">
-                                <t t-call="l10n_es_aeat_mod349.mod349_partner_record"/>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                    <newline/>
+                </div>
+
+                <table class="table table-sm" id="partner_record_table">
+                    <t t-call="l10n_es_aeat_mod349.mod349_partner_record_head"/>
+                    <tbody>
+                        <tr t-foreach="o.partner_record_ids" t-as="l">
+                            <t t-call="l10n_es_aeat_mod349.mod349_partner_record"/>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row mt32 mb32">
                     <div class="col-xs-12" id="title_refund_records">
                         <h4>Refund records</h4>
                     </div>
-                    <div class="col-xs-12" id="div_refund_records">
-                        <table class="table table-condensed"
-                               id="partner_refund_table">
-                            <t t-call="l10n_es_aeat_mod349.mod349_partner_refund_head"/>
-                            <tbody>
-                                <tr t-foreach="o.partner_refund_ids" t-as="l">
-                                    <t t-call="l10n_es_aeat_mod349.mod349_refund_record"/>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
+
+                <table class="table table-sm" id="partner_refund_table">
+                    <t t-call="l10n_es_aeat_mod349.mod349_partner_refund_head"/>
+                    <tbody>
+                        <tr t-foreach="o.partner_refund_ids" t-as="l">
+                            <t t-call="l10n_es_aeat_mod349.mod349_refund_record"/>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </t>
     </template>
