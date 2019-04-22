@@ -2,7 +2,18 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, exceptions, _
+from odoo.exceptions import ValidationError
 from datetime import datetime
+import logging
+_logger = logging.getLogger(__name__)
+
+try:
+    import chardet
+except ImportError:
+    _logger.warning(
+        "chardet library not found,  please install it "
+        "from http://pypi.python.org/pypi/chardet"
+    )
 
 account_mapping = {
     '01': '4300%00',
@@ -184,8 +195,26 @@ class AccountBankStatementImport(models.TransientModel):
             st_data['_num_records'] += 1
         return st_data['groups']
 
+    @api.model
+    def _get_common_file_encodings(self):
+        """Returns a list with commonly used encodings"""
+        return ['iso-8859-1', 'utf-8-sig']
+
     def _check_n43(self, data_file):
-        data_file = data_file.decode('utf-8-sig')
+        # We'll try to decode with the encoding detected by chardet first
+        # otherwise, we'll try with another common encodings until success
+        encodings = self._get_common_file_encodings()
+        # Try to guess the encoding of the data file
+        detected_encoding = chardet.detect(data_file).get('encoding', False)
+        if detected_encoding:
+            encodings = encodings + [detected_encoding]
+        while encodings:
+            try:
+                data_file = data_file.decode(encodings.pop())
+                break
+            except UnicodeDecodeError:
+                if not encodings:
+                    return False
         try:
             n43 = self._parse(data_file)
         except exceptions.ValidationError:  # pragma: no cover
