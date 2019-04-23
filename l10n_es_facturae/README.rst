@@ -74,6 +74,8 @@ Problemas conocidos / Hoja de ruta
 * Ver la posibilidad de exportar varias facturas juntas.
 * Soportar formato Factura-E v3.2.1.
 * Las facturas con recargo de equivalencia no generan un formato correcto.
+* Debido a un cambio de certificados, mal hechos desde Camerfirma, se ha eliminado
+  el cálculo automático del hash del método de firma.
 
 
 Credits
