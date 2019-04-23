@@ -8,7 +8,6 @@ import pytz
 import random
 import base64
 import hashlib
-import urllib
 import logging
 
 try:
