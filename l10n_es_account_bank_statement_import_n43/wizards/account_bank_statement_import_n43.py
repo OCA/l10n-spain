@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, exceptions, _
-from odoo.exceptions import ValidationError
 from datetime import datetime
 import logging
 _logger = logging.getLogger(__name__)
@@ -207,19 +206,14 @@ class AccountBankStatementImport(models.TransientModel):
         # Try to guess the encoding of the data file
         detected_encoding = chardet.detect(data_file).get('encoding', False)
         if detected_encoding:
-            encodings = encodings + [detected_encoding]
+            encodings += [detected_encoding]
         while encodings:
             try:
                 data_file = data_file.decode(encodings.pop())
-                break
-            except UnicodeDecodeError:
-                if not encodings:
-                    return False
-        try:
-            n43 = self._parse(data_file)
-        except exceptions.ValidationError:  # pragma: no cover
-            return False
-        return n43
+                return self._parse(data_file)
+            except (UnicodeDecodeError, exceptions.ValidationError):
+                pass
+        return False
 
     def _get_ref(self, line):
         try:
