@@ -24,7 +24,7 @@ msgid "AEB norm 43 (.n43)"
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:127
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:137
 #, python-format
 msgid ""
 "Credit amount doesn't match with the defined in the last record of account."
@@ -36,14 +36,14 @@ msgid "Date type for N43 Import"
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:123
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:133
 #, python-format
 msgid ""
 "Debit amount doesn't match with the defined in the last record of account."
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:136
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:146
 #, python-format
 msgid ""
 "Final balance amount = (initial balance + credit - debit) doesn't match with "
@@ -66,7 +66,7 @@ msgid "Norm 43 options"
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:119
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:129
 #, python-format
 msgid ""
 "Number of credit records doesn't match with the defined in the last record "
@@ -74,7 +74,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:115
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:125
 #, python-format
 msgid ""
 "Number of debit records doesn't match with the defined in the last record of "
@@ -82,7 +82,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:151
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:161
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
 msgstr ""
@@ -93,7 +93,7 @@ msgid "Operation Date"
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:184
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:194
 #, python-format
 msgid "Record type %s is not valid."
 msgstr ""
