@@ -20,18 +20,26 @@ msgstr ""
 "%100==4 ? 2 : 3);\n"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expired_aeat:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expired_aeat
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expired_aeat
 msgid "AEAT Certificate Expirated"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expiration_aeat:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expiration_aeat
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expiration_aeat
 msgid "AEAT Certificate Expiration"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_required:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_required
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_required
 msgid "Certificate Required"
+msgstr ""
+
+#. module: l10n_es_subcontractor_certificate
+#: model:ir.model,name:l10n_es_subcontractor_certificate.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
@@ -40,54 +48,54 @@ msgid "Invoice"
 msgstr "Račun"
 
 #. module: l10n_es_subcontractor_certificate
-#: model:ir.model,name:l10n_es_subcontractor_certificate.model_res_partner
-msgid "Partner"
-msgstr "Partner"
-
-#. module: l10n_es_subcontractor_certificate
 #: model:ir.model,name:l10n_es_subcontractor_certificate.model_purchase_order
 msgid "Purchase Order"
 msgstr "Nabavni nalog"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expired_ss:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expired_ss
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expired_ss
 msgid "SS Certificate Expirated"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expiration_ss:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expiration_ss
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expiration_ss
 msgid "SS Certificate Expiration"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:28
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:8
 #, python-format
 msgid "The AEAT certificate for this supplier has expired"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:34
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:14
 #, python-format
 msgid "The AEAT certificate is required and expiration date is not set"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:40
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:20
 #, python-format
 msgid "The SS certificate for this supplier has expired"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:46
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:26
 #, python-format
 msgid "The SS certificate is required and expiration date is not set"
 msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:27
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:33
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:39
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:45
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:7
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:13
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:19
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:25
 #, python-format
 msgid "Warning!"
 msgstr ""
+
+#~ msgid "Partner"
+#~ msgstr "Partner"
