@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="check_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="header"/>
+                <div class="article">
+                    <div class="page">
+                        <div name="address" style="position:absolute; top:10mm; left:20mm;">
+                            <address t-field="o.company_id.partner_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                        </div>
+                        <div name="address"
+                             style="position:absolute; top:50mm; left:105mm;">
+                            <address t-field="o.partner_id"
+                                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
+                            <div t-if="o.partner_id.vat" class="mt16">
+                                <t
+                                        t-esc="o.company_id.country_id.vat_label or 'TIN'"/>
+                                :
+                                <span t-field="o.partner_id.vat"/>
+                            </div>
+                        </div>
+                        <div style="position:absolute; top:100mm; left:10mm;">
+                            <strong>
+                                <span
+                                        t-esc="'Partner: {}'.format(o.partner_id.name)"/>
+                                <span style="padding-right:100mm;float:right;"
+                                      t-esc="'Date: {}'.format(o.payment_date)"/>
+                                <span style="position:absolute; right:35mm;"
+                                      t-esc="'Check #: {}'.format(o.check_number)"/>
+                            </strong>
+                            <t>
+                                <table width="96%" style="padding-right:22mm;">
+                                    <thead>
+                                        <tr style="text-align:left;">
+                                            <th style="padding-top:3mm;">Due
+                                                Date
+                                            </th>
+                                            <th>Description</th>
+                                            <th>Original Amount</th>
+                                            <th>Balance Due</th>
+                                            <th>Payment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="paid_lines[o.id]"
+                                           t-as="line">
+                                            <tr style="text-align:left;border-top: 0px;">
+                                                <td>
+                                                    <span t-esc="line['date_due']"/>
+                                                </td>
+                                                <td style="max-width: 55mm;"
+                                                    t-esc="line['reference'] or line['number']"/>
+                                                <td>
+                                                    <span t-esc="line['amount_total']"
+                                                          t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="line['residual']"
+                                                          t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="line['paid_amount']"
+                                                          t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                                <div style="position:absolute; top:95mm; left:125mm;">
+                                    <b>Check Amount:</b>
+                                    <span
+                                            t-field='o.amount'
+                                            t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                </div>
+                            </t>
+                        </div>
+                        <div style="position:absolute; top:202mm; left:36mm; font-size:90%">
+                            <div style="position:absolute; top:23.7mm; left:60mm;width: 100mm;height: 5mm;">
+                                <span t-field="o.partner_id.name"/>
+                            </div>
+                            <div style="position:absolute; top:18.7mm; left:115mm;width: 100mm;height: 5mm;">
+                                <span t-esc="'#%.2f#' % (o.amount) "/>
+                            </div>
+                            <div style="position:absolute; top:28.7mm; left:60mm; width: 100mm;height: 10mm;">
+                                <span t-esc="o.check_amount_in_words"/>
+                            </div>
+                            <div style="position:absolute; top:38mm; left:65mm; width: 100mm;height: 5mm;">
+                                <span t-esc="time.strftime('%d de %B de %Y', time.strptime(o.payment_date, '%Y-%m-%d'))"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

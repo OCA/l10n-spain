@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Creu Blanca
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+        <record id="account_payment_check_report_caixabank"
+                model="account.payment.check.report">
+            <field name="name">caixabank</field>
+            <field name="report">account_check_printing_caixabank.check_report</field>
+        </record>
+</odoo>
