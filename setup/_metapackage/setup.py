@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo11-addon-account_check_printing_caixabank',
         'odoo11-addon-l10n_es_account_asset',
         'odoo11-addon-l10n_es_account_bank_statement_import_n43',
         'odoo11-addon-l10n_es_account_banking_sepa_fsdd',
