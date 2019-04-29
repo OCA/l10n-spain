@@ -746,7 +746,7 @@ msgid "Partner bank in mandate is missing"
 msgstr "El banco del mandato es obligatorio"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:187
+#: code:addons/l10n_es_facturae/models/account_invoice.py:188
 #, python-format
 msgid "Partner bank is missing"
 msgstr "El banco es obligatorio"
@@ -892,13 +892,13 @@ msgid "Second"
 msgstr "Segundo"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:190
+#: code:addons/l10n_es_facturae/models/account_invoice.py:191
 #, python-format
 msgid "Selected account BIC must be 11"
 msgstr "El BIC del banco de la cuenta debe tener 11 carácteres"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:192
+#: code:addons/l10n_es_facturae/models/account_invoice.py:193
 #, python-format
 msgid "Selected account is too small"
 msgstr "La cuenta seleccionada es demasiado corta"
@@ -913,6 +913,13 @@ msgstr "Enviar"
 #: model:ir.ui.view,arch_db:l10n_es_facturae.view_account_invoice_integration_cancel
 msgid "Send cancel"
 msgstr "Enviar cancelación"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+#| msgid "Send"
+msgid "Sended"
+msgstr "Enviar"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
@@ -966,7 +973,7 @@ msgid "Templates for Taxes"
 msgstr "Plantillas para Impuestos"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:442
+#: code:addons/l10n_es_facturae/models/account_invoice.py:443
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
@@ -1008,7 +1015,7 @@ msgid "Vat must be defined"
 msgstr "El número de IVA debe estar definido"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:194
+#: code:addons/l10n_es_facturae/models/account_invoice.py:195
 #, python-format
 msgid ""
 "You can only create Factura-E files for invoices that have been validated."
@@ -1136,8 +1143,8 @@ msgid "create.facturae"
 msgstr "Crear factura electrónica"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:414
-#: code:addons/l10n_es_facturae/models/account_invoice.py:422
+#: code:addons/l10n_es_facturae/models/account_invoice.py:415
+#: code:addons/l10n_es_facturae/models/account_invoice.py:423
 #, python-format
 msgid "facturae"
 msgstr "facturae"
