@@ -915,6 +915,13 @@ msgid "Send cancel"
 msgstr "Enviar cancelación"
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+#| msgid "Send"
+msgid "Sended"
+msgstr "Enviar"
+
+#. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
 #: selection:account.invoice.integration.log,state:0
 msgid "Sent"
