@@ -9,6 +9,7 @@ class AccountInvoiceIntegration(models.Model):
     _inherit = "account.invoice.integration"
 
     integration_status = fields.Selection(selection_add=[
+        ('efact-SENT', 'Sended'),
         ('efact-DELIVERED', 'Delivered'),
         ('efact-REGISTERED', 'Registered'),
         ('efact-ACCEPTED', 'Accepted'),
