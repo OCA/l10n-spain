@@ -9,10 +9,68 @@ from datetime import datetime
 import base64
 import logging
 from io import BytesIO
+
+_logger = logging.getLogger(__name__)
 try:
     from OpenSSL import crypto
 except (ImportError, IOError) as err:
-    logging.info(err)
+    _logger.info(err)
+
+
+class TestConnection:
+    def __init__(self, data, filename=''):
+        self.data = data
+        self.filename = filename
+
+    def connect(self, hostname, port, username, password):
+        return
+
+    def open_sftp(self):
+        return SftpConnection(self.data, self.filename)
+
+    def close(self):
+        return
+
+    def load_system_host_keys(self):
+        return
+
+    def get_host_keys(self):
+        return Keys()
+
+
+class Keys:
+    def add(self, *args):
+        return
+
+
+class SftpConnection:
+    def __init__(self, data, filename):
+        self.data = data
+        self.filename = filename
+
+    def close(self):
+        return
+
+    def normalize(self, path):
+        return path
+
+    def chdir(self, path):
+        return
+
+    def open(self, path, type=''):
+        return BytesIO(self.data)
+
+    def listdir_attr(self, path):
+        return [TestAttribute(self.filename)]
+
+    def remove(self, filename):
+        return
+
+
+class TestAttribute:
+    def __init__(self, name):
+        self.filename = name
+        self.st_atime = datetime.now()
 
 
 class TestL10nEsFacturae(common.TransactionCase):
@@ -179,58 +237,6 @@ class TestL10nEsFacturae(common.TransactionCase):
             self.partner.state_id = False
 
     def test_efact_sending(self):
-        class TestConnection:
-            def __init__(self, data, filename=''):
-                self.data = data
-                self.filename = filename
-
-            def connect(self, hostname, port, username, password):
-                return
-
-            def open_sftp(self):
-                return SftpConnection(self.data, self.filename)
-
-            def close(self):
-                return
-
-            def load_system_host_keys(self):
-                return
-
-            def get_host_keys(self):
-                return Keys()
-
-        class Keys:
-            def add(self, *args):
-                return
-
-        class SftpConnection:
-            def __init__(self, data, filename):
-                self.data = data
-                self.filename = filename
-
-            def close(self):
-                return
-
-            def normalize(self, path):
-                return path
-
-            def chdir(self, path):
-                return
-
-            def open(self, path, type=''):
-                return BytesIO(self.data)
-
-            def listdir_attr(self, path):
-                return [TestAttribute(self.filename)]
-
-            def remove(self, filename):
-                return
-
-        class TestAttribute:
-            def __init__(self, name):
-                self.filename = name
-                self.st_atime = datetime.now()
-
         patch_class = 'odoo.addons.l10n_es_facturae_efact.models.' \
                       'account_invoice_integration_log.SSHClient'
         self.invoice.action_integrations()
@@ -267,3 +273,43 @@ class TestL10nEsFacturae(common.TransactionCase):
                 integration.efact_reference + '@001')
             self.env['account.invoice.integration.log'].efact_check_history()
         self.assertEqual(integration.efact_hub_id, '12')
+        self.assertEqual(integration.register_number, '111')
+
+    def test_efact_sending_error(self):
+        patch_class = 'odoo.addons.l10n_es_facturae_efact.models.' \
+                      'account_invoice_integration_log.SSHClient'
+        self.invoice.action_integrations()
+        integration = self.env['account.invoice.integration'].search([
+            ('invoice_id', '=', self.invoice.id)
+        ])
+        self.assertEqual(integration.method_code, "eFACT")
+        self.assertEqual(integration.can_send, True)
+        attachment = self.env['ir.attachment'].create({
+            'name': "attach.txt",
+            'datas': base64.b64encode("attachment".encode('utf-8')),
+            'datas_fname': "attach.txt",
+            'res_model': 'account.invoice',
+            'res_id': self.invoice.id,
+            'mimetype': 'text/plain'
+        })
+        integration.attachment_ids = [(6, 0, attachment.ids)]
+        with patch(patch_class) as mock:
+            mock.return_value = TestConnection(bytes(''.encode('utf-8')))
+            integration.send_action()
+        self.assertEqual(integration.state, 'sent')
+        with self.assertRaises(exceptions.UserError):
+            integration.update_action()
+        with self.assertRaises(exceptions.ValidationError):
+            self.env['account.invoice.integration.cancel'].create({
+                'integration_id': integration.id
+            }).cancel_integration()
+        with patch(patch_class) as mock:
+            mock.return_value = TestConnection(
+                bytes(tools.file_open(
+                    'result_02.xml',
+                    subdir="addons/l10n_es_facturae_efact/tests"
+                ).read().encode('utf-8')),
+                integration.efact_reference + '@001')
+            self.env['account.invoice.integration.log'].efact_check_history()
+        self.assertEqual(integration.efact_hub_id, '12')
+        self.assertEqual(integration.register_number, False)

@@ -39,8 +39,8 @@ class AccountInvoiceIntegration(models.Model):
 
     def get_filename(self, annex=''):
         invoice = self.integration_id.invoice_id
-        filename = invoice.partner_id.facturae_efact_code + '@'
-        filename += invoice.company_id.partner_id.facturae_efact_code + '@'
+        filename = invoice.company_id.facturae_efact_code + '@'
+        filename += invoice.partner_id.facturae_efact_code + '@'
         filename += invoice.number.replace('/', '_')
         if len(annex) > 0:
             filename += '@' + annex
@@ -48,19 +48,64 @@ class AccountInvoiceIntegration(models.Model):
 
     def efact_transform_feedback(self, delivery_feedback, filename):
         hub_list = filename.rsplit('@', 1)
-        hub_reference = hub_list[0]
         hub_message_id = hub_list[1]
         for status in delivery_feedback.findall('StatusFeedback'):
             hub_feedback = status.find('HubFeedback')
+            if hub_feedback is None:
+                continue
+            hub_reference = hub_feedback.find('HubFilename').text
             invoice_feedback = status.find('InvoiceFeedback')
-            feedback = invoice_feedback.find('Feedback')
             hub_id = hub_feedback.find('HubId').text
-            integration = self.env['account.invoice.integration'].search([
-                ('method_id', '=', self.env.ref(
-                    'l10n_es_facturae_efact.integration_efact').id),
-                ('efact_hub_id', '=', hub_id)
-            ])
-            if not integration:
+            if invoice_feedback is not None:
+                integration = self.env['account.invoice.integration'].search([
+                    ('method_id', '=', self.env.ref(
+                        'l10n_es_facturae_efact.integration_efact').id),
+                    ('efact_hub_id', '=', hub_id)
+                ])
+                if not integration:
+                    integration = self.env[
+                        'account.invoice.integration'
+                    ].search([
+                        ('method_id', '=', self.env.ref(
+                            'l10n_es_facturae_efact.integration_efact').id),
+                        ('efact_hub_id', '=', False),
+                        ('efact_reference', '=', hub_reference)
+                    ])
+                    integration.efact_hub_id = hub_id
+                for feedback in invoice_feedback.findall('Feedback'):
+                    self.env['account.invoice.integration.log'].create({
+                        'type': 'update',
+                        'integration_id': integration.id,
+                        'state': 'sent',
+                        'log': feedback.find('Status').text,
+                        'hub_message_id': hub_message_id,
+                        'update_date': feedback.find('StatusDate').text
+                    })
+                    register = feedback.find('RegisterNumber')
+                    if (
+                        register is not None and
+                        not integration.register_number
+                    ):
+                        integration.register_number = register.text
+                    integration.integration_status = 'efact-' + feedback.find(
+                        'Status').text
+                    integration.integration_description = feedback.find(
+                        'Reason'
+                    ).find('Description').text
+                for annex in feedback.findall('ElectronicAcknowledgment'):
+                    annex_name = '%a.%s' % (
+                        integration.register_number,
+                        annex.find('formatType').text
+                    )
+                    self.env['ir.attachment'].create({
+                        'name': annex_name,
+                        'datas': annex.find('document').text,
+                        'datas_fname': annex_name,
+                        'res_model': 'account.invoice.integration',
+                        'res_id': integration.id,
+                        'mimetype': 'application/xml'
+                    })
+            else:
                 integration = self.env['account.invoice.integration'].search([
                     ('method_id', '=', self.env.ref(
                         'l10n_es_facturae_efact.integration_efact').id),
@@ -68,30 +113,16 @@ class AccountInvoiceIntegration(models.Model):
                     ('efact_reference', '=', hub_reference)
                 ])
                 integration.efact_hub_id = hub_id
-                integration.register_number = feedback.find(
-                    'RegisterNumber').text
-            self.env['account.invoice.integration.log'].create({
-                'type': 'update',
-                'integration_id': integration.id,
-                'state': 'sent',
-                'log': feedback.find('Status').text,
-                'hub_message_id': hub_message_id,
-                'update_date': feedback.find('StatusDate').text
-            })
-            integration.integration_status = 'efact-' + feedback.find(
-                'Status').text
-            integration.integration_description = feedback.find('Reason').find(
-                'Description').text
-            for annex in feedback.findall('ElectronicAcknowledgment'):
-                annex_name = integration.register_number + '.' + annex.find(
-                    'formatType').text
-                self.env['ir.attachment'].create({
-                    'name': annex_name,
-                    'datas': annex.find('document').text,
-                    'datas_fname': annex_name,
-                    'res_model': 'account.invoice.integration',
-                    'res_id': integration.id,
-                    'mimetype': 'application/xml'
+                self.env['account.invoice.integration.log'].create({
+                    'type': 'update',
+                    'integration_id': integration.id,
+                    'state': 'sent',
+                    'log': '%s - %s' % (
+                        hub_feedback.find('HubStatus').text,
+                        hub_feedback.find('HubErrorCode').text,
+                    ),
+                    'hub_message_id': hub_message_id,
+                    'update_date': hub_feedback.find('HubStatusDate').text
                 })
 
     def send_method(self):
