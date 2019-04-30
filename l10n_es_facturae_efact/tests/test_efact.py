@@ -10,7 +10,7 @@ import base64
 import logging
 from io import BytesIO
 
-_logger = logging.getLogger(__name__)+
+_logger = logging.getLogger(__name__)
 try:
     from OpenSSL import crypto
 except (ImportError, IOError) as err:
