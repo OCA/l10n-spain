@@ -25,13 +25,13 @@ class AccountInvoiceIntegration(models.Model):
         connection = SSHClient()
         connection.load_system_host_keys()
         connection.connect(
-            hostname=self.env["ir.config_parameter"].get_param(
+            hostname=self.env["ir.config_parameter"].sudo().get_param(
                 "account.invoice.efact.server", default=None),
-            port=int(self.env["ir.config_parameter"].get_param(
+            port=int(self.env["ir.config_parameter"].sudo().get_param(
                 "account.invoice.efact.port", default=None)),
-            username=self.env["ir.config_parameter"].get_param(
+            username=self.env["ir.config_parameter"].sudo().get_param(
                 "account.invoice.efact.user", default=None),
-            password=self.env["ir.config_parameter"].get_param(
+            password=self.env["ir.config_parameter"].sudo().get_param(
                 "account.invoice.efact.password", default=None)
         )
         sftp = connection.open_sftp()

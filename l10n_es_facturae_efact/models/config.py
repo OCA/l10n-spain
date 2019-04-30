@@ -34,7 +34,7 @@ class ResConfigSettings(models.TransientModel):
     @api.multi
     def set_values(self):
         super(ResConfigSettings, self).set_values()
-        self.env['ir.config_parameter'].sudo().set_param(
+        self.env['ir.config_parameter'].set_param(
             "account.invoice.efact.server", self.efact_server or '')
         self.env['ir.config_parameter'].set_param(
             "account.invoice.efact.port", self.efact_port or '')
