@@ -51,12 +51,12 @@ class AccountInvoiceIntegration(models.Model):
         hub_message_id = hub_list[1]
         for status in delivery_feedback.findall('StatusFeedback'):
             hub_feedback = status.find('HubFeedback')
-            if not hub_feedback:
+            if hub_feedback is None:
                 continue
             hub_reference = hub_feedback.find('HubFilename').text
             invoice_feedback = status.find('InvoiceFeedback')
-            if invoice_feedback:
-                hub_id = hub_feedback.find('HubId').text
+            hub_id = hub_feedback.find('HubId').text
+            if invoice_feedback is not None:
                 integration = self.env['account.invoice.integration'].search([
                     ('method_id', '=', self.env.ref(
                         'l10n_es_facturae_efact.integration_efact').id),
@@ -81,11 +81,12 @@ class AccountInvoiceIntegration(models.Model):
                         'hub_message_id': hub_message_id,
                         'update_date': feedback.find('StatusDate').text
                     })
-                    if feedback.find(
-                        'RegisterNumber'
-                    ) and not integration.register_number:
-                        integration.register_number = feedback.find(
-                            'RegisterNumber').text
+                    register = feedback.find('RegisterNumber')
+                    if (
+                        register is not None and
+                        not integration.register_number
+                    ):
+                        integration.register_number = register.text
                     integration.integration_status = 'efact-' + feedback.find(
                         'Status').text
                     integration.integration_description = feedback.find(
@@ -105,7 +106,6 @@ class AccountInvoiceIntegration(models.Model):
                         'mimetype': 'application/xml'
                     })
             else:
-                hub_id = hub_feedback.find('HubId').text
                 integration = self.env['account.invoice.integration'].search([
                     ('method_id', '=', self.env.ref(
                         'l10n_es_facturae_efact.integration_efact').id),
