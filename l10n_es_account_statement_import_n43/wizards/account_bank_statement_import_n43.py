@@ -209,8 +209,8 @@ class AccountBankStatementImport(models.TransientModel):
             encodings += [detected_encoding]
         while encodings:
             try:
-                data_file = data_file.decode(encodings.pop())
-                return self._parse(data_file)
+                data_decoded = data_file.decode(encodings.pop())
+                return self._parse(data_decoded)
             except (UnicodeDecodeError, exceptions.ValidationError):
                 pass
         return False
