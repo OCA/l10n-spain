@@ -22,16 +22,15 @@ class AccountInvoiceIntegration(models.Model):
     hub_message_id = fields.Char(readonly=True)
 
     def _efact_connect(self):
+        ICP = self.env["ir.config_parameter"].sudo()
         connection = SSHClient()
         connection.load_system_host_keys()
         connection.connect(
-            hostname=self.env["ir.config_parameter"].get_param(
-                "account.invoice.efact.server", default=None),
-            port=int(self.env["ir.config_parameter"].get_param(
-                "account.invoice.efact.port", default=None)),
-            username=self.env["ir.config_parameter"].get_param(
+            ICP.get_param("account.invoice.efact.server", default=None),
+            port=ICP.get_param("account.invoice.efact.port", default=None),
+            username=ICP.get_param(
                 "account.invoice.efact.user", default=None),
-            password=self.env["ir.config_parameter"].get_param(
+            password=ICP.get_param(
                 "account.invoice.efact.password", default=None)
         )
         sftp = connection.open_sftp()
