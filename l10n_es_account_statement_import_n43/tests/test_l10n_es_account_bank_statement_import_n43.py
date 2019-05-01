@@ -23,14 +23,14 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
         n43_file_path = get_module_resource(
             'l10n_es_account_bank_statement_import_n43', 'tests', 'test.n43')
         n43_file = base64.b64encode(open(n43_file_path, 'rb').read())
-        cls.import_wizard = cls.env['account.bank.statement.import'].create({
+        cls.import_wizard = cls.env[
+            'account.bank.statement.import'
+        ].with_context(journal_id=cls.journal.id).create({
             'data_file': n43_file,
         })
 
     def test_import_n43(self):
-        action = self.import_wizard.with_context(
-            journal_id=self.journal.id,
-        ).import_file()
+        action = self.import_wizard.import_file()
         self.assertTrue(action)
         self.assertTrue(action.get('context').get('statement_ids'))
         statement = self.env['account.bank.statement'].browse(
@@ -47,9 +47,7 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
 
     def test_import_n43_fecha_oper(self):
         self.journal.n43_date_type = 'fecha_oper'
-        action = self.import_wizard.with_context(
-            journal_id=self.journal.id,
-        ).import_file()
+        action = self.import_wizard.import_file()
         self.assertTrue(action)
         self.assertTrue(action.get('context').get('statement_ids'))
         statement = self.env['account.bank.statement'].browse(
