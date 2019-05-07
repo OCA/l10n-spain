@@ -1,22 +1,6 @@
-##############################################################################
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see http://www.gnu.org/licenses/.
-#
-##############################################################################
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api, exceptions
+# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
+
+from odoo import models, fields, api, exceptions, _
 
 
 def trunc(f, n):
@@ -89,7 +73,7 @@ class L10nEsAeatMod130Report(models.Model):
     casilla_03 = fields.Float(string="Casilla [03] - Rendimiento",
                               readonly=True)
     casilla_04 = fields.Float(string="Casilla [04] - IRPF", readonly=True)
-    casilla_05 = fields.Float(string="Casilla [05]", readonly=True)
+    casilla_05 = fields.Float(string="Casilla [05]")
     casilla_06 = fields.Float(string="Casilla [06]", readonly=True)
     casilla_07 = fields.Float(string="Casilla [07]", readonly=True)
     casilla_08 = fields.Float(string="Casilla [08] - Ingresos primario",
@@ -121,97 +105,58 @@ class L10nEsAeatMod130Report(models.Model):
             if (report.complementary and
                     not report.previous_electronic_code and
                     not report.previous_number):
-                raise exceptions.Warning('Si se marca la casilla de '
-                                         'liquidación complementaria, debe '
-                                         'rellenar el código electrónico o el '
-                                         'nº de justifacnte de la declaración '
-                                         'anterior.')
+                raise exceptions.Warning(_(
+                    'Si se marca la casilla de '
+                    'liquidación complementaria, debe '
+                    'rellenar el código electrónico o el '
+                    'nº de justifacnte de la declaración '
+                    'anterior.'))
 
     @api.onchange('casilla_18', 'casilla_17')
     def onchange_casilla_18(self):
         self.result = self.casilla_17 - self.casilla_18
 
     @api.multi
-    def _get_periods(self, period):
-        """Obtiene el periodo o periodos contables asociados al trimestre del
-        informe asociado.
-        """
-        self.ensure_one()
-        period_obj = self.env["account.period"]
-        year = self.fiscalyear_id.date_start.split('-')[0]
-        # Obtener el primer mes del trimestre
-        month = int(period[0]) * 3 - 2
-        fecha_ini = datetime.strptime('%s-%s-01' % (year, month), '%Y-%m-%d')
-        fecha_fin = fecha_ini + relativedelta(months=3, days=-1)
-        account_period_ids = period_obj.search(
-            [('date_start', '>=', fecha_ini),
-             ('date_stop', '<=', fecha_fin),
-             ('company_id', '=', self.company_id.id)])
-        if not account_period_ids:
-            raise exceptions.Warning(
-                "No se ha encontrado un periodo "
-                "contable adecuado para el periodo y ejercicio fiscal "
-                "indicados. Revise si tiene especificado en el periodo el "
-                "trimestre al que pertenece.")
-        return account_period_ids.ids
-
-    @api.multi
     def _calc_ingresos_gastos(self):
         self.ensure_one()
-        periods = ['1T', '2T', '3T', '4T']
-        income_accounts = ['7']
-        expense_accounts = ['6']
-        period_ids = []
-        for period in periods:
-            period_ids += self._get_periods(period)
-            if period == self.period:
-                break
-        acc_obj = self.env['account.account'].with_context(
-            fiscalyear=self.fiscalyear_id.id, periods=period_ids)
-        income_account_ids = acc_obj.search(
-            [('code', 'in', income_accounts),
-             ('company_id', '=', self.company_id.id)])
-        ingresos = sum([-x.balance for x in income_account_ids])
-        expense_account_ids = acc_obj.search([('code', 'in', expense_accounts),
-                                              ('company_id', '=',
-                                               self.company_id.id)])
-        gastos = sum([x.balance for x in expense_account_ids])
-        return (ingresos, gastos)
+        aml_obj = self.env['account.move.line']
+        date_start = '%s-01-01' % self.year
+        extra_domain = [
+            ('company_id', '=', self.company_id.id),
+            ('date', '>=', date_start),
+            ('date', '<=', self.date_end),
+        ]
+        groups = aml_obj.read_group([
+            ('account_id.code', '=like', '7%'),
+        ] + extra_domain, ['balance'], [])
+        incomes = -groups[0]['balance']
+        groups = aml_obj.read_group([
+            ('account_id.code', '=like', '6%'),
+        ] + extra_domain, ['balance'], [])
+        expenses = groups[0]['balance']
+        return (incomes, expenses)
 
     @api.multi
     def _calc_prev_trimesters_data(self):
         self.ensure_one()
-        periods = ['1T', '2T', '3T', '4T']
         amount = 0
-        for period in periods:
-            if period == self.period:
-                break
-            report_ids = self.search(
-                [('period', '=', period),
-                 ('fiscalyear_id', '=', self.fiscalyear_id.id),
-                 ('company_id', '=', self.company_id.id)])
-            if not report_ids:
-                raise exceptions.Warning(
-                    "No se ha encontrado la "
-                    "declaración mod. 130 para el trimestre %s. No se "
-                    "puede continuar el cálculo si no existe dicha "
-                    "declaración." % period)
-            prev_report = report_ids[0]
-            if prev_report.casilla_07 > 0:
-                amount += prev_report.casilla_07 - prev_report.casilla_16
+        prev_reports = self._get_previous_fiscalyear_reports(self.date_start)
+        for prev in prev_reports:
+            if prev.casilla_07 > 0:
+                amount += prev.casilla_07 - prev.casilla_16
         return amount
 
     @api.multi
     def calculate(self):
         for report in self:
             if report.activity_type == 'primary':
-                raise exceptions.Warning('Este tipo de actividad no '
-                                         'está aún soportado por el módulo.')
+                raise exceptions.Warning(_('Este tipo de actividad no '
+                                         'está aún soportado por el módulo.'))
             if report.has_deduccion_80:
-                raise exceptions.Warning(
+                raise exceptions.Warning(_(
                     'No se pueden calcular por el '
                     'momento declaraciones que contengan deducciones por el '
-                    'artículo 80 bis.')
+                    'artículo 80 bis.'))
             vals = {}
             if report.activity_type == 'other':
                 ingresos, gastos = report._calc_ingresos_gastos()
@@ -247,7 +192,7 @@ class L10nEsAeatMod130Report(models.Model):
                     if deduccion > 660.14:
                         deduccion = 660.14
                 else:
-                    raise exceptions.Warning('No implementado')
+                    raise exceptions.Warning(_('No implementado'))
                 dif = vals['casilla_14'] - vals['casilla_15']
                 if deduccion > dif:
                     deduccion = dif
