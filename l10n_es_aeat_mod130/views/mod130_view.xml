@@ -17,19 +17,16 @@
         </record>
 
         <!-- Form view -->
-<!--         <record id="view_l10n_es_aeat_mod130_report_form" model="ir.ui.view">
+        <record id="view_l10n_es_aeat_mod130_report_form" model="ir.ui.view">
             <field name="name">l10n_es.aeat.mod130.report.form</field>
             <field name="model">l10n.es.aeat.mod130.report</field>
             <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
             <field name="arch" type="xml">
-                <button name="%(l10n_es_aeat.action_wizard_aeat_export)d" position="attributes">
-                    <attribute name="name">%(action_wizard_aeat_mod130_export)d</attribute>
-                </button>
                 <field name="year" position="after">
                     <field name="period"/>
                     <field name="currency_id" invisible="1"/>
                 </field>
-                <group string="Declaración" position="after">
+                <xpath expr="//group[@name='group_declaration']" position="after">
                     <group string="Datos a completar" colspan="4" col="6">
                         <group colspan="2">
                             <field name="activity_type"/>
@@ -131,10 +128,10 @@
                     <group string="Observaciones" colspan="4">
                         <field name="comments" nolabel="1"/>
                     </group>
-                </group>
+                </xpath>
             </field>
         </record>
- -->
+
         <!-- Window action -->
         <record id="action_l10n_es_aeat_mod130_report" model="ir.actions.act_window">
             <field name="name">AEAT model 130</field>
@@ -149,17 +146,17 @@
             <field name="view_id" ref="view_l10n_es_aeat_mod130_report_tree"/>
             <field name="act_window_id" ref="action_l10n_es_aeat_mod130_report"/>
         </record>
-<!--         <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod130_report_form">
+        <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod130_report_form">
             <field name="sequence" eval="3"/>
             <field name="view_mode">form</field>
             <field name="view_id" ref="view_l10n_es_aeat_mod130_report_form"/>
             <field name="act_window_id" ref="action_l10n_es_aeat_mod130_report"/>
         </record>
- -->
+
         <!-- ### MENU ACCESS ### -->
-<!--         <menuitem id="menu_aeat_mod130_report"
+        <menuitem id="menu_aeat_mod130_report"
             parent="l10n_es_aeat.menu_root_aeat"
             action="action_l10n_es_aeat_mod130_report"
             sequence="130"
             name="AEAT 130 model"/>
- --></odoo>
+</odoo>
