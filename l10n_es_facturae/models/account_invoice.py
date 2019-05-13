@@ -25,6 +25,10 @@ logger = logging.Logger("facturae")
 class AccountInvoice(models.Model):
     _inherit = "account.invoice"
 
+    facturae = fields.Boolean(
+        related='partner_id.facturae',
+        readonly=True,
+    )
     correction_method = fields.Selection(
         selection=[
             ('01', 'Rectificación íntegra'),
@@ -71,6 +75,32 @@ class AccountInvoice(models.Model):
         inverse_name='invoice_id',
         copy=False
     )
+    facturae_start_date = fields.Date(
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+    )
+    facturae_end_date = fields.Date(
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+    )
+
+    @api.constrains('facturae_start_date', 'facturae_end_date')
+    def _check_facturae_date(self):
+        for record in self:
+            if bool(record.facturae_start_date) != bool(
+                record.facturae_end_date
+            ):
+                raise ValidationError(_(
+                    'FacturaE start and end dates are both required if one of '
+                    'them is filled'
+                ))
+            if (
+                record.facturae_start_date and
+                record.facturae_start_date > record.facturae_end_date
+            ):
+                raise ValidationError(_(
+                    'Start date cannot be later than end date'
+                ))
 
     @api.multi
     @api.depends('integration_ids')
@@ -446,3 +476,61 @@ class AccountInvoice(models.Model):
                   "is the error, which may give you an idea on the cause "
                   "of the problem : %s") % str(e))
         return True
+
+
+class AccountInvoiceLine(models.Model):
+    _inherit = 'account.invoice.line'
+
+    invoice_state = fields.Selection(
+        related='invoice_id.state',
+        readonly=True,
+    )
+    facturae_receiver_contract_reference = fields.Char()
+    facturae_receiver_contract_date = fields.Date()
+    facturae_receiver_transaction_reference = fields.Char()
+    facturae_receiver_transaction_date = fields.Date()
+    facturae_issuer_contract_reference = fields.Char()
+    facturae_issuer_contract_date = fields.Date()
+    facturae_issuer_transaction_reference = fields.Char()
+    facturae_issuer_transaction_date = fields.Date()
+    facturae_file_reference = fields.Char()
+    facturae_file_date = fields.Date()
+    facturae_start_date = fields.Date()
+    facturae_end_date = fields.Date()
+    facturae_transaction_date = fields.Date()
+
+    @api.constrains('facturae_start_date', 'facturae_end_date')
+    def _check_facturae_date(self):
+        for record in self:
+            if bool(record.facturae_start_date) != bool(
+                record.facturae_end_date
+            ):
+                raise ValidationError(_(
+                    'FacturaE start and end dates are both required if one of '
+                    'them is filled'
+                ))
+            if (
+                record.facturae_start_date and
+                record.facturae_start_date > record.facturae_end_date
+            ):
+                raise ValidationError(_(
+                    'Start date cannot be later than end date'
+                ))
+
+    def button_edit_facturae_fields(self):
+        self.ensure_one()
+        view = self.env.ref(
+            'l10n_es_facturae.view_facturae_fields'
+        )
+        return {
+            'name': _('Facturae Configuration'),
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': self._name,
+            'views': [(view.id, 'form')],
+            'view_id': view.id,
+            'target': 'new',
+            'res_id': self.id,
+            'context': self.env.context,
+        }
