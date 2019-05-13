@@ -6,9 +6,10 @@ import base64
 import logging
 
 from lxml import etree
-from odoo import exceptions
+from odoo import exceptions, fields
 from odoo.tests import common
 from OpenSSL import crypto
+from datetime import timedelta
 try:
     import xmlsig
 except(ImportError, IOError) as err:
@@ -108,7 +109,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             'facturae_code': '02',
         })
 
-        account = self.env['account.account'].create({
+        self.account = self.env['account.account'].create({
             'company_id': main_company.id,
             'name': 'Facturae Product account',
             'code': 'facturae_product',
@@ -125,7 +126,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         })
         self.invoice_line = self.env['account.invoice.line'].create({
             'product_id': self.env.ref('product.product_delivery_02').id,
-            'account_id': account.id,
+            'account_id': self.account.id,
             'invoice_id': self.invoice.id,
             'name': 'Producto de prueba',
             'quantity': 1.0,
@@ -145,7 +146,7 @@ class TestL10nEsFacturae(common.TransactionCase):
 
         self.invoice_line_02 = self.env['account.invoice.line'].create({
             'product_id': self.env.ref('product.product_delivery_02').id,
-            'account_id': account.id,
+            'account_id': self.account.id,
             'invoice_id': self.invoice_02.id,
             'name': 'Producto de prueba',
             'quantity': 1.0,
@@ -293,3 +294,119 @@ class TestL10nEsFacturae(common.TransactionCase):
             'integration_id': integration.id
         }).cancel_integration()
         self.assertFalse(integration.can_cancel)
+
+    def test_constrains_01(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'account_id': self.partner.property_account_receivable_id.id,
+            'journal_id': self.journal.id,
+            'date_invoice': '2016-03-12',
+            'partner_bank_id': self.bank.id,
+            'payment_mode_id': self.payment_mode.id
+        })
+        line = self.env['account.invoice.line'].create({
+            'product_id': self.env.ref('product.product_delivery_02').id,
+            'account_id': self.account.id,
+            'invoice_id': invoice.id,
+            'name': 'Producto de prueba',
+            'quantity': 1.0,
+            'price_unit': 100.0,
+            'invoice_line_tax_ids': [(6, 0, self.tax.ids)],
+        })
+        with self.assertRaises(exceptions.ValidationError):
+            line.facturae_start_date = fields.Date.today()
+
+    def test_constrains_02(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'account_id': self.partner.property_account_receivable_id.id,
+            'journal_id': self.journal.id,
+            'date_invoice': '2016-03-12',
+            'partner_bank_id': self.bank.id,
+            'payment_mode_id': self.payment_mode.id
+        })
+        line = self.env['account.invoice.line'].create({
+            'product_id': self.env.ref('product.product_delivery_02').id,
+            'account_id': self.account.id,
+            'invoice_id': invoice.id,
+            'name': 'Producto de prueba',
+            'quantity': 1.0,
+            'price_unit': 100.0,
+            'invoice_line_tax_ids': [(6, 0, self.tax.ids)],
+        })
+        with self.assertRaises(exceptions.ValidationError):
+            line.facturae_end_date = fields.Date.today()
+
+    def test_constrains_03(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'account_id': self.partner.property_account_receivable_id.id,
+            'journal_id': self.journal.id,
+            'date_invoice': '2016-03-12',
+            'partner_bank_id': self.bank.id,
+            'payment_mode_id': self.payment_mode.id
+        })
+        line = self.env['account.invoice.line'].create({
+            'product_id': self.env.ref('product.product_delivery_02').id,
+            'account_id': self.account.id,
+            'invoice_id': invoice.id,
+            'name': 'Producto de prueba',
+            'quantity': 1.0,
+            'price_unit': 100.0,
+            'invoice_line_tax_ids': [(6, 0, self.tax.ids)],
+        })
+        with self.assertRaises(exceptions.ValidationError):
+            line.write({
+                'facturae_end_date': fields.Date.today(),
+                'facturae_start_date': fields.Date.to_string(
+                    fields.Date.from_string(fields.Date.today()) +
+                    timedelta(days=1)
+                ),
+            })
+
+    def test_constrains_04(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'account_id': self.partner.property_account_receivable_id.id,
+            'journal_id': self.journal.id,
+            'date_invoice': '2016-03-12',
+            'partner_bank_id': self.bank.id,
+            'payment_mode_id': self.payment_mode.id
+        })
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.facturae_start_date = fields.Date.today()
+
+    def test_constrains_05(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'account_id': self.partner.property_account_receivable_id.id,
+            'journal_id': self.journal.id,
+            'date_invoice': '2016-03-12',
+            'partner_bank_id': self.bank.id,
+            'payment_mode_id': self.payment_mode.id
+        })
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.facturae_end_date = fields.Date.today()
+
+    def test_constrains_06(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'account_id': self.partner.property_account_receivable_id.id,
+            'journal_id': self.journal.id,
+            'date_invoice': '2016-03-12',
+            'partner_bank_id': self.bank.id,
+            'payment_mode_id': self.payment_mode.id
+        })
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.write({
+                'facturae_end_date': fields.Date.today(),
+                'facturae_start_date': fields.Date.to_string(
+                    fields.Date.from_string(fields.Date.today()) +
+                    timedelta(days=1)
+                ),
+            })
+
+    def test_views(self):
+        action = self.invoice_line.button_edit_facturae_fields()
+        item = self.env[action['res_model']].browse(action['res_id'])
+        self.assertEqual(item, self.invoice_line)

@@ -181,7 +181,10 @@
                         <IssueDate t-esc="invoice.date_invoice"/>
                         <OperationDate t-if="False"/>
                         <PlaceOfIssue t-if="False"/>
-                        <InvoicingPeriod t-if="False"/>
+                        <InvoicingPeriod t-if="invoice.facturae_start_date and invoice.facturae_end_date">
+                            <StartDate t-esc="invoice.facturae_start_date"/>
+                            <EndDate t-esc="invoice.facturae_end_date"/>
+                        </InvoicingPeriod>
                         <InvoiceCurrencyCode t-esc="invoice.currency_id.name"/>
                         <ExchangeRateDetails t-if="invoice.currency_id.name != 'EUR'">
                             <ExchangeRate t-esc="'%.2f' % (euro_rate / currency_rate)"/>
@@ -255,16 +258,16 @@
                                     <t t-set="withheld" t-value="True"/>
                                 </t>
                             </t>
-                            <IssuerContractReference t-length="20" t-if="False"/>
-                            <IssuerContractDate t-if="False"/>
-                            <IssuerTransactionReference t-length="20" t-if="False"/>
-                            <IssuerTransactionDate t-if="False"/>
-                            <ReceiverContractReference t-length="20" t-if="False"/>
-                            <ReceiverContractDate t-if="False"/>
-                            <ReceiverTransactionReference t-length="20" t-if="False"/>
-                            <ReceiverTransactionDate t-if="False"/>
-                            <FileReference t-length="20" t-if="False"/>
-                            <FileDate t-if="False"/>
+                            <IssuerContractReference t-length="20" t-if="line.facturae_issuer_contract_reference" t-esc="line.facturae_issuer_contract_reference"/>
+                            <IssuerContractDate t-if="line.facturae_issuer_contract_date" t-esc="line.facturae_issuer_contract_date"/>
+                            <IssuerTransactionReference t-length="20" t-if="line.facturae_issuer_transaction_reference" t-esc="line.facturae_issuer_transaction_reference"/>
+                            <IssuerTransactionDate t-if="line.facturae_issuer_transaction_date" t-esc="line.facturae_issuer_transaction_date"/>
+                            <ReceiverContractReference t-length="20" t-if="line.facturae_receiver_contract_reference" t-esc="line.facturae_receiver_contract_reference"/>
+                            <ReceiverContractDate t-if="line.facturae_receiver_contract_date" t-esc="line.facturae_receiver_contract_date"/>
+                            <ReceiverTransactionReference t-length="20" t-if="line.facturae_receiver_transaction_reference" t-esc="line.facturae_receiver_transaction_reference"/>
+                            <ReceiverTransactionDate  t-if="line.facturae_receiver_transaction_date" t-esc="line.facturae_receiver_transaction_date"/>
+                            <FileReference t-length="20" t-if="line.facturae_file_reference" t-esc="line.facturae_file_reference"/>
+                            <FileDate  t-if="line.facturae_file_date" t-esc="line.facturae_file_date"/>
                             <SequenceNumber t-if="False"/>
                             <DeliveryNotesReferences t-if="False"/>
                             <ItemDescription t-length="2500" t-esc="line.name"/>
@@ -313,8 +316,11 @@
                                     </Tax>
                                 </t>
                             </TaxesOutputs>
-                            <LineItemPeriod t-if="False"/>
-                            <TransactionDate t-if="False"/>
+                            <LineItemPeriod t-if="line.facturae_start_date and line.facturae_end_date">
+                                <StartDate t-esc="line.facturae_start_date"/>
+                                <EndDate t-esc="line.facturae_end_date"/>
+                            </LineItemPeriod>
+                            <TransactionDate t-if="line.facturae_transaction_date" t-esc="line.facturae_transaction_date"/>
                             <AdditionalLineItemInformation t-length="2500" t-if="False"/>
                             <SpecialTaxableEvent t-if="False"/>
                             <ArticleCode t-length="20" t-esc="line.product_id.default_code" t-if="line.product_id.default_code"/>
