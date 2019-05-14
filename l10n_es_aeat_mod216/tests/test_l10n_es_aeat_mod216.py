@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# © 2016-2019 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
@@ -85,7 +84,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             'casilla_06': 145,
         })
         # Check tax lines
-        for box, result in self.taxes_result.iteritems():
+        for box, result in self.taxes_result.items():
             _logger.debug('Checking tax line: %s' % box)
             lines = self.model216.tax_line_ids.filtered(
                 lambda x: x.field_number == int(box))

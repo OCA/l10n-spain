@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015 AvanzOSC - Ainara Galdona
-# Copyright 2015-2018 Tecnativa - Pedro M. Baeza
-# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2015-2019 AvanzOSC - Ainara Galdona
+# Copyright 2015-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2016-2019 Tecnativa - Antonio Espinosa
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, api
