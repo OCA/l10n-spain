@@ -43,7 +43,6 @@ a su destino. La administración le proporcionará estos datos.
 
 Informacion sobre el formato:
 
-* http://www.facturae.gob.es/formato/Documents/EspanolFacturae3_0.pdf
 * http://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_17_11_2015_unificado.pdf
 
 **Table of contents**
@@ -132,7 +131,7 @@ Contributors
 * Pexego (http://www.pexego.es)
 * Malagatic (http://www.malagatic.es)
 * Comunitea (http://www.comunitea.com)
-* Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
+* Pedro M. Baeza (http://www.tecnativa.com)
 * Javi Melendez <javimelex@gmail.com>
 * Enric Tobella <etobella@creublanca.es>
 * Adrián Gómez <adrian.gomez@pesol.es>
