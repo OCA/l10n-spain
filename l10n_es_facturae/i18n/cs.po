@@ -19,6 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,help:l10n_es_facturae.field_account_invoice_line_invoice_state
+msgid ""
+" * The 'Draft' status is used when a user is encoding a new and unconfirmed "
+"Invoice.\n"
+" * The 'Open' status is used when user creates invoice, an invoice number is "
+"generated. It stays in the open status till the user pays the invoice.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its "
+"related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_count
 msgid "# of Integrations"
 msgstr ""
@@ -194,13 +206,13 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:173
+#: code:addons/l10n_es_facturae/models/account_invoice.py:208
 #, python-format
 msgid "Company vat is too small"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:167
+#: code:addons/l10n_es_facturae/models/account_invoice.py:202
 #, python-format
 msgid "Company vat not provided"
 msgstr ""
@@ -341,6 +353,7 @@ msgid "FACe"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users_facturae
 msgid "Factura electrónica"
@@ -362,8 +375,93 @@ msgid "Factura-E sin firmar"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:93
+#: code:addons/l10n_es_facturae/models/account_invoice.py:513
+#, python-format
+msgid "FacturaE start and end dates are both required if one of them is filled"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
+msgid "Facturae"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:531
+#, python-format
+msgid "Facturae Configuration"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_end_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_end_date
+msgid "Facturae End Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_file_date
+msgid "Facturae File Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_file_reference
+msgid "Facturae File Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_contract_date
+msgid "Facturae Issuer Contract Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_contract_reference
+msgid "Facturae Issuer Contract Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_transaction_date
+msgid "Facturae Issuer Transaction Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_transaction_reference
+msgid "Facturae Issuer Transaction Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_contract_date
+msgid "Facturae Receiver Contract Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_contract_reference
+msgid "Facturae Receiver Contract Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_transaction_date
+msgid "Facturae Receiver Transaction Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_transaction_reference
+msgid "Facturae Receiver Transaction Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_refund_reason
 msgid "Facturae Refund Reason"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_start_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_start_date
+msgid "Facturae Start Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_transaction_date
+msgid "Facturae Transaction Date"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -411,7 +509,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7486
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7529
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_id
 msgid "ID"
 msgstr "ID"
@@ -572,6 +670,11 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice_line
+msgid "Invoice Line"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.actions.act_window,name:l10n_es_facturae.invoice_integration_action
 msgid "Invoice integration"
 msgstr ""
@@ -623,19 +726,19 @@ msgid "Main file"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:182
+#: code:addons/l10n_es_facturae/models/account_invoice.py:217
 #, python-format
 msgid "Mandate account BIC must be 11"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:184
+#: code:addons/l10n_es_facturae/models/account_invoice.py:219
 #, python-format
 msgid "Mandate account is too small"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:178
+#: code:addons/l10n_es_facturae/models/account_invoice.py:213
 #, python-format
 msgid "Mandate is missing"
 msgstr ""
@@ -722,31 +825,31 @@ msgid "Paid"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:180
+#: code:addons/l10n_es_facturae/models/account_invoice.py:215
 #, python-format
 msgid "Partner bank in mandate is missing"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:188
+#: code:addons/l10n_es_facturae/models/account_invoice.py:223
 #, python-format
 msgid "Partner bank is missing"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:171
+#: code:addons/l10n_es_facturae/models/account_invoice.py:206
 #, python-format
 msgid "Partner state not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:169
+#: code:addons/l10n_es_facturae/models/account_invoice.py:204
 #, python-format
 msgid "Partner vat is too small"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:165
+#: code:addons/l10n_es_facturae/models/account_invoice.py:200
 #, python-format
 msgid "Partner vat not provided"
 msgstr ""
@@ -762,7 +865,7 @@ msgid "Payment Modes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:175
+#: code:addons/l10n_es_facturae/models/account_invoice.py:210
 #, python-format
 msgid "Payment mode is required"
 msgstr ""
@@ -873,13 +976,13 @@ msgid "Second"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:191
+#: code:addons/l10n_es_facturae/models/account_invoice.py:226
 #, python-format
 msgid "Selected account BIC must be 11"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:193
+#: code:addons/l10n_es_facturae/models/account_invoice.py:228
 #, python-format
 msgid "Selected account is too small"
 msgstr ""
@@ -918,6 +1021,13 @@ msgid "Serie de la factura"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:101
+#: code:addons/l10n_es_facturae/models/account_invoice.py:521
+#, python-format
+msgid "Start date cannot be later than end date"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_state
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_state
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_state
@@ -931,6 +1041,7 @@ msgid "State must be defined"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_invoice_state
 #: model:ir.ui.view,arch_db:l10n_es_facturae.account_invoice_integration_form
 msgid "Status"
 msgstr ""
@@ -941,7 +1052,7 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:162
+#: code:addons/l10n_es_facturae/models/account_invoice.py:197
 #, python-format
 msgid "Taxes not provided in invoice line %s"
 msgstr ""
@@ -952,7 +1063,7 @@ msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:443
+#: code:addons/l10n_es_facturae/models/account_invoice.py:478
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
@@ -991,7 +1102,7 @@ msgid "Vat must be defined"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:195
+#: code:addons/l10n_es_facturae/models/account_invoice.py:230
 #, python-format
 msgid ""
 "You can only create Factura-E files for invoices that have been validated."
@@ -1119,8 +1230,8 @@ msgid "create.facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:415
-#: code:addons/l10n_es_facturae/models/account_invoice.py:423
+#: code:addons/l10n_es_facturae/models/account_invoice.py:450
+#: code:addons/l10n_es_facturae/models/account_invoice.py:458
 #, python-format
 msgid "facturae"
 msgstr ""
