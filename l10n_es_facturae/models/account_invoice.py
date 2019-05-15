@@ -128,12 +128,17 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_integrations(self):
         self.ensure_one()
-        for method in self.partner_id.invoice_integration_method_ids:
-            if not self.env['account.invoice.integration'].search(
-                    [('invoice_id', '=', self.id),
+        ctx = self.env.context.copy()
+        ctx.pop('default_type', False)
+        # We need to remove default type of the context because we should need
+        # to create attachments and type is a defined field there
+        slf = self.with_context(ctx)
+        for method in slf.partner_id.invoice_integration_method_ids:
+            if not slf.env['account.invoice.integration'].search(
+                    [('invoice_id', '=', slf.id),
                      ('method_id', '=', method.id)]):
-                method.create_integration(self)
-        return self.action_view_integrations()
+                method.create_integration(slf)
+        return slf.action_view_integrations()
 
     @api.multi
     def action_view_integrations(self):
