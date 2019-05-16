@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_mod349',
         'odoo12-addon-l10n_es_aeat_mod390',
         'odoo12-addon-l10n_es_aeat_sii',
+        'odoo12-addon-l10n_es_location_nuts',
         'odoo12-addon-l10n_es_mis_report',
         'odoo12-addon-l10n_es_partner',
         'odoo12-addon-l10n_es_partner_mercantil',
