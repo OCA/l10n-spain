@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright AvanzOSC - Ainara Galdona
 # Copyright 2016 - Tecnativa - Antonio Espinosa
 # Copyright 2016-2017 - Tecnativa - Pedro M. Baeza
