@@ -18,20 +18,28 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expired_aeat:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expired_aeat
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expired_aeat
 #, fuzzy
 msgid "AEAT Certificate Expirated"
 msgstr "Fecha de certificado de AEAT"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expiration_aeat:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expiration_aeat
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expiration_aeat
 msgid "AEAT Certificate Expiration"
 msgstr "Fecha de certificado de AEAT"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_required:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_required
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_required
 msgid "Certificate Required"
 msgstr "Requiere certificado de subcontratista"
+
+#. module: l10n_es_subcontractor_certificate
+#: model:ir.model,name:l10n_es_subcontractor_certificate.model_res_partner
+msgid "Contact"
+msgstr ""
 
 #. module: l10n_es_subcontractor_certificate
 #: model:ir.model,name:l10n_es_subcontractor_certificate.model_account_invoice
@@ -39,34 +47,31 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_subcontractor_certificate
-#: model:ir.model,name:l10n_es_subcontractor_certificate.model_res_partner
-msgid "Partner"
-msgstr "Empresa"
-
-#. module: l10n_es_subcontractor_certificate
 #: model:ir.model,name:l10n_es_subcontractor_certificate.model_purchase_order
 msgid "Purchase Order"
 msgstr "Pedido de compra"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expired_ss:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expired_ss
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expired_ss
 #, fuzzy
 msgid "SS Certificate Expirated"
 msgstr "Fecha de certificado de Seguridad Social"
 
 #. module: l10n_es_subcontractor_certificate
-#: field:res.partner,certificate_expiration_ss:0
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_partner__certificate_expiration_ss
+#: model:ir.model.fields,field_description:l10n_es_subcontractor_certificate.field_res_users__certificate_expiration_ss
 msgid "SS Certificate Expiration"
 msgstr "Fecha de certificado de Seguridad Social"
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:28
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:8
 #, python-format
 msgid "The AEAT certificate for this supplier has expired"
 msgstr "El certificado de AEAT de este proveedor ha caducado"
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:34
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:14
 #, python-format
 msgid "The AEAT certificate is required and expiration date is not set"
 msgstr ""
@@ -74,13 +79,13 @@ msgstr ""
 "certificado de AEAT"
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:40
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:20
 #, python-format
 msgid "The SS certificate for this supplier has expired"
 msgstr "El certificado de seguridad social de este proveedor ha caducado"
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:46
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:26
 #, python-format
 msgid "The SS certificate is required and expiration date is not set"
 msgstr ""
@@ -88,10 +93,13 @@ msgstr ""
 "certificado de seguridad social"
 
 #. module: l10n_es_subcontractor_certificate
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:27
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:33
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:39
-#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:45
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:7
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:13
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:19
+#: code:addons/l10n_es_subcontractor_certificate/models/subcontractor_certificate.py:25
 #, python-format
 msgid "Warning!"
 msgstr "¡Aviso!"
+
+#~ msgid "Partner"
+#~ msgstr "Empresa"
