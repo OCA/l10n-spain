@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
 # Copyright AvanzOSC - Ainara Galdona
 # Copyright 2016 - Tecnativa - Antonio Espinosa
-# Copyright 2016-2018 - Tecnativa - Pedro M. Baeza
+# Copyright 2016-2019 - Tecnativa - Pedro M. Baeza
 # Copyright 2018 Valentin Vinagre <valentin.vinagre@qubiq.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     'name': 'AEAT modelo 296',
-    'version': '10.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': "Localisation/Accounting",
     'author': "Tecnativa,"
               "AvanzOSC,"
-              "Qubiq 2010 S.L,"
+              "Qubiq,"
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',
