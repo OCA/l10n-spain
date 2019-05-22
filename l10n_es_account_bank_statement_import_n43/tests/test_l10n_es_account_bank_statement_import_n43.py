@@ -15,6 +15,13 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
             'type': 'bank',
             'name': 'Test N43 bank',
             'code': 'BNKN43',
+            'n43_identifier': '000000000000000000'
+        })
+        cls.journal_2 = cls.env['account.journal'].create({
+            'type': 'bank',
+            'name': 'Test N43 bank2',
+            'code': 'BNKN432',
+            'n43_identifier': '100000000000000000'
         })
         n43_file_path = get_module_resource(
             'l10n_es_account_bank_statement_import_n43', 'tests', 'test.n43')
@@ -26,6 +33,19 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
         })
 
     def test_import_n43(self):
+        action = self.import_wizard.import_file()
+        self.assertTrue(action)
+        self.assertTrue(action.get('context').get('statement_ids'))
+        statement = self.env['account.bank.statement'].browse(
+            action['context']['statement_ids'][0],
+        )
+        self.assertEqual(len(statement.line_ids), 3)
+        self.assertEqual(statement.line_ids[0].date, '2016-05-25')
+        self.assertAlmostEqual(statement.balance_start, 0, 2)
+        self.assertAlmostEqual(statement.balance_end, 101.96, 2)
+        self.assertEqual(statement.line_ids[2].partner_id, self.partner)
+
+    def test_import_n43_multi(self):
         action = self.import_wizard.import_file()
         self.assertTrue(action)
         self.assertTrue(action.get('context').get('statement_ids'))

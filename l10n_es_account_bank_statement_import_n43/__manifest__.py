@@ -22,6 +22,7 @@
     'data': [
         'views/account_journal_views.xml',
         'wizards/account_bank_statement_import_view.xml',
+        'wizards/account_bank_statement_import_n43_multi.xml',
     ],
     'installable': True,
 }

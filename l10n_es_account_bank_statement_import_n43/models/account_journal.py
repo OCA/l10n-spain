@@ -12,3 +12,4 @@ class AccountJournal(models.Model):
                    ('fecha_oper', 'Operation Date')],
         default='fecha_valor',
     )
+    n43_identifier = fields.Char()

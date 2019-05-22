@@ -8,6 +8,7 @@
             <xpath expr="//page[@name='advanced_settings']/group" position="inside">
                 <group string="Norm 43 options" attrs="{'invisible': [('type','!=','bank')]}">
                     <field name="n43_date_type"/>
+                    <field name="n43_identifier"/>
                 </group>
             </xpath>
         </field>
