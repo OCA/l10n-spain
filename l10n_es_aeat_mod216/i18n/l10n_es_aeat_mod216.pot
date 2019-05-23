@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -36,6 +36,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
 msgid "AEAT model 216"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model,name:l10n_es_aeat_mod216.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
@@ -122,11 +127,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
-#: model:ir.model,name:l10n_es_aeat_mod216.model_res_partner
-msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
