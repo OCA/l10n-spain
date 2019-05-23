@@ -23,6 +23,7 @@
         'account_invoicing',
         'base_iban',
         'account_tax_balance',
+        'l10n_es',
     ],
     'external_dependencies': {
         'python': ['unidecode'],
