@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_porcentaje_retencion
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__porcentaje_retencion
 msgid "% retention"
 msgstr ""
 
@@ -224,8 +224,18 @@ msgid "AEAT model 296"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__move_id
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
 msgid "Address in the country of residence"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__allow_posting
+msgid "Allow Posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -239,137 +249,212 @@ msgid "As transmitter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_base_retenciones_ingresos
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__partner_bank_id
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__base_retenciones_ingresos
 msgid "Base retention and income on account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_ciudad_nacimiento
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__ciudad_nacimiento
 msgid "Birth city"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_codigo
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__calculation_date
+msgid "Calculation date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__codigo
 msgid "Code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_cuenta_valores
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__cuenta_valores
 msgid "Code Account Values"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_tipo_codigo
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__tipo_codigo
 msgid "Code type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
 msgid "Common data in all recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_pais
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,type:0
+msgid "Complementary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__contact_email
+msgid "Contact email"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__pais
 msgid "Country"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_pais_nacimiento
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__pais_nacimiento
 msgid "Country of birth"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_pais_residencia_fiscal
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__pais_residencia_fiscal
 msgid "Country territory of fiscal residence"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod296.action_l10n_es_aeat_mod296_report
 msgid "Create and query AEAT Model 296 reports."
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_create_uid
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_create_date
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__create_date
 msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_fecha_nacimiento
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,support_type:0
+msgid "DVD"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__fecha_nacimiento
 msgid "Date of birth"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_fecha_nacimiento_export
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__fecha_nacimiento_export
 msgid "Date of birth export"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_tree
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_tree
 msgid "Declaraciones AEAT 296"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_tree
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_tree
 msgid "Detail 296"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
 msgid "Detail by company"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_fecha_devengo
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__fecha_devengo
 msgid "Devengo date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_fecha_devengo_export
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__fecha_devengo_export
 msgid "Devengo date export"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_domicilio
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__domicilio
 msgid "Domicile"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_complemento_domicilio
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__complemento_domicilio
 msgid "Domicile Complement"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_codigo_emisor
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Done"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Draft"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__codigo_emisor
 msgid "Emisor code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_fisica_juridica
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__date_end
+msgid "Ending date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__export_config_id
+msgid "Export config"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__fisica_juridica
 msgid "F/J"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__contact_name
+msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__id
 msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
 msgid "Identification data and address of the recipients"
 msgstr ""
 
@@ -384,26 +469,46 @@ msgid "Income in kind"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_clave
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__journal_id
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__clave
 msgid "Key"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report___last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line___last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__representative_vat
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_write_uid
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_write_date
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__representative_vat
+msgid "Legal Representative VAT number."
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -412,18 +517,28 @@ msgid "Legal person or entity"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_lines296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__lines296
 msgid "Lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_mediador
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__mediador
 msgid "Mediator"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_mod296_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__mod296_id
 msgid "Mod 296"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__model_id
+msgid "Model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__number
+msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -432,18 +547,28 @@ msgid "Money income"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_move_line_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__move_line_ids
 msgid "Move Lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_naturaleza
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__contact_name
+msgid "Must have name and surname."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__naturaleza
 msgid "Nature"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_nif_pais_residencia
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__nif_pais_residencia
 msgid "Nif in the country of residence"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,type:0
+msgid "Normal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -452,18 +577,29 @@ msgid "Other identification"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__partner_id
 msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_pago
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__pago
 msgid "Payment"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_pendiente
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__pendiente
 msgid "Pending"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__period_type
+msgid "Period type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__contact_phone
+msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -472,77 +608,147 @@ msgid "Physical person"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_poblacion
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__poblacion
 msgid "Population/City"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_zip
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__zip
 msgid "Postal Code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_provincia
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Posted"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__previous_number
+msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,state:0
+msgid "Processed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__provincia
 msgid "Province/Region/State"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__name
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_form
 msgid "Result"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_retenciones_ingresos
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__retenciones_ingresos
 msgid "Retention and income on account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
 msgid "Specific data according to the letter consigned in the 'key' field"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line_subclave
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__date_start
+msgid "Starting date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__state
+msgid "State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__type
+msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__subclave
 msgid "Subkey"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_01
+#: selection:l10n.es.aeat.mod296.report,type:0
+msgid "Substitutive"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__support_type
+msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__tax_line_ids
+msgid "Tax lines"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: selection:l10n.es.aeat.mod296.report,support_type:0
+msgid "Telematics"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__counterpart_account_id
+msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__company_vat
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__year
+msgid "Year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_01
 msgid "[01] # Recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_01
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_01
 msgid "[01] Summary of the data included in the statement - Total number of perceivers"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_02
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_02
 msgid "[02] Base retentions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_02
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_02
 msgid "[02] Summary of the data included in the statement - Base retention and income on account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_03
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_03
 msgid "[03] Retentions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_03
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_03
 msgid "[03] Summary of the data included in the statement - Retention and income on account"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_04
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_04
 msgid "[04] Retentions entered"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_casilla_04
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__casilla_04
 msgid "[04] Summary of the data included in the statement - Retentions and income on account entered"
 msgstr ""
 
