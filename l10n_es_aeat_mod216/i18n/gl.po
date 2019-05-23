@@ -1,0 +1,208 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod216
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-28 00:10+0000\n"
+"PO-Revision-Date: 2017-12-28 00:10+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Galician (https://www.transifex.com/oca/teams/23907/gl/)\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
+msgid "AEAT 111 report"
+msgstr "Declaración AEAT 111"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
+msgid "AEAT 216 model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod216_report
+msgid "AEAT 216 report"
+msgstr "Declaración AEAT 216"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_tree
+msgid "AEAT 216 reports"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
+msgid "AEAT model 216"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
+msgid "Create and query AEAT Model 216 reports."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_create_date
+msgid "Created on"
+msgstr "Creado o"
+
+#. module: l10n_es_aeat_mod216
+#: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
+msgid "Direct debit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_06
+msgid ""
+"Fee to compensate for prior results with same subject, fiscal year and "
+"period (in which his statement was to return and compensation back option "
+"was chosen)."
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Income not subject to retention"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_05
+msgid "Income not subject to retention - Base amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_04
+msgid "Income not subject to retention - Number of recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Income subject to retention"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_03
+msgid "Income subject to retention - Amount of retentions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_01
+msgid "Income subject to retention - Number of recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_partner_is_non_resident
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_users_is_non_resident
+msgid "Is non-resident"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report___last_update
+msgid "Last Modified on"
+msgstr "Modificado por última vez o"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_write_uid
+msgid "Last Updated by"
+msgstr "Derradeira actualización feita por"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_write_date
+msgid "Last Updated on"
+msgstr "Actualizado por derradeira vez o"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model,name:l10n_es_aeat_mod216.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Result"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_tipo_declaracion
+msgid "Result type"
+msgstr "Tipo de resultado"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
+msgid "Result: ([03] - [06])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Tax lines"
+msgstr "Liñas de impostos"
+
+#. module: l10n_es_aeat_mod216
+#: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
+msgid "To enter"
+msgstr "A ingresar"
+
+#. module: l10n_es_aeat_mod216
+#: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
+msgid "To enter on CCT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
+msgid "To return"
+msgstr "A devolver"
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
+msgid "Totals"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_01
+msgid "[01] # Recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_03
+msgid "[03] Amount of retentions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_04
+msgid "[04] # Recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_05
+msgid "[05] Base amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_06
+msgid "[06] Fees to compensate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod216
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
+msgid "[07] Result"
+msgstr ""
