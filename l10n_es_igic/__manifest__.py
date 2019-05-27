@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    Sistemas de Datos, Open Source Management Solution
-#    Copyright (C) 2004-2011 Pexego Sistemas Informáticos.
+#    Copyright (C) 2011 Comunitea (https://comunitea.com)
 #    Copyright (C) 2014 Arturo Esparragón Goncalves (http://sdatos.com).
 #    Copyright (C) 2016-2018 Rodrigo Colombo Vlaeminch (http://sdatos.com).
 #    Copyright (C) 2019 Comunitea (https://comunitea.com).

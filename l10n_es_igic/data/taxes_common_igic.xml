@@ -29,7 +29,7 @@
         <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_r_6_5" model="account.tax.template">
-        <field name="sequence" eval="0"/>
+        <field name="sequence" eval="4"/>
         <field name="description">S_IGIC_R65</field>
         <field name="type_tax_use">sale</field>
         <field name="account_id" ref="pgc_4777_child"/>
@@ -374,7 +374,7 @@
         <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_sop_6_5" model="account.tax.template">
-        <field name="sequence" eval="0"/>
+        <field name="sequence" eval="4"/>
         <field name="description">P_IGIC_BC6_5</field>
         <field name="type_tax_use">purchase</field>
         <field name="account_id" ref="pgc_4727_child"/>
