@@ -11,31 +11,31 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 0%</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="0"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
     <record id="account_tax_template_igic_r_3" model="account.tax.template">
-        <field name="squence" eval="5"/>
+        <field name="sequence" eval="5"/>
         <field name="description">S_IGIC_R3</field>
         <field name="type_tax_use">sale</field>
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 3%</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="3"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
     </record>
     <record id="account_tax_template_igic_r_6_5" model="account.tax.template">
-        <field name="squence" eval="0"/>
+        <field name="sequence" eval="0"/>
         <field name="description">S_IGIC_R65</field>
         <field name="type_tax_use">sale</field>
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 6,5%</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="6.5"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -46,7 +46,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 9,5%</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="9.5"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -57,7 +57,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 13,5%</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="13.5"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -68,7 +68,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 20%</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount" eval="20"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -138,7 +138,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 0% Venta con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
@@ -149,7 +149,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 0% Venta con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
@@ -160,7 +160,7 @@
         <field name="name">IGIC 0% Venta con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
         <field name="amount_type">group</field>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP0_1'), ref('account_tax_template_igic_s_ISP0_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
@@ -170,7 +170,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 3% Venta con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -181,7 +181,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 3% Venta con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-3" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -191,7 +191,7 @@
         <field name="type_tax_use">sale</field>
         <field name="name">IGIC 3% Venta con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP3_1'), ref('account_tax_template_igic_s_ISP3_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -202,7 +202,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 6,5% Venta con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="6.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -213,7 +213,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 6,5% Venta con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-6.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -223,7 +223,7 @@
         <field name="type_tax_use">sale</field>
         <field name="name">IGIC 6,5% Venta con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP6_5_1'), ref('account_tax_template_igic_s_ISP6_5_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -234,7 +234,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 9,5% Venta con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -245,7 +245,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 9,5% Venta con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-9.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -255,7 +255,7 @@
         <field name="type_tax_use">sale</field>
         <field name="name">IGIC 9,5% Venta con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP95_1'), ref('account_tax_template_igic_s_ISP95_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -266,7 +266,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 13,5% Venta con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -277,7 +277,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 13,5% Venta con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-13.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -287,7 +287,7 @@
         <field name="type_tax_use">sale</field>
         <field name="name">IGIC 13,5% Venta con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP135_1'), ref('account_tax_template_igic_s_ISP135_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -298,7 +298,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 20% Venta con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -309,7 +309,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 20% Venta con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-20" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -319,7 +319,7 @@
         <field name="type_tax_use">sale</field>
         <field name="name">IGIC 20% Venta con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_s_ISP200_1'), ref('account_tax_template_igic_s_ISP200_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -338,7 +338,7 @@
 
     <!-- Operaciones exentas -->
         <record id="account_tax_template_igic_re_ex" model="account.tax.template">
-                <field name="description">S_IGIC_EXENTO</field>
+        <field name="description">S_IGIC_EXENTO</field>
         <field name="type_tax_use">sale</field>
         <field name="name">IGIC Exento Repercutido</field>
         <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
@@ -357,7 +357,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 0% Soportado (Operaciones corrientes)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
@@ -368,7 +368,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 3% Soportado (Operaciones corrientes)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -380,7 +380,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 6,5% Soportado (Operaciones corrientes)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="6.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -391,7 +391,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 9,5% Soportado (Operaciones corrientes)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.50" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -402,7 +402,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 13,5% Soportado (Operaciones corrientes)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.50" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -413,7 +413,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 20% Soportado (Operaciones corrientes)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -426,7 +426,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 0% Soportado (Operaciones de inversión)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
@@ -437,7 +437,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 3% Soportado (Operaciones de inversión)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -448,7 +448,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 6,5% Soportado (Operaciones de inversión)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="6.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -459,7 +459,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 9,5% Soportado (Operaciones de inversión)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -470,7 +470,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 13,5% Soportado (Operaciones de inversión)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -481,7 +481,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 20% Soportado (Operaciones de inversión)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -630,7 +630,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 0% Compra con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
@@ -641,7 +641,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 0% Compra con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="0" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
@@ -652,7 +652,7 @@
         <field name="name">IGIC 0% Compra con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
         <field name="amount_type">group</field>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP0_1'), ref('account_tax_template_igic_ISP0_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_0"/>
     </record>
@@ -662,7 +662,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 3% Compra con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="3" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -673,7 +673,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 3% Compra con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-3" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -683,7 +683,7 @@
         <field name="type_tax_use">purchase</field>
         <field name="name">IGIC 3% Compra con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP3_1'), ref('account_tax_template_igic_ISP3_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_3"/>
@@ -694,7 +694,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 6,5% Compra con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="6.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -705,7 +705,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 6,5% Compra con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-6.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -715,7 +715,7 @@
         <field name="type_tax_use">purchase</field>
         <field name="name">IGIC 6,5% Compra con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP6_5_1'), ref('account_tax_template_igic_ISP6_5_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_6_5"/>
@@ -726,7 +726,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 9,5% Compra con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="9.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -737,7 +737,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 9,5% Compra con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-9.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -747,7 +747,7 @@
         <field name="type_tax_use">purchase</field>
         <field name="name">IGIC 9,5% Compra con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP95_1'), ref('account_tax_template_igic_ISP95_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_95"/>
@@ -758,7 +758,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 13,5% Compra con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="13.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -769,7 +769,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 13,5% Compra con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-13.5" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -779,7 +779,7 @@
         <field name="type_tax_use">purchase</field>
         <field name="name">IGIC 13,5% Compra con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP135_1'), ref('account_tax_template_igic_ISP135_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_135"/>
@@ -790,7 +790,7 @@
         <field name="account_id" ref="pgc_4727_child"/>
         <field name="name">IGIC 20% Compra con Inversión del Sujeto Pasivo (1)</field>
         <field name="refund_account_id" ref="pgc_4727_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="20" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -801,7 +801,7 @@
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 20% Compra con Inversión del Sujeto Pasivo (2)</field>
         <field name="refund_account_id" ref="pgc_4777_child"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field eval="-20" name="amount"/>
         <field name="amount_type">percent</field>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
@@ -811,7 +811,7 @@
         <field name="type_tax_use">purchase</field>
         <field name="name">IGIC 20% Compra con Inversión del Sujeto Pasivo</field>
         <field eval="100" name="amount"/>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="amount_type">group</field>
         <field name="children_tax_ids" eval="[(6, 0, [ref('account_tax_template_igic_ISP200_1'), ref('account_tax_template_igic_ISP200_2')])]"/>
         <field name="tax_group_id" ref="tax_group_igic_200"/>
