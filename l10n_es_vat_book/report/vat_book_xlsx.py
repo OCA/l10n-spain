@@ -302,11 +302,16 @@ class VatNumberXlsx(ReportXlsx):
                     )
                     col += 1
                     # Tipo de IVA
-                    sheet.write(
-                        row, col,
-                        "{0:.2f}".format(line.tax_id.amount).replace(
-                            ".", ",")[:5], cell_table_right
-                    )
+                    if line.tax_id.amount_type not in ('fixed', 'percent', 'division'):
+                        sheet.write(
+                            row, col, 0, cell_table_right
+                        )
+                    else:
+                        sheet.write(
+                            row, col,
+                            "{0:.2f}".format(line.tax_id.amount).replace(
+                                ".", ",")[:5], cell_table_right
+                        )
                     col += 1
                     # Cuota IVA repercutida
                     sheet.write(
@@ -600,11 +605,16 @@ class VatNumberXlsx(ReportXlsx):
                     )
                     col += 1
                     # Tipo de IVA
-                    sheet.write(
-                        row, col,
-                        "{0:.2f}".format(line.tax_id.amount).replace(
-                            ".", ",")[:5], cell_table_right
-                    )
+                    if line.tax_id.amount_type not in ('fixed', 'percent', 'division'):
+                        sheet.write(
+                            row, col, 0, cell_table_right
+                        )
+                    else:
+                        sheet.write(
+                            row, col,
+                            "{0:.2f}".format(line.tax_id.amount).replace(
+                                ".", ",")[:5], cell_table_right
+                        )
                     col += 1
                     # Cuota IVA soportado
                     sheet.write(

@@ -467,7 +467,7 @@ class L10nEsVatBook(models.Model):
         self.ensure_one()
         context = dict(self.env.context, active_ids=self.ids)
         context.update({"received": True})
-        name = "%s%sE %s" % (
+        name = "%s%sR %s" % (
             self.year, self.company_vat, self.partner_id.name
         )
         return {
@@ -485,7 +485,7 @@ class L10nEsVatBook(models.Model):
         self.ensure_one()
         context = dict(self.env.context, active_ids=self.ids)
         context.update({"issued": True})
-        name = "%s%sR %s" % (
+        name = "%s%sE %s" % (
             self.year, self.company_vat, self.partner_id.name
         )
         return {
