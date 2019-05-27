@@ -14,7 +14,6 @@ import re
 import datetime
 from calendar import monthrange
 import odoo.addons.decimal_precision as dp
-from .spanish_states_mapping import SPANISH_STATES
 
 KEY_TAX_MAPPING = {
     'A': 'l10n_es_aeat_mod347.aeat_mod347_map_a',
@@ -200,7 +199,7 @@ class L10nEsAeatMod347Report(models.Model):
             # Odoo Spanish states codes use car license plates approach
             # (CR, A, M...), instead of ZIP (01, 02...), so we need to convert
             # them, but fallbacking in the existing one if not found.
-            partner_state_code = SPANISH_STATES.get(
+            partner_state_code = self.SPANISH_STATES.get(
                 partner.state_id.code, partner.state_id.code,
             )
         else:
