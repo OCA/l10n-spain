@@ -9,6 +9,7 @@ from calendar import monthrange
 from odoo import _, api, fields, exceptions, models
 from odoo.tools import config
 from datetime import datetime
+from .spanish_states_mapping import SPANISH_STATES
 
 
 class L10nEsAeatReport(models.AbstractModel):
@@ -19,6 +20,10 @@ class L10nEsAeatReport(models.AbstractModel):
     _period_quarterly = True
     _period_monthly = True
     _period_yearly = False
+
+    def __init__(self, pool, cr):
+        super().__init__(pool, cr)
+        self.SPANISH_STATES = SPANISH_STATES
 
     def _default_company_id(self):
         company_obj = self.env['res.company']
