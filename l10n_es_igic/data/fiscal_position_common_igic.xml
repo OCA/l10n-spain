@@ -1,307 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<!-- ==================================================== -->
-	<!-- REGIMEN EXTRACOMUNITARIO / CANARIAS, CEUTA Y MELILLA -->
-	<!-- ==================================================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_extra_0" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+
+    <record id="fp_extra_canarias" model="account.fiscal.position.template">
+        <field name="name">
+            Régimen de Importaciones/Exportaciones a/desde Canarias
+        </field>
+        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+    </record>
+
+    <!--Soportado Operaciones corrientes -->
+    <record id="igic_fptt_extra_0" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_0"/>
     </record>
     <record id="igic_fptt_extra_3" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_3"/>
     </record>
-    <record id="igic_fptt_extra_7" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_7"/>
-    </record>
     <record id="igic_fptt_extra_6_5" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_6_5"/>
     </record>
     <record id="igic_fptt_extra_9_5" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_9_5"/>
     </record>
     <record id="igic_fptt_extra_13_5" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_13_5"/>
     </record>
     <record id="igic_fptt_extra_200" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_200"/>
     </record>
     <!--Soportado Operaciones de inversion -->
     <record id="igic_fptt_extra_0_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_0_inv"/>
     </record>
     <record id="igic_fptt_extra_3_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_3_inv"/>
     </record>
-    <record id="igic_fptt_extra_7_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_7_inv"/>
-    </record>
     <record id="igic_fptt_extra_6_5_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_6_5_inv"/>
     </record>
     <record id="igic_fptt_extra_9_5_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_9_5_inv"/>
     </record>
     <record id="igic_fptt_extra_13_5_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_13_5_inv"/>
     </record>
     <record id="igic_fptt_extra_200_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_i_200_inv"/>
     </record>
     <!-- Repercutido -->
     <record id="igic_fptt_extra_ventas_0" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_ex_0"/>
     </record>
     <record id="igic_fptt_extra_ventas_3" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_ex_0"/>
     </record>
-    <record id="igic_fptt_extra_ventas_7" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="l10n_es.fp_extra"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_ex_0"/>
-    </record>
     <record id="igic_fptt_extra_ventas_6_5" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_ex_0"/>
     </record>
     <record id="igic_fptt_extra_ventas_9_5" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_9_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_ex_0"/>
     </record>
     <record id="igic_fptt_extra_ventas_13_5" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_13_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_ex_0"/>
     </record>
     <record id="igic_fptt_extra_ventas_200" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="l10n_es.fp_extra"/>
+        <field name="position_id" ref="fp_extra_canarias"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_200"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_ex_0"/>
     </record>
     <!-- ====================== -->
-	<!-- REARGO DE EQUIVALENCIA -->
-	<!-- ====================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_recargo_buy_3_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+    <!-- REARGO DE EQUIVALENCIA -->
+    <!-- ====================== -->
+    <!--Soportado Operaciones corrientes -->
+
+    <record id="fp_re_import_igic" model="account.fiscal.position.template">
+        <field name="name">
+            Régimen de Recargo a la importación (IGIC)
+        </field>
+        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+    </record>
+
+    <record id="igic_fptt_recargo_buy_3_A" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_3"/>
     </record>
     <record id="igic_fptt_recargo_buy_3_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_re03"/>
     </record>
-    <record id="igic_fptt_recargo_buy_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_recargo_buy_6_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
     </record>
-    <record id="igic_fptt_recargo_buy_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_re07"/>
-    </record>
     <record id="igic_fptt_recargo_buy_6_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_re065"/>
+        <field name="tax_dest_id" ref="account_tax_template_igic_p_re05"/>
     </record>
     <record id="igic_fptt_recargo_buy_9_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5"/>
     </record>
     <record id="igic_fptt_recargo_buy_9_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_re95"/>
+        <field name="tax_dest_id" ref="account_tax_template_igic_p_re9"/>
     </record>
     <record id="igic_fptt_recargo_buy_13_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_13_5"/>
     </record>
     <record id="igic_fptt_recargo_buy_13_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_re135"/>
     </record>
     <record id="igic_fptt_recargo_buy_200_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_200"/>
     </record>
     <record id="igic_fptt_recargo_buy_200_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_re20"/>
     </record>
-	<!--Soportado Operaciones de inversion -->
-	<record id="igic_fptt_recargo_buy_3_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+    <!--Soportado Operaciones de inversion -->
+    <record id="igic_fptt_recargo_buy_3_inv_A" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_3_inv"/>
     </record>
     <record id="igic_fptt_recargo_buy_3_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_re03"/>
     </record>
-    <record id="igic_fptt_recargo_buy_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_recargo_buy_6_5_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
     </record>
-    <record id="igic_fptt_recargo_buy_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_re07"/>
-    </record>
     <record id="igic_fptt_recargo_buy_6_5_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_re065"/>
+        <field name="tax_dest_id" ref="account_tax_template_igic_p_re05"/>
     </record>
     <record id="igic_fptt_recargo_buy_9_5_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5_inv"/>
     </record>
     <record id="igic_fptt_recargo_buy_9_5_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_re95"/>
+        <field name="tax_dest_id" ref="account_tax_template_igic_p_re9"/>
     </record>
     <record id="igic_fptt_recargo_buy_13_5_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_13_5_inv"/>
     </record>
     <record id="igic_fptt_recargo_buy_13_5_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_re135"/>
     </record>
     <record id="igic_fptt_recargo_buy_200_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_200_inv"/>
     </record>
     <record id="igic_fptt_recargo_buy_200_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_re20"/>
-    </record>	
-	<!-- Repercutido -->
+    </record>
+        <!-- Repercutido -->
     <record id="igic_fptt_recargo_3_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_3"/>
     </record>
     <record id="igic_fptt_recargo_3_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_03"/>
     </record>
-    <record id="igic_fptt_recargo_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_recargo_6_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
     </record>
-    <record id="igic_fptt_recargo_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_re_07"/>
-    </record>
     <record id="igic_fptt_recargo_6_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_re_065"/>
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_05"/>
     </record>
     <record id="igic_fptt_recargo_9_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_9_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_9_5"/>
     </record>
     <record id="igic_fptt_recargo_9_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_9_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_re_095"/>
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_09"/>
     </record>
     <record id="igic_fptt_recargo_13_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_13_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_13_5"/>
     </record>
     <record id="igic_fptt_recargo_13_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_13_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_re_13_5"/>
+        <field name="tax_dest_id" ref="account_tax_template_igic_re_13"/>
     </record>
     <record id="igic_fptt_recargo_200_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_200"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_200"/>
     </record>
     <record id="igic_fptt_recargo_200_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_recargo"/>
+        <field name="position_id" ref="fp_re_import_igic"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_200"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_20"/>
     </record>
     <!-- =================== -->
-	<!-- Retenciones IRPF 1% -->
-	<!-- =================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf1_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 1% -->
+        <!-- =================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf1_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -321,20 +289,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf1"/>
     </record>
-    <record id="igic_fptt_irpf1_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf1"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf1_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf1_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf1"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf1"/>
     </record>
     <record id="igic_fptt_irpf1_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
@@ -392,20 +350,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf1"/>
     </record>
-    <record id="igic_fptt_irpf1_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf1"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf1_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf1_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf1"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf1"/>
     </record>
     <record id="igic_fptt_irpf1_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
@@ -442,8 +390,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf1"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf1sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf1sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -463,20 +411,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf1"/>
     </record>
-    <record id="igic_fptt_irpf1sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf1"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf1sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf1sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf1"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf1"/>
     </record>
     <record id="igic_fptt_irpf1sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf1"/>
@@ -514,10 +452,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf1"/>
     </record>
     <!-- =================== -->
-	<!-- Retenciones IRPF 2% -->
-	<!-- =================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf2_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 2% -->
+        <!-- =================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf2_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -537,20 +475,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf2"/>
     </record>
-    <record id="igic_fptt_irpf2_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf2"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf2_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf2_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf2"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf2"/>
     </record>
     <record id="igic_fptt_irpf2_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
@@ -608,20 +536,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf2"/>
     </record>
-    <record id="igic_fptt_irpf2_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf2"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf2_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf2_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf2"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf2"/>
     </record>
     <record id="igic_fptt_irpf2_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
@@ -658,8 +576,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf2"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf2sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf2sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -679,20 +597,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf2"/>
     </record>
-    <record id="igic_fptt_irpf2sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf2"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf2sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf2sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf2"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf2"/>
     </record>
     <record id="igic_fptt_irpf2sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf2"/>
@@ -730,10 +638,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf2"/>
     </record>
     <!-- =================== -->
-	<!-- Retenciones IRPF 7% -->
-	<!-- =================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf7_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 7% -->
+        <!-- =================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf7_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -753,20 +661,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf7"/>
     </record>
-    <record id="igic_fptt_irpf7_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf7"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf7_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf7_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf7"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf7"/>
     </record>
     <record id="igic_fptt_irpf7_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
@@ -824,20 +722,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf7"/>
     </record>
-    <record id="igic_fptt_irpf7_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf7"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf7_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf7_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf7"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf7"/>
     </record>
     <record id="igic_fptt_irpf7_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
@@ -874,8 +762,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf7"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf7sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf7sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -895,20 +783,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf7"/>
     </record>
-    <record id="igic_fptt_irpf7sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf7"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf7sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf7sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf7"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf7"/>
     </record>
     <record id="igic_fptt_irpf7sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf7"/>
@@ -946,10 +824,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf7"/>
     </record>
     <!-- =================== -->
-	<!-- Retenciones IRPF 9% -->
-	<!-- =================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf9_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 9% -->
+        <!-- =================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf9_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -969,20 +847,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf9"/>
     </record>
-    <record id="igic_fptt_irpf9_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf9"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf9_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf9_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf9"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf9"/>
     </record>
     <record id="igic_fptt_irpf9_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
@@ -1040,20 +908,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf9"/>
     </record>
-    <record id="igic_fptt_irpf9_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf9"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf9_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf9_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf9"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf9"/>
     </record>
     <record id="igic_fptt_irpf9_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
@@ -1090,8 +948,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf9"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf9sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf9sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -1111,20 +969,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf9"/>
     </record>
-    <record id="igic_fptt_irpf9sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf9"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf9sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf9sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf9"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf9"/>
     </record>
     <record id="igic_fptt_irpf9sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf9"/>
@@ -1162,10 +1010,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf9"/>
     </record>
     <!-- ==================== -->
-	<!-- Retenciones IRPF 15% -->
-	<!-- ==================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf15_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 15% -->
+        <!-- ==================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf15_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -1185,20 +1033,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
     </record>
-    <record id="igic_fptt_irpf15_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf15_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf15_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
     </record>
     <record id="igic_fptt_irpf15_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
@@ -1256,20 +1094,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
     </record>
-    <record id="igic_fptt_irpf15_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf15_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
     </record>
     <record id="igic_fptt_irpf15_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
@@ -1306,8 +1134,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf15sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf15sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -1327,20 +1155,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
     </record>
-    <record id="igic_fptt_irpf15sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf15sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
     </record>
     <record id="igic_fptt_irpf15sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf15"/>
@@ -1378,10 +1196,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
     </record>
     <!-- ==================== -->
-	<!-- Retenciones IRPF 18% -->
-	<!-- ==================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf18_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 18% -->
+        <!-- ==================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf18_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -1401,20 +1219,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf18"/>
     </record>
-    <record id="igic_fptt_irpf18_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf18"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf18_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf18_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf18"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf18"/>
     </record>
     <record id="igic_fptt_irpf18_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
@@ -1472,20 +1280,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf18"/>
     </record>
-    <record id="igic_fptt_irpf18_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf18"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf18_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf18_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf18"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf18"/>
     </record>
     <record id="igic_fptt_irpf18_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
@@ -1522,8 +1320,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf18"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf18sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf18sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -1543,20 +1341,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf18"/>
     </record>
-    <record id="igic_fptt_irpf18sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf18"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf18sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf18sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf18"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf18"/>
     </record>
     <record id="igic_fptt_irpf18sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf18"/>
@@ -1593,227 +1381,12 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_200"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf18"/>
     </record>
+
     <!-- ==================== -->
-	<!-- Retenciones IRPF 15% -->
-	<!-- ==================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf15_0_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
-    </record>
-    <record id="igic_fptt_irpf15_0_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_3_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_3"/>
-    </record>
-    <record id="igic_fptt_irpf15_3_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
-    <record id="igic_fptt_irpf15_6_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf15_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_6_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_9_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5"/>
-    </record>
-    <record id="igic_fptt_irpf15_9_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_13_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_13_5"/>
-    </record>
-    <record id="igic_fptt_irpf15_13_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_200_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_200"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_200"/>
-    </record>
-    <record id="igic_fptt_irpf15_200_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_200"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <!--Soportado Operaciones de inversion -->
-    <record id="igic_fptt_irpf15_0_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_0_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_0_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_0_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_0_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_3_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_3_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_3_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_6_5_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_6_5_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_9_5_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_9_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_9_5_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_9_5_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_13_5_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_13_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_13_5_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_13_5_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15_200_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_200_inv"/>
-    </record>
-    <record id="igic_fptt_irpf15_200_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf15"/>
-    </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf15sale_0_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_0_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_3_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_3"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_3_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_6_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_6_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_9_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_9_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_9_5"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_9_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_9_5"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_13_5_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_13_5"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_13_5"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_13_5_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_13_5"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_200_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_200"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_200"/>
-    </record>
-    <record id="igic_fptt_irpf15sale_200_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf15"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_200"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf15"/>
-    </record>
+    <!-- Retenciones IRPF 19% -->
     <!-- ==================== -->
-	<!-- Retenciones IRPF 19% -->
-	<!-- ==================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf19_0_A" model="account.fiscal.position.tax.template">
+    <!--Soportado Operaciones corrientes -->
+    <record id="igic_fptt_irpf19_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -1833,20 +1406,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19"/>
     </record>
-    <record id="igic_fptt_irpf19_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf19_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf19_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19"/>
     </record>
     <record id="igic_fptt_irpf19_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
@@ -1904,20 +1467,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19"/>
     </record>
-    <record id="igic_fptt_irpf19_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf19_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf19_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19"/>
     </record>
     <record id="igic_fptt_irpf19_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
@@ -1954,8 +1507,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf19sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf19sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -1975,20 +1528,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19"/>
     </record>
-    <record id="igic_fptt_irpf19sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf19sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf19sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19"/>
     </record>
     <record id="igic_fptt_irpf19sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19"/>
@@ -2026,10 +1569,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19"/>
     </record>
     <!-- ==================== -->
-	<!-- Retenciones IRPF 20% -->
-	<!-- ==================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf20_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 20% -->
+        <!-- ==================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf20_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -2049,20 +1592,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20"/>
     </record>
-    <record id="igic_fptt_irpf20_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf20_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf20_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20"/>
     </record>
     <record id="igic_fptt_irpf20_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
@@ -2120,20 +1653,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20"/>
     </record>
-    <record id="igic_fptt_irpf20_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf20_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf20_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20"/>
     </record>
     <record id="igic_fptt_irpf20_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
@@ -2170,8 +1693,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf20sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf20sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -2191,20 +1714,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf20"/>
     </record>
-    <record id="igic_fptt_irpf20sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf20sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf20sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf20"/>
     </record>
     <record id="igic_fptt_irpf20sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20"/>
@@ -2242,10 +1755,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf20"/>
     </record>
     <!-- ==================== -->
-	<!-- Retenciones IRPF 21% -->
-	<!-- ==================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf21_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 21% -->
+        <!-- ==================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf21_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -2265,20 +1778,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21p"/>
     </record>
-    <record id="igic_fptt_irpf21_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf21_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf21_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21p"/>
     </record>
     <record id="igic_fptt_irpf21_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
@@ -2336,20 +1839,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21p"/>
     </record>
-    <record id="igic_fptt_irpf21_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf21_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf21_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21p"/>
     </record>
     <record id="igic_fptt_irpf21_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
@@ -2386,8 +1879,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21p"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf21sale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf21sale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -2407,20 +1900,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf21"/>
     </record>
-    <record id="igic_fptt_irpf21sale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf21sale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf21sale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf21"/>
     </record>
     <record id="igic_fptt_irpf21sale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21"/>
@@ -2458,10 +1941,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf21"/>
     </record>
     <!-- =================================== -->
-	<!-- Retenciones IRPF 19% arrendamientos -->
-	<!-- =================================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf19a_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 19% arrendamientos -->
+        <!-- =================================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf19a_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -2481,20 +1964,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19a"/>
     </record>
-    <record id="igic_fptt_irpf19a_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf19a_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf19a_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19a"/>
     </record>
     <record id="igic_fptt_irpf19a_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
@@ -2552,20 +2025,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19a"/>
     </record>
-    <record id="igic_fptt_irpf19a_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf19a_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf19a_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19a"/>
     </record>
     <record id="igic_fptt_irpf19a_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
@@ -2602,8 +2065,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf19a"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf19asale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf19asale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -2623,20 +2086,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19a"/>
     </record>
-    <record id="igic_fptt_irpf19asale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf19asale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf19asale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf19a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19a"/>
     </record>
     <record id="igic_fptt_irpf19asale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf19a"/>
@@ -2674,10 +2127,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf19a"/>
     </record>
     <!-- ===================================== -->
-	<!-- Retenciones IRPF 19,5% arrendamientos -->
-	<!-- ===================================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf195a_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 19,5% arrendamientos -->
+        <!-- ===================================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf195a_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -2697,20 +2150,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf195a"/>
     </record>
-    <record id="igic_fptt_irpf195a_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf195a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf195a_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf195a_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf195a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf195a"/>
     </record>
     <record id="igic_fptt_irpf195a_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
@@ -2768,20 +2211,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf195a"/>
     </record>
-    <record id="igic_fptt_irpf195a_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf195a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf195a_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf195a_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf195a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf195a"/>
     </record>
     <record id="igic_fptt_irpf195a_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
@@ -2818,8 +2251,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf195a"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf195asale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf195asale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -2839,20 +2272,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf195a"/>
     </record>
-    <record id="igic_fptt_irpf195asale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf195a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf195asale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf195asale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf195a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf195a"/>
     </record>
     <record id="igic_fptt_irpf195asale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf195a"/>
@@ -2890,10 +2313,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf195a"/>
     </record>
     <!-- =================================== -->
-	<!-- Retenciones IRPF 20% arrendamientos -->
-	<!-- =================================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf20a_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 20% arrendamientos -->
+        <!-- =================================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf20a_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -2913,20 +2336,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20a"/>
     </record>
-    <record id="igic_fptt_irpf20a_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf20a_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf20a_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20a"/>
     </record>
     <record id="igic_fptt_irpf20a_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
@@ -2984,20 +2397,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20a"/>
     </record>
-    <record id="igic_fptt_irpf20a_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf20a_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf20a_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20a"/>
     </record>
     <record id="igic_fptt_irpf20a_6_5_inv_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
@@ -3034,8 +2437,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf20a"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf20asale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf20asale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -3055,20 +2458,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf20a"/>
     </record>
-    <record id="igic_fptt_irpf20asale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf20asale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf20asale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf20a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf20a"/>
     </record>
     <record id="igic_fptt_irpf20asale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf20a"/>
@@ -3106,10 +2499,10 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf20a"/>
     </record>
     <!-- =================================== -->
-	<!-- Retenciones IRPF 21% arrendamientos -->
-	<!-- =================================== -->
-	<!--Soportado Operaciones corrientes -->
-	<record id="igic_fptt_irpf21a_0_A" model="account.fiscal.position.tax.template">
+        <!-- Retenciones IRPF 21% arrendamientos -->
+        <!-- =================================== -->
+        <!--Soportado Operaciones corrientes -->
+        <record id="igic_fptt_irpf21a_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_0"/>
@@ -3129,20 +2522,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21a"/>
     </record>
-    <record id="igic_fptt_irpf21a_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7"/>
-    </record>
     <record id="igic_fptt_irpf21a_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf21a_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21a"/>
     </record>
     <record id="igic_fptt_irpf21a_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
@@ -3200,20 +2583,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21a"/>
     </record>
-    <record id="igic_fptt_irpf21a_7_inv_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_sop_7_inv"/>
-    </record>
     <record id="igic_fptt_irpf21a_6_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_sop_6_5_inv"/>
-    </record>
-    <record id="igic_fptt_irpf21a_7_inv_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21a"/>
     </record>
     <record id="igic_fptt_irpf21a_9_5_inv_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
@@ -3245,8 +2618,8 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_200_inv"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_p_irpf21a"/>
     </record>
-	<!-- Repercutido -->
-	<record id="igic_fptt_irpf21asale_0_A" model="account.fiscal.position.tax.template">
+        <!-- Repercutido -->
+        <record id="igic_fptt_irpf21asale_0_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_0"/>
@@ -3266,20 +2639,10 @@
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf21a"/>
     </record>
-    <record id="igic_fptt_irpf21asale_7_A" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_r_7"/>
-    </record>
     <record id="igic_fptt_irpf21asale_6_5_A" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_r_6_5"/>
-    </record>
-    <record id="igic_fptt_irpf21asale_7_B" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="l10n_es.fp_irpf21a"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf21a"/>
     </record>
     <record id="igic_fptt_irpf21asale_6_5_B" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="l10n_es.fp_irpf21a"/>
@@ -3317,15 +2680,15 @@
         <field name="tax_dest_id" ref="l10n_es.account_tax_template_s_irpf21a"/>
     </record>
     <!-- ============ -->
-	<!-- IGIC EXENTOS -->
-	<!-- ============ -->
-	<record id="igic_fp_exento" model="account.fiscal.position.template">
+        <!-- IGIC EXENTOS -->
+        <!-- ============ -->
+        <record id="igic_fp_exento" model="account.fiscal.position.template">
         <field name="name">Exento de IGIC</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="note">Las exenciones en operaciones interiores en el Impuesto General Indirecto Canario (IGIC) se encuentra regulados en el Art. 50, LEY 4/2012, del 25 de junio.</field>
     </record>
     <!--Soportado Operaciones corrientes -->
-	<record id="igic_fp_exento_0" model="account.fiscal.position.tax.template">
+        <record id="igic_fp_exento_0" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_ex"/>
@@ -3333,11 +2696,6 @@
     <record id="igic_fp_exento_3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_ex"/>
-    </record>
-    <record id="igic_fp_exento_7" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="igic_fp_exento"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_ex"/>
     </record>
     <record id="igic_fp_exento_6_5" model="account.fiscal.position.tax.template">
@@ -3371,11 +2729,6 @@
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_p_ex"/>
     </record>
-    <record id="igic_fp_exento_7_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="igic_fp_exento"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_p_ex"/>
-    </record>
     <record id="igic_fp_exento_6_5_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_6_5_inv"/>
@@ -3398,49 +2751,44 @@
     </record>
     <!-- Repercutido -->
     <record id="igic_fp_exento_ventas_0" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="igic_fp_exento"/>
+        <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_0"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex"/>
     </record>
     <record id="igic_fp_exento_ventas_3" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="igic_fp_exento"/>
+        <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_3"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex"/>
     </record>
-    <record id="igic_fp_exento_ventas_7" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="igic_fp_exento"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_r_7"/>
-        <field name="tax_dest_id" ref="account_tax_template_igic_re_ex"/>
-    </record>
     <record id="igic_fp_exento_ventas_6_5" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="igic_fp_exento"/>
+        <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_6_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex"/>
     </record>
     <record id="igic_fp_exento_ventas_9_5" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="igic_fp_exento"/>
+        <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_9_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex"/>
     </record>
     <record id="igic_fp_exento_ventas_13_5" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="igic_fp_exento"/>
+        <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_13_5"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex"/>
     </record>
     <record id="igic_fp_exento_ventas_200" model="account.fiscal.position.tax.template">
-    	<field name="position_id" ref="igic_fp_exento"/>
+        <field name="position_id" ref="igic_fp_exento"/>
         <field name="tax_src_id" ref="account_tax_template_igic_r_200"/>
         <field name="tax_dest_id" ref="account_tax_template_igic_re_ex"/>
     </record>
     <!-- =========================== -->
-	<!-- IGIC Comerciante minoristas -->
-	<!-- =========================== -->
-	<record id="igic_fp_minorista" model="account.fiscal.position.template">
+        <!-- IGIC Comerciante minoristas -->
+        <!-- =========================== -->
+        <record id="igic_fp_minorista" model="account.fiscal.position.template">
         <field name="name">IGIC Proveedor minorista</field>
         <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     </record>
      <!--Soportado Operaciones corrientes -->
-	<record id="igic_fp_minorista_0" model="account.fiscal.position.tax.template">
+        <record id="igic_fp_minorista_0" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="igic_fp_minorista"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_0"/>
         <field name="tax_dest_id" eval="0"/>
@@ -3448,11 +2796,6 @@
     <record id="igic_fp_minorista_3" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="igic_fp_minorista"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3"/>
-        <field name="tax_dest_id" eval="0"/>
-    </record>
-    <record id="igic_fp_minorista_7" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="igic_fp_minorista"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7"/>
         <field name="tax_dest_id" eval="0"/>
     </record>
     <record id="igic_fp_minorista_6_5" model="account.fiscal.position.tax.template">
@@ -3484,11 +2827,6 @@
     <record id="igic_fp_minorista_3_inv" model="account.fiscal.position.tax.template">
         <field name="position_id" ref="igic_fp_minorista"/>
         <field name="tax_src_id" ref="account_tax_template_igic_sop_3_inv"/>
-        <field name="tax_dest_id" eval="0"/>
-    </record>
-    <record id="igic_fp_minorista_7_inv" model="account.fiscal.position.tax.template">
-        <field name="position_id" ref="igic_fp_minorista"/>
-        <field name="tax_src_id" ref="account_tax_template_igic_sop_7_inv"/>
         <field name="tax_dest_id" eval="0"/>
     </record>
     <record id="igic_fp_minorista_6_5_inv" model="account.fiscal.position.tax.template">
