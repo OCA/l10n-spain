@@ -6,9 +6,6 @@
     <record id="tax_group_igic_3" model="account.tax.group">
         <field name="name">IGIC 3%</field>
     </record>
-    <record id="tax_group_igic_7" model="account.tax.group">
-        <field name="name">IGIC 7%</field>
-    </record>
     <record id="tax_group_igic_6_5" model="account.tax.group">
         <field name="name">IGIC 6,5%</field>
     </record>
@@ -27,19 +24,19 @@
     <record id="tax_group_igic_re_03" model="account.tax.group">
         <field name="name">IGIC Recargo de Equivalencia 0,3%</field>
     </record>
-    <record id="tax_group_igic_re_07" model="account.tax.group">
-        <field name="name">IGIC Recargo de Equivalencia 0,7%</field>
+    <record id="tax_group_igic_re_05" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 0,5%</field>
     </record>
-    <record id="tax_group_igic_re_065" model="account.tax.group">
-        <field name="name">IGIC Recargo de Equivalencia 0,65%</field>
+    <record id="tax_group_igic_re_09" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 0,9%</field>
     </record>
-    <record id="tax_group_igic_re_095" model="account.tax.group">
-        <field name="name">IGIC Recargo de Equivalencia 0,95%</field>
-    </record>
-    <record id="tax_group_igic_re_135" model="account.tax.group">
-        <field name="name">IGIC Recargo de Equivalencia 1,35%</field>
+    <record id="tax_group_igic_re_13" model="account.tax.group">
+        <field name="name">IGIC Recargo de Equivalencia 1,3%</field>
     </record>
     <record id="tax_group_igic_re_200" model="account.tax.group">
         <field name="name">IGIC Recargo de Equivalencia 2%</field>
+    </record>
+    <record id="tax_group_igic_cmino" model="account.tax.group">
+        <field name="name">IGIC Comerciantes Minoristas</field>
     </record>
 </odoo>

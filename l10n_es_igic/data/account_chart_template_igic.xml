@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- Plantillas del plan contable para Canarias con los IGIC -->
+
+        <record id="account_chart_template_pymes_canarias" model="account.chart.template">
+            <field name="name">PGCE PYMEs 2008 Canarias</field>
+            <field name="complete_tax_set" eval="True"/>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="cash_account_code_prefix">570</field>
+            <field name="bank_account_code_prefix">572</field>
+            <field name="transfer_account_id" ref="l10n_es.common_transfer_account_id"/>
+            <field name="parent_id" ref="l10n_es.account_chart_template_common"/>
+            <field name="property_account_receivable_id" ref="l10n_es.pgc_4300_child"/>
+            <field name="property_account_payable_id" ref="l10n_es.pgc_4100_child"/>
+            <field name="property_account_expense_categ_id" ref="l10n_es.pgc_600_child"/>
+            <field name="property_account_income_categ_id" ref="l10n_es.pgc_7000_child"/>
+            <field name="income_currency_exchange_account_id" ref="l10n_es.pgc_768_child"/>
+            <field name="expense_currency_exchange_account_id" ref="l10n_es.pgc_668_child"/>
+        </record>
+
+</odoo>
+
+
