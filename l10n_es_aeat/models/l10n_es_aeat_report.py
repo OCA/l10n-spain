@@ -288,6 +288,33 @@ class L10nEsAeatReport(models.AbstractModel):
                  previous reports.
         """
         self.ensure_one()
+        if self.period_type in ("1T", "2T", "3T", "4T"):
+            periods = ("1T", "2T", "3T", "4T")
+        else:
+            periods = (
+                "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+                "11", "12",)
+        search_periods = self.search([
+            ("year", "=", self.year),
+            ("period_type", "in", periods),
+            ("state", "not in", ("draft", "cancelled")),
+            ("type", "=", "N"),
+        ], order="period_type")
+        search_periods |= self
+        search_periods = search_periods.sorted(key=lambda r: r.period_type)
+        if search_periods and len(search_periods) != len(
+                set(search_periods.mapped("period_type"))):
+            # Periodos repetidos
+            raise exceptions.UserError(
+                _("Already exist a report with same date period"))
+        elif len(search_periods) > 1:
+            # Periodos anteriores que deberían estar
+            pos = periods.index(self.period_type)
+            period_filter = periods[:pos]
+            if not set(period_filter).issubset(
+                    search_periods.mapped("period_type")):
+                raise exceptions.UserError(
+                    _("There are missing reports from earlier periods"))
         return self.search([
             ('year', '=', self.year),
             ('date_start', '<', date),
