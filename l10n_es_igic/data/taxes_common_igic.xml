@@ -109,7 +109,7 @@
         <field name="tax_group_id" ref="tax_group_igic_re_09"/>
     </record>
     <record id="account_tax_template_igic_re_13" model="account.tax.template">
-        <field name="description">S_IGIC_RE135</field>
+        <field name="description">S_IGIC_RE13</field>
         <field name="type_tax_use">sale</field>
         <field name="account_id" ref="pgc_4777_child"/>
         <field name="name">IGIC 1,3% (Recargo a la importación)</field>

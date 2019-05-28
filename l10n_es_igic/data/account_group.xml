@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_igic_group_4707" model="account.group">
+            <field name="code_prefix">4707</field>
+            <field name="name">Hacienda Pública, deudora por IGIC</field>
+            <field name="parent_id" ref="l10n_es.account_group_470"/>
+        </record>
+        <record id="account_igic_group_4727" model="account.group">
+            <field name="code_prefix">4727</field>
+            <field name="name">Hacienda Pública, IGIC Soportado</field>
+            <field name="parent_id" ref="l10n_es.account_group_472"/>
+        </record>
+        <record id="account_igic_group_4757" model="account.group">
+            <field name="code_prefix">4757</field>
+            <field name="name">Hacienda Pública, acreedora por IGIC</field>
+            <field name="parent_id" ref="l10n_es.account_group_475"/>
+        </record>
+        <record id="account_igic_group_4777" model="account.group">
+            <field name="code_prefix">4777</field>
+            <field name="name">Hacienda Pública, IGIC repercutido</field>
+            <field name="parent_id" ref="l10n_es.account_group_477"/>
+        </record>
+        <record id="account_igic_group_6343" model="account.group">
+            <field name="code_prefix">6343</field>
+            <field name="name">Ajustes negativos en IGIC de circulante</field>
+            <field name="parent_id" ref="l10n_es.account_group_634"/>
+        </record>
+        <record id="account_igic_group_6344" model="account.group">
+            <field name="code_prefix">6344</field>
+            <field name="name">Ajustes negativos en IGIC de inversión</field>
+            <field name="parent_id" ref="l10n_es.account_group_634"/>
+        </record>
+        <record id="account_igic_group_6393" model="account.group">
+            <field name="code_prefix">6393</field>
+            <field name="name">Ajustes positivos en IGIC de circulante</field>
+            <field name="parent_id" ref="l10n_es.account_group_639"/>
+        </record>
+        <record id="account_igic_group_6394" model="account.group">
+            <field name="code_prefix">6394</field>
+            <field name="name">Ajustes positivos en IGIC de inversión</field>
+            <field name="parent_id" ref="l10n_es.account_group_639"/>
+        </record>
+    </data>
+</odoo>
