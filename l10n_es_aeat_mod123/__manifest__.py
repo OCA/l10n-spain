@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 # 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'AEAT modelo 123',
-    'version': '11.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': "Localisation/Accounting",
     'author': "Tecnativa, "
               "Spanish Localization Team, "
