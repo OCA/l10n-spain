@@ -99,6 +99,7 @@ Contributors
 
 * Ismael Calvo, FactorLibre <ismael.calvo@factorlibre.com>
 * Luc De Meyer, Noviat <info@noviat.com>
+* Daniel Duque <daniel.duque@factorlibre.com>
 
 Maintainer
 ----------
