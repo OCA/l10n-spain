@@ -52,7 +52,7 @@ msgid "AEAT manager"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:259
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:264
 #, python-format
 msgid "AEAT model sequence not found. You can try to restart your Odoo service for recreating the sequences."
 msgstr ""
@@ -745,7 +745,7 @@ msgid "If set, this expression will be used to evaluate if this line should be a
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:198
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:203
 #, python-format
 msgid "If this declaration is complementary or substitutive, a previous declaration number should be provided."
 msgstr ""
@@ -940,7 +940,7 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:396
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:401
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
@@ -1029,7 +1029,7 @@ msgid "Only non-exigible amounts"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:366
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:371
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
