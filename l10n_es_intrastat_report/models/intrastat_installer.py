@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import models, fields, api, _
-from openerp import tools
+from odoo import models, fields, api, _
+from odoo import tools
 import csv
 
 CN_file_year = '2017'
