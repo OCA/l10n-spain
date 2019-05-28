@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <record id="view_res_config_settings" model="ir.ui.view">
+    <field name="name">l10n_es_intrastat_product.account.config.settings.form</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="intrastat_product.view_res_config_settings"/>
+    <field name="arch" type="xml">
+      <xpath expr="//div[@id='intrastat-product']/div[hasclass('o_setting_box')]" position="inside">
+        <div class="o_setting_left_pane"/>
+        <div class="o_setting_right_pane">
+          <div class="row" attrs="{'invisible': [('country_code', 'not in', ['ES'])]}">
+            <label for="intrastat_state_id" class="col-md-5 o_light_label"/>
+            <field name="intrastat_state_id" domain="[('country_id','=', country_id)]"/>
+          </div>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
