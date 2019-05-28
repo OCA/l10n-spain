@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
 # Copyright 2009-2017 Noviat.
-# © 2016 - FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+# Copyright 2016 - FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
+# Copyright 2019 - FactorLibre - Daniel Duque <daniel.duque@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import logging
-
-from openerp import api, fields, models, _
-from openerp.exceptions import Warning as UserError
-
-_logger = logging.getLogger(__name__)
+from odoo import api, fields, models, _
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import Warning as UserError
+from odoo.addons.l10n_es_aeat.models.spanish_states_mapping \
+    import SPANISH_STATES
 
 
 class L10nEsIntrastatProductDeclaration(models.Model):
@@ -34,7 +33,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         if not transaction:
             module = __name__.split('addons.')[1].split('.')[0]
             transaction = self.env.ref(
-                '%s.intrastat_transaction_1' % module)
+                '%s.intrastat_transaction_11' % module)
         return transaction
 
     def _get_intrastat_state(self, inv_line):
@@ -73,6 +72,9 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         intrastat_state = self._get_intrastat_state(inv_line)
         if intrastat_state:
             line_vals['intrastat_state_id'] = intrastat_state.id
+        incoterm_id = self._get_incoterm(inv_line)
+        if incoterm_id:
+            line_vals['incoterm_id'] = incoterm_id.id
 
     def _gather_invoices_init(self):
         if self.company_id.country_id.code != 'ES':
@@ -91,11 +93,39 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             L10nEsIntrastatProductDeclaration, self)._prepare_invoice_domain()
         if self.type == 'arrivals':
             domain.append(
-                ('type', 'in', ('in_invoice', 'in_refund', 'out_refund')))
+                ('type', 'in', ('in_invoice', 'out_refund')))
         elif self.type == 'dispatches':
             domain.append(
-                ('type', 'in', ('out_invoice', 'in_refund', 'out_refund')))
+                ('type', 'in', ('out_invoice', 'in_refund')))
         return domain
+
+    @api.model
+    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
+        vals = super(L10nEsIntrastatProductDeclaration, self).\
+            _prepare_grouped_fields(computation_line, fields_to_sum)
+        vals['intrastat_state_id'] = computation_line.intrastat_state_id.id
+        vals['incoterm_id'] = computation_line.incoterm_id.id
+        return vals
+
+    @api.model
+    def _prepare_declaration_line(self, computation_lines):
+        vals = super(L10nEsIntrastatProductDeclaration, self).\
+            _prepare_declaration_line(computation_lines)
+        # Avoid rounding in weight
+        vals['weight'] = 0.0
+        for computation_line in computation_lines:
+            vals['weight'] += computation_line['weight']
+        if not vals['weight']:
+            vals['weight'] = 1
+
+        # Avoid rounding in fiscal value
+        vals['amount_company_currency'] = 0.0
+        for computation_line in computation_lines:
+            vals['amount_company_currency'] += \
+                (computation_line['amount_company_currency'] +
+                 computation_line['amount_accessory_cost_company_currency'])
+
+        return vals
 
     @api.model
     def _group_line_hashcode_fields(self, computation_line):
@@ -111,17 +141,30 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         return self._generate_csv()
 
     @api.multi
+    def _attach_xml_file(self, xml_string, declaration_name):
+        attach_id = super(L10nEsIntrastatProductDeclaration, self).\
+            _attach_xml_file(xml_string, declaration_name)
+        self.ensure_one()
+        attach = self.env['ir.attachment'].browse(attach_id)
+        filename = '%s_%s.csv' % (self.year_month, declaration_name)
+        attach.write({
+            'name': filename,
+            'datas_fname': filename,
+        })
+        return attach.id
+
+    @api.multi
     def _generate_csv(self):
         '''Generate the AEAT csv file export.'''
 
         rows = []
         for line in self.declaration_line_ids:
-            # TO DO port/airport
             rows.append((
                 # Estado destino/origen
                 line.src_dest_country_id.code,
-                # Provincia destino/origen # state_code
-                line.intrastat_state_id.code,
+                # Provincia destino/origen
+                SPANISH_STATES.get(line.intrastat_state_id.code) \
+                or line.intrastat_state_id.code,
                 # Condiciones de entrega
                 line.incoterm_id.code,
                 # Naturaleza de la transacción
@@ -135,19 +178,19 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                 # País origen
                 line.product_origin_country_id.code,
                 # Régimen estadístico
-                line.transaction_id.code,
-                # Peso
+                False,
+                # Masa neta
                 str(line.weight).replace('.', ','),
                 # Unidades suplementarias
                 str(line.suppl_unit_qty).replace('.', ','),
-                # Importe facturado
+                # Valor
                 str(line.amount_company_currency).replace('.', ','),
                 # Valor estadístico
                 str(line.amount_company_currency).replace('.', ','),
             ))
 
         csv_string = self._format_csv(rows, ';')
-        return csv_string
+        return csv_string.encode('utf-8')
 
     @api.multi
     def _format_csv(self, rows, delimiter):
@@ -189,11 +232,5 @@ class L10nEsIntrastatProductDeclarationLine(models.Model):
         string='Computation Lines', readonly=True)
     intrastat_state_id = fields.Many2one(
         comodel_name='res.country.state', string='Intrastat State')
-
-    @api.model
-    def _prepare_grouped_fields(self, computation_line, fields_to_sum):
-        vals = super(
-            L10nEsIntrastatProductDeclarationLine, self
-        )._prepare_grouped_fields(computation_line, fields_to_sum)
-        vals['intrastat_state_id'] = computation_line.intrastat_state_id.id
-        return vals
+    weight = fields.Float(digits=dp.get_precision('Stock Weight'))
+    amount_company_currency = fields.Float(digits=dp.get_precision('Account'))
