@@ -2,6 +2,7 @@
 # Copyright 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2019 Juanvi Pascual <jvpascual@puntsistemes.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import re
@@ -213,6 +214,10 @@ class L10nEsAeatReport(models.AbstractModel):
             self.env.user.partner_id.phone or
             self.env.user.partner_id.mobile or
             self.env.user.company_id.phone)
+        if self.company_id and self.company_id.partner_id and \
+                self.company_id.partner_id.representative_vat:
+            self.representative_vat = \
+                self.company_id.partner_id.representative_vat
 
     @api.onchange('year', 'period_type')
     def onchange_period_type(self):

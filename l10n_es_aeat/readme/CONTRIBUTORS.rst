@@ -8,3 +8,4 @@
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Juan Vicente Pascual <jvpascual@puntsistemes.es>
 * Abraham Anes <abraham@studio73.es>
+* Isaac Gallart <igallart@puntsistemes.es>
