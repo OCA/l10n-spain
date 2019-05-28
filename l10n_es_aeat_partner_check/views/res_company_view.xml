@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="company_form_aeat_partner_check" model="ir.ui.view">
+        <field name="name">res.company.form.aeat.partner.check.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base_vat.company_form_vat"/>
+        <field name="arch" type="xml">
+            <field name="vat_check_vies" position="after">
+                <field name="vat_check_aeat" help="If this checkbox is ticked, you will check the partner information in AEAT in create and write partner" />
+            </field>
+        </field>
+    </record>
+</odoo>
