@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Rodrigo Colombo <rcolombo@sdatos.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+        <record id="aeat_mod420_map" model="l10n.es.aeat.map.tax">
+            <field name="model">420</field>
+        </record>
+        <!-- ============== -->
+        <!-- IGIC DEVENGADO -->
+        <!-- ============== -->
+        <!-- Base imponible -->
+        <record id="aeat_mod420_map_line_01" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">01</field>
+            <field name="name">I.G.I.C DEVENGADO - Base imponible 0%</field>
+            <field name="to_regularize" eval="False"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">base</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_0')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_02" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">02</field>
+            <field name="name">I.G.I.C DEVENGADO - Base imponible 3%</field>
+            <field name="to_regularize" eval="False"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">base</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_3'),ref('l10n_es_igic.account_tax_template_igic_re_03')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_03" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">03</field>
+            <field name="name">I.G.I.C DEVENGADO - Base imponible 6,5%</field>
+            <field name="to_regularize" eval="False"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">base</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_6_5'),ref('l10n_es_igic.account_tax_template_igic_re_05')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_04" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">04</field>
+            <field name="name">I.G.I.C DEVENGADO - Base imponible 9,5%</field>
+            <field name="to_regularize" eval="False"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">base</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_9_5'),ref('l10n_es_igic.account_tax_template_igic_re_09')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_05" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">05</field>
+            <field name="name">I.G.I.C DEVENGADO - Base imponible 13,5%</field>
+            <field name="to_regularize" eval="False"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">base</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_13_5'),ref('l10n_es_igic.account_tax_template_igic_re_13')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_06" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">06</field>
+            <field name="name">I.G.I.C DEVENGADO - Base imponible 20%</field>
+            <field name="to_regularize" eval="False"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">base</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_200'),ref('l10n_es_igic.account_tax_template_igic_re_20')])]"/>
+        </record>
+        <!-- Cuota -->
+        <record id="aeat_mod420_map_line_07" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">07</field>
+            <field name="name">I.G.I.C DEVENGADO - Cuota 0%</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_0')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_08" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">08</field>
+            <field name="name">I.G.I.C DEVENGADO - Cuota 3%</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_3'),ref('l10n_es_igic.account_tax_template_igic_re_03')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_09" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">09</field>
+            <field name="name">I.G.I.C DEVENGADO - Cuota 6,5%</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_6_5'),ref('l10n_es_igic.account_tax_template_igic_re_05')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_10" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">10</field>
+            <field name="name">I.G.I.C DEVENGADO - Cuota 9,5%</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_9_5'),ref('l10n_es_igic.account_tax_template_igic_re_09')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_11" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">11</field>
+            <field name="name">I.G.I.C DEVENGADO - Cuota 13,5%</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_13_5'),ref('l10n_es_igic.account_tax_template_igic_re_13')])]"/>
+        </record>
+        <record id="aeat_mod420_map_line_12" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">12</field>
+            <field name="name">I.G.I.C DEVENGADO - Cuota 20%</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_r_200'),ref('l10n_es_igic.account_tax_template_igic_re_20')])]"/>
+        </record>
+        <!-- Inversión del sujeto pasivo -->
+        <record id="aeat_mod420_map_line_13" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">13</field>
+            <field name="name">Cuota devengada por inversión del sujeto pasivo</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">credit</field>
+            <field name="inverse" eval="False"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_s_ISP0_2'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_s_ISP3_2'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_s_ISP6_5_2'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_s_ISP95_2'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_s_ISP135_2'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_s_ISP200_2'),])]"/>
+        </record>
+        <!-- ============== -->
+        <!-- IGIC SOPORTADO -->
+        <!-- ============== -->
+        <!-- Operaciones interiores -->
+        <record id="aeat_mod420_map_line_16" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">16</field>
+            <field name="name">I.G.I.C deducible en operaciones interiores</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="True"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_sop_0'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_3'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_6_5'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_9_5'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_13_5'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_200'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_0_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_3_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_6_5_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_9_5_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_13_5_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_200_inv')])]"/>
+        </record>
+        <!-- Importaciones -->
+        <record id="aeat_mod420_map_line_17" model="l10n.es.aeat.map.tax.line">
+            <field name="map_parent_id" ref="aeat_mod420_map"/>
+            <field name="field_number">17</field>
+            <field name="name">I.G.I.C deducible por importaciones</field>
+            <field name="to_regularize" eval="True"/>
+            <field name="move_type">regular</field>
+            <field name="field_type">amount</field>
+            <field name="sum_type">both</field>
+            <field name="inverse" eval="True"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es_igic.account_tax_template_igic_sop_i_0'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_3'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_6_5'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_9_5'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_13_5'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_200'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_0_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_3_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_6_5_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_9_5_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_13_5_inv'),
+                                                     ref('l10n_es_igic.account_tax_template_igic_sop_i_200_inv')])]"/>
+        </record>
+</odoo>

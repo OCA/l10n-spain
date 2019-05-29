@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="report_aeat_mod420_document">
+            <t t-name="report.external_layout_header">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-xs-4" style="border:1px solid black;">
+                            <div>
+                                <img class="img img-responsive" src="/l10n_es_aeat_mod420/static/src/img/ATC.png" style="width:245px;height:88px" />
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div style="border:1px solid black;height:88px;background-color: #B4DDEC">
+                                <div style="font-size:14;text-align:center;padding:2px;top-margin:10px">IMPUESTO GENERAL INDIRECTO CANARIO</div>
+                                <div style="font-size:14;text-align:center;padding:2px">
+                                    <b>RÉGIMEN GENERAL</b>
+                                </div>
+                                <div style="font-size:14;text-align:center;padding:2px">
+                                    <b>AUTOLIQUIDACIÓN TRIMESTRAL</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-2" style="border:1px solid black;height:88px">
+                            <div>
+                                <div style="font-size:13;text-align:center">
+                                    <b>Modelo</b>
+                                </div>
+                                <div style="font-size:50;text-align:center">
+                                    <b>420</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+            <t t-name="report.external_layout">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-6" style="border:1px solid black;font-size:12px">
+                            <div style="background-color: #B4DDEC;margin-top:1px">
+                                <b>1. Período de liquidación</b>
+                            </div>
+                            <div style="padding:3px">
+                                EJERCICIO:
+                                <span t-esc="o.year" style="margin-left:5px" />
+                            </div>
+                            <div style="padding:3px">
+                                PERÍODO:
+                                <span t-field="o.period_type" style="margin-left:5px" />
+                            </div>
+                            <div style="padding:3px">
+                                TIPO:
+                                <span style="background-color: #808080;color:white;" t-raw="o.type" />
+                                <span t-field="o.type" style="margin-left:5px" />
+                            </div>
+                        </div>
+                        <div class="col-xs-6" style="border:1px solid black;text-align:center">
+                            <div style="font-size:50;padding:8px 0">
+                                <b>BORRADOR</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt16" style="border:1px solid black;">
+                        <div style="background-color: #B4DDEC;margin-top:1px">
+                            <b>2.- Datos identificativos</b>
+                        </div>
+                        <div style="background-color: #808080;color:white; padding-left:15px">
+                            <b>DOMICILIO FISCAL</b>
+                        </div>
+                        <div style="padding:15px">
+                            <div class="col-xs-3">
+                                <span>
+                                    NIF:
+                                    <span t-field="o.company_vat" />
+                                </span>
+                            </div>
+                            <div class="col-xs-9">
+                                <span>
+                                    Razón social:
+                                    <span t-field="o.company_id.name" />
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="padding:15px">
+                                <div class="col-xs-5">
+                                    Dirección:
+                                    <span t-field="o.company_id.partner_id.street" />
+                                </div>
+                                <div class="col-xs-4">
+                                    <span t-field="o.company_id.partner_id.street2" />
+                                </div>
+                                <div class="col-xs-3">
+                                    Teléfono:
+                                    <span t-field="o.contact_phone" />
+                                </div>
+                            </div>
+                            <div style="padding:15px">
+                                <div class="col-xs-3">
+                                    Provincia:
+                                    <span t-field="o.company_id.partner_id.state_id.name" />
+                                </div>
+                                <div class="col-xs-3">
+                                    Municipio:
+                                    <span t-field="o.company_id.partner_id.city" />
+                                </div>
+                                <div class="col-xs-3">
+                                    Código postal:
+                                    <span t-field="o.company_id.partner_id.zip" />
+                                </div>
+                                <div class="col-xs-3">
+                                    Fax:
+                                    <span t-field="o.company_id.partner_id.fax" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt16" style="border:1px solid black;">
+                        <div style="background-color: #B4DDEC;margin-top:1px">
+                            <b>3.- Liquidación</b>
+                        </div>
+                        <div style="background-color: #808080;color:white; padding-left:15px">
+                            <b>I.G.I.C. DEVENGADO</b>
+                        </div>
+                        <div class="row">
+                            <div style="padding:15px;font-size:11px">
+                                <div class="col-xs-5">
+                                    <div style="text-align:center">Base imponible</div>
+                                    <div t-foreach="range(6)" t-as="l">
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;text-align:left;border:1px solid black;">
+                                            <span t-esc="'0%d' % o.tax_line_ids[l].field_number" />
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.tax_line_ids[l].amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div style="padding:1px;">Cuotas devengadas por inversión del sujeto pasivo</div>
+                                    <div style="padding:1px;">Rectificación de cuotas impositivas repercutidas</div>
+                                    <div style="padding:1px;">
+                                        <b>Total de cuotas devengadas</b>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3" style="text-align:center">
+                                    <div>Tipo de gravamen %</div>
+                                    <div style="border:1px solid black;">0,00</div>
+                                    <div style="border:1px solid black;">3,00</div>
+                                    <div style="border:1px solid black;">6,50</div>
+                                    <div style="border:1px solid black;">9,50</div>
+                                    <div style="border:1px solid black;">13,50</div>
+                                    <div style="border:1px solid black;">20,00</div>
+                                    <div>________________</div>
+                                    <div>________________</div>
+                                    <div>________________</div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div style="text-align:center">Cuota devengada</div>
+                                    <div t-foreach="range(6,9)" t-as="l">
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span t-esc="'0%d' % o.tax_line_ids[l].field_number" />
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.tax_line_ids[l].amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div t-foreach="range(9,13)" t-as="l">
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span t-field="o.tax_line_ids[l].field_number" />
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.tax_line_ids[l].amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>14</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.rectificacion_repercutida" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>15</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.total_devengado" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt8">
+                            <div style="background-color: #808080;color:white; padding-left:15px">
+                                <b>I.G.I.C. DEDUCIBLE Y RESULTADO AUTOLIQUIDACIÓN</b>
+                            </div>
+                            <div style="padding:15px;font-size:11px">
+                                <div class="col-xs-8">
+                                    <div style="padding:1px;">I.G.I.C. deducible en operaciones interiores________________________________________</div>
+                                    <div style="padding:1px;">I.G.I.C. deducible por importaciones______________________________________________</div>
+                                    <div style="padding:1px;">Compensaciones del régimen especial de la agricultura y ganadería____________________</div>
+                                    <div style="padding:1px;">Regularización de inversiones o por cuotas soportadas antes del inicio de la actividad______</div>
+                                    <div style="padding:1px;">Cuotas devueltas en régimen de viajeros_________________________________________</div>
+                                    <div style="padding:1px;">Rectificación de cuotas soportadas deducidas_____________________________________</div>
+                                    <div>
+                                        <div class="col-xs-5" />
+                                        <div class="col-xs-7" style="text-align_right">
+                                            <b>Total cuotas deducibles_________________</b>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-5" />
+                                        <div class="col-xs-7" style="text-align_right">
+                                            Diferencia (
+                                            <span style="background-color: #808080;color:white">15</span>
+                                            -
+                                            <span style="background-color: #808080;color:white">22</span>
+                                            ) _____________________
+                                        </div>
+                                    </div>
+                                    <div style="padding:1px;">Cuotas del I.G.I.C. a compensar de períodos anteriores______________________________</div>
+                                    <div style="padding:1px;">A deducir (exclusivamente en caso de autoliquidación complementaria)__________________</div>
+                                    <div>
+                                        <div class="col-xs-4" />
+                                        <div class="col-xs-8" style="text-align_right">
+                                            <b>
+                                                Resultado de la autoliquidación (
+                                                <span style="background-color: #808080;color:white">23</span>
+                                                -
+                                                <span style="background-color: #808080;color:white">24</span>
+                                                -
+                                                <span style="background-color: #808080;color:white">25</span>
+                                                )
+                                            </b>
+                                            ____
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div t-foreach="range(13,15)" t-as="l">
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span t-field="o.tax_line_ids[l].field_number" />
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.tax_line_ids[l].amount" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>18</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.casilla_18" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>19</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.casilla_19" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>20</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.casilla_20" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>21</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.rectificacion_soportada" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>22</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.total_deducir" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>23</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.diferencia" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>24</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.cuota_compensar" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>25</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.a_deducir" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="col-xs-3" style="text-align:center;background-color: #808080;color:white;border:1px solid black;">
+                                            <span>26</span>
+                                        </div>
+                                        <div class="col-xs-9" style="text-align:right;border:1px solid black;">
+                                            <span t-field="o.resultado_liquidacion" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt16" style="border:1px solid black;">
+                        <div style="text-align:center">
+                            <div style="background-color: #B4DDEC;margin-top:1px">
+                                <b>
+                                    Resultado:
+                                    <span t-field="o.result_type" />
+                                </b>
+                            </div>
+                            <div style="padding:5px">
+                                <span style="padding:0 3px">Importe</span>
+                                <span style="border:1px solid black">
+                                    <span style="padding:0 2px;background-color: #808080;color:white">
+                                        <span t-raw="o.result_type" />
+                                    </span>
+                                    <span style="padding:0 5px;">
+                                        <span t-if="o.resultado_liquidacion" t-field="o.resultado_liquidacion" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+                                        <span t-if="not o.resultado_liquidacion">Sin actividad</span>
+                                    </span>
+                                </span>
+                            </div>
+                            <div t-if="o.resultado_liquidacion and (o.result_type != 'C' or o.result_type != 'N')" style="padding:5px">
+                                <div style="font-size:11px">Código internacional de cuenta bancaria</div>
+                                <div>
+                                    <span style="padding:1px">IBAN</span>
+                                    <span style="border:1px solid black;padding:1px" t-field="o.partner_bank_id.acc_number" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="report_aeat_mod420">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="l10n_es_atc_mod420.report_aeat_mod420_document" t-lang="o.partner_id.lang" />
+                </t>
+            </t>
+        </template>
+        <report id="aeat_mod420" model="l10n.es.aeat.mod420.report" name="l10n_es_atc_mod420.report_aeat_mod420" string="Model ATC 420" file="l10n_es_atc_mod420.report_aeat_mod420" report_type="qweb-pdf" attachment_use="False" />
+
+    </data>
+</odoo>
