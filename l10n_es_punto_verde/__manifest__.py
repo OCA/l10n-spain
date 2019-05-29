@@ -1,4 +1,3 @@
-# Copyright 2018 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -8,7 +7,11 @@
     'author': "SDi",
     'category': 'Generic Modules/Accounting',
     'website': "https://github.com/OCA/l10n-spain",
-    'depends': ['product.template','account.tax','account.tax.python'],
+    'depends': [
+        'product',
+        'account_tax_python',
+        'l10n_es'
+        ],
     'data': [
         'data/account_tax_group.xml',
         'views/product_view.xml',

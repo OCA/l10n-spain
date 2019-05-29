@@ -2,7 +2,6 @@
 <!-- Copyright <YEAR(S)> <AUTHOR(S)>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<openerp>
     <odoo noupdate="1">
         <!-- Groups -->
         <record id="grupo_punto_verde" model="account.tax.group">
@@ -25,4 +24,4 @@
             <field name="refund_account_id" ref="l10n_es.1_account_common_631"/>
         </record>
     </odoo>
-</openerp>
+
