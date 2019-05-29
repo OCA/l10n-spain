@@ -146,6 +146,7 @@ class AccountInvoice(models.Model):
             ('R1', 'Error based on law and Art. 80 One and Two LIVA (R1)'),
             ('R2', 'Art. 80 Three LIVA - Bankruptcy (R2)'),
             ('R3', 'Art. 80 Four LIVA - Bad debt (R3)'),
+            ('R4', 'Rest of causes (R4)'),
         ],
         help="Fill this field when the refund are one of the specific cases"
              " of article 80 of LIVA for notifying to SII with the proper"
@@ -1370,6 +1371,8 @@ class AccountInvoice(models.Model):
             res['sii_refund_type'] = sii_refund_type
         if supplier_invoice_number_refund:
             res['reference'] = supplier_invoice_number_refund
+        if res['type'] == 'out_refund':
+            res['sii_refund_specific_invoice_type'] = 'R1'
 
         return res
 
