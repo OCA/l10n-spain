@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright <YEAR(S)> <AUTHOR(S)>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+    <odoo noupdate="1">
+        <!-- Groups -->
+        <record id="grupo_punto_verde" model="account.tax.group">
+            <field name="name">Punto verde</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="punto_verde" model="account.tax">
+            <field name="sequence">1</field>
+            <field name="name">Punto Verde</field>
+            <field name="description">Aportación al Punto Verde</field>
+            <field name="include_base_amount">1</field>
+            <field name="amount_type">code</field>
+            <field name="amount">0</field>
+            <field name="type_tax_use">sale</field>
+            <field name="tax_group_id" ref="grupo_punto_verde"/>
+            <field name="python_compute">result = product.punto_verde*quantity</field>
+            <field name="python_applicable">result = True</field>
+            <field name="account_id" ref="l10n_es.1_account_common_631"/>
+            <field name="refund_account_id" ref="l10n_es.1_account_common_631"/>
+        </record>
+    </odoo>
+</openerp>
