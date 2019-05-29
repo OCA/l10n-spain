@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_template_lodeiros_form_view" model="ir.ui.view">
+            <field name="name">product.template.form.lodeiros.inherit</field>
+            <field name="model">product.template</field>
+            <field name="priority">5</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="list_price" position="after">
+                         <field name="Coeficiente CER"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
