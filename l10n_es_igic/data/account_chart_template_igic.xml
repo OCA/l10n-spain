@@ -9,16 +9,14 @@
             <field name="currency_id" ref="base.EUR"/>
             <field name="cash_account_code_prefix">570</field>
             <field name="bank_account_code_prefix">572</field>
-            <field name="transfer_account_id" ref="l10n_es.common_transfer_account_id"/>
+            <field name="transfer_account_id" ref="l10n_es.account_common_572999"/>
             <field name="parent_id" ref="l10n_es.account_chart_template_common"/>
-            <field name="property_account_receivable_id" ref="l10n_es.pgc_4300_child"/>
-            <field name="property_account_payable_id" ref="l10n_es.pgc_4100_child"/>
-            <field name="property_account_expense_categ_id" ref="l10n_es.pgc_600_child"/>
-            <field name="property_account_income_categ_id" ref="l10n_es.pgc_7000_child"/>
-            <field name="income_currency_exchange_account_id" ref="l10n_es.pgc_768_child"/>
-            <field name="expense_currency_exchange_account_id" ref="l10n_es.pgc_668_child"/>
+            <field name="property_account_receivable_id" ref="l10n_es.account_common_4300"/>
+            <field name="property_account_payable_id" ref="l10n_es.account_common_4100"/>
+            <field name="property_account_expense_categ_id" ref="l10n_es.account_common_600"/>
+            <field name="property_account_income_categ_id" ref="l10n_es.account_common_7000"/>
+            <field name="income_currency_exchange_account_id" ref="l10n_es.account_common_768"/>
+            <field name="expense_currency_exchange_account_id" ref="l10n_es.account_common_668"/>
         </record>
 
 </odoo>
-
-
