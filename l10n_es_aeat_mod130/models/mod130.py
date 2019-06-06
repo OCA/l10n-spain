@@ -1,6 +1,6 @@
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 
-from odoo import models, fields, api, exceptions, _
+from odoo import _, api, fields, exceptions, models
 
 
 def trunc(f, n):
@@ -20,10 +20,6 @@ class L10nEsAeatMod130Report(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency',
                                   relation='company_id.currency_id',
                                   store=True)
-    period = fields.Selection(
-        [('1T', 'First quarter'), ('2T', 'Second quarter'),
-         ('3T', 'Third quarter'), ('4T', 'Fourth quarter')], string='Period',
-        states={'draft': [('readonly', False)]}, readonly=True, required=True)
     activity_type = fields.Selection(
         [('primary', 'Actividad agrícola, ganadera, forestal o pesquera'),
          ('other', 'Actividad distinta a las anteriores')],
@@ -52,69 +48,86 @@ class L10nEsAeatMod130Report(models.Model):
         "o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. "
         "\nDebe consultar las excepciones para las que no se computaría "
         "la deducción a pesar del préstamo.", default=False)
-    complementary = fields.Boolean(
-        string="Presentación complementaria",
-        states={'draft': [('readonly', False)]}, readonly=True,
-        help="Se marcará si esta declaración es complementaria de otra u otras"
-        " declaraciones presentadas anteriormente por el mismo concepto y "
-        "correspondientes al mismo ejercicio y período.", default=False)
-    previous_electronic_code = fields.Char(
-        string="Cód. electr. declaración anterior", size=16,
-        help="Código electrónico de la declaración anterior (si se "
-        "presentó telemáticamente). A cumplimentar sólo en el caso de "
-        "declaración complementaria", readonly=False,
-        states={'done': [('readonly', True)]})
     comments = fields.Char(
         string="Observaciones", size=350, readonly=True,
         help="Observaciones que se adjuntarán con el modelo",
         states={'draft': [('readonly', False)]})
-    casilla_01 = fields.Float(string="Casilla [01] - Ingresos", readonly=True)
-    casilla_02 = fields.Float(string="Casilla [02] - Gastos", readonly=True)
-    casilla_03 = fields.Float(string="Casilla [03] - Rendimiento",
-                              readonly=True)
-    casilla_04 = fields.Float(string="Casilla [04] - IRPF", readonly=True)
-    casilla_05 = fields.Float(string="Casilla [05]")
-    casilla_06 = fields.Float(string="Casilla [06]", readonly=True)
-    casilla_07 = fields.Float(string="Casilla [07]", readonly=True)
-    casilla_08 = fields.Float(string="Casilla [08] - Ingresos primario",
-                              readonly=True)
-    casilla_09 = fields.Float(string="Casilla [09] - IRPF primario",
-                              readonly=True)
-    casilla_10 = fields.Float(string="Casilla [10]", readonly=True)
-    casilla_11 = fields.Float(string="Casilla [11]", readonly=True)
-    casilla_12 = fields.Float(string="Casilla [12]", readonly=True)
-    casilla_13 = fields.Float(string="Casilla [13] - Deducción art. 80 bis",
-                              readonly=True)
-    casilla_14 = fields.Float(string="Casilla [14]", readonly=True)
-    casilla_15 = fields.Float(string="Casilla [15]", readonly=True)
-    casilla_16 = fields.Float(string="Casilla [16] - Deducción por pago "
-                              "de hipoteca", readonly=True)
-    casilla_17 = fields.Float(string="Casilla [17]", readonly=True)
-    casilla_18 = fields.Float(string="Casilla [18]", readonly=True)
-    result = fields.Float(string="Resultado", readonly=True)
-    tipo_declaracion = fields.Selection([('I', 'A ingresar'),
-                                        ('N', 'Negativa'),
-                                        ('B', 'A deducir')],
-                                        string='Tipo declaración',
-                                        readonly=True)
-    number = fields.Char(default='130')
+    casilla_01 = fields.Monetary(
+        string="Casilla [01] - Ingresos",
+        readonly=True,
+    )
+    real_expenses = fields.Monetary(
+        string="Gastos reales",
+        help="Gastos en el periodo sin contar con el 5% adicional de difícil "
+             "justificación.",
+    )
+    non_justified_expenses = fields.Monetary(
+        string="Gastos de difícil justificación",
+        help="Calculado como el 5% del rendimiento del periodo (ingresos - "
+             "gastos reales).",
+    )
+    casilla_02 = fields.Monetary(string="Casilla [02] - Gastos", readonly=True)
+    casilla_03 = fields.Monetary(
+        string="Casilla [03] - Rendimiento",
+        readonly=True,
+    )
+    casilla_04 = fields.Monetary(string="Casilla [04] - IRPF", readonly=True)
+    casilla_05 = fields.Monetary(string="Casilla [05]")
+    casilla_06 = fields.Monetary(string="Casilla [06]", readonly=True)
+    casilla_07 = fields.Monetary(string="Casilla [07]", readonly=True)
+    casilla_08 = fields.Monetary(
+        string="Casilla [08] - Ingresos primario",
+        readonly=True,
+    )
+    casilla_09 = fields.Monetary(
+        string="Casilla [09] - IRPF primario",
+        readonly=True,
+    )
+    casilla_10 = fields.Monetary(string="Casilla [10]", readonly=True)
+    casilla_11 = fields.Monetary(string="Casilla [11]", readonly=True)
+    casilla_12 = fields.Monetary(string="Casilla [12]", readonly=True)
+    casilla_13 = fields.Monetary(
+        string="Casilla [13] - Deducción art. 80 bis",
+        readonly=True,
+    )
+    casilla_14 = fields.Monetary(string="Casilla [14]", readonly=True)
+    casilla_15 = fields.Monetary(string="Casilla [15]", readonly=True)
+    casilla_16 = fields.Monetary(
+        string="Casilla [16] - Deducción por pago de hipoteca",
+        readonly=True,
+    )
+    casilla_17 = fields.Monetary(string="Casilla [17]", readonly=True)
+    casilla_18 = fields.Monetary(string="Casilla [18]", readonly=True)
+    result = fields.Monetary(
+        string="Resultado",
+        compute="_compute_result",
+        store=True,
+    )
+    tipo_declaracion = fields.Selection(
+        selection=[
+            ('I', 'A ingresar'),
+            ('N', 'Negativa'),
+            ('B', 'A deducir')
+        ],
+        string='Tipo declaración',
+        compute="_compute_tipo_declaracion",
+        store=True,
+    )
 
-    @api.constrains('previous_electronic_code', 'previous_number')
-    def check_complementary(self):
+    @api.depends('casilla_18', 'casilla_17')
+    def _compute_result(self):
         for report in self:
-            if (report.complementary and
-                    not report.previous_electronic_code and
-                    not report.previous_number):
-                raise exceptions.Warning(_(
-                    'Si se marca la casilla de '
-                    'liquidación complementaria, debe '
-                    'rellenar el código electrónico o el '
-                    'nº de justifacnte de la declaración '
-                    'anterior.'))
+            report.result = report.casilla_17 - report.casilla_18
 
-    @api.onchange('casilla_18', 'casilla_17')
-    def onchange_casilla_18(self):
-        self.result = self.casilla_17 - self.casilla_18
+    @api.depends('result')
+    def _compute_tipo_declaracion(self):
+        for report in self:
+            if report.result < 0:
+                report.tipo_declaracion = (
+                    "B" if report.period_type != '4T' else "N"
+                )
+            else:
+                report.tipo_declaracion = "I"
 
     @api.multi
     def _calc_ingresos_gastos(self):
@@ -129,11 +142,11 @@ class L10nEsAeatMod130Report(models.Model):
         groups = aml_obj.read_group([
             ('account_id.code', '=like', '7%'),
         ] + extra_domain, ['balance'], [])
-        incomes = -groups[0]['balance']
+        incomes = -groups[0]['balance'] or 0.0
         groups = aml_obj.read_group([
             ('account_id.code', '=like', '6%'),
         ] + extra_domain, ['balance'], [])
-        expenses = groups[0]['balance']
+        expenses = groups[0]['balance'] or 0.0
         return (incomes, expenses)
 
     @api.multi
@@ -161,18 +174,26 @@ class L10nEsAeatMod130Report(models.Model):
             if report.activity_type == 'other':
                 ingresos, gastos = report._calc_ingresos_gastos()
                 vals['casilla_01'] = ingresos
-                vals['casilla_02'] = gastos
+                vals['real_expenses'] = gastos
+                rendimiento_bruto = (ingresos - gastos)
+                if rendimiento_bruto > 0:
+                    vals['non_justified_expenses'] = round(
+                        rendimiento_bruto * 0.05, 2
+                    )
+                else:
+                    vals['non_justified_expenses'] = 0.0
+                vals['casilla_02'] = gastos + vals['non_justified_expenses']
                 # Rendimiento
-                vals['casilla_03'] = ingresos - gastos
-                if vals['casilla_03'] < 0:
-                    vals['casilla_03'] = 0.0
+                vals['casilla_03'] = ingresos - vals['casilla_02']
                 # IRPF - Truncar resultado, ya que es lo que hace la AEAT
-                vals['casilla_04'] = trunc(0.20 * vals['casilla_03'], 2)
+                if vals['casilla_03'] < 0:
+                    vals['casilla_04'] = 0.0
+                else:
+                    vals['casilla_04'] = trunc(0.20 * vals['casilla_03'], 2)
                 # Pago fraccionado previo del trimestre
                 vals['casilla_05'] = report._calc_prev_trimesters_data()
-                vals['casilla_06'] = 0.0
                 vals['casilla_07'] = (vals['casilla_04'] - vals['casilla_05'] -
-                                      vals['casilla_06'])
+                                      report.casilla_06)
                 vals['casilla_12'] = vals['casilla_07']
                 if vals['casilla_12'] < 0:
                     vals['casilla_12'] = 0.0
@@ -201,17 +222,6 @@ class L10nEsAeatMod130Report(models.Model):
                 vals['casilla_16'] = 0.0
             vals['casilla_17'] = (vals['casilla_14'] - vals['casilla_15'] -
                                   vals['casilla_16'])
-            if report.complementary:
-                vals['result'] = vals['casilla_17'] - report.casilla_18
-            else:
-                vals['casilla_18'] = 0.0
-                vals['result'] = vals['casilla_17']
-            if vals['result'] < 0 and report.period != '4T':
-                vals['tipo_declaracion'] = "B"
-            elif report.result < 0:
-                vals['tipo_declaracion'] = "N"
-            else:
-                vals['tipo_declaracion'] = "I"
             report.write(vals)
         return True
 
@@ -220,19 +230,11 @@ class L10nEsAeatMod130Report(models.Model):
         """Check its records"""
         msg = ""
         for report in self:
-            if report.complementary:
-                if not report.casilla_18:
-                    msg = ('Debe introducir una cantidad en la casilla 18 '
-                           'como ha marcado la casilla de declaración '
-                           'complementaria.')
-                if (report.previous_electronic_code and
-                        len(report.previous_electronic_code) < 16):
-                    msg = ('El código electrónico de la declaración anterior '
-                           'debe tener 16 caracteres.')
-                if (report.previous_number and
-                        len(report.previous_number) < 13):
-                    msg = ('El nº de justificante de la declaración anterior '
-                           'debe tener 13 caracteres.')
+            if report.type == 'C' and not report.casilla_18:
+                    msg = _(
+                        'Debe introducir una cantidad en la casilla 18 como '
+                        'ha marcado la casilla de declaración complementaria.'
+                    )
         if msg:
-            raise exceptions.Warning(msg)
+            raise exceptions.ValidationError(msg)
         return super(L10nEsAeatMod130Report, self).button_confirm()
