@@ -165,12 +165,6 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
-#, python-format
-msgid "CÃ³digo de la notarÃ­a en la que se concediÃ³ el poder de representaciÃ³n para esta persona."
-msgstr ""
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_first_activity_code
 msgid "Código 1ª actividad"
 msgstr ""
@@ -201,9 +195,11 @@ msgid "Código actividad principal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_second_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_third_representative_notary
+#, python-format
 msgid "Código de la notaría en la que se concedió el poder de representación para esta persona."
 msgstr ""
 
