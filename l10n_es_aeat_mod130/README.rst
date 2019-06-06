@@ -32,12 +32,22 @@ Instrucciones del modelo: http://goo.gl/StTY2h
 
 Incluye la exportación al formato BOE para su uso telemático.
 
+**Table of contents**
+
+.. contents::
+   :local:
+
+Known issues / Roadmap
+======================
+
 **AVISO**: Este modelo no cubre el 100% de las posibilidades que se pueden
 dar en la declaración, por lo que se exime a los desarrolladores de cualquier
 responsabilidad derivada de su uso. Carencias conocidas:
 
 * La casilla [02] no se calculará correctamente si se incluyen en la partida
   de gastos (familia de cuentas 6), gastos que no son deducibles.
+* No se controla el límite máximo de 2000 € en los gastos no deducibles de
+  difícil justificación.
 * En la casilla [04], no se tienen en cuenta deducciones para rentas obtenidas
   en Ceuta o Melilla.
 * No se tienen en cuenta las retenciones e ingresos a cuenta soportados sobre
@@ -48,11 +58,6 @@ responsabilidad derivada de su uso. Carencias conocidas:
   (casilla [13]).
 * No se pueden deducir resultados negativos de anteriores declaraciones
   (casilla [15]).
-
-**Table of contents**
-
-.. contents::
-   :local:
 
 Bug Tracker
 ===========
@@ -75,8 +80,10 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Firstname Lastname <email.address@example.org> (optional company website url)
-* Second Person <second.person@example.org> (optional company website url)
+* `Tecnativa <https://www.tecnativa.com>`__:
+
+  * Pedro M. Baeza
+  * Víctor Martín
 
 Maintainers
 ~~~~~~~~~~~
