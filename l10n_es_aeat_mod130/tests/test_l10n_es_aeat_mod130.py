@@ -25,11 +25,8 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         self._invoice_sale_create('2019-01-01')
         self._invoice_purchase_create('2019-01-01')
         # Create model
-        export_config = self.env.ref(
-            'l10n_es_aeat_mod130.aeat_mod130_sub01_export_config')
         model130 = self.env['l10n.es.aeat.mod130.report'].create({
             'name': '9990000000130',
-            'period': '1T',
             'company_id': self.company.id,
             'company_vat': '1234567890',
             'contact_name': 'Test owner',
@@ -40,28 +37,31 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
             'period_type': '1T',
             'date_start': '2019-01-01',
             'date_end': '2019-03-31',
-            'export_config_id': export_config.id,
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
         # Calculate
         _logger.debug('Calculate AEAT 130 1T 2015')
         model130.button_calculate()
+        self.assertEqual(model130.tipo_declaracion, 'I')
         self.assertAlmostEqual(model130.casilla_01, 1000, 2)
-        self.assertAlmostEqual(model130.casilla_02, 900, 2)
-        self.assertAlmostEqual(model130.casilla_03, 100, 2)
-        self.assertAlmostEqual(model130.casilla_04, 20, 2)
+        self.assertAlmostEqual(model130.real_expenses, 900, 2)
+        self.assertAlmostEqual(model130.non_justified_expenses, 5, 2)
+        self.assertAlmostEqual(model130.casilla_02, 905, 2)
+        self.assertAlmostEqual(model130.casilla_03, 95, 2)
+        self.assertAlmostEqual(model130.casilla_04, 19, 2)
         self.assertAlmostEqual(model130.casilla_05, 0, 2)
         self.assertAlmostEqual(model130.casilla_06, 0, 2)
-        self.assertAlmostEqual(model130.casilla_07, 20, 2)
-        self.assertAlmostEqual(model130.casilla_12, 20, 2)
+        self.assertAlmostEqual(model130.casilla_07, 19, 2)
+        self.assertAlmostEqual(model130.casilla_12, 19, 2)
         self.assertAlmostEqual(model130.casilla_13, 0, 2)
-        self.assertAlmostEqual(model130.casilla_14, 20, 2)
+        self.assertAlmostEqual(model130.casilla_14, 19, 2)
         self.assertAlmostEqual(model130.casilla_15, 0, 2)
-        # Has no loan
-        self.assertAlmostEqual(model130.casilla_16, 0, 2)
-        self.assertAlmostEqual(model130.casilla_17, 20, 2)
+        self.assertAlmostEqual(model130.casilla_16, 0, 2)  # Has no loan
+        self.assertAlmostEqual(model130.casilla_17, 19, 2)
         self.assertAlmostEqual(model130.casilla_18, 0, 2)
+        # Confirm for checking no errors
+        model130.button_confirm()
         # Test second trimester
         model130_2t = model130.copy({
             'name': '9990000001130',
@@ -73,19 +73,20 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
         self._invoice_sale_create('2019-04-01')
         model130_2t.button_calculate()
         self.assertAlmostEqual(model130_2t.casilla_01, 1300, 2)
-        self.assertAlmostEqual(model130_2t.casilla_02, 900, 2)
-        self.assertAlmostEqual(model130_2t.casilla_03, 400, 2)
-        self.assertAlmostEqual(model130_2t.casilla_04, 80, 2)
-        self.assertAlmostEqual(model130_2t.casilla_05, 20, 2)
+        self.assertAlmostEqual(model130_2t.real_expenses, 900, 2)
+        self.assertAlmostEqual(model130_2t.non_justified_expenses, 20, 2)
+        self.assertAlmostEqual(model130_2t.casilla_02, 920, 2)
+        self.assertAlmostEqual(model130_2t.casilla_03, 380, 2)
+        self.assertAlmostEqual(model130_2t.casilla_04, 76, 2)
+        self.assertAlmostEqual(model130_2t.casilla_05, 19, 2)
         self.assertAlmostEqual(model130_2t.casilla_06, 0, 2)
-        self.assertAlmostEqual(model130_2t.casilla_07, 60, 2)
-        self.assertAlmostEqual(model130_2t.casilla_12, 60, 2)
+        self.assertAlmostEqual(model130_2t.casilla_07, 57, 2)
+        self.assertAlmostEqual(model130_2t.casilla_12, 57, 2)
         self.assertAlmostEqual(model130_2t.casilla_13, 0, 2)
-        self.assertAlmostEqual(model130_2t.casilla_14, 60, 2)
+        self.assertAlmostEqual(model130_2t.casilla_14, 57, 2)
         self.assertAlmostEqual(model130_2t.casilla_15, 0, 2)
-        # Has no loan
-        self.assertAlmostEqual(model130_2t.casilla_16, 0, 2)
-        self.assertAlmostEqual(model130_2t.casilla_17, 60, 2)
+        self.assertAlmostEqual(model130_2t.casilla_16, 0, 2)  # Has no loan
+        self.assertAlmostEqual(model130_2t.casilla_17, 57, 2)
         self.assertAlmostEqual(model130_2t.casilla_18, 0, 2)
         # Test has loan
         model130_has_loan = model130.copy({
@@ -94,12 +95,24 @@ class TestL10nEsAeatMod130Base(TestL10nEsAeatModBase):
             'activity_type': 'other',
         })
         model130_has_loan.button_calculate()
-        self.assertAlmostEqual(model130_has_loan.casilla_16, 2, 2)
+        self.assertAlmostEqual(model130_has_loan.casilla_16, 1.9, 2)
         # Test has loan activity is primary
-        model130_has_loan = model130.copy({
+        model130_has_loan2 = model130.copy({
             'name': '9990000003130',
             'has_prestamo': True,
             'activity_type': 'primary',
         })
         with self.assertRaises(exceptions.Warning):
-            model130_has_loan.button_calculate()
+            model130_has_loan2.button_calculate()
+        # Export to BOE
+        export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
+            'name': 'test_export_to_boe.txt',
+        })
+        export_config_xml_ids = [
+            'l10n_es_aeat_mod130.aeat_mod130_export_config'
+        ]
+        for xml_id in export_config_xml_ids:
+            export_config = self.env.ref(xml_id)
+            self.assertTrue(
+                export_to_boe._export_config(model130, export_config)
+            )
