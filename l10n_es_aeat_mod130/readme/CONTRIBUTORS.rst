@@ -1,2 +1,4 @@
-* Firstname Lastname <email.address@example.org> (optional company website url)
-* Second Person <second.person@example.org> (optional company website url)
+* `Tecnativa <https://www.tecnativa.com>`__:
+
+  * Pedro M. Baeza
+  * Víctor Martín
