@@ -13,6 +13,10 @@ class PosOrder(models.Model):
         copy=False,
         default=False,
     )
+    l10n_es_unique_id = fields.Char(
+        'Unique Order ID',
+        copy=False,
+    )
 
     @api.model
     def _simplified_limit_check(self, amount_total, limit=3000):
@@ -30,6 +34,9 @@ class PosOrder(models.Model):
                 'pos_reference': ui_order['simplified_invoice'],
                 'is_l10n_es_simplified_invoice': True,
             })
+        res.update({
+            'l10n_es_unique_id': ui_order['uid'],
+        })
         return res
 
     @api.model
@@ -55,19 +62,22 @@ class PosOrder(models.Model):
         """Provide a context with the current session id"""
         if not orders:
             return super().create_from_ui(orders)
-        # We take the session from the first order in queue
-        pos_session_id = orders and orders[0]['data']['pos_session_id']
-        self_ctx = self.with_context(l10n_es_pos_session_id=pos_session_id)
+        # We take the uid from every order in the sync queue to discard only
+        # those orders that are really unique
+        # TODO: Duplicated simp. invoice ids shouldn't happen but in certain
+        # circumstances it can ocurr, so we choose to save them anyway.
+        submitted_uids = [o['data']['uid'] for o in orders]
+        self_ctx = self.with_context(l10n_es_pos_submitted_uids=submitted_uids)
         return super(PosOrder, self_ctx).create_from_ui(orders)
 
     @api.model
     def search(self, args, offset=0, limit=0, order=None, count=False):
         """If the context provided from create_from_ui() is given, we add
-           the session to the domain filter. This way, we prevent missing
+           the unique_uid to the domain filter. This way, we prevent missing
            orders if a sequence is reset. If they belong to another session
            we grant them for valid despite the duped sequence number"""
-        pos_session_id = self.env.context.get('l10n_es_pos_session_id')
-        if pos_session_id:
-            args += [('session_id', '=', pos_session_id)]
+        submitted_uids = self.env.context.get('l10n_es_pos_submitted_uids')
+        if submitted_uids:
+            args += [('l10n_es_unique_id', 'in', submitted_uids)]
         return super().search(args, offset=offset, limit=limit,
                               order=order, count=count)
