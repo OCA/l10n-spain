@@ -1,6 +1,6 @@
-# Copyright 2015-2019 AvanzOSC - Ainara Galdona
-# Copyright 2015-2019 Pedro M. Baeza
-# Copyright 2016-2019 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2015 AvanzOSC - Ainara Galdona
+# Copyright 2015-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -47,14 +47,6 @@ class L10nEsAeatMod216Report(models.Model):
             ('N', "To return")
         ], string="Result type", readonly=True, default='I',
         states={'draft': [('readonly', False)]}, required=True)
-
-    @api.multi
-    def _get_partner_domain(self):
-        res = super(L10nEsAeatMod216Report, self)._get_partner_domain()
-        partners = self.env['res.partner'].search(
-            [('is_non_resident', '=', True)])
-        res += [('partner_id', 'in', partners.ids)]
-        return res
 
     @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.move_line_ids.partner_id')
