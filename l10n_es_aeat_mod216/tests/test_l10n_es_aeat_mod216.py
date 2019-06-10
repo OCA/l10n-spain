@@ -1,4 +1,5 @@
-# © 2016-2019 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
@@ -14,51 +15,23 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
     debug = False
     taxes_purchase = {
         # tax code: (base, tax_amount)
-        'P_IRPFT': (1000, 210),
-        'P_IRPFTD': (2000, 420),
-        'P_IRPFTE': (3000, 630),
-        'P_IRPF1': (4000, 40),
-        'P_IRPF2': (5000, 100),
-        'P_IRPF7': (6000, 420),
-        'P_IRPF9': (7000, 630),
-        'P_IRPF15': (8000, 1200),
-        'P_IRPF18': (9000, 1620),
-        'P_IRPF19': (100, 19),
-        'P_IRPF20': (200, 40),
-        'P_IRPF21P': (300, 63),
+        'P_IRPFNRNUE24P': (1000, 240),
+        'P_IRPFNRUE19P': (2000, 380),
     }
     taxes_result = {
         # Rendimientos del trabajo (dinerarios) - Base
-        '2': (
-            (2 * 1000) + (2 * 2000) +  # P_IRPFT, P_IRPFTD
-            (2 * 3000) + (2 * 4000) +  # P_IRPFTE, P_IRPF1
-            (2 * 5000) + (2 * 6000) +  # P_IRPF2, P_IRPF7
-            (2 * 7000) + (2 * 8000) +  # P_IRPF9, P_IRPF15
-            (2 * 9000) + (2 * 100) +   # P_IRPF18, P_IRPF19
-            (2 * 200) + (2 * 300)      # P_IRPF20, P_IRPF21P
-        ),
+        '2': 6000,
         # Rendimientos del trabajo (dinerarios) - Retenciones
-        '3': (
-            (2 * 210) + (2 * 420) +   # P_IRPFT, P_IRPFTD
-            (2 * 630) + (2 * 40) +    # P_IRPFTE, P_IRPF1
-            (2 * 100) + (2 * 420) +   # P_IRPF2, P_IRPF7
-            (2 * 630) + (2 * 1200) +  # P_IRPF9, P_IRPF15
-            (2 * 1620) + (2 * 19) +   # P_IRPF18, P_IRPF19
-            (2 * 40) + (2 * 63)       # P_IRPF20, P_IRPF21P
-        ),
+        '3': 1240,  # (2 * 240) + (2 * 380)
     }
 
     def test_model_216(self):
-        # Set supplier as non-resident
-        self.supplier.is_non_resident = True
         # Purchase invoices
         self._invoice_purchase_create('2015-01-01')
         self._invoice_purchase_create('2015-01-02')
         purchase = self._invoice_purchase_create('2015-01-03')
         self._invoice_refund(purchase, '2015-01-18')
         # Create model
-        export_config = self.env.ref(
-            'l10n_es_aeat_mod216.aeat_mod216_main_export_config')
         self.model216 = self.env['l10n.es.aeat.mod216.report'].create({
             'name': '9990000000216',
             'company_id': self.company.id,
@@ -71,7 +44,6 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             'period_type': '1T',
             'date_start': '2015-01-01',
             'date_end': '2015-03-31',
-            'export_config_id': export_config.id,
             'journal_id': self.journal_misc.id,
             'counterpart_account_id': self.accounts['475000'].id
         })
@@ -100,3 +72,15 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
             round(self.model216.casilla_03, 2), round(retenciones, 2))
         self.assertEqual(
             round(self.model216.casilla_07, 2), round(result, 2))
+        # Export to BOE
+        export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
+            'name': 'test_export_to_boe.txt',
+        })
+        export_config_xml_ids = [
+            'l10n_es_aeat_mod216.aeat_mod216_main_export_config',
+        ]
+        for xml_id in export_config_xml_ids:
+            export_config = self.env.ref(xml_id)
+            self.assertTrue(
+                export_to_boe._export_config(self.model216, export_config)
+            )
