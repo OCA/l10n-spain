@@ -40,14 +40,6 @@ class L10nEsAeatMod296Report(models.Model):
         string="Lines")
 
     @api.multi
-    def _get_partner_domain(self):
-        res = super(L10nEsAeatMod296Report, self)._get_partner_domain()
-        partners = self.env['res.partner'].search(
-            [('is_non_resident', '=', True)])
-        res += [('partner_id', 'in', partners.ids)]
-        return res
-
-    @api.multi
     def partner_group(self, move_lines_base_ids, move_lines_cuota_ids):
         partner_groups = {}
         for group in self.env['account.move.line'].read_group(
