@@ -380,21 +380,23 @@ IRPF de no residentes.</p>
 <li>2015 (Desde 12/07/2015): 19,50% UE, 24% no-UE</li>
 <li>2016: 19% UE, 24% no-UE</li>
 </ul>
+<p>El módulo incluye únicamente los impuestos para el 2016 en adelante.</p>
 <div class="section" id="referencias">
 <h1>Referencias</h1>
 <ul class="simple">
-<li><cite>AEAT - Rentas obtenidas sin establecimiento permanente. Tipos de gravamen &lt;http://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Campanas/No_residentes/Impuesto_sobre_la_Renta_de_No_Residentes/No_residentes_sin_establecimiento_permanente/Cuestiones_basicas_sobre_tributacion/Rentas_obtenidas_sin_establecimiento_permanente__Tipos_de_gravamen.shtml&gt;_</cite></li>
+<li><a class="reference external" href="https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Campanas/_Campanas_/Fiscalidad_de_no_residentes/_Impuesto_sobre_la_Renta_de_no_residentes_/Sin_establecimiento_permanente/_INFORMACION/Informacion_General/Cuestiones_basicas_sobre_tributacion/Rentas_obtenidas_sin_establecimiento_permanente__Tipos_de_gravamen.shtml">AEAT - Rentas obtenidas sin establecimiento permanente. Tipos de gravamen</a></li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#configuration" id="id1">Configuration</a></li>
 <li><a class="reference internal" href="#usage" id="id2">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="id3">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="id4">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="id5">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="id6">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="id7">Maintainers</a></li>
+<li><a class="reference internal" href="#known-issues-roadmap" id="id3">Known issues / Roadmap</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="id4">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="id5">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="id6">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="id7">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="id8">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -421,22 +423,30 @@ compañía es posible que sea necesario instalar el addon
 <h2><a class="toc-backref" href="#id2">Usage</a></h2>
 <p>Las posiciones fiscales que nos añade este addon nos permiten:</p>
 <ul class="simple">
-<li>Como empresa que recibe una factura de un autónomo no residente:</li>
+<li>Como empresa que recibe una factura de un autónomo no residente (UE):</li>
 </ul>
 <p>Asignar al autónomo la posición fiscal por ejemplo
-‘Retención IRPF No residentes UE 20%’. Por lo tanto, al crear una factura de
-proveedor de ese autónomo se aplicará la retencion del 20% a todas las líneas
+‘Retención IRPF No residentes UE 19%’. Por lo tanto, al crear una factura de
+proveedor de ese autónomo se aplicará la retencion del 19% a todas las líneas
 de la factura.</p>
 <ul class="simple">
-<li>Como autónomo no residente que emite una factura a todos sus clientes</li>
+<li>Como autónomo no residente que emite una factura a todos sus clientes (UE):</li>
 </ul>
 <p>Asignar a todos los clientes que tienen una posición fiscal ‘Régimen Nacional’
-la posición fiscal ‘Retención IRPF No residentes UE 20%’. Por lo tanto,
-al crear una factura a un cliente se aplique la retención del 20% a todas
+la posición fiscal ‘Retención IRPF No residentes UE 19%’. Por lo tanto,
+al crear una factura a un cliente se aplique la retención del 19% a todas
 las líneas de la factura.</p>
 </div>
+<div class="section" id="known-issues-roadmap">
+<h2><a class="toc-backref" href="#id3">Known issues / Roadmap</a></h2>
+<ul class="simple">
+<li>El apartado <em>II. Rentas no sometidas a retención / ingreso a cuenta</em>, no
+se rellena por el momento con ninguna base procedente de las ventas intra o
+extra comunitarias.</li>
+</ul>
+</div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#id3">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#id4">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-spain/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -444,15 +454,15 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#id4">Credits</a></h2>
+<h2><a class="toc-backref" href="#id5">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#id5">Authors</a></h3>
+<h3><a class="toc-backref" href="#id6">Authors</a></h3>
 <ul class="simple">
 <li>Tecnativa</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#id6">Contributors</a></h3>
+<h3><a class="toc-backref" href="#id7">Contributors</a></h3>
 <ul class="simple">
 <li><a class="reference external" href="https://www.tecnativa.com">Tecnativa</a>:<ul>
 <li>Antonio Espinosa</li>
@@ -463,7 +473,7 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#id7">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#id8">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose

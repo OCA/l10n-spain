@@ -38,10 +38,12 @@ La legislación vigente (2015) nos obliga a realizar las siguientes retenciones:
 * 2015 (Desde 12/07/2015): 19,50% UE, 24% no-UE
 * 2016: 19% UE, 24% no-UE
 
+El módulo incluye únicamente los impuestos para el 2016 en adelante.
+
 Referencias
 -----------
 
-* `AEAT - Rentas obtenidas sin establecimiento permanente. Tipos de gravamen <http://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Campanas/No_residentes/Impuesto_sobre_la_Renta_de_No_Residentes/No_residentes_sin_establecimiento_permanente/Cuestiones_basicas_sobre_tributacion/Rentas_obtenidas_sin_establecimiento_permanente__Tipos_de_gravamen.shtml>_`
+* `AEAT - Rentas obtenidas sin establecimiento permanente. Tipos de gravamen <https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Campanas/_Campanas_/Fiscalidad_de_no_residentes/_Impuesto_sobre_la_Renta_de_no_residentes_/Sin_establecimiento_permanente/_INFORMACION/Informacion_General/Cuestiones_basicas_sobre_tributacion/Rentas_obtenidas_sin_establecimiento_permanente__Tipos_de_gravamen.shtml>`_
 
 **Table of contents**
 
@@ -71,19 +73,26 @@ Usage
 
 Las posiciones fiscales que nos añade este addon nos permiten:
 
-* Como empresa que recibe una factura de un autónomo no residente:
+* Como empresa que recibe una factura de un autónomo no residente (UE):
 
 Asignar al autónomo la posición fiscal por ejemplo
-'Retención IRPF No residentes UE 20%'. Por lo tanto, al crear una factura de
-proveedor de ese autónomo se aplicará la retencion del 20% a todas las líneas
+'Retención IRPF No residentes UE 19%'. Por lo tanto, al crear una factura de
+proveedor de ese autónomo se aplicará la retencion del 19% a todas las líneas
 de la factura.
 
-* Como autónomo no residente que emite una factura a todos sus clientes
+* Como autónomo no residente que emite una factura a todos sus clientes (UE):
 
 Asignar a todos los clientes que tienen una posición fiscal 'Régimen Nacional'
-la posición fiscal 'Retención IRPF No residentes UE 20%'. Por lo tanto,
-al crear una factura a un cliente se aplique la retención del 20% a todas
+la posición fiscal 'Retención IRPF No residentes UE 19%'. Por lo tanto,
+al crear una factura a un cliente se aplique la retención del 19% a todas
 las líneas de la factura.
+
+Known issues / Roadmap
+======================
+
+* El apartado *II. Rentas no sometidas a retención / ingreso a cuenta*, no
+  se rellena por el momento con ninguna base procedente de las ventas intra o
+  extra comunitarias.
 
 Bug Tracker
 ===========

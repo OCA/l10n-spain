@@ -1,11 +1,10 @@
 # Copyright 2016 Tecnativa - Antonio Espinosa
-# Copyright 2017 Tecnativa - Pedro M. Baeza
+# Copyright 2017-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Retenciones IRNR (No residentes)",
-    "summary": "Module summary",
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'category': 'Localization',
     'depends': [
         'l10n_es',
