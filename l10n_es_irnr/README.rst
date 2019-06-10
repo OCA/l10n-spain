@@ -87,13 +87,6 @@ la posición fiscal 'Retención IRPF No residentes UE 20%'. Por lo tanto,
 al crear una factura a un cliente se aplique la retención del 20% a todas
 las líneas de la factura.
 
-Known issues / Roadmap
-======================
-
-* En el apartado *II. Rentas no sometidas a retención / ingreso a cuenta*, no
-  se rellena por el momento con ninguna base procedente de las ventas intra o
-  extra comunitarias.
-
 Bug Tracker
 ===========
 
