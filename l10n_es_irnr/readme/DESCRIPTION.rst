@@ -11,7 +11,9 @@ La legislación vigente (2015) nos obliga a realizar las siguientes retenciones:
 * 2015 (Desde 12/07/2015): 19,50% UE, 24% no-UE
 * 2016: 19% UE, 24% no-UE
 
+El módulo incluye únicamente los impuestos para el 2016 en adelante.
+
 Referencias
 -----------
 
-* `AEAT - Rentas obtenidas sin establecimiento permanente. Tipos de gravamen <http://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Campanas/No_residentes/Impuesto_sobre_la_Renta_de_No_Residentes/No_residentes_sin_establecimiento_permanente/Cuestiones_basicas_sobre_tributacion/Rentas_obtenidas_sin_establecimiento_permanente__Tipos_de_gravamen.shtml>_`
+* `AEAT - Rentas obtenidas sin establecimiento permanente. Tipos de gravamen <https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Campanas/_Campanas_/Fiscalidad_de_no_residentes/_Impuesto_sobre_la_Renta_de_no_residentes_/Sin_establecimiento_permanente/_INFORMACION/Informacion_General/Cuestiones_basicas_sobre_tributacion/Rentas_obtenidas_sin_establecimiento_permanente__Tipos_de_gravamen.shtml>`_
