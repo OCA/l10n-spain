@@ -9,14 +9,15 @@
             <field name="sequence">1</field>
         </record>
 
-        <record id="punto_verde" model="account.tax">
-            <field name="sequence">1</field>
+        <record id="punto_verde" model="account.tax.template">
+            <field name="sequence">-1</field>
             <field name="name">Punto Verde</field>
-            <field name="description">Aportación al Punto Verde</field>
+            <field name="description">Aportacion al Punto Verde</field>
             <field name="include_base_amount">1</field>
             <field name="amount_type">code</field>
             <field name="amount">0</field>
             <field name="type_tax_use">sale</field>
+            <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="tax_group_id" ref="grupo_punto_verde"/>
             <field name="python_compute">result = product.punto_verde*quantity</field>
             <field name="python_applicable">result = True</field>

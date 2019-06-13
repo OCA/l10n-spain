@@ -4,7 +4,7 @@
     'name': 'Punto Verde',
     'version': '11.0.0.0.0',
     'license': 'AGPL-3',
-    'author': "SDi",
+    'author': "SDi, Odoo Community Association (OCA)",
     'category': 'Generic Modules/Accounting',
     'website': "https://github.com/OCA/l10n-spain",
     'depends': [
@@ -13,7 +13,7 @@
         'l10n_es'
         ],
     'data': [
-        'data/account_tax_group.xml',
+        'data/account_tax_data.xml',
         'views/product_view.xml',
     ],
     'installable': True,
