@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
-<odoo>
+<odoo noupdate="1">
 
     <record id="payment_acquirer_redsys" model="payment.acquirer">
         <field name="name">Redsys</field>
