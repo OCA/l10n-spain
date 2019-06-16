@@ -19,11 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
-msgid "AEAT 111 report"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
 msgid "AEAT 216 model"
 msgstr ""
@@ -112,12 +107,6 @@ msgid "Income subject to retention - Number of recipients"
 msgstr ""
 
 #. module: l10n_es_aeat_mod216
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_partner_is_non_resident
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_users_is_non_resident
-msgid "Is non-resident"
-msgstr ""
-
-#. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report___last_update
 msgid "Last Modified on"
 msgstr "Последно обновено на"
@@ -131,11 +120,6 @@ msgstr "Последно обновено от"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_write_date
 msgid "Last Updated on"
 msgstr "Последно обновено на"
-
-#. module: l10n_es_aeat_mod216
-#: model:ir.model,name:l10n_es_aeat_mod216.model_res_partner
-msgid "Partner"
-msgstr "Партньор"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -206,3 +190,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
 msgid "[07] Result"
 msgstr ""
+
+#~ msgid "Partner"
+#~ msgstr "Партньор"
