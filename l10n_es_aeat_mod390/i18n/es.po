@@ -238,16 +238,6 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
-#, fuzzy, python-format
-msgid ""
-"CÃ³digo de la notarÃ­a en la que se concediÃ³ el poder de representaciÃ³n "
-"para esta persona."
-msgstr ""
-"Código de la notaría en la que se concedió el poder de representación para "
-"esta persona."
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__other_first_activity_code
 msgid "Código 1ª actividad"
 msgstr "Código 1ª actividad"
@@ -278,9 +268,11 @@ msgid "Código actividad principal"
 msgstr "Código actividad principal"
 
 #. module: l10n_es_aeat_mod390
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__third_representative_notary
+#, python-format
 msgid ""
 "Código de la notaría en la que se concedió el poder de representación para "
 "esta persona."
@@ -814,3 +806,11 @@ msgstr "[98] Result. 303 último periodo a devolver"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "¿Obligación del 347?"
+
+#, fuzzy
+#~ msgid ""
+#~ "CÃ³digo de la notarÃ­a en la que se concediÃ³ el poder de representaciÃ³n "
+#~ "para esta persona."
+#~ msgstr ""
+#~ "Código de la notaría en la que se concedió el poder de representación "
+#~ "para esta persona."
