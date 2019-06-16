@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_pos
+# 	* l10n_es_pos
 #
 msgid ""
 msgstr ""
@@ -169,27 +169,17 @@ msgid "Subt"
 msgstr "Subt"
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/js/screens.js:32
-#, python-format
-msgid "The current order is already queued and thus it shouldn't be changed. Click on 'Validate' in order to finalize it."
-msgstr "Este pedido ya está en cola, de modo que no debería modificarse. Pulsa en 'Validar' para finalizarlo."
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/js/screens.js:31
-#, python-format
-msgid "The order is already queued"
-msgstr "El pedido ya está en cola"
-
-#. module: l10n_es_pos
 #: code:addons/l10n_es_pos/models/ir_sequence.py:20
 #, python-format
-msgid "There is already a simplified invoice sequence with that prefix and it should be unique."
-msgstr "Ya existe una secuencia de Factura Simplificada con ese prefijo y este debería ser único."
+msgid ""
+"There is already a simplified invoice sequence with that prefix and it "
+"should be unique."
+msgstr ""
+"Ya existe una secuencia de Factura Simplificada con ese prefijo y este "
+"debería ser único."
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order_l10n_es_unique_id
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
 msgid "Unique Order ID"
 msgstr "ID único de pedido"
 
@@ -222,7 +212,15 @@ msgstr "NIF/CIF:"
 msgid "on"
 msgstr "sobre"
 
-#. module: l10n_es_pos
-#: model:ir.model,name:l10n_es_pos.model_pos_config
-msgid "pos.config"
-msgstr "pos.config"
+#~ msgid ""
+#~ "The current order is already queued and thus it shouldn't be changed. "
+#~ "Click on 'Validate' in order to finalize it."
+#~ msgstr ""
+#~ "Este pedido ya está en cola, de modo que no debería modificarse. Pulsa en "
+#~ "'Validar' para finalizarlo."
+
+#~ msgid "The order is already queued"
+#~ msgstr "El pedido ya está en cola"
+
+#~ msgid "pos.config"
+#~ msgstr "pos.config"
