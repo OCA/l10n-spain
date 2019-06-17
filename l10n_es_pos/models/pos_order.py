@@ -77,7 +77,14 @@ class PosOrder(models.Model):
            orders if a sequence is reset. If they belong to another session
            we grant them for valid despite the duped sequence number"""
         submitted_uids = self.env.context.get('l10n_es_pos_submitted_uids')
-        if submitted_uids:
+        # Only use these context values for the specific case of
+        # [('pos_reference', 'in', ids)]
+        # to avoid side effects when other calls are received in the same ctx
+        args_set = {x[0]: x[1] for x in args if len(x) > 1}
+        filter_uids = False
+        if {'pos_reference'}.issubset(args_set):
+            filter_uids = args_set['pos_reference'] == 'in'
+        if submitted_uids and filter_uids:
             args += [('l10n_es_unique_id', 'in', submitted_uids)]
         return super().search(args, offset=offset, limit=limit,
                               order=order, count=count)
