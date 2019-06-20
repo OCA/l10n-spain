@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-29 15:57+0000\n"
-"PO-Revision-Date: 2018-01-29 15:57+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-07-24 07:43+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
@@ -112,9 +113,8 @@ msgstr "Declaración modelo AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__move_id
-#, fuzzy
 msgid "Account entry"
-msgstr "País"
+msgstr "Cuenta"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.menu,name:l10n_es_aeat_mod349.menu_aeat_349_map
@@ -146,7 +146,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__allow_posting
 msgid "Allow Posting"
-msgstr ""
+msgstr "Permitir publicar"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__amount_untaxed
@@ -157,17 +157,17 @@ msgstr "Importe sin impuestos"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__partner_bank_id
 msgid "Bank account"
-msgstr ""
+msgstr "Cuenta bancaria"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__calculation_date
 msgid "Calculation date"
-msgstr ""
+msgstr "Fecha cálculo"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__partner_record_ok
@@ -181,9 +181,8 @@ msgstr "Comprobado si el registro de rectificación está bien"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__company_id
-#, fuzzy
 msgid "Company"
-msgstr "Empresa:"
+msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
@@ -194,7 +193,7 @@ msgstr "Nombre Empresa"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr ""
+msgstr "Cuenta bancaria de la empresa que se usará para presentar"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -203,9 +202,8 @@ msgstr "Empresa:"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
-#, fuzzy
 msgid "Complementary"
-msgstr "Complementaria o sustitutiva:"
+msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -214,9 +212,8 @@ msgstr "Complementaria o sustitutiva:"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__contact_email
-#, fuzzy
 msgid "Contact email"
-msgstr "Teléfono de contacto:"
+msgstr "Email contacto"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:342
@@ -233,7 +230,7 @@ msgstr "Teléfono de contacto:"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__counterpart_account_id
 msgid "Counterpart account"
-msgstr ""
+msgstr "Cuenta de contrapartida"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__country_id
@@ -269,12 +266,12 @@ msgstr "Creado en"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
 msgid "DVD"
-msgstr ""
+msgstr "DVD"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__date
@@ -311,12 +308,12 @@ msgstr "Nombre mostrado"
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Done"
-msgstr ""
+msgstr "Hecho"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: l10n_es_aeat_mod349
 #: selection:account.move.line,l10n_es_aeat_349_operation_key:0
@@ -331,12 +328,12 @@ msgstr "Acuerdo triangular UE"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__date_end
 msgid "Ending date"
-msgstr ""
+msgstr "Fecha fin"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__export_config_id
 msgid "Export config"
-msgstr ""
+msgstr "Exportar configuración"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -360,7 +357,7 @@ msgstr "Cambio de frecuencia"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__contact_name
 msgid "Full Name"
-msgstr ""
+msgstr "Nombre completo"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
@@ -407,9 +404,8 @@ msgstr "Implica producto físico"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__journal_id
-#, fuzzy
 msgid "Journal"
-msgstr "Apunte contable"
+msgstr "Diario"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_move_line
@@ -421,17 +417,17 @@ msgstr "Apunte contable"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__journal_id
 msgid "Journal in which post the move."
-msgstr ""
+msgstr "Diario donde publicar el movimiento."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__date
 msgid "Keep empty to use the current date"
-msgstr "Dejarlo vacío para utilizar la fecha actual."
+msgstr "Dejar vacío para usar la fecha actual"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__representative_vat
 msgid "L.R. VAT number"
-msgstr ""
+msgstr "Número NIF"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line____last_update
@@ -465,9 +461,8 @@ msgstr "Última actualización en"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__representative_vat
-#, fuzzy
 msgid "Legal Representative VAT number."
-msgstr "NIF del Representante legal:"
+msgstr "NIF del Representante legal."
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -477,7 +472,7 @@ msgstr "NIF del Representante legal:"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__model_id
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__number
@@ -486,10 +481,8 @@ msgstr "Nº modelo"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__contact_name
-#, fuzzy
 msgid "Must have name and surname."
-msgstr ""
-"El nombre del contacto (Nombre completo) debe contener nombre y apellidos"
+msgstr "El nombre del contacto debe contener nombre y apellidos."
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
@@ -505,7 +498,7 @@ msgstr "No se encontró Mapeo de Impuestos"
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
@@ -522,7 +515,6 @@ msgstr "Clave de operación"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__operation_key
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
-#, fuzzy
 msgid "Operation key"
 msgstr "Clave de operación"
 
@@ -631,18 +623,17 @@ msgstr "Periodo:"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__contact_phone
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Posted"
-msgstr ""
+msgstr "Publicado"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__previous_number
-#, fuzzy
 msgid "Previous declaration number"
-msgstr "Declaración previa:"
+msgstr "Número declaración previa"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -657,7 +648,7 @@ msgstr "Importe declarado previamente"
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,state:0
 msgid "Processed"
-msgstr ""
+msgstr "Procesado"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
@@ -687,7 +678,7 @@ msgstr "Rectificaciones de otros periodos"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador de informe"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
@@ -702,12 +693,12 @@ msgstr "S - Servicios intracomunitarios"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__date_start
 msgid "Starting date"
-msgstr ""
+msgstr "Fecha inicio"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__state
 msgid "State"
-msgstr ""
+msgstr "Provincia"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__report_type
@@ -719,7 +710,7 @@ msgstr "Tipo de declaración"
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,type:0
 msgid "Substitutive"
-msgstr ""
+msgstr "Sustitutiva"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_form
@@ -728,9 +719,8 @@ msgstr "Resumen"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__support_type
-#, fuzzy
 msgid "Support Type"
-msgstr "Tipo de soporte:"
+msgstr "Tipo de soporte"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
@@ -760,7 +750,7 @@ msgstr "Impuestos"
 #. module: l10n_es_aeat_mod349
 #: selection:l10n.es.aeat.mod349.report,support_type:0
 msgid "Telematics"
-msgstr ""
+msgstr "Telemática"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_tax_template
@@ -778,6 +768,8 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
+"Esta cuenta será la contraparte de todos los elementos del diario que se "
+"regularizan al publicar."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_invoice__eu_triangular_deal
@@ -828,9 +820,8 @@ msgstr "NIF"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__company_vat
-#, fuzzy
 msgid "VAT number"
-msgstr "Nº modelo"
+msgstr "Número NIF"
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
