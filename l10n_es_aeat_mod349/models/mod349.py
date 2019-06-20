@@ -192,17 +192,21 @@ class Mod349(models.Model):
                 # TODO: Instead continuing, generate an empty record and a msg
                 continue
             # Fetch the latest presentation made for this move
-            original_detail = detail_obj.search([
+            original_details = detail_obj.search([
                 ('move_line_id.invoice_id', '=', origin_invoice.id),
                 ('partner_record_id.operation_key', '=', op_key),
                 ('id', 'not in', visited_details.ids)
-            ], limit=1, order='report_id desc')
-            if original_detail:
-                # There's a previous 349 declaration report
-                origin_amount = original_detail.amount_untaxed
-                period_type = original_detail.report_id.period_type
-                year = original_detail.report_id.year
-                visited_details |= original_detail
+            ], order='report_id desc')
+            # we add all of them to visited, as we don't want to repeat
+            visited_details |= original_details
+            if original_details:
+                # There's at least one previous 349 declaration report
+                report = original_details.mapped('report_id')[:1]
+                original_details = original_details.filtered(
+                    lambda d: d.report_id == report)
+                origin_amount = sum(original_details.mapped('amount_untaxed'))
+                period_type = report.period_type
+                year = report.year
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
