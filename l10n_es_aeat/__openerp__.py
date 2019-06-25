@@ -4,9 +4,8 @@
 #    Copyright (C) 2004-2011
 #        Pexego Sistemas Informáticos. (http://pexego.es)
 #        Luis Manuel Angueira Blanco
-#    Copyright (C) 2013
+#    Copyright (C) 2013 - 2019
 #        Ignacio Ibeas - Acysos S.L. (http://acysos.com)
-#        Migración a OpenERP 7.0
 #    Copyright (C) 2013-2015
 #        Serv. Tecnol. Avanzados - Pedro M. Baeza (www.serviciosbaeza.com)
 #    Copyright (C) 2015
@@ -28,10 +27,11 @@
 ##############################################################################
 {
     'name': "AEAT Base",
-    'version': "8.0.1.9.4",
+    'version': "8.0.1.9.5",
     'author': "Pexego,"
               "Tecnativa,"
               "AvanzOSC,"
+              "Acysos S.L.,"
               "Odoo Community Association (OCA)",
     'license': "AGPL-3",
     'contributors': [
@@ -47,7 +47,7 @@
         "account",
     ],
     'external_dependencies': {
-        'python': ['unidecode'],
+        'python': ['unidecode', 'OpenSSL'],
     },
     'data': [
         'security/aeat_security.xml',
@@ -55,12 +55,14 @@
         'data/aeat_sequence_type.xml',
         'data/aeat_partner.xml',
         'wizard/export_to_boe_wizard.xml',
+        'wizard/aeat_certificate_password_view.xml',
         'views/aeat_menuitem.xml',
         'views/aeat_report_view.xml',
         'views/aeat_report_tax_mapping_view.xml',
         'views/aeat_export_configuration_view.xml',
         'views/aeat_tax_code_mapping_view.xml',
         'views/account_move_line_view.xml',
+        'views/aeat_certificate_view.xml',
     ],
     'installable': True,
 }

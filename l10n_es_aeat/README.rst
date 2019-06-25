@@ -15,6 +15,7 @@ Módulo base para declaraciones de la AEAT, que incluye:
 * Motor de cálculo de importes por códigos de impuestos.
 * Generador del asiento de regularización con cargo a un proveedor "Agencia
   Estatal de Administración Tributaria" creado al efecto.
+* Certificado para las declaraciones de la AEAT
 
 Configuración
 =============
@@ -36,6 +37,12 @@ en la configuración de impuestos los conceptos que se regularizarán con el
 flag "to_regularize". Esto sólo es posible sobre los modelos que utilicen
 el cálculo de casillas por códigos de impuestos.
 
+Para importar el certificado, hay que:
+
+#. Entrar en *Contabilidad > Configuración > AEAT > Certificados*
+#. Crear uno nuevo. Rellenas los datos del formulurio y subir el archivo p12
+#. Pulsar obtener claves e introducir la contraseña del certificado
+
 Problemas conocidos / Hoja de ruta
 ==================================
 
@@ -50,9 +57,11 @@ Contribudores
 -------------
 
 * Pexego (http://www.pexego.es)
-* Acysos (http://www.acysos.com)
+* Ignacio Ibeas - Acysos S.L. (http://www.acysos.com)
 * Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>
 * AvanzOSC (http://www.avanzosc.es)
+* Diagram Software S.L.
+* Consultoría Informática Studio 73 S.L.
 
 Maintainer
 ----------

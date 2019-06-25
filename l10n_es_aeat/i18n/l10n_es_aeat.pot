@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-25 16:16+0000\n"
+"PO-Revision-Date: 2019-06-25 16:16+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,6 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:211
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:213
 #, python-format
 msgid "%s_report_%s.txt"
@@ -77,6 +80,11 @@ msgstr ""
 #: field:l10n.es.aeat.report,move_id:0
 #: field:l10n.es.aeat.report.tax.mapping,move_id:0
 msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: selection:l10n.es.aeat.certificate,state:0
+msgid "Active"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -154,6 +162,7 @@ msgid "Calculation date"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: view:l10n.es.aeat.certificate.password:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Cancel"
@@ -172,6 +181,12 @@ msgid "Cancelled models"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.l10n_es_certificate_action
+#: model:ir.ui.menu,name:l10n_es_aeat.l10n_es_aeat_certificate_menu
+msgid "Certificates"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Close"
 msgstr ""
@@ -187,6 +202,11 @@ msgstr ""
 #: help:l10n.es.aeat.report,partner_bank_id:0
 #: help:l10n.es.aeat.report.tax.mapping,partner_bank_id:0
 msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,company_id:0
+msgid "Compañía"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -246,6 +266,8 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,create_uid:0
 #: field:aeat.model.export.config,create_uid:0
 #: field:aeat.model.export.config.line,create_uid:0
+#: field:l10n.es.aeat.certificate,create_uid:0
+#: field:l10n.es.aeat.certificate.password,create_uid:0
 #: field:l10n.es.aeat.report.export_to_boe,create_uid:0
 #: field:l10n.es.aeat.tax.line,create_uid:0
 msgid "Created by"
@@ -256,6 +278,8 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,create_date:0
 #: field:aeat.model.export.config,create_date:0
 #: field:aeat.model.export.config.line,create_date:0
+#: field:l10n.es.aeat.certificate,create_date:0
+#: field:l10n.es.aeat.certificate.password,create_date:0
 #: field:l10n.es.aeat.report.export_to_boe,create_date:0
 #: field:l10n.es.aeat.tax.line,create_date:0
 msgid "Created on"
@@ -283,6 +307,8 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,display_name:0
 #: field:aeat.model.export.config,display_name:0
 #: field:aeat.model.export.config.line,display_name:0
+#: field:l10n.es.aeat.certificate,display_name:0
+#: field:l10n.es.aeat.certificate.password,display_name:0
 #: field:l10n.es.aeat.report,display_name:0
 #: field:l10n.es.aeat.report.export_to_boe,display_name:0
 #: field:l10n.es.aeat.report.tax.mapping,display_name:0
@@ -298,6 +324,7 @@ msgid "Done"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: selection:l10n.es.aeat.certificate,state:0
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 #: selection:l10n.es.aeat.report,state:0
@@ -308,6 +335,11 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Draft models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,date_end:0
+msgid "End Date"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -392,6 +424,7 @@ msgid "Field size"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,file:0
 #: field:l10n.es.aeat.report.export_to_boe,data:0
 msgid "File"
 msgstr ""
@@ -420,6 +453,11 @@ msgid "Fixed: %s"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,folder:0
+msgid "Folder Name"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_from:0
 msgid "From Date"
 msgstr ""
@@ -435,6 +473,8 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,id:0
 #: field:aeat.model.export.config,id:0
 #: field:aeat.model.export.config.line,id:0
+#: field:l10n.es.aeat.certificate,id:0
+#: field:l10n.es.aeat.certificate.password,id:0
 #: field:l10n.es.aeat.report,id:0
 #: field:l10n.es.aeat.report.export_to_boe,id:0
 #: field:l10n.es.aeat.report.tax.mapping,id:0
@@ -473,6 +513,13 @@ msgid "Inheritable abstract model to add taxes by code mapping in any AEAT repor
 msgstr ""
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_certificate.py:36
+#: view:l10n.es.aeat.certificate.password:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
+#, python-format
+msgid "Insert Password"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/aeat_report.py:208
 #, python-format
 msgid "It seems that you have defined quarterly periods or periods in the middle of the month. This cannot be automatically handled. You should select manually the periods."
@@ -506,6 +553,8 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,__last_update:0
 #: field:aeat.model.export.config,__last_update:0
 #: field:aeat.model.export.config.line,__last_update:0
+#: field:l10n.es.aeat.certificate,__last_update:0
+#: field:l10n.es.aeat.certificate.password,__last_update:0
 #: field:l10n.es.aeat.report,__last_update:0
 #: field:l10n.es.aeat.report.export_to_boe,__last_update:0
 #: field:l10n.es.aeat.report.tax.mapping,__last_update:0
@@ -518,6 +567,8 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,write_uid:0
 #: field:aeat.model.export.config,write_uid:0
 #: field:aeat.model.export.config.line,write_uid:0
+#: field:l10n.es.aeat.certificate,write_uid:0
+#: field:l10n.es.aeat.certificate.password,write_uid:0
 #: field:l10n.es.aeat.report.export_to_boe,write_uid:0
 #: field:l10n.es.aeat.tax.line,write_uid:0
 msgid "Last Updated by"
@@ -528,6 +579,8 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,write_date:0
 #: field:aeat.model.export.config,write_date:0
 #: field:aeat.model.export.config.line,write_date:0
+#: field:l10n.es.aeat.certificate,write_date:0
+#: field:l10n.es.aeat.certificate.password,write_date:0
 #: field:l10n.es.aeat.report.export_to_boe,write_date:0
 #: field:l10n.es.aeat.tax.line,write_date:0
 msgid "Last Updated on"
@@ -547,6 +600,11 @@ msgstr ""
 #. module: l10n_es_aeat
 #: field:aeat.model.export.config,config_lines:0
 msgid "Lines"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: view:l10n.es.aeat.certificate:l10n_es_aeat.l10n_es_aeat_certificate_form_view
+msgid "Load Certificate"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -592,6 +650,7 @@ msgstr ""
 #: field:aeat.mod.map.tax.code.line,name:0
 #: field:aeat.model.export.config,name:0
 #: field:aeat.model.export.config.line,name:0
+#: field:l10n.es.aeat.certificate,name:0
 #: field:l10n.es.aeat.tax.line,name:0
 msgid "Name"
 msgstr ""
@@ -623,6 +682,12 @@ msgid "Number without decimals"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: view:l10n.es.aeat.certificate:l10n_es_aeat.l10n_es_aeat_certificate_form_view
+#: view:l10n.es.aeat.certificate.password:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
+msgid "Obtain Keys"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.model.export.config,model:0
 msgid "Odoo model"
 msgstr ""
@@ -634,6 +699,12 @@ msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:69
+#, python-format
+msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
+msgstr ""
+
+#. module: l10n_es_aeat
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "Optativo: Importar datos de fichero"
 msgstr ""
@@ -641,6 +712,11 @@ msgstr ""
 #. module: l10n_es_aeat
 #: view:l10n.es.aeat.report:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Other parameters"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate.password,password:0
+msgid "Password"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -689,9 +765,19 @@ msgid "Previous declaration number"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,private_key:0
+msgid "Private Key"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,state:0
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Processed"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,public_key:0
+msgid "Public Key"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -705,6 +791,7 @@ msgid "Recalculate"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:132
 #: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:145
 #, python-format
 msgid "Regularization"
@@ -763,11 +850,17 @@ msgid "Split fiscal years cannot be automatically handled. You should select man
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,date_start:0
+msgid "Start Date"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.model.export.config,date_start:0
 msgid "Start date"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: field:l10n.es.aeat.certificate,state:0
 #: field:l10n.es.aeat.report,state:0
 #: field:l10n.es.aeat.report.export_to_boe,state:0
 #: field:l10n.es.aeat.report.tax.mapping,state:0
@@ -864,6 +957,11 @@ msgid "This button creates the regularization move for the selected report"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: view:l10n.es.aeat.certificate:l10n_es_aeat.l10n_es_aeat_certificate_form_view
+msgid "To Active"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: field:aeat.mod.map.tax.code,date_to:0
 msgid "To Date"
 msgstr ""
@@ -915,6 +1013,7 @@ msgid "Wrong aling option. It should be < or >"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:165
 #: code:addons/l10n_es_aeat/models/aeat_report_tax_mapping.py:178
 #, python-format
 msgid "You must fill both journal and counterpart account."
@@ -941,6 +1040,7 @@ msgid "open"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: view:l10n.es.aeat.certificate.password:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 #: view:l10n.es.aeat.report.export_to_boe:l10n_es_aeat.wizard_aeat_export
 msgid "or"
 msgstr ""
