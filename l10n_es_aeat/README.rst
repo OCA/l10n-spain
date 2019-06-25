@@ -40,6 +40,7 @@ Módulo base para declaraciones de la AEAT, que incluye:
 * Motor de cálculo de importes por impuestos.
 * Generador del asiento de regularización con cargo a un proveedor "Agencia
   Estatal de Administración Tributaria" creado al efecto.
+* Certificado para las declaraciones de la AEAT
 
 **Table of contents**
 
@@ -94,6 +95,12 @@ Para poder visualizar un archivo BOE, hay que:
    correspondiente a dicha línea, y si es un importe numérico, su cifra
    asociada.
 
+Para importar el certificado, hay que:
+
+#. Entrar en *Facturación > Configuración > AEAT > Certificados*
+#. Crear uno nuevo. Rellenas los datos del formulurio y subir el archivo p12
+#. Pulsar obtener claves e introducir la contraseña del certificado
+
 Known issues / Roadmap
 ======================
 
@@ -135,6 +142,8 @@ Contributors
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Juan Vicente Pascual <jvpascual@puntsistemes.es>
 * Abraham Anes <abraham@studio73.es>
+* Diagram Software S.L.
+* Consultoría Informática Studio 73 S.L.
 
 Maintainers
 ~~~~~~~~~~~
