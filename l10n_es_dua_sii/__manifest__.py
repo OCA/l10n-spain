@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Consultoría Informática Studio 73 S.L.
 # Copyright 2017 Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -16,6 +15,9 @@
     "depends": [
         "l10n_es_aeat_sii",
         "l10n_es_dua",
+    ],
+    "data": [
+        "data/tax_code_map_dua_sii_data.xml",
     ],
     "application": False,
     "installable": True,
