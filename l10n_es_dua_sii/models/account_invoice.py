@@ -1,37 +1,45 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Consultoría Informática Studio 73 S.L.
 # Copyright 2017 Comunitea Servicios Tecnológicos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, api
+from odoo import models, fields, api, tools
 
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+    @api.model
+    @tools.ormcache('company')
+    def _get_dua_fiscal_position(self, company):
+        dua_fiscal_position = self.env.ref(
+            'l10n_es_dua.%i_fp_dua' % (company.id),
+            raise_if_not_found=False
+        ) or self.env['account.fiscal.position'].search([
+            ('name', '=', 'Importación con DUA')
+        ])
+        return dua_fiscal_position
+
     @api.multi
     @api.depends('tax_line_ids')
     def _compute_sii_enabled(self):
-        for invoice in self:
-            if invoice.fiscal_position_id.name == u'Importación con DUA' and \
+        super(AccountInvoice, self)._compute_sii_enabled()
+        for invoice in self.filtered('sii_enabled'):
+            dua_fiscal_position = self._get_dua_fiscal_position(
+                invoice.company_id)
+            if dua_fiscal_position and \
+                    invoice.fiscal_position_id == dua_fiscal_position and \
                     not invoice.sii_dua_invoice:
                 invoice.sii_enabled = False
-            else:
-                super(AccountInvoice, invoice)._compute_sii_enabled()
 
     @api.multi
     def _compute_dua_invoice(self):
+        taxes = self._get_sii_taxes_map(['DUA'])
         for invoice in self:
-            if invoice.fiscal_position_id.name == u'Importación con DUA' and \
-                    invoice.tax_line_ids.\
-                    filtered(lambda x: x.tax_id.description in
-                             ['P_IVA21_IBC', 'P_IVA10_IBC', 'P_IVA4_IBC',
-                              'P_IVA21_IBI', 'P_IVA10_IBI', 'P_IVA4_IBI',
-                              'P_IVA21_SP_EX', 'P_IVA10_SP_EX',
-                              'P_IVA4_SP_EX']):
-                invoice.sii_dua_invoice = True
-            else:
-                invoice.sii_dua_invoice = False
+            dua_fiscal_position = self._get_dua_fiscal_position(
+                invoice.company_id)
+            invoice.sii_dua_invoice = \
+                invoice.fiscal_position_id == dua_fiscal_position and \
+                invoice.tax_line_ids.filtered(lambda x: x.tax_id in taxes)
 
     sii_dua_invoice = fields.Boolean("SII DUA Invoice",
                                      compute="_compute_dua_invoice")

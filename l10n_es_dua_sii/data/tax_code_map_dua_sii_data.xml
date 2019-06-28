@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019
+     Pesol - Angel Moya <angel.moya@pesol.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="aeat_sii_map_line_DUA" model="aeat.sii.map.lines">
+      <field name="code">DUA</field>
+      <field name="taxes" eval="[(6, 0, [
+        ref('l10n_es.account_tax_template_p_iva21_ibc'),
+        ref('l10n_es.account_tax_template_p_iva10_ibc'),
+        ref('l10n_es.account_tax_template_p_iva4_ibc'),
+        ref('l10n_es.account_tax_template_p_iva21_ibi'),
+        ref('l10n_es.account_tax_template_p_iva10_ibi'),
+        ref('l10n_es.account_tax_template_p_iva4_ibi'),
+        ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
+        ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+        ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
+      ])]"/>
+      <field name="sii_map_id" ref="l10n_es_aeat_sii.aeat_sii_map"/>
+      <field name="name">DUA</field>
+  </record>
+
+</odoo>

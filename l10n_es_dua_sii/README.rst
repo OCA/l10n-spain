@@ -21,7 +21,7 @@ y se envía con los datos requeridos por la AEAT
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/189/10.0
+   :target: https://runbot.odoo-community.org/runbot/189/11.0
 
 Incidencias conocidas / Hoja de ruta
 ====================================
@@ -48,6 +48,7 @@ Contribuidores
 * Studio73 - Pablo Fuentes <pablo@studio73.es>
 * Studio73 - Jordi Tolsà <jordi@studio73.es>
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
+* Angel Moya - PESOL <angel.moya@pesol.es>
 
 
 Maintainer
