@@ -22,7 +22,7 @@ class AccountInvoiceIntegrationMethod(models.Model):
                 raise exceptions.UserError(
                     _('Certificate password must be added for company'))
             invoice_file, file_name = invoice.get_facturae(True)
-            attachment = self.env['ir.attachment'].create({
+            attachment = self.env['ir.attachment'].sudo().create({
                 'name': file_name,
                 'datas': base64.b64encode(invoice_file),
                 'datas_fname': file_name,
