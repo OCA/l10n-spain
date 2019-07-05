@@ -75,6 +75,11 @@ msgid "Refund sequence"
 msgstr ""
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_ir_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal__invoice_sequence_id
 msgid "The sequence used for invoice numbers in this journal."
 msgstr ""
