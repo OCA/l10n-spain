@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 11:25+0000\n"
-"PO-Revision-Date: 2019-06-06 11:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,6 +51,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,activity_type:0
 msgid "Actividad distinta a las anteriores"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_non_justified_expenses
+msgid "Calculado como el 5% del rendimiento del periodo (ingresos - gastos reales)."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -171,14 +174,35 @@ msgid "Datos a completar"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:234
+#, python-format
+msgid "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de declaración complementaria."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:143
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:166
 #, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_non_justified_expenses
+msgid "Gastos de difícil justificación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_real_expenses
+msgid "Gastos en el periodo sin contar con el 5% adicional de difícil justificación."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_real_expenses
+msgid "Gastos reales"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -202,25 +226,20 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_number
-msgid "Model number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
 msgid "Negativa"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:185
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:216
 #, python-format
 msgid "No implementado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:146
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:169
 #, python-format
-msgid "No se pueden calcular por el momento declaraciones que contengan deducciones por el artí­culo 80 bis."
+msgid "No se pueden calcular por el momento declaraciones que contengan deducciones por el artículo 80 bis."
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -284,7 +303,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
-msgid "[04] 20% de la casilla [03]"
+msgid "[04] 20% casilla (03)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
@@ -356,3 +375,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr ""
+
