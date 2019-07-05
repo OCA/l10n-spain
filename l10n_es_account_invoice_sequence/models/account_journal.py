@@ -52,6 +52,20 @@ class AccountJournal(models.Model):
                 vals['refund_sequence'] = False
         return super(AccountJournal, self).create(vals)
 
+    def write(self, vals):
+        """Don't change automatically prefix for journal entry sequences."""
+        spanish_journals = self.env['account.journal']
+        if 'code' in vals:
+            spanish_journals = self.filtered(
+                lambda x: x.company_id.chart_template_id.is_spanish_chart()
+            ).with_context(no_prefix_change=True)
+        if spanish_journals:
+            super(AccountJournal, spanish_journals).write(vals)
+        rest = self - spanish_journals
+        if rest:
+            super(AccountJournal, rest).write(vals)
+        return True
+
     def _get_invoice_types(self):
         return [
             'sale',
