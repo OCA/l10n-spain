@@ -17,7 +17,7 @@ class L10nEsAeatMod216Report(models.Model):
         string="[01] # Recipients", readonly=True,
         compute='_compute_casilla_01',
         help="Income subject to retention - Number of recipients")
-    casilla_03 = fields.Float(
+    casilla_03 = fields.Monetary(
         string="[03] Amount of retentions",
         readonly=True, compute='_compute_casilla_03',
         help="Income subject to retention - Amount of retentions")
@@ -25,17 +25,17 @@ class L10nEsAeatMod216Report(models.Model):
         string="[04] # Recipients", readonly=True,
         states={'calculated': [('readonly', False)]},
         help="Income not subject to retention - Number of recipients")
-    casilla_05 = fields.Float(
+    casilla_05 = fields.Monetary(
         string="[05] Base amount", readonly=True,
         states={'calculated': [('readonly', False)]},
         help="Income not subject to retention - Base amount")
-    casilla_06 = fields.Float(
+    casilla_06 = fields.Monetary(
         string="[06] Fees to compensate", readonly=True,
         states={'calculated': [('readonly', False)]},
         help="Fee to compensate for prior results with same subject, "
              "fiscal year and period (in which his statement was to return "
              "and compensation back option was chosen).")
-    casilla_07 = fields.Integer(
+    casilla_07 = fields.Monetary(
         string="[07] Result", readonly=True,
         compute='_compute_casilla_07',
         help="Result: ([03] - [06])")
