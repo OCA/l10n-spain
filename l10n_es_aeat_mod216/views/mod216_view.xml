@@ -36,21 +36,16 @@
                        colspan="4">
                     <group string="Income subject to retention">
                         <field name="casilla_01"/>
-                        <field name="casilla_03" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_03"/>
                     </group>
                     <group string="Income not subject to retention">
                         <field name="casilla_04"/>
-                        <field name="casilla_05" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_05"/>
                     </group>
                     <group string="Totals">
                         <field name="casilla_06"
-                               widget="monetary"
-                               options="{'currency_field': 'currency_id'}"
                                attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('type', '!=', 'C')]}"/>
-                        <field name="casilla_07" widget="monetary"
-                               options="{'currency_field': 'currency_id'}"/>
+                        <field name="casilla_07"/>
                     </group>
                     <group string="Tax lines"
                            name="group_tax_lines"
