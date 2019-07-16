@@ -75,6 +75,7 @@ Contributors
 * Vicent Cubells <vicent@vcubells.net>
 * Javi Melendez <javimelex@gmail.com>
 * Carlos Dauden <carlos.dauden@tecnativa.com>
+* RGB Consulting SL <odoo@rgbconsulting.com>
 
 Financiadores
 -------------
