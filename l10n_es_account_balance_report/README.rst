@@ -6,6 +6,8 @@
 Informes de cuentas anuales oficiales españoles
 ===============================================
 
+**ATENCIÓN** Este módulo está obsoleto y debe usarse *l10n_es_mis_report* en su lugar.
+
 Incluye las siguientes plantillas para el motor de informes de cuentas provisto
 por el módulo *account_balance_reporting*:
 
