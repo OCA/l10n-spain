@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2012-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2019 Juan Antonio Alfonso <ja.alfonso@qubiq.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import calendar
@@ -26,21 +27,6 @@ class AccountAssetCategory(models.Model):
 
 class AccountAssetAsset(models.Model):
     _inherit = 'account.asset.asset'
-
-    @api.multi
-    def _get_last_depreciation_date(self):
-        """Manipulate the date for getting the correct one
-
-        Used when we define a start depreciation date.
-        """
-        last_depreciation_date = super(
-            AccountAssetAsset, self)._get_last_depreciation_date()
-        for asset in self:
-            date = asset.start_depreciation_date
-            if (date and (date > last_depreciation_date[asset.id] or
-                          not asset.depreciation_line_ids)):
-                last_depreciation_date[asset.id] = date
-        return last_depreciation_date
 
     move_end_period = fields.Boolean(
         string="At the end of the period", default=True,
@@ -181,10 +167,6 @@ class AccountAssetAsset(models.Model):
                 depr_lin_obj = self.env['account.asset.depreciation.line']
                 new_depr_lines = depr_lin_obj.search(
                     [('asset_id', '=', asset.id), ('move_id', '=', False)])
-                # En el caso de que la fecha de última amortización no sea
-                # la de compra se debe generar el cuadro al período siguiente
-                depreciation_date = fields.Date.from_string(
-                    asset._get_last_depreciation_date()[asset.id])
                 nb = 0
                 for depr_line in new_depr_lines:
                     depr_date = fields.Date.from_string(
