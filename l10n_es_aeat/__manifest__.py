@@ -3,13 +3,13 @@
 # Copyright 2015 Ainara Galdona <agaldona@avanzosc.com>
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2018 Juan Vicente Pascual <jvpascual@puntsistemes.es>
-# Copyright 2013-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2013-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
     'name': "AEAT Base",
     'summary': "Modulo base para declaraciones de la AEAT",
-    'version': "12.0.1.0.0",
+    'version': "12.0.1.1.0",
     'author': "Pexego,"
               "Acysos,"
               "AvanzOSC,"
