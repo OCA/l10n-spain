@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import common
@@ -14,4 +14,4 @@ class TestL10nEsAeat(common.TransactionCase):
         text = u" &'(),-./01:;abAB_ÇÑ\"áéíóúÁÉÍÓÚ+!"
         self.assertEqual(
             self.export_model._format_string(text, len(text)),
-            u" &'(),-./01:;ABAB_ÇÑ\"AEIOUAEIOU  ".encode('iso-8859-1'))
+            u" &'(),-./01:;ABAB_ÇÑAEIOUAEIOU   ".encode('iso-8859-1'))
