@@ -2,6 +2,7 @@
 # Copyright 2013 Ignacio Ibeas (http://acysos.com)
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2016 Angel Moya <odoo@tecnativa.com>
+# Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
@@ -44,7 +45,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         text = ''.join([unidecode(x) if x not in ('Ñ', 'Ç') else x
                         for x in text])
         text = re.sub(
-            r"[^A-Z0-9\s\.,-_&'´\\:;/\(\)ÑÇ\"]", '', text, re.UNICODE | re.X)
+            r"[^A-Z0-9\s\.,-_&'´\\:;/\(\)ÑÇ]", '', text, re.UNICODE | re.X)
         ascii_string = text.encode('iso-8859-1')
         # Cut the string if it is too long
         if len(ascii_string) > length:
