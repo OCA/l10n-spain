@@ -86,6 +86,13 @@ msgid "The sequence used for refund invoices numbers in this journal."
 msgstr ""
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_ir_sequence
+#, fuzzy
+#| msgid "Invoice sequence"
+msgid "ir.sequence"
+msgstr "Zaporedje računa"
+
+#. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_wizard_multi_charts_accounts
 msgid "wizard.multi.charts.accounts"
 msgstr ""
