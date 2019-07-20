@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:141
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:142
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "'%s_report_%s.txt'"
@@ -989,7 +989,7 @@ msgid "Negative sign character"
 msgstr "Carácter del signo negativo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:138
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:139
 #, python-format
 msgid "No export configuration selected."
 msgstr "No se ha seleccionado configuración para la exportación."
@@ -1406,8 +1406,8 @@ msgid "Telematics"
 msgstr "Telemática"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:62
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:108
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:63
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "La cadena formateada debe satisfacer el tamaño dado."
@@ -1489,7 +1489,7 @@ msgid "Value for yes"
 msgstr "Valor para el sí"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:59
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:60
 #, python-format
 msgid "Wrong aling option. It should be < or >"
 msgstr "Opción de alineamiento errónea. Debería ser < o >"
