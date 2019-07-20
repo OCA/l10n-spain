@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod130
+# 	* l10n_es_aeat_mod130
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2019-06-06 11:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -54,6 +55,12 @@ msgstr "Actividad agrícola, ganadera, forestal o pesquera"
 #: selection:l10n.es.aeat.mod130.report,activity_type:0
 msgid "Actividad distinta a las anteriores"
 msgstr "Actividad distinta a las anteriores"
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_non_justified_expenses
+msgid ""
+"Calculado como el 5% del rendimiento del periodo (ingresos - gastos reales)."
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_casilla_01
@@ -171,15 +178,39 @@ msgid "Datos a completar"
 msgstr "Datos a completar"
 
 #. module: l10n_es_aeat_mod130
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:234
+#, python-format
+msgid ""
+"Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
+"declaración complementaria."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:143
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:166
 #, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr "Este tipo de actividad no está aún soportado por el módulo."
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_non_justified_expenses
+msgid "Gastos de difícil justificación"
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_real_expenses
+msgid ""
+"Gastos en el periodo sin contar con el 5% adicional de difícil justificación."
+msgstr ""
+
+#. module: l10n_es_aeat_mod130
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_real_expenses
+msgid "Gastos reales"
+msgstr ""
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_id
@@ -202,26 +233,28 @@ msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: l10n_es_aeat_mod130
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_number
-msgid "Model number"
-msgstr "Nº modelo"
-
-#. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,tipo_declaracion:0
 msgid "Negativa"
 msgstr "Negativa"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:185
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:216
 #, python-format
 msgid "No implementado"
 msgstr "No implementado"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:146
-#, python-format
-msgid "No se pueden calcular por el momento declaraciones que contengan deducciones por el artí­culo 80 bis."
-msgstr "No se pueden calcular por el momento declaraciones que contengan deducciones por el artí­culo 80 bis."
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:169
+#, fuzzy, python-format
+#| msgid ""
+#| "No se pueden calcular por el momento declaraciones que contengan "
+#| "deducciones por el artí­culo 80 bis."
+msgid ""
+"No se pueden calcular por el momento declaraciones que contengan deducciones "
+"por el artículo 80 bis."
+msgstr ""
+"No se pueden calcular por el momento declaraciones que contengan deducciones "
+"por el artí­culo 80 bis."
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_comments
@@ -241,17 +274,45 @@ msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_has_prestamo
-msgid "Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 euros anuales. \n"
-"Debe consultar las excepciones para las que no se computaría la deducción a pesar del préstamo."
-msgstr "Permite indicar si destina cantidades al pago de préstamos para la adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, se podrá realizar un 2% de deducción sobre el importe de la casilla [03], con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un máximo de 660,14 € anuales. \n"
-"Debe consultar las excepciones para las que no se computaría la deducción a pesar del préstamo."
+msgid ""
+"Permite indicar si destina cantidades al pago de préstamos para la "
+"adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, "
+"se podrá realiza un 2% de deducción sobre el importe de la casilla [03], con "
+"un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un "
+"máximo de 660,14 euros anuales. \n"
+"Debe consultar las excepciones para las que no se computaría la deducción a "
+"pesar del préstamo."
+msgstr ""
+"Permite indicar si destina cantidades al pago de préstamos para la "
+"adquisición o rehabilitación de la vivienda habitual. Si marca la casilla, "
+"se podrá realizar un 2% de deducción sobre el importe de la casilla [03], "
+"con un máximo de 660,14 € por trimestre, o del 2% de la casilla [08], con un "
+"máximo de 660,14 € anuales. \n"
+"Debe consultar las excepciones para las que no se computaría la deducción a "
+"pesar del préstamo."
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,help:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_has_deduccion_80
-msgid "Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
-" Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio de actividades, la suma del resultado de elevar al año el importe de la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de inicio de la actividad a lo largo del ejercicio en la elevación al año se tendrán en consideración los días que resten hasta el final del año."
-msgstr "Permite indicar si puede beneficiarse de la deducción por obtención de rendimientos de actividades económicas a efectos del pago fraccionado por cumplir el siguiente requisito:\n"
-"Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio de actividades, la suma del resultado de elevar al año el importe de la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de inicio de la actividad a lo largo del ejercicio en la elevación al año se tendrán en consideración los días que resten hasta el final del año."
+msgid ""
+"Permite indicar si puede beneficiarse de la deducción por obtención de "
+"rendimientos de actividades económicas a efectos del pago fraccionado por "
+"cumplir el siguiente requisito:\n"
+" Que, en el primer trimestre del ejercicio o en el primer trimestre de "
+"inicio de actividades, la suma del resultado de elevar al año el importe de "
+"la casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 "
+"de la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de "
+"inicio de la actividad a lo largo del ejercicio en la elevación al año se "
+"tendrán en consideración los días que resten hasta el final del año."
+msgstr ""
+"Permite indicar si puede beneficiarse de la deducción por obtención de "
+"rendimientos de actividades económicas a efectos del pago fraccionado por "
+"cumplir el siguiente requisito:\n"
+"Que, en el primer trimestre del ejercicio o en el primer trimestre de inicio "
+"de actividades, la suma del resultado de elevar al año el importe de la "
+"casilla 03 y/o, en su caso, el resultado de elevar al año el 25 por 100 de "
+"la casilla 08, sea igual o inferior a 12.000 euros. En los supuestos de "
+"inicio de la actividad a lo largo del ejercicio en la elevación al año se "
+"tendrán en consideración los días que resten hasta el final del año."
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_result
@@ -286,7 +347,9 @@ msgstr "[03] Rendimiento neto"
 
 #. module: l10n_es_aeat_mod130
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
-msgid "[04] 20% de la casilla [03]"
+#, fuzzy
+#| msgid "[04] 20% de la casilla [03]"
+msgid "[04] 20% casilla (03)"
 msgstr "[04] 20% de la casilla [03]"
 
 #. module: l10n_es_aeat_mod130
@@ -358,3 +421,6 @@ msgstr "¿Deducción por art. 80 bis?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report_has_prestamo
 msgid "¿Préstamo para vivienda habitual?"
 msgstr "¿Préstamo para vivienda habitual?"
+
+#~ msgid "Model number"
+#~ msgstr "Nº modelo"
