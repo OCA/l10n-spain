@@ -14,25 +14,26 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-26 16:03+0000\n"
-"PO-Revision-Date: 2016-08-21 12:03+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2019-07-24 07:43+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<i class=\"fa fa-file-pdf-o\"/> Order"
-msgstr ""
+msgstr "<i class=\"fa fa-file-pdf-o\"/> Pedido"
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
 msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
-msgstr ""
+msgstr "<span><i>Cancelado,</i> Tu pago ha sido cancelado.</span>"
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
@@ -40,6 +41,8 @@ msgid ""
 "<span><i>Done,</i> Your online payment has been successfully processed. "
 "Thank you for your order.</span>"
 msgstr ""
+"<span><i>Hecho,</i> Tu pago online ha sido realizado correctamente. Gracias "
+"por tu pedido.</span>"
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,error_msg:payment_redsys.payment_acquirer_redsys
@@ -49,6 +52,9 @@ msgid ""
 "hesitate to contact us if you have any questions on the status of your order."
 "</span>"
 msgstr ""
+"<span><i>Error,</i> Tenga en cuenta que se produjo un error durante la "
+"transacción. El pedido ha sido confirmado pero no ha sido pagado. No dude en "
+"contactarnos si tiene alguna pregunta sobre el estado de su pedido.</span>"
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,pending_msg:payment_redsys.payment_acquirer_redsys
@@ -56,53 +62,53 @@ msgid ""
 "<span><i>Pending,</i> Your online payment has been successfully processed. "
 "But your order is not validated yet.</span>"
 msgstr ""
+"<span><i>Pendiente,</i> Su pago en línea ha sido procesado con éxito. Pero "
+"tu pedido aún no está validado.</span>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Date:</strong>"
-msgstr ""
+msgstr "<strong>Fecha:</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Discount (%)</strong>"
-msgstr ""
+msgstr "<strong>Descuento (%)</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
-#, fuzzy
 msgid "<strong>Invoicing Address</strong>"
-msgstr "Dirección de facturación"
+msgstr "<strong>Dirección de facturación</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Product</strong>"
-msgstr ""
+msgstr "<strong>Producto</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Quantity</strong>"
-msgstr ""
+msgstr "<strong>Cantidad</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
-#, fuzzy
 msgid "<strong>Shipping Address</strong>"
-msgstr "Dirección de envío:"
+msgstr "<strong>Dirección de envío</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Subtotal</strong>"
-msgstr ""
+msgstr "<strong>Sub Total</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Total:</strong>"
-msgstr ""
+msgstr "<strong>Total :</strong>"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "<strong>Unit Price</strong>"
-msgstr ""
+msgstr "<strong>Precio unidad</strong>"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -112,7 +118,7 @@ msgstr "Alemán"
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "Back to shop"
-msgstr "Volver a tienda"
+msgstr "Volver a la tienda"
 
 #. module: payment_redsys
 #: code:addons/payment_redsys/models/redsys.py:345
@@ -142,11 +148,12 @@ msgstr "Domiciliación"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
-#, fuzzy
 msgid ""
 "En error ocurred. <br/>Please contact with us and inform you about your "
 "order."
-msgstr "Por favor contacte con nosotros y le informaremos sobre su pedido"
+msgstr ""
+"Ha ocurrido un error. <br/>Por favor, póngase en contacto con nosotros y le "
+"informarémos sobre su pedido."
 
 #. module: payment_redsys
 #: code:addons/payment_redsys/models/redsys.py:343
@@ -187,12 +194,12 @@ msgstr "Inglés"
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Italiano"
-msgstr "Italiano / Italiano"
+msgstr "Italiano"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,provider:0
 msgid "Manual Configuration"
-msgstr ""
+msgstr "Configuración manual"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_lang
@@ -244,12 +251,12 @@ msgstr "Pago por Transferencia"
 #: code:addons/payment_redsys/models/redsys.py:99
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
-msgstr "El porcentaje de pago debe estar entre 0 y 100"
+msgstr "El porcentaje de pago parcial debe estar entre 0 y 100"
 
 #. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_acquirer
 msgid "Payment Acquirer"
-msgstr "Método de pago"
+msgstr "Proceso de pago"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_pay_method
@@ -279,19 +286,18 @@ msgstr "Descripción del producto"
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__provider
 msgid "Provider"
-msgstr ""
+msgstr "Proveedor"
 
 #. module: payment_redsys
 #: model:payment.acquirer,name:payment_redsys.payment_acquirer_redsys
 #: selection:payment.acquirer,provider:0
 msgid "Redsys"
-msgstr ""
+msgstr "Redsys"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_signature_version
-#, fuzzy
 msgid "Redsys Signature Version"
-msgstr "Versión de la firma Redsys"
+msgstr "Versión de Redsys de la firma"
 
 #. module: payment_redsys
 #: code:addons/payment_redsys/models/redsys.py:347
@@ -302,7 +308,7 @@ msgstr "Redsys: feedback error %s (%s)"
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_percent_partial
 msgid "Reduction percent"
-msgstr "Porcentaje de pago"
+msgstr "Porcentaje de reducción"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_secret_key
@@ -331,9 +337,8 @@ msgstr "Terminal"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
-#, fuzzy
 msgid "Thanks for you order. <br/>We will inform you of your order status"
-msgstr "Le informaremos sobre el estado de su pedido"
+msgstr "Gracias por tu pedido. <br/>Te informaremos del estado de tu pedido"
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
@@ -353,7 +358,7 @@ msgstr "Tipo de transacción"
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.order
 msgid "Untaxed Amount:"
-msgstr "Base imponible"
+msgstr "Importe sin impuestos:"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -363,7 +368,7 @@ msgstr "Valenciano"
 #. module: payment_redsys
 #: selection:payment.acquirer,provider:0
 msgid "Wire Transfer"
-msgstr ""
+msgstr "Transferencia bancaria"
 
 #. module: payment_redsys
 #: model:ir.model.fields,help:payment_redsys.field_payment_acquirer__redsys_percent_partial
@@ -372,9 +377,9 @@ msgid ""
 "you can allow partial payments in your shop online, the residual amount in "
 "pending for do a manual payment later."
 msgstr ""
-"Indica un porcentaje de pago para este método de pago. Con esta opción "
-"puedes permitir pagos parciales en la tienda online dejando el resto como "
-"pendiente para realizar el pago manualmente más tarde."
+"Escriba el porcentaje que se reducirá en el pago para este método de pago. "
+"Con esta opción puede permitir pagos parciales en su tienda online, la "
+"cantidad restante quedará pendiente para realizar un pago manual más tarde."
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,pre_msg:payment_redsys.payment_acquirer_redsys
@@ -382,6 +387,8 @@ msgid ""
 "You will be redirected to the Redsys payment gateway after clicking on the "
 "payment button."
 msgstr ""
+"Después de hacer clic en el botón de pago será redirigido a la pasarela de "
+"pago de Redsys."
 
 #. module: payment_redsys
 #: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
