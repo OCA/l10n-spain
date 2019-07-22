@@ -197,15 +197,16 @@ class Mod349(models.Model):
                 ('partner_record_id.operation_key', '=', op_key),
                 ('id', 'not in', visited_details.ids)
             ], order='report_id desc')
-            report = original_details.mapped('report_id')[:1]
-            original_details = original_details.filtered(
-                lambda d: d.report_id == report)
+            # we add all of them to visited, as we don't want to repeat
+            visited_details |= original_details
             if original_details:
-                # There's a previous 349 declaration report
+                # There's at least one previous 349 declaration report
+                report = original_details.mapped('report_id')[:1]
+                original_details = original_details.filtered(
+                    lambda d: d.report_id == report)
                 origin_amount = sum(original_details.mapped('amount_untaxed'))
                 period_type = report.period_type
                 year = report.year
-                visited_details |= original_details
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
