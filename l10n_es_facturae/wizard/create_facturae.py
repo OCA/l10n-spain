@@ -33,6 +33,7 @@ class Log(Exception):
 
 class CreateFacturae(models.TransientModel):
     _name = "create.facturae"
+    _description = "Create Facturae Wizard"
 
     facturae = fields.Binary('Factura-E file', readonly=True)
     facturae_fname = fields.Char("File name", size=64)
