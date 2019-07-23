@@ -24,7 +24,11 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         self.customer_2 = self.customer.copy({'name': 'Test customer 2'})
         self.customer_3 = self.customer.copy({'name': 'Test customer 3'})
         self.customer_4 = self.customer.copy({'name': 'Test customer 4'})
-        self.customer_5 = self.customer.copy({'name': 'Test customer 5'})
+        self.customer_5 = self.customer.copy({
+            'name': 'Test customer 5',
+            # For testing spanish states mapping
+            'country_id': self.env.ref('base.es').id,
+        })
         # Invoice lower than the limit
         self.taxes_sale = {
             'S_IVA10B': (2000, 200),
