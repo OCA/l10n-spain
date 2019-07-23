@@ -7,6 +7,7 @@ from odoo import models, fields
 
 class AccountInvoiceIntegrationMethod(models.Model):
     _name = "account.invoice.integration.method"
+    _description = 'Integration method for invoices'
 
     name = fields.Char()
     code = fields.Char(readonly=True)
