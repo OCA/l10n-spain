@@ -7,7 +7,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Create Factura-E">
-                <label string="Este proceso creará la factura electrónica" colspan="4"/>
+                <h4 colspan="4">Este proceso creará la factura electrónica</h4>
                 <field name="state" invisible="1"/>
                 <group attrs="{'invisible': [('state', '=', 'second')]}" colspan="4">
                     <field name="firmar_facturae" />

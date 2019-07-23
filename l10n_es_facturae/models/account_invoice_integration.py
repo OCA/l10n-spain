@@ -7,6 +7,7 @@ from odoo import models, api, fields, exceptions, _
 
 class AccountInvoiceIntegration(models.Model):
     _name = "account.invoice.integration"
+    _description = 'Integration for an invoice'
 
     name = fields.Char(default='/', readonly=True)
 
