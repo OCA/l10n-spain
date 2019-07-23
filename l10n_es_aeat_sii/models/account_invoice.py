@@ -290,7 +290,7 @@ class AccountInvoice(models.Model):
                               "the invoice and create a new one with the "
                               "correct supplier")
                         )
-                elif 'supplier_invoice_number' in vals:
+                elif 'reference' in vals:
                     raise exceptions.Warning(
                         _("You cannot change the supplier invoice number of "
                           "an invoice already registered at the SII. You must "
