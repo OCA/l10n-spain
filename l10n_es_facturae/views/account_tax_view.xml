@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.view_tax_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <field name="tax_adjustment" position="after">
+            <field name="cash_basis_base_account_id" position="after">
                 <field name="facturae_code"/>
             </field>
         </field>

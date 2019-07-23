@@ -9,6 +9,7 @@ from datetime import datetime
 
 class AccountInvoiceIntegrationLog(models.Model):
     _name = "account.invoice.integration.log"
+    _description = 'Result logs for integrations of invoices'
 
     name = fields.Char(default='/', readonly=True)
 
