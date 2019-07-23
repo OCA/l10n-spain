@@ -359,7 +359,7 @@ class AccountMove(models.Model):
                                 "correct supplier"
                             )
                         )
-                elif "supplier_invoice_number" in vals:
+                elif "ref" in vals:
                     raise exceptions.UserError(
                         _(
                             "You cannot change the supplier invoice number of "
