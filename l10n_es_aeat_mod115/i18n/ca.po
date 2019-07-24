@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-18 11:09+0000\n"
-"PO-Revision-Date: 2018-06-30 23:03+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2019-07-25 00:43+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.ui.menu,name:l10n_es_aeat_mod115.menu_aeat_mod115_report
@@ -47,7 +47,6 @@ msgstr "Compte de l'assentament"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__allow_posting
-#, fuzzy
 msgid "Allow Posting"
 msgstr "Permetre la publicació"
 
@@ -94,7 +93,7 @@ msgstr "Complementària"
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_email
 msgid "Contact email"
-msgstr ""
+msgstr "Email contacte"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
@@ -354,6 +353,8 @@ msgid ""
 "The result of the declaration is negative. You should select another Result "
 "type"
 msgstr ""
+"El resultat de la declaració és negatiu. Heu de seleccionar un altre tipus "
+"de resultat"
 
 #. module: l10n_es_aeat_mod115
 #: code:addons/l10n_es_aeat_mod115/models/mod115.py:88
@@ -362,6 +363,8 @@ msgid ""
 "The result of the declaration is positive. You should select another Result "
 "type"
 msgstr ""
+"El resultat de la declaració és positiu. Heu de seleccionar un altre tipus "
+"de resultat"
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__counterpart_account_id
