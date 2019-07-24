@@ -8,6 +8,7 @@
   <field eval="0.00" name="amount"/>
   <field name="amount_type">percent</field>
   <field name="type_tax_use">purchase</field>
+  <field name="tax_group_id" ref="tax_group_dua_exento"/>
 </record>
 
 </odoo>
