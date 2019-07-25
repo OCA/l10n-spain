@@ -251,7 +251,7 @@
                         <TotalReimbursableExpenses t-if="False"/>
                     </InvoiceTotals>
                     <Items>
-                        <InvoiceLine t-foreach="invoice.invoice_line_ids" t-as="line">
+                        <InvoiceLine t-foreach="invoice.invoice_line_ids.filtered(lambda r: not r.display_type)" t-as="line">
                             <t t-set="withheld" t-value="False"/>
                             <t t-foreach="line.invoice_line_tax_ids" t-as="line_tax">
                                 <t  t-if="line_tax.amount &lt; 0">
