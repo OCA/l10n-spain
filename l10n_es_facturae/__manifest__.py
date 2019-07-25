@@ -2,7 +2,7 @@
 # © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
 # © 2015 Tecon
 # © 2015 Omar Castiñeira (Comunitea)
-# © 2016 Tecnativa
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
