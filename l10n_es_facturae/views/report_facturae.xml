@@ -274,12 +274,13 @@
                             <Quantity t-esc="line.quantity"/>
                             <UnitOfMeasure t-if="False"/>
                             <UnitPriceWithoutTax t-esc="'%.6f' % line.price_unit"/>
-                            <TotalCost t-esc="'%.6f' % (line.quantity * line.price_unit)"/>
+                            <t t-set="subtotal_gross" t-value="round(line.quantity * line.price_unit, line.company_currency_id.decimal_places)"/>
+                            <TotalCost t-esc="'%.6f' % subtotal_gross"/>
                             <DiscountsAndRebates t-if="line.discount != 0">
                                 <Discount>
                                     <DiscountReason t-esc="'Descuento'"/>
                                     <DiscountRate t-esc="'%.4f' % line.discount"/>
-                                    <DiscountAmount t-esc="'%.6f' % (line.price_unit * line.quantity - line.price_subtotal)"/>
+                                    <DiscountAmount t-esc="'%.6f' % (subtotal_gross - line.price_subtotal)"/>
                                 </Discount>
                             </DiscountsAndRebates>
                             <Charges t-if="False"/>
