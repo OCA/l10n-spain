@@ -1,5 +1,5 @@
-# © 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
-# © 2017 Creu Blanca
+# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -16,9 +16,11 @@ except(ImportError, IOError) as err:
     logging.info(err)
 
 
-class TestL10nEsFacturae(common.TransactionCase):
-    def setUp(self):
-        super(TestL10nEsFacturae, self).setUp()
+class TestL10nEsFacturae(common.SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        self = cls
         self.tax = self.env['account.tax'].create({
             'name': 'Test tax',
             'amount_type': 'percent',
@@ -30,7 +32,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.state = self.env['res.country.state'].create({
             'name': 'Ciudad Real',
             'code': '13',
-            'country_id': self.ref('base.es'),
+            'country_id': self.env.ref('base.es').id,
         })
         self.partner = self.env['res.partner'].create({
             'name': 'Cliente de prueba',
@@ -38,7 +40,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             'zip': '13700',
             'city': 'Tomelloso',
             'state_id': self.state.id,
-            'country_id': self.ref('base.es'),
+            'country_id': self.env.ref('base.es').id,
             'vat': 'ES05680675C',
             'facturae': True,
             'organo_gestor': 'U00000038',
@@ -49,8 +51,9 @@ class TestL10nEsFacturae(common.TransactionCase):
             ])]
         })
         main_company = self.env.ref('base.main_company')
+        self.company = main_company
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.ref('base.uk')
+        main_company.partner_id.country_id = self.env.ref('base.uk').id
         self.env['res.currency.rate'].search(
             [('currency_id', '=', main_company.currency_id.id)]
         ).write({'company_id': False})
@@ -158,17 +161,19 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.partner.is_company = False
         self.partner.firstname = 'Cliente'
         self.partner.lastname = "de Prueba"
-        self.partner.country_id = self.ref('base.us')
-        self.partner.state_id = self.ref('base.state_us_2')
+        self.partner.country_id = self.env.ref('base.us').id
+        self.partner.state_id = self.env.ref('base.state_us_2').id
         self.invoice.action_invoice_open()
         self.invoice.number = '2999/99999'
         self.main_company = self.env.ref('base.main_company')
-        self.wizard = self.env['create.facturae'].create({})
+        self.wizard = self.env['create.facturae'].with_context(
+            active_id=self.invoice.id,
+            active_ids=self.invoice.ids,
+            active_model='account.invoice',
+        ).create({})
 
     def test_facturae_generation(self):
-        self.wizard.with_context(
-            active_ids=self.invoice.ids,
-            active_model='account.invoice').create_facturae_file()
+        self.wizard.create_facturae_file()
         generated_facturae = etree.fromstring(
             base64.b64decode(self.wizard.facturae))
         fe = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
@@ -224,9 +229,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             pkcs12.export(passphrase='password'))
         self.main_company.facturae_cert_password = 'password'
         self.main_company.partner_id.country_id = self.ref('base.es')
-        self.wizard.with_context(
-            active_ids=self.invoice.ids,
-            active_model='account.invoice').create_facturae_file()
+        self.wizard.create_facturae_file()
         generated_facturae = etree.fromstring(
             base64.b64decode(self.wizard.facturae))
         ns = 'http://www.w3.org/2000/09/xmldsig#'
