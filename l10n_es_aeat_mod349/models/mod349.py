@@ -207,7 +207,7 @@ class Mod349(models.Model):
                     lambda d: d.report_id == report)
                 origin_amount = sum(original_details.mapped('amount_untaxed'))
                 period_type = report.period_type
-                year = str(report.year)
+                year = report.year
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
@@ -225,7 +225,7 @@ class Mod349(models.Model):
                 # * date of the move line
                 if original_amls:
                     original_move = original_amls[:1]
-                    year = original_move.date[:4]
+                    year = int(original_move.date[:4])
                     month = original_move.date[5:7]
                 else:
                     continue  # We can't find information to attach to
