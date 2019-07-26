@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -12,6 +12,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Accepted"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration__cancellation_status
+msgid "Cancellation Status"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Cancellation accepted"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Cancellation approved"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Cancellation rejected"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Cancellation requested"
+msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration_cancel
@@ -31,13 +61,18 @@ msgid "Certificate password must be added for company"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration_cancel_method_code
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration_cancel__method_code
 msgid "Code"
 msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_res_company
 msgid "Companies"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model,name:l10n_es_facturae_face.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -52,17 +87,17 @@ msgid "Country must be defined in order to send to FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.ui.view,arch_db:l10n_es_facturae_face.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.res_config_settings_view_form
 msgid "FACe Configuration"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings_face_server
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings__face_server
 msgid "FACe server location"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company_face_email
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__face_email
 msgid "Face Email"
 msgstr ""
 
@@ -73,14 +108,59 @@ msgid "Facturae must be selected in order to send to FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration__integration_status
+msgid "Integration Status"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration
+msgid "Integration for an invoice"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration_method
+msgid "Integration method for invoices"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: code:addons/l10n_es_facturae_face/models/res_company.py:20
 #, python-format
 msgid "Invalid facturae email"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration_cancel_motive
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration_cancel__motive
 msgid "Motive"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Not requested"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Payed"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on RCF"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on REC"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Rejected"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration_log
+msgid "Result logs for integrations of invoices"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -93,25 +173,5 @@ msgstr ""
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:23
 #, python-format
 msgid "Vat must be defined in order to send to FACe"
-msgstr ""
-
-#. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration
-msgid "account.invoice.integration"
-msgstr ""
-
-#. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration_log
-msgid "account.invoice.integration.log"
-msgstr ""
-
-#. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration_method
-msgid "account.invoice.integration.method"
-msgstr ""
-
-#. module: l10n_es_facturae_face
-#: model:ir.model,name:l10n_es_facturae_face.model_res_config_settings
-msgid "res.config.settings"
 msgstr ""
 
