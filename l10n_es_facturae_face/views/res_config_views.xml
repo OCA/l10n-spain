@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">Account Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='analytic']" position="after">
+                <h2>FACe Configuration</h2>
+                <div class="row mt16 o_settings_container"
+                     id="face_configuration">
+                    <div class="col-xs-12 col-md-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="face_server"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="face_server"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </xpath>
+    </field>
+</record>
+        </odoo>
