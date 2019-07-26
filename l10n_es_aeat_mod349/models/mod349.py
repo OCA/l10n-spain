@@ -206,7 +206,7 @@ class Mod349(models.Model):
                     lambda d: d.report_id == report)
                 origin_amount = sum(original_details.mapped('amount_untaxed'))
                 period_type = report.period_type
-                year = report.year
+                year = str(report.year)
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
