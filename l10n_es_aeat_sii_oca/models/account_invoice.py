@@ -578,13 +578,6 @@ class AccountInvoice(models.Model):
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
             del taxes_dict['DesgloseFactura']
-        round_by_keys(taxes_dict, [
-            'BaseImponible', 'CuotaRepercutida', 'CuotaSoportada',
-            'TipoRecargoEquivalencia', 'CuotaRecargoEquivalencia',
-            'ImportePorArticulos7_14_Otros', 'ImporteTAIReglasLocalizacion',
-            'ImporteTotal', 'BaseRectificada', 'CuotaRectificada',
-            'CuotaDeducible'
-        ])
         return taxes_dict
 
     @api.multi
@@ -647,13 +640,6 @@ class AccountInvoice(models.Model):
                 sfrnd_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-        round_by_keys(taxes_dict, [
-            'BaseImponible', 'CuotaRepercutida', 'CuotaSoportada',
-            'TipoRecargoEquivalencia', 'CuotaRecargoEquivalencia',
-            'ImportePorArticulos7_14_Otros', 'ImporteTAIReglasLocalizacion',
-            'ImporteTotal', 'BaseRectificada', 'CuotaRectificada',
-            'CuotaDeducible'
-        ])
         return taxes_dict, tax_amount
 
     @api.multi
@@ -886,11 +872,27 @@ class AccountInvoice(models.Model):
     def _get_sii_invoice_dict(self):
         self.ensure_one()
         self._sii_check_exceptions()
+        inv_dict = {}
         if self.type in ['out_invoice', 'out_refund']:
-            return self._get_sii_invoice_dict_out()
+            inv_dict = self._get_sii_invoice_dict_out()
         elif self.type in ['in_invoice', 'in_refund']:
-            return self._get_sii_invoice_dict_in()
-        return {}
+            inv_dict = self._get_sii_invoice_dict_in()
+        round_by_keys(
+            inv_dict, [
+                'BaseImponible',
+                'CuotaRepercutida',
+                'CuotaSoportada',
+                'TipoRecargoEquivalencia',
+                'CuotaRecargoEquivalencia',
+                'ImportePorArticulos7_14_Otros',
+                'ImporteTAIReglasLocalizacion',
+                'ImporteTotal',
+                'BaseRectificada',
+                'CuotaRectificada',
+                'CuotaDeducible',
+            ],
+        )
+        return inv_dict
 
     @api.multi
     def _get_cancel_sii_invoice_dict(self):
