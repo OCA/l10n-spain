@@ -647,6 +647,13 @@ class AccountInvoice(models.Model):
                 sfrnd_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
+        round_by_keys(taxes_dict, [
+            'BaseImponible', 'CuotaRepercutida', 'CuotaSoportada',
+            'TipoRecargoEquivalencia', 'CuotaRecargoEquivalencia',
+            'ImportePorArticulos7_14_Otros', 'ImporteTAIReglasLocalizacion',
+            'ImporteTotal', 'BaseRectificada', 'CuotaRectificada',
+            'CuotaDeducible'
+        ])
         return taxes_dict, tax_amount
 
     @api.multi
