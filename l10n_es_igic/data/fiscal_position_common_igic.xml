@@ -5,7 +5,7 @@
         <field name="name">
             Régimen de Importaciones/Exportaciones a/desde Canarias
         </field>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     </record>
 
     <!--Soportado Operaciones corrientes -->
@@ -110,7 +110,7 @@
         <field name="name">
             Régimen de Recargo a la importación (IGIC)
         </field>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     </record>
 
     <record id="igic_fptt_recargo_buy_3_A" model="account.fiscal.position.tax.template">
@@ -2684,7 +2684,7 @@
         <!-- ============ -->
         <record id="igic_fp_exento" model="account.fiscal.position.template">
         <field name="name">Exento de IGIC</field>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
         <field name="note">Las exenciones en operaciones interiores en el Impuesto General Indirecto Canario (IGIC) se encuentra regulados en el Art. 50, LEY 4/2012, del 25 de junio.</field>
     </record>
     <!--Soportado Operaciones corrientes -->
@@ -2785,7 +2785,7 @@
     <!-- =========================== -->
     <record id="igic_fp_minorista" model="account.fiscal.position.template">
         <field name="name">IGIC Proveedor minorista</field>
-        <field name="chart_template_id" ref="account_chart_template_pymes_canarias"/>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     </record>
      <!--Soportado Operaciones corrientes -->
         <record id="igic_fp_minorista_0" model="account.fiscal.position.tax.template">
