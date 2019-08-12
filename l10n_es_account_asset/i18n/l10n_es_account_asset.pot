@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -14,49 +14,30 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_annual_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__annual_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__annual_percentage
 msgid "Annual depreciation percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
-msgid "Asset category"
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset
+msgid "Asset"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
-msgid "Asset/Revenue Recognition"
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_profile
+msgid "Asset profile"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_move_end_period
-msgid "At the end of the period"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_method_percentage
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_category_method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__method_percentage
 msgid "Depreciation percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_move_end_period
-msgid "Move the depreciation entry at the end of the period. If the period are 12 months, it is put on 31st of December, and in the end of the month in other case."
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
-msgid "Only needed if not the same than purchase date"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
-msgid "Start Depreciation Date"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: sql_constraint:account.asset.asset:0
-#: sql_constraint:account.asset.category:0
+#: sql_constraint:account.asset:0
+#: sql_constraint:account.asset.profile:0
 msgid "Wrong percentage!"
 msgstr ""
 
