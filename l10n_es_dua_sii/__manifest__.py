@@ -3,9 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Suministro Inmediato de Información de importaciones con DUA",
-    "version": "11.0.1.0.0",
+    "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/l10n-spain",
     "author": "Studio73, "
               "Comunitea, "
               "Odoo Community Association (OCA)",
