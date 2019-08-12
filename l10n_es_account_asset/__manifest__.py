@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-# Copyright 2015 Ainara Galdona - AvanzOSC
-# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-# Copyright 2012-2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2015 AvanzOSC - Ainara Galdona
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2012-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Gestión de activos fijos para España",
-    "version": "11.0.1.0.2",
+    "version": "12.0.1.0.0",
     "depends": [
-        "account_asset",
+        "account_asset_management",
     ],
     "author": "Tecnativa, "
               "Odoo Community Association (OCA)",
@@ -16,7 +15,10 @@
     "website": "https://odoo-community.org/",
     "category": "Accounting & Finance",
     "data": [
-        "views/account_asset_view.xml",
+        "views/account_asset_profile_views.xml",
+        "views/account_asset_views.xml",
     ],
     "installable": True,
+    "development_status": "Production/Stable",
+    "maintainers": ["pedrobaeza"],
 }
