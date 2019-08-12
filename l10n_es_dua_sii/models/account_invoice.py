@@ -11,35 +11,31 @@ class AccountInvoice(models.Model):
     @api.model
     @tools.ormcache('company')
     def _get_dua_fiscal_position(self, company):
-        dua_fiscal_position = self.env.ref(
-            'l10n_es_dua.%i_fp_dua' % (company.id),
-            raise_if_not_found=False
+        return self.env.ref(
+            'l10n_es_dua.%i_fp_dua' % company.id, raise_if_not_found=False
         ) or self.env['account.fiscal.position'].search([
-            ('name', '=', 'Importación con DUA')
+            ('name', '=', 'Importación con DUA'),
+            ('company_id', '=', company.id),
         ])
-        return dua_fiscal_position
 
     @api.multi
-    @api.depends('tax_line_ids')
+    @api.depends('sii_dua_invoice')
     def _compute_sii_enabled(self):
-        super(AccountInvoice, self)._compute_sii_enabled()
-        for invoice in self.filtered('sii_enabled'):
-            dua_fiscal_position = self._get_dua_fiscal_position(
-                invoice.company_id)
-            if dua_fiscal_position and \
-                    invoice.fiscal_position_id == dua_fiscal_position and \
-                    not invoice.sii_dua_invoice:
-                invoice.sii_enabled = False
+        super()._compute_sii_enabled()
+        self.filtered(lambda x: x.sii_enabled
+                      and x.fiscal_position_id.name == 'Importación con DUA'
+                      and not x.sii_dua_invoice).update({'sii_enabled': False})
 
     @api.multi
+    @api.depends('company_id', 'fiscal_position_id', 'tax_line_ids')
     def _compute_dua_invoice(self):
-        taxes = self._get_sii_taxes_map(['DUA'])
         for invoice in self:
+            taxes = invoice._get_sii_taxes_map(['DUA'])
             dua_fiscal_position = self._get_dua_fiscal_position(
                 invoice.company_id)
-            invoice.sii_dua_invoice = \
-                invoice.fiscal_position_id == dua_fiscal_position and \
-                invoice.tax_line_ids.filtered(lambda x: x.tax_id in taxes)
+            invoice.sii_dua_invoice = (
+                invoice.fiscal_position_id == dua_fiscal_position
+                and invoice.tax_line_ids.filtered(lambda x: x.tax_id in taxes))
 
     sii_dua_invoice = fields.Boolean("SII DUA Invoice",
                                      compute="_compute_dua_invoice")
@@ -55,16 +51,16 @@ class AccountInvoice(models.Model):
         http://bit.ly/2rGWiAI
 
         """
-        res = super(AccountInvoice, self)._get_sii_invoice_dict_in(cancel)
+        res = super()._get_sii_invoice_dict_in(cancel)
         if res.get('FacturaRecibida') and self.sii_dua_invoice:
             res['FacturaRecibida']['TipoFactura'] = 'F5'
             res['FacturaRecibida'].pop('FechaOperacion', None)
-            res['FacturaRecibida']['IDEmisorFactura'] = \
-                {'NIF': self.company_id.vat[2:]}
-            res['IDFactura']['IDEmisorFactura'] = \
-                {'NIF': self.company_id.vat[2:]}
-            res['FacturaRecibida']['Contraparte']['NIF'] = \
-                self.company_id.vat[2:]
+            nif = self.company_id.vat
+            if nif.upper().startswith('ES'):
+                nif = nif[2:]
+            res['FacturaRecibida']['IDEmisorFactura'] = {'NIF': nif}
+            res['IDFactura']['IDEmisorFactura'] = {'NIF': nif}
+            res['FacturaRecibida']['Contraparte']['NIF'] = nif
             res['FacturaRecibida']['Contraparte']['NombreRazon'] = \
                 self.company_id.name
         return res
