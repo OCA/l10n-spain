@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_invoice_integration_form" model="ir.ui.view">
+        <field name="name">account.invoice.integration.form</field>
+        <field name="model">account.invoice.integration</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form create="false">
+                <header>
+                    <button name="send_action" type="object"
+                            string="Send" class="oe_highlight"
+                            attrs="{'invisible': [('can_send', '=', False)]}"/>
+                    <button name="update_action" type="object"
+                            string="Update" class="oe_highlight"
+                            attrs="{'invisible': [('can_update', '=', False)]}"/>
+                    <button name="%(action_account_invoice_integration_cancel)d"
+                            type='action' string='Cancel'
+                            attrs="{'invisible': [('can_cancel', '=', False)]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="method_id" widget="selection"/>
+                        <field name="invoice_id"/>
+                        <field name="can_update" invisible="1"/>
+                        <field name="can_send" invisible="1"/>
+                        <field name="can_cancel" invisible="1"/>
+                        <field name="register_number"/>
+                        <field name="attachment_id"
+                               domain="[('res_model','=','account.invoice'),('res_id','=', invoice_id)]"
+                               attrs="{'readonly': [('state', 'not in', ['pending', 'failed'])]}"/>
+                        <field
+                                name="attachment_ids"
+                                domain="[('res_model','=','account.invoice'),('res_id','=', invoice_id)]"
+                                attrs="{'readonly': [('state', 'not in', ['pending', 'failed'])]}"
+                                widget="many2many_tags"
+                                options="{'no_create_edit': True, 'no_quick_create': True}"
+                        >
+                        </field>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Status">
+                            <group attrs="{'invisible': [('state', 'in', ['pending', 'failed'])]}">
+                                <group>
+                                    <field name="integration_status"/>
+                                    <field name="integration_description"/>
+                                </group>
+
+                                <group>
+                                    <field name="cancellation_status"/>
+                                    <field name="cancellation_description"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Log">
+                            <field name="log_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="state"/>
+                                    <field name="log"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="account_invoice_integration_tree" model="ir.ui.view">
+        <field name="name">account.invoice.integration.tree</field>
+        <field name="model">account.invoice.integration</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="name"/>
+                <field name="register_number"/>
+                <field name="state"/>
+                <field name="invoice_id"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="invoice_integration_action">
+        <field name="name">Invoice integration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">account.invoice.integration</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

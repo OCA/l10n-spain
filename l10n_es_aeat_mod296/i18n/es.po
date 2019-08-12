@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-26 07:16+0000\n"
-"PO-Revision-Date: 2019-02-04 16:50+0000\n"
-"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
+"PO-Revision-Date: 2019-07-24 07:43+0000\n"
+"Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.7.1\n"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__porcentaje_retencion
@@ -314,8 +314,6 @@ msgstr "Dirección en el país de residencia"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__allow_posting
-#, fuzzy
-#| msgid "Allow posting"
 msgid "Allow Posting"
 msgstr "Permitir publicación"
 
@@ -392,7 +390,7 @@ msgstr "Complementarios"
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__contact_email
 msgid "Contact email"
-msgstr ""
+msgstr "Email contacto"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__counterpart_account_id
