@@ -1,4 +1,5 @@
 # © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# © 2019 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import hashlib
@@ -335,6 +336,7 @@ class TxRedsys(models.Model):
         vals = {
             'state': state,
             'redsys_txnid': params.get('Ds_AuthorisationCode'),
+            'date': fields.Datetime.now()
         }
         state_message = ""
         if state == 'done':
