@@ -51,7 +51,7 @@ class L10nEsAeatCertificate(models.Model):
         self.state = 'active'
 
     @api.multi
-    def get_certificates(self, company = False):
+    def get_certificates(self, company=False):
         if not company:
             company = self.env.user.company_id
         today = fields.Date.today()
@@ -74,4 +74,3 @@ class L10nEsAeatCertificate(models.Model):
             private_key = self.env['ir.config_parameter'].get_param(
                 'l10n_es_aeat_certificate.privateKey', False)
         return public_crt, private_key
-        
