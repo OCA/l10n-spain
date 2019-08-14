@@ -53,6 +53,7 @@ def pfx_to_crt(file, pfx_password, directory=None):
 
 class L10nEsAeatCertificatePassword(models.TransientModel):
     _name = 'l10n.es.aeat.certificate.password'
+    _description = 'Wizard to Load AEAT Certificate'
 
     password = fields.Char(string="Password", required=True)
 

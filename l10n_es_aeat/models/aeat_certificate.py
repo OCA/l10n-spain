@@ -9,6 +9,7 @@ from odoo import api, models, fields, _
 
 class L10nEsAeatCertificate(models.Model):
     _name = 'l10n.es.aeat.certificate'
+    _description = 'AEAT Certificate'
 
     name = fields.Char(string="Name")
     state = fields.Selection([
