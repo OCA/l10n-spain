@@ -19,10 +19,10 @@
             <field name="type_tax_use">sale</field>
             <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
             <field name="tax_group_id" ref="grupo_punto_verde"/>
-            <field name="python_compute">result = product.punto_verde*quantity</field>
+            <field name="python_compute">result = product.punto_verde*quantity*factor</field>
             <field name="python_applicable">result = True</field>
-            <field name="account_id" ref="l10n_es.1_account_common_631"/>
-            <field name="refund_account_id" ref="l10n_es.1_account_common_631"/>
+            <!-- <field name="account_id" ref="l10n_es.1_account_common_631"/>
+            <field name="refund_account_id" ref="l10n_es.1_account_common_631"/> -->
         </record>
     </odoo>
 

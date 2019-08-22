@@ -8,13 +8,16 @@
     'category': 'Generic Modules/Accounting',
     'website': "https://github.com/OCA/l10n-spain",
     'depends': [
+        'l10n_es',
         'product',
         'account_tax_python',
-        'l10n_es'
+        'sale',
+        'account',
         ],
     'data': [
         'data/account_tax_data.xml',
         'views/product_view.xml',
+        'views/account_tax_views.xml',
     ],
     'installable': True,
 }
