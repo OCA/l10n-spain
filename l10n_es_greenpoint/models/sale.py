@@ -1,4 +1,4 @@
-from odoo import models
+from odoo import api, models
 
 
 class SaleOrderLine(models.Model):
@@ -9,7 +9,6 @@ class SaleOrderLine(models.Model):
         """
         Compute the amounts of the SO line.
         """
-
         for line in self:
             price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
             context = self.env.context.copy()
@@ -19,7 +18,8 @@ class SaleOrderLine(models.Model):
                 product=line.product_id,
                 partner=line.order_id.partner_shipping_id)
             line.update({
-                'price_tax': sum(t.get('amount', 0.0) for t in taxes.get('taxes', [])),
+                'price_tax': sum(t.get('amount', 0.0)
+                                 for t in taxes.get('taxes', [])),
                 'price_total': taxes['total_included'],
                 'price_subtotal': taxes['total_excluded'],
             })

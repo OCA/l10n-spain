@@ -10,9 +10,8 @@
     'depends': [
         'l10n_es',
         'product',
-        'account_tax_python',
         'sale',
-        'account',
+        'account_tax_python',
         ],
     'data': [
         'data/account_tax_data.xml',
