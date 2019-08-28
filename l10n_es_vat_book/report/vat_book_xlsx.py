@@ -192,10 +192,11 @@ class VatNumberXlsx(ReportXlsx):
             obj_tax = self.env["account.fiscal.position.tax"]
             for lin in lines:
                 fiscal_pos = lin.invoice_id.fiscal_position_id or \
-                             lin.partner_id.property_account_position_id
+                    lin.partner_id.property_account_position_id
                 if not fiscal_pos:
                     raise UserError(_(
-                        "Partner %s haven't fiscal position") % lin.partner_id.name)
+                        "Partner %s haven't fiscal position"
+                    ) % lin.partner_id.name)
                 for line in list(
                         set(lin.mapped("tax_line_ids.tax_id.amount"))):
                     tline = lin.tax_line_ids.filtered(
@@ -219,10 +220,11 @@ class VatNumberXlsx(ReportXlsx):
                     col = 0
                     partner = lin.partner_id
                     country_code = (
-                            partner.country_id.code or (partner.vat or "")[:2]
+                        partner.country_id.code or (partner.vat or "")[:2]
                     ).upper()
                     # Fecha Expedición
-                    date_invoice = lin.invoice_id.date_invoice or lin.move_id.date
+                    date_invoice = (
+                        lin.invoice_id.date_invoice or lin.move_id.date)
                     date_invoice = fields.Date.from_string(
                         date_invoice).strftime("%d/%m/%Y")
                     sheet.write(
@@ -237,7 +239,8 @@ class VatNumberXlsx(ReportXlsx):
                     col += 1
                     # Número
                     sheet.write(
-                        row, col, (lin.invoice_id.number or lin.move_id.ref)[:20], cell_table_center,
+                        row, col, (lin.invoice_id.number or lin.move_id.ref)[
+                            :20], cell_table_center,
                     )
                     col += 1
                     # Número final
@@ -302,7 +305,8 @@ class VatNumberXlsx(ReportXlsx):
                     )
                     col += 1
                     # Tipo de IVA
-                    if line.tax_id.amount_type not in ('fixed', 'percent', 'division'):
+                    if line.tax_id.amount_type not in (
+                            'fixed', 'percent', 'division'):
                         sheet.write(
                             row, col, 0, cell_table_right
                         )
@@ -475,201 +479,206 @@ class VatNumberXlsx(ReportXlsx):
             taxes2 = self.env.ref(
                 "l10n_es_vat_book.aeat_vat_book_map_line_SFRETENCIONES"
             ).tax_ids.ids
-            # taxes3 = self.env.ref(
-            #     "l10n_es_vat_book.aeat_vat_book_map_P_IVA0_ND"
-            # ).tax_ids.ids
-            # taxes3 += self.env.ref(
-            #     "l10n_es_vat_book.aeat_vat_book_map_P_IVA10_ND"
-            # ).tax_ids.ids
-            # taxes3 += self.env.ref(
-            #     "l10n_es_vat_book.aeat_vat_book_map_P_IVA4_ND"
-            # ).tax_ids.ids
             obj_tax = self.env["account.fiscal.position.tax"]
             for lin in lines:
                 fiscal_pos = lin.invoice_id.fiscal_position_id or \
-                             lin.partner_id.property_account_position_id
-                if not fiscal_pos:
-                    raise UserError(_("Partner %s haven't fiscal position") % lin.partner_id.name)
-                for line in list(set(lin.mapped("tax_line_ids.tax_id.amount"))):
-                    tline = lin.tax_line_ids.filtered(lambda r: r.tax_id.amount == line)[0]
-                    lines_all = lin.tax_line_ids.filtered(lambda r: r.tax_id.amount == line)
-                    line = tline
-                    tax_dest_id = False
-                    if line.tax_id.id in taxes + taxes2:
-                        continue
-                    elif (line.tax_id.id in fiscal_pos.
-                            tax_ids.mapped("tax_src_id").ids):
-                        tax_dest_id = obj_tax.search([
-                            ("position_id", "=", fiscal_pos.id),
-                            ("tax_src_id", "=", line.tax_id.id),
-                            ("tax_dest_id", "in", taxes)
-                        ]).tax_dest_id
-                        tax_dest_id = lin.tax_line_ids.filtered(
-                            lambda r: r.tax_id == tax_dest_id
-                        )
-                    col = 0
-                    partner = lin.partner_id
-                    country_code = (
+                    lin.partner_id.property_account_position_id
+                if fiscal_pos:
+                    for line in list(
+                            set(lin.mapped("tax_line_ids.tax_id.amount"))):
+                        tline = lin.tax_line_ids.filtered(
+                            lambda r: r.tax_id.amount == line)[0]
+                        lines_all = lin.tax_line_ids.filtered(
+                            lambda r: r.tax_id.amount == line)
+                        line = tline
+                        tax_dest_id = False
+                        if line.tax_id.id in taxes + taxes2:
+                            continue
+                        elif (line.tax_id.id in fiscal_pos.
+                                tax_ids.mapped("tax_src_id").ids):
+                            tax_dest_id = obj_tax.search([
+                                ("position_id", "=", fiscal_pos.id),
+                                ("tax_src_id", "=", line.tax_id.id),
+                                ("tax_dest_id", "in", taxes)
+                            ]).tax_dest_id
+                            tax_dest_id = lin.tax_line_ids.filtered(
+                                lambda r: r.tax_id == tax_dest_id
+                            )
+                        col = 0
+                        partner = lin.partner_id
+                        country_code = (
                             partner.country_id.code or (partner.vat or "")[:2]
-                    ).upper()
-                    # Fecha Expedición
-                    date_invoice = lin.invoice_id.date_invoice or lin.move_id.date
-                    date_invoice = fields.Date.from_string(
-                        date_invoice).strftime("%d/%m/%Y")
-                    sheet.write(
-                        row, col,
-                        date_invoice,
-                        cell_table_center,
-                    )
-                    col += 1
-                    # Fecha Operación
-                    if lin.invoice_id.move_id.date != \
-                            lin.invoice_id.date_invoice:
+                        ).upper()
+                        # Fecha Expedición
+                        date_invoice = (
+                            lin.invoice_id.date_invoice or lin.move_id.date)
+                        date_invoice = fields.Date.from_string(
+                            date_invoice).strftime("%d/%m/%Y")
                         sheet.write(
                             row, col,
-                            fields.Date.from_string(
-                                lin.invoice_id.move_id.date
-                            ).strftime("%d/%m/%Y"),
+                            date_invoice,
                             cell_table_center,
                         )
-                    col += 1
-                    # Serie-Numero
-                    sheet.write(
-                        row, col, (lin.invoice_id.reference or lin.move_id.ref)[:20],
-                        cell_table_right,
-                    )
-                    col += 1
-                    # Número-Final
-                    col += 1
-                    # Número Recepción
-                    sheet.write(
-                        row, col, lin.entry_number, cell_table_right,
-                    )
-                    col += 1
-                    # Número Recepción Final
-                    col += 1
-                    # Tipo
-                    identifier = lin.invoice_id or lin.partner_id
-                    tipo = _get_identifier(identifier, country_code)[:2]
-                    sheet.write(row, col, tipo, cell_table_center)
-                    col += 1
-                    # Código País
-                    sheet.write(
-                        row, col, country_code, cell_table_left,
-                    )
-                    col += 1
-                    # Identificación
-                    if country_code != "ES":
-                        vat = partner.vat or ""
-                        vat = vat[:20]
-                    else:
-                        vat = partner.vat[2:]
-                    sheet.write(row, col, vat, cell_table_left)
-                    col += 1
-                    # Nombre expendidor
-                    supplier = partner.name[:40]
-                    sheet.write(row, col, supplier, cell_table_left)
-                    col += 1
-                    # Factura Sustitutiva
-                    col += 1
-                    # Clave de Operación
-                    col += 1
-                    # Total factura
-                    tax1 = lin.mapped("tax_line_ids.tax_id").filtered(
-                        lambda r: r.id not in taxes + taxes2
-                    ).ids
-                    tax1 = lin.mapped("tax_line_ids").filtered(
-                        lambda r: r.tax_id.id in tax1
-                    )
-                    tax2 = lin.mapped("tax_line_ids.tax_id").filtered(
-                        lambda r: r.id in taxes
-                    ).ids
-                    tax2 = lin.mapped("tax_line_ids").filtered(
-                        lambda r: r.tax_id.id in tax2
-                    )
-                    total = sum(x.total_amount for x in tax1)
-                    total += sum(x.tax_amount for x in tax2)
-                    sheet.write(
-                        row, col,
-                        "{0:.2f}".format(total).replace(
-                            ".", ",")[:13], cell_table_right
-                    )
-                    col += 1
-                    # Base imponible
-                    sheet.write(
-                        row, col,
-                        "{0:.2f}".format(
-                            sum(x.base_amount for x in lines_all)).replace(
-                            ".", ",")[:13],
-                        cell_table_right,
-                    )
-                    col += 1
-                    # Tipo de IVA
-                    if line.tax_id.amount_type not in ('fixed', 'percent', 'division'):
+                        col += 1
+                        # Fecha Operación
+                        if lin.invoice_id.move_id.date != \
+                                lin.invoice_id.date_invoice:
+                            sheet.write(
+                                row, col,
+                                fields.Date.from_string(
+                                    lin.invoice_id.move_id.date
+                                ).strftime("%d/%m/%Y"),
+                                cell_table_center,
+                            )
+                        col += 1
+                        # Serie-Numero
                         sheet.write(
-                            row, col, 0, cell_table_right
+                            row,
+                            col,
+                            lin.invoice_id.reference or (
+                                lin.move_id.ref or ""
+                            )[:20],
+                            cell_table_right,
                         )
-                    else:
+                        col += 1
+                        # Número-Final
+                        col += 1
+                        # Número Recepción
+                        sheet.write(
+                            row, col, lin.entry_number, cell_table_right,
+                        )
+                        col += 1
+                        # Número Recepción Final
+                        col += 1
+                        # Tipo
+                        identifier = lin.invoice_id or lin.partner_id
+                        tipo = _get_identifier(identifier, country_code)[:2]
+                        sheet.write(row, col, tipo, cell_table_center)
+                        col += 1
+                        # Código País
+                        sheet.write(
+                            row, col, country_code, cell_table_left,
+                        )
+                        col += 1
+                        # Identificación
+                        if country_code != "ES":
+                            vat = partner.vat or ""
+                            vat = vat[:20]
+                        else:
+                            vat = partner.vat[2:]
+                        sheet.write(row, col, vat, cell_table_left)
+                        col += 1
+                        # Nombre expendidor
+                        supplier = partner.name[:40]
+                        sheet.write(row, col, supplier, cell_table_left)
+                        col += 1
+                        # Factura Sustitutiva
+                        col += 1
+                        # Clave de Operación
+                        col += 1
+                        # Total factura
+                        tax1 = lin.mapped("tax_line_ids.tax_id").filtered(
+                            lambda r: r.id not in taxes + taxes2
+                        ).ids
+                        tax1 = lin.mapped("tax_line_ids").filtered(
+                            lambda r: r.tax_id.id in tax1
+                        )
+                        tax2 = lin.mapped("tax_line_ids.tax_id").filtered(
+                            lambda r: r.id in taxes
+                        ).ids
+                        tax2 = lin.mapped("tax_line_ids").filtered(
+                            lambda r: r.tax_id.id in tax2
+                        )
+                        total = sum(x.total_amount for x in tax1)
+                        total += sum(x.tax_amount for x in tax2)
                         sheet.write(
                             row, col,
-                            "{0:.2f}".format(line.tax_id.amount).replace(
-                                ".", ",")[:5], cell_table_right
+                            "{0:.2f}".format(total).replace(
+                                ".", ",")[:13], cell_table_right
                         )
-                    col += 1
-                    # Cuota IVA soportado
-                    sheet.write(
-                        row, col,
-                        "{0:.2f}".format(
-                            sum(x.tax_amount for x in lines_all)).replace(
-                            ".", ",")[:13], cell_table_right
-                    )
-                    col += 1
-                    # Cuota Deducible
-                    cuota = self.env["l10n.es.vat.book.map"].search([
-                        ("tax_ids.description", "=", line.tax_id.description),
-                    ]).tax_id
-                    cuota2 = self.env["account.tax"].search([
-                        "|",
-                        ("name", "=", cuota.name),
-                        ("description", "=", cuota.description),
-                        ("company_id", "=", self.env.user.company_id.id)
-                    ])
-                    if cuota2:
-                        cuota = lines_all.filtered(
-                            lambda r: r.tax_id == cuota2)
-                        cuota = sum(x.tax_amount for x in lines_all) - cuota.tax_amount
-                    else:
-                        cuota = 0
-                    sheet.write(
-                        row, col,
-                        "{0:.2f}".format(cuota).replace(".", ",")[:13], cell_table_right
-                    )
-                    col += 1
-                    # Tipo de recargo eq.
-                    if tax_dest_id:
+                        col += 1
+                        # Base imponible
                         sheet.write(
                             row, col,
                             "{0:.2f}".format(
-                                tax_dest_id.tax_id.amount).replace(
-                                ".", ","
-                            )[:5], cell_table_right)
-                    col += 1
-                    # Cuota de recargo eq.
-                    if tax_dest_id:
+                                sum(x.base_amount for x in lines_all)).replace(
+                                ".", ",")[:13],
+                            cell_table_right,
+                        )
+                        col += 1
+                        # Tipo de IVA
+                        if line.tax_id.amount_type not in (
+                                'fixed', 'percent', 'division'):
+                            sheet.write(
+                                row, col, 0, cell_table_right
+                            )
+                        else:
+                            sheet.write(
+                                row, col,
+                                "{0:.2f}".format(line.tax_id.amount).replace(
+                                    ".", ",")[:5], cell_table_right
+                            )
+                        col += 1
+                        # Cuota IVA soportado
                         sheet.write(
                             row, col,
-                            "{0:.2f}".format(tax_dest_id.tax_amount).replace(
+                            "{0:.2f}".format(
+                                sum(x.tax_amount for x in lines_all)).replace(
                                 ".", ",")[:13], cell_table_right
                         )
-                    col += 1
-                    row += 1
+                        col += 1
+                        # Cuota Deducible
+                        cuota = self.env["l10n.es.vat.book.map"].search([(
+                            "tax_ids.description",
+                            "=",
+                            line.tax_id.description),
+                        ]).tax_id
+                        cuota2 = self.env["account.tax"].search([
+                            "|",
+                            ("name", "=", cuota.name),
+                            ("description", "=", cuota.description),
+                            ("company_id", "=", self.env.user.company_id.id)
+                        ])
+                        if cuota2:
+                            cuota = lines_all.filtered(
+                                lambda r: r.tax_id == cuota2)
+                            cuota = sum(
+                                x.tax_amount for x in lines_all
+                            ) - cuota.tax_amount
+                        else:
+                            cuota = 0
+                        sheet.write(
+                            row, col,
+                            "{0:.2f}".format(cuota).replace(".", ",")[
+                                :13], cell_table_right
+                        )
+                        col += 1
+                        # Tipo de recargo eq.
+                        if tax_dest_id:
+                            sheet.write(
+                                row, col,
+                                "{0:.2f}".format(
+                                    tax_dest_id.tax_id.amount).replace(
+                                    ".", ","
+                                )[:5], cell_table_right)
+                        col += 1
+                        # Cuota de recargo eq.
+                        if tax_dest_id:
+                            sheet.write(
+                                row, col,
+                                "{0:.2f}".format(
+                                    tax_dest_id.tax_amount).replace(
+                                    ".", ",")[:13], cell_table_right
+                            )
+                        col += 1
+                        row += 1
 
         if book._context.get("issued"):
             lines = book.issued_line_ids + book.rectification_issued_line_ids
             fill_table_issued(lines, book)
         else:
             lines = book.received_line_ids + \
-                    book.rectification_received_line_ids
+                book.rectification_received_line_ids
             fill_table_received(lines, book)
 
 

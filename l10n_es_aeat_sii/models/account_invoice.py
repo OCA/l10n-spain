@@ -240,7 +240,7 @@ class AccountInvoice(models.Model):
                               "already registered at the SII. You must cancel "
                               "the invoice and create a new one with the "
                               "correct supplier")
-                            )
+                        )
                 elif 'supplier_invoice_number' in vals:
                     raise exceptions.Warning(
                         _("You cannot change the supplier invoice number of "
@@ -874,7 +874,7 @@ class AccountInvoice(models.Model):
             inv_dict['IDFactura']['IDEmisorFactura'].update(
                 {'NombreRazon': (
                     self.partner_id.commercial_partner_id.name[0:120]
-                    )}
+                )}
             )
         else:
             # Check if refund type is 'By differences'. Negative amounts!

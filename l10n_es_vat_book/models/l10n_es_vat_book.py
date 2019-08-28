@@ -228,7 +228,7 @@ class L10nEsVatBook(models.Model):
             "|",
             ("name", "in", [x.name for x in tax_ret]),
             ("description", "in", [x.description for x in tax_ret])])
-        #taxes = taxes - taxes2
+        # taxes = taxes - taxes2
         fee_move_lines = move.line_ids.filtered(
             lambda l: l.tax_line_id in taxes)
         fee_amount_untaxed = 0.0
@@ -238,10 +238,10 @@ class L10nEsVatBook(models.Model):
         lines = move.line_ids.mapped("tax_line_id") - taxes2
         credit = sum(x.credit for x in move.line_ids.filtered(
             lambda r: r.tax_line_id in lines)
-                     )
+        )
         debit = sum(x.debit for x in move.line_ids.filtered(
             lambda r: r.tax_line_id in lines)
-                    )
+        )
         fee_amount = credit - debit
         if vat_book_line.line_type == 'issued' and fee_amount < 0.0:
             vat_book_line.line_type = 'rectification_issued'
@@ -495,5 +495,5 @@ class L10nEsVatBook(models.Model):
             'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
             'report_type': 'xlsx',
             'report_file': 'l10n.es.vat.book',
-            'context':  context,
+            'context': context,
         }

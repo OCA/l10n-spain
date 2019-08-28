@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, api, fields, _
+from odoo import models, fields
 
 
 class L10nEsVatBookMap(models.Model):

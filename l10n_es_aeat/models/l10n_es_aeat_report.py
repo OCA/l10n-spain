@@ -367,7 +367,7 @@ class L10nEsAeatReport(models.AbstractModel):
     def unlink(self):
         if any(item.state not in ['draft', 'cancelled'] for item in self):
             raise exceptions.UserError(_("Only reports in 'draft' or "
-                                       "'cancelled' state can be removed"))
+                                         "'cancelled' state can be removed"))
         return super(L10nEsAeatReport, self).unlink()
 
     @api.model

@@ -44,6 +44,10 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
             'date_end': '2017-03-31',
         })
         _logger.debug('Calculate VAT Book 1T 2017')
+        fiscal_position = self.env['account.fiscal.position'].create({
+            'name': 'Test Fiscal Position'})
+        self.customer.property_account_position_id = fiscal_position
+        self.supplier.property_account_position_id = fiscal_position
         vat_book.button_calculate()
         # Check issued invoices
         for line in vat_book.issued_line_ids:
