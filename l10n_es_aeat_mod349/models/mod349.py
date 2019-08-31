@@ -224,8 +224,8 @@ class Mod349(models.Model):
                 # * date of the move line
                 if original_amls:
                     original_move = original_amls[:1]
-                    year = original_move.date[:4]
-                    month = original_move.date[5:7]
+                    year = str(original_move.date.year)
+                    month = str(original_move.date.month)
                 else:
                     continue  # We can't find information to attach to
                 if self.period_type == '0A':
