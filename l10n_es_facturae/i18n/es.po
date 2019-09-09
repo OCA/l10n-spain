@@ -313,6 +313,11 @@ msgid "Cálculo de cuotas retenidas"
 msgstr "Cálculo de cuotas retenidas"
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Delivered"
+msgstr "Entregado"
+
+#. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Detalle Operación"
@@ -873,6 +878,11 @@ msgid "Otro"
 msgstr "Otro"
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:215
 #, python-format
 msgid "Partner bank in mandate is missing"
@@ -991,6 +1001,11 @@ msgstr "Número de registro"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
+msgid "Registered"
+msgstr "Registrado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
 msgid "Registered on RCF"
 msgstr "Registrado en RCF"
 
@@ -1046,6 +1061,13 @@ msgstr "Enviar"
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_account_invoice_integration_cancel
 msgid "Send cancel"
 msgstr "Enviar cancelación"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+#| msgid "Send"
+msgid "Sended"
+msgstr "Enviar"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
@@ -1284,20 +1306,6 @@ msgstr "Órgano gestor"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
-
-#~ msgid "Delivered"
-#~ msgstr "Entregado"
-
-#~ msgid "Paid"
-#~ msgstr "Pagado"
-
-#~ msgid "Registered"
-#~ msgstr "Registrado"
-
-#, fuzzy
-#~| msgid "Send"
-#~ msgid "Sended"
-#~ msgstr "Enviar"
 
 #~ msgid "account.invoice.integration"
 #~ msgstr "account.invoice.integration"
