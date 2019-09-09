@@ -307,6 +307,11 @@ msgid "Cálculo de cuotas retenidas"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Delivered"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Detalle Operación"
@@ -836,6 +841,11 @@ msgid "Otro"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Paid"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:215
 #, python-format
 msgid "Partner bank in mandate is missing"
@@ -953,6 +963,11 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
+msgid "Registered"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
 msgid "Registered on RCF"
 msgstr ""
 
@@ -1007,6 +1022,11 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_account_invoice_integration_cancel
 msgid "Send cancel"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Sended"
 msgstr ""
 
 #. module: l10n_es_facturae
