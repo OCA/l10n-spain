@@ -43,7 +43,7 @@ a su destino. La administración le proporcionará estos datos.
 
 Informacion sobre el formato:
 
-* http://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_17_11_2015_unificado.pdf
+* https://www.facturae.gob.es/formato/Versiones/Esquema_castellano_v3_2_x_06_06_2017_unificado.pdf
 
 **Table of contents**
 
