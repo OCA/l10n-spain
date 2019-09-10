@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_mod390',
         'odoo12-addon-l10n_es_aeat_sii',
         'odoo12-addon-l10n_es_dua',
+        'odoo12-addon-l10n_es_dua_sii',
         'odoo12-addon-l10n_es_facturae',
         'odoo12-addon-l10n_es_facturae_face',
         'odoo12-addon-l10n_es_irnr',
