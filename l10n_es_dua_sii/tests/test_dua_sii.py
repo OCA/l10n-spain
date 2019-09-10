@@ -1,7 +1,6 @@
-# Copyright 2019 Alexandre Díaz
+# Copyright 2019 Tecnativa - Alexandre Díaz
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api
 from odoo.tests import common
 
 
@@ -9,13 +8,6 @@ class TestL10nEsDuaSii(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
-        @api.multi
-        def _get_sii_taxes_map(self, *args, **kwargs):
-            return [cls.tax]
-
-        cls.env['account.invoice']._patch_method('_get_sii_taxes_map',
-                                                 _get_sii_taxes_map)
 
         cls.country_es = cls.env.ref('base.es')
         cls.fp_dua = cls.env['account.fiscal.position'].create(dict(
@@ -52,22 +44,18 @@ class TestL10nEsDuaSii(common.SavepointCase):
         })
         cls.tax = cls.env['account.tax'].create({
             'name': 'DUA Exento',
-            'description': 'P_DUA0',
+            'description': 'P_IVA21_IBC',
             'type_tax_use': 'purchase',
             'amount_type': 'percent',
             'amount': '0',
             'account_id': cls.account_tax.id,
         })
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.env['account.invoice']._revert_method('_get_sii_taxes_map')
-        super().tearDownClass()
-
     def test_dua_sii(self):
         invoice = self.env['account.invoice'].create({
             'partner_id': self.partner.id,
             'date_invoice': '2019-02-01',
+            'date': '2019-02-01',
             'type': 'in_invoice',
             'account_id': self.partner.property_account_payable_id.id,
             'invoice_line_ids': [
@@ -85,13 +73,8 @@ class TestL10nEsDuaSii(common.SavepointCase):
         self.assertTrue(invoice.sii_dua_invoice)
         invoice.company_id.write({
             'sii_enabled': True,
-            'sii_test': True,
-            'use_connector': True,
-            'chart_template_id': self.env.ref(
-                'l10n_es.account_chart_template_pymes').id,
             'vat': 'ESU2687761C',
         })
-        invoice.action_invoice_open()
         values = invoice._get_sii_invoice_dict_in()
         self.assertEqual(values['FacturaRecibida']['TipoFactura'], 'F5')
         self.assertEqual(values['FacturaRecibida']['IDEmisorFactura']['NIF'],
@@ -106,6 +89,7 @@ class TestL10nEsDuaSii(common.SavepointCase):
         invoice = self.env['account.invoice'].create({
             'partner_id': self.partner.id,
             'date_invoice': '2019-02-01',
+            'date': '2019-02-01',
             'type': 'in_invoice',
             'account_id': self.partner.property_account_payable_id.id,
             'invoice_line_ids': [
@@ -120,6 +104,5 @@ class TestL10nEsDuaSii(common.SavepointCase):
             'sii_manual_description': '/',
         })
         self.assertFalse(invoice.sii_dua_invoice)
-        invoice.action_invoice_open()
         values = invoice._get_sii_invoice_dict_in()
         self.assertNotEqual(values['FacturaRecibida']['TipoFactura'], 'F5')
