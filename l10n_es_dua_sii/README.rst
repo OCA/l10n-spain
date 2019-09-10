@@ -45,11 +45,18 @@ Authors
 Contributors
 ============
 
-* Studio73 - Pablo Fuentes <pablo@studio73.es>
-* Studio73 - Jordi Tolsà <jordi@studio73.es>
+* `Studio73 <https://www.studio73.es/>`__:
+
+  * Pablo Fuentes <pablo@studio73.es>
+  * Jordi Tolsà <jordi@studio73.es>
+
+* `Tecnativa <https://www.tecnativa.com>`__:
+
+  * Alexandre Díaz
+  * Pedro M. Baeza
+
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
-* Alexandre Díaz - Tecnativa <alexandre.diaz@tecnativa.com>
 * Punt Sistemes - Juanvi Pascual <jvpascual@puntsistemes.es>
 * Punt Sistemes - Pedro Ortega <portega@puntsistemes.es>
 

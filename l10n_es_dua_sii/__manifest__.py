@@ -1,5 +1,7 @@
 # Copyright 2017 Consultoría Informática Studio 73 S.L.
 # Copyright 2017 Comunitea Servicios Tecnológicos S.L.
+# Copyright 2019 Tecnativa - Alexandre Díaz
+# Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Suministro Inmediato de Información de importaciones con DUA",
