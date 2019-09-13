@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-02 02:44+0000\n"
+"POT-Creation-Date: 2019-09-13 12:03+0000\n"
 "PO-Revision-Date: 2017-07-02 02:44+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
@@ -19,51 +19,37 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_annual_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__annual_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__annual_percentage
 msgid "Annual depreciation percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
-msgid "Asset category"
-msgstr "Categoria d'actiu"
-
-#. module: l10n_es_account_asset
-#: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
-msgid "Asset/Revenue Recognition"
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset
+msgid "Asset"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_move_end_period
-msgid "At the end of the period"
+#: model:ir.model,name:l10n_es_account_asset.model_account_asset_profile
+msgid "Asset profile"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_method_percentage
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_category_method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__method_percentage
+#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__method_percentage
 msgid "Depreciation percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_move_end_period
-msgid ""
-"Move the depreciation entry at the end of the period. If the period are 12 "
-"months, it is put on 31st of December, and in the end of the month in other "
-"case."
+#: code:addons/l10n_es_account_asset/models/account_asset_profile.py:21
+#, python-format
+msgid "Fixed percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
-msgid "Only needed if not the same than purchase date"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
-msgid "Start Depreciation Date"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: sql_constraint:account.asset.asset:0
-#: sql_constraint:account.asset.category:0
+#: sql_constraint:account.asset:0 sql_constraint:account.asset.profile:0
 msgid "Wrong percentage!"
 msgstr ""
+
+#~ msgid "Asset category"
+#~ msgstr "Categoria d'actiu"
