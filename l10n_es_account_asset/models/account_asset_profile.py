@@ -1,7 +1,7 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import float_compare
 
 
@@ -18,7 +18,7 @@ class AccountAssetProfile(models.Model):
     @api.model
     def _selection_method_time(self):
         res = super()._selection_method_time()
-        res.append(('percentage', 'Fixed percentage'))
+        res.append(('percentage', _('Fixed percentage')))
         return res
 
     annual_percentage = fields.Float(
