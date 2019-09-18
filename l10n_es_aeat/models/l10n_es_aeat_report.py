@@ -14,6 +14,7 @@ from .spanish_states_mapping import SPANISH_STATES as ss
 
 class L10nEsAeatReport(models.AbstractModel):
     _name = "l10n.es.aeat.report"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "AEAT report base module"
     _rec_name = 'name'
     _aeat_number = False
@@ -127,7 +128,9 @@ class L10nEsAeatReport(models.AbstractModel):
             ('done', 'Done'),
             ('posted', 'Posted'),
             ('cancelled', 'Cancelled'),
-        ], string='State', default='draft', readonly=True)
+        ], string='State', default='draft', readonly=True,
+        track_visibility='onchange',
+    )
     name = fields.Char(string="Report identifier", size=13, oldname='sequence')
     model_id = fields.Many2one(
         comodel_name="ir.model", string="Model",
