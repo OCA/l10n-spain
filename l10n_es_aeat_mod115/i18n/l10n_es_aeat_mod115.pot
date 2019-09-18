@@ -39,6 +39,21 @@ msgid "Account entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__allow_posting
 msgid "Allow Posting"
 msgstr ""
@@ -51,6 +66,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Amounts retained"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_attachment_count
+msgid "Attachment Count"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -155,6 +175,21 @@ msgid "Fee to compensate for prior results with same subject, fiscal year and pe
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_name
 msgid "Full Name"
 msgstr ""
@@ -162,6 +197,26 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__id
 msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_is_follower
+msgid "Is Follower"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -200,6 +255,21 @@ msgid "Legal Representative VAT number."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__model_id
 msgid "Model"
 msgstr ""
@@ -215,13 +285,58 @@ msgid "Must have name and surname."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: selection:l10n.es.aeat.mod115.report,type:0
 msgid "Normal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error_counter
+msgid "Number of error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__casilla_01
 msgid "Number of recipients"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,activity_state:0
+msgid "Overdue"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -237,6 +352,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__contact_phone
 msgid "Phone"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,activity_state:0
+msgid "Planned"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -257,6 +377,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__name
 msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_user_id
+msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -310,6 +435,14 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__type
 msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -369,13 +502,38 @@ msgid "To return"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: selection:l10n.es.aeat.mod115.report,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Totals"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_vat
 msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__website_message_ids
+msgid "Website communication history"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
