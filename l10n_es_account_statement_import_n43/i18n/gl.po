@@ -32,6 +32,7 @@ msgid ""
 msgstr "O importe do haber non cadra co definido no último rexistro da conta."
 
 #. module: l10n_es_account_bank_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_bank_statement_import_journal_creation__n43_date_type
 #: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_journal__n43_date_type
 msgid "Date type for N43 Import"
 msgstr "Tipo de data para a importación N43"
@@ -104,6 +105,15 @@ msgstr "Data de operación"
 #, python-format
 msgid "Record type %s is not valid."
 msgstr "O tipo de rexistro %s non é válido."
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:324
+#, fuzzy, python-format
+#| msgid "Number of records doesn't match with the defined in the last record."
+msgid ""
+"The bank account number of the file does not match with the one in the "
+"journal."
+msgstr "O número de rexistros non cadra co definido no último rexistro."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: selection:account.journal,n43_date_type:0
