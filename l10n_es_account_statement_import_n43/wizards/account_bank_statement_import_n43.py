@@ -326,7 +326,9 @@ class AccountBankStatementImport(models.TransientModel):
                     "the one in the journal."
                 ))
         transactions = []
+        date = False
         for group in n43:
+            date = group['fecha_ini'].date()
             for line in group['lines']:
                 conceptos = []
                 for concept_line in line['conceptos']:
@@ -353,6 +355,8 @@ class AccountBankStatementImport(models.TransientModel):
             'balance_start': n43 and n43[0]['saldo_ini'] or 0.0,
             'balance_end_real': n43 and n43[-1]['saldo_fin'] or 0.0,
         }
+        if date:
+            vals_bank_statement['date'] = date
         return None, None, [vals_bank_statement]
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):

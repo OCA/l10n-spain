@@ -29,6 +29,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_bank_statement_import_journal_creation__n43_date_type
 #: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_journal__n43_date_type
 msgid "Date type for N43 Import"
 msgstr ""
@@ -94,6 +95,14 @@ msgstr ""
 #: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:192
 #, python-format
 msgid "Record type %s is not valid."
+msgstr ""
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:324
+#, python-format
+msgid ""
+"The bank account number of the file does not match with the one in the "
+"journal."
 msgstr ""
 
 #. module: l10n_es_account_bank_statement_import_n43
