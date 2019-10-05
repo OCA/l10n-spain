@@ -2,15 +2,11 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
     'use strict';
 
     var core = require('web.core');
-    var Widget = require('web.Widget');
-    var ControlPanelMixin = require('web.ControlPanelMixin');
-    var session = require('web.session');
+    var AbstractAction = require('web.AbstractAction');
     var ReportWidget = require('l10n_es_aeat.aeat_report_widget');
-    var framework = require('web.framework');
-    var crash_manager = require('web.crash_manager');
-    var QWeb = core.qweb;
 
-    var report_client_action = Widget.extend(ControlPanelMixin, {
+    var report_client_action = AbstractAction.extend({
+        hasControlPanel: true,
         // Stores all the parameters of the action.
         init: function (parent, action) {
             this.actionManager = parent;
@@ -55,20 +51,18 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
                 model: this.given_context.model,
                 method: 'get_html',
                 context: this.given_context,
-            })
-                .then(function (result) {
-                    self.html = result.html;
-                    defs.push(self.update_cp());
-                    return $.when.apply($, defs);
-                });
+            }).then(function (result) {
+                self.html = result.html;
+                defs.push(self.update_cp());
+                return Promise.all(defs);
+            });
         },
         // Updates the control panel and render the elements that have yet to be rendered
         update_cp: function () {
             var status = {
-                breadcrumbs: this.actionManager.get_breadcrumbs(),
                 cp_content: { $buttons: this.$buttons },
             };
-            return this.update_control_panel(status);
+            return this.updateControlPanel(status);
         },
         do_show: function () {
             this._super();
