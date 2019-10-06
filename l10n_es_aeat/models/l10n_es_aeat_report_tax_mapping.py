@@ -53,8 +53,12 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
 
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
+        xmlids = self.env['ir.model.data'].search([
+            ('model', '=', 'account.tax.template'),
+            ('res_id', 'in', map_line.mapped('tax_ids').ids)
+        ]).mapped('name')
         move_lines = self._get_tax_lines(
-            map_line.mapped('tax_ids.description'),
+            xmlids,
             self.date_start, self.date_end, map_line,
         )
         if map_line.sum_type == 'credit':
@@ -77,14 +81,19 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _get_partner_domain(self):
         return []
 
-    def _get_move_line_domain(self, codes, date_start, date_end, map_line):
+    def _get_move_line_domain(self, xmlids, date_start, date_end, map_line):
         self.ensure_one()
         tax_model = self.env['account.tax']
-        taxes = tax_model.search(
-            [('description', 'in', codes),
-             ('company_id', 'child_of', self.company_id.id)])
+        company_id = self.company_id.id
+        company_xmlids = ['{}_{}'.format(company_id, x) for x in xmlids]
+        taxes_ids = self.env['ir.model.data'].search([
+            ('model', '=', 'account.tax'),
+            ('module', '=', 'l10n_es'),
+            ('name', 'in', company_xmlids)
+        ]).mapped('res_id')
+        taxes = tax_model.browse(taxes_ids)
         move_line_domain = [
-            ('company_id', 'child_of', self.company_id.id),
+            ('company_id', 'child_of', company_id),
             ('date', '>=', date_start),
             ('date', '<=', date_end)
         ]
@@ -118,17 +127,17 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
-    def _get_tax_lines(self, codes, date_start, date_end, map_line):
+    def _get_tax_lines(self, xmlids, date_start, date_end, map_line):
         """Get the move lines for the codes and periods associated
 
-        :param codes: List of strings for the tax codes
+        :param xmlids: List of strings for the tax XML-ID
         :param date_start: Start date of the period
         :param date_stop: Stop date of the period
         :param map_line: Mapping line record
         :return: Move lines recordset that matches the criteria.
         """
         domain = self._get_move_line_domain(
-            codes, date_start, date_end, map_line,
+            xmlids, date_start, date_end, map_line,
         )
         return self.env['account.move.line'].search(domain)
 
