@@ -85,7 +85,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # Adquisiciones intracomunitarias de bienes - Base 4%
         ('21', 300.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 4%
-        ('22', 12.0),
+        ('22', 13.0),
         # Adquisiciones intracomunitarias de bienes - Base 10%
         ('23', 600.0),
         # Adquisiciones intracomunitarias de bienes - Cuota 10%
@@ -138,7 +138,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # IVA deducible en adquisiciones intracom. bienes corrientes - Base 4%
         ('214', 300.0),
         # IVA deducible en adquisiciones intracomu. bienes corrientes -Cuota 4%
-        ('215', 12.0),
+        ('215', 13.0),
         # Adquisiciones interiores exentas
         ('230', 1200),
         # Importaciones exentas
