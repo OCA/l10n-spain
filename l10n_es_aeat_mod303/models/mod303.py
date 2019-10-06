@@ -206,7 +206,6 @@ class L10nEsAeatMod303Report(models.Model):
              u"[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
         store=True)
 
-    @api.multi
     @api.depends('date_start', 'cuota_compensar')
     def _compute_exception_msg(self):
         super(L10nEsAeatMod303Report, self)._compute_exception_msg()
@@ -235,7 +234,6 @@ class L10nEsAeatMod303Report(models.Model):
                     "field '[67] Fees to compensate' in this declaration."
                 )
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
     def _compute_total_devengado(self):
         casillas_devengado = (3, 6, 9, 11, 13, 15, 18, 21, 24, 26)
@@ -244,7 +242,6 @@ class L10nEsAeatMod303Report(models.Model):
                 lambda x: x.field_number in casillas_devengado)
             report.total_devengado = sum(tax_lines.mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
     def _compute_total_deducir(self):
         casillas_deducir = (29, 31, 33, 35, 37, 39, 41, 42, 43, 44)
@@ -253,20 +250,17 @@ class L10nEsAeatMod303Report(models.Model):
                 lambda x: x.field_number in casillas_deducir)
             report.total_deducir = sum(tax_lines.mapped('amount'))
 
-    @api.multi
     @api.depends('total_devengado', 'total_deducir')
     def _compute_casilla_46(self):
         for report in self:
             report.casilla_46 = report.total_devengado - report.total_deducir
 
-    @api.multi
     @api.depends('porcentaje_atribuible_estado', 'casilla_46')
     def _compute_atribuible_estado(self):
         for report in self:
             report.atribuible_estado = (
                 report.casilla_46 * report.porcentaje_atribuible_estado / 100.)
 
-    @api.multi
     @api.depends('atribuible_estado', 'cuota_compensar',
                  'regularizacion_anual', 'casilla_77')
     def _compute_casilla_69(self):
@@ -275,7 +269,6 @@ class L10nEsAeatMod303Report(models.Model):
                 report.atribuible_estado + report.casilla_77 -
                 report.cuota_compensar + report.regularizacion_anual)
 
-    @api.multi
     @api.depends('casilla_69', 'previous_result')
     def _compute_resultado_liquidacion(self):
         for report in self:
@@ -295,12 +288,10 @@ class L10nEsAeatMod303Report(models.Model):
                 )).mapped('amount')
             )
 
-    @api.multi
     def _compute_allow_posting(self):
         for report in self:
             report.allow_posting = True
 
-    @api.multi
     @api.depends(
         'resultado_liquidacion',
         'period_type',
@@ -331,7 +322,6 @@ class L10nEsAeatMod303Report(models.Model):
         if self.type != 'C':
             self.previous_result = 0
 
-    @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
         for mod303 in self:
@@ -356,7 +346,6 @@ class L10nEsAeatMod303Report(models.Model):
                 mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
         return res
 
-    @api.multi
     def button_confirm(self):
         """Check records"""
         msg = ""
@@ -367,7 +356,6 @@ class L10nEsAeatMod303Report(models.Model):
             raise exceptions.Warning(msg)
         return super(L10nEsAeatMod303Report, self).button_confirm()
 
-    @api.multi
     @api.constrains('cuota_compensar')
     def check_qty(self):
         if self.filtered(lambda x: x.cuota_compensar < 0.0):
