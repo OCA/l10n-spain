@@ -27,4 +27,5 @@ class AccountTax(models.Model):
                 if any([tax.name == tmpl.name or tax.description == tmpl.name
                         for tmpl in line.tax_tmpl_ids]):
                     tax.l10n_es_aeat_349_operation_key = line.operation_key
-                    break
+                else:
+                    tax.l10n_es_aeat_349_operation_key = False

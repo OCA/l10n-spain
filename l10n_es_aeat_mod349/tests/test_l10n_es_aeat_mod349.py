@@ -14,11 +14,9 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
     taxes_sale = {
-        # tax code: (base, tax_amount)
         'S_IVA0_IC': (2400, 0),
     }
     taxes_purchase = {
-        # tax code: (base, tax_amount)
         'P_IVA21_IC_BC': (300, 0),
     }
 
@@ -83,11 +81,11 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertEqual(e_record.total_operation_amount, 2400)
         # Now we delete detailed records to see if totals are recomputed
         model349.partner_record_detail_ids.filtered(
-            lambda x: x.invoice_id == p1
+            lambda x: x.move_id == p1
         ).unlink()
         self.assertEqual(a_record.total_operation_amount, 0)
         model349.partner_record_detail_ids.filtered(
-            lambda x: x.invoice_id == s1
+            lambda x: x.move_id == s1
         ).unlink()
         self.assertEqual(e_record.total_operation_amount, 0)
         # Create a complementary presentation for 1T 2017. We expect the

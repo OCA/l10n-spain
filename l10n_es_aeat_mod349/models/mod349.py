@@ -16,12 +16,19 @@ from odoo.tools import float_is_zero
 
 
 def _format_partner_vat(partner_vat=None, country=None):
-    """Formats VAT to match XXVATNUMBER (where XX is country code)."""
+    """Formats VAT to match XXVATNUMBER (where XX is country code).
+
+    An exception is made with Greece, that has a different prefix than its
+    country code.
+    """
     if country.code:
-        country_pattern = "%s|%s.*" % (country.code, country.code.lower())
+        code = country.code
+        if code == 'GR':
+            code = 'EL'
+        country_pattern = "%s|%s.*" % (code, code.lower())
         vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
         if partner_vat and not vat_regex.match(partner_vat):
-            partner_vat = country.code + partner_vat
+            partner_vat = code + partner_vat
     return partner_vat
 
 
@@ -77,7 +84,6 @@ class Mod349(models.Model):
     )
     number = fields.Char(default='349')
 
-    @api.multi
     @api.depends('partner_record_ids',
                  'partner_record_ids.total_operation_amount')
     def _compute_report_regular_totals(self):
@@ -87,7 +93,6 @@ class Mod349(models.Model):
                 report.mapped('partner_record_ids.total_operation_amount')
             )
 
-    @api.multi
     @api.depends('partner_refund_ids',
                  'partner_refund_ids.total_operation_amount')
     def _compute_report_refund_totals(self):
@@ -99,15 +104,15 @@ class Mod349(models.Model):
 
     def _create_349_details(self, move_lines):
         for move_line in move_lines:
-            if move_line.invoice_id.type in ('in_refund', 'out_refund'):
+            if move_line.move_id.type in ('in_refund', 'out_refund'):
                 # Check for refunds if the origin invoice period is different
                 # from the declaration
-                origin_invoice = move_line.invoice_id.refund_invoice_id
-                if origin_invoice:
-                    if (origin_invoice.date < self.date_start or
-                            origin_invoice.date > self.date_end):
-                        self._create_349_refund_detail(move_line)
-                        continue
+                for origin_invoice in move_line.move_id.reversal_move_id:
+                    if origin_invoice:
+                        if (origin_invoice.invoice_date < self.date_start or
+                                origin_invoice.invoice_date > self.date_end):
+                            self._create_349_refund_detail(move_line)
+                            continue
             self._create_349_record_detail(move_line)
 
     def _create_349_record_detail(self, move_line):
@@ -180,28 +185,32 @@ class Mod349(models.Model):
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
             op_key = move_line.l10n_es_aeat_349_operation_key
-            origin_invoice = move_line.invoice_id.refund_invoice_id
+            origin_invoice = move_line.move_id.reversal_move_id
             if not origin_invoice:
                 # TODO: Instead continuing, generate an empty record and a msg
                 continue
             # Fetch the latest presentation made for this move
-            original_detail = detail_obj.search([
-                ('move_line_id.invoice_id', '=', origin_invoice.id),
+            original_details = detail_obj.search([
+                ('move_line_id.move_id', 'in', origin_invoice.ids),
                 ('partner_record_id.operation_key', '=', op_key),
                 ('id', 'not in', visited_details.ids)
-            ], limit=1, order='report_id desc')
-            if original_detail:
-                # There's a previous 349 declaration report
-                origin_amount = original_detail.amount_untaxed
-                period_type = original_detail.report_id.period_type
-                year = original_detail.report_id.year
-                visited_details |= original_detail
+            ], order='report_id desc')
+            # we add all of them to visited, as we don't want to repeat
+            visited_details |= original_details
+            if original_details:
+                # There's at least one previous 349 declaration report
+                report = original_details.mapped('report_id')[:1]
+                original_details = original_details.filtered(
+                    lambda d: d.report_id == report)
+                origin_amount = sum(original_details.mapped('amount_untaxed'))
+                period_type = report.period_type
+                year = str(report.year)
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
                     ('tax_ids', 'in', taxes.ids),
                     ('l10n_es_aeat_349_operation_key', '=', op_key),
-                    ('invoice_id', '=', origin_invoice.id),
+                    ('move_id', 'in', origin_invoice.ids),
                 ])
                 origin_amount = abs(sum(
                     (original_amls - visited_move_lines).mapped('balance')
@@ -213,14 +222,14 @@ class Mod349(models.Model):
                 # * date of the move line
                 if original_amls:
                     original_move = original_amls[:1]
-                    year = original_move.date[:4]
-                    month = original_move.date[5:7]
+                    year = str(original_move.date.year)
+                    month = str(original_move.date.month)
                 else:
                     continue  # We can't find information to attach to
                 if self.period_type == '0A':
                     period_type = '0A'
                 elif self.period_type in ('1T', '2T', '3T', '4T'):
-                    period_type = '%sT' % int(month) % 4
+                    period_type = '%sT' % (int(month) % 4)
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)
@@ -272,7 +281,6 @@ class Mod349(models.Model):
              ('company_id', 'child_of', self.company_id.id)])
         return taxes
 
-    @api.multi
     def calculate(self):
         """Computes the records in report."""
         self.ensure_one()
@@ -307,7 +315,6 @@ class Mod349(models.Model):
         self.recompute()
         return True
 
-    @api.multi
     def _check_report_lines(self):
         """Checks if all the fields of all the report lines
         (partner records and partner refund) are filled
@@ -324,7 +331,6 @@ class Mod349(models.Model):
                         _("All partner refunds fields (country, VAT number) "
                           "must be filled."))
 
-    @api.multi
     def _check_names(self):
         """Checks that names are correct (not formed by only one string)"""
         for item in self:
@@ -334,7 +340,6 @@ class Mod349(models.Model):
                 raise exceptions.Warning(
                     _('Contact name (Full name) must have name and surname'))
 
-    @api.multi
     def button_confirm(self):
         """Checks if all the fields of the report are correctly filled"""
         self._check_names()
@@ -356,7 +361,6 @@ class Mod349PartnerRecord(models.Model):
             allfields=['l10n_es_aeat_349_operation_key'],
         )['l10n_es_aeat_349_operation_key']['selection']
 
-    @api.multi
     @api.depends('partner_vat', 'country_id', 'total_operation_amount')
     def _compute_partner_record_ok(self):
         """Checks if all line fields are filled."""
@@ -400,7 +404,6 @@ class Mod349PartnerRecord(models.Model):
                 record.mapped('record_detail_ids.amount_untaxed')
             )
 
-    @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
         """Formats VAT to match XXVATNUMBER (where XX is country code)"""
         if country_id:
@@ -431,9 +434,9 @@ class Mod349PartnerRecordDetail(models.Model):
     move_line_id = fields.Many2one(
         comodel_name='account.move.line', string='Journal Item',
         required=True)
-    invoice_id = fields.Many2one(
-        comodel_name='account.invoice', string='Invoice',
-        related='move_line_id.invoice_id',
+    move_id = fields.Many2one(
+        comodel_name='account.move', string='Invoice',
+        related='move_line_id.move_id',
         readonly=True,
     )
     partner_id = fields.Many2one(
@@ -443,7 +446,7 @@ class Mod349PartnerRecordDetail(models.Model):
     )
     amount_untaxed = fields.Float(string='Amount untaxed')
     date = fields.Date(
-        related='move_line_id.invoice_id.date_invoice',
+        related='move_line_id.move_id.invoice_date',
         string="Date",
         readonly=True,
     )
@@ -498,7 +501,6 @@ class Mod349PartnerRefund(models.Model):
         inverse_name='refund_id', string='Partner refund detail IDS',
     )
 
-    @api.multi
     @api.depends('partner_vat', 'country_id', 'total_operation_amount',
                  'total_origin_amount')
     def _compute_partner_refund_ok(self):
@@ -520,7 +522,6 @@ class Mod349PartnerRefund(models.Model):
                 record.total_origin_amount - rectified_amount
             )
 
-    @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
         """Formats VAT to match XXVATNUMBER (where XX is country code)"""
         if country_id:
@@ -552,9 +553,9 @@ class Mod349PartnerRefundDetail(models.Model):
     refund_line_id = fields.Many2one(
         comodel_name='account.move.line', string='Journal Item',
         required=True)
-    invoice_id = fields.Many2one(
-        comodel_name='account.invoice', string='Invoice',
-        related='refund_line_id.invoice_id',
+    move_id = fields.Many2one(
+        comodel_name='account.move', string='Invoice',
+        related='refund_line_id.move_id',
         readonly=True,
     )
     amount_untaxed = fields.Float(string='Amount untaxed')

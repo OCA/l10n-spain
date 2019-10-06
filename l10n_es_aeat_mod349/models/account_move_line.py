@@ -1,9 +1,10 @@
 # Copyright 2017 Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 Eficent Business & IT Consult. Services <contact@eficent.com>
 # Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2019 David Gómez <david.gomez@aselcis.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class AccountMoveLine(models.Model):
@@ -22,3 +23,12 @@ class AccountMoveLine(models.Model):
         ],
         string='AEAT 349 Operation key',
     )
+
+    @api.depends('tax_line_id', 'move_id.eu_triangular_deal')
+    def _compute_l10n_es_aeat_349_operation_key(self):
+        for rec in self:
+            if rec.move_id.eu_triangular_deal:
+                rec.l10n_es_aeat_349_operation_key = 'T'
+            else:
+                rec.l10n_es_aeat_349_operation_key = \
+                    rec.tax_line_id.x.l10n_es_aeat_349_operation_key

@@ -5,13 +5,15 @@
 # Copyright 2017 Eficent Business & IT Consult. Services <contact@eficent.com>
 # Copyright 2014-2018 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Tecnativa - Carlos Dauden
+# Copyright 2019 Aselcis Consulting - David Gómez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "11.0.1.1.0",
+    "version": "13.0.1.0.0",
     "author": "Tecnativa, "
               "Eficent, "
+              "Aselcis Consulting, "
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": 'Localisation/Accounting',
@@ -25,7 +27,6 @@
         "data/aeat_export_mod349_partner_refund_data.xml",
         "data/aeat_export_mod349_partner_data.xml",
         "data/aeat_export_mod349_data.xml",
-        "views/account_invoice_view.xml",
         "views/account_move_view.xml",
         "views/account_tax_view.xml",
         "views/aeat_349_map_view.xml",
@@ -35,6 +36,10 @@
         "report/report_views.xml",
         "security/ir.model.access.csv",
         "security/mod_349_security.xml",
+    ],
+    'development_status': 'Mature',
+    'maintainers': [
+        'pedrobaeza',
     ],
     'post_init_hook': 'post_init_hook',
     'installable': True,
