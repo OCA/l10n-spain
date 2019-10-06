@@ -1,79 +1,61 @@
-# -*- coding: utf-8 -*-
-##############################################################################
-#
-#    Copyright (C) 2004-2011
-#        Pexego Sistemas Informáticos. (http://pexego.es) All Rights Reserved
-#        Luis Manuel Angueira Blanco (Pexego)
-#
-#    Copyright (C) 2013
-#        Ignacio Ibeas - Acysos S.L. (http://acysos.com) All Rights Reserved
-#        Migración a OpenERP 7.0
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-##############################################################################
+# Copyright 2004-2011 Luis Manuel Angueira Blanco (http://pexego.es)
+# Copyright 2013 Ignacio Ibeas (http://acysos.com)
+# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Angel Moya <odoo@tecnativa.com>
+# Copyright 2019 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 import base64
-import time
-from openerp.osv import orm, fields
-from openerp.tools.translate import _
-from openerp.tools import DEFAULT_SERVER_DATE_FORMAT
-from unidecode import unidecode
+import re
+from odoo.tools.safe_eval import safe_eval
+from odoo import _, api, fields, exceptions, models, tools
+
+EXPRESSION_PATTERN = re.compile(r'(\$\{.+?\})')
 
 
-class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
+class L10nEsAeatReportExportToBoe(models.TransientModel):
     _name = "l10n.es.aeat.report.export_to_boe"
     _description = "Export Report to BOE Format"
 
-    _columns = {
-        'name': fields.char('File name', readonly=True),
-        'data': fields.binary('File', readonly=True),
-        'state': fields.selection([('open', 'open'),   # open wizard
-                                   ('get', 'get')]),    # get file
-    }
+    name = fields.Char(string="File name", readonly=True)
+    data = fields.Binary(string="File", readonly=True)
+    state = fields.Selection(
+        selection=[
+            ('open', 'open'),
+            ('get', 'get'),
+        ], string="State", default='open')
 
-    _defaults = {
-        'state': 'open',
-    }
-
-    def _formatString(self, text, length, fill=' ', align='<'):
-        """
-        Formats the string into a fixed length ASCII (iso-8859-1) record.
+    def _format_string(self, text, length, fill=' ', align='<'):
+        """Format the string into a fixed length ASCII (iso-8859-1) record.
 
         Note:
-            'Todos los campos alfanuméricos y alfabéticos se presentarán 
+            'Todos los campos alfanuméricos y alfabéticos se presentarán
             alineados a la izquierda y rellenos de blancos por la derecha,
             en mayúsculas sin caracteres especiales, y sin vocales acentuadas.
             Para los caracteres específicos del idioma se utilizará la
             codificación ISO-8859-1. De esta forma la letra “Ñ” tendrá el
-            valor ASCII 209 (Hex. D1) y la “Ç”(cedilla mayúscula) el valor
+            valor ASCII 209 (Hex. D1) y la “Ç” (cedilla mayúscula) el valor
             ASCII 199 (Hex. C7).'
         """
-
         if not text:
             return fill * length
         # Replace accents and convert to upper
-        text = unidecode(unicode(text))
+        from unidecode import unidecode
         text = text.upper()
+        text = ''.join([unidecode(x) if x not in ('Ñ', 'Ç') else x
+                        for x in text])
+        text = re.sub(
+            r"[^A-Z0-9\s\.,-_&'´\\:;/\(\)ÑÇ]", '', text, re.UNICODE | re.X)
         ascii_string = text.encode('iso-8859-1')
         # Cut the string if it is too long
         if len(ascii_string) > length:
             ascii_string = ascii_string[:length]
         # Format the string
+        ascii_fill = fill.encode('iso-8859-1')
         if align == '<':
-            ascii_string = ascii_string.ljust(length, fill)
+            ascii_string = ascii_string.ljust(length, ascii_fill)
         elif align == '>':
-            ascii_string = ascii_string.rjust(length, fill)
+            ascii_string = ascii_string.rjust(length, ascii_fill)
         else:
             assert False, _('Wrong aling option. It should be < or >')
         # Sanity-check
@@ -82,10 +64,21 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         # Return string
         return ascii_string
 
-    def _formatNumber(self, number, int_length, dec_length=0,
-                      include_sign=False):
+    def _format_alphabetic_string(self, text, length, fill=' ', align='<'):
+        u"""Format the string into a fixed length ASCII (iso-8859-1) record
+            without numbers.
         """
-        Formats the number into a fixed length ASCII (iso-8859-1) record.
+        if not text:
+            return fill * length
+        # Replace numbers
+        name = re.sub(r"[\d-]", '', text, re.UNICODE | re.X)
+        return self._format_string(name, length, fill=fill, align=align)
+
+    def _format_number(self, number, int_length, dec_length=0,
+                       include_sign=False, positive_sign=' ',
+                       negative_sign='N'):
+        """Format the number into a fixed length ASCII (iso-8859-1) record.
+
         Note:
             'Todos los campos numéricos se presentarán alineados a la derecha
             y rellenos a ceros por la izquierda sin signos y sin empaquetar.'
@@ -97,101 +90,146 @@ class l10n_es_aeat_report_export_to_boe(orm.TransientModel):
         #
         if number == '':
             number = 0.0
-
         number = float(number)
-        sign = number >= 0 and ' ' or 'N'
+        sign = number >= 0 and positive_sign or negative_sign
         number = abs(number)
         int_part = int(number)
-
-        ##
-        ## Format the string
+        # Format the string
         ascii_string = ''
         if include_sign:
             ascii_string += sign
-            
         if dec_length > 0:
-            ascii_string += '%0*.*f' % (int_length+ \
-                                        dec_length+1,dec_length, number)
-            ascii_string = ascii_string.replace('.','')
+            ascii_string += '%0*.*f' % (int_length + dec_length + 1,
+                                        dec_length, number)
+            ascii_string = ascii_string.replace('.', '')
         elif int_length > 0:
             ascii_string += '%.*d' % (int_length, int_part)
-            
         # Sanity-check
         assert len(ascii_string) == (include_sign and 1 or 0) + int_length + \
             dec_length, _("The formated string must match the given length")
-        # Return the string
-        return ascii_string
+        # Return the string assuring that is not unicode
+        return str(ascii_string)
 
-    def _formatBoolean(self, value, yes='X', no=' '):
+    def _format_boolean(self, value, yes='X', no=' '):
+        """Format a boolean value into a fixed length ASCII (iso-8859-1) record.
         """
-        Formats a boolean value into a fixed length ASCII (iso-8859-1) record.
-        """
-        return value and yes or no
+        res = value and yes or no
+        # Return the string assuring that is not unicode
+        return str(res)
 
-    def _get_formatted_declaration_record(self, cr, uid, report, context=None):
-        return ''
-
-    def _get_formatted_main_record(self, cr, uid, report, context=None):
-        return ''
-
-    def _get_formatted_other_records(self, cr, uid, report, context=None):
-        return ''
-
-    def _do_global_checks(self, report, contents, context=None):
+    def _do_global_checks(self, record, contents):
         return True
 
-    def action_get_file(self, cr, uid, ids, context=None):
-        """
-        Action that exports the data into a BOE formatted text file.
+    def action_get_file(self):
+        """Action that exports the data into a BOE formatted text file.
+
         @return: Action dictionary for showing exported file.
         """
-        if not context.get('active_id') or not context.get('active_model'):
+        active_id = self.env.context.get('active_id', False)
+        active_model = self.env.context.get('active_model', False)
+        if not active_id or not active_model:
             return False
-        report = self.pool[context['active_model']].browse(cr, uid,
-                                        context['active_id'], context=context)
-        contents = ''
-        ## Add header record
-        contents += self._get_formatted_declaration_record(cr, uid, report,
-                                                          context=context)
-        ## Add main record
-        contents += self._get_formatted_main_record(cr, uid, report, 
-                                                    context=context)
-        ## Adds other fields
-        contents += self._get_formatted_other_records(cr, uid, report, 
-                                                      context=context)
-        ## Generate the file and save as attachment
+        report = self.env[active_model].browse(active_id)
+        contents = b''
+        if report.export_config_id:
+            contents += self.action_get_file_from_config(report)
+        else:
+            raise exceptions.UserError(_('No export configuration selected.'))
+        # Generate the file and save as attachment
         file = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (report.number,
-                                time.strftime(_(DEFAULT_SERVER_DATE_FORMAT)))
+                                             fields.Date.today())
         # Delete old files
-        attachment_obj = self.pool['ir.attachment']
-        attachment_ids = attachment_obj.search(cr, uid,
-                    [('name', '=', file_name),
-                     ('res_model', '=', report._model._name)], context=context)
-        if attachment_ids:
-            attachment_obj.unlink(cr, uid, attachment_ids, context=context)
-        attach_id = attachment_obj.create(cr, uid, {
-            "name" : file_name,
-            "datas" : file,
-            "datas_fname" : file_name,
-            "res_model" : report._model._name,
-            "res_id" : report.id,
-        }, context=context)
-        self.write(cr, uid, ids,
-                   {'state': 'get', 'data': file, 'name': file_name},
-                   context=context)
+        attachment_obj = self.env['ir.attachment']
+        attachment_ids = attachment_obj.search(
+            [('name', '=', file_name),
+             ('res_model', '=', report._name)])
+        attachment_ids.unlink()
+        attachment_obj.create({"name": file_name,
+                               "datas": file,
+                               "datas_fname": file_name,
+                               "res_model": report._name,
+                               "res_id": report.id,
+                               })
+        self.write({'state': 'get', 'data': file, 'name': file_name})
         # Force view to be the parent one
-        data_obj = self.pool['ir.model.data']
-        result = data_obj._get_id(cr, uid, 'l10n_es_aeat',
-                                  'wizard_aeat_export')
-        view_id = data_obj.browse(cr, uid, result, context=context).res_id
+        data_obj = self.env.ref('l10n_es_aeat.wizard_aeat_export')
         # TODO: Permitir si se quiere heredar la vista padre
         return {
             'type': 'ir.actions.act_window',
             'res_model': self._name,
             'view_mode': 'form',
-            'view_type': 'form',
-            'view_id': [view_id],
-            'res_id': ids[0],
+            'view_id': [data_obj.id],
+            'res_id': self.id,
             'target': 'new',
         }
+
+    def action_get_file_from_config(self, report):
+        self.ensure_one()
+        return self._export_config(report, report.export_config_id)
+
+    def _export_config(self, obj, export_config):
+        self.ensure_one()
+        contents = b''
+        for line in export_config.config_line_ids:
+            contents += self._export_line_process(obj, line)
+        return contents
+
+    def _export_line_process(self, obj, line):
+        # usar esta variable para resolver las expresiones
+        obj_merge = obj
+
+        def merge_eval(exp):
+            return safe_eval(exp, {
+                'user': self.env.user,
+                'object': obj_merge,
+                # copy context to prevent side-effects of eval
+                'context': self.env.context.copy(),
+            })
+
+        def merge(match):
+            exp = str(match.group()[2:-1]).strip()
+            result = merge_eval(exp)
+            return result and tools.ustr(result) or ''
+
+        val = b''
+        if line.conditional_expression:
+            if not merge_eval(line.conditional_expression):
+                return val
+        if line.repeat_expression:
+            obj_list = merge_eval(line.repeat_expression)
+        else:
+            obj_list = [obj]
+        for obj_merge in obj_list:
+            if line.export_type == 'subconfig':
+                val += self._export_config(obj_merge, line.subconfig_id)
+            else:
+                if line.expression:
+                    field_val = EXPRESSION_PATTERN.sub(merge, line.expression)
+                else:
+                    field_val = line.fixed_value
+                record = self._export_simple_record(line, field_val)
+                if isinstance(record, str):
+                    record = record.encode('iso-8859-1')
+                val += record
+        return val
+
+    def _export_simple_record(self, line, val):
+        if line.export_type == 'string':
+            align = '>' if line.alignment == 'right' else '<'
+            return self._format_string(val or '', line.size, align=align)
+        elif line.export_type == 'boolean':
+            return self._format_boolean(val, line.bool_yes, line.bool_no)
+        elif line.export_type == 'alphabetic':
+            align = '>' if line.alignment == 'right' else '<'
+            return self._format_alphabetic_string(
+                val or '', line.size, align=align)
+        else:  # float or integer
+            decimal_size = (0 if line.export_type == 'integer' else
+                            line.decimal_size)
+            return self._format_number(
+                float(val or 0),
+                line.size - decimal_size - (line.apply_sign and 1 or 0),
+                decimal_size, line.apply_sign,
+                positive_sign=line.positive_sign,
+                negative_sign=line.negative_sign)
