@@ -154,7 +154,6 @@ class L10nEsAeatMod347Report(models.Model):
             'domain': "[('report_id','in'," + str(self.ids) + ")]",
             'name': _("Partner records"),
             'view_mode': 'tree,form',
-            'view_type': 'form',
             'res_model': 'l10n.es.aeat.mod347.partner_record',
             'type': 'ir.actions.act_window',
         }
@@ -574,7 +573,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         return {
             'name': _('Compose Email'),
             'type': 'ir.actions.act_window',
-            'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'mail.compose.message',
             'views': [(compose_form.id, 'form')],
