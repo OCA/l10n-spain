@@ -292,7 +292,6 @@ class L10nEsAeatMod390Report(models.Model):
         compute="_compute_casilla_108", store=True,
     )
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_33(self):
         for report in self:
@@ -312,7 +311,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_34(self):
         for report in self:
@@ -332,7 +330,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('casilla_34', 'tax_line_ids')
     def _compute_casilla_47(self):
         for report in self:
@@ -347,7 +344,6 @@ class L10nEsAeatMod390Report(models.Model):
                 ).mapped('amount'))
             )
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_38(self):
         for report in self:
@@ -357,7 +353,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_39(self):
         for report in self:
@@ -367,7 +362,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_48(self):
         for report in self:
@@ -377,7 +371,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_49(self):
         for report in self:
@@ -387,7 +380,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_50(self):
         for report in self:
@@ -395,7 +387,6 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda x: x.field_number in (196, 611, 613)
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_51(self):
         for report in self:
@@ -403,7 +394,6 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda x: x.field_number in (197, 612, 614)
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_52(self):
         for report in self:
@@ -413,7 +403,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_53(self):
         for report in self:
@@ -423,7 +412,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_54(self):
         for report in self:
@@ -431,7 +419,6 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda x: x.field_number in (208, 623, 625)
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_55(self):
         for report in self:
@@ -439,7 +426,6 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda x: x.field_number in (209, 624, 626)
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_56(self):
         for report in self:
@@ -449,7 +435,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_57(self):
         for report in self:
@@ -459,7 +444,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_58(self):
         for report in self:
@@ -467,7 +451,6 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda x: x.field_number in (220, 631, 633)
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_59(self):
         for report in self:
@@ -475,7 +458,6 @@ class L10nEsAeatMod390Report(models.Model):
                 lambda x: x.field_number in (221, 632, 634)
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_597(self):
         for report in self:
@@ -485,7 +467,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_598(self):
         for report in self:
@@ -495,7 +476,6 @@ class L10nEsAeatMod390Report(models.Model):
                 )
             ).mapped('amount'))
 
-    @api.multi
     @api.depends('casilla_49',
                  'casilla_51',
                  'casilla_53',
@@ -519,20 +499,17 @@ class L10nEsAeatMod390Report(models.Model):
                 ).mapped('amount'))
             )
 
-    @api.multi
     @api.depends('casilla_47', 'casilla_64')
     def _compute_casilla_65(self):
         for report in self:
             report.casilla_65 = report.casilla_47 - report.casilla_64
 
-    @api.multi
     @api.depends('casilla_65', 'casilla_85')
     def _compute_casilla_86(self):
         for report in self:
             # It takes 65 instead of 84 + 659 as the rest are 0
             report.casilla_86 = report.casilla_65 - report.casilla_85
 
-    @api.multi
     @api.depends('tax_line_ids')
     def _compute_casilla_108(self):
         for report in self:
@@ -551,7 +528,6 @@ class L10nEsAeatMod390Report(models.Model):
                 ).mapped('amount')
             )
 
-    @api.multi
     @api.constrains('type')
     def _check_type(self):
         if 'C' in self.mapped('type'):
