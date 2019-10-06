@@ -1,12 +1,14 @@
 # Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# 2019 David Gómez <david.gomez@aselcis.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     'name': 'AEAT modelo 123',
-    'version': '12.0.1.1.0',
+    'version': '13.0.1.1.0',
     'category': "Localisation/Accounting",
     'author': "Tecnativa, "
               "Spanish Localization Team, "
+              "Aselcis Consulting, "
               "Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/l10n-spain",
     'license': 'AGPL-3',

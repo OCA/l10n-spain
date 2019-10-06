@@ -1,4 +1,5 @@
 # 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# 2019 David Gómez <david.gomez@aselcis.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -66,7 +67,6 @@ class L10nEsAeatMod123Report(models.Model):
         for report in self:
             report.casilla_08 = report.casilla_06 + report.casilla_07
 
-    @api.multi
     def calculate(self):
         super(L10nEsAeatMod123Report, self).calculate()
         move_lines02 = self.tax_line_ids.filtered(
