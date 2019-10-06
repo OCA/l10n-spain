@@ -5,6 +5,7 @@
 # Copyright 2016 Jose Maria Alzaga (http://www.aselcis.com)
 # Copyright 2016 Ismael Calvo (http://factorlibre.com)
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2019 David Gómez Quilón (http://www.aselcis.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl
 
 from odoo import api, fields, models
@@ -146,7 +147,6 @@ class L10nEsAeatMod111Report(models.Model):
         string="College concerted", readonly=True,
         states={'draft': [('readonly', False)]}, default=False)
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.move_line_ids.partner_id')
     def _compute_casilla_01(self):
         casillas = (2, 3)
@@ -156,7 +156,6 @@ class L10nEsAeatMod111Report(models.Model):
             report.casilla_01 = len(
                 tax_lines.mapped('move_line_ids').mapped('partner_id'))
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.move_line_ids.partner_id')
     def _compute_casilla_04(self):
         casillas = (5, 6)
@@ -166,7 +165,6 @@ class L10nEsAeatMod111Report(models.Model):
             report.casilla_04 = len(
                 tax_lines.mapped('move_line_ids').mapped('partner_id'))
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.move_line_ids.partner_id')
     def _compute_casilla_07(self):
         casillas = (8, 9)
@@ -176,7 +174,6 @@ class L10nEsAeatMod111Report(models.Model):
             report.casilla_07 = len(
                 tax_lines.mapped('move_line_ids').mapped('partner_id'))
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount',
                  'casilla_12', 'casilla_15', 'casilla_18',
                  'casilla_21', 'casilla_24', 'casilla_27')
@@ -191,7 +188,6 @@ class L10nEsAeatMod111Report(models.Model):
                 report.casilla_21 + report.casilla_24 + report.casilla_27
             )
 
-    @api.multi
     @api.depends('casilla_28', 'casilla_29')
     def _compute_casilla_30(self):
         for report in self:
