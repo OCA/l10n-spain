@@ -53,10 +53,10 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
 
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
-        xmlids = self.env['ir.model.data'].search([
+        xmlids = self.env['ir.model.data'].search_read([
             ('model', '=', 'account.tax.template'),
-            ('res_id', 'in', map_line.mapped('tax_ids').ids)
-        ]).mapped('name')
+            ('res_id', 'in', map_line.tax_ids.ids)
+        ], ['name', 'module'])
         move_lines = self._get_tax_lines(
             xmlids,
             self.date_start, self.date_end, map_line,
@@ -85,11 +85,12 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         self.ensure_one()
         tax_model = self.env['account.tax']
         company_id = self.company_id.id
-        company_xmlids = ['{}_{}'.format(company_id, x) for x in xmlids]
+        xml_modules = [x['module'] for x in xmlids]
+        xml_names = ['{}_{}'.format(company_id, x['name']) for x in xmlids]
         taxes_ids = self.env['ir.model.data'].search([
             ('model', '=', 'account.tax'),
-            ('module', '=', 'l10n_es'),
-            ('name', 'in', company_xmlids)
+            ('module', 'in', xml_modules),
+            ('name', 'in', xml_names)
         ]).mapped('res_id')
         taxes = tax_model.browse(taxes_ids)
         move_line_domain = [
@@ -130,7 +131,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _get_tax_lines(self, xmlids, date_start, date_end, map_line):
         """Get the move lines for the codes and periods associated
 
-        :param xmlids: List of strings for the tax XML-ID
+        :param xmlids: List of dict for the tax XML-ID
         :param date_start: Start date of the period
         :param date_stop: Stop date of the period
         :param map_line: Mapping line record
