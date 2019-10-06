@@ -8,14 +8,12 @@ class TestL10nEsToponyms(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsToponyms, cls).setUpClass()
-        cls.wizard = cls.env['config.es.toponyms'].create({
-            'name': '',
-        })
+        cls.wizard = cls.env["config.es.toponyms"].create({"name": ""})
 
     def test_import(self):
         self.wizard.with_context(max_import=10).execute()
-        cities = self.env['res.city'].search([
-            ('country_id', '=', self.env.ref('base.es').id)
-        ])
+        cities = self.env["res.city"].search(
+            [("country_id", "=", self.env.ref("base.es").id)]
+        )
         self.assertTrue(cities)
-        self.assertTrue(cities.mapped('zip_ids'))
+        self.assertTrue(cities.mapped("zip_ids"))

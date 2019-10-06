@@ -24,7 +24,6 @@
         <field name="name">Spanish toponyms configuration</field>
         <field name="res_model">config.es.toponyms</field>
         <field name="view_id" ref="view_confirm_toponyms_es_form"/>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
