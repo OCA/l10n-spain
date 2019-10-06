@@ -93,6 +93,7 @@ Contributors
 
   * Pedro M. Baeza
   * Sergio Teruel
+* David Gómez
 
 Maintainers
 ~~~~~~~~~~~
