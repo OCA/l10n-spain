@@ -18,27 +18,27 @@ class L10nEsAeatMapTax(models.Model):
 
     @api.constrains('date_from', 'date_to')
     def _unique_date_range(self):
-        for map in self:
-            domain = [('id', '!=', map.id)]
-            if map.date_from and map.date_to:
+        for _map in self:
+            domain = [('id', '!=', _map.id)]
+            if _map.date_from and _map.date_to:
                 domain += ['|', '&',
-                           ('date_from', '<=', map.date_to),
-                           ('date_from', '>=', map.date_from),
+                           ('date_from', '<=', _map.date_to),
+                           ('date_from', '>=', _map.date_from),
                            '|', '&',
-                           ('date_to', '<=', map.date_to),
-                           ('date_to', '>=', map.date_from),
+                           ('date_to', '<=', _map.date_to),
+                           ('date_to', '>=', _map.date_from),
                            '|', '&',
                            ('date_from', '=', False),
-                           ('date_to', '>=', map.date_from),
+                           ('date_to', '>=', _map.date_from),
                            '|', '&',
                            ('date_to', '=', False),
-                           ('date_from', '<=', map.date_to),
+                           ('date_from', '<=', _map.date_to),
                            ]
-            elif map.date_from:
-                domain += [('date_to', '>=', map.date_from)]
-            elif map.date_to:
-                domain += [('date_from', '<=', map.date_to)]
-            date_lst = map.search(domain)
+            elif _map.date_from:
+                domain += [('date_to', '>=', _map.date_from)]
+            elif _map.date_to:
+                domain += [('date_from', '<=', _map.date_to)]
+            date_lst = _map.search(domain)
             if date_lst:
                 raise exceptions.Warning(
                     _("Error! The dates of the record overlap with an "

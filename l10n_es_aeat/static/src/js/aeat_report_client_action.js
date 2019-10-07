@@ -19,7 +19,7 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
             if (action.context.active_id) {
                 this.given_context.active_id = action.context.active_id;
             } else {
-                this.given_context.active_id = action.params.active_id
+                this.given_context.active_id = action.params.active_id;
             }
             this.given_context.model = action.context.active_model || false;
             this.given_context.ttype = action.context.ttype || false;
@@ -48,7 +48,7 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
             this.set_html();
             return this._super();
         },
-        // Fetches the html and is previous report.context 
+        // Fetches the html and is previous report.context
         // if any, else create it
         get_html: function () {
             var self = this;
@@ -63,11 +63,13 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
                 return Promise.all(defs);
             });
         },
-        // Updates the control panel and render the elements 
+        // Updates the control panel and render the elements
         // that have yet to be rendered
         update_cp: function () {
             var status = {
-                cp_content: { $buttons: this.$buttons },
+                cp_content: {
+                    $buttons: this.$buttons
+                },
             };
             return this.updateControlPanel(status);
         },
