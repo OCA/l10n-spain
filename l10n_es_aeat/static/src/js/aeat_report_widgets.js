@@ -21,7 +21,7 @@ odoo.define('l10n_es_aeat.aeat_report_widget', function (require) {
                 res_model: res_model,
                 res_id: res_id,
                 views: [[false, 'form']],
-                target: 'current'
+                target: 'current',
             });
         },
     });

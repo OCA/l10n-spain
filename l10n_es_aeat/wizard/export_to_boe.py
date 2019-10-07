@@ -8,7 +8,7 @@
 import base64
 import re
 from odoo.tools.safe_eval import safe_eval
-from odoo import _, api, fields, exceptions, models, tools
+from odoo import _, fields, exceptions, models, tools
 
 EXPRESSION_PATTERN = re.compile(r'(\$\{.+?\})')
 

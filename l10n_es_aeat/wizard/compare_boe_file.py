@@ -65,8 +65,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         if abs(offset - len(data)) > 2:
             raise exceptions.UserError(
                 _("The length of the file is different from the expected one, "
-                "or there are conditional parts in the export configuration "
-                "that can't be evaled statically.")
+                  "or there are conditional parts in the export configuration "
+                  "that can't be evaled statically.")
             )
         self.write({
             'line_ids': lines,

@@ -16,7 +16,11 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
             if (action.context.context) {
                 this.given_context = action.context.context;
             }
-            this.given_context.active_id = action.context.active_id || action.params.active_id;
+            if (action.context.active_id) {
+                this.given_context.active_id = action.context.active_id;
+            } else {
+                this.given_context.active_id = action.params.active_id
+            }
             this.given_context.model = action.context.active_model || false;
             this.given_context.ttype = action.context.ttype || false;
             this.given_context.template_name = action.params.template_name;
@@ -31,7 +35,8 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
             var self = this;
             var def = $.when();
             if (!this.report_widget) {
-                this.report_widget = new ReportWidget(this, this.given_context);
+                var context = this.given_context;
+                this.report_widget = new ReportWidget(this, context);
                 def = this.report_widget.appendTo(this.$el);
             }
             def.then(function () {
@@ -43,7 +48,8 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
             this.set_html();
             return this._super();
         },
-        // Fetches the html and is previous report.context if any, else create it
+        // Fetches the html and is previous report.context 
+        // if any, else create it
         get_html: function () {
             var self = this;
             var defs = [];
@@ -57,7 +63,8 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
                 return Promise.all(defs);
             });
         },
-        // Updates the control panel and render the elements that have yet to be rendered
+        // Updates the control panel and render the elements 
+        // that have yet to be rendered
         update_cp: function () {
             var status = {
                 cp_content: { $buttons: this.$buttons },
@@ -70,6 +77,7 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
         },
     });
 
-    core.action_registry.add("aeat_report_client_action", report_client_action);
+    core.action_registry.add("aeat_report_client_action",
+        report_client_action);
     return report_client_action;
 });
