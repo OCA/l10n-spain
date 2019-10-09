@@ -8,6 +8,8 @@
       <form string="Summary">
         <sheet>
           <group name="main">
+            <field name="book_type"/>
+            <field name="special_tax_group"/>
             <field name="base_amount"/>
             <field name="tax_amount" />
             <field name="total_amount" />
@@ -21,7 +23,9 @@
     <field name="name">view.l10n_es_vat_book_summary.tree</field>
     <field name="model">l10n.es.vat.book.summary</field>
     <field name="arch" type="xml">
-      <tree string="Summary">
+      <tree string="Summary" decoration-muted="special_tax_group">
+            <field name="book_type"/>
+            <field name="special_tax_group"/>
             <field name="base_amount"/>
             <field name="tax_amount" />
             <field name="total_amount" />
