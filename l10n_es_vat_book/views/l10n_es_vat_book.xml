@@ -21,10 +21,15 @@
                         type="object"
                         attrs="{'invisible':[('state', '=', 'draft')]}"/>
                 <button name="export_xlsx"
-                        string="Export to XLSX"
+                        string="Export draft"
                         type="object"
                         icon="fa-file-excel"
-                        attrs="{'invisible':[('state', '=', 'draft')]}"/>
+                        attrs="{'invisible':[('state', 'in', ('draft', 'done'))]}"/>
+                <button name="export_xlsx"
+                        string="Export BOE"
+                        type="object"
+                        icon="fa-file-excel"
+                        attrs="{'invisible':[('state', '!=', 'done')]}"/>
             </header>
             <field name="name" position="attributes">
                 <attribute name="readonly">False</attribute>
@@ -34,46 +39,33 @@
             </group>
             <xpath expr="//group[@name='group_declaration']" position="after">
               <notebook>
-                <page string="Issued Invoices" name="invoices_issued">
-                    <group string="Issued Invoices"
-                           name="issued_invoices">
-                        <field name="issued_line_ids" nolabel="1"/>
-                    </group>
-                    <group string="Issued Refund Invoices"
-                           name="issued_rectification_invoices">
-                        <field name="rectification_issued_line_ids"
-                               nolabel="1"/>
-                  </group>
-                    <group string="Tax summary"
-                           name="issued_tax_summary">
+                <page string="Summary" name="summary">
+                    <group string="Issued Tax Summary" name="issued_tax_summary">
                         <field name="issued_tax_summary_ids" nolabel="1"/>
                     </group>
-                    <group string="Summary"
-                           name="issued_summary">
-                        <field name="issued_summary_ids" nolabel="1"/>
+                    <group string="Received Tax Summary" name="received_tax_summary">
+                        <field name="received_tax_summary_ids" nolabel="1"/>
+                    </group>
+                    <group string="Total" name="total_summary">
+                        <field name="summary_ids" nolabel="1"/>
                     </group>
                 </page>
-
+                <page string="Issued Invoices" name="invoices_issued">
+                    <group string="Issued Invoices" name="issued_invoices">
+                        <field name="issued_line_ids" nolabel="1"/>
+                    </group>
+                    <group string="Issued Refund Invoices" name="issued_rectification_invoices">
+                        <field name="rectification_issued_line_ids" nolabel="1"/>
+                    </group>
+                </page>
                 <page string="Received Invoices"
                       name="received_invoices">
-                  <group string="Received Invoices"
-                         name="received_invoices">
-                    <field name="received_line_ids" nolabel="1"/>
-                  </group>
-                  <group string="Received Refund Invoices"
-                         name="received_rectification_invoices">
-                    <field name="rectification_received_line_ids"
-                           nolabel="1"/>
-                  </group>
-                   <group string="Tax summary"
-                          name="received_tax_summary">
-                    <field name="received_tax_summary_ids" nolabel="1"/>
-                  </group>
-                   <group string="Summary"
-                          name="received_summary">
-                    <field name="received_summary_ids" nolabel="1"/>
-                  </group>
-
+                    <group string="Received Invoices" name="received_invoices">
+                        <field name="received_line_ids" nolabel="1"/>
+                    </group>
+                    <group string="Received Refund Invoices" name="received_rectification_invoices">
+                        <field name="rectification_received_line_ids" nolabel="1"/>
+                    </group>
                 </page>
               </notebook>
             </xpath>
