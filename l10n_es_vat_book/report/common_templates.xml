@@ -200,7 +200,10 @@
         <td id="total_summary_vat">
             <strong>Total</strong>
         </td>
-        <td class="text-right" id="total_summary_base_amount"/>
+        <td class="text-right" id="total_summary_base_amount">
+            <span t-field="s.base_amount"
+                  t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+        </td>
         <td id="data_summary_tax_name"/>
         <td class="text-right" id="total_summary_tax_amount">
             <span t-field="s.tax_amount"
