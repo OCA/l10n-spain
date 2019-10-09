@@ -2,6 +2,7 @@
 #                Daniel Rodriguez Lijo <drl.9319@gmail.com>
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 #                <contact@eficent.com>
+# Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 from odoo import api, fields, models
@@ -10,6 +11,10 @@ from odoo import api, fields, models
 class L10nEsVatBookLine(models.Model):
     _name = 'l10n.es.vat.book.line'
     _order = 'entry_number asc, ref asc, invoice_date asc'
+
+    def _selection_special_tax_group(self):
+        return self.env['l10n.es.vat.book.line.tax'].fields_get(
+            allfields=['special_tax_group'])['special_tax_group']['selection']
 
     ref = fields.Char('Reference')
     entry_number = fields.Integer('Entry number')
@@ -46,11 +51,20 @@ class L10nEsVatBookLine(models.Model):
                                    inverse_name='vat_book_line_id',
                                    string='Tax Lines', copy=False)
 
-    exception = fields.Boolean(
-        string="Exception")
-
     exception_text = fields.Char(
         string="Exception text")
+
+    base_amount = fields.Float(
+        string='Base',
+    )
+    total_amount = fields.Float(
+        string='Total',
+    )
+    special_tax_group = fields.Selection(
+        selection=_selection_special_tax_group,
+        string='Special group',
+        help='Special tax group as R.Eq, IRPF, etc',
+    )
 
     @api.multi
     @api.depends('tax_id')
