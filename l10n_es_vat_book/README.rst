@@ -70,8 +70,11 @@ Configuration
 =============
 
 Los códigos de impuestos incluidos en el Libro de IVA pueden verse en:
-Contabilidad -> Configuración -> AEAT -> Mapeo de códigos de impuesto ->
-Declaración AEAT 340
+Contabilidad -> Configuración -> AEAT -> Mapeo AEAT libro de IVA
+
+Los clientes utilizados para ventas por caja deben tener marcado el campo
+"AEAT - Cliente anónimo" para que no se muestren advertencias por no tener NIF
+informado siguiendo lo especificado en el formato BOE.
 
 Usage
 =====
@@ -87,8 +90,7 @@ Known issues / Roadmap
 
 Funcionalidades del Libro Registro de IVA no incluídas por el momento:
 
-* Libro Registro de Bienes de Inversión
-* Libro Registro de Determinadas Operaciones Intracomunitarias
+* Criterio de caja
 
 Bug Tracker
 ===========
@@ -119,6 +121,7 @@ Contributors
 * `Tecnativa <https://www.tecnativa.com/>`_:
 
   * Pedro M. Baeza
+  * Carlos Dauden
 
 Maintainers
 ~~~~~~~~~~~
