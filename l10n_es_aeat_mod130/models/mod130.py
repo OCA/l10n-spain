@@ -14,7 +14,8 @@ class L10nEsAeatMod130Report(models.Model):
     _name = "l10n.es.aeat.mod130.report"
     _aeat_number = '130'
 
-    company_partner_id = fields.Many2one('res.partner', string='Partner',
+    company_partner_id = fields.Many2one('res.partner',
+                                         string='Company partner',
                                          relation='company_id.partner_id',
                                          store=True)
     currency_id = fields.Many2one('res.currency', string='Currency',
@@ -142,7 +143,7 @@ class L10nEsAeatMod130Report(models.Model):
         groups = aml_obj.read_group([
             ('account_id.code', '=like', '7%'),
         ] + extra_domain, ['balance'], [])
-        incomes = -groups[0]['balance'] or 0.0
+        incomes = groups[0]['balance'] and -groups[0]['balance'] or 0.0
         groups = aml_obj.read_group([
             ('account_id.code', '=like', '6%'),
         ] + extra_domain, ['balance'], [])
