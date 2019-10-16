@@ -192,6 +192,7 @@ Contributors
   * Antonio Espinosa
   * Pedro M. Baeza
   * Cristina Martín
+  * Carlos Dauden
 
 Maintainers
 ~~~~~~~~~~~

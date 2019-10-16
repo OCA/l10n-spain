@@ -6,6 +6,7 @@
 # Copyright 2016 Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
+# Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api, exceptions, _
@@ -287,7 +288,8 @@ class L10nEsAeatMod347Report(models.Model):
                 move_lines = move_line_obj.search(cash_group['__domain'])
                 partner_record = partner_record_obj.search([
                     ('partner_id', '=', partner.id),
-                    ('operation_key', '=', 'B')
+                    ('operation_key', '=', 'B'),
+                    ('report_id', '=', self.id),
                 ])
                 if partner_record:
                     partner_record.write({
