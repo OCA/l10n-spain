@@ -81,22 +81,6 @@
                 <strong  class="text-right">Amount:</strong>
                 <p class="text-right" t-field="o.cash_amount"/>
               </div>
-              <div class="col-xs-2">
-                <strong  class="text-right">Amount 1Q:</strong>
-                <p class="text-right" t-field="o.first_quarter_cash_amount"/>
-              </div>
-              <div class="col-xs-2">
-                <strong  class="text-right">Amount 2Q:</strong>
-                <p class="text-right" t-field="o.second_quarter_cash_amount"/>
-              </div>
-              <div class="col-xs-2">
-                <strong  class="text-right">Amount 3Q:</strong>
-                <p class="text-right" t-field="o.third_quarter_cash_amount"/>
-              </div>
-              <div class="col-xs-2">
-                <strong  class="text-right">Amount 4Q:</strong>
-                <p class="text-right" t-field="o.fourth_quarter_cash_amount"/>
-              </div>
             </div>
 
             <t t-if="o.cash_record_ids">
