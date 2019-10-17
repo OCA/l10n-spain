@@ -275,31 +275,20 @@ class VatNumberXlsx(ReportXlsx):
                     # Clave de operación
                     col += 1
                     # Total factura
-                    tax1 = lin.mapped("tax_line_ids.tax_id").filtered(
-                        lambda r: r.id not in taxes + taxes2
-                    ).ids
-                    tax1 = lin.mapped("tax_line_ids").filtered(
-                        lambda r: r.tax_id.id in tax1
-                    )
-                    tax2 = lin.mapped("tax_line_ids.tax_id").filtered(
-                        lambda r: r.id in taxes
-                    ).ids
-                    tax2 = lin.mapped("tax_line_ids").filtered(
-                        lambda r: r.tax_id.id in tax2
-                    )
-                    total = sum(x.total_amount for x in tax1)
-                    total += sum(x.tax_amount for x in tax2)
+                    subjected_base = sum(lines_all.mapped('base_amount'))
+                    cuota_rep = sum(x.tax_amount for x in lines_all)
+                    cuota_rec_eq = (tax_dest_id and tax_dest_id.tax_amount) or 0
+                    total_factura = base_imponible + cuota_rep + cuota_rec_eq
                     sheet.write(
                         row, col,
-                        "{0:.2f}".format(total).replace(
+                        "{0:.2f}".format(total_factura).replace(
                             ".", ",")[:13], cell_table_right
                     )
                     col += 1
                     # Base imponible
                     sheet.write(
                         row, col,
-                        "{0:.2f}".format(
-                            sum(x.base_amount for x in lines_all)).replace(
+                        "{0:.2f}".format(base_imponible).replace(
                             ".", ",")[:13],
                         cell_table_right,
                     )
@@ -320,8 +309,7 @@ class VatNumberXlsx(ReportXlsx):
                     # Cuota IVA repercutida
                     sheet.write(
                         row, col,
-                        "{0:.2f}".format(
-                            sum(x.tax_amount for x in lines_all)).replace(
+                        "{0:.2f}".format(cuota_rep).replace(
                             ".", ",")[:13], cell_table_right
                     )
                     col += 1
@@ -565,7 +553,7 @@ class VatNumberXlsx(ReportXlsx):
                             vat = partner.vat or ""
                             vat = vat[:20]
                         else:
-                            vat = partner.vat[2:]
+                            vat = (partner.vat and partner.vat[2:]) or ""
                         sheet.write(row, col, vat, cell_table_left)
                         col += 1
                         # Nombre expendidor
@@ -577,31 +565,25 @@ class VatNumberXlsx(ReportXlsx):
                         # Clave de Operación
                         col += 1
                         # Total factura
-                        tax1 = lin.mapped("tax_line_ids.tax_id").filtered(
-                            lambda r: r.id not in taxes + taxes2
-                        ).ids
-                        tax1 = lin.mapped("tax_line_ids").filtered(
-                            lambda r: r.tax_id.id in tax1
-                        )
-                        tax2 = lin.mapped("tax_line_ids.tax_id").filtered(
-                            lambda r: r.id in taxes
-                        ).ids
-                        tax2 = lin.mapped("tax_line_ids").filtered(
-                            lambda r: r.tax_id.id in tax2
-                        )
-                        total = sum(x.total_amount for x in tax1)
-                        total += sum(x.tax_amount for x in tax2)
+                        base_imponible = sum(x.base_amount for x in lines_all)
+                        cuota_iva_sop = sum(x.tax_amount for x in lines_all)
+                        # Cuota de recargo eq.
+                        cuota_req = 0
+                        if tax_dest_id:
+                            cuota_req = tax_dest_id.tax_amount
+                        # Cuota de recargo eq.
+                        total_factura = \
+                            base_imponible + cuota_iva_sop + cuota_req
                         sheet.write(
                             row, col,
-                            "{0:.2f}".format(total).replace(
+                            "{0:.2f}".format(total_factura).replace(
                                 ".", ",")[:13], cell_table_right
                         )
                         col += 1
                         # Base imponible
                         sheet.write(
                             row, col,
-                            "{0:.2f}".format(
-                                sum(x.base_amount for x in lines_all)).replace(
+                            "{0:.2f}".format(base_imponible).replace(
                                 ".", ",")[:13],
                             cell_table_right,
                         )
@@ -622,34 +604,33 @@ class VatNumberXlsx(ReportXlsx):
                         # Cuota IVA soportado
                         sheet.write(
                             row, col,
-                            "{0:.2f}".format(
-                                sum(x.tax_amount for x in lines_all)).replace(
+                            "{0:.2f}".format(cuota_iva_sop).replace(
                                 ".", ",")[:13], cell_table_right
                         )
                         col += 1
                         # Cuota Deducible
-                        cuota = self.env["l10n.es.vat.book.map"].search([(
+                        cuota_ded = self.env["l10n.es.vat.book.map"].search([(
                             "tax_ids.description",
                             "=",
                             line.tax_id.description),
                         ]).tax_id
                         cuota2 = self.env["account.tax"].search([
                             "|",
-                            ("name", "=", cuota.name),
-                            ("description", "=", cuota.description),
+                            ("name", "=", cuota_ded.name),
+                            ("description", "=", cuota_ded.description),
                             ("company_id", "=", self.env.user.company_id.id)
                         ])
                         if cuota2:
-                            cuota = lines_all.filtered(
+                            cuota_ded = lines_all.filtered(
                                 lambda r: r.tax_id == cuota2)
-                            cuota = sum(
+                            cuota_ded = sum(
                                 x.tax_amount for x in lines_all
-                            ) - cuota.tax_amount
+                            ) - cuota_ded.tax_amount
                         else:
-                            cuota = 0
+                            cuota_ded = 0
                         sheet.write(
                             row, col,
-                            "{0:.2f}".format(cuota).replace(".", ",")[
+                            "{0:.2f}".format(cuota_ded).replace(".", ",")[
                                 :13], cell_table_right
                         )
                         col += 1
