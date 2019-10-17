@@ -19,14 +19,12 @@
                  <button type="object"
                          name="cancel_now"
                          string="Cancel sending"
-                         class="oe_highlight_cancel"
                          icon="fa-times-circle"
                          attrs="{'invisible': [('state', 'not in', ['pending','enqueued'])]}"
                 />
                 <button type="object"
                         name="do_now"
                         string="Send now"
-                        class="oe_highlight"
                         icon="fa-fighter-jet"
                         attrs="{'invisible': ['|', ('state', '!=', 'pending'), ('eta', '=', False)]}"
                 />
