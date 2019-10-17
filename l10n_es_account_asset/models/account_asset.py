@@ -108,13 +108,17 @@ class AccountAssetAsset(models.Model):
                 line_dates.append(line_date)
         return line_dates
 
-    def _compute_depreciation_amount_per_fiscal_year(self, table, line_dates):
+    def _compute_depreciation_amount_per_fiscal_year(
+            self, table, line_dates, depreciation_start_date,
+            depreciation_stop_date
+    ):
         """"Simulate the computation like year one."""
         is_changed = self.method_time == 'percentage'
         if is_changed:
             self.method_time = 'year'
         table = super()._compute_depreciation_amount_per_fiscal_year(
-            table, line_dates,
+            table, line_dates, depreciation_start_date,
+            depreciation_stop_date,
         )
         if is_changed:
             self.method_time = 'percentage'
@@ -126,8 +130,17 @@ class AccountAssetAsset(models.Model):
         is_changed = self.method_time == 'percentage'
         if is_changed:
             self.method_time = 'year'
-        super()._compute_depreciation_table_lines(
+        super(
+            AccountAssetAsset, self.with_context(
+                use_percentage=True))._compute_depreciation_table_lines(
             table, depreciation_start_date, depreciation_stop_date, line_dates,
         )
         if is_changed:
             self.method_time = 'percentage'
+
+    def _get_amount_linear(
+            self, depreciation_start_date, depreciation_stop_date):
+        if self.env.context.get('use_percentage', False):
+            return self.depreciation_base * self.annual_percentage / 100
+        return super(AccountAssetAsset, self)._get_amount_linear(
+            depreciation_start_date, depreciation_stop_date)
