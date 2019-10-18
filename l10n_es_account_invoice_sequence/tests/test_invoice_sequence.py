@@ -111,7 +111,7 @@ class TestInvoiceSequence(common.SavepointCase):
         self.assertEqual(move.name[:3], "tAM")
 
     def test_invoice_sequence(self):
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
                 "journal_id": self.journal.id,
                 "account_id": self.account.id,
@@ -145,7 +145,7 @@ class TestInvoiceSequence(common.SavepointCase):
         self.assertFalse(invoice.exists())
 
     def test_refund_sequence_01(self):
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
                 "journal_id": self.journal.id,
                 "account_id": self.account.id,
@@ -173,7 +173,7 @@ class TestInvoiceSequence(common.SavepointCase):
         self.assertEqual(invoice.move_id.name[:3], "tAM")
 
     def test_refund_sequence_02(self):
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
                 "journal_id": self.journal2.id,
                 "account_id": self.account.id,

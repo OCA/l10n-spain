@@ -7,7 +7,7 @@ from odoo import fields, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+    _inherit = "account.move"
 
     number = fields.Char(related=False, size=32, copy=False)
     invoice_number = fields.Char(copy=False)
