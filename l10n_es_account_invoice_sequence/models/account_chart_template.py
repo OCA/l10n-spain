@@ -7,7 +7,6 @@ from odoo import _, api, models, tools
 class AccountChartTemplate(models.Model):
     _inherit = "account.chart.template"
 
-    @api.multi
     def _create_bank_journals(self, company, acc_template_ref):
         """Write the same sequence also for the bank and cash journals."""
         bank_journals = super()._create_bank_journals(company, acc_template_ref)
@@ -22,7 +21,6 @@ class AccountChartTemplate(models.Model):
             bank_journals.write({"sequence_id": sequence.id, "refund_sequence": False})
         return bank_journals
 
-    @api.multi
     def _prepare_all_journals(self, acc_template_ref, company_id, journals_dict=None):
         self.ensure_one()
         journal_data = super(AccountChartTemplate, self)._prepare_all_journals(
@@ -62,14 +60,12 @@ class AccountChartTemplate(models.Model):
             "l10n_es.account_chart_template_full",
         ]
 
-    @api.multi
     def _get_spanish_charts(self):
         charts = self.env["account.chart.template"]
         for chart_id in self._get_spanish_charts_xml_ids():
             charts |= self.env.ref(chart_id)
         return charts
 
-    @api.multi
     @tools.ormcache("self")
     def is_spanish_chart(self):
         return self in self._get_spanish_charts()

@@ -6,7 +6,7 @@
 
 {
     "name": "Secuencia para facturas separada de la secuencia de asientos",
-    "version": "12.0.1.0.1",
+    "version": "13.0.1.0.0",
     "author": "Spanish Localization Team, "
     "NaN·Tic, "
     "Trey, "

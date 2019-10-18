@@ -3,7 +3,7 @@
 # Copyright 2014 Roberto Lizana (Trey)
 # Copyright 2013-2016 Pedro M. Baeza
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AccountInvoice(models.Model):
@@ -25,7 +25,6 @@ class AccountInvoice(models.Model):
                 journal_sequence = self.journal_id.invoice_sequence_id
         return journal_sequence, domain
 
-    @api.multi
     def action_move_create(self):
         res = super(AccountInvoice, self).action_move_create()
         for inv in self:
@@ -56,7 +55,6 @@ class AccountInvoice(models.Model):
             )
         return res
 
-    @api.multi
     def unlink(self):
         """Allow to remove invoices."""
         self.filtered(lambda x: x.journal_id.invoice_sequence_id).write(
