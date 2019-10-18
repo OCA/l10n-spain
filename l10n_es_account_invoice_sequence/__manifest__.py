@@ -8,21 +8,15 @@
     "name": "Secuencia para facturas separada de la secuencia de asientos",
     "version": "12.0.1.0.1",
     "author": "Spanish Localization Team, "
-              "NaN·Tic, "
-              "Trey, "
-              "Tecnativa, "
-              "Odoo Community Association (OCA)",
+    "NaN·Tic, "
+    "Trey, "
+    "Tecnativa, "
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
     "license": "AGPL-3",
-    "depends": [
-        'l10n_es',
-        'account',
-    ],
-    "data": [
-        'data/sequence_data.xml',
-        'views/account_journal_view.xml',
-    ],
+    "depends": ["l10n_es", "account"],
+    "data": ["data/sequence_data.xml", "views/account_journal_view.xml"],
     "post_init_hook": "post_init_hook",
-    'installable': True,
+    "installable": True,
 }
