@@ -654,6 +654,13 @@ class AccountInvoice(models.Model):
         return taxes_dict, tax_amount
 
     @api.multi
+    def _get_sii_base_cost(self):
+        self.ensure_one()
+        return sum(
+            self.invoice_line_ids.mapped('price_subtotal')
+        )
+
+    @api.multi
     def _sii_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices.
         """
@@ -762,6 +769,14 @@ class AccountInvoice(models.Model):
                 inv_dict["FacturaExpedida"].\
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional2': (
                         self.sii_registration_key_additional2.code)})
+            if '06' in [self.sii_registration_key.code,
+                        self.sii_registration_key_additional1.code,
+                        self.sii_registration_key_additional2.code]:
+                inv_dict["FacturaExpedida"].update({
+                    'BaseImponibleACoste': abs(
+                        self._get_sii_base_cost()
+                    ) * sign
+                })
             if self.sii_registration_key.code in ['12', '13']:
                 inv_dict["FacturaExpedida"]['DatosInmueble'] = {
                     'DetalleInmueble': {
@@ -862,6 +877,14 @@ class AccountInvoice(models.Model):
                 inv_dict["FacturaRecibida"].\
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional2': (
                         self.sii_registration_key_additional2.code)})
+            if '06' in [self.sii_registration_key.code,
+                        self.sii_registration_key_additional1.code,
+                        self.sii_registration_key_additional2.code]:
+                inv_dict["FacturaRecibida"].update({
+                    'BaseImponibleACoste': abs(
+                        self._get_sii_base_cost()
+                    ) * sign
+                })
             # Uso condicional de IDOtro/NIF
             inv_dict['FacturaRecibida']['Contraparte'].update(ident)
             if self.type == 'in_refund':
@@ -902,6 +925,7 @@ class AccountInvoice(models.Model):
                 'CuotaRectificada',
                 'CuotaDeducible',
                 'ImporteCompensacionREAGYP',
+                'BaseImponibleACoste',
             ],
         )
         return inv_dict
