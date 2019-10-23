@@ -129,7 +129,8 @@ class L10nEsAeatReport(models.AbstractModel):
             ('posted', 'Posted'),
             ('cancelled', 'Cancelled'),
         ], string='State', default='draft', readonly=True)
-    name = fields.Char(string="Report identifier", size=13, oldname='sequence')
+    name = fields.Char(string="Report identifier", size=13, oldname='sequence',
+                       copy=False)
     model_id = fields.Many2one(
         comodel_name="ir.model", string="Model",
         compute='_compute_report_model', oldname='model')
