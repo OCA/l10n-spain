@@ -4,6 +4,7 @@
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2018 Juan Vicente Pascual <jvpascual@puntsistemes.es>
 # Copyright 2013-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
@@ -40,6 +41,7 @@
         'views/aeat_tax_code_mapping_view.xml',
         'views/account_move_line_view.xml',
         'views/report_template.xml',
+        'views/res_partner_view.xml',
     ],
     'installable': True,
 }

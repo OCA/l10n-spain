@@ -168,6 +168,12 @@ msgid "Amount"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_aeat_anonymous_cash_customer
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users_aeat_anonymous_cash_customer
+msgid "AEAT - Anonymous customer"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__apply_sign
 msgid "Apply sign"
 msgstr ""
@@ -269,6 +275,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Cancelled models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner_aeat_anonymous_cash_customer
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users_aeat_anonymous_cash_customer
+msgid "Check this for anonymous cash customer. AEAT communication"
 msgstr ""
 
 #. module: l10n_es_aeat
