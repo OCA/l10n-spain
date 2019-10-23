@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-10 03:41+0000\n"
-"PO-Revision-Date: 2019-10-22 17:32+0000\n"
-"Last-Translator: Pedro M. Baeza <pedro.baeza@gmail.com>\n"
+"POT-Creation-Date: 2019-10-24 00:59+0200\n"
+"PO-Revision-Date: 2019-10-24 01:01+0200\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:142
@@ -36,6 +36,12 @@ msgstr "<vacío>"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "AEAT"
 msgstr "AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
+msgid "AEAT - Anonymous customer"
+msgstr "AEAT - Cliente anónimo"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__model
@@ -64,7 +70,7 @@ msgid "AEAT manager"
 msgstr "Responsable AEAT"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:263
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:264
 #, python-format
 msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
@@ -285,6 +291,12 @@ msgid "Cancelled models"
 msgstr "Declaraciones canceladas"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
+msgid "Check this for anonymous cash customer. AEAT communication"
+msgstr "Marque esto para clientes de caja anónimos. Comunicación con AEAT"
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
 msgid "Close"
@@ -364,6 +376,11 @@ msgstr "Confirmar"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Confirmed models"
 msgstr "Declaraciones confirmadas"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -504,8 +521,8 @@ msgid ""
 "subpartes con bucle de repetición."
 msgstr ""
 "Escoja el archivo para comparar con el formato actual de exportación. NOTA: "
-"De momento solo es válido para formatos sin partes condicionales ni "
-"subpartes con bucles de repetición."
+"Por el momento sólo es válido para formatos sin partes condicionales ni sub-"
+"partes con bucle de repetición."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__exigible_type
@@ -693,7 +710,7 @@ msgstr ""
 "ser añadida"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:202
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:203
 #, python-format
 msgid ""
 "If this declaration is complementary or substitutive, a previous declaration "
@@ -867,7 +884,7 @@ msgid "Model number"
 msgstr "Nº modelo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:400
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:401
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
@@ -983,7 +1000,7 @@ msgid "Only non-exigible amounts"
 msgstr "Sólo cantidades no exigibles"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:370
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:371
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -1397,24 +1414,3 @@ msgstr "obtener"
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
 msgid "open"
 msgstr "abierto"
-
-#~ msgid "Exception message"
-#~ msgstr "Mensaje de excepción"
-
-#~ msgid "aeat.model.export.config"
-#~ msgstr "aeat.model.export.config"
-
-#~ msgid "aeat.model.export.config.line"
-#~ msgstr "aeat.model.export.config.line"
-
-#~ msgid "l10n.es.aeat.map.tax"
-#~ msgstr "l10n.es.aeat.map.tax"
-
-#~ msgid "l10n.es.aeat.map.tax.line"
-#~ msgstr "l10n.es.aeat.map.tax.line"
-
-#~ msgid "l10n.es.aeat.tax.line"
-#~ msgstr "l10n.es.aeat.tax.line"
-
-#~ msgid "or"
-#~ msgstr "o"
