@@ -7,19 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 15:02+0000\n"
-"PO-Revision-Date: 2017-06-29 15:02+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-10-25 17:33+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_capital
 msgid "Capital"
-msgstr ""
+msgstr "Capital"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_stock
@@ -29,124 +30,124 @@ msgstr "Existències"
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_financieras
 msgid "Financieras"
-msgstr ""
+msgstr "Financeres"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_gastos_neto
 msgid "Gastos patrimonio neto"
-msgstr ""
+msgstr "Despeses de patrimoni net"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_iva_0
 msgid "IVA 0%"
-msgstr ""
+msgstr "IVA 0%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_iva_10
 msgid "IVA 10%"
-msgstr ""
+msgstr "IVA 10%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_iva_10-5
 msgid "IVA 10,5% REAGYP"
-msgstr ""
+msgstr "IVA 10,5% REAGYP"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_iva_12
 msgid "IVA 12%"
-msgstr ""
+msgstr "IVA 12%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_iva_21
 msgid "IVA 21%"
-msgstr ""
+msgstr "IVA 21%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_iva_4
 msgid "IVA 4%"
-msgstr ""
+msgstr "IVA 4%"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_ingresos_neto
 msgid "Ingresos patrimonio neto"
-msgstr ""
+msgstr "Ingressos patrimoni net"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_recargo_0-5
 msgid "Recargo de Equivalencia 0,5%"
-msgstr ""
+msgstr "Recàrrec d'equivalència 0,5%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_recargo_1-4
 msgid "Recargo de Equivalencia 1,4%"
-msgstr ""
+msgstr "Recàrrec d'equivalència 1,4%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_recargo_5-2
 msgid "Recargo de Equivalencia 5,2%"
-msgstr ""
+msgstr "Recàrrec d'equivalència 5,2%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_1
 msgid "Retenciones 1%"
-msgstr ""
+msgstr "Retencions 1%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_15
 msgid "Retenciones 15%"
-msgstr ""
+msgstr "Retencions 15%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_18
 msgid "Retenciones 18%"
-msgstr ""
+msgstr "Retencions 18%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_19
 msgid "Retenciones 19%"
-msgstr ""
+msgstr "Retencions 19%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_19-5
 msgid "Retenciones 19,5%"
-msgstr ""
+msgstr "Retencions 19,5%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_2
 msgid "Retenciones 2%"
-msgstr ""
+msgstr "Retencions 2%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_20
 msgid "Retenciones 20%"
-msgstr ""
+msgstr "Retencions 20%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_21
 msgid "Retenciones 21%"
-msgstr ""
+msgstr "Retencions 21%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_7
 msgid "Retenciones 7%"
-msgstr ""
+msgstr "Retencions 7%"
 
 #. module: l10n_es
 #: model:account.tax.group,name:l10n_es.tax_group_retenciones_9
 msgid "Retenciones 9%"
-msgstr ""
+msgstr "Retencions 9%"
 
 #. module: l10n_es
 #: model:ir.ui.menu,name:l10n_es.account_reports_es_statements_menu
 msgid "Spanish Statements"
-msgstr ""
+msgstr "Declaracions espanyoles"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_tax
 msgid "Tax"
-msgstr ""
+msgstr "Impost"
 
 #. module: l10n_es
 #: model:account.account.type,name:l10n_es.account_type_terceros
 msgid "Terceros"
-msgstr ""
+msgstr "Tercers"
