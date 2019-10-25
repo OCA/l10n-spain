@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-24 10:34+0000\n"
-"PO-Revision-Date: 2018-01-24 10:34+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-10-25 17:33+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -140,7 +141,7 @@ msgstr "Compañía"
 msgid "Concept code, may be used on formulas to reference this line"
 msgstr ""
 "Codi de concepte, pot ser usat en les fórmules per fer referència a aquesta "
-"línia."
+"línia"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_name
@@ -417,7 +418,7 @@ msgstr "Líneas"
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_sequence
 msgid "Lines will be sorted/grouped by this field"
-msgstr "Les línies seran ordenades/agrupades per aquest camp."
+msgstr "Les línies seran ordenades/agrupades per aquest camp"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
@@ -441,7 +442,7 @@ msgstr "Nega"
 #. module: account_balance_reporting
 #: model:ir.model.fields,help:account_balance_reporting.field_account_balance_reporting_template_line_negate
 msgid "Negate the value (change the sign of the balance)"
-msgstr "Nega el valor (canvia el signe del saldo)."
+msgstr "Nega el valor (canvia el signe del saldo)"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_notes
