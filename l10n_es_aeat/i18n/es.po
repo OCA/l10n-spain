@@ -38,6 +38,12 @@ msgid "AEAT"
 msgstr "AEAT"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
+msgid "AEAT - Anonymous customer"
+msgstr "AEAT - Cliente anónimo"
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__model
 msgid "AEAT Model"
 msgstr "Declaración AEAT"
@@ -64,10 +70,14 @@ msgid "AEAT manager"
 msgstr "Responsable AEAT"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:263
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:264
 #, python-format
-msgid "AEAT model sequence not found. You can try to restart your Odoo service for recreating the sequences."
-msgstr "No se ha encontrado la secuencia del modelo AEAT. Puede intentar reiniciar su servicio Odoo para recrear las secuencias."
+msgid ""
+"AEAT model sequence not found. You can try to restart your Odoo service for "
+"recreating the sequences."
+msgstr ""
+"No se ha encontrado la secuencia del modelo AEAT. Puede intentar reiniciar "
+"su servicio Odoo para recrear las secuencias."
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -172,12 +182,6 @@ msgstr "Alfanumérico"
 #: selection:l10n.es.aeat.map.tax.line,field_type:0
 msgid "Amount"
 msgstr "Importe"
-
-#. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_aeat_anonymous_cash_customer
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users_aeat_anonymous_cash_customer
-msgid "AEAT - Anonymous customer"
-msgstr "AEAT - Cliente anónimo"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__apply_sign
@@ -287,8 +291,8 @@ msgid "Cancelled models"
 msgstr "Declaraciones canceladas"
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner_aeat_anonymous_cash_customer
-#: model:ir.model.fields,help:l10n_es_aeat.field_res_users_aeat_anonymous_cash_customer
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
 msgid "Check this for anonymous cash customer. AEAT communication"
 msgstr "Marque esto para clientes de caja anónimos. Comunicación con AEAT"
 
@@ -338,19 +342,8 @@ msgid "Compare file"
 msgstr "Comparar archivo"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.mod111.report,type:0
-#: selection:l10n.es.aeat.mod115.report,type:0
-#: selection:l10n.es.aeat.mod123.report,type:0
-#: selection:l10n.es.aeat.mod130.report,type:0
-#: selection:l10n.es.aeat.mod216.report,type:0
-#: selection:l10n.es.aeat.mod296.report,type:0
-#: selection:l10n.es.aeat.mod303.report,type:0
-#: selection:l10n.es.aeat.mod347.report,type:0
-#: selection:l10n.es.aeat.mod349.report,type:0
-#: selection:l10n.es.aeat.mod390.report,type:0
 #: selection:l10n.es.aeat.report,type:0
 #: selection:l10n.es.aeat.report.tax.mapping,type:0
-#: selection:l10n.es.vat.book,type:0
 msgid "Complementary"
 msgstr "Complementaria"
 
@@ -517,12 +510,19 @@ msgstr "Fecha final"
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:45
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
-msgstr "Error! Las fechas de los registros se solapan con un registro existente."
+msgstr ""
+"Error! Las fechas de los registros se solapan con un registro existente."
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
-msgid "Escoja el archivo para comparar con el actual formato de exportación. NOTA: Solo es válido de momento para formatos sin partes condicionales ni subpartes con bucle de repetición."
-msgstr "Escoja el archivo para comparar con el formato actual de exportación. NOTA: Por el momento sólo es válido para formatos sin partes condicionales ni sub-partes con bucle de repetición."
+msgid ""
+"Escoja el archivo para comparar con el actual formato de exportación. NOTA: "
+"Solo es válido de momento para formatos sin partes condicionales ni "
+"subpartes con bucle de repetición."
+msgstr ""
+"Escoja el archivo para comparar con el formato actual de exportación. NOTA: "
+"Por el momento sólo es válido para formatos sin partes condicionales ni sub-"
+"partes con bucle de repetición."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__exigible_type
@@ -710,7 +710,7 @@ msgstr ""
 "ser añadida"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:202
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:203
 #, python-format
 msgid ""
 "If this declaration is complementary or substitutive, a previous declaration "
@@ -884,7 +884,7 @@ msgid "Model number"
 msgstr "Nº modelo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:400
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:401
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
@@ -1000,7 +1000,7 @@ msgid "Only non-exigible amounts"
 msgstr "Sólo cantidades no exigibles"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:370
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:371
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
