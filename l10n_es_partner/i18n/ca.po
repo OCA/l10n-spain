@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-30 20:59+0000\n"
-"PO-Revision-Date: 2019-10-25 17:33+0000\n"
+"PO-Revision-Date: 2019-10-28 17:11+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -79,21 +79,23 @@ msgid ""
 "If the country of the bank is Spain, it validates the bank code or IBAN, "
 "formatting it accordingly."
 msgstr ""
+"Si el país del banc és Espanya, es valida el no. de compte o IBAN, formatant-"
+"ho en conseqüència."
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_import_fail
 msgid "Import fail"
-msgstr ""
+msgstr "Importació fallida"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import from Internet"
-msgstr ""
+msgstr "Importar de d'internet"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import from local file"
-msgstr ""
+msgstr "Importar des de l'arxiu local"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:53
@@ -101,7 +103,7 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format
 msgid "Import spanish bank data"
-msgstr ""
+msgstr "Importar les dades dels bancs espanyols"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
@@ -109,6 +111,8 @@ msgid ""
 "Internet (from Bank of Spain). Maybe this source will be not available from "
 "certain moment in time. You will need xlrd Python library."
 msgstr ""
+"Internet (del Banc d'Espanya). Pot que aquesta font no estigui disponible a "
+"partir d'un cert moment. Necessitarà la llibreria de Python xlrd."
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/res_partner_bank.py:88
@@ -140,6 +144,8 @@ msgstr "Darrera Actualització el"
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Local file mirror. This copy was updated last time on 20/01/2017."
 msgstr ""
+"Còpia de l'arxiu local. Aquesta còpia es va actualitzar per últim cop el 20/"
+"01/2017."
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_lname
@@ -157,17 +163,21 @@ msgid ""
 "Something has failed importing data from Internet. You will need to import "
 "local data instead."
 msgstr ""
+"Alguna cosa ha fallat important les dades d'internet. Necessitarà instal·lar "
+"les dades locals al seu lloc."
 
 #. module: l10n_es_partner
 #: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
 msgid "This wizard will import spanish bank data."
-msgstr ""
+msgstr "Aquest assistent importa les dades dels bancs espanyols."
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
 "This wizard will import spanish bank data. You can choose to import it from:"
 msgstr ""
+"Aquest assistent importarà les dades dels bancs espanyols. Pot escollir "
+"importar-ho de:"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_partner_comercial
@@ -202,4 +212,4 @@ msgstr "Lloc web"
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_l10n_es_partner_import_wizard
 msgid "l10n.es.partner.import.wizard"
-msgstr ""
+msgstr "l10n.es.partner.import.wizard"
