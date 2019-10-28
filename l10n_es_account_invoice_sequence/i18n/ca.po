@@ -9,20 +9,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-30 20:58+0000\n"
-"PO-Revision-Date: 2017-11-30 20:58+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-10-28 17:11+0000\n"
+"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_chart_template.py:39
 #, python-format
 msgid " (Refund)"
-msgstr ""
+msgstr " (Rectificativa)"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
@@ -32,7 +33,7 @@ msgstr "Factura"
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_invoice_invoice_number
 msgid "Invoice number"
-msgstr ""
+msgstr "Número de factura"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal_invoice_sequence_id
@@ -50,7 +51,7 @@ msgstr "Diario"
 #: code:addons/l10n_es_account_invoice_sequence/wizards/wizard_multi_charts_accounts.py:26
 #, python-format
 msgid "Journal Entries Sequence"
-msgstr ""
+msgstr "Seqüència d'assentaments"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:29
@@ -64,16 +65,18 @@ msgstr ""
 #, python-format
 msgid "Journal company and refund sequence company do not match."
 msgstr ""
+"La companyia del diari no és la mateixa que la de la seqüència de factures "
+"rectificatives."
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal_refund_inv_sequence_id
 msgid "Refund sequence"
-msgstr ""
+msgstr "Seqüència de factura rectificativa"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_chart_template
 msgid "Templates for Account Chart"
-msgstr ""
+msgstr "Plantilles per al pla comptable"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal_invoice_sequence_id
