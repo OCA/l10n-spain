@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-24 10:34+0000\n"
-"PO-Revision-Date: 2019-10-25 17:33+0000\n"
+"PO-Revision-Date: 2019-10-28 16:33+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -184,7 +184,7 @@ msgstr "Haver-Deure"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
 msgid "Credit-Debit, reversed with brackets"
-msgstr ""
+msgstr "Haver-Deure, invertit amb parèntesi"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_current_move_line_count
@@ -195,19 +195,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_from
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_previous_date_from
 msgid "Date From"
-msgstr ""
+msgstr "Data des de"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_to
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_previous_date_to
 msgid "Date To"
-msgstr ""
+msgstr "Data fins a"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_range
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_previous_date_range
 msgid "Date range"
-msgstr ""
+msgstr "Rang de dates"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
@@ -217,7 +217,7 @@ msgstr "Deure-Haver"
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.template,balance_mode:0
 msgid "Debit-Credit, reversed with brackets"
-msgstr ""
+msgstr "Deure-Haver, invertit amb parèntesi"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -234,7 +234,7 @@ msgstr "Descripció"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_print_wizard_report_xml_id
 #: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
 msgid "Design"
-msgstr ""
+msgstr "Disseny"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_display_name
@@ -258,12 +258,12 @@ msgstr "Borrador"
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_reports
 msgid "Financial Reports"
-msgstr ""
+msgstr "Informes financers"
 
 #. module: account_balance_reporting
 #: model:ir.actions.act_window,name:account_balance_reporting.account_balance_reporting_print_wizard_act_window
 msgid "Financial report"
-msgstr ""
+msgstr "Informe financer"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_current_value
@@ -297,6 +297,12 @@ msgid ""
 "Mode 2: credit-debit;\n"
 "Mode 3: credit-debit, debit-credit for accounts in brackets."
 msgstr ""
+"Mode del càlcul de la fórmula: Depenent del càlcul, el balanç es pot "
+"calcular com:\n"
+"Mode 0: deure-haver (per defecte);\n"
+"Mode 1: deure-haver, haver-deure pels comptes entre parèntesi;\n"
+"Mode 2: haver-deure;\n"
+"Mode 3: haver-deure, deure-haver pels comptes entre parèntesi."
 
 #. module: account_balance_reporting
 #: model:ir.actions.report.xml,name:account_balance_reporting.report_account_balance_reporting_generic
@@ -334,17 +340,17 @@ msgstr ""
 #: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:436
 #, python-format
 msgid "Journal Items"
-msgstr ""
+msgstr "Apunts comptables"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_current_move_line_ids
 msgid "Journal items (current)"
-msgstr ""
+msgstr "Apunts comptables (actual)"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_previous_move_line_ids
 msgid "Journal items (previous)"
-msgstr ""
+msgstr "Apunts comptables (anterior)"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting___last_update
@@ -452,7 +458,7 @@ msgstr "Notes"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
 msgid "PREVIOUS"
-msgstr ""
+msgstr "ANTERIOR"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_parent_id
@@ -517,7 +523,7 @@ msgstr "Mostrar apuntes contables"
 #: model:ir.ui.menu,name:account_balance_reporting.menu_account_balance_reporting_templates
 #: model:ir.ui.menu,name:account_balance_reporting.menu_spanish_financial_reports
 msgid "Spanish Financial Reports"
-msgstr ""
+msgstr "Informes financers espanyols"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_state
@@ -552,7 +558,7 @@ msgstr "Línies de plantilla"
 #: code:addons/account_balance_reporting/models/account_balance_reporting_template.py:147
 #, python-format
 msgid "The code must be unique for this report!"
-msgstr ""
+msgstr "El codi ha de ser únic per aquest informe!"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_tmpl_type
@@ -580,8 +586,20 @@ msgid ""
 "      values.\n"
 "    "
 msgstr ""
+"Fórmula de càlcul: Depenent d'aquesta fórmula el valor fina serà\n"
+"    calculat de la següent manera:\n"
+"      Valor buit de la plantilla: sumatori dels valors dels fills (d'aquest "
+"concepte).\n"
+"      Número amb coma decimal (\"10.2\"): aquell valor (constant).\n"
+"      Números de compte separats per comes (\"430,431,(437)\"): Sumatori "
+"dels saldos\n"
+"          dels comptes (el signe del balanç dependrà del mode del balanç).\n"
+"      Codis de conceptes separats per \"+\" (\"11000+12000\"): Sumatori dels "
+"valors d'aquests\n"
+"      conceptes.\n"
+"    "
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_print_wizard
 msgid "account.balance.reporting.print.wizard"
-msgstr ""
+msgstr "account.balance.reporting.print.wizard"
