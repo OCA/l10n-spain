@@ -132,6 +132,15 @@ class ResPartner(models.Model):
 
     comercial = fields.Char('Trade name', size=128, select=True)
 
+    display_name = fields.Char(
+        'Name', compute='_compute_display_name', store=True)
+
+    @api.depends('parent_id', 'is_company', 'name', 'comercial')
+    def _compute_display_name(self):
+        name = self.name_get()
+        if name:
+            self.display_name = name[0][1]
+
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
         """Include commercial name in direct name search."""
