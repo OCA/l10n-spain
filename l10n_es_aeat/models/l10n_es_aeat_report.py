@@ -7,7 +7,7 @@
 import re
 from calendar import monthrange
 from odoo import _, api, fields, exceptions, models
-from odoo.tools import config
+from odoo.tools import config, ormcache
 from datetime import datetime
 from .spanish_states_mapping import SPANISH_STATES as ss
 
@@ -203,6 +203,24 @@ class L10nEsAeatReport(models.AbstractModel):
                     _("If this declaration is complementary or substitutive, "
                       "a previous declaration number should be provided.")
                 )
+
+    @ormcache('tax_template', 'company_id')
+    def _get_tax_id_from_tax_template(self, tax_template, company_id):
+        xmlids = self.env['ir.model.data'].search_read([
+            ('model', '=', 'account.tax.template'),
+            ('res_id', '=', tax_template.id)
+        ], ['name', 'module'])
+        return xmlids and self.env['ir.model.data'].search([
+            ('model', '=', 'account.tax'),
+            ('module', '=', xmlids[0]['module']),
+            ('name', '=', '{}_{}'.format(company_id, xmlids[0]['name']))
+        ]).res_id or False
+
+    def get_taxes_from_templates(self, tax_templates):
+        company_id = self.company_id.id or self.env.user.company_id.id
+        tax_ids = [self._get_tax_id_from_tax_template(tmpl, company_id)
+                   for tmpl in tax_templates]
+        return self.env['account.tax'].browse(tax_ids)
 
     @api.onchange('company_id')
     def onchange_company_id(self):
