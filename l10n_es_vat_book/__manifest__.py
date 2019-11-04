@@ -20,7 +20,8 @@
     'data': [
         'security/ir_rule.xml',
         'security/ir.model.access.csv',
-        'data/map_taxes_vat_book.xml',
+        'data/aeat_vat_book_map_data.xml',
+        'views/aeat_vat_book_map_view.xml',
         'views/l10n_es_vat_book.xml',
         'views/l10n_es_vat_book_line.xml',
         'views/l10n_es_vat_book_tax_summary.xml',

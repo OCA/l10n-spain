@@ -3,11 +3,14 @@
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
 #                <contact@eficent.com>
 # Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
+# Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import datetime
+import re
 
 from odoo import models, api, fields, _
 from odoo.exceptions import Warning as UserError
+from odoo.tools import ormcache
 
 
 class L10nEsVatBook(models.Model):
@@ -117,6 +120,7 @@ class L10nEsVatBook(models.Model):
                     'total_amount': 0.0,
                     'tax_id': tax_line.tax_id.id,
                     'vat_book_id': self.id,
+                    'special_tax_group': tax_line.special_tax_group,
                 }
             tax_summary_data_recs[tax_line.tax_id]['base_amount'] += \
                 tax_line.base_amount
@@ -134,25 +138,38 @@ class L10nEsVatBook(models.Model):
                 tax_summary_data_recs[tax_id])
         return tax_summary
 
-    @api.model
     def _prepare_vat_book_summary(self, tax_summary_recs, book_type):
-        base_amount = sum(tax_summary_recs.mapped('base_amount'))
-        tax_amount = sum(tax_summary_recs.mapped('tax_amount'))
-        total_amount = sum(tax_summary_recs.mapped('total_amount'))
-        return {
-            'book_type': book_type,
-            'base_amount': base_amount,
-            'tax_amount': tax_amount,
-            'total_amount': total_amount,
-            'vat_book_id': self.id,
-        }
+        vals_list = []
+        total_dic = {}
+        for line in tax_summary_recs:
+            if line.special_tax_group not in total_dic:
+                total_dic[line.special_tax_group] = {
+                    'base_amount': line.base_amount,
+                    'tax_amount': line.tax_amount,
+                    'total_amount': line.total_amount,
+                }
+            else:
+                total_group = total_dic[line.special_tax_group]
+                total_group['base_amount'] += line.base_amount
+                total_group['tax_amount'] += line.tax_amount
+                total_group['total_amount'] += line.total_amount
+        for key, total_group in total_dic.items():
+            vals_list.append({
+                'book_type': book_type,
+                'special_tax_group': key,
+                'base_amount': total_group['base_amount'],
+                'tax_amount': total_group['tax_amount'],
+                'total_amount': total_group['total_amount'],
+                'vat_book_id': self.id,
+            })
+        return vals_list
 
     @api.model
     def _create_vat_book_summary(self, tax_summary_recs, book_type):
-        vals = self._prepare_vat_book_summary(tax_summary_recs, book_type)
-        self.env['l10n.es.vat.book.summary'].create(vals)
+        for vals in self._prepare_vat_book_summary(
+                tax_summary_recs, book_type):
+            self.env['l10n.es.vat.book.summary'].create(vals)
 
-    @api.multi
     def calculate(self):
         """
             Funcion call from vat_book
@@ -160,113 +177,100 @@ class L10nEsVatBook(models.Model):
         self._calculate_vat_book()
         return True
 
-    def _get_vals_invoice_line(self, move, line_type):
+    def _prepare_book_line_vals(self, move_line, line_type):
         """
             This function make the dictionary to create a new record in issued
             invoices, Received invoices or rectification invoices
 
             Args:
-                move (obj): move
+                move_line (obj): move
 
             Returns:
                 dictionary: Vals from the new record.
         """
-        ref = move.ref
+        ref = move_line.ref
         ext_ref = ''
-        invoice = move.line_ids.mapped('invoice_id')[:1]
-        partner = move.partner_id
+        invoice = move_line.invoice_id
+        partner = move_line.partner_id
         if invoice:
             partner = invoice.commercial_partner_id
             ref = invoice.number
             ext_ref = invoice.reference
         return {
             'line_type': line_type,
-            'invoice_date': move.date,
+            'invoice_date': move_line.date,
             'partner_id': partner.id,
             'vat_number': partner.vat,
             'invoice_id': invoice.id,
             'ref': ref,
             'external_ref': ext_ref,
             'vat_book_id': self.id,
-            'move_id': move.id,
+            'move_id': move_line.move_id.id,
+            'tax_lines': {},
+            'base_amount': 0.0,
+            'special_tax_group': False,
         }
 
-    def _get_vat_book_line_tax(self, tax, move, vat_book_line):
-        base_move_lines = move.line_ids.filtered(
-            lambda l: any(t == tax for t in l.tax_ids))
-        base_amount_untaxed = sum(x.credit - x.debit for x in base_move_lines)
-
-        parent_tax = self.env['account.tax'].search([
-            ('children_tax_ids.id', '=', tax.id)], limit=1)
-        taxes = self.env['account.tax']
-        if parent_tax:
-            taxes = tax.children_tax_ids
-            tax = parent_tax
-        else:
-            taxes += tax
-        fee_move_lines = move.line_ids.filtered(
-            lambda l: l.tax_line_id in taxes)
-        fee_amount_untaxed = 0.0
-        if fee_move_lines:
-            fee_amount_untaxed = sum(
-                x.credit - x.debit for x in fee_move_lines)
-
-        if vat_book_line.line_type == 'issued' and fee_amount_untaxed < 0.0:
-            vat_book_line.line_type = 'rectification_issued'
-
-        if vat_book_line.line_type == 'received' and fee_amount_untaxed > 0.0:
-            vat_book_line.line_type = 'rectification_received'
-
-        if vat_book_line.line_type in ['received', 'rectification_received']:
-            base_amount_untaxed *= -1
-            fee_amount_untaxed *= -1
-
+    def _prepare_book_line_tax_vals(self, move_line, vat_book_line):
+        balance = move_line.credit - move_line.debit
+        if vat_book_line['line_type'] in [
+                'received', 'rectification_received']:
+            balance = -balance
+        base_amount_untaxed = balance if move_line.tax_ids else 0.0
+        fee_amount_untaxed = balance if move_line.tax_line_id else 0.0
         return {
-            'tax_id': tax.id,
+            'tax_id': move_line.tax_line_id.id,
             'base_amount': base_amount_untaxed,
             'tax_amount': fee_amount_untaxed,
             'total_amount': base_amount_untaxed + fee_amount_untaxed,
-            'move_line_ids': [(4, aml.id) for aml
-                              in base_move_lines + fee_move_lines],
-            'vat_book_line_id': vat_book_line.id,
+            'move_line_ids': [(4, move_line.id)],
+            'special_tax_group': False,
         }
 
-    def _create_vat_book_line_tax(self, tax, vat_book_line_id,
-                                  move):
-        vat_book_line_tax_obj = self.env['l10n.es.vat.book.line.tax']
-        vals = self._get_vat_book_line_tax(tax, move, vat_book_line_id)
-
-        new_record = vat_book_line_tax_obj.create(vals)
-
-        return new_record
-
-    def _create_vat_book_line(self, move, line_type):
-        """
-            This function create a new record in issued invoices, Received
-            invoices or rectification invoices
-
-            Args:
-                move (obj): move
-
-            Returns:
-                obj: obj with new object create depends invoice type.
-        """
-        vat_book_line_obj = self.env['l10n.es.vat.book.line']
-
-        vals = self._get_vals_invoice_line(move, line_type)
-        exception_text = ""
-        exception = False
-        if vals['invoice_id'] and not vals['vat_number']:
-            exception = True
-            exception_text += _("The partner doesn't have a VAT number")
-
-        if exception:
-            vals.update({
-                'exception': True,
-                'exception_text': exception_text,
+    def upsert_book_line_tax(self, move_line, vat_book_line, implied_taxes):
+        vals = self._prepare_book_line_tax_vals(move_line, vat_book_line)
+        tax_lines = vat_book_line['tax_lines']
+        implied_lines = []
+        if move_line.tax_line_id:
+            key = self.get_book_line_tax_key(move_line, move_line.tax_line_id)
+            if key not in tax_lines:
+                tax_lines[key] = vals
+            else:
+                tax_lines[key]['tax_amount'] += vals['tax_amount']
+                tax_lines[key]['total_amount'] += vals['total_amount']
+                tax_lines[key]['move_line_ids'] += vals['move_line_ids']
+            implied_lines.append(tax_lines[key])
+        for i, tax in enumerate(move_line.tax_ids):
+            if i == 0:
+                vat_book_line['base_amount'] += vals['base_amount']
+            if tax not in implied_taxes:
+                continue
+            key = self.get_book_line_tax_key(move_line, tax)
+            if key not in tax_lines:
+                tax_lines[key] = vals
+                tax_lines[key]['tax_id'] = tax.id
+            else:
+                tax_lines[key]['base_amount'] += vals['base_amount']
+                tax_lines[key]['total_amount'] += vals['total_amount']
+                # if i == 0:
+                tax_lines[key]['move_line_ids'] += vals['move_line_ids']
+            implied_lines.append(tax_lines[key])
+            sp_taxes_dic = self.get_special_taxes_dic()
+            if tax.id in sp_taxes_dic:
+                tax_group = sp_taxes_dic[tax.id]['special_tax_group']
+                vat_book_line['special_tax_group'] = tax_group
+                tax_lines[key]['special_tax_group'] = tax_group
+        if vat_book_line['special_tax_group']:
+            base_line = next(filter(
+                lambda l: not l['special_tax_group'], implied_lines))
+            special_line = next(filter(
+                lambda l: l['special_tax_group'], implied_lines))
+            base_line.update({
+                'special_tax_id': special_line['tax_id'],
+                'special_tax_amount': special_line['tax_amount'],
+                'total_amount_special_include':
+                    base_line['total_amount'] + special_line['tax_amount'],
             })
-
-        return vat_book_line_obj.create(vals)
 
     def _clear_old_data(self):
         """
@@ -278,28 +282,79 @@ class L10nEsVatBook(models.Model):
 
     def _account_move_line_domain(self, taxes):
         # search move lines that contain these tax codes
-        return [('date', '>=', self.date_start),
-                ('date', '<=', self.date_end),
-                '|', ('tax_ids', 'in', taxes.ids),
-                ('tax_line_id', 'in', taxes.ids)]
+        return [
+            ('date', '>=', self.date_start),
+            ('date', '<=', self.date_end),
+            '|', ('tax_ids', 'in', taxes.ids),
+            ('tax_line_id', 'in', taxes.ids),
+        ]
 
-    def _get_account_moves(self, taxes):
-        aml_obj = self.env['account.move.line']
-        groups = aml_obj.read_group(
-            self._account_move_line_domain(taxes), ['move_id'], ['move_id'])
-        return self.env['account.move'].browse([
-            x['move_id'][0] for x in groups
+    def _get_account_move_lines(self, taxes):
+        return self.env['account.move.line'].search(
+            self._account_move_line_domain(taxes))
+
+    @ormcache('self.id')
+    def get_pos_partner_ids(self):
+        return self.env['res.partner'].with_context(active_test=False).search([
+            ('aeat_anonymous_cash_customer', '=', True),
+        ]).ids
+
+    @ormcache('self.id')
+    def get_special_taxes_dic(self):
+        map_lines = self.env['aeat.vat.book.map.line'].search([
+            ('special_tax_group', '!=', False),
         ])
+        special_dic = {}
+        for map_line in map_lines:
+            for tax in self.get_taxes_from_templates(map_line.tax_tmpl_ids):
+                special_dic[tax.id] = {
+                    'name': map_line.name,
+                    'book_type': map_line.book_type,
+                    'special_tax_group': map_line.special_tax_group,
+                    'fee_type_xlsx_column': map_line.fee_type_xlsx_column,
+                    'fee_amount_xlsx_column': map_line.fee_amount_xlsx_column,
+                }
+        return special_dic
 
-    def _create_vat_book_records(self, move, line_type, taxes):
-        line = self._create_vat_book_line(
-            move, line_type)
-        # Create tax lines
-        ml_taxes = move.line_ids.mapped('tax_ids')
-        for tax in ml_taxes.filtered(lambda x: x.id in taxes.ids):
-            # Create tax lines for the current vat_book_line
-            self._create_vat_book_line_tax(
-                tax, line, move)
+    def get_book_line_key(self, move_line):
+        return move_line.move_id.id, move_line.invoice_id.id
+
+    def get_book_line_tax_key(self, move_line, tax):
+        return move_line.move_id.id, move_line.invoice_id.id, tax.id
+
+    def _set_line_type(self, line_vals, line_type):
+        if line_vals['base_amount'] < 0.0:
+            line_vals['line_type'] = 'rectification_{}'.format(line_type)
+
+    def _check_exceptions(self, line_vals):
+        if (not line_vals['vat_number'] and line_vals['partner_id'] not in
+                self.get_pos_partner_ids()):
+            line_vals['exception_text'] = _("Without VAT")
+
+    def create_vat_book_lines(self, move_lines, line_type, taxes):
+        VatBookLine = self.env['l10n.es.vat.book.line']
+        moves_dic = {}
+        for move_line in move_lines:
+            line_key = self.get_book_line_key(move_line)
+            if line_key not in moves_dic:
+                moves_dic[line_key] = self._prepare_book_line_vals(
+                    move_line, line_type)
+            self.upsert_book_line_tax(move_line, moves_dic[line_key], taxes)
+        for line_vals in moves_dic.values():
+            tax_lines = line_vals.pop('tax_lines')
+            tax_line_list = []
+            tax_amount = 0.0
+            for tax_line_vals in tax_lines.values():
+                tax_amount += tax_line_vals['tax_amount']
+                tax_line_list.append((0, 0, tax_line_vals))
+            self._set_line_type(line_vals, line_type)
+            line_vals.update({
+                'total_amount': line_vals['base_amount'] + tax_amount,
+                'tax_line_ids': [
+                    (0, 0, vals) for vals in tax_lines.values()],
+            })
+            self._check_exceptions(line_vals)
+            VatBookLine.create(line_vals)
 
     def _calculate_vat_book(self):
         """
@@ -314,47 +369,22 @@ class L10nEsVatBook(models.Model):
             # clean the old records
             rec._clear_old_data()
 
-            tax_model = self.env['account.tax']
-            # Obtain Map code template from vat_book.
-            tax_code_map = self.env['l10n.es.aeat.map.tax'].search(
-                [('model', '=', '340'),
-                 '|',
-                 ('date_from', '<=', rec.date_start),
-                 ('date_from', '=', False),
-                 '|',
-                 ('date_to', '>=', rec.date_end),
-                 ('date_to', '=', False)], limit=1)
-            if not tax_code_map:
-                raise UserError(_('No AEAT Tax Mapping was found'))
-
-            # Obtain all the codes from account.tax.code.template
-            codes_issued = tax_code_map.map_line_ids.mapped(
-                'tax_ids').filtered(
-                lambda t: t.type_tax_use == 'sale').mapped('description')
-            codes_received = tax_code_map.map_line_ids.mapped(
-                'tax_ids').filtered(
-                lambda t: t.type_tax_use == 'purchase').mapped('description')
-            # search the account.tax referred to by the template
-            taxes_issued = tax_model.search(
-                [('description', 'in', codes_issued),
-                 ('company_id', 'child_of', rec.company_id.id)])
-            taxes_received = tax_model.search(
-                [('description', 'in', codes_received),
-                 ('company_id', 'child_of', rec.company_id.id)])
+            tax_templates = self.env['aeat.vat.book.map.line'].search(
+                []).mapped('tax_tmpl_ids')
+            taxes_issued = self.get_taxes_from_templates(
+                tax_templates.filtered(lambda t: t.type_tax_use == 'sale')
+            )
+            taxes_received = self.get_taxes_from_templates(
+                tax_templates.filtered(lambda t: t.type_tax_use == 'purchase')
+            )
 
             # Get all the account move lines that contain VAT that is
             #  applicable to this report.
-            moves_issued = rec._get_account_moves(taxes_issued)
-
-            for move in moves_issued:
-                line_type = 'issued'
-                rec._create_vat_book_records(move, line_type, taxes_issued)
-
-            moves_received = rec._get_account_moves(taxes_received)
-
-            for move in moves_received:
-                line_type = 'received'
-                rec._create_vat_book_records(move, line_type, taxes_received)
+            lines_issued = rec._get_account_move_lines(taxes_issued)
+            self.create_vat_book_lines(lines_issued, 'issued', taxes_issued)
+            lines_received = rec._get_account_move_lines(taxes_received)
+            self.create_vat_book_lines(
+                lines_received, 'received', taxes_received)
 
             # Issued
             book_type = 'issued'
@@ -408,7 +438,6 @@ class L10nEsVatBook(models.Model):
                 'calculation_date': fields.Datetime.now(),
             })
 
-    @api.multi
     def view_issued_invoices(self):
         self.ensure_one()
         action = self.env.ref(
@@ -417,7 +446,6 @@ class L10nEsVatBook(models.Model):
         vals['context'] = self.env.context
         return vals
 
-    @api.multi
     def view_received_invoices(self):
         self.ensure_one()
         action = self.env.ref(
@@ -434,16 +462,16 @@ class L10nEsVatBook(models.Model):
         return datetime.datetime.strftime(
             fields.Date.from_string(date), date_format)
 
-    @api.multi
+    def get_report_file_name(self):
+        return '{}{}C{}'.format(self.year, self.company_vat,
+                                re.sub(r'[\W_]+', '', self.company_id.name))
+
+    def button_confirm(self):
+        if any(l.exception_text for l in self.line_ids):
+            raise UserError(_('This book has warnings. Fix it before confirm'))
+        return super().button_confirm()
+
     def export_xlsx(self):
         self.ensure_one()
-        context = dict(self.env.context, active_ids=self.ids)
-        return {
-            'name': 'VAT book XLSX report',
-            'model': 'l10n.es.vat.book',
-            'type': 'ir.actions.report',
-            'report_name': 'l10n_es_vat_book.l10n_es_vat_book_xlsx',
-            'report_type': 'xlsx',
-            'report_file': 'l10n.es.vat.book',
-            'context': context,
-        }
+        return self.env.ref(
+            'l10n_es_vat_book.l10n_es_vat_book_xlsx').report_action(self)
