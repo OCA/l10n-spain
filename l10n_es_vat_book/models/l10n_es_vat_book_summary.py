@@ -10,7 +10,7 @@ from odoo import fields, models
 
 class L10nEsVatBookIssuedSummary(models.Model):
     _name = 'l10n.es.vat.book.summary'
-
+    _description = "Spanish VAT book summary"
     _order = 'book_type, special_tax_group DESC'
 
     def _selection_special_tax_group(self):
