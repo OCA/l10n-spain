@@ -3,6 +3,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
+from odoo import fields
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
 
@@ -46,14 +47,16 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
         vat_book.button_calculate()
         # Check issued invoices
         for line in vat_book.issued_line_ids:
-            self.assertEqual(line.invoice_date, '2017-01-13')
+            self.assertEqual(
+                fields.Date.to_string(line.invoice_date), '2017-01-13')
             self.assertEqual(line.partner_id, self.customer)
             for tax_line in line.tax_line_ids:
                 self.assertEqual(tax_line.base_amount, 1500)
                 self.assertEqual(tax_line.tax_amount, 315)
         # Check issued refund invoices
         for line in vat_book.rectification_issued_line_ids:
-            self.assertEqual(line.invoice_date, '2017-01-14')
+            self.assertEqual(
+                fields.Date.to_string(line.invoice_date), '2017-01-14')
             self.assertEqual(line.partner_id, self.customer)
             for tax_line in line.tax_line_ids:
                 self.assertEqual(tax_line.base_amount, -1500)
