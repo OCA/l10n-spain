@@ -4,6 +4,7 @@ Para instalar este modulo necesitas:
 * base_vat
 * l10n_es
 * l10n_es_aeat
+* report_xlsx
 
 Se instalan automáticamente si están disponibles en la lista de addons.
 
@@ -14,4 +15,4 @@ Consideraciones adicionales:
   evitar que los usuarios olviden informarlo es recomendable instalar el
   módulo 'account_invoice_tax_required', disponible en
   `account_invoice_tax_required <https://github.com/OCA/account-financial-
-  tools/tree/11.0>`_.
+  tools/tree/12.0>`_.
