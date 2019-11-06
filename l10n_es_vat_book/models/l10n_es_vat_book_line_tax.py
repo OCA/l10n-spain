@@ -10,6 +10,7 @@ from odoo import api, fields, models
 
 class L10nEsVatBookLineTax(models.Model):
     _name = 'l10n.es.vat.book.line.tax'
+    _description = "Spanish VAT book tax line"
 
     vat_book_line_id = fields.Many2one(
         comodel_name='l10n.es.vat.book.line',
