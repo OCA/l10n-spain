@@ -10,6 +10,7 @@ from odoo import fields, models
 
 class L10nEsVatBookIssuedTaxSummary(models.Model):
     _name = 'l10n.es.vat.book.tax.summary'
+    _description = "Spanish VAT book tax summary"
     _inherit = 'l10n.es.vat.book.summary'
 
     _order = 'book_type, special_tax_group DESC, tax_id'
