@@ -15,6 +15,7 @@ from odoo.tools import ormcache
 
 class L10nEsVatBook(models.Model):
     _name = 'l10n.es.vat.book'
+    _description = "Spanish VAT book report"
     _inherit = "l10n.es.aeat.report"
     _aeat_number = 'LIVA'
     _period_yearly = True
@@ -131,12 +132,10 @@ class L10nEsVatBook(models.Model):
         return tax_summary_data_recs
 
     @api.model
-    def _create_vat_book_tax_summary(self, tax_summary_data_recs,
-                                     tax_summary):
-        for tax_id in tax_summary_data_recs.keys():
-            self.env['l10n.es.vat.book.tax.summary'].create(
-                tax_summary_data_recs[tax_id])
-        return tax_summary
+    def _create_vat_book_tax_summary(self, tax_summary_data_recs):
+        return self.env['l10n.es.vat.book.tax.summary'].create(
+            list(tax_summary_data_recs.values())
+        )
 
     def _prepare_vat_book_summary(self, tax_summary_recs, book_type):
         vals_list = []
@@ -166,9 +165,9 @@ class L10nEsVatBook(models.Model):
 
     @api.model
     def _create_vat_book_summary(self, tax_summary_recs, book_type):
-        for vals in self._prepare_vat_book_summary(
-                tax_summary_recs, book_type):
-            self.env['l10n.es.vat.book.summary'].create(vals)
+        return self.env['l10n.es.vat.book.summary'].create(
+            self._prepare_vat_book_summary(tax_summary_recs, book_type)
+        )
 
     def calculate(self):
         """
@@ -340,6 +339,7 @@ class L10nEsVatBook(models.Model):
                 moves_dic[line_key] = self._prepare_book_line_vals(
                     move_line, line_type)
             self.upsert_book_line_tax(move_line, moves_dic[line_key], taxes)
+        lines_values = []
         for line_vals in moves_dic.values():
             tax_lines = line_vals.pop('tax_lines')
             tax_line_list = []
@@ -354,7 +354,8 @@ class L10nEsVatBook(models.Model):
                     (0, 0, vals) for vals in tax_lines.values()],
             })
             self._check_exceptions(line_vals)
-            VatBookLine.create(line_vals)
+            lines_values.append(line_vals)
+        VatBookLine.create(lines_values)
 
     def _calculate_vat_book(self):
         """
@@ -395,8 +396,7 @@ class L10nEsVatBook(models.Model):
                     'tax_line_ids')
             tax_summary_data_recs = rec._prepare_vat_book_tax_summary(
                 issued_tax_lines + rectification_issued_tax_lines, book_type)
-            rec._create_vat_book_tax_summary(
-                tax_summary_data_recs, rec.issued_tax_summary_ids)
+            rec._create_vat_book_tax_summary(tax_summary_data_recs)
             rec._create_vat_book_summary(rec.issued_tax_summary_ids, book_type)
 
             # Received
@@ -409,8 +409,7 @@ class L10nEsVatBook(models.Model):
             tax_summary_data_recs = rec._prepare_vat_book_tax_summary(
                 received_tax_lines + rectification_received_tax_lines,
                 book_type)
-            rec._create_vat_book_tax_summary(
-                tax_summary_data_recs, rec.received_tax_summary_ids)
+            rec._create_vat_book_tax_summary(tax_summary_data_recs)
             rec._create_vat_book_summary(rec.received_tax_summary_ids,
                                          book_type)
 

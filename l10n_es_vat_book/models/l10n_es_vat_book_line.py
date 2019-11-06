@@ -10,6 +10,7 @@ from odoo import api, fields, models
 
 class L10nEsVatBookLine(models.Model):
     _name = 'l10n.es.vat.book.line'
+    _description = "Spanish VAT book line"
     _order = 'entry_number asc, ref asc, invoice_date asc'
 
     def _selection_special_tax_group(self):
