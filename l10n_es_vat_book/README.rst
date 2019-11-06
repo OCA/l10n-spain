@@ -23,11 +23,11 @@ Libro de IVA
     :target: https://runbot.odoo-community.org/runbot/189/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Módulo que calcula el libro de IVA español.
 
-Este módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe ->
+Esto módulo introduce el menú "Libro de IVA" en Contabilidad -> Informe ->
 Declaraciones AEAT -> Libro de IVA.
 
 Es posible visualizar e imprimir por separado:
