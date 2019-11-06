@@ -1,0 +1,607 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_vat_book
+#
+# Translators:
+# Niki Waibel, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-10 03:55+0000\n"
+"PO-Revision-Date: 2018-02-10 03:55+0000\n"
+"Last-Translator: Niki Waibel, 2018\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_summary
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_aeat_vat_book_map_line
+msgid "AEAT Vat Book Map Line"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.act_window,name:l10n_es_vat_book.action_aeat_vat_book_mapping
+#: model:ir.ui.menu,name:l10n_es_vat_book.menu_aeat_vat_book_map
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.l10n_es_aeat_vat_book_map_lines_view_tree
+msgid "AEAT vat book map"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_tax_id
+msgid "Account Tax"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_auto_renumber
+msgid "Auto renumber invoices received"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
+msgid "BOOK REGISTER OF INVOICES ISSUED"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
+msgid "BOOK REGISTER OF INVOICES RECEIVED"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_base_amount
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_base_amount
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+msgid "Base"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_base_amount
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_base_amount
+msgid "Base amount"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_fee_amount_xlsx_column
+msgid "Base xlsx column"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_book_type
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_book_type
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_book_type
+msgid "Book type"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_calculation_date
+msgid "Calculation Date"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.act_window,help:l10n_es_vat_book.l10n_es_vat_book_action
+msgid "Click to create a new VAT book."
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "Company Name"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
+msgid "Company:"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_contact
+msgid "Contact phone:"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_create_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_create_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_create_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_create_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_create_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_create_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_create_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_create_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_create_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_create_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
+msgid "Date Range:"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_display_name
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_partner_id
+msgid "Empresa"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_entry_number
+msgid "Entry number"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_exception_text
+msgid "Exception text"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Export BOE"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Export draft"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_external_ref
+msgid "External Reference"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+msgid "Fee"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_dates
+msgid "Fiscal Year:"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx_id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line.tax,special_tax_group:0
+msgid "IRPF"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_invoice_id
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_invoice_date
+msgid "Invoice Date"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "Issue Date"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: selection:aeat.vat.book.map.line,book_type:0
+#: selection:l10n.es.vat.book.line,line_type:0
+#: selection:l10n.es.vat.book.summary,book_type:0
+#: selection:l10n.es.vat.book.tax.summary,book_type:0
+msgid "Issued"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Issued Invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_issued_line_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Issued Refund Invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_issued_summary_ids
+msgid "Issued Summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_issued_tax_summary_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Issued Tax Summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_issued_line_ids
+msgid "Issued invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_tree
+msgid "Issued/Received invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_move_id
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line___last_update
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book___last_update
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line___last_update
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax___last_update
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary___last_update
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary___last_update
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_write_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_write_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_write_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_write_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_write_uid
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_write_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_write_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_write_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_write_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_write_date
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.menu,name:l10n_es_vat_book.menu_vat_book_report
+msgid "Libro de IVA"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_line_type
+msgid "Line type"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_number
+msgid "Model number"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_move_line_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
+msgid "Move Lines"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_vat_number
+msgid "NIF"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "Number"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line.tax,special_tax_group:0
+msgid "R.Eq."
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: selection:aeat.vat.book.map.line,book_type:0
+#: selection:l10n.es.vat.book.line,line_type:0
+#: selection:l10n.es.vat.book.summary,book_type:0
+#: selection:l10n.es.vat.book.tax.summary,book_type:0
+msgid "Received"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Received Invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_rectification_received_line_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Received Refund Invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_received_summary_ids
+msgid "Received Summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_received_tax_summary_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Received Tax Summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_received_line_ids
+msgid "Received invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_ref
+msgid "Reference"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line,line_type:0
+msgid "Refund Issued"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: selection:l10n.es.vat.book.line,line_type:0
+msgid "Refund Received"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_special_tax_id
+msgid "Special Tax"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_special_tax_amount
+msgid "Special Tax fee"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_special_tax_group
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_special_tax_group
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_special_tax_group
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_special_tax_group
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_special_tax_group
+msgid "Special group"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,help:l10n_es_vat_book.field_aeat_vat_book_map_line_special_tax_group
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_line_special_tax_group
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_special_tax_group
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_summary_special_tax_group
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_special_tax_group
+msgid "Special tax group as R.Eq, IRPF, etc"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_issued_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.report_vat_book_invoices_received_document
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_summary_form
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_summary_tree
+msgid "Summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_contact
+msgid "Surnames and name contact:"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_tax_id
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+msgid "Tax"
+msgstr "Steuer"
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_line_ids
+msgid "Tax Lines"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_tax_rate
+msgid "Tax Rate (%)"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_tax_summary_form
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_tax_summary_tree
+msgid "Tax Summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_tax_amount
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_tax_amount
+msgid "Tax amount"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_tax_amount
+msgid "Tax fee"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_tax_tmpl_ids
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
+msgid "Taxes"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:471
+#, python-format
+msgid "This book has warnings. Fix it before confirm"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:367
+#, python-format
+msgid "This company doesn't have VAT"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_total_amount
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_total_amount
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "Total"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_total_amount
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_total_amount
+msgid "Total amount"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_total_amount_special_include
+msgid "Total w/Special"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_fee_type_xlsx_column
+msgid "Type xlsx column"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
+msgid "VAT"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.act_window,name:l10n_es_vat_book.l10n_es_vat_book_action
+msgid "VAT Book"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.client,name:l10n_es_vat_book.action_report_vat_book_invoices_issued
+msgid "VAT Book Invoices Issued"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.client,name:l10n_es_vat_book.action_report_vat_book_invoices_received
+msgid "VAT Book Invoices Received"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report,name:l10n_es_vat_book.l10n_es_vat_book_xlsx
+msgid "VAT book XLSX report"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_contact
+msgid "VAT:"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_vat_book_line_id
+msgid "Vat Book Line"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_vat_book_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_vat_book_id
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_vat_book_id
+msgid "Vat Book id"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf
+msgid "Vat book invoices issued"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_received_pdf
+msgid "Vat book invoices received"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "View Issued Invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "View Received Invoices"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:332
+#, python-format
+msgid "Without VAT"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book
+msgid "l10n.es.vat.book"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_line
+msgid "l10n.es.vat.book.line"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_line_tax
+msgid "l10n.es.vat.book.line.tax"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_summary
+msgid "l10n.es.vat.book.summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_tax_summary
+msgid "l10n.es.vat.book.tax.summary"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model,name:l10n_es_vat_book.model_report_l10n_es_vat_book_l10n_es_vat_book_xlsx
+msgid "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
+msgstr ""
