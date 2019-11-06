@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2019-10-25 17:33+0000\n"
+"PO-Revision-Date: 2019-11-06 19:34+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -42,12 +42,12 @@ msgstr "Model AEAT 349 - Detall de registre d'empresa"
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_refund
 msgid "AEAT 349 Model - Partner refund"
-msgstr ""
+msgstr "Model 349 - Rectificativa d'empresa"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_partner_refund_detail
 msgid "AEAT 349 Model - Partner refund detail"
-msgstr ""
+msgstr "Model 349 - Detall de rectificació"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_invoice_line_l10n_es_aeat_349_operation_key
@@ -55,23 +55,23 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_l10n_es_aeat_349_operation_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template_aeat_349_map_line
 msgid "AEAT 349 Operation key"
-msgstr ""
+msgstr "Clau d'operació AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_detail_form
 msgid "AEAT 349 Partner record"
-msgstr ""
+msgstr "Registre d'empresa AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_detail_tree
 msgid "AEAT 349 Partner record detail"
-msgstr ""
+msgstr "Detall del registre d'empresa AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_tree
 msgid "AEAT 349 Partner records"
-msgstr ""
+msgstr "Registres d'empresa AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_detail_form
