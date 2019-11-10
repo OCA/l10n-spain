@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
@@ -31,8 +30,8 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
             ('company_id', '=', self.env.user.company_id.id),
         ])
         taxes.write({
-            'use_cash_basis': True,
-            'cash_basis_account': self.account.id,
+            'tax_exigibility': 'on_payment',
+            'cash_basis_account_id': self.account.id,
         })
         self.taxes_sale = {
             # tax code: (base, tax_amount)
@@ -45,7 +44,7 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
         self.sale_invoice = self._invoice_purchase_create('2017-01-03')
         self.purchase_invoice = self._invoice_sale_create('2017-01-13')
         self.model303_2t = self.model303.copy({
-            'name': '9992000000303',
+            'name': '2019000000303',
             'period_type': '2T',
             'date_start': '2017-04-01',
             'date_end': '2017-06-30',
@@ -63,10 +62,10 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
             'payment_date': date,
             'communication': 'Test payment',
         })
-        wizard.create_payment()
+        wizard.create_payments()
 
     def _check_results(self, model, tax_results):
-        for field, expected_result in tax_results.items():
+        for field, expected_result in list(tax_results.items()):
             lines = model.tax_line_ids.filtered(
                 lambda x: x.field_number == int(field)
             )
