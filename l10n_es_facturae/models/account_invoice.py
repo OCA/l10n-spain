@@ -193,7 +193,7 @@ class AccountInvoice(models.Model):
 
     def validate_facturae_fields(self):
         for line in self.invoice_line_ids:
-            if not line.invoice_line_tax_ids:
+            if not line.invoice_line_tax_ids and not line.display_type:
                 raise ValidationError(_('Taxes not provided in invoice line '
                                         '%s') % line.name)
         if not self.partner_id.vat:

@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import models, fields, api
+from odoo.tools.safe_eval import safe_eval
 
 
 class AccountInvoiceRefund(models.TransientModel):
@@ -54,7 +55,7 @@ class AccountInvoiceRefund(models.TransientModel):
     @api.multi
     def invoice_refund(self):
         res = super(AccountInvoiceRefund, self).invoice_refund()
-        inv = self.env['account.invoice'].search(res['domain'])
+        inv = self.env['account.invoice'].search(safe_eval(res['domain']))
         inv.update({
             'correction_method': self.correction_method,
             'facturae_refund_reason': self.refund_reason
