@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2017-06-29 22:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-10-10 11:37+0000\n"
+"Last-Translator: oihane <oihanecruce@gmail.com>\n"
 "Language-Team: Basque (https://www.transifex.com/oca/teams/23907/eu/)\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
 
 #. module: l10n_es_toponyms
 #: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from GeoNames"
-msgstr ""
+msgstr "GeoNames-etik konfiguratu"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms__create_uid
@@ -46,7 +47,7 @@ msgstr "ID"
 #. module: l10n_es_toponyms
 #: model:ir.model,name:l10n_es_toponyms.model_city_zip_geonames_import
 msgid "Import City Zips from Geonames"
-msgstr ""
+msgstr "Hiri posta codeak GeoNames-etik inportatu"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms____last_update
@@ -71,7 +72,7 @@ msgstr "Izena"
 #. module: l10n_es_toponyms
 #: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Spanish cities configuration"
-msgstr ""
+msgstr "Espainiar hirien konfigurazioa"
 
 #. module: l10n_es_toponyms
 #: model:ir.actions.act_window,name:l10n_es_toponyms.action_config_toponyms_es_form
