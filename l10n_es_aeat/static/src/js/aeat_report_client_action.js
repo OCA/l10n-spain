@@ -2,15 +2,15 @@ odoo.define('l10n_es_aeat.aeat_report_client_action', function (require) {
 'use strict';
 
 var core = require('web.core');
-var Widget = require('web.Widget');
 var ControlPanelMixin = require('web.ControlPanelMixin');
 var session = require('web.session');
 var ReportWidget = require('l10n_es_aeat.aeat_report_widget');
 var framework = require('web.framework');
 var crash_manager = require('web.crash_manager');
+var AbstractAction = require('web.AbstractAction');
 var QWeb = core.qweb;
 
-var report_client_action = Widget.extend(ControlPanelMixin, {
+var report_client_action = AbstractAction.extend(ControlPanelMixin, {
     // Stores all the parameters of the action.
     init: function(parent, action) {
         this.actionManager = parent;
@@ -65,7 +65,7 @@ var report_client_action = Widget.extend(ControlPanelMixin, {
     // Updates the control panel and render the elements that have yet to be rendered
     update_cp: function() {
         var status = {
-            breadcrumbs: this.actionManager.get_breadcrumbs(),
+            breadcrumbs: this.actionManager._getBreadcrumbs(),
             cp_content: {$buttons: this.$buttons},
         };
         return this.update_control_panel(status);
