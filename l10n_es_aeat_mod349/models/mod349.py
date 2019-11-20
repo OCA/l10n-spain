@@ -225,7 +225,7 @@ class Mod349(models.Model):
                 if original_amls:
                     original_move = original_amls[:1]
                     year = str(original_move.date.year)
-                    month = str(original_move.date.month)
+                    month = '%02d' % (original_move.date.month)
                 else:
                     continue  # We can't find information to attach to
                 if self.period_type == '0A':
