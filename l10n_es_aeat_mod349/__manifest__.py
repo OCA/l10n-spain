@@ -9,7 +9,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "12.0.1.2.0",
+    "version": "12.0.1.2.1",
     "author": "Tecnativa, "
               "Eficent, "
               "Odoo Community Association (OCA)",
