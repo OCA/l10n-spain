@@ -233,7 +233,7 @@ class L10nEsVatBook(models.Model):
         if move_line.tax_line_id:
             key = self.get_book_line_tax_key(move_line, move_line.tax_line_id)
             if key not in tax_lines:
-                tax_lines[key] = vals
+                tax_lines[key] = vals.copy()
             else:
                 tax_lines[key]['tax_amount'] += vals['tax_amount']
                 tax_lines[key]['total_amount'] += vals['total_amount']
@@ -246,7 +246,7 @@ class L10nEsVatBook(models.Model):
                 continue
             key = self.get_book_line_tax_key(move_line, tax)
             if key not in tax_lines:
-                tax_lines[key] = vals
+                tax_lines[key] = vals.copy()
                 tax_lines[key]['tax_id'] = tax.id
             else:
                 tax_lines[key]['base_amount'] += vals['base_amount']
