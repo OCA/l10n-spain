@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2019-11-06 19:34+0000\n"
+"PO-Revision-Date: 2019-11-22 18:35+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -76,18 +76,18 @@ msgstr "Registres d'empresa AEAT 349"
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_detail_form
 msgid "AEAT 349 Partner refund"
-msgstr ""
+msgstr "Rectificacions AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_detail_tree
 msgid "AEAT 349 Partner refund detail"
-msgstr ""
+msgstr "Detall de rectificació AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_tree
 msgid "AEAT 349 Partner refunds"
-msgstr ""
+msgstr "Rectificacions AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_report_id
@@ -95,46 +95,50 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail_report_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_report_id
 msgid "AEAT 349 Report ID"
-msgstr ""
+msgstr "ID de declaració AEAT349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_es_aeat_mod349_report_tree
 msgid "AEAT 349 reports"
-msgstr ""
+msgstr "Declaracions AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_l10n_es_aeat_mod349_report
 #: model:ir.actions.report.xml,name:l10n_es_aeat_mod349.act_report_aeat_mod349_pdf
 msgid "AEAT Model 349"
-msgstr ""
+msgstr "Model AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_l10n_es_aeat_mod349_report
 msgid "AEAT Model 349 Report"
-msgstr ""
+msgstr "Declaració model AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.menu,name:l10n_es_aeat_mod349.menu_aeat_349_map
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod349.l10n_es_aeat_349_map_lines_view_tree
 msgid "Aeat 349 Map"
-msgstr ""
+msgstr "Mapeig AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_aeat_349_map_line
 msgid "Aeat 349 Map Line"
-msgstr ""
+msgstr "Mapeig de línia AEAT 349"
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:331
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
+"Tots els camps dels registres d'empreses (país, número de NIF) han de ser "
+"emplenats."
 
 #. module: l10n_es_aeat_mod349
 #: code:addons/l10n_es_aeat_mod349/models/mod349.py:336
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
+"Tots els camps de les rectificacions (país, número de NIF) han de ser "
+"emplenats."
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail_amount_untaxed
