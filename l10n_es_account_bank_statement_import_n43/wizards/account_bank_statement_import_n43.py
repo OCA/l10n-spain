@@ -36,6 +36,11 @@ account_mapping = {
     '99': '5720%00',
 }
 
+ignore_lines = [
+    '22    0000000000000000000000000000000000000000000000000000000000       '
+    '         ',
+]
+
 
 class AccountBankStatementImport(models.TransientModel):
     _inherit = 'account.bank.statement.import'
@@ -168,6 +173,8 @@ class AccountBankStatementImport(models.TransientModel):
         }
         for raw_line in data_file.split("\n"):
             if not raw_line.strip():
+                continue
+            if not raw_line.strip() or raw_line in ignore_lines:
                 continue
             code = raw_line[0:2]
             if code == '11':
