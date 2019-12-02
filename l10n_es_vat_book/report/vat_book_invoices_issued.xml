@@ -21,13 +21,17 @@
               <div class="col-xs-12 text-center" id="title">
                   <h3>BOOK REGISTER OF INVOICES ISSUED</h3>
               </div>
-
+            </div>
+            <div class="row">
               <t t-call="l10n_es_vat_book.vat_book_dates"/>
               <t t-call="l10n_es_vat_book.vat_book_contact"/>
-
-              <div class="col-xs-12" id="title_invoices_issued">
+            </div>
+            <div class="row">
+              <div class="col-xs-12 mt32" id="title_invoices_issued">
                 <h4>Issued Invoices</h4>
               </div>
+            </div>
+            <div class="row">
               <div class="col-xs-12" id="invoices_issued_detail_div">
                 <table class="table table-condensed"
                        id="invoices_issued_detail_table">
@@ -39,10 +43,14 @@
                     </tbody>
                 </table>
               </div>
-              <div class="col-xs-12"
+            </div>
+            <div class="row">
+              <div class="col-xs-12 mt32"
                    id="title_rectification_invoices_issued">
                 <h4>Issued Refund Invoices</h4>
               </div>
+            </div>
+            <div class="row">
               <div class="col-xs-12"
                    id="rectification_invoices_issued_detail_div">
                 <table class="table table-condensed"
@@ -55,9 +63,13 @@
                     </tbody>
                 </table>
               </div>
-              <div class="col-xs-12" id="title_summary_invoices">
+            </div>
+            <div class="row">
+              <div class="col-xs-12 mt32" id="title_summary_invoices">
                 <h4>Summary</h4>
               </div>
+            </div>
+            <div class="row">
               <div class="col-xs-12" id="div_summary_invoices">
                   <table class="table table-condensed" id="table_sumary_invoices">
                       <t t-call="l10n_es_vat_book.vat_book_taxes_head"/>
@@ -72,8 +84,8 @@
                       </tbody>
                   </table>
               </div>
+            </div>
         </div>
-      </div>
     </template>
 
     <template id="report_vat_book_invoices_issued_pdf">
