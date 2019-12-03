@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="PosTicket">
+
+        <t t-jquery="tr[t-foreach='orderlines'] > td:nth-child(3)" t-operation="prepend">
+            <t t-if="orderline.get_product_discount() > 0">
+                <div style="font-size: smaller">
+                    <t t-esc="widget.format_currency(orderline.get_product().lst_price)"/>
+                    <br/>
+                    <t t-esc="orderline.get_product_discount_str()"/>
+                </div>
+            </t>
+        </t>
+
+    </t>
+
+</templates>
