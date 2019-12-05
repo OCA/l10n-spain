@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 00:10+0000\n"
-"PO-Revision-Date: 2017-12-28 00:10+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2019-12-05 12:04+0000\n"
+"Last-Translator: georginaf <georgina.fornes@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
@@ -66,7 +67,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Veure nom"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_06
@@ -115,12 +116,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_partner_is_non_resident
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_users_is_non_resident
 msgid "Is non-resident"
-msgstr ""
+msgstr "No és resident"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Darrera modificació el"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_write_uid
@@ -140,12 +141,12 @@ msgstr "Empresa"
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Result"
-msgstr ""
+msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_tipo_declaracion
 msgid "Result type"
-msgstr "Tipo de resultado"
+msgstr "Tipus de resultat"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
@@ -155,12 +156,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Tax lines"
-msgstr "Líneas de impuestos"
+msgstr "Línies d'impostos"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "To enter"
-msgstr "A ingresar"
+msgstr "A ingressar"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
@@ -170,7 +171,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "To return"
-msgstr "A devolver"
+msgstr "A retornar"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
