@@ -1,0 +1,203 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-26 07:46+0000\n"
+"PO-Revision-Date: 2019-11-26 09:45+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: eu\n"
+"X-Generator: Poedit 2.2.4\n"
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Above this limit the simplified invoice won't be made"
+msgstr "Above this limit the simplified invoice won't be made"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:69
+#, python-format
+msgid "Address:"
+msgstr "Helbidea:"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_sequence_id
+msgid "Autogenerate for each POS created"
+msgstr "Autosortua POS sortutakoarekin"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
+#, python-format
+msgid "Customer data"
+msgstr "Bezeroaren datuak"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:27
+#, python-format
+msgid "Customer:"
+msgstr "Bezeroa:"
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Invoices"
+msgstr "Fakturak"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
+#, python-format
+msgid "Name:"
+msgstr "Izena:"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_limit
+msgid "Over this amount is not legally posible to create a simplified invoice"
+msgstr "Ezin da faktura sinplifikatu bat sortu zenbateko hori gainditzen bada"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Salmenta eskaerak"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:40
+#, python-format
+msgid "Product"
+msgstr "Produktua"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
+#, python-format
+msgid "Qty"
+msgstr "Kop"
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Set simplified invoice sequence for this POS"
+msgstr "Konfiguratu faktura sinplifikatuaren sekuentzia POS honetarako"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_limit
+msgid "Sim.Inv limit amount"
+msgstr "Fak. sinpl. lim. zenbatekoa"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_number
+msgid "Sim.Inv number"
+msgstr "Faktu. sinpl. zenbakia"
+
+#. module: l10n_es_pos
+#: code:addons/l10n_es_pos/models/pos_config.py:64
+#: code:addons/l10n_es_pos/models/pos_config.py:109
+#, python-format
+msgid "Simplified Invoice %s"
+msgstr "Fakt sinpl %s"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_sequence_id
+msgid "Simplified Invoice IDs Sequence"
+msgstr "Fak sinpl IDs Sequence"
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Simplified Invoice Limit"
+msgstr "Falt sinpl limitea"
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
+msgid "Simplified Invoice Sequence"
+msgstr "Fak sinpl Sequence"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_padding
+msgid "Simplified Invoice padding"
+msgstr "Fak sinpl betegarria"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_l10n_es_simplified_invoice_prefix
+msgid "Simplified Invoice prefix"
+msgstr "Sinplifikatutako faktura aurrizkia"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:59
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order_is_l10n_es_simplified_invoice
+#, python-format
+msgid "Simplified invoice"
+msgstr "Faktura sinplifikatua"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:7
+#, python-format
+msgid "Simplified invoice:"
+msgstr "Faktura sinplifikatua:"
+
+#. module: l10n_es_pos
+#: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Simplified invoices"
+msgstr "Faktura sinplifikatuak"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
+#, python-format
+msgid "Subt"
+msgstr "Subt"
+
+#. module: l10n_es_pos
+#: code:addons/l10n_es_pos/models/ir_sequence.py:20
+#, python-format
+msgid "There is already a simplified invoice sequence with that prefix and it should be unique."
+msgstr "Aurrez hartutako faktura sinplifikatuaren sekuentzia badago jadanik eta bakarra izan beharko luke."
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
+#, python-format
+msgid "Unit"
+msgstr "Unitatea"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_iface_l10n_es_simplified_invoice
+msgid "Use simplified invoices for this POS"
+msgstr "Erabili faktura sinplifikatua POS honetarako"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:12
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:29
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
+#, python-format
+msgid "VAT:"
+msgstr "BEZa:"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_ir_sequence
+msgid "ir.sequence"
+msgstr "ir.sequence"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:51
+#, python-format
+msgid "on"
+msgstr "on"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_config
+msgid "pos.config"
+msgstr "pos.config"
