@@ -12,7 +12,7 @@
 
 {
     'name': 'IGIC (Impuesto General Indirecto Canario',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'author': "David Diz Martínez <daviddiz@gmail.com>,"
               "Atlantux Consultores - Enrique Zanardi,"
               "Sistemas de Datos,"
