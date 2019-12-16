@@ -1,4 +1,5 @@
-# © 2017 Creu Blanca
+# Copyright 2017 Creu Blanca
+# Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
@@ -73,9 +74,11 @@ class TestAttribute:
         self.st_atime = datetime.now()
 
 
-class TestL10nEsFacturae(common.TransactionCase):
-    def setUp(self):
-        super(TestL10nEsFacturae, self).setUp()
+class TestL10nEsFacturae(common.SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        self = cls
         pkcs12 = crypto.PKCS12()
         pkey = crypto.PKey()
         pkey.generate_key(crypto.TYPE_RSA, 512)
@@ -103,7 +106,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.state = self.env['res.country.state'].create({
             'name': 'Ciudad Real',
             'code': '13',
-            'country_id': self.ref('base.es'),
+            'country_id': self.env.ref('base.es').id,
         })
         self.partner = self.env['res.partner'].create({
             'name': 'Cliente de prueba',
@@ -111,7 +114,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             'zip': '13700',
             'city': 'Tomelloso',
             'state_id': self.state.id,
-            'country_id': self.ref('base.es'),
+            'country_id': self.env.ref('base.es').id,
             'vat': 'ES05680675C',
             'facturae': True,
             'organo_gestor': 'U00000038',
@@ -124,8 +127,11 @@ class TestL10nEsFacturae(common.TransactionCase):
         })
         main_company.partner_id.facturae_efact_code = '0123456789012345678901'
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.ref('base.uk')
-        main_company.currency_id = self.ref('base.EUR')
+        main_company.partner_id.country_id = self.env.ref('base.uk').id
+        # set this by SQL due to the upstream constraint
+        self.env.cr.execute(
+            "UPDATE res_company SET currency_id = %s",
+            (self.env.ref('base.EUR').id, ))
         self.env['res.currency.rate'].search(
             [('currency_id', '=', main_company.currency_id.id)]
         ).write({'company_id': False})
