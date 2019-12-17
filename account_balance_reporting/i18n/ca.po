@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-24 10:34+0000\n"
-"PO-Revision-Date: 2019-10-28 16:33+0000\n"
+"PO-Revision-Date: 2019-12-17 18:05+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -33,6 +33,11 @@ msgid ""
 "and previous) are calculated based on the 'value' formula of the linked "
 "template line."
 msgstr ""
+"Línia d'informe de balanç de comptes / Concepte comptable. Una línia del "
+"informe del balanç de comptes representa un concepte comptable amb els seus "
+"valors. Els conceptes comptables segueixen una jerarquia pare-fill. Aquests "
+"valors (actual i anterior) es calculen a partir de la formula 'valor' de la "
+"plantilla de línia enllaçada."
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_form
@@ -46,6 +51,9 @@ msgid ""
 "of detail of the balance report representing an accounting concept with the "
 "formulas to calculate its values. "
 msgstr ""
+"Línia de plantilla de l'informe de balanç comptable/ Plantilla de concepte "
+"comptable. Una línia de detall de l'informe de balanç representant un "
+"concepte comptable amb les fórmules per calcular el seu valor. "
 
 #. module: account_balance_reporting
 #: model:ir.model,name:account_balance_reporting.model_account_balance_reporting_template
@@ -54,6 +62,10 @@ msgid ""
 "balance report template, and the linked lines of detail with the formulas to "
 "calculate the accounting concepts of the report."
 msgstr ""
+"Plantilla d'informe de balanç de comptes. Emmagatzema els camps de capçalera "
+"d'una plantilla d'informe de balanç de comptes, i les línies de detall "
+"enllaçades amb les fórmules per calcular els conceptes comptables de "
+"l'informe."
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_template_tree
@@ -95,7 +107,7 @@ msgstr "Classe CSS"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.report_generic
 msgid "CURRENT"
-msgstr ""
+msgstr "CORRENT"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -189,7 +201,7 @@ msgstr "Haver-Deure, invertit amb parèntesi"
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_current_move_line_count
 msgid "Current move line count"
-msgstr ""
+msgstr "Nombre de línies del moviment actual"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_current_date_from
@@ -335,6 +347,9 @@ msgid ""
 "the linked lines of detail with the values of the accounting concepts "
 "(values generated from the selected template lines of detail formulas)"
 msgstr ""
+"Això emmagatzema la configuració/capçalera d'un informe de balanç de compte, "
+"i les línies de detall enllaçades amb els valors dels conceptes comptables ("
+"valors generats des del detall de les  línies de la plantilla de fórmules)"
 
 #. module: account_balance_reporting
 #: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:436
@@ -469,7 +484,7 @@ msgstr "Pare"
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_previous_move_line_count
 msgid "Previous move line count"
-msgstr ""
+msgstr "Nombre de línies del moviment anterior"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.wizard_account_balance_reporting_print
