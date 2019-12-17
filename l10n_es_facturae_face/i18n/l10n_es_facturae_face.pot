@@ -87,6 +87,11 @@ msgid "Country must be defined in order to send to FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Delivered"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.res_config_settings_view_form
 msgid "FACe Configuration"
 msgstr ""
@@ -140,7 +145,17 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: selection:account.invoice.integration,integration_status:0
+msgid "Paid"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
 msgid "Payed"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -161,6 +176,11 @@ msgstr ""
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_account_invoice_integration_log
 msgid "Result logs for integrations of invoices"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Sended"
 msgstr ""
 
 #. module: l10n_es_facturae_face
