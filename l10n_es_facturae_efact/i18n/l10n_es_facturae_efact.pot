@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
@@ -12,6 +12,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Accepted"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Cancellation approved"
+msgstr ""
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/account_invoice_integration_method.py:20
@@ -26,13 +36,18 @@ msgid "Certificate password must be added for company"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_method_code_7779
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__method_code
 msgid "Code"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model,name:l10n_es_facturae_efact.model_res_company
 msgid "Companies"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: model:ir.model,name:l10n_es_facturae_efact.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
@@ -47,12 +62,17 @@ msgid "Country must be defined in order to send to e.Fact"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_efact_hub_id
+#: selection:account.invoice.integration,integration_status:0
+msgid "Delivered"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__efact_hub_id
 msgid "Efact Hub"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_efact_reference
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__efact_reference
 msgid "Efact Reference"
 msgstr ""
 
@@ -63,8 +83,63 @@ msgid "Facturae must be selected in order to send to e.Fact"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_log_hub_message_id
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_log__hub_message_id
 msgid "Hub Message"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration__integration_status
+msgid "Integration Status"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration
+msgid "Integration for an invoice"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_method
+msgid "Integration method for invoices"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Paid"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Payed"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on RCF"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on REC"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Rejected"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_log
+msgid "Result logs for integrations of invoices"
+msgstr ""
+
+#. module: l10n_es_facturae_efact
+#: selection:account.invoice.integration,integration_status:0
+msgid "Sended"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
@@ -80,34 +155,19 @@ msgid "Vat must be defined in order to send to e.Fact"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration
-msgid "account.invoice.integration"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_log
-msgid "account.invoice.integration.log"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_method
-msgid "account.invoice.integration.method"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.ui.view,arch_db:l10n_es_facturae_efact.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_efact.res_config_settings_view_form
 msgid "e.Fact Configuration"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_port
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_port
 msgid "e.Fact SSH port"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_company_facturae_efact_code
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_partner_facturae_efact_code
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_users_facturae_efact_code
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_company__facturae_efact_code
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_partner__facturae_efact_code
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_users__facturae_efact_code
 msgid "e.Fact code"
 msgstr ""
 
@@ -118,17 +178,17 @@ msgid "e.Fact code must be correctly defined"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_password
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_password
 msgid "e.Fact password"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_server
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_server
 msgid "e.Fact server location"
 msgstr ""
 
 #. module: l10n_es_facturae_efact
-#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_user
+#: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings__efact_user
 msgid "e.Fact user"
 msgstr ""
 
@@ -137,10 +197,5 @@ msgstr ""
 #: model:ir.cron,cron_name:l10n_es_facturae_efact.update_efact_job
 #: model:ir.cron,name:l10n_es_facturae_efact.update_efact_job
 msgid "eFACT update Job"
-msgstr ""
-
-#. module: l10n_es_facturae_efact
-#: model:ir.model,name:l10n_es_facturae_efact.model_res_config_settings
-msgid "res.config.settings"
 msgstr ""
 
