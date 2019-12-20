@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. module: l10n_es_toponyms
+#: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
+msgid "Config ES Toponyms"
+msgstr ""
+
+#. module: l10n_es_toponyms
 #: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from GeoNames"
 msgstr ""
@@ -88,9 +93,4 @@ msgstr ""
 msgid ""
 "Warning! Adding this bunch of records can take a lot of time. If you are "
 "behind a SSL proxy, check your timeout."
-msgstr ""
-
-#. module: l10n_es_toponyms
-#: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
-msgid "config.es.toponyms"
 msgstr ""
