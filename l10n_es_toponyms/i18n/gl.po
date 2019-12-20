@@ -20,6 +20,13 @@ msgstr ""
 "X-Generator: Weblate 3.4\n"
 
 #. module: l10n_es_toponyms
+#: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
+#, fuzzy
+#| msgid "config.es.toponyms"
+msgid "Config ES Toponyms"
+msgstr "'config.es.toponyms'"
+
+#. module: l10n_es_toponyms
 #: model_terms:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
 msgid "Configure from GeoNames"
 msgstr "Configurar desde GeoNames"
@@ -95,11 +102,6 @@ msgid ""
 msgstr ""
 "¡Aviso! Engadir esta cantidade de rexistros pode tardar moito tempo. Se está "
 "detrás dun proxy SSL, comprobe o 'timeout'."
-
-#. module: l10n_es_toponyms
-#: model:ir.model,name:l10n_es_toponyms.model_config_es_toponyms
-msgid "config.es.toponyms"
-msgstr "'config.es.toponyms'"
 
 #~ msgid "Configure from local"
 #~ msgstr "Configurar desde local"
