@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-13 18:57+0000\n"
-"PO-Revision-Date: 2018-04-13 18:57+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2019-12-28 14:13+0000\n"
+"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -24,23 +25,24 @@ msgstr "(IVA devengado - IVA deducible)"
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_0
 msgid "0 - Sin Epígrafe"
-msgstr ""
+msgstr "0 - Sin Epígrafe"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_0
 msgid "0 - Sin epígrafe"
-msgstr ""
+msgstr "0 - Sin epígrafe"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_1b
 msgid "1 - Epígrafes correspondientes a: Actividades AGP con IAE"
-msgstr ""
+msgstr "1 - Epígrafes correspondientes a: Actividades AGP con IAE"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_1
 msgid ""
 "1 - Epígrafes correspondientes a: Actividades empresariales sujetas al IAE"
 msgstr ""
+"1 - Epígrafes correspondientes a: Actividades empresariales sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_1a
@@ -48,29 +50,32 @@ msgid ""
 "1 - Epígrafes correspondientes a: Actividades en régimen simplificado "
 "excepto las agrícolas, ganaderas y pesqueras (AGP)"
 msgstr ""
+"1 - Epígrafes correspondientes a: Actividades en régimen simplificado "
+"excepto las agrícolas, ganaderas y pesqueras (AGP)"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2b
 msgid "2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
-msgstr ""
+msgstr "2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2a
 msgid ""
 "2 - Epígrafes correspondientes a: Actividades profesionales sujetas al IAE"
 msgstr ""
+"2 - Epígrafes correspondientes a: Actividades profesionales sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_3a
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_3a
 msgid "3 - Epígrafe 861.1 correspondiente a: Alquiler de viviendas"
-msgstr ""
+msgstr "3 - Epígrafe 861.1 correspondiente a: Alquiler de viviendas"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_3b
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_3b
 msgid "3 - Epígrafe 861.2 correspondiente a: Alquiler de locales industriales"
-msgstr ""
+msgstr "3 - Epígrafe 861.2 correspondiente a: Alquiler de locales industriales"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_3c
