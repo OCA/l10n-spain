@@ -335,7 +335,7 @@
                                 <PaymentMeans t-esc="invoice.payment_mode_id.facturae_code"/>
                                 <AccountToBeDebited t-if="invoice.payment_mode_id.facturae_code == '02'">
                                     <IBAN t-minlength="5" t-length="34" t-esc="''.join(invoice.mandate_id.partner_bank_id.acc_number.split())"/>
-                                    <BankCode t-length="60" t-esc="invoice.partner_bank_id.bank_id.code"/>
+                                    <BankCode t-length="60" t-esc="invoice.mandate_id.partner_bank_id.bank_id.code"/>
                                     <BranchCode t-length="60" t-if="False"/>
                                     <BIC t-minlength="11" t-length="11" t-esc="invoice.mandate_id.partner_bank_id.bank_id.bic"/>
                                     <PaymentReconciliationReference t-length="60" t-if="False"/>
