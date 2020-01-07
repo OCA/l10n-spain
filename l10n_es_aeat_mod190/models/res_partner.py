@@ -8,15 +8,17 @@ class ResPartner(models.Model):
     incluir_190 = fields.Boolean(string='Included in mod190',
                                  default=False)
 
-    performance_key = fields.Many2one(
+    aeat_perception_key_id = fields.Many2one(
         comodel_name='l10n.es.aeat.report.perception.key',
         string='Clave percepción',
+        oldname='performance_key',
         help='Se consignará la clave alfabética que corresponda a las '
              'percepciones de que se trate.')
 
-    subclave = fields.Many2one(
+    aeat_perception_subkey_id = fields.Many2one(
         comodel_name='l10n.es.aeat.report.perception.subkey',
         string='Subclave',
+        oldname='subclave',
         help='''Tratándose de percepciones correspondientes a las claves
             B, E, F, G, H, I, K y L, deberá consignarse, además, la
             subclave numérica de dos dígitos que corresponda a las
@@ -186,22 +188,25 @@ class ResPartner(models.Model):
     computo_primeros_hijos_3 = fields.Integer(
         string='Cómputo de los 3 primeros hijos (3º)')
 
-    ad_required = fields.Integer('Aditional data required', default=0)
+    ad_required = fields.Integer(
+        'Aditional data required',
+        compute='_compute_ad_required'
+    )
 
-    @api.onchange('performance_key')
-    def onchange_performance_key(self):
-        if self.performance_key:
-            self.subclave = False
-            return {'value': {
-                'ad_required': self.performance_key.ad_required},
-                'domain': {'subclave': [
-                    ('perception_id', '=', self.performance_key.id)]}}
+    @api.depends('aeat_perception_key_id', 'aeat_perception_subkey_id')
+    def _compute_ad_required(self):
+        for record in self:
+            ad_required = record.aeat_perception_key_id.ad_required
+            if record.aeat_perception_subkey_id:
+                ad_required += record.aeat_perception_subkey_id.ad_required
+            record.ad_required = ad_required
+
+    @api.onchange('aeat_perception_key_id')
+    def onchange_aeat_perception_key_id(self):
+        if self.aeat_perception_key_id:
+            self.aeat_perception_subkey_id = False
+            return {'domain': {'aeat_perception_subkey_id': [
+                ('aeat_perception_key_id', '=', self.aeat_perception_key_id.id)
+            ]}}
         else:
-            return {'domain': {'subclave': []}}
-
-    @api.onchange('subclave')
-    def onchange_subclave_key(self):
-        self.ad_required = self.performance_key.ad_required
-        if self.subclave:
-            self.ad_required += self.subclave.ad_required
-            return {'value': {'ad_required': self.ad_required}}
+            return {'domain': {'aeat_perception_subkey_id': []}}
