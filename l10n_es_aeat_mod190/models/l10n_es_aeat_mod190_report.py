@@ -61,7 +61,7 @@ class L10nEsAeatMod190Report(models.Model):
             if not valid:
                 raise exceptions.UserError(
                     _("You have to recalculate the report before confirm it."))
-
+        self._check_report_lines()
         return super(L10nEsAeatMod190Report, self).button_confirm()
 
     @api.multi
@@ -98,16 +98,12 @@ class L10nEsAeatMod190Report(models.Model):
                         if rpr_ids.partner_id.id == rp.id:
                             exist_rp = True
                     if not exist_rp:
-                        if rp.state_id.code:
-                            aeat_sc_obj = self.env['aeat.state.code.mapping']
-                            codigo_provincia = aeat_sc_obj.search(
-                                [('state_code', '=',
-                                  self.partner_id.state_id.code)]).aeat_code
-                        else:
+                        codigo_provincia = rp.state_id.aeat_code
+                        if not codigo_provincia:
                             exceptions.UserError(
                                 _('The state is not defined in the partner, %s'
                                   % rp.name))
-                        if not rp.performance_key:
+                        if not rp.aeat_perception_key_id:
                             raise exceptions.UserError(
                                 _("The perception key of the partner, %s. "
                                     "Must be filled." % rp.name))
@@ -116,7 +112,7 @@ class L10nEsAeatMod190Report(models.Model):
                             'partner_id': rp.id,
                             'partner_vat': rp.vat,
                             'a_nacimiento': rp.a_nacimiento,
-                            'clave_percepcion': rp.performance_key.id,
+                            'aeat_perception_key_id': rp.aeat_perception_key_id.id,
                             'codigo_provincia': codigo_provincia,
                             'partner_record_ok': True,
                             'discapacidad': rp.discapacidad,
@@ -295,16 +291,16 @@ class L10nEsAeatMod190ReportLine(models.Model):
     _name = 'l10n.es.aeat.mod190.report.line'
 
     @api.depends('partner_vat', 'a_nacimiento',
-                 'codigo_provincia', 'clave_percepcion', 'partner_id')
+                 'codigo_provincia', 'aeat_perception_key_id', 'partner_id')
     def _compute_partner_record_ok(self):
         """Comprobamos que los campos estén introducidos dependiendo de las
            claves y las subclaves."""
 
         for record in self:
-            record.partner_record_ok = (bool(
+            record.partner_record_ok = bool(
                 record.partner_vat and record.codigo_provincia and
-                record.clave_percepcion and record
-            ))
+                record.aeat_perception_key_id and record
+            )
 
     report_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod190.report',
@@ -317,11 +313,13 @@ class L10nEsAeatMod190ReportLine(models.Model):
     partner_vat = fields.Char(string='NIF', size=15)
     representante_legal_vat = fields.Char(
         string="L. R. VAT", size=9)
-    clave_percepcion = fields.Many2one(
+    aeat_perception_key_id = fields.Many2one(
         comodel_name='l10n.es.aeat.report.perception.key',
+        oldname='clave_percepcion',
         string='Perception key', required=True)
-    subclave = fields.Many2one(
+    aeat_perception_subkey_id = fields.Many2one(
         comodel_name='l10n.es.aeat.report.perception.subkey',
+        oldname='subclave',
         string='Perception subkey')
     ejercicio_devengo = fields.Char(
         string='year', size=4)
@@ -444,123 +442,95 @@ class L10nEsAeatMod190ReportLine(models.Model):
         string='2')
     computo_primeros_hijos_3 = fields.Integer(
         string='3')
+    ad_required = fields.Integer(
+        compute='_compute_ad_required'
+    )
+
+    @api.depends('aeat_perception_key_id', 'aeat_perception_subkey_id')
+    def _compute_ad_required(self):
+        for record in self:
+            ad_required = record.aeat_perception_key_id.ad_required
+            if record.aeat_perception_subkey_id:
+                ad_required += record.aeat_perception_subkey_id.ad_required
+            record.ad_required = ad_required
 
     @api.onchange('partner_id')
     def onchange_partner_id(self):
         if self.partner_id:
-            if self.partner_id.state_id.code:
-                aeat_sc_obj = self.env['aeat.state.code.mapping']
-                self.codigo_provincia = aeat_sc_obj.search(
-                    [('state_code', '=',
-                      self.partner_id.state_id.code)]).aeat_code
-            else:
+            partner = self.partner_id
+            if not partner.state_id:
                 exceptions.UserError(_('Provincia no definida en el cliente'))
 
+            self.codigo_provincia = partner.state_id.aeat_code
             if not self.codigo_provincia:
                 self.codigo_provincia = '98'
-            self.partner_vat = self.partner_id.vat
 
+            self.partner_vat = partner.vat
             # Cargamos valores establecidos en el tercero.
-            self.clave_percepcion = self.partner_id.performance_key
-            self.subclave = self.partner_id.subclave
-            self.a_nacimiento = self.partner_id.a_nacimiento
-            self.discapacidad = self.partner_id.discapacidad
-            self.ceuta_melilla = self.partner_id.ceuta_melilla
-            self.movilidad_geografica = self.partner_id.movilidad_geografica
-            self.representante_legal_vat = \
-                self.partner_id.representante_legal_vat
-            self.situacion_familiar = self.partner_id.situacion_familiar
-            self.nif_conyuge = self.partner_id.nif_conyuge
-            self.contrato_o_relacion = self.partner_id.contrato_o_relacion
-            self.hijos_y_descendientes_m = \
-                self.partner_id.hijos_y_descendientes_m
+            self.aeat_perception_key_id = partner.aeat_perception_key_id
+            self.aeat_perception_subkey_id = partner.aeat_perception_subkey_id
+            self.a_nacimiento = partner.a_nacimiento
+            self.discapacidad = partner.discapacidad
+            self.ceuta_melilla = partner.ceuta_melilla
+            self.movilidad_geografica = partner.movilidad_geografica
+            self.representante_legal_vat = partner.representante_legal_vat
+            self.situacion_familiar = partner.situacion_familiar
+            self.nif_conyuge = partner.nif_conyuge
+            self.contrato_o_relacion = partner.contrato_o_relacion
+            self.hijos_y_descendientes_m = partner.hijos_y_descendientes_m
             self.hijos_y_descendientes_m_entero = \
-                self.partner_id.hijos_y_descendientes_m_entero
-            self.hijos_y_descendientes = self.partner_id.hijos_y_descendientes
+                partner.hijos_y_descendientes_m_entero
+            self.hijos_y_descendientes = partner.hijos_y_descendientes
             self.hijos_y_descendientes_entero = \
-                self.partner_id.hijos_y_descendientes_entero
-            self.computo_primeros_hijos_1 = \
-                self.partner_id.computo_primeros_hijos_1
-            self.computo_primeros_hijos_2 = \
-                self.partner_id.computo_primeros_hijos_2
-            self.computo_primeros_hijos_3 = \
-                self.partner_id.computo_primeros_hijos_3
+                partner.hijos_y_descendientes_entero
+            self.computo_primeros_hijos_1 = partner.computo_primeros_hijos_1
+            self.computo_primeros_hijos_2 = partner.computo_primeros_hijos_2
+            self.computo_primeros_hijos_3 = partner.computo_primeros_hijos_3
             self.hijos_y_desc_discapacidad_33 = \
-                self.partner_id.hijos_y_desc_discapacidad_33
+                partner.hijos_y_desc_discapacidad_33
             self.hijos_y_desc_discapacidad_entero_33 = \
-                self.partner_id.hijos_y_desc_discapacidad_entero_33
+                partner.hijos_y_desc_discapacidad_entero_33
             self.hijos_y_desc_discapacidad_mr = \
-                self.partner_id.hijos_y_desc_discapacidad_mr
+                partner.hijos_y_desc_discapacidad_mr
             self.hijos_y_desc_discapacidad_entero_mr = \
-                self.partner_id.hijos_y_desc_discapacidad_entero_mr
+                partner.hijos_y_desc_discapacidad_entero_mr
             self.hijos_y_desc_discapacidad_66 = \
-                self.partner_id.hijos_y_desc_discapacidad_66
+                partner.hijos_y_desc_discapacidad_66
             self.hijos_y_desc_discapacidad_entero_66 = \
-                self.partner_id.hijos_y_desc_discapacidad_entero_66
-            self.ascendientes = self.partner_id.ascendientes
-            self.ascendientes_entero = self.partner_id.ascendientes_entero
-            self.ascendientes_m75 = self.partner_id.ascendientes_m75
-            self.ascendientes_entero_m75 = \
-                self.partner_id.ascendientes_entero_m75
+                partner.hijos_y_desc_discapacidad_entero_66
+            self.ascendientes = partner.ascendientes
+            self.ascendientes_entero = partner.ascendientes_entero
+            self.ascendientes_m75 = partner.ascendientes_m75
+            self.ascendientes_entero_m75 = partner.ascendientes_entero_m75
 
             self.ascendientes_discapacidad_33 = \
-                self.partner_id.ascendientes_discapacidad_33
+                partner.ascendientes_discapacidad_33
             self.ascendientes_discapacidad_entero_33 = \
-                self.partner_id.ascendientes_discapacidad_entero_33
+                partner.ascendientes_discapacidad_entero_33
             self.ascendientes_discapacidad_mr = \
-                self.partner_id.ascendientes_discapacidad_mr
+                partner.ascendientes_discapacidad_mr
             self.ascendientes_discapacidad_entero_mr = \
-                self.partner_id.ascendientes_discapacidad_entero_mr
+                partner.ascendientes_discapacidad_entero_mr
             self.ascendientes_discapacidad_66 = \
-                self.partner_id.ascendientes_discapacidad_66
+                partner.ascendientes_discapacidad_66
             self.ascendientes_discapacidad_entero_66 = \
-                self.partner_id.ascendientes_discapacidad_entero_66
+                partner.ascendientes_discapacidad_entero_66
 
-            if self.clave_percepcion:
-                self.subclave = False
-                return {'domain': {'subclave': [
-                    ('perception_id', '=', self.clave_percepcion.id)]}}
+            if self.aeat_perception_key_id:
+                self.aeat_perception_subkey_id = False
+                return {'domain': {'aeat_perception_subkey_id': [
+                    ('aeat_perception_key_id', '=', self.aeat_perception_key_id.id)]}}
             else:
-                return {'domain': {'subclave': []}}
+                return {'domain': {'aeat_perception_subkey_id': []}}
         else:
             self.partner_vat = False
             self.codigo_provincia = False
 
-    @api.onchange('clave_percepcion')
-    def onchange_clave_percepcion(self):
-        if self.clave_percepcion:
-            self.subclave = False
-            return {'domain': {'subclave': [
-                ('perception_id', '=', self.clave_percepcion.id)]}}
+    @api.onchange('aeat_perception_key_id')
+    def onchange_aeat_perception_key_id(self):
+        if self.aeat_perception_key_id:
+            self.aeat_perception_subkey_id = False
+            return {'domain': {'aeat_perception_subkey_id': [
+                ('aeat_perception_key_id', '=', self.aeat_perception_key_id.id)]}}
         else:
-            return {'domain': {'subclave': []}}
-
-
-class L10nEsAeatReportPerceptionKey(models.Model):
-    _name = 'l10n.es.aeat.report.perception.key'
-    _description = 'Clave percepcion'
-
-    name = fields.Char(string='Name', required=True)
-    code = fields.Char(string='Code', size=3, required=True)
-    aeat_number = fields.Char(string="Model number", size=3, required=True)
-    description = fields.Text(string='Description')
-    active = fields.Boolean(string='Active', default=True)
-    subkey = fields.One2many(
-        comodel_name='l10n.es.aeat.report.perception.subkey',
-        inverse_name='perception_id', string='Subkeys',
-        ondelete='cascade')
-    ad_required = fields.Integer('Aditional data required', default=0)
-
-
-class L10nEsAeatReportPerceptionSubkey(models.Model):
-    _name = 'l10n.es.aeat.report.perception.subkey'
-    _description = 'Perception Subkey'
-
-    perception_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.report.perception.key',
-        string='Perception ID')
-    name = fields.Char(string='Name', size=2, required=True)
-    aeat_number = fields.Char(string="Model number", size=3, required=True)
-    description = fields.Text(string='Description')
-    active = fields.Boolean(string='Active', default=True)
-    ad_required = fields.Integer('Aditional data required', default=0)
+            return {'domain': {'aeat_perception_subkey_id': []}}

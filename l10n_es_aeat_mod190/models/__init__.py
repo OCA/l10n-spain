@@ -1,4 +1,4 @@
-
+from . import res_country_state
 from . import res_partner
-from . import mod190
-from . import aeat_state_code_mapping
+from . import l10n_es_aeat_mod190_report
+from . import l10n_es_aeat_perception
