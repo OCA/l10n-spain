@@ -13,7 +13,7 @@
         'l10n_es_aeat',
     ],
     'data': [
-        'data/aeat_state_code_mapping_data.xml',
+        'data/res_country_state.xml',
         'data/perception_key_data.xml',
         'data/perception_subkey_data.xml',
         'data/aeat_export_mod190_partner_data.xml',
