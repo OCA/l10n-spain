@@ -103,7 +103,7 @@
         <field name="sequence">9</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Clave de percepción</field>
-        <field name="expression">${object.clave_percepcion.code}</field>
+        <field name="expression">${object.aeat_perception_key_id.code}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -114,7 +114,7 @@
         <field name="sequence">10</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Subclave</field>
-        <field name="expression">${object.subclave.name}</field>
+        <field name="expression">${object.aeat_perception_subkey_id.name}</field>
         <field name="export_type">string</field>
         <field name="size">2</field>
         <field name="alignment">left</field>
