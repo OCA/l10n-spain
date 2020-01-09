@@ -20,27 +20,22 @@
                                    attrs="{'invisible': ['|', ('aeat_perception_key_id', '=', %(l10n_es_aeat_mod190.aeat_m190_perception_key_01)s), ('aeat_perception_key_id', '=', False)]}"/>
                             <field name="ad_required" invisible="1"/>
                         </group>
-                        <group string="Perception data"
-                               attrs="{'invisible': [('ad_required', '&lt;', 2)]}">
+                        <group string="Perception data">
                             <group>
-                                <field name="a_nacimiento"
-                                       attrs="{'required': [('ad_required', '=', 2)]}"/>
+                                <field name="a_nacimiento"/>
                                 <field name="discapacidad"/>
                                 <field name="ceuta_melilla"/>
                                 <field name="movilidad_geografica"/>
                             </group>
                             <group>
                                 <field name="representante_legal_vat"/>
-                                <field name="situacion_familiar"
-                                       attrs="{'required': [('ad_required', '=', 2)]}"/>
+                                <field name="situacion_familiar"/>
                                 <field name="nif_conyuge"/>
-                                <field name="contrato_o_relacion"
-                                       attrs="{'required': [('aeat_perception_key_id', '=', %(l10n_es_aeat_mod190.aeat_m190_perception_key_01)s)]}"/>
+                                <field name="contrato_o_relacion"/>
                             </group>
                         </group>
                         <group string="Sons and other decendents"
-                               col="3"
-                               attrs="{'invisible': [('ad_required', '&lt;', 2)]}">
+                               col="3">
                             <group string="Lower than 3 years">
                                 <field name="hijos_y_descendientes_m"/>
                                 <field name="hijos_y_descendientes_m_entero"/>
@@ -57,8 +52,7 @@
                         </group>
 
                         <group string="Sons and other decendents with discapacity"
-                               col="3"
-                               attrs="{'invisible': [('ad_required', '&lt;', 2)]}">
+                               col="3">
                             <group string="Between 33% and 65%">
                                 <field name="hijos_y_desc_discapacidad_33"/>
                                 <field name="hijos_y_desc_discapacidad_entero_33"/>
@@ -74,8 +68,7 @@
                         </group>
 
                         <group string="Ascendents"
-                               col="2"
-                               attrs="{'invisible': [('ad_required', '&lt;', 2)]}">
+                               col="2">
                             <group string="Lower than 75 years">
                                 <field name="ascendientes"/>
                                 <field name="ascendientes_entero"/>
@@ -87,8 +80,7 @@
                         </group>
 
                         <group string="Ascendents with discapacity"
-                               col="3"
-                               attrs="{'invisible': [('ad_required', '&lt;', 2)]}">
+                               col="3">
                             <group string="Between 33% and 65%">
                                 <field name="ascendientes_discapacidad_33"/>
                                 <field name="ascendientes_discapacidad_entero_33"/>
