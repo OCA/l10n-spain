@@ -329,3 +329,23 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         for inv_type in ['out_invoice', 'in_invoice']:
             self.invoice.type = inv_type
             self._test_tax_agencies(self.invoice)
+
+    def test_refund_sii_refund_type(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'type': 'out_refund',
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        self.assertEqual(invoice.sii_refund_type, 'I')
+
+    def test_refund_sii_refund_type_write(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'type': 'out_invoice',
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        self.assertFalse(invoice.sii_refund_type)
+        invoice.type = 'out_refund'
+        self.assertEqual(invoice.sii_refund_type, 'I')
