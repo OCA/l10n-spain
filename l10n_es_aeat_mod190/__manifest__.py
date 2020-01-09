@@ -13,6 +13,8 @@
         'l10n_es_aeat',
     ],
     'data': [
+        'views/account_fiscal_position.xml',
+        'views/account_invoice_view.xml',
         'data/res_country_state.xml',
         'data/perception_key_data.xml',
         'data/perception_subkey_data.xml',
@@ -22,6 +24,7 @@
         'views/mod190_line_view.xml',
         'views/mod190_view.xml',
         'views/partner_view.xml',
+        'views/account_move_view.xml',
         'security/ir.model.access.csv',
         'security/l10n_es_aeat_mod190_security.xml',
     ],
