@@ -67,224 +67,210 @@ class L10nEsAeatMod190Report(models.Model):
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod190Report, self).calculate()
-
         for report in self:
-            tax_code_map = self.env['l10n.es.aeat.map.tax'].search(
-                [('model', '=', report.number),
-                 '|',
-                 ('date_from', '<=', report.date_start),
-                 ('date_from', '=', False),
-                 '|',
-                 ('date_to', '>=', report.date_end),
-                 ('date_to', '=', False)], limit=1)
-            if tax_code_map:
-                tax_lines = []
-                lines = tax_code_map.map_line_ids.search(
-                    [('field_number', 'in', (11, 12, 13, 14, 15, 16)),
-                     ('map_parent_id', '=', tax_code_map.id)])
-                for map_line in lines:
-                    tax_lines.append(report._prepare_tax_line_vals(map_line))
-            else:
-                raise exceptions.UserError(_("No taxes mapped."))
-
+            if not report.registro_manual:
+                report.partner_record_ids.unlink()
             tax_lines = report.tax_line_ids.filtered(
                 lambda x: x.field_number in (
                     11, 12, 13, 14, 15, 16) and x.res_id == report.id)
-            if tax_lines:
-                for rp in tax_lines.mapped(
-                        'move_line_ids').mapped('partner_id'):
-                    exist_rp = False
-                    for rpr_ids in report.partner_record_ids:
-                        if rpr_ids.partner_id.id == rp.id:
-                            exist_rp = True
-                    if not exist_rp:
-                        codigo_provincia = rp.state_id.aeat_code
-                        if not codigo_provincia:
-                            exceptions.UserError(
-                                _('The state is not defined in the partner, %s'
-                                  % rp.name))
-                        if not rp.aeat_perception_key_id:
-                            raise exceptions.UserError(
-                                _("The perception key of the partner, %s. "
-                                    "Must be filled." % rp.name))
-                        values = {
-                            'report_id': report.id,
-                            'partner_id': rp.id,
-                            'partner_vat': rp.vat,
-                            'a_nacimiento': rp.a_nacimiento,
-                            'aeat_perception_key_id': rp.aeat_perception_key_id.id,
-                            'codigo_provincia': codigo_provincia,
-                            'partner_record_ok': True,
-                            'discapacidad': rp.discapacidad,
-                            'ceuta_melilla': rp.ceuta_melilla,
-                            'movilidad_geografica': rp.movilidad_geografica,
-                            'representante_legal_vat':
-                                rp.representante_legal_vat,
-                            'situacion_familiar': rp.situacion_familiar,
-                            'nif_conyuge': rp.nif_conyuge,
-                            'contrato_o_relacion': rp.contrato_o_relacion,
-                            'hijos_y_descendientes_m':
-                                rp.hijos_y_descendientes_m,
-                            'hijos_y_descendientes_m_entero':
-                                rp.hijos_y_descendientes_m_entero,
-                            'hijos_y_descendientes':
-                                rp.hijos_y_descendientes_m,
-                            'hijos_y_descendientes_entero':
-                                rp.hijos_y_descendientes_entero,
-                            'computo_primeros_hijos_1':
-                                rp.computo_primeros_hijos_1,
-                            'computo_primeros_hijos_2':
-                                rp.computo_primeros_hijos_2,
-                            'computo_primeros_hijos_3':
-                                rp.computo_primeros_hijos_3,
-                            'hijos_y_desc_discapacidad_33':
-                                rp.hijos_y_desc_discapacidad_33,
-                            'hijos_y_desc_discapacidad_entero_33':
-                                rp.hijos_y_desc_discapacidad_entero_33,
-                            'hijos_y_desc_discapacidad_mr':
-                                rp.hijos_y_desc_discapacidad_mr,
-                            'hijos_y_desc_discapacidad_entero_mr':
-                                rp.hijos_y_desc_discapacidad_entero_mr,
-                            'hijos_y_desc_discapacidad_66':
-                                rp.hijos_y_desc_discapacidad_66,
-                            'hijos_y_desc_discapacidad_entero_66':
-                                rp.hijos_y_desc_discapacidad_entero_66,
-                            'ascendientes': rp.ascendientes,
-                            'ascendientes_entero': rp.ascendientes_entero,
-                            'ascendientes_m75': rp.ascendientes_m75,
-                            'ascendientes_entero_m75':
-                                rp.ascendientes_entero_m75,
-                            'ascendientes_discapacidad_33':
-                                rp.ascendientes_discapacidad_33,
-                            'ascendientes_discapacidad_entero_33':
-                                rp.ascendientes_discapacidad_entero_33,
-                            'ascendientes_discapacidad_mr':
-                                rp.ascendientes_discapacidad_mr,
-                            'ascendientes_discapacidad_entero_mr':
-                                rp.ascendientes_discapacidad_entero_mr,
-                            'ascendientes_discapacidad_66':
-                                rp.ascendientes_discapacidad_66,
-                            'ascendientes_discapacidad_entero_66':
-                                rp.ascendientes_discapacidad_entero_66,
-                        }
+            tax_line_vals = {}
+            for tax_line in tax_lines:
+                for line in tax_line.move_line_ids:
+                    rp = line.partner_id
+                    if line.aeat_perception_key_id:
+                        key_id = line.aeat_perception_key_id
+                        subkey_id = line.aeat_perception_subkey_id
+                    else:
+                        key_id = rp.aeat_perception_key_id
+                        subkey_id = rp.aeat_perception_subkey_id
+                    check_existance = False
+                    if rp.id not in tax_line_vals:
+                        tax_line_vals[rp.id] = {}
+                    if key_id.id not in tax_line_vals[rp.id]:
+                        tax_line_vals[rp.id][key_id.id] = {}
+                    if subkey_id.id not in tax_line_vals[rp.id][key_id.id]:
+                        tax_line_vals[rp.id][key_id.id][subkey_id.id] = {}
+                        check_existance = True
+                    if check_existance:
+                        partner_record_id = False
+                        for rpr_id in report.partner_record_ids:
+                            if (
+                                rpr_id.partner_id == rp and
+                                key_id == rpr_id.aeat_perception_key_id and
+                                subkey_id == rpr_id.aeat_perception_subkey_id
+                            ):
+                                partner_record_id = rpr_id.id
+                                break
+                        if not partner_record_id:
+                            if not rp.aeat_perception_key_id:
+                                raise exceptions.UserError(
+                                    _("The perception key of the partner, %s. "
+                                        "Must be filled." % rp.name))
+                            tax_line_vals[rp.id][key_id.id][
+                                subkey_id.id
+                            ] = report._get_line_mod190_vals(
+                                rp, key_id, subkey_id)
+                        else:
+                            tax_line_vals[rp.id][key_id.id][subkey_id.id] = False
+                    if report.registro_manual:
+                        continue
+                    if tax_line_vals[rp.id][key_id.id][subkey_id.id]:
+                        values = tax_line_vals[rp.id][key_id.id][subkey_id.id]
+                        pd = 0.0
+                        if (
+                            tax_line.field_number in (11, 15) and
+                            tax_line.res_id == report.id
+                        ):
+                            pd += line.debit - line.credit
+                        rd = 0.0
+                        if (
+                            tax_line.field_number in (12, 16) and
+                            tax_line.res_id == report.id
+                        ):
+                            rd += line.credit - line.debit
+                        pde = 0.0
+                        if (
+                            tax_line.field_number == 13 and
+                            tax_line.res_id == report.id
+                        ):
+                            pde += line.debit - line.credit
+                        rde = 0.0
+                        if (
+                            tax_line.field_number == 13 and
+                            tax_line.res_id == report.id
+                        ):
+                            rde += line.credit - line.debit
+                        if not rp.discapacidad or rp.discapacidad == '0':
+                            values['percepciones_dinerarias'] += pd
+                            values['retenciones_dinerarias'] += rd
+                            values['percepciones_en_especie'] += pde - rde
+                            values['ingresos_a_cuenta_efectuados'] += pde
+                            values['ingresos_a_cuenta_repercutidos'] += rde
+                        else:
+                            values['percepciones_dinerarias_incap'] += pd
+                            values['retenciones_dinerarias_incap'] += rd
+                            values[
+                                'percepciones_en_especie_incap'] += pde - rde
+                            values['ingresos_a_cuenta_efectuados_incap'] += pde
+                            values[
+                                'ingresos_a_cuenta_repercutidos_incap'] += rde
 
-                        if not report.registro_manual:
-                            pd = 0.0
-                            tax_lines = report.tax_line_ids.filtered(
-                                lambda x: x.field_number in (
-                                    11, 15) and x.res_id == report.id)
-                            for t in tax_lines:
-                                for m in t.move_line_ids:
-                                    if m.partner_id.id == rp.id:
-                                        pd += m.debit - m.credit
-
-                            rd = 0.0
-                            tax_lines = report.tax_line_ids.filtered(
-                                lambda x: x.field_number in (
-                                    12, 16) and x.res_id == report.id)
-                            for t in tax_lines:
-                                for m in t.move_line_ids:
-                                    if m.partner_id.id == rp.id:
-                                        rd += m.credit - m.debit
-
-                            pde = 0.0
-                            tax_lines = \
-                                report.tax_line_ids.filtered(
-                                    lambda x:
-                                    x.field_number == 13 and
-                                    x.res_id == report.id)
-                            for t in tax_lines:
-                                for m in t.move_line_ids:
-                                    if m.partner_id.id == rp.id:
-                                        pde += m.debit - m.credit
-
-                            rde = 0.0
-                            tax_lines = \
-                                report.tax_line_ids.filtered(
-                                    lambda x:
-                                    x.field_number == 14 and
-                                    x.res_id == report.id)
-                            for t in tax_lines:
-                                for m in t.move_line_ids:
-                                    if m.partner_id.id == rp.id:
-                                        rde += m.credit - m.debit
-
-                            if not rp.discapacidad or rp.discapacidad == '0':
-                                values['percepciones_dinerarias'] = pd
-                                values['retenciones_dinerarias'] = rd
-                                values['percepciones_en_especie'] = pde - rde
-                                values['ingresos_a_cuenta_efectuados'] = pde
-                                values['ingresos_a_cuenta_repercutidos'] = rde
-                            else:
-                                values['percepciones_dinerarias_incap'] = pd
-                                values['retenciones_dinerarias_incap'] = rd
-                                values['percepciones_en_especie_incap'] = \
-                                    pde - rde
-                                values[
-                                    'ingresos_a_cuenta_efectuados_incap'] = \
-                                    pde
-                                values[
-                                    'ingresos_a_cuenta_repercutidos_incap'] = \
-                                    rde
-
-                        line_obj = self.env['l10n.es.aeat.mod190.report.line']
-                        line_obj.create(values)
-
-                registros = 0
-                percepciones = 0.0
-                retenciones = 0.0
-
-                if report.registro_manual:
-                    for line in report.partner_record_ids:
+            line_obj = self.env['l10n.es.aeat.mod190.report.line']
+            registros = 0
+            for partner_id in tax_line_vals:
+                for key_id in tax_line_vals[partner_id]:
+                    for subkey_id in tax_line_vals[partner_id][key_id]:
+                        values = tax_line_vals[partner_id][key_id][subkey_id]
                         registros += 1
-                        percepciones += \
-                            line.percepciones_dinerarias + \
-                            line.percepciones_en_especie + \
-                            line.percepciones_dinerarias_incap + \
-                            line.percepciones_en_especie_incap
-
-                        retenciones += \
-                            line.retenciones_dinerarias + \
-                            line.retenciones_dinerarias_incap
-
-                    report.casilla_01 = registros
-                    report.casilla_02 = percepciones
-                    report.casilla_03 = retenciones
-
-                else:
-                    percepciones = 0.0
-                    retenciones = 0.0
-
-                    tax_lines = report.tax_line_ids.search(
-                        [('field_number', 'in', (11, 12, 13, 14, 15, 16)),
-                         ('model', '=', 'l10n.es.aeat.mod190.report'),
-                         ('res_id', '=', report.id)])
-                    registros = len(
-                        tax_lines.mapped('move_line_ids').mapped(
-                            'partner_id'))
-
-                    tax_lines = report.tax_line_ids.search(
-                        [('field_number', 'in', (11, 13, 15)),
-                         ('model', '=', 'l10n.es.aeat.mod190.report'),
-                         ('res_id', '=', report.id)])
-                    for t in tax_lines:
-                        for m in t.move_line_ids:
-                            percepciones += m.debit - m.credit
-
-                    tax_lines = report.tax_line_ids.search(
-                        [('field_number', 'in', (12, 14, 16)),
-                         ('model', '=', 'l10n.es.aeat.mod190.report'),
-                         ('res_id', '=', report.id)])
-                    for t in tax_lines:
-                        for m in t.move_line_ids:
-                            retenciones += m.credit - m.debit
-
-                    report.casilla_01 = registros
-                    report.casilla_02 = percepciones
-                    report.casilla_03 = retenciones
-
-        report.calculado = True
+                        if values:
+                            line_obj.create(values)
+            report._calculate_amount(registros)
+            report.calculado = True
         return res
+
+    def _calculate_amount(self, registros):
+        percepciones = 0.0
+        retenciones = 0.0
+        if self.registro_manual:
+            registros = 0
+            for line in self.partner_record_ids:
+                registros += 1
+                percepciones += \
+                    line.percepciones_dinerarias + \
+                    line.percepciones_en_especie + \
+                    line.percepciones_dinerarias_incap + \
+                    line.percepciones_en_especie_incap
+                retenciones += \
+                    line.retenciones_dinerarias + \
+                    line.retenciones_dinerarias_incap
+        else:
+            percepciones = 0.0
+            retenciones = 0.0
+            tax_lines = self.tax_line_ids.search(
+                [('field_number', 'in', (11, 13, 15)),
+                 ('model', '=', 'l10n.es.aeat.mod190.report'),
+                 ('res_id', '=', self.id)])
+            for t in tax_lines:
+                for m in t.move_line_ids:
+                    percepciones += m.debit - m.credit
+
+            tax_lines = self.tax_line_ids.search(
+                [('field_number', 'in', (12, 14, 16)),
+                 ('model', '=', 'l10n.es.aeat.mod190.report'),
+                 ('res_id', '=', self.id)])
+            for t in tax_lines:
+                for m in t.move_line_ids:
+                    retenciones += m.credit - m.debit
+        self.casilla_01 = registros
+        self.casilla_02 = percepciones
+        self.casilla_03 = retenciones
+
+    def _get_line_mod190_vals(self, rp, key_id, subkey_id):
+        codigo_provincia = rp.state_id.aeat_code
+        if not codigo_provincia:
+            exceptions.UserError(
+                _('The state is not defined in the partner, %s') % rp.name)
+        vals = {
+            'report_id': self.id,
+            'partner_id': rp.id,
+            'partner_vat': rp.vat,
+            'aeat_perception_key_id': key_id.id,
+            'aeat_perception_subkey_id': subkey_id.id,
+            'codigo_provincia': codigo_provincia,
+            'ceuta_melilla': rp.ceuta_melilla,
+            'partner_record_ok': True,
+            'percepciones_dinerarias': 0,
+            'retenciones_dinerarias': 0,
+            'percepciones_en_especie': 0,
+            'ingresos_a_cuenta_efectuados': 0,
+            'ingresos_a_cuenta_repercutidos': 0,
+            'percepciones_dinerarias_incap': 0,
+            'retenciones_dinerarias_incap': 0,
+            'percepciones_en_especie_incap': 0,
+            'ingresos_a_cuenta_efectuados_incap': 0,
+            'ingresos_a_cuenta_repercutidos_incap': 0,
+        }
+        if key_id.ad_required + subkey_id.ad_required >= 2:
+            vals.update({
+                'a_nacimiento': rp.a_nacimiento,
+                'discapacidad': rp.discapacidad,
+                'movilidad_geografica': rp.movilidad_geografica,
+                'representante_legal_vat': rp.representante_legal_vat,
+                'situacion_familiar': rp.situacion_familiar,
+                'nif_conyuge': rp.nif_conyuge,
+                'contrato_o_relacion': rp.contrato_o_relacion,
+                'hijos_y_descendientes_m': rp.hijos_y_descendientes_m,
+                'hijos_y_descendientes_m_entero':
+                    rp.hijos_y_descendientes_m_entero,
+                'hijos_y_descendientes': rp.hijos_y_descendientes_m,
+                'hijos_y_descendientes_entero': rp.hijos_y_descendientes_entero,
+                'computo_primeros_hijos_1': rp.computo_primeros_hijos_1,
+                'computo_primeros_hijos_2': rp.computo_primeros_hijos_2,
+                'computo_primeros_hijos_3': rp.computo_primeros_hijos_3,
+                'hijos_y_desc_discapacidad_33': rp.hijos_y_desc_discapacidad_33,
+                'hijos_y_desc_discapacidad_entero_33':
+                    rp.hijos_y_desc_discapacidad_entero_33,
+                'hijos_y_desc_discapacidad_mr': rp.hijos_y_desc_discapacidad_mr,
+                'hijos_y_desc_discapacidad_entero_mr':
+                    rp.hijos_y_desc_discapacidad_entero_mr,
+                'hijos_y_desc_discapacidad_66': rp.hijos_y_desc_discapacidad_66,
+                'hijos_y_desc_discapacidad_entero_66':
+                    rp.hijos_y_desc_discapacidad_entero_66,
+                'ascendientes': rp.ascendientes,
+                'ascendientes_entero': rp.ascendientes_entero,
+                'ascendientes_m75': rp.ascendientes_m75,
+                'ascendientes_entero_m75': rp.ascendientes_entero_m75,
+                'ascendientes_discapacidad_33': rp.ascendientes_discapacidad_33,
+                'ascendientes_discapacidad_entero_33':
+                    rp.ascendientes_discapacidad_entero_33,
+                'ascendientes_discapacidad_mr': rp.ascendientes_discapacidad_mr,
+                'ascendientes_discapacidad_entero_mr':
+                    rp.ascendientes_discapacidad_entero_mr,
+                'ascendientes_discapacidad_66': rp.ascendientes_discapacidad_66,
+                'ascendientes_discapacidad_entero_66':
+                    rp.ascendientes_discapacidad_entero_66,
+            })
+        return vals
 
 
 class L10nEsAeatMod190ReportLine(models.Model):
