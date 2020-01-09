@@ -236,6 +236,9 @@ class AccountInvoice(models.Model):
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
+        if ('refund' in vals.get('type', '') and
+                not vals.get('sii_refund_type')):
+            vals['sii_refund_type'] = 'I'
         invoice = super(AccountInvoice, self).create(vals)
         if (vals.get('fiscal_position_id') and
                 not vals.get('sii_registration_key')):
@@ -272,6 +275,11 @@ class AccountInvoice(models.Model):
                           "cancel the invoice and create a new one with the "
                           "correct number")
                     )
+        # Fill sii_refund_type if not set previously. It happens on sales
+        # order invoicing process for example.
+        if (vals.get('type') and not vals.get('sii_refund_type') and
+                not any(self.mapped('sii_refund_type'))):
+            vals['sii_refund_type'] = 'I'
         res = super(AccountInvoice, self).write(vals)
         if (vals.get('fiscal_position_id') and
                 not vals.get('sii_registration_key')):
