@@ -77,6 +77,6 @@
         <!-- Couta facturas de compra (haber) - Couta facturas rectificativas de compra (debe):
              P_IRPF1, P_IRPF2, P_IRPF7, P_IRPF9, P_IRPF15, P_IRPF18, P_IRPF19,
              P_IRPF20, P_IRPF21P -->
-        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf1'), ref('l10n_es.account_tax_template_p_irpf2'), ref('l10n_es.account_tax_template_p_irpf7'), ref('l10n_es.account_tax_template_p_irpf9'), ref('l10n_es.account_tax_template_p_irpf15'), ref('l10n_es.account_tax_template_p_irpf18'), ref('l10n_es.account_tax_template_p_irpf19'), ref('l10n_es.account_tax_template_p_irpf20'), ref('l10n_es.account_tax_template_p_irpf21p')])]"/>
+            <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_p_irpf1'), ref('l10n_es.account_tax_template_p_irpf2'), ref('l10n_es.account_tax_template_p_irpf7'), ref('l10n_es.account_tax_template_p_irpf9'), ref('l10n_es.account_tax_template_p_irpf15'), ref('l10n_es.account_tax_template_p_irpf18'), ref('l10n_es.account_tax_template_p_irpf19'), ref('l10n_es.account_tax_template_p_irpf20'), ref('l10n_es.account_tax_template_p_irpf21p')])]"/>
     </record>
 </odoo>
