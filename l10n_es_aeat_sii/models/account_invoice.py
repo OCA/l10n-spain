@@ -237,6 +237,9 @@ class AccountInvoice(models.Model):
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
+        if ('refund' in vals.get('type', '') and
+                not vals.get('sii_refund_type')):
+            vals['sii_refund_type'] = 'I'
         invoice = super(AccountInvoice, self).create(vals)
         if (vals.get('fiscal_position_id') and
                 not vals.get('sii_registration_key')):
