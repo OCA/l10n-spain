@@ -547,13 +547,13 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     def get_confirm_url(self):
         self.ensure_one()
-        return self._notification_link_helper(
+        return self._notify_get_action_link(
             'controller', controller='/mod347/accept'
         )
 
     def get_reject_url(self):
         self.ensure_one()
-        return self._notification_link_helper(
+        return self._notify_get_action_link(
             'controller', controller='/mod347/reject'
         )
 
