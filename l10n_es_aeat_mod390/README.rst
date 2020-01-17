@@ -78,6 +78,14 @@ Known issues / Roadmap
 * Obtener las casillas 95, 97 y 98 de las declaraciones del 303.
 * Falta añadir la casilla 663 de cuota pendientes de compensación.
 
+Changelog
+=========
+
+12.0.2.0.0 (2019-01-19)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* [ADD] Añadido Diseño de registro dr390e2019v100 para declaración de 2019
+
 Bug Tracker
 ===========
 
