@@ -13,3 +13,5 @@ Módulo base para declaraciones de la AEAT, que incluye:
 * Motor de cálculo de importes por impuestos.
 * Generador del asiento de regularización con cargo a un proveedor "Agencia
   Estatal de Administración Tributaria" creado al efecto.
+* Certificado para las declaraciones de la AEAT
+* Webservice AEAT SOAP
