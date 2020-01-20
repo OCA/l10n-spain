@@ -10,3 +10,5 @@ from . import l10n_es_aeat_report_tax_mapping
 from . import l10n_es_aeat_tax_line
 from . import l10n_es_aeat_export_config
 from . import l10n_es_aeat_export_config_line
+from . import aeat_certificate
+from . import aeat_soap
