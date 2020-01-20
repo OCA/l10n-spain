@@ -8,3 +8,9 @@ Para poder visualizar un archivo BOE, hay que:
 #. Aparecerá una ventana con cada una de las líneas de exportación, la cadena
    correspondiente a dicha línea, y si es un importe numérico, su cifra
    asociada.
+
+Para importar el certificado, hay que:
+
+#. Entrar en *Facturación > Configuración > AEAT > Certificados*
+#. Crear uno nuevo. Rellenas los datos del formulurio y subir el archivo p12
+#. Pulsar obtener claves e introducir la contraseña del certificado
