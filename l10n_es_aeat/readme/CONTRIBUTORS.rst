@@ -8,3 +8,5 @@
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Juan Vicente Pascual <jvpascual@puntsistemes.es>
 * Abraham Anes <abraham@studio73.es>
+* Diagram Software S.L.
+* Consultoría Informática Studio 73 S.L.
