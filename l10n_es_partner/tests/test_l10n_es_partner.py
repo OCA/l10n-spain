@@ -8,7 +8,7 @@ from odoo.tests import common
 class TestL10nEsPartner(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestL10nEsPartner, cls).setUpClass()
+        super().setUpClass()
         # Make sure there's no commercial name on display_name field
         cls.env["ir.config_parameter"].set_param("l10n_es_partner.name_pattern", "")
         cls.country_spain = cls.env.ref("base.es")
