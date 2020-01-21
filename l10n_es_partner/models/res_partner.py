@@ -16,23 +16,22 @@ class ResPartner(models.Model):
 
     @api.depends("comercial")
     def _compute_display_name(self):
-        super(ResPartner, self)._compute_display_name()
+        super()._compute_display_name()
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
         """Include commercial name in direct name search."""
         args = expression.normalize_domain(args)
         for arg in args:
-            if isinstance(arg, (list, tuple)):
-                if arg[0] == "name" or arg[0] == "display_name":
-                    index = args.index(arg)
-                    args = (
-                        args[:index]
-                        + ["|", ("comercial", arg[1], arg[2])]
-                        + args[index:]
-                    )
-                    break
-        return super(ResPartner, self).search(
+            if isinstance(arg, (list, tuple)) and (
+                arg[0] == "name" or arg[0] == "display_name"
+            ):
+                index = args.index(arg)
+                args = (
+                    args[:index] + ["|", ("comercial", arg[1], arg[2])] + args[index:]
+                )
+                break
+        return super().search(
             args, offset=offset, limit=limit, order=order, count=count
         )
 
@@ -52,12 +51,11 @@ class ResPartner(models.Model):
             limit_rest = limit
         if limit_rest or not limit:
             args += [("id", "not in", partners.ids)]
-            res += super(ResPartner, self).name_search(
+            res += super().name_search(
                 name, args=args, operator=operator, limit=limit_rest
             )
         return res
 
-    @api.multi
     def name_get(self):
         result = []
         name_pattern = (
@@ -65,7 +63,7 @@ class ResPartner(models.Model):
             .sudo()
             .get_param("l10n_es_partner.name_pattern", default="")
         )
-        origin = super(ResPartner, self).name_get()
+        origin = super().name_get()
         if self.env.context.get("no_display_commercial", False):
             return origin
         orig_name = dict(origin)
@@ -79,6 +77,6 @@ class ResPartner(models.Model):
 
     @api.model
     def _commercial_fields(self):
-        res = super(ResPartner, self)._commercial_fields()
+        res = super()._commercial_fields()
         res += ["comercial"]
         return res
