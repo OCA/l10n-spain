@@ -23,42 +23,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-__name__ = ("Delete old account chart template data")
+from openupgradelib import openupgrade
+
+__name__ = "Mark old account chart template data to be deleted"
 
 
 def migrate(cr, version):
-    if not version:
-        return
-    # This needs to be in this order to avoid null errors on required fields
-    # because "ON DELETE set null" are set on some tables
-    models = [
-        "ir.sequence",
-        "ir.actions.todo",
-        "account.fiscal.position.account.template",
-        "account.fiscal.position.tax.template",
-        "account.fiscal.position.template",
-        "account.account.template",
-        # Not possible because it's also linked to account.account
-        # "account.account.type",
-        "account.tax.template",
-        "account.tax.code.template",
-        "account.chart.template",
-    ]
-    # Delete data
-    for model in models:
-        cr.execute("""DELETE FROM
-                          %(table)s
-                      WHERE
-                          id
-                      IN
-                          (SELECT res_id FROM ir_model_data AS imd
-                           WHERE imd.module='l10n_es'
-                           AND imd.model='%(model)s')
-                   """
-                   % ({'table': model.replace('.', '_'), 'model': model}))
-    # Delete XML IDs
-    cr.execute("""DELETE FROM
-                      ir_model_data
-                  WHERE module = 'l10n_es'
-                  AND model != 'account.account.type'
-               """)
+    # Set data as noupdate=0 to let the update remove it if possible
+    openupgrade.logged_query(
+        cr,
+        """
+        UPDATE ir_model_data
+        SET noupdate = FALSE
+        WHERE module = 'l10n_es' AND noupdate = TRUE
+        """,
+    )
