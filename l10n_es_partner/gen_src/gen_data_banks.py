@@ -155,9 +155,7 @@ def gen_bank_data_xml(src_path, dest_path):
             else row["NUMEROVIA"]
         )
         street = "{}. {}, {}".format(
-            row["SIGLAVIA"].title(),
-            row["NOMBREVIA"].title(),
-            numero,
+            row["SIGLAVIA"].title(), row["NOMBREVIA"].title(), numero
         )
         output.write(indent + '<record id="%s" model="res.bank">\n' % name)
         output.write(
