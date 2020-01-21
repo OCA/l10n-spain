@@ -46,7 +46,6 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">l10n.es.partner.import.wizard</field>
             <field name="view_id" ref="l10n_es_partner_import_wizard"/>
-            <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
