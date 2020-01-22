@@ -133,10 +133,12 @@ class L10nEsAeatMod390Report(models.Model):
     )
     first_representative_date = fields.Date(
         string="Fecha poder del primer representante", readonly=True,
+        states=EDITABLE_ON_CALCULATED,
     )
     first_representative_notary = fields.Char(
         string="Notaría del primer representante", readonly=True, size=12,
         help=NOTARY_CODE_HELP,
+        states=EDITABLE_ON_CALCULATED,
     )
     second_representative_name = fields.Char(
         string="Nombre del segundo representante", readonly=True, size=80,
