@@ -33,7 +33,7 @@ class VatNumberXlsx(models.AbstractModel):
             ('fee_amount_xlsx_column', '!=', False),
         ])
 
-    def create_issued_sheet(self, workbook, book):
+    def create_issued_sheet(self, workbook, book, draft_export):
         title_format = workbook.add_format({
             'bold': 1,
             'border': 1,
@@ -122,10 +122,15 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.set_column(next_col, next_col, 14)
         next_col += 1
         sheet.set_column(next_col, next_col, 30)
+        if draft_export:
+            next_col += 1
+            sheet.write(5, next_col, 'Impuesto (Solo borrador)')
+            sheet.set_column(next_col, next_col, 50)
 
         return sheet
 
-    def fill_issued_row_data(self, sheet, row, line, tax_line, with_total):
+    def fill_issued_row_data(self, sheet, row, line, tax_line, with_total,
+                             draft_export):
         """ Fill issued data """
 
         country_code, identifier_type, vat_number = (
@@ -159,8 +164,12 @@ class VatNumberXlsx(models.AbstractModel):
                         tax_line.special_tax_id.amount)
             sheet.write(map_vals['fee_amount_xlsx_column'] + str(row),
                         tax_line.special_tax_amount)
+        if draft_export:
+            last_column = sheet.dim_colmax
+            num_row = row - 1
+            sheet.write(num_row, last_column, tax_line.tax_id.name)
 
-    def create_received_sheet(self, workbook, book):
+    def create_received_sheet(self, workbook, book, draft_export):
         title_format = workbook.add_format({
             'bold': 1,
             'border': 1,
@@ -248,10 +257,15 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.set_column(next_col, next_col, 14)
         next_col += 1
         sheet.set_column(next_col, next_col, 30)
+        if draft_export:
+            next_col += 1
+            sheet.write(5, next_col, 'Impuesto (Solo borrador)')
+            sheet.set_column(next_col, next_col, 50)
 
         return sheet
 
-    def fill_received_row_data(self, sheet, row, line, tax_line, with_total):
+    def fill_received_row_data(self, sheet, row, line, tax_line, with_total,
+                               draft_export):
         """ Fill received data """
 
         date_invoice = line.invoice_id.date_invoice
@@ -289,14 +303,19 @@ class VatNumberXlsx(models.AbstractModel):
                         tax_line.special_tax_id.amount)
             sheet.write(map_vals['fee_amount_xlsx_column'] + str(row),
                         tax_line.special_tax_amount)
+        if draft_export:
+            last_column = sheet.dim_colmax
+            num_row = row - 1
+            sheet.write(num_row, last_column, tax_line.tax_id.name)
 
     def generate_xlsx_report(self, workbook, data, objects):
         """ Create vat book xlsx in BOE format """
 
         book = objects[0]
+        draft_export = bool(book.state not in ['done', 'posted'])
 
         # Issued
-        issued_sheet = self.create_issued_sheet(workbook, book)
+        issued_sheet = self.create_issued_sheet(workbook, book, draft_export)
         lines = book.issued_line_ids + book.rectification_issued_line_ids
         lines = lines.sorted(key=lambda l: (l.invoice_date, l.ref))
         row = 8
@@ -306,12 +325,14 @@ class VatNumberXlsx(models.AbstractModel):
                 if not tax_line.special_tax_group:
                     # TODO: Payments bucle
                     self.fill_issued_row_data(
-                        issued_sheet, row, line, tax_line, with_total)
+                        issued_sheet, row, line, tax_line, with_total,
+                        draft_export)
                     with_total = False
                     row += 1
 
         # Received
-        received_sheet = self.create_received_sheet(workbook, book)
+        received_sheet = self.create_received_sheet(workbook, book,
+                                                    draft_export)
         lines = book.received_line_ids + book.rectification_received_line_ids
         lines = lines.sorted(key=lambda l: (l.invoice_date, l.ref))
         row = 8
@@ -321,6 +342,7 @@ class VatNumberXlsx(models.AbstractModel):
                 if not tax_line.special_tax_group:
                     # TODO: Payments bucle
                     self.fill_received_row_data(
-                        received_sheet, row, line, tax_line, with_total)
+                        received_sheet, row, line, tax_line, with_total,
+                        draft_export)
                     with_total = False
                     row += 1
