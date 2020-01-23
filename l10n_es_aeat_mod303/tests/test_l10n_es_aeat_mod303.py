@@ -300,6 +300,16 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         sale = self._invoice_sale_create('2017-01-13')
         self._invoice_refund(sale, '2017-01-14')
 
+    def _check_tax_lines(self):
+        for field, result in iter(self.taxes_result.items()):
+            _logger.debug('Checking tax line: %s' % field)
+            lines = self.model303.tax_line_ids.filtered(
+                lambda x: x.field_number == int(field))
+            self.assertAlmostEqual(
+                sum(lines.mapped('amount')), result, 2,
+                "Incorrect result in field %s" % field
+            )
+
     def test_model_303(self):
         # Test default counterpart
         self.assertEqual(self.model303._default_counterpart_303().id,
@@ -315,15 +325,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         })
         if self.debug:
             self._print_tax_lines(self.model303.tax_line_ids)
-        # Check tax lines
-        for field, result in iter(self.taxes_result.items()):
-            _logger.debug('Checking tax line: %s' % field)
-            lines = self.model303.tax_line_ids.filtered(
-                lambda x: x.field_number == int(field))
-            self.assertAlmostEqual(
-                sum(lines.mapped('amount')), result, 2,
-                "Incorrect result in field %s" % field
-            )
+        self._check_tax_lines()
         # Check result
         _logger.debug('Checking results')
         devengado = sum([self.taxes_result.get(b, 0.) for b in (
@@ -403,3 +405,39 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.model303_4t.period_type = '1T'
         self.model303_4t.onchange_period_type()
         self.assertEqual(self.model303_4t.exonerated_390, '2')
+
+    def test_model_303_negative_special_case(self):
+        self.taxes_sale = {
+            # tax code: (base, tax_amount)
+            'S_IVA4B': (1000, 40),
+            'S_IVA21B//neg': (-140, -29.4),
+        }
+        self.taxes_purchase = {
+            # tax code: (base, tax_amount)
+            'P_IVA4_BC': (240, 9.6),
+            'P_IVA21_SC//neg': (-23, -4.83),
+        }
+        self.taxes_result = {
+            # Régimen General - Base imponible 4%
+            '1': 1000,  # S_IVA4B
+            # Régimen General - Cuota 4%
+            '3': 40,  # S_IVA4B
+            # Régimen General - Base imponible 21%
+            '7': -140,  # S_IVA21B
+            # Régimen General - Cuota 21%
+            '9': -29.4,  # S_IVA21B
+            # Modificación bases y cuotas - Base (Compras y ventas)
+            '14': 0,
+            # Modificación bases y cuotas - Cuota (Compras y ventas)
+            '15': 0,
+            # Cuotas soportadas en op. int. corrientes - Base
+            '28': 240 - 23,  # P_IVA4_IC_BC, P_IVA21_SC
+            # Cuotas soportadas en op. int. corrientes - Cuota
+            '29': 9.6 - 4.83,  # P_IVA4_IC_BC, P_IVA21_SC
+        }
+        self._invoice_sale_create('2020-01-01')
+        self._invoice_purchase_create('2020-01-01')
+        self.model303.date_start = '2020-01-01'
+        self.model303.date_end = '2020-03-31'
+        self.model303.button_calculate()
+        self._check_tax_lines()
