@@ -106,7 +106,7 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
     <!-- Cuota facturas de compra (haber):
          P_IVA4_IC_BC_2,  P_IVA4_SP_IN_1,  P_IVA4_IC_BI_2,
@@ -136,7 +136,7 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
     <!-- Cuota facturas de compra (haber):
             P_IVA4_SP_EX_1, P_IVA4_ISP_2
@@ -192,8 +192,8 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">refund</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
-    <field name="inverse" eval="True"/>
+    <field name="sum_type">both</field>
+    <field name="inverse" eval="False"/>
     <!-- Cuota facturas rectificativas de compra (debe):
             P_IVA4_IC_BC_2,  P_IVA4_SP_IN_1,  P_IVA4_IC_BI_2, P_IVA4_SP_EX_1, P_IVA4_ISP_2
             P_IVA10_IC_BC_2, P_IVA10_SP_IN_1, P_IVA10_IC_BI_2, P_IVA10_SP_EX_1, P_IVA10_ISP_2
@@ -220,7 +220,7 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
     <!-- Cuota facturas de venta (haber): S_REQ05 -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_req05')])]"/>
@@ -245,7 +245,7 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
     <!-- Cuota facturas de venta (haber): S_REQ014 -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_req014')])]"/>
@@ -270,7 +270,7 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">credit</field>
+    <field name="sum_type">both</field>
     <field name="inverse" eval="False"/>
     <!-- Cuota facturas de venta (haber): S_REQ52 -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_req52')])]"/>
@@ -295,8 +295,8 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">refund</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
-    <field name="inverse" eval="True"/>
+    <field name="sum_type">both</field>
+    <field name="inverse" eval="False"/>
     <!-- Cuotas de facturas rectificativas de venta (debe):
         S_REQ05, S_REQ014, S_REQ52 -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_req05'), ref('l10n_es.account_tax_template_s_req014'), ref('l10n_es.account_tax_template_s_req52')])]"/>
@@ -324,8 +324,8 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
-    <field name="inverse" eval="False"/>
+    <field name="sum_type">both</field>
+    <field name="inverse" eval="True"/>
     <!-- Cuota facturas de compra (debe):
          P_REQ05, P_REQ014, P_REQ5.2
          P_IVA4_SC, P_IVA4_BC, P_IVA4_ISP_1, P_IVA4_SP_EX_2,
@@ -353,8 +353,8 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
-    <field name="inverse" eval="False"/>
+    <field name="sum_type">both</field>
+    <field name="inverse" eval="True"/>
     <!-- Cuota facturas de compra (debe):
          P_IVA4_BI, P_IVA10_BI, P_IVA21_BI -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_bi'), ref('l10n_es.account_tax_template_p_iva10_bi'), ref('l10n_es.account_tax_template_p_iva21_bi')])]"/>
@@ -379,8 +379,8 @@
     <field name="to_regularize" eval="True"/>
     <field name="move_type">regular</field>
     <field name="field_type">amount</field>
-    <field name="sum_type">debit</field>
-    <field name="inverse" eval="False"/>
+    <field name="sum_type">both</field>
+    <field name="inverse" eval="True"/>
     <!-- Cuota facturas de compra (debe):
          P_IVA4_IBC, P_IVA10_IBC, P_IVA21_IBC -->
     <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_p_iva4_ibc'), ref('l10n_es.account_tax_template_p_iva10_ibc'), ref('l10n_es.account_tax_template_p_iva21_ibc')])]"/>
