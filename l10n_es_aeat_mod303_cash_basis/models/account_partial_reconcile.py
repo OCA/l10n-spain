@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -32,11 +31,15 @@ class AccountPartialReconcileCashBasis(models.Model):
                 (3, x.id) for x in
                 line.tax_ids.filtered(lambda l: l.description == 'P_IRPF2')
             ]
-        res = super(
+        super(
             AccountPartialReconcileCashBasis, self,
         ).create_tax_cash_basis_entry(value_before_reconciliation)
         if tax_lines:
             tax_lines.write({'tax_exigible': True})
-        for taxes, line in base_lines.items():
+        for taxes, line in list(base_lines.items()):
             line.tax_ids = [(6, 0, taxes.ids)]
+        res = self.env['account.move'].search([('tax_cash_basis_rec_id', '=',
+                                               self.id)])
+        if res:
+            res._store_move_type_cash_basis()
         return res
