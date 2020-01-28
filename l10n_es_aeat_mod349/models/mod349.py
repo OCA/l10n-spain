@@ -9,7 +9,7 @@
 #                  <contact@eficent.com>
 # Copyright 2018 - Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
+import math
 import re
 from odoo import models, fields, api, exceptions, _
 from odoo.tools import float_is_zero
@@ -231,7 +231,7 @@ class Mod349(models.Model):
                 if self.period_type == '0A':
                     period_type = '0A'
                 elif self.period_type in ('1T', '2T', '3T', '4T'):
-                    period_type = '%sT' % (int(month) % 4)
+                    period_type = '%sT' % int(math.ceil(int(month) / 3.0))
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)
