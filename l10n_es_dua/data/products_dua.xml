@@ -10,7 +10,7 @@
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
     <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
+    <field name="purchase_ok" eval="True"/>
 </record>
 <record id="producto_dua_valoracion_10" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
@@ -21,7 +21,7 @@
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
     <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
+    <field name="purchase_ok" eval="True"/>
 </record>
 <record id="producto_dua_valoracion_4" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
@@ -32,7 +32,7 @@
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
     <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
+    <field name="purchase_ok" eval="True"/>
 </record>
 <record id="producto_dua_compensacion" model="product.product">
     <field name="uom_id" ref="product.product_uom_unit"/>
@@ -43,7 +43,7 @@
     <field name="categ_id" ref="product.product_category_all"/>
     <field name="type">service</field>
     <field name="sale_ok" eval="False"/>
-    <field name="purchase_ok" eval="False"/>
+    <field name="purchase_ok" eval="True"/>
 </record>
 
 </odoo>
