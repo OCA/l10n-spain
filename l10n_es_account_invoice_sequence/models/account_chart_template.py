@@ -60,16 +60,15 @@ class AccountChartTemplate(models.Model):
     def _get_spanish_charts_xml_ids(self):
         return [
             'l10n_es.account_chart_template_common',
-            'l10n_es.account_chart_template_assoc',
-            'l10n_es.account_chart_template_pymes',
-            'l10n_es.account_chart_template_full',
         ]
 
     @api.multi
     def _get_spanish_charts(self):
-        charts = self.env['account.chart.template']
+        Chart = charts = self.env['account.chart.template']
         for chart_id in self._get_spanish_charts_xml_ids():
-            charts |= self.env.ref(chart_id)
+            charts |= Chart.search([
+                ('id', 'child_of', self.env.ref(chart_id).id),
+            ])
         return charts
 
     @api.multi
