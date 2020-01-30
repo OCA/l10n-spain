@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Copyright 2004-2011 Luis Manuel Angueira Blanco - Pexego
-# Copyright 2013 Ignacio Ibeas - Acysos S.L. (http://acysos.com)
+# Copyright 2013-2019 Ignacio Ibeas - Acysos S.L. (http://acysos.com)
 # Copyright 2015 Ainara Galdona <agaldona@avanzosc.com>
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # Copyright 2013-2018 Pedro M. Baeza <pedro.baeza@tecnativa.com>
@@ -11,9 +11,9 @@
 {
     'name': "AEAT Base",
     'summary': "Modulo base para declaraciones de la AEAT",
-    'version': "11.0.3.0.0",
+    'version': "11.0.3.1.0",
     'author': "Pexego,"
-              "Acysos,"
+              "Acysos S.L.,"
               "AvanzOSC,"
               "Tecnativa,"
               "Odoo Community Association (OCA)",
@@ -27,14 +27,16 @@
         'l10n_es',
     ],
     'external_dependencies': {
-        'python': ['unidecode'],
+        'python': ['unidecode', 'OpenSSL', "zeep", "requests"],
     },
     'data': [
         'security/aeat_security.xml',
         'security/ir.model.access.csv',
         'data/aeat_partner.xml',
+        'data/ir_config_parameter.xml',
         'wizard/export_to_boe_wizard.xml',
         'wizard/compare_boe_file_views.xml',
+        'wizard/aeat_certificate_password_view.xml',
         'views/aeat_menuitem.xml',
         'views/aeat_report_view.xml',
         'views/aeat_tax_line_view.xml',
@@ -43,6 +45,7 @@
         'views/account_move_line_view.xml',
         'views/report_template.xml',
         'views/res_partner_view.xml',
+        'views/aeat_certificate_view.xml'
     ],
     'installable': True,
 }
