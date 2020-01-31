@@ -1,4 +1,4 @@
-# Copyright 2019 Tecnativa - Pedro M. Baeza
+# Copyright 2019-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from openupgradelib import openupgrade
 from psycopg2 import sql
@@ -16,5 +16,18 @@ def migrate(env, version):
             ).format(
                 sql.Identifier(table),
                 sql.Identifier(openupgrade.get_legacy_name('method_time')),
+            )
+        )
+        openupgrade.logged_query(
+            env.cr, sql.SQL(
+                """
+                UPDATE {table}
+                SET annual_percentage = method_percentage * 12 / {field}
+                WHERE annual_percentage != (method_percentage * 12 / {field})
+                """
+            ).format(
+                table=sql.Identifier(table),
+                field=sql.Identifier(
+                    openupgrade.get_legacy_name('method_period')),
             )
         )
