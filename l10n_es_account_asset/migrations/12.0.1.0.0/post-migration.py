@@ -24,6 +24,7 @@ def migrate(env, version):
                 UPDATE {table}
                 SET annual_percentage = method_percentage * 12 / {field}
                 WHERE annual_percentage != (method_percentage * 12 / {field})
+                    AND method_time = 'percentage'
                 """
             ).format(
                 table=sql.Identifier(table),
