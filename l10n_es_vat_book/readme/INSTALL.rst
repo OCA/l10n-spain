@@ -14,4 +14,4 @@ Consideraciones adicionales:
   evitar que los usuarios olviden informarlo es recomendable instalar el
   módulo 'account_invoice_tax_required', disponible en
   `account_invoice_tax_required <https://github.com/OCA/account-financial-
-  tools/tree/11.0>`_.
+  tools/tree/10.0>`_.

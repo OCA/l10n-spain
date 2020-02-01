@@ -99,6 +99,7 @@ Contribudores
 * Ainara Galdona
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * Abraham Anes <abraham@studio73.es>
+* Isaac Gallart <igallart@puntsistemes.es>
 
 Maintainer
 ----------

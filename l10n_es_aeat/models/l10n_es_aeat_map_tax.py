@@ -19,27 +19,27 @@ class L10nEsAeatMapTax(models.Model):
     @api.multi
     @api.constrains('date_from', 'date_to')
     def _unique_date_range(self):
-        for map in self:
-            domain = [('id', '!=', map.id)]
-            if map.date_from and map.date_to:
+        for mapp in self:
+            domain = [('id', '!=', mapp.id)]
+            if mapp.date_from and mapp.date_to:
                 domain += ['|', '&',
-                           ('date_from', '<=', map.date_to),
-                           ('date_from', '>=', map.date_from),
+                           ('date_from', '<=', mapp.date_to),
+                           ('date_from', '>=', mapp.date_from),
                            '|', '&',
-                           ('date_to', '<=', map.date_to),
-                           ('date_to', '>=', map.date_from),
+                           ('date_to', '<=', mapp.date_to),
+                           ('date_to', '>=', mapp.date_from),
                            '|', '&',
                            ('date_from', '=', False),
-                           ('date_to', '>=', map.date_from),
+                           ('date_to', '>=', mapp.date_from),
                            '|', '&',
                            ('date_to', '=', False),
-                           ('date_from', '<=', map.date_to),
+                           ('date_from', '<=', mapp.date_to),
                            ]
-            elif map.date_from:
-                domain += [('date_to', '>=', map.date_from)]
-            elif map.date_to:
-                domain += [('date_from', '<=', map.date_to)]
-            date_lst = map.search(domain)
+            elif mapp.date_from:
+                domain += [('date_to', '>=', mapp.date_from)]
+            elif mapp.date_to:
+                domain += [('date_from', '<=', mapp.date_to)]
+            date_lst = mapp.search(domain)
             if date_lst:
                 raise exceptions.ValidationError(
                     _("Error! The dates of the record overlap with an "

@@ -13,25 +13,41 @@
               <field name="partner_id" />
               <field name="vat_number" />
               <field name="move_id" />
-              <field name="exception" />
+              <field name="invoice_id"/>
+              <field name="base_amount" />
+              <field name="total_amount" />
+              <field name="special_tax_group" />
               <field name="exception_text" />
             </group>
             <notebook>
               <page name="taxes" string="Taxes">
                 <group>
                   <field name="tax_line_ids" nolabel="1">
-                    <tree>
+                    <tree decoration-muted="special_tax_group">
                       <field name="base_amount" />
                       <field name="tax_id" />
                       <field name="tax_amount" />
                       <field name="total_amount"/>
+                      <field name="special_tax_group" invisible="1"/>
+                      <field name="special_tax_id"/>
+                      <field name="special_tax_amount"/>
+                      <field name="total_amount_special_include"/>
                     </tree>
                     <form>
-                      <group>
-                        <field name="base_amount" />
-                        <field name="tax_id" />
-                        <field name="tax_amount" />
-                        <field name="total_amount"/>
+                       <field name="parent_special_tax_group" invisible="1"/>
+                       <group>
+                          <group>
+                            <field name="base_amount" />
+                            <field name="tax_id" />
+                            <field name="tax_amount" />
+                            <field name="total_amount"/>
+                          </group>
+                          <group attrs="{'invisible': [('parent_special_tax_group', '=', False)]}">
+                            <field name="special_tax_group" />
+                            <field name="special_tax_id" />
+                            <field name="special_tax_amount" />
+                            <field name="total_amount_special_include"/>
+                          </group>
                       </group>
                       <group name="move_lines_grp" string="Move Lines">
                         <field name="move_line_ids" nolabel="1"/>
@@ -50,14 +66,16 @@
       <field name="name">view.l10n_es_vat_book_line.tree</field>
       <field name="model">l10n.es.vat.book.line</field>
       <field name="arch" type="xml">
-        <tree string="Issued/Received invoices" colors="red:exception==True">
+        <tree string="Issued/Received invoices" decoration-danger="exception_text">
           <field name="ref"/>
           <field name="external_ref"/>
           <field name="invoice_date" />
           <field name="partner_id" />
           <field name="vat_number" />
           <field name="move_id" />
-          <field name="exception" />
+          <field name="base_amount" />
+          <field name="total_amount" />
+          <field name="special_tax_group" />
           <field name="exception_text"/>
         </tree>
       </field>

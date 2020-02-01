@@ -23,7 +23,7 @@ Libro de IVA
     :target: https://runbot.odoo-community.org/runbot/189/10.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Módulo que calcula el libro de IVA español.
 
@@ -64,14 +64,17 @@ Consideraciones adicionales:
   evitar que los usuarios olviden informarlo es recomendable instalar el
   módulo 'account_invoice_tax_required', disponible en
   `account_invoice_tax_required <https://github.com/OCA/account-financial-
-  tools/tree/11.0>`_.
+  tools/tree/10.0>`_.
 
 Configuration
 =============
 
 Los códigos de impuestos incluidos en el Libro de IVA pueden verse en:
-Contabilidad -> Configuración -> AEAT -> Mapeo de códigos de impuesto ->
-Declaración AEAT 340
+Contabilidad -> Configuración -> AEAT -> Mapeo AEAT libro de IVA
+
+Los clientes utilizados para ventas por caja deben tener marcado el campo
+"AEAT - Cliente anónimo" para que no se muestren advertencias por no tener NIF
+informado siguiendo lo especificado en el formato BOE.
 
 Usage
 =====
@@ -87,8 +90,7 @@ Known issues / Roadmap
 
 Funcionalidades del Libro Registro de IVA no incluídas por el momento:
 
-* Libro Registro de Bienes de Inversión
-* Libro Registro de Determinadas Operaciones Intracomunitarias
+* Criterio de caja
 
 Bug Tracker
 ===========
@@ -96,7 +98,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_vat_book%0Aversion:%2010.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_vat_book%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -119,6 +121,7 @@ Contributors
 * `Tecnativa <https://www.tecnativa.com/>`_:
 
   * Pedro M. Baeza
+  * Carlos Dauden
 
 Maintainers
 ~~~~~~~~~~~
