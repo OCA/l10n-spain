@@ -126,7 +126,7 @@ Authors
 ~~~~~~~
 
 * Pexego
-* Acysos
+* Acysos S.L.
 * AvanzOSC
 * Tecnativa
 
