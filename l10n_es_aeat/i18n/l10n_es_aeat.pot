@@ -4,10 +4,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-20 18:29+0000\n"
-"PO-Revision-Date: 2020-01-20 18:29+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:141
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:142
 #, python-format
 msgid "%s_report_%s.txt"
@@ -52,6 +49,11 @@ msgid "AEAT Model"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
+msgid "AEAT SOAP"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_aeat_model_export_config
 msgid "AEAT export configuration"
 msgstr ""
@@ -73,7 +75,6 @@ msgid "AEAT manager"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:258
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:282
 #, python-format
 msgid "AEAT model sequence not found. You can try to restart your Odoo service for recreating the sequences."
@@ -538,7 +539,7 @@ msgid "Error! The dates of the record overlap with an existing record."
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_certificate.py:79
+#: code:addons/l10n_es_aeat/models/aeat_certificate.py:78
 #, python-format
 msgid "Error! There aren't certificates."
 msgstr ""
@@ -736,7 +737,6 @@ msgid "If set, this expression will be used to evaluate if this line should be a
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:197
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:203
 #, python-format
 msgid "If this declaration is complementary or substitutive, a previous declaration number should be provided."
@@ -758,7 +758,7 @@ msgid "Inheritable abstract model to add taxes by code mapping in any AEAT repor
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_certificate.py:37
+#: code:addons/l10n_es_aeat/models/aeat_certificate.py:36
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 #, python-format
 msgid "Insert Password"
@@ -925,10 +925,9 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:394
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:419
 #, python-format
-msgid "Modelo no vÃ¡lido: %s. Debe declarar una variable '_aeat_number'"
+msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -971,7 +970,6 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:138
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:139
 #, python-format
 msgid "No export configuration selected."
@@ -1050,14 +1048,13 @@ msgid "Only non-exigible amounts"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:365
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:389
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:70
+#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:69
 #, python-format
 msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
 msgstr ""
@@ -1335,9 +1332,7 @@ msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:62
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:63
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:108
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
 #, python-format
 msgid "The formated string must match the given length"
@@ -1449,7 +1444,6 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:59
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:60
 #, python-format
 msgid "Wrong aling option. It should be < or >"
@@ -1475,11 +1469,6 @@ msgstr ""
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report.export_to_boe,state:0
 msgid "get"
-msgstr ""
-
-#. module: l10n_es_aeat
-#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
-msgid "l10n.es.aeat.soap"
 msgstr ""
 
 #. module: l10n_es_aeat
