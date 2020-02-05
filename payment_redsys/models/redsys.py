@@ -1,4 +1,5 @@
 # © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# © 2019 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import hashlib
@@ -335,16 +336,21 @@ class TxRedsys(models.Model):
         vals = {
             'state': state,
             'redsys_txnid': params.get('Ds_AuthorisationCode'),
+            'date': fields.Datetime.now()
         }
         state_message = ""
         if state == 'done':
             vals['state_message'] = _('Ok: %s') % params.get('Ds_Response')
+            self._set_transaction_done()
         elif state == 'pending':  # 'Payment error: code: %s.'
             state_message = _('Error: %s (%s)')
+            self._set_transaction_pending()
         elif state == 'cancel':  # 'Payment error: bank unavailable.'
             state_message = _('Bank Error: %s (%s)')
+            self._set_transaction_cancel()
         else:
             state_message = _('Redsys: feedback error %s (%s)')
+            self._set_transaction_error(state_message)
         if state_message:
             vals['state_message'] = state_message % (
                 params.get('Ds_Response'), params.get('Ds_ErrorCode'),

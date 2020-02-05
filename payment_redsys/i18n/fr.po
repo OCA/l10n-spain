@@ -19,11 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<i class=\"fa fa-file-pdf-o\"/> Order"
-msgstr ""
-
-#. module: payment_redsys
 #: model_terms:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
 msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
 msgstr ""
@@ -52,64 +47,12 @@ msgid ""
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Date:</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Discount (%)</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-#, fuzzy
-msgid "<strong>Invoicing Address</strong>"
-msgstr "Adresse de facturation"
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Product</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Quantity</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-#, fuzzy
-msgid "<strong>Shipping Address</strong>"
-msgstr "Adresse de livraison"
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Subtotal</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Total:</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Unit Price</strong>"
-msgstr ""
-
-#. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Alemán"
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Back to shop"
-msgstr "Retour à la boutique"
-
-#. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:345
+#: code:addons/payment_redsys/models/redsys.py:349
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -135,15 +78,7 @@ msgid "Domiciliacion"
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
-#, fuzzy
-msgid ""
-"En error ocurred. <br/>Please contact with us and inform you about your "
-"order."
-msgstr "S'il vous plaît nous contacter et vous informer sur votre commande."
-
-#. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:343
+#: code:addons/payment_redsys/models/redsys.py:346
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -214,15 +149,10 @@ msgid "Merchant code"
 msgstr "Code Merchant"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:341
+#: code:addons/payment_redsys/models/redsys.py:343
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Order"
-msgstr "Commande"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_pay_method:0
@@ -235,7 +165,7 @@ msgid "Pago por Transferencia"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:99
+#: code:addons/payment_redsys/models/redsys.py:100
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr ""
@@ -288,7 +218,7 @@ msgid "Redsys Signature Version"
 msgstr "La version de la signature Redsys"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:347
+#: code:addons/payment_redsys/models/redsys.py:352
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
@@ -314,25 +244,9 @@ msgid "Sueco"
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Taxes:"
-msgstr "impôts:"
-
-#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_terminal
 msgid "Terminal"
 msgstr "Terminal"
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
-#, fuzzy
-msgid "Thanks for you order. <br/>We will inform you of your order status"
-msgstr "Nous allons vous informer de votre statut de la commande"
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
-msgid "The payment of your order has failed"
-msgstr "Le paiement de votre commande a échoué"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_transaction__redsys_txnid
@@ -343,11 +257,6 @@ msgstr "Identifiant de transaction"
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_transaction_type
 msgid "Transtaction Type"
 msgstr "Type de Transtaction"
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Untaxed Amount:"
-msgstr "Montant non taxé:"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -374,10 +283,41 @@ msgid ""
 "payment button."
 msgstr ""
 
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
-msgid "Your order has been paid correctly"
-msgstr "Votre commande a été payée correctement"
+#, fuzzy
+#~ msgid "<strong>Invoicing Address</strong>"
+#~ msgstr "Adresse de facturation"
+
+#, fuzzy
+#~ msgid "<strong>Shipping Address</strong>"
+#~ msgstr "Adresse de livraison"
+
+#~ msgid "Back to shop"
+#~ msgstr "Retour à la boutique"
+
+#, fuzzy
+#~ msgid ""
+#~ "En error ocurred. <br/>Please contact with us and inform you about your "
+#~ "order."
+#~ msgstr "S'il vous plaît nous contacter et vous informer sur votre commande."
+
+#~ msgid "Order"
+#~ msgstr "Commande"
+
+#~ msgid "Taxes:"
+#~ msgstr "impôts:"
+
+#, fuzzy
+#~ msgid "Thanks for you order. <br/>We will inform you of your order status"
+#~ msgstr "Nous allons vous informer de votre statut de la commande"
+
+#~ msgid "The payment of your order has failed"
+#~ msgstr "Le paiement de votre commande a échoué"
+
+#~ msgid "Untaxed Amount:"
+#~ msgstr "Montant non taxé:"
+
+#~ msgid "Your order has been paid correctly"
+#~ msgstr "Votre commande a été payée correctement"
 
 #~ msgid "En error ocurred."
 #~ msgstr "En ocurred erreur."
