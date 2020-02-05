@@ -1,4 +1,5 @@
 # © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# © 2019 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -39,13 +40,4 @@ class RedsysController(http.Controller):
         ['/payment/redsys/result/<page>'], type='http', auth='public',
         methods=['GET'], website=True)
     def redsys_result(self, page, **vals):
-        try:
-            sale_order_id = request.session.get('sale_last_order_id')
-            sale_obj = request.env['sale.order']
-            order = sale_obj.sudo().browse(sale_order_id)
-            res = {
-                'order': order,
-            }
-            return request.render('payment_redsys.%s' % str(page), res)
-        except Exception:
-            return request.render('website.404')
+        return werkzeug.utils.redirect('/payment/process')
