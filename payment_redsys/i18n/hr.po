@@ -20,11 +20,6 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<i class=\"fa fa-file-pdf-o\"/> Order"
-msgstr ""
-
-#. module: payment_redsys
 #: model_terms:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
 msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
 msgstr ""
@@ -53,62 +48,12 @@ msgid ""
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Date:</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Discount (%)</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Invoicing Address</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Product</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Quantity</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Shipping Address</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Subtotal</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Total:</strong>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "<strong>Unit Price</strong>"
-msgstr ""
-
-#. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
 msgid "Alemán"
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Back to shop"
-msgstr ""
-
-#. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:345
+#: code:addons/payment_redsys/models/redsys.py:349
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -134,14 +79,7 @@ msgid "Domiciliacion"
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
-msgid ""
-"En error ocurred. <br/>Please contact with us and inform you about your "
-"order."
-msgstr ""
-
-#. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:343
+#: code:addons/payment_redsys/models/redsys.py:346
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -212,14 +150,9 @@ msgid "Merchant code"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:341
+#: code:addons/payment_redsys/models/redsys.py:343
 #, python-format
 msgid "Ok: %s"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Order"
 msgstr ""
 
 #. module: payment_redsys
@@ -233,7 +166,7 @@ msgid "Pago por Transferencia"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:99
+#: code:addons/payment_redsys/models/redsys.py:100
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr ""
@@ -285,7 +218,7 @@ msgid "Redsys Signature Version"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:347
+#: code:addons/payment_redsys/models/redsys.py:352
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
@@ -311,23 +244,8 @@ msgid "Sueco"
 msgstr ""
 
 #. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Taxes:"
-msgstr ""
-
-#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_terminal
 msgid "Terminal"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
-msgid "Thanks for you order. <br/>We will inform you of your order status"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ko
-msgid "The payment of your order has failed"
 msgstr ""
 
 #. module: payment_redsys
@@ -338,11 +256,6 @@ msgstr ""
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_transaction_type
 msgid "Transtaction Type"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.order
-msgid "Untaxed Amount:"
 msgstr ""
 
 #. module: payment_redsys
@@ -368,11 +281,6 @@ msgstr ""
 msgid ""
 "You will be redirected to the Redsys payment gateway after clicking on the "
 "payment button."
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:ir.ui.view,arch_db:payment_redsys.redsys_result_ok
-msgid "Your order has been paid correctly"
 msgstr ""
 
 #~ msgid "Product"
