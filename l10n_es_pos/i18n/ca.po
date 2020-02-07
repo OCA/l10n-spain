@@ -6,137 +6,140 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2020-02-07 22:13+0000\n"
+"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Above this limit the simplified invoice won't be made"
-msgstr ""
+msgstr "Per sobre d'aquest límit no es crearà factura simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:69
 #, python-format
 msgid "Address:"
-msgstr ""
+msgstr "Adreça:"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 msgid "Autogenerate for each POS created"
-msgstr ""
+msgstr "Autogenerada per cada TPV creat"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
 #, python-format
 msgid "Customer data"
-msgstr ""
+msgstr "Dades de client"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:27
 #, python-format
 msgid "Customer:"
-msgstr ""
+msgstr "Client:"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Invoices"
-msgstr ""
+msgstr "Factures"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
 #, python-format
 msgid "Name:"
-msgstr ""
+msgstr "Nom:"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
 msgid "Over this amount is not legally posible to create a simplified invoice"
 msgstr ""
+"Per sobre d'aquesta quantitat no és legal crear una factura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_config
 msgid "Point of Sale Configuration"
-msgstr ""
+msgstr "Configuració Punt de Venda"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale Orders"
-msgstr ""
+msgstr "Comandes del Punt de Venda"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:40
 #, python-format
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
 #, python-format
 msgid "Qty"
-msgstr ""
+msgstr "Quantitat"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_ir_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Set simplified invoice sequence for this POS"
-msgstr ""
+msgstr "Establir seqüència de factura simplificada per aquest TPV"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
 msgid "Sim.Inv limit amount"
-msgstr ""
+msgstr "Límit de factura simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_number
 msgid "Sim.Inv number"
-msgstr ""
+msgstr "Nombre de factura simplificada"
 
 #. module: l10n_es_pos
 #: code:addons/l10n_es_pos/models/pos_config.py:64
 #: code:addons/l10n_es_pos/models/pos_config.py:109
 #, python-format
 msgid "Simplified Invoice %s"
-msgstr ""
+msgstr "Factura simplificada %s"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 msgid "Simplified Invoice IDs Sequence"
-msgstr ""
+msgstr "Seqüència de Factura Simplificada"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Simplified Invoice Limit"
-msgstr ""
+msgstr "Límit de Factura Simplificada"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Simplified Invoice Sequence"
-msgstr ""
+msgstr "Seqüència de Factura Simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_padding
 msgid "Simplified Invoice padding"
-msgstr ""
+msgstr "Farcit de Factura Simplificada"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_prefix
 msgid "Simplified Invoice prefix"
-msgstr ""
+msgstr "Prefix de Factura Simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -144,49 +147,51 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
 msgid "Simplified invoice"
-msgstr ""
+msgstr "Factura simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:7
 #, python-format
 msgid "Simplified invoice:"
-msgstr ""
+msgstr "Factura simplificada:"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Simplified invoices"
-msgstr ""
+msgstr "Factures simplificades"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
 #, python-format
 msgid "Subt"
-msgstr ""
+msgstr "Subt"
 
 #. module: l10n_es_pos
 #: code:addons/l10n_es_pos/models/ir_sequence.py:20
 #, python-format
 msgid "There is already a simplified invoice sequence with that prefix and it should be unique."
 msgstr ""
+"Ja hi ha una seqüència de Factura Simplificada amb aquest prefix i aquest "
+"hauria de ser únic."
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
 msgid "Unique Order ID"
-msgstr ""
+msgstr "ID únic de comanda"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
 #, python-format
 msgid "Unit"
-msgstr ""
+msgstr "Unitat"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
 msgid "Use simplified invoices for this POS"
-msgstr ""
+msgstr "Utilitza Factures simplificades en aquest punt de venda"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -195,7 +200,7 @@ msgstr ""
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
 #, python-format
 msgid "VAT:"
-msgstr ""
+msgstr "NIF:"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -203,4 +208,4 @@ msgstr ""
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:73
 #, python-format
 msgid "on"
-msgstr ""
+msgstr "sobre"
