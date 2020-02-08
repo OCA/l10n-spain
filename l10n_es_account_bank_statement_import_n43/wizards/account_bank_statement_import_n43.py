@@ -123,8 +123,8 @@ class AccountBankStatementImport(models.TransientModel):
         if st_group["num_debe"] != debit_count:  # pragma: no cover
             raise exceptions.UserError(
                 _(
-                    "Number of debit records doesn't match with the defined in "
-                    "the last record of account."
+                    "Number of debit records doesn't match with the defined "
+                    "in the last record of account."
                 )
             )
         if st_group["num_haber"] != credit_count:  # pragma: no cover
@@ -187,6 +187,8 @@ class AccountBankStatementImport(models.TransientModel):
             "_num_records": 0,  # Number of records really counted
             "groups": [],  # Info about each of the groups (account groups)
         }
+        st_group = {}
+        st_line = {}
         for raw_line in data_file.split("\n"):
             if not raw_line.strip():
                 continue
@@ -334,13 +336,24 @@ class AccountBankStatementImport(models.TransientModel):
     def _parse_file(self, data_file):
         n43 = self._check_n43(data_file)
         if not n43:  # pragma: no cover
-            return super(AccountBankStatementImport, self)._parse_file(data_file)
+            return super()._parse_file(data_file)
         journal = self.env["account.journal"].browse(
             self.env.context.get("journal_id", [])
         )
+        if journal.bank_account_id:
+            file_bank = journal.bank_account_id.sanitized_acc_number[14:24]
+            if n43[0]["cuenta"] != file_bank:
+                raise exceptions.UserError(
+                    _(
+                        "The bank account number of the file does not match with "
+                        "the one in the journal."
+                    )
+                )
         transactions = []
+        date = False
         for group in n43:
             for line in group["lines"]:
+                date = group["fecha_ini"].date()
                 conceptos = []
                 for concept_line in line["conceptos"]:
                     conceptos.extend(
@@ -366,20 +379,20 @@ class AccountBankStatementImport(models.TransientModel):
             "balance_start": n43 and n43[0]["saldo_ini"] or 0.0,
             "balance_end_real": n43 and n43[-1]["saldo_fin"] or 0.0,
         }
+        if date:
+            vals_bank_statement["date"] = date
         return None, None, [vals_bank_statement]
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):
         """Match partner_id if if hasn't been deducted yet."""
-        res = super(AccountBankStatementImport, self)._complete_stmts_vals(
-            stmts_vals, journal, account_number
-        )
+        res = super()._complete_stmts_vals(stmts_vals, journal, account_number)
         for st_vals in res:
             for line_vals in st_vals["transactions"]:
                 if not line_vals.get("partner_id") and line_vals.get("note"):
                     line_vals["partner_id"] = self._get_partner(line_vals["note"]).id
                 # This can't be used, as Odoo doesn't present the lines
                 # that already have a counterpart account as final
-                # verification, making this very counterintuitive to the user
+                # verification, making this very counter intuitive to the user
                 # line_vals['account_id'] = self._get_account(
                 #     line_vals['raw_data'], journal).id
         return res
