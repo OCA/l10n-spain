@@ -54,8 +54,8 @@ class L10nEsAeatMapTax(models.Model):
             if record.date_from or record.date_to:
                 name += " (%s-%s)" % (
                     record.date_from and
-                    fields.Date.from_string(record.date_from) or '',
+                    fields.Date.to_date(record.date_from) or '',
                     record.date_to and
-                    fields.Date.from_string(record.date_to) or '')
+                    fields.Date.to_date(record.date_to) or '')
             vals.append(tuple([record.id, name]))
         return vals
