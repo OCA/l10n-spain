@@ -220,8 +220,8 @@ class L10nEsAeatMod303Report(models.Model):
                 continue
             prev_report = min(
                 prev_reports, key=lambda x: abs(
-                    fields.Date.from_string(x.date_end) -
-                    fields.Date.from_string(mod303.date_start)
+                    fields.Date.to_date(x.date_end) -
+                    fields.Date.to_date(mod303.date_start)
                 ),
             )
             if prev_report.result_type == 'C' and not mod303.cuota_compensar:
@@ -348,8 +348,8 @@ class L10nEsAeatMod303Report(models.Model):
                 continue
             prev_report = min(
                 prev_reports, key=lambda x: abs(
-                    fields.Date.from_string(x.date_end) -
-                    fields.Date.from_string(mod303.date_start)
+                    fields.Date.to_date(x.date_end) -
+                    fields.Date.to_date(mod303.date_start)
                 ),
             )
             if prev_report.result_type == 'C':
