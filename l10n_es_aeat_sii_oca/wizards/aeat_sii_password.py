@@ -65,7 +65,7 @@ class L10nEsAeatSiiPassword(models.TransientModel):
             os.path.abspath(config['data_dir']), 'certificates',
             release.series, self.env.cr.dbname, self.folder,
         )
-        content = base64.decodestring(record.file)
+        content = base64.decodebytes(record.file)
         if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
             raise exceptions.Warning(
                 _('OpenSSL version is not supported. Upgrade to 0.15 '
