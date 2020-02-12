@@ -18,7 +18,7 @@ class VatNumberXlsx(models.AbstractModel):
     _inherit = 'report.report_xlsx.abstract'
 
     def format_boe_date(self, date):
-        return fields.Datetime.from_string(date)
+        return fields.Datetime.to_datetime(date)
 
     @ormcache('self.id')
     def _get_undeductible_taxes(self, book):
