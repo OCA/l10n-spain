@@ -60,7 +60,7 @@ class L10nEsAeatReport(models.AbstractModel):
         return selection and selection[0][0] or False
 
     def _default_year(self):
-        return fields.Date.from_string(fields.Date.today()).year
+        return fields.Date.to_date(fields.Date.today()).year
 
     def _default_number(self):
         return self._aeat_number
@@ -246,17 +246,17 @@ class L10nEsAeatReport(models.AbstractModel):
         else:
             if self.period_type == '0A':
                 # Anual
-                self.date_start = fields.Date.from_string(
+                self.date_start = fields.Date.to_date(
                     '%s-01-01' % self.year)
-                self.date_end = fields.Date.from_string(
+                self.date_end = fields.Date.to_date(
                     '%s-12-31' % self.year)
             elif self.period_type in ('1T', '2T', '3T', '4T'):
                 # Trimestral
                 starting_month = 1 + (int(self.period_type[0]) - 1) * 3
                 ending_month = starting_month + 2
-                self.date_start = fields.Date.from_string(
+                self.date_start = fields.Date.to_date(
                     '%s-%s-01' % (self.year, starting_month))
-                self.date_end = fields.Date.from_string(
+                self.date_end = fields.Date.to_date(
                     '%s-%s-%s' % (
                         self.year, ending_month,
                         monthrange(self.year, ending_month)[1]))
@@ -264,9 +264,9 @@ class L10nEsAeatReport(models.AbstractModel):
                                       '07', '08', '09', '10', '11', '12'):
                 # Mensual
                 month = int(self.period_type)
-                self.date_start = fields.Date.from_string(
+                self.date_start = fields.Date.to_date(
                     '%s-%s-01' % (self.year, month))
-                self.date_end = fields.Date.from_string('%s-%s-%s' % (
+                self.date_end = fields.Date.to_date('%s-%s-%s' % (
                     self.year, month, monthrange(self.year, month)[1]))
             self.export_config_id = self._get_export_config(self.date_start).id
 
@@ -444,7 +444,7 @@ class L10nEsAeatReport(models.AbstractModel):
         """
         if not date:
             return ''
-        return datetime.strftime(fields.Date.from_string(date), "%d%m%Y")
+        return datetime.strftime(fields.Date.to_date(date), "%d%m%Y")
 
     @api.model
     def get_html(self):
