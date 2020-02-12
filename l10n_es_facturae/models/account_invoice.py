@@ -165,13 +165,13 @@ class AccountInvoice(models.Model):
         if not euro_rate and not currency_rate:
             return fields.Datetime.now().strftime('%Y-%m-%d')
         if not currency_rate:
-            return fields.Datetime.from_string(euro_rate.name
+            return fields.Datetime.to_datetime(euro_rate.name
                                                ).strftime('%Y-%m-%d')
         if not euro_rate:
-            return fields.Datetime.from_string(currency_rate.name
+            return fields.Datetime.to_datetime(currency_rate.name
                                                ).strftime('%Y-%m-%d')
-        currency_date = fields.Datetime.from_string(currency_rate.name)
-        euro_date = fields.Datetime.from_string(currency_rate.name)
+        currency_date = fields.Datetime.to_datetime(currency_rate.name)
+        euro_date = fields.Datetime.to_datetime(currency_rate.name)
         if currency_date < euro_date:
             return currency_date.strftime('%Y-%m-%d')
         return euro_date.strftime('%Y-%m-%d')
