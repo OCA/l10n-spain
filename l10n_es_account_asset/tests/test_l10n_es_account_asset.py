@@ -61,7 +61,7 @@ class TestL10nEsAccountAsset(common.SavepointCase):
     def test_prorated_percentage_asset(self):
         self.asset.write({
             'prorata': True,
-            'date_start': fields.Date.from_string('2015-04-10'),
+            'date_start': fields.Date.to_date('2015-04-10'),
         })
         self.asset.compute_depreciation_board()
         self.assertEqual(
@@ -78,7 +78,7 @@ class TestL10nEsAccountAsset(common.SavepointCase):
         self.asset.write({
             'prorata': True,
             'method_percentage': 70,
-            'date_start': fields.Date.from_string('2017-11-15'),
+            'date_start': fields.Date.to_date('2017-11-15'),
         })
         self.asset.compute_depreciation_board()
         self.assertGreater(
