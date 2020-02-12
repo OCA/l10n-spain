@@ -138,7 +138,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         else:
             raise exceptions.UserError(_('No export configuration selected.'))
         # Generate the file and save as attachment
-        file = base64.encodestring(contents)
+        file = base64.encodebytes(contents)
         file_name = _("%s_report_%s.txt") % (report.number,
                                              fields.Date.today())
         # Delete old files
