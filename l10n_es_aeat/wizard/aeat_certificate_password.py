@@ -63,7 +63,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
         directory = os.path.join(
             os.path.abspath(config['data_dir']), 'certificates',
             release.series, self.env.cr.dbname, record.folder)
-        file = base64.decodestring(record.file)
+        file = base64.decodebytes(record.file)
         if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
             raise exceptions.Warning(
                 _('OpenSSL version is not supported. Upgrade to 0.15 '
