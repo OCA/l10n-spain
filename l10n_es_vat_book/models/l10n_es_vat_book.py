@@ -459,7 +459,7 @@ class L10nEsVatBook(models.Model):
         lang = lang_model._lang_get(self.env.user.lang)
         date_format = lang.date_format
         return datetime.datetime.strftime(
-            fields.Date.from_string(date), date_format)
+            fields.Date.to_date(date), date_format)
 
     def get_report_file_name(self):
         return '{}{}C{}'.format(self.year, self.company_vat,
