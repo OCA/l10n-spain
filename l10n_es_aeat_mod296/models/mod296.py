@@ -239,7 +239,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
         for sel in self:
             res = ''
             if sel.fecha_nacimiento:
-                res = fields.Date.from_string(
+                res = fields.Date.to_date(
                     sel.fecha_nacimiento).strftime("%d%m%Y")
             sel.fecha_nacimiento_export = res
 
@@ -250,7 +250,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
             res = ''
             if sel.fecha_devengo:
                 res =\
-                    fields.Date.from_string(
+                    fields.Date.to_date(
                         sel.fecha_devengo).strftime("%d%m%Y")
             sel.fecha_devengo_export = res
 
