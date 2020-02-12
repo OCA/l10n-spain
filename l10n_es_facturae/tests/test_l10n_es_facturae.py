@@ -359,7 +359,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             line.write({
                 'facturae_end_date': fields.Date.today(),
                 'facturae_start_date': fields.Date.to_string(
-                    fields.Date.from_string(fields.Date.today()) +
+                    fields.Date.to_date(fields.Date.today()) +
                     timedelta(days=1)
                 ),
             })
@@ -401,7 +401,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             invoice.write({
                 'facturae_end_date': fields.Date.today(),
                 'facturae_start_date': fields.Date.to_string(
-                    fields.Date.from_string(fields.Date.today()) +
+                    fields.Date.to_date(fields.Date.today()) +
                     timedelta(days=1)
                 ),
             })
