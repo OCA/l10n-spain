@@ -38,6 +38,12 @@ msgid "AEAT"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_aeat_anonymous_cash_customer
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users_aeat_anonymous_cash_customer
+msgid "AEAT - Anonymous customer"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_model
 msgid "AEAT Model"
 msgstr ""
@@ -58,7 +64,7 @@ msgid "AEAT manager"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:262
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:281
 #, python-format
 msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
@@ -269,6 +275,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Cancelled models"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner_aeat_anonymous_cash_customer
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users_aeat_anonymous_cash_customer
+msgid "Check this for anonymous cash customer. AEAT communication"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -746,7 +758,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:202
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:203
 #, python-format
 msgid ""
 "If this declaration is complementary or substitutive, a previous declaration "
@@ -939,7 +951,7 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:399
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:418
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr ""
@@ -1026,7 +1038,7 @@ msgid "Only non-exigible amounts"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:369
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:388
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -1042,6 +1054,7 @@ msgid "Other parameters"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_res_partner
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_partner_id
@@ -1389,6 +1402,15 @@ msgstr ""
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
 #, python-format
 msgid "The formated string must match the given length"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/compare_boe_file.py:68
+#, python-format
+msgid ""
+"The length of the file is different from the expected one, or there are "
+"conditional parts in the export configuration that can't be evaled "
+"statically."
 msgstr ""
 
 #. module: l10n_es_aeat
