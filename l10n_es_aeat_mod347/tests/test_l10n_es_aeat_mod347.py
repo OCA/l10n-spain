@@ -108,7 +108,7 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             sum([x[3] for x in partner_record_vals]))
         for vals in partner_record_vals:
             partner_record = self.model347.partner_record_ids.filtered(
-                lambda x: x.partner_id ==vals[1])
+                lambda x: x.partner_id == vals[1])
             self.assertEqual(partner_record.operation_key, vals[0])
             self.assertAlmostEqual(partner_record.amount, vals[2])
             self.assertAlmostEqual(partner_record.cash_amount, vals[3])
