@@ -237,7 +237,7 @@ class L10nEsAeatMod347Report(models.Model):
                 'partner_id': partner.id,
                 'representative_vat': '',
                 'operation_key': key,
-                'amount': abs(group['balance']),
+                'amount': group['balance'],
             }
             vals.update(self._get_partner_347_identification(partner))
             move_groups = self.env['account.move.line'].read_group(
