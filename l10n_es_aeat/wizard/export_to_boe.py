@@ -138,7 +138,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         else:
             raise exceptions.UserError(_('No export configuration selected.'))
         # Generate the file and save as attachment
-        file = base64.encodestring(contents)
+        files = base64.encodestring(contents)
         file_name = _("%s_report_%s.txt") % (report.number,
                                              fields.Date.today())
         # Delete old files
@@ -148,12 +148,12 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
              ('res_model', '=', report._name)])
         attachment_ids.unlink()
         attachment_obj.create({"name": file_name,
-                               "datas": file,
+                               "datas": files,
                                "datas_fname": file_name,
                                "res_model": report._name,
                                "res_id": report.id,
                                })
-        self.write({'state': 'get', 'data': file, 'name': file_name})
+        self.write({'state': 'get', 'data': files, 'name': file_name})
         # Force view to be the parent one
         data_obj = self.env.ref('l10n_es_aeat.wizard_aeat_export')
         # TODO: Permitir si se quiere heredar la vista padre

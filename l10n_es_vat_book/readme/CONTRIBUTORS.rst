@@ -4,3 +4,8 @@
 * `Tecnativa <https://www.tecnativa.com/>`_:
 
   * Pedro M. Baeza
+  * Carlos Dauden
+* `Punt Sistemes <https://www.puntsistemes.es/>`_:
+
+  * Isaac Gallart
+  * Pedro Ortega
