@@ -138,7 +138,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_display_name
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_display_name
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx_display_name
 msgid "Display Name"
 msgstr ""
 
@@ -190,7 +189,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_id
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_id
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx_id
 msgid "ID"
 msgstr "ID"
 
@@ -270,7 +268,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax___last_update
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary___last_update
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary___last_update
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_report_l10n_es_vat_book_l10n_es_vat_book_xlsx___last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -400,6 +397,7 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line_special_tax_group
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_special_tax_group
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_parent_special_tax_group
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_special_tax_group
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_summary_special_tax_group
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_special_tax_group
@@ -409,6 +407,7 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,help:l10n_es_vat_book.field_aeat_vat_book_map_line_special_tax_group
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_line_special_tax_group
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_parent_special_tax_group
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_special_tax_group
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_summary_special_tax_group
 #: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book_tax_summary_special_tax_group
@@ -472,13 +471,13 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:471
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:478
 #, python-format
 msgid "This book has warnings. Fix it before confirm"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:367
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:374
 #, python-format
 msgid "This company doesn't have VAT"
 msgstr ""
@@ -529,18 +528,13 @@ msgid "VAT Book Invoices Received"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.actions.report,name:l10n_es_vat_book.l10n_es_vat_book_xlsx
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.l10n_es_vat_book_xlsx
 msgid "VAT book XLSX report"
 msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_contact
 msgid "VAT:"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_vat_book_line_id
-msgid "Vat Book Line"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -551,13 +545,18 @@ msgid "Vat Book id"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.act_report_vat_book_invoices_issued_pdf
 msgid "Vat book invoices issued"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: model:ir.actions.report,name:l10n_es_vat_book.act_report_vat_book_invoices_received_pdf
+#: model:ir.actions.report.xml,name:l10n_es_vat_book.act_report_vat_book_invoices_received_pdf
 msgid "Vat book invoices received"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line_tax_vat_book_line_id
+msgid "Vat book line id"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -571,7 +570,7 @@ msgid "View Received Invoices"
 msgstr ""
 
 #. module: l10n_es_vat_book
-#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:332
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:339
 #, python-format
 msgid "Without VAT"
 msgstr ""
@@ -599,9 +598,4 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_tax_summary
 msgid "l10n.es.vat.book.tax.summary"
-msgstr ""
-
-#. module: l10n_es_vat_book
-#: model:ir.model,name:l10n_es_vat_book.model_report_l10n_es_vat_book_l10n_es_vat_book_xlsx
-msgid "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
 msgstr ""

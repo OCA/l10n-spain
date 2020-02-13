@@ -10,11 +10,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-09 11:20+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: es\n"
 "X-Generator: Poedit 2.0.6\n"
 
 #. module: l10n_es_vat_book
@@ -590,11 +590,6 @@ msgid "l10n.es.vat.book.line.tax"
 msgstr "l10n.es.vat.book.line.tax"
 
 #. module: l10n_es_vat_book
-#: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_map
-msgid "l10n.es.vat.book.map"
-msgstr "l10n.es.vat.book.map"
-
-#. module: l10n_es_vat_book
 #: model:ir.model,name:l10n_es_vat_book.model_l10n_es_vat_book_summary
 msgid "l10n.es.vat.book.summary"
 msgstr "l10n.es.vat.book.summary"
@@ -604,7 +599,8 @@ msgstr "l10n.es.vat.book.summary"
 msgid "l10n.es.vat.book.tax.summary"
 msgstr "l10n.es.vat.book.tax.summary"
 
-#. module: l10n_es_vat_book
-#: model:ir.model,name:l10n_es_vat_book.model_report_l10n_es_vat_book_l10n_es_vat_book_xlsx
-msgid "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
-msgstr "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
+#~ msgid "l10n.es.vat.book.map"
+#~ msgstr "l10n.es.vat.book.map"
+
+#~ msgid "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
+#~ msgstr "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
