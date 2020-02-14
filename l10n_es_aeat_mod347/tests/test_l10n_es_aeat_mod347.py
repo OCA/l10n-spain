@@ -21,15 +21,26 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             'date_start': '2019-01-01',
             'date_end': '2019-12-31',
         })
-        self.customer_2 = self.customer.copy({'name': 'Test customer 2'})
+        self.customer_2 = self.customer.copy({
+            'name': 'Test customer 2',
+            'vat': 'ES12345678Z',
+        })
         self.customer_3 = self.customer.copy({'name': 'Test customer 3'})
-        self.customer_4 = self.customer.copy({'name': 'Test customer 4'})
+        self.customer_4 = self.customer.copy({
+            'name': 'Test customer 4',
+            'vat': 'ESB29805314',
+        })
         self.customer_5 = self.customer.copy({
             'name': 'Test customer 5',
             # For testing spanish states mapping
             'country_id': self.env.ref('base.es').id,
+            'vat': '12345678Z',
         })
-        self.customer_6 = self.customer.copy({'name': 'Test customer 6'})
+        self.customer_6 = self.customer.copy({
+            'name': 'Test customer 6',
+            'country_id': self.env.ref('base.es').id,
+            'vat': 'B29805314',
+        })
         self.supplier_2 = self.supplier.copy({'name': 'Test supplier 2'})
         # Invoice lower than the limit
         self.taxes_sale = {
@@ -116,6 +127,23 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             self.assertAlmostEqual(partner_record.second_quarter, vals[5])
             self.assertAlmostEqual(partner_record.third_quarter, vals[6])
             self.assertAlmostEqual(partner_record.fourth_quarter, vals[7])
+        # Check VAT handle
+        partner_record = self.model347.partner_record_ids.filtered(
+            lambda x: x.partner_id == self.customer_2)
+        self.assertEqual(partner_record.partner_vat, '12345678Z')
+        self.assertEqual(partner_record.partner_country_code, 'ES')
+        partner_record = self.model347.partner_record_ids.filtered(
+            lambda x: x.partner_id == self.customer_4)
+        self.assertEqual(partner_record.partner_vat, 'B29805314')
+        self.assertEqual(partner_record.partner_country_code, 'ES')
+        partner_record = self.model347.partner_record_ids.filtered(
+            lambda x: x.partner_id == self.customer_5)
+        self.assertEqual(partner_record.partner_vat, '12345678Z')
+        self.assertEqual(partner_record.partner_country_code, 'ES')
+        partner_record = self.model347.partner_record_ids.filtered(
+            lambda x: x.partner_id == self.customer_6)
+        self.assertEqual(partner_record.partner_vat, 'B29805314')
+        self.assertEqual(partner_record.partner_country_code, 'ES')
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
             'name': 'test_export_to_boe.txt',
