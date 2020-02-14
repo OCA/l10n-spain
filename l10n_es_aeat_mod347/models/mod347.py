@@ -11,7 +11,6 @@
 
 from odoo import fields, models, api, exceptions, _
 
-import re
 import datetime
 from calendar import monthrange
 import odoo.addons.decimal_precision as dp
@@ -190,29 +189,23 @@ class L10nEsAeatMod347Report(models.Model):
 
     @api.model
     def _get_partner_347_identification(self, partner):
-        partner_country_code, partner_vat = (
-            re.match(r"([A-Z]{0,2})(.*)", partner.vat or '').groups()
-        )
-        community_vat = ''
-        if not partner_country_code:
-            partner_country_code = partner.country_id.code
-        if partner_country_code == 'ES':
-            # Odoo Spanish states codes use car license plates approach
-            # (CR, A, M...), instead of ZIP (01, 02...), so we need to convert
-            # them, but fallbacking in the existing one if not found.
-            partner_state_code = self.SPANISH_STATES.get(
-                partner.state_id.code, partner.state_id.code,
-            )
+        country_code, _, vat = partner._parse_aeat_vat_info()
+        if country_code == 'ES':
+            return {
+                'partner_vat': vat,
+                # Odoo Spanish states codes use car license plates approach
+                # (CR, A, M...), instead of ZIP (01, 02...), so we need to
+                # convert them, but fallbacking in existing one if not found.
+                'partner_state_code': self.SPANISH_STATES.get(
+                    partner.state_id.code, partner.state_id.code),
+                'partner_country_code': country_code,
+            }
         else:
-            partner_vat = ''
-            community_vat = partner.vat
-            partner_state_code = 99
-        return {
-            'partner_vat': partner_vat,
-            'community_vat': community_vat,
-            'partner_state_code': partner_state_code,
-            'partner_country_code': partner_country_code,
-        }
+            return {
+                'community_vat': vat,
+                'partner_state_code': 99,
+                'partner_country_code': country_code,
+            }
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
