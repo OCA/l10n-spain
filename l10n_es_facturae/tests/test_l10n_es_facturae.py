@@ -412,7 +412,9 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.assertEqual(item, self.invoice_line)
 
     def _check_amounts(self, wo_discount, subtotal, base, tax, discount=0):
-        self.wizard.create_facturae_file()
+        self.wizard.with_context(
+            active_ids=self.invoice.ids,
+            active_model='account.invoice').create_facturae_file()
         facturae_xml = etree.fromstring(
             base64.b64decode(self.wizard.facturae))
         self.assertEqual(
@@ -436,7 +438,7 @@ class TestL10nEsFacturae(common.TransactionCase):
             )
 
     def test_invoice_rounding(self):
-        self.company.tax_calculation_rounding_method = 'round_globally'
+        self.main_company.tax_calculation_rounding_method = 'round_globally'
         dp = self.env.ref('product.decimal_price')
         dp.digits = 4
         # We do this for refreshing the cached value in this env
@@ -448,7 +450,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         self._check_amounts('190.310000', '190.310000', '190.31', '39.97')
 
     def test_invoice_rounding_with_discount(self):
-        self.company.tax_calculation_rounding_method = 'round_globally'
+        self.main_company.tax_calculation_rounding_method = 'round_globally'
         dp = self.env.ref('product.decimal_price')
         dp.digits = 4
         # We do this for refreshing the cached value in this env
