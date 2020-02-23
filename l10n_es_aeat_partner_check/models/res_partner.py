@@ -47,19 +47,21 @@ class ResPartner(models.Model):
         port_name = 'VNifPort1'
         operation = 'VNifV2'
         for partner in self:
-            if partner.vat and partner.vat[:2] == 'ES':
-                request = {
-                    'Nif': partner.vat[2:],
-                    'Nombre': partner.name
-                }
-                res = soap_obj.send_soap(
-                    service, wsdl, port_name, partner, operation, request)
-                if res:
-                    partner.aeat_partner_vat = res[0]['Nif']
-                    partner.aeat_partner_name = res[0]['Nombre']
-                    partner.aeat_partner_check_result = res[0]['Resultado']
-                    if partner.aeat_partner_name != partner.name:
-                        partner.aeat_data_diff = True
+            country_code, _, vat_number = partner._parse_aeat_vat_info()
+            if country_code != 'ES':
+                continue
+            request = {
+                'Nif': vat_number,
+                'Nombre': partner.name
+            }
+            res = soap_obj.send_soap(
+                service, wsdl, port_name, partner, operation, request)
+            if res:
+                partner.aeat_partner_vat = res[0]['Nif']
+                partner.aeat_partner_name = res[0]['Nombre']
+                partner.aeat_partner_check_result = res[0]['Resultado']
+                if partner.aeat_partner_name != partner.name:
+                    partner.aeat_data_diff = True
             else:
                 partner.aeat_partner_vat = None
                 partner.aeat_partner_name = None
