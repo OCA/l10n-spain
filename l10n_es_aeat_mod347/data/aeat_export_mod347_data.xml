@@ -119,7 +119,7 @@
         <field name="export_config_id" ref="aeat_mod347_main_export_config"/>
         <field name="name">Número identificativo de la declaración anterior</field>
         <field name="expression">${object.previous_number}</field>
-        <field name="export_type">integer</field>
+        <field name="export_type">string</field>
         <field name="size">13</field>
         <field name="alignment">left</field>
     </record>
