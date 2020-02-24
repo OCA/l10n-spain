@@ -10,3 +10,6 @@
   * Antonio Espinosa
   * Pedro M. Baeza
   * Cristina Martín
+* `Punt Sistemes <https://www.puntsistemes.es/>`_:
+
+  * Pedro Montagud <pmontagud@puntsistemes.es>
