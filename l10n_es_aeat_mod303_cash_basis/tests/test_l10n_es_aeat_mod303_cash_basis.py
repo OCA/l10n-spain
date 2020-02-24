@@ -116,9 +116,9 @@ class TestL10nEsAeatMod303CashBasis(TestL10nEsAeatMod303Base):
             '9': 210,
             '28': 2000,
             '29': 420,
-            '62': 0,
-            '63': 0,
-            '74': 0,
-            '75': 0,
+            '62': 1000,
+            '63': 210,
+            '74': 2000,
+            '75': 420,
         }
         self._check_results(self.model303, tax_results)

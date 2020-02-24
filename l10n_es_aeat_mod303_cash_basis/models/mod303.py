@@ -51,7 +51,9 @@ class L10nEsAeatMod303Report(models.Model):
                     ('tax_cash_basis_rec_id', 'in', recs.ids),
                 ], limit=1)
                 if (not other_move or other_move.date < date_start or
-                        other_move.date > date_end):
+                        other_move.date > date_end or (
+                            date_start <= line.move_id.date <= date_end
+                            and date_start <= other_move.date <= date_end)):
                     new_lines += line
             move_lines = new_lines
         return move_lines
