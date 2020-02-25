@@ -50,7 +50,6 @@
         <field name="name">Compare AEAT BOE file</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">l10n.es.aeat.report.compare_boe_file</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>

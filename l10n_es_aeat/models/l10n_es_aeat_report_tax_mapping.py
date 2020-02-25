@@ -9,7 +9,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     _name = "l10n.es.aeat.report.tax.mapping"
     _inherit = "l10n.es.aeat.report"
     _description = (
-        "Inheritable abstract model to add taxes by code mapping " "in any AEAT report"
+        "Inheritable abstract model to add taxes by code mapping in any AEAT report"
     )
 
     tax_line_ids = fields.One2many(
@@ -18,15 +18,15 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         domain=lambda self: [("model", "=", self._name)],
         auto_join=True,
         readonly=True,
-        oldname="tax_lines",
         string="Tax lines",
     )
 
-    @api.multi
     def calculate(self):
-        res = super(L10nEsAeatReportTaxMapping, self).calculate()
+        res = super().calculate()
         for report in self:
             report.tax_line_ids.unlink()
+            report.flush()
+            report.invalidate_cache()
             # Buscar configuración de mapeo de impuestos
             tax_code_map = self.env["l10n.es.aeat.map.tax"].search(
                 [
@@ -47,17 +47,13 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                 report.tax_line_ids = [(0, 0, x) for x in tax_lines]
         return res
 
-    @api.multi
     def unlink(self):
         self.mapped("tax_line_ids").unlink()
-        return super(L10nEsAeatReportTaxMapping, self).unlink()
+        return super().unlink()
 
-    @api.multi
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
-        move_lines = self._get_tax_lines(
-            False, self.date_start, self.date_end, map_line,
-        )
+        move_lines = self._get_tax_lines(self.date_start, self.date_end, map_line)
         if map_line.sum_type == "credit":
             amount = sum(move_lines.mapped("credit"))
         elif map_line.sum_type == "debit":
@@ -74,19 +70,17 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             "move_line_ids": [(6, 0, move_lines.ids)],
         }
 
-    @api.multi
     def _get_partner_domain(self):
         return []
 
-    @api.multi
-    def _get_move_line_domain(self, codes, date_start, date_end, map_line):
-        """:param codes: deprecated"""
+    def _get_move_line_domain(self, date_start, date_end, map_line):
         self.ensure_one()
         taxes = self.get_taxes_from_templates(map_line.tax_ids)
         move_line_domain = [
             ("company_id", "child_of", self.company_id.id),
             ("date", ">=", date_start),
             ("date", "<=", date_end),
+            ("parent_state", "=", "posted"),
         ]
         if map_line.move_type == "regular":
             move_line_domain.append(
@@ -106,6 +100,9 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                 ("tax_line_id", "in", taxes.ids),
                 ("tax_ids", "in", taxes.ids),
             ]
+        if map_line.account_id:
+            account = self.get_account_from_template(map_line.account_id)
+            move_line_domain.append(("account_id", "in", account.ids))
         if map_line.sum_type == "debit":
             move_line_domain.append(("debit", ">", 0))
         elif map_line.sum_type == "credit":
@@ -117,16 +114,15 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
-    def _get_tax_lines(self, codes, date_start, date_end, map_line):
+    def _get_tax_lines(self, date_start, date_end, map_line):
         """Get the move lines for the codes and periods associated
 
-        :param codes: List of strings for the tax codes (deprecated)
         :param date_start: Start date of the period
         :param date_end: Stop date of the period
         :param map_line: Mapping line record
         :return: Move lines recordset that matches the criteria.
         """
-        domain = self._get_move_line_domain(codes, date_start, date_end, map_line)
+        domain = self._get_move_line_domain(date_start, date_end, map_line)
         return self.env["account.move.line"].search(domain)
 
     @api.model
@@ -138,11 +134,13 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             "credit": account_group["debit"],
         }
 
-    @api.multi
     def _process_tax_line_regularization(self, tax_lines):
         self.ensure_one()
         groups = self.env["account.move.line"].read_group(
-            [("id", "in", tax_lines.mapped("move_line_ids").ids)],
+            [
+                ("id", "in", tax_lines.move_line_ids.ids),
+                ("parent_state", "=", "posted"),
+            ],
             ["debit", "credit", "account_id"],
             ["account_id"],
         )
@@ -168,11 +166,9 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         vals["credit"] = balance if debit > credit else 0.0
         return vals
 
-    @api.multi
     def _prepare_regularization_extra_move_lines(self):
         return []
 
-    @api.multi
     def _prepare_regularization_move_lines(self):
         """Prepare the list of dictionaries for the regularization move lines.
         """
@@ -191,7 +187,6 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         )
         return lines
 
-    @api.multi
     def create_regularization_move(self):
         self.ensure_one()
         if not self.counterpart_account_id or not self.journal_id:

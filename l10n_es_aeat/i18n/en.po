@@ -354,11 +354,6 @@ msgid "Compare file"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__company_id
-msgid "Compañía"
-msgstr ""
-
-#. module: l10n_es_aeat
 #: selection:l10n.es.aeat.report,type:0
 #: selection:l10n.es.aeat.report.tax.mapping,type:0
 msgid "Complementary"
@@ -1470,7 +1465,7 @@ msgstr ""
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:60
 #, python-format
-msgid "Wrong aling option. It should be < or >"
+msgid "Wrong align option. It should be < or >"
 msgstr ""
 
 #. module: l10n_es_aeat

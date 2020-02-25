@@ -138,10 +138,10 @@
                             <field name="contact_email" />
                         </group>
                         <group string="Other parameters" name="group_other_parameters">
-                            <field name="type" />
+                            <field name="statement_type" />
                             <field
                                 name="previous_number"
-                                attrs="{'invisible': [('type', '==', 'N')], 'required': [('type', 'in', ('S', 'C'))]}"
+                                attrs="{'invisible': [('statement_type', '==', 'N')], 'required': [('statement_type', 'in', ('S', 'C'))]}"
                             />
                         </group>
                     </group>
