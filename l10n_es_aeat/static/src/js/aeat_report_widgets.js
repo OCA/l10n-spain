@@ -1,18 +1,13 @@
 odoo.define("l10n_es_aeat.aeat_report_widget", function(require) {
     "use strict";
 
-    var core = require("web.core");
     var Widget = require("web.Widget");
-
-    var QWeb = core.qweb;
-
-    var _t = core._t;
 
     var aeatReportWidget = Widget.extend({
         events: {
             "click .o_aeat_reports_web_action": "boundLink",
         },
-        init: function(parent) {
+        init: function() {
             this._super.apply(this, arguments);
         },
         start: function() {

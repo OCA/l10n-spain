@@ -35,6 +35,7 @@
                 <field name="name" />
                 <field name="to_regularize" />
                 <field name="tax_ids" widget="many2many_tags" />
+                <field name="account_id" />
                 <field name="move_type" />
                 <field name="field_type" />
                 <field name="sum_type" />
@@ -55,7 +56,8 @@
                         <field name="inverse" />
                     </group>
                     <group>
-                        <field name="tax_ids" />
+                        <field name="tax_ids" widget="many2many_tags" />
+                        <field name="account_id" />
                         <field name="move_type" />
                         <field name="field_type" />
                         <field name="sum_type" />
@@ -68,7 +70,6 @@
     <record model="ir.actions.act_window" id="action_l10n_es_aeat_map_tax">
         <field name="name">Tax mapping</field>
         <field name="res_model">l10n.es.aeat.map.tax</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
