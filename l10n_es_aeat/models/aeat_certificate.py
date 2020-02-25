@@ -3,7 +3,7 @@
 # (c) 2019 Acysos S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
 
 class L10nEsAeatCertificate(models.Model):
@@ -12,7 +12,9 @@ class L10nEsAeatCertificate(models.Model):
 
     name = fields.Char(string="Name")
     state = fields.Selection(
-        [("draft", "Draft"), ("active", "Active")], string="State", default="draft"
+        selection=[("draft", "Draft"), ("active", "Active")],
+        string="State",
+        default="draft",
     )
     file = fields.Binary(string="File", required=True)
     folder = fields.Char(string="Folder Name", required=True)
@@ -22,12 +24,11 @@ class L10nEsAeatCertificate(models.Model):
     private_key = fields.Char(string="Private Key", readonly=True)
     company_id = fields.Many2one(
         comodel_name="res.company",
-        string="Compañía",
+        string="Company",
         required=True,
-        default=lambda self: self.env.user.company_id.id,
+        default=lambda self: self.env.company,
     )
 
-    @api.multi
     def load_password_wizard(self):
         self.ensure_one()
         return {
@@ -35,12 +36,10 @@ class L10nEsAeatCertificate(models.Model):
             "name": _("Insert Password"),
             "res_model": "l10n.es.aeat.certificate.password",
             "view_mode": "form",
-            "view_type": "form",
             "views": [(False, "form")],
             "target": "new",
         }
 
-    @api.multi
     def action_active(self):
         self.ensure_one()
         other_configs = self.search(
@@ -50,7 +49,6 @@ class L10nEsAeatCertificate(models.Model):
             config_id.state = "draft"
         self.state = "active"
 
-    @api.multi
     def get_certificates(self, company=False):
         if not company:
             company = self.env.user.company_id

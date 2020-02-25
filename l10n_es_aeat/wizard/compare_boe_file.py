@@ -3,7 +3,7 @@
 
 import base64
 
-from odoo import api, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -66,9 +66,11 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Allow a bit of difference according presence of final CR+LF
         if abs(offset - len(data)) > 2:
             raise exceptions.UserError(
-                "The length of the file is different from the expected one, "
-                "or there are conditional parts in the export configuration "
-                "that can't be evaled statically."
+                _(
+                    "The length of the file is different from the expected one, "
+                    "or there are conditional parts in the export configuration "
+                    "that can't be evaled statically."
+                )
             )
         self.write({"line_ids": lines, "state": "compare"})
         res = self.env.ref("l10n_es_aeat.action_wizard_compare_boe_file").read()[0]

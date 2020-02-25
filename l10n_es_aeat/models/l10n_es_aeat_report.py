@@ -25,10 +25,6 @@ class L10nEsAeatReport(models.AbstractModel):
     _period_yearly = False
     SPANISH_STATES = ss
 
-    def _default_company_id(self):
-        company_obj = self.env["res.company"]
-        return company_obj._company_default_get("l10n.es.aeat.report")
-
     def _default_journal(self):
         return self.env["account.journal"].search([("type", "=", "general")])[:1]
 
@@ -83,15 +79,12 @@ class L10nEsAeatReport(models.AbstractModel):
             limit=1,
         )
 
-    def _default_export_config_id(self):
-        return self._get_export_config(fields.Date.today())
-
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
         required=True,
         readonly=True,
-        default=_default_company_id,
+        default=lambda self: self.env.company,
         states={"draft": [("readonly", False)]},
     )
     company_vat = fields.Char(
@@ -148,7 +141,7 @@ class L10nEsAeatReport(models.AbstractModel):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    type = fields.Selection(
+    statement_type = fields.Selection(
         selection=[("N", "Normal"), ("C", "Complementary"), ("S", "Substitutive")],
         string="Statement Type",
         default="N",
@@ -176,16 +169,11 @@ class L10nEsAeatReport(models.AbstractModel):
         string="State",
         default="draft",
         readonly=True,
-        track_visibility="onchange",
+        tracking=True,
     )
-    name = fields.Char(
-        string="Report identifier", size=13, oldname="sequence", copy=False
-    )
+    name = fields.Char(string="Report identifier", size=13, copy=False)
     model_id = fields.Many2one(
-        comodel_name="ir.model",
-        string="Model",
-        compute="_compute_report_model",
-        oldname="model",
+        comodel_name="ir.model", string="Model", compute="_compute_report_model"
     )
     export_config_id = fields.Many2one(
         comodel_name="aeat.model.export.config",
@@ -197,8 +185,9 @@ class L10nEsAeatReport(models.AbstractModel):
                 self.env["ir.model"].search([("model", "=", self._name)]).id,
             )
         ],
-        default=_default_export_config_id,
-        oldname="export_config",
+        compute="_compute_export_config_id",
+        readonly=False,
+        store=True,
     )
     currency_id = fields.Many2one(
         comodel_name="res.currency",
@@ -218,12 +207,16 @@ class L10nEsAeatReport(models.AbstractModel):
         string="Starting date",
         required=True,
         readonly=True,
+        store=True,
+        compute="_compute_dates",
         states={"draft": [("readonly", False)]},
     )
     date_end = fields.Date(
         string="Ending date",
         required=True,
         readonly=True,
+        store=True,
+        compute="_compute_dates",
         states={"draft": [("readonly", False)]},
     )
     allow_posting = fields.Boolean(compute="_compute_allow_posting")
@@ -232,7 +225,6 @@ class L10nEsAeatReport(models.AbstractModel):
         string="Counterpart account",
         help="This account will be the counterpart for all the journal items "
         "that are regularized when posting the report.",
-        oldname="counterpart_account",
     )
     journal_id = fields.Many2one(
         comodel_name="account.journal",
@@ -243,7 +235,10 @@ class L10nEsAeatReport(models.AbstractModel):
         states={"done": [("readonly", True)]},
     )
     move_id = fields.Many2one(
-        comodel_name="account.move", string="Account entry", readonly=True
+        comodel_name="account.move",
+        string="Account entry",
+        readonly=True,
+        domain=[("type", "=", "entry")],
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
@@ -255,7 +250,7 @@ class L10nEsAeatReport(models.AbstractModel):
         comodel_name="res.partner.bank",
         string="Bank account",
         help="Company bank account used for the presentation",
-        domain="[('acc_type', '=', 'iban'), " " ('partner_id', '=', partner_id)]",
+        domain="[('acc_type', '=', 'iban'), ('partner_id', '=', partner_id)]",
     )
     _sql_constraints = [
         (
@@ -265,23 +260,20 @@ class L10nEsAeatReport(models.AbstractModel):
         )
     ]
 
-    @api.multi
     def _compute_report_model(self):
         for report in self:
             report.model_id = (
                 self.env["ir.model"].search([("model", "=", report._name)]).id
             )
 
-    @api.multi
     def _compute_allow_posting(self):
         for report in self:
             report.allow_posting = False
 
-    @api.multi
-    @api.constrains("type", "previous_number")
+    @api.constrains("statement_type", "previous_number")
     def _check_previous_number(self):
         for report in self:
-            if report.type in ("C", "S") and not report.previous_number:
+            if report.statement_type in ("C", "S") and not report.previous_number:
                 raise exceptions.UserError(
                     _(
                         "If this declaration is complementary or substitutive, "
@@ -292,6 +284,10 @@ class L10nEsAeatReport(models.AbstractModel):
     def get_taxes_from_templates(self, tax_templates):
         company = self.company_id or self.env.user.company_id
         return company.get_taxes_from_templates(tax_templates)
+
+    def get_account_from_template(self, account_template):
+        company = self.company_id or self.env.user.company_id
+        return company.get_account_from_template(account_template)
 
     @api.onchange("company_id")
     def onchange_company_id(self):
@@ -311,50 +307,60 @@ class L10nEsAeatReport(models.AbstractModel):
             or self.env.user.company_id.phone
         )
 
-    @api.onchange("year", "period_type")
-    def onchange_period_type(self):
-        if not self.year or not self.period_type:
-            self.date_start = False
-            self.date_end = False
-        else:
-            if self.period_type == "0A":
-                # Anual
-                self.date_start = fields.Date.to_date("%s-01-01" % self.year)
-                self.date_end = fields.Date.to_date("%s-12-31" % self.year)
-            elif self.period_type in ("1T", "2T", "3T", "4T"):
-                # Trimestral
-                starting_month = 1 + (int(self.period_type[0]) - 1) * 3
-                ending_month = starting_month + 2
-                self.date_start = fields.Date.to_date(
-                    "{}-{}-01".format(self.year, starting_month)
-                )
-                self.date_end = fields.Date.to_date(
-                    "%s-%s-%s"
-                    % (self.year, ending_month, monthrange(self.year, ending_month)[1])
-                )
-            elif self.period_type in (
-                "01",
-                "02",
-                "03",
-                "04",
-                "05",
-                "06",
-                "07",
-                "08",
-                "09",
-                "10",
-                "11",
-                "12",
-            ):
-                # Mensual
-                month = int(self.period_type)
-                self.date_start = fields.Date.to_date(
-                    "{}-{}-01".format(self.year, month)
-                )
-                self.date_end = fields.Date.to_date(
-                    "{}-{}-{}".format(self.year, month, monthrange(self.year, month)[1])
-                )
-            self.export_config_id = self._get_export_config(self.date_start).id
+    @api.depends("year", "period_type")
+    def _compute_dates(self):
+        for report in self:
+            if not report.year or not report.period_type:
+                continue
+            else:
+                if report.period_type == "0A":
+                    # Anual
+                    report.date_start = fields.Date.to_date("%s-01-01" % report.year)
+                    report.date_end = fields.Date.to_date("%s-12-31" % report.year)
+                elif report.period_type in ("1T", "2T", "3T", "4T"):
+                    # Trimestral
+                    starting_month = 1 + (int(report.period_type[0]) - 1) * 3
+                    ending_month = starting_month + 2
+                    report.date_start = fields.Date.to_date(
+                        "{}-{}-01".format(report.year, starting_month)
+                    )
+                    report.date_end = fields.Date.to_date(
+                        "%s-%s-%s"
+                        % (
+                            report.year,
+                            ending_month,
+                            monthrange(report.year, ending_month)[1],
+                        )
+                    )
+                elif report.period_type in (
+                    "01",
+                    "02",
+                    "03",
+                    "04",
+                    "05",
+                    "06",
+                    "07",
+                    "08",
+                    "09",
+                    "10",
+                    "11",
+                    "12",
+                ):
+                    # Mensual
+                    month = int(report.period_type)
+                    report.date_start = fields.Date.to_date(
+                        "{}-{}-01".format(report.year, month)
+                    )
+                    report.date_end = fields.Date.to_date(
+                        "%s-%s-%s"
+                        % (report.year, month, monthrange(report.year, month)[1])
+                    )
+
+    @api.depends("date_start")
+    def _compute_export_config_id(self):
+        for report in self:
+            date = report.date_start or fields.Date.today()
+            report.export_config_id = report._get_export_config(date)
 
     @api.model
     def _report_identifier_get(self, vals):
@@ -376,20 +382,17 @@ class L10nEsAeatReport(models.AbstractModel):
     def create(self, vals):
         if not vals.get("name"):
             vals["name"] = self._report_identifier_get(vals)
-        return super(L10nEsAeatReport, self).create(vals)
+        return super().create(vals)
 
-    @api.multi
     def button_calculate(self):
         res = self.calculate()
         self.write({"state": "calculated", "calculation_date": fields.Datetime.now()})
         return res
 
-    @api.multi
     def button_recalculate(self):
         self.write({"calculation_date": fields.Datetime.now()})
         return self.calculate()
 
-    @api.multi
     def _get_previous_fiscalyear_reports(self, date):
         """Get the AEAT reports previous to the given date.
 
@@ -400,18 +403,15 @@ class L10nEsAeatReport(models.AbstractModel):
         self.ensure_one()
         return self.search([("year", "=", self.year), ("date_start", "<", date)])
 
-    @api.multi
     def calculate(self):
         """To be overrided by inherit models"""
         return True
 
-    @api.multi
     def button_confirm(self):
         """Set report status to done."""
         self.write({"state": "done"})
         return True
 
-    @api.multi
     def _prepare_move_vals(self):
         self.ensure_one()
         return {
@@ -421,34 +421,29 @@ class L10nEsAeatReport(models.AbstractModel):
             "company_id": self.company_id.id,
         }
 
-    @api.multi
     def button_post(self):
-        """Create any possible account move and set state to posted."""
+        """Create any possible account move entry and set state to posted."""
         for report in self:
             report.create_regularization_move()
         self.write({"state": "posted"})
         return True
 
-    @api.multi
     def button_cancel(self):
         """Set report status to cancelled."""
         self.write({"state": "cancelled"})
         return True
 
-    @api.multi
     def button_unpost(self):
-        """Remove created account move and set state to cancelled."""
+        """Remove created account move entry and set state to cancelled."""
         self.mapped("move_id").unlink()
         self.write({"state": "cancelled"})
         return True
 
-    @api.multi
     def button_recover(self):
         """Set report status to draft and reset calculation date."""
         self.write({"state": "draft", "calculation_date": False})
         return True
 
-    @api.multi
     def button_export(self):
         for report in self:
             export_obj = self.env[
@@ -457,7 +452,6 @@ class L10nEsAeatReport(models.AbstractModel):
             export_obj.export_boe_file(report)
         return True
 
-    @api.multi
     def button_open_move(self):
         self.ensure_one()
         action = self.env.ref("account.action_move_line_form").read()[0]
@@ -467,13 +461,12 @@ class L10nEsAeatReport(models.AbstractModel):
         del action["views"]
         return action
 
-    @api.multi
     def unlink(self):
         if any(item.state not in ["draft", "cancelled"] for item in self):
             raise exceptions.UserError(
-                _("Only reports in 'draft' or " "'cancelled' state can be removed")
+                _("Only reports in 'draft' or 'cancelled' state can be removed")
             )
-        return super(L10nEsAeatReport, self).unlink()
+        return super().unlink()
 
     @api.model
     def _prepare_aeat_sequence_vals(self, sequence, aeat_num, company):
@@ -492,10 +485,10 @@ class L10nEsAeatReport(models.AbstractModel):
     def _filter_phone(self, phone):
         return (phone or "").replace(" ", "")[-9:]
 
-    @api.model_cr
     def _register_hook(self, companies=None):
+        res = None
         if not companies:
-            res = super(L10nEsAeatReport, self)._register_hook()
+            res = super()._register_hook()
         if self._name in ("l10n.es.aeat.report", "l10n.es.aeat.report.tax.mapping"):
             return res
         aeat_num = getattr(self, "_aeat_number", False)

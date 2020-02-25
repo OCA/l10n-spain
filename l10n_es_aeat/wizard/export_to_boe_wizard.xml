@@ -51,7 +51,6 @@
         <field name="name">Export AEAT BOE file</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">l10n.es.aeat.report.export_to_boe</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>

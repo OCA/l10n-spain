@@ -2,8 +2,6 @@
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import openerp.addons.decimal_precision as dp
-
 from odoo import api, fields, models
 
 
@@ -24,16 +22,15 @@ class L10nEsAeatTaxLine(models.Model):
     name = fields.Char(
         string="Name", related="map_line_id.name", store=True, readonly=True
     )
-    amount = fields.Float(digits=dp.get_precision("Account"))
+    amount = fields.Float(digits="Account")
     map_line_id = fields.Many2one(
         comodel_name="l10n.es.aeat.map.tax.line",
         string="Map line",
         required=True,
         ondelete="cascade",
-        oldname="map_line",
     )
     move_line_ids = fields.Many2many(
-        comodel_name="account.move.line", string="Journal items", oldname="move_lines"
+        comodel_name="account.move.line", string="Journal items"
     )
     to_regularize = fields.Boolean(related="map_line_id.to_regularize", readonly=True)
     model = fields.Char(index=True, readonly=True, required=True, string="Model name")
@@ -41,13 +38,11 @@ class L10nEsAeatTaxLine(models.Model):
         comodel_name="ir.model", string="Model", compute="_compute_model_id", store=True
     )
 
-    @api.multi
     @api.depends("model")
     def _compute_model_id(self):
         for s in self:
             s.model_id = self.env["ir.model"].search([("model", "=", s.model)])
 
-    @api.multi
     def get_calculated_move_lines(self):
         res = self.env.ref("account.action_account_moves_all_a").read()[0]
         view = self.env.ref("l10n_es_aeat.view_move_line_tree")
