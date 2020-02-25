@@ -6,7 +6,8 @@ from odoo import fields, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _name = 'account.invoice'
+    _inherit = ['account.invoice', 'l10n.es.mod347.visibility.mixin']
 
     not_in_mod347 = fields.Boolean(
         "Not included in 347 report",

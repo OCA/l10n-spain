@@ -6,7 +6,8 @@ from odoo import fields, models
 
 
 class AccountMove(models.Model):
-    _inherit = 'account.move'
+    _name = 'account.move'
+    _inherit = ['account.move', 'l10n.es.mod347.visibility.mixin']
 
     not_in_mod347 = fields.Boolean(
         "Force not included in 347 report",

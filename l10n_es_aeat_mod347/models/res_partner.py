@@ -6,7 +6,8 @@ from odoo import fields, models, api
 
 
 class ResPartner(models.Model):
-    _inherit = "res.partner"
+    _name = "res.partner"
+    _inherit = ["res.partner", "l10n.es.mod347.visibility.mixin"]
 
     not_in_mod347 = fields.Boolean(
         "Not included in 347 report",
