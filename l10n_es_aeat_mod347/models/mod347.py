@@ -717,6 +717,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
             )
             del vals['community_vat']
             del vals['partner_country_code']
+            vals.update({'state_code': vals.pop('partner_state_code')})
             self.update(vals)
 
 
