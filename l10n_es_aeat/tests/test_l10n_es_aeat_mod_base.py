@@ -8,9 +8,7 @@ from odoo.tests import common
 _logger = logging.getLogger("aeat")
 
 
-@common.at_install(False)
-@common.post_install(True)
-class TestL10nEsAeatModBase(common.TransactionCase):
+class TestL10nEsAeatModBase(common.SavepointCase):
     accounts = {}
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
@@ -31,25 +29,28 @@ class TestL10nEsAeatModBase(common.TransactionCase):
     taxes_purchase = {}
     taxes_result = {}
 
-    def with_context(self, *args, **kwargs):
-        context = dict(args[0] if args else self.env.context, **kwargs)
-        self.env = self.env(context=context)
-        return self
+    @classmethod
+    def with_context(cls, *args, **kwargs):
+        context = dict(args[0] if args else cls.env.context, **kwargs)
+        cls.env = cls.env(context=context)
+        return cls
 
-    def _chart_of_accounts_create(self):
+    @classmethod
+    def _chart_of_accounts_create(cls):
         _logger.debug("Creating chart of account")
-        self.company = self.env["res.company"].create({"name": "Spanish test company"})
-        self.chart = self.env.ref("l10n_es.account_chart_template_pymes")
-        self.env.ref("base.group_multi_company").write({"users": [(4, self.env.uid)]})
-        self.env.user.write(
-            {"company_ids": [(4, self.company.id)], "company_id": self.company.id}
+        cls.company = cls.env["res.company"].create({"name": "Spanish test company"})
+        cls.chart = cls.env.ref("l10n_es.account_chart_template_pymes")
+        cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
+        cls.env.user.write(
+            {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
-        chart = self.env.ref("l10n_es.account_chart_template_pymes")
+        chart = cls.env.ref("l10n_es.account_chart_template_pymes")
         chart.try_loading_for_current_company()
-        self.with_context(company_id=self.company.id, force_company=self.company.id)
+        cls.with_context(company_id=cls.company.id, force_company=cls.company.id)
         return True
 
-    def _accounts_search(self):
+    @classmethod
+    def _accounts_search(cls):
         _logger.debug("Searching accounts")
         codes = {
             "472000",
@@ -63,12 +64,13 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             "410000",
         }
         for code in codes:
-            self.accounts[code] = self.env["account.account"].search(
-                [("company_id", "=", self.company.id), ("code", "=", code)]
+            cls.accounts[code] = cls.env["account.account"].search(
+                [("company_id", "=", cls.company.id), ("code", "=", code)]
             )
         return True
 
-    def _print_move_lines(self, lines):
+    @classmethod
+    def _print_move_lines(cls, lines):
         _logger.debug(
             "%8s %9s %9s %14s %s", "ACCOUNT", "DEBIT", "CREDIT", "TAX", "TAXES"
         )
@@ -82,17 +84,19 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 line.tax_ids.mapped("name"),
             )
 
-    def _print_tax_lines(self, lines):
+    @classmethod
+    def _print_tax_lines(cls, lines):
         for line in lines:
             _logger.debug(
                 "=== [%s] ============================= [%s]",
                 line.field_number,
                 line.amount,
             )
-            self._print_move_lines(line.move_line_ids)
+            cls._print_move_lines(line.move_line_ids)
 
-    def _get_taxes(self, descs):
-        taxes = self.env["account.tax"]
+    @classmethod
+    def _get_taxes(cls, descs):
+        taxes = cls.env["account.tax"]
         for desc in descs.split(","):
             parts = desc.split(".")
             module = parts[0] if len(parts) > 1 else "l10n_es"
@@ -100,128 +104,136 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             if xml_id.lower() != xml_id and len(parts) == 1:
                 # shortcut for not changing existing tests with old codes
                 xml_id = "account_tax_template_" + xml_id.lower()
-            tax_template = self.env.ref(
+            tax_template = cls.env.ref(
                 "{}.{}".format(module, xml_id), raise_if_not_found=False
             )
             if tax_template:
-                tax = self.company.get_taxes_from_templates(tax_template)
+                tax = cls.company.get_taxes_from_templates(tax_template)
                 taxes |= tax
             if not tax_template or not tax:
                 _logger.error("Tax not found: {}".format(desc))
         return taxes
 
-    def _invoice_sale_create(self, dt, extra_vals=None):
+    @classmethod
+    def _invoice_sale_create(cls, dt, extra_vals=None):
         data = {
-            "company_id": self.company.id,
-            "partner_id": self.customer.id,
-            "date_invoice": dt,
+            "company_id": cls.company.id,
+            "partner_id": cls.customer.id,
+            "invoice_date": dt,
             "type": "out_invoice",
-            "account_id": self.customer.property_account_receivable_id.id,
-            "journal_id": self.journal_sale.id,
+            "journal_id": cls.journal_sale.id,
             "invoice_line_ids": [],
         }
         _logger.debug("Creating sale invoice: date = %s" % dt)
-        if self.debug:
+        if cls.debug:
             _logger.debug("{:>14} {:>9}".format("SALE TAX", "PRICE"))
-        for desc, values in self.taxes_sale.items():
-            if self.debug:
+        for desc, values in cls.taxes_sale.items():
+            if cls.debug:
                 _logger.debug("{:>14} {:>9}".format(desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
                 "name": "Test for tax(es) %s" % desc,
-                "account_id": self.accounts["700000"].id,
+                "account_id": cls.accounts["700000"].id,
                 "price_unit": values[0],
                 "quantity": 1,
             }
-            taxes = self._get_taxes(desc.split("//")[0])
+            taxes = cls._get_taxes(desc.split("//")[0])
             if taxes:
-                line_data["invoice_line_tax_ids"] = [(4, t.id) for t in taxes]
+                line_data["tax_ids"] = [(4, t.id) for t in taxes]
             data["invoice_line_ids"].append((0, 0, line_data))
         if extra_vals:
             data.update(extra_vals)
-        inv = self.env["account.invoice"].sudo(self.billing_user).create(data)
-        inv.action_invoice_open()
-        if self.debug:
-            self._print_move_lines(inv.move_id.line_ids)
+        inv = cls.env["account.move"].with_user(cls.billing_user).create(data)
+        inv.post()
+        if cls.debug:
+            cls._print_move_lines(inv.line_ids)
         return inv
 
-    def _invoice_purchase_create(self, dt, extra_vals=None):
+    @classmethod
+    def _invoice_purchase_create(cls, dt, extra_vals=None):
         data = {
-            "company_id": self.company.id,
-            "partner_id": self.supplier.id,
-            "date_invoice": dt,
+            "company_id": cls.company.id,
+            "partner_id": cls.supplier.id,
+            "invoice_date": dt,
             "type": "in_invoice",
-            "account_id": self.customer.property_account_payable_id.id,
-            "journal_id": self.journal_purchase.id,
+            "journal_id": cls.journal_purchase.id,
             "invoice_line_ids": [],
         }
         _logger.debug("Creating purchase invoice: date = %s" % dt)
-        if self.debug:
+        if cls.debug:
             _logger.debug("{:>14} {:>9}".format("PURCHASE TAX", "PRICE"))
-        for desc, values in self.taxes_purchase.items():
-            if self.debug:
+        for desc, values in cls.taxes_purchase.items():
+            if cls.debug:
                 _logger.debug("{:>14} {:>9}".format(desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
                 "name": "Test for tax(es) %s" % desc,
-                "account_id": self.accounts["600000"].id,
+                "account_id": cls.accounts["600000"].id,
                 "price_unit": values[0],
                 "quantity": 1,
             }
-            taxes = self._get_taxes(desc.split("//")[0])
+            taxes = cls._get_taxes(desc.split("//")[0])
             if taxes:
-                line_data["invoice_line_tax_ids"] = [(4, t.id) for t in taxes]
+                line_data["tax_ids"] = [(4, t.id) for t in taxes]
             data["invoice_line_ids"].append((0, 0, line_data))
         if extra_vals:
             data.update(extra_vals)
-        inv = self.env["account.invoice"].sudo(self.billing_user).create(data)
-        inv.action_invoice_open()
-        if self.debug:
-            self._print_move_lines(inv.move_id.line_ids)
+        inv = cls.env["account.move"].with_user(cls.billing_user).create(data)
+        inv.post()
+        if cls.debug:
+            cls._print_move_lines(inv.line_ids)
         return inv
 
-    def _invoice_refund(self, invoice, dt):
+    @classmethod
+    def _invoice_refund(cls, invoice, dt):
         _logger.debug("Refund {} invoice: date = {}".format(invoice.type, dt))
-        inv = invoice.sudo(self.billing_user).refund(
-            date_invoice=dt, journal_id=self.journal_misc.id
-        )
-        inv.action_invoice_open()
-        if self.debug:
-            self._print_move_lines(inv.move_id.line_ids)
+        default_values_list = [
+            {
+                "date": dt,
+                "invoice_date": dt,
+                "journal_id": cls.journal_misc.id or invoice.journal_id.id,
+                "invoice_payment_term_id": None,
+            }
+        ]
+        inv = invoice.with_user(cls.billing_user)._reverse_moves(default_values_list)
+        inv.post()
+        if cls.debug:
+            cls._print_move_lines(inv.line_ids)
         return inv
 
-    def _journals_create(self):
-        self.journal_sale = self.env["account.journal"].create(
+    @classmethod
+    def _journals_create(cls):
+        cls.journal_sale = cls.env["account.journal"].create(
             {
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "name": "Test journal for sale",
                 "type": "sale",
                 "code": "TSALE",
-                "default_debit_account_id": self.accounts["700000"].id,
-                "default_credit_account_id": self.accounts["700000"].id,
+                "default_debit_account_id": cls.accounts["700000"].id,
+                "default_credit_account_id": cls.accounts["700000"].id,
             }
         )
-        self.journal_purchase = self.env["account.journal"].create(
+        cls.journal_purchase = cls.env["account.journal"].create(
             {
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "name": "Test journal for purchase",
                 "type": "purchase",
                 "code": "TPUR",
-                "default_debit_account_id": self.accounts["600000"].id,
-                "default_credit_account_id": self.accounts["600000"].id,
+                "default_debit_account_id": cls.accounts["600000"].id,
+                "default_credit_account_id": cls.accounts["600000"].id,
             }
         )
-        self.journal_misc = self.env["account.journal"].create(
+        cls.journal_misc = cls.env["account.journal"].create(
             {
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "name": "Test journal for miscellanea",
                 "type": "general",
                 "code": "TMISC",
             }
         )
-        self.journal_cash = self.env["account.journal"].create(
+        cls.journal_cash = cls.env["account.journal"].create(
             {
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "name": "Test journal for cash",
                 "type": "cash",
                 "code": "TCSH",
@@ -229,56 +241,54 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         )
         return True
 
-    def _partners_create(self):
-        self.customer = self.env["res.partner"].create(
+    @classmethod
+    def _partners_create(cls):
+        cls.customer = cls.env["res.partner"].create(
             {
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "name": "Test customer",
-                "customer": True,
-                "supplier": False,
-                "property_account_payable_id": self.accounts["410000"].id,
-                "property_account_receivable_id": self.accounts["430000"].id,
+                "property_account_payable_id": cls.accounts["410000"].id,
+                "property_account_receivable_id": cls.accounts["430000"].id,
             }
         )
-        self.supplier = self.env["res.partner"].create(
+        cls.supplier = cls.env["res.partner"].create(
             {
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "name": "Test supplier",
-                "customer": False,
-                "supplier": True,
-                "property_account_payable_id": self.accounts["410000"].id,
-                "property_account_receivable_id": self.accounts["430000"].id,
+                "property_account_payable_id": cls.accounts["410000"].id,
+                "property_account_receivable_id": cls.accounts["430000"].id,
             }
         )
-        self.customer_bank = self.env["res.partner.bank"].create(
+        cls.customer_bank = cls.env["res.partner.bank"].create(
             {
-                "partner_id": self.customer.id,
+                "partner_id": cls.customer.id,
                 "acc_number": "ES66 2100 0418 4012 3456 7891",
             }
         )
         return True
 
-    def setUp(self):
-        super(TestL10nEsAeatModBase, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Create chart
-        self._chart_of_accounts_create()
+        cls._chart_of_accounts_create()
         # Create accounts
-        self._accounts_search()
+        cls._accounts_search()
         # Create journals
-        self._journals_create()
+        cls._journals_create()
         # Create partners
-        self._partners_create()
+        cls._partners_create()
 
-        invocing_grp = self.env.ref("account.group_account_invoice")
-        account_user_grp = self.env.ref("account.group_account_user")
-        account_manager_grp = self.env.ref("account.group_account_manager")
-        aeat_grp = self.env.ref("l10n_es_aeat.group_account_aeat")
+        invocing_grp = cls.env.ref("account.group_account_invoice")
+        account_user_grp = cls.env.ref("account.group_account_user")
+        account_manager_grp = cls.env.ref("account.group_account_manager")
+        aeat_grp = cls.env.ref("l10n_es_aeat.group_account_aeat")
 
         # Create test user
-        Users = self.env["res.users"].with_context(
+        Users = cls.env["res.users"].with_context(
             {"no_reset_password": True, "mail_create_nosubscribe": True}
         )
-        self.billing_user = Users.create(
+        cls.billing_user = Users.create(
             {
                 "name": "Billing user",
                 "login": "billing_user",
@@ -286,7 +296,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 "groups_id": [(6, 0, [invocing_grp.id])],
             }
         )
-        self.account_user = Users.create(
+        cls.account_user = Users.create(
             {
                 "name": "Account user",
                 "login": "account_user",
@@ -294,7 +304,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 "groups_id": [(6, 0, [account_user_grp.id])],
             }
         )
-        self.account_manager = Users.create(
+        cls.account_manager = Users.create(
             {
                 "name": "Account manager",
                 "login": "account_manager",
