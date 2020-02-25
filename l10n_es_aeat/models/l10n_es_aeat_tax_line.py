@@ -2,8 +2,9 @@
 # Copyright 2016-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
 import openerp.addons.decimal_precision as dp
+
+from odoo import api, fields, models
 
 
 class L10nEsAeatTaxLine(models.Model):
@@ -12,30 +13,33 @@ class L10nEsAeatTaxLine(models.Model):
     _description = "AEAT tax line"
 
     res_id = fields.Integer(
-        string="Resource ID", index=True, required=True, ondelete='cascade')
+        string="Resource ID", index=True, required=True, ondelete="cascade"
+    )
     field_number = fields.Integer(
-        string="Field number", related="map_line_id.field_number",
-        store=True, readonly=True,
+        string="Field number",
+        related="map_line_id.field_number",
+        store=True,
+        readonly=True,
     )
     name = fields.Char(
-        string="Name", related="map_line_id.name", store=True, readonly=True,
+        string="Name", related="map_line_id.name", store=True, readonly=True
     )
-    amount = fields.Float(digits=dp.get_precision('Account'))
+    amount = fields.Float(digits=dp.get_precision("Account"))
     map_line_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.map.tax.line', string="Map line",
-        required=True, ondelete='cascade', oldname='map_line')
+        comodel_name="l10n.es.aeat.map.tax.line",
+        string="Map line",
+        required=True,
+        ondelete="cascade",
+        oldname="map_line",
+    )
     move_line_ids = fields.Many2many(
-        comodel_name='account.move.line', string='Journal items',
-        oldname='move_lines')
-    to_regularize = fields.Boolean(
-        related='map_line_id.to_regularize', readonly=True,
+        comodel_name="account.move.line", string="Journal items", oldname="move_lines"
     )
-    model = fields.Char(
-        index=True, readonly=True, required=True, string="Model name",
-    )
+    to_regularize = fields.Boolean(related="map_line_id.to_regularize", readonly=True)
+    model = fields.Char(index=True, readonly=True, required=True, string="Model name")
     model_id = fields.Many2one(
-        comodel_name='ir.model', string='Model',
-        compute="_compute_model_id", store=True)
+        comodel_name="ir.model", string="Model", compute="_compute_model_id", store=True
+    )
 
     @api.multi
     @api.depends("model")
@@ -45,8 +49,8 @@ class L10nEsAeatTaxLine(models.Model):
 
     @api.multi
     def get_calculated_move_lines(self):
-        res = self.env.ref('account.action_account_moves_all_a').read()[0]
-        view = self.env.ref('l10n_es_aeat.view_move_line_tree')
-        res['views'] = [(view.id, 'tree')]
-        res['domain'] = [('id', 'in', self.move_line_ids.ids)]
+        res = self.env.ref("account.action_account_moves_all_a").read()[0]
+        view = self.env.ref("l10n_es_aeat.view_move_line_tree")
+        res["views"] = [(view.id, "tree")]
+        res["domain"] = [("id", "in", self.move_line_ids.ids)]
         return res
