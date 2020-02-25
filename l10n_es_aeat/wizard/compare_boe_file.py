@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
+
 from odoo import api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
 
@@ -10,20 +11,15 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     _name = "l10n.es.aeat.report.compare_boe_file"
     _description = "Compare BOE file wizard"
 
-    data = fields.Binary(
-        string="File",
-        required=True,
-    )
+    data = fields.Binary(string="File", required=True)
     state = fields.Selection(
-        selection=[
-            ('open', 'open'),
-            ('compare', 'compare'),
-        ], string="State",
-        default='open',
+        selection=[("open", "open"), ("compare", "compare")],
+        string="State",
+        default="open",
     )
     line_ids = fields.One2many(
         comodel_name="l10n.es.aeat.report.compare_boe_file.line",
-        inverse_name='wizard_id',
+        inverse_name="wizard_id",
         string="Lines",
     )
 
@@ -34,17 +30,23 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                 # Try to evaluate condition to see if it's not report dependent
                 if not safe_eval(line.conditional_expression):
                     continue
-            if line.export_type == 'subconfig':
+            if line.export_type == "subconfig":
                 offset, sub_lines = self._compare_boe_lines(
-                    line.subconfig_id, data, offset=offset,
+                    line.subconfig_id, data, offset=offset
                 )
                 lines += sub_lines
             else:
-                lines.append((0, 0, {
-                    'wizard_id': self.id,
-                    'export_line_id': line.id,
-                    'content': data[offset:offset + line.size],
-                }))
+                lines.append(
+                    (
+                        0,
+                        0,
+                        {
+                            "wizard_id": self.id,
+                            "export_line_id": line.id,
+                            "content": data[offset : offset + line.size],
+                        },
+                    )
+                )
                 offset += line.size
         return offset, lines
 
@@ -54,8 +56,8 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         @return: Action dictionary for showing comparison.
         """
         self.ensure_one()
-        active_id = self.env.context.get('active_id', False)
-        active_model = self.env.context.get('active_model', False)
+        active_id = self.env.context.get("active_id", False)
+        active_model = self.env.context.get("active_model", False)
         if not active_id or not active_model:
             return False
         config = self.env[active_model].browse(active_id)
@@ -68,14 +70,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                 "or there are conditional parts in the export configuration "
                 "that can't be evaled statically."
             )
-        self.write({
-            'line_ids': lines,
-            'state': 'compare',
-        })
-        res = self.env.ref(
-            'l10n_es_aeat.action_wizard_compare_boe_file'
-        ).read()[0]
-        res['res_id'] = self.id
+        self.write({"line_ids": lines, "state": "compare"})
+        res = self.env.ref("l10n_es_aeat.action_wizard_compare_boe_file").read()[0]
+        res["res_id"] = self.id
         return res
 
 
@@ -98,28 +95,15 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
         ondelete="cascade",
     )
     sequence = fields.Integer(
-        string="Sequence",
-        related="export_line_id.sequence",
-        readonly=True,
+        string="Sequence", related="export_line_id.sequence", readonly=True
     )
-    name = fields.Char(
-        string="Name",
-        related="export_line_id.name",
-        readonly=True,
-    )
-    content = fields.Char(
-        string="Content",
-    )
-    content_float = fields.Float(
-        compute="_compute_content_float",
-        string="Amount",
-    )
+    name = fields.Char(string="Name", related="export_line_id.name", readonly=True)
+    content = fields.Char(string="Content")
+    content_float = fields.Float(compute="_compute_content_float", string="Amount")
 
-    @api.depends('content')
+    @api.depends("content")
     def _compute_content_float(self):
-        for line in self.filtered(
-            lambda x: x.export_line_id.export_type == 'float'
-        ):
+        for line in self.filtered(lambda x: x.export_line_id.export_type == "float"):
             content = line.content
             sign = 1
             if line.export_line_id.apply_sign:
@@ -129,7 +113,7 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
             if line.export_line_id.decimal_size:
                 try:
                     line.content_float = sign * (
-                        float(content) / 10**line.export_line_id.decimal_size
+                        float(content) / 10 ** line.export_line_id.decimal_size
                     )
                 except Exception:
                     pass

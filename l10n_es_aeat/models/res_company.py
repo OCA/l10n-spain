@@ -12,9 +12,9 @@ class ResCompany(models.Model):
     def create(self, values):
         """Create immediately all the AEAT sequences when creating company."""
         company = super().create(values)
-        models = self.env['ir.model'].search([
-            ('model', '=like', 'l10n.es.aeat.%.report'),
-        ])
+        models = self.env["ir.model"].search(
+            [("model", "=like", "l10n.es.aeat.%.report")]
+        )
         for model in models:
             try:
                 self.env[model.model]._register_hook(companies=company)
@@ -22,20 +22,28 @@ class ResCompany(models.Model):
                 pass
         return company
 
-    @ormcache('tax_template', 'company')
+    @ormcache("tax_template", "company")
     def _get_tax_id_from_tax_template(self, tax_template, company):
         """Low level cached search for a tax given its tax template and
         company.
         """
-        xmlids = self.env['ir.model.data'].search_read([
-            ('model', '=', 'account.tax.template'),
-            ('res_id', '=', tax_template.id)
-        ], ['name', 'module'])
-        return xmlids and self.env['ir.model.data'].search([
-            ('model', '=', 'account.tax'),
-            ('module', '=', xmlids[0]['module']),
-            ('name', '=', '{}_{}'.format(company.id, xmlids[0]['name']))
-        ]).res_id or False
+        xmlids = self.env["ir.model.data"].search_read(
+            [("model", "=", "account.tax.template"), ("res_id", "=", tax_template.id)],
+            ["name", "module"],
+        )
+        return (
+            xmlids
+            and self.env["ir.model.data"]
+            .search(
+                [
+                    ("model", "=", "account.tax"),
+                    ("module", "=", xmlids[0]["module"]),
+                    ("name", "=", "{}_{}".format(company.id, xmlids[0]["name"])),
+                ]
+            )
+            .res_id
+            or False
+        )
 
     def get_taxes_from_templates(self, tax_templates):
         """Return company taxes that match the given tax templates."""
@@ -45,4 +53,4 @@ class ResCompany(models.Model):
             tax_id = self._get_tax_id_from_tax_template(tmpl, self)
             if tax_id:
                 tax_ids.append(tax_id)
-        return self.env['account.tax'].browse(tax_ids)
+        return self.env["account.tax"].browse(tax_ids)
