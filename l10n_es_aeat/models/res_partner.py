@@ -1,7 +1,7 @@
 # Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.tools import ormcache
 
 
@@ -12,6 +12,17 @@ class ResPartner(models.Model):
         string='AEAT - Anonymous customer',
         help='Check this for anonymous cash customer. AEAT communication',
     )
+    is_aeat_visible = fields.Boolean(
+        compute="_compute_is_aeat_visible"
+    )
+
+    @api.depends('company_id')
+    def _compute_is_aeat_visible(self):
+        for rec in self:
+            rec.is_aeat_visible = (
+                not rec.company_id.country_id
+                or rec.company_id.country_id.code == 'ES'
+            )
 
     def _map_aeat_country_code(self, country_code):
         country_code_map = {

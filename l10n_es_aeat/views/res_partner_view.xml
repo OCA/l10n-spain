@@ -6,10 +6,11 @@
         <field name="inherit_id" ref="account.view_partner_property_form"/>
         <field name="arch" type="xml">
             <group name="fiscal_information">
-                <field name="aeat_anonymous_cash_customer"/>
+                <field name="is_aeat_visible" invisible="1"/>
+                <field name="aeat_anonymous_cash_customer" attrs="{'invisible': [('is_aeat_visible', '=', False)]}"/>
             </group>
             <notebook position="inside">
-            	<page string="AEAT" id="aeat" />
+            	<page string="AEAT" id="aeat" attrs="{'invisible': [('is_aeat_visible', '=', False)]}"/>
             </notebook>
         </field>
     </record>
