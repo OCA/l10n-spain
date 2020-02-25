@@ -2,9 +2,10 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 import logging
+
 from odoo.tests import common
 
-_logger = logging.getLogger('aeat')
+_logger = logging.getLogger("aeat")
 
 
 @common.at_install(False)
@@ -36,65 +37,72 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         return self
 
     def _chart_of_accounts_create(self):
-        _logger.debug('Creating chart of account')
-        self.company = self.env['res.company'].create({
-            'name': 'Spanish test company',
-        })
-        self.chart = self.env.ref('l10n_es.account_chart_template_pymes')
-        self.env.ref('base.group_multi_company').write({
-            'users': [(4, self.env.uid)],
-        })
-        self.env.user.write({
-            'company_ids': [(4, self.company.id)],
-            'company_id': self.company.id,
-        })
-        chart = self.env.ref('l10n_es.account_chart_template_pymes')
-        chart.try_loading_for_current_company()
-        self.with_context(
-            company_id=self.company.id, force_company=self.company.id,
+        _logger.debug("Creating chart of account")
+        self.company = self.env["res.company"].create({"name": "Spanish test company"})
+        self.chart = self.env.ref("l10n_es.account_chart_template_pymes")
+        self.env.ref("base.group_multi_company").write({"users": [(4, self.env.uid)]})
+        self.env.user.write(
+            {"company_ids": [(4, self.company.id)], "company_id": self.company.id}
         )
+        chart = self.env.ref("l10n_es.account_chart_template_pymes")
+        chart.try_loading_for_current_company()
+        self.with_context(company_id=self.company.id, force_company=self.company.id)
         return True
 
     def _accounts_search(self):
-        _logger.debug('Searching accounts')
-        codes = {'472000', '473000', '477000', '475100', '475000',
-                 '600000', '700000', '430000', '410000'}
+        _logger.debug("Searching accounts")
+        codes = {
+            "472000",
+            "473000",
+            "477000",
+            "475100",
+            "475000",
+            "600000",
+            "700000",
+            "430000",
+            "410000",
+        }
         for code in codes:
-            self.accounts[code] = self.env['account.account'].search([
-                ('company_id', '=', self.company.id),
-                ('code', '=', code),
-            ])
+            self.accounts[code] = self.env["account.account"].search(
+                [("company_id", "=", self.company.id), ("code", "=", code)]
+            )
         return True
 
     def _print_move_lines(self, lines):
         _logger.debug(
-            '%8s %9s %9s %14s %s',
-            'ACCOUNT', 'DEBIT', 'CREDIT', 'TAX', 'TAXES')
+            "%8s %9s %9s %14s %s", "ACCOUNT", "DEBIT", "CREDIT", "TAX", "TAXES"
+        )
         for line in lines:
             _logger.debug(
-                '%8s %9s %9s %14s %s',
-                line.account_id.code, line.debit, line.credit,
+                "%8s %9s %9s %14s %s",
+                line.account_id.code,
+                line.debit,
+                line.credit,
                 line.tax_line_id.description,
-                line.tax_ids.mapped('name'))
+                line.tax_ids.mapped("name"),
+            )
 
     def _print_tax_lines(self, lines):
         for line in lines:
             _logger.debug(
                 "=== [%s] ============================= [%s]",
-                line.field_number, line.amount)
+                line.field_number,
+                line.amount,
+            )
             self._print_move_lines(line.move_line_ids)
 
     def _get_taxes(self, descs):
-        taxes = self.env['account.tax']
-        for desc in descs.split(','):
-            parts = desc.split('.')
-            module = parts[0] if len(parts) > 1 else 'l10n_es'
+        taxes = self.env["account.tax"]
+        for desc in descs.split(","):
+            parts = desc.split(".")
+            module = parts[0] if len(parts) > 1 else "l10n_es"
             xml_id = parts[1] if len(parts) > 1 else parts[0]
             if xml_id.lower() != xml_id and len(parts) == 1:
                 # shortcut for not changing existing tests with old codes
-                xml_id = 'account_tax_template_' + xml_id.lower()
+                xml_id = "account_tax_template_" + xml_id.lower()
             tax_template = self.env.ref(
-                '%s.%s' % (module, xml_id), raise_if_not_found=False)
+                "{}.{}".format(module, xml_id), raise_if_not_found=False
+            )
             if tax_template:
                 tax = self.company.get_taxes_from_templates(tax_template)
                 taxes |= tax
@@ -104,34 +112,34 @@ class TestL10nEsAeatModBase(common.TransactionCase):
 
     def _invoice_sale_create(self, dt, extra_vals=None):
         data = {
-            'company_id': self.company.id,
-            'partner_id': self.customer.id,
-            'date_invoice': dt,
-            'type': 'out_invoice',
-            'account_id': self.customer.property_account_receivable_id.id,
-            'journal_id': self.journal_sale.id,
-            'invoice_line_ids': [],
+            "company_id": self.company.id,
+            "partner_id": self.customer.id,
+            "date_invoice": dt,
+            "type": "out_invoice",
+            "account_id": self.customer.property_account_receivable_id.id,
+            "journal_id": self.journal_sale.id,
+            "invoice_line_ids": [],
         }
-        _logger.debug('Creating sale invoice: date = %s' % dt)
+        _logger.debug("Creating sale invoice: date = %s" % dt)
         if self.debug:
-            _logger.debug('%14s %9s' % ('SALE TAX', 'PRICE'))
+            _logger.debug("{:>14} {:>9}".format("SALE TAX", "PRICE"))
         for desc, values in self.taxes_sale.items():
             if self.debug:
-                _logger.debug('%14s %9s' % (desc, values[0]))
+                _logger.debug("{:>14} {:>9}".format(desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
-                'name': 'Test for tax(es) %s' % desc,
-                'account_id': self.accounts['700000'].id,
-                'price_unit': values[0],
-                'quantity': 1,
+                "name": "Test for tax(es) %s" % desc,
+                "account_id": self.accounts["700000"].id,
+                "price_unit": values[0],
+                "quantity": 1,
             }
-            taxes = self._get_taxes(desc.split('//')[0])
+            taxes = self._get_taxes(desc.split("//")[0])
             if taxes:
-                line_data['invoice_line_tax_ids'] = [(4, t.id) for t in taxes]
-            data['invoice_line_ids'].append((0, 0, line_data))
+                line_data["invoice_line_tax_ids"] = [(4, t.id) for t in taxes]
+            data["invoice_line_ids"].append((0, 0, line_data))
         if extra_vals:
             data.update(extra_vals)
-        inv = self.env['account.invoice'].sudo(self.billing_user).create(data)
+        inv = self.env["account.invoice"].sudo(self.billing_user).create(data)
         inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
@@ -139,100 +147,115 @@ class TestL10nEsAeatModBase(common.TransactionCase):
 
     def _invoice_purchase_create(self, dt, extra_vals=None):
         data = {
-            'company_id': self.company.id,
-            'partner_id': self.supplier.id,
-            'date_invoice': dt,
-            'type': 'in_invoice',
-            'account_id': self.customer.property_account_payable_id.id,
-            'journal_id': self.journal_purchase.id,
-            'invoice_line_ids': [],
+            "company_id": self.company.id,
+            "partner_id": self.supplier.id,
+            "date_invoice": dt,
+            "type": "in_invoice",
+            "account_id": self.customer.property_account_payable_id.id,
+            "journal_id": self.journal_purchase.id,
+            "invoice_line_ids": [],
         }
-        _logger.debug('Creating purchase invoice: date = %s' % dt)
+        _logger.debug("Creating purchase invoice: date = %s" % dt)
         if self.debug:
-            _logger.debug('%14s %9s' % ('PURCHASE TAX', 'PRICE'))
+            _logger.debug("{:>14} {:>9}".format("PURCHASE TAX", "PRICE"))
         for desc, values in self.taxes_purchase.items():
             if self.debug:
-                _logger.debug('%14s %9s' % (desc, values[0]))
+                _logger.debug("{:>14} {:>9}".format(desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
             line_data = {
-                'name': 'Test for tax(es) %s' % desc,
-                'account_id': self.accounts['600000'].id,
-                'price_unit': values[0],
-                'quantity': 1,
+                "name": "Test for tax(es) %s" % desc,
+                "account_id": self.accounts["600000"].id,
+                "price_unit": values[0],
+                "quantity": 1,
             }
-            taxes = self._get_taxes(desc.split('//')[0])
+            taxes = self._get_taxes(desc.split("//")[0])
             if taxes:
-                line_data['invoice_line_tax_ids'] = [(4, t.id) for t in taxes]
-            data['invoice_line_ids'].append((0, 0, line_data))
+                line_data["invoice_line_tax_ids"] = [(4, t.id) for t in taxes]
+            data["invoice_line_ids"].append((0, 0, line_data))
         if extra_vals:
             data.update(extra_vals)
-        inv = self.env['account.invoice'].sudo(self.billing_user).create(data)
+        inv = self.env["account.invoice"].sudo(self.billing_user).create(data)
         inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
         return inv
 
     def _invoice_refund(self, invoice, dt):
-        _logger.debug('Refund %s invoice: date = %s' % (invoice.type, dt))
+        _logger.debug("Refund {} invoice: date = {}".format(invoice.type, dt))
         inv = invoice.sudo(self.billing_user).refund(
-            date_invoice=dt, journal_id=self.journal_misc.id)
+            date_invoice=dt, journal_id=self.journal_misc.id
+        )
         inv.action_invoice_open()
         if self.debug:
             self._print_move_lines(inv.move_id.line_ids)
         return inv
 
     def _journals_create(self):
-        self.journal_sale = self.env['account.journal'].create({
-            'company_id': self.company.id,
-            'name': 'Test journal for sale',
-            'type': 'sale',
-            'code': 'TSALE',
-            'default_debit_account_id': self.accounts['700000'].id,
-            'default_credit_account_id': self.accounts['700000'].id,
-        })
-        self.journal_purchase = self.env['account.journal'].create({
-            'company_id': self.company.id,
-            'name': 'Test journal for purchase',
-            'type': 'purchase',
-            'code': 'TPUR',
-            'default_debit_account_id': self.accounts['600000'].id,
-            'default_credit_account_id': self.accounts['600000'].id,
-        })
-        self.journal_misc = self.env['account.journal'].create({
-            'company_id': self.company.id,
-            'name': 'Test journal for miscellanea',
-            'type': 'general',
-            'code': 'TMISC',
-        })
-        self.journal_cash = self.env['account.journal'].create({
-            'company_id': self.company.id,
-            'name': 'Test journal for cash',
-            'type': 'cash',
-            'code': 'TCSH',
-        })
+        self.journal_sale = self.env["account.journal"].create(
+            {
+                "company_id": self.company.id,
+                "name": "Test journal for sale",
+                "type": "sale",
+                "code": "TSALE",
+                "default_debit_account_id": self.accounts["700000"].id,
+                "default_credit_account_id": self.accounts["700000"].id,
+            }
+        )
+        self.journal_purchase = self.env["account.journal"].create(
+            {
+                "company_id": self.company.id,
+                "name": "Test journal for purchase",
+                "type": "purchase",
+                "code": "TPUR",
+                "default_debit_account_id": self.accounts["600000"].id,
+                "default_credit_account_id": self.accounts["600000"].id,
+            }
+        )
+        self.journal_misc = self.env["account.journal"].create(
+            {
+                "company_id": self.company.id,
+                "name": "Test journal for miscellanea",
+                "type": "general",
+                "code": "TMISC",
+            }
+        )
+        self.journal_cash = self.env["account.journal"].create(
+            {
+                "company_id": self.company.id,
+                "name": "Test journal for cash",
+                "type": "cash",
+                "code": "TCSH",
+            }
+        )
         return True
 
     def _partners_create(self):
-        self.customer = self.env['res.partner'].create({
-            'company_id': self.company.id,
-            'name': 'Test customer',
-            'customer': True,
-            'supplier': False,
-            'property_account_payable_id': self.accounts['410000'].id,
-            'property_account_receivable_id': self.accounts['430000'].id,
-        })
-        self.supplier = self.env['res.partner'].create({
-            'company_id': self.company.id,
-            'name': 'Test supplier',
-            'customer': False,
-            'supplier': True,
-            'property_account_payable_id': self.accounts['410000'].id,
-            'property_account_receivable_id': self.accounts['430000'].id,
-        })
-        self.customer_bank = self.env['res.partner.bank'].create({
-            'partner_id': self.customer.id,
-            'acc_number': 'ES66 2100 0418 4012 3456 7891',
-        })
+        self.customer = self.env["res.partner"].create(
+            {
+                "company_id": self.company.id,
+                "name": "Test customer",
+                "customer": True,
+                "supplier": False,
+                "property_account_payable_id": self.accounts["410000"].id,
+                "property_account_receivable_id": self.accounts["430000"].id,
+            }
+        )
+        self.supplier = self.env["res.partner"].create(
+            {
+                "company_id": self.company.id,
+                "name": "Test supplier",
+                "customer": False,
+                "supplier": True,
+                "property_account_payable_id": self.accounts["410000"].id,
+                "property_account_receivable_id": self.accounts["430000"].id,
+            }
+        )
+        self.customer_bank = self.env["res.partner.bank"].create(
+            {
+                "partner_id": self.customer.id,
+                "acc_number": "ES66 2100 0418 4012 3456 7891",
+            }
+        )
         return True
 
     def setUp(self):
@@ -246,26 +269,36 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         # Create partners
         self._partners_create()
 
-        invocing_grp = self.env.ref('account.group_account_invoice')
-        account_user_grp = self.env.ref('account.group_account_user')
-        account_manager_grp = self.env.ref('account.group_account_manager')
-        aeat_grp = self.env.ref('l10n_es_aeat.group_account_aeat')
+        invocing_grp = self.env.ref("account.group_account_invoice")
+        account_user_grp = self.env.ref("account.group_account_user")
+        account_manager_grp = self.env.ref("account.group_account_manager")
+        aeat_grp = self.env.ref("l10n_es_aeat.group_account_aeat")
 
         # Create test user
-        Users = self.env['res.users'].with_context(
-            {'no_reset_password': True, 'mail_create_nosubscribe': True})
-        self.billing_user = Users.create({
-            'name': 'Billing user',
-            'login': 'billing_user',
-            'email': 'billing.user@example.com',
-            'groups_id': [(6, 0, [invocing_grp.id])]})
-        self.account_user = Users.create({
-            'name': 'Account user',
-            'login': 'account_user',
-            'email': 'account.user@example.com',
-            'groups_id': [(6, 0, [account_user_grp.id])]})
-        self.account_manager = Users.create({
-            'name': 'Account manager',
-            'login': 'account_manager',
-            'email': 'account.manager@example.com',
-            'groups_id': [(6, 0, [account_manager_grp.id, aeat_grp.id])]})
+        Users = self.env["res.users"].with_context(
+            {"no_reset_password": True, "mail_create_nosubscribe": True}
+        )
+        self.billing_user = Users.create(
+            {
+                "name": "Billing user",
+                "login": "billing_user",
+                "email": "billing.user@example.com",
+                "groups_id": [(6, 0, [invocing_grp.id])],
+            }
+        )
+        self.account_user = Users.create(
+            {
+                "name": "Account user",
+                "login": "account_user",
+                "email": "account.user@example.com",
+                "groups_id": [(6, 0, [account_user_grp.id])],
+            }
+        )
+        self.account_manager = Users.create(
+            {
+                "name": "Account manager",
+                "login": "account_manager",
+                "email": "account.manager@example.com",
+                "groups_id": [(6, 0, [account_manager_grp.id, aeat_grp.id])],
+            }
+        )
