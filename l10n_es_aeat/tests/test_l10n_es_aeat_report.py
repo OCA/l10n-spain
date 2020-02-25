@@ -10,11 +10,13 @@ TEST_MODEL_NAME = "l10n.es.aeat.mod999.report"
 class L10nEsAeatTestReport(models.TransientModel):
     _name = TEST_MODEL_NAME
     _inherit = "l10n.es.aeat.report"
+    _description = "L10nEsAeatTestReport"
     _aeat_number = "999"
 
 
 @tagged("post_install", "-at_install")
 class TestL10nEsAeatReport(common.SavepointCase):
+    @classmethod
     def _init_test_model(cls, model_cls):
         """ It builds a model from model_cls in order to test abstract models.
         Note that this does not actually create a table in the database, so
@@ -29,23 +31,23 @@ class TestL10nEsAeatReport(common.SavepointCase):
         """
         registry = cls.env.registry
         cls.env.cr.execute(
-            "INSERT INTO ir_model (model, name) VALUES (%s, %s)",
+            "INSERT INTO ir_model (model, name) VALUES (%s, %s) "
+            "ON CONFLICT DO NOTHING",
             (TEST_MODEL_NAME, "Test AEAT model"),
         )
         inst = model_cls._build_model(registry, cls.env.cr)
-        model = cls.env[model_cls._name].with_context(todo=[])
-        model._prepare_setup()
-        model._setup_base()
-        model._setup_fields()
-        model._setup_complete()
-        model._auto_init()
-        model.init()
+        registry.setup_models(cls.env.cr)
+        registry.init_models(
+            cls.env.cr,
+            [model_cls._name],
+            dict(cls.env.context, update_custom_fields=True),
+        )
         return inst
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls._init_test_model(cls, L10nEsAeatTestReport)
+        cls._init_test_model(L10nEsAeatTestReport)
         cls.AeatReport = cls.env["l10n.es.aeat.report"]
         cls.period_types = {
             "0A": ("2016-01-01", "2016-12-31"),
@@ -67,28 +69,27 @@ class TestL10nEsAeatReport(common.SavepointCase):
             "12": ("2016-12-01", "2016-12-31"),
         }
 
-    def test_onchange_period_type(self):
-        with self.env.do_in_onchange():
-            report = self.AeatReport.new({"year": 2016})
-            for period_type in self.period_types:
-                report.period_type = period_type
-                report.onchange_period_type()
-                date_start, date_end = self.period_types[period_type]
-                self.assertEqual(
-                    report.date_start,
-                    fields.Date.to_date(date_start),
-                    "Incorrect start date for period %s: %s."
-                    % (period_type, report.date_start),
-                )
-                self.assertEqual(
-                    report.date_end,
-                    fields.Date.to_date(date_end),
-                    "Incorrect end date for period %s: %s."
-                    % (period_type, report.date_end),
-                )
+    def test_compute_dates(self):
+        report = self.AeatReport.new({"year": 2016})
+        for period_type in self.period_types:
+            report.period_type = period_type
+            date_start, date_end = self.period_types[period_type]
+            self.assertEqual(
+                report.date_start,
+                fields.Date.to_date(date_start),
+                "Incorrect start date for period %s: %s."
+                % (period_type, report.date_start),
+            )
+            self.assertEqual(
+                report.date_end,
+                fields.Date.to_date(date_end),
+                "Incorrect end date for period %s: %s."
+                % (period_type, report.date_end),
+            )
+            report.invalidate_cache(["date_start", "date_end"])
 
     def test_check_complementary(self):
-        report = self.AeatReport.new({"year": 2016, "type": "S"})
+        report = self.AeatReport.new({"year": 2016, "statement_type": "S"})
         with self.assertRaises(exceptions.UserError):
             report._check_previous_number()
 

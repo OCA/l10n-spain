@@ -360,7 +360,7 @@ msgstr "Comparar archivo"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__company_id
-msgid "Compañía"
+msgid "Company"
 msgstr "Compañía"
 
 #. module: l10n_es_aeat
@@ -1501,7 +1501,7 @@ msgstr "Asistente para cargar el certificado AEAT"
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:60
 #, python-format
-msgid "Wrong aling option. It should be < or >"
+msgid "Wrong align option. It should be < or >"
 msgstr "Opción de alineamiento errónea. Debería ser < o >"
 
 #. module: l10n_es_aeat
