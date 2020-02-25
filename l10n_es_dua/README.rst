@@ -23,7 +23,7 @@ Importaciones con DUA
     :target: https://runbot.odoo-community.org/runbot/189/12.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Este addon pretende ayudar con la contabilidad de facturas de importación
 cuando una empresa de tránsito de aduanas realiza una valoración de mercancía
@@ -115,11 +115,12 @@ Ejemplo:
 2. Factura empresa de tránsito
 
    * Esta factura nos indica el IVA a pagar para retirar la mercancía de aduanas.
-   * Creamos la factura con la posición fiscal "Importación con DUA"
    * Añadimos una línea con el producto "DUA Valoración 21 %" con precio 150,00 €
      El impuesto en esa línea será "IVA 21% Importaciones bienes corrientes"
    * Añadimos otra línea con el producto "DUA Compensación" con precio -150,00 €
      El impuesto en esa línea será "DUA Exento"
+   * Añadir la/s línea/s extra necesaria/s que el transitario aplique para sus
+     servicios con la fiscalidad nacional.
 
 Al validar ambas facturas nos crea los siguientes asientos:
 
