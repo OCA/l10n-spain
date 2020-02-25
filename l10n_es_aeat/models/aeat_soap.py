@@ -1,8 +1,10 @@
 # (c) 2019 Acysos S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 import logging
-from odoo import api, models
+
 from requests import Session
+
+from odoo import api, models
 
 _logger = logging.getLogger(__name__)
 
@@ -15,17 +17,19 @@ except (ImportError, IOError) as err:
 
 
 class L10nEsAeatSoap(models.TransientModel):
-    _name = 'l10n.es.aeat.soap'
-    _description = 'AEAT SOAP'
+    _name = "l10n.es.aeat.soap"
+    _description = "AEAT SOAP"
 
     @api.multi
     def connect_soap(self, wsdl, model):
-        if 'company_id' in model._fields:
+        if "company_id" in model._fields:
             public_crt, private_key = self.env[
-                'l10n.es.aeat.certificate'].get_certificates(model.company_id)
+                "l10n.es.aeat.certificate"
+            ].get_certificates(model.company_id)
         else:
             public_crt, private_key = self.env[
-                'l10n.es.aeat.certificate'].get_certificates()
+                "l10n.es.aeat.certificate"
+            ].get_certificates()
 
         session = Session()
         session.cert = (public_crt, private_key)
