@@ -19,35 +19,34 @@ class L10nEsAeatMapTax(models.Model):
     )
     model = fields.Integer(string="AEAT Model", required=True)
 
-    @api.multi
     @api.constrains("date_from", "date_to")
     def _unique_date_range(self):
-        for map in self:
-            domain = [("id", "!=", map.id)]
-            if map.date_from and map.date_to:
+        for map_tax in self:
+            domain = [("id", "!=", map_tax.id)]
+            if map_tax.date_from and map_tax.date_to:
                 domain += [
                     "|",
                     "&",
-                    ("date_from", "<=", map.date_to),
-                    ("date_from", ">=", map.date_from),
+                    ("date_from", "<=", map_tax.date_to),
+                    ("date_from", ">=", map_tax.date_from),
                     "|",
                     "&",
-                    ("date_to", "<=", map.date_to),
-                    ("date_to", ">=", map.date_from),
+                    ("date_to", "<=", map_tax.date_to),
+                    ("date_to", ">=", map_tax.date_from),
                     "|",
                     "&",
                     ("date_from", "=", False),
-                    ("date_to", ">=", map.date_from),
+                    ("date_to", ">=", map_tax.date_from),
                     "|",
                     "&",
                     ("date_to", "=", False),
-                    ("date_from", "<=", map.date_to),
+                    ("date_from", "<=", map_tax.date_to),
                 ]
-            elif map.date_from:
-                domain += [("date_to", ">=", map.date_from)]
-            elif map.date_to:
-                domain += [("date_from", "<=", map.date_to)]
-            date_lst = map.search(domain)
+            elif map_tax.date_from:
+                domain += [("date_to", ">=", map_tax.date_from)]
+            elif map_tax.date_to:
+                domain += [("date_from", "<=", map_tax.date_to)]
+            date_lst = map_tax.search(domain)
             if date_lst:
                 raise exceptions.Warning(
                     _(
@@ -56,7 +55,6 @@ class L10nEsAeatMapTax(models.Model):
                     )
                 )
 
-    @api.multi
     def name_get(self):
         vals = []
         for record in self:

@@ -8,7 +8,7 @@
 import base64
 import re
 
-from odoo import _, api, exceptions, fields, models, tools
+from odoo import _, exceptions, fields, models, tools
 from odoo.tools.safe_eval import safe_eval
 
 EXPRESSION_PATTERN = re.compile(r"(\$\{.+?\})")
@@ -55,7 +55,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         elif align == ">":
             ascii_string = ascii_string.rjust(length, ascii_fill)
         else:
-            assert False, _("Wrong aling option. It should be < or >")
+            raise AssertionError(_("Wrong align option. It should be < or >"))
         # Sanity-check
         assert len(ascii_string) == length, _(
             "The formated string must match the given length"
@@ -122,11 +122,9 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         # Return the string assuring that is not unicode
         return str(res)
 
-    @api.multi
     def _do_global_checks(self, record, contents):
         return True
 
-    @api.multi
     def action_get_file(self):
         """Action that exports the data into a BOE formatted text file.
 
@@ -155,7 +153,6 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             {
                 "name": file_name,
                 "datas": file,
-                "datas_fname": file_name,
                 "res_model": report._name,
                 "res_id": report.id,
             }
@@ -168,18 +165,15 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": self._name,
             "view_mode": "form",
-            "view_type": "form",
             "view_id": [data_obj.id],
             "res_id": self.id,
             "target": "new",
         }
 
-    @api.multi
     def action_get_file_from_config(self, report):
         self.ensure_one()
         return self._export_config(report, report.export_config_id)
 
-    @api.multi
     def _export_config(self, obj, export_config):
         self.ensure_one()
         contents = b""
@@ -187,7 +181,6 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             contents += self._export_line_process(obj, line)
         return contents
 
-    @api.multi
     def _export_line_process(self, obj, line):
         # usar esta variable para resolver las expresiones
         obj_merge = obj
@@ -230,7 +223,6 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
                 val += record
         return val
 
-    @api.multi
     def _export_simple_record(self, line, val):
         if line.export_type == "string":
             align = ">" if line.alignment == "right" else "<"
