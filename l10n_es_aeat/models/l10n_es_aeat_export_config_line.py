@@ -31,9 +31,7 @@ class AeatModelExportConfigLine(models.Model):
     )
     conditional = fields.Boolean(compute="_compute_conditional", store=True)
     subconfig_id = fields.Many2one(
-        comodel_name="aeat.model.export.config",
-        string="Sub-configuration",
-        oldname="sub_config",
+        comodel_name="aeat.model.export.config", string="Sub-configuration"
     )
     export_type = fields.Selection(
         selection=[
@@ -48,30 +46,37 @@ class AeatModelExportConfigLine(models.Model):
         string="Export field type",
         required=True,
     )
-    apply_sign = fields.Boolean(string="Apply sign", default=True)
-    positive_sign = fields.Char(string="Positive sign character", size=1, default="0")
-    negative_sign = fields.Char(
-        string="Negative sign character", size=1, default="N", oldname="sign"
+    apply_sign = fields.Boolean(
+        string="Apply sign", compute="_compute_apply_sign", readonly=False, store=True
     )
+    positive_sign = fields.Char(string="Positive sign character", size=1, default="0")
+    negative_sign = fields.Char(string="Negative sign character", size=1, default="N")
     size = fields.Integer(string="Field size")
     alignment = fields.Selection(
-        [("left", "Left"), ("right", "Right")], default="left", string="Alignment"
+        selection=[("left", "Left"), ("right", "Right")],
+        string="Alignment",
+        compute="_compute_alignment",
+        readonly=False,
+        store=True,
     )
     bool_no = fields.Char(string="Value for no", size=1, default=" ")
     bool_yes = fields.Char(string="Value for yes", size=1, default="X")
-    decimal_size = fields.Integer(string="Number of char for decimals", default=0)
+    decimal_size = fields.Integer(
+        string="Number of char for decimals",
+        compute="_compute_decimal_size",
+        readonly=False,
+        store=True,
+    )
     expression = fields.Char(string="Expression")
     fixed_value = fields.Char(string="Fixed value")
     position = fields.Integer(compute="_compute_position")
     value = fields.Char(compute="_compute_value", store=True)
 
-    @api.multi
     @api.depends("repeat_expression")
     def _compute_repeat(self):
         for line in self:
             line.repeat = bool(line.repeat_expression)
 
-    @api.multi
     @api.depends("conditional_expression")
     def _compute_conditional(self):
         for line in self:
@@ -86,7 +91,6 @@ class AeatModelExportConfigLine(models.Model):
                 size += line.size
         return size
 
-    @api.multi
     @api.depends("sequence")
     def _compute_position(self):
         for line in self:
@@ -96,7 +100,6 @@ class AeatModelExportConfigLine(models.Model):
                     break
                 line.position += line._size_get(line2)
 
-    @api.multi
     @api.depends("fixed_value", "expression")
     def _compute_value(self):
         for line in self:
@@ -111,19 +114,29 @@ class AeatModelExportConfigLine(models.Model):
             else:
                 line.value = _("Fixed: {}").format(line.fixed_value or _("<blank>"))
 
-    @api.multi
-    @api.onchange("export_type")
-    def onchange_type(self):
-        if self.export_type in ("float", "integer"):
-            self.alignment = "right"
-        elif self.export_type in ("string", "boolean"):
-            self.alignment = "left"
+    @api.depends("export_type", "subconfig_id")
+    def _compute_alignment(self):
+        for line in self:
+            if line.subconfig_id:
+                line.alignment = False
+            else:
+                if line.export_type in ("float", "integer"):
+                    line.alignment = "right"
+                elif line.export_type in ("string", "boolean"):
+                    line.alignment = "left"
+                else:
+                    line.alignment = line.alignment or "left"
 
-    @api.multi
-    @api.onchange("subconfig_id")
-    def onchange_subconfig(self):
-        if not self.subconfig_id:
-            return
-        self.decimal_size = 0
-        self.alignment = False
-        self.apply_sign = False
+    @api.depends("subconfig_id")
+    def _compute_apply_sign(self):
+        for line in self:
+            line.apply_sign = line.apply_sign or True
+            if self.subconfig_id:
+                self.apply_sign = False
+
+    @api.depends("subconfig_id")
+    def _compute_decimal_size(self):
+        for line in self:
+            line.decimal_size = line.decimal_size or 0
+            if self.subconfig_id:
+                self.decimal_size = 0

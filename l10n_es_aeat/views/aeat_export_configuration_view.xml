@@ -174,7 +174,6 @@
     <record model="ir.actions.act_window" id="action_aeat_export_config">
         <field name="name">Export config</field>
         <field name="res_model">aeat.model.export.config</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem

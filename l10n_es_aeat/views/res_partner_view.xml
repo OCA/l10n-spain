@@ -4,7 +4,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <group name="fiscal_information">
+            <group name="fiscal_information" position="inside">
                 <field name="aeat_anonymous_cash_customer" />
             </group>
             <notebook position="inside">

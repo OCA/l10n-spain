@@ -10,3 +10,4 @@
 * Abraham Anes <abraham@studio73.es>
 * Diagram Software S.L.
 * Consultoría Informática Studio 73 S.L.
+* Miquel Raïch <miquel.raich@forgeflow.com>

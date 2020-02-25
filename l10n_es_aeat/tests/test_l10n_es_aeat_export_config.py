@@ -1,46 +1,42 @@
 # © 2017 FactorLibre - Hugo Santos <hugo.santos@factorlibre.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
-from odoo.tests import common
+from odoo.tests.common import SavepointCase
 
 
-class TestL10nEsAeatExportConfig(common.TransactionCase):
-    def setUp(self):
-        super(TestL10nEsAeatExportConfig, self).setUp()
+class TestL10nEsAeatExportConfig(SavepointCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
     def test_onchange_export_config_line(self):
         export_config_line_env = self.env["aeat.model.export.config.line"]
-        with self.env.do_in_onchange():
-            export_line_float = export_config_line_env.new()
-            export_line_float.export_type = "float"
-            export_line_float.onchange_type()
-            self.assertEqual(
-                export_line_float.alignment,
-                "right",
-                "Export type float must be aligned to the right",
-            )
-            export_line_str = export_config_line_env.new()
-            export_line_str.export_type = "string"
-            export_line_str.onchange_type()
-            self.assertEqual(
-                export_line_str.alignment,
-                "left",
-                "Export type string must be aligned to the left",
-            )
-            export_line_subtype = export_config_line_env.new()
-            export_line_subtype.alignment = "left"
-            export_line_subtype.decimal_size = 10
-            export_line_subtype.apply_sign = True
-            export_line_subtype.subconfig_id = export_line_str.id
-            export_line_subtype.onchange_subconfig()
-            self.assertFalse(
-                export_line_subtype.alignment,
-                "Alignment must be False for a subtype line",
-            )
-            self.assertEqual(export_line_subtype.decimal_size, 0)
-            self.assertFalse(
-                export_line_subtype.apply_sign,
-                "Apply sign must be False for a subtype line",
-            )
+        export_line_float = export_config_line_env.new()
+        export_line_float.export_type = "float"
+        self.assertEqual(
+            export_line_float.alignment,
+            "right",
+            "Export type float must be aligned to the right",
+        )
+        export_line_str = export_config_line_env.new()
+        export_line_str.export_type = "string"
+        self.assertEqual(
+            export_line_str.alignment,
+            "left",
+            "Export type string must be aligned to the left",
+        )
+        export_line_subtype = export_config_line_env.new()
+        export_line_subtype.alignment = "left"
+        export_line_subtype.decimal_size = 10
+        export_line_subtype.apply_sign = True
+        export_line_subtype.subconfig_id = export_line_str.id
+        self.assertFalse(
+            export_line_subtype.alignment, "Alignment must be False for a subtype line"
+        )
+        self.assertEqual(export_line_subtype.decimal_size, 0)
+        self.assertFalse(
+            export_line_subtype.apply_sign,
+            "Apply sign must be False for a subtype line",
+        )
 
     def test_export_config_file(self):
         export_subconfig = self.env["aeat.model.export.config"].create(
