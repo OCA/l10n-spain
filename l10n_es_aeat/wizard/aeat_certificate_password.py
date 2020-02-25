@@ -8,7 +8,7 @@ import logging
 import os
 import tempfile
 
-from odoo import _, api, exceptions, fields, models, release
+from odoo import _, exceptions, fields, models, release
 from odoo.exceptions import ValidationError
 from odoo.tools import config
 
@@ -61,7 +61,6 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
 
     password = fields.Char(string="Password", required=True)
 
-    @api.multi
     def get_keys(self):
         record = self.env["l10n.es.aeat.certificate"].browse(
             self.env.context.get("active_id")
@@ -76,7 +75,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
         file = base64.decodebytes(record.file)
         if tuple(map(int, OpenSSL.__version__.split("."))) < (0, 15):
             raise exceptions.Warning(
-                _("OpenSSL version is not supported. Upgrade to 0.15 " "or greater.")
+                _("OpenSSL version is not supported. Upgrade to 0.15 or greater.")
             )
         try:
             if directory and not os.path.exists(directory):
