@@ -10,17 +10,17 @@
 {
     "name": "AEAT Base",
     "summary": "Modulo base para declaraciones de la AEAT",
-    "version": "12.0.2.2.0",
+    "version": "13.0.1.0.0",
     "author": "Pexego, "
     "Acysos S.L., "
     "AvanzOSC, "
     "Tecnativa, "
     "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting & Finance",
-    "depends": ["account", "base_iban", "account_tax_balance", "l10n_es"],
-    "external_dependencies": {"python": ["unidecode", "OpenSSL", "zeep", "requests"]},
+    "depends": ["l10n_es", "account_tax_balance"],
+    "external_dependencies": {"python": ["unidecode", "pyOpenSSL"]},
     "data": [
         "security/aeat_security.xml",
         "security/ir.model.access.csv",
