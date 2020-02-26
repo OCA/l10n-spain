@@ -53,6 +53,7 @@ Contributors
 
   * Alexandre Díaz
   * Pedro M. Baeza
+* Eric Antones - NuoBiT Solutions, S.L. <eantones@nuobit.com>
 
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
