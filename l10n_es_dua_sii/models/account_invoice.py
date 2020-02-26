@@ -16,12 +16,24 @@ class AccountInvoice(models.Model):
     @api.model
     @tools.ormcache('company')
     def _get_dua_fiscal_position(self, company):
+        """ Deprecated, this method will be removed in a later version,
+            use `_get_dua_fiscal_position_id` instead. """
         return self.env.ref(
             'l10n_es_dua.%i_fp_dua' % company.id, raise_if_not_found=False
         ) or self.env['account.fiscal.position'].search([
             ('name', '=', 'Importación con DUA'),
             ('company_id', '=', company.id),
         ])
+
+    @api.model
+    @tools.ormcache('company')
+    def _get_dua_fiscal_position_id(self, company):
+        fp = self.env.ref(
+            'l10n_es_dua.%i_fp_dua' % company.id, raise_if_not_found=False)
+        return fp and fp.id or self.env['account.fiscal.position'].search([
+            ('name', '=', 'Importación con DUA'),
+            ('company_id', '=', company.id),
+        ], limit=1).id
 
     @api.depends('company_id', 'fiscal_position_id', 'tax_line_ids')
     def _compute_dua_invoice(self):
@@ -35,9 +47,10 @@ class AccountInvoice(models.Model):
         """Don't sent secondary DUA invoices to SII."""
         super()._compute_sii_enabled()
         for invoice in self.filtered('sii_enabled'):
-            dua_fiscal_position = self._get_dua_fiscal_position(
+            dua_fiscal_position_id = self._get_dua_fiscal_position_id(
                 invoice.company_id)
-            if (invoice.fiscal_position_id == dua_fiscal_position and
+            if (dua_fiscal_position_id and
+                invoice.fiscal_position_id.id == dua_fiscal_position_id and
                     not invoice.sii_dua_invoice):
                 invoice.sii_enabled = False
 
