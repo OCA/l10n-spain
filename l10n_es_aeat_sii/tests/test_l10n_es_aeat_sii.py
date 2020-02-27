@@ -11,7 +11,7 @@ from odoo.tests import common
 
 try:
     from zeep.client import ServiceProxy
-except (ImportError, IOError) as err:
+except (ImportError, IOError):
     ServiceProxy = object
 
 CERTIFICATE_PATH = get_resource_path(
@@ -48,7 +48,7 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
         )
         cls.product = cls.env["product.product"].create({"name": "Test product"})
         cls.account_type = cls.env["account.account.type"].create(
-            {"name": "Test account type"}
+            {"name": "Test account type", "internal_group": "asset"}
         )
         cls.account_expense = cls.env["account.account"].create(
             {
@@ -67,40 +67,97 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
                 "user_type_id": cls.account_type.id,
             }
         )
-        cls.tax = cls.env["account.tax"].create(
-            {
-                "name": "Test tax 10%",
-                # Needed for discriminatory tax amount in supplier invoices
-                "description": "P_IVA10_BC",
-                "type_tax_use": "purchase",
-                "amount_type": "percent",
-                "amount": "10",
-                "account_id": cls.account_tax.id,
-            }
-        )
+        cls.company = cls.env.user.company_id
+        xml_id = "{}_account_tax_template_p_iva10_bc".format(cls.company.id)
+        cls.tax = cls.env.ref("l10n_es.{}".format(xml_id), raise_if_not_found=False)
+        if not cls.tax:
+            cls.tax = cls.env["account.tax"].create(
+                {
+                    "name": "Test tax 10%",
+                    "type_tax_use": "purchase",
+                    "amount_type": "percent",
+                    "amount": "10",
+                }
+            )
+            cls.env["ir.model.data"].create(
+                {
+                    "module": "l10n_es",
+                    "name": xml_id,
+                    "model": cls.tax._name,
+                    "res_id": cls.tax.id,
+                }
+            )
         cls.env.user.company_id.sii_description_method = "manual"
-        cls.invoice = cls.env["account.invoice"].create(
+        # cls.repartition_line = cls.env["account.tax.repartition.line"].create(
+        #     {
+        #         "invoice_tax_id": cls.tax.id,
+        #         "factor_percent": 100.0,
+        #         "factor": 1.0,
+        #         "account_id": cls.account_tax.id,
+        #     }
+        # )
+        cls.invoice = cls.env["account.move"].create(
             {
                 "partner_id": cls.partner.id,
-                "date_invoice": "2018-02-01",
+                "invoice_date": "2018-02-01",
+                "date": "2018-02-01",
                 "type": "out_invoice",
-                "account_id": cls.partner.property_account_payable_id.id,
-                "invoice_line_ids": [
+                "sii_manual_description": "/",
+                "amount_untaxed": 100.0,
+                "amount_tax": 10.0,
+                "amount_total": 110.0,
+                "line_ids": [
                     (
                         0,
                         0,
                         {
                             "product_id": cls.product.id,
+                            "partner_id": cls.partner.id,
+                            "account_id": cls.partner.property_account_payable_id.id,
+                            "name": "Test line",
+                            "price_unit": 110,
+                            "debit": 110,
+                            "price_subtotal": 110,
+                            "price_total": 110,
+                            "quantity": 1,
+                            "exclude_from_invoice_tab": True,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": cls.product.id,
+                            "partner_id": cls.partner.id,
                             "account_id": cls.account_expense.id,
-                            "account_analytic_id": cls.analytic_account.id,
                             "name": "Test line",
                             "price_unit": 100,
+                            "credit": 100,
+                            "price_subtotal": 100,
+                            "price_total": 100,
                             "quantity": 1,
-                            "invoice_line_tax_ids": [(6, 0, cls.tax.ids)],
+                            "tax_ids": cls.tax.ids,
+                            "tax_exigible": True,
                         },
-                    )
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": cls.partner.id,
+                            "account_id": cls.account_tax.id,
+                            "name": "Test line",
+                            "price_unit": 10,
+                            "credit": 10,
+                            "price_subtotal": 10,
+                            "price_total": 10,
+                            "quantity": 1,
+                            # "tax_repartition_line_id": cls.repartition_line.id,
+                            "exclude_from_invoice_tab": True,
+                            "tax_exigible": True,
+                        },
+                    ),
                 ],
-                "sii_manual_description": "/",
             }
         )
         cls.invoice.company_id.write(
@@ -120,8 +177,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsAeatSii, cls).setUpClass()
-        cls.invoice.action_invoice_open()
-        cls.invoice.number = "INV001"
+        cls.invoice.action_post()
+        cls.invoice.name = "INV001"
         cls.invoice.refund_invoice_id = cls.invoice.copy()
         cls.user = cls.env["res.users"].create(
             {
@@ -222,7 +279,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 _deep_sort(invoices.get(key)), _deep_sort(test_out_refund.get(key))
             )
         self.invoice.type = "in_invoice"
-        self.invoice.reference = "sup0001"
+        self.invoice.ref = "sup0001"
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_invoice = self._get_invoices_test("F1", "01")
         for key in list(invoices.keys()):
@@ -231,8 +288,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             )
         self.invoice.type = "in_refund"
         self.invoice.sii_refund_type = "I"
-        self.invoice.reference = "sup0001"
-        self.invoice.compute_taxes()
+        self.invoice.ref = "sup0001"
         self.invoice.refund_invoice_id.type = "in_invoice"
         invoices = self.invoice._get_sii_invoice_dict()
         test_in_refund = self._get_invoices_test("R4", "01")
@@ -240,12 +296,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)), _deep_sort(test_in_refund.get(key))
             )
-
-    def test_action_cancel(self):
-        self.invoice.invoice_jobs_ids.state = "started"
-        self.invoice.journal_id.update_posted = True
-        with self.assertRaises(exceptions.Warning):
-            self.invoice.action_cancel()
 
     def test_sii_description(self):
         company = self.invoice.company_id
@@ -273,12 +323,12 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         company.sii_description_method = "auto"
         invoice_temp = self.invoice.copy()
         self.assertEqual(
-            invoice_temp.sii_description, "Test customer header | Test line"
+            invoice_temp.sii_description, "Test customer header | Test line - Test line"
         )
 
     def test_permissions(self):
         """This should work without errors"""
-        self.invoice.sudo(self.user).action_invoice_open()
+        self.invoice.with_user(self.user).action_post()
 
     def _activate_certificate(self, passwd=None):
         """Obtain Keys from .pfx and activate the cetificate"""
@@ -336,23 +386,21 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self._test_tax_agencies(self.invoice)
 
     def test_refund_sii_refund_type(self):
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "date_invoice": "2018-02-01",
+                "invoice_date": "2018-02-01",
                 "type": "out_refund",
-                "account_id": self.partner.property_account_payable_id.id,
             }
         )
         self.assertEqual(invoice.sii_refund_type, "I")
 
     def test_refund_sii_refund_type_write(self):
-        invoice = self.env["account.invoice"].create(
+        invoice = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "date_invoice": "2018-02-01",
+                "invoice_date": "2018-02-01",
                 "type": "out_invoice",
-                "account_id": self.partner.property_account_payable_id.id,
             }
         )
         self.assertFalse(invoice.sii_refund_type)

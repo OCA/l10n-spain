@@ -1,7 +1,7 @@
 # Copyright 2018 Comunitea - Omar Castiñeira <omar@comunitea.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AccountInvoiceTax(models.Model):
@@ -15,7 +15,6 @@ class AccountInvoiceTax(models.Model):
         string="Amount in company currency", compute="_compute_base_amount_company"
     )
 
-    @api.multi
     def _compute_base_amount_company(self):
         for tax in self:
             if tax.invoice_id.currency_id != tax.invoice_id.company_id.currency_id:

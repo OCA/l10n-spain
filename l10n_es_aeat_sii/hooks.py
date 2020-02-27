@@ -8,7 +8,7 @@ def add_key_to_existing_invoices(cr, registry):
     """This post-init-hook will update all existing invoices"""
     with api.Environment.manage():
         env = api.Environment(cr, SUPERUSER_ID, {})
-        invoice_obj = env["account.invoice"]
+        invoice_obj = env["account.move"]
         invoices = invoice_obj.search([])
         if invoices:
             sii_key_obj = env["aeat.sii.mapping.registration.keys"]
@@ -21,7 +21,7 @@ def add_key_to_existing_invoices(cr, registry):
             if purchase_key:
                 cr.execute(
                     """
-                    UPDATE account_invoice
+                    UPDATE account_move
                     SET sii_registration_key = %s
                     WHERE type IN ('in_invoice', 'in_refund');""",
                     (purchase_key[0].id,),
@@ -29,7 +29,7 @@ def add_key_to_existing_invoices(cr, registry):
             if sale_key:
                 cr.execute(
                     """
-                    UPDATE account_invoice
+                    UPDATE account_move
                     SET sii_registration_key = %s
                     WHERE type NOT IN ('in_invoice', 'in_refund');""",
                     (sale_key[0].id,),

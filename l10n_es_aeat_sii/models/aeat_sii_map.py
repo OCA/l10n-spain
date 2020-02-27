@@ -8,7 +8,6 @@ class AeatSiiMap(models.Model):
     _name = "aeat.sii.map"
     _description = "Aeat SII Map"
 
-    @api.one
     @api.constrains("date_from", "date_to")
     def _unique_date_range(self):
         # Based in l10n_es_aeat module

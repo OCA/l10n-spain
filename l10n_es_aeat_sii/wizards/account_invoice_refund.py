@@ -1,6 +1,6 @@
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AccountInvoiceRefund(models.TransientModel):
@@ -39,7 +39,6 @@ class AccountInvoiceRefund(models.TransientModel):
     )
     supplier_invoice_number_refund = fields.Char(string="Supplier Invoice Number")
 
-    @api.multi
     def compute_refund(self, mode="refund"):
         obj = self.with_context(
             sii_refund_type=self.sii_refund_type,
