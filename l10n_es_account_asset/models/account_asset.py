@@ -53,8 +53,10 @@ class AccountAssetAsset(models.Model):
 
     @api.onchange('profile_id')
     def _onchange_profile_id(self):
+        res = super()._onchange_profile_id()
         if self.profile_id:
             self.method_percentage = self.profile_id.method_percentage
+        return res
 
     def _get_depreciation_stop_date(self, depreciation_start_date):
         """Compute stop date for the added method 'Percentage'."""
