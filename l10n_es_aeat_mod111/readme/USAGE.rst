@@ -23,4 +23,4 @@ NOTA: En el caso en que tengamos el addon 'l10n_es_aeat_mod216' deberemos
 indicar los proveedores que son residentes (éste es el valor por defecto),
 en la ficha de la empresa: Contabilidad > Proveedores > Proveedores, pestaña de
 Contabilidad. El campo "Es no residente" no debe estar marcado para que
-las retenciones realizadas a éste proveedor se incluyan en el modelo 111
+las retenciones realizadas a éste proveedor se incluyan en el modelo 111.
