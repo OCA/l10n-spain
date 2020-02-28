@@ -209,7 +209,6 @@ class L10nEsAeatMod111Report(models.Model):
         default=False,
     )
 
-    @api.multi
     @api.depends("tax_line_ids", "tax_line_ids.move_line_ids.partner_id")
     def _compute_casilla_01(self):
         casillas = (2, 3)
@@ -221,7 +220,6 @@ class L10nEsAeatMod111Report(models.Model):
                 tax_lines.mapped("move_line_ids").mapped("partner_id")
             )
 
-    @api.multi
     @api.depends("tax_line_ids", "tax_line_ids.move_line_ids.partner_id")
     def _compute_casilla_04(self):
         casillas = (5, 6)
@@ -233,7 +231,6 @@ class L10nEsAeatMod111Report(models.Model):
                 tax_lines.mapped("move_line_ids").mapped("partner_id")
             )
 
-    @api.multi
     @api.depends("tax_line_ids", "tax_line_ids.move_line_ids.partner_id")
     def _compute_casilla_07(self):
         casillas = (8, 9)
@@ -245,7 +242,6 @@ class L10nEsAeatMod111Report(models.Model):
                 tax_lines.mapped("move_line_ids").mapped("partner_id")
             )
 
-    @api.multi
     @api.depends(
         "tax_line_ids",
         "tax_line_ids.amount",
@@ -272,7 +268,6 @@ class L10nEsAeatMod111Report(models.Model):
                 + report.casilla_27
             )
 
-    @api.multi
     @api.depends("casilla_28", "casilla_29")
     def _compute_casilla_30(self):
         for report in self:
