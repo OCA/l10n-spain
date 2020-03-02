@@ -49,6 +49,7 @@ SII_COUNTRY_CODE_MAPPING = {
     'GF': 'FR',
 }
 SII_MACRODATA_LIMIT = 100000000.0
+SII_VALID_INVOICE_STATES = ['open', 'in_payment', 'paid']
 
 
 def round_by_keys(elem, search_keys, prec=2):
@@ -997,7 +998,9 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def _send_invoice_to_sii(self):
-        for invoice in self.filtered(lambda i: i.state in ['open', 'paid']):
+        for invoice in self.filtered(
+            lambda i: i.state in SII_VALID_INVOICE_STATES
+        ):
             serv = invoice._connect_sii(invoice.type)
             if invoice.sii_state == 'not_sent':
                 tipo_comunicacion = 'A0'
@@ -1095,7 +1098,7 @@ class AccountInvoice(models.Model):
     def send_sii(self):
         invoices = self.filtered(
             lambda i: (
-                i.sii_enabled and i.state in ['open', 'paid'] and
+                i.sii_enabled and i.state in SII_VALID_INVOICE_STATES and
                 i.sii_state not in ['sent', 'cancelled']
             )
         )
