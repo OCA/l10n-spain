@@ -482,6 +482,20 @@ class AccountInvoice(models.Model):
                   "of the problem : %s") % str(e))
         return True
 
+    @api.model
+    def _prepare_refund(self, invoice, date_invoice=None, date=None,
+                        description=None, journal_id=None):
+        """Update here the refund values dictionary with the FacturaE values
+        injected on the wizard.
+        """
+        values = super()._prepare_refund(
+            invoice, date_invoice=date_invoice, date=date,
+            description=description, journal_id=journal_id)
+        for key in ('correction_method', 'facturae_refund_reason'):
+            if self.env.context.get(key):
+                values[key] = self.env.context[key]
+        return values
+
 
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
