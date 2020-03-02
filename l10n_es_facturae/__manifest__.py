@@ -2,12 +2,12 @@
 # © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
 # © 2015 Tecon
 # © 2015 Omar Castiñeira (Comunitea)
-# Copyright 2016-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2016-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Creación de Factura-e",
-    "version": "12.0.1.2.1",
+    "version": "12.0.1.2.2",
     "author": "ASR-OSS, "
               "FactorLibre, "
               "Tecon, "
