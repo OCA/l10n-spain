@@ -386,7 +386,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:93
-#: code:addons/l10n_es_facturae/models/account_invoice.py:513
+#: code:addons/l10n_es_facturae/models/account_invoice.py:527
 #, python-format
 msgid "FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
@@ -397,7 +397,7 @@ msgid "Facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:531
+#: code:addons/l10n_es_facturae/models/account_invoice.py:545
 #, python-format
 msgid "Facturae Configuration"
 msgstr ""
@@ -1047,7 +1047,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:101
-#: code:addons/l10n_es_facturae/models/account_invoice.py:521
+#: code:addons/l10n_es_facturae/models/account_invoice.py:535
 #, python-format
 msgid "Start date cannot be later than end date"
 msgstr ""
