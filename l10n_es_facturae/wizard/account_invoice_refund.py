@@ -53,10 +53,12 @@ class AccountInvoiceRefund(models.TransientModel):
 
     @api.multi
     def invoice_refund(self):
-        res = super(AccountInvoiceRefund, self).invoice_refund()
-        inv = self.env['account.invoice'].search(res['domain'])
-        inv.update({
-            'correction_method': self.correction_method,
-            'facturae_refund_reason': self.refund_reason
-        })
-        return res
+        """Inject in the context the FacturaE refund values for being later
+        added to the dictionary values for creating the refund.
+        """
+        return super(
+            AccountInvoiceRefund,
+            self.with_context(
+                correction_method=self.correction_method,
+                facturae_refund_reason=self.refund_reason),
+        ).invoice_refund()
