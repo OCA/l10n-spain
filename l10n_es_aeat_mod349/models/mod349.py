@@ -1,8 +1,7 @@
 # Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2013 - Top Consultant Software Creations S.L.
 #                - (http://www.topconsultant.es/)
-# Copyright 2014 - Serv. Tecnol. Avanzados
-#                - Pedro M. Baeza (http://www.serviciosbaeza.com)
+# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
@@ -283,16 +282,20 @@ class Mod349(models.Model):
              ('company_id', 'child_of', self.company_id.id)])
         return taxes
 
+    def _cleanup_report(self):
+        """Remove previous partner records and partner refunds in report."""
+        self.ensure_one()
+        self.partner_record_ids.unlink()
+        self.partner_refund_ids.unlink()
+        self.partner_record_detail_ids.unlink()
+        self.partner_refund_detail_ids.unlink()
+
     @api.multi
     def calculate(self):
         """Computes the records in report."""
         self.ensure_one()
         with self.env.norecompute():
-            # Remove previous partner records and partner refunds in report
-            self.partner_record_ids.unlink()
-            self.partner_refund_ids.unlink()
-            self.partner_record_detail_ids.unlink()
-            self.partner_refund_detail_ids.unlink()
+            self._cleanup_report()
             taxes = self._get_taxes()
             # Get all the account moves
             move_lines = self.env['account.move.line'].search(
@@ -317,6 +320,13 @@ class Mod349(models.Model):
         # Recompute all pending computed fields
         self.recompute()
         return True
+
+    def button_recover(self):
+        """Clean children records in this state for allowing things like
+        cancelling an invoice that is inside this report.
+        """
+        self._cleanup_report()
+        return super().button_recover()
 
     @api.multi
     def _check_report_lines(self):
