@@ -49,9 +49,15 @@ class AccountInvoice(models.Model):
                 })
             else:  # pragma: no cover
                 inv.number = inv.invoice_number
+        return res
+
+    def invoice_validate(self):
+        """Include the invoice reference on the created journal item.
+        This is done for displaying the number on the conciliation.
+        It needs to be done here after a patch on core.
+        """
+        res = super().invoice_validate()
         for inv in self:
-            # Include the invoice reference on the created journal item
-            # This is done for displaying the number on the conciliation
             inv.move_id.ref = (
                 "{0} - {1}" if inv.move_id.ref else "{1}"
             ).format(inv.move_id.ref, inv.invoice_number)
