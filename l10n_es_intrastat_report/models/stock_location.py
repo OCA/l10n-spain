@@ -1,13 +1,13 @@
 # Copyright 2009-2017 Noviat.
+# Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
 class StockLocation(models.Model):
     _inherit = 'stock.location'
 
-    @api.multi
     def get_intrastat_state(self):
         self.ensure_one()
         locations = self.search(

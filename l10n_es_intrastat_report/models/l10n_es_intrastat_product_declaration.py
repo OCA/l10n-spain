@@ -1,6 +1,7 @@
 # Copyright 2009-2017 Noviat.
 # Copyright 2016 - FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
 # Copyright 2019 - FactorLibre - Daniel Duque <daniel.duque@factorlibre.com>
+# Copyright 2019 - Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -136,11 +137,9 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             or False
         return res
 
-    @api.multi
     def _generate_xml(self):
         return self._generate_csv()
 
-    @api.multi
     def _attach_xml_file(self, xml_string, declaration_name):
         attach_id = super(L10nEsIntrastatProductDeclaration, self).\
             _attach_xml_file(xml_string, declaration_name)
@@ -153,7 +152,6 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         })
         return attach.id
 
-    @api.multi
     def _generate_csv(self):
         '''Generate the AEAT csv file export.'''
 
@@ -192,7 +190,6 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         csv_string = self._format_csv(rows, ';')
         return csv_string.encode('utf-8')
 
-    @api.multi
     def _format_csv(self, rows, delimiter):
         csv_string = ''
         for row in rows:
@@ -201,6 +198,19 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                 csv_string += delimiter
             csv_string += '\n'
         return csv_string
+
+    def create_xls(self):
+        if self.env.context.get('computation_lines'):
+            report_file = 'instrastat_transactions'
+        else:
+            report_file = 'instrastat_declaration_lines'
+        return {
+            'type': 'ir.actions.report',
+            'report_type': 'xlsx',
+            'report_name': 'intrastat_product.product_declaration_xls',
+            'context': dict(self.env.context, report_file=report_file),
+            'data': {'dynamic_report': True},
+        }
 
 
 class L10nEsIntrastatProductComputationLine(models.Model):
