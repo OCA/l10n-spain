@@ -10,9 +10,7 @@
       <field name="region_id" position="after">
         <field name="intrastat_state_id"/>
       </field>
-      <field name="amount_accessory_cost_company_currency" position="attributes">
-        <attribute name="invisible">1</attribute>/>
-      </field>
+
       <field name="incoterm_id" position="attributes">
         <attribute name="invisible"/>
         <attribute name="attrs">{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
@@ -41,9 +39,7 @@
     <field name="mode">primary</field>
     <field name="inherit_id" ref="intrastat_product.intrastat_product_declaration_line_view_form"/>
     <field name="arch" type="xml">
-      <field name="region_id" position="after">
-        <field name="intrastat_state_id"/>
-      </field>
+
       <field name="incoterm_id" position="attributes">
         <attribute name="invisible"/>
         <attribute name="attrs">{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
