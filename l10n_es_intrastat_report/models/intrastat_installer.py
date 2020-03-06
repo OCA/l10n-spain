@@ -1,4 +1,5 @@
 # Copyright 2009-2017 Noviat.
+# Copyright 2020 Tecnativa - Manuel Calero
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
@@ -47,7 +48,6 @@ class IntrastatInstaller(models.TransientModel):
             vals['local_code'] = cn_code
             code_obj.create(vals)
 
-    @api.multi
     def execute(self):
         res = super(IntrastatInstaller, self).execute()
         company = self.env.user.company_id
