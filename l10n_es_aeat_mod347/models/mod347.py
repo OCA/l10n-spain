@@ -171,7 +171,10 @@ class L10nEsAeatMod347Report(models.Model):
         return True
 
     def _invoices_search(self, partners):
-        invoice_obj = self.env['account.invoice']
+        # Needed for avoiding the removal of inactive records due to the domain
+        # ('commercial_partner_id.not_in_mod347', '=', False)
+        d = {'active_test': False}
+        invoice_obj = self.env['account.invoice'].with_context(**d)
         partner_obj = self.env['res.partner']
         domain = [
             ('state', 'in', ['open', 'paid']),
