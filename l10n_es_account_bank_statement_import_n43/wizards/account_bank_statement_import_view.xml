@@ -5,8 +5,11 @@
         <field name="inherit_id" ref="account_bank_statement_import.account_bank_statement_import_view"/>
         <field name="arch" type="xml">
             <xpath expr="//ul[@id='statement_format']" position="inside">
-                <li>AEB norm 43 (.n43)</li>
+                <li>AEB norm 43 (.n43) </li>
             </xpath>
+            <field name="filename" position = "after">
+                <field name="restrict_by_acc_number"/>
+            </field>
         </field>
     </record>
 </odoo>

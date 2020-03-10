@@ -29,9 +29,19 @@ account_mapping = {
 
 class AccountBankStatementImport(models.TransientModel):
     _inherit = 'account.bank.statement.import'
+    restrict_by_acc_number = fields.Boolean(string="Check account number",
+                                            default = True,
+                                  )
 
     def _process_record_11(self, line):
         """11 - Registro cabecera de cuenta (obligatorio)"""
+        if self.restrict_by_acc_number:
+            iban = self.env['account.journal'].browse(self.env.context['journal_id']).bank_account_id.acc_number[4:30].replace(' ','')
+            cta = iban [0:8] + iban[10:20]
+            if cta != line[2:20]:
+                raise exceptions.UserError(_("Bank account does not match between file "
+                                  "and journal"))
+
         st_group = {
             'entidad': line[2:6],
             'oficina': line[6:10],

@@ -1,22 +1,21 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * l10n_es_account_bank_statement_import_n43
+# 	* l10n_es_account_bank_statement_import_n43
 #
-# Translators:
-# OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-29 03:40+0000\n"
-"PO-Revision-Date: 2017-12-29 03:40+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
-"Language: es\n"
+"POT-Creation-Date: 2020-03-10 16:37+0000\n"
+"PO-Revision-Date: 2020-03-10 17:39+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: model_terms:ir.ui.view,arch_db:l10n_es_account_bank_statement_import_n43.account_bank_statement_import_view
@@ -24,13 +23,26 @@ msgid "AEB norm 43 (.n43)"
 msgstr "AEB norma 43 (.n43)"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:125
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:42
 #, python-format
-msgid ""
-"Credit amount doesn't match with the defined in the last record of account."
-msgstr ""
-"El importe del haber no csa con lo definido en el último registro de la "
-"cuenta."
+msgid "Bank account does not match between file and journal"
+msgstr "La cuenta bancaria informada en el fichero NO COINCIDE con la cuenta bancaria asociada al diario seleccionado!"
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_bank_statement_import__restrict_by_acc_number
+msgid "Check account number"
+msgstr "Comprobar la cuenta bancaria"
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: model_terms:ir.ui.view,arch_db:l10n_es_account_bank_statement_import_n43.account_bank_statement_import_view
+msgid "Check account number match"
+msgstr "Comprobar que coincide la cuenta bancaria"
+
+#. module: l10n_es_account_bank_statement_import_n43
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:135
+#, python-format
+msgid "Credit amount doesn't match with the defined in the last record of account."
+msgstr "El importe del haber no csa con lo definido en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: model:ir.model.fields,field_description:l10n_es_account_bank_statement_import_n43.field_account_journal__n43_date_type
@@ -38,23 +50,16 @@ msgid "Date type for N43 Import"
 msgstr "Tipo de fecha para importación N43"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:121
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:131
 #, python-format
-msgid ""
-"Debit amount doesn't match with the defined in the last record of account."
-msgstr ""
-"El importe del debe no casa con lo definido en el último registor de la "
-"cuenta."
+msgid "Debit amount doesn't match with the defined in the last record of account."
+msgstr "El importe del debe no casa con lo definido en el último registor de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:134
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:144
 #, python-format
-msgid ""
-"Final balance amount = (initial balance + credit - debit) doesn't match with "
-"the defined in the last record of account."
-msgstr ""
-"El saldo final = (saldo inicial + haber - debe) no casa con lo definido en "
-"el último registro de la cuenta."
+msgid "Final balance amount = (initial balance + credit - debit) doesn't match with the defined in the last record of account."
+msgstr "El saldo final = (saldo inicial + haber - debe) no casa con lo definido en el último registro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: model:ir.model,name:l10n_es_account_bank_statement_import_n43.model_account_bank_statement_import
@@ -72,32 +77,22 @@ msgid "Norm 43 options"
 msgstr "Opciones de Norma 43"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:117
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:127
 #, python-format
-msgid ""
-"Number of credit records doesn't match with the defined in the last record "
-"of account."
-msgstr ""
-"El número de registro del haber no casa con lo definido en el último regisro "
-"de la cuenta."
+msgid "Number of credit records doesn't match with the defined in the last record of account."
+msgstr "El número de registro del haber no casa con lo definido en el último regisro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:113
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:123
 #, python-format
-msgid ""
-"Number of debit records doesn't match with the defined in the last record of "
-"account."
-msgstr ""
-"El número de registro del debe no casa con lo definido en el último regisro "
-"de la cuenta."
+msgid "Number of debit records doesn't match with the defined in the last record of account."
+msgstr "El número de registro del debe no casa con lo definido en el último regisro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:149
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:159
 #, python-format
 msgid "Number of records doesn't match with the defined in the last record."
-msgstr ""
-"El número de registro no casa con lo definido en el último regisro de la "
-"cuenta."
+msgstr "El número de registro no casa con lo definido en el último regisro de la cuenta."
 
 #. module: l10n_es_account_bank_statement_import_n43
 #: selection:account.journal,n43_date_type:0
@@ -105,7 +100,7 @@ msgid "Operation Date"
 msgstr "Fecha de operación"
 
 #. module: l10n_es_account_bank_statement_import_n43
-#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:182
+#: code:addons/l10n_es_account_bank_statement_import_n43/wizards/account_bank_statement_import_n43.py:192
 #, python-format
 msgid "Record type %s is not valid."
 msgstr "El tipo de registro %s no es válido."
