@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- Copyright 2018 Creu Blanca
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+         <report
+            id="action_report_check_caixabank"
+            model="account.payment"
+            string="Payment Check Caixabank"
+            report_type="qweb-pdf"
+            name="account_check_printing_caixabank.check_report"
+            file="account_check_printing_caixabank.check_report"
+            paperformat="account_check_printing_caixabank.paperformat_check_caixabank"/>
+
+</odoo>

@@ -52,6 +52,22 @@ SII_COUNTRY_CODE_MAPPING = {
 SII_MACRODATA_LIMIT = 100000000.0
 
 
+def round_by_keys(elem, search_keys, prec=2):
+    """ This uses ``round`` method directly as if has been tested that Odoo's
+        ``float_round`` still returns incorrect amounts for certain values. Try
+        3 units x 3,77 €/unit with 10% tax and you will be hit by the error
+        (on regular x86 architectures)."""
+    if isinstance(elem, dict):
+        for key, value in elem.items():
+            if key in search_keys:
+                elem[key] = round(elem[key], prec)
+            else:
+                round_by_keys(value, search_keys)
+    elif isinstance(elem, list):
+        for value in elem:
+            round_by_keys(value, search_keys)
+
+
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
@@ -221,6 +237,9 @@ class AccountInvoice(models.Model):
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
+        if ('refund' in vals.get('type', '') and
+                not vals.get('sii_refund_type')):
+            vals['sii_refund_type'] = 'I'
         invoice = super(AccountInvoice, self).create(vals)
         if (vals.get('fiscal_position_id') and
                 not vals.get('sii_registration_key')):
@@ -257,6 +276,11 @@ class AccountInvoice(models.Model):
                           "cancel the invoice and create a new one with the "
                           "correct number")
                     )
+        # Fill sii_refund_type if not set previously. It happens on sales
+        # order invoicing process for example.
+        if (vals.get('type') and not vals.get('sii_refund_type') and
+                not any(self.mapped('sii_refund_type'))):
+            vals['sii_refund_type'] = 'I'
         res = super(AccountInvoice, self).write(vals)
         if (vals.get('fiscal_position_id') and
                 not vals.get('sii_registration_key')):
@@ -387,11 +411,6 @@ class AccountInvoice(models.Model):
     def _get_sii_tax_dict(self, tax_line, sign):
         """Get the SII tax dictionary for the passed tax line.
 
-        This uses ``round`` method directly as if has been tested that Odoo's
-        ``float_round`` still returns incorrect amounts for certain values. Try
-        3 units x 3,77 €/unit with 10% tax and you will be hit by the error
-        (on regular x86 architectures).
-
         :param self: Single invoice record.
         :param tax_line: Tax line that is being analyzed.
         :param sign: Sign of the operation (only refund by differences is
@@ -405,13 +424,13 @@ class AccountInvoice(models.Model):
             tax_type = abs(tax.amount)
         tax_dict = {
             'TipoImpositivo': str(tax_type),
-            'BaseImponible': sign * abs(round(tax_line.base_company, 2)),
+            'BaseImponible': sign * abs(tax_line.base_company),
         }
         if self.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
-        tax_dict[key] = sign * abs(round(tax_line.amount_company, 2))
+        tax_dict[key] = sign * abs(tax_line.amount_company)
         # Recargo de equivalencia
         re_tax_line = self._get_sii_tax_line_req(tax)
         if re_tax_line:
@@ -419,7 +438,7 @@ class AccountInvoice(models.Model):
                 abs(re_tax_line.tax_id.amount)
             )
             tax_dict['CuotaRecargoEquivalencia'] = (
-                sign * abs(round(re_tax_line.amount_company, 2))
+                sign * abs(re_tax_line.amount_company)
             )
         return tax_dict
 
@@ -490,7 +509,7 @@ class AccountInvoice(models.Model):
                     if exempt_cause:
                         det_dict['CausaExencion'] = exempt_cause
                     det_dict['BaseImponible'] += (
-                        round(tax_line.base_company, 2) * sign)
+                        tax_line.base_company * sign)
                 else:
                     sub_dict.setdefault('NoExenta', {
                         'TipoNoExenta': (
@@ -516,7 +535,7 @@ class AccountInvoice(models.Model):
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
                 nsub_dict[default_no_taxable_cause] += (
-                    round(tax_line.base_company, 2) * sign)
+                    tax_line.base_company * sign)
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
                     'DesgloseTipoOperacion', {
@@ -536,7 +555,7 @@ class AccountInvoice(models.Model):
                     if exempt_cause:
                         det_dict['CausaExencion'] = exempt_cause
                     det_dict['BaseImponible'] += (
-                        round(tax_line.base_company, 2) * sign)
+                        tax_line.base_company * sign)
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
@@ -609,7 +628,7 @@ class AccountInvoice(models.Model):
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
                 sfrns_dict['DetalleIVA'].append({
-                    'BaseImponible': sign * round(tax_line.base_company, 2),
+                    'BaseImponible': sign * tax_line.base_company,
                 })
             elif tax in taxes_sfrsa:
                 sfrsa_dict = taxes_dict.setdefault(
@@ -728,7 +747,7 @@ class AccountInvoice(models.Model):
                 "DescripcionOperacion": self.sii_description,
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": abs(
-                    round(self.amount_total_company_signed, 2)
+                    self.amount_total_company_signed
                 ) * sign,
             }
             if self.sii_macrodata:
@@ -762,14 +781,12 @@ class AccountInvoice(models.Model):
                 if self.sii_refund_type == 'S':
                     origin = self.refund_invoice_id
                     exp_dict['ImporteRectificacion'] = {
-                        'BaseRectificada': round(
-                            abs(origin.amount_untaxed_signed), 2,
+                        'BaseRectificada': abs(
+                            origin.amount_untaxed_signed
                         ),
-                        'CuotaRectificada': round(
-                            abs(
-                                origin.amount_total_company_signed -
-                                origin.amount_untaxed_signed
-                            ), 2,
+                        'CuotaRectificada': abs(
+                            origin.amount_total_company_signed -
+                            origin.amount_untaxed_signed
                         ),
                     }
         return inv_dict
@@ -831,7 +848,7 @@ class AccountInvoice(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": round(tax_amount * sign, 2),
+                "CuotaDeducible": tax_amount * sign,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
@@ -864,11 +881,27 @@ class AccountInvoice(models.Model):
     def _get_sii_invoice_dict(self):
         self.ensure_one()
         self._sii_check_exceptions()
+        inv_dict = {}
         if self.type in ['out_invoice', 'out_refund']:
-            return self._get_sii_invoice_dict_out()
+            inv_dict = self._get_sii_invoice_dict_out()
         elif self.type in ['in_invoice', 'in_refund']:
-            return self._get_sii_invoice_dict_in()
-        return {}
+            inv_dict = self._get_sii_invoice_dict_in()
+        round_by_keys(
+            inv_dict, [
+                'BaseImponible',
+                'CuotaRepercutida',
+                'CuotaSoportada',
+                'TipoRecargoEquivalencia',
+                'CuotaRecargoEquivalencia',
+                'ImportePorArticulos7_14_Otros',
+                'ImporteTAIReglasLocalizacion',
+                'ImporteTotal',
+                'BaseRectificada',
+                'CuotaRectificada',
+                'CuotaDeducible',
+            ],
+        )
+        return inv_dict
 
     @api.multi
     def _get_cancel_sii_invoice_dict(self):
@@ -1030,8 +1063,8 @@ class AccountInvoice(models.Model):
                 invoice = env['account.invoice'].browse(invoice.id)
                 inv_vals.update({
                     'sii_send_failed': True,
-                    'sii_send_error': fault[:60],
-                    'sii_return': fault,
+                    'sii_send_error': repr(fault)[:60],
+                    'sii_return': repr(fault),
                 })
                 invoice.write(inv_vals)
                 new_cr.commit()
@@ -1039,9 +1072,21 @@ class AccountInvoice(models.Model):
                 raise
 
     @api.multi
+    def _sii_invoice_dict_modified(self):
+        self.ensure_one()
+        inv_dict = self._get_sii_invoice_dict()
+        sii_content_sent = json.dumps(inv_dict, indent=4)
+        return sii_content_sent == self.sii_content_sent
+
+    @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         for invoice in self.filtered('sii_enabled'):
+            if invoice.sii_state in ['sent_modified', 'sent'] and \
+                    self._sii_invoice_dict_modified():
+                if invoice.sii_state == 'sent_modified':
+                    invoice.sii_state = 'sent'
+                continue
             if invoice.sii_state == 'sent':
                 invoice.sii_state = 'sent_modified'
             elif invoice.sii_state == 'cancelled':
@@ -1106,8 +1151,8 @@ class AccountInvoice(models.Model):
                 invoice = env['account.invoice'].browse(invoice.id)
                 inv_vals.update({
                     'sii_send_failed': True,
-                    'sii_send_error': fault[:60],
-                    'sii_return': fault,
+                    'sii_send_error': repr(fault)[:60],
+                    'sii_return': repr(fault),
                 })
                 invoice.write(inv_vals)
                 new_cr.commit()

@@ -52,14 +52,14 @@ msgid "Journal Entries Sequence"
 msgstr ""
 
 #. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:29
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:30
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
 msgstr ""
 "La companyia del diari no és la mateixa que la de la seqüència de factura."
 
 #. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:39
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:40
 #, python-format
 msgid "Journal company and refund sequence company do not match."
 msgstr ""
@@ -83,6 +83,13 @@ msgstr "La seqüència utilitzada per als números de factura en aquest diari."
 #: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal_refund_inv_sequence_id
 msgid "The sequence used for refund invoices numbers in this journal."
 msgstr ""
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_ir_sequence
+#, fuzzy
+#| msgid "Invoice sequence"
+msgid "ir.sequence"
+msgstr "Seqüència de la factura"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_wizard_multi_charts_accounts

@@ -6,15 +6,14 @@
 # Copyright 2016 Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
+# Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api, exceptions, _
 
-import re
 from datetime import datetime
 from calendar import monthrange
 import odoo.addons.decimal_precision as dp
-from .spanish_states_mapping import SPANISH_STATES
 
 KEY_TAX_MAPPING = {
     'A': 'l10n_es_aeat_mod347.aeat_mod347_map_a',
@@ -190,29 +189,23 @@ class L10nEsAeatMod347Report(models.Model):
 
     @api.model
     def _get_partner_347_identification(self, partner):
-        partner_country_code, partner_vat = (
-            re.match(r"([A-Z]{0,2})(.*)", partner.vat or '').groups()
-        )
-        community_vat = ''
-        if not partner_country_code:
-            partner_country_code = partner.country_id.code
-        if partner_country_code == 'ES':
-            # Odoo Spanish states codes use car license plates approach
-            # (CR, A, M...), instead of ZIP (01, 02...), so we need to convert
-            # them, but fallbacking in the existing one if not found.
-            partner_state_code = SPANISH_STATES.get(
-                partner.state_id.code, partner.state_id.code,
-            )
+        country_code, _, vat = partner._parse_aeat_vat_info()
+        if country_code == 'ES':
+            return {
+                'partner_vat': vat,
+                # Odoo Spanish states codes use car license plates approach
+                # (CR, A, M...), instead of ZIP (01, 02...), so we need to
+                # convert them, but fallbacking in existing one if not found.
+                'partner_state_code': self.SPANISH_STATES.get(
+                    partner.state_id.code, partner.state_id.code),
+                'partner_country_code': country_code,
+            }
         else:
-            partner_vat = ''
-            community_vat = partner.vat
-            partner_state_code = 99
-        return {
-            'partner_vat': partner_vat,
-            'community_vat': community_vat,
-            'partner_state_code': partner_state_code,
-            'partner_country_code': partner_country_code,
-        }
+            return {
+                'community_vat': vat,
+                'partner_state_code': 99,
+                'partner_country_code': country_code,
+            }
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
@@ -237,7 +230,7 @@ class L10nEsAeatMod347Report(models.Model):
                 'partner_id': partner.id,
                 'representative_vat': '',
                 'operation_key': key,
-                'amount': abs(group['balance']),
+                'amount': (-1 if key == 'B' else 1) * group['balance'],
             }
             vals.update(self._get_partner_347_identification(partner))
             move_groups = self.env['account.move.line'].read_group(
@@ -288,7 +281,8 @@ class L10nEsAeatMod347Report(models.Model):
                 move_lines = move_line_obj.search(cash_group['__domain'])
                 partner_record = partner_record_obj.search([
                     ('partner_id', '=', partner.id),
-                    ('operation_key', '=', 'B')
+                    ('operation_key', '=', 'B'),
+                    ('report_id', '=', self.id),
                 ])
                 if partner_record:
                     partner_record.write({
@@ -693,17 +687,18 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     city = fields.Char(string='City', size=30)
     township = fields.Char(string='Township', size=30)
     township_code = fields.Char(string='Township Code', size=5)
-    state_code = fields.Char(string='State Code', size=2)
+    partner_state_code = fields.Char(
+        string='State Code', oldname='state_code', size=2)
     postal_code = fields.Char(string='Postal code', size=5)
     check_ok = fields.Boolean(
         compute="_compute_check_ok", string='Record is OK',
         store=True, help='Checked if this record is OK',
     )
 
-    @api.depends('state_code')
+    @api.depends('partner_state_code')
     def _compute_check_ok(self):
         for record in self:
-            record.check_ok = bool(record.state_code)
+            record.check_ok = bool(record.partner_state_code)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
@@ -712,7 +707,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
             vals = self.report_id._get_partner_347_identification(
                 self.partner_id,
             )
-            del vals['community_vat']
+            vals.pop('community_vat', None)
             del vals['partner_country_code']
             self.update(vals)
 

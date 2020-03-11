@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 14:13+0000\n"
-"PO-Revision-Date: 2018-04-12 14:13+0000\n"
+"POT-Creation-Date: 2019-04-23 08:57+0000\n"
+"PO-Revision-Date: 2019-04-23 08:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -74,14 +74,14 @@ msgstr "Pedidos del Punto de Venta"
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:40
 #, python-format
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
 #, python-format
 msgid "Qty"
-msgstr ""
+msgstr "Ctd"
 
 #. module: l10n_es_pos
 #: model:ir.ui.view,arch_db:l10n_es_pos.view_pos_config_form
@@ -155,7 +155,7 @@ msgstr "Facturas simplificadas"
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
 #, python-format
 msgid "Subt"
-msgstr ""
+msgstr "Subt"
 
 #. module: l10n_es_pos
 #: code:addons/l10n_es_pos/models/ir_sequence.py:20
@@ -168,11 +168,16 @@ msgstr ""
 "debería ser único."
 
 #. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order_l10n_es_unique_id
+msgid "Unique Order ID"
+msgstr "ID único de pedido"
+
+#. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
 #, python-format
 msgid "Unit"
-msgstr ""
+msgstr "Ud."
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config_iface_l10n_es_simplified_invoice
@@ -196,6 +201,7 @@ msgstr "ir.sequence"
 #. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:51
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:73
 #, python-format
 msgid "on"
 msgstr "sobre"
@@ -206,11 +212,11 @@ msgid "pos.config"
 msgstr "pos.config"
 
 #~ msgid ""
-#~ "There's already another POS config using the same Simplified Invoice "
-#~ "prefix. Try choosing another POS Name"
+#~ "The current order is already queued and thus it shouldn't be changed. "
+#~ "Click on 'Validate' in order to finalize it."
 #~ msgstr ""
-#~ "Ya existe otro TPV utilizando el mismo prefijo de Factura Simplifica. "
-#~ "Escoge otro nombre de Punto de Venta"
+#~ "Este pedido ya está en cola, de modo que no debería modificarse. Pulsa en "
+#~ "'Validar' para finalizarlo."
 
-#~ msgid "You need to define a simplified invoice prefix."
-#~ msgstr "Debes definir un prefijo de Factura Simplificada."
+#~ msgid "The order is already queued"
+#~ msgstr "El pedido ya está en cola"

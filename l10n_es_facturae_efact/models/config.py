@@ -15,13 +15,14 @@ class ResConfigSettings(models.TransientModel):
     @api.model
     def get_values(self):
         res = super(ResConfigSettings, self).get_values()
-        efact_server = self.env["ir.config_parameter"].get_param(
+        ICP = self.env["ir.config_parameter"].sudo()
+        efact_server = ICP.get_param(
             "account.invoice.efact.server", default=None)
-        efact_port = self.env["ir.config_parameter"].get_param(
+        efact_port = ICP.get_param(
             "account.invoice.efact.port", default=None)
-        efact_user = self.env["ir.config_parameter"].get_param(
+        efact_user = ICP.get_param(
             "account.invoice.efact.user", default=None)
-        efact_password = self.env["ir.config_parameter"].get_param(
+        efact_password = ICP.get_param(
             "account.invoice.efact.password", default=None)
         res.update({
             'efact_server': efact_server,
@@ -34,11 +35,12 @@ class ResConfigSettings(models.TransientModel):
     @api.multi
     def set_values(self):
         super(ResConfigSettings, self).set_values()
-        self.env['ir.config_parameter'].sudo().set_param(
+        ICP = self.env["ir.config_parameter"].sudo()
+        ICP.set_param(
             "account.invoice.efact.server", self.efact_server or '')
-        self.env['ir.config_parameter'].set_param(
+        ICP.set_param(
             "account.invoice.efact.port", self.efact_port or '')
-        self.env['ir.config_parameter'].set_param(
+        ICP.set_param(
             "account.invoice.efact.user", self.efact_user or '')
-        self.env['ir.config_parameter'].set_param(
+        ICP.set_param(
             "account.invoice.efact.password", self.efact_password or '')

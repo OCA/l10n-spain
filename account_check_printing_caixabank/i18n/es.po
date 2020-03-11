@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_check_printing_caixabank
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-06-27 10:42+0000\n"
+"Last-Translator: Jaime Arroyo <jaime.arroyo@creublanca.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.6.1\n"
+
+#. module: account_check_printing_caixabank
+#: model:ir.ui.view,arch_db:account_check_printing_caixabank.check_report
+msgid "<b>Check Amount:</b>"
+msgstr "<b>Importe del Cheque:</b>"
+
+#. module: account_check_printing_caixabank
+#: model:ir.ui.view,arch_db:account_check_printing_caixabank.check_report
+msgid "Balance Due"
+msgstr ""
+
+#. module: account_check_printing_caixabank
+#: model:ir.ui.view,arch_db:account_check_printing_caixabank.check_report
+msgid "Description"
+msgstr "Descripción"
+
+#. module: account_check_printing_caixabank
+#: model:ir.model.fields,field_description:account_check_printing_caixabank.field_report_account_check_printing_caixabank_check_report_display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: account_check_printing_caixabank
+#: model:ir.ui.view,arch_db:account_check_printing_caixabank.check_report
+msgid "Due\n"
+"                                                Date"
+msgstr ""
+"Fecha\n"
+"                                                de Vencimiento"
+
+#. module: account_check_printing_caixabank
+#: model:ir.model.fields,field_description:account_check_printing_caixabank.field_report_account_check_printing_caixabank_check_report_id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_check_printing_caixabank
+#: model:ir.model.fields,field_description:account_check_printing_caixabank.field_report_account_check_printing_caixabank_check_report___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: account_check_printing_caixabank
+#: model:ir.ui.view,arch_db:account_check_printing_caixabank.check_report
+msgid "Original Amount"
+msgstr "Importe Original"
+
+#. module: account_check_printing_caixabank
+#: model:ir.ui.view,arch_db:account_check_printing_caixabank.check_report
+msgid "Payment"
+msgstr "Pago"
+
+#. module: account_check_printing_caixabank
+#: model:ir.actions.report,name:account_check_printing_caixabank.action_report_check_caixabank
+msgid "Payment Check Caixabank"
+msgstr "Cheque de pago Caixabank"
+
+#. module: account_check_printing_caixabank
+#: model:ir.model,name:account_check_printing_caixabank.model_report_account_check_printing_caixabank_check_report
+msgid "report.account_check_printing_caixabank.check_report"
+msgstr ""

@@ -54,14 +54,14 @@ msgid "Journal Entries Sequence"
 msgstr "Secuencia de asientos"
 
 #. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:29
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:30
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
 msgstr ""
 "La compañía del diario no es la misma que la de la secuencia de factura."
 
 #. module: l10n_es_account_invoice_sequence
-#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:39
+#: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:40
 #, python-format
 msgid "Journal company and refund sequence company do not match."
 msgstr ""
@@ -89,6 +89,13 @@ msgid "The sequence used for refund invoices numbers in this journal."
 msgstr ""
 "La secuencia utilizada para los números de factura rectificativa en este "
 "diario."
+
+#. module: l10n_es_account_invoice_sequence
+#: model:ir.model,name:l10n_es_account_invoice_sequence.model_ir_sequence
+#, fuzzy
+#| msgid "Invoice sequence"
+msgid "ir.sequence"
+msgstr "Secuencia de la factura"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_wizard_multi_charts_accounts

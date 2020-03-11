@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2011 NaN Projectes de Programari Lliure, S.L.
 # Copyright 2013-2017 Pedro M. Baeza
+# Copyright 2019 Jose F. Fernandez
 
 from odoo import _, api, fields, exceptions, models
 
@@ -46,14 +47,44 @@ class AccountJournal(models.Model):
             return super(AccountJournal, self).create(vals)
         company = self.env['res.company'].browse(vals['company_id'])
         if company.chart_template_id.is_spanish_chart():
-            journal = self.search([('company_id', '=', company.id)], limit=1)
+            journal = self._get_company_journal(company)
             if journal:
                 vals['sequence_id'] = journal.sequence_id.id
                 vals['refund_sequence'] = False
         return super(AccountJournal, self).create(vals)
+
+    def write(self, vals):
+        """Don't change automatically prefix for journal entry sequences."""
+        spanish_journals = self.env['account.journal']
+        if 'code' in vals:
+            spanish_journals = self.filtered(
+                lambda x: x.company_id.chart_template_id.is_spanish_chart()
+            ).with_context(no_prefix_change=True)
+        if spanish_journals:
+            super(AccountJournal, spanish_journals).write(vals)
+        rest = self - spanish_journals
+        if rest:
+            super(AccountJournal, rest).write(vals)
+        return True
 
     def _get_invoice_types(self):
         return [
             'sale',
             'purchase',
         ]
+
+    def _get_company_journal(self, company):
+        """Get an existing journal in the company to take it's counter."""
+        if not company:
+            return False
+        return self.search([('company_id', '=', company.id)], limit=1)
+
+    @api.model
+    def default_get(self, default_fields):
+        res = super(AccountJournal, self).default_get(default_fields)
+        company = self.env['res.company'].browse(res.get('company_id', False))
+        if company.chart_template_id.is_spanish_chart():
+            journal = self._get_company_journal(company)
+            if journal:
+                res['sequence_id'] = journal.sequence_id.id
+        return res

@@ -181,7 +181,10 @@
                         <IssueDate t-esc="invoice.date_invoice"/>
                         <OperationDate t-if="False"/>
                         <PlaceOfIssue t-if="False"/>
-                        <InvoicingPeriod t-if="False"/>
+                        <InvoicingPeriod t-if="invoice.facturae_start_date and invoice.facturae_end_date">
+                            <StartDate t-esc="invoice.facturae_start_date"/>
+                            <EndDate t-esc="invoice.facturae_end_date"/>
+                        </InvoicingPeriod>
                         <InvoiceCurrencyCode t-esc="invoice.currency_id.name"/>
                         <ExchangeRateDetails t-if="invoice.currency_id.name != 'EUR'">
                             <ExchangeRate t-esc="'%.2f' % (euro_rate / currency_rate)"/>
@@ -255,28 +258,29 @@
                                     <t t-set="withheld" t-value="True"/>
                                 </t>
                             </t>
-                            <IssuerContractReference t-length="20" t-if="False"/>
-                            <IssuerContractDate t-if="False"/>
-                            <IssuerTransactionReference t-length="20" t-if="False"/>
-                            <IssuerTransactionDate t-if="False"/>
-                            <ReceiverContractReference t-length="20" t-if="False"/>
-                            <ReceiverContractDate t-if="False"/>
-                            <ReceiverTransactionReference t-length="20" t-if="False"/>
-                            <ReceiverTransactionDate t-if="False"/>
-                            <FileReference t-length="20" t-if="False"/>
-                            <FileDate t-if="False"/>
+                            <IssuerContractReference t-length="20" t-if="line.facturae_issuer_contract_reference" t-esc="line.facturae_issuer_contract_reference"/>
+                            <IssuerContractDate t-if="line.facturae_issuer_contract_date" t-esc="line.facturae_issuer_contract_date"/>
+                            <IssuerTransactionReference t-length="20" t-if="line.facturae_issuer_transaction_reference" t-esc="line.facturae_issuer_transaction_reference"/>
+                            <IssuerTransactionDate t-if="line.facturae_issuer_transaction_date" t-esc="line.facturae_issuer_transaction_date"/>
+                            <ReceiverContractReference t-length="20" t-if="line.facturae_receiver_contract_reference" t-esc="line.facturae_receiver_contract_reference"/>
+                            <ReceiverContractDate t-if="line.facturae_receiver_contract_date" t-esc="line.facturae_receiver_contract_date"/>
+                            <ReceiverTransactionReference t-length="20" t-if="line.facturae_receiver_transaction_reference" t-esc="line.facturae_receiver_transaction_reference"/>
+                            <ReceiverTransactionDate  t-if="line.facturae_receiver_transaction_date" t-esc="line.facturae_receiver_transaction_date"/>
+                            <FileReference t-length="20" t-if="line.facturae_file_reference" t-esc="line.facturae_file_reference"/>
+                            <FileDate  t-if="line.facturae_file_date" t-esc="line.facturae_file_date"/>
                             <SequenceNumber t-if="False"/>
                             <DeliveryNotesReferences t-if="False"/>
                             <ItemDescription t-length="2500" t-esc="line.name"/>
                             <Quantity t-esc="line.quantity"/>
                             <UnitOfMeasure t-if="False"/>
                             <UnitPriceWithoutTax t-esc="'%.6f' % line.price_unit"/>
-                            <TotalCost t-esc="'%.6f' % (line.quantity * line.price_unit)"/>
+                            <t t-set="subtotal_gross" t-value="round(line.quantity * line.price_unit, line.company_currency_id.decimal_places)"/>
+                            <TotalCost t-esc="'%.6f' % subtotal_gross"/>
                             <DiscountsAndRebates t-if="line.discount != 0">
                                 <Discount>
                                     <DiscountReason t-esc="'Descuento'"/>
                                     <DiscountRate t-esc="'%.4f' % line.discount"/>
-                                    <DiscountAmount t-esc="'%.6f' % (line.price_unit * line.quantity - line.price_subtotal)"/>
+                                    <DiscountAmount t-esc="'%.6f' % (subtotal_gross - line.price_subtotal)"/>
                                 </Discount>
                             </DiscountsAndRebates>
                             <Charges t-if="False"/>
@@ -313,8 +317,11 @@
                                     </Tax>
                                 </t>
                             </TaxesOutputs>
-                            <LineItemPeriod t-if="False"/>
-                            <TransactionDate t-if="False"/>
+                            <LineItemPeriod t-if="line.facturae_start_date and line.facturae_end_date">
+                                <StartDate t-esc="line.facturae_start_date"/>
+                                <EndDate t-esc="line.facturae_end_date"/>
+                            </LineItemPeriod>
+                            <TransactionDate t-if="line.facturae_transaction_date" t-esc="line.facturae_transaction_date"/>
                             <AdditionalLineItemInformation t-length="2500" t-if="False"/>
                             <SpecialTaxableEvent t-if="False"/>
                             <ArticleCode t-length="20" t-esc="line.product_id.default_code" t-if="line.product_id.default_code"/>
@@ -334,10 +341,12 @@
                                     <PaymentReconciliationReference t-length="60" t-if="False"/>
                                 </AccountToBeDebited>
                                 <AccountToBeCredited t-if="invoice.payment_mode_id.facturae_code != '02'">
-                                    <IBAN t-minlength="5" t-length="34" t-esc="''.join(invoice.partner_bank_id.acc_number.split())"/>
-                                    <BankCode t-length="60" t-esc="invoice.partner_bank_id.bank_id.code" t-if="invoice.partner_bank_id.bank_id.code"/>
+                                    <t t-set="partner_bank" t-value="invoice.partner_banks_to_show()[:1]"/>
+                                    <IBAN t-minlength="5" t-length="34" t-esc="''.join(partner_bank.acc_number.split())"/>
+                                    <t t-set="bank" t-value="partner_bank.bank_id"/>
+                                    <BankCode t-length="60" t-esc="bank.code" t-if="bank.code"/>
                                     <BranchCode t-length="60" t-if="False"/>
-                                    <BIC t-minlength="11" t-length="11" t-esc="invoice.partner_bank_id.bank_id.bic" t-if="invoice.partner_bank_id.bank_id.bic"/>
+                                    <BIC t-minlength="11" t-length="11" t-esc="bank.bic" t-if="bank.bic"/>
                                 </AccountToBeCredited>
                                 <CollectionAdditionalInformation t-if="False"/>
                                 <RegulatoryReportingData t-if="False"/>
