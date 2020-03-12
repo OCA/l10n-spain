@@ -83,7 +83,7 @@ msgid "AEAT manager"
 msgstr "Responsable AEAT"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:282
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:268
 #, python-format
 msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
@@ -964,7 +964,7 @@ msgid "Model number"
 msgstr "Nº model"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:419
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:405
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr "Model no vàlid: %s. Ha de declarar una variable '_aeat_number'"
@@ -1087,7 +1087,7 @@ msgid "Only non-exigible amounts"
 msgstr "Només quantitats no exigibles"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:389
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:375
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
@@ -1219,7 +1219,7 @@ msgid "Regular"
 msgstr "Regular"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:155
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:154
 #, python-format
 msgid "Regularization"
 msgstr "Regularització"
@@ -1521,7 +1521,7 @@ msgid "Year"
 msgstr "Any"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:189
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:188
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr "Ha d'omplir tant el diari com el compte de contrapartida."
