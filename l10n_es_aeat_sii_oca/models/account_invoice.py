@@ -3,6 +3,7 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
+# Copyright 2011-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -299,38 +300,6 @@ class AccountInvoice(models.Model):
         return super(AccountInvoice, self).unlink()
 
     @api.multi
-    def map_sii_tax_template(self, tax_template, mapping_taxes):
-        """Adds a tax template -> tax id to the mapping.
-        Adapted from account_chart_update module.
-
-        :param self: Single invoice record.
-        :param tax_template: Tax template record.
-        :param mapping_taxes: Dictionary with all the tax templates mapping.
-        :return: Tax template current mapping
-        """
-        self.ensure_one()
-        if not tax_template:
-            return self.env['account.tax']
-        if mapping_taxes.get(tax_template):
-            return mapping_taxes[tax_template]
-        # search inactive taxes too, to avoid re-creating
-        # taxes that have been deactivated before
-        tax_obj = self.env['account.tax'].with_context(active_test=False)
-        criteria = ['|',
-                    ('name', '=', tax_template.name),
-                    ('description', '=', tax_template.name)]
-        if tax_template.description:
-            criteria = ['|'] + criteria
-            criteria += [
-                '|',
-                ('description', '=', tax_template.description),
-                ('name', '=', tax_template.description),
-            ]
-        criteria += [('company_id', '=', self.company_id.id)]
-        mapping_taxes[tax_template] = tax_obj.search(criteria)
-        return mapping_taxes[tax_template]
-
-    @api.multi
     def _get_sii_taxes_map(self, codes):
         """Return the codes that correspond to that sii map line codes.
 
@@ -339,7 +308,6 @@ class AccountInvoice(models.Model):
         :return: Recordset with the corresponding codes
         """
         self.ensure_one()
-        taxes = self.env['account.tax']
         sii_map = self.env['aeat.sii.map'].search(
             ['|',
              ('date_from', '<=', self.date),
@@ -347,13 +315,10 @@ class AccountInvoice(models.Model):
              '|',
              ('date_to', '>=', self.date),
              ('date_to', '=', False)], limit=1)
-        mapping_taxes = {}
         tax_templates = sii_map.sudo().map_lines.filtered(
             lambda x: x.code in codes
         ).taxes
-        for tax_template in tax_templates:
-            taxes += self.map_sii_tax_template(tax_template, mapping_taxes)
-        return taxes
+        return self.company_id.get_taxes_from_templates(tax_templates)
 
     @api.multi
     def _change_date_format(self, date):
