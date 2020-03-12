@@ -14,9 +14,9 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
     debug = False
     taxes_purchase = {
         # tax code: (base, tax_amount)
-        'P_IRPFT': (1000, 210),
-        'P_IRPFTD': (2000, 420),
-        'P_IRPFTE': (3000, 630),
+        'P_IRPF21T': (1000, 210),
+        'P_IRPF21TD': (2000, 420),
+        'P_IRPF21TE': (3000, 630),
         'P_IRPF1': (4000, 40),
         'P_IRPF2': (5000, 100),
         'P_IRPF7': (6000, 420),
@@ -29,13 +29,13 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
     }
     taxes_result = {
         # Rendimientos del trabajo (dinerarios) - Base
-        '2': (2 * 1000) + (2 * 2000),  # P_IRPFT, P_IRPFTD
+        '2': (2 * 1000) + (2 * 2000),  # P_IRPF21T, P_IRPF21TD
         # Rendimientos del trabajo (dinerarios) - Retenciones
-        '3': (2 * 210) + (2 * 420),  # P_IRPFT, P_IRPFTD
+        '3': (2 * 210) + (2 * 420),  # P_IRPF21T, P_IRPF21TD
         # Rendimientos del trabajo (en especie) - Base
-        '5': (2 * 3000),  # P_IRPFTE
+        '5': (2 * 3000),  # P_IRPF21TE
         # Rendimientos del trabajo (en especie) - Retenciones
-        '6': (2 * 630),  # P_IRPFTE
+        '6': (2 * 630),  # P_IRPF21TE
         # Rendimientos de actividades económicas (dinerarios) - Base
         '8': (
             (2 * 4000) + (2 * 5000) +  # P_IRPF1, P_IRPF2
