@@ -5,7 +5,7 @@
 
 {
     'name': 'AEAT modelo 216',
-    'version': '12.0.2.3.0',
+    'version': '12.0.2.4.0',
     'category': "Localisation/Accounting",
     'author': "AvanzOSC,"
               "Tecnativa,"
