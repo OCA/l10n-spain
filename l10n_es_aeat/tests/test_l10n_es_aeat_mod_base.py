@@ -75,7 +75,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 '%8s %9s %9s %14s %s',
                 line.account_id.code, line.debit, line.credit,
                 line.tax_line_id.description,
-                line.tax_ids.mapped('description'))
+                line.tax_ids.mapped('name'))
 
     def _print_tax_lines(self, lines):
         for line in lines:
@@ -83,6 +83,24 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 "=== [%s] ============================= [%s]",
                 line.field_number, line.amount)
             self._print_move_lines(line.move_line_ids)
+
+    def _get_taxes(self, descs):
+        taxes = self.env['account.tax']
+        for desc in descs.split(','):
+            parts = desc.split('.')
+            module = parts[0] if len(parts) > 1 else 'l10n_es'
+            xml_id = parts[1] if len(parts) > 1 else parts[0]
+            if xml_id.lower() != xml_id and len(parts) == 1:
+                # shortcut for not changing existing tests with old codes
+                xml_id = 'account_tax_template_' + xml_id.lower()
+            tax_template = self.env.ref(
+                '%s.%s' % (module, xml_id), raise_if_not_found=False)
+            if tax_template:
+                tax = self.company.get_taxes_from_templates(tax_template)
+                taxes |= tax
+            if not tax_template or not tax:
+                _logger.error("Tax not found: {}".format(desc))
+        return taxes
 
     def _invoice_sale_create(self, dt, extra_vals=None):
         data = {
@@ -101,23 +119,15 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             if self.debug:
                 _logger.debug('%14s %9s' % (desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
-            descs = desc.split('//')[0]
             line_data = {
-                'name': 'Test for tax(es) %s' % descs,
+                'name': 'Test for tax(es) %s' % desc,
                 'account_id': self.accounts['700000'].id,
                 'price_unit': values[0],
                 'quantity': 1,
-                'invoice_line_tax_ids': [],
             }
-            for desc in descs.split(','):
-                tax = self.env['account.tax'].search([
-                    ('company_id', '=', self.company.id),
-                    ('description', '=', desc),
-                ])
-                if tax:
-                    line_data['invoice_line_tax_ids'].append((4, tax.id))
-                else:
-                    _logger.error("Tax not found: {}".format(desc))
+            taxes = self._get_taxes(desc.split('//')[0])
+            if taxes:
+                line_data['invoice_line_tax_ids'] = [(4, t.id) for t in taxes]
             data['invoice_line_ids'].append((0, 0, line_data))
         if extra_vals:
             data.update(extra_vals)
@@ -144,23 +154,15 @@ class TestL10nEsAeatModBase(common.TransactionCase):
             if self.debug:
                 _logger.debug('%14s %9s' % (desc, values[0]))
             # Allow to duplicate taxes skipping the unique key constraint
-            descs = desc.split('//')[0]
             line_data = {
-                'name': 'Test for tax(es) %s' % descs,
+                'name': 'Test for tax(es) %s' % desc,
                 'account_id': self.accounts['600000'].id,
                 'price_unit': values[0],
                 'quantity': 1,
-                'invoice_line_tax_ids': [],
             }
-            for desc in descs.split(','):
-                tax = self.env['account.tax'].search([
-                    ('company_id', '=', self.company.id),
-                    ('description', '=', desc),
-                ])
-                if tax:
-                    line_data['invoice_line_tax_ids'].append((4, tax.id))
-                else:
-                    _logger.error("Tax not found: {}".format(desc))
+            taxes = self._get_taxes(desc.split('//')[0])
+            if taxes:
+                line_data['invoice_line_tax_ids'] = [(4, t.id) for t in taxes]
             data['invoice_line_ids'].append((0, 0, line_data))
         if extra_vals:
             data.update(extra_vals)

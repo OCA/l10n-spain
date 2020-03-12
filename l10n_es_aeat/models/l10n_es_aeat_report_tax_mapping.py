@@ -46,8 +46,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
         move_lines = self._get_tax_lines(
-            map_line.mapped('tax_ids.description'),
-            self.date_start, self.date_end, map_line,
+            False, self.date_start, self.date_end, map_line,
         )
         if map_line.sum_type == 'credit':
             amount = sum(move_lines.mapped('credit'))
