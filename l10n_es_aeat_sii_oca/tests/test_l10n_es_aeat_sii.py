@@ -66,15 +66,23 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
             'code': 'TAX',
             'user_type_id': cls.account_type.id,
         })
-        cls.tax = cls.env['account.tax'].create({
-            'name': 'Test tax 10%',
-            # Needed for discriminatory tax amount in supplier invoices
-            'description': 'P_IVA10_BC',
-            'type_tax_use': 'purchase',
-            'amount_type': 'percent',
-            'amount': '10',
-            'account_id': cls.account_tax.id,
-        })
+        cls.company = cls.env.user.company_id
+        xml_id = '%s_account_tax_template_p_iva10_bc' % cls.company.id
+        cls.tax = cls.env.ref('l10n_es.' + xml_id, raise_if_not_found=False)
+        if not cls.tax:
+            cls.tax = cls.env['account.tax'].create({
+                'name': 'Test tax 10%',
+                'type_tax_use': 'purchase',
+                'amount_type': 'percent',
+                'amount': '10',
+                'account_id': cls.account_tax.id,
+            })
+            cls.env['ir.model.data'].create({
+                'module': 'l10n_es',
+                'name': xml_id,
+                'model': cls.tax._name,
+                'res_id': cls.tax.id,
+            })
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
