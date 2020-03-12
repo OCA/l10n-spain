@@ -270,17 +270,12 @@ class Mod349(models.Model):
 
     @api.model
     def _get_taxes(self):
-        tax_obj = self.env['account.tax']
-        # Obtain all the taxes to be considered
+        """Obtain all the taxes to be considered for 349."""
         map_lines = self.env['aeat.349.map.line'].search([])
-        tax_templates = map_lines.mapped('tax_tmpl_ids').mapped('description')
+        tax_templates = map_lines.mapped('tax_tmpl_ids')
         if not tax_templates:
             raise exceptions.Warning(_('No Tax Mapping was found'))
-        # search the account.tax referred to by the template
-        taxes = tax_obj.search(
-            [('description', 'in', tax_templates),
-             ('company_id', 'child_of', self.company_id.id)])
-        return taxes
+        return self.get_taxes_from_templates(tax_templates)
 
     def _cleanup_report(self):
         """Remove previous partner records and partner refunds in report."""
