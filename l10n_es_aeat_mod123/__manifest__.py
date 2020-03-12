@@ -3,7 +3,7 @@
 
 {
     'name': 'AEAT modelo 123',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.2.0',
     'category': "Localisation/Accounting",
     'author': "Tecnativa, "
               "Spanish Localization Team, "
