@@ -15,7 +15,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
     taxes_purchase = {
         # tax code: (base, tax_amount)
         'P_RP19': (100, -19),
-        'P_RRD19': (1000, -190)
+        'l10n_es.account_tax_template_p_rrD19': (1000, -190)
     }
     taxes_result = {
         '2': 3*(100 + 1000),
