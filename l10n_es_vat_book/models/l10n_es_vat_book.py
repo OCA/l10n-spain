@@ -263,13 +263,14 @@ class L10nEsVatBook(models.Model):
             base_line = next(filter(
                 lambda l: not l['special_tax_group'], implied_lines))
             special_line = next(filter(
-                lambda l: l['special_tax_group'], implied_lines))
-            base_line.update({
-                'special_tax_id': special_line['tax_id'],
-                'special_tax_amount': special_line['tax_amount'],
-                'total_amount_special_include':
-                    base_line['total_amount'] + special_line['tax_amount'],
-            })
+                lambda l: l['special_tax_group'], implied_lines), None)
+            if special_line:
+                base_line.update({
+                    'special_tax_id': special_line['tax_id'],
+                    'special_tax_amount': special_line['tax_amount'],
+                    'total_amount_special_include':
+                        base_line['total_amount'] + special_line['tax_amount'],
+                })
 
     def _clear_old_data(self):
         """
