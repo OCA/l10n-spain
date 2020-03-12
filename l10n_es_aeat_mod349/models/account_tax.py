@@ -1,8 +1,8 @@
 # Copyright 2017 Luis M. Ontalba <luis.martinez@tecnativa.com>
-# Copyright 2018 Tecnativa - Pedro M. Baeza
+# Copyright 2018-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, models, fields
+from odoo import models, fields
 
 
 class AccountTax(models.Model):
@@ -19,12 +19,12 @@ class AccountTax(models.Model):
         compute='_compute_l10n_es_aeat_349_operation_key',
     )
 
-    @api.depends('name', 'description')
     def _compute_l10n_es_aeat_349_operation_key(self):
+        # TODO: Improve performance
         map_349 = self.env['aeat.349.map.line'].search([])
         for tax in self:
             for line in map_349:
-                if any([tax.name == tmpl.name or tax.description == tmpl.name
-                        for tmpl in line.tax_tmpl_ids]):
+                if tax in tax.company_id.get_taxes_from_templates(
+                        line.tax_tmpl_ids):
                     tax.l10n_es_aeat_349_operation_key = line.operation_key
                     break
