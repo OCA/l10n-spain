@@ -12,21 +12,21 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
     debug = False
     taxes_purchase = {
         # tax code: (base, tax_amount)
-        'P_RAC19A': (1000, 190),
-        'P_RAC195A': (2000, 390),
-        'P_RAC20A': (3000, 600),
-        'P_RAC21A': (4000, 840),
+        'P_IRPF19A': (1000, 190),
+        'P_IRPF195A': (2000, 390),
+        'P_IRPF20A': (3000, 600),
+        'P_IRPF21A': (4000, 840),
     }
     taxes_result = {
         # Base retenciones e ingresos a cuenta
         '2': (
-            (2 * 1000) + (2 * 2000) +  # P_RAC19A, P_RAC195A
-            (2 * 3000) + (2 * 4000)    # P_RAC20A, P_RAC21A
+            (2 * 1000) + (2 * 2000) +  # P_IRPF19A, P_IRPF195A
+            (2 * 3000) + (2 * 4000)    # P_IRPF20A, P_IRPF21A
         ),
         # Retenciones e ingresos a cuenta
         '3': (
-            (2 * 190) + (2 * 390) +  # P_RAC19A, P_RAC195A
-            (2 * 600) + (2 * 840)    # P_RAC20A, P_RAC21A
+            (2 * 190) + (2 * 390) +  # P_IRPF19A, P_IRPF195A
+            (2 * 600) + (2 * 840)    # P_IRPF20A, P_IRPF21A
         ),
     }
 
