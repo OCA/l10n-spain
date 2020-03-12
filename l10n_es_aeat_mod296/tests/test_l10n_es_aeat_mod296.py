@@ -17,8 +17,8 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
     debug = False
     taxes_purchase = {
         # tax code: (base, tax_amount)
-        'P_IRPFNRNUE24P': (1000, 240),
-        'P_IRPFNRUE19P': (2000, 380),
+        'l10n_es_irnr.account_tax_template_p_irpfnrnue24p': (1000, 240),
+        'l10n_es_irnr.account_tax_template_p_irpfnrue19p': (2000, 380),
     }
     taxes_result = {
         # Rendimientos del trabajo (dinerarios) - Base
