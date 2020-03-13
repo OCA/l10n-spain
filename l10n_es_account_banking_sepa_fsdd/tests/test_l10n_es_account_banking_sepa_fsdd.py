@@ -7,10 +7,12 @@ from lxml import etree
 
 from odoo.tools import float_compare
 
-from odoo.addons.account_banking_sepa_direct_debit.tests.test_sdd import TestSDD
+from odoo.addons.account_banking_sepa_direct_debit.tests.test_sdd import TestSDDBase
 
 
-class TestSDD(TestSDD):
+class TestFSDD(TestSDDBase):
+    _chart_template_xml_id = "l10n_es.account_chart_template_pymes"
+
     def check_fsdd(self):
         self.mandate2.recurrent_sequence_type = "first"
         invoice1 = self.create_invoice(self.partner_agrolait.id, self.mandate2, 42.0)
@@ -45,7 +47,7 @@ class TestSDD(TestSDD):
             0,
         )
         self.assertEqual(agrolait_pay_line1.communication_type, "normal")
-        self.assertEqual(agrolait_pay_line1.communication, invoice1.number)
+        self.assertEqual(agrolait_pay_line1.communication, invoice1.name)
         self.payment_order.draft2open()
         self.assertEqual(self.payment_order.state, "open")
         self.assertEqual(self.payment_order.sepa, True)
@@ -63,7 +65,7 @@ class TestSDD(TestSDD):
             0,
         )
         self.assertEqual(agrolait_bank_line.communication_type, "normal")
-        self.assertEqual(agrolait_bank_line.communication, invoice1.number)
+        self.assertEqual(agrolait_bank_line.communication, invoice1.name)
         self.assertEqual(agrolait_bank_line.mandate_id, invoice1.mandate_id)
         self.assertEqual(
             agrolait_bank_line.partner_bank_id, invoice1.mandate_id.partner_bank_id
@@ -72,7 +74,7 @@ class TestSDD(TestSDD):
         self.assertEqual(self.payment_order.state, "generated")
         self.assertEqual(action["res_model"], "ir.attachment")
         attachment = self.attachment_model.browse(action["res_id"])
-        self.assertEqual(attachment.datas_fname[-4:], ".xml")
+        self.assertEqual(attachment.name[-4:], ".xml")
         xml_file = base64.b64decode(attachment.datas)
         xml_root = etree.fromstring(xml_file)
         namespaces = xml_root.nsmap
@@ -94,7 +96,7 @@ class TestSDD(TestSDD):
         self.payment_order.generated2uploaded()
         self.assertEqual(self.payment_order.state, "uploaded")
         for inv in [invoice1, invoice2]:
-            self.assertEqual(inv.state, "paid")
+            self.assertEqual(inv.invoice_payment_state, "paid")
         self.assertEqual(self.mandate2.recurrent_sequence_type, "recurring")
         return
 
