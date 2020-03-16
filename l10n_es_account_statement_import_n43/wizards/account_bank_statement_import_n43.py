@@ -318,6 +318,13 @@ class AccountBankStatementImport(models.TransientModel):
         journal = self.env['account.journal'].browse(
             self.env.context.get('journal_id', [])
         )
+        if journal.bank_account_id:
+            file_bank = journal.bank_account_id.sanitized_acc_number[14:24]
+            if n43[0]['cuenta'] != file_bank:
+                raise exceptions.UserError(_(
+                    "The bank account number of the file does not match with "
+                    "the one in the journal."
+                ))
         transactions = []
         for group in n43:
             for line in group['lines']:
