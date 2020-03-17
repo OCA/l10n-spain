@@ -289,7 +289,8 @@ class L10nEsAeatMod347Report(models.Model):
                 move_lines = move_line_obj.search(cash_group['__domain'])
                 partner_record = partner_record_obj.search([
                     ('partner_id', '=', partner.id),
-                    ('operation_key', '=', 'B')
+                    ('operation_key', '=', 'B'),
+                    ('report_id', '=', self.id)
                 ])
                 if partner_record:
                     partner_record.write({
