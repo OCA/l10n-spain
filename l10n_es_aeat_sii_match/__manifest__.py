@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Studio73 - Abraham Anes
 # Copyright 2019 Studio73 - Pablo Fuentes
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    "name": u"Sistema de comprobación y contraste de facturas enviadas al SII",
-    "version": "10.0.1.0.0",
+    "name": "Sistema de comprobación y contraste de facturas enviadas al SII",
+    "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     'author': 'Studio73,'
