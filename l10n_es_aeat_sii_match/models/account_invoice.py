@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Studio73 - Abraham Anes
 # Copyright 2019 Studio73 - Pablo Fuentes
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -7,7 +6,7 @@ import logging
 import json
 
 from odoo import _, api, fields, exceptions, models
-from odoo.modules.registry import RegistryManager
+from odoo.modules.registry import Registry
 
 _logger = logging.getLogger(__name__)
 try:
@@ -92,7 +91,7 @@ class AccountInvoice(models.Model):
         diff = DeepDiff(odoo_values, sii_values)
         differences = diff.get('type_changes', {})
         differences.update(diff.get('values_changed', {}))
-        for label, value in differences.items():
+        for label, value in list(differences.items()):
             sii_value = value['new_value']
             odoo_value = value['old_value']
             label = label.split("['")[-1].replace("']", "")
@@ -103,7 +102,7 @@ class AccountInvoice(models.Model):
                 if label == 'TipoImpositivo' or isinstance(odoo_value, float):
                     sii_value = round(float(sii_value), dp)
                     odoo_value = round(float(odoo_value), dp)
-                elif isinstance(odoo_value, basestring):
+                elif isinstance(odoo_value, str):
                     sii_value = sii_value.strip()
                     odoo_value = odoo_value.strip()
                 if sii_value != odoo_value:
@@ -302,7 +301,7 @@ class AccountInvoice(models.Model):
                     serialize_object(res), indent=4)
                 invoice.write(inv_vals)
             except Exception as fault:
-                new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
+                new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env['account.invoice'].browse(self.id)
                 inv_vals.update({
