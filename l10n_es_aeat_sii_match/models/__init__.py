@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from . import account_invoice
 from . import aeat_sii_match_difference
