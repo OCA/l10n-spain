@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 Studio73 - Abraham Anes
 # Copyright 2019 Studio73 - Pablo Fuentes
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
@@ -10,7 +9,7 @@ import copy
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, exceptions, fields, models
-from odoo.modules.registry import RegistryManager
+from odoo.modules.registry import Registry
 
 
 _logger = logging.getLogger(__name__)
@@ -190,7 +189,7 @@ class SiiMatchReport(models.Model):
                     ('reference', '=', name),
                     ('type', 'in', ['in_invoice', 'in_refund'])
                 ], limit=1)
-            if odoo_invoice and odoo_invoice.id not in matched_invoices.keys():
+            if odoo_invoice and odoo_invoice.id not in list(matched_invoices.keys()):
                 matched_invoices[odoo_invoice.id] = invoice
             else:
                 left_results.append(invoice)
@@ -204,7 +203,7 @@ class SiiMatchReport(models.Model):
             left_invoices, matched_invoices)
         res = []
         invoices_list = {}
-        for odoo_inv_id, invoice in matched_invoices.items():
+        for odoo_inv_id, invoice in list(matched_invoices.items()):
             name = invoice['IDFactura']['NumSerieFacturaEmisor']
             csv = invoice['DatosPresentacion']['CSV']
             match_state = invoice['EstadoFactura']['EstadoCuadre']
@@ -264,7 +263,7 @@ class SiiMatchReport(models.Model):
             ('date', '>=', date_from),
             ('date', '<', date_to),
             ('company_id', '=', self.company_id.id),
-            ('id', 'not in', invoices.keys()),
+            ('id', 'not in', list(invoices.keys())),
             ('type', 'in', inv_type),
         ])
         for invoice in invoice_ids.filtered('sii_enabled'):
@@ -283,7 +282,7 @@ class SiiMatchReport(models.Model):
     @api.multi
     def _update_odoo_invoices(self, invoices):
         self.ensure_one()
-        for invoice_id, values in invoices.items():
+        for invoice_id, values in list(invoices.items()):
             invoice = self.env['account.invoice'].browse([invoice_id])
             invoice.sii_match_difference_ids.unlink()
             invoice.write(values)
@@ -395,7 +394,7 @@ class SiiMatchReport(models.Model):
                 match_vals['calculate_date'] = fields.Datetime.now()
                 sii_match_report.write(match_vals)
             except Exception:
-                new_cr = RegistryManager.get(self.env.cr.dbname).cursor()
+                new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 sii_match_report = env['l10n.es.aeat.sii.match.report'].browse(
                     self.id)
@@ -458,7 +457,7 @@ class SiiMatchReport(models.Model):
     def open_result(self):
         self.ensure_one()
         tree_view = self.env.ref(
-            'l10n_es_aeat_sii.view_l10n_es_aeat_sii_match_result_tree')
+            'l10n_es_aeat_sii_match.view_l10n_es_aeat_sii_match_result_tree')
         return {
             'name': _('Results'),
             'view_type': 'form',

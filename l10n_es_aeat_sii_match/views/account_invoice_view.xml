@@ -115,9 +115,9 @@
         <field name="arch" type="xml">
             <xpath expr="//group" position="inside">
                 <separator/>
-                <filter string="SII match state"
+                <filter name="sii_match_state" string="SII match state"
                         context="{'group_by':'sii_match_state'}"/>
-                <filter string="AEAT contrast state"
+                <filter name="sii_contrast_state" string="AEAT contrast state"
                         context="{'group_by':'sii_contrast_state'}"/>
             </xpath>
         </field>
@@ -125,21 +125,13 @@
 
     <record id="action_contrast_aeat" model="ir.actions.server">
         <field name="name">Contrast Invoices with AEAT</field>
+        <field name="type">ir.actions.server</field>
         <field name="model_id" ref="account.model_account_invoice" />
+        <field name="binding_model_id" ref="model_account_invoice" />
         <field name="state">code</field>
         <field name="code">
             records.contrast_aeat()
         </field>
-    </record>
-
-
-    <record id="action_contrast_aeat_value" model="ir.values">
-        <field name="name">Contrast Invoices with AEAT</field>
-        <field name="key">action</field>
-        <field name="key2">client_action_multi</field>
-        <field name="model">account.invoice</field>
-        <field name="value"
-            eval="'ir.actions.server,%d' % ref('l10n_es_aeat_sii_match.action_contrast_aeat')" />
     </record>
 </odoo>
 

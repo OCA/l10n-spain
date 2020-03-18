@@ -147,7 +147,7 @@
                 <field name="company_id"/>
                 <field name="calculate_date"/>
                 <field name="name"/>
-                <separator />
+                <separator/>
                 <filter name="draft" string="Draft"
                         domain="[('state', '=', 'draft')]"/>
                 <filter name="calculated" string="Calculated"
@@ -159,7 +159,7 @@
                 <filter name="cancelled" string="Cancelled"
                         domain="[('state', '=', 'cancelled')]"/>
                 <group expand="0" string="Group By">
-                    <filter string="State" icon="terp-personal"
+                    <filter name="state" string="State" icon="terp-personal"
                             domain="[]" context="{'group_by':'state'}"/>
                 </group>
             </search>
@@ -275,11 +275,11 @@
                 <filter name="contrast_state_partially" string="Partially correct"
                         domain="[('sii_contrast_state', '=', 'partially')]"/>
                 <group expand="0" string="Group By">
-                    <filter string="Invoice location" icon="terp-personal"
+                    <filter name="invoice_location" string="Invoice location" icon="terp-personal"
                             domain="[]" context="{'group_by':'invoice_location'}"/>
-                    <filter string="Match state" icon="terp-personal"
+                    <filter name="sii_match_state" string="Match state" icon="terp-personal"
                             domain="[]" context="{'group_by':'sii_match_state'}"/>
-                    <filter string="AEAT contrast state" icon="terp-personal"
+                    <filter name="sii_contrast_state" string="AEAT contrast state" icon="terp-personal"
                             domain="[]" context="{'group_by':'sii_contrast_state'}"/>
                 </group>
             </search>
