@@ -23,7 +23,7 @@ Plantillas MIS Builder para informes contables españoles
     :target: https://runbot.odoo-community.org/runbot/189/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Incluye las siguientes plantillas para el motor de informes provisto
 por el módulo *mis_builder*:
