@@ -8,7 +8,6 @@ class TestL10nEsDuaSii(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
         cls.country_es = cls.env.ref('base.es')
         cls.fp_dua = cls.env['account.fiscal.position'].create(dict(
             name="Importación con DUA",
@@ -42,14 +41,23 @@ class TestL10nEsDuaSii(common.SavepointCase):
             'code': 'TAX',
             'user_type_id': cls.account_type.id,
         })
-        cls.tax = cls.env['account.tax'].create({
-            'name': 'DUA Exento',
-            'description': 'P_IVA21_IBC',
-            'type_tax_use': 'purchase',
-            'amount_type': 'percent',
-            'amount': '0',
-            'account_id': cls.account_tax.id,
-        })
+        cls.company = cls.env.user.company_id
+        xml_id = '%s_account_tax_template_p_iva21_ibc' % cls.company.id
+        cls.tax = cls.env.ref('l10n_es.' + xml_id, raise_if_not_found=False)
+        if not cls.tax:
+            cls.tax = cls.env['account.tax'].create({
+                'name': 'IVA 21% Importaciones bienes corrientes',
+                'type_tax_use': 'purchase',
+                'amount_type': 'percent',
+                'amount': '0',
+                'account_id': cls.account_tax.id,
+            })
+            cls.env['ir.model.data'].create({
+                'module': 'l10n_es',
+                'name': xml_id,
+                'model': cls.tax._name,
+                'res_id': cls.tax.id,
+            })
 
     def test_dua_sii(self):
         invoice = self.env['account.invoice'].create({

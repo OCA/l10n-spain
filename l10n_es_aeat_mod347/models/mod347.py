@@ -176,16 +176,12 @@ class L10nEsAeatMod347Report(models.Model):
 
     @api.model
     def _get_taxes(self, map):
-        tax_obj = self.env['account.tax']
-        # Obtain all the taxes to be considered
-        tax_templates = map.mapped('tax_ids').mapped('description')
+        """Obtain all the taxes to be considered for 347."""
+        self.ensure_one()
+        tax_templates = map.mapped('tax_ids')
         if not tax_templates:
             raise exceptions.Warning(_('No Tax Mapping was found'))
-        # search the account.tax referred to by the template
-        taxes = tax_obj.search(
-            [('description', 'in', tax_templates),
-             ('company_id', 'child_of', self.company_id.id)])
-        return taxes
+        return self.get_taxes_from_templates(tax_templates)
 
     @api.model
     def _get_partner_347_identification(self, partner):
