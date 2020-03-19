@@ -6,7 +6,7 @@
 {
     'name': "Importaciones con DUA",
     'category': 'Localization/Account Charts',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.2.0',
     'depends': [
         'product',
         'l10n_es',
