@@ -64,6 +64,11 @@ en la ficha de la empresa: Contabilidad > Proveedores > Proveedores, pestaña de
 Contabilidad. El campo "Es no residente" no debe estar marcado para que
 las retenciones realizadas a éste proveedor se incluyan en el modelo 111
 
+Known issues / Roadmap
+======================
+
+El modelo 111 no está preparado para compañías que están acogidas al régimen de caja
+
 Bug Tracker
 ===========
 
