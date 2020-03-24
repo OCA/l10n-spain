@@ -72,14 +72,13 @@ class AccountBalanceReportingXlsx(ReportXlsx):
         self.sheet.write_string(self.row_pos, 5, _('Balance'),
                                 self.format_header)
         self.row_pos += 1
-
+    
     def _generate_report_content(self, report_data, zero_lines):
-        for line in report_data.line_ids:
-            if zero_lines or (line.current_value != 0.00 or
-                              line.previous_value != 0.00):
+        for line in report_data.line_ids:            
+            #zero_lines
+            if zero_lines or (line.current_value != 0.00 or line.previous_value != 0.00):
                 # Concept
-                self.sheet.write_string(self.row_pos, 0, line.display_name or
-                                        '')
+                self.sheet.write_string(self.row_pos, 0, line.display_name or '')
                 self.sheet.set_column(0, 0, 70)
                 # Code
                 self.sheet.write_string(self.row_pos, 1, line.code or '')
@@ -88,22 +87,52 @@ class AccountBalanceReportingXlsx(ReportXlsx):
                 self.sheet.write_string(self.row_pos, 2, line.notes or '')
                 self.sheet.set_column(2, 2, 20)
                 # Current Value
-                self.sheet.write_number(self.row_pos, 3,
-                                        line.current_value or 0.00)
+                self.sheet.write_number(self.row_pos, 3, line.current_value or 0.00)
                 self.sheet.set_column(3, 3, 20)
                 # Previous Value
-                self.sheet.write_number(self.row_pos, 4,
-                                        line.previous_value or 0.00)
+                self.sheet.write_number(self.row_pos, 4,line.previous_value or 0.00)
                 self.sheet.set_column(4, 4, 20)
                 # Balance
                 row_current_value = xl_rowcol_to_cell(self.row_pos, 3)
                 row_previous_value = xl_rowcol_to_cell(self.row_pos, 4)
-                self.sheet.write_formula(self.row_pos, 5,
-                                         str('=' + row_current_value + '-' +
-                                             row_previous_value))
+                self.sheet.write_formula(self.row_pos, 5, str('=' + row_current_value + '-' + row_previous_value))
                 self.sheet.set_column(5, 5, 20)
                 # Change row
                 self.row_pos += 1
+            #add_more_lines
+            if line.code!='21700':
+                #prefix_line
+                prefix_line = '.'
+                for char in line.display_name:
+                    if char=='.':
+                        prefix_line += char    
+                    else:
+                        break                    
+                #sublines
+                sublines = line.get_current_acount_account_ids()[0]
+                if sublines!=False:                                    
+                    for subline in sublines:
+                        if subline['current_value']!=0:
+                            # Concept
+                            self.sheet.write_string(self.row_pos, 0, prefix_line+str(subline['name'].encode("ascii", errors="replace")))
+                            self.sheet.set_column(0, 0, 70)
+                            # Code
+                            self.sheet.write_string(self.row_pos, 1, subline['code'])
+                            self.sheet.set_column(1, 1, 12)
+                            # Notes
+                            self.sheet.write_string(self.row_pos, 2, '')
+                            self.sheet.set_column(2, 2, 20)
+                            # Current Value
+                            self.sheet.write_number(self.row_pos, 3, subline['current_value'])                            
+                            self.sheet.set_column(3, 3, 20)
+                            # Previous Value
+                            self.sheet.write_string(self.row_pos, 4, '')
+                            self.sheet.set_column(4, 4, 20)
+                            # Balance
+                            self.sheet.write_string(self.row_pos, 5, '')
+                            self.sheet.set_column(5, 5, 20)
+                            # Change row
+                            self.row_pos += 1                                                                
 
     def generate_xlsx_report(self, workbook, data, objects):
         id_report = None
@@ -131,6 +160,7 @@ class AccountBalanceReportingXlsx(ReportXlsx):
         inf_zero_line_id = self.env.ref(name_module+name_report)[0].id
         if inf_zero_line_id == data.get('report_xml_id')[0]:
             zero_lines = False
+                         
         self._generate_report_content(report_data, zero_lines)
 
 
