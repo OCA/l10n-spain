@@ -1,4 +1,4 @@
-# Copyright 2015-2019 Pedro M. Baeza
+# Copyright 2015-2020 Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo.tests import common
@@ -79,3 +79,62 @@ class TestOtherChart(common.SavepointCase):
             'company_id': self.company.id,
         })
         self.assertNotEqual(journal.sequence_id, prev_journal.sequence_id)
+
+    def test_invoice(self):
+        sequence = self.env['ir.sequence'].create({
+            'name': 'Test account move sequence',
+            'padding': 3,
+            'prefix': 'tAM',
+        })
+        journal = self.env['account.journal'].create({
+            'name': 'Test Sales Journal',
+            'code': 'tVEN',
+            'type': 'sale',
+            'sequence_id': sequence.id,
+            'update_posted': True,
+        })
+        account_type = self.env['account.account.type'].create({
+            'name': 'Test',
+            'type': 'receivable',
+        })
+        account = self.env['account.account'].create({
+            'name': 'Test account',
+            'code': 'TEST',
+            'user_type_id': account_type.id,
+            'reconcile': True,
+        })
+        account_income = self.env['account.account'].create({
+            'name': 'Test income account',
+            'code': 'INCOME',
+            'user_type_id': self.env['account.account.type'].create(
+                {'name': 'Test income'}).id,
+        })
+        partner = self.env['res.partner'].create({
+            'name': 'Test',
+            'property_account_receivable_id': account.id,
+        })
+        invoice = self.env['account.invoice'].create({
+            'journal_id': journal.id,
+            'account_id': account.id,
+            'company_id': self.env.user.company_id.id,
+            'currency_id': self.env.user.company_id.currency_id.id,
+            'partner_id': partner.id,
+            'invoice_line_ids': [(0, 0, {
+                'account_id': account_income.id,
+                'name': 'Test line',
+                'price_unit': 50,
+                'quantity': 10,
+            })]
+        })
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.number[:3], 'tAM')
+        number = invoice.number
+        self.assertEqual(invoice.invoice_number, number)
+        self.assertEqual(invoice.move_id.name, number)
+        invoice.action_invoice_cancel()
+        # simulate draft button as calling it in tests fail due to do_in_draft
+        invoice.write({'state': 'draft', 'date': False})
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.number, number)
+        self.assertEqual(invoice.invoice_number, number)
+        self.assertEqual(invoice.move_id.name, number)
