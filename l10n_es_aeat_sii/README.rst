@@ -23,7 +23,7 @@ Suministro Inmediato de Información en el IVA
     :target: https://runbot.odoo-community.org/runbot/189/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Módulo para la presentación inmediata del IVA
 https://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/FicherosSuministros/V_1_1/SII_Descripcion_ServicioWeb_v1.1.pdf
@@ -148,6 +148,7 @@ Contributors
 * Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
 * Eric Antonés - NuoBiT Solutions, S.L. <eantones@nuobit.com>
+* David Alonso <david.alonso@solvos.es>
 
 Maintainers
 ~~~~~~~~~~~
@@ -168,7 +169,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza|
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/11.0/l10n_es_aeat_sii>`_ project on GitHub.
 
