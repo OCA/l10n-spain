@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="l10n_es_vat_book.vat_book_dates">
-          <div class="col-xs-12 text-center" id="dates_div">
+          <div class="col-12 text-center" id="dates_div">
               <table class="detail_table" id="fiscal_periods_table">
                   <tbody class="invoice_tbody">
                       <tr>
@@ -34,7 +34,7 @@
     </template>
 
     <template id="l10n_es_vat_book.vat_book_contact">
-        <div class="col-xs-12 text-center" id="vat_book_contact_div">
+        <div class="col-12 text-center" id="vat_book_contact_div">
           <table class="detail_table" id="vat_book_contact_table">
               <tbody class="invoice_tbody">
                   <tr>
