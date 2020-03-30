@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_payment_mode_form" model="ir.ui.view">
+        <field name="name">Payment mode form (Confirming sabadell)</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_mode_form"/>
+        <field name="arch" type="xml">
+            <group position="after">
+                <group string="Opciones Confirming Sabadell" attrs="{'invisible': [('is_conf_sabadell', '=', False)]}">
+                    <!--field name="conf_sabadell_type"/-->
+                    <!-- <field name="gastos" attrs="{'invisible': [('conf_bbva_type', 'not in', ['60','61'])],'required': [('conf_bbva_type', 'in', ['60','61'])]}"/>
+                    <field name="forma_pago" attrs="{'invisible': [('conf_bbva_type', '!=', '70')],'required': [('conf_bbva_type', '=', '70')]}"/>
+                    <field name="bank"/> -->
+                    <field name="is_conf_sabadell" invisible="1"/>
+                    <field name="num_contract"/>
+                    <!--field name="sufix"/-->
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
