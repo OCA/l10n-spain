@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-30 20:59+0000\n"
-"PO-Revision-Date: 2019-10-25 17:33+0000\n"
+"PO-Revision-Date: 2020-03-31 18:14+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
@@ -42,7 +42,7 @@ msgstr "Creat el"
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nom mostrat"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_id
@@ -57,7 +57,7 @@ msgstr "Importar ubicacions des de Geonames"
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Última modificació a"
 
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_write_uid
@@ -72,7 +72,7 @@ msgstr "Darrera Actualització el"
 #. module: l10n_es_toponyms
 #: model:ir.model.fields,field_description:l10n_es_toponyms.field_config_es_toponyms_name
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nom"
 
 #. module: l10n_es_toponyms
 #: model:ir.ui.view,arch_db:l10n_es_toponyms.view_confirm_toponyms_es_form
