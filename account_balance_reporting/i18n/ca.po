@@ -348,8 +348,8 @@ msgid ""
 "(values generated from the selected template lines of detail formulas)"
 msgstr ""
 "Això emmagatzema la configuració/capçalera d'un informe de balanç de compte, "
-"i les línies de detall enllaçades amb els valors dels conceptes comptables ("
-"valors generats des del detall de les  línies de la plantilla de fórmules)"
+"i les línies de detall enllaçades amb els valors dels conceptes comptables "
+"(valors generats des del detall de les  línies de la plantilla de fórmules)"
 
 #. module: account_balance_reporting
 #: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:436
@@ -556,7 +556,7 @@ msgid "System"
 msgstr "Sistema"
 
 #. module: account_balance_reporting
-#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_5737
+#: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_id_5757
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_template_id
 msgid "Template"
 msgstr "Plantilla"
