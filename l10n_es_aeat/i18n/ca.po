@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2020-03-13 10:13+0000\n"
+"PO-Revision-Date: 2020-03-31 18:14+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -256,7 +256,7 @@ msgstr "Fecha de cálculo"
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancel·lar"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -508,7 +508,7 @@ msgstr "Declaració"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_display_name
 msgid "Display Name"
-msgstr "Display Name"
+msgstr "Nom a mostrar"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -859,7 +859,7 @@ msgstr "NIF repr. legal"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Última modificació a"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line_write_uid
@@ -959,7 +959,7 @@ msgstr "Modelo"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_number
 msgid "Model number"
-msgstr "Nº modelo"
+msgstr "No de model"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:418
@@ -990,7 +990,7 @@ msgstr "Debe tener apellidos y nombre."
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line_wizard_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_name
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nom"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line_negative_sign
@@ -1094,7 +1094,7 @@ msgstr "Empresa"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_period_type
 msgid "Period type"
-msgstr "Tipo de periodo"
+msgstr "Tipus de període"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_contact_phone
@@ -1295,7 +1295,7 @@ msgstr "Fecha inicial"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_state
 msgid "State"
-msgstr "Estado"
+msgstr "Estat"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_type
@@ -1374,7 +1374,7 @@ msgstr "Líneas de mapeo de impuestos"
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_form
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
 msgid "Tax lines"
-msgstr "Líneas de impuestos"
+msgstr "Línies d'imposts"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.action_l10n_es_aeat_map_tax
