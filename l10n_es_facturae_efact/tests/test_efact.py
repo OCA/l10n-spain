@@ -22,6 +22,8 @@ class TestConnection:
     def __init__(self, data, filename=''):
         self.data = data
         self.filename = filename
+        self._host_keys = {}
+        self._system_host_keys = {}
 
     def connect(self, hostname, port, username, password):
         return

@@ -27,7 +27,8 @@ class AccountInvoiceIntegration(models.Model):
         connection.load_system_host_keys()
         connection.connect(
             ICP.get_param("account.invoice.efact.server", default=None),
-            port=ICP.get_param("account.invoice.efact.port", default=None),
+            port=int(ICP.get_param(
+                "account.invoice.efact.port", default=None)),
             username=ICP.get_param(
                 "account.invoice.efact.user", default=None),
             password=ICP.get_param(
