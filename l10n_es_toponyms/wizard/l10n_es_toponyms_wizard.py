@@ -3,20 +3,22 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields, api
+from odoo import fields, models
 
 
 class ConfigEsToponyms(models.TransientModel):
-    _name = 'config.es.toponyms'
-    _inherit = 'res.config.installer'
+    _name = "config.es.toponyms"
+    _inherit = "res.config.installer"
+    _description = "Config ES Toponyms"
 
-    name = fields.Char('Name', size=64)
+    name = fields.Char("Name", size=64)
 
-    @api.multi
     def execute(self):
         res = super(ConfigEsToponyms, self).execute()
-        wizard_obj = self.env['city.zip.geonames.import']
-        country_es = self.env['res.country'].search([('code', '=', 'ES')])
-        wizard = wizard_obj.create({'country_id': country_es.id})
+        wizard_obj = self.env["city.zip.geonames.import"]
+        country_es = self.env["res.country"].search([("code", "=", "ES")]).id
+        wizard = wizard_obj.create(
+            {"country_id": [(6, 0, [country_es])]}
+        )
         wizard.run_import()
         return res
