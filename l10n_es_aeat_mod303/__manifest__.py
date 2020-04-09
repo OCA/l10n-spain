@@ -26,6 +26,8 @@
         "data/aeat_export_mod303_2017_data.xml",
         "data/aeat_export_mod303_2018_data.xml",
         "data/l10n_es_aeat_mod303_report_activity_code_data.xml",
+        "report/aeat_mod303.xml",
+        "report/report_views.xml",
         "views/mod303_view.xml",
         "views/l10n_es_aeat_mod303_report_activity_code_data_views.xml",
         "security/l10n_es_aeat_mod303_security.xml",

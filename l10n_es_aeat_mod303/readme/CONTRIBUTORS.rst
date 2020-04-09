@@ -7,3 +7,4 @@
   * Antonio Espinosa
   * Luis M. Ontalba
   * Pedro M. Baeza
+  * Manuel Regidor
