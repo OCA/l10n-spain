@@ -3,8 +3,8 @@
 # Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import _, api, fields, models
-from openerp.exceptions import UserError, ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 
 class L10nEsAeatMod115Report(models.Model):
@@ -57,7 +57,6 @@ class L10nEsAeatMod115Report(models.Model):
         inverse='_inverse_tipo_declaracion',
     )
 
-    @api.multi
     @api.depends('tipo_declaracion')
     def _compute_tipo_declaracion(self):
         for rec in self:
@@ -68,7 +67,6 @@ class L10nEsAeatMod115Report(models.Model):
                 rec.tipo_declaracion_positiva = rec.tipo_declaracion
                 rec.tipo_declaracion_negativa = False
 
-    @api.multi
     def _inverse_tipo_declaracion(self):
         for rec in self:
             if rec.casilla_05 > 0.0:
@@ -76,7 +74,6 @@ class L10nEsAeatMod115Report(models.Model):
             else:
                 rec.tipo_declaracion = rec.tipo_declaracion_negativa
 
-    @api.multi
     @api.constrains('tipo_declaracion')
     def _check_tipo_declaracion(self):
         for rec in self:
@@ -89,7 +86,6 @@ class L10nEsAeatMod115Report(models.Model):
                     'The result of the declaration is positive. '
                     'You should select another Result type'))
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.move_line_ids')
     def _compute_casilla_01(self):
         casillas = (2, 3)
@@ -99,7 +95,6 @@ class L10nEsAeatMod115Report(models.Model):
             report.casilla_01 = len(
                 tax_lines.mapped('move_line_ids').mapped('partner_id'))
 
-    @api.multi
     @api.depends('tax_line_ids', 'tax_line_ids.amount')
     def _compute_casilla_03(self):
         for report in self:
@@ -107,13 +102,11 @@ class L10nEsAeatMod115Report(models.Model):
                 lambda x: x.field_number == 3)
             report.casilla_03 = sum(tax_lines.mapped('amount'))
 
-    @api.multi
     @api.depends('casilla_03', 'casilla_04')
     def _compute_casilla_05(self):
         for report in self:
             report.casilla_05 = report.casilla_03 - report.casilla_04
 
-    @api.multi
     def button_confirm(self):
         """Check bank account completion."""
         msg = ""
@@ -128,7 +121,6 @@ class L10nEsAeatMod115Report(models.Model):
             raise UserError(msg)
         return super(L10nEsAeatMod115Report, self).button_confirm()
 
-    @api.multi
     def calculate(self):
         super(L10nEsAeatMod115Report, self).calculate()
         self.refresh()

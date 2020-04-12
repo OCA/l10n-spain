@@ -10,3 +10,7 @@
 
   * Antonio Espinosa
   * Pedro M. Baeza
+
+* `Acysos S.L. <https://www.acysos.com>`__:
+
+  * Ignacio Ibeas
