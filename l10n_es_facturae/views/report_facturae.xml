@@ -16,8 +16,8 @@
         <AdministrativeCentre>
             <CentreCode t-length="10" t-esc="centre_code"/>
             <RoleTypeCode t-esc="role_type_code"/>
-            <Name t-length="40" t-esc="partner.firstname" t-if="not partner.is_company"/>
-            <FirstSurname t-length="40" t-esc="partner.lastname" t-if="not partner.is_company"/>
+            <Name t-length="40" t-esc="partner.firstname if partner._fields.get('firstname') else partner.name" t-if="not partner.is_company"/>
+            <FirstSurname t-length="40" t-esc="partner.lastname if partner._fields.get('lastname') else ''" t-if="not partner.is_company"/>
             <SecondSurname t-if="False"/>
             <t t-call="l10n_es_facturae.address_contact">
                 <t t-set="partner" t-value="partner"/>
@@ -66,8 +66,8 @@
             </t>
         </LegalEntity>
         <Individual t-if="buyer_type == 'F'">
-            <Name t-length="40" t-esc="partner.firstname"/>
-            <FirstSurname t-length="40" t-esc="partner.lastname"/>
+            <Name t-length="40" t-esc="partner.firstname if partner._fields.get('firstname') else partner.name"/>
+            <FirstSurname t-length="40" t-esc="partner.lastname if partner._fields.get('lastname') else ''"/>
             <SecondSurname t-length="40" t-esc="''"/>
             <t t-call="l10n_es_facturae.address_contact">
             </t>
