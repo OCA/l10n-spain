@@ -47,6 +47,7 @@ Problemas conocidos / Hoja de ruta
   `l10n_es_aeat_mod303_cash_basis`.
 * La prorrata del IVA está contemplada por el módulo adicional
   `l10n_es_aeat_vat_prorrate`.
+* Separación de No sujeto para productos del artículo 7, 14, otros.
 
 Créditos
 ========
