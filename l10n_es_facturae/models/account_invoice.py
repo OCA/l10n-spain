@@ -208,16 +208,7 @@ class AccountInvoice(models.Model):
             raise ValidationError(_('Company vat is too small'))
         if not self.payment_mode_id:
             raise ValidationError(_('Payment mode is required'))
-        if self.payment_mode_id.facturae_code == '02':
-            if not self.mandate_id:
-                raise ValidationError(_('Mandate is missing'))
-            if not self.mandate_id.partner_bank_id:
-                raise ValidationError(_('Partner bank in mandate is missing'))
-            if len(self.mandate_id.partner_bank_id.bank_id.bic) != 11:
-                raise ValidationError(_('Mandate account BIC must be 11'))
-            if len(self.mandate_id.partner_bank_id.acc_number) < 5:
-                raise ValidationError(_('Mandate account is too small'))
-        else:
+        if self.payment_mode_id.facturae_code:
             partner_bank = self.partner_banks_to_show()[:1]
             if not partner_bank:
                 raise ValidationError(_('Partner bank is missing'))

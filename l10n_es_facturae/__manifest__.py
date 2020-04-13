@@ -27,7 +27,6 @@
         "partner_firstname",
         "report_xml",
         "report_qweb_parameter",
-        "account_banking_mandate"
     ],
     "data": [
         "data/log_counter.xml",

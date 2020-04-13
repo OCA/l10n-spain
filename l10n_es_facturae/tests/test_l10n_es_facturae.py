@@ -65,21 +65,11 @@ class TestL10nEsFacturae(common.TransactionCase):
                 'bank_id': self.env['res.bank'].search(
                     [('bic', '=', 'PSSTFRPPXXX')], limit=1).id
             })
-        self.mandate = self.env['account.banking.mandate'].create({
-            'company_id': main_company.id,
-            'format': 'basic',
-            'partner_id': self.partner.id,
-            'state': 'valid',
-            'partner_bank_id': self.bank.id,
-            'signature_date': '2016-03-12',
-        })
-
         self.payment_method = self.env['account.payment.method'].create({
             'name': 'inbound_mandate',
             'code': 'inbound_mandate',
             'payment_type': 'inbound',
             'bank_account_required': False,
-            'mandate_required': True,
             'active': True
         })
         payment_methods = self.env['account.payment.method'].search([
@@ -141,7 +131,6 @@ class TestL10nEsFacturae(common.TransactionCase):
             'date_invoice': '2016-03-12',
             'partner_bank_id': self.bank.id,
             'payment_mode_id': self.payment_mode_02.id,
-            'mandate_id': self.mandate.id
         })
 
         self.invoice_line_02 = self.env['account.invoice.line'].create({
