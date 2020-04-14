@@ -405,13 +405,16 @@ a su destino. La administración le proporcionará estos datos.</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#id1">Installation</a></h1>
-<p>Este módulo depende del módulo <em>account_payment_partner</em>, <em>account_banking_mandate</em> y sus
+<p>Este módulo depende del módulo <em>account_payment_partner</em> y sus
 dependencias, que se encuentran en <a class="reference external" href="https://github.com/OCA/bank-payment">https://github.com/OCA/bank-payment</a>.</p>
 <p>Para generar el archivo XML, hace falta el módulo <em>report_xml</em> que se encuentra
 en <a class="reference external" href="https://github.com/OCA/reporting-engine">https://github.com/OCA/reporting-engine</a>.</p>
 <p>En el caso de querer firmar el formato FacturaE desde Odoo, debe instalarse la
 última versión de xmlsig mediante el comando ´pip install xmlsig´. La versión
 mínima de la misma debe ser 0.1.2.</p>
+<p>Si se instalan los módulos <em>account_banking_mandate</em> o <em>partner_firstname</em>, se
+utilizará para el XML generado la cuenta bancaria de los mandatos o los
+apellidos respectivamente.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#id2">Configuration</a></h1>

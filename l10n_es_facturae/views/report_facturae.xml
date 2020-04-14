@@ -16,8 +16,8 @@
         <AdministrativeCentre>
             <CentreCode t-length="10" t-esc="centre_code"/>
             <RoleTypeCode t-esc="role_type_code"/>
-            <Name t-length="40" t-esc="partner.firstname" t-if="not partner.is_company"/>
-            <FirstSurname t-length="40" t-esc="partner.lastname" t-if="not partner.is_company"/>
+            <Name t-length="40" t-esc="partner.firstname if partner._fields.get('firstname') else partner.name" t-if="not partner.is_company"/>
+            <FirstSurname t-length="40" t-esc="partner.lastname if partner._fields.get('lastname') else ''" t-if="not partner.is_company"/>
             <SecondSurname t-if="False"/>
             <t t-call="l10n_es_facturae.address_contact">
                 <t t-set="partner" t-value="partner"/>
@@ -66,8 +66,8 @@
             </t>
         </LegalEntity>
         <Individual t-if="buyer_type == 'F'">
-            <Name t-length="40" t-esc="partner.firstname"/>
-            <FirstSurname t-length="40" t-esc="partner.lastname"/>
+            <Name t-length="40" t-esc="partner.firstname if partner._fields.get('firstname') else partner.name"/>
+            <FirstSurname t-length="40" t-esc="partner.lastname if partner._fields.get('lastname') else ''"/>
             <SecondSurname t-length="40" t-esc="''"/>
             <t t-call="l10n_es_facturae.address_contact">
             </t>
@@ -333,17 +333,17 @@
                                 <InstallmentDueDate t-esc="invoice.date_due or invoice.date_invoice"/>
                                 <InstallmentAmount t-esc="'%.2f' % (invoice.residual)"/>
                                 <PaymentMeans t-esc="invoice.payment_mode_id.facturae_code"/>
+                                <t t-set="partner_bank" t-value="invoice.partner_banks_to_show()[:1]"/>
+                                <t t-set="bank" t-value="partner_bank.bank_id"/>
                                 <AccountToBeDebited t-if="invoice.payment_mode_id.facturae_code == '02'">
-                                    <IBAN t-minlength="5" t-length="34" t-esc="''.join(invoice.mandate_id.partner_bank_id.acc_number.split())"/>
-                                    <BankCode t-length="60" t-esc="invoice.partner_bank_id.bank_id.code"/>
+                                    <IBAN t-minlength="5" t-length="34" t-esc="''.join(partner_bank.acc_number.split())"/>
+                                    <BankCode t-length="60" t-esc="bank.code" t-if="bank.code"/>
                                     <BranchCode t-length="60" t-if="False"/>
-                                    <BIC t-minlength="11" t-length="11" t-esc="invoice.mandate_id.partner_bank_id.bank_id.bic"/>
+                                    <BIC t-minlength="11" t-length="11" t-esc="bank.bic" t-if="bank.bic"/>
                                     <PaymentReconciliationReference t-length="60" t-if="False"/>
                                 </AccountToBeDebited>
                                 <AccountToBeCredited t-if="invoice.payment_mode_id.facturae_code != '02'">
-                                    <t t-set="partner_bank" t-value="invoice.partner_banks_to_show()[:1]"/>
                                     <IBAN t-minlength="5" t-length="34" t-esc="''.join(partner_bank.acc_number.split())"/>
-                                    <t t-set="bank" t-value="partner_bank.bank_id"/>
                                     <BankCode t-length="60" t-esc="bank.code" t-if="bank.code"/>
                                     <BranchCode t-length="60" t-if="False"/>
                                     <BIC t-minlength="11" t-length="11" t-esc="bank.bic" t-if="bank.bic"/>
