@@ -397,7 +397,7 @@ msgstr "Factura-E sin firmar"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:93
-#: code:addons/l10n_es_facturae/models/account_invoice.py:527
+#: code:addons/l10n_es_facturae/models/account_invoice.py:518
 #, python-format
 msgid "FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
@@ -410,7 +410,7 @@ msgid "Facturae"
 msgstr "facturae"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:545
+#: code:addons/l10n_es_facturae/models/account_invoice.py:536
 #, fuzzy, python-format
 #| msgid "Facturae Refund Reason"
 msgid "Facturae Configuration"
@@ -784,24 +784,6 @@ msgid "Main file"
 msgstr "Fichero principal"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:217
-#, python-format
-msgid "Mandate account BIC must be 11"
-msgstr "El BIC del banco de la cuenta del mandato es demasiado corto"
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:219
-#, python-format
-msgid "Mandate account is too small"
-msgstr "La cuenta del mandato es demasiado corta"
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:213
-#, python-format
-msgid "Mandate is missing"
-msgstr "No existe mandato"
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__method_id
 msgid "Method"
 msgstr "Método"
@@ -883,13 +865,7 @@ msgid "Paid"
 msgstr "Pagado"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:215
-#, python-format
-msgid "Partner bank in mandate is missing"
-msgstr "El banco del mandato es obligatorio"
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:223
+#: code:addons/l10n_es_facturae/models/account_invoice.py:214
 #, python-format
 msgid "Partner bank is missing"
 msgstr "El banco es obligatorio"
@@ -1040,13 +1016,13 @@ msgid "Second"
 msgstr "Segundo"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:226
+#: code:addons/l10n_es_facturae/models/account_invoice.py:217
 #, python-format
 msgid "Selected account BIC must be 11"
 msgstr "El BIC del banco de la cuenta debe tener 11 carácteres"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:228
+#: code:addons/l10n_es_facturae/models/account_invoice.py:219
 #, python-format
 msgid "Selected account is too small"
 msgstr "La cuenta seleccionada es demasiado corta"
@@ -1088,7 +1064,7 @@ msgstr "Serie de la factura"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:101
-#: code:addons/l10n_es_facturae/models/account_invoice.py:535
+#: code:addons/l10n_es_facturae/models/account_invoice.py:526
 #, python-format
 msgid "Start date cannot be later than end date"
 msgstr ""
@@ -1129,7 +1105,7 @@ msgid "Templates for Taxes"
 msgstr "Plantillas para Impuestos"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:478
+#: code:addons/l10n_es_facturae/models/account_invoice.py:469
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
@@ -1171,7 +1147,7 @@ msgid "Vat must be defined"
 msgstr "El número de IVA debe estar definido"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:230
+#: code:addons/l10n_es_facturae/models/account_invoice.py:221
 #, python-format
 msgid ""
 "You can only create Factura-E files for invoices that have been validated."
@@ -1279,8 +1255,8 @@ msgid "[19] Pago mediante tarjeta"
 msgstr "[19] Pago mediante tarjeta"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:450
-#: code:addons/l10n_es_facturae/models/account_invoice.py:458
+#: code:addons/l10n_es_facturae/models/account_invoice.py:441
+#: code:addons/l10n_es_facturae/models/account_invoice.py:449
 #, python-format
 msgid "facturae"
 msgstr "facturae"
@@ -1306,6 +1282,18 @@ msgstr "Órgano gestor"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr "Órgano proponente"
+
+#~ msgid "Mandate account BIC must be 11"
+#~ msgstr "El BIC del banco de la cuenta del mandato es demasiado corto"
+
+#~ msgid "Mandate account is too small"
+#~ msgstr "La cuenta del mandato es demasiado corta"
+
+#~ msgid "Mandate is missing"
+#~ msgstr "No existe mandato"
+
+#~ msgid "Partner bank in mandate is missing"
+#~ msgstr "El banco del mandato es obligatorio"
 
 #~ msgid "account.invoice.integration"
 #~ msgstr "account.invoice.integration"
