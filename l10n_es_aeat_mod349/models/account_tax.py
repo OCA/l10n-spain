@@ -24,7 +24,9 @@ class AccountTax(models.Model):
         map_349 = self.env['aeat.349.map.line'].search([])
         for tax in self:
             for line in map_349:
-                if any([tax.name == tmpl.name or tax.description == tmpl.name
+                if any([tax.name == tmpl.name or
+                        tax.description == tmpl.name or
+                        tax.description == tmpl.description
                         for tmpl in line.tax_tmpl_ids]):
                     tax.l10n_es_aeat_349_operation_key = line.operation_key
                     break
