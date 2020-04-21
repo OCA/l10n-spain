@@ -21,6 +21,7 @@ class ResPartner(models.Model):
         string="Integration Methods",
         relation="account_move_integration_method_res_partner_rel",
     )
+    attach_invoice_as_annex = fields.Boolean()
 
     def get_facturae_residence(self):
         if not self.country_id:

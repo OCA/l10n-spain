@@ -35,6 +35,7 @@
                             attrs="{'required': [('facturae', '=', True)]}"
                         />
                         <field name="organo_proponente" />
+                        <field name="attach_invoice_as_annex" />
                     </group>
                 </page>
             </page>

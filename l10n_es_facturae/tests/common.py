@@ -53,6 +53,7 @@ class CommonTest(common.TransactionCase):
                 "country_id": self.ref("base.es"),
                 "vat": "ES05680675C",
                 "facturae": True,
+                "attach_invoice_as_annex": True,
                 "organo_gestor": "U00000038",
                 "unidad_tramitadora": "U00000038",
                 "oficina_contable": "U00000038",
@@ -346,8 +347,25 @@ class CommonTest(common.TransactionCase):
         self.move.name = "2999/99999"
         self.assertTrue(self.move.can_integrate)
         self.assertEqual(self.move.integration_count, 0)
+        attachments_before = len(
+            self.env["ir.attachment"].search(
+                [
+                    ("res_model", "=", "account.invoice"),
+                    ("res_id", "=", self.invoice.id),
+                ],
+            )
+        )
         integrations = self.move.action_integrations()
         self.assertEqual(self.move.integration_count, 1)
+        attachments_after = len(
+            self.env["ir.attachment"].search(
+                [
+                    ("res_model", "=", "account.invoice"),
+                    ("res_id", "=", self.invoice.id),
+                ]
+            )
+        )
+        self.assertEqual(attachments_before + 1, attachments_after)
         integration = self.env["account.move.integration"].browse(
             integrations["res_id"]
         )
