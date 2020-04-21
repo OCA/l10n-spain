@@ -50,6 +50,7 @@ class CommonTest(common.TransactionCase):
             'country_id': self.ref('base.es'),
             'vat': 'ES05680675C',
             'facturae': True,
+            'attach_invoice_as_annex': True,
             'organo_gestor': 'U00000038',
             'unidad_tramitadora': 'U00000038',
             'oficina_contable': 'U00000038',
@@ -283,8 +284,17 @@ class CommonTest(common.TransactionCase):
     def test_integration(self):
         self.assertTrue(self.invoice.can_integrate)
         self.assertEqual(self.invoice.integration_count, 0)
+        attachments_before = len(self.env['ir.attachment'].search(
+            [('res_model', '=', 'account.invoice'),
+             ('res_id', '=', self.invoice.id)],
+        ))
         integrations = self.invoice.action_integrations()
         self.assertEqual(self.invoice.integration_count, 1)
+        attachments_after = len(self.env['ir.attachment'].search(
+            [('res_model', '=', 'account.invoice'),
+             ('res_id', '=', self.invoice.id)]
+        ))
+        self.assertEqual(attachments_before + 1, attachments_after)
         integration = self.env['account.invoice.integration'].browse(
             integrations['res_id'])
         self.assertTrue(integration.can_send)
