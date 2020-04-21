@@ -127,6 +127,10 @@ Contribudores
 
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
 
+* NuoBiT Solutions, S.L.
+
+  * Eric Antones <eantones@nuobit.com>
+
 Mantenedor
 ----------
 
