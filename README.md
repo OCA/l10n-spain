@@ -38,13 +38,13 @@ addon | version | summary
 [l10n_es_account_financial_report_xlsx](l10n_es_account_financial_report_xlsx/) | 8.0.1.0.0 | Informes financieros para España XLSX
 [l10n_es_account_invoice_sequence](l10n_es_account_invoice_sequence/) | 8.0.1.3.0 | Secuencia para facturas separada de la secuencia de asientos
 [l10n_es_aeat](l10n_es_aeat/) | 8.0.1.9.4 | AEAT Base
-[l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 8.0.2.1.0 | AEAT modelo 111
+[l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 8.0.2.2.0 | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 8.0.1.3.0 | AEAT modelo 115
-[l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 8.0.1.0.1 | AEAT modelo 123
+[l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 8.0.1.1.0 | AEAT modelo 123
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 8.0.0.9.0 | AEAT modelo 130
 [l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 8.0.1.3.1 | AEAT modelo 216
 [l10n_es_aeat_mod296](l10n_es_aeat_mod296/) | 8.0.1.3.0 | AEAT modelo 296
-[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 8.0.1.14.0 | AEAT modelo 303
+[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 8.0.1.15.0 | AEAT modelo 303
 [l10n_es_aeat_mod340](l10n_es_aeat_mod340/) | 8.0.2.5.1 | Generación de fichero modelo 340 y libro de IVA
 [l10n_es_aeat_mod340_cash_basis](l10n_es_aeat_mod340_cash_basis/) | 8.0.1.0.0 | Extensión del modelo 340 para criterio de caja
 [l10n_es_aeat_mod340_type0](l10n_es_aeat_mod340_type0/) | 8.0.1.0.0 | Generación de fichero modelo 340. Registro tipo 0
