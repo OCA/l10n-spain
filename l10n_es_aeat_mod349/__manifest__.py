@@ -9,18 +9,17 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "12.0.1.3.0",
+    "version": "13.0.1.0.0",
     "author": "Tecnativa, " "Eficent, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Localisation/Accounting",
     "website": "https://github.com/OCA/l10n-spain",
-    "depends": ["l10n_es_aeat", "l10n_es",],
+    "depends": ["l10n_es_aeat", "l10n_es"],
     "data": [
         "data/aeat_349_map_data.xml",
         "data/aeat_export_mod349_partner_refund_data.xml",
         "data/aeat_export_mod349_partner_data.xml",
         "data/aeat_export_mod349_data.xml",
-        "views/account_invoice_view.xml",
         "views/account_move_view.xml",
         "views/account_tax_view.xml",
         "views/aeat_349_map_view.xml",
@@ -32,7 +31,7 @@
         "security/mod_349_security.xml",
     ],
     "development_status": "Mature",
-    "maintainers": ["pedrobaeza",],
+    "maintainers": ["pedrobaeza"],
     "post_init_hook": "post_init_hook",
     "installable": True,
 }

@@ -25,10 +25,10 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
     def test_model_349(self):
         # Add some test data
         self.customer.write(
-            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id,}
+            {"vat": "BE0411905847", "country_id": self.env.ref("base.be").id}
         )
         self.supplier.write(
-            {"vat": "BG0000100159", "country_id": self.env.ref("base.bg").id,}
+            {"vat": "BG0000100159", "country_id": self.env.ref("base.bg").id}
         )
         # Data for 1T 2017
         # Purchase invoices
@@ -199,7 +199,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertEqual(a_refund.period_type, model349_s.period_type)
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
-            {"name": "test_export_to_boe.txt",}
+            {"name": "test_export_to_boe.txt"}
         )
         export_config_xml_ids = [
             "l10n_es_aeat_mod349.aeat_mod349_main_export_config",
