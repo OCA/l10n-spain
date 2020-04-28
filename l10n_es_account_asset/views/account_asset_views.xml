@@ -17,6 +17,9 @@
                     attrs="{'invisible': ['|', ('method_time', '!=', 'percentage'), ('method_period', '=', 'year')], 'required': [('method_time', '=', 'percentage')]}"
                 />
             </field>
+            <button name="remove" position="attributes">
+                <attribute name="attrs">{'invisible':[('state', 'not in', ['open', 'close'])]}</attribute>
+            </button>
         </field>
     </record>
 
