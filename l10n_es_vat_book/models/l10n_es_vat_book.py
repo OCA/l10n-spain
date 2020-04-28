@@ -261,10 +261,10 @@ class L10nEsVatBook(models.Model):
                 tax_lines[key]['special_tax_group'] = tax_group
         if vat_book_line['special_tax_group']:
             base_line = next(filter(
-                lambda l: not l['special_tax_group'], implied_lines))
+                lambda l: not l['special_tax_group'], implied_lines), None)
             special_line = next(filter(
                 lambda l: l['special_tax_group'], implied_lines), None)
-            if special_line:
+            if base_line and special_line:
                 base_line.update({
                     'special_tax_id': special_line['tax_id'],
                     'special_tax_amount': special_line['tax_amount'],
