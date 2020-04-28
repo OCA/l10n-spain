@@ -84,3 +84,14 @@ class TestL10nEsAccountAsset(common.SavepointCase):
         self.assertGreater(
             self.asset.depreciation_line_ids[-1:].amount, 0,
             "Last depreciation amount is not correct.")
+
+    def test_asset_other_percentage(self):
+        """Test for regression detected for annual percentage lower than 20."""
+        self.asset.annual_percentage = 10
+        # Check computed field
+        self.assertEqual(self.asset.method_percentage, 10)
+        self.asset.compute_depreciation_board()
+        self.assertEqual(len(self.asset.depreciation_line_ids), 11)
+        lines = self.asset.depreciation_line_ids[1:].filtered(
+            lambda x: x.amount != 3000)
+        self.assertFalse(lines, "The amount of lines is not correct.")
