@@ -75,6 +75,7 @@ Contributors
 
   * Alexandre Díaz
   * Pedro M. Baeza
+* Eric Antones - NuoBiT Solutions, S.L. <eantones@nuobit.com>
 
 Maintainers
 ~~~~~~~~~~~
