@@ -1,7 +1,6 @@
-# © 2017 FactorLibre - Hugo Santos <hugo.santos@factorlibre.com>
-# © 2018 FactorLibre - Victor Rodrigo <victor.rodrigo@factorlibre.com>
+# © 2020 FactorLibre - Rodrigo Bonilla <rodrigo.bonilla@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from openerp import api, fields, exceptions, models, _
+from odoo import api, fields, exceptions, models, _
 
 
 class AccountInvoice(models.Model):
@@ -16,8 +15,7 @@ class AccountInvoice(models.Model):
     def _get_sii_invoice_dict_out(self, cancel=False):
         inv_dict = super(AccountInvoice, self)._get_sii_invoice_dict_out(
             cancel=cancel)
-        if self.is_invoice_summary and \
-                self.type == 'out_invoice':
+        if self.is_invoice_summary and self.type == 'out_invoice':
             tipo_factura = 'F4'
             if self.sii_invoice_summary_start:
                 if self.sii_invoice_summary_start == \
@@ -27,32 +25,34 @@ class AccountInvoice(models.Model):
                     inv_dict['IDFactura']['NumSerieFacturaEmisor'] =\
                         self.sii_invoice_summary_start
                     inv_dict['IDFactura'][
-                        'NumSerieFacturaEmisorsummarynFin'] =\
+                        'NumSerieFacturaEmisorResumenFin'] =\
                         self.sii_invoice_summary_end
             if 'FacturaExpedida' in inv_dict:
                 if 'TipoFactura' in inv_dict['FacturaExpedida']:
                     inv_dict['FacturaExpedida']['TipoFactura'] = tipo_factura
-                if tipo_factura == 'F4':
-                    if 'Contraparte' in inv_dict['FacturaExpedida']:
-                        del inv_dict['FacturaExpedida']['Contraparte']
+                if 'Contraparte' in inv_dict['FacturaExpedida']:
+                    del inv_dict['FacturaExpedida']['Contraparte']
         return inv_dict
-
-    def _vat_required(self):
-        res = super(AccountInvoice, self)._vat_required()
-        if self.is_invoice_summary:
-            res = False
-        return res
 
     @api.multi
     def _sii_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices.
         """
         self.ensure_one()
-        if (not self.fiscal_position_id and not self.partner_id.vat and
-                not self.is_invoice_summary) or \
-                (self.fiscal_position_id and
-                 self.fiscal_position_id.vat_required and not
-                 self.partner_id.vat):
+        partner = self.partner_id.commercial_partner_id
+        if partner.sii_simplified_invoice and self.type[:2] == 'in':
+            raise exceptions.Warning(
+                _("You can't make a supplier simplified invoice.")
+            )
+        if (
+                not self.fiscal_position_id
+                and not self.is_invoice_summary
+                and not self.partner_id.vat
+                and not self.partner_id.sii_simplified_invoice) or (
+                self.fiscal_position_id
+                and self.fiscal_position_id.vat_required
+                and not self.partner_id.vat
+                and not self.partner_id.sii_simplified_invoice):
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
@@ -63,4 +63,12 @@ class AccountInvoice(models.Model):
         if not self.company_id.sii_enabled:
             raise exceptions.Warning(
                 _("This company doesn't have SII enabled.")
+            )
+        if not self.sii_enabled:
+            raise exceptions.Warning(
+                _("This invoice is not SII enabled.")
+            )
+        if not self.reference and self.type in ['in_invoice', 'in_refund']:
+            raise exceptions.Warning(
+                _("The supplier number invoice is required")
             )
