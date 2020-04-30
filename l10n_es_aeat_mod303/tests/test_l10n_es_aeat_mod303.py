@@ -37,6 +37,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "S_IVA0_ISP": (2300, 0),
         "S_IVA0_IC": (2400, 0),
         "S_IVA0_SP_I": (2500, 0),
+        "S_IVA0": (2600, 0),
     }
     taxes_purchase = {
         # tax code: (base, tax_amount)
@@ -382,7 +383,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Entregas intra. de bienes y servicios - Base ventas
         "59": (2 * 2400) + (2 * 2500),  # S_IVA0_IC, S_IVA0_SP_I
         # Exportaciones y operaciones asimiladas - Base ventas
-        "60": (2 * 2000) + (2 * 2200),  # S_IVA0_E + S_IVA_NS
+        "60": (2 * 2000) + (2 * 2200) + (2 * 2600),  # S_IVA0_E + S_IVA_NS + S_IVA0
         # Op. no sujetas o con inv. del sujeto pasivo - Base ventas
         "61": ((2 * 2100) + (2 * 2300)),  # S_IVA_SP_E # S_IVA0_ISP
         # Importes de las entregas de bienes y prestaciones de servicios
@@ -572,7 +573,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             14280.0,
         )
         self.assertAlmostEqual(
-            self.model303_4t.casilla_88, 34680.0,
+            self.model303_4t.casilla_88, 39880.0,
         )
         # Check change of period type
         self.model303_4t.period_type = "1T"
