@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-# Copyright 2016-2018 Tecnativa - Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
+# Copyright 2016-2020 Tecnativa - Pedro M. Baeza
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 from odoo.addons.l10n_es_aeat_mod303.tests.test_l10n_es_aeat_mod303 \
     import TestL10nEsAeatMod303Base
 
 
-class TestL10nEsAeatVatProrrate(TestL10nEsAeatMod303Base):
+class TestL10nEsAeatVatProrrateBase(TestL10nEsAeatMod303Base):
     def setUp(self):
-        super(TestL10nEsAeatVatProrrate, self).setUp()
+        super().setUp()
         self.taxes_sale = {
             # tax code: (base, tax_amount)
             'S_IVA21B': (1400, 294),
@@ -21,8 +20,8 @@ class TestL10nEsAeatVatProrrate(TestL10nEsAeatMod303Base):
             'P_IVA10_BC': (250, 25),
             'P_IVA21_BC': (260, 54.6),
         }
-        self._invoice_purchase_create('2017-01-03')
-        self._invoice_sale_create('2017-01-13')
+        self.invoice_purchase = self._invoice_purchase_create('2017-01-03')
+        self.invoice_sale = self._invoice_sale_create('2017-01-13')
         self.journal = self.env['account.journal'].create({
             'name': 'Test journal',
             'code': 'TEST',
@@ -58,6 +57,8 @@ class TestL10nEsAeatVatProrrate(TestL10nEsAeatMod303Base):
             'journal_id': self.journal.id,
         })
 
+
+class TestL10nEsAeatVatProrrate(TestL10nEsAeatVatProrrateBase):
     def test_vat_prorrate(self):
         # First trimester
         self.model303.button_calculate()

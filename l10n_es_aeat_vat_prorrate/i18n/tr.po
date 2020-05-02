@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
 msgid "(compute prorrate percentage)"
 msgstr ""
 
@@ -29,33 +29,33 @@ msgid "AEAT 303 Report"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Cancel"
 msgstr "Vazgeç"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.actions.act_window,name:l10n_es_aeat_vat_prorrate.action_compute_vat_prorrate
-#: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "Compute VAT prorrate"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__create_uid
 msgid "Created by"
 msgstr "Oluşturan"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__create_date
 msgid "Created on"
 msgstr "Oluşturuldu"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__display_name
 msgid "Display Name"
 msgstr "Görünen İsim"
 
@@ -65,22 +65,22 @@ msgid "General prorrate"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate___last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate____last_update
 msgid "Last Modified on"
 msgstr "Son değişiklik"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__write_uid
 msgid "Last Updated by"
 msgstr "Son güncelleyen"
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__write_date
 msgid "Last Updated on"
 msgstr "Son güncelleme"
 
@@ -90,35 +90,35 @@ msgid "None"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid ""
 "Please introduce the year for which you want to compute\n"
 "                        the prorrate percentage."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_prorrate_regularization_account_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_account_id
 msgid "Prorrate regularization account"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_prorrate_regularization_analytic_account_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_analytic_account_id
 msgid "Prorrate regularization analytic account"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_casilla_44
+#: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:223
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:222
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:68
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:67
 #, python-format
 msgid ""
 "There's at least one previous report in draft state. Please confirm it "
@@ -126,21 +126,21 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_prorrate_regularization_account_id
+#: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_account_id
 msgid ""
 "This account will be the one where charging the regularization of VAT "
 "prorrate."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_prorrate_regularization_analytic_account_id
+#: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_analytic_account_id
 msgid ""
 "This analytic account will be the one where charging the regularization of "
 "the VAT prorrate."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid ""
 "This wizard will compute the VAT prorrate for a year.\n"
 "                        You have to use the prorrate of the previous year "
@@ -152,37 +152,37 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:59
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:58
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_vat_prorrate_percent
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__vat_prorrate_percent
 msgid "VAT prorrate percentage"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_vat_prorrate_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__vat_prorrate_type
 msgid "VAT prorrate type"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate_year
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate.model_l10n_es_aeat_compute_vat_prorrate
+msgid "Wizard for computing VAT prorrate"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__year
 msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report_casilla_44
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__casilla_44
 msgid "[44] Regularización de la prorrata"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: model:ir.model,name:l10n_es_aeat_vat_prorrate.model_l10n_es_aeat_compute_vat_prorrate
-msgid "l10n.es.aeat.compute.vat.prorrate"
-msgstr ""
-
-#. module: l10n_es_aeat_vat_prorrate
-#: model:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "or"
 msgstr "ya da"
