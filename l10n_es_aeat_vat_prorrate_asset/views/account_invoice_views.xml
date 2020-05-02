@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016 Tecnativa - Antonio Espinosa
+     Copyright 2017-2020 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+
+    <record model="ir.ui.view" id="invoice_supplier_form">
+        <field name="name">account.invoice.supplier.form - Invoice supplier form (VAT prorrate asset)</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_asset_management.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='asset_profile_id']" position="after">
+                <field name="vat_prorrate_percent"
+                       attrs="{'readonly': [('asset_profile_id', '=', False)], 'required': [('asset_profile_id', '!=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
