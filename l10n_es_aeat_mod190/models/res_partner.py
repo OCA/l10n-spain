@@ -123,7 +123,7 @@ class ResPartner(models.Model):
         la Ley del Impuesto.
         ''')
     hijos_y_descendientes_m_entero = fields.Integer(
-        string='Por entero')
+        string='Menores de 3 años, computados por entero')
     hijos_y_descendientes = fields.Integer(
         string='Resto:',
         help='''
@@ -135,21 +135,22 @@ class ResPartner(models.Model):
         la Ley del Impuesto.
         ''')
     hijos_y_descendientes_entero = fields.Integer(
-        string='Por entero')
+        string='Resto, computadors por entero')
 
     hijos_y_desc_discapacidad_mr = fields.Integer(
         string='Hijos y descendientes con discapacidad')
     hijos_y_desc_discapacidad_entero_mr = fields.Integer(
         string='Hijos y descendientes con discapacidad, computados por entero')
     hijos_y_desc_discapacidad_33 = fields.Integer(
-        string='Hijos y descendientes con discapacidad')
+        string='Hijos y descendientes con discapacidad del 33%')
     hijos_y_desc_discapacidad_entero_33 = fields.Integer(
-        string='Hijos y descendientes con discapacidad, computados por entero')
+        string='Hijos y descendientes con discapacidad del 33%'
+               ', computados por entero')
     hijos_y_desc_discapacidad_66 = fields.Integer(
-        string='Hijos y descendientes con discapacidad')
+        string='Hijos y descendientes con discapacidad del 66%')
     hijos_y_desc_discapacidad_entero_66 = fields.Integer(
-        string='Hijos y descendientes con discapacidad, computados por entero')
-
+        string='Hijos y descendientes con discapacidad del 66%'
+               ', computados por entero')
     ascendientes = fields.Integer(string='Ascendientes menores de 75 años')
     ascendientes_entero = fields.Integer(
         string='Ascendientes menores de 75 años, computados por entero')
@@ -160,15 +161,17 @@ class ResPartner(models.Model):
     ascendientes_discapacidad_33 = fields.Integer(
         string='Ascendientes con discapacidad')
     ascendientes_discapacidad_entero_33 = fields.Integer(
-        string='Ascendientes con discapacidad')
+        string='Ascendientes con discapacidad, computados por entero')
     ascendientes_discapacidad_mr = fields.Integer(
-        string='Ascendientes con discapacidad')
+        string='Ascendientes con discapacidad de más del 33%')
     ascendientes_discapacidad_entero_mr = fields.Integer(
-        string='Ascendientes con discapacidad')
+        string='Ascendientes con discapacidad de más del 33%'
+               ', computados por entero')
     ascendientes_discapacidad_66 = fields.Integer(
-        string='Ascendientes con discapacidad')
+        string='Ascendientes con discapacidad de más del 66%')
     ascendientes_discapacidad_entero_66 = fields.Integer(
-        string='Ascendientes con discapacidad')
+        string='Ascendientes con discapacidad de más del 66%'
+               ', computados por entero')
     computo_primeros_hijos_1 = fields.Integer(
         string='Cómputo de los 3 primeros hijos',
         help='''CÓMPUTO DE LOS 3 PRIMEROS HIJOS.

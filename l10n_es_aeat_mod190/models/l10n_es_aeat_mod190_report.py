@@ -275,6 +275,7 @@ class L10nEsAeatMod190Report(models.Model):
 
 class L10nEsAeatMod190ReportLine(models.Model):
     _name = 'l10n.es.aeat.mod190.report.line'
+    _description = "Line for AEAT report Mod 190"
 
     @api.depends('partner_vat', 'a_nacimiento',
                  'codigo_provincia', 'aeat_perception_key_id', 'partner_id')
@@ -385,43 +386,50 @@ class L10nEsAeatMod190ReportLine(models.Model):
                   'aplicación la reducción del tipo de retención.')],
         string='Comunicación préstamos vivienda habitual')
 
-    hijos_y_descendientes_m = fields.Integer(string='Under 3 years')
-    hijos_y_descendientes_m_entero = fields.Integer(string='Entirely')
-    hijos_y_descendientes = fields.Integer(string='Rest')
-    hijos_y_descendientes_entero = fields.Integer(string='Entirely')
+    hijos_y_descendientes_m = fields.Integer(
+        string='Under 3 years')
+    hijos_y_descendientes_m_entero = fields.Integer(
+        string='Under 3 years, computed entirely')
+    hijos_y_descendientes = fields.Integer(
+        string='Rest')
+    hijos_y_descendientes_entero = fields.Integer(
+        string='Rest, computed entirely')
 
     hijos_y_desc_discapacidad_mr = fields.Integer(
-        string='Descendants')
+        string='Descendientes con discapacidad')
     hijos_y_desc_discapacidad_entero_mr = fields.Integer(
-        string='Descendants, computed entirely')
+        string='Descendientes con discapacidad, computado de forma entera')
     hijos_y_desc_discapacidad_33 = fields.Integer(
-        string='Descendants')
+        string='Hijos y descendientes con discapacidad del 33%')
     hijos_y_desc_discapacidad_entero_33 = fields.Integer(
-        string='Descendants, computed entirely')
+        string='Hijos y descendientes con discapacidad del 33%'
+               ', computados por entero')
     hijos_y_desc_discapacidad_66 = fields.Integer(
-        string='Descendants')
+        string='Hijos y descendientes con discapacidad del 66%')
     hijos_y_desc_discapacidad_entero_66 = fields.Integer(
-        string='Descendants, computed entirely')
-
-    ascendientes = fields.Integer(string='Ascendents')
+        string='Hijos y descendientes con discapacidad del 66%'
+               ', computados por entero')
+    ascendientes = fields.Integer(string='Ascendientes menores de 75 años')
     ascendientes_entero = fields.Integer(
-        string='Ascendents, computed entirely')
-    ascendientes_m75 = fields.Integer(string='Ascendents')
+        string='Ascendientes menores de 75 años, computados por entero')
+    ascendientes_m75 = fields.Integer(string='Ascendientes mayores de 75 años')
     ascendientes_entero_m75 = fields.Integer(
-        string='Ascendents, computed entirely')
+        string='Ascendientes mayores de 75 años, computados por entero')
 
     ascendientes_discapacidad_33 = fields.Integer(
-        string='Ascendents')
+        string='Ascendientes con discapacidad')
     ascendientes_discapacidad_entero_33 = fields.Integer(
-        string='Ascendents, computed entirely')
+        string='Ascendientes con discapacidad, computados por entero')
     ascendientes_discapacidad_mr = fields.Integer(
-        string='Ascendents')
+        string='Ascendientes con discapacidad de más del 33%')
     ascendientes_discapacidad_entero_mr = fields.Integer(
-        string='Ascendents, computed entirely')
+        string='Ascendientes con discapacidad de más del 33%'
+               ', computados por entero')
     ascendientes_discapacidad_66 = fields.Integer(
-        string='Ascendents')
+        string='Ascendientes con discapacidad de más del 66%')
     ascendientes_discapacidad_entero_66 = fields.Integer(
-        string='Ascendents, computed entirely')
+        string='Ascendientes con discapacidad de más del 66%'
+               ', computados por entero')
     computo_primeros_hijos_1 = fields.Integer(
         string='1')
     computo_primeros_hijos_2 = fields.Integer(
