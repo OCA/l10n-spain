@@ -23,7 +23,7 @@
             Seguridad Social), se reflejarán en la clave A.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">1</field>
+        <field name="additional_data_required">1</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_02"
@@ -38,7 +38,7 @@
             previsto en el artículo 89.A del Reglamento del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_03"
@@ -52,7 +52,7 @@
             las subclaves 01 y 02.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">1</field>
+        <field name="additional_data_required">1</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_04"
@@ -68,7 +68,7 @@
             no deban reflejarse en la subclave 02.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">1</field>
+        <field name="additional_data_required">1</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_05"
@@ -87,7 +87,7 @@
             100.000 euros.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">1</field>
+        <field name="additional_data_required">1</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_06"
@@ -105,7 +105,7 @@
             los rendimientos sea inferior a 100.000 euros.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_07"
@@ -119,7 +119,7 @@
             las subclaves 01, 02 y 03.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_08"
@@ -134,7 +134,7 @@
             artículo 12.1, letra g), del Reglamento del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_09"
@@ -148,7 +148,7 @@
             la subclave 01.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_10"
@@ -163,7 +163,7 @@
             95.1 del Reglamento del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_11"
@@ -182,7 +182,7 @@
             «Loterías y Apuestas del Estado».
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_12"
@@ -200,7 +200,7 @@
             que se produzca dicho inicio como en los dos siguientes.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_13"
@@ -215,7 +215,7 @@
             95.4.2.o del Reglamento del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_14"
@@ -232,7 +232,7 @@
             porcino y avicultura.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_15"
@@ -247,7 +247,7 @@
             del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_16"
@@ -262,7 +262,7 @@
             95.6.2.o del Reglamento del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_17"
@@ -278,7 +278,7 @@
             imagen.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_18"
@@ -294,7 +294,7 @@
             Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_19"
@@ -318,7 +318,7 @@
             establecidos en el artículo 35.5.d) de la Ley del impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_20"
@@ -333,7 +333,7 @@
             forestales en montes públicos.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_21"
@@ -355,7 +355,7 @@
             promocionales definidas en el art. 3.i) de la Ley 13/2011.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_22"
@@ -369,7 +369,7 @@
             artículo 9 del Reglamento del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_23"
@@ -385,7 +385,7 @@
             artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_24"
@@ -399,7 +399,7 @@
             artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_25"
@@ -414,7 +414,7 @@
             en la letra c) del artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_26"
@@ -429,7 +429,7 @@
             Reglamento.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_27"
@@ -444,7 +444,7 @@
             Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_28"
@@ -458,7 +458,7 @@
             artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_29"
@@ -472,7 +472,7 @@
             artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_30"
@@ -491,7 +491,7 @@
             letra i) del artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_31"
@@ -504,7 +504,7 @@
             la letra j) del artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_32"
@@ -519,7 +519,7 @@
             7 de la Ley del Impuesto y en el artículo 3 del Reglamento.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_33"
@@ -534,7 +534,7 @@
             Reglamento.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_34"
@@ -549,7 +549,7 @@
             Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_35"
@@ -565,7 +565,7 @@
             Ley del Impuesto y en el artículo 5 del Reglamento.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_36"
@@ -580,7 +580,7 @@
             Impuesto y en el artículo 6 del Reglamento.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_37"
@@ -594,7 +594,7 @@
             Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_38"
@@ -610,7 +610,7 @@
             artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_39"
@@ -626,7 +626,7 @@
             del artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_40"
@@ -644,7 +644,7 @@
             Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_41"
@@ -659,7 +659,7 @@
             la letra z) del artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_42"
@@ -676,7 +676,7 @@
             párrafo de la letra w) del artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_43"
@@ -699,7 +699,7 @@
             primer párrafo de la letra y) del artículo 7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_44"
@@ -720,7 +720,7 @@
             7 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_45"
@@ -738,7 +738,7 @@
             fórmulas indirectas.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_subkey_46"
@@ -754,7 +754,7 @@
             las subclaves anteriores.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
 </odoo>

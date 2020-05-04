@@ -70,7 +70,7 @@
         <field name="sequence">6</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">NIF representante legal</field>
-        <field name="expression">${object.representante_legal_vat}</field>
+        <field name="expression">${object.legal_representative_vat}</field>
         <field name="export_type">string</field>
         <field name="size">9</field>
         <field name="alignment">left</field>
@@ -92,7 +92,7 @@
         <field name="sequence">8</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Código provincia</field>
-        <field name="expression">${object.codigo_provincia}</field>
+        <field name="expression">${object.state_code}</field>
         <field name="export_type">string</field>
         <field name="size">2</field>
         <field name="alignment">left</field>
@@ -125,7 +125,7 @@
         <field name="sequence">11</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones dinerarias no derivadas de incapacidad laboral</field>
-        <field name="expression">${'N' if object.percepciones_dinerarias &lt; 0 else ''}</field>
+        <field name="expression">${'N' if object.monetary_perception &lt; 0 else ''}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -135,7 +135,7 @@
         <field name="sequence">12</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones dinerarias no derivadas de incapacidad laboral</field>
-        <field name="expression">${object.percepciones_dinerarias}</field>
+        <field name="expression">${object.monetary_perception}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -147,7 +147,7 @@
         <field name="sequence">13</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones dinerarias no derivadas de incapacidad laboral</field>
-        <field name="expression">${object.retenciones_dinerarias}</field>
+        <field name="expression">${object.monetary_withholding}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -160,7 +160,7 @@
         <field name="sequence">14</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Signo de las percepciones en especie no derivadas de incapacidad laboral</field>
-        <field name="expression">${'N' if object.percepciones_en_especie &lt; 0 else ''}</field>
+        <field name="expression">${'N' if object.perception_in_kind &lt; 0 else ''}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -170,7 +170,7 @@
         <field name="sequence">15</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones en especie no derivadas de incapacidad laboral</field>
-        <field name="expression">${object.percepciones_en_especie}</field>
+        <field name="expression">${object.perception_in_kind}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -182,7 +182,7 @@
         <field name="sequence">17</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Ingresos a cuenta efectuados no derivados de incapacidad laboral</field>
-        <field name="expression">${object.ingresos_a_cuenta_efectuados}</field>
+        <field name="expression">${object.input_tax_payment_on_account}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -194,7 +194,7 @@
         <field name="sequence">17</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Ingresos a cuenta repercutidos no derivados de incapacidad laboral</field>
-        <field name="expression">${object.ingresos_a_cuenta_repercutidos}</field>
+        <field name="expression">${object.output_tax_payment_on_account}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -207,7 +207,7 @@
         <field name="sequence">18</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Ejercicio devengo</field>
-        <field name="expression">${object.ejercicio_devengo}</field>
+        <field name="expression">${object.accrual_exercise}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">right</field>
@@ -233,7 +233,7 @@
         <field name="sequence">20</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Año de nacimiento</field>
-        <field name="expression">${object.a_nacimiento}</field>
+        <field name="expression">${object.birth_year}</field>
         <field name="export_type">string</field>
         <field name="size">4</field>
         <field name="alignment">left</field>
@@ -244,7 +244,7 @@
         <field name="sequence">21</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Situación familiar</field>
-        <field name="expression">${object.situacion_familiar}</field>
+        <field name="expression">${object.family_situation}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -255,7 +255,7 @@
         <field name="sequence">22</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: NIF del conyuge</field>
-        <field name="expression">${object.nif_conyuge}</field>
+        <field name="expression">${object.spouse_vat}</field>
         <field name="export_type">string</field>
         <field name="size">9</field>
         <field name="alignment">left</field>
@@ -266,7 +266,7 @@
         <field name="sequence">23</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Discapacidad</field>
-        <field name="expression">${object.discapacidad}</field>
+        <field name="expression">${object.disability}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -277,7 +277,7 @@
         <field name="sequence">24</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Contrato o relación</field>
-        <field name="expression">${object.contrato_o_relacion}</field>
+        <field name="expression">${object.relation_kind}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -299,7 +299,7 @@
         <field name="sequence">26</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Movilidad geográfica</field>
-        <field name="expression">${object.movilidad_geografica}</field>
+        <field name="expression">${object.geographical_mobility}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -310,7 +310,7 @@
         <field name="sequence">27</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Reducciones aplicables</field>
-        <field name="expression">${object.reduccion_aplicable}</field>
+        <field name="expression">${object.applicable_reduction}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -323,7 +323,7 @@
         <field name="sequence">28</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Gastos deducibles</field>
-        <field name="expression">${object.gastos_deducibles}</field>
+        <field name="expression">${object.deductible_expenses}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -336,7 +336,7 @@
         <field name="sequence">29</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Pensiones compensatorias</field>
-        <field name="expression">${object.pensiones_compensatorias}</field>
+        <field name="expression">${object.compensatory_pension}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -349,7 +349,7 @@
         <field name="sequence">30</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Anualidades por alimentos</field>
-        <field name="expression">${object.anualidades_por_alimentos}</field>
+        <field name="expression">${object.food_annuities}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -363,7 +363,7 @@
         <field name="sequence">31</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes</field>
-        <field name="expression">${object.hijos_y_descendientes_m}</field>
+        <field name="expression">${object.descendants_less_3_years}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -373,7 +373,7 @@
         <field name="sequence">32</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes</field>
-        <field name="expression">${object.hijos_y_descendientes_m_entero}</field>
+        <field name="expression">${object.descendants_less_3_years_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -383,7 +383,7 @@
         <field name="sequence">33</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes</field>
-        <field name="expression">${object.hijos_y_descendientes}</field>
+        <field name="expression">${object.descendants}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -393,7 +393,7 @@
         <field name="sequence">34</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes</field>
-        <field name="expression">${object.hijos_y_descendientes_entero}</field>
+        <field name="expression">${object.descendants_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -405,7 +405,7 @@
         <field name="sequence">35</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes con discapacidad</field>
-        <field name="expression">${object.hijos_y_desc_discapacidad_33}</field>
+        <field name="expression">${object.descendants_disability_33}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -415,7 +415,7 @@
         <field name="sequence">36</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes con discapacidad</field>
-        <field name="expression">${object.hijos_y_desc_discapacidad_entero_33}</field>
+        <field name="expression">${object.descendants_disability_33_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -425,7 +425,7 @@
         <field name="sequence">37</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes con discapacidad</field>
-        <field name="expression">${object.hijos_y_desc_discapacidad_mr}</field>
+        <field name="expression">${object.descendants_disability}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -435,7 +435,7 @@
         <field name="sequence">38</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes con discapacidad</field>
-        <field name="expression">${object.hijos_y_desc_discapacidad_entero_mr}</field>
+        <field name="expression">${object.descendants_disability_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -445,7 +445,7 @@
         <field name="sequence">39</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes con discapacidad</field>
-        <field name="expression">${object.hijos_y_desc_discapacidad_66}</field>
+        <field name="expression">${object.descendants_disability_66}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -455,7 +455,7 @@
         <field name="sequence">40</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Hijos y otros descendientes con discapacidad</field>
-        <field name="expression">${object.hijos_y_desc_discapacidad_entero_66}</field>
+        <field name="expression">${object.descendants_disability_66_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">2</field>
         <field name="alignment">right</field>
@@ -467,7 +467,7 @@
         <field name="sequence">41</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes</field>
-        <field name="expression">${object.ascendientes}</field>
+        <field name="expression">${object.ancestors}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -477,7 +477,7 @@
         <field name="sequence">42</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes</field>
-        <field name="expression">${object.ascendientes_entero}</field>
+        <field name="expression">${object.ancestors_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -487,7 +487,7 @@
         <field name="sequence">43</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes</field>
-        <field name="expression">${object.ascendientes_m75}</field>
+        <field name="expression">${object.ancestors_older_75}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -497,7 +497,7 @@
         <field name="sequence">44</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes</field>
-        <field name="expression">${object.ascendientes_entero_m75}</field>
+        <field name="expression">${object.ancestors_older_75_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -509,7 +509,7 @@
         <field name="sequence">45</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
-        <field name="expression">${object.ascendientes_discapacidad_33}</field>
+        <field name="expression">${object.ancestors_disability_33}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -519,7 +519,7 @@
         <field name="sequence">46</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
-        <field name="expression">${object.ascendientes_discapacidad_entero_33}</field>
+        <field name="expression">${object.ancestors_disability_33_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -529,7 +529,7 @@
         <field name="sequence">47</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
-        <field name="expression">${object.ascendientes_discapacidad_mr}</field>
+        <field name="expression">${object.ancestors_disability}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -539,7 +539,7 @@
         <field name="sequence">48</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
-        <field name="expression">${object.ascendientes_discapacidad_entero_mr}</field>
+        <field name="expression">${object.ancestors_disability_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -549,7 +549,7 @@
         <field name="sequence">49</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
-        <field name="expression">${object.ascendientes_discapacidad_66}</field>
+        <field name="expression">${object.ancestors_disability_66}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -559,7 +559,7 @@
         <field name="sequence">50</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
-        <field name="expression">${object.ascendientes_discapacidad_entero_66}</field>
+        <field name="expression">${object.ancestors_disability_66_integer}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -571,7 +571,7 @@
         <field name="sequence">51</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Cómputo de los 3 primeros hijos (1)</field>
-        <field name="expression">${object.computo_primeros_hijos_1}</field>
+        <field name="expression">${object.calculation_rule_first_childs_1}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -581,7 +581,7 @@
         <field name="sequence">52</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Cómputo de los 3 primeros hijos (2)</field>
-        <field name="expression">${object.computo_primeros_hijos_2}</field>
+        <field name="expression">${object.calculation_rule_first_childs_2}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -591,7 +591,7 @@
         <field name="sequence">53</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Cómputo de los 3 primeros hijos (3)</field>
-        <field name="expression">${object.computo_primeros_hijos_3}</field>
+        <field name="expression">${object.calculation_rule_first_childs_3}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -602,7 +602,7 @@
         <field name="sequence">54</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Datos adicionales: Comunicación préstamos vivienda habitual</field>
-        <field name="expression">${object.prestamos_vh}</field>
+        <field name="expression">${object.residence_loan}</field>
         <field name="export_type">integer</field>
         <field name="size">1</field>
         <field name="alignment">right</field>
@@ -614,7 +614,7 @@
         <field name="sequence">55</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones dinerarias derivadas de incapacidad laboral</field>
-        <field name="expression">${'N' if object.percepciones_dinerarias_incap &lt; 0 else ''}</field>
+        <field name="expression">${'N' if object.monetary_perception_incapacity &lt; 0 else ''}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -624,7 +624,7 @@
         <field name="sequence">56</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones dinerarias no derivadas de incapacidad laboral</field>
-        <field name="expression">${object.percepciones_dinerarias_incap}</field>
+        <field name="expression">${object.monetary_perception_incapacity}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -636,7 +636,7 @@
         <field name="sequence">57</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones dinerarias no derivadas de incapacidad laboral</field>
-        <field name="expression">${object.retenciones_dinerarias_incap}</field>
+        <field name="expression">${object.monetary_withholding_incapacity}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -650,7 +650,7 @@
         <field name="sequence">58</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Signo de las percepciones en especie no derivadas de incapacidad laboral</field>
-        <field name="expression">${'N' if object.percepciones_en_especie &lt; 0 else ''}</field>
+        <field name="expression">${'N' if object.perception_in_kind &lt; 0 else ''}</field>
         <field name="export_type">string</field>
         <field name="size">1</field>
         <field name="alignment">left</field>
@@ -660,7 +660,7 @@
         <field name="sequence">59</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Percepciones en especie no derivadas de incapacidad laboral</field>
-        <field name="expression">${object.percepciones_en_especie}</field>
+        <field name="expression">${object.perception_in_kind}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -672,7 +672,7 @@
         <field name="sequence">60</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Ingresos a cuenta efectuados no derivados de incapacidad laboral</field>
-        <field name="expression">${object.ingresos_a_cuenta_efectuados_incap}</field>
+        <field name="expression">${object.input_tax_payment_on_account_incapacity}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>
@@ -684,7 +684,7 @@
         <field name="sequence">61</field>
         <field name="export_config_id" ref="aeat_mod190_partner_export_config"/>
         <field name="name">Ingresos a cuenta repercutidos no derivados de incapacidad laboral</field>
-        <field name="expression">${object.ingresos_a_cuenta_repercutidos_incap}</field>
+        <field name="expression">${object.output_tax_payment_on_account_incapacity}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True"/>
         <field name="size">13</field>

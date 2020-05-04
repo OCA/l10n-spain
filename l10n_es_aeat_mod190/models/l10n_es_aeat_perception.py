@@ -15,7 +15,7 @@ class L10nEsAeatReportPerceptionKey(models.Model):
         comodel_name='l10n.es.aeat.report.perception.subkey',
         inverse_name='aeat_perception_key_id', string='Subkeys',
         ondelete='cascade')
-    ad_required = fields.Integer('Aditional data required', default=0)
+    additional_data_required = fields.Integer('Additional data required', default=0)
 
 
 class L10nEsAeatReportPerceptionSubkey(models.Model):
@@ -30,4 +30,4 @@ class L10nEsAeatReportPerceptionSubkey(models.Model):
     aeat_number = fields.Char(string="Model number", size=3, required=True)
     description = fields.Text(string='Description')
     active = fields.Boolean(string='Active', default=True)
-    ad_required = fields.Integer('Aditional data required', default=0)
+    additional_data_required = fields.Integer('Additional data required', default=0)

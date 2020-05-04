@@ -3,9 +3,7 @@
 
     <record id="aeat_m190_perception_key_01"
             model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            A. Rendimientos del trabajo: Empleados por cuenta ajena en general.
-        </field>
+        <field name="name">A. Rendimientos del trabajo: Empleados por cuenta ajena en general.</field>
         <field name="code">A</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -41,14 +39,12 @@
             declarar los datos relativos a dichos conceptos en el modelo 345.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">2</field>
+        <field name="additional_data_required">2</field>
     </record>
 
     <record id="aeat_m190_perception_key_02"
             model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            B. Rendimientos del trabajo: Pensionistas y  perceptores de haberes pasivos y demás prestaciones previstas en el artículo 17.2.a de la Ley del Impuesto.
-        </field>
+        <field name="name">B. Rendimientos del trabajo: Pensionistas y  perceptores de haberes pasivos y demás prestaciones previstas en el artículo 17.2.a de la Ley del Impuesto.</field>
         <field name="code">B</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -61,14 +57,12 @@
             proceda de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">1</field>
+        <field name="additional_data_required">1</field>
     </record>
 
     <record id="aeat_m190_perception_key_03"
             model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            C. Rendimientos del trabajo: Prestaciones o subsidios por desempleo.
-        </field>
+        <field name="name">C. Rendimientos del trabajo: Prestaciones o subsidios por desempleo.</field>
         <field name="code">C</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -77,14 +71,12 @@
             prestaciones satisfechas por este concepto en la modalidad de pago único.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">2</field>
+        <field name="additional_data_required">2</field>
     </record>
 
     <record id="aeat_m190_perception_key_04"
             model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            D. Rendimientos del trabajo: Prestaciones por desempleo abonadas en la modalidad de pago único.
-        </field>
+        <field name="name">D. Rendimientos del trabajo: Prestaciones por desempleo abonadas en la modalidad de pago único.</field>
         <field name="code">D</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -105,14 +97,12 @@
             "Ejercicio de devengo" (posiciones 148-151) queresulten de aplicación.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_key_05"
             model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            E. Rendimientos del trabajo: Consejeros y administradores.
-        </field>
+        <field name="name">E. Rendimientos del trabajo: Consejeros y administradores.</field>
         <field name="code">E</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -124,13 +114,11 @@
             caso proceda de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">1</field>
+        <field name="additional_data_required">1</field>
     </record>
 
     <record id="aeat_m190_perception_key_06" model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            F. Rendimientos del trabajo: Cursos, conferencias, seminarios y similares y elaboración de obras literarias, artísticas o científicas.
-        </field>
+        <field name="name">F. Rendimientos del trabajo: Cursos, conferencias, seminarios y similares y elaboración de obras literarias, artísticas o científicas.</field>
         <field name="code">F</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -144,14 +132,11 @@
             de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_key_07" model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            G. Rendimientos de actividades económicas:
-            Actividades profesionales.
-        </field>
+        <field name="name">G. Rendimientos de actividades económicas: Actividades profesionales.</field>
         <field name="code">G</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -163,13 +148,11 @@
             caso proceda de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_key_08" model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            H. Rendimientos de actividades económicas: actividades agrícolas, ganaderas y forestales y  actividades en estimación objetiva a las que se refiere el artículo 95.6 del Reglamento del Impuesto.
-        </field>
+        <field name="name">H. Rendimientos de actividades económicas: actividades agrícolas, ganaderas y forestales y  actividades en estimación objetiva a las que se refiere el artículo 95.6 del Reglamento del Impuesto.</field>
         <field name="code">H</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -190,13 +173,11 @@
             caso proceda de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_key_09" model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            I. Rendimientos de actividades económicas: rendimientos a que se refiere el artículo 75.2, letra b), del Reglamento del Impuesto.
-        </field>
+        <field name="name">I. Rendimientos de actividades económicas: rendimientos a que se refiere el artículo 75.2, letra b), del Reglamento del Impuesto.</field>
         <field name="code">I</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -217,13 +198,11 @@
             caso proceda de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_key_10" model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            J. Imputación de rentas por la cesión de derechos de imagen
-        </field>
+        <field name="name">J. Imputación de rentas por la cesión de derechos de imagen</field>
         <field name="code">J</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -242,13 +221,11 @@
             establecido en el artículo 92 de la Ley del Impuesto.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_key_11" model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            K. Premios y ganancias patrimoniales de los vecinos derivadas de los aprovechamientos forestales en montes públicos.
-        </field>
+        <field name="name">K. Premios y ganancias patrimoniales de los vecinos derivadas de los aprovechamientos forestales en montes públicos.</field>
         <field name="code">K</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -281,13 +258,11 @@
             caso proceda de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
     <record id="aeat_m190_perception_key_12" model="l10n.es.aeat.report.perception.key">
-        <field name="name">
-            L. Rentas exentas y dietas exceptuadas de gravamen.
-        </field>
+        <field name="name">L. Rentas exentas y dietas exceptuadas de gravamen.</field>
         <field name="code">L</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -314,7 +289,7 @@
             caso proceda de las indicadas en el campo subclave.
         </field>
         <field name="active">True</field>
-        <field name="ad_required">0</field>
+        <field name="additional_data_required">0</field>
     </record>
 
 </odoo>

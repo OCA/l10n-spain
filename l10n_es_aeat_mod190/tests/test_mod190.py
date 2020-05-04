@@ -20,14 +20,14 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
     def setUp(self):
         super().setUp()
         self.supplier.write({
-            'incluir_190': True,
+            'include_on_aeat_mod190': True,
             'aeat_perception_key_id': self.browse_ref(
                 'l10n_es_aeat_mod190.aeat_m190_perception_key_01'
             ).id,
-            'a_nacimiento': '2000',
+            'birth_year': '2000',
         })
         self.customer.write({
-            'incluir_190': True,
+            'include_on_aeat_mod190': True,
             'aeat_perception_key_id': self.browse_ref(
                 'l10n_es_aeat_mod190.aeat_m190_perception_key_07'
             ).id,
@@ -68,10 +68,10 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         supplier_record = model190.partner_record_ids.filtered(
             lambda r: r.partner_id == self.supplier)
         self.assertTrue(supplier_record)
-        self.assertEqual(supplier_record.percepciones_dinerarias, 2200)
-        self.assertEqual(supplier_record.retenciones_dinerarias, 438)
-        self.assertEqual(2, supplier_record.ad_required)
-        self.assertEqual(2, self.supplier.ad_required)
+        self.assertEqual(supplier_record.monetary_perception, 2200)
+        self.assertEqual(supplier_record.monetary_withholding, 438)
+        self.assertEqual(2, supplier_record.additional_data_required)
+        self.assertEqual(2, self.supplier.additional_data_required)
         with self.assertRaises(UserError):
             model190.button_confirm()
         self.supplier.write({
@@ -97,12 +97,6 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         self.env['l10n.es.aeat.mod190.report.line'].create(
             record_new._convert_to_write(record_new._cache)
         )
-        with self.assertRaises(UserError):
-            model190.button_confirm()
-        model190.write({
-            'registro_manual': True
-        })
-        model190.button_recalculate()
         model190.button_confirm()
         self.assertEqual(model190.state, 'done')
 
@@ -142,12 +136,13 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             'partner_id')))
         self.assertEqual(2, len(supplier_record.mapped(
             'aeat_perception_key_id')))
-        record_with_ad = supplier_record.filtered(lambda r: r.ad_required >= 2)
+        record_with_ad = supplier_record.filtered(
+            lambda r: r.additional_data_required >= 2)
         self.assertTrue(record_with_ad)
-        self.assertEqual(record_with_ad.a_nacimiento, '2000')
+        self.assertEqual(record_with_ad.birth_year, '2000')
         record_without_ad = supplier_record.filtered(
-            lambda r: r.ad_required < 2)
+            lambda r: r.additional_data_required < 2)
         self.assertTrue(record_without_ad)
-        self.assertFalse(record_without_ad.a_nacimiento)
+        self.assertFalse(record_without_ad.birth_year)
         model190.button_confirm()
         self.assertEqual(model190.state, 'done')
