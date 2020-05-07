@@ -289,7 +289,8 @@ class AccountBankStatementImport(models.TransientModel):
         return partner
 
     def _get_partner(self, line):
-        if not line.get('conceptos'):  # pragma: no cover
+        if (not isinstance(line, dict) or
+                not line.get('conceptos')):  # pragma: no cover
             return self.env['res.partner']
         partner = self._get_partner_from_caixabank(line['conceptos'])
         if not partner:
