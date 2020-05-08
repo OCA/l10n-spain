@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
-    <t t-extend="PosTicket">
-        <t t-jquery="t[t-esc='order.name']" t-operation="before">
+    <t t-extend="OrderReceipt">
+        <t t-jquery="[t-if='receipt.company.contact_address']" t-operation="before">
             <t
                 t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice()"
             >
-                <br />
-                <span>Simplified invoice: </span>
+                <t t-esc='receipt.date.localestring' /><br />
+                Simplified invoice <t t-esc="order.simplified_invoice" />
+            <br /><br />
             </t>
         </t>
-        <t t-jquery="t[t-esc='widget.pos.company.name']" t-operation="after">
-            <t t-if="widget.pos.company.vat">
-                <br />
-                VAT: <t t-esc="widget.pos.company.vat" />
-            </t>
-        </t>
-        <t
-            t-jquery='t[t-esc="widget.pos.company.phone || &apos;&apos;"]'
-            t-operation="after"
-        >
-            <br />
+        <t t-jquery='t[t-if="receipt.company.vat"]' t-operation="after">
             <t t-esc="widget.pos.company.street" t-if="widget.pos.company.street" />
             <br />
             <t t-esc="widget.pos.company.zip" t-if="widget.pos.company.zip" />
@@ -29,7 +20,9 @@
             </t>
             <br />
         </t>
-        <t t-jquery="table.receipt-orderlines" t-operation="before">
+        <t t-jquery='t[t-if="receipt.cashier"]' t-operation="after">
+            <br />
+            <br />
             <t t-if="order.get_client()">
                 Customer: <t t-esc="order.get_client().name" /><br />
                 <t t-if="order.get_client().vat">
@@ -38,55 +31,16 @@
                 <t t-if="order.get_client().address != ',  , '">
                     <t t-esc="order.get_client().address" />
                 </t>
-                <br /><br />
             </t>
-        </t>
-        <t t-jquery=".receipt-orderlines colgroup" t-operation="replace">
-            <thead>
-                <th>Product</th>
-                <th class="pos-right-align">Qty</th>
-                <th class="pos-right-align">Unit</th>
-                <th class="pos-right-align">Subt</th>
-            </thead>
-        </t>
-        <t t-jquery="tr[t-foreach='orderlines'] > td:nth-child(2)" t-operation="after">
-            <td class="pos-right-align">
-                <t t-esc="widget.format_currency(orderline.get_unit_price())" />
-            </td>
-        </t>
-        <t t-jquery="t[t-esc='taxdetail.name']" t-operation="after">
-            on <t
-                t-esc="widget.format_currency(order.get_base_by_tax()[taxdetail.tax.id])"
-            />
-        </t>
-    </t>
-    <t t-extend="XmlReceipt">
-        <t t-jquery="[t-if='!receipt.company.logo']" t-operation="after">
-            <t
-                t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice()"
-            >
-            <br />
-                Simplified invoice <t t-esc="order.simplified_invoice" />
-            <br />
-            </t>
-        </t>
-        <t t-jquery="[t-if='receipt.header_xml']" t-operation="after">
-            <t t-if="order.get_client()">
-                 <br />
-                    <span class="customer_title">Customer data</span><br />
-                    Name: <t
-                    t-esc="order.get_client().name ? order.get_client().name : ''"
-                /><br />
-                    VAT: <t
-                    t-esc="order.get_client().vat ? order.get_client().vat : ''"
-                /><br />
-                    Address: <t
-                    t-esc="order.get_client().address ? order.get_client().address : ''"
-                />
-             </t>
         </t>
         <t t-jquery="t[t-esc='tax.name']" t-operation="after">
             on <t t-esc="widget.format_currency(order.get_base_by_tax()[tax.tax.id])" />
+        </t>
+        <t t-jquery=".pos-receipt-order-data" t-operation="attributes">
+            <attribute
+                name="t-if"
+                value="!widget.pos.config.iface_l10n_es_simplified_invoice or order.is_to_invoice()"
+            />
         </t>
     </t>
 </templates>

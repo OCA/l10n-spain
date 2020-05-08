@@ -28,7 +28,7 @@
         <field name="inherit_id" ref="point_of_sale.view_pos_order_filter" />
         <field name="priority">20</field>
         <field name="arch" type="xml">
-            <field name="user_id" position="before">
+            <field name="date_order" position="after">
                 <separator />
                 <filter
                     string="Invoices"
@@ -64,6 +64,24 @@
                         </div>
                         <div class="content-group mt16" groups="base.group_no_one">
                             <field name="l10n_es_simplified_invoice_sequence_id" />
+                        </div>
+                        <div
+                            class="content-group mt16"
+                            attrs="{'invisible': ['|', ('iface_l10n_es_simplified_invoice', '=', False), '&amp;', ('module_account', '=', True), ('iface_l10n_es_simplified_invoice', '!=', False)]}"
+                        >
+                            <div class="row mt16">
+                                <label
+                                    string="Invoice Journal"
+                                    for="invoice_journal_id"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field
+                                    name="invoice_journal_id"
+                                    domain="[('company_id', '=', company_id), ('type', '=', 'sale')]"
+                                    attrs="{'required': [('l10n_es_simplified_invoice_sequence_id', '=', True)]}"
+                                    context="{'default_company_id': company_id, 'default_type': 'sale'}"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
