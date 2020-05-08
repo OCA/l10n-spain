@@ -2,8 +2,6 @@
 
 from odoo import _, api, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 
 class PosConfig(models.Model):
     _inherit = "pos.config"
@@ -34,29 +32,23 @@ class PosConfig(models.Model):
     )
     l10n_es_simplified_invoice_limit = fields.Float(
         string="Sim.Inv limit amount",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Over this amount is not legally posible to create "
         "a simplified invoice",
         default=3000,  # Spanish legal limit
-        oldname="simplified_invoice_limit",
     )
     l10n_es_simplified_invoice_prefix = fields.Char(
         "Simplified Invoice prefix",
         readonly=True,
         compute="_compute_simplified_invoice_sequence",
-        oldname="simple_invoice_prefix",
     )
     l10n_es_simplified_invoice_padding = fields.Integer(
         "Simplified Invoice padding",
         readonly=True,
         compute="_compute_simplified_invoice_sequence",
-        oldname="simple_invoice_limit",
     )
     l10n_es_simplified_invoice_number = fields.Integer(
-        "Sim.Inv number",
-        readonly=True,
-        compute="_compute_simplified_invoice_sequence",
-        oldname="simple_invoice_number",
+        "Sim.Inv number", readonly=True, compute="_compute_simplified_invoice_sequence",
     )
 
     @api.model
@@ -66,7 +58,7 @@ class PosConfig(models.Model):
         simp_inv_seq_id = self.env["ir.sequence"].create(
             {
                 "name": _("Simplified Invoice %s") % vals["name"],
-                "implementation": "no_gap",
+                "implementation": "standard",
                 "padding": self._get_default_padding(),
                 "prefix": prefix,
                 "code": "pos.config.simplified_invoice",
@@ -76,6 +68,11 @@ class PosConfig(models.Model):
         vals["l10n_es_simplified_invoice_sequence_id"] = simp_inv_seq_id.id
         return super(PosConfig, self).create(vals)
 
+    @api.onchange("iface_l10n_es_simplified_invoice")
+    def _onchange_l10n_iface_l10n_es_simplified_invoice(self):
+        if self.iface_l10n_es_simplified_invoice and not self.invoice_journal_id:
+            self.invoice_journal_id = self._default_invoice_journal()
+
     def copy(self, default=None):
         ctx = dict(self._context)
         ctx.update(copy_pos_config=True)
@@ -84,7 +81,8 @@ class PosConfig(models.Model):
     def write(self, vals):
         if not self._context.get("copy_pos_config") and "name" not in vals:
             for pos in self:
-                pos.l10n_es_simplified_invoice_sequence_id.check_simplified_invoice_unique_prefix()
+                sequence = pos.l10n_es_simplified_invoice_sequence_id
+                sequence.check_simplified_invoice_unique_prefix()
         if "name" in vals:
             prefix = self.l10n_es_simplified_invoice_prefix.replace(
                 self.name, vals["name"]
