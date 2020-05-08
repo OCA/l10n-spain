@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import models, fields, _
-import base64
+from odoo import models, fields
 
 
 class AccountInvoiceIntegrationMethod(models.Model):
@@ -20,41 +19,11 @@ class AccountInvoiceIntegrationMethod(models.Model):
 
     # Default values for integration. It could be extended
     def integration_values(self, invoice):
-        res = {
+        return {
             'method_id': self.id,
             'invoice_id': invoice.id,
             'attachment_ids': []
         }
-
-        if invoice.partner_id.attach_invoice_as_annex:
-            action = self.env.ref('account.account_invoices')
-            content, content_type = action.render(invoice.ids)
-            fname = _("Invoice %s") % invoice.number
-            mimetype = False
-            if content_type == "pdf":
-                mimetype = "application/pdf"
-            if content_type == "xls":
-                mimetype = "application/vnd.ms-excel"
-            if content_type == "xlsx":
-                mimetype = (
-                    "application/vnd.openxmlformats-officedocument."
-                    "spreadsheetml.sheet"
-                )
-            if content_type == "csv":
-                mimetype = "text/csv"
-            if content_type == "xml":
-                mimetype = "application/xml"
-            res['attachment_ids'].append(
-                (0, 0, {
-                    "name": fname,
-                    "datas": base64.b64encode(content),
-                    "datas_fname": fname,
-                    'res_model': 'account.invoice',
-                    'res_id': invoice.id,
-                    "mimetype": mimetype,
-                })
-            )
-        return res
 
     def create_integration(self, invoice):
         self.ensure_one()

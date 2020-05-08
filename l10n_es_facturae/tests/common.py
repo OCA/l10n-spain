@@ -5,6 +5,7 @@
 import base64
 import logging
 
+from mock import patch
 from lxml import etree
 from odoo import exceptions, fields
 from odoo.tests import common
@@ -50,7 +51,7 @@ class CommonTest(common.TransactionCase):
             'country_id': self.ref('base.es'),
             'vat': 'ES05680675C',
             'facturae': True,
-            'attach_invoice_as_annex': True,
+            'attach_invoice_as_annex': False,
             'organo_gestor': 'U00000038',
             'unidad_tramitadora': 'U00000038',
             'oficina_contable': 'U00000038',
@@ -189,6 +190,34 @@ class CommonTest(common.TransactionCase):
                 namespaces={'fe': self.fe})[0].text,
             self.invoice.number
         )
+        self.assertFalse(
+            generated_facturae.xpath(
+                '/fe:Facturae/Invoices/Invoice/AdditionalData/'
+                'RelatedDocuments/Attachments', namespaces={'fe': self.fe}),
+        )
+
+    def test_facturae_with_attachments(self):
+        self.partner.attach_invoice_as_annex = True
+        with patch(
+            'odoo.addons.base.models.ir_actions_report.IrActionsReport.render'
+        ) as ptch:
+            ptch.return_value = (b'1234', 'pdf')
+            self.wizard.with_context(
+                force_report_rendering=True,
+                active_ids=self.invoice.ids,
+                active_model='account.invoice').create_facturae_file()
+        generated_facturae = etree.fromstring(
+            base64.b64decode(self.wizard.facturae))
+        self.assertTrue(
+            generated_facturae.xpath(
+                '/fe:Facturae/Invoices/Invoice/AdditionalData/'
+                'RelatedDocuments', namespaces={'fe': self.fe}),
+        )
+        self.assertTrue(
+            generated_facturae.xpath(
+                '/fe:Facturae/Invoices/Invoice/AdditionalData/'
+                'RelatedDocuments/Attachment', namespaces={'fe': self.fe}),
+        )
 
     def test_bank(self):
         self.bank.bank_id.bic = "CAIXESBB"
@@ -284,17 +313,8 @@ class CommonTest(common.TransactionCase):
     def test_integration(self):
         self.assertTrue(self.invoice.can_integrate)
         self.assertEqual(self.invoice.integration_count, 0)
-        attachments_before = len(self.env['ir.attachment'].search(
-            [('res_model', '=', 'account.invoice'),
-             ('res_id', '=', self.invoice.id)],
-        ))
         integrations = self.invoice.action_integrations()
         self.assertEqual(self.invoice.integration_count, 1)
-        attachments_after = len(self.env['ir.attachment'].search(
-            [('res_model', '=', 'account.invoice'),
-             ('res_id', '=', self.invoice.id)]
-        ))
-        self.assertEqual(attachments_before + 1, attachments_after)
         integration = self.env['account.invoice.integration'].browse(
             integrations['res_id'])
         self.assertTrue(integration.can_send)
