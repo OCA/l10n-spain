@@ -23,42 +23,28 @@ msgid "Above this limit the simplified invoice won't be made"
 msgstr "Por encima de este límite no se creará factura simplificada"
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:69
-#, python-format
-msgid "Address:"
-msgstr "Dirección:"
-
-#. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 msgid "Autogenerate for each POS created"
 msgstr "Autogenerada por cada TPV creado"
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
-#, python-format
-msgid "Customer data"
-msgstr "Datos de cliente"
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:27
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "Customer:"
 msgstr "Cliente:"
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
-msgid "Invoices"
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+#, fuzzy
+#| msgid "Invoices"
+msgid "Invoice Journal"
 msgstr "Facturas"
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
-#, python-format
-msgid "Name:"
-msgstr "Nombre:"
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Invoices"
+msgstr "Facturas"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
@@ -74,20 +60,6 @@ msgstr "Configuración Punto de Venta"
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale Orders"
 msgstr "Pedidos del Punto de Venta"
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:40
-#, python-format
-msgid "Product"
-msgstr "Producto"
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
-#, python-format
-msgid "Qty"
-msgstr "Cantidad"
 
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_ir_sequence
@@ -110,8 +82,7 @@ msgid "Sim.Inv number"
 msgstr "Número de factura simplificada"
 
 #. module: l10n_es_pos
-#: code:addons/l10n_es_pos/models/pos_config.py:64
-#: code:addons/l10n_es_pos/models/pos_config.py:109
+#: code:addons/l10n_es_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice %s"
 msgstr "Factura simplificada %s"
@@ -143,18 +114,11 @@ msgstr "Prefijo de Factura Simplificada"
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:59
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
 msgid "Simplified invoice"
 msgstr "Factura simplificada"
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:7
-#, python-format
-msgid "Simplified invoice:"
-msgstr "Factura Simplificada:"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
@@ -162,14 +126,7 @@ msgid "Simplified invoices"
 msgstr "Facturas simplificadas"
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
-#, python-format
-msgid "Subt"
-msgstr "Subt"
-
-#. module: l10n_es_pos
-#: code:addons/l10n_es_pos/models/ir_sequence.py:20
+#: code:addons/l10n_es_pos/models/ir_sequence.py:0
 #, python-format
 msgid ""
 "There is already a simplified invoice sequence with that prefix and it "
@@ -184,33 +141,47 @@ msgid "Unique Order ID"
 msgstr "ID único de pedido"
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
-#, python-format
-msgid "Unit"
-msgstr "Ud."
-
-#. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
 msgid "Use simplified invoices for this POS"
 msgstr "Usar Facturas Simplificadas en este Punto de Venta"
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:12
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:29
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "VAT:"
 msgstr "NIF:"
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:51
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:73
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "on"
 msgstr "sobre"
+
+#~ msgid "Address:"
+#~ msgstr "Dirección:"
+
+#~ msgid "Customer data"
+#~ msgstr "Datos de cliente"
+
+#~ msgid "Name:"
+#~ msgstr "Nombre:"
+
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgid "Qty"
+#~ msgstr "Cantidad"
+
+#~ msgid "Simplified invoice:"
+#~ msgstr "Factura Simplificada:"
+
+#~ msgid "Subt"
+#~ msgstr "Subt"
+
+#~ msgid "Unit"
+#~ msgstr "Ud."
 
 #~ msgid ""
 #~ "The current order is already queued and thus it shouldn't be changed. "

@@ -3,8 +3,6 @@
 from odoo import api, fields, models
 from odoo.tools import float_compare
 
-import odoo.addons.decimal_precision as dp
-
 
 class PosOrder(models.Model):
     _inherit = "pos.order"
@@ -16,7 +14,7 @@ class PosOrder(models.Model):
 
     @api.model
     def _simplified_limit_check(self, amount_total, limit=3000):
-        precision_digits = dp.get_precision("Account")(self.env.cr)[1]
+        precision_digits = self.env["decimal.precision"].precision_get("Account")
         # -1 or 0: amount_total <= limit, simplified
         #       1: amount_total > limit, can not be simplified
         return float_compare(amount_total, limit, precision_digits=precision_digits) < 0
@@ -31,42 +29,43 @@ class PosOrder(models.Model):
                     "is_l10n_es_simplified_invoice": True,
                 }
             )
-        res.update(
-            {"l10n_es_unique_id": ui_order["uid"],}
-        )
+        res.update({"l10n_es_unique_id": ui_order["uid"]})
         return res
 
     @api.model
-    def _process_order(self, pos_order):
-        simplified_invoice_number = pos_order.get("simplified_invoice", False)
+    def _process_order(self, pos_order, draft, existing_order):
+        order_data = pos_order.get("data", {})
+        simplified_invoice_number = order_data.get("simplified_invoice", False)
         if not simplified_invoice_number:
-            return super(PosOrder, self)._process_order(pos_order)
+            return super(PosOrder, self)._process_order(
+                pos_order, draft, existing_order
+            )
         pos_order_obj = self.env["pos.order"]
-        pos = self.env["pos.session"].browse(pos_order.get("pos_session_id")).config_id
+        pos = self.env["pos.session"].browse(order_data.get("pos_session_id")).config_id
         if pos_order_obj._simplified_limit_check(
-            pos_order.get("amount_total"), pos.l10n_es_simplified_invoice_limit
+            order_data.get("amount_total", 0), pos.l10n_es_simplified_invoice_limit
         ):
-            pos_order.update(
+            pos_order["data"].update(
                 {
                     "pos_reference": simplified_invoice_number,
                     "is_l10n_es_simplified_invoice": True,
                 }
             )
             pos.l10n_es_simplified_invoice_sequence_id.next_by_id()
-        return super(PosOrder, self)._process_order(pos_order)
+        return super(PosOrder, self)._process_order(pos_order, draft, existing_order)
 
     @api.model
-    def create_from_ui(self, orders):
+    def create_from_ui(self, orders, draft=False):
         """Provide a context with the current session id"""
         if not orders:
-            return super().create_from_ui(orders)
+            return super().create_from_ui(orders, draft)
         # We take the uid from every order in the sync queue to discard only
         # those orders that are really unique
         # TODO: Duplicated simp. invoice ids shouldn't happen but in certain
         # circumstances it can ocurr, so we choose to save them anyway.
         submitted_uids = [o["data"]["uid"] for o in orders]
         self_ctx = self.with_context(l10n_es_pos_submitted_uids=submitted_uids)
-        return super(PosOrder, self_ctx).create_from_ui(orders)
+        return super(PosOrder, self_ctx).create_from_ui(orders, draft)
 
     @api.model
     def search(self, args, offset=0, limit=0, order=None, count=False):
@@ -81,7 +80,7 @@ class PosOrder(models.Model):
         args_set = {x[0]: x[1] for x in args if len(x) > 1}
         filter_uids = False
         if {"pos_reference"}.issubset(args_set):
-            filter_uids = args_set["pos_reference"] == "in"
+            filter_uids = args_set["pos_reference"] == "="
         if submitted_uids and filter_uids:
             args += [("l10n_es_unique_id", "in", submitted_uids)]
         return super().search(
