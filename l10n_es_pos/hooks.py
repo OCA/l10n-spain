@@ -34,7 +34,7 @@ def post_init_hook(cr, registry, vals=None):
                     "prefix", "{}{}".format(pos_name, pos._get_default_prefix())
                 ),
                 "padding": pos_vals.get("padding", pos._get_default_padding()),
-                "implementation": pos_vals.get("implementation", "no_gap"),
+                "implementation": pos_vals.get("implementation", "standard"),
                 "code": "pos.config.simplified_invoice",
                 "company_id": pos_vals.get("company_id", pos.company_id.id),
             }
