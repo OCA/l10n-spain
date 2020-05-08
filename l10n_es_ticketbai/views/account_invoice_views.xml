@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="invoice_form_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tax_line_ids']/tree/field[@name='amount']" position="before">
+                    <field name="tbai_vat_exemption_key" attrs="{'column_invisible': [('parent.tbai_enabled', '=', False)]}"
+                           options="{'no_open':True,'no_create':True}"/>
+                </xpath>
+                <page name="other_info" position="after">
+                    <page name="ticketbai" string="TicketBAI" attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '=', False)]}">
+                        <group name="main_grp" col="4">
+                            <group name="ticketbai" colspan="2" col="2">
+                                <field name="tbai_enabled" invisible="1"/>
+                                <field name="tbai_invoice_id" readonly="1" options="{'no_create':True}"
+                                       attrs="{'invisible': [('tbai_invoice_id', '=', False)]}"/>
+                                <field name="tbai_cancellation_id" readonly="1" options="{'no_create':True}"
+                                       attrs="{'invisible': [('tbai_cancellation_id', '=', False)]}"/>
+                                <field name="tbai_date_operation" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="tbai_description_operation" widget="char" attrs="{'required': [('tbai_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                        <group name="tbai_refund" string="Refund">
+                            <field name="refund_invoice_id" invisible="1"/>
+                            <field name="tbai_refund_key" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="tbai_refund_type" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group name="tbai_vat_regimes" string="VAT Regimes">
+                            <field name="tbai_vat_regime_key" attrs="{'required': [('tbai_enabled', '=', True), '|', ('type', '=', 'out_invoice'), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_open':True,'no_create':True}"/>
+                            <field name="tbai_vat_regime_key2" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_open':True,'no_create':True}"/>
+                            <field name="tbai_vat_regime_key3" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_open':True,'no_create':True}"/>
+                        </group>
+                        <group name="tbai_send" string="Files Sent" attrs="{'invisible': [('tbai_invoice_ids', '=', []),('tbai_cancellation_ids', '=', [])]}">
+                            <group name="tbai_sent_customer_invoices" string="Customer Invoices" colspan="4" attrs="{'invisible': [('tbai_invoice_ids', '=', [])]}">
+                                <field name="tbai_invoice_ids" readonly="1" options="{'no_open':True,'no_create':True}" nolabel="1"/>
+                            </group>
+                            <group name="tbai_sent_customer_cancellations" string="Customer Cancellations" colspan="4" attrs="{'invisible': [('tbai_cancellation_ids', '=', [])]}">
+                                <field name="tbai_cancellation_ids" readonly="1" options="{'no_open':True,'no_create':True}" nolabel="1"/>
+                            </group>
+                        </group>
+                        <group name="tbai_responses" string="Responses" attrs="{'invisible': [('tbai_response_ids', '=', [])]}">
+                            <field name="tbai_response_ids" nolabel="1" options="{'no_create_edit': True}">
+                                <form>
+                                    <header>
+                                        <field name="state" widget="statusbar" readonly="1"/>
+                                    </header>
+                                    <sheet>
+                                        <group name="tbai_response_main_group">
+                                            <field name="xml" filename="xml_fname" readonly="1"/>
+                                            <field name="xml_fname" invisible="1" class="oe_inline oe_right"/>
+                                        </group>
+                                        <group name="tbai_response_messages_group" string="Messages">
+                                            <field name="tbai_response_message_ids" nolabel="1" readonly="1">
+                                                <form>
+                                                    <group>
+                                                        <field name="tbai_response_id" invisible="1"/>
+                                                        <field name="code" readonly="1"/>
+                                                        <field name="description" readonly="1"/>
+                                                    </group>
+                                                </form>
+                                                <tree create="false" delete="false">
+                                                    <field name="tbai_response_id" invisible="1"/>
+                                                    <field name="code" readonly="1"/>
+                                                    <field name="description" readonly="1"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </sheet>
+                                </form>
+                                <tree create="false" delete="false">
+                                    <field name="create_date"/>
+                                    <field name="tbai_response_message_ids" widget="many2many_tags"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+    </data>
+</odoo>
