@@ -10,7 +10,7 @@ odoo.define("l10n_es_pos.models", function(require) {
 
     var pos_super = models.PosModel.prototype;
     models.PosModel = models.PosModel.extend({
-        initialize: function(attributes, options) {
+        initialize: function() {
             pos_super.initialize.apply(this, arguments);
             this.pushed_simple_invoices = [];
             return this;
@@ -54,7 +54,7 @@ odoo.define("l10n_es_pos.models", function(require) {
                 ++this.config.l10n_es_simplified_invoice_number;
             }
         },
-        _flush_orders: function(orders, options) {
+        _flush_orders: function(orders) {
             var self = this;
             // Save pushed orders numbers
             _.each(orders, function(order) {
