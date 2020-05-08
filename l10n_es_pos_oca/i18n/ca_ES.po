@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_pos
+# 	* l10n_es_pos
 #
 msgid ""
 msgstr ""
@@ -20,41 +20,25 @@ msgid "Above this limit the simplified invoice won't be made"
 msgstr ""
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:69
-#, python-format
-msgid "Address:"
-msgstr ""
-
-#. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
 msgid "Autogenerate for each POS created"
 msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
-#, python-format
-msgid "Customer data"
-msgstr ""
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:27
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "Customer:"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
-msgid "Invoices"
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+msgid "Invoice Journal"
 msgstr ""
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:67
-#, python-format
-msgid "Name:"
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Invoices"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -70,20 +54,6 @@ msgstr ""
 #. module: l10n_es_pos
 #: model:ir.model,name:l10n_es_pos.model_pos_order
 msgid "Point of Sale Orders"
-msgstr ""
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:40
-#, python-format
-msgid "Product"
-msgstr ""
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:41
-#, python-format
-msgid "Qty"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -107,8 +77,7 @@ msgid "Sim.Inv number"
 msgstr ""
 
 #. module: l10n_es_pos
-#: code:addons/l10n_es_pos/models/pos_config.py:64
-#: code:addons/l10n_es_pos/models/pos_config.py:109
+#: code:addons/l10n_es_pos/models/pos_config.py:0
 #, python-format
 msgid "Simplified Invoice %s"
 msgstr ""
@@ -140,17 +109,10 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:59
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
 msgid "Simplified invoice"
-msgstr ""
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:7
-#, python-format
-msgid "Simplified invoice:"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -159,28 +121,16 @@ msgid "Simplified invoices"
 msgstr ""
 
 #. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:43
+#: code:addons/l10n_es_pos/models/ir_sequence.py:0
 #, python-format
-msgid "Subt"
-msgstr ""
-
-#. module: l10n_es_pos
-#: code:addons/l10n_es_pos/models/ir_sequence.py:20
-#, python-format
-msgid "There is already a simplified invoice sequence with that prefix and it should be unique."
+msgid ""
+"There is already a simplified invoice sequence with that prefix and it "
+"should be unique."
 msgstr ""
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
 msgid "Unique Order ID"
-msgstr ""
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:42
-#, python-format
-msgid "Unit"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -190,17 +140,14 @@ msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:12
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:29
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:68
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "VAT:"
 msgstr ""
 
 #. module: l10n_es_pos
 #. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:51
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:73
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "on"
 msgstr ""
