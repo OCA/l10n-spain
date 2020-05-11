@@ -657,7 +657,8 @@ class AccountInvoice(models.Model):
     def _get_sii_base_cost(self):
         self.ensure_one()
         return sum(
-            self.invoice_line_ids.mapped('price_subtotal')
+            self.tax_line_ids.filtered(
+                lambda x: not x.tax_id.include_base_amount).mapped('base')
         )
 
     @api.multi
