@@ -60,6 +60,11 @@ msgid "Accepted"
 msgstr "Aceptado"
 
 #. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Accounted obligation"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__attachment_ids
 msgid "Annexes"
 msgstr "Anexos"
@@ -989,6 +994,13 @@ msgstr "Registrado en RCF"
 #: selection:account.invoice.integration,integration_status:0
 msgid "Registered on REC"
 msgstr "Registrado en REC"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+#| msgid "Registered on RCF"
+msgid "Registered on RFC"
+msgstr "Registrado en RCF"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
