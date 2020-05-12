@@ -14,20 +14,18 @@
                         attrs="{'invisible':['|',('state','=','draft'),('can_integrate', '=', False)]}"/>
                 <field name="can_integrate" invisible="1"/>
             </button>
-            <field name="type" position="before">
-                <div name="button_box" class="oe_button_box">
-                    <button
-                        type="object"
-                        name="action_view_integrations"
-                        class="oe_stat_button"
-                        icon="fa-pencil-square-o"
-                        attrs="{'invisible':['|',('state','=','draft'), ('integration_count', '==', 0)]}">
-                        <field name="integration_count" widget="statinfo"
-                               string="Integrations"/>
-                        <field name="integration_ids" invisible="1"/>
-                    </button>
-                </div>
-            </field>
+            <div name="button_box" position="inside">
+                <button
+                    type="object"
+                    name="action_view_integrations"
+                    class="oe_stat_button"
+                    icon="fa-pencil-square-o"
+                    attrs="{'invisible':['|',('state','=','draft'), ('integration_count', '==', 0)]}">
+                    <field name="integration_count" widget="statinfo"
+                           string="Integrations"/>
+                    <field name="integration_ids" invisible="1"/>
+                </button>
+            </div>
             <field name="number" position="after">
                 <field name="facturae" invisible="1"/>
             </field>
