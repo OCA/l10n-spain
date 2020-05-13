@@ -1,6 +1,6 @@
-# © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# © 2019 Ignacio Ibeas <ignacio@acysos.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2019 Ignacio Ibeas <ignacio@acysos.com>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
 import hashlib
@@ -13,7 +13,6 @@ from odoo import _, api, exceptions, fields, http, models
 from odoo.tools import config
 from odoo.tools.float_utils import float_compare
 
-from odoo.addons import decimal_precision as dp
 from odoo.addons.payment.models.payment_acquirer import ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -93,7 +92,7 @@ class AcquirerRedsys(models.Model):
     send_quotation = fields.Boolean("Send quotation", default=True)
     redsys_percent_partial = fields.Float(
         string="Reduction percent",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Write percent reduction payment, for this method payment."
         "With this option you can allow partial payments in your "
         "shop online, the residual amount in pending for do a manual "
@@ -143,9 +142,7 @@ class AcquirerRedsys(models.Model):
             amount = tx_values["amount"]
             tx_values["amount"] = amount - (amount * self.redsys_percent_partial / 100)
         values = {
-            "Ds_Sermepa_Url": (
-                self._get_redsys_urls(self.environment)["redsys_form_url"]
-            ),
+            "Ds_Sermepa_Url": self.redsys_get_form_action_url(),
             "Ds_Merchant_Amount": str(int(round(tx_values["amount"] * 100))),
             "Ds_Merchant_Currency": self.redsys_currency or "978",
             "Ds_Merchant_Order": (
@@ -202,7 +199,6 @@ class AcquirerRedsys(models.Model):
         dig = hmac.new(key=key, msg=params64, digestmod=hashlib.sha256).digest()
         return base64.b64encode(dig).decode()
 
-    @api.multi
     def redsys_form_generate_values(self, values):
         self.ensure_one()
         redsys_values = dict(values)
@@ -218,9 +214,10 @@ class AcquirerRedsys(models.Model):
         )
         return redsys_values
 
-    @api.multi
     def redsys_get_form_action_url(self):
-        return self._get_redsys_urls(self.environment)["redsys_form_url"]
+        self.ensure_one()
+        environment = "prod" if self.state == "enabled" else "test"
+        return self._get_redsys_urls(environment)["redsys_form_url"]
 
     def _product_description(self, order_ref):
         sale_order = self.env["sale.order"].search([("name", "=", order_ref)])
@@ -253,7 +250,7 @@ class TxRedsys(models.Model):
         reference = urllib.parse.unquote(parameters_dic.get("Ds_Order", ""))
         pay_id = parameters_dic.get("Ds_AuthorisationCode")
         shasign = data.get("Ds_Signature", "").replace("_", "/").replace("-", "+")
-        test_env = http.request.session.get("test_enable", False)
+        test_env = config["test_enable"]
         if not reference or not pay_id or not shasign:
             error_msg = (
                 "Redsys: received data with missing reference"
@@ -290,9 +287,8 @@ class TxRedsys(models.Model):
                 raise ValidationError(error_msg)
         return tx
 
-    @api.multi
     def _redsys_form_get_invalid_parameters(self, data):
-        test_env = http.request.session.get("test_enable", False)
+        test_env = config["test_enable"]
         invalid_parameters = []
         parameters_dic = self.merchant_params_json2dict(data)
         if (
@@ -374,7 +370,7 @@ class TxRedsys(models.Model):
 
     @api.model
     def form_feedback(self, data, acquirer_name):
-        res = super(TxRedsys, self).form_feedback(data, acquirer_name)
+        res = super().form_feedback(data, acquirer_name)
         try:
             tx_find_method_name = "_%s_form_get_tx_from_data" % acquirer_name
             if hasattr(self, tx_find_method_name):
@@ -419,7 +415,7 @@ class TxRedsys(models.Model):
                                 tx.sale_order_ids.id,
                             )
                             if not self.env.context.get("bypass_test", False):
-                                tx.sale_order_ids.force_quotation_send()
+                                tx.sale_order_ids.action_quotation_send()
                     else:
                         _logger.warning(
                             "<%s> transaction MISMATCH for order " "%s (ID %s)",
