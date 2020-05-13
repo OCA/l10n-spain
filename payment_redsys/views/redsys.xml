@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- © 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3). -->
 <odoo>
     <template id="redsys_acquirer_button">
         <form t-if="acquirer" t-att-action="tx_url" method="post" target="_self">
