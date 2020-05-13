@@ -1,6 +1,6 @@
-# © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# © 2019 Ignacio Ibeas <ignacio@acysos.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2019 Ignacio Ibeas <ignacio@acysos.com>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
 import pprint
