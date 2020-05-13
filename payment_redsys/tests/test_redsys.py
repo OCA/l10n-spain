@@ -1,5 +1,5 @@
 # © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import json
 import logging
@@ -126,8 +126,8 @@ class RedsysCase(HttpCase):
 
     def test_10_redsys_form_render(self):
         # be sure not to do stupid things
-        self.assertEqual(
-            self.redsys.environment, "test", "test without test environment"
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
         )
         base_url = self.env["ir.config_parameter"].get_param("web.base.url")
 
@@ -171,234 +171,160 @@ class RedsysCase(HttpCase):
     def test_error(self):
         self.data_post_redsys(url="/payment/redsys/return")
 
+    def _form_feedback(self, post_data):
+        # This method is created to simulate what the controller does avoiding
+        # the petition.
+        self.env["payment.transaction"].form_feedback(post_data, "redsys")
+
     def test_20_redsys_form_management(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
-            DS_parameters = redsys._url_encode64(json.dumps(self.redsys_ds_parameters))
-            # typical data posted by redsys after client has successfully paid
-            redsys_post_data = {
-                "Ds_Signature": redsys.sign_parameters(
-                    redsys.redsys_secret_key, DS_parameters
-                ),
-                "Ds_MerchantParameters": DS_parameters,
-                "Ds_SignatureVersion": u"HMAC_SHA256_V1",
-            }
-        self.data_post_redsys(url="/payment/redsys/return", data=redsys_post_data)
-        with self.cursor() as cr:
-            env = self.env(cr)
-            tx = self.tx.with_env(env)
-            self.assertEqual(tx.redsys_txnid, "999999", "Redsys: Get transaction")
-            self.assertEqual(tx.reference, "TST0001", "Redsys: Get transaction")
-            # check state
-            self.assertEqual(
-                tx.state, "done", "Redsys: validation did not put tx into done state"
-            )
-            self.assertEqual(
-                tx.redsys_txnid,
-                self.redsys_ds_parameters.get("Ds_AuthorisationCode"),
-                "Redsys: validation did not update tx payid",
-            )
+        # be sure not to do stupid thing
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
+        )
+        DS_parameters = self.redsys._url_encode64(json.dumps(self.redsys_ds_parameters))
+        # typical data posted by redsys after client has successfully paid
+        redsys_post_data = {
+            "Ds_Signature": self.redsys.sign_parameters(
+                self.redsys.redsys_secret_key, DS_parameters
+            ),
+            "Ds_MerchantParameters": DS_parameters,
+            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+        }
+        self._form_feedback(redsys_post_data)
+        self.assertEqual(self.tx.redsys_txnid, "999999", "Redsys: Get transaction")
+        self.assertEqual(self.tx.reference, "TST0001", "Redsys: Get transaction")
+        # check state
+        self.assertEqual(
+            self.tx.state, "done", "Redsys: validation did not put tx into done state"
+        )
+        self.assertEqual(
+            self.tx.redsys_txnid,
+            self.redsys_ds_parameters.get("Ds_AuthorisationCode"),
+            "Redsys: validation did not update tx payid",
+        )
 
     def test_30_redsys_form_management(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
-            unknow_tx = self.redsys_ds_parameters.copy()
-            unknow_tx["Ds_Order"] = "22"
-            DS_parameters = redsys._url_encode64(json.dumps(unknow_tx))
-            # typical data posted by redsys after client has successfully paid
-            redsys_post_data = {
-                "Ds_Signature": redsys.sign_parameters(
-                    redsys.redsys_secret_key, DS_parameters
-                ),
-                "Ds_MerchantParameters": DS_parameters,
-                "Ds_SignatureVersion": u"HMAC_SHA256_V1",
-            }
-        self.session.test_enable = True
-        http.root.session_store.save(self.session)
-        self.data_post_redsys(url="/payment/redsys/return", data=redsys_post_data)
+        # be sure not to do stupid thing
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
+        )
+        unknow_tx = self.redsys_ds_parameters.copy()
+        unknow_tx["Ds_Order"] = "22"
+        DS_parameters = self.redsys._url_encode64(json.dumps(unknow_tx))
+        # typical data posted by redsys after client has successfully paid
+        redsys_post_data = {
+            "Ds_Signature": self.redsys.sign_parameters(
+                self.redsys.redsys_secret_key, DS_parameters
+            ),
+            "Ds_MerchantParameters": DS_parameters,
+            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+        }
+        self._form_feedback(redsys_post_data)
         self.assertEqual(
             http.OpenERPSession.tx_error, True, "test with unknow transacction"
         )
 
     def test_40_redsys_form_error(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
-            # Force error from provider
-            error_tx = self.redsys_ds_parameters.copy()
-            error_tx["Ds_Response"] = "9065"
-            DS_parameters = redsys._url_encode64(json.dumps(error_tx))
-            # typical data posted by redsys after client has successfully paid
-            redsys_post_data = {
-                "Ds_Signature": redsys.sign_parameters(
-                    redsys.redsys_secret_key, DS_parameters
-                ),
-                "Ds_MerchantParameters": DS_parameters,
-                "Ds_SignatureVersion": u"HMAC_SHA256_V1",
-            }
-        self.data_post_redsys(url="/payment/redsys/return", data=redsys_post_data)
-        with self.cursor() as cr:
-            env = self.env(cr)
-            tx = self.tx.with_env(env)
-            # Get transaction
-            self.assertNotEqual(
-                tx.state, "done", "Redsys: validation did not put tx into done state"
-            )
+        # be sure not to do stupid thing
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
+        )
+        # Force error from provider
+        error_tx = self.redsys_ds_parameters.copy()
+        error_tx["Ds_Response"] = "9065"
+        DS_parameters = self.redsys._url_encode64(json.dumps(error_tx))
+        # typical data posted by redsys after client has successfully paid
+        redsys_post_data = {
+            "Ds_Signature": self.redsys.sign_parameters(
+                self.redsys.redsys_secret_key, DS_parameters
+            ),
+            "Ds_MerchantParameters": DS_parameters,
+            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+        }
+        self._form_feedback(redsys_post_data)
+        # Get transaction
+        self.assertNotEqual(
+            self.tx.state, "done", "Redsys: validation did not put tx into done state"
+        )
 
     def test_50_redsys_form_pending(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
-            # Force error from provider
-            error_tx = self.redsys_ds_parameters.copy()
-            error_tx["Ds_Response"] = "110"
-            DS_parameters = redsys._url_encode64(json.dumps(error_tx))
-            # typical data posted by redsys after client has successfully paid
-            redsys_post_data = {
-                "Ds_Signature": redsys.sign_parameters(
-                    redsys.redsys_secret_key, DS_parameters
-                ),
-                "Ds_MerchantParameters": DS_parameters,
-                "Ds_SignatureVersion": u"HMAC_SHA256_V1",
-            }
-        self.data_post_redsys(url="/payment/redsys/return", data=redsys_post_data)
-        with self.cursor() as cr:
-            env = self.env(cr)
-            tx = self.tx.with_env(env)
-            # Get transaction
-            self.assertEqual(
-                tx.state, "pending", "Redsys: validation did not put tx into done state"
-            )
-
-    def test_60_redsys_form_cancel(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
-            # Force error from provider
-            error_tx = self.redsys_ds_parameters.copy()
-            error_tx["Ds_Response"] = "912"
-            DS_parameters = redsys._url_encode64(json.dumps(error_tx))
-            # typical data posted by redsys after client has successfully paid
-            redsys_post_data = {
-                "Ds_Signature": redsys.sign_parameters(
-                    redsys.redsys_secret_key, DS_parameters
-                ),
-                "Ds_MerchantParameters": DS_parameters,
-                "Ds_SignatureVersion": u"HMAC_SHA256_V1",
-            }
-        self.data_post_redsys(url="/payment/redsys/return", data=redsys_post_data)
-        with self.cursor() as cr:
-            env = self.env(cr)
-            tx = self.tx.with_env(env)
-            # Get transaction
-            self.assertEqual(
-                tx.state, "cancel", "Redsys: validation did not put tx into done state"
-            )
+        # be sure not to do stupid thing
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
+        )
+        # Force error from provider
+        error_tx = self.redsys_ds_parameters.copy()
+        error_tx["Ds_Response"] = "912"
+        DS_parameters = self.redsys._url_encode64(json.dumps(error_tx))
+        # typical data posted by redsys after client has successfully paid
+        redsys_post_data = {
+            "Ds_Signature": self.redsys.sign_parameters(
+                self.redsys.redsys_secret_key, DS_parameters
+            ),
+            "Ds_MerchantParameters": DS_parameters,
+            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+        }
+        self._form_feedback(redsys_post_data)
+        # Get transaction
+        self.assertEqual(
+            self.tx.state, "cancel", "Redsys: validation did not put tx into done state"
+        )
 
     def test_80_redsys_partial_payment(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                self.redsys.environment, "test", "test without test environment"
-            )
-            redsys.redsys_percent_partial = 50
-            # Form values
-            values = redsys.redsys_form_generate_values(self.vals_tx)
-            Ds_MerchantParameters = self.redsys._url_decode64(
-                values["Ds_MerchantParameters"]
-            )
-            self.assertEqual(
-                Ds_MerchantParameters["Ds_Merchant_Amount"],
-                "5025",
-                "Redsys: Partial amount Ok",
-            )
+        # be sure not to do stupid thing
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
+        )
+        self.redsys.redsys_percent_partial = 50
+        # Form values
+        values = self.redsys.redsys_form_generate_values(self.vals_tx)
+        Ds_MerchantParameters = self.redsys._url_decode64(
+            values["Ds_MerchantParameters"]
+        )
+        self.assertEqual(
+            Ds_MerchantParameters["Ds_Merchant_Amount"],
+            "5025",
+            "Redsys: Partial amount Ok",
+        )
 
     @patch("odoo.addons.sale.models.sale.SaleOrder.action_confirm")
-    @patch("odoo.addons.sale.models.sale.SaleOrder.force_quotation_send")
+    @patch("odoo.addons.sale.models.sale.SaleOrder.action_quotation_send")
     def test_90_redsys_form_partial_payment(self, mock_quo_send, mock_confirm):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            tx = self.tx.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
-            redsys.redsys_percent_partial = 50
-            params = self.redsys_ds_parameters.copy()
-            params["Ds_Amount"] = "5025"
-            DS_parameters = redsys._url_encode64(json.dumps(params))
-            # typical data posted by redsys after client has successfully paid
-            redsys_post_data = {
-                "Ds_Signature": redsys.sign_parameters(
-                    redsys.redsys_secret_key, DS_parameters
-                ),
-                "Ds_MerchantParameters": DS_parameters,
-                "Ds_SignatureVersion": u"HMAC_SHA256_V1",
-            }
-            tx.sale_order_ids = [(6, 0, self.so.with_env(env).ids)]
-            # Get transaction
-        self.data_post_redsys(url="/payment/redsys/return", data=redsys_post_data)
+        # be sure not to do stupid thing
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
+        )
+        self.redsys.redsys_percent_partial = 50
+        params = self.redsys_ds_parameters.copy()
+        params["Ds_Amount"] = "5025"
+        DS_parameters = self.redsys._url_encode64(json.dumps(params))
+        # typical data posted by redsys after client has successfully paid
+        redsys_post_data = {
+            "Ds_Signature": self.redsys.sign_parameters(
+                self.redsys.redsys_secret_key, DS_parameters
+            ),
+            "Ds_MerchantParameters": DS_parameters,
+            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+        }
+        self.tx.sale_order_ids = [(6, 0, self.so.ids)]
+        # Get transaction
+        self._form_feedback(redsys_post_data)
         mock_confirm.assert_called_once_with()
         mock_quo_send.assert_not_called()
-        with self.cursor() as cr:
-            env = self.env(cr)
-            tx = self.tx.with_env(env)
-            # check state
-            self.assertEqual(
-                tx.state, "done", "Redsys: validation put tx into done state"
-            )
-            self.assertEqual(
-                tx.redsys_txnid,
-                self.redsys_ds_parameters.get("Ds_AuthorisationCode"),
-                "Redsys: validation did not update tx payid",
-            )
+        # check state
+        self.assertEqual(
+            self.tx.state, "done", "Redsys: validation put tx into done state"
+        )
+        self.assertEqual(
+            self.tx.redsys_txnid,
+            self.redsys_ds_parameters.get("Ds_AuthorisationCode"),
+            "Redsys: validation did not update tx payid",
+        )
 
     def test_91_redsys_return_post(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
+        # be sure not to do stupid thing
+        self.assertNotEqual(
+            self.redsys.state, "enabled", "test without test environment"
+        )
         res = self.data_post_redsys(url="/payment/redsys/return")
         self.assertGreater(res.url.find("/shop"), 0, "Redsys: Redirection to /shop")
-
-    def test_91_redsys_result_page(self):
-        with self.cursor() as cr:
-            env = self.env(cr)
-            redsys = self.redsys.with_env(env)
-            # be sure not to do stupid thing
-            self.assertEqual(
-                redsys.environment, "test", "test without test environment"
-            )
-            sale_order_id = self.so.with_env(env).id
-        self.session.sale_last_order_id = sale_order_id
-        http.root.session_store.save(self.session)
-        res = self.data_post_redsys(url="/payment/redsys/result/redsys_result_ok")
-        self.assertEqual(res.status_code, 200)
