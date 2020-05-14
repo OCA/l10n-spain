@@ -28,10 +28,10 @@
         <record id="aeat_sii_map_line_SFENS" model="aeat.sii.map.lines">
             <field name="code">SFENS</field>
             <field name="taxes" eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_s_iva_ns'),
+                ref('l10n_es.account_tax_template_s_iva_ns_b'),
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
-            <field name="name">SuministroFactEmitidas No Sujeta</field>
+            <field name="name">SuministroFactEmitidas Bienes No Sujeta</field>
         </record>
 
         <record id="aeat_sii_map_line_SFESNS" model="aeat.sii.map.lines">
@@ -39,6 +39,7 @@
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva_e'),
                 ref('l10n_es.account_tax_template_s_iva0_sp_i'),
+                ref('l10n_es.account_tax_template_s_iva_ns')
             ])]"/>
             <field name="sii_map_id" ref="aeat_sii_map"/>
             <field name="name">SuministroFactEmitidas Servicios No Sujeta</field>
