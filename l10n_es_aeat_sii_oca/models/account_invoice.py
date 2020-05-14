@@ -449,7 +449,6 @@ class AccountInvoice(models.Model):
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
-        default_no_taxable_cause = self._get_no_taxable_cause()
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
@@ -496,6 +495,8 @@ class AccountInvoice(models.Model):
                     )
             # No sujetas
             if tax in taxes_sfens:
+                # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
+                default_no_taxable_cause = self._get_no_taxable_cause()
                 nsub_dict = tax_breakdown.setdefault(
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
@@ -1193,8 +1194,7 @@ class AccountInvoice(models.Model):
             res = int(partner_ident)
         elif self.fiscal_position_id.name == 'Régimen Intracomunitario':
             res = 2
-        elif (self.fiscal_position_id.name ==
-              'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
+        elif self.fiscal_position_id.name == 'Régimen Extracomunitario':
             res = 3
         else:
             res = 1
@@ -1291,7 +1291,7 @@ class AccountInvoice(models.Model):
     def _get_no_taxable_cause(self):
         self.ensure_one()
         return self.fiscal_position_id.sii_no_taxable_cause or \
-            'ImportePorArticulos7_14_Otros'
+            'ImporteTAIReglasLocalizacion'
 
     def is_sii_invoice(self):
         """Hook method to be overridden in additional modules to verify

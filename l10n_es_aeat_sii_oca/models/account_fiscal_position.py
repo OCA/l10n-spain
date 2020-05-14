@@ -42,7 +42,7 @@ class AccountFiscalPosition(models.Model):
             ('ImporteTAIReglasLocalizacion',
              'Operaciones no sujetas en el TAI por reglas de localización'),
         ], string="SII No taxable cause",
-        default="ImportePorArticulos7_14_Otros", oldname="no_taxable_cause",
+        default="ImporteTAIReglasLocalizacion", oldname="no_taxable_cause",
     )
     sii_exempt_cause = fields.Selection(
         string="SII Exempt Cause",
