@@ -1061,13 +1061,13 @@ msgid "The last attemp to sent to SII has failed"
 msgstr "El último intento de envío al SII ha fallado"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:634
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:635
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr "La empresa no tiene un NIF establecido."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:650
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:651
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr "El nº de factura del proveedor es obligatorio"
@@ -1079,13 +1079,13 @@ msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hay un cruce erróneo para tasas en RE. Chequéelas."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:642
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:643
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr "Esta compañía no tiene habilitado el SII."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:646
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:647
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr "Esta factura no está habilitada para el SII."
@@ -1117,13 +1117,13 @@ msgid "With modifications not sent to SII"
 msgstr "Modificaciones no enviadas al SII"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1162
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1163
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr "¡No puede cancelar una factura porque hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1132
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1133
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -1133,7 +1133,7 @@ msgstr ""
 "hay un trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1071
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1072
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -1143,7 +1143,7 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1178
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1179
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
@@ -1151,7 +1151,7 @@ msgstr ""
 "trabajo ejecutándose!"
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:629
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:630
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr "No puede realizar una factura simplificada a un proveedor."
@@ -1194,7 +1194,7 @@ msgid "You cannot delete an invoice already registered at the SII."
 msgstr "No puede eliminar una factura enviada al SII."
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:637
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:638
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr "Debe seleccionar qué plan contable utiliza esta compañía."
