@@ -5,26 +5,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'AEAT modelo 296',
-    'version': '12.0.2.2.0',
-    'category': "Localisation/Accounting",
-    'author': "Tecnativa,"
-              "AvanzOSC,"
-              "Qubiq,"
-              "Odoo Community Association (OCA)",
-    'website': "https://github.com/OCA/l10n-spain",
-    'license': 'AGPL-3',
-    'depends': [
-        'l10n_es_aeat',
-        'l10n_es_aeat_mod216',
+    "name": "AEAT modelo 296",
+    "version": "12.0.2.2.0",
+    "category": "Localisation/Accounting",
+    "author": "Tecnativa," "AvanzOSC," "Qubiq," "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-spain",
+    "license": "AGPL-3",
+    "depends": ["l10n_es_aeat", "l10n_es_aeat_mod216",],
+    "data": [
+        "security/ir.model.access.csv",
+        "data/tax_code_map_mod296_data.xml",
+        "data/aeat_export_mod296_line_data.xml",
+        "data/aeat_export_mod296_data.xml",
+        "views/mod296_views.xml",
+        "security/ir_rule.xml",
     ],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/tax_code_map_mod296_data.xml',
-        'data/aeat_export_mod296_line_data.xml',
-        'data/aeat_export_mod296_data.xml',
-        'views/mod296_views.xml',
-        'security/ir_rule.xml'
-    ],
-    'installable': True,
+    "installable": True,
 }
