@@ -35,7 +35,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
