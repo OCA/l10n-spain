@@ -25,7 +25,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         "S_REQ014": (1800, 25.2),
         "S_REQ52": (1900, 98.8),
         "S_IVA0_E": (2000, 0),
-        "S_IVA_E": (2100, 0),
+        "S_IVA_SP_E": (2100, 0),
         "S_IVA_NS": (2200, 0),
         "S_IVA0_ISP": (2300, 0),
         "S_IVA0_IC": (2400, 0),
@@ -218,7 +218,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -247,7 +247,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
     def test_model_390(self):
         # Test constraints
         with self.assertRaises(Exception):
-            self.model390.type = "C"
+            self.model390.statement_type = "C"
         self.model390.button_calculate()
         # Check tax lines
         for field, result in self.taxes_result.items():
