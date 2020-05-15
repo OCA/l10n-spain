@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-l10n_es_mis_report',
         'odoo13-addon-l10n_es_partner',
+        'odoo13-addon-l10n_es_pos',
         'odoo13-addon-l10n_es_toponyms',
     ],
     classifiers=[
