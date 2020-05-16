@@ -4,7 +4,7 @@
 # Copyright 2018 Valentin Vinagre <valentin.vinagre@qubiq.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import api, fields, models
+from odoo import api, fields, models
 
 
 class L10nEsAeatMod296Report(models.Model):
@@ -46,7 +46,6 @@ class L10nEsAeatMod296Report(models.Model):
         "l10n.es.aeat.mod296.report.line", "mod296_id", string="Lines"
     )
 
-    @api.multi
     def partner_group(self, move_lines_base_ids, move_lines_cuota_ids):
         partner_groups = {}
         for group in self.env["account.move.line"].read_group(
@@ -68,7 +67,6 @@ class L10nEsAeatMod296Report(models.Model):
             }
         return partner_groups
 
-    @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod296Report, self).calculate()
         for report in self:
@@ -98,28 +96,25 @@ class L10nEsAeatMod296Report(models.Model):
                         "move_line_ids": move_lines_base.filtered(
                             lambda x: x.partner_id == partner
                         )
-                        + move_lines_cuota.filtered(lambda x: x.partner_id == partner),
-                        "base_retenciones_ingresos": partner_groups[partner_id]["base"][
-                            "debit"
-                        ]
+                        + move_lines_cuota.filtered(
+                            lambda x: x.partner_id == partner),
+                        "base_retenciones_ingresos": partner_groups[
+                            partner_id]["base"]["debit"]
                         - partner_groups[partner_id]["base"]["credit"],
-                        "retenciones_ingresos": partner_groups[partner_id]["cuota"][
-                            "credit"
-                        ]
+                        "retenciones_ingresos": partner_groups[
+                            partner_id]["cuota"]["credit"]
                         - partner_groups[partner_id]["cuota"]["debit"],
                     }
                 )
             report.lines296 = line_lst
             report.casilla_01 = len(partner_groups)
             report.casilla_02 = sum(
-                report.tax_line_ids.filtered(lambda x: x.field_number == 2).mapped(
-                    "amount"
-                )
+                report.tax_line_ids.filtered(
+                    lambda x: x.field_number == 2).mapped("amount")
             )
             report.casilla_03 = sum(
-                report.tax_line_ids.filtered(lambda x: x.field_number == 3).mapped(
-                    "amount"
-                )
+                report.tax_line_ids.filtered(
+                    lambda x: x.field_number == 3).mapped("amount")
             )
         return res
 
@@ -135,9 +130,11 @@ class L10nEsAeatMod296ReportLine(models.Model):
         string="Base retention and " "income on account"
     )
     porcentaje_retencion = fields.Float(string="% retention")
-    retenciones_ingresos = fields.Float(string="Retention and income on " "account")
+    retenciones_ingresos = fields.Float(
+        string="Retention and income on " "account")
     fisica_juridica = fields.Selection(
-        [("F", "Physical person"), ("J", "Legal person or entity")], string="F/J"
+        [("F", "Physical person"), ("J", "Legal person or entity")],
+        string="F/J"
     )
     naturaleza = fields.Selection(
         [("D", "Money income"), ("E", "Income in kind")], string="Nature"
@@ -286,15 +283,18 @@ class L10nEsAeatMod296ReportLine(models.Model):
         ],
         string="Code type",
     )
-    cuenta_valores = fields.Many2one("res.partner.bank", string="Code Account Values")
+    cuenta_valores = fields.Many2one(
+        "res.partner.bank", string="Code Account Values")
     pendiente = fields.Boolean(string="Pending")
     domicilio = fields.Char(string="Domicile", size=50)
     complemento_domicilio = fields.Char(string="Domicile Complement", size=40)
     poblacion = fields.Char(string="Population/City", size=30)
-    provincia = fields.Many2one("res.country.state", string="Province/Region/State")
+    provincia = fields.Many2one(
+        "res.country.state", string="Province/Region/State")
     zip = fields.Char(string="Postal Code", size=10)
     pais = fields.Many2one("res.country", string="Country")
-    nif_pais_residencia = fields.Char(string="Nif in the country of residence", size=20)
+    nif_pais_residencia = fields.Char(
+        string="Nif in the country of residence", size=20)
     fecha_nacimiento = fields.Date(string="Date of birth")
     ciudad_nacimiento = fields.Char(string="Birth city", size=35)
     pais_nacimiento = fields.Many2one("res.country", string="Country of birth")
@@ -302,22 +302,23 @@ class L10nEsAeatMod296ReportLine(models.Model):
         "res.country", string="Country " "territory of fiscal residence"
     )
     fecha_devengo_export = fields.Char(
-        string="Devengo date export", compute="_compute_get_fecha_devengo_export"
+        string="Devengo date export",
+        compute="_compute_get_fecha_devengo_export"
     )
     fecha_nacimiento_export = fields.Char(
-        string="Date of birth export", compute="_compute_get_fecha_nacimiento_export"
+        string="Date of birth export",
+        compute="_compute_get_fecha_nacimiento_export"
     )
 
-    @api.multi
     @api.depends("fecha_nacimiento")
     def _compute_get_fecha_devengo_export(self):
         for sel in self:
             res = ""
             if sel.fecha_nacimiento:
-                res = fields.Date.to_date(sel.fecha_nacimiento).strftime("%d%m%Y")
+                res = fields.Date.to_date(sel.fecha_nacimiento).strftime(
+                    "%d%m%Y")
             sel.fecha_nacimiento_export = res
 
-    @api.multi
     @api.depends("fecha_devengo")
     def _compute_get_fecha_nacimiento_export(self):
         for sel in self:
@@ -326,7 +327,6 @@ class L10nEsAeatMod296ReportLine(models.Model):
                 res = fields.Date.to_date(sel.fecha_devengo).strftime("%d%m%Y")
             sel.fecha_devengo_export = res
 
-    @api.multi
     @api.onchange("partner_id")
     def onchange_partner(self):
         for sel in self.filtered(lambda x: x.partner_id):

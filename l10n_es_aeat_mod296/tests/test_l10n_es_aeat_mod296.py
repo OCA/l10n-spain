@@ -41,7 +41,7 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2015,
@@ -66,4 +66,5 @@ class TestL10nEsAeatMod296Base(TestL10nEsAeatModBase):
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
-            self.assertTrue(export_to_boe._export_config(self.model296, export_config))
+            self.assertTrue(
+                export_to_boe._export_config(self.model296, export_config))
