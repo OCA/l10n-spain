@@ -7,7 +7,8 @@
         'l10n_es_aeat_sii',
     ],
     'category': "Accounting & Finance",
-    'author': 'FactorLibre',
+    'author': "FactorLibre,"
+                "Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'website': 'http://www.factorlibre.com',
     'data': [
