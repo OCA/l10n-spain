@@ -2,7 +2,8 @@
 # Copyright 2015 - AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2020 Sygel - Valentin Vinagre
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import _, api, exceptions, fields, models
 
@@ -21,14 +22,6 @@ class L10nEsAeatMod303Report(models.Model):
     _name = "l10n.es.aeat.mod303.report"
     _description = "AEAT 303 Report"
     _aeat_number = "303"
-
-    def _default_counterpart_303(self):
-        return self.env["account.account"].search(
-            [
-                ("code", "like", "4750%"),
-                ("company_id", "=", self._default_company_id().id),
-            ]
-        )[:1]
 
     devolucion_mensual = fields.Boolean(
         string="Montly Return",
@@ -82,6 +75,9 @@ class L10nEsAeatMod303Report(models.Model):
     regularizacion_anual = fields.Float(
         string="[68] Annual regularization",
         states=NON_EDITABLE_ON_DONE,
+        compute="_compute_regularizacion_anual",
+        readonly=False,
+        store=True,
         help="In the last auto settlement of the year, shall be recorded "
         "(the fourth period or 12th month), with the appropriate sign, "
         "the result of the annual adjustment as have the laws by the "
@@ -131,9 +127,10 @@ class L10nEsAeatMod303Report(models.Model):
     counterpart_account_id = fields.Many2one(
         comodel_name="account.account",
         string="Counterpart account",
-        default=_default_counterpart_303,
+        compute="_compute_counterpart_account_id",
         domain="[('company_id', '=', company_id)]",
-        oldname="counterpart_account",
+        store=True,
+        readonly=False,
     )
     allow_posting = fields.Boolean(string="Allow posting", default=True)
     exonerated_390 = fields.Selection(
@@ -141,6 +138,9 @@ class L10nEsAeatMod303Report(models.Model):
         default="2",
         required=True,
         states=NON_EDITABLE_ON_DONE,
+        compute="_compute_exonerated_390",
+        store=True,
+        readonly=False,
         string=u"Exonerado mod. 390",
         help=u"Exonerado de la Declaración-resumen anual del IVA, modelo 390: "
         u"Volumen de operaciones (art. 121 LIVA)",
@@ -231,7 +231,6 @@ class L10nEsAeatMod303Report(models.Model):
         store=True,
     )
 
-    @api.multi
     @api.depends("date_start", "cuota_compensar")
     def _compute_exception_msg(self):
         super(L10nEsAeatMod303Report, self)._compute_exception_msg()
@@ -261,7 +260,27 @@ class L10nEsAeatMod303Report(models.Model):
                     "field '[67] Fees to compensate' in this declaration."
                 )
 
-    @api.multi
+    @api.depends("company_id", "result_type")
+    def _compute_counterpart_account_id(self):
+        for record in self:
+            code = ("%s%%" % _ACCOUNT_PATTERN_MAP.get(record.result_type, "4750"),)
+            record.counterpart_account_id = self.env["account.account"].search(
+                [("code", "like", code[0]), ("company_id", "=", record.company_id.id)],
+                limit=1,
+            )
+
+    @api.depends("period_type")
+    def _compute_regularizacion_anual(self):
+        for record in self:
+            if record.period_type not in ("4T", "12"):
+                record.regularizacion_anual = 0
+
+    @api.depends("period_type")
+    def _compute_exonerated_390(self):
+        for record in self:
+            if record.period_type not in ("4T", "12"):
+                record.exonerated_390 = "2"
+
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_devengado(self):
         casillas_devengado = (3, 6, 9, 11, 13, 15, 18, 21, 24, 26)
@@ -271,7 +290,6 @@ class L10nEsAeatMod303Report(models.Model):
             )
             report.total_devengado = sum(tax_lines.mapped("amount"))
 
-    @api.multi
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_total_deducir(self):
         casillas_deducir = (29, 31, 33, 35, 37, 39, 41, 42, 43, 44)
@@ -281,13 +299,11 @@ class L10nEsAeatMod303Report(models.Model):
             )
             report.total_deducir = sum(tax_lines.mapped("amount"))
 
-    @api.multi
     @api.depends("total_devengado", "total_deducir")
     def _compute_casilla_46(self):
         for report in self:
             report.casilla_46 = report.total_devengado - report.total_deducir
 
-    @api.multi
     @api.depends("porcentaje_atribuible_estado", "casilla_46")
     def _compute_atribuible_estado(self):
         for report in self:
@@ -295,7 +311,6 @@ class L10nEsAeatMod303Report(models.Model):
                 report.casilla_46 * report.porcentaje_atribuible_estado / 100.0
             )
 
-    @api.multi
     @api.depends(
         "atribuible_estado", "cuota_compensar", "regularizacion_anual", "casilla_77"
     )
@@ -308,7 +323,6 @@ class L10nEsAeatMod303Report(models.Model):
                 + report.regularizacion_anual
             )
 
-    @api.multi
     @api.depends("casilla_69", "previous_result")
     def _compute_resultado_liquidacion(self):
         for report in self:
@@ -328,12 +342,10 @@ class L10nEsAeatMod303Report(models.Model):
                 ).mapped("amount")
             )
 
-    @api.multi
     def _compute_allow_posting(self):
         for report in self:
             report.allow_posting = True
 
-    @api.multi
     @api.depends(
         "resultado_liquidacion", "period_type", "devolucion_mensual",
     )
@@ -349,33 +361,14 @@ class L10nEsAeatMod303Report(models.Model):
                 else:
                     report.result_type = "C"
 
-    @api.onchange("year", "period_type")
-    def onchange_period_type(self):
-        super(L10nEsAeatMod303Report, self).onchange_period_type()
-        if self.period_type not in ("4T", "12"):
-            self.regularizacion_anual = 0
-            self.exonerated_390 = "2"
-
-    @api.onchange("type")
+    @api.onchange("statement_type")
     def onchange_type(self):
-        if self.type != "C":
+        if self.statement_type != "C":
             self.previous_result = 0
 
-    @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
         for mod303 in self:
-            mod303.counterpart_account_id = self.env["account.account"].search(
-                [
-                    (
-                        "code",
-                        "=like",
-                        "%s%%" % _ACCOUNT_PATTERN_MAP.get(mod303.result_type, "4750"),
-                    ),
-                    ("company_id", "=", mod303.company_id.id),
-                ],
-                limit=1,
-            )
             prev_reports = mod303._get_previous_fiscalyear_reports(
                 mod303.date_start
             ).filtered(lambda x: x.state not in ["draft", "cancelled"])
@@ -392,7 +385,6 @@ class L10nEsAeatMod303Report(models.Model):
                 mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
         return res
 
-    @api.multi
     def button_confirm(self):
         """Check records"""
         msg = ""
@@ -403,7 +395,6 @@ class L10nEsAeatMod303Report(models.Model):
             raise exceptions.Warning(msg)
         return super(L10nEsAeatMod303Report, self).button_confirm()
 
-    @api.multi
     @api.constrains("cuota_compensar")
     def check_qty(self):
         if self.filtered(lambda x: x.cuota_compensar < 0.0):
@@ -411,7 +402,7 @@ class L10nEsAeatMod303Report(models.Model):
                 _("The fee to compensate must be indicated as a positive number.")
             )
 
-    def _get_tax_lines(self, codes, date_start, date_end, map_line):
+    def _get_tax_lines(self, date_start, date_end, map_line):
         """Don't populate results for fields 79-99 for reports different from
         last of the year one or when not exonerated of presenting model 390.
         """
@@ -423,10 +414,10 @@ class L10nEsAeatMod303Report(models.Model):
             ):
                 return self.env["account.move.line"]
         return super(L10nEsAeatMod303Report, self)._get_tax_lines(
-            codes, date_start, date_end, map_line,
+            date_start, date_end, map_line,
         )
 
-    def _get_move_line_domain(self, codes, date_start, date_end, map_line):
+    def _get_move_line_domain(self, date_start, date_end, map_line):
         """Changes dates to full year when the summary on last report of the
         year for the corresponding fields. Only field number is checked as
         the complete check for not bringing results is done on
@@ -436,7 +427,7 @@ class L10nEsAeatMod303Report(models.Model):
             date_start = date_start.replace(day=1, month=1)
             date_end = date_end.replace(day=31, month=12)
         return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
-            codes, date_start, date_end, map_line,
+            date_start, date_end, map_line,
         )
 
 
