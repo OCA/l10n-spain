@@ -10,16 +10,13 @@
     "version": "12.0.1.8.0",
     "category": "Accounting",
     "author": "Guadaltech,"
-              "AvanzOSC,"
-              "Tecnativa,"
-              "Eficent,"
-              "Odoo Community Association (OCA)",
+    "AvanzOSC,"
+    "Tecnativa,"
+    "Eficent,"
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": [
-        "l10n_es",
-        "l10n_es_aeat",
-    ],
+    "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
