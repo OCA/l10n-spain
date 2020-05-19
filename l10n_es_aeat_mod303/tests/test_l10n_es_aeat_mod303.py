@@ -1,5 +1,5 @@
 # Copyright 2016-2019 Tecnativa - Pedro M. Baeza
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
 
@@ -384,7 +384,7 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         # Exportaciones y operaciones asimiladas - Base ventas
         "60": (2 * 2000) + (2 * 2200),  # S_IVA0_E + S_IVA_NS
         # Op. no sujetas o con inv. del sujeto pasivo - Base ventas
-        "61": ((2 * 2100) + (2 * 2300)),  # S_IVA_SP_E  # S_IVA0_ISP
+        "61": ((2 * 2100) + (2 * 2300)),  # S_IVA_SP_E # S_IVA0_ISP
         # Importes de las entregas de bienes y prestaciones de servicios
         # a las que habiéndoles sido aplicado el régimen especial del
         # criterio de caja hubieran resultado devengadas conforme a la regla
@@ -407,19 +407,20 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
         "75": 0,
     }
 
-    def setUp(self):
-        super(TestL10nEsAeatMod303Base, self).setUp()
-        export_config = self.env.ref(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        export_config = cls.env.ref(
             "l10n_es_aeat_mod303.aeat_mod303_main_export_config"
         )
         # Create model
-        self.model303 = self.env["l10n.es.aeat.mod303.report"].create(
+        cls.model303 = cls.env["l10n.es.aeat.mod303.report"].create(
             {
                 "name": "9990000000303",
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -427,10 +428,10 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 "date_start": "2017-01-01",
                 "date_end": "2017-03-31",
                 "export_config_id": export_config.id,
-                "journal_id": self.journal_misc.id,
+                "journal_id": cls.journal_misc.id,
             }
         )
-        self.model303_4t = self.model303.copy(
+        cls.model303_4t = cls.model303.copy(
             {
                 "name": "9994000000303",
                 "period_type": "4T",
@@ -441,18 +442,19 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
 
 
 class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
-    def setUp(self):
-        super(TestL10nEsAeatMod303, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Purchase invoices
-        self._invoice_purchase_create("2017-01-01")
-        self._invoice_purchase_create("2017-01-02")
-        purchase = self._invoice_purchase_create("2017-01-03")
-        self._invoice_refund(purchase, "2017-01-18")
+        cls._invoice_purchase_create("2017-01-01")
+        cls._invoice_purchase_create("2017-01-02")
+        purchase = cls._invoice_purchase_create("2017-01-03")
+        cls._invoice_refund(purchase, "2017-01-18")
         # Sale invoices
-        self._invoice_sale_create("2017-01-11")
-        self._invoice_sale_create("2017-01-12")
-        sale = self._invoice_sale_create("2017-01-13")
-        self._invoice_refund(sale, "2017-01-14")
+        cls._invoice_sale_create("2017-01-11")
+        cls._invoice_sale_create("2017-01-12")
+        sale = cls._invoice_sale_create("2017-01-13")
+        cls._invoice_refund(sale, "2017-01-14")
 
     def _check_tax_lines(self):
         for field, result in iter(self.taxes_result.items()):
@@ -468,12 +470,12 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             )
 
     def test_model_303(self):
-        # Test default counterpart
-        self.assertEqual(
-            self.model303._default_counterpart_303().id, self.accounts["475000"].id
-        )
         _logger.debug("Calculate AEAT 303 1T 2017")
         self.model303.button_calculate()
+        # Test default counterpart.
+        self.assertEqual(
+            self.model303.counterpart_account_id.id, self.accounts["475000"].id
+        )
         self.assertEqual(self.model303.state, "calculated")
         # Fill manual fields
         self.model303.write(
@@ -537,7 +539,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             self.model303.move_id.journal_id, self.model303.journal_id,
         )
         self.assertEqual(
-            self.model303.move_id.partner_id,
+            self.model303.move_id.line_ids.mapped("partner_id"),
             self.env.ref("l10n_es_aeat.res_partner_aeat"),
         )
         codes = self.model303.move_id.mapped("line_ids.account_id.code")
@@ -574,21 +576,21 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         )
         # Check change of period type
         self.model303_4t.period_type = "1T"
-        self.model303_4t.onchange_period_type()
         self.assertEqual(self.model303_4t.exonerated_390, "2")
 
-    def test_model_303_negative_special_case(self):
-        self.taxes_sale = {
+    @classmethod
+    def change_taxes_negative_special_case(cls):
+        cls.taxes_sale = {
             # tax code: (base, tax_amount)
             "S_IVA4B": (1000, 40),
             "S_IVA21B//neg": (-140, -29.4),
         }
-        self.taxes_purchase = {
+        cls.taxes_purchase = {
             # tax code: (base, tax_amount)
             "P_IVA4_BC": (240, 9.6),
             "P_IVA21_SC//neg": (-23, -4.83),
         }
-        self.taxes_result = {
+        cls.taxes_result = {
             # Régimen General - Base imponible 4%
             "1": 1000,  # S_IVA4B
             # Régimen General - Cuota 4%
@@ -606,6 +608,9 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             # Cuotas soportadas en op. int. corrientes - Cuota
             "29": 9.6 - 4.83,  # P_IVA4_IC_BC, P_IVA21_SC
         }
+
+    def test_model_303_negative_special_case(self):
+        self.change_taxes_negative_special_case()
         self._invoice_sale_create("2020-01-01")
         self._invoice_purchase_create("2020-01-01")
         self.model303.date_start = "2020-01-01"
