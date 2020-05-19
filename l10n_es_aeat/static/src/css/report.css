@@ -1,0 +1,9 @@
+.o_aeat_reports_page {
+    background-color: white;
+    color: @odoo-main-text-color;
+    padding-top: 10px;
+    width: 100%;
+}
+.underline-on-hover:hover {
+    text-decoration: underline;
+}

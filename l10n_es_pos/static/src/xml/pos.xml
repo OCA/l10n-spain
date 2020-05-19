@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="OrderReceipt">
+        <t t-jquery="[t-if='receipt.company.contact_address']" t-operation="before">
+            <t
+                t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice()"
+            >
+                <t t-esc='receipt.date.localestring' /><br />
+                Simplified invoice <t t-esc="order.simplified_invoice" />
+            <br /><br />
+            </t>
+        </t>
+        <t t-jquery='t[t-if="receipt.company.vat"]' t-operation="after">
+            <t t-esc="widget.pos.company.street" t-if="widget.pos.company.street" />
+            <br />
+            <t t-esc="widget.pos.company.zip" t-if="widget.pos.company.zip" />
+            <t t-esc="widget.pos.company.city" t-if="widget.pos.company.city" />
+            <t t-if="widget.pos.company.state_id">
+                (<t t-esc="widget.pos.company.state_id[1]" />)
+            </t>
+            <br />
+        </t>
+        <t t-jquery='t[t-if="receipt.cashier"]' t-operation="after">
+            <br />
+            <br />
+            <t t-if="order.get_client()">
+                Customer: <t t-esc="order.get_client().name" /><br />
+                <t t-if="order.get_client().vat">
+                    VAT: <t t-esc="order.get_client().vat" /><br />
+                </t>
+                <t t-if="order.get_client().address != ',  , '">
+                    <t t-esc="order.get_client().address" />
+                </t>
+            </t>
+        </t>
+        <t t-jquery="t[t-esc='tax.name']" t-operation="after">
+            on <t t-esc="widget.format_currency(order.get_base_by_tax()[tax.tax.id])" />
+        </t>
+        <t t-jquery=".pos-receipt-order-data" t-operation="attributes">
+            <attribute
+                name="t-if"
+                value="!widget.pos.config.iface_l10n_es_simplified_invoice or order.is_to_invoice()"
+            />
+        </t>
+    </t>
+</templates>

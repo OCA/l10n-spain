@@ -257,7 +257,7 @@ class TxRedsys(models.Model):
                 " (%s) or pay_id (%s) or shashign (%s)" % (reference, pay_id, shasign)
             )
             if not test_env:
-                _logger.info(error_msg)
+                _logger.error(error_msg)
                 raise ValidationError(error_msg)
             # For tests
             http.OpenERPSession.tx_error = True
@@ -269,7 +269,7 @@ class TxRedsys(models.Model):
             else:
                 error_msg += "; multiple order found"
             if not test_env:
-                _logger.info(error_msg)
+                _logger.error(error_msg)
                 raise ValidationError(error_msg)
             # For tests
             http.OpenERPSession.tx_error = True
@@ -283,7 +283,7 @@ class TxRedsys(models.Model):
                     "Redsys: invalid shasign, received %s, computed %s, "
                     "for data %s" % (shasign, shasign_check, data)
                 )
-                _logger.info(error_msg)
+                _logger.error(error_msg)
                 raise ValidationError(error_msg)
         return tx
 

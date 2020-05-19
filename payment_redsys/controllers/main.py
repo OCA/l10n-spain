@@ -32,7 +32,7 @@ class RedsysController(http.Controller):
     )
     def redsys_return(self, **post):
         """ Redsys."""
-        _logger.info(
+        _logger.debug(
             "Redsys: entering form_feedback with post data %s", pprint.pformat(post)
         )
         if post:
