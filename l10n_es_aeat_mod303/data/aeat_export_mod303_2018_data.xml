@@ -1257,7 +1257,7 @@
         <field name="sequence">5</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub02_export_config" />
         <field name="name">Indicador de página complementaria</field>
-        <field name="expression">${object.type == 'C'}</field>
+        <field name="expression">${object.statement_type == 'C'}</field>
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">C</field>
@@ -2980,7 +2980,7 @@
         <field name="sequence">23</field>
         <field name="export_config_id" ref="aeat_mod303_2018_sub03_export_config" />
         <field name="name">Declaración complementaria</field>
-        <field name="expression">${object.type == 'C'}</field>
+        <field name="expression">${object.statement_type == 'C'}</field>
         <field name="export_type">boolean</field>
         <field name="size">1</field>
         <field name="bool_yes">X</field>
