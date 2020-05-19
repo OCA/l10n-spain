@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
-     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_l10n_es_aeat_mod303_report_tree" model="ir.ui.view">
         <field name="name">l10n_es.aeat.mod303.report.tree</field>
@@ -169,7 +169,7 @@
                             name="previous_result"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
-                            attrs="{'readonly': [('type', '!=', 'C')], 'required': [('type', '=', 'C')]}"
+                            attrs="{'readonly': [('statement_type', '!=', 'C')], 'required': [('statement_type', '=', 'C')]}"
                         />
                     </group>
                 </group>
@@ -218,7 +218,6 @@
     <record id="action_l10n_es_aeat_mod303_report" model="ir.actions.act_window">
         <field name="name">AEAT model 303</field>
         <field name="res_model">l10n.es.aeat.mod303.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help">Create and query AEAT Model 303 reports</field>
     </record>
