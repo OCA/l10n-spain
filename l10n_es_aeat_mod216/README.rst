@@ -38,9 +38,14 @@ Configuration
 =============
 
 Debemos indicar los proveedores que son no residentes, en la ficha de la
-empresa: Contabilidad > Proveedores > Proveedores, pestaña de Contabilidad.
-El campo "Es no residente" tiene que estar marcado para que las retenciones
-realizadas a este proveedor se incluyan en el modelo 216.
+empresa:
+
+#. Vaya a *Contactos*.
+#. Entrando al correspondiente, en la pestaña "Ventas y compras", seleccione en
+   la posición fiscal la "Retención IRPF No residentes" que le corresponda.
+#. Al crear facturas para dicho contacto, se mapearán los impuestos necesarios
+   siempre que la línea de la factura tenga el producto informado con el
+   impuesto nacional adecuado.
 
 Usage
 =====
