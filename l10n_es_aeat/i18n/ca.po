@@ -20,13 +20,13 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:142
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 #, python-format
 msgid "%s_report_%s.txt"
 msgstr "%s_report_%s.txt"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:102
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
 #, python-format
 msgid "<blank>"
 msgstr "<blank>"
@@ -83,7 +83,7 @@ msgid "AEAT manager"
 msgstr "Responsable AEAT"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:268
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 #, python-format
 msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
@@ -104,8 +104,8 @@ msgid "AEAT report base module"
 msgstr "Mòdul base per declaracions AEAT"
 
 #. module: l10n_es_aeat
-#: sql_constraint:l10n.es.aeat.report:0
-#: sql_constraint:l10n.es.aeat.report.tax.mapping:0
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_report_tax_mapping_name_uniq
 msgid "AEAT report identifier must be unique"
 msgstr "L'identificador de la declaració AEAT ha de ser únic"
 
@@ -130,6 +130,13 @@ msgid "AEAT tax mapping line"
 msgstr "Línia de mapeig d'impostos AEAT"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__account_id
+#, fuzzy
+#| msgid "Account entry"
+msgid "Account Template"
+msgstr "Entrada cuenta"
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__move_id
 msgid "Account entry"
@@ -143,7 +150,7 @@ msgstr "Acció necesària"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__active
-#: selection:l10n.es.aeat.certificate,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__active
 msgid "Active"
 msgstr "Actiu"
 
@@ -152,6 +159,12 @@ msgstr "Actiu"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_ids
 msgid "Activities"
 msgstr "Activitats"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_state
@@ -170,7 +183,7 @@ msgid "Alignment"
 msgstr "Alineació"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,move_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__move_type__all
 msgid "All"
 msgstr "Tots"
 
@@ -181,19 +194,19 @@ msgid "Allow Posting"
 msgstr "Permetre el registre"
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,export_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__alphabetic
 msgid "Alphabetic"
 msgstr "Alfabètic"
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,export_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__string
 msgid "Alphanumeric"
 msgstr "Alfanumèric"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__content_float
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__amount
-#: selection:l10n.es.aeat.map.tax.line,field_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__amount
 msgid "Amount"
 msgstr "Import"
 
@@ -244,7 +257,7 @@ msgstr ""
 "Tipus de compte bancari: Normal o IBAN. Deduït del número de compte bancari."
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,field_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__base
 msgid "Base"
 msgstr "Base"
 
@@ -254,22 +267,22 @@ msgid "Basic configuration"
 msgstr "Configuració bàsica"
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,export_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__boolean
 msgid "Boolean"
 msgstr "Booleano"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,field_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__both
 msgid "Both"
 msgstr "Tots dos"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,sum_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__both
 msgid "Both (Credit - Debit)"
 msgstr "Tots dos (Haver - Deure)"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__both
 msgid "Both exigible and non-exigible amounts"
 msgstr "Tots dos (exigible i no exigible)"
 
@@ -293,9 +306,9 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__cancelled
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__cancelled
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
-#: selection:l10n.es.aeat.report,state:0
-#: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Cancelled"
 msgstr "Cancelada"
 
@@ -328,6 +341,7 @@ msgid "Companies"
 msgstr "Empreses"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__company_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -362,8 +376,8 @@ msgid "Compare file"
 msgstr "Comparar arxiu"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,type:0
-#: selection:l10n.es.aeat.report.tax.mapping,type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__statement_type__c
 msgid "Complementary"
 msgstr "Complementaria"
 
@@ -460,7 +474,7 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,sum_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__credit
 msgid "Credit"
 msgstr "Haber"
 
@@ -471,8 +485,8 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,support_type:0
-#: selection:l10n.es.aeat.report.tax.mapping,support_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__support_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__support_type__c
 msgid "DVD"
 msgstr "DVD"
 
@@ -482,7 +496,7 @@ msgid "Dates"
 msgstr "Fechas"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,sum_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__debit
 msgid "Debit"
 msgstr "Debe"
 
@@ -509,18 +523,18 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__done
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__done
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
-#: selection:l10n.es.aeat.report,state:0
-#: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Done"
 msgstr "Realizada"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__draft
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__draft
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__draft
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
-#: selection:l10n.es.aeat.certificate,state:0
-#: selection:l10n.es.aeat.report,state:0
-#: selection:l10n.es.aeat.report.tax.mapping,state:0
 msgid "Draft"
 msgstr "Borrador"
 
@@ -544,14 +558,14 @@ msgid "Ending date"
 msgstr "Fecha final"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:45
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:0
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
 msgstr ""
 "Error! Las fechas de los registros se solapan con un registro existente."
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_certificate.py:78
+#: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
 #, python-format
 msgid "Error! There aren't certificates."
 msgstr ""
@@ -621,7 +635,7 @@ msgid "Expression"
 msgstr "Expresión"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:95
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
 #, python-format
 msgid "Expression: "
 msgstr "Expresión: "
@@ -670,7 +684,7 @@ msgid "Fixed value"
 msgstr "Valor fijo"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:101
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
 #, python-format
 msgid "Fixed: {}"
 msgstr "Fixe: {}"
@@ -729,20 +743,30 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
-#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_unread
-msgid "If checked new messages require your attention."
-msgstr "Si està marcat, hi ha missatges que requereixen la seva atenció."
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si està marcat, hi ha missatges que requereixen la seva atenció."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_sms_error
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si està marcat, hi ha missatges que tenen error de lliurament."
 
@@ -764,7 +788,7 @@ msgstr ""
 "ha de ser afegida"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:203
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 #, python-format
 msgid ""
 "If this declaration is complementary or substitutive, a previous declaration "
@@ -792,7 +816,7 @@ msgstr ""
 "qualsevol declaració AEAT"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/aeat_certificate.py:36
+#: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 #, python-format
 msgid "Insert Password"
@@ -880,7 +904,7 @@ msgid "Last Updated on"
 msgstr "Darrera actualització el"
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,alignment:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__alignment__left
 msgid "Left"
 msgstr "Esquerra"
 
@@ -959,7 +983,7 @@ msgid "Model number"
 msgstr "Nº model"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:405
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 #, python-format
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr "Model no vàlid: %s. Ha de declarar una variable '_aeat_number'"
@@ -1004,14 +1028,14 @@ msgid "Next Activity Type"
 msgstr "Tipus de la següent activitat"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:139
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 #, python-format
 msgid "No export configuration selected."
 msgstr "Cap configuració d'exportació seleccionada."
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,type:0
-#: selection:l10n.es.aeat.report.tax.mapping,type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__n
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__statement_type__n
 msgid "Normal"
 msgstr "Normal"
 
@@ -1029,7 +1053,9 @@ msgstr "Nombre de caràcters per als decimals"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
-msgid "Number of error"
+#, fuzzy
+#| msgid "Number of error"
+msgid "Number of errors"
 msgstr "Nº d'errors"
 
 #. module: l10n_es_aeat
@@ -1051,12 +1077,12 @@ msgid "Number of unread messages"
 msgstr "Nº de missatges sense llegir"
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,export_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__float
 msgid "Number with decimals"
 msgstr "Nombre amb decimals"
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,export_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__integer
 msgid "Number without decimals"
 msgstr "Nombre sense decimals"
 
@@ -1072,24 +1098,24 @@ msgid "Odoo model"
 msgstr "Model Odoo"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__yes
 msgid "Only exigible amounts"
 msgstr "Només quantitats exigibles"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,exigible_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__no
 msgid "Only non-exigible amounts"
 msgstr "Només quantitats no exigibles"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:375
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 #, python-format
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
 "Només els informes en estat 'esborrany' o 'cancel·lat' poden ser eliminats"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:69
+#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:0
 #, python-format
 msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
 msgstr ""
@@ -1103,12 +1129,6 @@ msgstr "Tipus d'operació"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
 msgid "Other parameters"
 msgstr "Altres paràmetres"
-
-#. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,activity_state:0
-#: selection:l10n.es.aeat.report.tax.mapping,activity_state:0
-msgid "Overdue"
-msgstr "Endarrerit"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__partner_id
@@ -1134,12 +1154,6 @@ msgid "Phone"
 msgstr "Telèfon"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,activity_state:0
-#: selection:l10n.es.aeat.report.tax.mapping,activity_state:0
-msgid "Planned"
-msgstr "Planificat"
-
-#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 msgid ""
 "Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
@@ -1162,8 +1176,8 @@ msgid "Positive sign character"
 msgstr "Caràcter del signe positiu"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,state:0
-#: selection:l10n.es.aeat.report.tax.mapping,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__posted
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__posted
 msgid "Posted"
 msgstr "Comptabilitzat"
 
@@ -1179,8 +1193,8 @@ msgid "Private Key"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,state:0
-#: selection:l10n.es.aeat.report.tax.mapping,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__calculated
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__calculated
 msgid "Processed"
 msgstr "Processada"
 
@@ -1204,17 +1218,17 @@ msgid "Recalculate"
 msgstr "Recalcular"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,move_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__move_type__refund
 msgid "Refund"
 msgstr "Factura rectificativa"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.map.tax.line,move_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__move_type__regular
 msgid "Regular"
 msgstr "Regular"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:154
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 #, python-format
 msgid "Regularization"
 msgstr "Regularització"
@@ -1252,9 +1266,17 @@ msgid "Responsible User"
 msgstr "Usuari responsable"
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,alignment:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__alignment__right
 msgid "Right"
 msgstr "Dreta"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_sms_error
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_sms_error
+#, fuzzy
+#| msgid "Message Delivery error"
+msgid "SMS Delivery error"
+msgstr "Missatge d'error de lliurament"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__sequence
@@ -1296,8 +1318,8 @@ msgid "State"
 msgstr "Estat"
 
 #. module: l10n_es_aeat
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__type
-#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__statement_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__statement_type
 msgid "Statement Type"
 msgstr "Tipus de declaració"
 
@@ -1316,14 +1338,14 @@ msgstr ""
 "Planificat: Activitats futures."
 
 #. module: l10n_es_aeat
-#: selection:aeat.model.export.config.line,export_type:0
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__subconfig_id
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__subconfig
 msgid "Sub-configuration"
 msgstr "Sub-configuració"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,type:0
-#: selection:l10n.es.aeat.report.tax.mapping,type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__s
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__statement_type__s
 msgid "Substitutive"
 msgstr "Substitutiva"
 
@@ -1379,17 +1401,25 @@ msgid "Taxes templates"
 msgstr "Plantilles d'impostos"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,support_type:0
-#: selection:l10n.es.aeat.report.tax.mapping,support_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__support_type__t
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__support_type__t
 msgid "Telematics"
 msgstr "Telemàtica"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:63
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:109
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 #, python-format
 msgid "The formated string must match the given length"
 msgstr "La cadena formatada ha de satisfer la mida donada"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/compare_boe_file.py:0
+#, python-format
+msgid ""
+"The length of the file is different from the expected one, or there are "
+"conditional parts in the export configuration that can't be evaled "
+"statically."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__counterpart_account_id
@@ -1426,12 +1456,6 @@ msgid "To regularize"
 msgstr "Per regularitzar"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report,activity_state:0
-#: selection:l10n.es.aeat.report.tax.mapping,activity_state:0
-msgid "Today"
-msgstr "Avui"
-
-#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
 msgid "Total taxes (Taxable base)"
 msgstr "Total impostos (Base imposable)"
@@ -1446,6 +1470,12 @@ msgstr "Total impostos (Quota)"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__acc_type
 msgid "Type"
 msgstr "Tipus compte bancari"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
@@ -1504,7 +1534,7 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:60
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
 #, python-format
 msgid "Wrong align option. It should be < or >"
 msgstr "Opció d'alineament errònia. Hauria de ser <o>"
@@ -1516,24 +1546,24 @@ msgid "Year"
 msgstr "Any"
 
 #. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:188
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 #, python-format
 msgid "You must fill both journal and counterpart account."
 msgstr "Ha d'omplir tant el diari com el compte de contrapartida."
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report.compare_boe_file,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_compare_boe_file__state__compare
 msgid "compare"
 msgstr "Comparar"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report.export_to_boe,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_export_to_boe__state__get
 msgid "get"
 msgstr "obtenir"
 
 #. module: l10n_es_aeat
-#: selection:l10n.es.aeat.report.compare_boe_file,state:0
-#: selection:l10n.es.aeat.report.export_to_boe,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_compare_boe_file__state__open
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_export_to_boe__state__open
 msgid "open"
 msgstr "obert"
 
@@ -1541,3 +1571,15 @@ msgstr "obert"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 msgid "or"
 msgstr "o"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si està marcat, hi ha missatges que requereixen la seva atenció."
+
+#~ msgid "Overdue"
+#~ msgstr "Endarrerit"
+
+#~ msgid "Planned"
+#~ msgstr "Planificat"
+
+#~ msgid "Today"
+#~ msgstr "Avui"
