@@ -53,7 +53,7 @@
 <record id="fptt_irpfnrnue24sale_10s_2" model="account.fiscal.position.tax.template">
     <field name="position_id" ref="fp_irpfnrnue24"/>
     <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10s"/>
-    <field name="tax_dest_id" ref="1379account_tax_template_s_irpfnrnue24"/>
+    <field name="tax_dest_id" ref="account_tax_template_s_irpfnrnue24"/>
 </record>
 <record id="fptt_irpfnrnue24sale_4b" model="account.fiscal.position.tax.template">
     <field name="position_id" ref="fp_irpfnrnue24"/>
