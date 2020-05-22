@@ -2,7 +2,7 @@
 
 {
     "name": "Libro de IVA",
-    "version": "12.0.1.4.2",
+    "version": "12.0.1.4.3",
     "author": "PRAXYA, "
               "Eficent, "
               "Tecnativa, "
