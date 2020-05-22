@@ -215,7 +215,8 @@ class L10nEsVatBook(models.Model):
         if vat_book_line['line_type'] in [
                 'received', 'rectification_received']:
             balance = -balance
-        base_amount_untaxed = balance if move_line.tax_ids else 0.0
+        base_amount_untaxed = balance if move_line.tax_ids and not \
+            move_line.tax_line_id else 0.0
         fee_amount_untaxed = balance if move_line.tax_line_id else 0.0
         return {
             'tax_id': move_line.tax_line_id.id,
