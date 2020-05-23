@@ -22,51 +22,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: payment_redsys
-#: model_terms:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
-msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
-msgid ""
-"<span><i>Done,</i> Your online payment has been successfully processed. "
-"Thank you for your order.</span>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:payment.acquirer,error_msg:payment_redsys.payment_acquirer_redsys
-msgid ""
-"<span><i>Error,</i> Please be aware that an error occurred during the "
-"transaction. The order has been confirmed but will not be paid. Do not "
-"hesitate to contact us if you have any questions on the status of your order."
-"</span>"
-msgstr ""
-
-#. module: payment_redsys
-#: model_terms:payment.acquirer,pending_msg:payment_redsys.payment_acquirer_redsys
-msgid ""
-"<span><i>Pending,</i> Your online payment has been successfully processed. "
-"But your order is not validated yet.</span>"
-msgstr ""
-
-#. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__005
 msgid "Alemán"
 msgstr "Alemany"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:349
+#: code:addons/payment_redsys/models/redsys.py:0
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr "Error del banc: %s (%s)"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__001
 msgid "Castellano"
 msgstr "Castellà"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__003
 msgid "Catalán"
 msgstr "Català"
 
@@ -76,55 +48,50 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_pay_method:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__d
 msgid "Domiciliacion"
 msgstr "Domiciliació"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:346
+#: code:addons/payment_redsys/models/redsys.py:0
 #, python-format
 msgid "Error: %s (%s)"
 msgstr "Error: %s (%s)"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__013
 msgid "Euskera"
 msgstr "Basc"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__004
 msgid "Francés"
 msgstr "Francès"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__012
 msgid "Gallego"
 msgstr "Gallec"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_signature_version:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_signature_version__hmac_sha256_v1
 msgid "HMAC SHA256 V1"
 msgstr "HMAC SHA256 V1"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__006
 msgid "Holandés"
 msgstr "Holandès"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__002
 msgid "Inglés"
 msgstr "Anglès"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__007
 msgid "Italiano"
 msgstr "Italià"
-
-#. module: payment_redsys
-#: selection:payment.acquirer,provider:0
-msgid "Manual Configuration"
-msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_lang
@@ -152,23 +119,23 @@ msgid "Merchant code"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:343
+#: code:addons/payment_redsys/models/redsys.py:0
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_pay_method:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__t
 msgid "Pago con Tarjeta"
 msgstr "Pagament amb targeta"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_pay_method:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__r
 msgid "Pago por Transferencia"
 msgstr "Pagament per transferència"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:100
+#: code:addons/payment_redsys/models/redsys.py:0
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr ""
@@ -189,12 +156,12 @@ msgid "Payment Transaction"
 msgstr "Transacció de pagament"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__011
 msgid "Polaco"
 msgstr "Polac"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__009
 msgid "Portugués"
 msgstr "Portuguès"
 
@@ -209,8 +176,8 @@ msgid "Provider"
 msgstr ""
 
 #. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__provider__redsys
 #: model:payment.acquirer,name:payment_redsys.payment_acquirer_redsys
-#: selection:payment.acquirer,provider:0
 msgid "Redsys"
 msgstr ""
 
@@ -221,7 +188,7 @@ msgid "Redsys Signature Version"
 msgstr "Versió de signatura Redsys"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:352
+#: code:addons/payment_redsys/models/redsys.py:0
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
@@ -242,7 +209,7 @@ msgid "Send quotation"
 msgstr "Enviar pressupost"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__008
 msgid "Sueco"
 msgstr "Suec"
 
@@ -262,14 +229,9 @@ msgid "Transtaction Type"
 msgstr "Tipus de transacció"
 
 #. module: payment_redsys
-#: selection:payment.acquirer,redsys_merchant_lang:0
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__010
 msgid "Valenciano"
 msgstr "Valencià"
-
-#. module: payment_redsys
-#: selection:payment.acquirer,provider:0
-msgid "Wire Transfer"
-msgstr ""
 
 #. module: payment_redsys
 #: model:ir.model.fields,help:payment_redsys.field_payment_acquirer__redsys_percent_partial
@@ -284,6 +246,29 @@ msgstr ""
 msgid ""
 "You will be redirected to the Redsys payment gateway after clicking on the "
 "payment button."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.acquirer,auth_msg:payment_redsys.payment_acquirer_redsys
+msgid "Your payment has been authorized."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
+#, fuzzy
+#| msgid "Your order has been paid correctly"
+msgid "Your payment has been cancelled."
+msgstr "La teva comanda s'ha pagat correctament"
+
+#. module: payment_redsys
+#: model_terms:payment.acquirer,pending_msg:payment_redsys.payment_acquirer_redsys
+msgid ""
+"Your payment has been successfully processed but is waiting for approval."
+msgstr ""
+
+#. module: payment_redsys
+#: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
+msgid "Your payment has been successfully processed. Thank you!"
 msgstr ""
 
 #, fuzzy
@@ -320,9 +305,6 @@ msgstr ""
 
 #~ msgid "Untaxed Amount:"
 #~ msgstr "Import sense impostos:"
-
-#~ msgid "Your order has been paid correctly"
-#~ msgstr "La teva comanda s'ha pagat correctament"
 
 #~ msgid "Date:"
 #~ msgstr "Data:"
