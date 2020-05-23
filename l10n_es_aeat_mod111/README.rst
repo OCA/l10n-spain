@@ -23,7 +23,7 @@ AEAT modelo 111
     :target: https://runbot.odoo-community.org/runbot/189/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Modelo 111 de la AEAT. Retenciones e ingresos a cuenta. Rendimientos del
 trabajo y de actividades económicas, premios y determinadas ganancias
