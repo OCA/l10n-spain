@@ -13,6 +13,7 @@
         "l10n_es_facturae",
     ],
     "data": [
+        "data/cron_data.xml",
         "data/face_data.xml",
         "views/res_company_view.xml",
         "views/res_config_views.xml",
