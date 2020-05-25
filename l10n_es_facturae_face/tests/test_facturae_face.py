@@ -79,20 +79,11 @@ class TestL10nEsFacturaeFACe(common.TransactionCase):
                 'bank_id': self.env['res.bank'].search(
                     [('bic', '=', 'PSSTFRPPXXX')], limit=1).id
             })
-        self.mandate = self.env['account.banking.mandate'].create({
-            'company_id': main_company.id,
-            'format': 'basic',
-            'partner_id': self.partner.id,
-            'state': 'valid',
-            'partner_bank_id': self.bank.id,
-            'signature_date': '2016-03-12',
-        })
         self.payment_method = self.env['account.payment.method'].create({
             'name': 'inbound_mandate',
             'code': 'inbound_mandate',
             'payment_type': 'inbound',
             'bank_account_required': False,
-            'mandate_required': True,
             'active': True
         })
         payment_methods = self.env['account.payment.method'].search([
@@ -162,6 +153,9 @@ class TestL10nEsFacturaeFACe(common.TransactionCase):
             def consultarFactura(self, *args):
                 return self.value
 
+            def consultarListadoFacturas(self, *args):
+                return self.value
+
         main_company = self.env.ref('base.main_company')
         with self.assertRaises(exceptions.ValidationError):
             main_company.face_email = 'test'
@@ -216,6 +210,51 @@ class TestL10nEsFacturaeFACe(common.TransactionCase):
             mock_client.return_value = DemoService(response_update)
             integration.update_action()
         self.assertEqual(integration.integration_status, 'face-1200')
+        log_count = len(integration.log_ids)
+        multi_response = client.get_type(
+            'ns0:ConsultarListadoFacturaResponse'
+        )(
+            client.get_type('ns0:Resultado')(
+                codigo='0',
+                descripcion='OK'
+            ),
+            client.get_type('ns0:ArrayOfConsultarListadoFactura')([
+                client.get_type('ns0:ConsultarListadoFactura')(
+                    codigo='0',
+                    descripcion='OK',
+                    factura=client.get_type('ns0:ConsultarFactura')(
+                        '1234567890',
+                        client.get_type('ns0:EstadoFactura')(
+                            '1300',
+                            'DESC',
+                            'MOTIVO'
+                        ),
+                        client.get_type('ns0:EstadoFactura')(
+                            '4100',
+                            'DESC',
+                            'MOTIVO'
+                        )
+                    )
+                )
+            ])
+        )
+
+        with mock.patch('zeep.client.ServiceProxy') as mock_client:
+            mock_client.return_value = DemoService(multi_response)
+            integration._cron_face_update_method()
+
+        self.assertEqual(integration.integration_status, 'face-1300')
+        self.assertEqual(
+            log_count + 1, len(integration.log_ids))
+        with mock.patch('zeep.client.ServiceProxy') as mock_client:
+            mock_client.return_value = DemoService(multi_response)
+            integration._cron_face_update_method()
+
+        self.assertEqual(integration.integration_status, 'face-1300')
+        # On the second update, no new logs are generated
+        self.assertEqual(
+            log_count + 1, len(integration.log_ids))
+
         response_cancel = client.get_type('ns0:ConsultarFacturaResponse')(
             client.get_type('ns0:Resultado')(
                 '0',
