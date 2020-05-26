@@ -2,6 +2,7 @@
 # Copyright 2009-2017 Noviat.
 # Copyright 2019 - FactorLibre - Daniel Duque <daniel.duque@factorlibre.com>
 # Copyright 2020 - Tecnativa - Manuel Calero
+# Copyright 2020 - Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -10,23 +11,20 @@
     'category': 'Intrastat',
     'license': 'AGPL-3',
     'summary': 'Spanish Intrastat Product Declaration',
-    'author': 'FactorLibre, Noviat, Odoo Community Association (OCA)',
+    'author': 'FactorLibre,Noviat,Tecnativa,Odoo Community Association (OCA)',
     'depends': [
         'intrastat_product',
         'l10n_es_aeat',
-        'stock_picking_invoice_link',
     ],
     'conflicts': [
         'report_intrastat',
     ],
     'data': [
-        'security/intrastat_security.xml',
+        'security/l10n_es_intrastat_report_security.xml',
         'security/ir.model.access.csv',
         'data/intrastat_transaction.xml',
-        'views/account_invoice.xml',
-        'views/res_config_settings.xml',
-        # 'views/intrastat_installer.xml',
         'views/l10n_es_intrastat_product.xml',
+        'wizards/l10n_es_intrastat_code_import.xml',
     ],
     'installable': True,
 }
