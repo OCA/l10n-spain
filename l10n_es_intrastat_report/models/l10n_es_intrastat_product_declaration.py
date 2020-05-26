@@ -2,6 +2,7 @@
 # Copyright 2016 - FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
 # Copyright 2019 - FactorLibre - Daniel Duque <daniel.duque@factorlibre.com>
 # Copyright 2019 - Tecnativa - Manuel Calero
+# Copyright 2019 - Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models, _
@@ -27,49 +28,22 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         string='Intrastat Product Declaration Lines',
         states={'done': [('readonly', True)]})
 
-    def _get_intrastat_transaction(self, inv_line):
-        transaction = super(
-            L10nEsIntrastatProductDeclaration, self
-        )._get_intrastat_transaction(inv_line)
-        if not transaction:
-            module = __name__.split('addons.')[1].split('.')[0]
-            transaction = self.env.ref(
-                '%s.intrastat_transaction_11' % module)
-        return transaction
-
     def _get_intrastat_state(self, inv_line):
-        """
-        Same logic as in product intrastat _get_region method.
-        """
+        """Similar logic as in product_intrastat `_get_region` method."""
         intrastat_state = False
         inv_type = inv_line.invoice_id.type
-        if inv_line.move_line_ids:
-            if inv_type in ('in_invoice', 'out_refund'):
-                intrastat_state = inv_line.move_line_ids[0].location_id.\
-                    get_intrastat_state()
-            else:
-                intrastat_state = inv_line.move_line_ids[0].location_dest_id.\
-                    get_intrastat_state()
-        elif inv_type in ('in_invoice', 'in_refund'):
-            po_lines = self.env['purchase.order.line'].search(
-                [('invoice_lines', 'in', inv_line.id)])
-            if po_lines:
-                po = po_lines.order_id
-                intrastat_state = po.location_id.get_intrastat_state()
-        elif inv_line.invoice_id.type in ('out_invoice', 'out_refund'):
-            so_lines = self.env['sale.order.line'].search(
-                [('invoice_lines', 'in', inv_line.id)])
-            if so_lines:
-                so = so_lines.order_id
-                intrastat_state = so.warehouse_id.partner_id.state_id
+        if inv_type in ('in_invoice', 'in_refund'):
+            intrastat_state = inv_line.purchase_line_id.move_ids[:1].\
+                location_dest_id._get_intrastat_state()
+        elif inv_type in ('out_invoice', 'out_refund'):
+            so = inv_line.sale_line_ids[:1].order_id
+            intrastat_state = so.warehouse_id.partner_id.state_id
         if not intrastat_state:
-            if self.company_id.intrastat_state_id:
-                intrastat_state = self.company_id.intrastat_state_id
+            intrastat_state = inv_line.company_id.partner_id.state_id
         return intrastat_state
 
     def _update_computation_line_vals(self, inv_line, line_vals):
-        super(L10nEsIntrastatProductDeclaration, self
-              )._update_computation_line_vals(inv_line, line_vals)
+        super()._update_computation_line_vals(inv_line, line_vals)
         intrastat_state = self._get_intrastat_state(inv_line)
         if intrastat_state:
             line_vals['intrastat_state_id'] = intrastat_state.id
@@ -90,8 +64,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         - credit notes with and without return
         - companies subject to arrivals or dispatches only
         """
-        domain = super(
-            L10nEsIntrastatProductDeclaration, self)._prepare_invoice_domain()
+        domain = super()._prepare_invoice_domain()
         if self.type == 'arrivals':
             domain.append(
                 ('type', 'in', ('in_invoice', 'out_refund')))
@@ -102,47 +75,39 @@ class L10nEsIntrastatProductDeclaration(models.Model):
 
     @api.model
     def _prepare_grouped_fields(self, computation_line, fields_to_sum):
-        vals = super(L10nEsIntrastatProductDeclaration, self).\
-            _prepare_grouped_fields(computation_line, fields_to_sum)
+        vals = super()._prepare_grouped_fields(computation_line, fields_to_sum)
         vals['intrastat_state_id'] = computation_line.intrastat_state_id.id
         vals['incoterm_id'] = computation_line.incoterm_id.id
         return vals
 
     @api.model
     def _prepare_declaration_line(self, computation_lines):
-        vals = super(L10nEsIntrastatProductDeclaration, self).\
-            _prepare_declaration_line(computation_lines)
+        vals = super()._prepare_declaration_line(computation_lines)
         # Avoid rounding in weight
         vals['weight'] = 0.0
         for computation_line in computation_lines:
             vals['weight'] += computation_line['weight']
         if not vals['weight']:
             vals['weight'] = 1
-
         # Avoid rounding in fiscal value
         vals['amount_company_currency'] = 0.0
         for computation_line in computation_lines:
             vals['amount_company_currency'] += \
                 (computation_line['amount_company_currency'] +
                  computation_line['amount_accessory_cost_company_currency'])
-
         return vals
 
     @api.model
     def _group_line_hashcode_fields(self, computation_line):
-        res = super(
-            L10nEsIntrastatProductDeclaration, self
-        )._group_line_hashcode_fields(computation_line)
-        res['intrastat_state_id'] = computation_line.intrastat_state_id.id \
-            or False
+        res = super()._group_line_hashcode_fields(computation_line)
+        res['intrastat_state_id'] = computation_line.intrastat_state_id.id
         return res
 
     def _generate_xml(self):
         return self._generate_csv()
 
     def _attach_xml_file(self, xml_string, declaration_name):
-        attach_id = super(L10nEsIntrastatProductDeclaration, self).\
-            _attach_xml_file(xml_string, declaration_name)
+        attach_id = super()._attach_xml_file(xml_string, declaration_name)
         self.ensure_one()
         attach = self.env['ir.attachment'].browse(attach_id)
         filename = '%s_%s.csv' % (self.year_month, declaration_name)
@@ -153,16 +118,15 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         return attach.id
 
     def _generate_csv(self):
-        '''Generate the AEAT csv file export.'''
-
+        """Generate the AEAT csv file export."""
         rows = []
         for line in self.declaration_line_ids:
+            state_code = line.intrastat_state_id.code
             rows.append((
                 # Estado destino/origen
                 line.src_dest_country_id.code,
                 # Provincia destino/origen
-                SPANISH_STATES.get(line.intrastat_state_id.code) \
-                or line.intrastat_state_id.code,
+                SPANISH_STATES.get(state_code, state_code),
                 # Condiciones de entrega
                 line.incoterm_id.code,
                 # Naturaleza de la transacción
@@ -186,7 +150,6 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                 # Valor estadístico
                 str(line.amount_company_currency).replace('.', ','),
             ))
-
         csv_string = self._format_csv(rows, ';')
         return csv_string.encode('utf-8')
 
