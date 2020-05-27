@@ -25,9 +25,16 @@ msgid "AEAT 303 Report"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_asset_asset
-msgid "Asset/Revenue Recognition"
-msgstr ""
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_asset
+msgid "Asset"
+msgstr "Patrimônio"
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_invoice
+#, fuzzy
+#| msgid "Invoice Line"
+msgid "Invoice"
+msgstr "LInha da fatura"
 
 #. module: l10n_es_aeat_vat_prorrate_asset
 #: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_invoice_line
@@ -35,25 +42,28 @@ msgid "Invoice Line"
 msgstr "LInha da fatura"
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_invoice_line_vat_prorrate_percent
+#: model:ir.model,name:l10n_es_aeat_vat_prorrate_asset.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: l10n_es_aeat_vat_prorrate_asset
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_invoice_line__vat_prorrate_percent
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_move_line__vat_prorrate_percent
 msgid "Prorrate perc."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: code:addons/l10n_es_aeat_vat_prorrate_asset/models/account_invoice.py:19
+#: code:addons/l10n_es_aeat_vat_prorrate_asset/models/account_invoice.py:30
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset_asset_vat_prorrate_increment
-msgid "Vat prorrate increment"
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset__vat_prorrate_increment
+msgid "Vat Prorrate Increment"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate_asset
-#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset_asset_vat_prorrate_percent
-msgid "Vat prorrate percent"
+#: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate_asset.field_account_asset__vat_prorrate_percent
+msgid "Vat Prorrate Percent"
 msgstr ""
-
-#~ msgid "Asset"
-#~ msgstr "Patrimônio"
