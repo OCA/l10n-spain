@@ -8,6 +8,7 @@ try:
     from paramiko.client import SSHClient
 except (ImportError, IOError) as err:
     logging.info(err)
+
 import base64
 from lxml import etree
 
@@ -53,7 +54,6 @@ class AccountInvoiceIntegration(models.Model):
             hub_feedback = status.find('HubFeedback')
             if hub_feedback is None:
                 continue
-            hub_reference = hub_feedback.find('HubFilename').text
             invoice_feedback = status.find('InvoiceFeedback')
             hub_id = hub_feedback.find('HubId').text
             if invoice_feedback is not None:
@@ -69,7 +69,8 @@ class AccountInvoiceIntegration(models.Model):
                         ('method_id', '=', self.env.ref(
                             'l10n_es_facturae_efact.integration_efact').id),
                         ('efact_hub_id', '=', False),
-                        ('efact_reference', '=', hub_reference)
+                        ('efact_reference', '=', hub_feedback.find(
+                            'HubFilename').text)
                     ])
                     integration.efact_hub_id = hub_id
                 for feedback in invoice_feedback.findall('Feedback'):
@@ -110,7 +111,8 @@ class AccountInvoiceIntegration(models.Model):
                     ('method_id', '=', self.env.ref(
                         'l10n_es_facturae_efact.integration_efact').id),
                     ('efact_hub_id', '=', False),
-                    ('efact_reference', '=', hub_reference)
+                    ('efact_reference', '=', hub_feedback.find(
+                        'HubFilename').text)
                 ])
                 integration.efact_hub_id = hub_id
                 self.env['account.invoice.integration.log'].create({
@@ -177,12 +179,17 @@ class AccountInvoiceIntegration(models.Model):
         sftp.chdir(path + statout_path)
         attrs = sftp.listdir_attr('.')
         attrs.sort(key=lambda attr: attr.st_atime)
+        to_remove = []
         for attr in attrs:
             file = sftp.open(attr.filename)
             filetext = file.read()
             file.close()
             feedback = etree.fromstring(filetext)
             self.efact_transform_feedback(feedback, attr.filename)
-            sftp.remove(attr.filename)
+            to_remove.append(attr.filename)
+        # We need to remove at the end in order to ensure that if an error is
+        # thrown, the file will not be lost
+        for filename in to_remove:
+            sftp.remove(filename)
         sftp.close()
         connection.close()
