@@ -78,6 +78,12 @@ class AccountMove(models.Model):
     integration_ids = fields.One2many(
         comodel_name="account.move.integration", inverse_name="move_id", copy=False,
     )
+    integration_issue = fields.Boolean(
+        compute="_compute_integration_issue",
+        store=True,
+        help="This field should show if the invoice has been integrated and "
+        "has any issues",
+    )
     facturae_start_date = fields.Date(
         readonly=True, states={"draft": [("readonly", False)]},
     )
@@ -133,6 +139,24 @@ class AccountMove(models.Model):
             ]
 
     can_integrate = fields.Boolean(compute="_compute_can_integrate")
+
+    def _integration_issue_fields(self):
+        return (
+            "integration_ids",
+            "integration_ids.state",
+            "integration_ids.method_id",
+            "integration_ids.integration_status",
+        )
+
+    @api.depends(lambda r: r._integration_issue_fields())
+    def _compute_integration_issue(self):
+        for record in self:
+            integration_issue = False
+            for integration in record.integration_ids:
+                if integration._check_integration_issue():
+                    integration_issue = True
+                    break
+            record.integration_issue = integration_issue
 
     def action_integrations(self):
         self.ensure_one()
@@ -232,6 +256,22 @@ class AccountMove(models.Model):
                 )
             )
         return
+
+    def _get_facturae_move_attachments(self):
+        result = []
+        if self.partner_id.attach_invoice_as_annex:
+            action = self.env.ref("account.account_invoices")
+            content, content_type = action.render(self.ids)
+            result.append(
+                {
+                    "data": base64.b64encode(content),
+                    "content_type": content_type,
+                    "encoding": "BASE64",
+                    "description": _("Invoice %s") % self.name,
+                    "compression": False,
+                }
+            )
+        return result
 
     def get_facturae(self, firmar_facturae):
         def _sign_file(cert, password, request):

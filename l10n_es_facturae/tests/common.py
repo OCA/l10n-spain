@@ -7,6 +7,7 @@ import logging
 from datetime import timedelta
 
 from lxml import etree
+from mock import patch
 from OpenSSL import crypto
 
 from odoo import exceptions, fields
@@ -53,7 +54,7 @@ class CommonTest(common.TransactionCase):
                 "country_id": self.ref("base.es"),
                 "vat": "ES05680675C",
                 "facturae": True,
-                "attach_invoice_as_annex": True,
+                "attach_invoice_as_annex": False,
                 "organo_gestor": "U00000038",
                 "unidad_tramitadora": "U00000038",
                 "oficina_contable": "U00000038",
@@ -171,6 +172,7 @@ class CommonTest(common.TransactionCase):
                 ],
             }
         )
+        self.move.refresh()
         self.move_line = self.move.invoice_line_ids
 
         self.move_02 = self.env["account.move"].create(
@@ -199,6 +201,7 @@ class CommonTest(common.TransactionCase):
                 ],
             }
         )
+        self.move_02.refresh()
 
         self.move_line_02 = self.move_02.invoice_line_ids
         self.partner.vat = "ES05680675C"
@@ -240,6 +243,41 @@ class CommonTest(common.TransactionCase):
                 namespaces={"fe": self.fe},
             )[0].text,
             self.move.name,
+        )
+        self.assertFalse(
+            generated_facturae.xpath(
+                "/fe:Facturae/Invoices/Invoice/AdditionalData/"
+                "RelatedDocuments/Attachments",
+                namespaces={"fe": self.fe},
+            ),
+        )
+
+    def test_facturae_with_attachments(self):
+        self.move.action_post()
+        self.move.name = "2999/99999"
+        self.partner.attach_invoice_as_annex = True
+        with patch(
+            "odoo.addons.base.models.ir_actions_report.IrActionsReport.render"
+        ) as ptch:
+            ptch.return_value = (b"1234", "pdf")
+            self.wizard.with_context(
+                force_report_rendering=True,
+                active_ids=self.move.ids,
+                active_model="account.move",
+            ).create_facturae_file()
+        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        self.assertTrue(
+            generated_facturae.xpath(
+                "/fe:Facturae/Invoices/Invoice/AdditionalData/" "RelatedDocuments",
+                namespaces={"fe": self.fe},
+            ),
+        )
+        self.assertTrue(
+            generated_facturae.xpath(
+                "/fe:Facturae/Invoices/Invoice/AdditionalData/"
+                "RelatedDocuments/Attachment",
+                namespaces={"fe": self.fe},
+            ),
         )
 
     def test_bank(self):
@@ -347,25 +385,8 @@ class CommonTest(common.TransactionCase):
         self.move.name = "2999/99999"
         self.assertTrue(self.move.can_integrate)
         self.assertEqual(self.move.integration_count, 0)
-        attachments_before = len(
-            self.env["ir.attachment"].search(
-                [
-                    ("res_model", "=", "account.invoice"),
-                    ("res_id", "=", self.invoice.id),
-                ],
-            )
-        )
         integrations = self.move.action_integrations()
         self.assertEqual(self.move.integration_count, 1)
-        attachments_after = len(
-            self.env["ir.attachment"].search(
-                [
-                    ("res_model", "=", "account.invoice"),
-                    ("res_id", "=", self.invoice.id),
-                ]
-            )
-        )
-        self.assertEqual(attachments_before + 1, attachments_after)
         integration = self.env["account.move.integration"].browse(
             integrations["res_id"]
         )
