@@ -100,3 +100,9 @@ class AccountMoveIntegration(models.Model):
         log_obj = self.env["account.move.integration.log"]
         for record in self:
             log_obj.create(record.send_values()).send()
+
+    def _check_integration_issue(self):
+        """
+        Should return True if the integration has any related issues
+        """
+        return self.state == "failed"
