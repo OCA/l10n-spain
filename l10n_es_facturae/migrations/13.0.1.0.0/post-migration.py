@@ -17,6 +17,16 @@ def migrate(env, version):
         WHERE ai.id = am.old_invoice_id""",
     )
 
+    if openupgrade.column_exists(env.cr, "account_invoice", "integration_issue"):
+        openupgrade.logged_query(
+            env.cr,
+            """
+            UPDATE account_move am
+            SET integration_issue = ai.integration_issue
+            FROM account_invoice ai
+            WHERE ai.id = am.old_invoice_id""",
+        )
+
     openupgrade.logged_query(
         env.cr,
         """
