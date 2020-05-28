@@ -50,3 +50,11 @@ def migrate(env, version):
             WHERE am.old_invoice_id = aii.invoice_id
         """,
     )
+    if openupgrade.column_exists(env.cr, "account_invoice", "integration_issue"):
+        openupgrade.logged_query(
+            env.cr,
+            """
+                ALTER TABLE account_move
+                ADD COLUMN IF NOT EXISTS integration_issue BOOLEAN
+            """,
+        )
