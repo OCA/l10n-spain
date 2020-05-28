@@ -134,4 +134,19 @@
             </form>
         </field>
     </record>
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+        <field name="name">account.invoice.select</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <filter name="late" position="after">
+                <separator />
+                <filter
+                    name="integration_issue"
+                    string="Integration issue"
+                    domain="[('integration_issue', '=', True)]"
+                />
+            </filter>
+        </field>
+    </record>
 </odoo>

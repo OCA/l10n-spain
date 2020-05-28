@@ -630,12 +630,34 @@
                         </Installment>
                     </PaymentDetails>
                     <LegalLiterals t-if="False" />
-                    <AdditionalData t-if="move.narration">
+                    <t
+                        t-set="attachments"
+                        t-value="move._get_facturae_move_attachments()"
+                    />
+                    <AdditionalData t-if="move.narration or attachments">
                         <RelatedInvoice t-if="False" />
-                        <RelatedDocuments t-if="False" />
+                        <RelatedDocuments t-if="attachments">
+                            <Attachment t-foreach="attachments" t-as="attachment">
+                                <AttachmentCompressionAlgorithm
+                                    t-esc="attachment.get('compression', False)"
+                                    t-if="attachment.get('compression', False)"
+                                />
+                                <AttachmentFormat t-esc="attachment['content_type']" />
+                                <AttachmentEncoding
+                                    t-esc="attachment.get('encoding', False)"
+                                    t-if="attachment.get('encoding', False)"
+                                />
+                                <AttachmentDescription
+                                    t-esc="attachment.get('description', False)"
+                                    t-if="attachment.get('description', False)"
+                                />
+                                <AttachmentData t-esc="attachment['data']" />
+                            </Attachment>
+                        </RelatedDocuments>
                         <InvoiceAdditionalInformation
                             t-length="2500"
                             t-esc="move.narration"
+                            t-if="move.narration"
                         />
                         <Extensions t-if="False" />
                     </AdditionalData>
