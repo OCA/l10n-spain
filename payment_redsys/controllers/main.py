@@ -40,4 +40,5 @@ class RedsysController(http.Controller):
         ['/payment/redsys/result/<page>'], type='http', auth='public',
         methods=['GET'], website=True)
     def redsys_result(self, page, **vals):
+        request.env['payment.transaction'].sudo().form_feedback(vals, 'redsys')
         return werkzeug.utils.redirect('/payment/process')
