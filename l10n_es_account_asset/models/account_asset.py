@@ -47,6 +47,8 @@ class AccountAssetAsset(models.Model):
                 asset.method_percentage * 12 /
                 mapping.get(asset.method_period, 12)
             )
+            if new_percentage > 100:
+                new_percentage = 100
             # Only change amount when significant delta
             if float_compare(new_percentage, self.annual_percentage, 2) != 0:
                 self.annual_percentage = new_percentage
