@@ -43,13 +43,14 @@ msgid "Depreciation percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: code:addons/l10n_es_account_asset/models/account_asset_profile.py:21
+#: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
 #, python-format
 msgid "Fixed percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: sql_constraint:account.asset:0 sql_constraint:account.asset.profile:0
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_annual_percentage
+#: model:ir.model.constraint,message:l10n_es_account_asset.constraint_account_asset_profile_annual_percentage
 msgid "Wrong percentage!"
 msgstr ""
 
