@@ -6,20 +6,22 @@ from psycopg2 import sql
 
 @openupgrade.migrate()
 def migrate(env, version):
-    for table in {'account_asset_profile', 'account_asset'}:
+    for table in {"account_asset_profile", "account_asset"}:
         openupgrade.logged_query(
-            env.cr, sql.SQL(
+            env.cr,
+            sql.SQL(
                 """
                 UPDATE {}
                 SET method_time = 'percentage'
                 WHERE {} = 'percentage'"""
             ).format(
                 sql.Identifier(table),
-                sql.Identifier(openupgrade.get_legacy_name('method_time')),
-            )
+                sql.Identifier(openupgrade.get_legacy_name("method_time")),
+            ),
         )
         openupgrade.logged_query(
-            env.cr, sql.SQL(
+            env.cr,
+            sql.SQL(
                 """
                 UPDATE {table}
                 SET annual_percentage = method_percentage * 12 / {field}
@@ -28,7 +30,6 @@ def migrate(env, version):
                 """
             ).format(
                 table=sql.Identifier(table),
-                field=sql.Identifier(
-                    openupgrade.get_legacy_name('method_period')),
-            )
+                field=sql.Identifier(openupgrade.get_legacy_name("method_period")),
+            ),
         )
