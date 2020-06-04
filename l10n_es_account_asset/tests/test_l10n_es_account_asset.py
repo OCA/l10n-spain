@@ -16,7 +16,7 @@ class TestL10nEsAccountAsset(common.SavepointCase):
             {"name": "Test asset journal", "code": "AST", "type": "general"}
         )
         cls.account_type = cls.env["account.account.type"].create(
-            {"name": "Test account type", "type": "other"}
+            {"name": "Test account type", "type": "other", "internal_group": "expense"}
         )
         cls.expense_account = cls.env["account.account"].create(
             {
