@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.asmred.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.asmred.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.asmred.com/">
+      <s:element name="GrabaServicios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docIn">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GrabaServiciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GrabaServiciosResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Tracking">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docIn">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TrackingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TrackingResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Estado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docIn">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EstadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EstadoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Anula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docIn">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AnulaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AnulaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GrabaSolucion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="codSolucion" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="observaciones" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GrabaSolucionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GrabaSolucionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetManifiesto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docIn">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetManifiestoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetManifiestoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEnvios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="docIn">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEnviosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEnviosResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlazaXCP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="codPais" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="cp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlazaXCPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPlazaXCPResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsociaMatricula">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codBarras" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="matricula" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsociaMatriculaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AsociaMatriculaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrevisionEnvios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codTienda" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="numEnvios" type="s:short" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrevisionEnviosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PrevisionEnviosResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsignaEnvio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cuenta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codplaza" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codrepartidor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AsignaEnvioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AsignaEnvioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EsPaisEurobusiness">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codpais" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EsPaisEurobusinessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EsPaisEurobusinessResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnviaCorreoAgencia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnviaCorreoAgenciaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="EnviaCorreoAgenciaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestGrabaServicios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="f" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestGrabaServiciosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestGrabaServiciosResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EtiquetaEnvio">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipoEtiqueta" type="tns:TiposEtiqueta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="TiposEtiqueta">
+        <s:restriction base="s:string">
+          <s:enumeration value="EPL" />
+          <s:enumeration value="DPL" />
+          <s:enumeration value="JPG" />
+          <s:enumeration value="PNG" />
+          <s:enumeration value="PDF" />
+          <s:enumeration value="XML" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="EtiquetaEnvioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EtiquetaEnvioResult" type="tns:ArrayOfBase64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBase64Binary">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="base64Binary" nillable="true" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetExp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExpResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExpCli">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExpCliResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExpCliResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="int" type="s:int" />
+      <s:element name="ArrayOfBase64Binary" nillable="true" type="tns:ArrayOfBase64Binary" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GrabaServiciosSoapIn">
+    <wsdl:part name="parameters" element="tns:GrabaServicios" />
+  </wsdl:message>
+  <wsdl:message name="GrabaServiciosSoapOut">
+    <wsdl:part name="parameters" element="tns:GrabaServiciosResponse" />
+  </wsdl:message>
+  <wsdl:message name="TrackingSoapIn">
+    <wsdl:part name="parameters" element="tns:Tracking" />
+  </wsdl:message>
+  <wsdl:message name="TrackingSoapOut">
+    <wsdl:part name="parameters" element="tns:TrackingResponse" />
+  </wsdl:message>
+  <wsdl:message name="EstadoSoapIn">
+    <wsdl:part name="parameters" element="tns:Estado" />
+  </wsdl:message>
+  <wsdl:message name="EstadoSoapOut">
+    <wsdl:part name="parameters" element="tns:EstadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AnulaSoapIn">
+    <wsdl:part name="parameters" element="tns:Anula" />
+  </wsdl:message>
+  <wsdl:message name="AnulaSoapOut">
+    <wsdl:part name="parameters" element="tns:AnulaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GrabaSolucionSoapIn">
+    <wsdl:part name="parameters" element="tns:GrabaSolucion" />
+  </wsdl:message>
+  <wsdl:message name="GrabaSolucionSoapOut">
+    <wsdl:part name="parameters" element="tns:GrabaSolucionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetManifiestoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetManifiesto" />
+  </wsdl:message>
+  <wsdl:message name="GetManifiestoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetManifiestoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEnviosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEnvios" />
+  </wsdl:message>
+  <wsdl:message name="GetEnviosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEnviosResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPlazaXCPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlazaXCP" />
+  </wsdl:message>
+  <wsdl:message name="GetPlazaXCPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlazaXCPResponse" />
+  </wsdl:message>
+  <wsdl:message name="AsociaMatriculaSoapIn">
+    <wsdl:part name="parameters" element="tns:AsociaMatricula" />
+  </wsdl:message>
+  <wsdl:message name="AsociaMatriculaSoapOut">
+    <wsdl:part name="parameters" element="tns:AsociaMatriculaResponse" />
+  </wsdl:message>
+  <wsdl:message name="PrevisionEnviosSoapIn">
+    <wsdl:part name="parameters" element="tns:PrevisionEnvios" />
+  </wsdl:message>
+  <wsdl:message name="PrevisionEnviosSoapOut">
+    <wsdl:part name="parameters" element="tns:PrevisionEnviosResponse" />
+  </wsdl:message>
+  <wsdl:message name="AsignaEnvioSoapIn">
+    <wsdl:part name="parameters" element="tns:AsignaEnvio" />
+  </wsdl:message>
+  <wsdl:message name="AsignaEnvioSoapOut">
+    <wsdl:part name="parameters" element="tns:AsignaEnvioResponse" />
+  </wsdl:message>
+  <wsdl:message name="EsPaisEurobusinessSoapIn">
+    <wsdl:part name="parameters" element="tns:EsPaisEurobusiness" />
+  </wsdl:message>
+  <wsdl:message name="EsPaisEurobusinessSoapOut">
+    <wsdl:part name="parameters" element="tns:EsPaisEurobusinessResponse" />
+  </wsdl:message>
+  <wsdl:message name="EnviaCorreoAgenciaSoapIn">
+    <wsdl:part name="parameters" element="tns:EnviaCorreoAgencia" />
+  </wsdl:message>
+  <wsdl:message name="EnviaCorreoAgenciaSoapOut">
+    <wsdl:part name="parameters" element="tns:EnviaCorreoAgenciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestGrabaServiciosSoapIn">
+    <wsdl:part name="parameters" element="tns:TestGrabaServicios" />
+  </wsdl:message>
+  <wsdl:message name="TestGrabaServiciosSoapOut">
+    <wsdl:part name="parameters" element="tns:TestGrabaServiciosResponse" />
+  </wsdl:message>
+  <wsdl:message name="EtiquetaEnvioSoapIn">
+    <wsdl:part name="parameters" element="tns:EtiquetaEnvio" />
+  </wsdl:message>
+  <wsdl:message name="EtiquetaEnvioSoapOut">
+    <wsdl:part name="parameters" element="tns:EtiquetaEnvioResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExpSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExp" />
+  </wsdl:message>
+  <wsdl:message name="GetExpSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExpResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExpCliSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExpCli" />
+  </wsdl:message>
+  <wsdl:message name="GetExpCliSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExpCliResponse" />
+  </wsdl:message>
+  <wsdl:message name="GrabaSolucionHttpGetIn">
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="codigo" type="s:string" />
+    <wsdl:part name="codSolucion" type="s:string" />
+    <wsdl:part name="observaciones" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GrabaSolucionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlazaXCPHttpGetIn">
+    <wsdl:part name="codPais" type="s:string" />
+    <wsdl:part name="cp" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlazaXCPHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="AsociaMatriculaHttpGetIn">
+    <wsdl:part name="cuenta" type="s:string" />
+    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="codBarras" type="s:string" />
+    <wsdl:part name="matricula" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsociaMatriculaHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="PrevisionEnviosHttpGetIn">
+    <wsdl:part name="cuenta" type="s:string" />
+    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="codTienda" type="s:string" />
+    <wsdl:part name="numEnvios" type="s:string" />
+    <wsdl:part name="tipo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PrevisionEnviosHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="AsignaEnvioHttpGetIn">
+    <wsdl:part name="cuenta" type="s:string" />
+    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="codplaza" type="s:string" />
+    <wsdl:part name="codrepartidor" type="s:string" />
+    <wsdl:part name="codigo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsignaEnvioHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EsPaisEurobusinessHttpGetIn">
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="codpais" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EsPaisEurobusinessHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="EnviaCorreoAgenciaHttpGetIn">
+    <wsdl:part name="uid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EnviaCorreoAgenciaHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TestGrabaServiciosHttpGetIn">
+    <wsdl:part name="f" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestGrabaServiciosHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="EtiquetaEnvioHttpGetIn">
+    <wsdl:part name="codigo" type="s:string" />
+    <wsdl:part name="tipoEtiqueta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EtiquetaEnvioHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBase64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetExpHttpGetIn">
+    <wsdl:part name="uid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExpHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetExpCliHttpGetIn">
+    <wsdl:part name="codigo" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExpCliHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GrabaSolucionHttpPostIn">
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="codigo" type="s:string" />
+    <wsdl:part name="codSolucion" type="s:string" />
+    <wsdl:part name="observaciones" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GrabaSolucionHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlazaXCPHttpPostIn">
+    <wsdl:part name="codPais" type="s:string" />
+    <wsdl:part name="cp" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetPlazaXCPHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="AsociaMatriculaHttpPostIn">
+    <wsdl:part name="cuenta" type="s:string" />
+    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="codBarras" type="s:string" />
+    <wsdl:part name="matricula" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsociaMatriculaHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="PrevisionEnviosHttpPostIn">
+    <wsdl:part name="cuenta" type="s:string" />
+    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="codTienda" type="s:string" />
+    <wsdl:part name="numEnvios" type="s:string" />
+    <wsdl:part name="tipo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PrevisionEnviosHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="AsignaEnvioHttpPostIn">
+    <wsdl:part name="cuenta" type="s:string" />
+    <wsdl:part name="usuario" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+    <wsdl:part name="codplaza" type="s:string" />
+    <wsdl:part name="codrepartidor" type="s:string" />
+    <wsdl:part name="codigo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AsignaEnvioHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="EsPaisEurobusinessHttpPostIn">
+    <wsdl:part name="uid" type="s:string" />
+    <wsdl:part name="codpais" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EsPaisEurobusinessHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="EnviaCorreoAgenciaHttpPostIn">
+    <wsdl:part name="uid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EnviaCorreoAgenciaHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="TestGrabaServiciosHttpPostIn">
+    <wsdl:part name="f" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestGrabaServiciosHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="EtiquetaEnvioHttpPostIn">
+    <wsdl:part name="codigo" type="s:string" />
+    <wsdl:part name="tipoEtiqueta" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EtiquetaEnvioHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfBase64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetExpHttpPostIn">
+    <wsdl:part name="uid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExpHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetExpCliHttpPostIn">
+    <wsdl:part name="codigo" type="s:string" />
+    <wsdl:part name="uid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetExpCliHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="b2bSoap">
+    <wsdl:operation name="GrabaServicios">
+      <wsdl:input message="tns:GrabaServiciosSoapIn" />
+      <wsdl:output message="tns:GrabaServiciosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Tracking">
+      <wsdl:input message="tns:TrackingSoapIn" />
+      <wsdl:output message="tns:TrackingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Estado">
+      <wsdl:input message="tns:EstadoSoapIn" />
+      <wsdl:output message="tns:EstadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Anula">
+      <wsdl:input message="tns:AnulaSoapIn" />
+      <wsdl:output message="tns:AnulaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabaSolucion">
+      <wsdl:input message="tns:GrabaSolucionSoapIn" />
+      <wsdl:output message="tns:GrabaSolucionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetManifiesto">
+      <wsdl:input message="tns:GetManifiestoSoapIn" />
+      <wsdl:output message="tns:GetManifiestoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEnvios">
+      <wsdl:input message="tns:GetEnviosSoapIn" />
+      <wsdl:output message="tns:GetEnviosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlazaXCP">
+      <wsdl:input message="tns:GetPlazaXCPSoapIn" />
+      <wsdl:output message="tns:GetPlazaXCPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsociaMatricula">
+      <wsdl:input message="tns:AsociaMatriculaSoapIn" />
+      <wsdl:output message="tns:AsociaMatriculaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrevisionEnvios">
+      <wsdl:input message="tns:PrevisionEnviosSoapIn" />
+      <wsdl:output message="tns:PrevisionEnviosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignaEnvio">
+      <wsdl:input message="tns:AsignaEnvioSoapIn" />
+      <wsdl:output message="tns:AsignaEnvioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EsPaisEurobusiness">
+      <wsdl:input message="tns:EsPaisEurobusinessSoapIn" />
+      <wsdl:output message="tns:EsPaisEurobusinessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCorreoAgencia">
+      <wsdl:input message="tns:EnviaCorreoAgenciaSoapIn" />
+      <wsdl:output message="tns:EnviaCorreoAgenciaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestGrabaServicios">
+      <wsdl:input message="tns:TestGrabaServiciosSoapIn" />
+      <wsdl:output message="tns:TestGrabaServiciosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EtiquetaEnvio">
+      <wsdl:input message="tns:EtiquetaEnvioSoapIn" />
+      <wsdl:output message="tns:EtiquetaEnvioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExp">
+      <wsdl:input message="tns:GetExpSoapIn" />
+      <wsdl:output message="tns:GetExpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpCli">
+      <wsdl:input message="tns:GetExpCliSoapIn" />
+      <wsdl:output message="tns:GetExpCliSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="b2bHttpGet">
+    <wsdl:operation name="GrabaSolucion">
+      <wsdl:input message="tns:GrabaSolucionHttpGetIn" />
+      <wsdl:output message="tns:GrabaSolucionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlazaXCP">
+      <wsdl:input message="tns:GetPlazaXCPHttpGetIn" />
+      <wsdl:output message="tns:GetPlazaXCPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsociaMatricula">
+      <wsdl:input message="tns:AsociaMatriculaHttpGetIn" />
+      <wsdl:output message="tns:AsociaMatriculaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrevisionEnvios">
+      <wsdl:input message="tns:PrevisionEnviosHttpGetIn" />
+      <wsdl:output message="tns:PrevisionEnviosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignaEnvio">
+      <wsdl:input message="tns:AsignaEnvioHttpGetIn" />
+      <wsdl:output message="tns:AsignaEnvioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EsPaisEurobusiness">
+      <wsdl:input message="tns:EsPaisEurobusinessHttpGetIn" />
+      <wsdl:output message="tns:EsPaisEurobusinessHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCorreoAgencia">
+      <wsdl:input message="tns:EnviaCorreoAgenciaHttpGetIn" />
+      <wsdl:output message="tns:EnviaCorreoAgenciaHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestGrabaServicios">
+      <wsdl:input message="tns:TestGrabaServiciosHttpGetIn" />
+      <wsdl:output message="tns:TestGrabaServiciosHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EtiquetaEnvio">
+      <wsdl:input message="tns:EtiquetaEnvioHttpGetIn" />
+      <wsdl:output message="tns:EtiquetaEnvioHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExp">
+      <wsdl:input message="tns:GetExpHttpGetIn" />
+      <wsdl:output message="tns:GetExpHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpCli">
+      <wsdl:input message="tns:GetExpCliHttpGetIn" />
+      <wsdl:output message="tns:GetExpCliHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="b2bHttpPost">
+    <wsdl:operation name="GrabaSolucion">
+      <wsdl:input message="tns:GrabaSolucionHttpPostIn" />
+      <wsdl:output message="tns:GrabaSolucionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlazaXCP">
+      <wsdl:input message="tns:GetPlazaXCPHttpPostIn" />
+      <wsdl:output message="tns:GetPlazaXCPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsociaMatricula">
+      <wsdl:input message="tns:AsociaMatriculaHttpPostIn" />
+      <wsdl:output message="tns:AsociaMatriculaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrevisionEnvios">
+      <wsdl:input message="tns:PrevisionEnviosHttpPostIn" />
+      <wsdl:output message="tns:PrevisionEnviosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AsignaEnvio">
+      <wsdl:input message="tns:AsignaEnvioHttpPostIn" />
+      <wsdl:output message="tns:AsignaEnvioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EsPaisEurobusiness">
+      <wsdl:input message="tns:EsPaisEurobusinessHttpPostIn" />
+      <wsdl:output message="tns:EsPaisEurobusinessHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCorreoAgencia">
+      <wsdl:input message="tns:EnviaCorreoAgenciaHttpPostIn" />
+      <wsdl:output message="tns:EnviaCorreoAgenciaHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestGrabaServicios">
+      <wsdl:input message="tns:TestGrabaServiciosHttpPostIn" />
+      <wsdl:output message="tns:TestGrabaServiciosHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EtiquetaEnvio">
+      <wsdl:input message="tns:EtiquetaEnvioHttpPostIn" />
+      <wsdl:output message="tns:EtiquetaEnvioHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExp">
+      <wsdl:input message="tns:GetExpHttpPostIn" />
+      <wsdl:output message="tns:GetExpHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExpCli">
+      <wsdl:input message="tns:GetExpCliHttpPostIn" />
+      <wsdl:output message="tns:GetExpCliHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="b2bSoap" type="tns:b2bSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GrabaServicios">
+      <soap:operation soapAction="http://www.asmred.com/GrabaServicios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tracking">
+      <soap:operation soapAction="http://www.asmred.com/Tracking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estado">
+      <soap:operation soapAction="http://www.asmred.com/Estado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Anula">
+      <soap:operation soapAction="http://www.asmred.com/Anula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabaSolucion">
+      <soap:operation soapAction="http://www.asmred.com/GrabaSolucion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManifiesto">
+      <soap:operation soapAction="http://www.asmred.com/GetManifiesto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEnvios">
+      <soap:operation soapAction="http://www.asmred.com/GetEnvios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlazaXCP">
+      <soap:operation soapAction="http://www.asmred.com/GetPlazaXCP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsociaMatricula">
+      <soap:operation soapAction="http://www.asmred.com/AsociaMatricula" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrevisionEnvios">
+      <soap:operation soapAction="http://www.asmred.com/PrevisionEnvios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignaEnvio">
+      <soap:operation soapAction="http://www.asmred.com/AsignaEnvio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsPaisEurobusiness">
+      <soap:operation soapAction="http://www.asmred.com/EsPaisEurobusiness" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCorreoAgencia">
+      <soap:operation soapAction="http://www.asmred.com/EnviaCorreoAgencia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestGrabaServicios">
+      <soap:operation soapAction="http://www.asmred.com/TestGrabaServicios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EtiquetaEnvio">
+      <soap:operation soapAction="http://www.asmred.com/EtiquetaEnvio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExp">
+      <soap:operation soapAction="http://www.asmred.com/GetExp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpCli">
+      <soap:operation soapAction="http://www.asmred.com/GetExpCli" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="b2bSoap12" type="tns:b2bSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GrabaServicios">
+      <soap12:operation soapAction="http://www.asmred.com/GrabaServicios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Tracking">
+      <soap12:operation soapAction="http://www.asmred.com/Tracking" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Estado">
+      <soap12:operation soapAction="http://www.asmred.com/Estado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Anula">
+      <soap12:operation soapAction="http://www.asmred.com/Anula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabaSolucion">
+      <soap12:operation soapAction="http://www.asmred.com/GrabaSolucion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetManifiesto">
+      <soap12:operation soapAction="http://www.asmred.com/GetManifiesto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEnvios">
+      <soap12:operation soapAction="http://www.asmred.com/GetEnvios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlazaXCP">
+      <soap12:operation soapAction="http://www.asmred.com/GetPlazaXCP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsociaMatricula">
+      <soap12:operation soapAction="http://www.asmred.com/AsociaMatricula" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrevisionEnvios">
+      <soap12:operation soapAction="http://www.asmred.com/PrevisionEnvios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignaEnvio">
+      <soap12:operation soapAction="http://www.asmred.com/AsignaEnvio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsPaisEurobusiness">
+      <soap12:operation soapAction="http://www.asmred.com/EsPaisEurobusiness" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCorreoAgencia">
+      <soap12:operation soapAction="http://www.asmred.com/EnviaCorreoAgencia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestGrabaServicios">
+      <soap12:operation soapAction="http://www.asmred.com/TestGrabaServicios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EtiquetaEnvio">
+      <soap12:operation soapAction="http://www.asmred.com/EtiquetaEnvio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExp">
+      <soap12:operation soapAction="http://www.asmred.com/GetExp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpCli">
+      <soap12:operation soapAction="http://www.asmred.com/GetExpCli" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="b2bHttpGet" type="tns:b2bHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GrabaSolucion">
+      <http:operation location="/GrabaSolucion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlazaXCP">
+      <http:operation location="/GetPlazaXCP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsociaMatricula">
+      <http:operation location="/AsociaMatricula" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrevisionEnvios">
+      <http:operation location="/PrevisionEnvios" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignaEnvio">
+      <http:operation location="/AsignaEnvio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsPaisEurobusiness">
+      <http:operation location="/EsPaisEurobusiness" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCorreoAgencia">
+      <http:operation location="/EnviaCorreoAgencia" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestGrabaServicios">
+      <http:operation location="/TestGrabaServicios" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EtiquetaEnvio">
+      <http:operation location="/EtiquetaEnvio" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExp">
+      <http:operation location="/GetExp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpCli">
+      <http:operation location="/GetExpCli" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="b2bHttpPost" type="tns:b2bHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GrabaSolucion">
+      <http:operation location="/GrabaSolucion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlazaXCP">
+      <http:operation location="/GetPlazaXCP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsociaMatricula">
+      <http:operation location="/AsociaMatricula" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrevisionEnvios">
+      <http:operation location="/PrevisionEnvios" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AsignaEnvio">
+      <http:operation location="/AsignaEnvio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsPaisEurobusiness">
+      <http:operation location="/EsPaisEurobusiness" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnviaCorreoAgencia">
+      <http:operation location="/EnviaCorreoAgencia" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestGrabaServicios">
+      <http:operation location="/TestGrabaServicios" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EtiquetaEnvio">
+      <http:operation location="/EtiquetaEnvio" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExp">
+      <http:operation location="/GetExp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExpCli">
+      <http:operation location="/GetExpCli" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="b2b">
+    <wsdl:port name="b2bSoap" binding="tns:b2bSoap">
+      <soap:address location="https://wsclientes.asmred.com/b2b.asmx" />
+    </wsdl:port>
+    <wsdl:port name="b2bSoap12" binding="tns:b2bSoap12">
+      <soap12:address location="https://wsclientes.asmred.com/b2b.asmx" />
+    </wsdl:port>
+    <wsdl:port name="b2bHttpGet" binding="tns:b2bHttpGet">
+      <http:address location="https://wsclientes.asmred.com/b2b.asmx" />
+    </wsdl:port>
+    <wsdl:port name="b2bHttpPost" binding="tns:b2bHttpPost">
+      <http:address location="https://wsclientes.asmred.com/b2b.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

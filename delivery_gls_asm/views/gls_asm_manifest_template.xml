@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Tecnativa - David Vidal
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+<!-- This manifest is signed by the courier when they take the packages -->
+    <template id="gls_asm_manifest_report_view">
+        <t t-call="web.basic_layout">
+            <div style="font-size:12px;">
+                <center>
+                    <h3><strong>GLS MANIFEST</strong></h3>
+                    <br />
+                    <div class="text-left">
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+                                    <div class="text-left">
+                                        <table width="100%">
+                                            <tr>
+                                                <td colspan="2" />
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Company:</strong>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-esc="company_name"
+                                                    />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" />
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Manifest Date:</strong>
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        t-esc="date_from" t-options="{'widget': 'date'}"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"/>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Date of printing</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y %H:%M')" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"/>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>Printed by</strong>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="user.name" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td width="50%" style="text-align: right; border: 1px solid black; vertical-align: top; padding: 10px;">
+                                    <span>
+                                        <strong>Carrier Signature / Stamp</strong>
+                                    </span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br />
+                    <t t-set="packages" t-value="len(deliveries)" />
+                    <table class="table table-condensed" width="100%">
+                        <tr>
+                            <th width="10%" class="text-center">Ref.</th>
+                            <th width="45%" class="text-left">Customer</th>
+                            <th width="5%" class="text-center">ZIP Code</th>
+                            <th width="30%" class="text-left">City</th>
+                            <th width="5%" class="text-right">Weight</th>
+                            <th width="5%" class="text-center">Packages</th>
+                        </tr>
+                        <t t-foreach="deliveries" t-as="delivery">
+                            <tr>
+                                <td class="text-center">
+                                    <span t-esc="delivery.get('codexp')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('cliente')" />
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="delivery.get('cp_dst')" />
+                                </td>
+                                <td class="text-left">
+                                    <span t-esc="delivery.get('localidad_dst')" />
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(delivery.get('kgs').replace(',', '.'))" />
+                                </td>
+                                <td class="text-center">
+                                    <span t-esc="delivery.get('bultos')" />
+                                </td>
+                            </tr>
+                        </t>
+                        <tr>
+                            <td colspan="6" style="height: 18px;" />
+                        </tr>
+                        <tr>
+                            <td colspan="3" />
+                            <td style="font-size: 14px; text-align: center;">
+                                <strong>TOTAL</strong>
+                            </td>
+                            <td style="font-size: 14px; text-align: center;">
+                                <strong>
+                                    <span t-esc="sum([float(x['kgs'].replace(',', '.')) for x in deliveries])" />
+                                    <br />(Kg.)
+                                </strong>
+                            </td>
+                            <td style="font-size:14px;text-align:center;">
+                                <strong>
+                                    <span t-esc="sum([int(x['bultos'].replace(',', '.')) for x in deliveries])" />
+                                    <br />(Packages)
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" style="font-size:18px;text-align:center;">
+                                <strong>
+                                    <span>TOTAL EXPEDITIONS: </span>
+                                    <span t-esc="len(deliveries)" />
+                                </strong>
+                                <br />
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+        </t>
+    </template>
+
+    <report
+        id="gls_asm_manifest_report"
+        model="gls.asm.minifest.wizard"
+        string="GLS Manifest"
+        report_type="qweb-pdf"
+        name="delivery_gls_asm.gls_asm_manifest_report_view"
+        menu="False"
+    />
+
+    <act_window
+        id="action_delivery_gls_asm_manifest_wizard"
+        name="GLS Manifest"
+        res_model="gls.asm.minifest.wizard"
+        view_type="form"
+        view_mode="form"
+        target="new"
+    />
+
+    <menuitem
+        id="menu_gls_asm_manifest"
+        name="GLS Deliveries Manifest"
+        action="action_delivery_gls_asm_manifest_wizard"
+        parent="stock.menu_warehouse_report"
+        sequence="99"
+    />
+
+</odoo>
