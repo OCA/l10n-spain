@@ -1,0 +1,26 @@
+<odoo>
+    <record model="ir.ui.view" id="delivery_manifest_wizard_form">
+        <field name="model">gls.asm.minifest.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="GLS Manifest">
+                <group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="carrier_id" widget="selection"/>
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="get_manifest"
+                        string="Get Manifest"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancelar" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>
