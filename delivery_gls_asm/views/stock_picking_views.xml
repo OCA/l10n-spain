@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Tecnativa - David Vidal
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='tracking']" position="after">
+                <field name="gls_asm_public_tracking_ref" attrs="{'invisible':[('gls_asm_public_tracking_ref', '!=', 'False')]}"/>
+            </xpath>
+            <xpath expr="//header" position='inside'>
+                <button
+                    name="gls_asm_get_label"
+                    string="GLS Label"
+                    type="object"
+                    attrs="{'invisible':['|', ('gls_asm_public_tracking_ref', '=', False), ('state', '!=', 'done')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
