@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_aeat_mod111',
         'odoo13-addon-l10n_es_mis_report',
         'odoo13-addon-l10n_es_partner',
+        'odoo13-addon-l10n_es_partner_mercantil',
         'odoo13-addon-l10n_es_pos',
         'odoo13-addon-l10n_es_toponyms',
         'odoo13-addon-payment_redsys',
