@@ -3,11 +3,13 @@
 
 {
     'name': 'AEAT Certificados',
-    'author': 'Acysos S.L.,'
+    'author': 'Diagram Software S.L.,'
+              'Consultoría Informática Studio 73 S.L.,'
+              'Acysos S.L.,'
               'Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org/',
     'category': 'Accounting',
-    'version': '11.0.0.1.0',
+    'version': '11.0.1.0.0',
     'license': 'AGPL-3',
     'depends': [
         'base',
