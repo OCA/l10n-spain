@@ -1,0 +1,175 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_aeat_certificate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-25 17:06+0000\n"
+"PO-Revision-Date: 2019-05-25 19:09+0200\n"
+"Last-Translator: Ignacio Ibeas - Acysos S.L. <ignacio@acysos.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: l10n_es_aeat_certificate
+#: selection:l10n.es.aeat.certificate,state:0
+msgid "Active"
+msgstr "Activo"
+
+#. module: l10n_es_aeat_certificate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_certificate.l10n_es_aeat_certificate_password_wizard_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.actions.act_window,name:l10n_es_aeat_certificate.l10n_es_certificate_action
+#: model:ir.ui.menu,name:l10n_es_aeat_certificate.l10n_es_aeat_certificate_menu
+msgid "Certificates"
+msgstr "Certificados"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__company_id
+msgid "Compañía"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_aeat_certificate
+#: selection:l10n.es.aeat.certificate,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__date_end
+msgid "End Date"
+msgstr "Fecha finalización"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__file
+msgid "File"
+msgstr "Archivo"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__folder
+msgid "Folder Name"
+msgstr "Nombre carpeta"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_certificate
+#: code:addons/l10n_es_aeat_certificate/models/aeat_certificate.py:36
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_certificate.l10n_es_aeat_certificate_password_wizard_view
+#, python-format
+msgid "Insert Password"
+msgstr "Introduzca Contraseña"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_es_aeat_certificate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_certificate.l10n_es_aeat_certificate_form_view
+msgid "Load Certificate"
+msgstr "Cargar certificado"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_aeat_certificate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_certificate.l10n_es_aeat_certificate_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_certificate.l10n_es_aeat_certificate_password_wizard_view
+msgid "Obtain Keys"
+msgstr "Obtener claves"
+
+#. module: l10n_es_aeat_certificate
+#: code:addons/l10n_es_aeat_certificate/wizards/aeat_certificate_password.py:69
+#, python-format
+msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
+msgstr "OpenSSL version no esta soportada. Actualiza a 0.15 o superior."
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate_password__password
+msgid "Password"
+msgstr "Contraseña"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__private_key
+msgid "Private Key"
+msgstr "Clave privada"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__public_key
+msgid "Public Key"
+msgstr "Clave pública"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__date_start
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model.fields,field_description:l10n_es_aeat_certificate.field_l10n_es_aeat_certificate__state
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_aeat_certificate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_certificate.l10n_es_aeat_certificate_form_view
+msgid "To Active"
+msgstr "Activar"
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model,name:l10n_es_aeat_certificate.model_l10n_es_aeat_certificate
+msgid "l10n.es.aeat.certificate"
+msgstr ""
+
+#. module: l10n_es_aeat_certificate
+#: model:ir.model,name:l10n_es_aeat_certificate.model_l10n_es_aeat_certificate_password
+msgid "l10n.es.aeat.certificate.password"
+msgstr ""
+
+#. module: l10n_es_aeat_certificate
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_certificate.l10n_es_aeat_certificate_password_wizard_view
+msgid "or"
+msgstr "o"
