@@ -543,7 +543,7 @@ class AccountInvoice(models.Model):
                         'NoSujeta', {'ImporteTAIReglasLocalizacion': 0},
                     )
                     nsub_dict['ImporteTAIReglasLocalizacion'] += (
-                        tax_line.base * sign
+                        tax_line.base_company * sign
                     )
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
