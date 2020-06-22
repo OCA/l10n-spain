@@ -22,6 +22,11 @@ msgid "Accepted"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Accounted obligation"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration__cancellation_status
 msgid "Cancellation Status"
 msgstr ""
@@ -171,6 +176,11 @@ msgstr ""
 #. module: l10n_es_facturae_face
 #: selection:account.invoice.integration,integration_status:0
 msgid "Registered on REC"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on RFC"
 msgstr ""
 
 #. module: l10n_es_facturae_face
