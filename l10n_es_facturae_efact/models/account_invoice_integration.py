@@ -12,6 +12,8 @@ class AccountInvoiceIntegration(models.Model):
         ('efact-SENT', 'Sended'),
         ('efact-DELIVERED', 'Delivered'),
         ('efact-REGISTERED', 'Registered'),
+        ('efact-ANNOTATED', 'Registered on RFC'),
+        ('efact-RECOGNISED', 'Accounted obligation'),
         ('efact-ACCEPTED', 'Accepted'),
         ('efact-PAID', 'Paid'),
         ('efact-REJECTED', 'Rejected'),
