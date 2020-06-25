@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_facturae',
         'odoo12-addon-l10n_es_facturae_efact',
         'odoo12-addon-l10n_es_facturae_face',
+        'odoo12-addon-l10n_es_intrastat_report',
         'odoo12-addon-l10n_es_irnr',
         'odoo12-addon-l10n_es_location_nuts',
         'odoo12-addon-l10n_es_mis_report',
