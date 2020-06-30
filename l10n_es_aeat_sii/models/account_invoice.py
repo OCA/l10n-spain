@@ -653,6 +653,14 @@ class AccountInvoice(models.Model):
         return taxes_dict, tax_amount
 
     @api.multi
+    def _is_sii_simplified_invoice(self):
+        """Inheritable method to allow control when an
+        invoice are simplified or normal"""
+        partner = self.partner_id.commercial_partner_id
+        is_simplified = partner.sii_simplified_invoice
+        return is_simplified
+
+    @api.multi
     def _sii_check_exceptions(self):
         """Inheritable method for exceptions control when sending SII invoices.
         """
@@ -660,12 +668,14 @@ class AccountInvoice(models.Model):
         gen_type = self._get_sii_gen_type()
         partner = self.partner_id.commercial_partner_id
         country_code = self._get_sii_country_code()
-        if partner.sii_simplified_invoice and self.type[:2] == 'in':
+        is_simplified_invoice = self._is_sii_simplified_invoice()
+
+        if is_simplified_invoice and self.type[:2] == 'in':
             raise exceptions.Warning(
                 _("You can't make a supplier simplified invoice.")
             )
         if ((gen_type != 3 or country_code == 'ES') and
-                not partner.vat and not partner.sii_simplified_invoice):
+                not partner.vat and not is_simplified_invoice):
             raise exceptions.Warning(
                 _("The partner has not a VAT configured.")
             )
@@ -711,8 +721,9 @@ class AccountInvoice(models.Model):
         invoice_date = self._change_date_format(self.date_invoice)
         partner = self.partner_id.commercial_partner_id
         company = self.company_id
-        ejercicio = fields.Date.from_string(self.date).year
-        periodo = '%02d' % fields.Date.from_string(self.date).month
+        ejercicio = fields.Date.to_date(self.date).year
+        periodo = '%02d' % fields.Date.to_date(self.date).month
+        is_simplified_invoice = self._is_sii_simplified_invoice()
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {
@@ -732,14 +743,13 @@ class AccountInvoice(models.Model):
         if not cancel:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
-            simplied = partner.sii_simplified_invoice
             if self.type == 'out_refund':
                 if self.sii_refund_specific_invoice_type:
                     tipo_factura = self.sii_refund_specific_invoice_type
                 else:
-                    tipo_factura = 'R5' if simplied else 'R1'
+                    tipo_factura = 'R5' if is_simplified_invoice else 'R1'
             else:
-                tipo_factura = 'F2' if simplied else 'F1'
+                tipo_factura = 'F2' if is_simplified_invoice else 'F1'
             inv_dict["FacturaExpedida"] = {
                 "TipoFactura": tipo_factura,
                 "ClaveRegimenEspecialOTrascendencia": (
@@ -770,7 +780,7 @@ class AccountInvoice(models.Model):
                     }
                 }
             exp_dict = inv_dict['FacturaExpedida']
-            if not partner.sii_simplified_invoice:
+            if not is_simplified_invoice:
                 # Simplified invoices don't have counterpart
                 exp_dict["Contraparte"] = {
                     "NombreRazon": partner.name[0:120],
