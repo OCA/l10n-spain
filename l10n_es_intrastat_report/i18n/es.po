@@ -10,11 +10,11 @@ msgstr ""
 "PO-Revision-Date: 2020-05-26 20:27+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: es\n"
 "X-Generator: Poedit 2.3\n"
 
 #. module: l10n_es_intrastat_report
@@ -99,13 +99,24 @@ msgstr "Importe en la moneda de la compañía"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_accessory_cost_company_currency
-msgid "Amount in company currency of the accessory costs related to this invoice line (by default, these accessory costs are computed at the pro-rata of the amount of each invoice line."
-msgstr "Importe en la moneda de la compañía de los costes accesorios relacionados con esta línea de factura (por defecto, estos costes accesorios se calculan prorrateados del importe de cada línea de factura)."
+msgid ""
+"Amount in company currency of the accessory costs related to this invoice "
+"line (by default, these accessory costs are computed at the pro-rata of the "
+"amount of each invoice line."
+msgstr ""
+"Importe en la moneda de la compañía de los costes accesorios relacionados "
+"con esta línea de factura (por defecto, estos costes accesorios se calculan "
+"prorrateados del importe de cada línea de factura)."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_company_currency
-msgid "Amount in company currency to write in the declaration. Amount in company currency = amount in invoice currency converted to company currency with the rate of the invoice date."
-msgstr "Importe en la moneda la compañía a escribir en la declaración. Si la moneda no es la misma, se calcula con la tasa de cambio de la fecha de factura."
+msgid ""
+"Amount in company currency to write in the declaration. Amount in company "
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
+msgstr ""
+"Importe en la moneda la compañía a escribir en la declaración. Si la moneda "
+"no es la misma, se calcula con la tasa de cambio de la fecha de factura."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_attachment_count
@@ -184,7 +195,8 @@ msgstr "Moneda"
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:90
 #, python-format
 msgid "Current company is not Spanish, so it can't be configured."
-msgstr "La compañía actual no es española, por lo que no puede ser configurada."
+msgstr ""
+"La compañía actual no es española, por lo que no puede ser configurada."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__declaration_line_id
@@ -479,8 +491,12 @@ msgstr "Provincia"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__state
-msgid "State of the declaration. When the state is set to 'Done', the parameters become read-only."
-msgstr "Estado de la declaración. Cuando el estado está como 'Realizado', los parámetros se convierten a solo lectura."
+msgid ""
+"State of the declaration. When the state is set to 'Done', the parameters "
+"become read-only."
+msgstr ""
+"Estado de la declaración. Cuando el estado está como 'Realizado', los "
+"parámetros se convierten a solo lectura."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__intrastat_unit_id
@@ -503,13 +519,21 @@ msgstr "Cantidad de unidades suplementarias"
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:57
 #, python-format
-msgid "The Spanish Intrastat Declaration requires the Company's Country to be equal to 'Spain'."
-msgstr "La declaración Intrastat española requiere que el país de la compañía sea 'España'."
+msgid ""
+"The Spanish Intrastat Declaration requires the Company's Country to be equal "
+"to 'Spain'."
+msgstr ""
+"La declaración Intrastat española requiere que el país de la compañía sea "
+"'España'."
 
 #. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
-msgid "This wizard will import Spanish Product HS Codes from the local copy and set company Instrastat type defaults at company level."
-msgstr "Este asistente importará los códigos HS españoles de producto de una copia local y establecerá los tipos Intrastat por defecto a nivel de compañía."
+msgid ""
+"This wizard will import Spanish Product HS Codes from the local copy and set "
+"company Instrastat type defaults at company level."
+msgstr ""
+"Este asistente importará los códigos HS españoles de producto de una copia "
+"local y establecerá los tipos Intrastat por defecto a nivel de compañía."
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__total_amount
