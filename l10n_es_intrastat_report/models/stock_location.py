@@ -10,7 +10,8 @@ class StockLocation(models.Model):
     _inherit = 'stock.location'
 
     def _get_intrastat_state(self):
-        self.ensure_one()
+        if not self:
+            return False
         location = self
         locations = self
         while location.location_id:
