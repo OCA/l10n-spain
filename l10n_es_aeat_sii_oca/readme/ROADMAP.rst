@@ -5,3 +5,5 @@
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte).
 * Regímenes especiales de seguros y de agencias de viaje.
 * Facturas rectificativas por sustitución.
+* Soportar facturas de canje de facturas simplificadas por facturas completas.
+  Ver https://github.com/OCA/l10n-spain/issues/1171 para más información.
