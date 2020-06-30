@@ -357,3 +357,19 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertFalse(invoice.sii_refund_type)
         invoice.type = 'out_refund'
         self.assertEqual(invoice.sii_refund_type, 'I')
+
+    def test_is_sii_simplified_invoice(self):
+        self.assertFalse(self.invoice._is_sii_simplified_invoice())
+        self.partner.sii_simplified_invoice = True
+        self.assertTrue(self.invoice._is_sii_simplified_invoice())
+
+    def test_sii_check_exceptions_case_supplier_simplified(self):
+        self.partner.is_simplified_invoice = True
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'type': 'in_invoice',
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        with self.assertRaises(exceptions.Warning):
+            invoice._sii_check_exceptions()
