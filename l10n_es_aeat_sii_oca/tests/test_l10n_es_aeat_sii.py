@@ -142,7 +142,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         expedida_recibida = 'FacturaExpedida'
         if self.invoice.type in ['in_invoice', 'in_refund']:
             expedida_recibida = 'FacturaRecibida'
-        sign = -1.0 if invoice_type == 'R4' else 1.0
+        sign = -1.0 if invoice_type in ('R1', 'R4') else 1.0
         res = {
             'IDFactura': {
                 'FechaExpedicionFacturaEmisor': '01-02-2018',
@@ -192,7 +192,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 },
                 "CuotaDeducible": sign * 10,
             })
-        if invoice_type == 'R4':
+        if invoice_type in ('R1', 'R4'):
             res[expedida_recibida]['TipoRectificativa'] = 'I'
         return res
 
@@ -212,7 +212,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.invoice.type = 'out_refund'
         self.invoice.sii_refund_type = 'I'
         invoices = self.invoice._get_sii_invoice_dict()
-        test_out_refund = self._get_invoices_test('R4', '01')
+        test_out_refund = self._get_invoices_test('R1', '01')
         for key in list(invoices.keys()):
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
