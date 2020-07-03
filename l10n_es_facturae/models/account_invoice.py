@@ -192,7 +192,8 @@ class AccountInvoice(models.Model):
         return ['open', 'paid']
 
     def validate_facturae_fields(self):
-        for line in self.invoice_line_ids:
+        lines = self.invoice_line_ids.filtered(lambda r: not r.display_type)
+        for line in lines:
             if not line.invoice_line_tax_ids:
                 raise ValidationError(_('Taxes not provided in invoice line '
                                         '%s') % line.name)
