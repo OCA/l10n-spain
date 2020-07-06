@@ -215,7 +215,8 @@ class L10nEsVatBook(models.Model):
         if vat_book_line['line_type'] in [
                 'received', 'rectification_received']:
             balance = -balance
-        base_amount_untaxed = balance if move_line.tax_ids else 0.0
+        base_amount_untaxed = balance if move_line.tax_ids and not \
+            move_line.tax_line_id else 0.0
         fee_amount_untaxed = balance if move_line.tax_line_id else 0.0
         return {
             'tax_id': move_line.tax_line_id.id,
@@ -261,15 +262,16 @@ class L10nEsVatBook(models.Model):
                 tax_lines[key]['special_tax_group'] = tax_group
         if vat_book_line['special_tax_group']:
             base_line = next(filter(
-                lambda l: not l['special_tax_group'], implied_lines))
+                lambda l: not l['special_tax_group'], implied_lines), None)
             special_line = next(filter(
-                lambda l: l['special_tax_group'], implied_lines))
-            base_line.update({
-                'special_tax_id': special_line['tax_id'],
-                'special_tax_amount': special_line['tax_amount'],
-                'total_amount_special_include':
-                    base_line['total_amount'] + special_line['tax_amount'],
-            })
+                lambda l: l['special_tax_group'], implied_lines), None)
+            if base_line and special_line:
+                base_line.update({
+                    'special_tax_id': special_line['tax_id'],
+                    'special_tax_amount': special_line['tax_amount'],
+                    'total_amount_special_include':
+                        base_line['total_amount'] + special_line['tax_amount'],
+                })
 
     def _clear_old_data(self):
         """
@@ -459,7 +461,7 @@ class L10nEsVatBook(models.Model):
         lang = lang_model._lang_get(self.env.user.lang)
         date_format = lang.date_format
         return datetime.datetime.strftime(
-            fields.Date.from_string(date), date_format)
+            fields.Date.to_date(date), date_format)
 
     def get_report_file_name(self):
         return '{}{}C{}'.format(self.year, self.company_vat,

@@ -165,13 +165,13 @@ class AccountInvoice(models.Model):
         if not euro_rate and not currency_rate:
             return fields.Datetime.now().strftime('%Y-%m-%d')
         if not currency_rate:
-            return fields.Datetime.from_string(euro_rate.name
+            return fields.Datetime.to_datetime(euro_rate.name
                                                ).strftime('%Y-%m-%d')
         if not euro_rate:
-            return fields.Datetime.from_string(currency_rate.name
+            return fields.Datetime.to_datetime(currency_rate.name
                                                ).strftime('%Y-%m-%d')
-        currency_date = fields.Datetime.from_string(currency_rate.name)
-        euro_date = fields.Datetime.from_string(currency_rate.name)
+        currency_date = fields.Datetime.to_datetime(currency_rate.name)
+        euro_date = fields.Datetime.to_datetime(currency_rate.name)
         if currency_date < euro_date:
             return currency_date.strftime('%Y-%m-%d')
         return euro_date.strftime('%Y-%m-%d')
@@ -192,7 +192,8 @@ class AccountInvoice(models.Model):
         return ['open', 'paid']
 
     def validate_facturae_fields(self):
-        for line in self.invoice_line_ids:
+        lines = self.invoice_line_ids.filtered(lambda r: not r.display_type)
+        for line in lines:
             if not line.invoice_line_tax_ids:
                 raise ValidationError(_('Taxes not provided in invoice line '
                                         '%s') % line.name)
@@ -208,16 +209,7 @@ class AccountInvoice(models.Model):
             raise ValidationError(_('Company vat is too small'))
         if not self.payment_mode_id:
             raise ValidationError(_('Payment mode is required'))
-        if self.payment_mode_id.facturae_code == '02':
-            if not self.mandate_id:
-                raise ValidationError(_('Mandate is missing'))
-            if not self.mandate_id.partner_bank_id:
-                raise ValidationError(_('Partner bank in mandate is missing'))
-            if len(self.mandate_id.partner_bank_id.bank_id.bic) != 11:
-                raise ValidationError(_('Mandate account BIC must be 11'))
-            if len(self.mandate_id.partner_bank_id.acc_number) < 5:
-                raise ValidationError(_('Mandate account is too small'))
-        else:
+        if self.payment_mode_id.facturae_code:
             partner_bank = self.partner_banks_to_show()[:1]
             if not partner_bank:
                 raise ValidationError(_('Partner bank is missing'))
@@ -481,6 +473,20 @@ class AccountInvoice(models.Model):
                   "is the error, which may give you an idea on the cause "
                   "of the problem : %s") % str(e))
         return True
+
+    @api.model
+    def _prepare_refund(self, invoice, date_invoice=None, date=None,
+                        description=None, journal_id=None):
+        """Update here the refund values dictionary with the FacturaE values
+        injected on the wizard.
+        """
+        values = super()._prepare_refund(
+            invoice, date_invoice=date_invoice, date=date,
+            description=description, journal_id=journal_id)
+        for key in ('correction_method', 'facturae_refund_reason'):
+            if self.env.context.get(key):
+                values[key] = self.env.context[key]
+        return values
 
 
 class AccountInvoiceLine(models.Model):

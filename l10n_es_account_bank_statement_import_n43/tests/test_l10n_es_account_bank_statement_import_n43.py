@@ -36,8 +36,12 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
         statement = self.env['account.bank.statement'].browse(
             action['context']['statement_ids'][0],
         )
+        self.assertEqual(
+            statement.date, fields.Date.to_date('2016-02-01')
+        )
         self.assertEqual(len(statement.line_ids), 3)
         self.assertEqual(
+            statement.line_ids[2].date,
             statement.line_ids[2].date,
             fields.Date.to_date('2016-05-25'),
         )

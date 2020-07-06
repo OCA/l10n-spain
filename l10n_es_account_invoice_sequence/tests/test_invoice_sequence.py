@@ -131,6 +131,7 @@ class TestInvoiceSequence(common.SavepointCase):
         invoice.action_invoice_open()
         self.assertEqual(invoice.number[:4], 'tREF')
         self.assertEqual(invoice.move_id.name[:3], 'tAM')
+        self.assertIn('tREF', invoice.move_id.ref)
 
     def test_refund_sequence_02(self):
         invoice = self.env['account.invoice'].create({

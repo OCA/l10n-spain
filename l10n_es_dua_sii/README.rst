@@ -41,7 +41,6 @@ y se envía con los datos requeridos por la AEAT
 Known issues / Roadmap
 ======================
 
-* Mejorar la comprobación del tipo de factura de importación con DUA
 * Validación del número DUA: `Link <http://www.agenciatributaria.es/AEAT.internet/Inicio/Novedades/2014/Abril/Aduanas__Validacion_del_documento_N830_en_la_casilla_44_del_DUA_de_importacion_.shtml>`_.
 
 Bug Tracker
@@ -76,6 +75,7 @@ Contributors
 
   * Alexandre Díaz
   * Pedro M. Baeza
+* Eric Antones - NuoBiT Solutions, S.L. <eantones@nuobit.com>
 
 Maintainers
 ~~~~~~~~~~~
