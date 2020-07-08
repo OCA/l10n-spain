@@ -174,4 +174,41 @@
             <field name="name">SuministroFactRecibidas No Deducible</field>
         </record>
 
+        <record id="aeat_sii_map_line_NotIncludedInTotal" model="aeat.sii.map.lines">
+            <field name="code">NotIncludedInTotal</field>
+            <field name="taxes" eval="[(6, 0, [
+              ref('l10n_es.account_tax_template_s_irpf1'),
+              ref('l10n_es.account_tax_template_p_irpf1'),
+              ref('l10n_es.account_tax_template_s_irpf2'),
+              ref('l10n_es.account_tax_template_p_irpf2'),
+              ref('l10n_es.account_tax_template_s_irpf7'),
+              ref('l10n_es.account_tax_template_p_irpf7'),
+              ref('l10n_es.account_tax_template_s_irpf9'),
+              ref('l10n_es.account_tax_template_p_irpf9'),
+              ref('l10n_es.account_tax_template_s_irpf15'),
+              ref('l10n_es.account_tax_template_p_irpf15'),
+              ref('l10n_es.account_tax_template_s_irpf18'),
+              ref('l10n_es.account_tax_template_p_irpf18'),
+              ref('l10n_es.account_tax_template_s_irpf19'),
+              ref('l10n_es.account_tax_template_s_irpf19a'),
+              ref('l10n_es.account_tax_template_s_irpf195a'),
+              ref('l10n_es.account_tax_template_p_irpf19'),
+              ref('l10n_es.account_tax_template_p_irpf19a'),
+              ref('l10n_es.account_tax_template_p_irpf195a'),
+              ref('l10n_es.account_tax_template_s_irpf20'),
+              ref('l10n_es.account_tax_template_s_irpf20a'),
+              ref('l10n_es.account_tax_template_p_irpf20'),
+              ref('l10n_es.account_tax_template_p_irpf20a'),
+              ref('l10n_es.account_tax_template_s_irpf21'),
+              ref('l10n_es.account_tax_template_s_irpf21a'),
+              ref('l10n_es.account_tax_template_p_irpf21a'),
+              ref('l10n_es.account_tax_template_p_irpf21p'),
+              ref('l10n_es.account_tax_template_p_irpf21t'),
+              ref('l10n_es.account_tax_template_p_irpf21td'),
+              ref('l10n_es.account_tax_template_p_irpf21te'),
+            ])]"/>
+            <field name="sii_map_id" ref="aeat_sii_map"/>
+            <field name="name">Impuestos no incluidos en ImporteTotal</field>
+        </record>
+
 </odoo>
