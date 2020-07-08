@@ -12,7 +12,7 @@ from odoo.modules.module import get_resource_path
 
 try:
     from zeep.client import ServiceProxy
-except (ImportError, IOError) as err:
+except (ImportError, IOError):
     ServiceProxy = object
 
 CERTIFICATE_PATH = get_resource_path(
@@ -74,6 +74,14 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
             'type_tax_use': 'purchase',
             'amount_type': 'percent',
             'amount': '10',
+            'account_id': cls.account_tax.id,
+        })
+        cls.tax_irpf19 = cls.env['account.tax'].create({
+            'name': 'Test tax irpf 19%',
+            'description': 'P_RAC19A',
+            'type_tax_use': 'purchase',
+            'amount_type': 'percent',
+            'amount': '19',
             'account_id': cls.account_tax.id,
         })
         cls.env.user.company_id.sii_description_method = 'manual'
@@ -330,3 +338,42 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         for inv_type in ['out_invoice', 'in_invoice']:
             self.invoice.type = inv_type
             self._test_tax_agencies(self.invoice)
+
+    def test_importe_total_when_supplier_invoice_with_irpf(self):
+        # 1/ tener una factura con líneas con retención e iva
+        # 2/ obtener con get_dict_in los valores a enviar al sii
+        # 3/ comprobar el valor de ImporteTotal es igual al estimado
+        # 1
+        amount_base = 100
+        amount_tax = 10
+        amount_to_communicate_sii = amount_base + amount_tax
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'date': '2018-02-01',
+            'type': 'in_invoice',
+            'reference': 'PH-2020-0031',
+            'account_id': self.partner.property_account_payable_id.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'product_id': self.product.id,
+                    'account_id': self.account_expense.id,
+                    'account_analytic_id': self.analytic_account.id,
+                    'name': 'Test line with irpf and iva',
+                    'price_unit': amount_base,
+                    'quantity': 1,
+                    'invoice_line_tax_ids': [
+                        (6, 0, self.tax.ids + self.tax_irpf19.ids)],
+                })],
+            'sii_manual_description': '/',
+        })
+        # 2
+        invoices = invoice._get_sii_invoice_dict()
+        importe_total = invoices['FacturaRecibida']['ImporteTotal']
+        # 3
+        self.assertEqual(amount_to_communicate_sii, importe_total)
+
+    def test_unlink_invoice_when_sent_to_sii(self):
+        self.invoice.sii_state = 'sent'
+        with self.assertRaises(exceptions.Warning):
+            self.invoice.unlink()

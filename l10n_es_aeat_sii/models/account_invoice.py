@@ -747,6 +747,37 @@ class AccountInvoice(models.Model):
         return self.sii_account_registration_date or fields.Date.today()
 
     @api.multi
+    def _get_importe_total(self):
+        """Get ImporteTotal value.
+        Avoid to send IRPF data to SII systems,
+        but only check supplier invoices
+        """
+        taxes_notincludedintotal = self._get_sii_taxes_map(
+            ['NotIncludedInTotal'])
+        # Check if refund type is 'By differences'. Negative amounts!
+        sign = self._get_sii_sign()
+
+        # supplier invoice, check lines & irpf
+        round_curr = self.currency_id.round
+        # sumo/resto impuestos a menos que estén incluidos
+        # en el aeat.sii.map.lines NotIncludedInTotal
+        lines = [
+            line for line in self.tax_line_ids
+            if line.tax_id not in taxes_notincludedintotal]
+        amount_tax_no_irpf = sum(round_curr(
+            line.amount) for line in lines)
+        amount_total = self.amount_untaxed + amount_tax_no_irpf
+        amount_total_company_signed = amount_total
+        if (self.currency_id and self.company_id and
+                self.currency_id != self.company_id.currency_id):
+            currency_id = self.currency_id.with_context(
+                date=self.date_invoice or fields.Date.today(),
+                company_id=self.company_id.id)
+            amount_total_company_signed = currency_id.compute(
+                amount_total, self.company_id.currency_id)
+        return abs(amount_total_company_signed) * sign
+
+    @api.multi
     def _get_sii_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
         out_invoice and out_refund.
@@ -791,7 +822,7 @@ class AccountInvoice(models.Model):
                 ),
                 "DescripcionOperacion": self.sii_description,
                 "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
+                "ImporteTotal": self._get_importe_total(),
             }
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
@@ -895,11 +926,8 @@ class AccountInvoice(models.Model):
                     )
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": (
-                    self.date >= SII_START_DATE and
-                    round(tax_amount * sign, 2) or 0.0
-                ),
+                "ImporteTotal": self._get_importe_total(),
+                "CuotaDeducible": tax_amount * sign,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
