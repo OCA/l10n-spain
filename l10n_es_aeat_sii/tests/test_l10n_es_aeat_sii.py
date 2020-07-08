@@ -76,6 +76,19 @@ class TestL10nEsAeatSii(common.TransactionCase):
             'tax_code_id': self.tax_code.id,
             'tax_sign': 1,
         })
+        self.tax_irpf19 = self.env['account.tax'].create({
+            'name': 'Test IRPF 19%',
+            # Needed for discriminatory tax amount in supplier invoices
+            'description': 'P_IRPF19',
+            'type_tax_use': 'purchase',
+            'type': 'percent',
+            'amount': '0.19',
+            'account_collected_id': self.account_tax.id,
+            'base_code_id': self.base_code.id,
+            'base_sign': 1,
+            'tax_code_id': self.tax_code.id,
+            'tax_sign': 1,
+        })
         self.period = self.env['account.period'].find()
         self.env.user.company_id.sii_description_method = 'manual'
         self.invoice = self.env['account.invoice'].create({
@@ -271,3 +284,42 @@ class TestL10nEsAeatSii(common.TransactionCase):
     def test_permissions(self):
         """Test permissions"""
         self.invoice.sudo(self.user).signal_workflow('invoice_open')
+
+    def test_importe_total_when_supplier_invoice_with_irpf(self):
+        # 1/ tener una factura con líneas con retención e iva
+        # 2/ obtener con get_dict_in los valores a enviar al sii
+        # 3/ comprobar el valor de ImporteTotal es igual al estimado
+        # 1
+        amount_base = 100
+        amount_tax = 10
+        amount_to_communicate_sii = amount_base + amount_tax
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': fields.Date.today(),
+            'period_id': self.period.id,
+            'type': 'in_invoice',
+            'reference': 'PH-2020-0031',
+            'account_id': self.partner.property_account_payable.id,
+            'invoice_line': [
+                (0, 0, {
+                    'product_id': self.product.id,
+                    'account_id': self.account_expense.id,
+                    'account_analytic_id': self.analytic_account.id,
+                    'name': 'Test line with irpf and iva',
+                    'price_unit': amount_base,
+                    'quantity': 1,
+                    'invoice_line_tax_id': [
+                        (6, 0, self.tax.ids + self.tax_irpf19.ids)],
+                })],
+            'sii_manual_description': '/',
+        })
+        # 2
+        invoices = invoice._get_sii_invoice_dict()
+        importe_total = invoices['FacturaRecibida']['ImporteTotal']
+        # 3
+        self.assertEqual(amount_to_communicate_sii, importe_total)
+
+    def test_unlink_invoice_when_sent_to_sii(self):
+        self.invoice.sii_state = 'sent'
+        with self.assertRaises(exceptions.Warning):
+            self.invoice.unlink()

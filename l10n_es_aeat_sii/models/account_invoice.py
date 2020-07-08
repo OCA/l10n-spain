@@ -765,6 +765,42 @@ class AccountInvoice(models.Model):
         return self.sii_account_registration_date or fields.Date.today()
 
     @api.multi
+    def _get_importe_total(self):
+        """Get ImporteTotal value.
+        Avoid to send IRPF data to SII systems,
+        but only check supplier invoices
+        """
+        taxes_notincludedintotal = self._get_sii_taxes_map(
+            ['NotIncludedInTotal'])
+        amount_total = 0.0
+        # Check if refund type is 'By differences'. Negative amounts!
+        sign = self._get_sii_sign()
+        # supplier invoice, check lines & irpf
+        # sumo/resto impuestos a menos que estén incluidos
+        # en el aeat.sii.map.lines NotIncludedInTotal
+        for inv_line in self.invoice_line:
+            amount_total += inv_line._get_sii_line_price_subtotal()
+            for tax_line in inv_line.invoice_line_tax_id:
+                if tax_line not in taxes_notincludedintotal:
+                    taxes = tax_line.compute_all(
+                        inv_line._get_sii_line_price_unit(), inv_line.quantity,
+                        inv_line.product_id, self.partner_id,
+                    )
+                    amount_total += sum([t['amount'] for t in taxes['taxes']])
+
+        amount_total_company_signed = amount_total
+        if (self.currency_id and self.company_id and
+                self.currency_id != self.company_id.currency_id):
+            currency_id = self.currency_id
+            amount_total_company_signed = currency_id._convert(
+                amount_total,
+                self.company_id.currency_id,
+                self.company_id,
+                self.date_invoice or fields.Date.today())
+        return round(float_round(abs(amount_total_company_signed) * sign, 2),
+                     2)
+
+    @api.multi
     def _get_sii_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
         out_invoice and out_refund.
@@ -797,8 +833,6 @@ class AccountInvoice(models.Model):
             },
         }
         if not cancel:
-            # Check if refund type is 'By differences'. Negative amounts!
-            sign = self._get_sii_sign()
             if partner.sii_simplified_invoice:
                 tipo_factura = 'R5' if self.type == 'out_refund' else 'F2'
             else:
@@ -810,7 +844,7 @@ class AccountInvoice(models.Model):
                 ),
                 "DescripcionOperacion": self.sii_description,
                 "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": self.cc_amount_total * sign,
+                "ImporteTotal": self._get_importe_total(),
             }
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
@@ -911,11 +945,11 @@ class AccountInvoice(models.Model):
                     )
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": self.cc_amount_total * sign,
                 "CuotaDeducible": (self.period_id.date_start >=
                                    SII_START_DATE
                                    and round(float_round(tax_amount,
                                                          2), 2) or 0.0),
+                "ImporteTotal": self._get_importe_total(),
             }
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
