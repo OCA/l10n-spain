@@ -2,7 +2,7 @@
 
 {
     "name": "Punto de venta adaptado a la legislación española",
-    "category": "Point Of Sale",
+    "category": "Sales/Point Of Sale",
     "author": "Tecnativa, "
     "Aselcis Consulting, "
     "Acysos S.L., "
