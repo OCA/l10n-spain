@@ -179,7 +179,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
         if extra_vals:
             data.update(extra_vals)
         inv = cls.env["account.move"].with_user(cls.billing_user).create(data)
-        inv.post()
+        inv.sudo().post()  # FIXME: Why do we need to do it as sudo?
         if cls.debug:
             cls._print_move_lines(inv.line_ids)
         return inv
