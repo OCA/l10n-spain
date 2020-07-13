@@ -9,7 +9,9 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
     _inherit = 'l10n.es.mod190.mixin'
     _description = 'Mod190 Additional Data Mixin'
 
+    mod190_data = fields.Serialized()
     legal_representative_vat = fields.Char(
+        sparse="mod190_data",
         oldname="representante_legal_vat",
         string="NIF representante legal", size=9,
         help='''Si el perceptor es menor de 14 años, se consignará en
@@ -17,12 +19,14 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
             representante legal (padre, madre o tutor).''')
 
     birth_year = fields.Char(
+        sparse="mod190_data",
         oldname='a_nacimiento',
         string='Año de nacimiento', size=4,
         help='''Se consignarán las cuatro cifras del año de nacimiento del
             perceptor.''')
 
     ceuta_melilla = fields.Char(
+        sparse="mod190_data",
         string='Ceuta o Melilla', size=1,
         help='''Se consignará el número 1 en los supuestos en que, por
             tratarse de rentas obtenidas en Ceuta o Melilla con
@@ -35,6 +39,7 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
             cero (0).''', default=0)
 
     family_situation = fields.Selection(
+        sparse="mod190_data",
         oldname="situacion_familiar",
         selection=[
             ('1', "1 - Soltero, viudo, divorciado o separado con hijos menores"
@@ -47,6 +52,7 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
         help='''Se hará constar el dígito numérico indicativo de la
             situación familiar del perceptor''')
     spouse_vat = fields.Char(
+        sparse="mod190_data",
         oldname="nif_conyuge",
         string='NIF del conyuge', size=15,
         help='''Solo para percepciones correspondientes a las claves A,
@@ -56,6 +62,7 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
             2, se hará constar el número de identificación fiscal de su
             cónyuge.''')
     disability = fields.Selection(
+        sparse="mod190_data",
         selection=[
             ('0',
              '0 - Sin discapacidad o grado de minusvalía inferior al 33%.'),
@@ -75,6 +82,7 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
             numérico indicativo de dicho grado''')
 
     relation_kind = fields.Selection(
+        sparse="mod190_data",
         selection=[
             ('1', '1 - Contrato o relación de carácter general'),
             ('2', '2 - Contrato o relación inferior al año'),
@@ -92,6 +100,7 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
             persona o entidad retenedora'''
     )
     geographical_mobility = fields.Selection(
+        sparse="mod190_data",
         selection=[('0', 'NO'), ('1', 'SI')],
         string='Movilidad geográfica',
         oldname='movilidad_geografica',
@@ -100,6 +109,7 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
     # Hijos, descendientes y ascendientes
 
     descendants_less_3_years = fields.Integer(
+        sparse="mod190_data",
         string='Menores de 3 años',
         oldname="hijos_y_descendientes_m",
         help='''
@@ -111,9 +121,11 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
         la Ley del Impuesto.
         ''')
     descendants_less_3_years_integer = fields.Integer(
+        sparse="mod190_data",
         oldname="hijos_y_descendientes_m_entero",
         string='Menores de 3 años, computados por entero')
     descendants = fields.Integer(
+        sparse="mod190_data",
         string='Resto:',
         oldname='hijos_y_descendientes',
         help='''
@@ -125,64 +137,64 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
         la Ley del Impuesto.
         ''')
     descendants_integer = fields.Integer(
+        sparse="mod190_data",
         oldname="hijos_y_descendientes_entero",
-        string='Resto, computadors por entero')
-
+        string='Resto, computadors por entero'
+    )
     descendants_disability = fields.Integer(
-        oldname="hijos_y_desc_discapacidad_mr",
+        oldname="hijos_y_desc_discapacidad_mr", sparse="mod190_data",
         string='Hijos y descendientes con discapacidad')
     descendants_disability_integer = fields.Integer(
-        oldname="hijos_y_desc_discapacidad_entero_mr",
+        oldname="hijos_y_desc_discapacidad_entero_mr", sparse="mod190_data",
         string='Hijos y descendientes con discapacidad, computados por entero')
     descendants_disability_33 = fields.Integer(
-        oldname="hijos_y_desc_discapacidad_33",
+        oldname="hijos_y_desc_discapacidad_33", sparse="mod190_data",
         string='Hijos y descendientes con discapacidad del 33%')
     descendants_disability_33_integer = fields.Integer(
-        oldname="hijos_y_desc_discapacidad_entero_33",
+        oldname="hijos_y_desc_discapacidad_entero_33", sparse="mod190_data",
         string='Hijos y descendientes con discapacidad del 33%'
                ', computados por entero')
     descendants_disability_66 = fields.Integer(
-        oldname="hijos_y_desc_discapacidad_66",
+        oldname="hijos_y_desc_discapacidad_66", sparse="mod190_data",
         string='Hijos y descendientes con discapacidad del 66%')
     descendants_disability_66_integer = fields.Integer(
-        oldname="hijos_y_desc_discapacidad_entero_66",
+        oldname="hijos_y_desc_discapacidad_entero_66", sparse="mod190_data",
         string='Hijos y descendientes con discapacidad del 66%'
                ', computados por entero')
     ancestors = fields.Integer(
-        oldname="ascendientes",
+        oldname="ascendientes", sparse="mod190_data",
         string='Ascendientes menores de 75 años')
     ancestors_integer = fields.Integer(
-        oldname="ascendientes_entero",
+        oldname="ascendientes_entero", sparse="mod190_data",
         string='Ascendientes menores de 75 años, computados por entero')
     ancestors_older_75 = fields.Integer(
-        oldname="ascendientes_m75",
+        oldname="ascendientes_m75", sparse="mod190_data",
         string='Ascendientes mayores de 75 años')
     ancestors_older_75_integer = fields.Integer(
-        oldname="ascendientes_entero_m75",
+        oldname="ascendientes_entero_m75", sparse="mod190_data",
         string='Ascendientes mayores de 75 años, computados por entero')
-
     ancestors_disability_33 = fields.Integer(
-        oldname="ascendientes_discapacidad_33",
+        oldname="ascendientes_discapacidad_33", sparse="mod190_data",
         string='Ascendientes con discapacidad')
     ancestors_disability_33_integer = fields.Integer(
-        oldname="ascendientes_discapacidad_entero_33",
+        oldname="ascendientes_discapacidad_entero_33", sparse="mod190_data",
         string='Ascendientes con discapacidad, computados por entero')
     ancestors_disability = fields.Integer(
-        oldname="ascendientes_discapacidad_mr",
+        oldname="ascendientes_discapacidad_mr", sparse="mod190_data",
         string='Ascendientes con discapacidad de más del 33%')
     ancestors_disability_integer = fields.Integer(
-        oldname="ascendientes_discapacidad_entero_mr",
+        oldname="ascendientes_discapacidad_entero_mr", sparse="mod190_data",
         string='Ascendientes con discapacidad de más del 33%'
                ', computados por entero')
     ancestors_disability_66 = fields.Integer(
-        oldname="ascendientes_discapacidad_66",
+        oldname="ascendientes_discapacidad_66", sparse="mod190_data",
         string='Ascendientes con discapacidad de más del 66%')
     ancestors_disability_66_integer = fields.Integer(
-        oldname="ascendientes_discapacidad_entero_66",
+        oldname="ascendientes_discapacidad_entero_66", sparse="mod190_data",
         string='Ascendientes con discapacidad de más del 66%'
                ', computados por entero')
     calculation_rule_first_childs_1 = fields.Integer(
-        string='Cómputo de los 3 primeros hijos',
+        string='Cómputo de los 3 primeros hijos', sparse="mod190_data",
         oldname="computo_primeros_hijos_1",
         help='''CÓMPUTO DE LOS 3 PRIMEROS HIJOS.
             Solo para percepciones correspondientes a las claves A,
@@ -197,10 +209,10 @@ class L10nEsMod190AdditionalDataMixin(models.AbstractModel):
             0: En cualquier otro caso.
              ''')
     calculation_rule_first_childs_2 = fields.Integer(
-        oldname="computo_primeros_hijos_2",
+        oldname="computo_primeros_hijos_2", sparse="mod190_data",
         string='Cómputo de los 3 primeros hijos (2º)')
     calculation_rule_first_childs_3 = fields.Integer(
-        oldname="computo_primeros_hijos_3",
+        oldname="computo_primeros_hijos_3", sparse="mod190_data",
         string='Cómputo de los 3 primeros hijos (3º)')
 
     additional_data_required = fields.Integer(

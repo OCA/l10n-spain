@@ -2,7 +2,7 @@
 
 {
     'name': 'AEAT modelo 190',
-    'version': '11.0.1.0.0',
+    'version': '11.0.2.0.0',
     'category': "Localization/Accounting",
     'author': "Punt Sistemes SLU,"
               "Odoo Community Association (OCA)",
@@ -11,6 +11,7 @@
     'depends': [
         'l10n_es',
         'l10n_es_aeat',
+        'base_sparse_field',
     ],
     'data': [
         'views/account_fiscal_position.xml',
