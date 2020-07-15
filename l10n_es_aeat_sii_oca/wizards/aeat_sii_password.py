@@ -8,7 +8,7 @@ import logging
 import os
 import tempfile
 
-from odoo import _, api, exceptions, fields, models, release
+from odoo import _, exceptions, fields, models, release
 from odoo.exceptions import ValidationError
 from odoo.tools import config
 
@@ -62,7 +62,6 @@ class L10nEsAeatSiiPassword(models.TransientModel):
     password = fields.Char(string="Password", required=True)
     folder = fields.Char(string="Folder Name", required=True)
 
-    @api.multi
     def get_keys(self):
         record = self.env["l10n.es.aeat.sii"].browse(self.env.context.get("active_id"))
         directory = os.path.join(
@@ -85,6 +84,7 @@ class L10nEsAeatSiiPassword(models.TransientModel):
             with pfx_to_crt(content, self.password, directory) as public_key:
                 record.public_key = public_key
         except Exception as e:
+            args = list()
             if e.args:
                 args = list(e.args)
             raise ValidationError(args[-1])

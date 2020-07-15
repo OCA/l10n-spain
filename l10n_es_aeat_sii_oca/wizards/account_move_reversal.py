@@ -1,28 +1,27 @@
 # Copyright 2017 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
+# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
-class AccountInvoiceRefund(models.TransientModel):
-    _inherit = "account.invoice.refund"
+class AccountMoveReversal(models.TransientModel):
+    _inherit = "account.move.reversal"
 
     def _default_sii_refund_type_required(self):
-        invoices = self.env["account.invoice"].browse(
-            self.env.context.get("active_ids"),
-        )
+        invoices = self.env["account.move"].browse(self.env.context.get("active_ids"),)
         return any(invoices.mapped("company_id.sii_enabled"))
 
     def _default_supplier_invoice_number_refund_required(self):
         invoices = (
-            self.env["account.invoice"]
+            self.env["account.move"]
             .browse(self.env.context.get("active_ids"),)
             .filtered(lambda x: x.type == "in_invoice")
         )
-
         return any(invoices.mapped("company_id.sii_enabled"))
 
     def _selection_sii_refund_type(self):
-        return self.env["account.invoice"].fields_get(allfields=["sii_refund_type"])[
+        return self.env["account.move"].fields_get(allfields=["sii_refund_type"])[
             "sii_refund_type"
         ]["selection"]
 
@@ -40,10 +39,9 @@ class AccountInvoiceRefund(models.TransientModel):
     )
     supplier_invoice_number_refund = fields.Char(string="Supplier Invoice Number",)
 
-    @api.multi
-    def compute_refund(self, mode="refund"):
+    def reverse_moves(self):
         obj = self.with_context(
             sii_refund_type=self.sii_refund_type,
             supplier_invoice_number=self.supplier_invoice_number_refund,
         )
-        return super(AccountInvoiceRefund, obj).compute_refund(mode)
+        return super(AccountMoveReversal, obj).reverse_moves()

@@ -48,7 +48,6 @@ class AccountFiscalPosition(models.Model):
         ],
         string="SII No taxable cause",
         default="ImporteTAIReglasLocalizacion",
-        oldname="no_taxable_cause",
     )
     sii_exempt_cause = fields.Selection(
         string="SII Exempt Cause",
