@@ -207,6 +207,7 @@ class Mod349(models.Model):
                 origin_amount = sum(original_details.mapped('amount_untaxed'))
                 period_type = report.period_type
                 year = str(report.year)
+                visited_move_lines |= original_details.mapped('move_line_id')
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
@@ -527,9 +528,9 @@ class Mod349PartnerRefund(models.Model):
             rectified_amount = sum(
                 record.mapped('refund_detail_ids.amount_untaxed')
             )
-            record.total_operation_amount = (
+            record.total_operation_amount = float('{:f}'.format(
                 record.total_origin_amount - rectified_amount
-            )
+            ))
 
     @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
