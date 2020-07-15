@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="l10n_es_sii_form_view" model="ir.ui.view">
         <field name="name">l10n.es.aeat.sii.form</field>
@@ -52,7 +53,6 @@
         <field name="name">SII</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">l10n.es.aeat.sii</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
