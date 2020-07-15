@@ -1,7 +1,7 @@
 # Copyright 2017 MINORISA (http://www.minorisa.net)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AeatSiiMappingRegistrationKeys(models.Model):
@@ -16,7 +16,6 @@ class AeatSiiMappingRegistrationKeys(models.Model):
         required=True,
     )
 
-    @api.multi
     def name_get(self):
         vals = []
         for record in self:
