@@ -2,7 +2,7 @@
 # (c) 2017 Consultoría Informática Studio 73 S.L.
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class L10nEsAeatSii(models.Model):
@@ -25,7 +25,6 @@ class L10nEsAeatSii(models.Model):
         default=lambda self: self.env.user.company_id.id,
     )
 
-    @api.multi
     def load_password_wizard(self):
         self.ensure_one()
         return {
@@ -38,7 +37,6 @@ class L10nEsAeatSii(models.Model):
             "target": "new",
         }
 
-    @api.multi
     def action_activate(self):
         self.ensure_one()
         self.search(
