@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <!-- Tree view -->
     <record id="aeat_sii_mapping_registration_keys_view_tree" model="ir.ui.view">
@@ -33,7 +34,6 @@
     >
         <field name="name">Aeat SII Registration Keys</field>
         <field name="res_model">aeat.sii.mapping.registration.keys</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
