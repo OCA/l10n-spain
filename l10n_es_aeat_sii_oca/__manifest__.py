@@ -8,13 +8,14 @@
 # Copyright 2017-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 Angel Moya <angel.moya@pesol.es>
+# Copyright 2020 Sygel Technologies - Valentín Vinagre
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "12.0.1.5.5",
+    "version": "13.0.1.0.0",
     "category": "Accounting & Finance",
-    "website": "https://odoospain.odoo.com",
+    "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
     "Diagram,"
     "Minorisa,"
@@ -30,16 +31,17 @@
     "installable": True,
     "development_status": "Production/Stable",
     "maintainers": ["pedrobaeza"],
-    "external_dependencies": {"python": ["zeep", "requests", "OpenSSL"]},
+    "external_dependencies": {"python": ["zeep", "requests", "pyOpenSSL"]},
     "depends": ["account_invoice_refund_link", "l10n_es", "l10n_es_aeat", "queue_job"],
     "data": [
         "data/ir_config_parameter.xml",
         "data/aeat_sii_tax_agency_data.xml",
         "views/res_company_view.xml",
-        "views/account_invoice_view.xml",
+        # "views/account_invoice_view.xml",
+        "views/account_move_views.xml",
         "views/aeat_sii_view.xml",
         "wizards/aeat_sii_password_view.xml",
-        "wizards/account_invoice_refund_views.xml",
+        "wizards/account_move_reversal_views.xml",
         "views/aeat_sii_mapping_registration_keys_view.xml",
         "data/aeat_sii_mapping_registration_keys_data.xml",
         "views/aeat_sii_map_view.xml",

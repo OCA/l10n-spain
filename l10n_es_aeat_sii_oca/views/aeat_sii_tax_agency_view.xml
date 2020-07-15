@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="aeat_sii_tax_agency_form_view" model="ir.ui.view">
         <field name="name">aeat.sii.tax.agency.form.view</field>
@@ -57,7 +58,6 @@
         <field name="name">SII Tax Agencies</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">aeat.sii.tax.agency</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
