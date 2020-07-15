@@ -2,11 +2,11 @@
 <!-- Copyright 2017 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-    <record id="view_account_invoice_refund" model="ir.ui.view">
-        <field name="model">account.invoice.refund</field>
-        <field name="inherit_id" ref="account.view_account_invoice_refund" />
+    <record id="view_account_move_reversal" model="ir.ui.view">
+        <field name="model">account.move.reversal</field>
+        <field name="inherit_id" ref="account.view_account_move_reversal" />
         <field name="arch" type="xml">
-            <field name="description" position="before">
+            <field name="reason" position="before">
                 <field name="sii_refund_type_required" invisible="1" />
                 <field name="supplier_invoice_number_refund_required" invisible="1" />
                 <field
