@@ -1,7 +1,7 @@
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class AeatSiiTaxAgency(models.Model):
@@ -26,10 +26,9 @@ class AeatSiiTaxAgency(models.Model):
     wsdl_ps = fields.Char(string="SuministroPagosRecibidas WSDL", required=True)
     wsdl_ps_test_address = fields.Char(string="SuministroPagosRecibidas Test Address")
 
-    @api.multi
     def _connect_params_sii(self, mapping_key, company):
         self.ensure_one()
-        wsdl_key = self.env["account.invoice"].SII_WDSL_MAPPING[mapping_key]
+        wsdl_key = self.env["account.move"].SII_WDSL_MAPPING[mapping_key]
         wsdl_field = wsdl_key.split(".")[1]
         wsdl_test_field = wsdl_field + "_test_address"
         return {

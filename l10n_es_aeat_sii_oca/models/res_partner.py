@@ -1,7 +1,7 @@
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
@@ -14,7 +14,6 @@ class ResPartner(models.Model):
         "sent to SII as simplified invoices.",
     )
 
-    @api.multi
     def _compute_sii_enabled(self):
         sii_enabled = self.env.user.company_id.sii_enabled
         for partner in self:
