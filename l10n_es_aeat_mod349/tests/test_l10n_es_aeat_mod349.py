@@ -17,7 +17,8 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         'S_IVA0_IC': (2400, 0),
     }
     taxes_purchase = {
-        'P_IVA21_IC_BC': (300, 0),
+        'P_IVA21_IC_BC': (150, 0),
+        'P_IVA21_IC_BC//2': (150, 0),
     }
 
     def test_model_349(self):
@@ -66,7 +67,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         a_record = model349.partner_record_ids.filtered(
             lambda x: x.operation_key == 'A')
         self.assertEqual(len(a_record), 1)
-        self.assertEqual(len(a_record.record_detail_ids), 3)
+        self.assertEqual(len(a_record.record_detail_ids), 6)
         self.assertEqual(a_record.partner_vat,  self.supplier.vat)
         self.assertEqual(a_record.country_id, self.supplier.country_id)
         # p1 + p2 - p3 = 300 + 300 - 300
@@ -175,6 +176,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         a_refund = model349_2t.partner_refund_ids.filtered(
             lambda x: x.operation_key == 'A')
         self.assertEqual(len(a_refund), 1)
+        self.assertEqual(len(a_refund.refund_detail_ids), 2)
         self.assertEqual(a_refund.total_origin_amount, 300)
         self.assertEqual(a_refund.total_operation_amount, 0)
         self.assertEqual(a_refund.period_type, model349_s.period_type)
