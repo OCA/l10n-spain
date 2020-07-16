@@ -41,6 +41,7 @@ msgid "Invoice Number"
 msgstr "Facture"
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__invoice_sequence_id
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal__invoice_sequence_id
 msgid "Invoice sequence"
 msgstr ""
@@ -77,6 +78,7 @@ msgid "Number"
 msgstr "Facture"
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__refund_inv_sequence_id
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal__refund_inv_sequence_id
 msgid "Refund sequence"
 msgstr ""
@@ -87,11 +89,13 @@ msgid "Sequence"
 msgstr ""
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__invoice_sequence_id
 #: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal__invoice_sequence_id
 msgid "The sequence used for invoice numbers in this journal."
 msgstr ""
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__refund_inv_sequence_id
 #: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal__refund_inv_sequence_id
 msgid "The sequence used for refund invoices numbers in this journal."
 msgstr ""
