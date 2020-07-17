@@ -164,6 +164,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         model349_2t.button_calculate()
         self.assertEqual(model349_2t.total_partner_records, 1)
         self.assertEqual(model349_2t.total_partner_refunds, 1)
+        self.assertEqual(model349_2t.total_partner_refunds_amount, 300)
         e_record = model349_2t.partner_record_ids.filtered(
             lambda x: x.operation_key == 'E')
         self.assertEqual(e_record.total_operation_amount, 2400)
