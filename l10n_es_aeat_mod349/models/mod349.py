@@ -100,9 +100,14 @@ class Mod349(models.Model):
     def _compute_report_refund_totals(self):
         for report in self:
             report.total_partner_refunds = len(report.partner_refund_ids)
-            report.total_partner_refunds_amount = sum(
+            total_origin_amount = sum(
+                report.mapped('partner_refund_ids.total_origin_amount')
+            )
+            total_operation_amount = sum(
                 report.mapped('partner_refund_ids.total_operation_amount')
             )
+            report.total_partner_refunds_amount = total_origin_amount - \
+                total_operation_amount
 
     def _create_349_details(self, move_lines):
         for move_line in move_lines:
