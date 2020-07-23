@@ -6,17 +6,14 @@ from openupgradelib import openupgrade
 
 
 def _fill_aeat_dates_model(env, model):
-    for record in model.search([]):
-        # Get year from first old account.period found
-        env.cr.execute(
-            """SELECT af.date_start
-            FROM account_fiscalyear af
-            JOIN %s r ON r.fiscalyear_id = af.id
-            LIMIT 1
-            """ % model._table
-        )
-        row = env.cr.fetchone()
-        record.year = int(row[0][:4])
+    env.cr.execute(
+        """SELECT r.id, af.date_start
+        FROM account_fiscalyear af
+        JOIN %s r ON r.fiscalyear_id = af.id""" % model._table
+    )
+    for row in env.cr.fetchall():
+        record = model.browse(row[0])
+        record.year = int(row[1][:4])
         record.onchange_period_type()
 
 
