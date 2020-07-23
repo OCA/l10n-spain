@@ -14,6 +14,7 @@ from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_compare
 from odoo import exceptions
 from odoo import http
+from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 
@@ -197,6 +198,14 @@ class AcquirerRedsys(models.Model):
     @api.multi
     def redsys_form_generate_values(self, values):
         self.ensure_one()
+        redsys_tx = self.env['payment.transaction'].search([
+            ('reference', '=', values['reference'])
+        ])
+        if redsys_tx and not config['test_enable']:
+            reference = self.env['ir.sequence'].next_by_code(
+                'payment.transaction')
+            redsys_tx.write({'reference': reference})
+            values.update({'reference': reference})
         redsys_values = dict(values)
         merchant_parameters = self._prepare_merchant_parameters(values)
         redsys_values.update({
@@ -392,3 +401,14 @@ class TxRedsys(models.Model):
                 'Fail to confirm the order or send the confirmation email%s',
                 tx and ' for the transaction %s' % tx.reference or '')
         return res
+
+    def _confirm_so(self):
+        if (self.state == 'pending' and self.sale_order_id.state == 'draft' and
+                self.acquirer_id.provider == 'redsys'):
+            _logger.info(
+                '<%s> transaction not processed for order %s (ID %s)',
+                self.acquirer_id.provider, self.sale_order_id.name,
+                self.sale_order_id.id)
+            return False
+        else:
+            return super()._confirm_so()

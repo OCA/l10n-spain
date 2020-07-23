@@ -145,6 +145,7 @@ class AccountInvoice(models.Model):
             ('R1', 'Error based on law and Art. 80 One and Two LIVA (R1)'),
             ('R2', 'Art. 80 Three LIVA - Bankruptcy (R2)'),
             ('R3', 'Art. 80 Four LIVA - Bad debt (R3)'),
+            ('R4', 'Rest of causes (R4)'),
         ],
         help="Fill this field when the refund are one of the specific cases"
              " of article 80 of LIVA for notifying to SII with the proper"
@@ -484,7 +485,6 @@ class AccountInvoice(models.Model):
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
-        default_no_taxable_cause = self._get_no_taxable_cause()
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
@@ -531,6 +531,8 @@ class AccountInvoice(models.Model):
                     )
             # No sujetas
             if tax in taxes_sfens:
+                # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
+                default_no_taxable_cause = self._get_no_taxable_cause()
                 nsub_dict = tax_breakdown.setdefault(
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
@@ -577,7 +579,7 @@ class AccountInvoice(models.Model):
                         'NoSujeta', {'ImporteTAIReglasLocalizacion': 0},
                     )
                     nsub_dict['ImporteTAIReglasLocalizacion'] += (
-                        tax_line.base * sign
+                        tax_line.base_company * sign
                     )
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
@@ -1231,8 +1233,7 @@ class AccountInvoice(models.Model):
             res = int(partner_ident)
         elif self.fiscal_position_id.name == 'Régimen Intracomunitario':
             res = 2
-        elif (self.fiscal_position_id.name ==
-              'Régimen Extracomunitario / Canarias, Ceuta y Melilla'):
+        elif self.fiscal_position_id.name == 'Régimen Extracomunitario':
             res = 3
         else:
             res = 1
@@ -1329,7 +1330,7 @@ class AccountInvoice(models.Model):
     def _get_no_taxable_cause(self):
         self.ensure_one()
         return self.fiscal_position_id.sii_no_taxable_cause or \
-            'ImportePorArticulos7_14_Otros'
+            'ImporteTAIReglasLocalizacion'
 
     def is_sii_invoice(self):
         """Hook method to be overridden in additional modules to verify
@@ -1408,6 +1409,8 @@ class AccountInvoice(models.Model):
             res['sii_refund_type'] = sii_refund_type
         if supplier_invoice_number_refund:
             res['reference'] = supplier_invoice_number_refund
+        if res['type'] == 'out_refund':
+            res['sii_refund_specific_invoice_type'] = 'R1'
 
         return res
 
