@@ -187,6 +187,8 @@ class AccountBankStatementImport(models.TransientModel):
             "_num_records": 0,  # Number of records really counted
             "groups": [],  # Info about each of the groups (account groups)
         }
+        st_group = {}
+        st_line = {}
         for raw_line in data_file.split("\n"):
             if not raw_line.strip():
                 continue
@@ -318,11 +320,7 @@ class AccountBankStatementImport(models.TransientModel):
             partner = self._get_n43_partner_from_sabadell(line["conceptos"])
         return partner
 
-    def _get_partner(self, line):
-        # TODO: Provided for compatibility. To be removed in v13
-        return self._get_n43_partner(line)
-
-    def _get_account(self, line, journal):  # pragma: no cover
+    def _get_n43_account(self, line, journal):  # pragma: no cover
         account_obj = self.env["account.account"]
         if line["concepto_c"] and account_mapping.get(line["concepto_c"]):
             return account_obj.search(
@@ -338,7 +336,7 @@ class AccountBankStatementImport(models.TransientModel):
     def _parse_file(self, data_file):
         n43 = self._check_n43(data_file)
         if not n43:  # pragma: no cover
-            return super(AccountBankStatementImport, self)._parse_file(data_file)
+            return super()._parse_file(data_file)
         journal = self.env["account.journal"].browse(
             self.env.context.get("journal_id", [])
         )
@@ -402,7 +400,7 @@ class AccountBankStatementImport(models.TransientModel):
                     del line_vals["n43_line"]
                 # This can't be used, as Odoo doesn't present the lines
                 # that already have a counterpart account as final
-                # verification, making this very counterintuitive to the user
-                # line_vals['account_id'] = self._get_account(
+                # verification, making this very counter intuitive to the user
+                # line_vals['account_id'] = self._get_n43_account(
                 #     line_vals['raw_data'], journal).id
         return res
