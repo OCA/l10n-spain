@@ -16,9 +16,9 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
     debug = False
     taxes_purchase = {
         # tax code: (base, tax_amount)
-        "P_IRPF21T": (1000, 210),
-        "P_IRPF21TD": (2000, 420),
-        "P_IRPF21TE": (3000, 630),
+        "P_IRPF21T": (1000, 150),
+        "P_IRPF21TD": (2000, 300),
+        "P_IRPF21TE": (3000, 450),
         "P_IRPF1": (4000, 40),
         "P_IRPF2": (5000, 100),
         "P_IRPF7": (6000, 420),
@@ -33,11 +33,11 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
         # Rendimientos del trabajo (dinerarios) - Base
         "2": (2 * 1000) + (2 * 2000),  # P_IRPF21T, P_IRPF21TD
         # Rendimientos del trabajo (dinerarios) - Retenciones
-        "3": (2 * 210) + (2 * 420),  # P_IRPF21T, P_IRPF21TD
+        "3": (2 * 150) + (2 * 300),  # P_IRPF21T, P_IRPF21TD
         # Rendimientos del trabajo (en especie) - Base
         "5": (2 * 3000),  # P_IRPF21TE
         # Rendimientos del trabajo (en especie) - Retenciones
-        "6": (2 * 630),  # P_IRPF21TE
+        "6": (2 * 450),  # P_IRPF21TE
         # Rendimientos de actividades económicas (dinerarios) - Base
         "8": (
             (2 * 4000)
@@ -131,7 +131,9 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
             lines = self.model111.tax_line_ids.filtered(
                 lambda x: x.field_number == int(box)
             )
-            self.assertEqual(round(sum(lines.mapped("amount")), 2), round(result, 2))
+            self.assertEqual(
+                round(sum(lines.mapped("amount")), 2), round(result, 2), box
+            )
 
         # Check result
         _logger.debug("Checking results")
