@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-21 21:05+0000\n"
-"PO-Revision-Date: 2020-05-21 21:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,7 +35,6 @@ msgstr ""
 
 #. module: delivery_seur
 #: selection:delivery.carrier,delivery_type:0
-#: selection:delivery.carrier,seur_price_method:0
 msgid "Based on Rules"
 msgstr ""
 
@@ -58,7 +55,7 @@ msgid "COURIER"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:387
+#: code:addons/delivery_seur/models/delivery_carrier.py:375
 #, python-format
 msgid "Cancel SEUR shipment (%s): %s"
 msgstr ""
@@ -99,11 +96,6 @@ msgid "Fixed Price"
 msgstr ""
 
 #. module: delivery_seur
-#: selection:delivery.carrier,seur_price_method:0
-msgid "Fixed price"
-msgstr ""
-
-#. module: delivery_seur
 #: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_franchise_code
 msgid "Franchise Code"
 msgstr ""
@@ -125,7 +117,7 @@ msgstr ""
 
 #. module: delivery_seur
 #: selection:delivery.carrier,seur_product_code:0
-msgid "INTERNACIONAL T"
+msgid "INTERNACIONAL ´T"
 msgstr ""
 
 #. module: delivery_seur
@@ -199,16 +191,6 @@ msgid "Password WS"
 msgstr ""
 
 #. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_price_method
-msgid "Price method"
-msgstr ""
-
-#. module: delivery_seur
-#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
-msgid "Pricing"
-msgstr ""
-
-#. module: delivery_seur
 #: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_printer
 msgid "Printer"
 msgstr ""
@@ -254,7 +236,7 @@ msgid "SEUR 8:30"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:299
+#: code:addons/delivery_seur/models/delivery_carrier.py:288
 #, python-format
 msgid "SEUR exception: %s"
 msgstr ""
@@ -285,7 +267,7 @@ msgid "Seur Cit Password"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:323
+#: code:addons/delivery_seur/models/delivery_carrier.py:311
 #, python-format
 msgid "Status cannot be checked, enter webservice carrier credentials"
 msgstr ""
@@ -303,11 +285,6 @@ msgstr ""
 #. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_send_sms
 msgid "This feature has delivery cost"
-msgstr ""
-
-#. module: delivery_seur
-#: model:ir.model,name:delivery_seur.model_stock_picking
-msgid "Transfer"
 msgstr ""
 
 #. module: delivery_seur
