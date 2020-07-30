@@ -32,7 +32,7 @@ class L10nEsVatBookLineTax(models.Model):
         comodel_name="account.move.line", string="Move Lines"
     )
     special_tax_group = fields.Selection(
-        selection=[("req", "R.Eq."), ("irpf", "IRPF"),],
+        selection=[("req", "R.Eq."), ("irpf", "IRPF")],
         string="Special group",
         help="Special tax group as R.Eq, IRPF, etc",
     )
@@ -40,7 +40,6 @@ class L10nEsVatBookLineTax(models.Model):
     special_tax_amount = fields.Float(string="Special Tax fee",)
     total_amount_special_include = fields.Float(string="Total w/Special",)
 
-    @api.multi
     @api.depends("tax_id")
     def _compute_tax_rate(self):
         for rec in self:

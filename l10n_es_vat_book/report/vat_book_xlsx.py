@@ -15,6 +15,7 @@ def excel_col_number(col_name):
 
 class VatNumberXlsx(models.AbstractModel):
     _name = "report.l10n_es_vat_book.l10n_es_vat_book_xlsx"
+    _description = "Vat Number Xlsx"
     _inherit = "report.report_xlsx.abstract"
 
     def format_boe_date(self, date):
@@ -37,7 +38,7 @@ class VatNumberXlsx(models.AbstractModel):
 
     def create_issued_sheet(self, workbook, book, draft_export):
         title_format = workbook.add_format(
-            {"bold": 1, "border": 1, "align": "center", "valign": "vjustify",}
+            {"bold": 1, "border": 1, "align": "center", "valign": "vjustify"}
         )
         header_format = workbook.add_format(
             {
@@ -188,7 +189,7 @@ class VatNumberXlsx(models.AbstractModel):
 
     def create_received_sheet(self, workbook, book, draft_export):
         title_format = workbook.add_format(
-            {"bold": 1, "border": 1, "align": "center", "valign": "vjustify",}
+            {"bold": 1, "border": 1, "align": "center", "valign": "vjustify"}
         )
         header_format = workbook.add_format(
             {
@@ -294,7 +295,7 @@ class VatNumberXlsx(models.AbstractModel):
     ):
         """ Fill received data """
 
-        date_invoice = line.invoice_id.date_invoice
+        date_invoice = line.move_id.date
         (
             country_code,
             identifier_type,
