@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="0">
     <record id="aeat_vat_book_map_line_s_iva" model="aeat.vat.book.map.line">
         <field name="name">IVA repercutido</field>
         <field name="book_type">issued</field>
-        <field name="special_tax_group" eval="False"/>
+        <field name="special_tax_group" eval="False" />
         <field name="fee_type_xlsx_column">N</field>
         <field name="fee_amount_xlsx_column">O</field>
-        <field name="tax_tmpl_ids" eval="[
+        <field
+            name="tax_tmpl_ids"
+            eval="[
             (4, ref('l10n_es.account_tax_template_s_iva4b')),
             (4, ref('l10n_es.account_tax_template_s_iva4s')),
             (4, ref('l10n_es.account_tax_template_s_iva10b')),
@@ -21,16 +22,18 @@
             (4, ref('l10n_es.account_tax_template_s_iva0')),
             (4, ref('l10n_es.account_tax_template_s_iva_ns')),
             (4, ref('l10n_es.account_tax_template_s_iva_e')),
-        ]"/>
+        ]"
+        />
     </record>
-
     <record id="aeat_vat_book_map_line_p_iva" model="aeat.vat.book.map.line">
         <field name="name">IVA soportado</field>
         <field name="book_type">received</field>
-        <field name="special_tax_group" eval="False"/>
+        <field name="special_tax_group" eval="False" />
         <field name="fee_type_xlsx_column">O</field>
         <field name="fee_amount_xlsx_column">P</field>
-        <field name="tax_tmpl_ids" eval="[
+        <field
+            name="tax_tmpl_ids"
+            eval="[
             (4, ref('l10n_es.account_tax_template_p_iva4_bc')),
             (4, ref('l10n_es.account_tax_template_p_iva4_sc')),
             (4, ref('l10n_es.account_tax_template_p_iva4_bi')),
@@ -64,44 +67,50 @@
             (4, ref('l10n_es.account_tax_template_p_iva10_bi')),
             (4, ref('l10n_es.account_tax_template_p_iva21_bi')),
             (4, ref('l10n_es.account_tax_template_p_iva0_ns')),
-        ]"/>
+        ]"
+        />
     </record>
-
     <record id="aeat_vat_book_map_line_p_iva_nd" model="aeat.vat.book.map.line">
         <field name="name">IVA soportado no deducible</field>
         <field name="book_type">received</field>
-        <field name="special_tax_group" eval="False"/>
-        <field name="tax_tmpl_ids" eval="[
+        <field name="special_tax_group" eval="False" />
+        <field
+            name="tax_tmpl_ids"
+            eval="[
             (4, ref('l10n_es.account_tax_template_p_iva0_nd')),
             (4, ref('l10n_es.account_tax_template_p_iva10_nd')),
             (4, ref('l10n_es.account_tax_template_p_iva4_nd')),
-        ]"/>
+        ]"
+        />
     </record>
-
     <record id="aeat_vat_book_map_line_s_req" model="aeat.vat.book.map.line">
         <field name="name">Recargo Eq.</field>
         <field name="book_type">issued</field>
         <field name="special_tax_group">req</field>
         <field name="fee_type_xlsx_column">P</field>
         <field name="fee_amount_xlsx_column">Q</field>
-        <field name="tax_tmpl_ids" eval="[
+        <field
+            name="tax_tmpl_ids"
+            eval="[
             (4, ref('l10n_es.account_tax_template_s_req05')),
             (4, ref('l10n_es.account_tax_template_s_req014')),
             (4, ref('l10n_es.account_tax_template_s_req52')),
-        ]"/>
+        ]"
+        />
     </record>
-
     <record id="aeat_vat_book_map_line_p_req" model="aeat.vat.book.map.line">
         <field name="name">Recargo Eq.</field>
         <field name="book_type">received</field>
         <field name="special_tax_group">req</field>
         <field name="fee_type_xlsx_column">R</field>
         <field name="fee_amount_xlsx_column">S</field>
-        <field name="tax_tmpl_ids" eval="[
+        <field
+            name="tax_tmpl_ids"
+            eval="[
             (4, ref('l10n_es.account_tax_template_p_req05')),
             (4, ref('l10n_es.account_tax_template_p_req014')),
             (4, ref('l10n_es.account_tax_template_p_req52')),
-        ]"/>
+        ]"
+        />
     </record>
-
 </odoo>
