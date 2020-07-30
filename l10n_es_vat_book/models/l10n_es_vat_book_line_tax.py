@@ -9,51 +9,39 @@ from odoo import api, fields, models
 
 
 class L10nEsVatBookLineTax(models.Model):
-    _name = 'l10n.es.vat.book.line.tax'
+    _name = "l10n.es.vat.book.line.tax"
     _description = "Spanish VAT book tax line"
 
     vat_book_line_id = fields.Many2one(
-        comodel_name='l10n.es.vat.book.line',
+        comodel_name="l10n.es.vat.book.line",
         required=True,
-        ondelete='cascade',
+        ondelete="cascade",
         index=True,
     )
-    base_amount = fields.Float(
-        string='Base')
+    base_amount = fields.Float(string="Base")
 
-    tax_id = fields.Many2one(comodel_name='account.tax', string='Tax')
+    tax_id = fields.Many2one(comodel_name="account.tax", string="Tax")
 
-    tax_rate = fields.Float(string='Tax Rate (%)', compute='_compute_tax_rate')
+    tax_rate = fields.Float(string="Tax Rate (%)", compute="_compute_tax_rate")
 
-    tax_amount = fields.Float(
-        string='Tax fee')
+    tax_amount = fields.Float(string="Tax fee")
 
-    total_amount = fields.Float(
-        string='Total')
+    total_amount = fields.Float(string="Total")
 
     move_line_ids = fields.Many2many(
-        comodel_name='account.move.line', string='Move Lines')
+        comodel_name="account.move.line", string="Move Lines"
+    )
     special_tax_group = fields.Selection(
-        selection=[
-            ('req', 'R.Eq.'),
-            ('irpf', 'IRPF'),
-        ],
-        string='Special group',
-        help='Special tax group as R.Eq, IRPF, etc',
+        selection=[("req", "R.Eq."), ("irpf", "IRPF"),],
+        string="Special group",
+        help="Special tax group as R.Eq, IRPF, etc",
     )
-    special_tax_id = fields.Many2one(
-        comodel_name='account.tax',
-        string='Special Tax',
-    )
-    special_tax_amount = fields.Float(
-        string='Special Tax fee',
-    )
-    total_amount_special_include = fields.Float(
-        string='Total w/Special',
-    )
+    special_tax_id = fields.Many2one(comodel_name="account.tax", string="Special Tax",)
+    special_tax_amount = fields.Float(string="Special Tax fee",)
+    total_amount_special_include = fields.Float(string="Total w/Special",)
 
     @api.multi
-    @api.depends('tax_id')
+    @api.depends("tax_id")
     def _compute_tax_rate(self):
         for rec in self:
             rec.tax_rate = rec.tax_id.amount
