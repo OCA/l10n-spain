@@ -2,12 +2,12 @@
 
 {
     "name": "Libro de IVA",
-    "version": "12.0.1.4.3",
+    "version": "13.0.1.0.0",
     "author": "PRAXYA, " "Eficent, " "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting",
-    "depends": ["account", "base_vat", "l10n_es", "l10n_es_aeat", "report_xlsx",],
+    "depends": ["account", "base_vat", "l10n_es", "l10n_es_aeat", "report_xlsx"],
     "data": [
         "security/ir_rule.xml",
         "security/ir.model.access.csv",
