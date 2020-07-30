@@ -9,14 +9,15 @@ from odoo import fields, models
 
 
 class L10nEsVatBookIssuedTaxSummary(models.Model):
-    _name = 'l10n.es.vat.book.tax.summary'
+    _name = "l10n.es.vat.book.tax.summary"
     _description = "Spanish VAT book tax summary"
-    _inherit = 'l10n.es.vat.book.summary'
+    _inherit = "l10n.es.vat.book.summary"
 
-    _order = 'book_type, special_tax_group DESC, tax_id'
+    _order = "book_type, special_tax_group DESC, tax_id"
 
     tax_id = fields.Many2one(
-        comodel_name='account.tax',
-        string='Account Tax',
+        comodel_name="account.tax",
+        string="Account Tax",
         required=True,
-        ondelete="cascade")
+        ondelete="cascade",
+    )

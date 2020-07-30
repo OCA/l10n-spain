@@ -9,36 +9,28 @@ from odoo import fields, models
 
 
 class L10nEsVatBookIssuedSummary(models.Model):
-    _name = 'l10n.es.vat.book.summary'
+    _name = "l10n.es.vat.book.summary"
     _description = "Spanish VAT book summary"
-    _order = 'book_type, special_tax_group DESC'
+    _order = "book_type, special_tax_group DESC"
 
     def _selection_special_tax_group(self):
-        return self.env['l10n.es.vat.book.line.tax'].fields_get(
-            allfields=['special_tax_group'])['special_tax_group']['selection']
+        return self.env["l10n.es.vat.book.line.tax"].fields_get(
+            allfields=["special_tax_group"]
+        )["special_tax_group"]["selection"]
 
-    vat_book_id = fields.Many2one(
-        comodel_name='l10n.es.vat.book',
-        string='Vat Book id')
+    vat_book_id = fields.Many2one(comodel_name="l10n.es.vat.book", string="Vat Book id")
 
-    book_type = fields.Selection(selection=[
-        ('issued', 'Issued'),
-        ('received', 'Received'),
-    ], string='Book type')
+    book_type = fields.Selection(
+        selection=[("issued", "Issued"), ("received", "Received"),], string="Book type"
+    )
 
-    base_amount = fields.Float(
-        string='Base amount',
-        readonly="True")
+    base_amount = fields.Float(string="Base amount", readonly="True")
 
-    tax_amount = fields.Float(
-        string='Tax amount',
-        readonly="True")
+    tax_amount = fields.Float(string="Tax amount", readonly="True")
 
-    total_amount = fields.Float(
-        string='Total amount',
-        readonly="True")
+    total_amount = fields.Float(string="Total amount", readonly="True")
     special_tax_group = fields.Selection(
         selection=_selection_special_tax_group,
-        string='Special group',
-        help='Special tax group as R.Eq, IRPF, etc',
+        string="Special group",
+        help="Special tax group as R.Eq, IRPF, etc",
     )
