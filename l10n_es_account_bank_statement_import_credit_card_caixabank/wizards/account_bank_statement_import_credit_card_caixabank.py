@@ -1,5 +1,4 @@
-# Copyright 2018 Tecnativa - Pedro Baeza
-# Copyright 2018 Eficent - Jordi Ballester Alomar
+# Copyright 2020 ForgeFlow
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
@@ -197,7 +196,9 @@ class AccountBankStatementImport(models.TransientModel):
             "domicilio_comercio": line[c22:c23],
             "codigo_postal": line[c23:c24].strip(),
             "importe_comision": float(
-                "{}.{}".format(line[c24 : c24 + 1 + 4], line[c24 + 1 + 4 : c24 + 1 + 4 + 2])
+                "{}.{}".format(
+                    line[c24 : c24 + 1 + 4], line[c24 + 1 + 4 : c24 + 1 + 4 + 2]
+                )
             ),
             "reserva": line[c25:c26],
             "addendums": [],
