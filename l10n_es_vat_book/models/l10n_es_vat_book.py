@@ -201,22 +201,21 @@ class L10nEsVatBook(models.Model):
         """
         ref = move_line.ref
         ext_ref = ""
-        invoice = move_line.invoice_id
+        invoice = move_line.move_id
         partner = move_line.partner_id
         if invoice:
             partner = invoice.commercial_partner_id
-            ref = invoice.number
-            ext_ref = invoice.reference
+            ref = invoice.name
+            ext_ref = invoice.ref
         return {
             "line_type": line_type,
             "invoice_date": move_line.date,
             "partner_id": partner.id,
             "vat_number": partner.vat,
-            "invoice_id": invoice.id,
+            "move_id": invoice.id,
             "ref": ref,
             "external_ref": ext_ref,
             "vat_book_id": self.id,
-            "move_id": move_line.move_id.id,
             "tax_lines": {},
             "base_amount": 0.0,
             "special_tax_group": False,
@@ -317,14 +316,14 @@ class L10nEsVatBook(models.Model):
         return (
             self.env["res.partner"]
             .with_context(active_test=False)
-            .search([("aeat_anonymous_cash_customer", "=", True),])
+            .search([("aeat_anonymous_cash_customer", "=", True)])
             .ids
         )
 
     @ormcache("self.id")
     def get_special_taxes_dic(self):
         map_lines = self.env["aeat.vat.book.map.line"].search(
-            [("special_tax_group", "!=", False),]
+            [("special_tax_group", "!=", False)]
         )
         special_dic = {}
         for map_line in map_lines:
@@ -339,10 +338,10 @@ class L10nEsVatBook(models.Model):
         return special_dic
 
     def get_book_line_key(self, move_line):
-        return move_line.move_id.id, move_line.invoice_id.id
+        return move_line.move_id.id, move_line.move_id.id
 
     def get_book_line_tax_key(self, move_line, tax):
-        return move_line.move_id.id, move_line.invoice_id.id, tax.id
+        return move_line.move_id.id, move_line.move_id.id, tax.id
 
     def _set_line_type(self, line_vals, line_type):
         if line_vals["base_amount"] < 0.0:
@@ -458,7 +457,7 @@ class L10nEsVatBook(models.Model):
                     i += 1
                 # Write state and date in the report
             rec.write(
-                {"state": "calculated", "calculation_date": fields.Datetime.now(),}
+                {"state": "calculated", "calculation_date": fields.Datetime.now()}
             )
 
     def view_issued_invoices(self):

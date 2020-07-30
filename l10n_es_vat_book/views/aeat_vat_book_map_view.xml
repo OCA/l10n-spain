@@ -3,7 +3,6 @@
     <record model="ir.actions.act_window" id="action_aeat_vat_book_mapping">
         <field name="name">AEAT vat book map</field>
         <field name="res_model">aeat.vat.book.map.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
