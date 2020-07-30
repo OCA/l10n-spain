@@ -39,7 +39,7 @@ class L10nEsVatBookLine(models.Model):
 
     vat_book_id = fields.Many2one(comodel_name="l10n.es.vat.book", string="Vat Book id")
 
-    invoice_id = fields.Many2one(comodel_name="account.invoice", string="Invoice")
+    move_id = fields.Many2one(comodel_name="account.move", string="Invoice")
 
     move_id = fields.Many2one(comodel_name="account.move", string="Journal Entry")
     tax_line_ids = fields.One2many(
@@ -59,7 +59,6 @@ class L10nEsVatBookLine(models.Model):
         help="Special tax group as R.Eq, IRPF, etc",
     )
 
-    @api.multi
     @api.depends("tax_id")
     def _compute_tax_rate(self):
         for rec in self:

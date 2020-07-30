@@ -21,7 +21,7 @@ class L10nEsVatBookIssuedSummary(models.Model):
     vat_book_id = fields.Many2one(comodel_name="l10n.es.vat.book", string="Vat Book id")
 
     book_type = fields.Selection(
-        selection=[("issued", "Issued"), ("received", "Received"),], string="Book type"
+        selection=[("issued", "Issued"), ("received", "Received")], string="Book type"
     )
 
     base_amount = fields.Float(string="Base amount", readonly="True")
