@@ -1046,18 +1046,18 @@ class AccountInvoice(models.Model):
                 raise
 
     @api.multi
-    def _sii_invoice_dict_modified(self):
+    def _sii_invoice_dict_not_modified(self):
         self.ensure_one()
-        inv_dict = self._get_sii_invoice_dict()
-        sii_content_sent = json.dumps(inv_dict, indent=4)
-        return sii_content_sent == self.sii_content_sent
+        to_send = self._get_sii_invoice_dict()
+        content_sent = json.loads(self.sii_content_sent)
+        return to_send == content_sent
 
     @api.multi
     def invoice_validate(self):
         res = super(AccountInvoice, self).invoice_validate()
         for invoice in self.filtered('sii_enabled'):
             if invoice.sii_state in ['sent_modified', 'sent'] and \
-                    self._sii_invoice_dict_modified():
+                    self._sii_invoice_dict_not_modified():
                 if invoice.sii_state == 'sent_modified':
                     invoice.sii_state = 'sent'
                 continue
