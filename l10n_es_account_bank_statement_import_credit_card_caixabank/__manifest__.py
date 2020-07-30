@@ -4,7 +4,7 @@
 {
     "name": "Importación de extractos bancarios tarjetas crédito CaixaBank",
     "category": "Accounting & Finance",
-    "version": "11.0.1.0.1",
+    "version": "13.0.1.0.1",
     "license": "AGPL-3",
     "author": "ForgeFlow," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
