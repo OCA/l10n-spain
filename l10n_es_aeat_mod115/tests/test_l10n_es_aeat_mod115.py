@@ -35,14 +35,15 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
         ),
     }
 
-    def _create_model_115(self):
-        export_config = self.env.ref(
+    @classmethod
+    def _create_model_115(cls):
+        export_config = cls.env.ref(
             "l10n_es_aeat_mod115.aeat_mod115_main_export_config"
         )
-        return self.env["l10n.es.aeat.mod115.report"].create(
+        return cls.env["l10n.es.aeat.mod115.report"].create(
             {
                 "name": "9990000000115",
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
                 "statement_type": "N",
@@ -53,8 +54,8 @@ class TestL10nEsAeatMod115Base(TestL10nEsAeatModBase):
                 "date_start": "2015-01-01",
                 "date_end": "2015-03-31",
                 "export_config_id": export_config.id,
-                "journal_id": self.journal_misc.id,
-                "counterpart_account_id": self.accounts["475000"].id,
+                "journal_id": cls.journal_misc.id,
+                "counterpart_account_id": cls.accounts["475000"].id,
             }
         )
 
