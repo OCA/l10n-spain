@@ -1,16 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo noupdate="1">
     <record id="email_template_347" model="mail.template">
         <field name="name">Comprobación datos modelo 347</field>
-        <field name="email_from">${(user.email and '&quot;%s&quot; &lt;%s&gt;' % (user.name, user.email) or '')|safe}</field>
-        <field name="subject">Comprobación datos de modelo 347 año ${object.report_id.year} de ${user.company_id.name}</field>
-        <field name="partner_to">${object.partner_id.address_get(['invoice'])['invoice']}</field>
-        <field name="model_id" ref="l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record"/>
-        <field name="auto_delete" eval="True"/>
-        <field name="report_template" ref="347_partner"/>
+        <field
+            name="email_from"
+        >${(user.email and '&quot;%s&quot; &lt;%s&gt;' % (user.name, user.email) or '')|safe}</field>
+        <field
+            name="subject"
+        >Comprobación datos de modelo 347 año ${object.report_id.year} de ${user.company_id.name}</field>
+        <field
+            name="partner_to"
+        >${object.partner_id.address_get(['invoice'])['invoice']}</field>
+        <field
+            name="model_id"
+            ref="l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record"
+        />
+        <field name="auto_delete" eval="True" />
+        <field name="report_template" ref="347_partner" />
         <field name="report_name">347_details</field>
         <field name="lang">${object.partner_id.lang}</field>
-        <field name="body_html"><![CDATA[
+        <field
+            name="body_html"
+        ><![CDATA[
 <p>Estimado/a ${object.partner_id.name}
 </p>
 <p>Le comunicamos que a efectos de comprobación del modelo 347:</p>
