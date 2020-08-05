@@ -1,22 +1,25 @@
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.tests.common import Form
+
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
 
 
 class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
-    def setUp(self):
-        super(TestL10nEsAeatMod347, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Create model
-        self.model347 = self.env["l10n.es.aeat.mod347.report"].create(
+        cls.model347 = cls.env["l10n.es.aeat.mod347.report"].create(
             {
                 "name": "9990000000347",
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2019,
@@ -24,82 +27,100 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
                 "date_end": "2019-12-31",
             }
         )
-        self.customer_2 = self.customer.copy(
+        cls.customer_2 = cls.customer.copy(
             {"name": "Test customer 2", "vat": "ES12345678Z"}
         )
-        self.customer_3 = self.customer.copy({"name": "Test customer 3"})
-        self.customer_4 = self.customer.copy(
+        cls.customer_3 = cls.customer.copy({"name": "Test customer 3"})
+        cls.customer_4 = cls.customer.copy(
             {"name": "Test customer 4", "vat": "ESB29805314"}
         )
-        self.customer_5 = self.customer.copy(
+        cls.customer_5 = cls.customer.copy(
             {
                 "name": "Test customer 5",
                 # For testing spanish states mapping
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "12345678Z",
             }
         )
-        self.customer_6 = self.customer.copy(
+        cls.customer_6 = cls.customer.copy(
             {
                 "name": "Test customer 6",
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "B29805314",
             }
         )
-        self.supplier_2 = self.supplier.copy({"name": "Test supplier 2"})
+        cls.supplier_2 = cls.supplier.copy({"name": "Test supplier 2"})
         # Invoice lower than the limit
-        self.taxes_sale = {
+        cls.taxes_sale = {
             "S_IVA10B": (2000, 200),
         }
-        self.invoice_1 = self._invoice_sale_create("2019-01-01")
+        cls.invoice_1 = cls._invoice_sale_create("2019-01-01")
         # Invoice higher than limit with IRPF
-        self.taxes_sale = {
+        cls.taxes_sale = {
             "S_IVA10S,S_IRPF20": (4000, 400),
         }
-        self.invoice_2 = self._invoice_sale_create(
-            "2019-04-01", {"partner_id": self.customer_2.id}
+        cls.invoice_2 = cls._invoice_sale_create(
+            "2019-04-01", {"partner_id": cls.customer_2.id}
         )
         # Invoice higher than limit manually excluded
-        self.invoice_3 = self._invoice_sale_create(
-            "2019-01-01", {"partner_id": self.customer_3.id, "not_in_mod347": True}
+        cls.invoice_3 = cls._invoice_sale_create(
+            "2019-01-01", {"partner_id": cls.customer_3.id, "not_in_mod347": True}
         )
         # Invoice higher than cash limit
-        self.taxes_sale = {
+        cls.taxes_sale = {
             "S_IVA10S": (6000, 600),
         }
-        self.invoice_4 = self._invoice_sale_create(
-            "2019-07-01", {"partner_id": self.customer_4.id}
+        cls.invoice_4 = cls._invoice_sale_create(
+            "2019-07-01", {"partner_id": cls.customer_4.id}
         )
-        self.invoice_4.pay_and_reconcile(self.journal_cash, date="2019-07-01")
+        # Create payment from invoice
+        cls.payment_model = cls.env["account.payment"]
+        payment_form = Form(
+            cls.payment_model.with_context(
+                active_model="account.move", active_ids=cls.invoice_4.ids
+            )
+        )
+        payment_form.journal_id = cls.journal_cash
+        payment_form.payment_date = "2019-07-01"
+        cls.payment = payment_form.save()
+        cls.payment.post()
         # Invoice outside period higher than cash limit
-        self.invoice_5 = self._invoice_sale_create(
-            "2018-01-01", {"partner_id": self.customer_5.id}
+        cls.invoice_5 = cls._invoice_sale_create(
+            "2018-01-01", {"partner_id": cls.customer_5.id}
         )
-        self.invoice_5.pay_and_reconcile(self.journal_cash, date="2019-01-01")
+        payment_form = Form(
+            cls.payment_model.with_context(
+                active_model="account.move", active_ids=cls.invoice_5.ids
+            )
+        )
+        payment_form.journal_id = cls.journal_cash
+        payment_form.payment_date = "2019-01-01"
+        cls.payment = payment_form.save()
+        cls.payment.post()
         # Customer refund higher than limit
-        self.taxes_sale = {
+        cls.taxes_sale = {
             "S_IVA10S": (5000, 500),
         }
-        self.invoice_5 = self._invoice_sale_create(
-            "2019-01-01", {"partner_id": self.customer_6.id, "type": "out_refund"}
+        cls.invoice_5 = cls._invoice_sale_create(
+            "2019-01-01", {"partner_id": cls.customer_6.id, "type": "out_refund"}
         )
         # Purchase invoice higher than the limit
-        self.taxes_purchase = {
+        cls.taxes_purchase = {
             "P_IVA10_SC": (3000, 300),
         }
-        self.invoice_suppler_1 = self._invoice_purchase_create("2019-01-01")
+        cls.invoice_suppler_1 = cls._invoice_purchase_create("2019-01-01")
         # Supplier refund higher than limit
-        self.taxes_purchase = {
+        cls.taxes_purchase = {
             "P_IVA10_SC": (4000, 400),
         }
-        self.invoice_suppler_2 = self._invoice_purchase_create(
-            "2019-01-01", {"partner_id": self.supplier_2.id, "type": "in_refund"}
+        cls.invoice_suppler_2 = cls._invoice_purchase_create(
+            "2019-01-01", {"partner_id": cls.supplier_2.id, "type": "in_refund"}
         )
 
     def test_model_347(self):
         # Check flag propagation
-        self.assertFalse(self.invoice_1.move_id.not_in_mod347)
-        self.assertTrue(self.invoice_3.move_id.not_in_mod347)
+        self.assertFalse(self.invoice_1.not_in_mod347)
+        self.assertTrue(self.invoice_3.not_in_mod347)
         # Check model
         self.model347.button_calculate()
         partner_record_vals = [
