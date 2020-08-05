@@ -14,8 +14,6 @@ from calendar import monthrange
 
 from odoo import _, api, exceptions, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 KEY_TAX_MAPPING = {
     "A": "l10n_es_aeat_mod347.aeat_mod347_map_a",
     "B": "l10n_es_aeat_mod347.aeat_mod347_map_b",
@@ -61,14 +59,14 @@ class L10nEsAeatMod347Report(models.Model):
     number = fields.Char(default="347")
     operations_limit = fields.Float(
         string="Invoiced Limit (1)",
-        digits=(13, 2),
+        digits="Account",
         default=3005.06,
         help="The declaration will include partners with the total of "
         "operations over this limit",
     )
     received_cash_limit = fields.Float(
         string="Received cash Limit (2)",
-        digits=(13, 2),
+        digits="Account",
         default=6000.00,
         help="The declaration will show the total of cash operations over "
         "this limit",
@@ -149,7 +147,6 @@ class L10nEsAeatMod347Report(models.Model):
             "domain": "[('report_id','in'," + str(self.ids) + ")]",
             "name": _("Partner records"),
             "view_mode": "tree,form",
-            "view_type": "form",
             "res_model": "l10n.es.aeat.mod347.partner_record",
             "type": "ir.actions.act_window",
         }
@@ -380,66 +377,62 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     partner_state_code = fields.Char(string="State Code", size=2)
     first_quarter = fields.Float(
         string="First quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of first quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     first_quarter_real_estate_transmission = fields.Float(
         string="First quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of first quarter real estate transmissions "
         "for this partner",
-        oldname="first_quarter_real_estate_transmission_amount",
     )
     second_quarter = fields.Float(
         string="Second quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of second quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     second_quarter_real_estate_transmission = fields.Float(
         string="Second quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of second quarter real estate transmissions "
         "for this partner",
-        oldname="second_quarter_real_estate_transmission_amount",
     )
     third_quarter = fields.Float(
         string="Third quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of third quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     third_quarter_real_estate_transmission = fields.Float(
         string="Third quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of third quarter real estate transmissions "
         "for this partner",
-        oldname="third_quarter_real_estate_transmission_amount",
     )
     fourth_quarter = fields.Float(
         string="Fourth quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of fourth quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     fourth_quarter_real_estate_transmission = fields.Float(
         string="Fourth quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of fourth quarter real estate transmissions "
         "for this partner",
-        oldname="fourth_quarter_real_estate_transmission_amount",
     )
     amount = fields.Float(
-        string="Operations amount", digits=(13, 2), track_visibility="onchange",
+        string="Operations amount", digits="Account", track_visibility="onchange",
     )
-    cash_amount = fields.Float(string="Received cash amount", digits=(13, 2))
+    cash_amount = fields.Float(string="Received cash amount", digits="Account",)
     real_estate_transmissions_amount = fields.Float(
-        string="Real Estate Transmisions amount", digits=(13, 2),
+        string="Real Estate Transmisions amount", digits="Account",
     )
     insurance_operation = fields.Boolean(
         string="Insurance Operation",
@@ -566,7 +559,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         return {
             "name": _("Compose Email"),
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "form",
             "res_model": "mail.compose.message",
             "views": [(compose_form.id, "form")],
@@ -645,7 +637,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         default=_default_representative_vat,
         help="Legal Representative VAT number",
     )
-    amount = fields.Float(string="Amount", digits=(13, 2))
+    amount = fields.Float(string="Amount", digits="Account")
     situation = fields.Selection(
         selection=[
             ("1", "1 - Spain but Basque Country and Navarra"),
@@ -722,17 +714,12 @@ class L10nEsAeatMod347MoveRecord(models.Model):
         default=_default_partner_record,
     )
     move_id = fields.Many2one(
-        comodel_name="account.move", string="Move", ondelete="restrict",
+        comodel_name="account.move",
+        string="Invoice / Journal entry",
+        ondelete="restrict",
     )
     move_type = fields.Selection(
         related="move_id.move_type", store=True, readonly=True,
-    )
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
-        string="Invoice",
-        related="move_id.line_ids.invoice_id",
-        store=True,
-        readonly=True,
     )
     date = fields.Date(
         string="Date", related="move_id.date", store=True, readonly=True,
