@@ -167,7 +167,6 @@
                                     string="Move records"
                                     decoration-info="'refund' in move_type"
                                 >
-                                    <field name="invoice_id" />
                                     <field name="move_id" />
                                     <field name="move_type" invisible="1" />
                                     <field name="date" />
@@ -451,7 +450,6 @@
     <record id="action_l10n_es_aeat_mod347_report" model="ir.actions.act_window">
         <field name="name">AEAT Model 347</field>
         <field name="res_model">l10n.es.aeat.mod347.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">

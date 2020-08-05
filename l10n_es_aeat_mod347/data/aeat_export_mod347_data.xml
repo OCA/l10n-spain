@@ -110,7 +110,7 @@
         <field name="name">Declaración complementaria o substitutiva</field>
         <field
             name="expression"
-        >${' S' if object.type == 'S' else object.type.replace('N', ' ')}</field>
+        >${' S' if object.statement_type == 'S' else object.statement_type.replace('N', ' ')}</field>
         <field name="export_type">string</field>
         <field name="size">2</field>
         <field name="alignment">left</field>
