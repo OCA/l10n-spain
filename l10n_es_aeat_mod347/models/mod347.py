@@ -14,8 +14,6 @@ from calendar import monthrange
 
 from odoo import _, api, exceptions, fields, models
 
-import odoo.addons.decimal_precision as dp
-
 KEY_TAX_MAPPING = {
     "A": "l10n_es_aeat_mod347.aeat_mod347_map_a",
     "B": "l10n_es_aeat_mod347.aeat_mod347_map_b",
@@ -379,55 +377,55 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     partner_state_code = fields.Char(string="State Code", size=2)
     first_quarter = fields.Float(
         string="First quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of first quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     first_quarter_real_estate_transmission = fields.Float(
         string="First quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of first quarter real estate transmissions "
-        "for this partner"
+        "for this partner",
     )
     second_quarter = fields.Float(
         string="Second quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of second quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     second_quarter_real_estate_transmission = fields.Float(
         string="Second quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of second quarter real estate transmissions "
-        "for this partner"
+        "for this partner",
     )
     third_quarter = fields.Float(
         string="Third quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of third quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     third_quarter_real_estate_transmission = fields.Float(
         string="Third quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of third quarter real estate transmissions "
-        "for this partner"
+        "for this partner",
     )
     fourth_quarter = fields.Float(
         string="Fourth quarter operations",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of fourth quarter in, out and refund invoices "
         "for this partner",
         track_visibility="onchange",
     )
     fourth_quarter_real_estate_transmission = fields.Float(
         string="Fourth quarter real estate",
-        digits=dp.get_precision("Account"),
+        digits="Account",
         help="Total amount of fourth quarter real estate transmissions "
-        "for this partner"
+        "for this partner",
     )
     amount = fields.Float(
         string="Operations amount", digits=(13, 2), track_visibility="onchange",

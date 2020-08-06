@@ -22,6 +22,6 @@ class AccountInvoice(models.Model):
         """Propagate `not_in_347` field to the account move."""
         res = super().action_move_create()
         self.filtered("not_in_mod347").mapped("move_id").write(
-            {"not_in_mod347": True,}
+            {"not_in_mod347": True}
         )
         return res

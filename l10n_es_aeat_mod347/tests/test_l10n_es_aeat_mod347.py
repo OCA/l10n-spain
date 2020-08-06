@@ -3,7 +3,6 @@
 
 import logging
 
-from odoo import exceptions
 from odoo.tests import common
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
@@ -21,7 +20,7 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         cls.model347 = cls.env["l10n.es.aeat.mod347.report"].create(
             {
                 "name": "9990000000347",
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
                 "statement_type": "N",
@@ -43,20 +42,20 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             {
                 "name": "Test customer 5",
                 # For testing spanish states mapping
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "12345678Z",
             }
         )
         cls.customer_6 = cls.customer.copy(
             {
                 "name": "Test customer 6",
-                "country_id": self.env.ref("base.es").id,
+                "country_id": cls.env.ref("base.es").id,
                 "vat": "B29805314",
             }
         )
         cls.supplier_2 = cls.supplier.copy({"name": "Test supplier 2"})
         # Invoice lower than the limit
-        self.taxes_sale = {
+        cls.taxes_sale = {
             "S_IVA10B": (2000, 200),
         }
         cls.invoice_1 = cls._invoice_sale_create("2019-01-01")
@@ -65,7 +64,7 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             "S_IVA10S,S_IRPF20": (4000, 400),
         }
         cls.invoice_2 = cls._invoice_sale_create(
-            "2019-04-01", {"partner_id": self.customer_2.id}
+            "2019-04-01", {"partner_id": cls.customer_2.id}
         )
         # Invoice higher than limit manually excluded
         cls.invoice_3 = cls._invoice_sale_create(
