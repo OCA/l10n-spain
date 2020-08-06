@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-13 18:57+0000\n"
-"PO-Revision-Date: 2020-07-24 18:19+0000\n"
+"PO-Revision-Date: 2020-08-06 12:59+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -479,7 +479,7 @@ msgstr "Diario en el que se publica el movimiento."
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__representative_vat
 msgid "L.R. VAT number"
-msgstr "L.R. IVA número"
+msgstr "NIF del representante legal"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report____last_update
@@ -502,7 +502,7 @@ msgstr "Última actualización el"
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__representative_vat
 msgid "Legal Representative VAT number."
-msgstr "Número de IVA del representante legal."
+msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_main_attachment_id
