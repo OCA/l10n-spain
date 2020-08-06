@@ -57,7 +57,6 @@ msgstr "Declaración AEAT"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
 #, fuzzy
-#| msgid "AEAT"
 msgid "AEAT SOAP"
 msgstr "AEAT"
 
@@ -105,10 +104,13 @@ msgstr "Módulo base modelos AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod111_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod115_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod123_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod303_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod347_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_report_name_uniq
 #: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_report_tax_mapping_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_vat_book_name_uniq
 msgid "AEAT report identifier must be unique"
 msgstr "O identificador da declaración AEAT debe ser único"
 
@@ -135,7 +137,6 @@ msgstr "Liña de mapeo de impostos da AEAT"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__account_id
 #, fuzzy
-#| msgid "Account entry"
 msgid "Account Template"
 msgstr "Asento contable"
 
@@ -161,7 +162,6 @@ msgstr "Activo"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_ids
 #, fuzzy
-#| msgid "Active"
 msgid "Activities"
 msgstr "Activo"
 
@@ -175,7 +175,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_state
 #, fuzzy
-#| msgid "Active"
 msgid "Activity State"
 msgstr "Activo"
 
@@ -344,7 +343,6 @@ msgstr "Pechar"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_company
 #, fuzzy
-#| msgid "Company"
 msgid "Companies"
 msgstr "Compañía"
 
@@ -422,7 +420,6 @@ msgstr "Declaracións confirmadas"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_partner
 #, fuzzy
-#| msgid "Contact data"
 msgid "Contact"
 msgstr "Datos de contacto"
 
@@ -556,7 +553,6 @@ msgstr "Declaracións borrador"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_end
 #, fuzzy
-#| msgid "To Date"
 msgid "End Date"
 msgstr "Ata a data"
 
@@ -701,7 +697,6 @@ msgstr "Fixo: {}"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__folder
 #, fuzzy
-#| msgid "Full Name"
 msgid "Folder Name"
 msgstr "Nome completo"
 
@@ -994,7 +989,6 @@ msgstr "Nº modelo"
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
 #, fuzzy, python-format
-#| msgid "Modelo no vÃ¡lido: %s. Debe declarar una variable '_aeat_number'"
 msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 msgstr "Modelo non válido: %s. Debe declarar unha variable '_aeat_number'"
 
@@ -1053,7 +1047,6 @@ msgstr "Normal"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction_counter
 #, fuzzy
-#| msgid "Number without decimals"
 msgid "Number of Actions"
 msgstr "Número sen decimais"
 
@@ -1066,7 +1059,6 @@ msgstr "Número de caracteres para os decimais"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
 #, fuzzy
-#| msgid "Number of char for decimals"
 msgid "Number of errors"
 msgstr "Número de caracteres para os decimais"
 
@@ -1307,7 +1299,6 @@ msgstr "Ver o asento"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_start
 #, fuzzy
-#| msgid "Starting date"
 msgid "Start Date"
 msgstr "Data de inicio"
 
@@ -1446,7 +1437,6 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
 #, fuzzy
-#| msgid "Active"
 msgid "To Active"
 msgstr "Activo"
 
