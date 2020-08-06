@@ -425,6 +425,7 @@ class L10nEsVatBook(models.Model):
             # Received
             book_type = "received"
             received_tax_lines = rec.received_line_ids.mapped("tax_line_ids")
+            # flake8: noqa
             rectification_received_tax_lines = rec.rectification_received_line_ids.mapped(
                 "tax_line_ids"
             )
@@ -462,19 +463,27 @@ class L10nEsVatBook(models.Model):
 
     def view_issued_invoices(self):
         self.ensure_one()
-        action = self.env.ref("l10n_es_vat_book.action_report_vat_book_invoices_issued")
-        vals = action.read()[0]
-        vals["context"] = self.env.context
-        return vals
+        report_name = "l10n_es_vat_book.report_vat_book_invoices_issued_html"
+        return (
+            self.env["ir.actions.report"]
+            .search(
+                [("report_name", "=", report_name), ("report_type", "=", "qweb-html")],
+                limit=1,
+            )
+            .report_action(self.ids)
+        )
 
     def view_received_invoices(self):
         self.ensure_one()
-        action = self.env.ref(
-            "l10n_es_vat_book.action_report_vat_book_invoices_received"
+        report_name = "l10n_es_vat_book.report_vat_book_invoices_received_html"
+        return (
+            self.env["ir.actions.report"]
+            .search(
+                [("report_name", "=", report_name), ("report_type", "=", "qweb-html")],
+                limit=1,
+            )
+            .report_action(self.ids)
         )
-        vals = action.read()[0]
-        vals["context"] = self.env.context
-        return vals
 
     def _format_date(self, date):
         # format date following user language
