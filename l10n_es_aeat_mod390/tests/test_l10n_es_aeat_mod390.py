@@ -209,13 +209,14 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         ]
     )
 
-    def setUp(self):
-        super(TestL10nEsAeatMod390Base, self).setUp()
+    @classmethod
+    def setUp(cls):
+        super(TestL10nEsAeatMod390Base, cls).setUp()
         # Create model
-        self.model390 = self.env["l10n.es.aeat.mod390.report"].create(
+        cls.model390 = cls.env["l10n.es.aeat.mod390.report"].create(
             {
                 "name": "9990000000390",
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
                 "statement_type": "N",
@@ -225,7 +226,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
                 "period_type": "0A",
                 "date_start": "2017-01-01",
                 "date_end": "2017-12-31",
-                "journal_id": self.journal_misc.id,
+                "journal_id": cls.journal_misc.id,
             }
         )
 
