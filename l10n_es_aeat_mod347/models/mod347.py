@@ -149,7 +149,6 @@ class L10nEsAeatMod347Report(models.Model):
             "domain": "[('report_id','in'," + str(self.ids) + ")]",
             "name": _("Partner records"),
             "view_mode": "tree,form",
-            "view_type": "form",
             "res_model": "l10n.es.aeat.mod347.partner_record",
             "type": "ir.actions.act_window",
         }
@@ -170,10 +169,10 @@ class L10nEsAeatMod347Report(models.Model):
         ]
 
     @api.model
-    def _get_taxes(self, map):
+    def _get_taxes(self, map_line):
         """Obtain all the taxes to be considered for 347."""
         self.ensure_one()
-        tax_templates = map.mapped("tax_ids")
+        tax_templates = map_line.mapped("tax_ids")
         if not tax_templates:
             raise exceptions.Warning(_("No Tax Mapping was found"))
         return self.get_taxes_from_templates(tax_templates)
@@ -389,8 +388,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string="First quarter real estate",
         digits=dp.get_precision("Account"),
         help="Total amount of first quarter real estate transmissions "
-        "for this partner",
-        oldname="first_quarter_real_estate_transmission_amount",
+        "for this partner"
     )
     second_quarter = fields.Float(
         string="Second quarter operations",
@@ -403,8 +401,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string="Second quarter real estate",
         digits=dp.get_precision("Account"),
         help="Total amount of second quarter real estate transmissions "
-        "for this partner",
-        oldname="second_quarter_real_estate_transmission_amount",
+        "for this partner"
     )
     third_quarter = fields.Float(
         string="Third quarter operations",
@@ -417,8 +414,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string="Third quarter real estate",
         digits=dp.get_precision("Account"),
         help="Total amount of third quarter real estate transmissions "
-        "for this partner",
-        oldname="third_quarter_real_estate_transmission_amount",
+        "for this partner"
     )
     fourth_quarter = fields.Float(
         string="Fourth quarter operations",
@@ -431,8 +427,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string="Fourth quarter real estate",
         digits=dp.get_precision("Account"),
         help="Total amount of fourth quarter real estate transmissions "
-        "for this partner",
-        oldname="fourth_quarter_real_estate_transmission_amount",
+        "for this partner"
     )
     amount = fields.Float(
         string="Operations amount", digits=(13, 2), track_visibility="onchange",
@@ -566,7 +561,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         return {
             "name": _("Compose Email"),
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "form",
             "res_model": "mail.compose.message",
             "views": [(compose_form.id, "form")],
@@ -726,13 +720,6 @@ class L10nEsAeatMod347MoveRecord(models.Model):
     )
     move_type = fields.Selection(
         related="move_id.move_type", store=True, readonly=True,
-    )
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
-        string="Invoice",
-        related="move_id.line_ids.invoice_id",
-        store=True,
-        readonly=True,
     )
     date = fields.Date(
         string="Date", related="move_id.date", store=True, readonly=True,
