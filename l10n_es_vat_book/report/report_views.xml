@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <report
+        id="act_report_vat_book_invoices_issued_html"
+        model="l10n.es.vat.book"
+        string="Vat book invoices issued"
+        report_type="qweb-html"
+        name="l10n_es_vat_book.report_vat_book_invoices_issued_html"
+        file="l10n_es_vat_book.report_vat_book_invoices_issued"
+        attachment_use="False"
+    />
+    <report
+        id="act_report_vat_book_invoices_received_html"
+        model="l10n.es.vat.book"
+        string="Vat book invoices received"
+        report_type="qweb-html"
+        name="l10n_es_vat_book.report_vat_book_invoices_received_html"
+        file="l10n_es_vat_book.report_vat_book_invoices_received"
+        attachment_use="False"
+    />
+    <report
+        id="act_report_vat_book_invoices_issued_pdf"
+        model="l10n.es.vat.book"
+        string="Vat book invoices issued"
+        report_type="qweb-pdf"
+        name="l10n_es_vat_book.report_vat_book_invoices_issued_pdf"
+        file="l10n_es_vat_book.report_vat_book_invoices_issued"
+        attachment_use="False"
+    />
+    <report
+        id="act_report_vat_book_invoices_received_pdf"
+        model="l10n.es.vat.book"
+        string="Vat book invoices received"
+        report_type="qweb-pdf"
+        name="l10n_es_vat_book.report_vat_book_invoices_received_pdf"
+        file="l10n_es_vat_book.report_vat_book_invoices_received"
+        attachment_use="False"
+    />
+</odoo>

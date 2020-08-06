@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_vat_book_line_form" model="ir.ui.view">
+        <field name="name">view.l10n_es_vat_book_line.form</field>
+        <field name="model">l10n.es.vat.book.line</field>
+        <field name="arch" type="xml">
+            <form string="Issued/Received invoices">
+                <sheet>
+                    <group name="main">
+                        <field name="ref" />
+                        <field name="invoice_date" />
+                        <field name="partner_id" />
+                        <field name="vat_number" />
+                        <field name="move_id" />
+                        <field name="base_amount" />
+                        <field name="total_amount" />
+                        <field name="special_tax_group" />
+                        <field name="exception_text" />
+                    </group>
+                    <notebook>
+                        <page name="taxes" string="Taxes">
+                            <group>
+                                <field name="tax_line_ids" nolabel="1">
+                                    <tree decoration-muted="special_tax_group">
+                                        <field name="base_amount" />
+                                        <field name="tax_id" />
+                                        <field name="tax_amount" />
+                                        <field name="total_amount" />
+                                        <field name="special_tax_group" invisible="1" />
+                                        <field
+                                            name="special_tax_id"
+                                            attrs="{'column_invisible': [('parent.special_tax_group', '=', False)]}"
+                                        />
+                                        <field
+                                            name="special_tax_amount"
+                                            attrs="{'column_invisible': [('parent.special_tax_group', '=', False)]}"
+                                        />
+                                        <field
+                                            name="total_amount_special_include"
+                                            attrs="{'column_invisible': [('parent.special_tax_group', '=', False)]}"
+                                        />
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="base_amount" />
+                                                <field name="tax_id" />
+                                                <field name="tax_amount" />
+                                                <field name="total_amount" />
+                                            </group>
+                                            <group
+                                                attrs="{'invisible': [('parent.special_tax_group', '=', False)]}"
+                                            >
+                                                <field name="special_tax_group" />
+                                                <field name="special_tax_id" />
+                                                <field name="special_tax_amount" />
+                                                <field
+                                                    name="total_amount_special_include"
+                                                />
+                                            </group>
+                                        </group>
+                                        <group
+                                            name="move_lines_grp"
+                                            string="Move Lines"
+                                        >
+                                            <field name="move_line_ids" nolabel="1" />
+                                        </group>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_vat_book_line_tree" model="ir.ui.view">
+        <field name="name">view.l10n_es_vat_book_line.tree</field>
+        <field name="model">l10n.es.vat.book.line</field>
+        <field name="arch" type="xml">
+            <tree string="Issued/Received invoices" decoration-danger="exception_text">
+                <field name="ref" />
+                <field name="external_ref" />
+                <field name="invoice_date" />
+                <field name="partner_id" />
+                <field name="vat_number" />
+                <field name="move_id" />
+                <field name="base_amount" />
+                <field name="total_amount" />
+                <field name="special_tax_group" />
+                <field name="exception_text" />
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report
+        id="l10n_es_vat_book_xlsx"
+        string="VAT book XLSX report"
+        model="l10n.es.vat.book"
+        report_type="xlsx"
+        menu="False"
+        name="l10n_es_vat_book.l10n_es_vat_book_xlsx"
+        file="l10n_es_vat_book.l10n_es_vat_book"
+        print_report_name="object.get_report_file_name()"
+    />
+</odoo>
