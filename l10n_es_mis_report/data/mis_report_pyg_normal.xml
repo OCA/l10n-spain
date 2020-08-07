@@ -439,7 +439,7 @@
             <field
                 name="description"
             >9. Imputación de subvenciones de inmovilizado no financiero y otras</field>
-            <field name="expression">-balp[746%]</field>
+            <field name="expression">-balp[7460%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -706,8 +706,8 @@
             <field name="name">es41430</field>
             <field
                 name="description"
-            >c) Imputación de subvenciones, donaciones y legados de carácter inanciero</field>
-            <field name="expression">-balp[746%]</field>
+            >c) Imputación de subvenciones, donaciones y legados de carácter financiero</field>
+            <field name="expression">-balp[7461%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
