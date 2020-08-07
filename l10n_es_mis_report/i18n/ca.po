@@ -197,6 +197,7 @@ msgstr ""
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_41800
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41800
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_41500
 msgid "18. Deterioro y resultado por enajenaciones de instrumentos financieros"
 msgstr ""
 
@@ -320,7 +321,13 @@ msgstr ""
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_40200
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40200
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_40200
-msgid "2. Variación de existencias de productos terminados y en curso de fabricación"
+msgid ""
+"2. Variación de existencias de productos terminados y en curso de fabricación"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40200
+msgid "2. Ventas y otros ingresos de la actividad mercantil"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -635,7 +642,14 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_49400
-msgid "A.4) RESULTADO DEL EJERCICIO PROCEDENTE DE OPERACIONES CONTINUADAS (A.3 + 19)"
+msgid ""
+"A.4) RESULTADO DEL EJERCICIO PROCEDENTE DE OPERACIONES CONTINUADAS (A.3 + 19)"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_44000
+msgid ""
+"A.4) Variación de patrimonio neto reconocida en el excedente del ejercicio"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -674,7 +688,21 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_eiyg_normal_59200
-msgid "B) Total ingresos y gastos imputados directamente en el patrimonio neto (I + II + III + IV + V + VI + VII)"
+msgid ""
+"B) Total ingresos y gastos imputados directamente en el patrimonio neto (I + "
+"II + III + IV + V + VI + VII)"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_46000
+msgid ""
+"B.1) Variación de patrimonio neto por ingresos y gastos reconocidos "
+"directamente en el patrimonio neto"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report,name:l10n_es_mis_report.mis_report_es_balance_pymes_sfl
+msgid "Balance PYMESFL (PGCE 2008)"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -707,7 +735,16 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_eiyg_normal_59300
-msgid "C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X + XI + XII + XIII)"
+msgid ""
+"C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X + "
+"XI + XII + XIII)"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_48000
+msgid ""
+"C.1) Variación de patrimonio neto por reclasificaciones al excedente del "
+"ejercicio"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -1287,7 +1324,9 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41620
-msgid "b) Imputación al resultado del ejercicio por activos financieros disponibles para la venta"
+msgid ""
+"b) Imputación al resultado del ejercicio por activos financieros disponibles "
+"para la venta"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -1331,7 +1370,13 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41430
-msgid "c) Imputación de subvenciones, donaciones y legados de carácter inanciero"
+msgid ""
+"c) Imputación de subvenciones, donaciones y legados de carácter financiero"
+msgstr ""
+
+#. module: l10n_es_mis_report
+#: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40130
+msgid "c) Ingresos de promociones, patrocinadores y colaboraciones"
 msgstr ""
 
 #. module: l10n_es_mis_report
@@ -1346,7 +1391,8 @@ msgstr ""
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40730
-msgid "c) Pérdidas, deterioro y variación de provisiones por operaciones comerciales"
+msgid ""
+"c) Pérdidas, deterioro y variación de provisiones por operaciones comerciales"
 msgstr ""
 
 #. module: l10n_es_mis_report
