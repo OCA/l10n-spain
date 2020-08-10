@@ -108,7 +108,7 @@
          <field name="sequence">90</field>
          <field name="name">es40900</field>
          <field name="description">9. Imputación de subvenciones de inmovilizado no financiero y otras</field>
-         <field name="expression">-balp[746%]</field>
+         <field name="expression">-balp[7460%]</field>
          <field name="auto_expand_accounts">True</field>
          <field name="auto_expand_accounts_style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"/>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"/>
@@ -178,7 +178,7 @@
          <field name="sequence">150</field>
          <field name="name">es41430</field>
          <field name="description">a) Imputación de subvenciones, donaciones y legados de carácter financiero</field>
-         <field name="expression">-balp[746%]</field>
+         <field name="expression">-balp[7461%]</field>
          <field name="auto_expand_accounts">True</field>
          <field name="auto_expand_accounts_style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l5i"/>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l5"/>
