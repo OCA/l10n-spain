@@ -196,13 +196,13 @@ class DeliveryCarrier(models.Model):
     def seur_send_shipping(self, pickings):
         return [self.seur_create_shipping(p) for p in pickings]
 
-    def seur_create_shipping(self, picking):
+    def _seur_prepare_create_shipping(self, picking):
         self.ensure_one()
         partner = picking.partner_id
         company = picking.company_id
         phone = (partner.phone and partner.phone.replace(' ', '') or '')
         mobile = (partner.mobile and partner.mobile.replace(' ', '') or '')
-        package_info = {
+        return {
             'ci': self.seur_integration_code,
             'nif': self.seur_vat,
             'ccc': self.seur_accounting_code,
@@ -210,8 +210,10 @@ class DeliveryCarrier(models.Model):
             'producto': self.seur_product_code,
             'cod_centro': '',
             'total_bultos': picking.number_of_packages or 1,
-            'total_kilos': picking.weight or 1,
-            'pesoBulto': picking.weight or 1,
+            'total_kilos': picking.shipping_weight or 1,
+            # According API documentation, it's the total weight, not the
+            # package one
+            'pesoBulto': picking.shipping_weight or 1,
             'observaciones': picking.note,
             'referencia_expedicion': picking.name,
             'ref_bulto': '',
@@ -252,6 +254,10 @@ class DeliveryCarrier(models.Model):
             'eci': 'N',
             'et': 'N',
         }
+
+    def seur_create_shipping(self, picking):
+        self.ensure_one()
+        package_info = self._seur_prepare_create_shipping(picking)
         if self.seur_label_format == 'txt':
             res = self.seur_soap_send(
                 'ImprimirECBWebService', 'impresionIntegracionConECBWS',
