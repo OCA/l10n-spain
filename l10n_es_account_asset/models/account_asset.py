@@ -122,7 +122,10 @@ class AccountAssetAsset(models.Model):
             self.with_context(
                 asset_validate_from_write=True
             ).method_time = 'year'
-        table = super()._compute_depreciation_amount_per_fiscal_year(
+        table = super(
+            AccountAssetAsset,
+            self.with_context(use_percentage=True)
+        )._compute_depreciation_amount_per_fiscal_year(
             table, line_dates, depreciation_start_date,
             depreciation_stop_date,
         )
