@@ -55,7 +55,7 @@ msgid "COURIER"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:375
+#: code:addons/delivery_seur/models/delivery_carrier.py:381
 #, python-format
 msgid "Cancel SEUR shipment (%s): %s"
 msgstr ""
@@ -236,7 +236,7 @@ msgid "SEUR 8:30"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:288
+#: code:addons/delivery_seur/models/delivery_carrier.py:294
 #, python-format
 msgid "SEUR exception: %s"
 msgstr ""
@@ -267,7 +267,7 @@ msgid "Seur Cit Password"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:311
+#: code:addons/delivery_seur/models/delivery_carrier.py:317
 #, python-format
 msgid "Status cannot be checked, enter webservice carrier credentials"
 msgstr ""
