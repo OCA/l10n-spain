@@ -2,8 +2,8 @@
 
 {
     "name": "Libro de IVA",
-    "version": "13.0.1.0.0",
-    "author": "PRAXYA, " "Eficent, " "Tecnativa, " "Odoo Community Association (OCA)",
+    "version": "13.0.1.1.0",
+    "author": "PRAXYA, Eficent, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Accounting",
