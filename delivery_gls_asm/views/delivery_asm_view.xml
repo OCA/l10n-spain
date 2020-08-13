@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Tecnativa - David Vidal
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position='before'>
+                <page
+                    string="GLS Configuration"
+                    attrs="{'invisible': [('delivery_type', '!=', 'gls_asm')]}"
+                >
+                    <group>
+                        <group>
+                            <field
+                                name="gls_asm_uid"
+                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                            />
+                            <field
+                                name="gls_asm_service"
+                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                            />
+                            <field
+                                name="gls_asm_shiptime"
+                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                            />
+                            <field
+                                name="gls_asm_postage_type"
+                                attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook" position='inside'>
+                <page
+                    string="Technical"
+                    attrs="{'invisible': [('delivery_type', '!=', 'gls_asm')]}"
+                >
+                    <group>
+                        <group>
+                            <field name="gls_last_request" />
+                            <field name="gls_last_response" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='toggle_prod_environment']" position="before">
+                <button name="action_get_manifest"
+                        string="Manifest"
+                        type="object" class="oe_stat_button"
+                        icon="fa-file-text-o"
+                        attrs="{'invisible': [('delivery_type', '!=', 'gls_asm')]}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
