@@ -41,11 +41,10 @@
         ref('l10n_es.account_tax_template_p_iva10_isp'),
         ref('l10n_es.account_tax_template_p_iva21_isp'),
         ref('l10n_es.account_tax_template_p_iva105_gan'),
+        ref('l10n_es.account_tax_template_p_iva10_nd'),
+        ref('l10n_es.account_tax_template_p_iva4_nd'),
         ])]"
         />
-        <!--    TODO: include taxes when merged https://github.com/odoo/odoo/pull/55491 -->
-        <!--        ref('l10n_es.account_tax_template_p_iva10_nd'),-->
-        <!--        ref('l10n_es.account_tax_template_p_iva4_nd'),-->
     </record>
     <record id="aeat_mod347_map_b" model="l10n.es.aeat.map.tax.line">
         <field name="map_parent_id" ref="aeat_mod347_map" />
