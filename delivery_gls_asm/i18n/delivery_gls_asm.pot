@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-05 07:09+0000\n"
-"PO-Revision-Date: 2020-06-05 07:09+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -163,11 +161,6 @@ msgid "Cancelar"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_product_packaging__package_carrier_type
-msgid "Carrier"
-msgstr ""
-
-#. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_postage_type:0
 msgid "Cash On Delivery"
 msgstr ""
@@ -279,7 +272,6 @@ msgstr ""
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,delivery_type:0
-#: selection:product.packaging,package_carrier_type:0
 msgid "GLS ASM"
 msgstr ""
 
@@ -289,7 +281,7 @@ msgid "GLS Barcode"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:171
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:204
 #, python-format
 msgid "GLS Cancellation failed with reason: %s"
 msgstr ""
@@ -305,7 +297,7 @@ msgid "GLS Deliveries Manifest"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:178
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:210
 #, python-format
 msgid "GLS Expedition with reference %s cancelled"
 msgstr ""
@@ -316,7 +308,7 @@ msgid "GLS Label"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:205
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:237
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -331,8 +323,45 @@ msgid "GLS Service"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:160
+#, python-format
+msgid "GLS Shipping extra info:\n"
+"barcode: %s"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_uid
 msgid "GLS UID"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/stock_picking.py:27
+#, python-format
+msgid "GLS label for %s"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:297
+#, python-format
+msgid "GLS returned an error trying to record the shipping for {}.\n"
+"Error:\n"
+"{}"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:318
+#, python-format
+msgid "GLS: No response from server getting state from ref {}.\n"
+"Traceback:\n"
+"{}"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:347
+#, python-format
+msgid "GLS: No response from server printing label with ref {}.\n"
+"Traceback:\n"
+"{}"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -386,9 +415,19 @@ msgid "Int. WEB"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:27
+#: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:28
 #, python-format
 msgid "It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the selected date."
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_request
+msgid "Last GLS xml request"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_response
+msgid "Last GLS xml response"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -427,8 +466,19 @@ msgid "Masivo"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: selection:product.packaging,package_carrier_type:0
-msgid "No carrier integration"
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:404
+#, python-format
+msgid "No response from server getting manifisto for GLS.\n"
+"Traceback:\n"
+"{}"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:286
+#, python-format
+msgid "No response from server recording GLS delivery {}.\n"
+"Traceback:\n"
+"{}"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -479,11 +529,6 @@ msgstr ""
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_postage_type:0
 msgid "Prepaid"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model,name:delivery_gls_asm.model_product_packaging
-msgid "Product Packaging"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -632,13 +677,29 @@ msgid "Set the desired GLS shipping time for this carrier"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: selection:delivery.carrier,delivery_type:0
+msgid "Seur"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_shiptime
 msgid "Shipping Time"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_delivery_carrier_form
+msgid "Technical"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_request
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_response
+msgid "Used for issues debugging"
 msgstr ""
 
 #. module: delivery_gls_asm
