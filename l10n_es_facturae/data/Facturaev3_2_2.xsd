@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" targetNamespace="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" version="3.2.1">
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml" targetNamespace="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml" version="3.2.2">
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
 	<xs:element name="Facturae">
 		<xs:annotation>
@@ -45,16 +45,16 @@
 	<!--XMLFacturae -->
 	<xs:complexType name="FileHeaderType">
 		<xs:sequence>
-			<xs:element name="SchemaVersion" type="SchemaVersionType" default="3.2.1">
+			<xs:element name="SchemaVersion" type="SchemaVersionType" default="3.2.2">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Code indicating the XSD version used. There will be compatibility of versions.          </xs:documentation>
-					<xs:documentation xml:lang="es"> Código que indica versión utilizada. Existirá compatibilidad de versiones.                                        </xs:documentation>
+					<xs:documentation xml:lang="en"> Code indicating the XSD version used.</xs:documentation>
+					<xs:documentation xml:lang="es"> Código que indica versión utilizada.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="Modality" type="ModalityType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Single or Batch. If it is "single" (I) the amounts of the fields of group Batch will match their corresponding fields of group InvoiceTotals and field InvoicesCount will always take the value "1". If it is a "batch" (L), the value of field InvoicesCount will always be &gt; "1".        </xs:documentation>
-					<xs:documentation xml:lang="es"> Modalidad. Individual o Lote. Si es "individual" (I) los importes de los campos del grupo Batch coincidirán con sus correspondientes campos del grupo InvoiceTotals y el campo InvoicesCount tendrá siempre el valor "1". Si es "lote" (L), el valor del campo InvoicesCount será siempre &gt; "1".</xs:documentation>
+					<xs:documentation xml:lang="en"> Single or Batch. If it is "single" (I) the amounts of the fields of group Batch will match their corresponding fields of group InvoiceTotals and field InvoicesCount will always take the value "1". If it is a "batch" (L), the value of field InvoicesCount will always be > "1".        </xs:documentation>
+					<xs:documentation xml:lang="es"> Modalidad. Individual o Lote. Si es "individual" (I) los importes de los campos del grupo Batch coincidirán con sus correspondientes campos del grupo InvoiceTotals y el campo InvoicesCount tendrá siempre el valor "1". Si es "lote" (L), el valor del campo InvoicesCount será siempre > "1".</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="InvoiceIssuerType" type="InvoiceIssuerTypeType">
@@ -136,8 +136,8 @@
 			</xs:element>
 			<xs:element name="TotalExecutableAmount" type="AmountType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Sum of the differences of the amounts (TotalOutstandingAmount and WithholdingAmount) of the file = Sum of the amounts TotalExecutableAmount, up to eight decimal points. It is the amount that is debited less any amount withheld as a performance guarantee.</xs:documentation>
-					<xs:documentation xml:lang="es"> Total a Ejecutar. Sumatorio de las diferencias de los importes (TotalOutstandingAmount y WithholdingAmount) del fichero = Sumatorio de los Importes TotalExecutableAmount, hasta ocho decimales. Es el importe que se adeuda minorado en un posible importe retenido en garantía de cumplimientos contractuales.</xs:documentation>
+					<xs:documentation xml:lang="en"> Sum of the amounts TotalExecutableAmount, up to eight decimal points.</xs:documentation>
+					<xs:documentation xml:lang="es"> Total a Ejecutar. Sumatorio de los Importes TotalExecutableAmount, hasta ocho decimales.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="InvoiceCurrencyCode" type="CurrencyCodeType">
@@ -166,6 +166,12 @@
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Text of the clauses.</xs:documentation>
 					<xs:documentation xml:lang="es"> Texto de la cláusula de cesión.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FactoringAssignmentDocument" type="FactoringAssignmentDocumentType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Data to identify the online reference of the factoring documents</xs:documentation>
+					<xs:documentation xml:lang="es"> Datos para identificar la referencia electrónica de los documentos de cesión.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -413,6 +419,30 @@
 					<xs:documentation xml:lang="es"> Lengua. Código ISO 639-1:2002 Alpha-2 de la lengua en la que se emite el documento.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
+			<xs:element name="InvoiceDescription" type="TextMax2500Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Invoice's general description.</xs:documentation>
+					<xs:documentation xml:lang="es"> Descripción general de la factura.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReceiverTransactionReference" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Order reference.</xs:documentation>
+					<xs:documentation xml:lang="es"> Referencia de pedido.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FileReference" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Reference of the contract's file.</xs:documentation>
+					<xs:documentation xml:lang="es"> Código del expediente de contratación.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReceiverContractReference" type="TextMax20Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Reference of the receiver's contract.</xs:documentation>
+					<xs:documentation xml:lang="es"> Referencia del contrato del receptor.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="ItemsType">
@@ -490,6 +520,12 @@
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Free text to describe the reason why the invoice is corrected.</xs:documentation>
 					<xs:documentation xml:lang="es"> Ampliación motivo de la rectificación. Descripción de las aclaraciones y motivos de la factura rectificativa. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InvoiceIssueDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Date on which the corrective invoice is issued. Mandatory where "CorrectionMethod" takes the value "01" or "02"</xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha de expedición de la factura rectificada. Valor obligatorio en el supuesto de que el valor de CorrectionMethod sea "01" o "02"</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -845,14 +881,20 @@
 			</xs:element>
 			<xs:element name="TotalExecutableAmount" type="DoubleUpToEightDecimalType">
 				<xs:annotation>
-					<xs:documentation xml:lang="en"> Result: TotalOutstandingAmount - WithholdingAmount + Reimbursable expenses + Financial expenses. Up to eight points</xs:documentation>
-					<xs:documentation xml:lang="es"> Total a ejecutar. Resultado de: TotalOutstandingAmount - Total de Cantidades retenidas + TotalReimbursableExpenses  + TotalFinancialExpenses. En Total de Cantidades retenidas se sumaran las cantidades especificadas en los bloques AmountsWithheld. Hasta ocho decimales. </xs:documentation>
+					<xs:documentation xml:lang="en"> Result: TotalOutstandingAmount - WithholdingAmount - PaymentInKindAmount + Reimbursable expenses + Financial expenses. Up to eight points</xs:documentation>
+					<xs:documentation xml:lang="es"> Total a ejecutar. Resultado de: TotalOutstandingAmount - WithholdingAmount - PaymentInKindAmount + TotalReimbursableExpenses  + TotalFinancialExpenses. En Total de Cantidades retenidas se sumaran las cantidades especificadas en los bloques AmountsWithheld. Hasta ocho decimales. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:element name="TotalReimbursableExpenses" type="DoubleUpToEightDecimalType" minOccurs="0">
 				<xs:annotation>
 					<xs:documentation xml:lang="en"> Up to eight decimal points.</xs:documentation>
 					<xs:documentation xml:lang="es"> Total de suplidos. Hasta ocho decimales.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaymentInKind" type="PaymentInKindType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Payment in kind.</xs:documentation>
+					<xs:documentation xml:lang="es"> Pagos en especie.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -1142,12 +1184,13 @@
 			<xs:enumeration value="jpg"/>
 			<xs:enumeration value="bmp"/>
 			<xs:enumeration value="tiff"/>
+			<xs:enumeration value="html"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<!--
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////// -->
-	<!--Complex Types reusados /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<!--Complex Types /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<xs:complexType name="TaxIdentificationType">
 		<xs:sequence>
@@ -1739,6 +1782,72 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="FactoringAssignmentDocumentType">
+		<xs:sequence>
+			<xs:element name="DocumentCharacter" type="TextMax50Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Type of factoring document. Possible values: acuerdo de cesión, poder acreditativo de representación, otros</xs:documentation>
+					<xs:documentation xml:lang="es">Naturaleza del documento. Posibles valores: acuerdo de cesión, poder acreditativo de representación, otros</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RepresentationIdentity" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Mandatory where DocumentCharacter takes the value "poder acreditativo de representación". Possible values: del cedente en el acuerdo de cesión, del cesionario en el acuerdo de cesión, de quien efectúa la notificación en nombre de cedente o cesionario.</xs:documentation>
+					<xs:documentation xml:lang="es">Es obligatorio en el caso de que el valor de DocumentCharacter sea "poder acreditativo de representación". Posibles valores: del cedente en el acuerdo de cesión, del cesionario en el acuerdo de cesión, de quien efectúa la notificación en nombre de cedente o cesionario.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DocumentType" type="TextMax50Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Document's type. Possible values: escritura pública, documento privado</xs:documentation>
+					<xs:documentation xml:lang="es">Tipo de documento. Posibles valores: escritura pública, documento privado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Repository" type="RepositoryType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Repository data</xs:documentation>
+					<xs:documentation xml:lang="es">Datos del archivo electrónico usado</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="RepositoryType">
+		<xs:sequence>
+			<xs:element name="RepositoryName" type="TextMax20Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Repository name which contains the factoring assigment documents. Possible values: CGN, ROLECE, REA, otros</xs:documentation>
+					<xs:documentation xml:lang="es">Archivo electrónico en el que estuviera anotado el factoring. Posibles valores: CGN, ROLECE, REA, otros</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="URL" type="TextMax250Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">URL of the undefined repository. Mandatory where RepositoryName takes the value "otros"</xs:documentation>
+					<xs:documentation xml:lang="es">URL del archivo electrónico no definido. Es obligatorio en el caso de que el valor de RepositoryName sea "otros"</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference" type="TextMax250Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Reference or code of the document at the repository</xs:documentation>
+					<xs:documentation xml:lang="es">Referencia electrónica o código de verificación en el archivo electrónico</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentInKindType">
+		<xs:sequence>
+			<xs:element name="PaymentInKindReason" type="TextMax2500Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Reason for the payment in kind</xs:documentation>
+					<xs:documentation xml:lang="es">Descripción del motivo por el que existe un pago en especie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PaymentInKindAmount" type="DoubleUpToEightDecimalType">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Total amount of the payment in kind</xs:documentation>
+					<xs:documentation xml:lang="es">Importe de los pagos en especie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<!--Simple Types -->
 	<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 	<!--Textos simples /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -1751,7 +1860,7 @@
 	</xs:simpleType>
 	<xs:simpleType name="SchemaVersionType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="3.2.1"/>
+			<xs:enumeration value="3.2.2"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="PostCodeType">
@@ -2503,6 +2612,12 @@
 				<xs:annotation>
 					<xs:documentation xml:lang="en">Watt-WTT</xs:documentation>
 					<xs:documentation xml:lang="es">Vatio-WTT</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="36">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Kilowatt per hora-KWh</xs:documentation>
+					<xs:documentation xml:lang="es">Kilovatio por hora-KWh</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
 		</xs:restriction>
