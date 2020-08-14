@@ -14,6 +14,7 @@
             <page name="sales_purchases" position="after">
                   <page string='FACe' name="facturae" attrs="{'invisible': [('facturae', '=', False)]}">
                     <group>
+                        <field name="facturae_version"/>
                         <field name="invoice_integration_method_ids" widget="many2many_checkboxes"/>
                         <field name="organo_gestor" attrs="{'required': [('facturae', '=', True)]}"/>
                         <field name="unidad_tramitadora" attrs="{'required': [('facturae', '=', True)]}" />
