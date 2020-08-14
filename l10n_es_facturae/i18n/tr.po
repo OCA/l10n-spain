@@ -52,6 +52,38 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
+"Facturae\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
+"Facturaev3_2_2.xml\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:res.company,facturae_version:0
+#: selection:res.partner,facturae_version:0
+msgid "3.2"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:res.company,facturae_version:0
+#: selection:res.partner,facturae_version:0
+msgid "3.2.1"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:res.company,facturae_version:0
+#: selection:res.partner,facturae_version:0
+msgid "3.2.2"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 msgid "Accepted"
 msgstr ""
@@ -243,7 +275,7 @@ msgid "Correction Method"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/res_partner.py:39
+#: code:addons/l10n_es_facturae/models/res_partner.py:44
 #, python-format
 msgid "Country must be defined"
 msgstr ""
@@ -390,7 +422,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:93
-#: code:addons/l10n_es_facturae/models/account_invoice.py:519
+#: code:addons/l10n_es_facturae/models/account_invoice.py:526
 #, python-format
 msgid "FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
@@ -401,7 +433,7 @@ msgid "Facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:537
+#: code:addons/l10n_es_facturae/models/account_invoice.py:544
 #, python-format
 msgid "Facturae Configuration"
 msgstr ""
@@ -476,6 +508,13 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_transaction_date
 msgid "Facturae Transaction Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_version
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_version
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_version
+msgid "Facturae Version"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -1032,7 +1071,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:101
-#: code:addons/l10n_es_facturae/models/account_invoice.py:527
+#: code:addons/l10n_es_facturae/models/account_invoice.py:534
 #, python-format
 msgid "Start date cannot be later than end date"
 msgstr ""
@@ -1045,7 +1084,7 @@ msgid "State"
 msgstr "Durum"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/res_partner.py:43
+#: code:addons/l10n_es_facturae/models/res_partner.py:48
 #, python-format
 msgid "State must be defined"
 msgstr ""
@@ -1073,7 +1112,7 @@ msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:470
+#: code:addons/l10n_es_facturae/models/account_invoice.py:477
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
@@ -1106,7 +1145,7 @@ msgid "Update Date"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/res_partner.py:36
+#: code:addons/l10n_es_facturae/models/res_partner.py:41
 #, python-format
 msgid "Vat must be defined"
 msgstr ""

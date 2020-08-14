@@ -452,8 +452,15 @@ class AccountInvoice(models.Model):
 
         return invoice_file, file_name
 
+    def get_facturae_version(self):
+        return (
+            self.partner_id.facturae_version or
+            self.company_id.facturae_version or
+            '3_2'
+        )
+
     def _get_facturae_schema_file(self):
-        return tools.file_open("Facturaev3_2.xsd",
+        return tools.file_open("Facturaev%s.xsd" % self.get_facturae_version(),
                                subdir="addons/l10n_es_facturae/data")
 
     def _validate_facturae(self, xml_string):
