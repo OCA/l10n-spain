@@ -215,7 +215,7 @@ class AccountBankStatementImport(models.TransientModel):
                 pass
         return False
 
-    def _get_ref(self, line):
+    def _get_n43_ref(self, line):
         try:
             ref1 = int(line['referencia1'])
         except ValueError:  # pragma: no cover
@@ -231,7 +231,7 @@ class AccountBankStatementImport(models.TransientModel):
         else:  # pragma: no cover
             return "%s / %s" % (line['referencia1'], line['referencia2'])
 
-    def _get_partner_from_caixabank(self, conceptos):
+    def _get_n43_partner_from_caixabank(self, conceptos):
         partner_obj = self.env['res.partner']
         partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #02
@@ -248,7 +248,7 @@ class AccountBankStatementImport(models.TransientModel):
                         [('name', 'ilike', name)], limit=1)
         return partner
 
-    def _get_partner_from_santander(self, conceptos):
+    def _get_n43_partner_from_santander(self, conceptos):
         partner_obj = self.env['res.partner']
         partner = partner_obj.browse()
         # Try to match from VAT included in concept complementary record #01
@@ -267,7 +267,7 @@ class AccountBankStatementImport(models.TransientModel):
                         [('name', 'ilike', name)], limit=1)
         return partner
 
-    def _get_partner_from_bankia(self, conceptos):
+    def _get_n43_partner_from_bankia(self, conceptos):
         partner_obj = self.env['res.partner']
         partner = partner_obj.browse()
         # Try to match from partner name
@@ -277,7 +277,7 @@ class AccountBankStatementImport(models.TransientModel):
                 partner = partner_obj.search([('vat', '=', vat)], limit=1)
         return partner
 
-    def _get_partner_from_sabadell(self, conceptos):
+    def _get_n43_partner_from_sabadell(self, conceptos):
         partner_obj = self.env['res.partner']
         partner = partner_obj.browse()
         # Try to match from partner name
@@ -288,17 +288,21 @@ class AccountBankStatementImport(models.TransientModel):
                     [('name', 'ilike', name)], limit=1)
         return partner
 
-    def _get_partner(self, line):
+    def _get_n43_partner(self, line):
         if not line.get('conceptos'):  # pragma: no cover
             return self.env['res.partner']
-        partner = self._get_partner_from_caixabank(line['conceptos'])
+        partner = self._get_n43_partner_from_caixabank(line['conceptos'])
         if not partner:
-            partner = self._get_partner_from_santander(line['conceptos'])
+            partner = self._get_n43_partner_from_santander(line['conceptos'])
         if not partner:
-            partner = self._get_partner_from_bankia(line['conceptos'])
+            partner = self._get_n43_partner_from_bankia(line['conceptos'])
         if not partner:
-            partner = self._get_partner_from_sabadell(line['conceptos'])
+            partner = self._get_n43_partner_from_sabadell(line['conceptos'])
         return partner
+
+    def _get_partner(self, line):
+        # TODO: Provided for compatibility. To be removed in v13
+        return self._get_n43_partner(line)
 
     def _get_account(self, line, journal):  # pragma: no cover
         account_obj = self.env['account.account']
@@ -340,9 +344,11 @@ class AccountBankStatementImport(models.TransientModel):
                         line[journal.n43_date_type or 'fecha_valor']
                     ),
                     'name': ' '.join(conceptos),
-                    'ref': self._get_ref(line),
+                    'ref': self._get_n43_ref(line),
                     'amount': line['importe'],
-                    'note': line,
+                    # inject raw parsed N43 dict for later use, that will be
+                    # removed before passing final values to create the record
+                    'n43_line': line,
                 }
                 c = line['conceptos']
                 if c.get('01'):
@@ -361,14 +367,16 @@ class AccountBankStatementImport(models.TransientModel):
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):
         """Match partner_id if if hasn't been deducted yet."""
-        res = super(AccountBankStatementImport, self)._complete_stmts_vals(
+        res = super()._complete_stmts_vals(
             stmts_vals, journal, account_number)
         for st_vals in res:
             for line_vals in st_vals['transactions']:
-                if not line_vals.get('partner_id') and line_vals.get('note'):
-                    line_vals['partner_id'] = self._get_partner(
-                        line_vals['note'],
-                    ).id
+                if line_vals.get('n43_line'):
+                    if not line_vals.get('partner_id'):
+                        line_vals['partner_id'] = self._get_n43_partner(
+                            line_vals['n43_line'],
+                        ).id
+                    del line_vals["n43_line"]
                 # This can't be used, as Odoo doesn't present the lines
                 # that already have a counterpart account as final
                 # verification, making this very counterintuitive to the user
