@@ -17,7 +17,7 @@ Account Banking Sepa - FSDD (Anticipos de crédito)
     :target: https://github.com/OCA/l10n-spain/tree/13.0/l10n_es_account_banking_sepa_fsdd
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-12-0/l10n-spain-12-0-l10n_es_account_banking_sepa_fsdd
+    :target: https://translation.odoo-community.org/projects/l10n-spain-13-0/l10n-spain-13-0-l10n_es_account_banking_sepa_fsdd
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/189/13.0
