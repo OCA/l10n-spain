@@ -49,7 +49,7 @@
                             name="casilla_07"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
-                            attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('type', '!=', 'C')]}"
+                            attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('statement_type', '!=', 'C')]}"
                         />
                         <field
                             name="casilla_08"
@@ -96,7 +96,6 @@
     <record id="action_l10n_es_aeat_mod123_report" model="ir.actions.act_window">
         <field name="name">Declaración AEAT 123</field>
         <field name="res_model">l10n.es.aeat.mod123.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="help">Crea y consulta las declaraciones del modelo 123 de
             la AEAT.
