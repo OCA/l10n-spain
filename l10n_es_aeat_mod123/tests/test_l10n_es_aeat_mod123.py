@@ -1,5 +1,5 @@
 # Copyright 2017 Creu Blanca
-# License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
+# License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
 import logging
 
@@ -10,7 +10,7 @@ from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
 _logger = logging.getLogger("aeat.123")
 
 
-class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
+class TestL10nEsAeatMod123(TestL10nEsAeatModBase):
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
     debug = False
@@ -21,21 +21,23 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
     }
     taxes_result = {"2": 3 * (100 + 1000), "3": 3 * (19 + 190)}
 
-    def test_model_123(self):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Purchase invoices
-        self._invoice_purchase_create("2017-01-01")
-        self._invoice_purchase_create("2017-01-02")
-        self._invoice_purchase_create("2017-01-03")
-        export_config = self.env.ref(
+        cls._invoice_purchase_create("2017-01-01")
+        cls._invoice_purchase_create("2017-01-02")
+        cls._invoice_purchase_create("2017-01-03")
+        export_config = cls.env.ref(
             "l10n_es_aeat_mod123.aeat_mod123_main_export_config"
         )
-        model123_new = self.env["l10n.es.aeat.mod123.report"].new(
+        cls.model123_new = cls.env["l10n.es.aeat.mod123.report"].new(
             {
-                "name": "9990000000303",
-                "company_id": self.company.id,
+                "name": "9990000000123",
+                "company_id": cls.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -43,18 +45,20 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 "date_start": "2017-01-01",
                 "date_end": "2017-03-31",
                 "export_config_id": export_config.id,
-                "journal_id": self.journal_misc.id,
-                "counterpart_account_id": self.accounts["475000"].id,
+                "journal_id": cls.journal_misc.id,
+                "counterpart_account_id": cls.accounts["475000"].id,
                 "tipo_declaracion": "I",
             }
         )
-        self.assertEqual(model123_new.company_id.id, self.company.id)
+
+    def test_model_123(self):
+        self.assertEqual(self.model123_new.company_id.id, self.company.id)
         self.assertEqual(
-            model123_new.counterpart_account_id.id, self.accounts["475000"].id
+            self.model123_new.counterpart_account_id.id, self.accounts["475000"].id
         )
-        self.assertEqual(model123_new.journal_id.id, self.journal_misc.id)
+        self.assertEqual(self.model123_new.journal_id.id, self.journal_misc.id)
         model123 = self.env["l10n.es.aeat.mod123.report"].create(
-            model123_new._convert_to_write(model123_new._cache)
+            self.model123_new._convert_to_write(self.model123_new._cache)
         )
         _logger.debug("Calculate AEAT 123 1T 2017")
         model123.button_calculate()
