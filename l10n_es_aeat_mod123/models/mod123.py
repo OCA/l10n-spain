@@ -89,7 +89,6 @@ class L10nEsAeatMod123Report(models.Model):
         for report in self:
             report.casilla_08 = report.casilla_06 + report.casilla_07
 
-    @api.multi
     def calculate(self):
         super(L10nEsAeatMod123Report, self).calculate()
         move_lines02 = self.tax_line_ids.filtered(lambda r: r.field_number == 2)
