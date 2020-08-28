@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:55+0000\n"
-"PO-Revision-Date: 2020-03-31 18:14+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2020-08-28 13:00+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -46,17 +46,17 @@ msgstr "AEAT - Client anònim"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_model
 msgid "AEAT Model"
-msgstr "Declaración AEAT"
+msgstr "Model AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "AEAT export configuration line"
-msgstr "Línea de configuración de exportación de la AEAT"
+msgstr "Línia de configuració d'exportació AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_tree
 msgid "AEAT export configurationline"
-msgstr "Línea de configuración de exportación de la AEAT"
+msgstr "Línia de configuració d'exportació AEAT"
 
 #. module: l10n_es_aeat
 #: model:res.groups,name:l10n_es_aeat.group_account_aeat
@@ -82,7 +82,7 @@ msgstr "Informe AEAT"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
 msgid "AEAT report base module"
-msgstr "Módulo base para declaraciones AEAT"
+msgstr "Mòdul base d'informes AEAT"
 
 #. module: l10n_es_aeat
 #: sql_constraint:l10n.es.aeat.report:0
@@ -93,7 +93,7 @@ msgstr "L'identificador de la declaració AEAT ha de ser únic"
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
 msgid "AEAT reports"
-msgstr "Declaraciones AEAT"
+msgstr "Informes AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_move_id
@@ -109,7 +109,7 @@ msgstr "Declaraciones AEAT"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_move_id
 msgid "Account entry"
-msgstr "Entrada cuenta"
+msgstr "Entrada del compte"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_active
@@ -119,17 +119,17 @@ msgstr "Actiu"
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
 msgid "Advanced configuration"
-msgstr "Configuración avanzada"
+msgstr "Configuració avançada"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line_alignment
 msgid "Alignment"
-msgstr "Alineación"
+msgstr "Alineació"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,move_type:0
 msgid "All"
-msgstr "Tots"
+msgstr "Tot"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_allow_posting
@@ -144,7 +144,7 @@ msgstr "Tots"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_allow_posting
 msgid "Allow posting"
-msgstr "Permetre generar assentament"
+msgstr "Permetre publicació"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -154,7 +154,7 @@ msgstr "Alfabètic"
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
 msgid "Alphanumeric"
-msgstr "Alfanumérico"
+msgstr "Alfanumèric"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line_content_float
