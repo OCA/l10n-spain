@@ -31,9 +31,7 @@ class ResPartner(models.Model):
                     args[:index] + ["|", ("comercial", arg[1], arg[2])] + args[index:]
                 )
                 break
-        return super().search(
-            args, offset=offset, limit=limit, order=order, count=count
-        )
+        raise Exception("NOOOO")
 
     @api.model
     def name_search(self, name, args=None, operator="ilike", limit=100):
