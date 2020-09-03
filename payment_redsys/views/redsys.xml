@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- © 2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+	© 2020 César Castañón <cesar.castanon@factorlibre.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl-3). -->
 <odoo>
 
@@ -187,7 +188,7 @@
                 <div class="col-md-1 text-center">
                     <img t-att-src="'/website/image/product.product/%s/image_small/48x48' % ol.product_id.id"/>
                 </div>
-                <div id='product_name' t-attf-class="col-md-{{ '3' if show_discount else '5' }}">
+                <div id="product_name" t-attf-class="col-md-{{ '3' if show_discount else '5' }}">
                     <span t-field="ol.product_id"/>
                 </div>
                 <div class="col-md-2 text-right">
