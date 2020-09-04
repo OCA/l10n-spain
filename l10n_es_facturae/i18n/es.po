@@ -267,7 +267,6 @@ msgstr "Crear archivo de Factura-E"
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_create_facturae
 #, fuzzy
-#| msgid "Create Factura-E file"
 msgid "Create Facturae Wizard"
 msgstr "Crear archivo de Factura-E"
 
@@ -410,14 +409,12 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
 #, fuzzy
-#| msgid "facturae"
 msgid "Facturae"
 msgstr "facturae"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:537
 #, fuzzy, python-format
-#| msgid "Facturae Refund Reason"
 msgid "Facturae Configuration"
 msgstr "Motivo de Reembolso según Facturae"
 
@@ -425,21 +422,18 @@ msgstr "Motivo de Reembolso según Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__facturae_end_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_end_date
 #, fuzzy
-#| msgid "Facturae code"
 msgid "Facturae End Date"
 msgstr "Código de Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_file_date
 #, fuzzy
-#| msgid "Factura-E file"
 msgid "Facturae File Date"
 msgstr "Fichero Factura-E"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_file_reference
 #, fuzzy
-#| msgid "Facturae Refund Reason"
 msgid "Facturae File Reference"
 msgstr "Motivo de Reembolso según Facturae"
 
@@ -492,14 +486,12 @@ msgstr "Motivo de Reembolso según Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_start_date
 #, fuzzy
-#| msgid "Facturae code"
 msgid "Facturae Start Date"
 msgstr "Código de Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_transaction_date
 #, fuzzy
-#| msgid "Facturae code"
 msgid "Facturae Transaction Date"
 msgstr "Código de Facturae"
 
@@ -708,14 +700,12 @@ msgstr "La integración no puede ser actualizada"
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration
 #, fuzzy
-#| msgid "Integration cannot be sent"
 msgid "Integration for an invoice"
 msgstr "La integración no puede ser enviada"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration_method
 #, fuzzy
-#| msgid "Integration Methods"
 msgid "Integration method for invoices"
 msgstr "Métodos de integración"
 
@@ -733,7 +723,6 @@ msgstr "Factura"
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_line
 #, fuzzy
-#| msgid "Invoice"
 msgid "Invoice Line"
 msgstr "Factura"
 
@@ -998,7 +987,6 @@ msgstr "Registrado en REC"
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 #, fuzzy
-#| msgid "Registered on RCF"
 msgid "Registered on RFC"
 msgstr "Registrado en RCF"
 
@@ -1053,7 +1041,6 @@ msgstr "Enviar cancelación"
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 #, fuzzy
-#| msgid "Send"
 msgid "Sended"
 msgstr "Enviar"
 
