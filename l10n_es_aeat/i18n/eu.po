@@ -56,7 +56,6 @@ msgstr "Declaración AEAT"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
 #, fuzzy
-#| msgid "AEAT"
 msgid "AEAT SOAP"
 msgstr "AEAT"
 
@@ -326,7 +325,6 @@ msgstr "Cerrar"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_company
 #, fuzzy
-#| msgid "Company"
 msgid "Companies"
 msgstr "Compañía"
 
@@ -410,7 +408,6 @@ msgstr "Declaraciones confirmadas"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_partner
 #, fuzzy
-#| msgid "Contact data"
 msgid "Contact"
 msgstr "Datos de contacto"
 
@@ -545,7 +542,6 @@ msgstr "Declaraciones borrador"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_end
 #, fuzzy
-#| msgid "To Date"
 msgid "End Date"
 msgstr "Hasta la fecha"
 
@@ -689,7 +685,6 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__folder
 #, fuzzy
-#| msgid "Full Name"
 msgid "Folder Name"
 msgstr "Nombre completo"
 
@@ -1027,7 +1022,6 @@ msgstr "Normal"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction_counter
 #, fuzzy
-#| msgid "Number without decimals"
 msgid "Number of Actions"
 msgstr "Número sin decimales"
 
@@ -1040,7 +1034,6 @@ msgstr "Número de caracteres para los decimales"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
 #, fuzzy
-#| msgid "Number of char for decimals"
 msgid "Number of error"
 msgstr "Número de caracteres para los decimales"
 
@@ -1286,7 +1279,6 @@ msgstr "Ver movimiento"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_start
 #, fuzzy
-#| msgid "Starting date"
 msgid "Start Date"
 msgstr "Fecha inicial"
 
