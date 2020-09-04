@@ -76,6 +76,17 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_invoice_integration__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: code:addons/l10n_es_facturae_face/models/account_invoice_integration.py:81
+#, python-format
+msgid "Company %s cannot be processed"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
@@ -94,6 +105,13 @@ msgstr ""
 #. module: l10n_es_facturae_face
 #: selection:account.invoice.integration,integration_status:0
 msgid "Delivered"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
+#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
+msgid "FACE update Job"
 msgstr ""
 
 #. module: l10n_es_facturae_face
