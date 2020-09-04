@@ -14,7 +14,7 @@ class ResCompany(models.Model):
     @api.constrains('face_email')
     def check_face_email(self):
         for record in self:
-            if not re.match(
+            if record.face_email and not re.match(
                     '(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)',
                     record.face_email):
                 raise ValidationError(_('Invalid facturae email'))
