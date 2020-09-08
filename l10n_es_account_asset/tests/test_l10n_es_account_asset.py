@@ -110,3 +110,35 @@ class TestL10nEsAccountAsset(common.SavepointCase):
             lambda x: x.amount != 3000
         )
         self.assertFalse(lines, "The amount of lines is not correct.")
+
+    def test_assign_profile(self):
+        # direct profile assignation
+        asset = self.asset.copy(
+            {"name": "Test Asset 2", "method_time": "year", "method_percentage": 0}
+        )
+        profile = self.profile.copy(
+            {
+                "name": "Test asset category percentage",
+                "method_time": "percentage",
+                "method_percentage": 20,
+                "method_period": "year",
+            }
+        )
+        self.asset.profile_id = profile
+        self.assertEqual(self.asset.method_time, "percentage")
+        self.assertEqual(self.asset.annual_percentage, 20)
+        # asset creation
+        asset = self.asset.create(
+            {
+                "name": "Test Asset 2",
+                "profile_id": profile.id,
+                "date_start": "2015-01-01",
+                "purchase_value": 30000,
+            }
+        )
+        self.assertEqual(asset.method_time, "percentage")
+        self.assertEqual(asset.annual_percentage, 20)
+        # asset copy
+        asset = self.asset.copy({"profile_id": profile.id})
+        self.assertEqual(asset.method_time, "percentage")
+        self.assertEqual(asset.annual_percentage, 20)

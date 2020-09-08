@@ -14,7 +14,11 @@ class AccountAssetAsset(models.Model):
     _inherit = "account.asset"
 
     annual_percentage = fields.Float(
-        string="Annual depreciation percentage", digits=(3, 8), default=100.0,
+        string="Annual depreciation percentage",
+        digits=(3, 8),
+        compute="_compute_annual_percentage",
+        store=True,
+        readonly=False,
     )
     method_percentage = fields.Float(
         string="Depreciation percentage",
@@ -31,6 +35,11 @@ class AccountAssetAsset(models.Model):
             "Wrong percentage!",
         ),
     ]
+
+    @api.depends("profile_id")
+    def _compute_annual_percentage(self):
+        for asset in self:
+            asset.annual_percentage = asset.profile_id.annual_percentage or 100
 
     @api.depends("annual_percentage", "method_period")
     def _compute_method_percentage(self):
@@ -52,13 +61,6 @@ class AccountAssetAsset(models.Model):
             # Only change amount when significant delta
             if float_compare(new_percentage, self.annual_percentage, 2) != 0:
                 self.annual_percentage = new_percentage
-
-    @api.onchange("profile_id")
-    def _onchange_profile_id(self):
-        res = super()._onchange_profile_id()
-        if self.profile_id:
-            self.method_percentage = self.profile_id.method_percentage
-        return res
 
     def _get_depreciation_stop_date(self, depreciation_start_date):
         """Compute stop date for the added method 'Percentage'."""
