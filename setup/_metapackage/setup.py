@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_account_banking_sepa_fsdd',
         'odoo13-addon-l10n_es_aeat',
         'odoo13-addon-l10n_es_aeat_mod111',
+        'odoo13-addon-l10n_es_aeat_mod115',
         'odoo13-addon-l10n_es_aeat_mod303',
         'odoo13-addon-l10n_es_aeat_mod347',
         'odoo13-addon-l10n_es_dua',
