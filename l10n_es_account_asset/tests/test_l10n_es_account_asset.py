@@ -95,3 +95,10 @@ class TestL10nEsAccountAsset(common.SavepointCase):
         lines = self.asset.depreciation_line_ids[1:].filtered(
             lambda x: x.amount != 3000)
         self.assertFalse(lines, "The amount of lines is not correct.")
+
+    def test_asset_other_method(self):
+        """Test for regression detected using other time methods."""
+        self.asset.method_time = "year"
+        self.asset.method_number = 8
+        self.asset.compute_depreciation_board()
+        self.assertEqual(len(self.asset.depreciation_line_ids), 9)
