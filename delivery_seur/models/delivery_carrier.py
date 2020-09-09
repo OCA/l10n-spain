@@ -220,7 +220,7 @@ class DeliveryCarrier(models.Model):
             'clavePortes': 'F',
             'clavePod': '',
             'claveReembolso': 'F',
-            'valorReembolso': 1,
+            'valorReembolso': '',
             'libroControl': '',
             'nombre_consignatario': partner.name,
             'direccion_consignatario': ' '.join([
