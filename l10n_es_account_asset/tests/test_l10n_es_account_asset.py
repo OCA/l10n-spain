@@ -142,3 +142,10 @@ class TestL10nEsAccountAsset(common.SavepointCase):
         asset = self.asset.copy({"profile_id": profile.id})
         self.assertEqual(asset.method_time, "percentage")
         self.assertEqual(asset.annual_percentage, 20)
+
+    def test_asset_other_method(self):
+        """Test for regression detected using other time methods."""
+        self.asset.method_time = "year"
+        self.asset.method_number = 8
+        self.asset.compute_depreciation_board()
+        self.assertEqual(len(self.asset.depreciation_line_ids), 9)
