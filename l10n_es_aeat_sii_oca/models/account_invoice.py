@@ -85,13 +85,17 @@ class AccountInvoice(models.Model):
         'in_refund': 'SuministroFactRecibidas',
     }
 
+    def _get_default_type(self):
+        context = self.env.context
+        return context.get('type', context.get("default_type"))
+
     def _default_sii_refund_type(self):
-        inv_type = self.env.context.get('type')
+        inv_type = self._get_default_type()
         return 'I' if inv_type in ['out_refund', 'in_refund'] else False
 
     def _default_sii_registration_key(self):
         sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
-        invoice_type = self.env.context.get('type')
+        invoice_type = self._get_default_type()
         if invoice_type in ['in_invoice', 'in_refund']:
             key = sii_key_obj.search(
                 [('code', '=', '01'), ('type', '=', 'purchase')], limit=1)
