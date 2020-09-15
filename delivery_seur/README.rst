@@ -71,6 +71,11 @@ Contributors
 * `FactorLibre <https://www.factorlibre.com>`_:
     * Zahra Velasco <zahra.velasco@factorlibre.com>
 
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+    * Pedro M. Baeza
+    * David Vidal
+
 Maintainers
 ~~~~~~~~~~~
 

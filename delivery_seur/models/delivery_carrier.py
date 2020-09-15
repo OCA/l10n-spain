@@ -6,6 +6,7 @@ import logging
 
 from lxml import etree
 from odoo import _, api, exceptions, fields, models
+from odoo.modules.registry import Registry
 
 _logger = logging.getLogger(__name__)
 
@@ -174,7 +175,13 @@ class DeliveryCarrier(models.Model):
         response = cli[method](**data)
         trace('Request', history.last_sent)
         trace('Response', history.last_received)
-        return helpers.serialize_object(response, dict)
+        response = helpers.serialize_object(response, dict)
+        # Add the history to the response so we are able to use it
+        response.update({
+            'seur_last_request': history.last_sent,
+            'seur_last_response': history.last_received,
+        })
+        return response
 
     def seur_test_connection(self):
         self.ensure_one()
@@ -210,6 +217,10 @@ class DeliveryCarrier(models.Model):
             'producto': self.seur_product_code,
             'cod_centro': '',
             'total_bultos': picking.number_of_packages or 1,
+            # The item pricelists in SEUR begin in a range o >1kg. So any item
+            # below that weight will be invoiced with a minimum of 1kg.
+            # http://ayuda.seur.com
+            # /faq/tamano-peso-de-los-paquetes-a-enviar-a-traves-de-seur-com
             'total_kilos': picking.shipping_weight or 1,
             'pesoBulto': ((
                 picking.shipping_weight / picking.number_of_packages or 1)
@@ -289,7 +300,24 @@ class DeliveryCarrier(models.Model):
                     'in7': 'odoo',
                 }
             )
-        if res['mensaje'] == 'ERROR':
+        # The error message could be more complex than a simple 'ERROR' sting.
+        # For example, if there's wrong address info, it will return an
+        # xml with the API error.
+        # Perform this in a new cursor for always being written no
+        # matter if the main cursor is rolled-back
+        new_cr = Registry(self.env.cr.dbname).cursor()
+        env = api.Environment(new_cr, self.env.uid, self.env.context)
+        picking_new = env["stock.picking"].browse(picking.id)
+        picking_new.write({
+            "seur_last_request": res.get("seur_last_request", False),
+            "seur_last_response": res.get("seur_last_response", False),
+        })
+        new_cr.commit()
+        new_cr.close()
+        error = (
+            res['mensaje'] == 'ERROR' or
+            not res.get('ECB', {}).get('string', []))
+        if error:
             raise exceptions.UserError(
                 _('SEUR exception: %s') % res['mensaje'])
         picking.carrier_tracking_ref = res['ECB']['string'][0]
