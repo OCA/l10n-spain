@@ -58,7 +58,7 @@ msgid "COURIER"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:381
+#: code:addons/delivery_seur/models/delivery_carrier.py:409
 #, python-format
 msgid "Cancel SEUR shipment (%s): %s"
 msgstr "Cancelar envío SEUR (%s): %s"
@@ -159,6 +159,16 @@ msgid "Label size"
 msgstr "Tamaño de etiqueta"
 
 #. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_request
+msgid "Last SEUR xml request"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_response
+msgid "Last SEUR xml response"
+msgstr ""
+
+#. module: delivery_seur
 #: selection:delivery.carrier,seur_service_code:0
 msgid "MARITIMO"
 msgstr ""
@@ -244,7 +254,12 @@ msgid "SEUR 8:30"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:294
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_picking_withcarrier_out_form
+msgid "SEUR Technical"
+msgstr ""
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:322
 #, python-format
 msgid "SEUR exception: %s"
 msgstr "SEUR excepción: %s"
@@ -275,7 +290,7 @@ msgid "Seur Cit Password"
 msgstr "Seur contraseña CIT"
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:317
+#: code:addons/delivery_seur/models/delivery_carrier.py:345
 #, python-format
 msgid "Status cannot be checked, enter webservice carrier credentials"
 msgstr ""
@@ -298,10 +313,21 @@ msgid "This feature has delivery cost"
 msgstr "Esta funcionalidad tiene coste de envío"
 
 #. module: delivery_seur
+#: model:ir.model,name:delivery_seur.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_password
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_username
 msgid "Used for cit.seur.com webservice (generate labels)"
 msgstr "Usado por el WebService cit.seur.com (generar etiquetas)"
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_request
+#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_response
+msgid "Used for issues debugging"
+msgstr ""
 
 #. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_ws_password
@@ -357,6 +383,3 @@ msgstr ""
 
 #~ msgid "Pricing"
 #~ msgstr "Precios"
-
-#~ msgid "Transfer"
-#~ msgstr "Transferir"
