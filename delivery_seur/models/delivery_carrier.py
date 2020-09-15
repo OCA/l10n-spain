@@ -211,9 +211,9 @@ class DeliveryCarrier(models.Model):
             'cod_centro': '',
             'total_bultos': picking.number_of_packages or 1,
             'total_kilos': picking.shipping_weight or 1,
-            # According API documentation, it's the total weight, not the
-            # package one
-            'pesoBulto': picking.shipping_weight or 1,
+            'pesoBulto': ((
+                picking.shipping_weight / picking.number_of_packages or 1)
+                or 1),
             'observaciones': picking.note,
             'referencia_expedicion': picking.name,
             'ref_bulto': '',
