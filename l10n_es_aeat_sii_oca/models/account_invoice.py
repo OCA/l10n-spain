@@ -880,6 +880,7 @@ class AccountInvoice(models.Model):
                 'BaseRectificada',
                 'CuotaRectificada',
                 'CuotaDeducible',
+                'ImporteCompensacionREAGYP',
             ],
         )
         return inv_dict
