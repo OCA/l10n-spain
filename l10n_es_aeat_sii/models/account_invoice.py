@@ -396,13 +396,14 @@ class AccountInvoice(models.Model):
             tax_type = abs(tax.amount)
         tax_dict = {
             'TipoImpositivo': str(tax_type),
-            'BaseImponible': sign * abs(round(tax_line.base_company, 2)),
+            'BaseImponible': sign * tax_line.base_company,
         }
         if self.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
-        tax_dict[key] = sign * abs(round(tax_line.amount_company, 2))
+
+        tax_dict[key] = sign * tax_line.amount_company
         # Recargo de equivalencia
         re_tax_line = self._get_sii_tax_line_req(tax)
         if re_tax_line:
@@ -410,7 +411,7 @@ class AccountInvoice(models.Model):
                 abs(re_tax_line.tax_id.amount)
             )
             tax_dict['CuotaRecargoEquivalencia'] = (
-                sign * abs(round(re_tax_line.amount_company, 2))
+                sign * re_tax_line.amount_company
             )
         return tax_dict
 
@@ -668,17 +669,14 @@ class AccountInvoice(models.Model):
                 sfrs_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
-                sfrs_dict['DetalleIVA'].append(
-                    self._get_sii_tax_dict(tax_line, sign),
-                )
-                tax_amount += abs(round(tax_line.amount_company, 2))
-            elif tax in taxes_sfrns:
-                sfrns_dict = taxes_dict.setdefault(
-                    'DesgloseIVA', {'DetalleIVA': []},
-                )
-                sfrns_dict['DetalleIVA'].append({
-                    'BaseImponible': sign * tax_line.base_company,
-                })
+            else:
+                continue
+            tax_dict = self._get_sii_tax_dict(tax_line, sign)
+            if tax in taxes_sfrisp + taxes_sfrs:
+                tax_amount += tax_line.amount_company
+            if tax in taxes_sfrns:
+                tax_dict.pop("TipoImpositivo")
+                tax_dict.pop("CuotaSoportada")
             elif tax in taxes_sfrsa:
                 sfrsa_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
