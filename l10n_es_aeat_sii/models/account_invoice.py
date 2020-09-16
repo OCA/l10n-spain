@@ -425,13 +425,13 @@ class AccountInvoice(models.Model):
             tax_type = abs(tax.amount)
         tax_dict = {
             'TipoImpositivo': str(tax_type),
-            'BaseImponible': sign * abs(tax_line.base_company),
+            'BaseImponible': sign * tax_line.base_company,
         }
         if self.type in ['out_invoice', 'out_refund']:
             key = 'CuotaRepercutida'
         else:
             key = 'CuotaSoportada'
-        tax_dict[key] = sign * abs(tax_line.amount_company)
+        tax_dict[key] = sign * tax_line.amount_company
         # Recargo de equivalencia
         re_tax_line = self._get_sii_tax_line_req(tax)
         if re_tax_line:
@@ -439,7 +439,7 @@ class AccountInvoice(models.Model):
                 abs(re_tax_line.tax_id.amount)
             )
             tax_dict['CuotaRecargoEquivalencia'] = (
-                sign * abs(re_tax_line.amount_company)
+                sign * re_tax_line.amount_company
             )
         return tax_dict
 
@@ -640,7 +640,7 @@ class AccountInvoice(models.Model):
                 continue
             tax_dict = self._get_sii_tax_dict(tax_line, sign)
             if tax in taxes_sfrisp + taxes_sfrs:
-                tax_amount += abs(tax_line.amount_company)
+                tax_amount += tax_line.amount_company
             if tax in taxes_sfrns:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
