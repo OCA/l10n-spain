@@ -1385,9 +1385,6 @@ class AccountInvoice(models.Model):
             res['sii_refund_type'] = sii_refund_type
         if supplier_invoice_number_refund:
             res['reference'] = supplier_invoice_number_refund
-        if res['type'] == 'out_refund':
-            res['sii_refund_specific_invoice_type'] = 'R1'
-
         return res
 
     @api.multi
