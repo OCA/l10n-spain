@@ -80,6 +80,10 @@
                         <field name="facturae_file_date" attrs="{'readonly': [('invoice_state', '!=', 'draft')]}"/>
                     </group>
                     <group>
+                        <field name="facturae_delivery_note_number" attrs="{'readonly': [('invoice_state', '!=', 'draft')]}"/>
+                        <field name="facturae_delivery_note_date" attrs="{'readonly': [('invoice_state', '!=', 'draft')]}"/>
+                    </group>
+                    <group>
                         <field name="facturae_start_date" attrs="{'readonly': [('invoice_state', '!=', 'draft')]}"/>
                         <field name="facturae_end_date" attrs="{'readonly': [('invoice_state', '!=', 'draft')]}"/>
                     </group>
