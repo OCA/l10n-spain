@@ -10,7 +10,7 @@ class ComputeVatProrrate(models.TransientModel):
     _description = "Wizard for computing VAT prorrate"
 
     def _default_year(self):
-        return int(fields.Date.today()[:4])
+        return int(fields.Date.today().year)
 
     year = fields.Integer(
         required=True,
