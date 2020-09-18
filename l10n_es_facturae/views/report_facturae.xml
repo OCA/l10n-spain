@@ -269,7 +269,12 @@
                             <FileReference t-length="20" t-if="line.facturae_file_reference" t-esc="line.facturae_file_reference"/>
                             <FileDate  t-if="line.facturae_file_date" t-esc="line.facturae_file_date"/>
                             <SequenceNumber t-if="False"/>
-                            <DeliveryNotesReferences t-if="False"/>
+                            <DeliveryNotesReferences t-if="line.facturae_delivery_note_number">
+                                <DeliveryNote>
+                                    <DeliveryNoteNumber t-length="30" t-if="line.facturae_delivery_note_number" t-esc="line.facturae_delivery_note_number"/>
+                                    <DeliveryNoteDate t-if="line.facturae_delivery_note_date" t-esc="line.facturae_delivery_note_date"/>
+                                </DeliveryNote>
+                            </DeliveryNotesReferences>
                             <ItemDescription t-length="2500" t-esc="line.name"/>
                             <Quantity t-esc="line.quantity"/>
                             <UnitOfMeasure t-if="False"/>

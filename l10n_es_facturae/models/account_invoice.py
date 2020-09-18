@@ -506,6 +506,8 @@ class AccountInvoiceLine(models.Model):
     facturae_issuer_transaction_date = fields.Date()
     facturae_file_reference = fields.Char()
     facturae_file_date = fields.Date()
+    facturae_delivery_note_number = fields.Char()
+    facturae_delivery_note_date = fields.Date()
     facturae_start_date = fields.Date()
     facturae_end_date = fields.Date()
     facturae_transaction_date = fields.Date()
