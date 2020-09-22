@@ -232,7 +232,7 @@ class DeliveryCarrier(models.Model):
             'claveReembolso': 'F',
             'valorReembolso': '',
             'libroControl': '',
-            'nombre_consignatario': partner.name,
+            'nombre_consignatario': partner.display_name,
             'direccion_consignatario': ' '.join([
                 s for s in [partner.street, partner.street2] if s]),
             'tipoVia_consignatario': '',
