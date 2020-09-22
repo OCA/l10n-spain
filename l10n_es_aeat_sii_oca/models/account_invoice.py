@@ -579,47 +579,29 @@ class AccountInvoice(models.Model):
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
             if tax in taxes_sfrisp:
-                isp_dict = taxes_dict.setdefault(
+                base_dict = taxes_dict.setdefault(
                     'InversionSujetoPasivo', {'DetalleIVA': []},
                 )
-                isp_dict['DetalleIVA'].append(
-                    self._get_sii_tax_dict(tax_line, sign),
-                )
-                tax_amount += abs(tax_line.amount_company)
-            elif tax in taxes_sfrs:
-                sfrs_dict = taxes_dict.setdefault(
+            elif tax in taxes_sfrs + taxes_sfrns + taxes_sfrsa + taxes_sfrnd:
+                base_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
                 )
-                sfrs_dict['DetalleIVA'].append(
-                    self._get_sii_tax_dict(tax_line, sign),
-                )
+            else:
+                continue
+            tax_dict = self._get_sii_tax_dict(tax_line, sign)
+            if tax in taxes_sfrisp + taxes_sfrs:
                 tax_amount += abs(tax_line.amount_company)
             elif tax in taxes_sfrns:
-                sfrns_dict = taxes_dict.setdefault(
-                    'DesgloseIVA', {'DetalleIVA': []},
-                )
-                sfrns_dict['DetalleIVA'].append({
-                    'BaseImponible': sign * tax_line.base_company,
-                })
+                tax_dict.pop("TipoImpositivo")
+                tax_dict.pop("CuotaSoportada")
             elif tax in taxes_sfrsa:
-                sfrsa_dict = taxes_dict.setdefault(
-                    'DesgloseIVA', {'DetalleIVA': []},
-                )
-                tax_dict = self._get_sii_tax_dict(tax_line, sign)
                 tax_dict['PorcentCompensacionREAGYP'] = tax_dict.pop(
                     'TipoImpositivo'
                 )
                 tax_dict['ImporteCompensacionREAGYP'] = tax_dict.pop(
                     'CuotaSoportada'
                 )
-                sfrsa_dict['DetalleIVA'].append(tax_dict)
-            elif tax in taxes_sfrnd:
-                sfrnd_dict = taxes_dict.setdefault(
-                    'DesgloseIVA', {'DetalleIVA': []},
-                )
-                sfrnd_dict['DetalleIVA'].append(
-                    self._get_sii_tax_dict(tax_line, sign),
-                )
+            base_dict['DetalleIVA'].append(tax_dict)
         return taxes_dict, tax_amount
 
     @api.multi
