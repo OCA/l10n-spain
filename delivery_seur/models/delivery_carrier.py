@@ -6,7 +6,6 @@ import logging
 
 from lxml import etree
 from odoo import _, api, exceptions, fields, models
-from odoo.modules.registry import Registry
 
 _logger = logging.getLogger(__name__)
 
@@ -303,40 +302,38 @@ class DeliveryCarrier(models.Model):
         # The error message could be more complex than a simple 'ERROR' sting.
         # For example, if there's wrong address info, it will return an
         # xml with the API error.
-        # Perform this in a new cursor for always being written no
-        # matter if the main cursor is rolled-back
-        new_cr = Registry(self.env.cr.dbname).cursor()
-        env = api.Environment(new_cr, self.env.uid, self.env.context)
-        picking_new = env["stock.picking"].browse(picking.id)
-        picking_new.write({
-            "seur_last_request": res.get("seur_last_request", False),
-            "seur_last_response": res.get("seur_last_response", False),
-        })
-        new_cr.commit()
-        new_cr.close()
-        error = (
-            res['mensaje'] == 'ERROR' or
-            not res.get('ECB', {}).get('string', []))
-        if error:
-            raise exceptions.UserError(
-                _('SEUR exception: %s') % res['mensaje'])
-        picking.carrier_tracking_ref = res['ECB']['string'][0]
-        if self.seur_label_format == 'txt':
-            label_content = base64.b64encode(
-                res['traza'].replace('CI10', 'CI28'))
-        else:
-            label_content = res['PDF']
-        self.env['ir.attachment'].create({
-            'name': 'SEUR %s' % picking.carrier_tracking_ref,
-            'datas': label_content,
-            'datas_fname': 'seur_%s.%s' % (
-                picking.carrier_tracking_ref, self.seur_label_format),
-            'res_model': 'stock.picking',
-            'res_id': picking.id,
-            'mimetype': 'application/%s' % self.seur_label_format,
-        })
-        res['tracking_number'] = picking.carrier_tracking_ref
-        res['exact_price'] = 0
+        seur_last_request = res.get("seur_last_request", False)
+        seur_last_response = res.get("seur_last_response", False)
+        try:
+            error = (
+                res['mensaje'] == 'ERROR' or
+                not res.get('ECB', {}).get('string', []))
+            if error:
+                raise exceptions.UserError(
+                    _('SEUR exception: %s') % res['mensaje'])
+            picking.carrier_tracking_ref = res['ECB']['string'][0]
+            if self.seur_label_format == 'txt':
+                label_content = base64.b64encode(
+                    res['traza'].replace('CI10', 'CI28'))
+            else:
+                label_content = res['PDF']
+            self.env['ir.attachment'].create({
+                'name': 'SEUR %s' % picking.carrier_tracking_ref,
+                'datas': label_content,
+                'datas_fname': 'seur_%s.%s' % (
+                    picking.carrier_tracking_ref, self.seur_label_format),
+                'res_model': 'stock.picking',
+                'res_id': picking.id,
+                'mimetype': 'application/%s' % self.seur_label_format,
+            })
+            res['tracking_number'] = picking.carrier_tracking_ref
+            res['exact_price'] = 0
+        # We'll write on the picking no matter what
+        finally:
+            picking.write({
+                "seur_last_request": seur_last_request,
+                "seur_last_response": seur_last_response,
+            })
         return res
 
     def seur_tracking_state_update(self, picking):
