@@ -560,6 +560,16 @@ class AccountInvoice(models.Model):
             del taxes_dict['DesgloseFactura']
         return taxes_dict
 
+    @api.model
+    def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
+        """Helper method for merging values in an existing tax dictionary."""
+        for existing_dict in vat_list:
+            if existing_dict[comp_key] == tax_dict[comp_key]:
+                for key in merge_keys:
+                    existing_dict[key] += tax_dict[key]
+                return True
+        return False
+
     @api.multi
     def _get_sii_in_taxes(self):
         """Get the taxes for purchase invoices.
@@ -591,9 +601,10 @@ class AccountInvoice(models.Model):
             tax_dict = self._get_sii_tax_dict(tax_line, sign)
             if tax in taxes_sfrisp + taxes_sfrs:
                 tax_amount += abs(tax_line.amount_company)
-            elif tax in taxes_sfrns:
+            if tax in taxes_sfrns:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
+                base_dict['DetalleIVA'].append(tax_dict)
             elif tax in taxes_sfrsa:
                 tax_dict['PorcentCompensacionREAGYP'] = tax_dict.pop(
                     'TipoImpositivo'
@@ -601,7 +612,13 @@ class AccountInvoice(models.Model):
                 tax_dict['ImporteCompensacionREAGYP'] = tax_dict.pop(
                     'CuotaSoportada'
                 )
-            base_dict['DetalleIVA'].append(tax_dict)
+                base_dict['DetalleIVA'].append(tax_dict)
+            else:
+                if not self._merge_tax_dict(
+                    base_dict['DetalleIVA'], tax_dict, "TipoImpositivo",
+                    ["BaseImponible", "CuotaSoportada"]
+                ):
+                    base_dict['DetalleIVA'].append(tax_dict)
         return taxes_dict, tax_amount
 
     @api.multi
