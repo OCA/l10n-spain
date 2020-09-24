@@ -1,9 +1,9 @@
-# Copyright 2017-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2017-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 {
     'name': 'AEAT modelo 390',
-    'version': '12.0.2.4.0',
+    'version': '12.0.2.5.0',
     'category': "Localisation/Accounting",
     'author': "Tecnativa, "
               "Odoo Community Association (OCA)",
