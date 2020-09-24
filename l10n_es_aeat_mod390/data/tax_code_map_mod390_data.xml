@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+<!-- Copyright 2017-2020 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
 
@@ -885,7 +885,7 @@
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="False"/>
-        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0')])]"/>
+        <field name="tax_ids" eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0'), ref('l10n_es.account_tax_template_s_iva0_ns')])]"/>
     </record>
 
     <record id="aeat_mod390_map_line_102" model="l10n.es.aeat.map.tax.line">
