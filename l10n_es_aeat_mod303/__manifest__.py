@@ -2,12 +2,12 @@
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-# Copyright 2014-2018 Tecnativa - Pedro M. Baeza
+# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
 {
     "name": "AEAT modelo 303",
-    "version": "11.0.2.6.0",
+    "version": "11.0.2.7.0",
     "category": "Accounting",
     "author": "Guadaltech,"
               "AvanzOSC,"
