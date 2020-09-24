@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_promissory_note_report_bkia_a4"
+            model="account.payment.check.report">
+        <field name="name">Bankia Promissory Note</field>
+        <field name="report">account_promissory_note_bankia.promissory_footer_bkia</field>
+    </record>
+
+</odoo>
