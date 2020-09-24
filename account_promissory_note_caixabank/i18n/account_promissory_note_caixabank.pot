@@ -1,0 +1,45 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_promissory_note_caixabank
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_promissory_note_caixabank
+#: model_terms:ir.ui.view,arch_db:account_promissory_note_caixabank.promissory_footer_cb
+msgid "<span>de</span>"
+msgstr ""
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_report_account_promissory_note_caixabank_promissory_footer_cb__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_report_account_promissory_note_caixabank_promissory_footer_cb__id
+msgid "ID"
+msgstr ""
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model.fields,field_description:account_promissory_note_caixabank.field_report_account_promissory_note_caixabank_promissory_footer_cb____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: account_promissory_note_caixabank
+#: model:ir.actions.report,name:account_promissory_note_caixabank.action_report_promissory_footer_cb
+msgid "Payment Promissory Note Caixa Bank"
+msgstr ""
+
+#. module: account_promissory_note_caixabank
+#: model:ir.model,name:account_promissory_note_caixabank.model_report_account_promissory_note_caixabank_promissory_footer_cb
+msgid "report.account_promissory_note_caixabank.promissory_footer_cb"
+msgstr ""
+
