@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="promissory_footer_bkia" inherit_id="account_check_printing_report_base.report_check_base_a4" primary="True">
+        <xpath expr="//div[@id='check_body']" position="after">
+            <div style="font-size:12px;">
+                <!-- TODO: set due date -->
+                <t t-set="due_date" t-value="o.date_due"/>
+                <div style="position:absolute; left:58mm; top:238mm;">
+                    <span t-field="o.date_due" t-options="{'format': 'd'}"/>
+                </div>
+                <div style="position:absolute; left:72mm; top:238mm;">
+                    <span t-field="o.date_due" t-options="{'format': 'MMMM'}"/>
+                </div>
+                <div style="position:absolute; left:108mm; top:238mm;">
+                    <span t-field="o.date_due" t-options="{'format': 'YYYY'}"/>
+                </div>
+                <div>
+                    <span style="position:absolute; top:238mm; left:148mm;" t-esc="o.amount"
+                          t-options="{'widget': 'float', 'precision': 2}"/>
+                </div>
+                <div>
+                    <span style="position:absolute; top:246mm; left:50mm;" t-field="o.partner_id.name"/>
+                </div>
+                <div style="position:absolute; left:48mm; top:250mm">
+                    <strong><span t-esc="fill_stars(num2words(o.amount))"/></strong>
+                </div>
+                <div>
+                    <div style="position:absolute; top:259mm; left:132mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'd'}"/>
+                    </div>
+                    <div style="position:absolute; top:259mm; left:146mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'MMMM'}"/>
+                    </div>
+                    <div style="position:absolute; top:259mm; left:195mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'YY'}"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
