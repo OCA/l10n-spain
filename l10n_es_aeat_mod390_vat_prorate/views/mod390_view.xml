@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="l10n_es_aeat_mod390_prorrata_form">
+            <field name="name">l10n.es.aeat.mod390.prorrata.form</field>
+            <field name="model">l10n.es.aeat.mod390.report</field>
+            <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="vat_prorate_type" />
+                    <label
+                        for="vat_prorate_percent"
+                        attrs="{'invisible': [('vat_prorate_type', '!=', 'G')]}"
+                    />
+                    <div class="oe_inline" attrs="{'invisible': [('vat_prorate_type', '!=', 'G')]}">
+                        <field
+                            name="vat_prorate_percent"
+                            attrs="{'required': [('vat_prorate_type', '=', 'G')]}"
+                            class="oe_inline"
+                        />
+                    </div>
+                </field>
+                <group name="group_declaration" position="after">
+                    <notebook>
+                        <page string="Actividades (prorratas)" name="prorate_ids" attrs="{'invisible': ['|', ('state', '!=', 'calculated'), ('vat_prorate_type', '=', 'none')]}">
+                            <field name="prorate_ids">
+                                <tree editable="bottom">
+                                    <field name="activity" />
+                                    <field name="cnae" />
+                                    <field name="amount" sum="Suma importe total de las operaciones" attrs="{'readonly': [('parent.state', '!=', 'calculated')]}" />
+                                    <field name="amount_deductable" sum="Suma import de las operaciones con derecho a deduccion" attrs="{'readonly': [('parent.state', '!=', 'calculated')]}" />
+                                    <field name="prorate_type" />
+                                    <field name="percent" sum="Suma %" attrs="{'invisible': [('prorate_type', '!=', 'G')]}" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>
