@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+    <report
+        id="action_report_promissory_footer_bkia"
+        model="account.payment"
+        string="Payment Promissory Note Bankia"
+        report_type="qweb-pdf"
+        name="account_promissory_note_bankia.promissory_footer_bkia"
+        file="account_promissory_note_bankia.promissory_footer_bkia"
+        paperformat="account_check_printing_report_base.paperformat_euro_no_margin"
+    />
+</odoo>
