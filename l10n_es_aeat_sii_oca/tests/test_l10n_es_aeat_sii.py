@@ -39,6 +39,26 @@ def _deep_sort(obj):
 
 
 class TestL10nEsAeatSiiBase(common.SavepointCase):
+
+    @classmethod
+    def _get_or_create_tax(cls, xml_id, name, tax_type, percentage, account):
+        tax = cls.env.ref("l10n_es." + xml_id, raise_if_not_found=False)
+        if not tax:
+            tax = cls.env['account.tax'].create({
+                'name': name,
+                'type_tax_use': tax_type,
+                'amount_type': 'percent',
+                'amount': percentage,
+                'account_id': account.id,
+            })
+            cls.env['ir.model.data'].create({
+                'module': 'l10n_es',
+                'name': xml_id,
+                'model': tax._name,
+                'res_id': tax.id,
+            })
+        return tax
+
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsAeatSiiBase, cls).setUpClass()
@@ -68,24 +88,11 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
         })
         cls.company = cls.env.user.company_id
         xml_id = '%s_account_tax_template_p_iva10_bc' % cls.company.id
-        cls.tax = cls.env.ref('l10n_es.' + xml_id, raise_if_not_found=False)
-        if not cls.tax:
-            cls.tax = cls.env['account.tax'].create({
-                'name': 'Test tax 10%',
-                'type_tax_use': 'purchase',
-                'amount_type': 'percent',
-                'amount': '10',
-                'account_id': cls.account_tax.id,
-            })
-            cls.env['ir.model.data'].create({
-                'module': 'l10n_es',
-                'name': xml_id,
-                'model': cls.tax._name,
-                'res_id': cls.tax.id,
-            })
+        cls.tax = cls._get_or_create_tax(
+            xml_id, "Test tax 10%", "purchase", 10, cls.account_tax)
         irpf_xml_id = '%s_account_tax_template_p_irpf19' % cls.company.id
-        cls.tax = cls.env.ref('l10n_es.' + xml_id, raise_if_not_found=False)
-        cls.tax_irpf19 = cls.env.ref('l10n_es.' + irpf_xml_id)
+        cls.tax_irpf19 = cls._get_or_create_tax(
+            irpf_xml_id, "IRPF 19%", "purchase", -19, cls.account_tax)
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
@@ -378,13 +385,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             invoice._sii_check_exceptions()
 
     def test_importe_total_when_supplier_invoice_with_irpf(self):
-        # 1/ tener una factura con líneas con retención e iva
-        # 2/ obtener con get_dict_in los valores a enviar al sii
-        # 3/ comprobar el valor de ImporteTotal es igual al estimado
-        # 1
-        amount_base = 100
-        amount_tax = 10
-        amount_to_communicate_sii = amount_base + amount_tax
         invoice = self.env['account.invoice'].create({
             'partner_id': self.partner.id,
             'date_invoice': '2018-02-01',
@@ -398,18 +398,16 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                     'account_id': self.account_expense.id,
                     'account_analytic_id': self.analytic_account.id,
                     'name': 'Test line with irpf and iva',
-                    'price_unit': amount_base,
+                    'price_unit': 100,
                     'quantity': 1,
                     'invoice_line_tax_ids': [
                         (6, 0, self.tax.ids + self.tax_irpf19.ids)],
                 })],
             'sii_manual_description': '/',
         })
-        # 2
         invoices = invoice._get_sii_invoice_dict()
         importe_total = invoices['FacturaRecibida']['ImporteTotal']
-        # 3
-        self.assertEqual(amount_to_communicate_sii, importe_total)
+        self.assertEqual(110, importe_total)
 
     def test_unlink_invoice_when_sent_to_sii(self):
         self.invoice.sii_state = 'sent'
