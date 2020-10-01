@@ -1,7 +1,7 @@
 # Copyright 2013 Alberto Martín Cortada (Guadaltech)
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
-# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
+# Copyright 2017 ForgeFlow, S.L.
 # Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
@@ -12,7 +12,7 @@
     "author": "Guadaltech,"
     "AvanzOSC,"
     "Tecnativa,"
-    "Eficent,"
+    "ForgeFlow,"
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
