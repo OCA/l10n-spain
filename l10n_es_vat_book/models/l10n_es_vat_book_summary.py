@@ -1,7 +1,6 @@
 # Copyright 2017 Praxya (http://praxya.com/)
 #                Daniel Rodriguez Lijo <drl.9319@gmail.com>
-# Copyright 2017 Eficent Business and IT Consulting Services, S.L.
-#                <contact@eficent.com>
+# Copyright 2017 ForgeFlow, S.L. <contact@forgeflow.com>
 # Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 
