@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Sygel - Valentin Vinagre
+     Copyright 2020 Tecnativa - Pedro M. Baeza
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="invoice_sii_form" model="ir.ui.view">
         <field name="name">account.invoice.sii.form</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
+        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]" />
         <field name="arch" type="xml">
             <button name="button_draft" position="after">
                 <button
@@ -32,14 +34,12 @@
                 <page
                     string="SII"
                     name="page_sii"
-                    groups="account.group_account_invoice"
                     attrs="{'invisible': [('sii_enabled', '=', False)]}"
                 >
                     <group string="SII Information" name="group_sii_information">
-                        <field name="sii_description_method" invisible="1" />
                         <field
                             name="sii_description"
-                            attrs="{'required': [('sii_enabled', '=', True)], 'readonly': [('sii_description_method', '!=', 'manual')]}"
+                            attrs="{'required': [('sii_enabled', '=', True)]}"
                         />
                         <field
                             name="sii_refund_type"
