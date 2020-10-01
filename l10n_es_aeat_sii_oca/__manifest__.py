@@ -16,35 +16,22 @@
     "category": "Accounting & Finance",
     "website": "https://odoospain.odoo.com",
     "author": "Acysos S.L.,"
-              "Diagram,"
-              "Minorisa,"
-              "Studio73,"
-              "FactorLibre,"
-              "Comunitea,"
-              "Otherway,"
-              "Tecnativa,"
-              "Javi Melendez,"
-              "Odoo Community Association (OCA)",
+    "Diagram,"
+    "Minorisa,"
+    "Studio73,"
+    "FactorLibre,"
+    "Comunitea,"
+    "Otherway,"
+    "Tecnativa,"
+    "Javi Melendez,"
+    "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "development_status": "Production/Stable",
-    "maintainers": [
-        'pedrobaeza',
-    ],
-    "external_dependencies": {
-        "python": [
-            "zeep",
-            "requests",
-            "OpenSSL",
-        ],
-    },
-    "depends": [
-        "account_invoice_refund_link",
-        "l10n_es",
-        "l10n_es_aeat",
-        "queue_job",
-    ],
+    "maintainers": ["pedrobaeza"],
+    "external_dependencies": {"python": ["zeep", "requests", "OpenSSL"]},
+    "depends": ["account_invoice_refund_link", "l10n_es", "l10n_es_aeat", "queue_job"],
     "data": [
         "data/ir_config_parameter.xml",
         "data/aeat_sii_tax_agency_data.xml",
