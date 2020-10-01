@@ -454,14 +454,18 @@ class AccountInvoice(models.Model):
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
+        taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
+        not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
             breakdown_taxes = (
                 taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             )
+            if tax in taxes_not_in_total:
+                not_in_amount_total += tax_line.amount_total
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault(
                     'DesgloseFactura', {},
@@ -558,7 +562,7 @@ class AccountInvoice(models.Model):
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
             del taxes_dict['DesgloseFactura']
-        return taxes_dict
+        return taxes_dict, not_in_amount_total
 
     @api.model
     def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
@@ -583,11 +587,15 @@ class AccountInvoice(models.Model):
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
         taxes_sfrnd = self._get_sii_taxes_map(['SFRND'])
+        taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
         tax_amount = 0.0
+        not_in_amount_total = 0.0
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
+            if tax in taxes_not_in_total:
+                not_in_amount_total += tax_line.amount_total
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
                     'InversionSujetoPasivo', {'DetalleIVA': []},
@@ -619,7 +627,7 @@ class AccountInvoice(models.Model):
                     ["BaseImponible", "CuotaSoportada"]
                 ):
                     base_dict['DetalleIVA'].append(tax_dict)
-        return taxes_dict, tax_amount
+        return taxes_dict, tax_amount, not_in_amount_total
 
     @api.multi
     def _is_sii_simplified_invoice(self):
@@ -712,6 +720,10 @@ class AccountInvoice(models.Model):
         if not cancel:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
+            tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
+            amount_total = (
+                abs(self.amount_total_company_signed) - not_in_amount_total
+            ) * sign
             if self.type == 'out_refund':
                 if self.sii_refund_specific_invoice_type:
                     tipo_factura = self.sii_refund_specific_invoice_type
@@ -725,10 +737,8 @@ class AccountInvoice(models.Model):
                     self.sii_registration_key.code
                 ),
                 "DescripcionOperacion": self.sii_description,
-                "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": abs(
-                    self.amount_total_company_signed
-                ) * sign,
+                "TipoDesglose": tipo_desglose,
+                "ImporteTotal": amount_total,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
@@ -786,7 +796,8 @@ class AccountInvoice(models.Model):
             self._get_account_registration_date())
         ejercicio = fields.Date.to_date(self.date).year
         periodo = '%02d' % fields.Date.to_date(self.date).month
-        desglose_factura, tax_amount = self._get_sii_in_taxes()
+        desglose_factura, tax_amount, not_in_amount_total = (
+            self._get_sii_in_taxes())
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {},
@@ -811,6 +822,9 @@ class AccountInvoice(models.Model):
         else:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
+            amount_total = (
+                abs(self.amount_total_company_signed) - not_in_amount_total
+            ) * sign
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
@@ -827,7 +841,7 @@ class AccountInvoice(models.Model):
                     )
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
+                "ImporteTotal": amount_total,
                 "CuotaDeducible": tax_amount * sign,
             }
             if self.sii_macrodata:
