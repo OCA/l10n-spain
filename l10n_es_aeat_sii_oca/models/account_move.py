@@ -108,17 +108,14 @@ class AccountMove(models.Model):
             )
         return key
 
-    sii_manual_description = fields.Text(
-        string="SII manual description", size=500, copy=False,
-    )
-    sii_description_method = fields.Selection(
-        related="company_id.sii_description_method", readonly=True,
-    )
     sii_description = fields.Text(
         string="SII computed description",
         compute="_compute_sii_description",
+        default="/",
         store=True,
-        inverse="_inverse_sii_description",
+        readonly=False,
+        size=500,
+        copy=False,
     )
     sii_state = fields.Selection(
         selection=SII_STATES,
@@ -222,6 +219,7 @@ class AccountMove(models.Model):
         comodel_name="queue.job",
         column1="invoice_id",
         column2="job_id",
+        relation="account_move_queue_job_rel",
         string="Connector Jobs",
         copy=False,
     )
@@ -388,38 +386,37 @@ class AccountMove(models.Model):
             header.update({"TipoComunicacion": tipo_comunicacion})
         return header
 
-    def _get_sii_tax_line_req(self, tax):
-        """Get the invoice tax line for 'Recargo equivalencia'.
+    def _get_sii_tax_req(self, tax):
+        """Get the associated req tax for the specified tax.
 
         :param self: Single invoice record.
-        :param tax: Initial tax for searching for the RE twin tax.
-        :return: Invoice tax line (if any) for the correspondent RE tax.
+        :param tax: Initial tax for searching for the RE linked tax.
+        :return: REQ tax (or empty recordset) linked to the provided tax.
         """
         self.ensure_one()
-        taxes_re = self._get_sii_taxes_map(["RE"])
-        re_tax = self.line_ids.mapped("tax_line_id").filtered(
-            lambda x: x == tax and x in taxes_re
+        taxes_req = self._get_sii_taxes_map(["RE"])
+        re_lines = self.line_ids.filtered(
+            lambda x: tax in x.tax_ids and x.tax_ids & taxes_req
         )
-        if not re_tax:
-            return self.env["account.move.line"]
-        if len(re_tax) > 1:
+        req_tax = re_lines.mapped("tax_ids") & taxes_req
+        if len(req_tax) > 1:
             raise exceptions.UserError(
                 _("There's a mismatch in taxes for RE. Check them.")
             )
-        return self.line_ids.filtered(lambda x: x.tax_line_id == re_tax)
+        return req_tax
 
     @api.model
-    def _get_sii_tax_dict(self, tax_line, sign):
+    def _get_sii_tax_dict(self, tax_line, tax_lines):
         """Get the SII tax dictionary for the passed tax line.
 
         :param self: Single invoice record.
         :param tax_line: Tax line that is being analyzed.
-        :param sign: Sign of the operation (only refund by differences is
-          negative).
+        :param tax_lines: Dictionary of processed invoice taxes for further operations
+            (like REQ).
         :return: A dictionary with the corresponding SII tax values.
         """
-        tax = tax_line.get("tax")
-        tax_base_amount = sign * tax_line.get("tax_base_amount")
+        tax = tax_line["tax"]
+        tax_base_amount = tax_line["base"]
         if tax.amount_type == "group":
             tax_type = abs(tax.children_tax_ids.filtered("amount")[:1].amount)
         else:
@@ -429,14 +426,12 @@ class AccountMove(models.Model):
             key = "CuotaRepercutida"
         else:
             key = "CuotaSoportada"
-        tax_dict[key] = sign * tax_line.get("amount_company")
+        tax_dict[key] = tax_line["amount"]
         # Recargo de equivalencia
-        re_tax_line = self._get_sii_tax_line_req(tax)
-        if re_tax_line:
-            tax_dict["TipoRecargoEquivalencia"] = abs(re_tax_line.tax_line_id.amount)
-            tax_dict["CuotaRecargoEquivalencia"] = sign * abs(
-                re_tax_line.amount_currency
-            )
+        req_tax = self._get_sii_tax_req(tax)
+        if req_tax:
+            tax_dict["TipoRecargoEquivalencia"] = req_tax.amount
+            tax_dict["CuotaRecargoEquivalencia"] = tax_lines[req_tax]["amount"]
         return tax_dict
 
     def _is_sii_type_breakdown_required(self, taxes_dict):
@@ -464,56 +459,33 @@ class AccountMove(models.Model):
             return True
         return False
 
-    def _get_tax_base_amount(self):
-        self.ensure_one()
-        data = {}
-        for line in self.line_ids.filtered(lambda x: not x.tax_repartition_line_id):
-            if not line.tax_ids:
-                continue
-            if self.is_invoice():
-                sign = -1 if line.move_id.is_inbound() else 1
-                price_unit = sign * line.price_unit * (1 - (line.discount / 100.0))
-                # Transforms foreign currency to company currency
-                if line.currency_id:
-                    price_unit = line.currency_id._convert(
-                        price_unit,
-                        line.move_id.company_id.currency_id,
-                        line.move_id.company_id,
-                        line.move_id.date,
-                    )
-                taxes_data = line.tax_ids._origin.compute_all(
-                    price_unit,
-                    currency=line.company_currency_id,
-                    quantity=line.quantity,
-                    product=line.product_id,
-                    partner=line.partner_id,
-                    is_refund=self.type in ("out_refund", "in_refund"),
-                )
-                for tax in taxes_data["taxes"]:
-                    data.setdefault(tax["id"], 0.0)
-                    data[tax["id"]] += tax["base"]
-        return data
-
     def _get_tax_info(self):
         self.ensure_one()
-        taxes_data = self._get_tax_base_amount()
-        acount_tax = self.env["account.tax"]
         res = {}
-        for tax_data in taxes_data:
-            amount_company = 0.0
-            tax_lines = self.line_ids.filtered(
-                lambda x: x.tax_repartition_line_id and x.tax_line_id.id == tax_data
-            )
-            if tax_lines:
-                amount_company = abs(tax_lines.debit or tax_lines.credit)
-            res[tax_data] = {
-                "tax_base_amount": abs(taxes_data[tax_data]),
-                "tax": acount_tax.browse(tax_data),
-                "amount_company": amount_company,
-            }
+        for line in self.line_ids:
+            sign = -1 if self.type[:3] == "out" else 1
+            for tax in line.tax_ids:
+                res.setdefault(tax, {"tax": tax})
+                res[tax].setdefault("base", 0.0)
+                res[tax]["base"] += line.balance * sign
+            if line.tax_line_id:
+                tax = line.tax_line_id
+                if "invoice" in self.type:
+                    repartition_lines = tax.invoice_repartition_line_ids
+                else:
+                    repartition_lines = tax.refund_repartition_line_ids
+                if (
+                    len(repartition_lines) > 2
+                    and line.tax_repartition_line_id.factor_percent < 0
+                ):
+                    # taxes with more than one "tax" repartition line must be discarded
+                    continue
+                res.setdefault(tax, {"tax": tax})
+                res[tax].setdefault("amount", 0.0)
+                res[tax]["amount"] += line.balance * sign
         return res
 
-    def _get_sii_out_taxes(self):
+    def _get_sii_out_taxes(self):  # noqa
         """Get the taxes for sales invoices.
 
         :param self: Single invoice record.
@@ -529,16 +501,14 @@ class AccountMove(models.Model):
         taxes_sfesse = self._get_sii_taxes_map(["SFESSE"])
         taxes_sfesns = self._get_sii_taxes_map(["SFESNS"])
         taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"])
-        # Check if refund type is 'By differences'. Negative amounts!
-        sign = self._get_sii_sign()
         not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         tax_lines = self._get_tax_info()
-        for tax_line in tax_lines:
-            tax = tax_lines[tax_line].get("tax")
+        for tax_line in tax_lines.values():
+            tax = tax_line["tax"]
             breakdown_taxes = taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line.amount_total
+                not_in_amount_total += tax_line["amount"]
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault("DesgloseFactura", {})
             if tax in (taxes_sfesb + taxes_sfesbe + taxes_sfesisp):
@@ -552,9 +522,7 @@ class AccountMove(models.Model):
                     det_dict = exempt_dict["DetalleExenta"][0]
                     if exempt_cause:
                         det_dict["CausaExencion"] = exempt_cause
-                    det_dict["BaseImponible"] += (
-                        tax_lines[tax_line].get("tax_base_amount") * sign
-                    )
+                    det_dict["BaseImponible"] += tax_line["base"]
                 else:
                     sub_dict.setdefault(
                         "NoExenta",
@@ -571,7 +539,7 @@ class AccountMove(models.Model):
                     if is_s3:
                         sub_dict["NoExenta"]["TipoNoExenta"] = "S3"
                     sub_dict["NoExenta"]["DesgloseIVA"]["DetalleIVA"].append(
-                        self._get_sii_tax_dict(tax_lines[tax_line], sign),
+                        self._get_sii_tax_dict(tax_line, tax_lines),
                     )
             # No sujetas
             if tax in taxes_sfens:
@@ -580,9 +548,7 @@ class AccountMove(models.Model):
                 nsub_dict = tax_breakdown.setdefault(
                     "NoSujeta", {default_no_taxable_cause: 0},
                 )
-                nsub_dict[default_no_taxable_cause] += (
-                    tax_lines[tax_line].get("tax_base_amount") * sign
-                )
+                nsub_dict[default_no_taxable_cause] += tax_line["base"]
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
                     "DesgloseTipoOperacion", {"PrestacionServicios": {}},
@@ -597,9 +563,7 @@ class AccountMove(models.Model):
                     det_dict = exempt_dict["DetalleExenta"][0]
                     if exempt_cause:
                         det_dict["CausaExencion"] = exempt_cause
-                    det_dict["BaseImponible"] += (
-                        tax_lines[tax_line].get("tax_base_amount") * sign
-                    )
+                    det_dict["BaseImponible"] += tax_line["base"]
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
                     # if tax in taxes_sfesisps:
@@ -612,14 +576,12 @@ class AccountMove(models.Model):
                     sub = type_breakdown["PrestacionServicios"]["Sujeta"]["NoExenta"][
                         "DesgloseIVA"
                     ]["DetalleIVA"]
-                    sub.append(self._get_sii_tax_dict(tax_lines[tax_line], sign))
+                    sub.append(self._get_sii_tax_dict(tax_line, tax_lines))
                 if tax in taxes_sfesns:
                     nsub_dict = service_dict.setdefault(
                         "NoSujeta", {"ImporteTAIReglasLocalizacion": 0},
                     )
-                    nsub_dict["ImporteTAIReglasLocalizacion"] += (
-                        tax_lines[tax_line].get("tax_base_amount") * sign
-                    )
+                    nsub_dict["ImporteTAIReglasLocalizacion"] += tax_line["base"]
         # Ajustes finales breakdown
         # - DesgloseFactura y DesgloseTipoOperacion son excluyentes
         # - Ciertos condicionantes obligan DesgloseTipoOperacion
@@ -656,13 +618,11 @@ class AccountMove(models.Model):
         taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"])
         tax_amount = 0.0
         not_in_amount_total = 0.0
-        # Check if refund type is 'By differences'. Negative amounts!
-        sign = self._get_sii_sign()
         tax_lines = self._get_tax_info()
-        for tax_line in tax_lines:
-            tax = tax_lines[tax_line].get("tax")
+        for tax_line in tax_lines.values():
+            tax = tax_line["tax"]
             if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line.amount_total
+                not_in_amount_total += tax_line["amount"]
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
                     "InversionSujetoPasivo", {"DetalleIVA": []},
@@ -671,9 +631,9 @@ class AccountMove(models.Model):
                 base_dict = taxes_dict.setdefault("DesgloseIVA", {"DetalleIVA": []})
             else:
                 continue
-            tax_dict = self._get_sii_tax_dict(tax_lines[tax_line], sign)
+            tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
             if tax in taxes_sfrisp + taxes_sfrs:
-                tax_amount += tax_lines[tax_line].get("amount_company")
+                tax_amount += tax_line["amount"]
             if tax in taxes_sfrns:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
@@ -763,10 +723,8 @@ class AccountMove(models.Model):
             "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
         }
         if not cancel:
-            # Check if refund type is 'By differences'. Negative amounts!
-            sign = self._get_sii_sign()
             tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
-            amount_total = (abs(self.amount_total_signed) - not_in_amount_total) * sign
+            amount_total = self.amount_total_signed + not_in_amount_total
             if self.type == "out_refund":
                 if self.sii_refund_specific_invoice_type:
                     tipo_factura = self.sii_refund_specific_invoice_type
@@ -858,9 +816,7 @@ class AccountMove(models.Model):
                 {"NombreRazon": (self.partner_id.commercial_partner_id.name[0:120])}
             )
         else:
-            # Check if refund type is 'By differences'. Negative amounts!
-            sign = self._get_sii_sign()
-            amount_total = (abs(self.amount_total_signed) - not_in_amount_total) * sign
+            amount_total = -self.amount_total_signed - not_in_amount_total
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": ("R4" if self.type == "in_refund" else "F1"),
@@ -872,7 +828,7 @@ class AccountMove(models.Model):
                 },
                 "FechaRegContable": reg_date,
                 "ImporteTotal": amount_total,
-                "CuotaDeducible": tax_amount * sign,
+                "CuotaDeducible": tax_amount,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
@@ -1337,10 +1293,10 @@ class AccountMove(models.Model):
             return "E2"
         else:
             product_exempt_causes = (
-                self.mapped("line_ids")
+                self.mapped("invoice_line_ids")
                 .filtered(
                     lambda x: (
-                        any(tax in x.tax_line_id for tax in applied_taxes)
+                        any(tax in x.tax_ids for tax in applied_taxes)
                         and x.product_id.sii_exempt_cause
                         and x.product_id.sii_exempt_cause != "none"
                     )
@@ -1385,36 +1341,34 @@ class AccountMove(models.Model):
         return SII_COUNTRY_CODE_MAPPING.get(country_code, country_code)
 
     @api.depends(
-        "line_ids",
-        "line_ids.name",
-        "company_id",
-        "company_id.sii_description_method",
-        "sii_manual_description",
+        "invoice_line_ids", "invoice_line_ids.name", "company_id",
     )
     def _compute_sii_description(self):
+        default_description = self.default_get(["sii_description"])["sii_description"]
         for invoice in self:
+            description = ""
             if invoice.type in ["out_invoice", "out_refund"]:
                 description = invoice.company_id.sii_header_customer or ""
-            else:  # supplier invoices
+            elif invoice.type in ["in_invoice", "in_refund"]:
                 description = invoice.company_id.sii_header_supplier or ""
             method = invoice.company_id.sii_description_method
             if method == "fixed":
-                description += invoice.company_id.sii_description or "/"
+                description = (
+                    description + invoice.company_id.sii_description
+                ) or default_description
             elif method == "manual":
-                description = invoice.sii_manual_description or description or "/"
+                if invoice.sii_description != default_description:
+                    # keep current content if not default
+                    description = invoice.sii_description
             else:  # auto method
-                if invoice.line_ids:
+                if invoice.invoice_line_ids:
                     if description:
                         description += " | "
-                    names = invoice.mapped("line_ids.name") or invoice.mapped(
-                        "line_ids.ref"
+                    names = invoice.mapped("invoice_line_ids.name") or invoice.mapped(
+                        "invoice_line_ids.ref"
                     )
                     description += " - ".join(filter(None, names))
             invoice.sii_description = description[:500] or "/"
-
-    def _inverse_sii_description(self):
-        for invoice in self:
-            invoice.sii_manual_description = invoice.sii_description
 
     @api.depends(
         "company_id",
@@ -1457,14 +1411,10 @@ class AccountMove(models.Model):
         )
         return res
 
-    def _get_sii_sign(self):
-        self.ensure_one()
-        return -1.0 if self.sii_refund_type == "I" and "refund" in self.type else 1.0
-
     @job(default_channel="root.invoice_validate_sii")
     def confirm_one_invoice(self):
-        self._send_invoice_to_sii()
+        self.sudo()._send_invoice_to_sii()
 
     @job(default_channel="root.invoice_validate_sii")
     def cancel_one_invoice(self):
-        self._cancel_invoice_to_sii()
+        self.sudo()._cancel_invoice_to_sii()
