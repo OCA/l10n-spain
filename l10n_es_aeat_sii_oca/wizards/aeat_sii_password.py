@@ -2,24 +2,23 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 
-from odoo import _, api, exceptions, fields, models
-from odoo.exceptions import ValidationError
-from odoo.tools import config
-from odoo import release
+import base64
 import contextlib
+import logging
 import os
 import tempfile
-import base64
-import logging
+
+from odoo import _, api, exceptions, fields, models, release
+from odoo.exceptions import ValidationError
+from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 
 try:
     import OpenSSL.crypto
 
-    if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
-        _logger.warning(
-            'OpenSSL version is not supported. Upgrade to 0.15 or greater.')
+    if tuple(map(int, OpenSSL.__version__.split("."))) < (0, 15):
+        _logger.warning("OpenSSL version is not supported. Upgrade to 0.15 or greater.")
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
@@ -27,12 +26,15 @@ except (ImportError, IOError) as err:
 @contextlib.contextmanager
 def pfx_to_pem(file, pfx_password, directory=None):
     with tempfile.NamedTemporaryFile(
-            prefix='private_', suffix='.pem', delete=False,
-            dir=directory) as t_pem:
-        f_pem = open(t_pem.name, 'wb')
+        prefix="private_", suffix=".pem", delete=False, dir=directory
+    ) as t_pem:
+        f_pem = open(t_pem.name, "wb")
         p12 = OpenSSL.crypto.load_pkcs12(file, pfx_password)
-        f_pem.write(OpenSSL.crypto.dump_privatekey(
-            OpenSSL.crypto.FILETYPE_PEM, p12.get_privatekey()))
+        f_pem.write(
+            OpenSSL.crypto.dump_privatekey(
+                OpenSSL.crypto.FILETYPE_PEM, p12.get_privatekey()
+            )
+        )
         f_pem.close()
         yield t_pem.name
 
@@ -40,36 +42,41 @@ def pfx_to_pem(file, pfx_password, directory=None):
 @contextlib.contextmanager
 def pfx_to_crt(file, pfx_password, directory=None):
     with tempfile.NamedTemporaryFile(
-            prefix='public_', suffix='.crt', delete=False,
-            dir=directory) as t_crt:
-        f_crt = open(t_crt.name, 'wb')
+        prefix="public_", suffix=".crt", delete=False, dir=directory
+    ) as t_crt:
+        f_crt = open(t_crt.name, "wb")
         p12 = OpenSSL.crypto.load_pkcs12(file, pfx_password)
-        f_crt.write(OpenSSL.crypto.dump_certificate(
-            OpenSSL.crypto.FILETYPE_PEM, p12.get_certificate()))
+        f_crt.write(
+            OpenSSL.crypto.dump_certificate(
+                OpenSSL.crypto.FILETYPE_PEM, p12.get_certificate()
+            )
+        )
         f_crt.close()
         yield t_crt.name
 
 
 class L10nEsAeatSiiPassword(models.TransientModel):
-    _name = 'l10n.es.aeat.sii.password'
-    _description = 'Aeat SII password'
+    _name = "l10n.es.aeat.sii.password"
+    _description = "Aeat SII password"
 
     password = fields.Char(string="Password", required=True)
     folder = fields.Char(string="Folder Name", required=True)
 
     @api.multi
     def get_keys(self):
-        record = self.env['l10n.es.aeat.sii'].browse(
-            self.env.context.get('active_id'))
+        record = self.env["l10n.es.aeat.sii"].browse(self.env.context.get("active_id"))
         directory = os.path.join(
-            os.path.abspath(config['data_dir']), 'certificates',
-            release.series, self.env.cr.dbname, self.folder,
+            os.path.abspath(config["data_dir"]),
+            "certificates",
+            release.series,
+            self.env.cr.dbname,
+            self.folder,
         )
         content = base64.decodebytes(record.file)
-        if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
+        if tuple(map(int, OpenSSL.__version__.split("."))) < (0, 15):
             raise exceptions.Warning(
-                _('OpenSSL version is not supported. Upgrade to 0.15 '
-                  'or greater.'))
+                _("OpenSSL version is not supported. Upgrade to 0.15 " "or greater.")
+            )
         try:
             if directory and not os.path.exists(directory):
                 os.makedirs(directory)
