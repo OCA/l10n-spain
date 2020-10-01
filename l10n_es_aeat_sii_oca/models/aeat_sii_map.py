@@ -8,9 +8,12 @@ class AeatSiiMap(models.Model):
     _name = "aeat.sii.map"
     _description = "Aeat SII Map"
 
-    @api.one
     @api.constrains("date_from", "date_to")
     def _unique_date_range(self):
+        for record in self:
+            record._unique_date_range_one()
+
+    def _unique_date_range_one(self):
         # Based in l10n_es_aeat module
         domain = [("id", "!=", self.id)]
         if self.date_from and self.date_to:
