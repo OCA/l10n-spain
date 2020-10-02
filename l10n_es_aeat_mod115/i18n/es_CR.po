@@ -55,6 +55,11 @@ msgid "Activities"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_state
 msgid "Activity State"
 msgstr ""
@@ -90,11 +95,6 @@ msgid "Calculation date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,state:0
-msgid "Cancelled"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__company_id
 msgid "Company"
 msgstr ""
@@ -102,11 +102,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,type:0
-msgid "Complementary"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -140,29 +135,14 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,support_type:0
-msgid "DVD"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion_positiva:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__u
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_positiva__u
 msgid "Direct debit"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,state:0
-msgid "Done"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,state:0
-msgid "Draft"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -209,17 +189,24 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -309,18 +296,13 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,type:0
-msgid "Normal"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -344,11 +326,6 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,activity_state:0
-msgid "Overdue"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__partner_id
 msgid "Partner"
 msgstr ""
@@ -364,23 +341,8 @@ msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,activity_state:0
-msgid "Planned"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,state:0
-msgid "Posted"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__previous_number
 msgid "Previous declaration number"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,state:0
-msgid "Processed"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -420,13 +382,18 @@ msgid "Result: ([03] - [04])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:125
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -442,7 +409,7 @@ msgid "State"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__statement_type
 msgid "Statement Type"
 msgstr ""
 
@@ -453,11 +420,6 @@ msgid ""
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,type:0
-msgid "Substitutive"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
@@ -472,12 +434,7 @@ msgid "Tax lines"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,support_type:0
-msgid "Telematics"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:84
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
 "The result of the declaration is negative. You should select another Result "
@@ -485,7 +442,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: code:addons/l10n_es_aeat_mod115/models/mod115.py:88
+#: code:addons/l10n_es_aeat_mod115/models/mod115.py:0
 #, python-format
 msgid ""
 "The result of the declaration is positive. You should select another Result "
@@ -500,31 +457,31 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion_positiva:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__i
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_positiva__i
 msgid "To enter"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion_positiva:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__g
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_positiva__g
 msgid "To enter on CCT"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion:0
-#: selection:l10n.es.aeat.mod115.report,tipo_declaracion_negativa:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion__n
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod115.selection__l10n_es_aeat_mod115_report__tipo_declaracion_negativa__n
 msgid "To return"
-msgstr ""
-
-#. module: l10n_es_aeat_mod115
-#: selection:l10n.es.aeat.mod115.report,activity_state:0
-msgid "Today"
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod115.view_l10n_es_aeat_mod115_report_form
 msgid "Totals"
+msgstr ""
+
+#. module: l10n_es_aeat_mod115
+#: model:ir.model.fields,help:l10n_es_aeat_mod115.field_l10n_es_aeat_mod115_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_aeat_mod115
