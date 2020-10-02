@@ -103,7 +103,7 @@ Authors
 * Guadaltech
 * AvanzOSC
 * Tecnativa
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
@@ -111,7 +111,7 @@ Contributors
 * GuadalTech (http://www.guadaltech.es)
 * AvanzOSC (http://www.avanzosc.es)
 * Comunitea (http://www.comunitea.com)
-* Jordi Ballester <jordi.ballester@eficent.com>
+* Jordi Ballester <jordi.ballester@forgeflow.com>
 * `Tecnativa <https://www.tecnativa.com>`__:
 
   * Antonio Espinosa
