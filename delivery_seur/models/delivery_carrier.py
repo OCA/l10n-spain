@@ -413,3 +413,11 @@ class DeliveryCarrier(models.Model):
                 picking.carrier_tracking_ref
             )
         )
+
+    def seur_rate_shipment(self):
+        """There's no public API so another price method should be used"""
+        raise NotImplementedError(_("""
+            SEUR API doesn't provide methods to compute delivery rates, so
+            you should relay on another price method instead or override this
+            one in your custom code.
+        """))
