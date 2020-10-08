@@ -14,6 +14,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:419
+#, python-format
+msgid "\n"
+"            SEUR API doesn't provide methods to compute delivery rates, so\n"
+"            you should relay on another price method instead or override this\n"
+"            one in your custom code.\n"
+"        "
+msgstr ""
+
+#. module: delivery_seur
 #: selection:delivery.carrier,seur_label_size:0
 msgid "1D"
 msgstr ""
