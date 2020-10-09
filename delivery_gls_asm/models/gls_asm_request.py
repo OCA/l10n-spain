@@ -405,5 +405,4 @@ class GlsAsmRequest():
                 "No response from server getting manifisto for GLS.\n"
                 "Traceback:\n{}").format(e))
         res = self._recursive_asdict(res.Servicios.Envios).get("Envio", [])
-        res["gls_sent_xml"] = xml
         return res
