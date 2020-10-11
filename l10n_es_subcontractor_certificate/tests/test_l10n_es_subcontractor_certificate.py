@@ -32,9 +32,7 @@ class TestL10nEsSubcontractorCertificate(common.TransactionCase):
         self.expired_date = fields.Date.today() - timedelta(days=1)
 
     def test_00_onchange_partner_id(self):
-        self.partner.write(
-            {"certificate_required": True,}
-        )
+        self.partner.write({"certificate_required": True})
         res_purchase = self.purchase.onchange_partner_id()
         self.assertEqual(
             res_purchase.get("warning", False),
