@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <record id="account_group_4707" model="account.group">
+                <field name="code_prefix">4707</field>
+                <field name="name">ATC, deudora por IGIC</field>
+                <field name="parent_id" ref="l10n_es.account_group_470"/>
+            </record>
+
+            <record id="account_group_4757" model="account.group">
+                <field name="code_prefix">4757</field>
+                <field name="name">ATC, acreedora por IGIC</field>
+                <field name="parent_id" ref="l10n_es.account_group_475"/>
+            </record>
+
+    </data>
+
+</odoo>

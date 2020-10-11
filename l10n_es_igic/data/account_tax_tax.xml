@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+<!-- Account Tax Tags -->
+        <!-- soportados -->
+        <record id="tax_tag_1001_s" model="account.account.tag">
+            <field name="name">0% IGIC Soportado (operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1002_s" model="account.account.tag">
+            <field name="name">3% IGIC Soportado (operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1003_s" model="account.account.tag">
+            <field name="name">7% IGIC Soportado (operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1004_s" model="account.account.tag">
+            <field name="name">9.5% IGIC Soportado (operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1005_s" model="account.account.tag">
+            <field name="name">13.5% IGIC Soportado (operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1006_s" model="account.account.tag">
+            <field name="name">20% IGIC Soportado (operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1007_s" model="account.account.tag">
+            <field name="name">Exento IGIC Soportado </field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1008" model="account.account.tag">
+            <field name="name">No sujeto IGIC Soportado </field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10055_s" model="account.account.tag">
+            <field name="name">15% IGIC Soportado (operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+    <!-- Importaciones bienes corrientes-->
+        <record id="tax_tag_1009" model="account.account.tag">
+            <field name="name">0% IGIC Importaciones bienes corrientes</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10010" model="account.account.tag">
+            <field name="name">3% IGIC Importaciones bienes corrientes</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10011" model="account.account.tag">
+            <field name="name">7% IGIC Importaciones bienes corrientes</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+
+        <!-- Devengados -->
+
+         <record id="tax_tag_10012" model="account.account.tag">
+            <field name="name">IGIC 0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10013" model="account.account.tag">
+            <field name="name">IGIC 3%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10014" model="account.account.tag">
+            <field name="name">IGIC 7%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100146" model="account.account.tag">
+            <field name="name">IGIC 6.5%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10015" model="account.account.tag">
+            <field name="name">IGIC 9.5%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10016" model="account.account.tag">
+            <field name="name">IGIC 13.5%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10017" model="account.account.tag">
+            <field name="name">IGIC 20%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10018" model="account.account.tag">
+            <field name="name">Exento IGIC</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10019" model="account.account.tag">
+            <field name="name">No sujeto IGIC</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100165" model="account.account.tag">
+            <field name="name">IGIC 15%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Fin devengado -->
+        <!-- Comercio minorista -->
+         <record id="tax_tag_10020" model="account.account.tag">
+            <field name="name">IGIC Soportado (comercio minorista art.58 bis)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+
+         <record id="tax_tag_10021" model="account.account.tag">
+            <field name="name">IGIC (comercio minorista art.58 bis)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- retenciones arrendamientos -->
+         <record id="tax_tag_10022" model="account.account.tag">
+            <field name="name">Retenciones (21%) Arrendamientos</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <record id="tax_tag_10023" model="account.account.tag">
+            <field name="name">Retenciones Arrendamientos</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10024_s" model="account.account.tag">
+            <field name="name">IGIC 6,5% Soportado (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+
+        <!-- ============ -->
+        <!-- REPERCUTIDO  -->
+        <!-- ============ -->
+
+        <!-- IGIC REPERCUTIDO (VENTAS) -->
+        <record id="tax_tag_10025_r" model="account.account.tag">
+            <field name="name">IGIC 0%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10026_r" model="account.account.tag">
+            <field name="name">IGIC 3%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+          <record id="tax_tag_10027_r" model="account.account.tag">
+            <field name="name">IGIC 7%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10028_r" model="account.account.tag">
+            <field name="name">IGIC 6,5%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10029_r" model="account.account.tag">
+            <field name="name">IGIC 9,5%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <record id="tax_tag_10030_r" model="account.account.tag">
+            <field name="name">IGIC 13,5%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10031_r" model="account.account.tag">
+            <field name="name">IGIC 20%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100305_r" model="account.account.tag">
+            <field name="name">IGIC 15%</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <!-- Recargo de Eqivalencia -->
+        
+        <record id="tax_tag_10032_r" model="account.account.tag">
+            <field name="name">IGIC 0,30% (Recargo equivalencia</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <record id="tax_tag_10033_r" model="account.account.tag">
+            <field name="name">IGIC 0,7% (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10034_r" model="account.account.tag">
+            <field name="name">IGIC 0,65% (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <record id="tax_tag_10035_r" model="account.account.tag">
+            <field name="name">IGIC 0,95% (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <record id="tax_tag_10036_r" model="account.account.tag">
+            <field name="name">IGIC 1,35% (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10037_r" model="account.account.tag">
+            <field name="name">IGIC 2% (Recargo equivalencia)</field>
+
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10038_r" model="account.account.tag">
+            <field name="name">IGIC 0% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10039_r" model="account.account.tag">
+            <field name="name">IGIC 3% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10040_r" model="account.account.tag">
+            <field name="name">IGIC 7% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <record id="tax_tag_10041_r" model="account.account.tag">
+            <field name="name">IGIC 6,5% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10042_r" model="account.account.tag">
+            <field name="name">IGIC 9,5% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10043_r" model="account.account.tag">
+            <field name="name">IGIC 13,5% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100435_r" model="account.account.tag">
+            <field name="name">IGIC 15% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10044_r" model="account.account.tag">
+            <field name="name">IGIC 20% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10045_r" model="account.account.tag">
+            <field name="name">IGIC 20% Venta con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10046_r" model="account.account.tag">
+            <field name="name">IGIC 0% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10047_r" model="account.account.tag">
+            <field name="name">IGIC 3% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10048_r" model="account.account.tag">
+            <field name="name">IGIC 7% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10049_r" model="account.account.tag">
+            <field name="name">IGIC 6,5% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10050_r" model="account.account.tag">
+            <field name="name">IGIC 9,5% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>        
+
+        <record id="tax_tag_10051_r" model="account.account.tag">
+            <field name="name">IGIC 13,5% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>  
+
+        <record id="tax_tag_100515_r" model="account.account.tag">
+            <field name="name">IGIC 15% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>  
+        
+        <record id="tax_tag_10052_r" model="account.account.tag">
+            <field name="name">IGIC 20% Venta con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>  
+
+        <record id="tax_tag_10053_r" model="account.account.tag">
+            <field name="name">IGIC 0% Venta con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>  
+
+        <record id="tax_tag_10054_r" model="account.account.tag">
+            <field name="name">IGIC 3% Venta con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record> 
+
+        <record id="tax_tag_10055_r" model="account.account.tag">
+            <field name="name">IGIC 7% Venta con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10056_r" model="account.account.tag">
+            <field name="name">IGIC 6,5% Venta con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10057_r" model="account.account.tag">
+            <field name="name">IGIC 9,5% Venta con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10058_r" model="account.account.tag">
+            <field name="name">IGIC 13,5% Venta con Inversión del Sujeto Pasivoo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100585_r" model="account.account.tag">
+            <field name="name">IGIC 15% Venta con Inversión del Sujeto Pasivoo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+         <record id="tax_tag_10059_r" model="account.account.tag">
+            <field name="name">IGIC 20% Venta con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+        
+        <!-- Exportaciones -->
+
+        <record id="tax_tag_10060_r" model="account.account.tag">
+            <field name="name">IGIC 0% (Exportaciones)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Operaciones exentas -->
+
+         <record id="tax_tag_10061_r" model="account.account.tag">
+            <field name="name">IGIC Exento Repercutido</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- ======================== -->
+        <!-- IGIC SOPORTADO (COMPRAS) -->
+        <!-- ======================== -->
+
+        <record id="tax_tag_10062_s" model="account.account.tag">
+            <field name="name">IGIC 0% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10063_s" model="account.account.tag">
+            <field name="name">IGIC 3% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10064_s" model="account.account.tag">
+            <field name="name">IGIC 7% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10065_s" model="account.account.tag">
+            <field name="name">IGIC 6,5% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10066_s" model="account.account.tag">
+            <field name="name">IGIC 9,5% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10067_s" model="account.account.tag">
+            <field name="name">IGIC 13,5% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100675_s" model="account.account.tag">
+            <field name="name">IGIC 15% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10068_s" model="account.account.tag">
+            <field name="name">IGIC 20% Soportado (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Importaciones Operaciones corrientes -->
+
+        <record id="tax_tag_10069_s" model="account.account.tag">
+            <field name="name">IGIC 0% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10070_s" model="account.account.tag">
+            <field name="name">IGIC 3% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10071_s" model="account.account.tag">
+            <field name="name">IGIC 7% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10072_s" model="account.account.tag">
+            <field name="name">IGIC 6,5% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10073_s" model="account.account.tag">
+            <field name="name">IGIC 9,5% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10074_s" model="account.account.tag">
+            <field name="name">IGIC 13,5% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100745_s" model="account.account.tag">
+            <field name="name">IGIC 15% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10075_s" model="account.account.tag">
+            <field name="name">IGIC 20% Importaciones (Operaciones corrientes)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Importaciones Operaciones inversion -->
+
+        <record id="tax_tag_10076_s" model="account.account.tag">
+            <field name="name">IGIC 0% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10077_s" model="account.account.tag">
+            <field name="name">IGIC 3% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10078_s" model="account.account.tag">
+            <field name="name">IGIC 7% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10079_s" model="account.account.tag">
+            <field name="name">IGIC 6,5% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10080_s" model="account.account.tag">
+            <field name="name">IGIC 9,5% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10081_s" model="account.account.tag">
+            <field name="name">IGIC 13,5% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100815_s" model="account.account.tag">
+            <field name="name">IGIC 15% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10082_s" model="account.account.tag">
+            <field name="name">IGIC 20% Importaciones (Operaciones de inversión)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Inversión del Sujeto Pasivo -->
+
+
+        <record id="tax_tag_10083_s" model="account.account.tag">
+            <field name="name">IGIC 0% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10084_s" model="account.account.tag">
+            <field name="name">IGIC 0% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10085_s" model="account.account.tag">
+            <field name="name">IGIC 0% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10086_s" model="account.account.tag">
+            <field name="name">IGIC 3% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10087_s" model="account.account.tag">
+            <field name="name">IGIC 3% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10088_s" model="account.account.tag">
+            <field name="name">IGIC 3% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10089_s" model="account.account.tag">
+            <field name="name">IGIC 7% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10090_s" model="account.account.tag">
+            <field name="name">IGIC 7% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10091_s" model="account.account.tag">
+            <field name="name">IGIC 7% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10092_s" model="account.account.tag">
+            <field name="name">IGIC 6,5% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10093_s" model="account.account.tag">
+            <field name="name">IGIC 6,5% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10094_s" model="account.account.tag">
+            <field name="name">IGIC 6,5% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10095_s" model="account.account.tag">
+            <field name="name">IGIC 9,5% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10096_s" model="account.account.tag">
+            <field name="name">IGIC 9,5% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10097_s" model="account.account.tag">
+            <field name="name">IGIC 9,5% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10098_s" model="account.account.tag">
+            <field name="name">IGIC 13,5% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_10099_s" model="account.account.tag">
+            <field name="name">IGIC 13,5% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100100_s" model="account.account.tag">
+            <field name="name">IGIC 13,5% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+
+        <record id="tax_tag_100985_s" model="account.account.tag">
+            <field name="name">IGIC 15% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100995_s" model="account.account.tag">
+            <field name="name">IGIC 15% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1001005_s" model="account.account.tag">
+            <field name="name">IGIC 15% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+
+        <record id="tax_tag_100101_s" model="account.account.tag">
+            <field name="name">IGIC 20% Compra con Inversión del Sujeto Pasivo (1)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100102_s" model="account.account.tag">
+            <field name="name">IGIC 20% Compra con Inversión del Sujeto Pasivo (2)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100103_s" model="account.account.tag">
+            <field name="name">IGIC 20% Compra con Inversión del Sujeto Pasivo</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <!-- Recargo de equivalencias -->
+
+        <record id="tax_tag_100104_s" model="account.account.tag">
+            <field name="name">IGIC 0,30% Compras (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+        
+        <record id="tax_tag_100105_s" model="account.account.tag">
+            <field name="name">IGIC 0,7% Compras (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+        
+        <record id="tax_tag_100106_s" model="account.account.tag">
+            <field name="name">IGIC 0,65% Compras (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+        
+        <record id="tax_tag_100107_s" model="account.account.tag">
+            <field name="name">IGIC 0,95% Compras (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100108_s" model="account.account.tag">
+            <field name="name">IGIC 0,135% Compras (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_1001085_s" model="account.account.tag">
+            <field name="name">IGIC 1,5% Compras (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+        <record id="tax_tag_100109_s" model="account.account.tag">
+            <field name="name">IGIC 2% Compras (Recargo equivalencia)</field>
+            <field name="applicability">taxes</field>
+        </record>
+
+</odoo>

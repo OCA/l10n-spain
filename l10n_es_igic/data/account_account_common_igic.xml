@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+	<!-- Cuentas comunes para el IGIC -->
+        <record id="pgc_4707_child" model="account.account.template">
+            <field name="code">4707</field>
+            <field name="reconcile" eval="True" />
+            <field name="name">ATC. deudora por IGIC</field>
+			<field name="group_id" ref="l10n_es_igic.account_group_4707" />
+            <field name="user_type_id" ref="account.data_account_type_current_assets" />
+            <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        </record>        
+        
+		<record id="pgc_4727_child" model="account.account.template">
+			<field name="code">4727</field>
+			<field name="reconcile" eval="False" />
+			<field name="name">ATC. IGIC Soportado</field>
+			<field name="group_id" ref="l10n_es.account_group_472" />
+			<field name="user_type_id" ref="account.data_account_type_current_assets" />
+			<field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+		</record>
+		
+        <record id="pgc_4757_child" model="account.account.template">
+            <field name="code">4757</field>
+            <field name="reconcile" eval="True" />
+            <field name="name">ATC. acreedora por IGIC</field>
+			<field name="group_id" ref="l10n_es_igic.account_group_4757" />
+            <field name="user_type_id" ref="account.data_account_type_current_liabilities" />
+            <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+        </record>                
+
+		<record id="pgc_4777_child" model="account.account.template">
+			<field name="code">4777</field>
+			<field name="reconcile" eval="False" />
+			<field name="name">ATC. IGIC Repercutido</field>
+			<field name="group_id" ref="l10n_es.account_group_477" />
+			<field name="user_type_id" ref="account.data_account_type_current_liabilities" />
+			<field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
+		</record>
+
+</odoo>
