@@ -28,12 +28,10 @@ class TestL10nEsSubcontractorCertificate(common.TransactionCase):
             {"name": "Demo Supplier", "email": "demo@supplier.com"}
         )
         self.purchase = Purchase.create({"partner_id": self.partner.id})
-        self.move = Move.create(
-            {"partner_id": self.partner.id, "type": "in_invoice"}
-        )
+        self.move = Move.create({"partner_id": self.partner.id, "type": "in_invoice"})
         self.expired_date = fields.Date.today() - timedelta(days=1)
 
-    def test_00_onchange_partner_id(self):kill
+    def test_00_onchange_partner_id(self):
         self.partner.write(
             {"certificate_required": True,}
         )
