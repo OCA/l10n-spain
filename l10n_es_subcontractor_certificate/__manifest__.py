@@ -3,7 +3,7 @@
 
 {
     "name": "Certificado de subcontratista",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "author": "Domatix,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",

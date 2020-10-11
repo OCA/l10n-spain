@@ -70,12 +70,12 @@ class PurchaseOrder(models.Model):
         return res
 
 
-class AccountInvoice(models.Model):
-    _inherit = ["account.invoice"]
+class AccountMove(models.Model):
+    _inherit = ["account.move"]
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
-        res = super(AccountInvoice, self)._onchange_partner_id() or {}
+        res = super(AccountMove, self)._onchange_partner_id() or {}
         if self.type == "in_invoice" and self.partner_id:
             partner = self.partner_id
             if partner.certificate_required:
