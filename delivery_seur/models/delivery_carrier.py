@@ -265,6 +265,14 @@ class DeliveryCarrier(models.Model):
             'et': 'N',
         }
 
+    def _zebra_label_custom(self, label):
+        """Some printers might have special configurations so we could need
+        to tweak the label in advance. For example, we could need to adjust
+        initial position:
+        label.replace("^LH105,40", "^LH50,0")
+        """
+        return label
+
     def seur_create_shipping(self, picking):
         self.ensure_one()
         package_info = self._seur_prepare_create_shipping(picking)
@@ -313,8 +321,12 @@ class DeliveryCarrier(models.Model):
                     _('SEUR exception: %s') % res['mensaje'])
             picking.carrier_tracking_ref = res['ECB']['string'][0]
             if self.seur_label_format == 'txt':
-                label_content = base64.b64encode(
-                    res['traza'].replace('CI10', 'CI28'))
+                label_content = self._zebra_label_custom(res['traza'])
+                # SEUR sends the label in spanish format (^CI10) so we need
+                # to encode the file in such ISO as well so special characters
+                # print fine
+                label_content = label_content.encode("iso-8859-15")
+                label_content = base64.b64encode(label_content)
             else:
                 label_content = res['PDF']
             self.env['ir.attachment'].create({
