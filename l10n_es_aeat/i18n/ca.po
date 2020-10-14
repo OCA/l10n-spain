@@ -57,7 +57,6 @@ msgstr "Declaració AEAT"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
 #, fuzzy
-#| msgid "AEAT"
 msgid "AEAT SOAP"
 msgstr "AEAT"
 
@@ -537,7 +536,6 @@ msgstr "Declaraciones borrador"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_end
 #, fuzzy
-#| msgid "To Date"
 msgid "End Date"
 msgstr "Fins la data"
 
@@ -683,7 +681,6 @@ msgstr "Fixe: {}"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__folder
 #, fuzzy
-#| msgid "Full Name"
 msgid "Folder Name"
 msgstr "Nom complet"
 
@@ -1280,7 +1277,6 @@ msgstr "Veure assentament"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_start
 #, fuzzy
-#| msgid "Starting date"
 msgid "Start Date"
 msgstr "Data inicial"
 
@@ -1415,7 +1411,6 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
 #, fuzzy
-#| msgid "Active"
 msgid "To Active"
 msgstr "Actiu"
 

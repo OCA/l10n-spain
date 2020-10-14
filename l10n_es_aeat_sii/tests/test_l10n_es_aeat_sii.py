@@ -11,7 +11,7 @@ from odoo.modules.module import get_resource_path
 
 try:
     from zeep.client import ServiceProxy
-except (ImportError, IOError) as err:
+except (ImportError, IOError):
     ServiceProxy = object
 
 CERTIFICATE_PATH = get_resource_path(
@@ -39,6 +39,26 @@ def _deep_sort(obj):
 
 
 class TestL10nEsAeatSiiBase(common.SavepointCase):
+
+    @classmethod
+    def _get_or_create_tax(cls, xml_id, name, tax_type, percentage, account):
+        tax = cls.env.ref("l10n_es." + xml_id, raise_if_not_found=False)
+        if not tax:
+            tax = cls.env['account.tax'].create({
+                'name': name,
+                'type_tax_use': tax_type,
+                'amount_type': 'percent',
+                'amount': percentage,
+                'account_id': account.id,
+            })
+            cls.env['ir.model.data'].create({
+                'module': 'l10n_es',
+                'name': xml_id,
+                'model': tax._name,
+                'res_id': tax.id,
+            })
+        return tax
+
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsAeatSiiBase, cls).setUpClass()
@@ -68,21 +88,11 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
         })
         cls.company = cls.env.user.company_id
         xml_id = '%s_account_tax_template_p_iva10_bc' % cls.company.id
-        cls.tax = cls.env.ref('l10n_es.' + xml_id, raise_if_not_found=False)
-        if not cls.tax:
-            cls.tax = cls.env['account.tax'].create({
-                'name': 'Test tax 10%',
-                'type_tax_use': 'purchase',
-                'amount_type': 'percent',
-                'amount': '10',
-                'account_id': cls.account_tax.id,
-            })
-            cls.env['ir.model.data'].create({
-                'module': 'l10n_es',
-                'name': xml_id,
-                'model': cls.tax._name,
-                'res_id': cls.tax.id,
-            })
+        cls.tax = cls._get_or_create_tax(
+            xml_id, "Test tax 10%", "purchase", 10, cls.account_tax)
+        irpf_xml_id = '%s_account_tax_template_p_irpf19' % cls.company.id
+        cls.tax_irpf19 = cls._get_or_create_tax(
+            irpf_xml_id, "IRPF 19%", "purchase", -19, cls.account_tax)
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
@@ -373,3 +383,33 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         })
         with self.assertRaises(exceptions.Warning):
             invoice._sii_check_exceptions()
+
+    def test_importe_total_when_supplier_invoice_with_irpf(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'date': '2018-02-01',
+            'type': 'in_invoice',
+            'reference': 'PH-2020-0031',
+            'account_id': self.partner.property_account_payable_id.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'product_id': self.product.id,
+                    'account_id': self.account_expense.id,
+                    'account_analytic_id': self.analytic_account.id,
+                    'name': 'Test line with irpf and iva',
+                    'price_unit': 100,
+                    'quantity': 1,
+                    'invoice_line_tax_ids': [
+                        (6, 0, self.tax.ids + self.tax_irpf19.ids)],
+                })],
+            'sii_manual_description': '/',
+        })
+        invoices = invoice._get_sii_invoice_dict()
+        importe_total = invoices['FacturaRecibida']['ImporteTotal']
+        self.assertEqual(110, importe_total)
+
+    def test_unlink_invoice_when_sent_to_sii(self):
+        self.invoice.sii_state = 'sent'
+        with self.assertRaises(exceptions.Warning):
+            self.invoice.unlink()
