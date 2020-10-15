@@ -23,7 +23,7 @@ AEAT modelo 123
     :target: https://runbot.odoo-community.org/runbot/189/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Modelo 123 de la AEAT. Retenciones e ingresos a cuenta del Impuesto sobre la
 Renta de las Personas Físicas, Impuesto sobre Sociedades y del Impuesto sobre
@@ -95,6 +95,10 @@ Contributors
 * `Tecnativa <https://www.tecnativa.com>`_:
 
   * Pedro M. Baeza
+
+* `Sygel Technology <https://www.sygel.es>`_:
+
+  * Valentin Vinagre
 
 Maintainers
 ~~~~~~~~~~~
