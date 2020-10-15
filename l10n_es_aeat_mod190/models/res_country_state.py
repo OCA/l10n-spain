@@ -3,7 +3,7 @@
 from odoo import fields, models
 
 
-class ResPartner(models.Model):
+class CountryState(models.Model):
     _inherit = "res.country.state"
 
     aeat_code = fields.Char()

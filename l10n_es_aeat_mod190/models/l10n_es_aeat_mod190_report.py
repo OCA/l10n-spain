@@ -23,7 +23,6 @@ class L10nEsAeatMod190Report(models.Model):
     registro_manual = fields.Boolean(string="Manual records", default=False)
     calculado = fields.Boolean(string="Calculated", default=False)
 
-    @api.multi
     def _check_report_lines(self):
         """Checks if all the fields of all the report lines
         (partner records) are filled """
@@ -37,7 +36,6 @@ class L10nEsAeatMod190Report(models.Model):
                         )
                     )
 
-    @api.multi
     def button_confirm(self):
         for report in self:
             valid = True
@@ -71,7 +69,7 @@ class L10nEsAeatMod190Report(models.Model):
         self._check_report_lines()
         return super(L10nEsAeatMod190Report, self).button_confirm()
 
-    @api.multi
+    # flake8: noqa: C901
     def calculate(self):
         res = super(L10nEsAeatMod190Report, self).calculate()
         for report in self:
@@ -318,13 +316,11 @@ class L10nEsAeatMod190ReportLine(models.Model):
     representante_legal_vat = fields.Char(string="L. R. VAT", size=9)
     aeat_perception_key_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.key",
-        oldname="clave_percepcion",
         string="Perception key",
         required=True,
     )
     aeat_perception_subkey_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.subkey",
-        oldname="subclave",
         string="Perception subkey",
     )
     ejercicio_devengo = fields.Char(string="year", size=4)
