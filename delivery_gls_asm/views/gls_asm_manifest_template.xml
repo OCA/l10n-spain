@@ -90,7 +90,7 @@
                                     <span t-esc="delivery.get('codexp')" />
                                 </td>
                                 <td class="text-left">
-                                    <span t-esc="delivery.get('cliente')" />
+                                    <span t-esc="delivery.get('nombre_dst')" />
                                 </td>
                                 <td class="text-center">
                                     <span t-esc="delivery.get('cp_dst')" />
