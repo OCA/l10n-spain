@@ -2,9 +2,9 @@
 <odoo>
     <data>
         <record id="mis_report_es_eiyg_normal" model="mis.report">
-            <field
-                name="name"
-            >Estado de ingresos y gastos reconocidos (PGCE 2008)</field>
+            <field name="name">
+                Estado de ingresos y gastos reconocidos (PGCE 2008)
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_base"
@@ -16,9 +16,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">10</field>
             <field name="name">es59100</field>
-            <field
-                name="description"
-            >A) RESULTADO DE LA CUENTA DE PÉRDIDAS Y GANANCIAS</field>
+            <field name="description">
+                A) RESULTADO DE LA CUENTA DE PÉRDIDAS Y GANANCIAS
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -30,12 +30,14 @@
             <field name="compare_method">pct</field>
             <field name="sequence">20</field>
             <field name="name">es59200</field>
-            <field
-                name="description"
-            >B) Total ingresos y gastos imputados directamente en el patrimonio neto (I + II + III + IV + V + VI + VII)</field>
-            <field
-                name="expression"
-            >+es50010+es50020+es50030+es50040+es50050+es50060+es50070 +es50010 +es50020 +es50030 +es50040 +es50050 +es50060 +es50070</field>
+            <field name="description">
+                B) Total ingresos y gastos imputados directamente en el patrimonio neto
+                (I + II + III + IV + V + VI + VII)
+            </field>
+            <field name="expression">
+                +es50010+es50020+es50030+es50040+es50050+es50060+es50070 +es50010
+                +es50020 +es50030 +es50040 +es50050 +es50060 +es50070
+            </field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -52,14 +54,14 @@
             <field name="compare_method">pct</field>
             <field name="sequence">30</field>
             <field name="name">es50010</field>
-            <field
-                name="description"
-            >I. Por valoración de instrumentos financieros</field>
+            <field name="description">
+                I. Por valoración de instrumentos financieros
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
             />
-            <field name="expression"> +es50011 +es50012</field>
+            <field name="expression">+es50011 +es50012</field>
         </record>
         <record id="mis_report_kpi_es_eiyg_normal_50011" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_eiyg_normal" />
@@ -67,9 +69,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">40</field>
             <field name="name">es50011</field>
-            <field
-                name="description"
-            >1. Activos financieros disponibles para la venta</field>
+            <field name="description">
+                1. Activos financieros disponibles para la venta
+            </field>
             <field name="expression">-bale[800%,89%,900%,991%,992%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -117,9 +119,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">70</field>
             <field name="name">es50030</field>
-            <field
-                name="description"
-            >III. Subvenciones, donaciones y legados recibidos</field>
+            <field name="description">
+                III. Subvenciones, donaciones y legados recibidos
+            </field>
             <field name="expression">-bale[94%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -137,9 +139,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">80</field>
             <field name="name">es50040</field>
-            <field
-                name="description"
-            >IV. Por ganancias y pérdidas actuariales y otros ajustes</field>
+            <field name="description">
+                IV. Por ganancias y pérdidas actuariales y otros ajustes
+            </field>
             <field name="expression">-bale[85%,95%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -157,9 +159,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">90</field>
             <field name="name">es50050</field>
-            <field
-                name="description"
-            >V. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
+            <field name="description">
+                V. Por activos no corrientes y pasivos vinculados, mantenidos para la
+                venta
+            </field>
             <field name="expression">-bale[860%,960%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -213,12 +216,14 @@
             <field name="compare_method">pct</field>
             <field name="sequence">120</field>
             <field name="name">es59300</field>
-            <field
-                name="description"
-            >C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX + X + XI + XII + XIII)</field>
-            <field
-                name="expression"
-            >+es50080+es50090+es50100+es50110+es50120+es50130 +es50080 +es50090 +es50100 +es50110 +es50120 +es50130</field>
+            <field name="description">
+                C) Total transferencias a la cuenta de pérdidas y ganancias (VIII + IX +
+                X + XI + XII + XIII)
+            </field>
+            <field name="expression">
+                +es50080+es50090+es50100+es50110+es50120+es50130 +es50080 +es50090
+                +es50100 +es50110 +es50120 +es50130
+            </field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -235,14 +240,14 @@
             <field name="compare_method">pct</field>
             <field name="sequence">130</field>
             <field name="name">es50080</field>
-            <field
-                name="description"
-            >VIII. Por valoración de instrumentos financieros</field>
+            <field name="description">
+                VIII. Por valoración de instrumentos financieros
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
             />
-            <field name="expression"> +es50081 +es50082</field>
+            <field name="expression">+es50081 +es50082</field>
         </record>
         <record id="mis_report_kpi_es_eiyg_normal_50081" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_eiyg_normal" />
@@ -250,9 +255,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">140</field>
             <field name="name">es50081</field>
-            <field
-                name="description"
-            >1. Activos financieros disponibles para la venta</field>
+            <field name="description">
+                1. Activos financieros disponibles para la venta
+            </field>
             <field name="expression">-bale[802%,902%,993%,994%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -300,9 +305,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">170</field>
             <field name="name">es50100</field>
-            <field
-                name="description"
-            >X. Subvenciones, donaciones y legados recibidos</field>
+            <field name="description">
+                X. Subvenciones, donaciones y legados recibidos
+            </field>
             <field name="expression">-bale[84%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -320,9 +325,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">180</field>
             <field name="name">es50110</field>
-            <field
-                name="description"
-            >XI. Por activos no corrientes y pasivos vinculados, mantenidos para la venta</field>
+            <field name="description">
+                XI. Por activos no corrientes y pasivos vinculados, mantenidos para la
+                venta
+            </field>
             <field name="expression">-bale[862%,962%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -376,9 +382,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">210</field>
             <field name="name">es59400</field>
-            <field
-                name="description"
-            >TOTAL DE INGRESOS Y GASTOS RECONOCIDOS (A + B + C)</field>
+            <field name="description">
+                TOTAL DE INGRESOS Y GASTOS RECONOCIDOS (A + B + C)
+            </field>
             <field name="expression">+es59100+es59200+es59300</field>
             <field name="auto_expand_accounts">True</field>
             <field

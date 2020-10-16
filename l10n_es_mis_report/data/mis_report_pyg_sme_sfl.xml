@@ -3,9 +3,10 @@
     <data>
         <record id="mis_report_es_pyg_pyme_sfl" model="mis.report">
             <field name="name">Pérdidas y ganancias PYMESFL (PGCE 2008)</field>
-            <field
-                name="description"
-            >Pérdidas y ganancias de pequeñas y medianas entidades sin fines lucrativos</field>
+            <field name="description">
+                Pérdidas y ganancias de pequeñas y medianas entidades sin fines
+                lucrativos
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_base"
@@ -22,7 +23,7 @@
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
             />
-            <field name="expression"> +es41000 +es42000 +es43000 +es44000</field>
+            <field name="expression">+es41000 +es42000 +es43000 +es44000</field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_40100" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -35,9 +36,9 @@
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
             />
-            <field
-                name="expression"
-            > +es40110 +es40120 +es40130 +es40140 +es40150</field>
+            <field name="expression">
+                +es40110 +es40120 +es40130 +es40140 +es40150
+            </field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_40110" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -81,9 +82,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">50</field>
             <field name="name">es40130</field>
-            <field
-                name="description"
-            >c) Ingresos de promociones, patrocinadores y colaboraciones</field>
+            <field name="description">
+                c) Ingresos de promociones, patrocinadores y colaboraciones
+            </field>
             <field name="expression">-balp[722%,723%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -101,9 +102,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">60</field>
             <field name="name">es40140</field>
-            <field
-                name="description"
-            >d) Subvenciones,donaciones y legados imputados al excedente del ejercicio</field>
+            <field name="description">
+                d) Subvenciones,donaciones y legados imputados al excedente del
+                ejercicio
+            </field>
             <field name="expression">-balp[740%,747%,748%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -139,12 +141,12 @@
             <field name="compare_method">pct</field>
             <field name="sequence">80</field>
             <field name="name">es40200</field>
-            <field
-                name="description"
-            >2. Ventas y otros ingresos de la actividad mercantil</field>
-            <field
-                name="expression"
-            >-balp[700%,701%,702%,703%,704%,705%,706%,708%,709%]</field>
+            <field name="description">
+                2. Ventas y otros ingresos de la actividad mercantil
+            </field>
+            <field name="expression">
+                -balp[700%,701%,702%,703%,704%,705%,706%,708%,709%]
+            </field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -161,8 +163,8 @@
             <field name="compare_method">pct</field>
             <field name="sequence">90</field>
             <field name="name">es40300</field>
-            <field name="description">3. Gastos por ayudas y otros </field>
-            <field name="expression"> +es40310 + es40320 +es40330</field>
+            <field name="description">3. Gastos por ayudas y otros</field>
+            <field name="expression">+es40310 + es40320 +es40330</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -215,9 +217,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">120</field>
             <field name="name">es40330</field>
-            <field
-                name="description"
-            >c) Gastos por colaboraciones y del órgano de gobierno</field>
+            <field name="description">
+                c) Gastos por colaboraciones y del órgano de gobierno
+            </field>
             <field name="expression">-balp[653%,654%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -235,9 +237,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">130</field>
             <field name="name">es40340</field>
-            <field
-                name="description"
-            >d) Reintegro de subvenciones, donaciones y legados</field>
+            <field name="description">
+                d) Reintegro de subvenciones, donaciones y legados
+            </field>
             <field name="expression">-balp[658%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
@@ -255,9 +257,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">140</field>
             <field name="name">es40400</field>
-            <field
-                name="description"
-            >4. Variación de existencias productos terminados y en curso de fabricación</field>
+            <field name="description">
+                4. Variación de existencias productos terminados y en curso de
+                fabricación
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
@@ -275,9 +278,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">150</field>
             <field name="name">es40500</field>
-            <field
-                name="description"
-            >5. Trabajos realizados por la entidad para su activo</field>
+            <field name="description">
+                5. Trabajos realizados por la entidad para su activo
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
@@ -305,9 +308,9 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field
-                name="expression"
-            >-balp[600%,601%,602%,606%,607%,608%,609%,61%,6931%,6932%,6933%,7931%,7932%,7933%]</field>
+            <field name="expression">
+                -balp[600%,601%,602%,606%,607%,608%,609%,61%,6931%,6932%,6933%,7931%,7932%,7933%]
+            </field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_40700" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -361,9 +364,9 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field
-                name="expression"
-            >-balp[62%,631%,634%,636%,639%,655%,794%,7954%,656%,659%,694%,695%]</field>
+            <field name="expression">
+                -balp[62%,631%,634%,636%,639%,655%,794%,7954%,656%,659%,694%,695%]
+            </field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_40A00" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -389,9 +392,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">210</field>
             <field name="name">es40B00</field>
-            <field
-                name="description"
-            >11. Subvenciones, donaciones y legados de capital traspasados al excedente del ejercicio</field>
+            <field name="description">
+                11. Subvenciones, donaciones y legados de capital traspasados al
+                excedente del ejercicio
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
@@ -427,9 +431,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">230</field>
             <field name="name">es40D00</field>
-            <field
-                name="description"
-            >13. Deterioro y resultado por enajenación de inmovilizado</field>
+            <field name="description">
+                13. Deterioro y resultado por enajenación de inmovilizado
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
@@ -439,9 +443,9 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field
-                name="expression"
-            >-balp[670%,671%,672%,690%,691%,692%,770%,771%,772%,790%,791%,792%]</field>
+            <field name="expression">
+                -balp[670%,671%,672%,690%,691%,692%,770%,771%,772%,790%,791%,792%]
+            </field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_41000" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -459,9 +463,10 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field
-                name="expression"
-            > +es40110 +es40200 +es40300 +es40400 +es40500 +es40600 +es40700 +es40800 +es40900 +es40A00 +es40B00 +es40C00 +es40D00</field>
+            <field name="expression">
+                +es40110 +es40200 +es40300 +es40400 +es40500 +es40600 +es40700 +es40800
+                +es40900 +es40A00 +es40B00 +es40C00 +es40D00
+            </field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_41100" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -505,9 +510,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">270</field>
             <field name="name">es41300</field>
-            <field
-                name="description"
-            >16. Variación de valor razonable en instrumentos financieros</field>
+            <field name="description">
+                16. Variación de valor razonable en instrumentos financieros
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
@@ -543,9 +548,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">290</field>
             <field name="name">es41500</field>
-            <field
-                name="description"
-            >18. Deterioro y resultado por enajenaciones de instrumentos financieros</field>
+            <field name="description">
+                18. Deterioro y resultado por enajenaciones de instrumentos financieros
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
@@ -555,9 +560,9 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field
-                name="expression"
-            >-balp[666%,667%,673%,675%,696%,697%,698%,699%,766%,773%,775%,796%,797%,798%,799%]</field>
+            <field name="expression">
+                -balp[666%,667%,673%,675%,696%,697%,698%,699%,766%,773%,775%,796%,797%,798%,799%]
+            </field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_42000" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -565,9 +570,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">300</field>
             <field name="name">es42000</field>
-            <field
-                name="description"
-            >A.2) EXCEDENTE DE LAS OPERACIONES FINANCIERAS</field>
+            <field name="description">
+                A.2) EXCEDENTE DE LAS OPERACIONES FINANCIERAS
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -577,9 +582,9 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field
-                name="expression"
-            > +es41100 +es41200 +es41300 +es41400 +es41500</field>
+            <field name="expression">
+                +es41100 +es41200 +es41300 +es41400 +es41500
+            </field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_43000" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -597,7 +602,7 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field name="expression"> +es41000 +es42000</field>
+            <field name="expression">+es41000 +es42000</field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_43100" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -623,9 +628,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">330</field>
             <field name="name">es44000</field>
-            <field
-                name="description"
-            >A.4) Variación de patrimonio neto reconocida en el excedente del ejercicio</field>
+            <field name="description">
+                A.4) Variación de patrimonio neto reconocida en el excedente del
+                ejercicio
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -635,7 +641,7 @@
                 name="auto_expand_accounts_style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
             />
-            <field name="expression"> +es43000 +es43100</field>
+            <field name="expression">+es43000 +es43100</field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_45000" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
@@ -643,9 +649,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">340</field>
             <field name="name">es45000</field>
-            <field
-                name="description"
-            >B) Ingresos y gastos imputados directamente al patrimonio neto.</field>
+            <field name="description">
+                B) Ingresos y gastos imputados directamente al patrimonio neto.
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -710,9 +716,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">390</field>
             <field name="name">es46000</field>
-            <field
-                name="description"
-            >B.1) Variación de patrimonio neto por ingresos y gastos reconocidos directamente en el patrimonio neto</field>
+            <field name="description">
+                B.1) Variación de patrimonio neto por ingresos y gastos reconocidos
+                directamente en el patrimonio neto
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -725,9 +732,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">400</field>
             <field name="name">es47000</field>
-            <field
-                name="description"
-            >C) Reclasificaciones al excedente del ejercicio</field>
+            <field name="description">
+                C) Reclasificaciones al excedente del ejercicio
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -792,9 +799,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">450</field>
             <field name="name">es48000</field>
-            <field
-                name="description"
-            >C.1) Variación de patrimonio neto por reclasificaciones al excedente del ejercicio</field>
+            <field name="description">
+                C.1) Variación de patrimonio neto por reclasificaciones al excedente del
+                ejercicio
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -807,9 +815,10 @@
             <field name="compare_method">pct</field>
             <field name="sequence">460</field>
             <field name="name">es49000</field>
-            <field
-                name="description"
-            >D)Variaciones de pratrimonio neto por ingresos y gastos imputados directamente patrimonio neto</field>
+            <field name="description">
+                D)Variaciones de pratrimonio neto por ingresos y gastos imputados
+                directamente patrimonio neto
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -848,9 +857,9 @@
             <field name="compare_method">pct</field>
             <field name="sequence">490</field>
             <field name="name">es4C000</field>
-            <field
-                name="description"
-            >G) Variaciones en la dotación fundacional o fondo social</field>
+            <field name="description">
+                G) Variaciones en la dotación fundacional o fondo social
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l1"
@@ -876,16 +885,16 @@
             <field name="compare_method">pct</field>
             <field name="sequence">510</field>
             <field name="name">es4E000</field>
-            <field
-                name="description"
-            >I) RESULTADO TOTAL, VARIACIÓN DEL PATRIMONIO NETO EN EL EJERCICIO</field>
+            <field name="description">
+                I) RESULTADO TOTAL, VARIACIÓN DEL PATRIMONIO NETO EN EL EJERCICIO
+            </field>
             <field
                 name="style_id"
                 ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"
             />
-            <field
-                name="expression"
-            > +es44000 +es49000 +es4A000 +es4B000 +es4C000 +es4D000</field>
+            <field name="expression">
+                +es44000 +es49000 +es4A000 +es4B000 +es4C000 +es4D000
+            </field>
         </record>
     </data>
 </odoo>
