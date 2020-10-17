@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2009 Spanish Localization Team
+     Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="view_partner_form">
+        <field name="name">
+            Add libro, registro mercantil, hoja, folio, seccion y tomo
+        </field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <page name="internal_notes" position="after">
+                <page
+                    string="Commercial Info"
+                    attrs="{'invisible': [('is_company','=',False)]}"
+                >
+                    <group>
+                        <group>
+                            <field name="es_libro" />
+                            <field name="es_registro_mercantil" />
+                            <field name="es_hoja" />
+                        </group>
+                        <group>
+                            <field name="es_folio" />
+                            <field name="es_seccion" />
+                            <field name="es_tomo" />
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
