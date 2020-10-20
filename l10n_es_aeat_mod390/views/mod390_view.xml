@@ -183,7 +183,6 @@
     <record id="action_l10n_es_aeat_mod390_report" model="ir.actions.act_window">
         <field name="name">AEAT model 390</field>
         <field name="res_model">l10n.es.aeat.mod390.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="help">Create and query AEAT Model 390 reports.</field>
     </record>
