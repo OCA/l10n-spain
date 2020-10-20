@@ -94,7 +94,7 @@ msgid "Back to shop"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:344
+#: code:addons/payment_redsys/models/redsys.py:341
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -125,7 +125,7 @@ msgid "En error ocurred. <br/>Please contact with us and inform you about your o
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:342
+#: code:addons/payment_redsys/models/redsys.py:339
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -186,7 +186,7 @@ msgid "Merchant code"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:340
+#: code:addons/payment_redsys/models/redsys.py:337
 #, python-format
 msgid "Ok: %s"
 msgstr ""
@@ -207,7 +207,7 @@ msgid "Pago por Transferencia"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:99
+#: code:addons/payment_redsys/models/redsys.py:97
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr ""
@@ -253,7 +253,7 @@ msgid "Redsys Signature Version"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:346
+#: code:addons/payment_redsys/models/redsys.py:343
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
