@@ -14,13 +14,13 @@ AEAT modelo 390
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/12.0/l10n_es_aeat_mod390
+    :target: https://github.com/OCA/l10n-spain/tree/13.0/l10n_es_aeat_mod390
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-12-0/l10n-spain-12-0-l10n_es_aeat_mod390
+    :target: https://translation.odoo-community.org/projects/l10n-spain-13-0/l10n-spain-13-0-l10n_es_aeat_mod390
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/189/12.0
+    :target: https://runbot.odoo-community.org/runbot/189/13.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -78,21 +78,13 @@ Known issues / Roadmap
 * Obtener las casillas 95, 97 y 98 de las declaraciones del 303.
 * Falta añadir la casilla 663 de cuota pendientes de compensación.
 
-Changelog
-=========
-
-12.0.2.0.0 (2019-01-19)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* [ADD] Añadido Diseño de registro dr390e2019v100 para declaración de 2019
-
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod390%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod390%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -113,34 +105,14 @@ Contributors
 
 * Albert Cabedo
 
-Other credits
-~~~~~~~~~~~~~
+* `Acysos <http://www.acysos.com>`_:
 
-**Financiadores**
+  * Ignacio Ibeas
 
-La migración de este módulo forma parte de una campaña de migración de la
-localización española que ha sido posible gracias a la colaboración económica
-de las siguientes empresas (por orden alfabético):
+* `Sygel <https://www.sygel.es>`_:
 
-* `Aizean evolution <http://www.aizean.com>`_
-* `Aselcis consulting <https://www.aselcis.com>`_
-* `AvanzOSC <http://avanzosc.es>`_
-* `Diagram software <http://diagram.es>`_
-* `Domatix <http://www.domatix.com>`_
-* `Eficent <http://www.eficent.com>`_
-* `FactorLibre <http://factorlibre.com>`_
-* `Fairhall solutions <http://www.fairhall.es>`_
-* `GAFIC SLP <http://www.gafic.com>`_
-* `Incaser <http://www.incaser.es>`_
-* `Ingeos <http://www.ingeos.es>`_
-* `Nubistalia <http://www.nubistalia.es>`_
-* `Punt sistemes <http://www.puntsistemes.es>`_
-* `Praxya <http://praxya.com>`_
-* `Reeng <http://www.reng.es>`_
-* `Soluntec <http://www.soluntec.es>`_
-* `Tecnativa <https://www.tecnativa.com>`_
-* `Trey <https://www.trey.es>`_
-* `Vicent Cubells <http://vcubells.net>`_
+  * Harald Panten <harald.panten@sygel.es>
+  * Valentin Vinagre <valentin.vinagre@sygel.es>
 
 Maintainers
 ~~~~~~~~~~~
@@ -163,6 +135,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| 
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/12.0/l10n_es_aeat_mod390>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/13.0/l10n_es_aeat_mod390>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

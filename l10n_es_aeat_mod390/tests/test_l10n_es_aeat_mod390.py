@@ -68,7 +68,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         "P_IVA10_IBI": (380, 38),
         "P_IVA21_IBI": (390, 81.9),
         "P_IVA0_BC": (400, 0),
-        # 'P_IVA12_AGR': (410, 49.2),
+        # "P_IVA12_AGR": (410, 49.2),
         "P_IVA0_ND": (420, 0),
     }
     taxes_result = OrderedDict(
@@ -104,7 +104,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             # Modificación de bases
             ("29", -12450),  # -7140.0 - 4860.0 - 450.0
             # Modificación de cuotas
-            ("30", -897.6 - 619.7),
+            ("30", -897.6 - 673.9),
             # Recargo de equivalencia - Base 0,5%
             ("35", 5100.0),
             # Recargo de equivalencia - Cuota 0,5%
@@ -209,45 +209,47 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         ]
     )
 
-    def setUp(self):
-        super(TestL10nEsAeatMod390Base, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Create model
-        self.model390 = self.env["l10n.es.aeat.mod390.report"].create(
+        cls.model390 = cls.env["l10n.es.aeat.mod390.report"].create(
             {
                 "name": "9990000000390",
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
                 "period_type": "0A",
                 "date_start": "2017-01-01",
                 "date_end": "2017-12-31",
-                "journal_id": self.journal_misc.id,
+                "journal_id": cls.journal_misc.id,
             }
         )
 
 
 class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
-    def setUp(self):
-        super(TestL10nEsAeatMod390, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Purchase invoices
-        self._invoice_purchase_create("2017-01-01")
-        self._invoice_purchase_create("2017-10-01")
-        purchase = self._invoice_purchase_create("2017-03-03")
-        self._invoice_refund(purchase, "2017-07-18")
+        cls._invoice_purchase_create("2017-01-01")
+        cls._invoice_purchase_create("2017-10-01")
+        purchase = cls._invoice_purchase_create("2017-03-03")
+        cls._invoice_refund(purchase, "2017-07-18")
         # Sale invoices
-        self._invoice_sale_create("2017-02-11")
-        self._invoice_sale_create("2017-06-12")
-        sale = self._invoice_sale_create("2017-11-13")
-        self._invoice_refund(sale, "2017-12-14")
+        cls._invoice_sale_create("2017-02-11")
+        cls._invoice_sale_create("2017-06-12")
+        sale = cls._invoice_sale_create("2017-11-13")
+        cls._invoice_refund(sale, "2017-12-14")
 
     def test_model_390(self):
         # Test constraints
         with self.assertRaises(Exception):
-            self.model390.type = "C"
+            self.model390.statement_type = "C"
         self.model390.button_calculate()
         # Check tax lines
         for field, result in self.taxes_result.items():
@@ -262,8 +264,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
             )
         # Check computed fields
         self.assertAlmostEqual(self.model390.casilla_33, 17700.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_34, 2306.2, 2)
-        self.assertAlmostEqual(self.model390.casilla_47, 2571.2, 2)
+        self.assertAlmostEqual(self.model390.casilla_34, 2252.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_47, 2517.0, 2)
         self.assertAlmostEqual(self.model390.casilla_48, 6660.0, 2)
         self.assertAlmostEqual(self.model390.casilla_49, 797.4, 2)
         self.assertAlmostEqual(self.model390.casilla_50, 2880.0, 2)
@@ -279,8 +281,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_597, 4500.0, 2)
         self.assertAlmostEqual(self.model390.casilla_598, 576.0, 2)
         self.assertAlmostEqual(self.model390.casilla_64, 2408.45, 2)
-        self.assertAlmostEqual(self.model390.casilla_65, 162.75, 2)
-        self.assertAlmostEqual(self.model390.casilla_86, 162.75, 2)
+        self.assertAlmostEqual(self.model390.casilla_65, 108.55, 2)
+        self.assertAlmostEqual(self.model390.casilla_86, 108.55, 2)
         self.assertAlmostEqual(self.model390.casilla_108, 21280.0, 2)
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
