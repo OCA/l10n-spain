@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="view_l10n_es_aeat_mod190_report_line_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.line.tree</field>
+        <field name="model">l10n.es.aeat.mod190.report.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_mod190_report_line_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod190.report.line.form</field>
+        <field name="model">l10n.es.aeat.mod190.report.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="partner_id" string="Razón social"
+                               options="{'no_create_edit': True}"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="partner_vat"/>
+                            <field name="legal_representative_vat"/>
+                        </group>
+                        <group>
+                            <field name="state_code"
+                                   string="Provincia"/>
+                        </group>
+                    </group>
+                    <group string="Datos de la percepción">
+                        <group>
+                            <field name="aeat_perception_key_id" string="Clave"
+                                   widget="selection"/>
+                            <field name="aeat_perception_subkey_id" string="Subclave"
+                                   options="{'no_create_edit': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="ceuta_melilla"
+                                   string="Ceuta o Melilla"/>
+                            <field name="accrual_exercise"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Percepciones dinerarias NO derivadas de incapacidad laboral">
+                            <field name="monetary_perception"/>
+                            <field name="monetary_withholding"/>
+                        </group>
+                        <group string="Percepciones en especie NO derivadas de incapacidad laboral">
+                            <field name="perception_in_kind"
+                                   string="Percepción integra"/>
+                            <field name="input_tax_payment_on_account"/>
+                            <field name="output_tax_payment_on_account"/>
+                        </group>
+                        <group string="Percepciones dinerarias derivadas de incapacidad laboral">
+                            <field name="monetary_perception_incapacity"/>
+                            <field name="monetary_withholding_incapacity"/>
+                        </group>
+                        <group string="Percepciones en especie derivadas de incapacidad laboral">
+                            <field name="perception_in_kind_incapacity"
+                                   string="Percepción integra"/>
+                            <field name="input_tax_payment_on_account_incapacity"/>
+                            <field name="output_tax_payment_on_account_incapacity"/>
+                        </group>
+                    </group>
+                    <field name="additional_data_required" invisible="1"/>
+                    <notebook attrs="{'invisible': [('additional_data_required', '&lt;', 2)]}">
+                        <page string="Datos adicionales">
+                            <group>
+                                <group>
+                                    <field name="birth_year"/>
+                                    <field name="disability"/>
+                                    <field name="geographical_mobility"/>
+                                </group>
+                                <group>
+                                    <field name="family_situation"/>
+                                    <field name="spouse_vat"/>
+                                    <field name="relation_kind"/>
+                                </group>
+                                <group>
+                                    <field name="applicable_reduction"/>
+                                    <field name="deductible_expenses"/>
+                                </group>
+                                <group>
+                                    <field name="compensatory_pension"/>
+                                    <field name="food_annuities"/>
+                                </group>
+                                <group>
+                                    <field name="residence_loan"
+                                           string="Comunicación por el perceptor que ha destinado cantidades
+                                                    para la adquisición o rehabilitación de su vivienda habitual
+                                                    utilizando financiación ajena."/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Decendents">
+                            <group col="3">
+                                <group string="Lower than 3 years">
+                                    <field name="descendants_less_3_years"/>
+                                    <field name="descendants_less_3_years_integer"/>
+                                </group>
+                                <group string="Rest">
+                                    <field name="descendants"/>
+                                    <field name="descendants_integer"/>
+                                </group>
+                                <group string="First 3 compute">
+                                    <field name="calculation_rule_first_childs_1" string="1"/>
+                                    <field name="calculation_rule_first_childs_2" string="2"/>
+                                    <field name="calculation_rule_first_childs_3" string="3"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Decendents with discapacity">
+                            <group col="3">
+                                <group string="Between 33% and 65%">
+                                    <field name="descendants_disability_33"/>
+                                    <field name="descendants_disability_33_integer"/>
+                                </group>
+                                <group string="Reduced mobility">
+                                    <field name="descendants_disability"/>
+                                    <field name="descendants_disability_integer"/>
+                                </group>
+                                <group string="Bigger than 65%">
+                                    <field name="descendants_disability_66"/>
+                                    <field name="descendants_disability_66_integer"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ascendents">
+                            <group>
+                                <group string="Lower than 75 years">
+                                    <field name="ancestors"/>
+                                    <field name="ancestors_integer"/>
+                                </group>
+                                <group string="Bigger than 75 years">
+                                    <field name="ancestors_older_75"/>
+                                    <field name="ancestors_older_75_integer"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Ascendents with discapacity">
+                            <group col="3">
+                                <group string="Between 33% and 65%">
+                                    <field name="ancestors_disability_33"/>
+                                    <field name="ancestors_disability_33_integer"/>
+                                </group>
+                                <group string="Reduced mobility">
+                                    <field name="ancestors_disability"/>
+                                    <field name="ancestors_disability_integer"/>
+                                </group>
+                                <group string="Bigger than 65%">
+                                    <field name="ancestors_disability_66"/>
+                                    <field name="ancestors_disability_66_integer"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>
