@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_mod115',
         'odoo12-addon-l10n_es_aeat_mod123',
         'odoo12-addon-l10n_es_aeat_mod130',
+        'odoo12-addon-l10n_es_aeat_mod190',
         'odoo12-addon-l10n_es_aeat_mod216',
         'odoo12-addon-l10n_es_aeat_mod296',
         'odoo12-addon-l10n_es_aeat_mod303',
