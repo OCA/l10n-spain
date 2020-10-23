@@ -20,7 +20,7 @@ except (ImportError, IOError):
     ServiceProxy = object
 
 CERTIFICATE_PATH = get_resource_path(
-    "l10n_es_aeat_sii", "tests", "cert", "entidadspj_act.p12",
+    "l10n_es_aeat_sii_oca", "tests", "cert", "entidadspj_act.p12",
 )
 CERTIFICATE_PASSWD = "794613"
 
@@ -80,7 +80,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase):
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
         result_dict = invoice._get_sii_invoice_dict()
-        path = get_resource_path("l10n_es_aeat_sii", "tests", json_file)
+        path = get_resource_path("l10n_es_aeat_sii_oca", "tests", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
