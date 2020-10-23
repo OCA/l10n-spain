@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="aeat_sii_tax_agency_form_view" model="ir.ui.view">
+        <field name="name">aeat.sii.tax.agency.form.view</field>
+        <field name="model">aeat.sii.tax.agency</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group string="Suministro Facturas Emitidas">
+                        <field name="wsdl_out" string="WSDL" />
+                        <field name="wsdl_out_test_address" string="Test Address" />
+                    </group>
+                    <group string="Suministro Factura Recibidas">
+                        <field name="wsdl_in" string="WSDL" />
+                        <field name="wsdl_in_test_address" string="Test Address" />
+                    </group>
+                    <group string="Suministro Bienes de Inversión">
+                        <field name="wsdl_pi" string="WSDL" />
+                        <field name="wsdl_pi_test_address" string="Test Address" />
+                    </group>
+                    <group string="Suministro Operaciones Intracomunitarias">
+                        <field name="wsdl_ic" string="WSDL" />
+                        <field name="wsdl_ic_test_address" string="Test Address" />
+                    </group>
+                    <group string="Suministro Cobros Emitidas">
+                        <field name="wsdl_pr" string="WSDL" />
+                        <field name="wsdl_pr_test_address" string="Test Address" />
+                    </group>
+                    <group string="Suministro Operaciones con Trascendencia Tributaria">
+                        <field name="wsdl_ott" string="WSDL" />
+                        <field name="wsdl_ott_test_address" string="Test Address" />
+                    </group>
+                    <group string="Suministro Pagos Recibidas">
+                        <field name="wsdl_ps" string="WSDL" />
+                        <field name="wsdl_ps_test_address" string="Test Address" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="aeat_sii_tax_agency_tree_view" model="ir.ui.view">
+        <field name="name">aeat.sii.tax.agency.tree,view</field>
+        <field name="model">aeat.sii.tax.agency</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="aeat_sii_tax_agency_action" model="ir.actions.act_window">
+        <field name="name">SII Tax Agencies</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">aeat.sii.tax.agency</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="aeat_sii_tax_agency_menu"
+        name="SII Tax Agencies"
+        action="aeat_sii_tax_agency_action"
+        sequence="6"
+        parent="l10n_es_aeat_sii_parent_menu"
+    />
+</odoo>
