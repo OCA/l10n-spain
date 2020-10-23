@@ -1360,6 +1360,11 @@ msgid "Support Type"
 msgstr "Tipus de soport"
 
 #. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_form
 msgid "Tax code mapping line"
 msgstr "Línia de mapeig d'impostos"
