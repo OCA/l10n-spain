@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-08 12:15+0000\n"
-"PO-Revision-Date: 2020-08-06 12:59+0000\n"
+"PO-Revision-Date: 2020-10-26 12:08+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -327,7 +327,7 @@ msgstr "Actividades"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_decoration
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Actividad Excepción Decoración"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_state
@@ -743,13 +743,13 @@ msgstr "ID (identificación)"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_icon
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icono"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_icon
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icono para indicar una actividad de excepción."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_needaction
@@ -803,7 +803,7 @@ msgstr "Factura"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_id
 msgid "Invoice / Journal entry"
-msgstr ""
+msgstr "Factura / Entrada de diario"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__operations_limit
@@ -1003,9 +1003,8 @@ msgstr "Número de Acciones"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error_counter
-#, fuzzy
 msgid "Number of errors"
-msgstr "Número de error"
+msgstr "Número de errores"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_needaction_counter
@@ -1326,9 +1325,8 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
-#, fuzzy
 msgid "SMS Delivery error"
-msgstr "Mensaje de error de la entrega"
+msgstr "SMS de error en la entrega"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__user_id
@@ -1589,7 +1587,7 @@ msgstr "Código de municipio"
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de actividad de excepción registrada."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread
