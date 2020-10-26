@@ -133,8 +133,11 @@ class VatNumberXlsx(models.AbstractModel):
                              draft_export):
         """ Fill issued data """
 
-        country_code, identifier_type, vat_number = (
-            line.partner_id._parse_aeat_vat_info())
+        if not line.partner_id:
+            country_code, identifier_type, vat_number = ('', '', '')
+        else:
+            country_code, identifier_type, vat_number = (
+                line.partner_id._parse_aeat_vat_info())
         sheet.write('A' + str(row), self.format_boe_date(line.invoice_date))
         # sheet.write('B' + str(row), self.format_boe_date(line.invoice_date))
         sheet.write('C' + str(row), line.ref[:-20])
@@ -144,7 +147,9 @@ class VatNumberXlsx(models.AbstractModel):
         if country_code != 'ES':
             sheet.write('G' + str(row), country_code)
         sheet.write('H' + str(row), vat_number)
-        if not vat_number and line.partner_id.aeat_anonymous_cash_customer:
+        if not line.partner_id:
+            sheet.write('I' + str(row), 'VENTA POR CAJA')
+        elif not vat_number and line.partner_id.aeat_anonymous_cash_customer:
             sheet.write('I' + str(row), 'VENTA POR CAJA')
         else:
             sheet.write('I' + str(row), line.partner_id.name[:40])
@@ -269,8 +274,11 @@ class VatNumberXlsx(models.AbstractModel):
         """ Fill received data """
 
         date_invoice = line.invoice_id.date_invoice
-        country_code, identifier_type, vat_number = (
-            line.partner_id._parse_aeat_vat_info())
+        if not line.partner_id:
+            country_code, identifier_type, vat_number = ('', '', '')
+        else:
+            country_code, identifier_type, vat_number = (
+                line.partner_id._parse_aeat_vat_info())
         sheet.write('A' + str(row), self.format_boe_date(line.invoice_date))
         if date_invoice and date_invoice != line.invoice_date:
             sheet.write('B' + str(row), self.format_boe_date(date_invoice))
@@ -283,7 +291,10 @@ class VatNumberXlsx(models.AbstractModel):
         if country_code != 'ES':
             sheet.write('H' + str(row), country_code)
         sheet.write('I' + str(row), vat_number)
-        sheet.write('J' + str(row), line.partner_id.name[:40])
+        if not line.partner_id:
+            sheet.write('J' + str(row), '')
+        else:
+            sheet.write('J' + str(row), line.partner_id.name[:40])
         # TODO: Substitute Invoice
         # sheet.write('K' + str(row),
         #             line.invoice_id.refund_invoice_id.number or '')
