@@ -3,7 +3,7 @@
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
-odoo.define("l10n_es_pos.screens", function(require) {
+odoo.define("l10n_es_pos.screens", function (require) {
     "use strict";
 
     var screens = require("point_of_sale.screens");
@@ -12,7 +12,7 @@ odoo.define("l10n_es_pos.screens", function(require) {
         // When the order total is above the simplified invoice limit, wich
         // will be the legal one on each case, it's mandatory to force the
         // invoice in any case.
-        validate_order: function(force_validate) {
+        validate_order: function (force_validate) {
             var below_limit =
                 this.pos.get_order().get_total_with_tax() <=
                 this.pos.config.l10n_es_simplified_invoice_limit;

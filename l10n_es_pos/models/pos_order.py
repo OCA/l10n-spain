@@ -8,9 +8,14 @@ class PosOrder(models.Model):
     _inherit = "pos.order"
 
     is_l10n_es_simplified_invoice = fields.Boolean(
-        "Simplified invoice", copy=False, default=False,
+        "Simplified invoice",
+        copy=False,
+        default=False,
     )
-    l10n_es_unique_id = fields.Char("Unique Order ID", copy=False,)
+    l10n_es_unique_id = fields.Char(
+        "Unique Order ID",
+        copy=False,
+    )
 
     @api.model
     def _simplified_limit_check(self, amount_total, limit=3000):
@@ -70,9 +75,9 @@ class PosOrder(models.Model):
     @api.model
     def search(self, args, offset=0, limit=0, order=None, count=False):
         """If the context provided from create_from_ui() is given, we add
-           the unique_uid to the domain filter. This way, we prevent missing
-           orders if a sequence is reset. If they belong to another session
-           we grant them for valid despite the duped sequence number"""
+        the unique_uid to the domain filter. This way, we prevent missing
+        orders if a sequence is reset. If they belong to another session
+        we grant them for valid despite the duped sequence number"""
         submitted_uids = self.env.context.get("l10n_es_pos_submitted_uids")
         # Only use these context values for the specific case of
         # [('pos_reference', 'in', ids)]
