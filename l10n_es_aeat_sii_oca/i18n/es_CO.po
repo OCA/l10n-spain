@@ -25,8 +25,13 @@ msgid "AEAT SII Configuration"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__sent_w_errors
 msgid "Accepted with errors"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_move_reversal
+msgid "Account Move Reversal"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -35,17 +40,17 @@ msgid "Activate"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:l10n.es.aeat.sii,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__l10n_es_aeat_sii__state__active
 msgid "Active"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_registration_key_additional2
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_additional2
 msgid "Additional 2 SII registration key"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_registration_key_additional1
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_additional1
 msgid "Additional SII registration key"
 msgstr ""
 
@@ -104,11 +109,6 @@ msgid "Already sent to SII. It includes cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice_tax__amount_company
-msgid "Amount in company currency"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sii_header_customer
 msgid ""
 "An optional header description for customer invoices. Applied on all the SII "
@@ -123,29 +123,24 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_refund_specific_invoice_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_specific_invoice_type__r3
 msgid "Art. 80 Four LIVA - Bad debt (R3)"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_refund_specific_invoice_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_specific_invoice_type__r2
 msgid "Art. 80 Three LIVA - Bankruptcy (R2)"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:res.company,send_mode:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__fixed
 msgid "At fixed time"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:res.company,sii_description_method:0
-#: selection:res.company,sii_method:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_description_method__auto
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_method__auto
 msgid "Automatic"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice_tax__base_company
-msgid "Base in company currency"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -156,7 +151,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_refund_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_type__i
 msgid "By differences"
 msgstr ""
 
@@ -171,12 +166,12 @@ msgid "Cancel sending"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__cancelled
 msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__cancelled_modified
 msgid "Cancelled in SII but last modifications not sent"
 msgstr ""
 
@@ -193,7 +188,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_invoice__sii_macrodata
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
 msgid ""
 "Check to confirm that the invoice has an absolute amount greater o equal to "
 "100 000 000,00 euros."
@@ -208,7 +203,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_registration_key_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__code
 msgid "Code"
@@ -225,9 +220,8 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__invoice_jobs_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__invoice_jobs_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form_connector
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form_connector
 msgid "Connector Jobs"
 msgstr ""
 
@@ -262,12 +256,7 @@ msgid "Created on"
 msgstr "Creado"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_invoice_refund
-msgid "Credit Note"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:1292
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
 msgstr ""
@@ -313,13 +302,13 @@ msgid "Display Name"
 msgstr "Nombre Público"
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:l10n.es.aeat.sii,state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__l10n_es_aeat_sii__state__draft
 msgid "Draft"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_enabled
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_enabled
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_enabled
 msgid "Enable SII"
 msgstr ""
@@ -335,18 +324,18 @@ msgid "End Date"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_refund_specific_invoice_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_specific_invoice_type__r1
 msgid "Error based on law and Art. 80 One and Two LIVA (R1)"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii_map.py:38
+#: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii_map.py:0
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.fiscal.position,sii_partner_identification_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_partner_identification_type__3
 msgid "Export"
 msgstr ""
 
@@ -356,7 +345,7 @@ msgid "File"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_invoice__sii_refund_specific_invoice_type
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_refund_specific_invoice_type
 msgid ""
 "Fill this field when the refund are one of the specific cases of article 80 "
 "of LIVA for notifying to SII with the proper invoice type."
@@ -368,7 +357,7 @@ msgid "Fiscal Position"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:res.company,sii_description_method:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_description_method__fixed
 msgid "Fixed"
 msgstr ""
 
@@ -379,7 +368,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form
 msgid "General"
 msgstr ""
 
@@ -399,14 +387,14 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_invoice__sii_send_failed
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_send_failed
 msgid ""
 "Indicates that the last attempt to communicate this invoice to the SII has "
 "failed. See SII return for details"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_invoice__sii_account_registration_date
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_account_registration_date
 msgid ""
 "Indicates the account registration date set at the SII, which must be the "
 "date when the invoice is recorded in the system and is independent of the "
@@ -414,47 +402,42 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_invoice__sii_state
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_state
 msgid ""
 "Indicates the state of this invoice in relation with the presentation at the "
 "SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii.py:34
+#: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii.py:0
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.l10n_es_sii_password_wizard_view
 #, python-format
 msgid "Insert Password"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.fiscal.position,sii_partner_identification_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_partner_identification_type__2
 msgid "Intracom"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_invoice
-msgid "Invoice"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_invoice_tax
-msgid "Invoice Tax"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice_refund__sii_refund_type_required
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__sii_refund_type_required
 msgid "Is SII Refund Type required?"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice_refund__supplier_invoice_number_refund_required
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__supplier_invoice_number_refund_required
 msgid "Is Supplier Invoice Number Required?"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_test
 msgid "Is Test Environment?"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_move
+msgid "Journal Entries"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -498,13 +481,13 @@ msgid "Load Certificate"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_macrodata
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
 msgid "MacroData"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:res.company,sii_description_method:0
-#: selection:res.company,sii_method:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_description_method__manual
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__sii_method__manual
 msgid "Manual"
 msgstr ""
 
@@ -519,7 +502,6 @@ msgid "Method"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_invoice__sii_description_method
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_company__sii_description_method
 msgid ""
 "Method for the SII invoices description, can be one of these:\n"
@@ -546,7 +528,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.fiscal.position,sii_partner_identification_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_partner_identification_type__1
 msgid "National"
 msgstr ""
 
@@ -556,23 +538,23 @@ msgid "Never sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:342
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.fiscal.position,sii_no_taxable_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_no_taxable_cause__importeporarticulos7_14_otros
 msgid "No sujeta - No sujeción artículo 7, 14, otros"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:product.template,sii_exempt_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__none
 msgid "None"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__not_sent
 msgid "Not sent"
 msgstr ""
 
@@ -583,18 +565,18 @@ msgid "Obtain Keys"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:res.company,send_mode:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__auto
 msgid "On validate"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/wizards/aeat_sii_password.py:71
+#: code:addons/l10n_es_aeat_sii_oca/wizards/aeat_sii_password.py:0
 #, python-format
 msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.fiscal.position,sii_no_taxable_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_fiscal_position__sii_no_taxable_cause__importetaireglaslocalizacion
 msgid "Operaciones no sujetas en el TAI por reglas de localización"
 msgstr ""
 
@@ -619,7 +601,7 @@ msgid "Public Key"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:aeat.sii.mapping.registration.keys,type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__purchase
 msgid "Purchase"
 msgstr ""
 
@@ -629,17 +611,17 @@ msgid "Queue Job"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_property_cadastrial_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_property_cadastrial_code
 msgid "Real property cadastrial code"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_property_location
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_property_location
 msgid "Real property location"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__sent_modified
 msgid "Registered in SII but last modifications not sent"
 msgstr ""
 
@@ -649,7 +631,7 @@ msgid "Requeue"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_refund_specific_invoice_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_specific_invoice_type__r4
 msgid "Rest of causes (R4)"
 msgstr ""
 
@@ -657,7 +639,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii_oca.l10n_es_sii_action
 #: model:ir.ui.menu,name:l10n_es_aeat_sii_oca.l10n_es_aeat_sii_parent_menu
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.product_template_form_sii_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_position_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -670,7 +651,7 @@ msgid "SII Active"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_csv
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_csv
 msgid "SII CSV"
 msgstr ""
 
@@ -690,7 +671,6 @@ msgid "SII Description"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_description_method
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_description_method
 msgid "SII Description Method"
 msgstr ""
@@ -704,7 +684,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form
 msgid "SII Information"
 msgstr ""
 
@@ -714,24 +693,23 @@ msgid "SII No taxable cause"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_refund_type
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice_refund__sii_refund_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_refund_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__sii_refund_type
 msgid "SII Refund Type"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form
 msgid "SII Result"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_return
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_return
 msgid "SII Return"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_send_error
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_error
 msgid "SII Send Error"
 msgstr ""
 
@@ -747,7 +725,7 @@ msgid "SII Tax Agencies"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_account_registration_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_account_registration_date
 msgid "SII account registration date"
 msgstr ""
 
@@ -757,7 +735,7 @@ msgid "SII cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_description
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_description
 msgid "SII computed description"
 msgstr ""
 
@@ -777,18 +755,13 @@ msgid "SII filters"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_content_sent
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_content_sent
 msgid "SII last content sent"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_header_sent
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_header_sent
 msgid "SII last header sent"
-msgstr ""
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_manual_description
-msgid "SII manual description"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -802,17 +775,17 @@ msgid "SII partner Identification Type"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_registration_key
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key
 msgid "SII registration key"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_send_failed
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_failed
 msgid "SII send failed"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_state
 msgid "SII send state"
 msgstr ""
 
@@ -822,7 +795,7 @@ msgid "SII sent"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:aeat.sii.mapping.registration.keys,type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__sale
 msgid "Sale"
 msgstr ""
 
@@ -833,7 +806,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form
 msgid "Send cancellation to SII"
 msgstr ""
 
@@ -849,12 +821,11 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form
 msgid "Send to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_state:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__sent
 msgid "Sent"
 msgstr ""
 
@@ -870,7 +841,7 @@ msgid "Sii Enabled"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice__sii_refund_specific_invoice_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_refund_specific_invoice_type
 msgid "Sii Refund Specific Invoice Type"
 msgstr ""
 
@@ -996,7 +967,7 @@ msgid "SuministroPagosRecibidas WSDL"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_invoice_refund__supplier_invoice_number_refund
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__supplier_invoice_number_refund
 msgid "Supplier Invoice Number"
 msgstr ""
 
@@ -1013,7 +984,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_supplier_sii_form
 msgid "Technical"
 msgstr ""
 
@@ -1035,31 +1005,31 @@ msgid "The last attemp to sent to SII has failed"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:646
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:662
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:372
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:654
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:658
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr ""
@@ -1081,7 +1051,7 @@ msgid "WSDL"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:res.company,send_mode:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__delayed
 msgid "With delay"
 msgstr ""
 
@@ -1091,13 +1061,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:1174
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:1144
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -1105,7 +1075,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:1083
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -1113,19 +1083,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:1190
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:641
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:259
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
 "You cannot change the invoice date of an invoice already registered at the "
@@ -1133,7 +1103,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:276
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
 "You cannot change the supplier invoice number of an invoice already "
@@ -1142,7 +1112,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:269
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
@@ -1150,78 +1120,78 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:298
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:649
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_invoice.py:224
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "You must have at least one refunded invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_property_location:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_property_location__1
 msgid ""
 "[1]-Real property with cadastral code located within the Spanish territory "
 "except Basque Country or Navarra"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_property_location:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_property_location__2
 msgid "[2]-Real property located in the Basque Country or Navarra"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_property_location:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_property_location__3
 msgid ""
 "[3]-Real property in any of the above situations but without cadastral code"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:account.invoice,sii_property_location:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_property_location__4
 msgid "[4]-Real property located in a foreign country"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:product.template,sii_exempt_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e1
 msgid "[E1] Art. 20: Operaciones interiores exentas"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:product.template,sii_exempt_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e2
 msgid "[E2] Art. 21: Exenciones en las exportaciones de bienes"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:product.template,sii_exempt_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e3
 msgid ""
 "[E3] Art. 22: Exenciones en las operaciones asimiladas a las exportaciones"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:product.template,sii_exempt_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e4
 msgid ""
 "[E4] Art. 23 y 24: Exenciones relativas a regímenes aduaneros y fiscales. "
 "Exenciones zonas francas, depósitos francos y otros depósitos."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:product.template,sii_exempt_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e5
 msgid ""
 "[E5] Art. 25: Exenciones en las entregas de bienes destinados a otro estado "
 "miembro."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
-#: selection:product.template,sii_exempt_cause:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e6
 msgid "[E6] Otros"
 msgstr ""
 
