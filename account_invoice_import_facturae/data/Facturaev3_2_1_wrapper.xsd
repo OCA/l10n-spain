@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import
+    namespace="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae"
+    schemaLocation="Facturaev3_2_1.xsd"/>
+  <xs:import
+    namespace="http://www.facturae.es/Facturae/Extensions/Utilities"
+    schemaLocation="UtilitiesExtension.xsd"/>
+  <xs:import
+    namespace="http://www.facturae.es/Facturae/Extensions/Correos"
+    schemaLocation="FormatoXSD V1.0.xsd"/>
+  <xs:import
+    namespace="http://www.facturae.es/Facturae/Extensions/FaceB2BExtensionv1_1"
+    schemaLocation="Extension FACEB2B v1-1.xsd"/>
+</xs:schema>

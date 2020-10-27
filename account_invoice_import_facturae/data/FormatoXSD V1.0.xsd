@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp2 (http://www.altova.com) by stratesys (EMBRACE) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.facturae.es/Facturae/Extensions/Correos" targetNamespace="http://www.facturae.es/Facturae/Extensions/Correos">
+	<xs:element name="CorreosExtension">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"> Element ORIGIN of Correos Extension. </xs:documentation>
+			<xs:documentation xml:lang="es"> Elemento ORIGEN de la Extension de Correos. </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Version" type="TextMax10Type">
+					<xs:annotation>
+						<xs:documentation xml:lang="en"> Version. </xs:documentation>
+						<xs:documentation xml:lang="es"> Version. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Trazability" type="TrazabilityType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Complex Types -->
+	<xs:complexType name="TrazabilityType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"> Trazabilitity data. </xs:documentation>
+			<xs:documentation xml:lang="es"> Datos de trazabilidad. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Trace" type="TrazaType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TrazaType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"> Trazabilitity data per zone. </xs:documentation>
+			<xs:documentation xml:lang="es"> Datos de trazabilidad por zona. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Zone" type="TextMax128Type">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Delivery zone or area. </xs:documentation>
+					<xs:documentation xml:lang="es"> Area o zona de la entrega. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DeliveryNote" type="DeliveryNoteType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DeliveryNoteType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en"> References list per area or zone. </xs:documentation>
+			<xs:documentation xml:lang="es"> Listado de referencias para el area o zona. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RectifiedInvoice" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="es"> Rectified invoice number. </xs:documentation>
+					<xs:documentation xml:lang="es"> Numero de la factura Rectificada.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Delivery" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="es"> Delivery note reference number. </xs:documentation>
+					<xs:documentation xml:lang="es"> Numero de referencia del albaran.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RefCustomer" type="TextMax80Type" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en"> Customer reference.</xs:documentation>
+					<xs:documentation xml:lang="es"> Referencia del cliente.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Date" type="xs:date">
+				<xs:annotation>
+					<xs:documentation xml:lang="es"> Date show on the delivery note. </xs:documentation>
+					<xs:documentation xml:lang="es"> Fecha del albaran.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Text Types -->
+	<xs:simpleType name="TextMax128Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax80Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="80"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TextMax10Type">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
