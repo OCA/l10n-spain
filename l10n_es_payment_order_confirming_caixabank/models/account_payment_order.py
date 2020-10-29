@@ -168,7 +168,7 @@ class AccountPaymentOrder(models.Model):
     def _pop_beneficiarios_conf_caix(self, line):
         all_text = ''
         bloque_registros = [
-            '010', '043', '044', '011', '012', '014',
+            '010', '043', '044', '046', '011', '012', '014',
             '015', '016', '017', '018', '019'
         ]
         fixed_text = ''
@@ -282,6 +282,19 @@ class AccountPaymentOrder(models.Model):
                 # 51 - 72 Libre
                 text += 6 * ' '
             ###################################################################
+
+            # LÍNEA 3bis
+            ###################################################################
+            if tipo_dato == '046':
+                # 30 - 59 -- LARGO DE 30
+                # Fecha de postfinanciación de la remesa.
+                if not self.post_financing_date:
+                    raise UserError(_('post-financing date mandatory'))
+                # Asigno como fecha de vencimiento de la factura la fecha del ejecución del pago.
+                text += fields.Date.from_string(self.post_financing_date).strftime('%d%m%y').ljust(30)
+
+            ###################################################################
+
 
             # LÍNEA 4
             ###################################################################
