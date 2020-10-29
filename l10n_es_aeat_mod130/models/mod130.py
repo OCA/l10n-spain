@@ -74,7 +74,7 @@ class L10nEsAeatMod130Report(models.Model):
     )
     casilla_04 = fields.Monetary(string="Casilla [04] - IRPF", readonly=True)
     casilla_05 = fields.Monetary(string="Casilla [05]")
-    casilla_06 = fields.Monetary(string="Casilla [06]", readonly=True)
+    casilla_06 = fields.Monetary(string="Casilla [06]")
     casilla_07 = fields.Monetary(string="Casilla [07]", readonly=True)
     casilla_08 = fields.Monetary(
         string="Casilla [08] - Ingresos primario",
@@ -131,7 +131,7 @@ class L10nEsAeatMod130Report(models.Model):
                 report.tipo_declaracion = "I"
 
     @api.multi
-    def _calc_ingresos_gastos(self):
+    def _calc_ingresos_gastos_retenciones(self):
         self.ensure_one()
         aml_obj = self.env['account.move.line']
         date_start = '%s-01-01' % self.year
@@ -148,7 +148,11 @@ class L10nEsAeatMod130Report(models.Model):
             ('account_id.code', '=like', '6%'),
         ] + extra_domain, ['balance'], [])
         expenses = groups[0]['balance'] or 0.0
-        return (incomes, expenses)
+        groups = aml_obj.read_group([
+            ('account_id.code', '=like', '473%'),
+        ] + extra_domain, ['balance'], [])
+        withholdings = groups[0]['balance'] or 0.0
+        return (incomes, expenses, withholdings)
 
     @api.multi
     def _calc_prev_trimesters_data(self):
@@ -173,7 +177,8 @@ class L10nEsAeatMod130Report(models.Model):
                     'artículo 80 bis.'))
             vals = {}
             if report.activity_type == 'other':
-                ingresos, gastos = report._calc_ingresos_gastos()
+                ingresos, gastos, retenciones = \
+                    report._calc_ingresos_gastos_retenciones()
                 vals['casilla_01'] = ingresos
                 vals['real_expenses'] = gastos
                 rendimiento_bruto = (ingresos - gastos)
@@ -193,8 +198,9 @@ class L10nEsAeatMod130Report(models.Model):
                     vals['casilla_04'] = trunc(0.20 * vals['casilla_03'], 2)
                 # Pago fraccionado previo del trimestre
                 vals['casilla_05'] = report._calc_prev_trimesters_data()
+                vals['casilla_06'] = retenciones
                 vals['casilla_07'] = (vals['casilla_04'] - vals['casilla_05'] -
-                                      report.casilla_06)
+                                      vals['casilla_06'])
                 vals['casilla_12'] = vals['casilla_07']
                 if vals['casilla_12'] < 0:
                     vals['casilla_12'] = 0.0

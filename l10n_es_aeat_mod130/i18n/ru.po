@@ -214,14 +214,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__company_partner_id
 #, fuzzy
-#| msgid "Company"
 msgid "Company partner"
 msgstr "Компания"
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,type:0
 #, fuzzy
-#| msgid "Company"
 msgid "Complementary"
 msgstr "Компания"
 
@@ -266,7 +264,7 @@ msgid "Datos a completar"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:235
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:241
 #, python-format
 msgid ""
 "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
@@ -294,7 +292,7 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:167
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:171
 #, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr ""
@@ -451,13 +449,13 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:217
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:223
 #, python-format
 msgid "No implementado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:170
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:174
 #, python-format
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
