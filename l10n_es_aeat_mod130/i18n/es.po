@@ -217,7 +217,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,type:0
 #, fuzzy
-#| msgid "No implementado"
 msgid "Complementary"
 msgstr "No implementado"
 
@@ -262,7 +261,7 @@ msgid "Datos a completar"
 msgstr "Datos a completar"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:235
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:241
 #, python-format
 msgid ""
 "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
@@ -290,7 +289,7 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:167
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:171
 #, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr "Este tipo de actividad no está aún soportado por el módulo."
@@ -447,17 +446,14 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:217
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:223
 #, python-format
 msgid "No implementado"
 msgstr "No implementado"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:170
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:174
 #, fuzzy, python-format
-#| msgid ""
-#| "No se pueden calcular por el momento declaraciones que contengan "
-#| "deducciones por el artí­culo 80 bis."
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
 "por el artículo 80 bis."
@@ -678,7 +674,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__company_vat
 #, fuzzy
-#| msgid "Model number"
 msgid "VAT number"
 msgstr "Nº modelo"
 
@@ -715,7 +710,6 @@ msgstr "[03] Rendimiento neto"
 #. module: l10n_es_aeat_mod130
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
 #, fuzzy
-#| msgid "[04] 20% de la casilla [03]"
 msgid "[04] 20% casilla (03)"
 msgstr "[04] 20% de la casilla [03]"
 
