@@ -55,7 +55,6 @@
                                 />
                                 <field name="casilla_06"
                                     string="[06] A deducir - Retenciones e ingr. a cuenta"
-                                    attrs="{'readonly': [('state', '!=', 'draft')]}"
                                 />
                                 <field name="casilla_07"
                                     string="[07] Pago fraccionado previo del trimestre"
