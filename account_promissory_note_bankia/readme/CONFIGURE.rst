@@ -1,2 +1,4 @@
-Ir a Facturación / Contabilidad > Configuración > Diarios y marcar el formato de cheque
-"Pagaré Bankia"
+#. Vaya a Facturación / Contabilidad > Configuración > Diarios
+#. Seleccione el diario que quiera.
+#. Vaya a "Configuración avanzada".
+#. Marcar el formato de cheque "Bankia Promissory Note".
