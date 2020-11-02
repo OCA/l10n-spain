@@ -12,7 +12,7 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(L10nEsAccountBankStatementImportN43, cls).setUpClass()
-        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner N43"})
         cls.journal = cls.env["account.journal"].create(
             {"type": "bank", "name": "Test N43 bank", "code": "BNKN43"}
         )
