@@ -310,7 +310,7 @@ class RedsysCase(HttpCase):
         # Get transaction
         self._form_feedback(redsys_post_data)
         mock_confirm.assert_called_once_with()
-        mock_quo_send.assert_not_called()
+        mock_quo_send.assert_called_once_with()
         # check state
         self.assertEqual(
             self.tx.state, "done", "Redsys: validation put tx into done state"
