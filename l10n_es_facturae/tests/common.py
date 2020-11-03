@@ -16,9 +16,18 @@ except(ImportError, IOError) as err:
     logging.info(err)
 
 
-class TestL10nEsFacturae(common.TransactionCase):
+class CommonTest(common.TransactionCase):
+    def __init__(cls, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # We want to avoid testing on the CommonTest class
+        if (
+            cls.test_class == 'CommonTest' and
+            cls.__module__ == 'odoo.addons.l10n_es_facturae.tests.common'
+        ):
+            cls.test_tags -= {'at_install'}
+
     def setUp(self):
-        super(TestL10nEsFacturae, self).setUp()
+        super().setUp()
         self.tax = self.env['account.tax'].create({
             'name': 'Test tax',
             'amount_type': 'percent',
@@ -153,6 +162,13 @@ class TestL10nEsFacturae(common.TransactionCase):
         self.invoice.number = '2999/99999'
         self.main_company = self.env.ref('base.main_company')
         self.wizard = self.env['create.facturae'].create({})
+        self.fe = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
+        self.first_check_amount = [
+            '190.310000', '190.310000', '190.31', '39.97'
+        ]
+        self.second_check_amount = [
+            '190.310000', '133.220000', '133.22', '27.98', '57.090000'
+        ]
 
     def test_facturae_generation(self):
         self.wizard.with_context(
@@ -160,17 +176,16 @@ class TestL10nEsFacturae(common.TransactionCase):
             active_model='account.invoice').create_facturae_file()
         generated_facturae = etree.fromstring(
             base64.b64decode(self.wizard.facturae))
-        fe = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
         self.assertEqual(
             generated_facturae.xpath(
                 '/fe:Facturae/Parties/SellerParty/TaxIdentification/'
-                'TaxIdentificationNumber', namespaces={'fe': fe})[0].text,
+                'TaxIdentificationNumber', namespaces={'fe': self.fe})[0].text,
             self.env.ref('base.main_company').vat
         )
         self.assertEqual(
             generated_facturae.xpath(
                 '/fe:Facturae/Invoices/Invoice/InvoiceHeader/InvoiceNumber',
-                namespaces={'fe': fe})[0].text,
+                namespaces={'fe': self.fe})[0].text,
             self.invoice.number
         )
 
@@ -436,7 +451,7 @@ class TestL10nEsFacturae(common.TransactionCase):
         # Make sure the decimal precision is being applied
         self.assertAlmostEqual(self.invoice_line.price_unit, 190.314, 4)
         self.invoice.compute_taxes()
-        self._check_amounts('190.310000', '190.310000', '190.31', '39.97')
+        self._check_amounts(*self.first_check_amount)
 
     def test_invoice_rounding_with_discount(self):
         self.main_company.tax_calculation_rounding_method = 'round_globally'
@@ -449,6 +464,4 @@ class TestL10nEsFacturae(common.TransactionCase):
             'discount': 30,
         })
         self.invoice.compute_taxes()
-        self._check_amounts(
-            '190.310000', '133.220000', '133.22', '27.98', '57.090000',
-        )
+        self._check_amounts(*self.second_check_amount)

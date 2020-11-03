@@ -11,3 +11,8 @@ class ResCompany(models.Model):
     facturae_cert = fields.Binary(
         string='Certificado firma electrónica', filters='*.pfx')
     facturae_cert_password = fields.Char(string='Contraseña certificado')
+    facturae_version = fields.Selection([
+        ('3_2', '3.2'),
+        ('3_2_1', '3.2.1'),
+        ('3_2_2', '3.2.2'),
+    ])
