@@ -202,6 +202,11 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 [(100, ["p_iva21_sp_ex"])],
                 {"ref": "sup0004", "sii_account_registration_date": "2020-10-01"},
             ),
+            (
+                "in_invoice",
+                [(100, ["p_iva0_ns"]), (200, ["p_iva10_bc"])],
+                {"ref": "sup0005", "sii_account_registration_date": "2020-10-01"},
+            ),
         ]
         for inv_type, lines, extra_vals in mapping:
             vals = []
