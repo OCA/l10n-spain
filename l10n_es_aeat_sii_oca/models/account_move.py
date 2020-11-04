@@ -465,8 +465,7 @@ class AccountMove(models.Model):
         for line in self.line_ids:
             sign = -1 if self.type[:3] == "out" else 1
             for tax in line.tax_ids:
-                res.setdefault(tax, {"tax": tax})
-                res[tax].setdefault("base", 0.0)
+                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
                 res[tax]["base"] += line.balance * sign
             if line.tax_line_id:
                 tax = line.tax_line_id
@@ -480,8 +479,7 @@ class AccountMove(models.Model):
                 ):
                     # taxes with more than one "tax" repartition line must be discarded
                     continue
-                res.setdefault(tax, {"tax": tax})
-                res[tax].setdefault("amount", 0.0)
+                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
                 res[tax]["amount"] += line.balance * sign
         return res
 
@@ -597,7 +595,7 @@ class AccountMove(models.Model):
     def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
         """Helper method for merging values in an existing tax dictionary."""
         for existing_dict in vat_list:
-            if existing_dict[comp_key] == tax_dict[comp_key]:
+            if existing_dict.get(comp_key, "-99") == tax_dict.get(comp_key, "-99"):
                 for key in merge_keys:
                     existing_dict[key] += tax_dict[key]
                 return True
