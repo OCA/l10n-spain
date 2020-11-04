@@ -350,7 +350,7 @@ class RedsysCase(HttpCase):
         self.data_post_redsys(
             url='/payment/redsys/return', data=redsys_post_data)
         mock_confirm.assert_called_once_with()
-        mock_quo_send.assert_not_called()
+        mock_quo_send.assert_called_once_with()
         with self.cursor() as cr:
             env = self.env(cr)
             tx = self.tx.with_env(env)

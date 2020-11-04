@@ -339,6 +339,7 @@ class TxRedsys(models.Model):
         if state == 'done':
             vals['state_message'] = _('Ok: %s') % params.get('Ds_Response')
             self._set_transaction_done()
+            self._confirm_sale_order()
         elif state == 'pending':  # 'Payment error: code: %s.'
             state_message = _('Error: %s (%s)')
             self._set_transaction_pending()
@@ -405,3 +406,10 @@ class TxRedsys(models.Model):
                 'Fail to confirm the order or send the confirmation email%s',
                 tx and ' for the transaction %s' % tx.reference or '')
         return res
+
+    def _confirm_sale_order(self):
+        sales_orders = self.mapped('sale_order_ids').filtered(
+            lambda so: so.state == 'draft')
+        sales_orders.force_quotation_send()
+        for payment_transaction in self:
+            payment_transaction._check_amount_and_confirm_order()
