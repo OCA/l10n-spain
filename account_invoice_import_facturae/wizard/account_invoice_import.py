@@ -7,7 +7,8 @@ import logging
 from lxml import etree
 import mimetypes
 
-from odoo import api, fields, models, tools, _
+from odoo import api, models, tools
+from odoo.tools.translate import _
 from odoo.exceptions import ValidationError
 logger = logging.getLogger(__name__)
 
@@ -24,8 +25,10 @@ class AccountInvoiceImport(models.TransientModel):
     def get_facturae_map(self):
         ns_32 = 'http://www.facturae.es/Facturae/2009/v3.2/Facturae'
         ns_321 = 'http://www.facturae.es/Facturae/2014/v3.2.1/Facturae'
+        ns_322 = 'http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml'
         return {
-            ns_321: 'Facturaev3_2_1_wrapper.xsd',
+            ns_322: 'Facturaev3_2_2.xsd',
+            ns_321: 'Facturaev3_2_1.xsd',
             ns_32: 'Facturaev3_2.xsd'
         }
 
@@ -51,7 +54,7 @@ class AccountInvoiceImport(models.TransientModel):
         facturae_schema = etree.XMLSchema(
             etree.parse(tools.file_open(
                 xsd_file,
-                subdir="addons/account_invoice_import_facturae/data"
+                subdir="addons/l10n_es_facturae/data"
             )))
         facturae_schema.assertValid(xml_root)
         sign = xml_root.find(
@@ -89,7 +92,7 @@ class AccountInvoiceImport(models.TransientModel):
             'type': inv_type,
             'partner': supplier_dict,
             'invoice_number': inv_number_xpath.text,
-            'date': fields.Date.to_string(date_dt),
+            'date': date_dt.date(),
             'date_due': False,
             'date_start': date_start,
             'date_end': date_end,

@@ -29,7 +29,7 @@ class TestImportFacturae(TransactionCase):
             'type_tax_use': 'purchase',
             'amount_type': 'percent',
             'amount': 21.,
-            'desription': 'TEST TAX',
+            'description': 'TEST TAX',
         })
         self.product = self.env['product.product'].create({
             'name': 'Product',

@@ -3,7 +3,7 @@
 
 {
     'name': 'Account Invoice Import Facturae',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
     'summary': 'Import supplier invoices/refunds in facturae format',
@@ -12,6 +12,7 @@
     'depends': [
         'account_invoice_import',
         'base_iso3166',
+        'l10n_es_facturae'
     ],
     'data': [
     ],
