@@ -66,7 +66,7 @@ msgid "Alemán"
 msgstr "Alemán"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:346
+#: code:addons/payment_redsys/models/redsys.py:347
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr "Error del banco: %s (%s)"
@@ -92,7 +92,7 @@ msgid "Domiciliacion"
 msgstr "Domiciliación"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:343
+#: code:addons/payment_redsys/models/redsys.py:344
 #, python-format
 msgid "Error: %s (%s)"
 msgstr "Error: %s (%s)"
@@ -226,7 +226,7 @@ msgid "Redsys Signature Version"
 msgstr "Versión de Redsys de la firma"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:349
+#: code:addons/payment_redsys/models/redsys.py:350
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr "Redsys: feedback error %s (%s)"
