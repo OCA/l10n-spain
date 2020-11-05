@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 15:03+0000\n"
-"PO-Revision-Date: 2020-10-27 15:08+0000\n"
+"PO-Revision-Date: 2020-11-05 11:08+0000\n"
 "Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -26,7 +26,7 @@ msgstr " (reembossament)"
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_chart_template
 msgid "Account Chart Template"
-msgstr "Plantilla de Gràfic de Compte"
+msgstr "Plantilla de gràfic de compte"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
@@ -62,13 +62,15 @@ msgstr "Seqüència d’entrades al diari"
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
 msgstr ""
-"La companyia del diari no és la mateixa que la de la seqüència de factura."
+"L'empresa del diari i l'empresa de seqüències de factures no coincideixen."
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:39
 #, python-format
 msgid "Journal company and refund sequence company do not match."
 msgstr ""
+"L'empresa del diari i l'empresa de seqüències de reembossament no "
+"coincideixen."
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_invoice__number
