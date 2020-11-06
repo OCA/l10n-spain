@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-26 16:03+0000\n"
-"PO-Revision-Date: 2016-08-21 12:03+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2020-11-06 13:08+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__005
@@ -96,27 +97,27 @@ msgstr "Italià"
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_lang
 msgid "Merchant Consumer Language"
-msgstr ""
+msgstr "Llenguatge del consumidor comercial"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_data
 msgid "Merchant Data"
-msgstr ""
+msgstr "Dades de comerciant"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_name
 msgid "Merchant Name"
-msgstr ""
+msgstr "Dades de comerciant"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_titular
 msgid "Merchant Titular"
-msgstr ""
+msgstr "Titular de comerciant"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_code
 msgid "Merchant code"
-msgstr ""
+msgstr "Codi de comerciant"
 
 #. module: payment_redsys
 #: code:addons/payment_redsys/models/redsys.py:0
@@ -138,12 +139,12 @@ msgstr "Pagament per transferència"
 #: code:addons/payment_redsys/models/redsys.py:0
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
-msgstr ""
+msgstr "El percentatge de pagament parcial ha d’estar entre 0 i 100"
 
 #. module: payment_redsys
 #: model:ir.model,name:payment_redsys.model_payment_acquirer
 msgid "Payment Acquirer"
-msgstr ""
+msgstr "Adquirent de pagaments"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_pay_method
@@ -173,13 +174,13 @@ msgstr "Descripció del producte"
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__provider
 msgid "Provider"
-msgstr ""
+msgstr "Proveïdor"
 
 #. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__provider__redsys
 #: model:payment.acquirer,name:payment_redsys.payment_acquirer_redsys
 msgid "Redsys"
-msgstr ""
+msgstr "Redsys"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_signature_version
@@ -191,12 +192,12 @@ msgstr "Versió de signatura Redsys"
 #: code:addons/payment_redsys/models/redsys.py:0
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
-msgstr ""
+msgstr "Redsys: error de retroalimentació %s (%s)"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_percent_partial
 msgid "Reduction percent"
-msgstr ""
+msgstr "Percentatge de reducció"
 
 #. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_secret_key
@@ -240,6 +241,10 @@ msgid ""
 "you can allow partial payments in your shop online, the residual amount in "
 "pending for do a manual payment later."
 msgstr ""
+"Escriviu un percentatge de reducció de pagament per aquest mètode de "
+"pagament. Amb aquesta opció podeu permetre pagaments parcials a la vostra "
+"botiga en línia, l'import residual pendent de fer un pagament manual més "
+"tard."
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,pre_msg:payment_redsys.payment_acquirer_redsys
@@ -247,28 +252,30 @@ msgid ""
 "You will be redirected to the Redsys payment gateway after clicking on the "
 "payment button."
 msgstr ""
+"Després de fer clic al botó de pagament, se us redirigirà a la passarel·la "
+"de pagament de Redsys."
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,auth_msg:payment_redsys.payment_acquirer_redsys
 msgid "Your payment has been authorized."
-msgstr ""
+msgstr "El vostre pagament s'ha autoritzat."
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,cancel_msg:payment_redsys.payment_acquirer_redsys
-#, fuzzy
 msgid "Your payment has been cancelled."
-msgstr "La teva comanda s'ha pagat correctament"
+msgstr "El vostre pagament s'ha cancel·lat."
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,pending_msg:payment_redsys.payment_acquirer_redsys
 msgid ""
 "Your payment has been successfully processed but is waiting for approval."
 msgstr ""
+"El vostre pagament s’ha processat correctament, però espera l’aprovació."
 
 #. module: payment_redsys
 #: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
 msgid "Your payment has been successfully processed. Thank you!"
-msgstr ""
+msgstr "El vostre pagament s'ha processat correctament. Gràcies!"
 
 #, fuzzy
 #~ msgid "<strong>Invoicing Address</strong>"
