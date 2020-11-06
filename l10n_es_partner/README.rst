@@ -30,7 +30,6 @@ Incluye la siguiente funcionalidad:
 * Añade el campo *Nombre comercial* a las empresas y permite buscar por él.
 * Permite definir un patrón del nombre a mostrar a partir del nombre y el
   nombre comercial de la empresa.
-* Convierte el NIF a mayúsculas.
 * Añade los campos nombre largo, NIF y web a los bancos.
 * Añade los datos de los bancos españoles extraídos del registro oficial del
   Banco de España (http://goo.gl/mtx6ic). El asistente realiza la descarga
