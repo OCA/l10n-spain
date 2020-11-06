@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo12-addon-account_promissory_note_bankia',
+        'odoo12-addon-account_promissory_note_caixabank',
         'odoo12-addon-account_promissory_note_deutschebank_es',
         'odoo12-addon-delivery_gls_asm',
         'odoo12-addon-delivery_seur',
