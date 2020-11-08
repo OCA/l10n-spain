@@ -10,9 +10,7 @@ class L10nEsAeatTaxLine(models.Model):
     _order = "field_number asc, id asc"
     _description = "AEAT tax line"
 
-    res_id = fields.Integer(
-        string="Resource ID", index=True, required=True, ondelete="cascade"
-    )
+    res_id = fields.Integer(string="Resource ID", index=True, required=True)
     field_number = fields.Integer(
         string="Field number",
         related="map_line_id.field_number",
@@ -44,7 +42,7 @@ class L10nEsAeatTaxLine(models.Model):
             s.model_id = self.env["ir.model"].search([("model", "=", s.model)])
 
     def get_calculated_move_lines(self):
-        res = self.env.ref("account.action_account_moves_all_a").read()[0]
+        res = self.env.ref("account.action_account_moves_all_a").sudo().read()[0]
         view = self.env.ref("l10n_es_aeat.view_move_line_tree")
         res["views"] = [(view.id, "tree")]
         res["domain"] = [("id", "in", self.move_line_ids.ids)]
