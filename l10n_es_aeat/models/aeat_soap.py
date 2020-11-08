@@ -10,8 +10,8 @@ _logger = logging.getLogger(__name__)
 
 try:
     from zeep import Client
-    from zeep.transports import Transport
     from zeep.plugins import HistoryPlugin
+    from zeep.transports import Transport
 except (ImportError, IOError) as err:
     _logger.debug(err)
 

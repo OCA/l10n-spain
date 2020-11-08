@@ -291,8 +291,7 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.onchange("company_id")
     def onchange_company_id(self):
-        """Load some company data (the VAT number) when company changes.
-        """
+        """Load some company data (the VAT number) when company changes."""
         if self.company_id.vat:
             # Remove the ES part from spanish vat numbers
             #  (ES12345678Z => 12345678Z)

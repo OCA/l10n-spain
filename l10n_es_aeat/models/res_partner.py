@@ -28,8 +28,8 @@ class ResPartner(models.Model):
 
     @ormcache("self.vat, self.country_id")
     def _parse_aeat_vat_info(self):
-        """ Return tuple with split info (country_code, identifier_type and
-            vat_number) from vat and country partner
+        """Return tuple with split info (country_code, identifier_type and
+        vat_number) from vat and country partner
         """
         self.ensure_one()
         vat_number = self.vat or ""
