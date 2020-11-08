@@ -28,17 +28,21 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             report.flush()
             report.invalidate_cache()
             # Buscar configuración de mapeo de impuestos
-            tax_code_map = self.env["l10n.es.aeat.map.tax"].search(
-                [
-                    ("model", "=", report.number),
-                    "|",
-                    ("date_from", "<=", report.date_start),
-                    ("date_from", "=", False),
-                    "|",
-                    ("date_to", ">=", report.date_end),
-                    ("date_to", "=", False),
-                ],
-                limit=1,
+            tax_code_map = (
+                self.env["l10n.es.aeat.map.tax"]
+                .sudo()
+                .search(
+                    [
+                        ("model", "=", report.number),
+                        "|",
+                        ("date_from", "<=", report.date_start),
+                        ("date_from", "=", False),
+                        "|",
+                        ("date_to", ">=", report.date_end),
+                        ("date_to", "=", False),
+                    ],
+                    limit=1,
+                )
             )
             if tax_code_map:
                 tax_lines = []
@@ -84,11 +88,15 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         ]
         if map_line.move_type == "regular":
             move_line_domain.append(
-                ("move_id.move_type", "in", ("receivable", "payable", "liquidity"))
+                ("move_id.financial_type", "in", ("receivable", "payable", "liquidity"))
             )
         elif map_line.move_type == "refund":
             move_line_domain.append(
-                ("move_id.move_type", "in", ("receivable_refund", "payable_refund"))
+                (
+                    "move_id.financial_type",
+                    "in",
+                    ("receivable_refund", "payable_refund"),
+                )
             )
         if map_line.field_type == "base":
             move_line_domain.append(("tax_ids", "in", taxes.ids))
