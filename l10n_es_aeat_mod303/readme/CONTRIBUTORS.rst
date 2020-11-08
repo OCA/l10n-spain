@@ -11,3 +11,6 @@
 
   * Harald Panten
   * Valentin Vinagre
+* `Ozono Multimedia <https://www.ozonomultimedia.com>`__:
+
+  * Iván Antón
