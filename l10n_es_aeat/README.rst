@@ -146,6 +146,7 @@ Contributors
 * Diagram Software S.L.
 * Consultoría Informática Studio 73 S.L.
 * Miquel Raïch <miquel.raich@forgeflow.com>
+* Iván Antón <ozono@ozonomultimedia.com>
 
 Maintainers
 ~~~~~~~~~~~

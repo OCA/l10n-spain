@@ -154,6 +154,7 @@
         <field name="model">l10n.es.aeat.report</field>
         <field name="arch" type="xml">
             <search string="AEAT">
+                <field name="name" />
                 <filter
                     name="filter_draft"
                     string="Draft"
