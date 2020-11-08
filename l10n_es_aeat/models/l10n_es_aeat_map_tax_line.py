@@ -14,7 +14,8 @@ class L10nEsAeatMapTaxLine(models.Model):
         comodel_name="account.tax.template", string="Taxes templates"
     )
     account_id = fields.Many2one(
-        comodel_name="account.account.template", string="Account Template",
+        comodel_name="account.account.template",
+        string="Account Template",
     )
     name = fields.Char(string="Name", required=True)
     map_parent_id = fields.Many2one(comodel_name="l10n.es.aeat.map.tax", required=True)

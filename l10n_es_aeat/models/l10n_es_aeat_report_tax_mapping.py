@@ -170,8 +170,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         return []
 
     def _prepare_regularization_move_lines(self):
-        """Prepare the list of dictionaries for the regularization move lines.
-        """
+        """Prepare the list of dictionaries for the regularization move lines."""
         self.ensure_one()
         lines = self._process_tax_line_regularization(
             self.tax_line_ids.filtered("to_regularize")

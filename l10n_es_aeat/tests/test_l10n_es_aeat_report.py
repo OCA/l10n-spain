@@ -18,7 +18,7 @@ class L10nEsAeatTestReport(models.TransientModel):
 class TestL10nEsAeatReport(common.SavepointCase):
     @classmethod
     def _init_test_model(cls, model_cls):
-        """ It builds a model from model_cls in order to test abstract models.
+        """It builds a model from model_cls in order to test abstract models.
         Note that this does not actually create a table in the database, so
         there may be some unidentified edge cases.
 
