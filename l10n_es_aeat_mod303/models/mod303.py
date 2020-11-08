@@ -184,7 +184,9 @@ class L10nEsAeatMod303Report(models.Model):
         string=u"Código 1ª actividad",
     )
     other_first_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 1ª actividad", states=NON_EDITABLE_ON_DONE, size=4,
+        string=u"Epígrafe I.A.E. 1ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
     )
     other_second_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
@@ -193,7 +195,9 @@ class L10nEsAeatMod303Report(models.Model):
         string=u"Código 2ª actividad",
     )
     other_second_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 2ª actividad", states=NON_EDITABLE_ON_DONE, size=4,
+        string=u"Epígrafe I.A.E. 2ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
     )
     other_third_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
@@ -202,7 +206,9 @@ class L10nEsAeatMod303Report(models.Model):
         string=u"Código 3ª actividad",
     )
     other_third_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 3ª actividad", states=NON_EDITABLE_ON_DONE, size=4,
+        string=u"Epígrafe I.A.E. 3ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
     )
     other_fourth_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
@@ -211,7 +217,9 @@ class L10nEsAeatMod303Report(models.Model):
         string=u"Código 4ª actividad",
     )
     other_fourth_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 4ª actividad", states=NON_EDITABLE_ON_DONE, size=4,
+        string=u"Epígrafe I.A.E. 4ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
     )
     other_fifth_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
@@ -220,7 +228,9 @@ class L10nEsAeatMod303Report(models.Model):
         string=u"Código 5ª actividad",
     )
     other_fifth_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 5ª actividad", states=NON_EDITABLE_ON_DONE, size=4,
+        string=u"Epígrafe I.A.E. 5ª actividad",
+        states=NON_EDITABLE_ON_DONE,
+        size=4,
     )
     casilla_88 = fields.Float(
         string=u"[88] Total volumen operaciones",
@@ -334,11 +344,28 @@ class L10nEsAeatMod303Report(models.Model):
             report.casilla_88 = sum(
                 report.tax_line_ids.filtered(
                     lambda x: x.field_number
-                    in (80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98,)
+                    in (
+                        80,
+                        81,
+                        83,
+                        84,
+                        85,
+                        86,
+                        93,
+                        94,
+                        95,
+                        96,
+                        97,
+                        98,
+                    )
                 ).mapped("amount")
             ) - sum(
                 report.tax_line_ids.filtered(
-                    lambda x: x.field_number in (79, 99,)
+                    lambda x: x.field_number
+                    in (
+                        79,
+                        99,
+                    )
                 ).mapped("amount")
             )
 
@@ -347,7 +374,9 @@ class L10nEsAeatMod303Report(models.Model):
             report.allow_posting = True
 
     @api.depends(
-        "resultado_liquidacion", "period_type", "devolucion_mensual",
+        "resultado_liquidacion",
+        "period_type",
+        "devolucion_mensual",
     )
     def _compute_result_type(self):
         for report in self:
@@ -414,7 +443,9 @@ class L10nEsAeatMod303Report(models.Model):
             ):
                 return self.env["account.move.line"]
         return super(L10nEsAeatMod303Report, self)._get_tax_lines(
-            date_start, date_end, map_line,
+            date_start,
+            date_end,
+            map_line,
         )
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
@@ -427,7 +458,9 @@ class L10nEsAeatMod303Report(models.Model):
             date_start = date_start.replace(day=1, month=1)
             date_end = date_end.replace(day=31, month=12)
         return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
-            date_start, date_end, map_line,
+            date_start,
+            date_end,
+            map_line,
         )
 
 
@@ -437,7 +470,15 @@ class L10nEsAeatMod303ReportActivityCode(models.Model):
     _description = "AEAT 303 Report Activities Codes"
 
     period_type = fields.Selection(
-        selection=[("4T", "4T"), ("12", "December")], required=True,
+        selection=[("4T", "4T"), ("12", "December")],
+        required=True,
     )
-    code = fields.Integer(string="Activity code", required=True,)
-    name = fields.Char(string="Activity name", translate=True, required=True,)
+    code = fields.Integer(
+        string="Activity code",
+        required=True,
+    )
+    name = fields.Char(
+        string="Activity name",
+        translate=True,
+        required=True,
+    )
