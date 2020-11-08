@@ -537,7 +537,8 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.assertTrue(self.model303.move_id)
         self.assertEqual(self.model303.move_id.ref, self.model303.name)
         self.assertEqual(
-            self.model303.move_id.journal_id, self.model303.journal_id,
+            self.model303.move_id.journal_id,
+            self.model303.journal_id,
         )
         self.assertEqual(
             self.model303.move_id.line_ids.mapped("partner_id"),
@@ -573,7 +574,8 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             14280.0,
         )
         self.assertAlmostEqual(
-            self.model303_4t.casilla_88, 39880.0,
+            self.model303_4t.casilla_88,
+            39880.0,
         )
         # Check change of period type
         self.model303_4t.period_type = "1T"
