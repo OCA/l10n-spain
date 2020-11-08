@@ -453,7 +453,7 @@ class L10nEsAeatReport(models.AbstractModel):
 
     def button_open_move(self):
         self.ensure_one()
-        action = self.env.ref("account.action_move_line_form").read()[0]
+        action = self.env.ref("account.action_move_line_form").sudo().read()[0]
         action["view_mode"] = "form"
         action["res_id"] = self.move_id.id
         del action["view_id"]
