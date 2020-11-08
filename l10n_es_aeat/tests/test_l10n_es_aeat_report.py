@@ -31,9 +31,9 @@ class TestL10nEsAeatReport(common.SavepointCase):
         """
         registry = cls.env.registry
         cls.env.cr.execute(
-            "INSERT INTO ir_model (model, name) VALUES (%s, %s) "
+            'INSERT INTO ir_model (model, name, "order") VALUES (%s, %s, %s) '
             "ON CONFLICT DO NOTHING",
-            (TEST_MODEL_NAME, "Test AEAT model"),
+            (TEST_MODEL_NAME, "Test AEAT model", "id"),
         )
         inst = model_cls._build_model(registry, cls.env.cr)
         registry.setup_models(cls.env.cr)
