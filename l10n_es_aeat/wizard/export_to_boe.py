@@ -65,7 +65,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
 
     def _format_alphabetic_string(self, text, length, fill=" ", align="<"):
         u"""Format the string into a fixed length ASCII (iso-8859-1) record
-            without numbers.
+        without numbers.
         """
         if not text:
             return fill * length
@@ -116,8 +116,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         return str(ascii_string)
 
     def _format_boolean(self, value, yes="X", no=" "):
-        """Format a boolean value into a fixed length ASCII (iso-8859-1) record.
-        """
+        """Format a boolean value into a fixed length ASCII (iso-8859-1) record."""
         res = value and yes or no
         # Return the string assuring that is not unicode
         return str(res)
