@@ -45,8 +45,8 @@ class TestL10nEsAeatModBase(common.SavepointCase):
             {"company_ids": [(4, cls.company.id)], "company_id": cls.company.id}
         )
         chart = cls.env.ref("l10n_es.account_chart_template_pymes")
-        chart.try_loading_for_current_company()
-        cls.with_context(company_id=cls.company.id, force_company=cls.company.id)
+        chart.try_loading()
+        cls.with_context(company_id=cls.company.id)
         return True
 
     @classmethod
@@ -120,7 +120,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
             "company_id": cls.company.id,
             "partner_id": cls.customer.id,
             "invoice_date": dt,
-            "type": "out_invoice",
+            "move_type": "out_invoice",
             "journal_id": cls.journal_sale.id,
             "invoice_line_ids": [],
         }
@@ -144,7 +144,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
         if extra_vals:
             data.update(extra_vals)
         inv = cls.env["account.move"].with_user(cls.billing_user).create(data)
-        inv.post()
+        inv.action_post()
         if cls.debug:
             cls._print_move_lines(inv.line_ids)
         return inv
@@ -155,7 +155,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
             "company_id": cls.company.id,
             "partner_id": cls.supplier.id,
             "invoice_date": dt,
-            "type": "in_invoice",
+            "move_type": "in_invoice",
             "journal_id": cls.journal_purchase.id,
             "invoice_line_ids": [],
         }
@@ -179,14 +179,14 @@ class TestL10nEsAeatModBase(common.SavepointCase):
         if extra_vals:
             data.update(extra_vals)
         inv = cls.env["account.move"].with_user(cls.billing_user).create(data)
-        inv.sudo().post()  # FIXME: Why do we need to do it as sudo?
+        inv.sudo().action_post()  # FIXME: Why do we need to do it as sudo?
         if cls.debug:
             cls._print_move_lines(inv.line_ids)
         return inv
 
     @classmethod
     def _invoice_refund(cls, invoice, dt):
-        _logger.debug("Refund {} invoice: date = {}".format(invoice.type, dt))
+        _logger.debug("Refund {} invoice: date = {}".format(invoice.move_type, dt))
         default_values_list = [
             {
                 "date": dt,
@@ -196,7 +196,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
             }
         ]
         inv = invoice.with_user(cls.billing_user)._reverse_moves(default_values_list)
-        inv.post()
+        inv.action_post()
         if cls.debug:
             cls._print_move_lines(inv.line_ids)
         return inv
@@ -209,8 +209,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
                 "name": "Test journal for sale",
                 "type": "sale",
                 "code": "TSALE",
-                "default_debit_account_id": cls.accounts["700000"].id,
-                "default_credit_account_id": cls.accounts["700000"].id,
+                "default_account_id": cls.accounts["700000"].id,
             }
         )
         cls.journal_purchase = cls.env["account.journal"].create(
@@ -219,8 +218,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
                 "name": "Test journal for purchase",
                 "type": "purchase",
                 "code": "TPUR",
-                "default_debit_account_id": cls.accounts["600000"].id,
-                "default_credit_account_id": cls.accounts["600000"].id,
+                "default_account_id": cls.accounts["600000"].id,
             }
         )
         cls.journal_misc = cls.env["account.journal"].create(
