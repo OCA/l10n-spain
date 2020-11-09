@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-05 23:36+0000\n"
-"PO-Revision-Date: 2020-11-06 13:08+0000\n"
+"PO-Revision-Date: 2020-11-09 10:08+0000\n"
 "Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -681,213 +681,237 @@ msgstr "SII"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_active
 msgid "SII Active"
-msgstr ""
+msgstr "SII Actiu"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_csv
+#, fuzzy
 msgid "SII CSV"
-msgstr ""
+msgstr "SII CSV"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.ui.menu,name:l10n_es_aeat_sii_oca.l10n_es_aeat_sii_menu
+#, fuzzy
 msgid "SII Certificates"
-msgstr ""
+msgstr "Certificats SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_header_customer
 msgid "SII Customer header"
-msgstr ""
+msgstr "Capçalera del client SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_description
 msgid "SII Description"
-msgstr ""
+msgstr "Descripció SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_description_method
 msgid "SII Description Method"
-msgstr ""
+msgstr "Mètode de descripció SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_exempt_cause
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_product__sii_exempt_cause
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template__sii_exempt_cause
+#, fuzzy
 msgid "SII Exempt Cause"
-msgstr ""
+msgstr "SII Causa Exempta"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
+#, fuzzy
 msgid "SII Information"
-msgstr ""
+msgstr "Informació SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_no_taxable_cause
 msgid "SII No taxable cause"
-msgstr ""
+msgstr "SII No hi ha causa imposable"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_refund_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__sii_refund_type
+#, fuzzy
 msgid "SII Refund Type"
-msgstr ""
+msgstr "Tipus de devolució SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "SII Result"
-msgstr ""
+msgstr "Resultat SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_return
+#, fuzzy
 msgid "SII Return"
-msgstr ""
+msgstr "Retornar SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_error
 msgid "SII Send Error"
-msgstr ""
+msgstr "Error d’enviament SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_header_supplier
+#, fuzzy
 msgid "SII Supplier header"
-msgstr ""
+msgstr "Capçalera del proveïdor SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_action
 #: model:ir.ui.menu,name:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_menu
+#, fuzzy
 msgid "SII Tax Agencies"
-msgstr ""
+msgstr "SII Agències Tributàries"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_account_registration_date
+#, fuzzy
 msgid "SII account registration date"
-msgstr ""
+msgstr "Data de registre del compte SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
+#, fuzzy
 msgid "SII cancelled"
-msgstr ""
+msgstr "SII cancel·lat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_description
+#, fuzzy
 msgid "SII computed description"
-msgstr ""
+msgstr "Descripció computada SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
 msgid "SII error"
-msgstr ""
+msgstr "Error SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
+#, fuzzy
 msgid "SII failed"
-msgstr ""
+msgstr "SII ha fallat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
 msgid "SII filters"
-msgstr ""
+msgstr "Filtres SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_content_sent
+#, fuzzy
 msgid "SII last content sent"
-msgstr ""
+msgstr "SII darrer contingut enviat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_header_sent
+#, fuzzy
 msgid "SII last header sent"
-msgstr ""
+msgstr "SII última capçalera enviada"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
+#, fuzzy
 msgid "SII not sent"
-msgstr ""
+msgstr "SII no enviat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_partner_identification_type
+#, fuzzy
 msgid "SII partner Identification Type"
-msgstr ""
+msgstr "Tipus d'identificació del soci SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key
 msgid "SII registration key"
-msgstr ""
+msgstr "Clau de registre SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_failed
+#, fuzzy
 msgid "SII send failed"
-msgstr ""
+msgstr "L'enviament SII ha fallat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_state
+#, fuzzy
 msgid "SII send state"
-msgstr ""
+msgstr "Estat d’enviament SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
+#, fuzzy
 msgid "SII sent"
-msgstr ""
+msgstr "SII enviat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__sale
 msgid "Sale"
-msgstr ""
+msgstr "Venda"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.actions.server,name:l10n_es_aeat_sii_oca.action_send_sii_invoices
+#, fuzzy
 msgid "Send Invoices to SII"
-msgstr ""
+msgstr "Enviar factures a SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
+#, fuzzy
 msgid "Send cancellation to SII"
-msgstr ""
+msgstr "Envieu la cancel·lació a SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__send_mode
+#, fuzzy
 msgid "Send mode"
-msgstr ""
+msgstr "Mode d’enviament"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_queue_job_sii
 msgid "Send now"
-msgstr ""
+msgstr "Envia ara"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Send to SII"
-msgstr ""
+msgstr "Envia a SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__sent
 msgid "Sent"
-msgstr ""
+msgstr "Enviat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sent_time
 msgid "Sent time"
-msgstr ""
+msgstr "Temps enviat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_enabled
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__sii_enabled
 msgid "Sii Enabled"
-msgstr ""
+msgstr "Sii activat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_refund_specific_invoice_type
+#, fuzzy
 msgid "Sii Refund Specific Invoice Type"
-msgstr ""
+msgstr "Tipus de factura específica del reembossament de Sii"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__sii_simplified_invoice
+#, fuzzy
 msgid "Simplified invoices in SII?"
-msgstr ""
+msgstr "Factures simplificades a SII?"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_l10n_es_aeat_sii__date_start
 msgid "Start Date"
-msgstr ""
+msgstr "Data d'inici"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_l10n_es_aeat_sii__state
