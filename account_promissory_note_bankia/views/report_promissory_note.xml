@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="promissory_footer_bkia"
+        inherit_id="account_check_printing_report_base.report_check_base_a4"
+        primary="True"
+    >
+        <xpath expr="//div[@id='check_body']" position="after">
+            <div style="font-size:12px;">
+                <!-- TODO: set due date -->
+                <t t-set="due_date" t-value="o.date_due" />
+                <div style="position:absolute; left:70mm; top:230mm;">
+                    <span t-field="o.date_due" t-options="{'format': 'd'}" />
+                </div>
+                <div style="position:absolute; left:86mm; top:230mm;">
+                    <span t-field="o.date_due" t-options="{'format': 'MMMM'}" />
+                </div>
+                <div style="position:absolute; left:127mm; top:230mm;">
+                    <span t-field="o.date_due" t-options="{'format': 'YYYY'}" />
+                </div>
+                <div>
+                    <span
+                        style="position:absolute; top:230mm; left:175mm;"
+                        t-esc="o.amount"
+                        t-options="{'widget': 'float', 'precision': 2}"
+                    />
+                </div>
+                <div>
+                    <span
+                        style="position:absolute; top:244mm; left:52mm; white-space: nowrap;"
+                        t-field="o.partner_id.name"
+                    />
+                </div>
+                <div
+                    style="position:absolute; left:57mm; top:248mm; white-space: nowrap;"
+                >
+                    <strong>
+                        <span t-esc="fill_stars(num2words(o.amount))" />
+                    </strong>
+                </div>
+                <div>
+                    <div
+                        style="position:absolute; top:259mm; right:100mm; text-align: left; white-space: nowrap;"
+                    >
+                        <span t-field="o.company_id.city" />
+                    </div>
+                    <div style="position:absolute; top:259mm; left:158mm;">
+                        <span t-field="o.payment_date" t-options="{'format': 'd'}" />
+                    </div>
+                    <div style="position:absolute; top:259mm; left:173mm;">
+                        <span t-field="o.payment_date" t-options="{'format': 'MMMM'}" />
+                    </div>
+                    <div style="position:absolute; top:259mm; left:228mm;">
+                        <span t-field="o.payment_date" t-options="{'format': 'YYYY'}" />
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>
