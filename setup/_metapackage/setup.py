@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo13-addon-account_promissory_note_bankia',
         'odoo13-addon-l10n_es_account_asset',
         'odoo13-addon-l10n_es_account_bank_statement_import_n43',
         'odoo13-addon-l10n_es_account_banking_sepa_fsdd',
