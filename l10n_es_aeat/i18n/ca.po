@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:41+0000\n"
-"PO-Revision-Date: 2018-06-30 23:03+0000\n"
+"PO-Revision-Date: 2020-11-15 00:36+0000\n"
 "Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:142
@@ -41,7 +41,7 @@ msgstr "AEAT"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_aeat_anonymous_cash_customer
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users_aeat_anonymous_cash_customer
 msgid "AEAT - Anonymous customer"
-msgstr ""
+msgstr "AEAT - Client anònim"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_model
@@ -50,15 +50,13 @@ msgstr "Declaració AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
-#, fuzzy
 msgid "AEAT export configuration line"
-msgstr "Línea de configuración de exportación de la AEAT"
+msgstr "Línia de configuració d'exportación de la AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_tree
-#, fuzzy
 msgid "AEAT export configurationline"
-msgstr "Línea de configuración de exportación de la AEAT"
+msgstr "Línia de configuració d'exportació de la AEAT"
 
 #. module: l10n_es_aeat
 #: model:res.groups,name:l10n_es_aeat.group_account_aeat
@@ -72,6 +70,8 @@ msgid ""
 "AEAT model sequence not found. You can try to restart your Odoo service for "
 "recreating the sequences."
 msgstr ""
+"No s'ha trobat la seqüència del model AEAT. Pot intentar reiniciar el seu "
+"servei de Odoo per a recrear les seqüències."
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
@@ -81,21 +81,19 @@ msgstr "Informe AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
-#, fuzzy
 msgid "AEAT report base module"
-msgstr "Módulo base para declaraciones AEAT"
+msgstr "Mòdul base per declaracions AEAT"
 
 #. module: l10n_es_aeat
 #: sql_constraint:l10n.es.aeat.report:0
 #: sql_constraint:l10n.es.aeat.report.tax.mapping:0
 msgid "AEAT report identifier must be unique"
-msgstr ""
+msgstr "L'identificador de la declaració AEAT ha de ser únic"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
-#, fuzzy
 msgid "AEAT reports"
-msgstr "Declaraciones AEAT"
+msgstr "Declaracions AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_move_id
@@ -122,15 +120,13 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
-#, fuzzy
 msgid "Advanced configuration"
-msgstr "Configuración avanzada"
+msgstr "Configuració avançada"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line_alignment
-#, fuzzy
 msgid "Alignment"
-msgstr "Alineación"
+msgstr "Alineació"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,move_type:0
@@ -162,23 +158,20 @@ msgstr "Alfanumérico"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
-#, fuzzy
 msgid "Alphanumeric"
-msgstr "Alfanumérico"
+msgstr "Alfanumèric"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line_content_float
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line_amount
 #: selection:l10n.es.aeat.map.tax.line,field_type:0
-#, fuzzy
 msgid "Amount"
-msgstr "Importe"
+msgstr "Import"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line_apply_sign
-#, fuzzy
 msgid "Apply sign"
-msgstr "Aplicar signo"
+msgstr "Aplicar signe"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -188,15 +181,13 @@ msgstr "Aquí està l'arxiu BOE del AEAT exportat:"
 #. module: l10n_es_aeat
 #: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_export_config
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
-#, fuzzy
 msgid "BOE export configuration"
-msgstr "Configuración de exportación a BOE"
+msgstr "Configuració d'exportació a BOE"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_tree
-#, fuzzy
 msgid "BOE export configurations"
-msgstr "Configuraciones de exportación a BOE"
+msgstr "Configuracions d'exportació a BOE"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_partner_bank
@@ -218,9 +209,8 @@ msgstr "Comptes bancaris"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_partner_bank_id
-#, fuzzy
 msgid "Bank account"
-msgstr "Cuenta bancaria"
+msgstr "Compte bancari"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,field_type:0
@@ -229,9 +219,8 @@ msgstr "Base"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
-#, fuzzy
 msgid "Basic configuration"
-msgstr "Configuración básica"
+msgstr "Configuració bàsica"
 
 #. module: l10n_es_aeat
 #: selection:aeat.model.export.config.line,export_type:0
@@ -245,9 +234,8 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,sum_type:0
-#, fuzzy
 msgid "Both (Credit - Debit)"
-msgstr "Ambos (Haber - Debe)"
+msgstr "Ambdós (Haver - Deure)"
 
 #. module: l10n_es_aeat
 #: selection:l10n.es.aeat.map.tax.line,exigible_type:0
@@ -281,7 +269,7 @@ msgstr "Fecha de cálculo"
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
 #: model:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancel·lar"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -300,7 +288,7 @@ msgstr "Cancelar"
 #: selection:l10n.es.aeat.report.tax.mapping,state:0
 #: selection:l10n.es.vat.book,state:0
 msgid "Cancelled"
-msgstr "Cancelada"
+msgstr "Cancel·lada"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
@@ -321,9 +309,8 @@ msgstr "Cerrar"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_company
-#, fuzzy
 msgid "Companies"
-msgstr "Compañía"
+msgstr "Companyies"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_company_id
@@ -342,7 +329,7 @@ msgstr "Compañía"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_vat_book_company_id
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Company"
-msgstr "Compañía"
+msgstr "Companyia"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod111_report_partner_bank_id
@@ -435,9 +422,8 @@ msgstr "Declaraciones confirmadas"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_res_partner
-#, fuzzy
 msgid "Contact"
-msgstr "Datos de contacto"
+msgstr "Dades de contacte"
 
 #. module: l10n_es_aeat
 #: model:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
