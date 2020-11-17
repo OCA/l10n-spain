@@ -568,7 +568,8 @@ class AccountInvoice(models.Model):
     def _merge_tax_dict(self, vat_list, tax_dict, comp_key, merge_keys):
         """Helper method for merging values in an existing tax dictionary."""
         for existing_dict in vat_list:
-            if existing_dict[comp_key] == tax_dict[comp_key]:
+            if (existing_dict.get(comp_key, "-99") ==
+                    tax_dict.get(comp_key, "-99")):
                 for key in merge_keys:
                     existing_dict[key] += tax_dict[key]
                 return True

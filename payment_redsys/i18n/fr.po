@@ -52,7 +52,7 @@ msgid "Alemán"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:349
+#: code:addons/payment_redsys/models/redsys.py:347
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr ""
@@ -78,7 +78,7 @@ msgid "Domiciliacion"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:346
+#: code:addons/payment_redsys/models/redsys.py:344
 #, python-format
 msgid "Error: %s (%s)"
 msgstr ""
@@ -139,17 +139,12 @@ msgid "Merchant Name"
 msgstr "Nom du commerçant"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_titular
-msgid "Merchant Titular"
-msgstr "Merchant titulaire"
-
-#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_code
 msgid "Merchant code"
 msgstr "Code Merchant"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:343
+#: code:addons/payment_redsys/models/redsys.py:340
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
@@ -165,7 +160,7 @@ msgid "Pago por Transferencia"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:100
+#: code:addons/payment_redsys/models/redsys.py:98
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr ""
@@ -218,7 +213,7 @@ msgid "Redsys Signature Version"
 msgstr "La version de la signature Redsys"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:352
+#: code:addons/payment_redsys/models/redsys.py:350
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
@@ -282,6 +277,9 @@ msgid ""
 "You will be redirected to the Redsys payment gateway after clicking on the "
 "payment button."
 msgstr ""
+
+#~ msgid "Merchant Titular"
+#~ msgstr "Merchant titulaire"
 
 #, fuzzy
 #~ msgid "<strong>Invoicing Address</strong>"

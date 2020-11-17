@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+
+     <report
+        id="action_report_promissory_db"
+        model="account.payment"
+        string="Payment Promissory Note Deutsche Bank"
+        report_type="qweb-pdf"
+        name="account_promissory_note_deutschebank_es.promissory_db"
+        file="account_promissory_note_deutschebank_es.promissory_db"
+        paperformat="account_check_printing_report_base.paperformat_euro_no_margin"
+    />
+
+</odoo>

@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_promissory_note_bankia
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-23 15:02+0000\n"
+"PO-Revision-Date: 2020-10-23 17:02+0200\n"
+"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: account_promissory_note_bankia
+#: model:ir.model.fields,field_description:account_promissory_note_bankia.field_report_account_promissory_note_bankia_promissory_footer_bkia__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: account_promissory_note_bankia
+#: model:ir.model.fields,field_description:account_promissory_note_bankia.field_report_account_promissory_note_bankia_promissory_footer_bkia__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_promissory_note_bankia
+#: model:ir.model.fields,field_description:account_promissory_note_bankia.field_report_account_promissory_note_bankia_promissory_footer_bkia____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: account_promissory_note_bankia
+#: model:ir.actions.report,name:account_promissory_note_bankia.action_report_promissory_footer_bkia
+msgid "Payment Promissory Note Bankia"
+msgstr "Pagaré Bankia"
+
+#. module: account_promissory_note_bankia
+#: model:ir.model,name:account_promissory_note_bankia.model_report_account_promissory_note_bankia_promissory_footer_bkia
+msgid "report.account_promissory_note_bankia.promissory_footer_bkia"
+msgstr ""

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="promissory_footer_cb" inherit_id="account_check_printing_report_base.report_check_base_a4" primary="True">
+        <xpath expr="//div[@id='check_body']" position="after">
+            <div style="font-size:12px;">
+                <div style="position:absolute; left:65mm; top:238mm;">
+                    <!-- TODO: set due date -->
+                    <span t-field="o.date_due" />
+                </div>
+                <div>
+                    <span style="position:absolute; top:238mm; left:155mm;" t-esc="o.amount" t-options="{'widget': 'float', 'precision': 2}" />
+                </div>
+                <div>
+                    <span style="position:absolute; top:251mm; left:50mm;" t-field="o.partner_id.name" />
+                </div>
+                <div style="position:absolute; left:70mm; top:256mm">
+                    <strong>
+                        <span t-esc="fill_stars(num2words(o.amount))" />
+                    </strong>
+                </div>
+                <div>
+                    <div style="position:absolute; top:265mm; left:100mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'd'}" />
+                    </div>
+                    <div style="position:absolute; top:265mm; left:120mm;">
+                        <!-- TODO: Fix translatable -->
+                        <span>de</span>
+                    </div>
+                    <div style="position:absolute; top:265mm; left:130mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'MMMM'}" />
+                    </div>
+                    <div style="position:absolute; top:265mm; left:188mm;">
+                        <span t-field="o.date_due" t-options="{'format': 'YY'}" />
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

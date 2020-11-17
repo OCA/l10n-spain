@@ -8,6 +8,9 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo12-addon-account_promissory_note_bankia',
+        'odoo12-addon-account_promissory_note_caixabank',
+        'odoo12-addon-account_promissory_note_deutschebank_es',
         'odoo12-addon-delivery_gls_asm',
         'odoo12-addon-delivery_seur',
         'odoo12-addon-l10n_es_account_asset',
@@ -19,6 +22,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_mod115',
         'odoo12-addon-l10n_es_aeat_mod123',
         'odoo12-addon-l10n_es_aeat_mod130',
+        'odoo12-addon-l10n_es_aeat_mod190',
         'odoo12-addon-l10n_es_aeat_mod216',
         'odoo12-addon-l10n_es_aeat_mod296',
         'odoo12-addon-l10n_es_aeat_mod303',

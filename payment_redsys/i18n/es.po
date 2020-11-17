@@ -66,7 +66,7 @@ msgid "Alemán"
 msgstr "Alemán"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:349
+#: code:addons/payment_redsys/models/redsys.py:347
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr "Error del banco: %s (%s)"
@@ -92,7 +92,7 @@ msgid "Domiciliacion"
 msgstr "Domiciliación"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:346
+#: code:addons/payment_redsys/models/redsys.py:344
 #, python-format
 msgid "Error: %s (%s)"
 msgstr "Error: %s (%s)"
@@ -153,17 +153,12 @@ msgid "Merchant Name"
 msgstr "Nombre del comerciante"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_titular
-msgid "Merchant Titular"
-msgstr "Titular del comerciante"
-
-#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_code
 msgid "Merchant code"
 msgstr "Código de comerciante"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:343
+#: code:addons/payment_redsys/models/redsys.py:340
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
@@ -179,7 +174,7 @@ msgid "Pago por Transferencia"
 msgstr "Pago por Transferencia"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:100
+#: code:addons/payment_redsys/models/redsys.py:98
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr "El porcentaje de pago parcial debe estar entre 0 y 100"
@@ -231,7 +226,7 @@ msgid "Redsys Signature Version"
 msgstr "Versión de Redsys de la firma"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:352
+#: code:addons/payment_redsys/models/redsys.py:350
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr "Redsys: feedback error %s (%s)"
@@ -300,6 +295,9 @@ msgid ""
 msgstr ""
 "Después de hacer clic en el botón de pago será redirigido a la pasarela de "
 "pago de Redsys."
+
+#~ msgid "Merchant Titular"
+#~ msgstr "Titular del comerciante"
 
 #~ msgid "<i class=\"fa fa-file-pdf-o\"/> Order"
 #~ msgstr "<i class=\"fa fa-file-pdf-o\"/> Pedido"

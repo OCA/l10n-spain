@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:419
+#: code:addons/delivery_seur/models/delivery_carrier.py:431
 #, python-format
 msgid "\n"
 "            SEUR API doesn't provide methods to compute delivery rates, so\n"
@@ -65,7 +65,7 @@ msgid "COURIER"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:406
+#: code:addons/delivery_seur/models/delivery_carrier.py:418
 #, python-format
 msgid "Cancel SEUR shipment (%s): %s"
 msgstr ""
@@ -266,7 +266,7 @@ msgid "SEUR Technical"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:313
+#: code:addons/delivery_seur/models/delivery_carrier.py:321
 #, python-format
 msgid "SEUR exception: %s"
 msgstr ""
@@ -297,7 +297,7 @@ msgid "Seur Cit Password"
 msgstr ""
 
 #. module: delivery_seur
-#: code:addons/delivery_seur/models/delivery_carrier.py:342
+#: code:addons/delivery_seur/models/delivery_carrier.py:354
 #, python-format
 msgid "Status cannot be checked, enter webservice carrier credentials"
 msgstr ""
