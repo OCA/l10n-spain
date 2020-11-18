@@ -3,13 +3,13 @@
 {
     "name": "Punto de venta adaptado a la legislación española",
     "category": "Sales/Point Of Sale",
+    "version": "14.0.1.0.0",
     "author": "Tecnativa, "
     "Aselcis Consulting, "
     "Acysos S.L., "
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "version": "14.0.1.0.0",
     "depends": ["point_of_sale"],
     "data": ["views/pos_templates.xml", "views/pos_views.xml"],
     "qweb": ["static/src/xml/pos.xml"],
