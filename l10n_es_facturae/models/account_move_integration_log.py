@@ -1,4 +1,4 @@
-# © 2017 Creu Blanca
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
@@ -7,14 +7,14 @@ from datetime import datetime
 from odoo import _, api, exceptions, fields, models
 
 
-class AccountInvoiceIntegrationLog(models.Model):
-    _name = "account.invoice.integration.log"
-    _description = "Result logs for integrations of invoices"
+class AccountMoveIntegrationLog(models.Model):
+    _name = "account.move.integration.log"
+    _description = "Result logs for integrations of moves"
 
     name = fields.Char(default="/", readonly=True)
 
     integration_id = fields.Many2one(
-        comodel_name="account.invoice.integration", required=True, readonly=True
+        comodel_name="account.move.integration", required=True, readonly=True
     )
 
     state = fields.Selection(
@@ -35,10 +35,10 @@ class AccountInvoiceIntegrationLog(models.Model):
     def create(self, vals):
         if vals.get("name", "/") == "/":
             vals["name"] = (
-                self.env["ir.sequence"].next_by_code("account.invoice.integration.log")
+                self.env["ir.sequence"].next_by_code("account.move.integration.log")
                 or "/"
             )
-        return super(AccountInvoiceIntegrationLog, self).create(vals)
+        return super(AccountMoveIntegrationLog, self).create(vals)
 
     def update(self):
         if self.integration_id.can_update:
