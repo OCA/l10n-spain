@@ -4,15 +4,15 @@
     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 -->
 <odoo noupdate="1">
-    <record id="seq_account_invoice_demo" model="ir.sequence">
+    <record id="seq_account_move_demo" model="ir.sequence">
         <field name="name">Integration demo</field>
-        <field name="code">account.invoice.integration.demo</field>
+        <field name="code">account.move.integration.demo</field>
         <field name="prefix">DEMOINT</field>
         <field name="padding">8</field>
     </record>
-    <record id="integration_demo" model="account.invoice.integration.method">
+    <record id="integration_demo" model="account.move.integration.method">
         <field name="name">Demo Integration</field>
         <field name="code">demo</field>
-        <field name="sequence_id" ref="l10n_es_facturae.seq_account_invoice_demo" />
+        <field name="sequence_id" ref="l10n_es_facturae.seq_account_move_demo" />
     </record>
 </odoo>
