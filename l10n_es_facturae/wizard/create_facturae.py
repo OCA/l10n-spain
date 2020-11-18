@@ -1,15 +1,15 @@
-# © 2009 Alejandro Sanchez <alejandro@asr-oss.com>
-# © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
-# © 2015 Tecon
-# © 2015 Juanjo Algaz (MalagaTIC)
-# © 2015 Omar Castiñeira (Comunitea)
-# © 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
-# © 2017 Creu Blanca
+# Copyright 2009 Alejandro Sanchez <alejandro@asr-oss.com>
+# Copyright 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
+# Copyright 2015 Tecon
+# Copyright 2015 Juanjo Algaz (MalagaTIC)
+# Copyright 2015 Omar Castiñeira (Comunitea)
+# Copyright 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
 
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 from odoo.exceptions import Warning as UserError
 
 
@@ -49,33 +49,27 @@ class CreateFacturae(models.TransientModel):
         default=True,
     )
 
-    @api.multi
     def create_facturae_file(self):
         log = Log()
-        invoice_ids = self.env.context.get("active_ids", [])
-        if not invoice_ids or len(invoice_ids) > 1:
-            raise UserError(_("You can only select one invoice to export"))
+        move_ids = self.env.context.get("active_ids", [])
+        if not move_ids or len(move_ids) > 1:
+            raise UserError(_("You can only select one move to export"))
         active_model = self.env.context.get("active_model", False)
-        assert active_model == "account.invoice", "Bad context propagation"
-        invoice = self.env["account.invoice"].browse(invoice_ids[0])
-        invoice_file, file_name = invoice.ensure_one().get_facturae(
-            self.firmar_facturae
-        )
+        assert active_model == "account.move", "Bad context propagation"
+        move = self.env["account.move"].browse(move_ids[0])
+        move_file, file_name = move.ensure_one().get_facturae(self.firmar_facturae)
 
-        file = base64.b64encode(invoice_file)
+        file = base64.b64encode(move_file)
         self.env["ir.attachment"].create(
             {
                 "name": file_name,
                 "datas": file,
-                "datas_fname": file_name,
-                "res_model": "account.invoice",
-                "res_id": invoice.id,
+                "res_model": "account.move",
+                "res_id": move.id,
                 "mimetype": "application/xml",
             }
         )
-        log.add(
-            _("Export successful\n\nSummary:\nInvoice number: %s\n") % invoice.number
-        )
+        log.add(_("Export successful\n\nSummary:\nMove number: %s\n") % move.name)
         self.write(
             {
                 "note": log(),
@@ -88,7 +82,6 @@ class CreateFacturae(models.TransientModel):
             "type": "ir.actions.act_window",
             "res_model": "create.facturae",
             "view_mode": "form",
-            "view_type": "form",
             "res_id": self.id,
             "views": [(False, "form")],
             "target": "new",

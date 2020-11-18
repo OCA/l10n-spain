@@ -1,5 +1,5 @@
-# © 2015 Omar Castiñeira (Comunitea)
-# © 2017 Creu Blanca
+# Copyright 2015 Omar Castiñeira (Comunitea)
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, exceptions, fields, models
@@ -10,14 +10,16 @@ class ResPartner(models.Model):
 
     facturae = fields.Boolean("Factura electrónica")
     facturae_version = fields.Selection(
-        [("3_2", "3.2"), ("3_2_1", "3.2.1"), ("3_2_2", "3.2.2"),]
+        [("3_2", "3.2"), ("3_2_1", "3.2.1"), ("3_2_2", "3.2.2")]
     )
     organo_gestor = fields.Char("Órgano gestor", size=10)
     unidad_tramitadora = fields.Char("Unidad tramitadora", size=10)
     oficina_contable = fields.Char("Oficina contable", size=10)
     organo_proponente = fields.Char("Órgano proponente", size=10)
-    invoice_integration_method_ids = fields.Many2many(
-        comodel_name="account.invoice.integration.method", string="Integration Methods"
+    move_integration_method_ids = fields.Many2many(
+        comodel_name="account.move.integration.method",
+        string="Integration Methods",
+        relation="account_move_integration_method_res_partner_rel",
     )
 
     def get_facturae_residence(self):
