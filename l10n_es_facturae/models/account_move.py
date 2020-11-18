@@ -1,4 +1,4 @@
-# © 2017 Creu Blanca
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -23,10 +23,10 @@ except (ImportError, IOError) as err:
 logger = logging.Logger("facturae")
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
-    facturae = fields.Boolean(related="partner_id.facturae", readonly=True,)
+    facturae = fields.Boolean(compute="_compute_facturae")
     correction_method = fields.Selection(
         selection=[
             ("01", "Rectificación íntegra"),
@@ -76,9 +76,7 @@ class AccountInvoice(models.Model):
     )
 
     integration_ids = fields.One2many(
-        comodel_name="account.invoice.integration",
-        inverse_name="invoice_id",
-        copy=False,
+        comodel_name="account.move.integration", inverse_name="move_id", copy=False,
     )
     facturae_start_date = fields.Date(
         readonly=True, states={"draft": [("readonly", False)]},
@@ -103,7 +101,6 @@ class AccountInvoice(models.Model):
             ):
                 raise ValidationError(_("Start date cannot be later than end date"))
 
-    @api.multi
     @api.depends("integration_ids")
     def _compute_integrations_count(self):
         for inv in self:
@@ -116,18 +113,27 @@ class AccountInvoice(models.Model):
         default=0,
     )
 
-    @api.multi
     @api.depends("integration_ids", "partner_id")
     def _compute_can_integrate(self):
-        for inv in self:
-            for method in inv.partner_id.invoice_integration_method_ids:
-                if not inv.integration_ids.filtered(lambda r: r.method_id == method):
-                    inv.can_integrate = True
-                    break
+        for mv in self:
+            can_integrate = False
+            if mv.partner_id:
+                for method in mv.partner_id.move_integration_method_ids:
+                    if not mv.integration_ids.filtered(lambda r: r.method_id == method):
+                        can_integrate = True
+                        break
+            mv.can_integrate = can_integrate
+
+    @api.depends("partner_id.facturae", "type")
+    def _compute_facturae(self):
+        for record in self:
+            record.facturae = record.partner_id.facturae and record.type in [
+                "out_invoice",
+                "out_refund",
+            ]
 
     can_integrate = fields.Boolean(compute="_compute_can_integrate")
 
-    @api.multi
     def action_integrations(self):
         self.ensure_one()
         ctx = self.env.context.copy()
@@ -135,27 +141,26 @@ class AccountInvoice(models.Model):
         # We need to remove default type of the context because we should need
         # to create attachments and type is a defined field there
         slf = self.with_context(ctx)
-        for method in slf.partner_id.invoice_integration_method_ids:
-            if not slf.env["account.invoice.integration"].search(
-                [("invoice_id", "=", slf.id), ("method_id", "=", method.id)]
+        for method in slf.partner_id.move_integration_method_ids:
+            if not slf.env["account.move.integration"].search(
+                [("move_id", "=", slf.id), ("method_id", "=", method.id)]
             ):
                 method.create_integration(slf)
         return slf.action_view_integrations()
 
-    @api.multi
     def action_view_integrations(self):
         self.ensure_one()
-        action = self.env.ref("l10n_es_facturae.invoice_integration_action")
+        action = self.env.ref("l10n_es_facturae.move_integration_action")
         result = action.read()[0]
-        result["context"] = {"default_invoice_id": self.id}
-        integrations = self.env["account.invoice.integration"].search(
-            [("invoice_id", "=", self.id)]
+        result["context"] = {"default_move_id": self.id}
+        integrations = self.env["account.move.integration"].search(
+            [("move_id", "=", self.id)]
         )
 
         if len(integrations) != 1:
             result["domain"] = "[('id', 'in', " + str(integrations.ids) + ")]"
         elif len(integrations) == 1:
-            res = self.env.ref("account.invoice.integration.form", False)
+            res = self.env.ref("account.move.integration.form", False)
             result["views"] = [(res and res.id or False, "form")]
             result["res_id"] = integrations.id
         return result
@@ -187,15 +192,17 @@ class AccountInvoice(models.Model):
             ]
         )[self.correction_method]
 
-    def _get_valid_invoice_statuses(self):
-        return ["open", "paid"]
+    def _get_valid_move_statuses(self):
+        return ["posted"]
 
     def validate_facturae_fields(self):
-        lines = self.invoice_line_ids.filtered(lambda r: not r.display_type)
+        lines = self.line_ids.filtered(
+            lambda r: not r.display_type and not r.exclude_from_invoice_tab
+        )
         for line in lines:
-            if not line.invoice_line_tax_ids:
+            if not line.tax_ids:
                 raise ValidationError(
-                    _("Taxes not provided in invoice line " "%s") % line.name
+                    _("Taxes not provided in move line " "%s") % line.name
                 )
         if not self.partner_id.vat:
             raise ValidationError(_("Partner vat not provided"))
@@ -217,26 +224,27 @@ class AccountInvoice(models.Model):
                 raise ValidationError(_("Selected account BIC must be 11"))
             if len(partner_bank.acc_number) < 5:
                 raise ValidationError(_("Selected account is too small"))
-        if self.state not in self._get_valid_invoice_statuses():
+        if self.state not in self._get_valid_move_statuses():
             raise ValidationError(
                 _(
                     "You can only create Factura-E files for "
-                    "invoices that have been validated."
+                    "moves that have been validated."
                 )
             )
         return
 
     def get_facturae(self, firmar_facturae):
         def _sign_file(cert, password, request):
-            min = 1
-            max = 99999
-            signature_id = "Signature%05d" % random.randint(min, max)
+            rand_min = 1
+            rand_max = 99999
+            signature_id = "Signature%05d" % random.randint(rand_min, rand_max)
             signed_properties_id = (
-                signature_id + "-SignedProperties%05d" % random.randint(min, max)
+                signature_id
+                + "-SignedProperties%05d" % random.randint(rand_min, rand_max)
             )
-            key_info_id = "KeyInfo%05d" % random.randint(min, max)
-            reference_id = "Reference%05d" % random.randint(min, max)
-            object_id = "Object%05d" % random.randint(min, max)
+            key_info_id = "KeyInfo%05d" % random.randint(rand_min, rand_max)
+            reference_id = "Reference%05d" % random.randint(rand_min, rand_max)
+            object_id = "Object%05d" % random.randint(rand_min, rand_max)
             etsi = "http://uri.etsi.org/01903/v1.3.2#"
             sig_policy_identifier = (
                 "http://www.facturae.es/"
@@ -396,17 +404,17 @@ class AccountInvoice(models.Model):
         xml_facturae = etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
         self._validate_facturae(xml_facturae)
         if self.company_id.facturae_cert and firmar_facturae:
-            file_name = (_("facturae") + "_" + self.number + ".xsig").replace("/", "-")
-            invoice_file = _sign_file(
+            file_name = (_("facturae") + "_" + self.name + ".xsig").replace("/", "-")
+            move_file = _sign_file(
                 self.company_id.facturae_cert,
                 self.company_id.facturae_cert_password,
                 xml_facturae,
             )
         else:
-            invoice_file = xml_facturae
-            file_name = (_("facturae") + "_" + self.number + ".xml").replace("/", "-")
+            move_file = xml_facturae
+            file_name = (_("facturae") + "_" + self.name + ".xml").replace("/", "-")
 
-        return invoice_file, file_name
+        return move_file, file_name
 
     def get_facturae_version(self):
         return (
@@ -424,6 +432,7 @@ class AccountInvoice(models.Model):
     def _validate_facturae(self, xml_string):
         facturae_schema = etree.XMLSchema(etree.parse(self._get_facturae_schema_file()))
         try:
+
             facturae_schema.assertValid(etree.fromstring(xml_string))
         except Exception as e:
             logger.warning("The XML file is invalid against the XML Schema Definition")
@@ -441,30 +450,10 @@ class AccountInvoice(models.Model):
             )
         return True
 
-    @api.model
-    def _prepare_refund(
-        self, invoice, date_invoice=None, date=None, description=None, journal_id=None
-    ):
-        """Update here the refund values dictionary with the FacturaE values
-        injected on the wizard.
-        """
-        values = super()._prepare_refund(
-            invoice,
-            date_invoice=date_invoice,
-            date=date,
-            description=description,
-            journal_id=journal_id,
-        )
-        for key in ("correction_method", "facturae_refund_reason"):
-            if self.env.context.get(key):
-                values[key] = self.env.context[key]
-        return values
 
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
-
-    invoice_state = fields.Selection(related="invoice_id.state", readonly=True,)
     facturae_receiver_contract_reference = fields.Char()
     facturae_receiver_contract_date = fields.Date()
     facturae_receiver_transaction_reference = fields.Char()
@@ -501,7 +490,6 @@ class AccountInvoiceLine(models.Model):
         return {
             "name": _("Facturae Configuration"),
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "form",
             "res_model": self._name,
             "views": [(view.id, "form")],

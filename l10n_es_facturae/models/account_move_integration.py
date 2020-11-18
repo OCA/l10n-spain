@@ -1,19 +1,17 @@
-# © 2017 Creu Blanca
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
 from odoo import _, api, exceptions, fields, models
 
 
-class AccountInvoiceIntegration(models.Model):
-    _name = "account.invoice.integration"
-    _description = "Integration for an invoice"
+class AccountMoveIntegration(models.Model):
+    _name = "account.move.integration"
+    _description = "Integration for a move"
 
     name = fields.Char(default="/", readonly=True)
 
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice", required=True, readonly=True
-    )
+    move_id = fields.Many2one(comodel_name="account.move", required=True, readonly=True)
 
     state = fields.Selection(
         selection=[
@@ -31,14 +29,14 @@ class AccountInvoiceIntegration(models.Model):
     attachment_ids = fields.Many2many(comodel_name="ir.attachment", string="Annexes")
 
     method_id = fields.Many2one(
-        comodel_name="account.invoice.integration.method",
+        comodel_name="account.move.integration.method",
         required=True,
         string="Method",
         readonly=True,
     )
 
     log_ids = fields.One2many(
-        comodel_name="account.invoice.integration.log", inverse_name="integration_id"
+        comodel_name="account.move.integration.log", inverse_name="integration_id"
     )
 
     can_update = fields.Boolean(default=False, readonly=True)
@@ -55,9 +53,9 @@ class AccountInvoiceIntegration(models.Model):
 
     _sql_constraints = [
         (
-            "invoice_method_unique",
-            "unique(method_id, invoice_id)",
-            "Method must be unique per invoice",
+            "move_method_unique",
+            "unique(method_id, move_id)",
+            "Method must be unique per move",
         )
     ]
 
@@ -66,18 +64,17 @@ class AccountInvoiceIntegration(models.Model):
         if not vals.get("method_id", False):
             raise exceptions.Warning(_("Method is required"))
         if vals.get("name", "/") == "/":
-            method = self.env["account.invoice.integration.method"].browse(
+            method = self.env["account.move.integration.method"].browse(
                 vals["method_id"]
             )
             vals["name"] = method.sequence_id.next_by_id() or "/"
-        return super(AccountInvoiceIntegration, self).create(vals)
+        return super(AccountMoveIntegration, self).create(vals)
 
-    @api.multi
     def update_action(self):
         for record in self:
             if not record.can_update:
                 raise exceptions.Warning(_("Cannot update"))
-        log_obj = self.env["account.invoice.integration.log"]
+        log_obj = self.env["account.move.integration.log"]
         for record in self:
             log_obj.create(record.update_values()).update()
 
@@ -99,8 +96,7 @@ class AccountInvoiceIntegration(models.Model):
         res["type"] = "send"
         return res
 
-    @api.multi
     def send_action(self):
-        log_obj = self.env["account.invoice.integration.log"]
+        log_obj = self.env["account.move.integration.log"]
         for record in self:
             log_obj.create(record.send_values()).send()
