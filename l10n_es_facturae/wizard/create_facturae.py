@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2009 Alejandro Sanchez <alejandro@asr-oss.com>
 # © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
 # © 2015 Tecon
@@ -10,7 +9,7 @@
 
 import base64
 
-from odoo import api, fields, models, _
+from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
 
@@ -35,51 +34,62 @@ class CreateFacturae(models.TransientModel):
     _name = "create.facturae"
     _description = "Create Facturae Wizard"
 
-    facturae = fields.Binary('Factura-E file', readonly=True)
+    facturae = fields.Binary("Factura-E file", readonly=True)
     facturae_fname = fields.Char("File name", size=64)
-    note = fields.Text('Log')
-    state = fields.Selection([('first', 'First'), ('second', 'Second')],
-                             'State', readonly=True, default='first')
+    note = fields.Text("Log")
+    state = fields.Selection(
+        [("first", "First"), ("second", "Second")],
+        "State",
+        readonly=True,
+        default="first",
+    )
     firmar_facturae = fields.Boolean(
-        '¿Desea firmar digitalmente el fichero generado?',
-        help='Requiere certificado en la ficha de la compañía', default=True)
+        "¿Desea firmar digitalmente el fichero generado?",
+        help="Requiere certificado en la ficha de la compañía",
+        default=True,
+    )
 
     @api.multi
     def create_facturae_file(self):
         log = Log()
-        invoice_ids = self.env.context.get('active_ids', [])
+        invoice_ids = self.env.context.get("active_ids", [])
         if not invoice_ids or len(invoice_ids) > 1:
-            raise UserError(_('You can only select one invoice to export'))
-        active_model = self.env.context.get('active_model', False)
-        assert active_model == 'account.invoice', \
-            'Bad context propagation'
-        invoice = self.env['account.invoice'].browse(invoice_ids[0])
+            raise UserError(_("You can only select one invoice to export"))
+        active_model = self.env.context.get("active_model", False)
+        assert active_model == "account.invoice", "Bad context propagation"
+        invoice = self.env["account.invoice"].browse(invoice_ids[0])
         invoice_file, file_name = invoice.ensure_one().get_facturae(
-            self.firmar_facturae)
+            self.firmar_facturae
+        )
 
         file = base64.b64encode(invoice_file)
-        self.env['ir.attachment'].create({
-            'name': file_name,
-            'datas': file,
-            'datas_fname': file_name,
-            'res_model': 'account.invoice',
-            'res_id': invoice.id,
-            'mimetype': 'application/xml'
-        })
-        log.add(_("Export successful\n\nSummary:\nInvoice number: %s\n") %
-                invoice.number)
-        self.write({
-            'note': log(),
-            'facturae': file,
-            'facturae_fname': file_name,
-            'state': 'second'
-        })
+        self.env["ir.attachment"].create(
+            {
+                "name": file_name,
+                "datas": file,
+                "datas_fname": file_name,
+                "res_model": "account.invoice",
+                "res_id": invoice.id,
+                "mimetype": "application/xml",
+            }
+        )
+        log.add(
+            _("Export successful\n\nSummary:\nInvoice number: %s\n") % invoice.number
+        )
+        self.write(
+            {
+                "note": log(),
+                "facturae": file,
+                "facturae_fname": file_name,
+                "state": "second",
+            }
+        )
         return {
-            'type': 'ir.actions.act_window',
-            'res_model': 'create.facturae',
-            'view_mode': 'form',
-            'view_type': 'form',
-            'res_id': self.id,
-            'views': [(False, 'form')],
-            'target': 'new'
+            "type": "ir.actions.act_window",
+            "res_model": "create.facturae",
+            "view_mode": "form",
+            "view_type": "form",
+            "res_id": self.id,
+            "views": [(False, "form")],
+            "target": "new",
         }

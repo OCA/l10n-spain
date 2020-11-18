@@ -9,12 +9,12 @@
     "name": "Creación de Factura-e",
     "version": "12.0.2.0.0",
     "author": "ASR-OSS, "
-              "FactorLibre, "
-              "Tecon, "
-              "Comunitea, "
-              "Tecnativa, "
-              "Creu Blanca, "
-              "Odoo Community Association (OCA)",
+    "FactorLibre, "
+    "Tecon, "
+    "Comunitea, "
+    "Tecnativa, "
+    "Creu Blanca, "
+    "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
@@ -40,16 +40,9 @@
         "wizard/account_invoice_refund_view.xml",
         "wizard/account_invoice_integration_cancel_view.xml",
         "views/account_invoice_integration_view.xml",
-        "views/account_invoice_view.xml"
+        "views/account_invoice_view.xml",
     ],
-    "external_dependencies": {
-        "python": [
-            "OpenSSL",
-            "xmlsig"
-        ],
-    },
-    "demo": [
-        "demo/integration_method.xml"
-    ],
+    "external_dependencies": {"python": ["OpenSSL", "xmlsig"],},
+    "demo": ["demo/integration_method.xml"],
     "installable": True,
 }
