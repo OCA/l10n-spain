@@ -1,5 +1,5 @@
-# © 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
-# © 2017 Creu Blanca
+# Copyright 2016 Serv. Tecnol. Avanzados - Pedro M. Baeza
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
@@ -19,14 +19,14 @@ except (ImportError, IOError) as err:
 
 
 class CommonTest(common.TransactionCase):
-    def __init__(cls, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # We want to avoid testing on the CommonTest class
         if (
-            cls.test_class == "CommonTest"
-            and cls.__module__ == "odoo.addons.l10n_es_facturae.tests.common"
+            self.test_class == "CommonTest"
+            and self.__module__ == "odoo.addons.l10n_es_facturae.tests.common"
         ):
-            cls.test_tags -= {"at_install"}
+            self.test_tags -= {"at_install"}
 
     def setUp(self):
         super().setUp()
@@ -41,7 +41,7 @@ class CommonTest(common.TransactionCase):
         )
 
         self.state = self.env["res.country.state"].create(
-            {"name": "Ciudad Real", "code": "13", "country_id": self.ref("base.es"),}
+            {"name": "Ciudad Real", "code": "13", "country_id": self.ref("base.es")}
         )
         self.partner = self.env["res.partner"].create(
             {
@@ -56,7 +56,7 @@ class CommonTest(common.TransactionCase):
                 "organo_gestor": "U00000038",
                 "unidad_tramitadora": "U00000038",
                 "oficina_contable": "U00000038",
-                "invoice_integration_method_ids": [
+                "move_integration_method_ids": [
                     (6, 0, [self.env.ref("l10n_es_facturae.integration_demo").id])
                 ],
             }
@@ -69,14 +69,13 @@ class CommonTest(common.TransactionCase):
         ).write({"company_id": False})
         bank_obj = self.env["res.partner.bank"]
         self.bank = bank_obj.search(
-            [("acc_number", "=", "BE96 9988 7766 5544")], limit=1
+            [("acc_number", "=", "FR20 1242 1242 1242 1242 1242 124")], limit=1
         )
         if not self.bank:
             self.bank = bank_obj.create(
                 {
-                    "state": "iban",
-                    "acc_number": "BE96 9988 7766 5544",
-                    "partner_id": self.partner.id,
+                    "acc_number": "FR20 1242 1242 1242 1242 1242 124",
+                    "partner_id": main_company.partner.id,
                     "bank_id": self.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
@@ -100,7 +99,17 @@ class CommonTest(common.TransactionCase):
                 "code": "TEST",
                 "type": "bank",
                 "company_id": main_company.id,
+                "bank_account_id": self.bank.id,
                 "inbound_payment_method_ids": [(6, 0, payment_methods.ids)],
+            }
+        )
+
+        self.sale_journal = self.env["account.journal"].create(
+            {
+                "name": "Sale journal",
+                "code": "SALE_TEST",
+                "type": "sale",
+                "company_id": main_company.id,
             }
         )
         self.payment_mode = self.env["account.payment.mode"].create(
@@ -111,6 +120,7 @@ class CommonTest(common.TransactionCase):
                 "payment_method_id": self.env.ref(
                     "payment.account_payment_method_electronic_in"
                 ).id,
+                "show_bank_account_from_journal": True,
                 "facturae_code": "01",
             }
         )
@@ -121,6 +131,7 @@ class CommonTest(common.TransactionCase):
                 "bank_account_link": "fixed",
                 "fixed_journal_id": self.journal.id,
                 "payment_method_id": self.payment_method.id,
+                "show_bank_account_from_journal": True,
                 "facturae_code": "02",
             }
         )
@@ -133,59 +144,68 @@ class CommonTest(common.TransactionCase):
                 "user_type_id": self.env.ref("account.data_account_type_revenue").id,
             }
         )
-        self.invoice = self.env["account.invoice"].create(
+        self.move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
-                "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
+                "type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref(
+                                "product.product_delivery_02"
+                            ).id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
             }
         )
-        self.invoice_line = self.env["account.invoice.line"].create(
-            {
-                "product_id": self.env.ref("product.product_delivery_02").id,
-                "account_id": self.account.id,
-                "invoice_id": self.invoice.id,
-                "name": "Producto de prueba",
-                "quantity": 1.0,
-                "price_unit": 100.0,
-                "invoice_line_tax_ids": [(6, 0, self.tax.ids)],
-            }
-        )
-        self.invoice._onchange_invoice_line_ids()
-        self.invoice_02 = self.env["account.invoice"].create(
+        self.move_line = self.move.invoice_line_ids
+
+        self.move_02 = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
-                "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode_02.id,
+                "type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref(
+                                "product.product_delivery_02"
+                            ).id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
             }
         )
 
-        self.invoice_line_02 = self.env["account.invoice.line"].create(
-            {
-                "product_id": self.env.ref("product.product_delivery_02").id,
-                "account_id": self.account.id,
-                "invoice_id": self.invoice_02.id,
-                "name": "Producto de prueba",
-                "quantity": 1.0,
-                "price_unit": 100.0,
-                "invoice_line_tax_ids": [(6, 0, self.tax.ids)],
-            }
-        )
-        self.invoice_02._onchange_invoice_line_ids()
+        self.move_line_02 = self.move_02.invoice_line_ids
         self.partner.vat = "ES05680675C"
         self.partner.is_company = False
         self.partner.firstname = "Cliente"
         self.partner.lastname = "de Prueba"
         self.partner.country_id = self.ref("base.us")
         self.partner.state_id = self.ref("base.state_us_2")
-        self.invoice.action_invoice_open()
-        self.invoice.number = "2999/99999"
         self.main_company = self.env.ref("base.main_company")
         self.wizard = self.env["create.facturae"].create({})
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"
@@ -199,8 +219,10 @@ class CommonTest(common.TransactionCase):
         ]
 
     def test_facturae_generation(self):
+        self.move.action_post()
+        self.move.name = "2999/99999"
         self.wizard.with_context(
-            active_ids=self.invoice.ids, active_model="account.invoice"
+            active_ids=self.move.ids, active_model="account.move"
         ).create_facturae_file()
         generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertEqual(
@@ -216,31 +238,35 @@ class CommonTest(common.TransactionCase):
                 "/fe:Facturae/Invoices/Invoice/InvoiceHeader/InvoiceNumber",
                 namespaces={"fe": self.fe},
             )[0].text,
-            self.invoice.number,
+            self.move.name,
         )
 
     def test_bank(self):
         self.bank.bank_id.bic = "CAIXESBB"
         with self.assertRaises(exceptions.ValidationError):
-            self.invoice.validate_facturae_fields()
+            self.move.validate_facturae_fields()
         with self.assertRaises(exceptions.ValidationError):
-            self.invoice_02.validate_facturae_fields()
+            self.move_02.validate_facturae_fields()
         self.bank.bank_id.bic = "CAIXESBBXXX"
         self.bank.acc_number = "1111"
         with self.assertRaises(exceptions.ValidationError):
-            self.invoice.validate_facturae_fields()
+            self.move.validate_facturae_fields()
         with self.assertRaises(exceptions.ValidationError):
-            self.invoice_02.validate_facturae_fields()
+            self.move_02.validate_facturae_fields()
         self.bank.acc_number = "BE96 9988 7766 5544"
 
     def test_validation_error(self):
         self.main_company.partner_id.country_id = False
+        self.move.action_post()
+        self.move.name = "2999/99999"
         with self.assertRaises(exceptions.UserError):
             self.env["create.facturae"].with_context(
-                active_ids=self.invoice.ids, active_model="account.invoice"
+                active_ids=self.move.ids, active_model="account.move"
             ).create_facturae_file()
 
     def test_signature(self):
+        self.move.action_post()
+        self.move.name = "2999/99999"
         pkcs12 = crypto.PKCS12()
         pkey = crypto.PKey()
         pkey.generate_key(crypto.TYPE_RSA, 512)
@@ -260,7 +286,7 @@ class CommonTest(common.TransactionCase):
         self.main_company.facturae_cert_password = "password"
         self.main_company.partner_id.country_id = self.ref("base.es")
         self.wizard.with_context(
-            active_ids=self.invoice.ids, active_model="account.invoice"
+            active_ids=self.move.ids, active_model="account.move"
         ).create_facturae_file()
         generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
         ns = "http://www.w3.org/2000/09/xmldsig#"
@@ -280,44 +306,49 @@ class CommonTest(common.TransactionCase):
             ctx.verify(node)
         except Exception as e:
             verification_error = True
-            error_message = e.message
+            error_message = str(e)
             pass
         self.assertEqual(
             verification_error,
             False,
             "Error found during verification of the signature of "
-            + "the invoice: %s" % error_message,
+            + "the move: %s" % error_message,
         )
 
     def test_refund(self):
+        self.move.action_post()
+        self.move.name = "2999/99999"
         motive = "Description motive"
-        refund = self.env["account.invoice.refund"].create(
-            {"refund_reason": "01", "description": motive}
+        refund = self.env["account.move.reversal"].create(
+            {"refund_reason": "01", "reason": motive}
         )
         refund_result = refund.with_context(
-            active_ids=self.invoice.ids
-        ).invoice_refund()
-        refund_inv = self.env["account.invoice"].search(refund_result["domain"])
-        self.assertEqual(refund_inv.name, motive)
+            active_ids=self.move.ids, active_model=self.move._name
+        ).reverse_moves()
+        domain = refund_result.get("domain", False)
+        if not domain:
+            domain = [("id", "=", refund_result["res_id"])]
+        refund_inv = self.env["account.move"].search(domain)
+        self.assertIn(motive, refund_inv.ref)
         self.assertEqual(refund_inv.facturae_refund_reason, "01")
-        refund_inv.partner_bank_id = self.bank
-        refund_inv.action_invoice_open()
-        refund_inv.number = "2998/99999"
+        refund_inv.action_post()
+        refund_inv.name = "2998/99999"
         self.wizard.with_context(
-            active_ids=refund_inv.ids, active_model="account.invoice"
+            active_ids=refund_inv.ids, active_model="account.move"
         ).create_facturae_file()
         with self.assertRaises(exceptions.UserError):
             self.wizard.with_context(
-                active_ids=[self.invoice_02.id, self.invoice.id],
-                active_model="account.invoice",
+                active_ids=[self.move_02.id, self.move.id], active_model="account.move",
             ).create_facturae_file()
 
     def test_integration(self):
-        self.assertTrue(self.invoice.can_integrate)
-        self.assertEqual(self.invoice.integration_count, 0)
-        integrations = self.invoice.action_integrations()
-        self.assertEqual(self.invoice.integration_count, 1)
-        integration = self.env["account.invoice.integration"].browse(
+        self.move.action_post()
+        self.move.name = "2999/99999"
+        self.assertTrue(self.move.can_integrate)
+        self.assertEqual(self.move.integration_count, 0)
+        integrations = self.move.action_integrations()
+        self.assertEqual(self.move.integration_count, 1)
+        integration = self.env["account.move.integration"].browse(
             integrations["res_id"]
         )
         self.assertTrue(integration.can_send)
@@ -327,81 +358,78 @@ class CommonTest(common.TransactionCase):
         integration.update_action()
         self.assertTrue(integration.can_update)
         self.assertTrue(integration.can_cancel)
-        self.env["account.invoice.integration.cancel"].create(
+        self.env["account.move.integration.cancel"].create(
             {"integration_id": integration.id}
         ).cancel_integration()
         self.assertFalse(integration.can_cancel)
 
     def test_constrains_01(self):
-        invoice = self.env["account.invoice"].create(
+        move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
             }
         )
-        line = self.env["account.invoice.line"].create(
+        line = self.env["account.move.line"].create(
             {
                 "product_id": self.env.ref("product.product_delivery_02").id,
                 "account_id": self.account.id,
-                "invoice_id": invoice.id,
+                "move_id": move.id,
                 "name": "Producto de prueba",
                 "quantity": 1.0,
                 "price_unit": 100.0,
-                "invoice_line_tax_ids": [(6, 0, self.tax.ids)],
+                "tax_ids": [(6, 0, self.tax.ids)],
             }
         )
         with self.assertRaises(exceptions.ValidationError):
             line.facturae_start_date = fields.Date.today()
 
     def test_constrains_02(self):
-        invoice = self.env["account.invoice"].create(
+        move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
             }
         )
-        line = self.env["account.invoice.line"].create(
+        line = self.env["account.move.line"].create(
             {
                 "product_id": self.env.ref("product.product_delivery_02").id,
                 "account_id": self.account.id,
-                "invoice_id": invoice.id,
+                "move_id": move.id,
                 "name": "Producto de prueba",
                 "quantity": 1.0,
                 "price_unit": 100.0,
-                "invoice_line_tax_ids": [(6, 0, self.tax.ids)],
+                "tax_ids": [(6, 0, self.tax.ids)],
             }
         )
         with self.assertRaises(exceptions.ValidationError):
             line.facturae_end_date = fields.Date.today()
 
     def test_constrains_03(self):
-        invoice = self.env["account.invoice"].create(
+        move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
             }
         )
-        line = self.env["account.invoice.line"].create(
+        line = self.env["account.move.line"].create(
             {
                 "product_id": self.env.ref("product.product_delivery_02").id,
                 "account_id": self.account.id,
-                "invoice_id": invoice.id,
+                "move_id": move.id,
                 "name": "Producto de prueba",
                 "quantity": 1.0,
                 "price_unit": 100.0,
-                "invoice_line_tax_ids": [(6, 0, self.tax.ids)],
+                "tax_ids": [(6, 0, self.tax.ids)],
             }
         )
         with self.assertRaises(exceptions.ValidationError):
@@ -415,46 +443,43 @@ class CommonTest(common.TransactionCase):
             )
 
     def test_constrains_04(self):
-        invoice = self.env["account.invoice"].create(
+        move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
             }
         )
         with self.assertRaises(exceptions.ValidationError):
-            invoice.facturae_start_date = fields.Date.today()
+            move.facturae_start_date = fields.Date.today()
 
     def test_constrains_05(self):
-        invoice = self.env["account.invoice"].create(
+        move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
             }
         )
         with self.assertRaises(exceptions.ValidationError):
-            invoice.facturae_end_date = fields.Date.today()
+            move.facturae_end_date = fields.Date.today()
 
     def test_constrains_06(self):
-        invoice = self.env["account.invoice"].create(
+        move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
             }
         )
         with self.assertRaises(exceptions.ValidationError):
-            invoice.write(
+            move.write(
                 {
                     "facturae_end_date": fields.Date.today(),
                     "facturae_start_date": fields.Date.to_string(
@@ -464,13 +489,15 @@ class CommonTest(common.TransactionCase):
             )
 
     def test_views(self):
-        action = self.invoice_line.button_edit_facturae_fields()
+        action = self.move_line.button_edit_facturae_fields()
         item = self.env[action["res_model"]].browse(action["res_id"])
-        self.assertEqual(item, self.invoice_line)
+        self.assertEqual(item, self.move_line)
 
-    def _check_amounts(self, wo_discount, subtotal, base, tax, discount=0):
+    def _check_amounts(self, move, wo_discount, subtotal, base, tax, discount=0):
+        move.action_post()
+        move.name = "2999/99999"
         self.wizard.with_context(
-            active_ids=self.invoice.ids, active_model="account.invoice"
+            active_ids=move.ids, active_model="account.move"
         ).create_facturae_file()
         facturae_xml = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertEqual(
@@ -490,26 +517,72 @@ class CommonTest(common.TransactionCase):
                 facturae_xml.xpath("//InvoiceLine//DiscountAmount")[0].text, discount,
             )
 
-    def test_invoice_rounding(self):
+    def test_move_rounding(self):
         self.main_company.tax_calculation_rounding_method = "round_globally"
         dp = self.env.ref("product.decimal_price")
         dp.digits = 4
         # We do this for refreshing the cached value in this env
         self.assertEqual(dp.precision_get(dp.name), 4)
-        self.invoice_line.price_unit = 190.314
-        # Make sure the decimal precision is being applied
-        self.assertAlmostEqual(self.invoice_line.price_unit, 190.314, 4)
-        self.invoice.compute_taxes()
-        self._check_amounts(*self.first_check_amount)
-
-    def test_invoice_rounding_with_discount(self):
-        self.main_company.tax_calculation_rounding_method = "round_globally"
-        dp = self.env.ref("product.decimal_price")
-        dp.digits = 4
-        # We do this for refreshing the cached value in this env
-        self.assertEqual(dp.precision_get(dp.name), 4)
-        self.invoice_line.write(
-            {"price_unit": 190.314, "discount": 30,}
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref(
+                                "product.product_delivery_02"
+                            ).id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 190.314,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
         )
-        self.invoice.compute_taxes()
-        self._check_amounts(*self.second_check_amount)
+        self.assertAlmostEqual(move.invoice_line_ids.price_unit, 190.314, 4)
+        self._check_amounts(move, *self.first_check_amount)
+
+    def test_move_rounding_with_discount(self):
+        self.main_company.tax_calculation_rounding_method = "round_globally"
+        dp = self.env.ref("product.decimal_price")
+        dp.digits = 4
+        # We do this for refreshing the cached value in this env
+        self.assertEqual(dp.precision_get(dp.name), 4)
+        move = self.env["account.move"].create(
+            {
+                "partner_id": self.partner.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
+                "payment_mode_id": self.payment_mode.id,
+                "type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref(
+                                "product.product_delivery_02"
+                            ).id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 190.314,
+                            "discount": 30,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        self._check_amounts(move, *self.second_check_amount)

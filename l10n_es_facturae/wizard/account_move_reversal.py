@@ -1,13 +1,13 @@
-# © 2017 Creu Blanca
+# Copyright 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
-class AccountInvoiceRefund(models.TransientModel):
-    """Refunds invoice"""
+class AccountMoveReversal(models.TransientModel):
+    """Refunds move"""
 
-    _inherit = "account.invoice.refund"
+    _inherit = "account.move.reversal"
 
     correction_method = fields.Selection(
         selection=[
@@ -59,15 +59,21 @@ class AccountInvoiceRefund(models.TransientModel):
         default="10",
     )
 
-    @api.multi
-    def invoice_refund(self):
+    def _prepare_default_reversal(self, move):
+        values = super()._prepare_default_reversal(move)
+        for key in ("correction_method", "facturae_refund_reason"):
+            if self.env.context.get(key):
+                values[key] = self.env.context[key]
+        return values
+
+    def reverse_moves(self):
         """Inject in the context the FacturaE refund values for being later
         added to the dictionary values for creating the refund.
         """
         return super(
-            AccountInvoiceRefund,
+            AccountMoveReversal,
             self.with_context(
                 correction_method=self.correction_method,
                 facturae_refund_reason=self.refund_reason,
             ),
-        ).invoice_refund()
+        ).reverse_moves()

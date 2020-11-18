@@ -1,13 +1,13 @@
-# © 2009 Alejandro Sanchez <alejandro@asr-oss.com>
-# © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
-# © 2015 Tecon
-# © 2015 Omar Castiñeira (Comunitea)
+# Copyright 2009 Alejandro Sanchez <alejandro@asr-oss.com>
+# Copyright 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
+# Copyright 2015 Tecon
+# Copyright 2015 Omar Castiñeira (Comunitea)
 # Copyright 2016-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Creación de Factura-e",
-    "version": "12.0.2.0.0",
+    "version": "13.0.1.0.0",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "
@@ -37,12 +37,12 @@
         "views/account_tax_view.xml",
         "views/report_facturae.xml",
         "wizard/create_facturae_view.xml",
-        "wizard/account_invoice_refund_view.xml",
-        "wizard/account_invoice_integration_cancel_view.xml",
-        "views/account_invoice_integration_view.xml",
-        "views/account_invoice_view.xml",
+        "wizard/account_move_reversal_view.xml",
+        "wizard/account_move_integration_cancel_view.xml",
+        "views/account_move_integration_view.xml",
+        "views/account_move_view.xml",
     ],
-    "external_dependencies": {"python": ["OpenSSL", "xmlsig"],},
+    "external_dependencies": {"python": ["OpenSSL", "xmlsig"]},
     "demo": ["demo/integration_method.xml"],
     "installable": True,
 }
