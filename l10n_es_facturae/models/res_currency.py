@@ -1,33 +1,36 @@
 # © 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ResCurrency(models.Model):
-    _inherit = 'res.currency'
+    _inherit = "res.currency"
 
     def get_current_rate(self):
-        date = self._context.get('date') or fields.Datetime.now()
-        company_id = self._context.get(
-            'company_id') or self.env['res.users']._get_company().id
-        rate = self.env['res.currency.rate'].search(
+        date = self._context.get("date") or fields.Datetime.now()
+        company_id = (
+            self._context.get("company_id") or self.env["res.users"]._get_company().id
+        )
+        rate = self.env["res.currency.rate"].search(
             [
-                ('currency_id', '=', self.id),
-                ('company_id', '=', company_id),
-                ('name', '<=', date)
+                ("currency_id", "=", self.id),
+                ("company_id", "=", company_id),
+                ("name", "<=", date),
             ],
-            order='name desc', limit=1
+            order="name desc",
+            limit=1,
         )
         if rate:
             return rate.ensure_one()
-        rate = self.env['res.currency.rate'].search(
+        rate = self.env["res.currency.rate"].search(
             [
-                ('currency_id', '=', self.id),
-                ('company_id', '=', False),
-                ('name', '<=', date)
+                ("currency_id", "=", self.id),
+                ("company_id", "=", False),
+                ("name", "<=", date),
             ],
-            order='name desc', limit=1
+            order="name desc",
+            limit=1,
         )
         if rate:
             return rate.ensure_one()

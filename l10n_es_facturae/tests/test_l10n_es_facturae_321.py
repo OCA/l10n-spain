@@ -8,11 +8,17 @@ from .common import CommonTest
 class TestL10nEsFacturae321(CommonTest):
     def setUp(self):
         super().setUp()
-        self.partner.facturae_version = '3_2_1'
-        self.fe = 'http://www.facturae.es/Facturae/2014/v3.2.1/Facturae'
+        self.partner.facturae_version = "3_2_1"
+        self.fe = "http://www.facturae.es/Facturae/2014/v3.2.1/Facturae"
         self.first_check_amount = [
-            '190.31000000', '190.31000000', '190.31000000', '39.96594000'
+            "190.31000000",
+            "190.31000000",
+            "190.31000000",
+            "39.96594000",
         ]
         self.second_check_amount = [
-            '190.31000000', '133.22000000', '133.22000000', '27.97615800'
+            "190.31000000",
+            "133.22000000",
+            "133.22000000",
+            "27.97615800",
         ]
