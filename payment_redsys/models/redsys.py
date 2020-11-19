@@ -40,9 +40,6 @@ class AcquirerRedsys(models.Model):
 
     provider = fields.Selection(selection_add=[("redsys", "Redsys")])
     redsys_merchant_name = fields.Char("Merchant Name", required_if_provider="redsys")
-    redsys_merchant_titular = fields.Char(
-        "Merchant Titular", required_if_provider="redsys"
-    )
     redsys_merchant_code = fields.Char("Merchant code", required_if_provider="redsys")
     redsys_merchant_description = fields.Char(
         "Product Description", required_if_provider="redsys"
@@ -153,9 +150,9 @@ class AcquirerRedsys(models.Model):
             ),
             "Ds_Merchant_Terminal": self.redsys_terminal or "1",
             "Ds_Merchant_TransactionType": (self.redsys_transaction_type or "0"),
-            "Ds_Merchant_Titular": (
-                self.redsys_merchant_titular[:60] and self.redsys_merchant_titular[:60]
-            ),
+            "Ds_Merchant_Titular": tx_values.get(
+                "billing_partner", self.env.user.partner_id
+            ).display_name[:60],
             "Ds_Merchant_MerchantName": (
                 self.redsys_merchant_name and self.redsys_merchant_name[:25]
             ),
@@ -349,6 +346,7 @@ class TxRedsys(models.Model):
         if state == "done":
             vals["state_message"] = _("Ok: %s") % params.get("Ds_Response")
             self._set_transaction_done()
+            self._post_process_after_done()
         elif state == "pending":  # 'Payment error: code: %s.'
             state_message = _("Error: %s (%s)")
             self._set_transaction_pending()
@@ -371,6 +369,8 @@ class TxRedsys(models.Model):
     @api.model
     def form_feedback(self, data, acquirer_name):
         res = super().form_feedback(data, acquirer_name)
+        if acquirer_name != "redsys":
+            return res
         try:
             tx_find_method_name = "_%s_form_get_tx_from_data" % acquirer_name
             if hasattr(self, tx_find_method_name):
