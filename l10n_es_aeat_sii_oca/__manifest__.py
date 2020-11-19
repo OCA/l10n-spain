@@ -8,7 +8,7 @@
 # Copyright 2017-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 Angel Moya <angel.moya@pesol.es>
-# Copyright 2020 Sygel Technologies - Valentín Vinagre
+# Copyright 2020 Sygel Technology - Valentín Vinagre <valentin.vinagre@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -54,5 +54,6 @@
         "views/res_partner_views.xml",
         "views/aeat_sii_tax_agency_view.xml",
     ],
+    "images": ["static/description/SII_1.jpg"],
     "post_init_hook": "add_key_to_existing_invoices",
 }
