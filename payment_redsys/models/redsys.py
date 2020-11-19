@@ -346,6 +346,7 @@ class TxRedsys(models.Model):
         if state == "done":
             vals["state_message"] = _("Ok: %s") % params.get("Ds_Response")
             self._set_transaction_done()
+            self._post_process_after_done()
         elif state == "pending":  # 'Payment error: code: %s.'
             state_message = _("Error: %s (%s)")
             self._set_transaction_pending()
