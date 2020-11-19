@@ -13,7 +13,6 @@
         <field name="company_id" ref="base.main_company" />
         <field name="view_template_id" ref="redsys_form" />
         <field name="redsys_merchant_name">Bussines name</field>
-        <field name="redsys_merchant_titular">Bussines titular</field>
         <field name="redsys_merchant_code">8888888</field>
         <field name="redsys_merchant_description">Bussines description</field>
         <field name="redsys_secret_key">xxxxxxxxxxxx -- SHA256</field>
