@@ -10,10 +10,6 @@
             <xpath expr='//group[@name="acquirer"]' position='after'>
                 <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
                     <field
-                        name="redsys_merchant_titular"
-                        attrs="{'required': [('provider', '=', 'redsys')]}"
-                    />
-                    <field
                         name="redsys_merchant_name"
                         attrs="{'required': [('provider', '=', 'redsys')]}"
                     />
