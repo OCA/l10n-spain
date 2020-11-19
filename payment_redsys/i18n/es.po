@@ -113,11 +113,6 @@ msgid "Merchant Name"
 msgstr "Nombre del comerciante"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_titular
-msgid "Merchant Titular"
-msgstr "Titular del comerciante"
-
-#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_code
 msgid "Merchant code"
 msgstr "Código de comerciante"
@@ -276,6 +271,9 @@ msgstr "Su pago ha sido procesado con éxito pero está esperando su aprobación
 #: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
 msgid "Your payment has been successfully processed. Thank you!"
 msgstr "Su pago ha sido realizado correctamente. Gracias!"
+
+#~ msgid "Merchant Titular"
+#~ msgstr "Titular del comerciante"
 
 #~ msgid ""
 #~ "<span><i>Error,</i> Please be aware that an error occurred during the "
