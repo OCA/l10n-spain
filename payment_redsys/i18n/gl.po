@@ -107,11 +107,6 @@ msgid "Merchant Name"
 msgstr "Nome do comerciante"
 
 #. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_titular
-msgid "Merchant Titular"
-msgstr "Comerciante titular"
-
-#. module: payment_redsys
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_merchant_code
 msgid "Merchant code"
 msgstr "Código do comerciante"
@@ -265,6 +260,9 @@ msgstr ""
 #: model_terms:payment.acquirer,done_msg:payment_redsys.payment_acquirer_redsys
 msgid "Your payment has been successfully processed. Thank you!"
 msgstr ""
+
+#~ msgid "Merchant Titular"
+#~ msgstr "Comerciante titular"
 
 #~ msgid "Merchant URL"
 #~ msgstr "URL do comerciante"
