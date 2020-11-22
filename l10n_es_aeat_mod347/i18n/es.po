@@ -268,9 +268,6 @@ msgstr "<strong class=\"text-right\">Importe:</strong>"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #, fuzzy
-#| msgid ""
-#| "<strong>Color codes: </strong> <span style=\"color: blue;\">Refund "
-#| "invoices</span> - Normal invoices"
 msgid ""
 "<strong>Color codes: </strong> <span class=\"text-info\">Refund invoices</"
 "span> - Normal invoices"
@@ -351,7 +348,6 @@ msgstr "Importe 4T:"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record_amount_signed
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount signed"
 msgstr "Importe"
 
@@ -764,7 +760,6 @@ msgstr "Registros de asientos"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record_move_type
 #, fuzzy
-#| msgid "Move"
 msgid "Move type"
 msgstr "Asiento"
 

@@ -144,7 +144,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,report_name:l10n_es_aeat_mod347.email_template_347
 #, fuzzy
-#| msgid "Details"
 msgid "347_details"
 msgstr "Détails"
 
@@ -238,42 +237,36 @@ msgstr "Montant"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 1Q:"
 msgstr "Montant"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 2Q:"
 msgstr "Montant"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 3Q:"
 msgstr "Montant"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 4Q:"
 msgstr "Montant"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record_amount_signed
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount signed"
 msgstr "Montant"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount:"
 msgstr "Montant"
 
@@ -322,7 +315,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_cash_amount
 #, fuzzy
-#| msgid "Amount"
 msgid "Cash Amount"
 msgstr "Montant"
 
@@ -584,7 +576,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Invoice"
 msgid "Invoices"
 msgstr "Facture"
 
@@ -648,7 +639,6 @@ msgstr ""
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_failed
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
 #, fuzzy
-#| msgid "Model"
 msgid "Modelo 347"
 msgstr "Modèle"
 
