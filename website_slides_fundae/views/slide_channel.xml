@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="slide_channel_view_search" model="ir.ui.view">
+        <field name="name">website_slides.channel_view_search</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.slide_channel_view_search" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="after">
+                <filter
+                    string="Formaciones bonificables"
+                    name="bonificable"
+                    domain="[('channel_type','=','bonificable')]"
+                />
+                <filter
+                    string="Formaciones no bonificables"
+                    name="training"
+                    domain="[('channel_type','=','training')]"
+                />
+                <filter
+                    string="Documentación"
+                    name="documentation"
+                    domain="[('channel_type','=','documentation')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="channel_type"
+                        string="Tipo"
+                        context="{'group_by' : 'channel_type'}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="slide_channel_view_kanban" model="ir.ui.view">
+        <field name="name">website_slides.slide_channel_view_kanban</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.slide_channel_view_kanban" />
+        <field name="arch" type="xml">
+            <field name="color" position="after">
+                <field name="channel_type" />
+                <field name="fundae_code" /></field>
+            <field name="name" position="before">
+                <field name="fundae_code" />
+                <t attrs="{'invisible': [('channel_type', '!=', 'bonificable')]}">
+                    <span class="fa fa-info-circle fa-lg" />
+                </t>
+            </field>
+        </field>
+    </record>
+    <record id="slide_channel_view_tree" model="ir.ui.view">
+        <field name="name">website_slides.slide_channel_view_tree</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.slide_channel_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="fundae_code" /></field>
+        </field>
+    </record>
+    <record id="view_slide_channel_fundae" model="ir.ui.view">
+        <field name="name">website_slides.slide_channel_form</field>
+        <field name="model">slide.channel</field>
+        <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='promote_strategy']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('channel_type', '!=', 'documentation')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='promoted_slide_id']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|', ('channel_type', '!=', 'documentation'), ('promote_strategy', '!=', 'specific')],
+                    'required': [('channel_type', '=', 'documentation'), ('promote_strategy', '=', 'specific')]}
+                </attribute>
+            </xpath>
+            <xpath expr="//page[@name='options']" position="after">
+                <page
+                    name="fundae_page"
+                    string="FUNDAE"
+                    attrs="{'invisible': [('channel_type','!=','bonificable')]}"
+                >
+                    <group>
+                        <group name="fundae_accion" string="Acción formativa">
+                            <field name="fundae_code" />
+                            <field name="fundae_type" widget="selection" />
+                            <field
+                                name="fundae_guiapdf"
+                                widget="binary"
+                                options="{'accepted_file_extensions': '.pdf,.svg'}"
+                            />
+                            <field name="profesor_id" />
+                            <field name="inspector_id" />
+                        </group>
+                        <group name="fundae_links" string="Elementos vinculados">
+                            <field name="event_id" />
+                            <field name="encuesta_id" />
+                            <field string="Foro" name="forum_id" />
+                        </group>
+                    </group>
+                    <group name="fundae_groups" string="Grupos formativos">
+                        <field name="fundae_group_ids" nolabel="1" />
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="slide_channel_group_view_tree" model="ir.ui.view">
+        <field name="name">website_slides.slide.channel.group.view.tree</field>
+        <field name="model">slide.channel.group</field>
+        <field name="arch" type="xml">
+            <tree string="Grupos formativos" editable="bottom">
+                <field name="name" />
+                <field name="code" />
+            </tree>
+        </field>
+    </record>
+</odoo>
