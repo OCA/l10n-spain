@@ -369,6 +369,8 @@ class TxRedsys(models.Model):
     @api.model
     def form_feedback(self, data, acquirer_name):
         res = super().form_feedback(data, acquirer_name)
+        if acquirer_name != "redsys":
+            return res
         try:
             tx_find_method_name = "_%s_form_get_tx_from_data" % acquirer_name
             if hasattr(self, tx_find_method_name):
