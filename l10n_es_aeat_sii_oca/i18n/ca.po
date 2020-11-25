@@ -364,8 +364,8 @@ msgid ""
 "Fill this field when the refund are one of the specific cases of article 80 "
 "of LIVA for notifying to SII with the proper invoice type."
 msgstr ""
-"Empleneu aquest camp quan la devolució sigui un dels casos específics de l’"
-"article 80 de LIVA per notificar a SII amb el tipus de factura adequat."
+"Empleneu aquest camp quan la devolució sigui un dels casos específics de "
+"l’article 80 de LIVA per notificar a SII amb el tipus de factura adequat."
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_fiscal_position
@@ -827,6 +827,11 @@ msgstr "Tipus d'identificació del soci SII"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key
 msgid "SII registration key"
 msgstr "Clau de registre SII"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_domain
+msgid "SII registration key domain"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_failed

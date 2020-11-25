@@ -49,20 +49,21 @@
                             name="sii_refund_specific_invoice_type"
                             attrs="{'invisible': [('type', '!=', 'out_refund')]}"
                         />
+                        <field name="sii_registration_key_domain" invisible="1" />
                         <field
                             name="sii_registration_key"
-                            domain="[('type', '=', 'sale')]"
+                            domain="[('type', '=', sii_registration_key_domain)]"
                             attrs="{'required': [('sii_enabled', '=', True)]}"
                             widget="selection"
                         />
                         <field
                             name="sii_registration_key_additional1"
-                            domain="[('type', '=', 'sale')]"
+                            domain="[('type', '=', sii_registration_key_domain)]"
                             widget="selection"
                         />
                         <field
                             name="sii_registration_key_additional2"
-                            domain="[('type', '=', 'sale')]"
+                            domain="[('type', '=', sii_registration_key_domain)]"
                             widget="selection"
                         />
                         <field name="sii_registration_key_code" invisible="1" />
