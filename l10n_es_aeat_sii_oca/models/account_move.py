@@ -169,6 +169,10 @@ class AccountMove(models.Model):
         "is independent of the date of the accounting entry of the "
         "invoice",
     )
+    sii_registration_key_domain = fields.Char(
+        compute="_compute_sii_registration_key_domain",
+        string="SII registration key domain",
+    )
     sii_registration_key = fields.Many2one(
         comodel_name="aeat.sii.mapping.registration.keys",
         string="SII registration key",
@@ -223,6 +227,16 @@ class AccountMove(models.Model):
         string="Connector Jobs",
         copy=False,
     )
+
+    @api.depends("type")
+    def _compute_sii_registration_key_domain(self):
+        for record in self:
+            if record.type in {"out_invoice", "out_refund"}:
+                record.sii_registration_key_domain = "sale"
+            elif record.type in {"in_invoice", "in_refund"}:
+                record.sii_registration_key_domain = "purchase"
+            else:
+                record.sii_registration_key_domain = False
 
     @api.depends("amount_total")
     def _compute_macrodata(self):
