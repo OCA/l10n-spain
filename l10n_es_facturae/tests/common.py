@@ -58,9 +58,6 @@ class CommonTest(common.TransactionCase):
                 "organo_gestor": "U00000038",
                 "unidad_tramitadora": "U00000038",
                 "oficina_contable": "U00000038",
-                "move_integration_method_ids": [
-                    (6, 0, [self.env.ref("l10n_es_facturae.integration_demo").id])
-                ],
             }
         )
         main_company = self.env.ref("base.main_company")
@@ -379,28 +376,6 @@ class CommonTest(common.TransactionCase):
             self.wizard.with_context(
                 active_ids=[self.move_02.id, self.move.id], active_model="account.move",
             ).create_facturae_file()
-
-    def test_integration(self):
-        self.move.action_post()
-        self.move.name = "2999/99999"
-        self.assertTrue(self.move.can_integrate)
-        self.assertEqual(self.move.integration_count, 0)
-        integrations = self.move.action_integrations()
-        self.assertEqual(self.move.integration_count, 1)
-        integration = self.env["account.move.integration"].browse(
-            integrations["res_id"]
-        )
-        self.assertTrue(integration.can_send)
-        integration.send_action()
-        self.assertFalse(integration.can_send)
-        self.assertTrue(integration.can_update)
-        integration.update_action()
-        self.assertTrue(integration.can_update)
-        self.assertTrue(integration.can_cancel)
-        self.env["account.move.integration.cancel"].create(
-            {"integration_id": integration.id}
-        ).cancel_integration()
-        self.assertFalse(integration.can_cancel)
 
     def test_constrains_01(self):
         move = self.env["account.move"].create(
