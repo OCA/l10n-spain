@@ -14,6 +14,7 @@ module.
 from lxml import etree
 from lxml.etree import QName
 import logging
+
 try:
     from zeep import ns
     from zeep.exceptions import SignatureVerificationFailed
@@ -31,7 +32,7 @@ except ImportError:
     xmlsec = None
 
 # SOAP envelope
-SOAP_NS = 'http://schemas.xmlsoap.org/soap/envelope/'
+SOAP_NS = "http://schemas.xmlsoap.org/soap/envelope/"
 
 
 def _read_file(f_name):
@@ -40,14 +41,14 @@ def _read_file(f_name):
 
 
 def _make_sign_key(key_data, cert_data, password):
-    key = xmlsec.Key.from_memory(key_data,
-                                 xmlsec.KeyFormat.PKCS12_PEM, password)
+    key = xmlsec.Key.from_memory(
+        key_data, xmlsec.KeyFormat.PKCS12_PEM, password
+    )
     return key
 
 
 def _make_verify_key(cert_data):
-    key = xmlsec.Key.from_memory(cert_data,
-                                 xmlsec.KeyFormat.CERT_PEM, None)
+    key = xmlsec.Key.from_memory(cert_data, xmlsec.KeyFormat.CERT_PEM, None)
     return key
 
 
@@ -62,8 +63,9 @@ class MemorySignature(object):
         self.password = password
 
     def apply(self, envelope, headers):
-        signed = sign_envelope(envelope, self.key_data, self.cert_data,
-                               self.password)
+        signed = sign_envelope(
+            envelope, self.key_data, self.cert_data, self.password
+        )
         return signed, headers
 
     def verify(self, envelope):
@@ -77,63 +79,65 @@ class Signature(MemorySignature):
     cert file."""
 
     def __init__(self, key_file, certfile, password=None):
-        super(Signature, self).__init__(_read_file(key_file),
-                                        _read_file(certfile),
-                                        password)
+        super(Signature, self).__init__(
+            _read_file(key_file), _read_file(certfile), password
+        )
 
 
 def check_xmlsec_import():
     if xmlsec is None:
         raise ImportError(
-            "The xmlsec module is required for wsse.Signature()\n" +
-            "You can install xmlsec with: pip install xmlsec\n" +
-            "or install zeep via: pip install zeep[xmlsec]\n"
+            "The xmlsec module is required for wsse.Signature()\n"
+            + "You can install xmlsec with: pip install xmlsec\n"
+            + "or install zeep via: pip install zeep[xmlsec]\n"
         )
 
 
 def sign_envelope(envelope, keyfile, certfile, password=None):
     key = _make_sign_key(keyfile, certfile, password)
-    reference_id = 'Reference'
+    reference_id = "Reference"
     security = get_security_header(envelope)
-    security.set(QName(ns.SOAP_ENV_11, 'mustUnderstand'), '1')
-    x509type = 'http://docs.oasis-open.org/wss/2004/01/' \
-               'oasis-200401-wss-x509-token-profile-1.0#X509v3'
-    encoding_type = "http://docs.oasis-open.org/wss/2004/01/" \
-                    "oasis-200401-wss-soap-message-security-1.0#Base64Binary"
+    security.set(QName(ns.SOAP_ENV_11, "mustUnderstand"), "1")
+    x509type = (
+        "http://docs.oasis-open.org/wss/2004/01/"
+        "oasis-200401-wss-x509-token-profile-1.0#X509v3"
+    )
+    encoding_type = (
+        "http://docs.oasis-open.org/wss/2004/01/"
+        "oasis-200401-wss-soap-message-security-1.0#Base64Binary"
+    )
     binary_token = etree.SubElement(
         security,
-        QName(ns.WSSE, 'BinarySecurityToken'),
+        QName(ns.WSSE, "BinarySecurityToken"),
         attrib={
-            QName(ns.WSU, 'Id'): reference_id,
-            'ValueType': x509type,
-            'EncodingType': encoding_type
-        }
+            QName(ns.WSU, "Id"): reference_id,
+            "ValueType": x509type,
+            "EncodingType": encoding_type,
+        },
     )
     binary_token.text = base64.b64encode(
         crypto.dump_certificate(
             crypto.FILETYPE_ASN1,
-            crypto.load_pkcs12(keyfile, password).get_certificate()
+            crypto.load_pkcs12(keyfile, password).get_certificate(),
         )
     )
     signature = xmlsec.template.create(
         envelope,
         xmlsec.Transform.EXCL_C14N,
         xmlsec.Transform.RSA_SHA1,
-        ns='ds'
+        ns="ds",
     )
 
     # Add a KeyInfo node with X509Data child to the Signature. XMLSec will fill
     # in this template with the actual certificate details when it signs.
     key_info = xmlsec.template.ensure_key_info(signature)
     sec_token_ref = etree.SubElement(
-        key_info, QName(ns.WSSE, 'SecurityTokenReference'))
+        key_info, QName(ns.WSSE, "SecurityTokenReference")
+    )
     etree.SubElement(
         sec_token_ref,
-        QName(ns.WSSE, 'Reference'),
-        attrib={
-            'URI': '#' + reference_id,
-            'ValueType': x509type
-        }
+        QName(ns.WSSE, "Reference"),
+        attrib={"URI": "#" + reference_id, "ValueType": x509type},
     )
     # Insert the Signature node in the wsse:Security header.
 
@@ -143,22 +147,22 @@ def sign_envelope(envelope, keyfile, certfile, password=None):
     ctx = xmlsec.SignatureContext()
     ctx.key = key
 
-    timestamp = etree.SubElement(security, QName(ns.WSU, 'Timestamp'))
+    timestamp = etree.SubElement(security, QName(ns.WSU, "Timestamp"))
     now = datetime.now()
-    etree.SubElement(timestamp, QName(ns.WSU, 'Created')).text = now.strftime(
-        '%Y-%m-%dT%H:%M:%SZ'
+    etree.SubElement(timestamp, QName(ns.WSU, "Created")).text = now.strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
     )
     exp = now + timedelta(hours=1)
-    etree.SubElement(timestamp, QName(ns.WSU, 'Expires')).text = exp.strftime(
-        '%Y-%m-%dT%H:%M:%SZ'
+    etree.SubElement(timestamp, QName(ns.WSU, "Expires")).text = exp.strftime(
+        "%Y-%m-%dT%H:%M:%SZ"
     )
 
     soap_env = detect_soap_env(envelope)
-    _sign_node(ctx, signature, envelope.find(QName(soap_env, 'Body')))
-    _sign_node(ctx, signature, security.find(QName(ns.WSU, 'Timestamp')))
+    _sign_node(ctx, signature, envelope.find(QName(soap_env, "Body")))
+    _sign_node(ctx, signature, security.find(QName(ns.WSU, "Timestamp")))
 
     ctx.sign(signature)
-    return etree.fromstring(etree.tostring(envelope, method='c14n'))
+    return etree.fromstring(etree.tostring(envelope, method="c14n"))
 
 
 def verify_envelope(envelope, certfile):
@@ -177,27 +181,29 @@ def verify_envelope(envelope, certfile):
 def _verify_envelope_with_key(envelope, key):
     soap_env = detect_soap_env(envelope)
 
-    header = envelope.find(QName(soap_env, 'Header'))
+    header = envelope.find(QName(soap_env, "Header"))
     if header is None:
         raise SignatureVerificationFailed()
 
-    security = header.find(QName(ns.WSSE, 'Security'))
-    signature = security.find(QName(ns.DS, 'Signature'))
-    key_text = security.find(QName(ns.WSSE, 'BinarySecurityToken')).text
-    key = xmlsec.Key.from_memory(base64.b64decode(key_text),
-                                 xmlsec.KeyFormat.CERT_DER, None)
+    security = header.find(QName(ns.WSSE, "Security"))
+    signature = security.find(QName(ns.DS, "Signature"))
+    key_text = security.find(QName(ns.WSSE, "BinarySecurityToken")).text
+    key = xmlsec.Key.from_memory(
+        base64.b64decode(key_text), xmlsec.KeyFormat.CERT_DER, None
+    )
     ctx = xmlsec.SignatureContext()
     # Find each signed element and register its ID with the signing context.
     refs = signature.xpath(
-        'ds:SignedInfo/ds:Reference', namespaces={'ds': ns.DS})
+        "ds:SignedInfo/ds:Reference", namespaces={"ds": ns.DS}
+    )
     for ref in refs:
         # Get the reference URI and cut off the initial '#'
-        referenced_id = ref.get('URI')[1:]
+        referenced_id = ref.get("URI")[1:]
         referenced = envelope.xpath(
             "//*[@wsu:Id='%s']" % referenced_id,
-            namespaces={'wsu': ns.WSU},
+            namespaces={"wsu": ns.WSU},
         )[0]
-        ctx.register_id(referenced, 'Id', ns.WSU)
+        ctx.register_id(referenced, "Id", ns.WSU)
 
     ctx.key = key
     try:
@@ -227,11 +233,12 @@ def _sign_node(ctx, signature, target):
     # use of the wsu:Id attribute for this purpose, but XMLSec doesn't
     # understand that natively. So for XMLSec to be able to find the referenced
     # node by id, we have to tell xmlsec about it using the register_id method.
-    ctx.register_id(target, 'Id', ns.WSU)
+    ctx.register_id(target, "Id", ns.WSU)
 
     # Add reference to signature with URI attribute pointing to that ID.
     ref = xmlsec.template.add_reference(
-        signature, xmlsec.Transform.SHA1, uri='#' + node_id)
+        signature, xmlsec.Transform.SHA1, uri="#" + node_id
+    )
     # This is an XML normalization transform which will be performed on the
     # target node contents before signing. This ensures that changes to
     # irrelevant whitespace, attribute ordering, etc won't invalidate the
