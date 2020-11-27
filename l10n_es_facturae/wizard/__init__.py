@@ -2,4 +2,3 @@
 
 from . import create_facturae
 from . import account_move_reversal
-from . import account_move_integration_cancel
