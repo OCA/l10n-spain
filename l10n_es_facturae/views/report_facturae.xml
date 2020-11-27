@@ -297,9 +297,7 @@
                     </InvoiceIssueData>
                     <TaxesOutputs>
                         <t t-foreach="move.line_ids" t-as="tax_line">
-                            <Tax
-                                t-if="tax_line.tax_line_id and tax_line.tax_line_id.amount &gt;=0"
-                            >
+                            <Tax t-if="tax_line.tax_line_id">
                                 <TaxTypeCode
                                     t-esc="tax_line.tax_line_id.facturae_code"
                                 />
@@ -335,9 +333,7 @@
                     </TaxesOutputs>
                     <TaxesWithheld t-if="withheld">
                         <t t-foreach="move.line_ids" t-as="tax_line">
-                            <Tax
-                                t-if="tax_line.tax_id and tax_line.tax_id.amount &lt; 0"
-                            >
+                            <Tax t-if="tax_line.tax_id">
                                 <TaxTypeCode
                                     t-esc="tax_line.tax_line_id.facturae_code"
                                 />
@@ -375,7 +371,7 @@
                             t-esc="('%.2f' if version == '3_2' else '%.8f') % move.amount_untaxed"
                         />
                         <TotalTaxOutputs
-                            t-esc="('%.2f' if version == '3_2' else '%.8f') % amount_tax"
+                            t-esc="('%.2f' if version == '3_2' else '%.8f') % (-amount_tax)"
                         />
                         <TotalTaxesWithheld
                             t-esc="('%.2f' if version == '3_2' else '%.8f') % amount_tax_withheld"

@@ -6,32 +6,6 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <button name="button_draft" position="before">
-                <button
-                    name="action_integrations"
-                    type="object"
-                    string="Integrate"
-                    groups="account.group_account_invoice"
-                    attrs="{'invisible':['|',('state','=','draft'),('can_integrate', '=', False)]}"
-                />
-                <field name="can_integrate" invisible="1" />
-            </button>
-            <div name="button_box" position="inside">
-                <button
-                    type="object"
-                    name="action_view_integrations"
-                    class="oe_stat_button"
-                    icon="fa-pencil-square-o"
-                    attrs="{'invisible':['|',('state','=','draft'), ('integration_count', '==', 0)]}"
-                >
-                    <field
-                        name="integration_count"
-                        widget="statinfo"
-                        string="Integrations"
-                    />
-                    <field name="integration_ids" invisible="1" />
-                </button>
-            </div>
             <field name="name" position="after">
                 <field name="facturae" invisible="1" />
             </field>
@@ -56,6 +30,8 @@
                         <group>
                             <field name="facturae_start_date" />
                             <field name="facturae_end_date" />
+                            <field name="l10n_es_facturae_status" />
+                            <field name="l10n_es_facturae_cancellation_status" />
                         </group>
                     </group>
                 </page>
@@ -132,21 +108,6 @@
                     </group>
                 </group>
             </form>
-        </field>
-    </record>
-    <record id="view_account_invoice_filter" model="ir.ui.view">
-        <field name="name">account.invoice.select</field>
-        <field name="model">account.move</field>
-        <field name="inherit_id" ref="account.view_account_invoice_filter" />
-        <field name="arch" type="xml">
-            <filter name="late" position="after">
-                <separator />
-                <filter
-                    name="integration_issue"
-                    string="Integration issue"
-                    domain="[('integration_issue', '=', True)]"
-                />
-            </filter>
         </field>
     </record>
 </odoo>

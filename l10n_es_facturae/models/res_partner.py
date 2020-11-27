@@ -16,12 +16,8 @@ class ResPartner(models.Model):
     unidad_tramitadora = fields.Char("Unidad tramitadora", size=10)
     oficina_contable = fields.Char("Oficina contable", size=10)
     organo_proponente = fields.Char("Órgano proponente", size=10)
-    move_integration_method_ids = fields.Many2many(
-        comodel_name="account.move.integration.method",
-        string="Integration Methods",
-        relation="account_move_integration_method_res_partner_rel",
-    )
     attach_invoice_as_annex = fields.Boolean()
+    l10n_es_facturae_sending_code = fields.Selection([], string="Sending method")
 
     def get_facturae_residence(self):
         if not self.country_id:

@@ -6,7 +6,5 @@ from . import res_partner
 from . import account_tax_template
 from . import account_tax
 from . import res_currency
-from . import account_move_integration
-from . import account_move_integration_method
-from . import account_move_integration_log
 from . import account_move
+from . import edi_exchange_record
