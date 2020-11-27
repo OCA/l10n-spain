@@ -14,21 +14,29 @@ class AccountInvoiceIntegrationMethod(models.Model):
         res = super(AccountInvoiceIntegrationMethod, self).integration_values(
             invoice
         )
-        if self.code == 'FACe':
+        if self.code == "FACe":
             if not invoice.company_id.facturae_cert:
                 raise exceptions.UserError(
-                    _('Certificate must be added for company'))
+                    _("Certificate must be added for company")
+                )
             if not invoice.company_id.facturae_cert_password:
                 raise exceptions.UserError(
-                    _('Certificate password must be added for company'))
+                    _("Certificate password must be added for company")
+                )
             invoice_file, file_name = invoice.get_facturae(True)
-            attachment = self.env['ir.attachment'].sudo().create({
-                'name': file_name,
-                'datas': base64.b64encode(invoice_file),
-                'datas_fname': file_name,
-                'res_model': 'account.invoice',
-                'res_id': invoice.id,
-                'mimetype': 'application/xml'
-            })
-            res['attachment_id'] = attachment.id
+            attachment = (
+                self.env["ir.attachment"]
+                .sudo()
+                .create(
+                    {
+                        "name": file_name,
+                        "datas": base64.b64encode(invoice_file),
+                        "datas_fname": file_name,
+                        "res_model": "account.invoice",
+                        "res_id": invoice.id,
+                        "mimetype": "application/xml",
+                    }
+                )
+            )
+            res["attachment_id"] = attachment.id
         return res
