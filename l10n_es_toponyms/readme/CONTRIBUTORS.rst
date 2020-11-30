@@ -9,3 +9,4 @@
   * Pedro M. Baeza
   * Sergio Teruel
 * David Gómez
+* Jose Luis Algara
