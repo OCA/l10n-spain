@@ -2,24 +2,24 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import models, api, exceptions, _
+from odoo import _, api, exceptions, fields, models
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    l10n_es_facturae_sending_code = fields.Selection(selection_add=[("face", "FACe")])
+
     @api.constrains(
-        "facturae",
-        "vat",
-        "country_id",
-        "state_id",
-        "invoice_integration_method_ids",
+        "facturae", "vat", "country_id", "state_id", "l10n_es_facturae_sending_code",
     )
-    def constrain_face(self):
-        face = self.env.ref("l10n_es_facturae_face.integration_face")
-        for record in self.filtered(
-            lambda x: face in x.invoice_integration_method_ids
-        ):
+    def _constrain_l10n_es_facturae_sending_code_face(self):
+        for record in self:
+            if (
+                not record.l10n_es_facturae_sending_code
+                or record.l10n_es_facturae_sending_code != "face"
+            ):
+                continue
             if not record.facturae:
                 raise exceptions.ValidationError(
                     _("Facturae must be selected in order to send to FACe")
@@ -35,8 +35,5 @@ class ResPartner(models.Model):
             if record.country_id.code_alpha3 == "ESP":
                 if not record.state_id:
                     raise exceptions.ValidationError(
-                        _(
-                            "State must be defined in Spain in order to "
-                            "send to FACe"
-                        )
+                        _("State must be defined in Spain in order to send to FACe")
                     )
