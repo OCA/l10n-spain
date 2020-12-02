@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_aeat_silicie_mrp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-01 19:19+0000\n"
+"PO-Revision-Date: 2020-12-01 19:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_aeat_silicie_mrp
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie_mrp.field_mrp_routing__silicie_processing_id
+msgid "Processing SILICIE"
+msgstr "Tipo de Operación SILICIE"
+
+#. module: l10n_es_aeat_silicie_mrp
+#: model:ir.model,name:l10n_es_aeat_silicie_mrp.model_mrp_routing
+msgid "Routings"
+msgstr "Rutas de producción"
+
+#. module: l10n_es_aeat_silicie_mrp
+#: model:ir.model,name:l10n_es_aeat_silicie_mrp.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
