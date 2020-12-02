@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="aeat_epigraph_silicie_view_tree" model="ir.ui.view">
+        <field name="name">aeat.epigraph.silicie.view.tree</field>
+        <field name="model">aeat.epigraph.silicie</field>
+        <field name="arch" type="xml">
+            <tree string="Aeat Epigraph SILICIE" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="tax_silicie_alcohol"/>
+                <field name="tax_silicie_beer"/>
+                <field name="tax_silicie_intermediate"/>
+                <field name="tax_silicie_intermediate_art"/>
+                <field name="tax_silicie_wine"/>
+                <field name="tax_silicie_vinegar"/>
+                <field name="tax_silicie_hydrocarbons"/>
+                <field name="tax_silicie_tobacco"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_aeat_epigraph_silicie">
+        <field name="name">Aeat Epigraph SILICIE</field>
+        <field name="res_model">aeat.epigraph.silicie</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="menu_aeat_epigraph_silicie" parent="l10n_es_aeat.menu_l10n_es_aeat_config" action="action_aeat_epigraph_silicie" name="Aeat Epigraph SILICIE"/>
+
+</odoo>

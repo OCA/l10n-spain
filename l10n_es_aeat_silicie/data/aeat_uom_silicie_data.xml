@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_uom_silicie_gj" model="aeat.uom.silicie">
+        <field name="code">GJ</field>
+        <field name="name">Gigajulios</field>
+    </record>
+    <record id="aeat_uom_silicie_kgm" model="aeat.uom.silicie">
+        <field name="code">KGM</field>
+        <field name="name">Kilogramos</field>
+    </record>
+    <record id="aeat_uom_silicie_ltr" model="aeat.uom.silicie">
+        <field name="code">LTR</field>
+        <field name="name">Litros</field>
+    </record>
+    <record id="aeat_uom_silicie_mil" model="aeat.uom.silicie">
+        <field name="code">MIL</field>
+        <field name="name">Miles de unidades de cigarrillos, cigarros o cigarritos</field>
+    </record>
+
+</odoo>

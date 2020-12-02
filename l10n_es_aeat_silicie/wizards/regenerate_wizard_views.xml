@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="regenerate_silicie_moves_view" model="ir.ui.view">
+        <field name="name">Regenerate SILICIE Moves</field>
+        <field name="model">regenerate.silicie.moves.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Regenerate SILICIE Moves">
+                <field name="yes_no" readonly="1"/>
+                <footer>
+                    <button name="regenerate_silicie_moves" string="Regenerate" type="object" default_focus="1" class="oe_highlight" />
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_regenerate_silicie_moves" model="ir.actions.act_window">
+        <field name="name">Regenerate SILICIE Moves</field>
+        <field name="res_model">regenerate.silicie.moves.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="regenerate_silicie_moves_view"/>
+        <field name="target">new</field>
+    </record>
+    <act_window id="regenerate_silicie_moves" name="Regenerate SILICIE Moves" res_model="regenerate.silicie.moves.wizard" src_model="stock.move" view_mode="form" target="new" key2="client_action_multi" />
+
+</odoo>

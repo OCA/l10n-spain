@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="priority">6</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="silicie" string="SILICIE">
+                    <separator name="aeat_silicie_product_type" string="AEAT SILICIE Product Type" />
+                    <group name="silicie_product_type">
+                        <field name="silicie_product_type"/>
+                        <field name="product_class" attrs="{'invisible': [('silicie_product_type', '=', 'none')], 'required': [('silicie_product_type', '!=', 'none')]}"/>
+                    </group>
+                    <separator name="aeat_silicie_product_params" string="AEAT SILICIE Product Parameters" attrs="{'invisible': [('silicie_product_type', '=', 'none')]}"/>
+                    <group attrs="{'invisible': [('silicie_product_type', '=', 'none')]}">
+                        <group name="aeat_silicie_product_params_left">
+                            <field name="product_key_silicie_id" options="{'no_create_edit': True, 'no_create': True}"/>
+                            <field name="nc_code" attrs="{'required': [('silicie_product_type', '!=', 'none')]}"/>
+                            <field name="epigraph_silicie_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'required': [('product_class', '=', 'final'), ('silicie_product_type', '!=', 'none')]}"/>
+                        </group>
+                        <group name="aeat_silicie_product_params_right">
+                            <field name="container_type_silicie_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'required': [('product_class', '=', 'final'), ('silicie_product_type', '!=', 'none')]}"/>
+                            <field name="factor_conversion_silicie"/>
+                            <label for="silicie_qty"/>
+                            <div>
+                                <field name="silicie_qty" class="oe_inline"/> - <field name="uom_silicie_id" options="{'no_create_edit': True, 'no_create': True}" attrs="{'required': [('silicie_product_type', '!=', 'none')]}" class="oe_inline"/>
+                            </div>
+                            <field name="alcoholic_grade"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='consumable']" position="after">
+                <separator/>
+                <filter string="SILICI Product" name="silicie" domain="[('silicie_product_type', '!=', 'none')]"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

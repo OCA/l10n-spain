@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="aeat_proof_type_silicie_view_tree" model="ir.ui.view">
+        <field name="name">aeat.proof.type.silicie.view.tree</field>
+        <field name="model">aeat.proof.type.silicie</field>
+        <field name="arch" type="xml">
+            <tree string="Aeat Proof Type SILICIE" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_aeat_proof_type_silicie">
+        <field name="name">Aeat Proof Type SILICIE</field>
+        <field name="res_model">aeat.proof.type.silicie</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="menu_aeat_proof_type_silicie" parent="l10n_es_aeat.menu_l10n_es_aeat_config" action="action_aeat_proof_type_silicie" name="Aeat Proof Type SILICIE"/>
+
+</odoo>

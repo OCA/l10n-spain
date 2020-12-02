@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mrp_routing_silicie_view" model="ir.ui.view">
+        <field name="name">mrp.routing.silicie.view</field>
+        <field name="model">mrp.routing</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="silicie_processing_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

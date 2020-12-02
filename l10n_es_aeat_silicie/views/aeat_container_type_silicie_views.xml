@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="aeat_container_type_silicie_view_tree" model="ir.ui.view">
+        <field name="name">aeat.container.type.silicie.view.tree</field>
+        <field name="model">aeat.container.type.silicie</field>
+        <field name="arch" type="xml">
+            <tree string="Aeat Container Type SILICIE" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="tax_silicie_alcohol"/>
+                <field name="tax_silicie_beer"/>
+                <field name="tax_silicie_intermediate"/>
+                <field name="tax_silicie_intermediate_art"/>
+                <field name="tax_silicie_wine"/>
+                <field name="tax_silicie_vinegar"/>
+                <field name="tax_silicie_hydrocarbons"/>
+                <field name="tax_silicie_tobacco"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_aeat_container_type_silicie">
+        <field name="name">Aeat Container Type SILICIE</field>
+        <field name="res_model">aeat.container.type.silicie</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="menu_aeat_container_type_silicie" parent="l10n_es_aeat.menu_l10n_es_aeat_config" action="action_aeat_container_type_silicie" name="Aeat Container Type SILICIE"/>
+
+</odoo>

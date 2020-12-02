@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="aeat_uom_silicie_view_tree" model="ir.ui.view">
+        <field name="name">aeat.uom.silicie.view.tree</field>
+        <field name="model">aeat.uom.silicie</field>
+        <field name="arch" type="xml">
+            <tree string="Aeat UoM SILICIE" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_aeat_uom_silicie">
+        <field name="name">Aeat UoM SILICIE</field>
+        <field name="res_model">aeat.uom.silicie</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="menu_aeat_uom_silicie" parent="l10n_es_aeat.menu_l10n_es_aeat_config" action="action_aeat_uom_silicie" name="Aeat UoM SILICIE"/>
+
+</odoo>

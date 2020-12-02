@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_position_form" model="ir.ui.view">
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_group_id']/.." position="after">
+                <group string="SILICIE" name="group_silicie">
+                    <field name="silicie_partner_identification_type"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

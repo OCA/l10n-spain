@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="aeat_product_key_silicie_view_tree" model="ir.ui.view">
+        <field name="name">aeat.product.key.silicie.view.tree</field>
+        <field name="model">aeat.product.key.silicie</field>
+        <field name="arch" type="xml">
+            <tree string="Aeat Product Key SILICIE" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="corresp_554"/>
+                <field name="corresp_555_556"/>
+                <field name="corresp_557"/>
+                <field name="corresp_558"/>
+                <field name="tax_silicie_alcohol"/>
+                <field name="tax_silicie_beer"/>
+                <field name="tax_silicie_intermediate"/>
+                <field name="tax_silicie_intermediate_art"/>
+                <field name="tax_silicie_wine"/>
+                <field name="tax_silicie_vinegar"/>
+                <field name="tax_silicie_hydrocarbons"/>
+                <field name="tax_silicie_tobacco"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_aeat_product_key_silicie">
+        <field name="name">Aeat Product Key SILICIE</field>
+        <field name="res_model">aeat.product.key.silicie</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="menu_aeat_product_key_silicie" parent="l10n_es_aeat.menu_l10n_es_aeat_config" action="action_aeat_product_key_silicie" name="Aeat Product Key SILICIE"/>
+
+</odoo>
