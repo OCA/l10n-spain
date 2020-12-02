@@ -11,9 +11,12 @@ admittedly painful, will likely assist in understanding the code in this
 module.
 
 """
+import base64
+import logging
+from datetime import datetime, timedelta
+
 from lxml import etree
 from lxml.etree import QName
-import logging
 
 try:
     from zeep import ns
@@ -23,8 +26,6 @@ try:
     from OpenSSL import crypto
 except (ImportError, IOError) as err:
     logging.info(err)
-import base64
-from datetime import datetime, timedelta
 
 try:
     import xmlsec
@@ -41,9 +42,7 @@ def _read_file(f_name):
 
 
 def _make_sign_key(key_data, cert_data, password):
-    key = xmlsec.Key.from_memory(
-        key_data, xmlsec.KeyFormat.PKCS12_PEM, password
-    )
+    key = xmlsec.Key.from_memory(key_data, xmlsec.KeyFormat.PKCS12_PEM, password)
     return key
 
 
@@ -63,9 +62,7 @@ class MemorySignature(object):
         self.password = password
 
     def apply(self, envelope, headers):
-        signed = sign_envelope(
-            envelope, self.key_data, self.cert_data, self.password
-        )
+        signed = sign_envelope(envelope, self.key_data, self.cert_data, self.password)
         return signed, headers
 
     def verify(self, envelope):
@@ -122,18 +119,13 @@ def sign_envelope(envelope, keyfile, certfile, password=None):
         )
     )
     signature = xmlsec.template.create(
-        envelope,
-        xmlsec.Transform.EXCL_C14N,
-        xmlsec.Transform.RSA_SHA1,
-        ns="ds",
+        envelope, xmlsec.Transform.EXCL_C14N, xmlsec.Transform.RSA_SHA1, ns="ds",
     )
 
     # Add a KeyInfo node with X509Data child to the Signature. XMLSec will fill
     # in this template with the actual certificate details when it signs.
     key_info = xmlsec.template.ensure_key_info(signature)
-    sec_token_ref = etree.SubElement(
-        key_info, QName(ns.WSSE, "SecurityTokenReference")
-    )
+    sec_token_ref = etree.SubElement(key_info, QName(ns.WSSE, "SecurityTokenReference"))
     etree.SubElement(
         sec_token_ref,
         QName(ns.WSSE, "Reference"),
@@ -193,15 +185,12 @@ def _verify_envelope_with_key(envelope, key):
     )
     ctx = xmlsec.SignatureContext()
     # Find each signed element and register its ID with the signing context.
-    refs = signature.xpath(
-        "ds:SignedInfo/ds:Reference", namespaces={"ds": ns.DS}
-    )
+    refs = signature.xpath("ds:SignedInfo/ds:Reference", namespaces={"ds": ns.DS})
     for ref in refs:
         # Get the reference URI and cut off the initial '#'
         referenced_id = ref.get("URI")[1:]
         referenced = envelope.xpath(
-            "//*[@wsu:Id='%s']" % referenced_id,
-            namespaces={"wsu": ns.WSU},
+            "//*[@wsu:Id='%s']" % referenced_id, namespaces={"wsu": ns.WSU},
         )[0]
         ctx.register_id(referenced, "Id", ns.WSU)
 
