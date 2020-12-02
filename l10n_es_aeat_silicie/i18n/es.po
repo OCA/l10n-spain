@@ -1,0 +1,951 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_aeat_silicie
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-02 12:23+0000\n"
+"PO-Revision-Date: 2020-12-02 12:23+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.send_aeat_silicie_view
+msgid "<span>Do you want to proceed?</span>"
+msgstr "<span>¿Quieres proceder al envio? (En caso de devolver un error, es posible que el asiento se haya creado en la AEAT, en cualquier caso, se debe comentar a vuestro gestor de Odoo para actualizar el asiento)</span>"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_container_type_silicie
+msgid "AEAT Container Type SILICIE"
+msgstr "AEAT Tipos de envase SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_epigraph_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_uom_silicie
+msgid "AEAT Epigraph SILICIE"
+msgstr "AEAT Epígrafes SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_loss_silicie
+msgid "AEAT Loss SILICIE"
+msgstr "AEAT Dif. Menos SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_move_type_silicie
+msgid "AEAT Move Type SILICIE"
+msgstr "AEAT Tipos de movimientos SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_company__aeat_office
+msgid "AEAT Office"
+msgstr "Oficina Gestora AEAT"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_processing_silicie
+msgid "AEAT Processing SILICIE"
+msgstr "AEAT Operación de fabricación SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_product_key_silicie
+msgid "AEAT Product Key SILICIE"
+msgstr "AEAT Claves de producto SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_aeat_proof_type_silicie
+msgid "AEAT Proof Type SILICIE"
+msgstr "AEAT Tipo de justificante SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_company_silicie_form
+msgid "AEAT SILICIE Configuration"
+msgstr "AEAT SILICIE Configuración"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.product_template_form_silicie_view
+msgid "AEAT SILICIE Product Parameters"
+msgstr "AEAT SILICIE Parámetros de producto"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.product_template_form_silicie_view
+msgid "AEAT SILICIE Product Type"
+msgstr "AEAT SILICIE Tipo de producto"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_purchase_order__arc
+msgid "ARC"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__absolute_alcohol
+msgid "Absolute Alcohol"
+msgstr "Alcohol absoluto"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_aeat_container_type_silicie
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.menu_aeat_container_type_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.aeat_container_type_silicie_view_tree
+msgid "Aeat Container Type SILICIE"
+msgstr "AEAT Tipos de evanse SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_aeat_epigraph_silicie
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.menu_aeat_epigraph_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.aeat_epigraph_silicie_view_tree
+msgid "Aeat Epigraph SILICIE"
+msgstr "AEAT Epígrafes SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_aeat_move_type_silicie
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.menu_aeat_move_type_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.aeat_move_type_silicie_view_tree
+msgid "Aeat Move Type SILICIE"
+msgstr "AEAT Tipos de movimiento SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_aeat_product_key_silicie
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.menu_aeat_product_key_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.aeat_product_key_silicie_view_tree
+msgid "Aeat Product Key SILICIE"
+msgstr "AEAT Claves de producto SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_aeat_proof_type_silicie
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.menu_aeat_proof_type_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.aeat_proof_type_silicie_view_tree
+msgid "Aeat Proof Type SILICIE"
+msgstr "AEAT Tipo de justificante SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_l10n_es_aeat_silicie
+msgid "Aeat SILICIE"
+msgstr "AEAT SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_l10n_es_aeat_silicie_password
+msgid "Aeat SILICIE password"
+msgstr "AEAT SILICIE Contraseña"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_aeat_uom_silicie
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.menu_aeat_uom_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.aeat_uom_silicie_view_tree
+msgid "Aeat UoM SILICIE"
+msgstr "AEAT UdM SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_alcohol
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_alcohol
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_alcohol
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_alcohol
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_alcohol
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_alcohol
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Alcohol"
+msgstr "Alcohol y Bebidas Derivadas"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__alcoholic_grade
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__alcoholic_grade
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__alcoholic_grade
+msgid "Alcoholic Grade"
+msgstr "Grado alcohólico"
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silicie_entry_type:0
+msgid "Alta de Asiento"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silicie_entry_type:0
+msgid "Anulación de Asiento"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: selection:res.company,silicie_send_mode:0
+msgid "At fixed time"
+msgstr "A una hora fija"
+
+#. module: l10n_es_aeat_silicie
+#: selection:res.company,silicie_method:0
+msgid "Automatic"
+msgstr "Automático"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_beer
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_beer
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_beer
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_beer
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_beer
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_beer
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Beer"
+msgstr "Cerveza"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,help:l10n_es_aeat_silicie.field_res_company__silicie_method
+msgid "By default, the move is sent/queued in validation process. With manual method, there's a button to send move."
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_purchase_order__cae
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_company__cae
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_partner__cae
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_users__cae
+msgid "CAE"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: selection:account.fiscal.position,silicie_partner_identification_type:0
+msgid "Canarias"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.form_wizard_import_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.not_declare_silicie_moves_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.regenerate_silicie_moves_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.send_aeat_silicie_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_queue_job_silicie
+msgid "Cancel sending"
+msgstr "Cancelar envío"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__silicie_qty
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__silicie_qty
+msgid "Cantidad SILICIE"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__fields_check
+msgid "Check Fields"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: code:addons/l10n_es_aeat_silicie/report/aeat_silicie_csv_export.py:26
+#, python-format
+msgid "Check move validation!"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_company_silicie_form
+msgid "Connector config"
+msgstr "Configuración del conector"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__container_type_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__container_type_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__container_type_silicie_id
+msgid "Container Type SILICIE"
+msgstr "Tipo de contenedor SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__corresp_554
+msgid "Correspond. 554"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__corresp_555_556
+msgid "Correspond. 555/556"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__corresp_557
+msgid "Correspond. 557"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__corresp_558
+msgid "Correspond. 558"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_send_aeat_silicie_wizard__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_send_aeat_silicie_wizard__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Date"
+msgstr "Fecha"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__date_send_silicie
+msgid "Date Send SILICIE"
+msgstr "Fecha de envío SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_report_report_csv_aeat_silice_csv__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_send_aeat_silicie_wizard__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: l10n_es_aeat_silicie
+#: code:addons/l10n_es_aeat_silicie/wizards/not_declare_silicie_moves_wizard.py:9
+#: code:addons/l10n_es_aeat_silicie/wizards/regenerate_silicie_moves_wizard.py:9
+#, python-format
+msgid "Do you want to proceed?"
+msgstr "Quieres proceder al envio? (En caso de devolver un error, es posible que el asiento se cree igualmente, y en cualquier caso, se debe comentar a vuestro gestor de Odoo)"
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silice_tax_position:0
+msgid "EXENTO"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: code:addons/l10n_es_aeat_silicie/wizards/import_silicie.py:32
+#, python-format
+msgid "El fichero debe tener extensión .csv, .xls o .xlsx"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_company__silicie_enabled
+msgid "Enable SILICIE"
+msgstr "Habilitar SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__epigraph_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__epigraph_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__epigraph_silicie_id
+msgid "Epigraph SILICIE"
+msgstr "Epígrafe SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: selection:account.fiscal.position,silicie_partner_identification_type:0
+msgid "Export"
+msgstr "Exportación"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__factor_conversion_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__factor_conversion_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__factor_conversion_silicie
+msgid "Factor Conversion SILICIE"
+msgstr "Factor conversión SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__file_data
+msgid "File"
+msgstr "Archivo"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__file_name
+msgid "File Name"
+msgstr "Nombre del archivo"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_account_fiscal_position
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__fiscal_position_id
+msgid "Fiscal Position"
+msgstr "Posición fiscal"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.stock_move_silicie_tree_view
+msgid "From"
+msgstr "De"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.server,name:l10n_es_aeat_silicie.cron_generate_silicie_fields_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_aeat_silicie.cron_generate_silicie_fields
+#: model:ir.cron,name:l10n_es_aeat_silicie.cron_generate_silicie_fields
+msgid "Generate Silicie Fields"
+msgstr "Generar Campos Silicie"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_hydrocarbons
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_hydrocarbons
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_hydrocarbons
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_hydrocarbons
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_hydrocarbons
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_hydrocarbons
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Hydrocarbons"
+msgstr "Hidrocarburos"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_report_report_csv_aeat_silice_csv__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_send_aeat_silicie_wizard__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silice_tax_position:0
+msgid "IMPUESTO DEVENGADO A TIPO DE CANARIAS"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silice_tax_position:0
+msgid "IMPUESTO DEVENGADO TIPO PLENO"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silice_tax_position:0
+msgid "IMPUESTO DEVENGADO TIPO REDUCIDO"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.form_wizard_import_silicie
+msgid "Import"
+msgstr "Importar"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_form_wizard_import_silicie
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.menu_form_wizard_import_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.form_wizard_import_silicie
+msgid "Import Receipt AEAT SILICIE"
+msgstr "Importar Justificante AEAT SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_intermediate
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_intermediate
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_intermediate
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_intermediate
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_intermediate
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_intermediate
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Intermediate"
+msgstr "Productos Intermedios"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_intermediate_art
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_intermediate_art
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_intermediate_art
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_intermediate_art
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_intermediate_art
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_intermediate_art
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Intermediate Art. 32 LIE"
+msgstr "Productos Intermedios Art. 32 LIE"
+
+#. module: l10n_es_aeat_silicie
+#: selection:account.fiscal.position,silicie_partner_identification_type:0
+msgid "Intracom"
+msgstr "Intracomunitario"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_stock_inventory
+msgid "Inventory"
+msgstr "Inventario"
+
+#. module: l10n_es_aeat_silicie
+#: code:addons/l10n_es_aeat_silicie/models/stock.py:15
+#, python-format
+msgid "Inventory SILICIE Product is not allowed"
+msgstr "No están permitidos los ajustes de inventario de los productos de SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_company__silicie_test
+msgid "Is Test Environment?"
+msgstr "¿Entorno de Pruebas?"
+
+#. module: l10n_es_aeat_silicie
+#: code:addons/l10n_es_aeat_silicie/wizards/import_silicie.py:86
+#, python-format
+msgid "Las siguientes columnas no están en el fichero:"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_report_report_csv_aeat_silice_csv____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_send_aeat_silicie_wizard____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_send_aeat_silicie_wizard__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_send_aeat_silicie_wizard__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_wizard_import_silicie__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_loss_id
+msgid "Loss SILICIE"
+msgstr "Diferencias en menos SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: selection:res.company,silicie_method:0
+msgid "Manual"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_company__silicie_method
+msgid "Method"
+msgstr "Método"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_move_type_id
+msgid "Move Type SILICIE"
+msgstr "Tipo de movimiento SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__nc_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__nc_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__nc_code
+msgid "NC Code"
+msgstr "Código NC"
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silice_tax_position:0
+msgid "NO SUJETO"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_proof_type_silicie__name
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_uom_silicie__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_aeat_silicie
+#: selection:account.fiscal.position,silicie_partner_identification_type:0
+msgid "National"
+msgstr "Nacional"
+
+#. module: l10n_es_aeat_silicie
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "None"
+msgstr "Ninguno"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__not_declare
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.not_declare_silicie_moves_view
+msgid "Not Declare"
+msgstr "No Declarar"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.not_declare_silicie_moves
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.not_declare_silicie_moves_view
+msgid "Not Declare SILICIE Moves"
+msgstr "No declarar movientos SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Not Valid"
+msgstr "No Válidos"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__notes_silice
+msgid "Notes Silice"
+msgstr "Observaciones SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: selection:res.company,silicie_send_mode:0
+msgid "On validate"
+msgstr "En la validación"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Pending to Send"
+msgstr "Envío Pendiente"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_processing_id
+msgid "Processing SILICIE"
+msgstr "Op. Fabricación SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__product_key_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__product_key_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__product_key_silicie_id
+msgid "Product Key SILICIE"
+msgstr "Clave de producto SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_proof_type_id
+msgid "Proof Type SILICIE"
+msgstr "Tipo de justificante SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_purchase_order
+msgid "Purchase Order"
+msgstr "Pedido de compra"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__qty_conversion_silicie
+msgid "Qty Conversion SILICIE"
+msgstr "Cantidad convertida SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_queue_job
+msgid "Queue Job"
+msgstr "Cola de Trabajo"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.regenerate_silicie_moves_view
+msgid "Regenerate"
+msgstr "Regenerar"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.action_regenerate_silicie_moves
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.regenerate_silicie_moves
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.regenerate_silicie_moves_view
+msgid "Regenerate SILICIE Moves"
+msgstr "Regenerar movimientos de SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_queue_job_silicie
+msgid "Requeue"
+msgstr "Reencolado"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_mrp_routing
+msgid "Routings"
+msgstr "Rutas de producción"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.product_template_form_silicie_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.stock_move_form_silicie_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_account_position_silicie_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_company_silicie_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_product_silicie_search_inherited
+msgid "SILICIE"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_entry_type
+msgid "SILICIE Entry Type"
+msgstr "Tipo de asiento SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.report,name:l10n_es_aeat_silicie.aeat_silice_csv
+msgid "SILICIE Export CSV"
+msgstr "Exportar CSV SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_move_number
+msgid "SILICIE Move Number"
+msgstr "Núm. asiento SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "SILICIE Move Type"
+msgstr "Tipo de movimiento SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.stock_move_silicie_action
+#: model:ir.ui.menu,name:l10n_es_aeat_silicie.stock_move_silicie_menu
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_silicie_move_search
+msgid "SILICIE Moves"
+msgstr "Movimientos de SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_operation_num
+msgid "SILICIE Operation Num."
+msgstr "Núm. Operación SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__silicie_product_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__silicie_product_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silicie_product_type
+msgid "SILICIE Product Type"
+msgstr "SILICIE Tipo de producto"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_company__silicie_inventory_disabled
+msgid "SILICIE Products Inventory Disable"
+msgstr "Deshabilitar Inventario de Productos SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__silice_tax_position
+msgid "SILICIE Tax Position"
+msgstr "Régimen Fiscal SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_account_fiscal_position__silicie_partner_identification_type
+msgid "SILICIE partner Identification Type"
+msgstr "Régimen Fiscal SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: selection:stock.move,silice_tax_position:0
+msgid "SUSPENSIVO"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.send_aeat_silicie_view
+msgid "Send"
+msgstr "Enviar"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.send_aeat_silicie_view
+msgid "Send AEAT SILICIE"
+msgstr "Enviar movimientos SILICIE a AEAT"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__send_silicie
+msgid "Send SILICIE"
+msgstr "Enviado AEAT"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.actions.act_window,name:l10n_es_aeat_silicie.send_aeat_silicie
+msgid "Send SILICIE AEAT"
+msgstr "Enviar movimientos SILICIE a AEAT"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_res_company__silicie_send_mode
+msgid "Send mode"
+msgstr "Modo de envío"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.view_queue_job_silicie
+msgid "Send now"
+msgstr "Enviar ahora"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__sign
+msgid "Sign"
+msgstr "Signo"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.stock_move_silicie_tree_view
+msgid "To"
+msgstr "Para"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_tobacco
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_tobacco
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_tobacco
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_tobacco
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_tobacco
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_tobacco
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Tobacco"
+msgstr "Tabaco"
+
+#. module: l10n_es_aeat_silicie
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_silicie.stock_move_silicie_tree_view
+msgid "Unit of Measure"
+msgstr "Unidad de medida"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_product__uom_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_product_template__uom_silicie_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_stock_move__uom_silicie_id
+msgid "UoM SILICIE"
+msgstr "UdM SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_vinegar
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_vinegar
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_vinegar
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_vinegar
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_vinegar
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_vinegar
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Vinegar"
+msgstr "Vinagre"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_container_type_silicie__tax_silicie_wine
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_epigraph_silicie__tax_silicie_wine
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_loss_silicie__tax_silicie_wine
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_move_type_silicie__tax_silicie_wine
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_processing_silicie__tax_silicie_wine
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_aeat_product_key_silicie__tax_silicie_wine
+#: selection:product.template,silicie_product_type:0
+#: selection:stock.move,silicie_product_type:0
+msgid "Wine"
+msgstr "Vino y Bebidas fermentadas"
+
+#. module: l10n_es_aeat_silicie
+#: selection:res.company,silicie_send_mode:0
+msgid "With delay"
+msgstr "Con retardo"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_not_declare_silicie_moves_wizard
+msgid "Wizard Not Declare SILICIE Moves"
+msgstr "Asistente de no declaración de movimientos SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_regenerate_silicie_moves_wizard
+msgid "Wizard Regenerate SILICIE Moves"
+msgstr "Asistente de regeneración de movimientos de SILICIE"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_send_aeat_silicie_wizard
+msgid "Wizard Send SILICIE AEAT"
+msgstr "Asistente de envío de movimientos SILICIE a AEAT"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_not_declare_silicie_moves_wizard__yes_no
+#: model:ir.model.fields,field_description:l10n_es_aeat_silicie.field_regenerate_silicie_moves_wizard__yes_no
+msgid "Yes No"
+msgstr "Si No"
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_report_report_csv_aeat_silice_csv
+msgid "report.report_csv.aeat_silice_csv"
+msgstr ""
+
+#. module: l10n_es_aeat_silicie
+#: model:ir.model,name:l10n_es_aeat_silicie.model_wizard_import_silicie
+msgid "wizard.import.silicie"
+msgstr ""
+

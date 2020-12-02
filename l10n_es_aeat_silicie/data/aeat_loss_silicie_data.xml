@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_loss_silicie_ad02" model="aeat.loss.silicie">
+        <field name="code">AD02</field>
+        <field name="name">Rectificación de alcohol</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+    <record id="aeat_loss_silicie_ad12" model="aeat.loss.silicie">
+        <field name="code">AD12</field>
+        <field name="name">Embotellado</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+    <record id="aeat_loss_silicie_ad15" model="aeat.loss.silicie">
+        <field name="code">AD15</field>
+        <field name="name">Almacenamiento de primeras materias</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+</odoo>

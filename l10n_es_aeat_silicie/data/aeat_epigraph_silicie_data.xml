@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_epigraph_silicie_a0" model="aeat.epigraph.silicie">
+        <field name="code">A0</field>
+        <field name="name">Alcohol y bebidas derivadas</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+    <record id="aeat_epigraph_silicie_a7" model="aeat.epigraph.silicie">
+        <field name="code">A7</field>
+        <field name="name">Alcohol y bebidas derivadas consumo en Canarias</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+</odoo>

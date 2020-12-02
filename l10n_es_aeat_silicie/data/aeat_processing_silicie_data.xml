@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_processing_silicie_a01" model="aeat.processing.silicie">
+        <field name="code">A01</field>
+        <field name="name">MEZCLA</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+    <record id="aeat_processing_silicie_a05" model="aeat.processing.silicie">
+        <field name="code">A05</field>
+        <field name="name">RECTIFICACION</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+    <record id="aeat_processing_silicie_a13" model="aeat.processing.silicie">
+        <field name="code">A13</field>
+        <field name="name">ELABORACION EL CALIENTE</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+    <record id="aeat_processing_silicie_a14" model="aeat.processing.silicie">
+        <field name="code">A14</field>
+        <field name="name">ELABORACION EN FRIO</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+    <record id="aeat_processing_silicie_a19" model="aeat.processing.silicie">
+        <field name="code">A19</field>
+        <field name="name">EMBOTELLADO/ ENVASADO</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+</odoo>
