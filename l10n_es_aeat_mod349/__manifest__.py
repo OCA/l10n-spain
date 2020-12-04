@@ -9,7 +9,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "12.0.1.3.1",
+    "version": "13.0.1.0.0",
     "author": "Tecnativa, Eficent, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Localisation/Accounting",
@@ -20,7 +20,6 @@
         "data/aeat_export_mod349_partner_refund_data.xml",
         "data/aeat_export_mod349_partner_data.xml",
         "data/aeat_export_mod349_data.xml",
-        "views/account_invoice_view.xml",
         "views/account_move_view.xml",
         "views/account_tax_view.xml",
         "views/aeat_349_map_view.xml",
@@ -33,6 +32,5 @@
     ],
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],
-    "post_init_hook": "post_init_hook",
     "installable": True,
 }
