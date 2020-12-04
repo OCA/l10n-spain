@@ -91,7 +91,6 @@ class Mod349(models.Model):
     )
     number = fields.Char(default="349")
 
-    @api.multi
     @api.depends("partner_record_ids", "partner_record_ids.total_operation_amount")
     def _compute_report_regular_totals(self):
         for report in self:
@@ -100,7 +99,6 @@ class Mod349(models.Model):
                 report.mapped("partner_record_ids.total_operation_amount")
             )
 
-    @api.multi
     @api.depends("partner_refund_ids", "partner_refund_ids.total_operation_amount")
     def _compute_report_refund_totals(self):
         for report in self:
@@ -117,10 +115,10 @@ class Mod349(models.Model):
 
     def _create_349_details(self, move_lines):
         for move_line in move_lines:
-            if move_line.invoice_id.type in ("in_refund", "out_refund"):
+            if move_line.move_id.type in ("in_refund", "out_refund"):
                 # Check for refunds if the origin invoice period is different
                 # from the declaration
-                origin_invoice = move_line.invoice_id.refund_invoice_id
+                origin_invoice = move_line.move_id.reversed_entry_id
                 if origin_invoice:
                     if (
                         origin_invoice.date < self.date_start
@@ -204,7 +202,7 @@ class Mod349(models.Model):
         groups = {}
         for refund_detail in self.partner_refund_detail_ids:
             move_line = refund_detail.refund_line_id
-            origin_invoice = move_line.invoice_id.refund_invoice_id
+            origin_invoice = move_line.move_id.reversed_entry_id
             groups.setdefault(origin_invoice, refund_detail_obj)
             groups[origin_invoice] += refund_detail
         for origin_invoice in groups:
@@ -219,7 +217,7 @@ class Mod349(models.Model):
             # Fetch the latest presentation made for this move
             original_details = detail_obj.search(
                 [
-                    ("move_line_id.invoice_id", "=", origin_invoice.id),
+                    ("move_line_id.move_id", "=", origin_invoice.id),
                     ("partner_record_id.operation_key", "=", op_key),
                     ("id", "not in", visited_details.ids),
                 ],
@@ -242,7 +240,7 @@ class Mod349(models.Model):
                     [
                         ("tax_ids", "in", taxes.ids),
                         ("l10n_es_aeat_349_operation_key", "=", op_key),
-                        ("invoice_id", "=", origin_invoice.id),
+                        ("move_id", "=", origin_invoice.id),
                     ]
                 )
                 origin_amount = abs(
@@ -295,6 +293,7 @@ class Mod349(models.Model):
         :param: taxes: Taxes to look for in move lines.
         """
         return [
+            ("parent_state", "=", "posted"),
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
             ("tax_ids", "in", taxes.ids),
@@ -317,7 +316,6 @@ class Mod349(models.Model):
         self.partner_record_detail_ids.unlink()
         self.partner_refund_detail_ids.unlink()
 
-    @api.multi
     def calculate(self):
         """Computes the records in report."""
         self.ensure_one()
@@ -330,7 +328,7 @@ class Mod349(models.Model):
             )
             # If the type of presentation is complementary, remove records that
             # already exist in other presentations
-            if self.type == "C":
+            if self.statement_type == "C":
                 prev_details = self.partner_record_detail_ids.search(
                     [
                         ("move_line_id", "in", move_lines.ids),
@@ -359,7 +357,6 @@ class Mod349(models.Model):
         self._cleanup_report()
         return super().button_recover()
 
-    @api.multi
     def _check_report_lines(self):
         """Checks if all the fields of all the report lines
         (partner records and partner refund) are filled
@@ -382,7 +379,6 @@ class Mod349(models.Model):
                         )
                     )
 
-    @api.multi
     def _check_names(self):
         """Checks that names are correct (not formed by only one string)"""
         for item in self:
@@ -392,7 +388,6 @@ class Mod349(models.Model):
                     _("Contact name (Full name) must have name and surname")
                 )
 
-    @api.multi
     def button_confirm(self):
         """Checks if all the fields of the report are correctly filled"""
         self._check_names()
@@ -415,7 +410,6 @@ class Mod349PartnerRecord(models.Model):
             allfields=["l10n_es_aeat_349_operation_key"],
         )["l10n_es_aeat_349_operation_key"]["selection"]
 
-    @api.multi
     @api.depends("partner_vat", "country_id", "total_operation_amount")
     def _compute_partner_record_ok(self):
         """Checks if all line fields are filled."""
@@ -462,7 +456,6 @@ class Mod349PartnerRecord(models.Model):
                 record.mapped("record_detail_ids.amount_untaxed")
             )
 
-    @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
         """Formats VAT to match XXVATNUMBER (where XX is country code)"""
         if country_id:
@@ -485,7 +478,9 @@ class Mod349PartnerRecordDetail(models.Model):
         string="AEAT 349 Report ID",
         ondelete="cascade",
     )
-    report_type = fields.Selection(related="report_id.type", readonly=True, store=True,)
+    report_type = fields.Selection(
+        related="report_id.statement_type", readonly=True, store=True,
+    )
     partner_record_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod349.partner_record",
         default=lambda self: self.env.context.get("partner_record_id"),
@@ -496,10 +491,10 @@ class Mod349PartnerRecordDetail(models.Model):
     move_line_id = fields.Many2one(
         comodel_name="account.move.line", string="Journal Item", required=True
     )
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
+    move_id = fields.Many2one(
+        comodel_name="account.move",
         string="Invoice",
-        related="move_line_id.invoice_id",
+        related="move_line_id.move_id",
         readonly=True,
     )
     partner_id = fields.Many2one(
@@ -510,7 +505,7 @@ class Mod349PartnerRecordDetail(models.Model):
     )
     amount_untaxed = fields.Float(string="Amount untaxed")
     date = fields.Date(
-        related="move_line_id.invoice_id.date_invoice", string="Date", readonly=True,
+        related="move_line_id.move_id.invoice_date", string="Date", readonly=True,
     )
 
 
@@ -564,7 +559,6 @@ class Mod349PartnerRefund(models.Model):
         string="Partner refund detail IDS",
     )
 
-    @api.multi
     @api.depends(
         "partner_vat", "country_id", "total_operation_amount", "total_origin_amount"
     )
@@ -586,7 +580,6 @@ class Mod349PartnerRefund(models.Model):
                 record.total_origin_amount - rectified_amount
             )
 
-    @api.multi
     def onchange_format_partner_vat(self, partner_vat, country_id):
         """Formats VAT to match XXVATNUMBER (where XX is country code)"""
         if country_id:
@@ -605,7 +598,9 @@ class Mod349PartnerRefundDetail(models.Model):
         string="AEAT 349 Report ID",
         ondelete="cascade",
     )
-    report_type = fields.Selection(related="report_id.type", readonly=True, store=True,)
+    report_type = fields.Selection(
+        related="report_id.statement_type", readonly=True, store=True,
+    )
     refund_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod349.partner_refund",
         string="Partner refund ID",
@@ -620,10 +615,10 @@ class Mod349PartnerRefundDetail(models.Model):
     refund_line_id = fields.Many2one(
         comodel_name="account.move.line", string="Journal Item", required=True
     )
-    invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
+    move_id = fields.Many2one(
+        comodel_name="account.move",
         string="Invoice",
-        related="refund_line_id.invoice_id",
+        related="refund_line_id.move_id",
         readonly=True,
     )
     amount_untaxed = fields.Float(string="Amount untaxed")
