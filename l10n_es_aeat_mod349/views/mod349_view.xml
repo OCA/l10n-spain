@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <tree string="AEAT 349 Partner record detail">
                 <field name="move_line_id" />
-                <field name="invoice_id" />
+                <field name="move_id" />
                 <field name="partner_id" />
                 <field name="amount_untaxed" />
                 <field name="date" />
@@ -27,7 +27,7 @@
                     <field name="partner_record_id" />
                     <field name="move_line_id" />
                     <field name="partner_id" />
-                    <field name="invoice_id" />
+                    <field name="move_id" />
                     <field name="amount_untaxed" />
                     <field name="date" />
                 </group>
@@ -44,7 +44,7 @@
         <field name="arch" type="xml">
             <tree
                 string="AEAT 349 Partner records"
-                colors="red:partner_record_ok==False"
+                decoration-danger="not partner_record_ok"
             >
                 <field name="partner_record_ok" invisible="1" />
                 <field name="country_id" />
@@ -91,7 +91,7 @@
         <field name="arch" type="xml">
             <tree string="AEAT 349 Partner refund detail">
                 <field name="refund_line_id" />
-                <field name="invoice_id" />
+                <field name="move_id" />
                 <field name="partner_id" />
                 <field name="amount_untaxed" />
                 <field name="date" />
@@ -108,7 +108,7 @@
                     <field name="refund_id" />
                     <field name="refund_line_id" />
                     <field name="partner_id" />
-                    <field name="invoice_id" />
+                    <field name="move_id" />
                     <field name="amount_untaxed" />
                     <field name="date" />
                 </group>
@@ -125,7 +125,7 @@
         <field name="arch" type="xml">
             <tree
                 string="AEAT 349 Partner refunds"
-                colors="red:partner_refund_ok==False"
+                decoration-danger="not partner_refund_ok"
             >
                 <field name="partner_refund_ok" invisible="1" />
                 <field name="country_id" />
@@ -248,7 +248,6 @@
     <record id="action_l10n_es_aeat_mod349_report" model="ir.actions.act_window">
         <field name="name">AEAT Model 349</field>
         <field name="res_model">l10n.es.aeat.mod349.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
         <field name="help">Create and query AEAT Model 349 reports</field>
     </record>
