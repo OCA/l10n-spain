@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_mod349
+# 	* l10n_es_aeat_mod349
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_aeat_mod349
-#: selection:account.move.line,l10n_es_aeat_349_operation_key:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__a
 msgid "A - Intra-Community acquisition"
 msgstr ""
 
@@ -44,7 +44,6 @@ msgid "AEAT 349 Model - Partner refund detail"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_invoice_line__l10n_es_aeat_349_operation_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__l10n_es_aeat_349_operation_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__l10n_es_aeat_349_operation_key
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template__aeat_349_map_line
@@ -123,6 +122,11 @@ msgid "Activities"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_state
 msgid "Activity State"
 msgstr ""
@@ -139,13 +143,13 @@ msgid "Aeat 349 Map Line"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:348
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:353
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "All partner refunds fields (country, VAT number) must be filled."
 msgstr ""
@@ -174,11 +178,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__calculation_date
 msgid "Calculation date"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,state:0
-msgid "Cancelled"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -213,11 +212,6 @@ msgid "Company:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,type:0
-msgid "Complementary"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Complementary or substitutive:"
 msgstr ""
@@ -228,7 +222,7 @@ msgid "Contact email"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:364
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "Contact name (Full name) must have name and surname"
 msgstr ""
@@ -280,11 +274,6 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,support_type:0
-msgid "DVD"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__date
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__date
 msgid "Date"
@@ -317,22 +306,12 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,state:0
-msgid "Done"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,state:0
-msgid "Draft"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:account.move.line,l10n_es_aeat_349_operation_key:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__e
 msgid "E - Intra-Community supplies"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_invoice__eu_triangular_deal
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
 msgid "EU Triangular deal"
 msgstr ""
 
@@ -368,7 +347,8 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.report_aeat_mod349_document
-msgid "Form 349. Information Return. Recapitulatory\n"
+msgid ""
+"Form 349. Information Return. Recapitulatory\n"
 "                            return of intracommunity transactions."
 msgstr ""
 
@@ -388,7 +368,7 @@ msgid "General"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:account.move.line,l10n_es_aeat_349_operation_key:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__i
 msgid "I - Intra-Community services acquisitions"
 msgstr ""
 
@@ -403,17 +383,24 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -424,15 +411,9 @@ msgid "Info"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__invoice_id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__invoice_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__move_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__move_id
 msgid "Invoice"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model,name:l10n_es_aeat_mod349.model_account_invoice_line
-msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -451,6 +432,11 @@ msgid "Journal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model,name:l10n_es_aeat_mod349.model_account_move
+msgid "Journal Entries"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_move_line
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__move_line_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__refund_line_id
@@ -460,11 +446,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__journal_id
 msgid "Journal in which post the move."
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__date
-msgid "Keep empty to use the current date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -563,14 +544,9 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: code:addons/l10n_es_aeat_mod349/models/mod349.py:290
+#: code:addons/l10n_es_aeat_mod349/models/mod349.py:0
 #, python-format
 msgid "No Tax Mapping was found"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,type:0
-msgid "Normal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -580,7 +556,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -624,11 +600,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__total_origin_amount
 msgid "Original amount"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,activity_state:0
-msgid "Overdue"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -729,16 +700,6 @@ msgid "Phone"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,activity_state:0
-msgid "Planned"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,state:0
-msgid "Posted"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__previous_number
 msgid "Previous declaration number"
 msgstr ""
@@ -751,11 +712,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "Previously Reported Amount"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,state:0
-msgid "Processed"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -799,8 +755,13 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:account.move.line,l10n_es_aeat_349_operation_key:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__s
 msgid "S - Intra-Community services"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -816,21 +777,17 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__report_type
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__statement_type
 msgid "Statement Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,type:0
-msgid "Substitutive"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -854,7 +811,7 @@ msgid "Surnames and name contact:"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:account.move.line,l10n_es_aeat_349_operation_key:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__t
 msgid "T - Triangular operations"
 msgstr ""
 
@@ -869,33 +826,33 @@ msgid "Taxes"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,support_type:0
-msgid "Telematics"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_tax_template
 msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: sql_constraint:aeat.349.map.line:0
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__move_id
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__move_id
+msgid "The move of this entry line."
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.constraint,message:l10n_es_aeat_mod349.constraint_aeat_349_map_line_unique_operation_key
 msgid "There's already another record with the same operation key"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__counterpart_account_id
-msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_invoice__eu_triangular_deal
-msgid "This invoice constitutes a triangular operation for the purposes of intra-community operations."
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: selection:l10n.es.aeat.mod349.report,activity_state:0
-msgid "Today"
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
+msgid ""
+"This invoice constitutes a triangular operation for the purposes of intra-"
+"community operations."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -926,6 +883,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__total_operation_amount
 msgid "Total rectified amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -976,4 +938,3 @@ msgstr ""
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod349.action_aeat_349_mapping
 msgid "aeat 349 Map"
 msgstr ""
-
