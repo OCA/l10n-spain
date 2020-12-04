@@ -3,7 +3,6 @@
     <record model="ir.actions.act_window" id="action_aeat_349_mapping">
         <field name="name">aeat 349 Map</field>
         <field name="res_model">aeat.349.map.line</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
