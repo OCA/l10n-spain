@@ -12,5 +12,9 @@
 * Eficent (http://www.eficent.com)
 
   * Jordi Ballester <jordi.ballester@eficent.com>
+  * Aarón Henríquez
 
 * Aitor Bouzas <aitor.bouzas@adaptivecity.com>
+* Acysos:
+
+  * Ignacio Ibeas

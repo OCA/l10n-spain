@@ -41,7 +41,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         s2 = self._invoice_sale_create("2017-01-02")
         self._invoice_refund(s2, "2017-01-02")
         # Create model
-        model349_model = self.env["l10n.es.aeat.mod349.report"].sudo(
+        model349_model = self.env["l10n.es.aeat.mod349.report"].with_user(
             self.account_manager
         )
         model349 = model349_model.create(
@@ -50,7 +50,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -86,13 +86,9 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         # s1 + s2 - s3 = 2400 + 2400 - 2400
         self.assertEqual(e_record.total_operation_amount, 2400)
         # Now we delete detailed records to see if totals are recomputed
-        model349.partner_record_detail_ids.filtered(
-            lambda x: x.invoice_id == p1
-        ).unlink()
+        model349.partner_record_detail_ids.filtered(lambda x: x.move_id == p1).unlink()
         self.assertEqual(a_record.total_operation_amount, 0)
-        model349.partner_record_detail_ids.filtered(
-            lambda x: x.invoice_id == s1
-        ).unlink()
+        model349.partner_record_detail_ids.filtered(lambda x: x.move_id == s1).unlink()
         self.assertEqual(e_record.total_operation_amount, 0)
         # Create a complementary presentation for 1T 2017. We expect the
         #  application to propose the records that were not included in the
@@ -103,7 +99,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "C",
+                "statement_type": "C",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -134,7 +130,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "S",
+                "statement_type": "S",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
@@ -165,11 +161,11 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2017,
-                "period_type": "1T",
+                "period_type": "2T",
                 "date_start": "2017-04-01",
                 "date_end": "2017-06-30",
             }
@@ -210,3 +206,7 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
             self.assertTrue(export_to_boe._export_config(model349, export_config))
+        # Test report printing
+        self.env.ref("l10n_es_aeat_mod349.act_report_aeat_mod349_pdf").render_qweb_html(
+            model349.ids
+        )
