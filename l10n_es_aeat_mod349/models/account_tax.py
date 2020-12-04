@@ -23,6 +23,7 @@ class AccountTax(models.Model):
         # TODO: Improve performance
         map_349 = self.env["aeat.349.map.line"].search([])
         for tax in self:
+            tax.l10n_es_aeat_349_operation_key = False
             for line in map_349:
                 if tax in tax.company_id.get_taxes_from_templates(line.tax_tmpl_ids):
                     tax.l10n_es_aeat_349_operation_key = line.operation_key
