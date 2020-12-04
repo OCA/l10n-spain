@@ -10,15 +10,16 @@ class AccountMoveLine(models.Model):
     """Inheritance of account move line to add some fields:
     - AEAT_349_operation_key: Operation key of invoice line
     """
-    _inherit = 'account.move.line'
+
+    _inherit = "account.move.line"
 
     l10n_es_aeat_349_operation_key = fields.Selection(
         selection=[
-            ('A', 'A - Intra-Community acquisition'),
-            ('E', 'E - Intra-Community supplies'),
-            ('I', 'I - Intra-Community services acquisitions'),
-            ('S', 'S - Intra-Community services'),
-            ('T', 'T - Triangular operations'),
+            ("A", "A - Intra-Community acquisition"),
+            ("E", "E - Intra-Community supplies"),
+            ("I", "I - Intra-Community services acquisitions"),
+            ("S", "S - Intra-Community services"),
+            ("T", "T - Triangular operations"),
         ],
-        string='AEAT 349 Operation key',
+        string="AEAT 349 Operation key",
     )
