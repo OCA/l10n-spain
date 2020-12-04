@@ -65,7 +65,7 @@
                        Complementary or substitutive:
                       </td>
                         <td class="td_detail_table">
-                            <span t-esc="o.type.replace('N', ' ')" />
+                            <span t-esc="o.statement_type.replace('N', ' ')" />
                         </td>
                     </tr>
                     <tr>
