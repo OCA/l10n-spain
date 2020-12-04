@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <report
+        id="act_report_aeat_mod349_pdf"
+        model="l10n.es.aeat.mod349.report"
+        string="AEAT Model 349"
+        report_type="qweb-pdf"
+        name="l10n_es_aeat_mod349.report_l10n_es_mod349_pdf"
+        file="l10n_es_aeat_mod349.report_l10n_es_mod349"
+        attachment_use="False"
+    />
+</odoo>

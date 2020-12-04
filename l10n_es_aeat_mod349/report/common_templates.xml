@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="l10n_es_aeat_mod349.mod349_summary">
+        <div class="col-xs-12 text-left" id="mod349_summary_div">
+            <table class="detail_table table table-sm" id="mod349_summary_table">
+                <tbody class="invoice_tbody">
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Fiscal Year:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.year" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       VAT:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_vat" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Company:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.company_id" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Support type:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.support_type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Contact phone:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_phone" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Surnames and name contact:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.contact_name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Declaration number:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.name" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Complementary or substitutive:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-esc="o.statement_type.replace('N', ' ')" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Previous declaration:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.previous_number" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Period:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.period_type" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total number of intra-community operators:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_partner_records" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total amount of intra-community operations:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_partner_records_amount" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total number of intra-community operators with rectifications:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_partner_refunds" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Total amount of rectifications:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.total_partner_refunds_amount" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-left td_detail_table">
+                       Legal representative VAT:
+                      </td>
+                        <td class="td_detail_table">
+                            <span t-field="o.representative_vat" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+    <template id="l10n_es_aeat_mod349.mod349_partner_record_head">
+        <thead>
+            <tr>
+                <th id="detail_partner_vat">VAT</th>
+                <th id="detail_partner_name">Company Name</th>
+                <th id="detail_operation_key">Operation key</th>
+                <th id="detail_operation_amount">Operation Amount</th>
+            </tr>
+        </thead>
+    </template>
+    <template id="l10n_es_aeat_mod349.mod349_partner_record">
+        <td id="data_partner_vat">
+            <span t-field="l.partner_vat" />
+        </td>
+        <td id="data_partner_name">
+            <span t-field="l.partner_id" />
+        </td>
+        <td id="data_operation_key">
+            <span t-field="l.operation_key" />
+        </td>
+        <td class="text-right" id="data_operation_amount">
+            <span t-field="l.total_operation_amount" />
+        </td>
+    </template>
+    <template id="l10n_es_aeat_mod349.mod349_partner_refund_head">
+        <thead>
+            <tr>
+                <th id="detail_partner_vat">VAT</th>
+                <th id="detail_partner_name">Company Name</th>
+                <th id="detail_operation_key">Operation key</th>
+                <th id="detail_rectifying_year">Rectifying Year</th>
+                <th id="detail_rectifying_period">Rectifying Period Type</th>
+                <th id="detail_rectified_amount">New (Rectified) Amount</th>
+                <th id="detail_origin_amount">Previously Reported Amount</th>
+            </tr>
+        </thead>
+    </template>
+    <template id="l10n_es_aeat_mod349.mod349_refund_record">
+        <td id="data_partner_vat">
+            <span t-field="l.partner_vat" />
+        </td>
+        <td id="data_partner_name">
+            <span t-field="l.partner_id" />
+        </td>
+        <td id="data_operation_key">
+            <span t-field="l.operation_key" />
+        </td>
+        <td id="data_rectifying_year">
+            <span t-field="l.year" />
+        </td>
+        <td id="data_rectifying_period_type">
+            <span t-field="l.period_type" />
+        </td>
+        <td class="text-right" id="data_operation_amount">
+            <span t-field="l.total_operation_amount" />
+        </td>
+        <td class="text-right" id="data_operation_amount">
+            <span t-field="l.total_origin_amount" />
+        </td>
+    </template>
+</odoo>
