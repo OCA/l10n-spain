@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-l10n_es_dua',
         'odoo14-addon-l10n_es_partner',
         'odoo14-addon-l10n_es_partner_mercantil',
     ],
