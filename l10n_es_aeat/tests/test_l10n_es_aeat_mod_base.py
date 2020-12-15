@@ -38,7 +38,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
     def _chart_of_accounts_create(self):
         _logger.debug('Creating chart of account')
         self.company = self.env['res.company'].create({
-            'name': 'Spanish test company',
+            'name': 'Spanish test company'
         })
         self.chart = self.env.ref('l10n_es.account_chart_template_pymes')
         self.env.ref('base.group_multi_company').write({
@@ -53,6 +53,7 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         self.with_context(
             company_id=self.company.id, force_company=self.company.id,
         )
+        self.company.write({'chart_template_id': chart.id})
         return True
 
     def _accounts_search(self):
