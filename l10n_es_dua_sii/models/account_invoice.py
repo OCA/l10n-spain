@@ -59,4 +59,5 @@ class AccountInvoice(models.Model):
                 self.company_id.vat[2:]
             res['FacturaRecibida']['Contraparte']['NombreRazon'] = \
                 self.company_id.name
+            res["FacturaRecibida"].pop("ImporteTotal", False)
         return res
