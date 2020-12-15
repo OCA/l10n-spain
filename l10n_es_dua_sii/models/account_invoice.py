@@ -74,4 +74,5 @@ class AccountInvoice(models.Model):
             res['FacturaRecibida']['Contraparte']['NIF'] = nif
             res['FacturaRecibida']['Contraparte']['NombreRazon'] = \
                 self.company_id.name
+            res["FacturaRecibida"].pop("ImporteTotal", False)
         return res
