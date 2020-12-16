@@ -8,10 +8,12 @@
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
 #                  <contact@eficent.com>
+# Copyright 2018 - Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
+import math
 import re
 from openerp import models, fields, api, exceptions, _
+from openerp.tools import float_is_zero
 
 
 def _format_partner_vat(partner_vat=None, country=None):
@@ -155,6 +157,10 @@ class Mod349(models.Model):
                 })
                 for record_detail in data[partner][op_key]['record_details']:
                     record_detail.partner_record_id = record_created
+        rounding = self.env.user.company_id.currency_id.rounding
+        self.partner_record_ids.filtered(
+            lambda r: float_is_zero(r.total_operation_amount,
+                                    precision_rounding=rounding)).unlink()
         return True
 
     def _create_349_refund_records(self):
@@ -217,7 +223,7 @@ class Mod349(models.Model):
                 if self.period_type == '0A':
                     period_type = '0A'
                 elif self.period_type in ('1T', '2T', '3T', '4T'):
-                    period_type = '%sT' % int(month) % 4
+                    period_type = '%sT' % int(math.ceil(int(month) / 3.0))
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)

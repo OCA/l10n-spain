@@ -5,6 +5,7 @@
 # Copyright 2017 Otherway - Pedro Rodríguez Gil
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # Copyright 2017 Comunitea - Omar Castiñeira <omar@comunitea.com>
+# Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -14,6 +15,7 @@ from requests import Session
 
 from openerp import _, api, exceptions, fields, models, SUPERUSER_ID
 from openerp.modules.registry import RegistryManager
+from openerp.tools.float_utils import float_compare
 
 _logger = logging.getLogger(__name__)
 
@@ -43,7 +45,7 @@ SII_STATES = [
     ('cancelled', 'Cancelled'),
     ('cancelled_modified', 'Cancelled in SII but last modifications not sent'),
 ]
-SII_VERSION = '1.0'
+SII_VERSION = '1.1'
 SII_START_DATE = '2017-07-01'
 SII_COUNTRY_CODE_MAPPING = {
     'RE': 'FR',
@@ -51,6 +53,7 @@ SII_COUNTRY_CODE_MAPPING = {
     'MQ': 'FR',
     'GF': 'FR',
 }
+SII_MACRODATA_LIMIT = 100000000.0
 
 
 class AccountInvoice(models.Model):
@@ -58,7 +61,7 @@ class AccountInvoice(models.Model):
 
     def _default_sii_refund_type(self):
         inv_type = self.env.context.get('type')
-        return 'S' if inv_type in ['out_refund', 'in_refund'] else False
+        return 'I' if inv_type in ['out_refund', 'in_refund'] else False
 
     def _default_sii_registration_key(self):
         sii_key_obj = self.env['aeat.sii.mapping.registration.keys']
@@ -104,8 +107,12 @@ class AccountInvoice(models.Model):
              "the SII has failed. See SII return for details",
     )
     sii_refund_type = fields.Selection(
-        selection=[('S', 'By substitution'), ('I', 'By differences')],
-        string="SII Refund Type", default=_default_sii_refund_type,
+        selection=[
+            # ('S', 'By substitution'), - Removed as not fully supported
+            ('I', 'By differences'),
+        ],
+        string="SII Refund Type",
+        default=lambda self: self._default_sii_refund_type(),
         oldname='refund_type',
     )
     sii_account_registration_date = fields.Date(
@@ -150,10 +157,25 @@ class AccountInvoice(models.Model):
     sii_property_cadastrial_code = fields.Char(
         string="Real property cadastrial code", size=25, copy=False,
     )
+    sii_macrodata = fields.Boolean(
+        string="MacroData",
+        help="Check to confirm that the invoice has an absolute amount "
+             "greater o equal to 100 000 000,00 euros.",
+        compute='_compute_macrodata',
+    )
     invoice_jobs_ids = fields.Many2many(
         comodel_name='queue.job', column1='invoice_id', column2='job_id',
         string="Connector Jobs", copy=False,
     )
+
+    @api.depends('amount_total')
+    def _compute_macrodata(self):
+        for inv in self:
+            inv.sii_macrodata = True if float_compare(
+                inv.amount_total,
+                SII_MACRODATA_LIMIT,
+                precision_digits=2
+            ) >= 0 else False
 
     @api.onchange('sii_refund_type')
     def onchange_sii_refund_type(self):
@@ -497,7 +519,7 @@ class AccountInvoice(models.Model):
         default_no_taxable_cause = self._get_no_taxable_cause()
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
-        exempt_cause = self._get_sii_exempt_cause()
+        exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
             breakdown_taxes = (
@@ -511,12 +533,14 @@ class AccountInvoice(models.Model):
                 sub_dict = tax_breakdown.setdefault('Sujeta', {})
                 # TODO l10n_es no tiene impuesto exento de bienes
                 # corrientes nacionales
-                ex_taxes = taxes_sfesbe
-                if tax in ex_taxes:
-                    sub_dict.setdefault('Exenta', {'BaseImponible': 0})
+                if tax in taxes_sfesbe:
+                    exempt_dict = sub_dict.setdefault(
+                        'Exenta', {'DetalleExenta': [{'BaseImponible': 0}]},
+                    )
+                    det_dict = exempt_dict['DetalleExenta'][0]
                     if exempt_cause:
-                        sub_dict['Exenta']['CausaExencion'] = exempt_cause
-                    sub_dict['Exenta']['BaseImponible'] += (
+                        det_dict['CausaExencion'] = exempt_cause
+                    det_dict['BaseImponible'] += (
                         tax_line.base_company * sign)
                 else:
                     sub_dict.setdefault('NoExenta', {
@@ -557,11 +581,12 @@ class AccountInvoice(models.Model):
                 service_dict = type_breakdown['PrestacionServicios']
                 if tax in taxes_sfesse:
                     exempt_dict = service_dict['Sujeta'].setdefault(
-                        'Exenta', {'BaseImponible': 0},
+                        'Exenta', {'DetalleExenta': [{'BaseImponible': 0}]},
                     )
+                    det_dict = exempt_dict['DetalleExenta'][0]
                     if exempt_cause:
-                        exempt_dict['CausaExencion'] = exempt_cause
-                    exempt_dict['BaseImponible'] += (
+                        det_dict['CausaExencion'] = exempt_cause
+                    det_dict['BaseImponible'] += (
                         tax_line.base_company * sign)
                 if tax in taxes_sfess:
                     # TODO l10n_es_ no tiene impuesto ISP de servicios
@@ -737,7 +762,7 @@ class AccountInvoice(models.Model):
                 )[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
-            "PeriodoImpositivo": {
+            "PeriodoLiquidacion": {
                 "Ejercicio": ejercicio,
                 "Periodo": periodo,
             },
@@ -758,6 +783,8 @@ class AccountInvoice(models.Model):
                 "TipoDesglose": self._get_sii_out_taxes(),
                 "ImporteTotal": abs(self.amount_total_company_signed) * sign,
             }
+            if self.sii_macrodata:
+                inv_dict["FacturaExpedida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaExpedida"].\
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
@@ -825,7 +852,7 @@ class AccountInvoice(models.Model):
                     (self.reference or '')[:60]
                 ),
                 "FechaExpedicionFacturaEmisor": invoice_date},
-            "PeriodoImpositivo": {
+            "PeriodoLiquidacion": {
                 "Ejercicio": ejercicio,
                 "Periodo": periodo
             },
@@ -864,6 +891,8 @@ class AccountInvoice(models.Model):
                     round(tax_amount * sign, 2) or 0.0
                 ),
             }
+            if self.sii_macrodata:
+                inv_dict["FacturaRecibida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
                 inv_dict["FacturaRecibida"].\
                     update({'ClaveRegimenEspecialOTrascendenciaAdicional1': (
@@ -877,11 +906,11 @@ class AccountInvoice(models.Model):
             if self.type == 'in_refund':
                 rec_dict = inv_dict['FacturaRecibida']
                 rec_dict['TipoRectificativa'] = self.sii_refund_type
-                refund_tax_amount = sum([
-                    x._get_sii_in_taxes()[1]
-                    for x in self.origin_invoice_ids
-                ])
                 if self.sii_refund_type == 'S':
+                    refund_tax_amount = sum([
+                        x._get_sii_in_taxes()[1]
+                        for x in self.origin_invoice_ids
+                    ])
                     rec_dict['ImporteRectificacion'] = {
                         'BaseRectificada': abs(sum(self.mapped(
                             'origin_invoice_ids.amount_untaxed_signed'
@@ -1198,12 +1227,13 @@ class AccountInvoice(models.Model):
                 'You can not cancel this invoice because'
                 ' there is a job running!'))
         res = super(AccountInvoice, self).action_cancel()
-        if self.sii_state == 'sent':
-            self.sii_state = 'sent_modified'
-        elif self.sii_state == 'cancelled_modified':
-            # Case when repoen a cancelled invoice, validate and cancel again
-            # without any SII communication.
-            self.sii_state = 'cancelled'
+        for invoice in self:
+            if invoice.sii_state == 'sent':
+                invoice.sii_state = 'sent_modified'
+            elif invoice.sii_state == 'cancelled_modified':
+                # Case when repoen a cancelled invoice, validate and cancel
+                # again without any SII communication.
+                invoice.sii_state = 'cancelled'
         return res
 
     @api.multi
@@ -1290,8 +1320,11 @@ class AccountInvoice(models.Model):
             return {"NIF": vat[2:]}
 
     @api.multi
-    def _get_sii_exempt_cause(self):
-        """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII."""
+    def _get_sii_exempt_cause(self, applied_taxes):
+        """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII.
+
+        :param applied_taxes: Taxes that are exempt for filtering the lines.
+        """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
         if gen_type == 2:
@@ -1300,13 +1333,21 @@ class AccountInvoice(models.Model):
             return 'E2'
         else:
             product_exempt_causes = self.mapped(
-                'invoice_line_ids.product_id'
-            ).filtered(lambda x: x.sii_exempt_cause != 'none').mapped(
-                'sii_exempt_cause'
-            )
+                'invoice_line_ids'
+            ).filtered(lambda x: (
+                any(tax in x.invoice_line_tax_ids for tax in applied_taxes) and
+                x.product_id.sii_exempt_cause and
+                x.product_id.sii_exempt_cause != 'none'
+            )).mapped('product_id.sii_exempt_cause')
+            product_exempt_causes = set(product_exempt_causes)
+            if len(product_exempt_causes) > 1:
+                raise exceptions.UserError(
+                    _("Currently there's no support for multiple exempt "
+                      "causes.")
+                )
             if product_exempt_causes:
-                return product_exempt_causes[0]
-            elif (self.fiscal_position_id and
+                return product_exempt_causes.pop()
+            elif (self.fiscal_position_id.sii_exempt_cause and
                     self.fiscal_position_id.sii_exempt_cause != 'none'):
                 return self.fiscal_position_id.sii_exempt_cause
 

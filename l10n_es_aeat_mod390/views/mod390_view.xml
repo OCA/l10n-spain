@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_l10n_es_aeat_mod390_report_tree" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod390.report.tree</field>
+        <field name="model">l10n.es.aeat.mod390.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="string">AEAT 390 reports</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_l10n_es_aeat_mod390_report_form" model="ir.ui.view">
+        <field name="name">l10n_es.aeat.mod390.report.form</field>
+        <field name="model">l10n.es.aeat.mod390.report</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form"/>
+        <field name="arch" type="xml">
+            <group name="group_declaration" position="after">
+                <notebook attrs="{'invisible': [('state', '=', 'draft')]}">
+                    <page string="3. Datos estadísticos">
+                        <group>
+                            <field name="has_347"/>
+                        </group>
+                        <group string="Actividad principal" name="group_main_activity">
+                            <field name="main_activity"/>
+                            <field name="main_activity_code"/>
+                            <field name="main_activity_iae"/>
+                        </group>
+                        <group>
+                            <group string="Otras - 1ª actividad" name="group_other_first_activity">
+                                <field name="other_first_activity"/>
+                                <field name="other_first_activity_code"/>
+                                <field name="other_first_activity_iae"/>
+                            </group>
+                            <group string="Otras - 2ª actividad" name="group_other_second_activity">
+                                <field name="other_second_activity"/>
+                                <field name="other_second_activity_code"/>
+                                <field name="other_second_activity_iae"/>
+                            </group>
+                            <group string="Otras - 3ª actividad" name="group_other_third_activity">
+                                <field name="other_third_activity"/>
+                                <field name="other_third_activity_code"/>
+                                <field name="other_third_activity_iae"/>
+                            </group>
+                            <group string="Otras - 4ª actividad" name="group_other_fourth_activity">
+                                <field name="other_fourth_activity"/>
+                                <field name="other_fourth_activity_code"/>
+                                <field name="other_fourth_activity_iae"/>
+                            </group>
+                            <group string="Otras - 5ª actividad" name="group_other_fifth_activity">
+                                <field name="other_fifth_activity"/>
+                                <field name="other_fifth_activity_code"/>
+                                <field name="other_fifth_activity_iae"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="4. Representantes">
+                        <group>
+                            <group name="group_first_representative" string="Primer representante">
+                                <field name="first_representative_name"/>
+                                <field name="first_representative_vat"/>
+                                <field name="first_representative_date"/>
+                                <field name="first_representative_notary"/>
+                            </group>
+                            <group name="group_second_representative" string="Segundo representante">
+                                <field name="second_representative_name"/>
+                                <field name="second_representative_vat"/>
+                                <field name="second_representative_date"/>
+                                <field name="second_representative_notary"/>
+                            </group>
+                            <group name="group_third_representative" string="Tercer representante">
+                                <field name="third_representative_name"/>
+                                <field name="third_representative_vat"/>
+                                <field name="third_representative_date"/>
+                                <field name="third_representative_notary"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="5. Régimen general" name="page_general">
+                        <group>
+                            <group>
+                                <field name="casilla_33" widget="monetary"/>
+                                <field name="casilla_34" widget="monetary"/>
+                            </group>
+                            <group>
+                                <field name="casilla_48" widget="monetary"/>
+                                <field name="casilla_49" widget="monetary"/>
+                                <field name="casilla_52" widget="monetary"/>
+                                <field name="casilla_53" widget="monetary"/>
+                                <field name="casilla_56" widget="monetary"/>
+                                <field name="casilla_57" widget="monetary"/>
+                                <field name="casilla_597" widget="monetary"/>
+                                <field name="casilla_598" widget="monetary"/>
+                            </group>
+                        </group>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="casilla_47" widget="monetary"/>
+                            <field name="casilla_64" widget="monetary"/>
+                            <field name="casilla_65"
+                                   class="oe_subtotal_footer_separator"
+                                   widget="monetary"
+                            />
+                            <field name="casilla_85" widget="monetary"/>
+                            <field name="casilla_86"
+                                   class="oe_subtotal_footer_separator"
+                                   widget="monetary"
+                            />
+                        </group>
+                    </page>
+                    <page string="9. Resultado liquidaciones">
+                        <group>
+                            <field name="casilla_95" widget="monetary"/>
+                            <field name="casilla_97" widget="monetary"/>
+                            <field name="casilla_98" widget="monetary"/>
+                        </group>
+                    </page>
+                    <page string="10. Volumen de operaciones">
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="casilla_108"
+                                   class="oe_subtotal_footer_separator"
+                                   widget="monetary"
+                            />
+                        </group>
+                    </page>
+                </notebook>
+                <group string="Tax lines"
+                       name="group_tax_lines"
+                       colspan="4"
+                       attrs="{'invisible': [('state', '=', 'draft')]}"
+                >
+                    <field name="tax_line_ids" nolabel="1" readonly="1"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="action_l10n_es_aeat_mod390_report" model="ir.actions.act_window">
+        <field name="name">AEAT model 390</field>
+        <field name="res_model">l10n.es.aeat.mod390.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="help">Create and query AEAT Model 390 reports.</field>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod390_report_tree">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod390_report_tree"/>
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod390_report"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_l10n_es_aeat_mod390_report_form">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_aeat_mod390_report_form"/>
+        <field name="act_window_id" ref="action_l10n_es_aeat_mod390_report"/>
+    </record>
+
+    <menuitem id="menu_aeat_mod390_report"
+              parent="l10n_es_aeat.menu_root_aeat"
+              action="action_l10n_es_aeat_mod390_report"
+              sequence="390"
+              name="AEAT 390 model"
+    />
+
+</odoo>

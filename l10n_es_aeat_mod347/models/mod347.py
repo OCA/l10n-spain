@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-# © 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
-# © 2012 NaN·Tic  (http://www.nan-tic.com)
-# © 2013 Acysos (http://www.acysos.com)
-# © 2013 Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
-# © 2014-2015 Serv. Tecnol. Avanzados - Pedro M. Baeza
-#             (http://www.serviciosbaeza.com)
-# © 2016 Antiun Ingenieria S.L. - Antonio Espinosa
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2004-2011 Pexego Sistemas Informáticos. (http://pexego.es)
+# Copyright 2012 NaN·Tic  (http://www.nan-tic.com)
+# Copyright 2013 Acysos (http://www.acysos.com)
+# Copyright 2013 Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
+# Copyright 2016 - Tecnativa - Antonio Espinosa
+# Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
+# Copyright 2014-2017 - Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from openerp import fields, models, api, exceptions, _
 
 import re
-from openerp import fields, models, api, exceptions, _
-from openerp.addons import decimal_precision as dp
+from datetime import datetime
+from calendar import monthrange
+from openerp.addons.decimal_precision import decimal_precision as dp
 
 
 class L10nEsAeatMod347Report(models.Model):
@@ -20,6 +23,142 @@ class L10nEsAeatMod347Report(models.Model):
     _period_yearly = True
     _period_quarterly = False
     _period_monthly = False
+    _aeat_number = '347'
+
+    @api.multi
+    @api.depends('partner_record_ids',
+                 'partner_record_ids.amount',
+                 'partner_record_ids.cash_amount',
+                 'partner_record_ids.real_estate_transmissions_amount')
+    def _compute_totals(self):
+        """Calculates the total_* fields from the line values."""
+        for record in self:
+            record.total_partner_records = len(record.partner_record_ids)
+            record.total_amount = sum(
+                record.mapped('partner_record_ids.amount')
+            )
+            record.total_cash_amount = sum(
+                record.mapped('partner_record_ids.cash_amount')
+            )
+            record.total_real_estate_transmissions_amount = sum(
+                record.mapped(
+                    'partner_record_ids.real_estate_transmissions_amount'
+                )
+            )
+
+    @api.multi
+    @api.depends('real_estate_record_ids',
+                 'real_estate_record_ids.amount')
+    def _compute_totals_real_estate(self):
+        """Calculates the total_* fields from the line values."""
+        for record in self:
+            record.total_real_estate_records = len(
+                record.real_estate_record_ids
+            )
+            record.total_real_estate_amount = sum(
+                record.mapped('real_estate_record_ids.amount')
+            )
+
+    number = fields.Char(default='347')
+    group_by_vat = fields.Boolean(
+        string='Group by VAT number', oldname='group_by_cif')
+    only_supplier = fields.Boolean(string='Only Suppliers')
+    operations_limit = fields.Float(
+        string='Invoiced Limit (1)', digits=(13, 2), default=3005.06,
+        help="The declaration will include partners with the total of "
+             "operations over this limit")
+    received_cash_limit = fields.Float(
+        string='Received cash Limit (2)', digits=(13, 2), default=6000.00,
+        help="The declaration will show the total of cash operations over "
+             "this limit")
+    charges_obtp_limit = fields.Float(
+        string='Charges on behalf of third parties Limit (3)', digits=(13, 2),
+        help="The declaration will include partners from which we received "
+             "payments, on behalf of third parties, over this limit",
+        default=300.51)
+    total_partner_records = fields.Integer(
+        compute="_compute_totals", string="Partners records")
+    total_amount = fields.Float(
+        compute="_compute_totals", string="Amount")
+    total_cash_amount = fields.Float(
+        compute="_compute_totals", string="Cash Amount")
+    total_real_estate_transmissions_amount = fields.Float(
+        compute="_compute_totals", string="Real Estate Transmissions Amount",
+        oldname='total_real_state_transmissions_amount')
+    total_real_estate_records = fields.Integer(
+        compute="_compute_totals_real_estate", string="Real estate records",
+        oldname='total_real_state_records')
+    total_real_estate_amount = fields.Float(
+        compute="_compute_totals_real_estate", string="Real Estate Amount",
+        oldname='total_real_state_amount')
+    partner_record_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.mod347.partner_record',
+        inverse_name='report_id', string='Partner Records')
+    real_estate_record_ids = fields.One2many(
+        comodel_name='l10n.es.aeat.mod347.real_estate_record',
+        inverse_name='report_id', string='Real Estate Records',
+        oldname='real_state_record_ids')
+
+    @api.multi
+    def button_confirm(self):
+        """Different check out in report"""
+        for item in self:
+            # Browse partner record lines to check if all are correct (all
+            # fields filled)
+            partner_errors = []
+            for partner_record in item.partner_record_ids:
+                if not partner_record.check_ok:
+                    partner_errors.append(
+                        _("- %s (%s)") %
+                        (partner_record.partner_id.name,
+                         partner_record.partner_id.id))
+            real_state_errors = []
+            for real_estate_record in item.real_estate_record_ids:
+                if not real_estate_record.check_ok:
+                    real_state_errors.append(
+                        _("- %s (%s)") %
+                        (real_estate_record.partner_id.name,
+                         real_estate_record.partner_id.id))
+            error = _("Please review partner and real estate records, "
+                      "some of them are in red color:\n\n")
+            if partner_errors:
+                error += _("Partner record errors:\n")
+                error += '\n'.join(partner_errors)
+                error += '\n\n'
+            if real_state_errors:
+                error += _("Real estate record errors:\n")
+                error += '\n'.join(real_state_errors)
+            if partner_errors or real_state_errors:
+                raise exceptions.ValidationError(error)
+        return super(L10nEsAeatMod347Report, self).button_confirm()
+
+    @api.multi
+    def btn_list_records(self):
+        return {
+            'domain': "[('report_id','in'," + str(self.ids) + ")]",
+            'name': _("Partner records"),
+            'view_mode': 'tree,form',
+            'view_type': 'form',
+            'res_model': 'l10n.es.aeat.mod347.partner_record',
+            'type': 'ir.actions.act_window',
+        }
+
+    @api.multi
+    def calculate(self):
+        for report in self:
+            # Delete previous partner records
+            report.partner_record_ids.unlink()
+            partners = {}
+            # Read invoices: normal and refunds
+            # We have to call _invoices_search always first
+            partners = report._invoices_search(partners)
+            # Read cash movements
+            partners = report._cash_moves_search(partners)
+            for k, v in partners.iteritems():
+                report._partner_records_create(v)
+            report.partner_record_ids.calculate_quarter_totals()
+            report.partner_record_ids.calculate_quarter_cash_totals()
+        return True
 
     def _get_default_address(self, partner):
         """Get the default invoice address of the partner"""
@@ -33,8 +172,8 @@ class L10nEsAeatMod347Report(models.Model):
             return None
 
     def _invoice_amount_get(self, invoices, refunds):
-        invoice_amount = sum(x.amount_total_wo_irpf for x in invoices)
-        refund_amount = sum(x.amount_total_wo_irpf for x in refunds)
+        invoice_amount = sum(invoices.mapped('amount_total_wo_irpf'))
+        refund_amount = sum(refunds.mapped('amount_total_wo_irpf'))
         amount = invoice_amount - refund_amount
         if abs(amount) > self.operations_limit:
             return amount
@@ -65,11 +204,11 @@ class L10nEsAeatMod347Report(models.Model):
             invoices = list(set(invoices))
             if invoices:
                 invoice = invoices[0]
-                fy_id = invoice.period_id.fiscalyear_id.id
-                if fy_id not in cash_moves:
-                    cash_moves[fy_id] = [move_line]
+                year = fields.Date.from_string(invoice.date_invoice).year
+                if year not in cash_moves:
+                    cash_moves[year] = move_line
                 else:
-                    cash_moves[fy_id].append(move_line)
+                    cash_moves[year] |= move_line
         return cash_moves
 
     def _partner_record_a_create(self, data, vals):
@@ -115,23 +254,23 @@ class L10nEsAeatMod347Report(models.Model):
                 records.append(invoice_record)
         if self._cash_amount_get(moves):
             cash_moves = self._cash_moves_group(moves)
-            for fy_id in cash_moves.keys():
-                amount = self._cash_amount_get(cash_moves[fy_id])
+            for year in cash_moves.keys():
+                amount = self._cash_amount_get(cash_moves[year])
                 if amount:
-                    if (fy_id != self.fiscalyear_id.id or not invoice_record):
+                    if year != self.year or not invoice_record:
                         vals['amount'] = 0.0
                         vals['cash_amount'] = amount
-                        vals['origin_fiscalyear_id'] = fy_id
+                        vals['origin_year'] = year
                         partner_record = partner_record_obj.create(vals)
                         if partner_record:
                             records.append(partner_record)
                     else:
                         invoice_record.write({
                             'cash_amount': amount,
-                            'origin_fiscalyear_id': fy_id,
+                            'origin_year': year,
                         })
                         partner_record = invoice_record
-                    for line in cash_moves[fy_id]:
+                    for line in cash_moves[year]:
                         cash_record_obj.create({
                             'partner_record_id': partner_record.id,
                             'move_line_id': line.id,
@@ -173,7 +312,8 @@ class L10nEsAeatMod347Report(models.Model):
         partner_obj = self.env['res.partner']
         domain = [
             ('state', 'in', ['open', 'paid']),
-            ('period_id', 'in', self.periods.ids),
+            ('date_invoice', '>=', self.date_start),
+            ('date_invoice', '<=', self.date_end),
             ('not_in_mod347', '=', False),
             ('commercial_partner_id.not_in_mod347', '=', False),
         ]
@@ -218,17 +358,20 @@ class L10nEsAeatMod347Report(models.Model):
         partner_obj = self.env['res.partner']
         move_line_obj = self.env['account.move.line']
         cash_journals = self.env['account.journal'].search(
-            [('type', '=', 'cash')])
+            [('type', '=', 'cash')],
+        )
         if not cash_journals or self.only_supplier:
             return partners
         domain = [
-            ('account_id.type', '=', 'receivable'),
+            ('account_id.internal_type', '=', 'receivable'),
             ('journal_id', 'in', cash_journals.ids),
-            ('period_id', 'in', self.periods.ids),
+            ('date', '>=', self.date_start),
+            ('date', '<=', self.date_end),
             ('partner_id.not_in_mod347', '=', False),
         ]
         groups = move_line_obj.read_group(
-            domain, ['partner_id'], ['partner_id'])
+            domain, ['partner_id'], ['partner_id'],
+        )
         key_field = 'id'
         if self.group_by_vat:
             key_field = 'vat'
@@ -251,283 +394,11 @@ class L10nEsAeatMod347Report(models.Model):
                     partners[key_value]['cash_moves'] = moves
         return partners
 
-    @api.depends('partner_record_ids',
-                 'partner_record_ids.amount',
-                 'partner_record_ids.cash_amount',
-                 'partner_record_ids.real_estate_transmissions_amount')
-    def _get_partner_totals(self):
-        """Calculate the total_* fields from the line values."""
-        for record in self:
-            record.total_partner_records = len(record.partner_record_ids)
-            record.total_amount = (
-                sum([x.amount for x in record.partner_record_ids]))
-            record.total_cash_amount = (
-                sum([x.cash_amount for x in record.partner_record_ids]))
-            record.total_real_estate_transmissions_amount = (
-                sum([x.real_estate_transmissions_amount for x in
-                     record.partner_record_ids]))
-
-    @api.depends('real_estate_record_ids',
-                 'real_estate_record_ids.amount')
-    def _get_real_state_totals(self):
-        """Calculate the total_* fields from the line values."""
-        for record in self:
-            record.total_real_estate_amount = (
-                sum([x.amount for x in record.real_estate_record_ids]))
-            record.total_real_estate_records = (
-                len(record.real_estate_record_ids))
-
-    number = fields.Char(default='347')
-    group_by_vat = fields.Boolean(
-        string='Group by VAT number', oldname='group_by_cif')
-    only_supplier = fields.Boolean(string='Only Suppliers')
-    operations_limit = fields.Float(
-        string='Invoiced Limit (1)', digits=dp.get_precision('Account'),
-        default=3005.06,
-        help="The declaration will include partners with the total of "
-             "operations over this limit")
-    received_cash_limit = fields.Float(
-        string='Received cash Limit (2)', digits=dp.get_precision('Account'),
-        default=6000.00,
-        help="The declaration will show the total of cash operations over "
-             "this limit")
-    charges_obtp_limit = fields.Float(
-        string='Charges on behalf of third parties Limit (3)',
-        digits=dp.get_precision('Account'), default=300.51,
-        help="The declaration will include partners from which we received "
-             "payments, on behalf of third parties, over this limit")
-    total_partner_records = fields.Integer(
-        compute="_get_partner_totals", store=True, readonly=True,
-        string="Partners records")
-    total_amount = fields.Float(
-        compute="_get_partner_totals", store=True, readonly=True,
-        digits=dp.get_precision('Account'), string="Operations amount")
-    total_cash_amount = fields.Float(
-        compute="_get_partner_totals", store=True, readonly=True,
-        digits=dp.get_precision('Account'), string="Cash movements amount")
-    total_real_estate_transmissions_amount = fields.Float(
-        compute="_get_partner_totals", store=True, readonly=True,
-        digits=dp.get_precision('Account'),
-        string="Real estate transmissions amount",
-        oldname='total_real_state_transmissions_amount')
-    total_real_estate_records = fields.Integer(
-        compute="_get_real_state_totals", store=True, readonly=True,
-        string="Real estate records",
-        oldname='total_real_state_records')
-    total_real_estate_amount = fields.Float(
-        compute="_get_real_state_totals", store=True, readonly=True,
-        digits=dp.get_precision('Account'), string="Real estate amount",
-        oldname='total_real_state_amount')
-    partner_record_ids = fields.One2many(
-        comodel_name='l10n.es.aeat.mod347.partner_record',
-        inverse_name='report_id', string='Partner Records')
-    real_estate_record_ids = fields.One2many(
-        comodel_name='l10n.es.aeat.mod347.real_estate_record',
-        inverse_name='report_id', string='Real Estate Records',
-        oldname='real_state_record_ids')
-
-    @api.multi
-    def button_list_partner_records(self):
-        return {
-            'domain': "[('report_id','in'," + str(self.ids) + ")]",
-            'name': _("Partner records"),
-            'context': "{'default_report_id': %s}" % self.ids[0],
-            'view_mode': 'tree,form',
-            'view_type': 'form',
-            'res_model': 'l10n.es.aeat.mod347.partner_record',
-            'type': 'ir.actions.act_window',
-        }
-
-    @api.multi
-    def button_list_real_estate_records(self):
-        return {
-            'domain': "[('report_id','in'," + str(self.ids) + ")]",
-            'name': _("Real estate records"),
-            'context': "{'default_report_id': %s}" % self.ids[0],
-            'view_mode': 'tree,form',
-            'view_type': 'form',
-            'res_model': 'l10n.es.aeat.mod347.real_estate_record',
-            'type': 'ir.actions.act_window',
-        }
-
-    @api.multi
-    def button_confirm(self):
-        """Different check out in report"""
-        for item in self:
-            # Browse partner record lines to check if all are correct (all
-            # fields filled)
-            partner_errors = []
-            for partner_record in item.partner_record_ids:
-                if not partner_record.check_ok:
-                    partner_errors.append(
-                        _("- %s (%s)") %
-                        (partner_record.partner_id.name,
-                         partner_record.partner_id.id))
-            real_state_errors = []
-            for real_estate_record in item.real_estate_record_ids:
-                if not real_estate_record.check_ok:
-                    real_state_errors.append(
-                        _("- %s (%s)") %
-                        (real_estate_record.partner_id.name,
-                         real_estate_record.partner_id.id))
-            error = _("Please review partner and real estate records, "
-                      "some of them are in red color:\n\n")
-            if partner_errors:
-                error += _("Partner record errors:\n")
-                error += '\n'.join(partner_errors)
-                error += '\n\n'
-            if real_state_errors:
-                error += _("Real estate record errors:\n")
-                error += '\n'.join(real_state_errors)
-            if partner_errors or real_state_errors:
-                raise exceptions.ValidationError(error)
-        return super(L10nEsAeatMod347Report, self).button_confirm()
-
-    @api.multi
-    def calculate(self):
-        for report in self:
-            # Delete previous partner records
-            report.partner_record_ids.unlink()
-            partners = {}
-            # Read invoices: normal and refunds
-            # We have to call _invoices_search always first
-            partners = report._invoices_search(partners)
-            # Read cash movements
-            partners = report._cash_moves_search(partners)
-            for k, v in partners.iteritems():
-                report._partner_records_create(v)
-        return True
-
-    def __init__(self, pool, cr):
-        self._aeat_number = '347'
-        super(L10nEsAeatMod347Report, self).__init__(pool, cr)
-
 
 class L10nEsAeatMod347PartnerRecord(models.Model):
     _name = 'l10n.es.aeat.mod347.partner_record'
     _description = 'Partner Record'
     _rec_name = "partner_vat"
-
-    @api.depends('invoice_record_ids',
-                 'invoice_record_ids.invoice_id.type',
-                 'invoice_record_ids.invoice_id.period_id.quarter')
-    def _get_quarter_invoice_totals(self):
-        def _invoices_normal(rec):
-            return rec.invoice_id.type in ('out_invoice', 'in_invoice')
-
-        def _invoices_refund(rec):
-            return rec.invoice_id.type in ('out_refund', 'in_refund')
-
-        def _invoices_sum(invoices, refunds, quarter):
-            return (
-                sum(x.amount for x in invoices
-                    if x.invoice_id.period_id.quarter == quarter) -
-                sum(x.amount for x in refunds
-                    if x.invoice_id.period_id.quarter == quarter))
-
-        for record in self:
-            # Invoices
-            if record.invoice_record_ids:
-                invoices = record.invoice_record_ids.filtered(_invoices_normal)
-                refunds = record.invoice_record_ids.filtered(_invoices_refund)
-                # Go to normal mode for getting invoice data
-                last_mode = self.env.all.mode
-                self.env.all.mode = False
-                first_quarter = _invoices_sum(invoices, refunds, 'first')
-                second_quarter = _invoices_sum(invoices, refunds, 'second')
-                third_quarter = _invoices_sum(invoices, refunds, 'third')
-                fourth_quarter = _invoices_sum(invoices, refunds, 'fourth')
-                # Return to current mode to save results
-                self.env.all.mode = last_mode
-                record.first_quarter = first_quarter
-                record.second_quarter = second_quarter
-                record.third_quarter = third_quarter
-                record.fourth_quarter = fourth_quarter
-            # Totals
-            record.amount = sum([
-                record.first_quarter, record.second_quarter,
-                record.third_quarter, record.fourth_quarter])
-
-    @api.depends('cash_record_ids',
-                 'cash_record_ids.move_line_id.period_id.quarter')
-    def _get_quarter_cash_totals(self):
-        def _cash_moves_sum(records, quarter):
-            return (sum(x.amount for x in records
-                        if x.move_line_id.period_id.quarter == quarter))
-
-        for record in self:
-            # Cash
-            if record.cash_record_ids:
-                record.first_quarter_cash_amount = \
-                    _cash_moves_sum(record.cash_record_ids, 'first')
-                record.second_quarter_cash_amount = \
-                    _cash_moves_sum(record.cash_record_ids, 'second')
-                record.third_quarter_cash_amount = \
-                    _cash_moves_sum(record.cash_record_ids, 'third')
-                record.fourth_quarter_cash_amount = \
-                    _cash_moves_sum(record.cash_record_ids, 'fourth')
-            # Totals
-            record.cash_amount = sum([
-                record.first_quarter_cash_amount,
-                record.second_quarter_cash_amount,
-                record.third_quarter_cash_amount,
-                record.fourth_quarter_cash_amount])
-
-    @api.depends('first_quarter_real_estate_transmission_amount',
-                 'second_quarter_real_estate_transmission_amount',
-                 'third_quarter_real_estate_transmission_amount',
-                 'fourth_quarter_real_estate_transmission_amount')
-    def _get_quarter_real_state_totals(self):
-        for record in self:
-            # Totals
-            record.real_estate_transmissions_amount = sum([
-                record.first_quarter_real_estate_transmission_amount,
-                record.second_quarter_real_estate_transmission_amount,
-                record.third_quarter_real_estate_transmission_amount,
-                record.fourth_quarter_real_estate_transmission_amount])
-
-    # TODO: By now user must fill real estate transmission amounts manually
-    @api.one
-    def _get_real_estate_record_ids(self):
-        """Get the real estate records from this record for this partner.
-        """
-        self.real_estate_record_ids = self.env[
-            'l10n.es.aeat.mod347.real_estate_record']
-        if self.partner_id:
-            self.real_estate_record_ids = self.real_estate_record_ids.search(
-                [('report_id', '=', self.report_id.id),
-                 ('partner_id', '=', self.partner_id.id)])
-
-    # @api.one
-    # def _set_real_estate_record_ids(self, vals):
-    #     """Set the real estate records from this record parent report for
-    #     this partner.
-    #     """
-    #     if vals:
-    #         real_estate_record_obj = self.env[
-    #             'l10n.es.aeat.mod347.real_estate_record']
-    #         for value in vals:
-    #             o_action, o_id, o_vals = value
-    #             rec = real_estate_record_obj.browse(o_id)
-    #             if o_action == 1:
-    #                 rec.write(o_vals)
-    #             elif o_action == 2:
-    #                 rec.unlink()
-    #             elif o_action == 0:
-    #                 rec.create(o_vals)
-    #     return True
-
-    @api.multi
-    @api.depends('partner_country_code', 'partner_state_code', 'partner_vat',
-                 'community_vat')
-    def _compute_check_ok(self):
-        for record in self:
-            record.check_ok = (
-                record.partner_country_code and
-                record.partner_state_code and
-                record.partner_state_code.isdigit() and
-                (record.partner_vat or record.partner_country_code != 'ES')
-            )
 
     @api.model
     def _default_record_id(self):
@@ -535,21 +406,25 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     report_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod347.report', string='AEAT 347 Report',
-        ondelete="cascade", select=1, default=_default_record_id)
+        ondelete="cascade", default=_default_record_id,
+    )
     operation_key = fields.Selection(
-        selection=[('A', 'A - Adquisiciones de bienes y servicios superiores '
-                         'al límite (1)'),
-                   ('B', 'B - Entregas de bienes y servicios superiores al '
-                         'límite (1)'),
-                   ('C', 'C - Cobros por cuenta de terceros superiores al '
-                         'límite (3)'),
-                   ('D', 'D - Adquisiciones efectuadas por Entidades Públicas '
-                         '(...) superiores al límite (1)'),
-                   ('E', 'E - Subvenciones, auxilios y ayudas satisfechas por '
-                         'Ad. Públicas superiores al límite (1)'),
-                   ('F', 'F - Ventas agencia viaje'),
-                   ('G', 'G - Compras agencia viaje')],
-        string='Operation Key')
+        selection=[
+            ('A', u'A - Adquisiciones de bienes y servicios superiores al '
+                  u'límite (1)'),
+            ('B',
+             u'B - Entregas de bienes y servicios superiores al límite (1)'),
+            ('C',
+             u'C - Cobros por cuenta de terceros superiores al límite (3)'),
+            ('D', u'D - Adquisiciones efectuadas por Entidades Públicas '
+                  u'(...) superiores al límite (1)'),
+            ('E', u'E - Subvenciones, auxilios y ayudas satisfechas por Ad. '
+                  u'Públicas superiores al límite (1)'),
+            ('F', u'F - Ventas agencia viaje'),
+            ('G', u'G - Compras agencia viaje'),
+        ],
+        string='Operation Key',
+    )
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', required=True)
     partner_vat = fields.Char(string='VAT number', size=9)
@@ -563,146 +438,249 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     partner_country_code = fields.Char(string='Country Code', size=2)
     partner_state_code = fields.Char(string='State Code', size=2)
     first_quarter = fields.Float(
-        compute="_get_quarter_invoice_totals", store=True, readonly=True,
         string="First quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of first quarter in, out and refund invoices "
-             "for this partner")
+             "for this partner", readonly=True,
+    )
     first_quarter_real_estate_transmission_amount = fields.Float(
         string="First quarter real estate", digits=dp.get_precision('Account'),
-        oldname="first_quarter_real_state_transmission_amount",
         help="Total amount of first quarter real estate transmissions "
-             "for this partner")
+             "for this partner",
+    )
     first_quarter_cash_amount = fields.Float(
-        compute="_get_quarter_cash_totals", store=True, readonly=True,
-        string="First quarter cash movements",
+        string="First quarter cash movements", readonly=True,
         digits=dp.get_precision('Account'),
-        help="Total amount of first quarter cash movements "
-             "for this partner")
+        help="Total amount of first quarter cash movements for this partner",
+    )
     second_quarter = fields.Float(
-        compute="_get_quarter_invoice_totals", store=True, readonly=True,
         string="Second quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of second quarter in, out and refund invoices "
-             "for this partner")
+             "for this partner", readonly=True,
+    )
     second_quarter_real_estate_transmission_amount = fields.Float(
         string="Second quarter real estate",
         digits=dp.get_precision('Account'),
-        oldname="second_quarter_real_state_transmission_amount",
         help="Total amount of second quarter real estate transmissions "
-             "for this partner")
+             "for this partner",
+    )
     second_quarter_cash_amount = fields.Float(
-        compute="_get_quarter_cash_totals", store=True, readonly=True,
-        string="Second quarter cash movements",
+        string="Second quarter cash movements", readonly=True,
         digits=dp.get_precision('Account'),
-        help="Total amount of second quarter cash movements "
-             "for this partner")
+        help="Total amount of second quarter cash movements for this partner",
+    )
     third_quarter = fields.Float(
-        compute="_get_quarter_invoice_totals", store=True, readonly=True,
         string="Third quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of third quarter in, out and refund invoices "
-             "for this partner")
+             "for this partner", readonly=True,
+    )
     third_quarter_real_estate_transmission_amount = fields.Float(
         string="Third quarter real estate", digits=dp.get_precision('Account'),
-        oldname="third_quarter_real_state_transmission_amount",
         help="Total amount of third quarter real estate transmissions "
-             "for this partner")
+             "for this partner",
+    )
     third_quarter_cash_amount = fields.Float(
-        compute="_get_quarter_cash_totals", store=True, readonly=True,
-        string="Third quarter cash movements",
+        string="Third quarter cash movements", readonly=True,
         digits=dp.get_precision('Account'),
-        help="Total amount of third quarter cash movements "
-             "for this partner")
+        help="Total amount of third quarter cash movements for this partner",
+    )
     fourth_quarter = fields.Float(
-        compute="_get_quarter_invoice_totals", store=True, readonly=True,
         string="Fourth quarter operations", digits=dp.get_precision('Account'),
         help="Total amount of fourth quarter in, out and refund invoices "
-             "for this partner")
+             "for this partner", readonly=True,
+    )
     fourth_quarter_real_estate_transmission_amount = fields.Float(
         string="Fourth quarter real estate",
         digits=dp.get_precision('Account'),
-        oldname="fourth_quarter_real_state_transmission_amount",
         help="Total amount of fourth quarter real estate transmissions "
              "for this partner")
     fourth_quarter_cash_amount = fields.Float(
-        compute="_get_quarter_cash_totals", store=True, readonly=True,
-        string="Fourth quarter cash movements",
+        string="Fourth quarter cash movements", readonly=True,
         digits=dp.get_precision('Account'),
-        help="Total amount of fourth quarter cash movements "
-             "for this partner")
-    amount = fields.Float(
-        compute="_get_quarter_invoice_totals", store=True, readonly=True,
-        string='Anual operations amount', digits=dp.get_precision('Account'),
-        help="Total amount of fiscal year in, out and refund invoices "
-             "for this partner")
-    cash_amount = fields.Float(
-        compute="_get_quarter_cash_totals", store=True, readonly=True,
-        string='Anual cash movements amount',
-        digits=dp.get_precision('Account'),
-        help="Total amount of fiscal year cash movements "
-             "for this partner")
+        help="Total amount of fourth quarter cash movements for this partner",
+    )
+    amount = fields.Float(string='Operations amount', digits=(13, 2))
+    cash_amount = fields.Float(string='Received cash amount', digits=(13, 2))
     real_estate_transmissions_amount = fields.Float(
-        compute="_get_quarter_real_state_totals", store=True, readonly=True,
-        string='Real estate transmisions amount',
-        digits=dp.get_precision('Account'),
-        oldname='real_state_transmissions_amount',
-        help="Total amount of fiscal year real estate transmissions "
-             "for this partner")
+        string='Real Estate Transmisions amount', digits=(13, 2),
+    )
     insurance_operation = fields.Boolean(
         string='Insurance Operation',
         help="Only for insurance companies. Set to identify insurance "
-             "operations aside from the rest.")
+             "operations aside from the rest.",
+    )
     cash_basis_operation = fields.Boolean(
         string='Cash Basis Operation',
         help="Only for cash basis operations. Set to identify cash basis "
-             "operations aside from the rest.")
+             "operations aside from the rest.",
+    )
     tax_person_operation = fields.Boolean(
         string='Taxable Person Operation',
         help="Only for taxable person operations. Set to identify taxable "
-             "person operations aside from the rest.")
+             "person operations aside from the rest.",
+    )
     related_goods_operation = fields.Boolean(
         string='Related Goods Operation',
         help="Only for related goods operations. Set to identify related "
-             "goods operations aside from the rest.")
+             "goods operations aside from the rest.",
+    )
     bussiness_real_estate_rent = fields.Boolean(
         string='Bussiness Real Estate Rent',
         help="Set to identify real estate rent operations aside from the rest."
              " You'll need to fill in the real estate info only when you are "
              "the one that receives the money.",
-        oldname='bussiness_real_state_rent')
-    origin_fiscalyear_id = fields.Many2one(
-        comodel_name='account.fiscalyear', string='Origin fiscal year',
-        help="Origin cash operation fiscal year")
+    )
+    origin_year = fields.Integer(
+        string='Origin year', help="Origin cash operation year",
+    )
     invoice_record_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod347.invoice_record',
-        inverse_name='partner_record_id', string='Invoice records')
-    # TODO: By now user must fill real estate transmission amounts manually
-    real_estate_record_ids = fields.One2many(
-        compute="_get_real_estate_record_ids",
-        # inverse="_set_real_estate_record_ids",
+        inverse_name='partner_record_id', string='Invoice records',
+    )
+    real_estate_record_ids = fields.Many2many(
+        compute="_compute_real_estate_record_ids",
         comodel_name="l10n.es.aeat.mod347.real_estate_record",
-        string='Real Estate Records', store=False,
-        oldname='real_state_record_ids')
+        string='Real Estate Records',
+    )
     cash_record_ids = fields.One2many(
         comodel_name='l10n.es.aeat.mod347.cash_record',
-        inverse_name='partner_record_id', string='Payment records')
+        inverse_name='partner_record_id', string='Payment records',
+    )
     check_ok = fields.Boolean(
         compute="_compute_check_ok", string='Record is OK',
-        store=True, readonly=True,
-        help='Checked if this record is OK')
+        store=True, readonly=True, help='Checked if this record is OK',
+    )
 
     @api.multi
-    @api.onchange('partner_id')
-    def on_change_partner_id(self):
-        """Load some partner data
-
-        country, state and vat when the selected partner changes.
+    def _compute_real_estate_record_ids(self):
+        """Get the real estate records from this record parent report for this
+        partner.
         """
+        self.real_estate_record_ids = self.env[
+            'l10n.es.aeat.mod347.real_estate_record']
+        if self.partner_id:
+            self.real_estate_record_ids = self.real_estate_record_ids.search(
+                [('report_id', '=', self.report_id.id),
+                 ('partner_id', '=', self.partner_id.id)]
+            )
+
+    @api.multi
+    @api.depends('partner_country_code', 'partner_state_code', 'partner_vat',
+                 'community_vat')
+    def _compute_check_ok(self):
         for record in self:
-            if record.partner_id:
-                record.partner_vat = re.match(
-                    r'^(?:ES)?(.*)', record.partner_id.vat or '',
-                    re.IGNORECASE).groups()[0]
-                record.partner_state_code = record.partner_id.state_id.code
-                record.partner_country_code = record.partner_id.country_id.code
+            record.check_ok = (
+                record.partner_country_code and
+                record.partner_state_code and
+                record.partner_state_code.isdigit() and
+                (record.partner_vat or record.partner_country_code != 'ES')
+            )
+
+    @api.onchange('partner_id')
+    def onchange_partner_id(self):
+        """Loads some partner data (country, state and vat) when the selected
+        partner changes.
+        """
+        if self.partner_id:
+            addr = self.partner_id.address_get(['delivery', 'invoice'])
+            # Get the invoice or the default address of the partner
+            addr = self.partner_id.address_get(['invoice', 'default'])
+            address = self.env['res.partner'].browse(addr['invoice'])
+            self.partner_vat = self.partner_id.vat and \
+                re.match("(ES){0,1}(.*)",
+                         self.partner_id.vat).groups()[1]
+            self.partner_state_code = address.state_id.code
+            self.partner_country_code = address.country_id.code
+        else:
+            self.partner_vat = ''
+            self.partner_country_code = ''
+            self.partner_state_code = ''
+
+    @api.multi
+    @api.depends('invoice_record_ids.invoice_id.date', 'report_id.year')
+    def calculate_quarter_totals(self):
+
+        def calc_amount_by_quarter(invoices, refunds, year, month_start):
+            day_start = 1
+            month_end = month_start + 2
+            day_end = monthrange(year, month_end)[1]
+            date_start = fields.Date.to_string(
+                datetime(year, month_start, day_start)
+            )
+            date_end = fields.Date.to_string(
+                datetime(year, month_end, day_end)
+            )
+            return (
+                sum(invoices.filtered(
+                    lambda x: date_start <= x.invoice_id.date <= date_end
+                ).mapped('amount')) - sum(refunds.filtered(
+                    lambda x: date_start <= x.invoice_id.date <= date_end
+                ).mapped('amount'))
+            )
+
+        for record in self:
+            year = record.report_id.year
+            invoices = record.invoice_record_ids.filtered(
+                lambda rec: (
+                    rec.invoice_id.type in ('out_invoice', 'in_invoice')
+                )
+            )
+            refunds = record.invoice_record_ids.filtered(
+                lambda rec: (
+                    rec.invoice_id.type in ('out_refund', 'in_refund')
+                )
+            )
+            record.first_quarter = calc_amount_by_quarter(
+                invoices, refunds, year, 1,
+            )
+            record.second_quarter = calc_amount_by_quarter(
+                invoices, refunds, year, 4,
+            )
+            record.third_quarter = calc_amount_by_quarter(
+                invoices, refunds, year, 7,
+            )
+            record.fourth_quarter = calc_amount_by_quarter(
+                invoices, refunds, year, 10,
+            )
+
+    @api.multi
+    def calculate_quarter_cash_totals(self):
+        def calc_amount_by_quarter(records, year, month_start):
+            day_start = 1
+            month_end = month_start + 2
+            day_end = monthrange(year, month_end)[1]
+            date_start = fields.Date.to_string(
+                datetime(year, month_start, day_start)
+            )
+            date_end = fields.Date.to_string(
+                datetime(year, month_end, day_end)
+            )
+            return sum(records.filtered(
+                lambda x: date_start <= x.invoice_id.date <= date_end
+            ).mapped('amount'))
+
+        for record in self:
+            if not record.cash_record_ids:
+                continue
+            year = record.report_id.year
+            record.first_quarter_cash_amount = calc_amount_by_quarter(
+                record.cash_record_ids, year, 1,
+            )
+            record.second_quarter_cash_amount = calc_amount_by_quarter(
+                record.cash_record_ids, year, 4,
+            )
+            record.third_quarter_cash_amount = calc_amount_by_quarter(
+                record.cash_record_ids, year, 7,
+            )
+            record.fourth_quarter_cash_amount = calc_amount_by_quarter(
+                record.cash_record_ids, year, 10,
+            )
+            # Totals
+            record.cash_amount = sum([
+                record.first_quarter_cash_amount,
+                record.second_quarter_cash_amount,
+                record.third_quarter_cash_amount,
+                record.fourth_quarter_cash_amount
+            ])
 
 
 class L10nEsAeatMod347RealStateRecord(models.Model):
@@ -726,33 +704,29 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     def _default_representative_vat(self):
         return self.env.context.get('representative_vat', False)
 
-    @api.multi
-    @api.depends('state_code')
-    def _compute_check_ok(self):
-        for record in self:
-            record.check_ok = bool(record.state_code)
-
     report_id = fields.Many2one(
         comodel_name='l10n.es.aeat.mod347.report', string='AEAT 347 Report',
-        ondelete="cascade", select=1, default=_default_record_id)
+        ondelete="cascade", index=1, default=_default_record_id,
+    )
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Partner', required=True,
-        default=_default_partner_id)
+        default=_default_partner_id,
+    )
     partner_vat = fields.Char(
-        string='VAT number', size=32, default=_default_partner_vat)
+        string='VAT number', size=32, default=_default_partner_vat,
+    )
     representative_vat = fields.Char(
         string='L.R. VAT number', size=32, default=_default_representative_vat,
         help="Legal Representative VAT number")
-    amount = fields.Float(
-        string='Amount', digits=dp.get_precision('Account'), required=True)
+    amount = fields.Float(string='Amount', digits=(13, 2))
     situation = fields.Selection(
         selection=[('1', '1 - Spain but Basque Country and Navarra'),
                    ('2', '2 - Basque Country and Navarra'),
                    ('3', '3 - Spain, without catastral reference'),
                    ('4', '4 - Foreign')],
-        string='Real estate Situation', required=True)
+        string='Real estate Situation')
     reference = fields.Char(
-        string='Catastral Reference', size=25, required=True)
+        string='Catastral Reference', size=25)
     address_type = fields.Char(
         string='Address type', size=5)
     address = fields.Char(string='Address', size=50)
@@ -783,21 +757,28 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     postal_code = fields.Char(string='Postal code', size=5)
     check_ok = fields.Boolean(
         compute="_compute_check_ok", string='Record is OK',
-        store=True, readonly=True,
-        help='Checked if this record is OK')
+        store=True, help='Checked if this record is OK',
+    )
+
+    @api.multi
+    @api.depends('state_code')
+    def _compute_check_ok(self):
+        for record in self:
+            record.check_ok = bool(record.state_code)
 
     @api.onchange('partner_id')
     def on_change_partner_id(self):
-        """Load some partner data (vat) when the selected partner changes."""
-        for record in self:
-            record.partner_vat = re.match(
-                r'(ES)?(.*)', record.partner_id.vat or '').groups()[1]
+        """Loads some partner data (vat) when the selected partner changes."""
+        if self.partner_id:
+            self.partner_vat = re.match("(ES){0,1}(.*)",
+                                        self.partner_id.vat).groups()[1]
+        else:
+            self.partner_vat = ''
 
 
 class L10nEsAeatMod347InvoiceRecord(models.Model):
     _name = 'l10n.es.aeat.mod347.invoice_record'
     _description = 'Invoice Record'
-    _order = 'date ASC, invoice_id ASC'
 
     @api.model
     def _default_partner_record(self):
@@ -810,21 +791,23 @@ class L10nEsAeatMod347InvoiceRecord(models.Model):
     invoice_id = fields.Many2one(
         comodel_name='account.invoice', string='Invoice', required=True,
         ondelete="cascade")
-    invoice_type = fields.Selection(related="invoice_id.type", readonly=True)
+    invoice_type = fields.Selection(
+        related="invoice_id.type", readonly=True, store=True,
+    )
     date = fields.Date(
-        related='invoice_id.date_invoice', store=True, readonly=True,
-        string='Date')
+        string='Date', related='invoice_id.date_invoice', store=True,
+        readonly=True,
+    )
     amount = fields.Float(
-        related="invoice_id.amount_total_wo_irpf", store=True, readonly=True,
-        digits=dp.get_precision('Account'), string='Amount')
+        string='Amount', related="invoice_id.amount_total_wo_irpf", store=True,
+        readonly=True,
+    )
 
 
 class L10nEsAeatMod347CashRecord(models.Model):
-    """Represent a payment record."""
-
+    """Represents a payment record."""
     _name = 'l10n.es.aeat.mod347.cash_record'
     _description = 'Cash Record'
-    _order = 'date ASC, move_line_id ASC'
 
     @api.model
     def _default_partner_record(self):
@@ -838,4 +821,4 @@ class L10nEsAeatMod347CashRecord(models.Model):
         comodel_name='account.move.line', string='Account move line',
         required=True, ondelete="cascade")
     date = fields.Date(string='Date')
-    amount = fields.Float(string='Amount', digits=dp.get_precision('Account'))
+    amount = fields.Float(string='Amount')

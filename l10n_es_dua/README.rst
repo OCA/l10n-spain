@@ -32,9 +32,9 @@ Una vez actualizado el plan contable (Impuestos y Posiciones fiscales) es
 necesario asignar los impuestos a los productos DUA que crea este addon para
 facilitar la contabilidad de las facturas de la empresa de tránsito:
 
-1. Ir a Compras > Compra > Productos
-2. Quitar el filtro por defecto y buscar "DUA"
-3. Asignar los siguientes impuestos en el campo "Impuestos proveedor"
+#. Ir a Compras > Compra > Productos
+#. Quitar el filtro por defecto y buscar "DUA"
+#. Asignar los siguientes impuestos en el campo "Impuestos proveedor"
     * DUA Compensación: "DUA Exento"
     * DUA Valoración IVA 10%: "IVA 10% Importaciones bienes corrientes"
     * DUA Valoración IVA 21%: "IVA 21% Importaciones bienes corrientes"
@@ -92,13 +92,13 @@ Ejemplo:
 * La base imponible (casilla 32 del modelo 303) es 150,00 €
 * La cuota a deducir (casilla 33 del modelo 303) es 31,50 €
 
-1. Factura proveedor extranjero
+#. Factura proveedor extranjero
 
    * Esta factura nos indica la mercancía comprada (100,00 €) y no lleva IVA.
    * Creamos la factura con la posición fiscal "Importación con DUA".
    * Añadimos los productos comprados y el impuesto en cada línea será "DUA Exento"
 
-2. Factura empresa de tránsito
+#. Factura empresa de tránsito
 
    * Esta factura nos indica el IVA a pagar para retirar la mercancía de aduanas.
    * Creamos la factura con la posición fiscal "Importación con DUA"
@@ -109,7 +109,7 @@ Ejemplo:
 
 Al validar ambas facturas nos crea los siguientes asientos:
 
-1. Asiento factura proveedor extranjero
+#. Asiento factura proveedor extranjero
 
 .. csv-table::
    :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"
@@ -118,7 +118,7 @@ Al validar ambas facturas nos crea los siguientes asientos:
    "400000 Proveedores", 0.00, 100.00
    "600000 Compras", 100.00, 0.00
 
-2. Asiento factura empresa de tránsito
+#. Asiento factura empresa de tránsito
 
 .. csv-table::
    :header: "CUENTA", "DEBE", "HABER", "IMPUESTO", "IMPORTE IMPUESTO"

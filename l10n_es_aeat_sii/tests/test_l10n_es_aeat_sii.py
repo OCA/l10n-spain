@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
 # Copyright 2017 Tecnativa - Pedro M. Baeza
+# Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 from openerp.tests import common
@@ -107,6 +108,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
         expedida_recibida = 'FacturaExpedida'
         if self.invoice.type in ['in_invoice', 'in_refund']:
             expedida_recibida = 'FacturaRecibida'
+        sign = -1.0 if invoice_type == 'R4' else 1.0
         res = {
             'IDFactura': {
                 'FechaExpedicionFacturaEmisor': str_today,
@@ -119,9 +121,9 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 },
                 'DescripcionOperacion': u'/',
                 'ClaveRegimenEspecialOTrascendencia': special_regime,
-                'ImporteTotal': 110,
+                'ImporteTotal': sign * 110,
             },
-            'PeriodoImpositivo': {
+            'PeriodoLiquidacion': {
                 'Periodo': '%02d' % fields.Date.from_string(
                     fields.Date.today()).month,
                 'Ejercicio': fields.Date.from_string(fields.Date.today()).year,
@@ -134,7 +136,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
             })
             res[expedida_recibida].update({
                 'TipoDesglose': {},
-                'ImporteTotal': 110.0,
+                'ImporteTotal': sign * 110.0,
             })
         else:
             res['IDFactura'].update({
@@ -148,23 +150,17 @@ class TestL10nEsAeatSii(common.SavepointCase):
                     'DesgloseIVA': {
                         'DetalleIVA': [
                             {
-                                'BaseImponible': 100.0,
-                                'CuotaSoportada': 10.0,
+                                'BaseImponible': sign * 100.0,
+                                'CuotaSoportada': sign * 10.0,
                                 'TipoImpositivo': '10.0',
                             },
                         ],
                     },
                 },
-                "CuotaDeducible": 10,
+                "CuotaDeducible": sign * 10,
             })
         if invoice_type == 'R4':
-            res[expedida_recibida].update({
-                'TipoRectificativa': 'S',
-                'ImporteRectificacion': {
-                    'BaseRectificada': 100.0,
-                    'CuotaRectificada': 10.0,
-                }
-            })
+            res[expedida_recibida]['TipoRectificativa'] = 'I'
         return res
 
     def test_get_invoice_data(self):
@@ -181,7 +177,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 _deep_sort(test_out_inv.get(key)),
             )
         self.invoice.type = 'out_refund'
-        self.invoice.sii_refund_type = 'S'
+        self.invoice.sii_refund_type = 'I'
         invoices = self.invoice._get_sii_invoice_dict()
         test_out_refund = self._get_invoices_test('R4', '01')
         for key in invoices.keys():
@@ -199,7 +195,7 @@ class TestL10nEsAeatSii(common.SavepointCase):
                 _deep_sort(test_in_invoice.get(key)),
             )
         self.invoice.type = 'in_refund'
-        self.invoice.sii_refund_type = 'S'
+        self.invoice.sii_refund_type = 'I'
         self.invoice.reference = 'sup0001'
         self.invoice.compute_taxes()
         self.invoice.origin_invoice_ids.type = 'in_invoice'

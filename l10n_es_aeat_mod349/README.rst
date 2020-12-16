@@ -82,6 +82,7 @@ Ir a:
   'Detalles', las operaciones que se desee excluir de la declaración.
 
 Consideraciones importantes:
+
 * En caso de indicar el tipo de declaración 'Suplementaria' o 'Normal' se
   propondrán todas las operaciones que apliquen para el periodo.
 * En caso de indicar 'Complementaria', se propondrán únicamente aquellas
@@ -114,6 +115,7 @@ Contribudores
   * Pedro M. Baeza <pedro.baeza@tecnativa.com>
   * Angel Moya <odoo@tecnativa.com>
   * Luis M. Ontalba <luis.martinez@tecnativa.com>
+  * Carlos Dauden
 * Eficent (http://www.eficent.com)
   * Jordi Ballester <jordi.ballester@eficent.com>
 
