@@ -231,6 +231,21 @@ class AccountInvoice(models.Model):
                 }
             }
 
+    @api.onchange('partner_id', 'company_id')
+    def _onchange_partner_id(self):
+        """Trigger fiscal position onchange for assigning SII key when creating
+        bills from purchase module with the button from PO, due to the special
+        way this is triggered through chained onchanges.
+        """
+        trigger_fp = (
+            self.partner_id.property_account_position_id !=
+            self.fiscal_position_id
+        )
+        res = super()._onchange_partner_id()
+        if trigger_fp:
+            self.onchange_fiscal_position_id_l10n_es_aeat_sii()
+        return res
+
     @api.onchange('fiscal_position_id')
     def onchange_fiscal_position_id_l10n_es_aeat_sii(self):
         for invoice in self.filtered('fiscal_position_id'):
