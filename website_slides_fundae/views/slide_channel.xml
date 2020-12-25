@@ -7,12 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='inactive']" position="after">
                 <filter
-                    string="Formaciones bonificables"
-                    name="bonificable"
-                    domain="[('channel_type','=','bonificable')]"
-                />
-                <filter
-                    string="Formaciones no bonificables"
+                    string="Formación"
                     name="training"
                     domain="[('channel_type','=','training')]"
                 />
@@ -41,7 +36,7 @@
                 <field name="fundae_code" /></field>
             <field name="name" position="before">
                 <field name="fundae_code" />
-                <t attrs="{'invisible': [('channel_type', '!=', 'bonificable')]}">
+                <t attrs="{'invisible': [('bonificable', '!=', True)]}">
                     <span class="fa fa-info-circle fa-lg" />
                 </t>
             </field>
@@ -61,21 +56,14 @@
         <field name="model">slide.channel</field>
         <field name="inherit_id" ref="website_slides.view_slide_channel_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='promote_strategy']" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'invisible': [('channel_type', '!=', 'documentation')]}</attribute>
-            </xpath>
-            <xpath expr="//field[@name='promoted_slide_id']" position="attributes">
-                <attribute name="attrs">{'invisible': ['|', ('channel_type', '!=', 'documentation'), ('promote_strategy', '!=', 'specific')],
-                    'required': [('channel_type', '=', 'documentation'), ('promote_strategy', '=', 'specific')]}
-                </attribute>
-            </xpath>
+            <field name="active" position="before">
+                <field name="bonificable" widget="boolean_toggle"/></field>
+            </field>
             <xpath expr="//page[@name='options']" position="after">
                 <page
                     name="fundae_page"
                     string="FUNDAE"
-                    attrs="{'invisible': [('channel_type','!=','bonificable')]}"
+                    attrs="{'invisible': [('bonificable','!=',True)]}"
                 >
                     <group>
                         <group name="fundae_accion" string="Acción formativa">
@@ -90,7 +78,6 @@
                             <field name="inspector_id" />
                         </group>
                         <group name="fundae_links" string="Elementos vinculados">
-                            <field name="event_id" />
                             <field name="encuesta_id" />
                             <field string="Foro" name="forum_id" />
                         </group>

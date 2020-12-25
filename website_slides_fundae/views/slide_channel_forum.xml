@@ -11,7 +11,7 @@
             <xpath expr="//field[@name='forum_id']" position="attributes">
                 <attribute
                     name="attrs"
-                >{'invisible': [('channel_type', '=', 'bonificable')]}</attribute>
+                >{'invisible': [('bonificable', '=', True)]}</attribute>
             </xpath>
         </field>
     </record>

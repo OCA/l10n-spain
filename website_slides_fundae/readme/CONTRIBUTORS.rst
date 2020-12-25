@@ -1,3 +1,3 @@
-* `C2i Change 2 improve <http://c2i.es/>`_:
+* `C2i Change 2 improve <http://c2i.es/>`:
 
   * Eduardo Magdalena <emagdalena@c2i.es>

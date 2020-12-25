@@ -7,13 +7,7 @@ from odoo import fields, models
 class Channel(models.Model):
     _inherit = "slide.channel"
 
-    channel_type = fields.Selection(
-        selection_add=[("bonificable", "Formación bonificable"), ("documentation",)],
-        ondelete={
-            "bonificable": "set default",
-            "documentation": lambda r: r.write({"channel_type": "training"}),
-        },
-    )
+    bonificable = fields.Boolean(string="Bonificable", default=False)
     fundae_code = fields.Char(string="Código")
     fundae_type = fields.Selection(
         [
@@ -32,9 +26,6 @@ class Channel(models.Model):
     inspector_id = fields.Many2one(
         "res.users", ondelete="set null", string="Inspector de Fundae", index=True
     )
-    event_id = fields.Many2one(
-        "event.event", ondelete="set null", string="Evento", index=True
-    )
     encuesta_id = fields.Many2one(
         "survey.survey", ondelete="set null", string="Encuestas", index=True
     )
@@ -42,8 +33,4 @@ class Channel(models.Model):
         string="Grupos",
 		comodel_name="slide.channel.group",
 		inverse_name="id",
-    )
-
-    nbr_teleconference = fields.Integer(
-        "Videoconferencias", compute="_compute_slides_statistics", store=True
     )
