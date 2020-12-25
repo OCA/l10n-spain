@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data noupdate="1">
+        <record model="res.groups" id="group_account_aeat">
+            <field name="name">AEAT manager</field>
+            <field name="category_id" ref="base.module_category_hidden" />
+            <field
+                name="users"
+                eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+            />
+        </record>
+        <record id="l10n_es_aeat_certificate_rule" model="ir.rule">
+            <field name="name">AEAT Certificate multi-company</field>
+            <field ref="model_l10n_es_aeat_certificate" name="model_id" />
+            <field eval="True" name="global" />
+            <field
+                name="domain_force"
+            >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+    </data>
+</odoo>
