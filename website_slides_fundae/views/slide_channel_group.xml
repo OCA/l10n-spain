@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="slide_channel_group_view_tree" model="ir.ui.view">
+        <field name="name">website_slides.slide.channel.group.view.tree</field>
+        <field name="model">slide.channel.group</field>
+        <field name="arch" type="xml">
+            <tree string="Grupos formativos" editable="bottom">
+                <field name="name" />
+                <field name="code" />
+                <field name="channel_id" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="slide_channel_group_form" model="ir.ui.view">
+        <field name="name">website_slides.slide.channel.group.form</field>
+        <field name="model">slide.channel.group</field>
+        <field name="arch" type="xml">
+            <form string="Grupos formativos">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="code" />
+                        <field name="channel_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="fundae_group_action" model="ir.actions.act_window">
+        <field name="name">Grupos formativos</field>
+        <field name="res_model">slide.channel.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        action="fundae_group_action"
+        id="fundae_group_action_menu"
+        parent="website_slides.website_slides_menu_courses"
+        name="Grupos formativos"
+        sequence="4"
+    />
+</odoo>

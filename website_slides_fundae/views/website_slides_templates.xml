@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <template id='course_main' inherit_id="website_slides.course_main">
+            <!-- Channel (training) main template: add link to teacher's profile -->
+            <xpath
+                expr="//li[hasclass('o_wslides_course_header_nav_review_training')]"
+                position="after"
+            >
+                <li class="nav-item" t-if="channel.fundae_profesor_id">
+                    <t t-if="channel.fundae_profesor_id.website_published">
+                        <a
+                            t-attf-href="/partners/#{slug(channel.fundae_profesor_id)}"
+                            t-att-class="'nav-link'"
+                            target="new"
+                        >Profesor</a>
+                    </t>
+                </li>
+            </xpath>
+        </template>
+    </data>
+</odoo>

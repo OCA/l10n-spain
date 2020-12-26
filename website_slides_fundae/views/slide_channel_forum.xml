@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_slide_channel_forum_fundae" model="ir.ui.view">
+        <field name="name">website_slides.channel.forum.fundae</field>
+        <field name="model">slide.channel</field>
+        <field
+            name="inherit_id"
+            ref="website_slides_forum.website_slides_forum_channel_inherit_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='forum_id']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('fundae_bonificable', '=', True)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
