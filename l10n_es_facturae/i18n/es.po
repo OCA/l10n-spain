@@ -394,14 +394,12 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
 #, fuzzy
-#| msgid "facturae"
 msgid "Facturae"
 msgstr "facturae"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:531
 #, fuzzy, python-format
-#| msgid "Facturae Refund Reason"
 msgid "Facturae Configuration"
 msgstr "Motivo de Reembolso según Facturae"
 
@@ -409,21 +407,18 @@ msgstr "Motivo de Reembolso según Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_end_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_end_date
 #, fuzzy
-#| msgid "Facturae code"
 msgid "Facturae End Date"
 msgstr "Código de Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_file_date
 #, fuzzy
-#| msgid "Factura-E file"
 msgid "Facturae File Date"
 msgstr "Fichero Factura-E"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_file_reference
 #, fuzzy
-#| msgid "Facturae Refund Reason"
 msgid "Facturae File Reference"
 msgstr "Motivo de Reembolso según Facturae"
 
@@ -476,14 +471,12 @@ msgstr "Motivo de Reembolso según Facturae"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_start_date
 #, fuzzy
-#| msgid "Facturae code"
 msgid "Facturae Start Date"
 msgstr "Código de Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_transaction_date
 #, fuzzy
-#| msgid "Facturae code"
 msgid "Facturae Transaction Date"
 msgstr "Código de Facturae"
 
@@ -532,7 +525,7 @@ msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_7724
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_8075
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_id
 msgid "ID"
 msgstr "ID"
@@ -703,7 +696,6 @@ msgstr "Factura"
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_line
 #, fuzzy
-#| msgid "Invoice"
 msgid "Invoice Line"
 msgstr "Factura"
 
@@ -1035,7 +1027,6 @@ msgstr "Enviar cancelación"
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
 #, fuzzy
-#| msgid "Send"
 msgid "Sended"
 msgstr "Enviar"
 

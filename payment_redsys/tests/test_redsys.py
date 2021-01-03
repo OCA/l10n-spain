@@ -164,7 +164,7 @@ class RedsysCase(HttpCase):
     def test_error(self):
         self.data_post_redsys(url='/payment/redsys/return')
 
-    def _test_20_redsys_form_management(self):
+    def test_20_redsys_form_management(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -198,7 +198,7 @@ class RedsysCase(HttpCase):
                 self.redsys_ds_parameters.get('Ds_AuthorisationCode'),
                 'Redsys: validation did not update tx payid')
 
-    def _test_30_redsys_form_management(self):
+    def test_30_redsys_form_management(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -224,7 +224,7 @@ class RedsysCase(HttpCase):
             'test with unknow transacction'
         )
 
-    def _test_40_redsys_form_error(self):
+    def test_40_redsys_form_error(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -252,7 +252,7 @@ class RedsysCase(HttpCase):
                 tx.state, 'done',
                 'Redsys: validation did not put tx into done state')
 
-    def _test_50_redsys_form_pending(self):
+    def test_50_redsys_form_pending(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -280,7 +280,7 @@ class RedsysCase(HttpCase):
                 tx.state, 'pending',
                 'Redsys: validation did not put tx into done state')
 
-    def _test_60_redsys_form_cancel(self):
+    def test_60_redsys_form_cancel(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -308,7 +308,7 @@ class RedsysCase(HttpCase):
                 tx.state, 'cancel',
                 'Redsys: validation did not put tx into done state')
 
-    def _test_80_redsys_partial_payment(self):
+    def test_80_redsys_partial_payment(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -327,7 +327,7 @@ class RedsysCase(HttpCase):
 
     @patch('odoo.addons.sale.models.sale.SaleOrder.action_confirm')
     @patch('odoo.addons.sale.models.sale.SaleOrder.force_quotation_send')
-    def _test_90_redsys_form_partial_payment(
+    def test_90_redsys_form_partial_payment(
             self, mock_quo_send, mock_confirm):
         with self.cursor() as cr:
             env = self.env(cr)
@@ -365,7 +365,7 @@ class RedsysCase(HttpCase):
                 self.redsys_ds_parameters.get('Ds_AuthorisationCode'),
                 'Redsys: validation did not update tx payid')
 
-    def _test_91_redsys_return_post(self):
+    def test_91_redsys_return_post(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)
@@ -376,7 +376,7 @@ class RedsysCase(HttpCase):
         self.assertGreater(res.url.find('/shop'), 0,
                            'Redsys: Redirection to /shop')
 
-    def _test_91_redsys_result_page(self):
+    def test_91_redsys_result_page(self):
         with self.cursor() as cr:
             env = self.env(cr)
             redsys = self.redsys.with_env(env)

@@ -100,6 +100,7 @@ msgstr "Declaraciones AEAT"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_move_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_move_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_move_id
@@ -137,6 +138,7 @@ msgstr "Todos"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_allow_posting
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_allow_posting
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod347_report_allow_posting
@@ -196,6 +198,7 @@ msgstr "Cuentas bancarias"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_partner_bank_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_partner_bank_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_partner_bank_id
@@ -248,6 +251,7 @@ msgstr "Calcular"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_calculation_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_calculation_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_calculation_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_calculation_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_calculation_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_calculation_date
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_calculation_date
@@ -272,6 +276,7 @@ msgstr "Cancelar"
 #: selection:l10n.es.aeat.mod115.report,state:0
 #: selection:l10n.es.aeat.mod123.report,state:0
 #: selection:l10n.es.aeat.mod130.report,state:0
+#: selection:l10n.es.aeat.mod190.report,state:0
 #: selection:l10n.es.aeat.mod216.report,state:0
 #: selection:l10n.es.aeat.mod296.report,state:0
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -311,6 +316,7 @@ msgstr "Compañías"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_company_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_company_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_company_id
@@ -329,6 +335,7 @@ msgstr "Compañía"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod115_report_partner_bank_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod123_report_partner_bank_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod130_report_partner_bank_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod190_report_partner_bank_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod216_report_partner_bank_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod296_report_partner_bank_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod303_report_partner_bank_id
@@ -367,6 +374,7 @@ msgstr "Comparar archivo"
 #: selection:l10n.es.aeat.mod115.report,type:0
 #: selection:l10n.es.aeat.mod123.report,type:0
 #: selection:l10n.es.aeat.mod130.report,type:0
+#: selection:l10n.es.aeat.mod190.report,type:0
 #: selection:l10n.es.aeat.mod216.report,type:0
 #: selection:l10n.es.aeat.mod296.report,type:0
 #: selection:l10n.es.aeat.mod303.report,type:0
@@ -424,6 +432,7 @@ msgstr "Datos de contacto"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_contact_email
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_contact_email
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_contact_email
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_contact_email
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_contact_email
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_contact_email
@@ -446,6 +455,7 @@ msgstr "Contenido"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_counterpart_account_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_counterpart_account_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod347_report_counterpart_account_id
@@ -494,6 +504,7 @@ msgstr "Haber"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_currency_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_currency_id
@@ -511,6 +522,7 @@ msgstr "Moneda"
 #: selection:l10n.es.aeat.mod115.report,support_type:0
 #: selection:l10n.es.aeat.mod123.report,support_type:0
 #: selection:l10n.es.aeat.mod130.report,support_type:0
+#: selection:l10n.es.aeat.mod190.report,support_type:0
 #: selection:l10n.es.aeat.mod216.report,support_type:0
 #: selection:l10n.es.aeat.mod296.report,support_type:0
 #: selection:l10n.es.aeat.mod303.report,support_type:0
@@ -558,6 +570,7 @@ msgstr "Nombre a mostrar"
 #: selection:l10n.es.aeat.mod115.report,state:0
 #: selection:l10n.es.aeat.mod123.report,state:0
 #: selection:l10n.es.aeat.mod130.report,state:0
+#: selection:l10n.es.aeat.mod190.report,state:0
 #: selection:l10n.es.aeat.mod216.report,state:0
 #: selection:l10n.es.aeat.mod296.report,state:0
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -577,6 +590,7 @@ msgstr "Realizada"
 #: selection:l10n.es.aeat.mod115.report,state:0
 #: selection:l10n.es.aeat.mod123.report,state:0
 #: selection:l10n.es.aeat.mod130.report,state:0
+#: selection:l10n.es.aeat.mod190.report,state:0
 #: selection:l10n.es.aeat.mod216.report,state:0
 #: selection:l10n.es.aeat.mod296.report,state:0
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -600,6 +614,7 @@ msgstr "Declaraciones borrador"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_date_end
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_date_end
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_date_end
@@ -657,6 +672,7 @@ msgstr "Exportar declaración al formato BOE"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_export_config_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_export_config_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_export_config_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_export_config_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_export_config_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_export_config_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_export_config_id
@@ -758,6 +774,7 @@ msgstr "Desde la fecha"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_contact_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_contact_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_contact_name
@@ -839,6 +856,7 @@ msgstr "Invertir el signo de la suma"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_journal_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_journal_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_journal_id
@@ -856,6 +874,7 @@ msgstr "Diario"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod115_report_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod123_report_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod130_report_journal_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod190_report_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod216_report_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod296_report_journal_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod303_report_journal_id
@@ -878,6 +897,7 @@ msgstr "Apuntes contables"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_representative_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_representative_vat
@@ -938,6 +958,7 @@ msgstr "Izquierda"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod115_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod123_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod130_report_representative_vat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod190_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod216_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod296_report_representative_vat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod303_report_representative_vat
@@ -981,6 +1002,7 @@ msgstr "Líneas de mapeo"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_model_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_model_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_model_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_model_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_model_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_model_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_model_id
@@ -1000,6 +1022,7 @@ msgstr "Modelo"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_number
@@ -1020,6 +1043,7 @@ msgstr "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod115_report_contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod123_report_contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod130_report_contact_name
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod190_report_contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod216_report_contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod296_report_contact_name
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod303_report_contact_name
@@ -1058,6 +1082,7 @@ msgstr "Ninguna configuración de exportación seleccionada."
 #: selection:l10n.es.aeat.mod115.report,type:0
 #: selection:l10n.es.aeat.mod123.report,type:0
 #: selection:l10n.es.aeat.mod130.report,type:0
+#: selection:l10n.es.aeat.mod190.report,type:0
 #: selection:l10n.es.aeat.mod216.report,type:0
 #: selection:l10n.es.aeat.mod296.report,type:0
 #: selection:l10n.es.aeat.mod303.report,type:0
@@ -1122,6 +1147,7 @@ msgstr "Otros parámetros"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_partner_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_partner_id
@@ -1139,6 +1165,7 @@ msgstr "Empresa"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_period_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_period_type
@@ -1156,6 +1183,7 @@ msgstr "Tipo de periodo"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_contact_phone
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_contact_phone
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_contact_phone
@@ -1196,6 +1224,7 @@ msgstr "Carácter del signo positivo"
 #: selection:l10n.es.aeat.mod115.report,state:0
 #: selection:l10n.es.aeat.mod123.report,state:0
 #: selection:l10n.es.aeat.mod130.report,state:0
+#: selection:l10n.es.aeat.mod190.report,state:0
 #: selection:l10n.es.aeat.mod216.report,state:0
 #: selection:l10n.es.aeat.mod296.report,state:0
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -1213,6 +1242,7 @@ msgstr "Contabilizado"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_previous_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_previous_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_previous_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_previous_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_previous_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_previous_number
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_previous_number
@@ -1230,6 +1260,7 @@ msgstr "Nº previo de declaración"
 #: selection:l10n.es.aeat.mod115.report,state:0
 #: selection:l10n.es.aeat.mod123.report,state:0
 #: selection:l10n.es.aeat.mod130.report,state:0
+#: selection:l10n.es.aeat.mod190.report,state:0
 #: selection:l10n.es.aeat.mod216.report,state:0
 #: selection:l10n.es.aeat.mod296.report,state:0
 #: selection:l10n.es.aeat.mod303.report,state:0
@@ -1292,6 +1323,7 @@ msgstr "Informe"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_name
@@ -1336,6 +1368,7 @@ msgstr "Ver asiento"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_date_start
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_date_start
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_date_start
@@ -1353,6 +1386,7 @@ msgstr "Fecha inicial"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_state
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_state
@@ -1372,6 +1406,7 @@ msgstr "Estado"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_type
@@ -1395,6 +1430,7 @@ msgstr "Sub-configuración"
 #: selection:l10n.es.aeat.mod115.report,type:0
 #: selection:l10n.es.aeat.mod123.report,type:0
 #: selection:l10n.es.aeat.mod130.report,type:0
+#: selection:l10n.es.aeat.mod190.report,type:0
 #: selection:l10n.es.aeat.mod216.report,type:0
 #: selection:l10n.es.aeat.mod296.report,type:0
 #: selection:l10n.es.aeat.mod303.report,type:0
@@ -1417,6 +1453,7 @@ msgstr "Tipo de suma"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_support_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_support_type
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_support_type
@@ -1443,6 +1480,7 @@ msgstr "Líneas de mapeo de impuestos"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod111_report_tax_line_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_tax_line_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_tax_line_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_tax_line_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_tax_line_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_tax_line_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_tax_line_ids
@@ -1481,6 +1519,7 @@ msgstr "Plantillas de impuestos"
 #: selection:l10n.es.aeat.mod115.report,support_type:0
 #: selection:l10n.es.aeat.mod123.report,support_type:0
 #: selection:l10n.es.aeat.mod130.report,support_type:0
+#: selection:l10n.es.aeat.mod190.report,support_type:0
 #: selection:l10n.es.aeat.mod216.report,support_type:0
 #: selection:l10n.es.aeat.mod296.report,support_type:0
 #: selection:l10n.es.aeat.mod303.report,support_type:0
@@ -1505,6 +1544,7 @@ msgstr "La cadena formateada debe satisfacer el tamaño dado."
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod115_report_counterpart_account_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod123_report_counterpart_account_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod130_report_counterpart_account_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod190_report_counterpart_account_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod216_report_counterpart_account_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod296_report_counterpart_account_id
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_mod347_report_counterpart_account_id
@@ -1552,6 +1592,7 @@ msgstr "Total impuestos (Cuota)"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_company_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_company_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_company_vat
@@ -1591,6 +1632,7 @@ msgstr "Opción de alineamiento errónea. Debería ser < o >"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod115_report_year
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod123_report_year
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod130_report_year
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod190_report_year
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod216_report_year
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod296_report_year
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_mod303_report_year

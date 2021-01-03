@@ -12,6 +12,7 @@
 import math
 import re
 from odoo import models, fields, api, exceptions, _
+from odoo.fields import first
 from odoo.tools import float_is_zero
 
 
@@ -100,9 +101,14 @@ class Mod349(models.Model):
     def _compute_report_refund_totals(self):
         for report in self:
             report.total_partner_refunds = len(report.partner_refund_ids)
-            report.total_partner_refunds_amount = sum(
+            total_origin_amount = sum(
+                report.mapped('partner_refund_ids.total_origin_amount')
+            )
+            total_operation_amount = sum(
                 report.mapped('partner_refund_ids.total_operation_amount')
             )
+            report.total_partner_refunds_amount = total_origin_amount - \
+                total_operation_amount
 
     def _create_349_details(self, move_lines):
         for move_line in move_lines:
@@ -183,11 +189,18 @@ class Mod349(models.Model):
         # This is for avoiding to find same lines several times
         visited_details = self.env['l10n.es.aeat.mod349.partner_record_detail']
         visited_move_lines = self.env['account.move.line']
+        groups = {}
         for refund_detail in self.partner_refund_detail_ids:
+            move_line = refund_detail.refund_line_id
+            origin_invoice = move_line.invoice_id.refund_invoice_id
+            groups.setdefault(origin_invoice, refund_detail_obj)
+            groups[origin_invoice] += refund_detail
+        for origin_invoice in groups:
+            refund_details = groups[origin_invoice]
+            refund_detail = first(refund_details)
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
             op_key = move_line.l10n_es_aeat_349_operation_key
-            origin_invoice = move_line.invoice_id.refund_invoice_id
             if not origin_invoice:
                 # TODO: Instead continuing, generate an empty record and a msg
                 continue
@@ -240,7 +253,7 @@ class Mod349(models.Model):
                 'refund_details': refund_detail_obj,
             })
             key_vals['original_amount'] += origin_amount
-            key_vals['refund_details'] += refund_detail
+            key_vals['refund_details'] += refund_details
         for key, key_vals in data.items():
             partner, op_key, period_type, year = key
             partner_refund = obj.create({

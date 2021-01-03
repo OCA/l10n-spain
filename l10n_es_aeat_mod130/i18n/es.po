@@ -246,9 +246,6 @@ msgstr "No implementado"
 #. module: l10n_es_aeat_mod130
 #: code:addons/l10n_es_aeat_mod130/models/mod130.py:169
 #, fuzzy, python-format
-#| msgid ""
-#| "No se pueden calcular por el momento declaraciones que contengan "
-#| "deducciones por el artí­culo 80 bis."
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
 "por el artículo 80 bis."
@@ -348,7 +345,6 @@ msgstr "[03] Rendimiento neto"
 #. module: l10n_es_aeat_mod130
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
 #, fuzzy
-#| msgid "[04] 20% de la casilla [03]"
 msgid "[04] 20% casilla (03)"
 msgstr "[04] 20% de la casilla [03]"
 

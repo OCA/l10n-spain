@@ -14,6 +14,7 @@ from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_compare
 from odoo import exceptions
 from odoo import http
+from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 
@@ -43,8 +44,6 @@ class AcquirerRedsys(models.Model):
     provider = fields.Selection(selection_add=[('redsys', 'Redsys')])
     redsys_merchant_name = fields.Char('Merchant Name',
                                        required_if_provider='redsys')
-    redsys_merchant_titular = fields.Char('Merchant Titular',
-                                          required_if_provider='redsys')
     redsys_merchant_code = fields.Char('Merchant code',
                                        required_if_provider='redsys')
     redsys_merchant_description = fields.Char('Product Description',
@@ -142,9 +141,8 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_Terminal': self.redsys_terminal or '1',
             'Ds_Merchant_TransactionType': (
                 self.redsys_transaction_type or '0'),
-            'Ds_Merchant_Titular': (
-                self.redsys_merchant_titular[:60] and
-                self.redsys_merchant_titular[:60]),
+            'Ds_Merchant_Titular': tx_values.get(
+                'billing_partner', self.env.user.partner_id).display_name[:60],
             'Ds_Merchant_MerchantName': (
                 self.redsys_merchant_name and
                 self.redsys_merchant_name[:25]),
@@ -197,6 +195,14 @@ class AcquirerRedsys(models.Model):
     @api.multi
     def redsys_form_generate_values(self, values):
         self.ensure_one()
+        redsys_tx = self.env['payment.transaction'].search([
+            ('reference', '=', values['reference'])
+        ])
+        if redsys_tx and not config['test_enable']:
+            reference = self.env['ir.sequence'].next_by_code(
+                'payment.transaction')
+            redsys_tx.write({'reference': reference})
+            values.update({'reference': reference})
         redsys_values = dict(values)
         merchant_parameters = self._prepare_merchant_parameters(values)
         redsys_values.update({
@@ -392,3 +398,14 @@ class TxRedsys(models.Model):
                 'Fail to confirm the order or send the confirmation email%s',
                 tx and ' for the transaction %s' % tx.reference or '')
         return res
+
+    def _confirm_so(self):
+        if (self.state == 'pending' and self.sale_order_id.state == 'draft' and
+                self.acquirer_id.provider == 'redsys'):
+            _logger.info(
+                '<%s> transaction not processed for order %s (ID %s)',
+                self.acquirer_id.provider, self.sale_order_id.name,
+                self.sale_order_id.id)
+            return False
+        else:
+            return super()._confirm_so()

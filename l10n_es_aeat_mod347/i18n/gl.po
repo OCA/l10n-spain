@@ -141,14 +141,12 @@ msgstr "3 - España, sen referencia catastral"
 #. module: l10n_es_aeat_mod347
 #: model:ir.actions.report,name:l10n_es_aeat_mod347.347_partner
 #, fuzzy
-#| msgid "Partner info"
 msgid "347 Partner Detail"
 msgstr "Información da empresa"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,report_name:l10n_es_aeat_mod347.email_template_347
 #, fuzzy
-#| msgid "Details"
 msgid "347_details"
 msgstr "Detalles"
 
@@ -219,7 +217,6 @@ msgstr "Modelo AEAT 347"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_move
 #, fuzzy
-#| msgid "Account period"
 msgid "Account Entry"
 msgstr "Período contable"
 
@@ -244,42 +241,36 @@ msgstr "Importe"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 1Q:"
 msgstr "Importe"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 2Q:"
 msgstr "Importe"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 3Q:"
 msgstr "Importe"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount 4Q:"
 msgstr "Importe"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record_amount_signed
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount signed"
 msgstr "Importe"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Amount"
 msgid "Amount:"
 msgstr "Importe"
 
@@ -328,7 +319,6 @@ msgstr "Parámetros de cálculo"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_cash_amount
 #, fuzzy
-#| msgid "Cash amount"
 msgid "Cash Amount"
 msgstr "Importe en efectivo"
 
@@ -340,14 +330,12 @@ msgstr "Operación de criterio de caixa"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Cash Record"
 msgid "Cash Register"
 msgstr "Rexistro de efectivo"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_cash_record_ids
 #, fuzzy
-#| msgid "Cash amount"
 msgid "Cash payments"
 msgstr "Importe en efectivo"
 
@@ -501,7 +489,6 @@ msgstr "F - Ventas axencia viaxes"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_first_quarter
 #, fuzzy
-#| msgid "Insurance Operation"
 msgid "First quarter operations"
 msgstr "Operación de seguro"
 
@@ -518,7 +505,6 @@ msgstr "Andar"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move_not_in_mod347
 #, fuzzy
-#| msgid "Not included in 347 report"
 msgid "Force not included in 347 report"
 msgstr "Non incluída na declaración AEAT modelo 347"
 
@@ -588,7 +574,6 @@ msgstr "Operación de seguro"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
 #, fuzzy
-#| msgid "Invoice records"
 msgid "Invalid records"
 msgstr "Rexistros de facturas"
 
@@ -607,7 +592,6 @@ msgstr "Límite facturado (1)"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Invoice"
 msgid "Invoices"
 msgstr "Factura"
 
@@ -633,7 +617,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record___last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report___last_update
 #, fuzzy
-#| msgid "Last Updated on"
 msgid "Last Modified on"
 msgstr "Actualizado por derradeira vez o"
 
@@ -667,7 +650,6 @@ msgstr "Mód"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_number
 #, fuzzy
-#| msgid "VAT number"
 msgid "Model number"
 msgstr "NIF"
 
@@ -675,7 +657,6 @@ msgstr "NIF"
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_failed
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
 #, fuzzy
-#| msgid "AEAT Model 347"
 msgid "Modelo 347"
 msgstr "Modelo AEAT 347"
 
@@ -687,14 +668,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_move_record
 #, fuzzy
-#| msgid "Invoice Record"
 msgid "Move Record"
 msgstr "Rexistro de factura"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #, fuzzy
-#| msgid "Invoice record"
 msgid "Move record"
 msgstr "Rexistro de factura"
 
@@ -702,14 +681,12 @@ msgstr "Rexistro de factura"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_move_record_ids
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #, fuzzy
-#| msgid "Invoice records"
 msgid "Move records"
 msgstr "Rexistros de facturas"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record_move_type
 #, fuzzy
-#| msgid "Number type"
 msgid "Move type"
 msgstr "Tipo de numeración"
 
@@ -797,14 +774,12 @@ msgstr "Importe de operacións"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_origin_year
 #, fuzzy
-#| msgid "Origin cash operation fiscal year"
 msgid "Origin cash operation year"
 msgstr "Exercicio fiscal orixe das operacións en efectivo."
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_origin_year
 #, fuzzy
-#| msgid "Origin fiscal year"
 msgid "Origin year"
 msgstr "Exercicio fiscal de orixe"
 
@@ -842,7 +817,6 @@ msgstr "Rexistro da empresa"
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:137
 #, fuzzy, python-format
-#| msgid "Partner records"
 msgid "Partner record errors:\n"
 msgstr "Rexistros de empresas"
 
@@ -856,7 +830,6 @@ msgstr "Rexistros de empresas"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_partner_records
 #, fuzzy
-#| msgid "Partner records"
 msgid "Partners records"
 msgstr "Rexistros de empresas"
 
@@ -868,7 +841,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
 #, fuzzy
-#| msgid "Payment records"
 msgid "Pending records"
 msgstr "Rexistros de pagamento"
 
@@ -899,7 +871,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_real_estate_amount
 #, fuzzy
-#| msgid "Real Estate Record"
 msgid "Real Estate Amount"
 msgstr "Rexistros de inmobles"
 
@@ -923,7 +894,6 @@ msgstr "Importe de transmisións de inmobles"
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_real_estate_transmissions_amount
 #, fuzzy
-#| msgid "Real Estate Transmisions amount"
 msgid "Real Estate Transmissions Amount"
 msgstr "Importe de transmisións de inmobles"
 
@@ -935,7 +905,6 @@ msgstr "Rexistros de inmobles"
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
-#| msgid "Real Estate Transmisions amount"
 msgid "Real State Transmissions"
 msgstr "Importe de transmisións de inmobles"
 
@@ -957,14 +926,12 @@ msgstr "Información de inmobles"
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:141
 #, fuzzy, python-format
-#| msgid "Real Estate records"
 msgid "Real estate record errors:\n"
 msgstr "Rexistros de inmobles"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_total_real_estate_records
 #, fuzzy
-#| msgid "Real Estate records"
 msgid "Real estate records"
 msgstr "Rexistros de inmobles"
 
@@ -992,14 +959,12 @@ msgstr "Rexistro"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record_check_ok
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record_check_ok
 #, fuzzy
-#| msgid "Record"
 msgid "Record is OK"
 msgstr "Rexistro"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
 #, fuzzy
-#| msgid "Record"
 msgid "Records"
 msgstr "Rexistro"
 
