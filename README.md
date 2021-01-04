@@ -23,6 +23,7 @@ addon | version | summary
 [l10n_es_dua](l10n_es_dua/) | 14.0.1.0.0 | Importaciones con DUA
 [l10n_es_partner](l10n_es_partner/) | 14.0.1.0.0 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 14.0.1.0.0 | Añade los datos del registro mercantil a la empresa
+[payment_redsys](payment_redsys/) | 14.0.1.0.0 | Payment Acquirer: Redsys Implementation
 
 [//]: # (end addons)
 
