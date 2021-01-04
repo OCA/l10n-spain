@@ -1,4 +1,4 @@
-# Copyright 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2016-2017 Tecnativa - Sergio Teruel
 # Copyright 2019 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
@@ -27,7 +27,7 @@ class RedsysController(http.Controller):
             "/payment/redsys/reject",
         ],
         type="http",
-        auth="none",
+        auth="public",
         csrf=False,
     )
     def redsys_return(self, **post):

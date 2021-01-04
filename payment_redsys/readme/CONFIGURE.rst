@@ -20,13 +20,6 @@ Parámetros
 
 * **Idioma TPV**: Indicaremos el idioma en el TPV.
 
-* **URL_OK/URL_KO**: Durante el proceso del pago, y una vez que
-  se muestra al cliente la pantalla con el resultado del mismo, es
-  posible redirigir su navegador a una URL para las transacciones
-  autorizadas y a otra si la transacción ha sido denegada. A éstas
-  se las denomina URL_OK y URL_KO, respectivamente. Se trata
-  de dos URLs que pueden ser proporcionadas por el comercio.
-
 * **Porcentaje de pago**: Indicar el porcentaje de pago que se permite, si
   se deja a 0.0 se entiende 100%.
 

@@ -1,5 +1,6 @@
-# Copyright 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2016-2017 Tecnativa - Sergio Teruel
 # Copyright 2019 Ignacio Ibeas <ignacio@acysos.com>
+# Copyright 2020 Tecnativa - João Marques
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import base64
@@ -27,8 +28,7 @@ class AcquirerRedsys(models.Model):
     _inherit = "payment.acquirer"
 
     def _get_redsys_urls(self, environment):
-        """ Redsys URLs
-        """
+        """Redsys URLs"""
         if environment == "prod":
             return {
                 "redsys_form_url": "https://sis.redsys.es/sis/realizarPago/",
@@ -38,7 +38,9 @@ class AcquirerRedsys(models.Model):
                 "redsys_form_url": "https://sis-t.redsys.es:25443/sis/realizarPago/",
             }
 
-    provider = fields.Selection(selection_add=[("redsys", "Redsys")])
+    provider = fields.Selection(
+        selection_add=[("redsys", "Redsys")], ondelete={"redsys": "set default"}
+    )
     redsys_merchant_name = fields.Char("Merchant Name", required_if_provider="redsys")
     redsys_merchant_code = fields.Char("Merchant code", required_if_provider="redsys")
     redsys_merchant_description = fields.Char(
@@ -106,7 +108,7 @@ class AcquirerRedsys(models.Model):
     @api.model
     def _get_website_callback_url(self):
         """For force a callback url from Redsys distinct to base url website,
-         only apply to a Redsys response.
+        only apply to a Redsys response.
         """
         get_param = self.env["ir.config_parameter"].sudo().get_param
         return get_param("payment_redsys.callback_url")
@@ -240,8 +242,8 @@ class TxRedsys(models.Model):
 
     @api.model
     def _redsys_form_get_tx_from_data(self, data):
-        """ Given a data dict coming from redsys, verify it and
-        find the related transaction record. """
+        """Given a data dict coming from redsys, verify it and
+        find the related transaction record."""
         parameters = data.get("Ds_MerchantParameters", "")
         parameters_dic = json.loads(base64.b64decode(parameters).decode())
         reference = urllib.parse.unquote(parameters_dic.get("Ds_Order", ""))
