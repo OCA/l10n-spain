@@ -1,11 +1,11 @@
-# © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# Copyright 2016-2017 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import json
 import logging
+from unittest.mock import patch
 
 from lxml import objectify
-from mock import patch
 
 from odoo import http
 from odoo.tests.common import HttpCase
