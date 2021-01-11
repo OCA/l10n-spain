@@ -21,7 +21,8 @@ class AccountInvoiceIntegrationMethod(models.Model):
     def integration_values(self, invoice):
         return {
             'method_id': self.id,
-            'invoice_id': invoice.id
+            'invoice_id': invoice.id,
+            'attachment_ids': []
         }
 
     def create_integration(self, invoice):

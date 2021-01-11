@@ -382,10 +382,20 @@
                             </Installment>
                     </PaymentDetails>
                     <LegalLiterals t-if="False"/>
-                    <AdditionalData t-if="invoice.comment">
+                    <t t-set="attachments" t-value="invoice._get_facturae_invoice_attachments()"/>
+                    <AdditionalData t-if="invoice.comment or attachments">
                         <RelatedInvoice t-if="False"/>
-                        <RelatedDocuments t-if="False"/>
-                        <InvoiceAdditionalInformation t-length="2500" t-esc="invoice.comment"/>
+                        <RelatedDocuments t-if="attachments">
+                            <Attachment t-foreach="attachments" t-as="attachment">
+                                <AttachmentCompressionAlgorithm t-esc="attachment.get('compression', False)"
+                                                                t-if="attachment.get('compression', False)"/>
+                                <AttachmentFormat t-esc="attachment['content_type']"/>
+                                <AttachmentEncoding t-esc="attachment.get('encoding', False)" t-if="attachment.get('encoding', False)"/>
+                                <AttachmentDescription t-esc="attachment.get('description', False)" t-if="attachment.get('description', False)"/>
+                                <AttachmentData t-esc="attachment['data']"/>
+                            </Attachment>
+                        </RelatedDocuments>
+                        <InvoiceAdditionalInformation t-length="2500" t-esc="invoice.comment" t-if="invoice.comment"/>
                         <Extensions t-if="False"/>
                     </AdditionalData>
                 </Invoice>
