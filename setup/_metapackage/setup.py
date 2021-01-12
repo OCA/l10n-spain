@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_aeat_mod303',
         'odoo13-addon-l10n_es_aeat_mod347',
         'odoo13-addon-l10n_es_aeat_mod349',
+        'odoo13-addon-l10n_es_aeat_mod390',
         'odoo13-addon-l10n_es_aeat_sii_oca',
         'odoo13-addon-l10n_es_dua',
         'odoo13-addon-l10n_es_mis_report',
