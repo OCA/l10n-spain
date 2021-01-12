@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 PlanetaTIC - Marc Poch <mpoch@planetatic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position='before'>
+                <page string="MRW Configuration" attrs="{'invisible': [('delivery_type', '!=', 'mrw')]}">
+                    <group>
+                        <group>
+                            <field name="mrw_api_franchise" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
+                            <field name="mrw_api_subscriber" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
+                            <field name="mrw_api_user" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
+                            <field name="mrw_api_password" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
+                            <field name="mrw_service"/>
+                        </group>
+                        <group>
+                            <field name="mrw_in_franchise"/>
+                            <field name="mrw_delivery_on_saturday"/>
+                            <field name="mrw_return"/>
+                            <field name="mrw_refund"/>
+                            <field name="mrw_label_type"/>
+                            <field name="mrw_margin_top"/>
+                            <field name="mrw_margin_left"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
