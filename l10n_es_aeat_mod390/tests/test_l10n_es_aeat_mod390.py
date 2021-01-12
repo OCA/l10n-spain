@@ -101,7 +101,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # Modificación de bases
         ('29', -12450),  # -7140.0 - 4860.0 - 450.0
         # Modificación de cuotas
-        ('30', -897.6 - 619.7),
+        ('30', -897.6 - 673.9),
         # Recargo de equivalencia - Base 0,5%
         ('35', 5100.0),
         # Recargo de equivalencia - Cuota 0,5%
@@ -254,8 +254,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
             )
         # Check computed fields
         self.assertAlmostEqual(self.model390.casilla_33, 17700.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_34, 2306.2, 2)
-        self.assertAlmostEqual(self.model390.casilla_47, 2571.2, 2)
+        self.assertAlmostEqual(self.model390.casilla_34, 2252.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_47, 2517.0, 2)
         self.assertAlmostEqual(self.model390.casilla_48, 6660.0, 2)
         self.assertAlmostEqual(self.model390.casilla_49, 797.4, 2)
         self.assertAlmostEqual(self.model390.casilla_50, 2880.0, 2)
@@ -271,8 +271,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_597, 4500.0, 2)
         self.assertAlmostEqual(self.model390.casilla_598, 576.0, 2)
         self.assertAlmostEqual(self.model390.casilla_64, 2408.45, 2)
-        self.assertAlmostEqual(self.model390.casilla_65, 162.75, 2)
-        self.assertAlmostEqual(self.model390.casilla_86, 162.75, 2)
+        self.assertAlmostEqual(self.model390.casilla_65, 108.55, 2)
+        self.assertAlmostEqual(self.model390.casilla_86, 108.55, 2)
         self.assertAlmostEqual(self.model390.casilla_108, 21280.0, 2)
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
