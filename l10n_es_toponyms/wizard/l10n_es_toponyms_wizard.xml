@@ -16,14 +16,15 @@
                     string="This wizard will add city and state information to zip codes"
                 >
                     <label
-                        for=""
+                        for="action_next"
                         colspan="2"
+                        class="o_form_label"
                         string="Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."
                     />
                 </group>
             </separator>
             <button name="action_next" position="attributes">
-                <attribute name="string">Configure from GeoNames</attribute>
+                <attribute name="string">Import data from GeoNames</attribute>
             </button>
         </field>
     </record>
