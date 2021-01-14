@@ -5,7 +5,7 @@
 {
     "name": "Importación de extractos bancarios españoles (Norma 43)",
     "category": "Accounting & Finance",
-    "version": "13.0.1.0.1",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "development_status": "Mature",
     "maintainers": ["pedrobaeza"],
@@ -13,11 +13,11 @@
     "Tecnativa,"
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
-    "depends": ["account_bank_statement_import"],
+    "depends": ["account_statement_import"],
     "external_dependencies": {"python": ["chardet"]},
     "data": [
         "views/account_journal_views.xml",
-        "wizards/account_bank_statement_import_view.xml",
+        "wizards/account_statement_import_view.xml",
     ],
     "installable": True,
 }

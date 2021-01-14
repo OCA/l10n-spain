@@ -1,6 +1,7 @@
 * `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+  * Pedro M. Baeza
+  * Carlos Roca
 
 * `Comunitea <https://www.comunitea.com>`__:
 

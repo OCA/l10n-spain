@@ -1,4 +1,5 @@
 # Copyright 2013-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -39,8 +40,8 @@ account_mapping = {
 }
 
 
-class AccountBankStatementImport(models.TransientModel):
-    _inherit = "account.bank.statement.import"
+class AccountStatementImport(models.TransientModel):
+    _inherit = "account.statement.import"
 
     def _process_record_11(self, line):
         """11 - Registro cabecera de cuenta (obligatorio)"""
@@ -63,7 +64,6 @@ class AccountBankStatementImport(models.TransientModel):
         }
         if line[32:33] == "1":  # pragma: no cover
             st_group["saldo_ini"] *= -1
-        self.balance_start = st_group["saldo_ini"]
         return st_group
 
     def _process_record_22(self, line):
@@ -107,7 +107,6 @@ class AccountBankStatementImport(models.TransientModel):
         st_group["saldo_fin"] += float("{}.{}".format(line[59:71], line[71:73]))
         if line[58:59] == "1":  # pragma: no cover
             st_group["saldo_fin"] *= -1
-        self.balance_end = st_group["saldo_fin"]
         # Group level checks
         debit_count = 0
         debit = 0.0
@@ -364,7 +363,7 @@ class AccountBankStatementImport(models.TransientModel):
                         line[journal.n43_date_type or "fecha_valor"]
                     ),
                     "name": " ".join(conceptos),
-                    "ref": self._get_n43_ref(line),
+                    "payment_ref": self._get_n43_ref(line),
                     "amount": line["importe"],
                     # inject raw parsed N43 dict for later use, that will be
                     # removed before passing final values to create the record
@@ -383,13 +382,15 @@ class AccountBankStatementImport(models.TransientModel):
         }
         if date:
             vals_bank_statement["date"] = date
-        return None, None, [vals_bank_statement]
+        return (
+            journal.currency_id.name,
+            n43 and n43[0]["cuenta"] or None,
+            [vals_bank_statement],
+        )
 
     def _complete_stmts_vals(self, stmts_vals, journal, account_number):
         """Match partner_id if if hasn't been deducted yet."""
-        res = super(AccountBankStatementImport, self)._complete_stmts_vals(
-            stmts_vals, journal, account_number
-        )
+        res = super()._complete_stmts_vals(stmts_vals, journal, account_number)
         for st_vals in res:
             for line_vals in st_vals["transactions"]:
                 if line_vals.get("n43_line"):
