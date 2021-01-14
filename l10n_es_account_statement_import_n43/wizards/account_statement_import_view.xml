@@ -1,10 +1,10 @@
 <?xml version="1.0" ?>
 <odoo>
-    <record id="account_bank_statement_import_view" model="ir.ui.view">
-        <field name="model">account.bank.statement.import</field>
+    <record id="account_statement_import_form" model="ir.ui.view">
+        <field name="model">account.statement.import</field>
         <field
             name="inherit_id"
-            ref="account_bank_statement_import.account_bank_statement_import_view"
+            ref="account_statement_import.account_statement_import_form"
         />
         <field name="arch" type="xml">
             <xpath expr="//ul[@id='statement_format']" position="inside">
