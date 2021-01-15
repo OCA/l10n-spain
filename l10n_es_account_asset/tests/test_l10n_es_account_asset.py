@@ -113,9 +113,6 @@ class TestL10nEsAccountAsset(common.SavepointCase):
 
     def test_assign_profile(self):
         # direct profile assignation
-        asset = self.asset.copy(
-            {"name": "Test Asset 2", "method_time": "year", "method_percentage": 0}
-        )
         profile = self.profile.copy(
             {
                 "name": "Test asset category percentage",
@@ -128,7 +125,7 @@ class TestL10nEsAccountAsset(common.SavepointCase):
         self.assertEqual(self.asset.method_time, "percentage")
         self.assertEqual(self.asset.annual_percentage, 20)
         # asset creation
-        asset = self.asset.create(
+        asset = self.asset_model.create(
             {
                 "name": "Test Asset 2",
                 "profile_id": profile.id,
