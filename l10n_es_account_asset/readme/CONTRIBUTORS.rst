@@ -2,6 +2,7 @@
 
   * Pedro M. Baeza
   * Antonio Espinosa
+  * João Marques
 
 * `Sygel <https://www.sygel.es>`__:
 
