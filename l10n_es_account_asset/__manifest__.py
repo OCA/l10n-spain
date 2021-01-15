@@ -1,11 +1,12 @@
 # Copyright 2015 AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2012-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Gestión de activos fijos para España",
-    "version": "13.0.1.0.1",
+    "version": "14.0.1.0.0",
     "depends": ["account_asset_management"],
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
