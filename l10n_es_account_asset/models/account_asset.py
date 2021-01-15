@@ -111,7 +111,7 @@ class AccountAssetAsset(models.Model):
     def _compute_depreciation_amount_per_fiscal_year(
         self, table, line_dates, depreciation_start_date, depreciation_stop_date
     ):
-        """"Simulate the computation like year one."""
+        """Simulate the computation like year one."""
         is_changed = self.method_time == "percentage"
         obj = self
         if is_changed:
@@ -132,7 +132,7 @@ class AccountAssetAsset(models.Model):
     def _compute_depreciation_table_lines(
         self, table, depreciation_start_date, depreciation_stop_date, line_dates
     ):
-        """"Simulate the computation like year one."""
+        """Simulate the computation like year one."""
         is_changed = self.method_time == "percentage"
         obj = self
         if is_changed:
