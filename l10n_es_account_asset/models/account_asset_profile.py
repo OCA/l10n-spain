@@ -21,7 +21,9 @@ class AccountAssetProfile(models.Model):
         return res
 
     annual_percentage = fields.Float(
-        string="Annual depreciation percentage", digits=(3, 8), default=100.0,
+        string="Annual depreciation percentage",
+        digits=(3, 8),
+        default=100.0,
     )
     method_percentage = fields.Float(
         string="Depreciation percentage",
@@ -36,7 +38,10 @@ class AccountAssetProfile(models.Model):
         for profile in self:
             profile.method_percentage = (
                 profile.annual_percentage
-                * profile.METHOD_PERIOD_MAPPING.get(profile.method_period, 12,)
+                * profile.METHOD_PERIOD_MAPPING.get(
+                    profile.method_period,
+                    12,
+                )
                 / 12
             )
 
