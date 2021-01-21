@@ -182,21 +182,21 @@ class L10nEsVatBook(models.Model):
 
     def calculate(self):
         """
-            Funcion call from vat_book
+        Funcion call from vat_book
         """
         self._calculate_vat_book()
         return True
 
     def _prepare_book_line_vals(self, move_line, line_type):
         """
-            This function make the dictionary to create a new record in issued
-            invoices, Received invoices or rectification invoices
+        This function make the dictionary to create a new record in issued
+        invoices, Received invoices or rectification invoices
 
-            Args:
-                move_line (obj): move
+        Args:
+            move_line (obj): move
 
-            Returns:
-                dictionary: Vals from the new record.
+        Returns:
+            dictionary: Vals from the new record.
         """
         ref = move_line.ref
         ext_ref = ""
@@ -289,7 +289,7 @@ class L10nEsVatBook(models.Model):
 
     def _clear_old_data(self):
         """
-            This function clean all the old data to make a new calculation
+        This function clean all the old data to make a new calculation
         """
         self.line_ids.unlink()
         self.summary_ids.unlink()
@@ -382,8 +382,8 @@ class L10nEsVatBook(models.Model):
 
     def _calculate_vat_book(self):
         """
-            This function calculate all the taxes, from issued invoices,
-            received invoices and rectification invoices
+        This function calculate all the taxes, from issued invoices,
+        received invoices and rectification invoices
         """
         for rec in self:
             if not rec.company_id.partner_id.vat:
@@ -425,8 +425,8 @@ class L10nEsVatBook(models.Model):
             book_type = "received"
             received_tax_lines = rec.received_line_ids.mapped("tax_line_ids")
             # flake8: noqa
-            rectification_received_tax_lines = rec.rectification_received_line_ids.mapped(
-                "tax_line_ids"
+            rectification_received_tax_lines = (
+                rec.rectification_received_line_ids.mapped("tax_line_ids")
             )
             tax_summary_data_recs = rec._prepare_vat_book_tax_summary(
                 received_tax_lines + rectification_received_tax_lines, book_type
