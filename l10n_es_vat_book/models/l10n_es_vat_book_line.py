@@ -50,8 +50,12 @@ class L10nEsVatBookLine(models.Model):
 
     exception_text = fields.Char(string="Exception text")
 
-    base_amount = fields.Float(string="Base",)
-    total_amount = fields.Float(string="Total",)
+    base_amount = fields.Float(
+        string="Base",
+    )
+    total_amount = fields.Float(
+        string="Total",
+    )
     special_tax_group = fields.Selection(
         selection=_selection_special_tax_group,
         string="Special group",
