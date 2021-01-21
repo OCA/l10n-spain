@@ -1,5 +1,6 @@
 
 from odoo import api, fields, models, exceptions, _
+from odoo.tools import float_compare
 
 
 class L10nEsAeatMod190Report(models.Model):
@@ -52,10 +53,10 @@ class L10nEsAeatMod190Report(models.Model):
                     line.retenciones_dinerarias + \
                     line.retenciones_dinerarias_incap
 
-            if self.casilla_02 != percepciones:
+            if float_compare(self.casilla_02, percepciones, 2) != 0:
                 valid = False
 
-            if self.casilla_03 != retenciones:
+            if float_compare(self.casilla_03, retenciones, 2) != 0:
                 valid = False
 
             if not valid:
