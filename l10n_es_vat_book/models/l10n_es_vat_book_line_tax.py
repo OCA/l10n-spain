@@ -35,9 +35,16 @@ class L10nEsVatBookLineTax(models.Model):
         string="Special group",
         help="Special tax group as R.Eq, IRPF, etc",
     )
-    special_tax_id = fields.Many2one(comodel_name="account.tax", string="Special Tax",)
-    special_tax_amount = fields.Float(string="Special Tax fee",)
-    total_amount_special_include = fields.Float(string="Total w/Special",)
+    special_tax_id = fields.Many2one(
+        comodel_name="account.tax",
+        string="Special Tax",
+    )
+    special_tax_amount = fields.Float(
+        string="Special Tax fee",
+    )
+    total_amount_special_include = fields.Float(
+        string="Total w/Special",
+    )
 
     @api.depends("tax_id")
     def _compute_tax_rate(self):

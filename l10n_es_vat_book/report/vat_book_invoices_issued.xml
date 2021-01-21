@@ -3,18 +3,17 @@
     <template id="report_vat_book_invoices_issued_document">
         <div class="page">
             <style type="text/css">
-               .detail_table {
-                   width:100%;
-                   margin-top: 2%;
-               }
-               .a {
-
-                }
-               .td_detail_table{
-                  width: 50%;
-                  padding-right: 5%;
-               }
-           </style>
+.detail_table {
+    width: 100%;
+    margin-top: 2%;
+}
+.a {
+}
+.td_detail_table {
+    width: 50%;
+    padding-right: 5%;
+}
+            </style>
             <div class="row">
                 <div class="col-12 text-center" id="title">
                     <h3>BOOK REGISTER OF INVOICES ISSUED</h3>
