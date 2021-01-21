@@ -13,9 +13,12 @@ class AeatVatBookMapLines(models.Model):
             allfields=["special_tax_group"]
         )["special_tax_group"]["selection"]
 
-    name = fields.Char(string="Name",)
+    name = fields.Char(
+        string="Name",
+    )
     book_type = fields.Selection(
-        selection=[("issued", "Issued"), ("received", "Received")], string="Book type",
+        selection=[("issued", "Issued"), ("received", "Received")],
+        string="Book type",
     )
     special_tax_group = fields.Selection(
         selection=_selection_special_tax_group,
@@ -25,5 +28,6 @@ class AeatVatBookMapLines(models.Model):
     fee_type_xlsx_column = fields.Char(string="Type xlsx column")
     fee_amount_xlsx_column = fields.Char(string="Base xlsx column")
     tax_tmpl_ids = fields.Many2many(
-        comodel_name="account.tax.template", string="Taxes",
+        comodel_name="account.tax.template",
+        string="Taxes",
     )
