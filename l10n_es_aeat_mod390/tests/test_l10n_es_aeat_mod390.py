@@ -127,7 +127,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             # Operaciones exentas sin derecho a deducción
             ("105", 5200),
             # Adquisiciones intracomunitarias exentas
-            ("109", 6300.0),
+            ("109", 0.0),
             # IVA deducible en oper. corrientes de bienes y servicios - Base 4%
             ("190", 2100.0),
             # IVA deducible en oper. corrientes de bienes y servicios - Cuota 4%
@@ -145,7 +145,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             # Adquisiciones interiores exentas
             ("230", 1200),
             # Importaciones exentas
-            ("231", -3150.0),
+            ("231", 0.0),
             # Bases imponibles del IVA soportado no deducible
             ("232", 1260),
             # Adquisiciones intracomunitarias de servicios - Base 4%
