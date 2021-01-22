@@ -1,7 +1,7 @@
 # Copyright 2013 - Guadaltech - Alberto Martín Cortada
 # Copyright 2015 - AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
-# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2014-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Sygel - Valentin Vinagre
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
@@ -15,6 +15,13 @@ _ACCOUNT_PATTERN_MAP = {
 }
 
 NON_EDITABLE_ON_DONE = {"done": [("readonly", True)]}
+NON_EDITABLE_EXCEPT_DRAFT = {
+    "done": [("readonly", True)],
+    "calculated": [("readonly", True)],
+    "posted": [("readonly", True)],
+    "cancelled": [("readonly", True)],
+}
+EDITABLE_ON_DRAFT = {"draft": [("readonly", False)]}
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -137,7 +144,7 @@ class L10nEsAeatMod303Report(models.Model):
         selection=[("1", u"Exonerado"), ("2", u"No exonerado")],
         default="2",
         required=True,
-        states=NON_EDITABLE_ON_DONE,
+        states=NON_EDITABLE_EXCEPT_DRAFT,
         compute="_compute_exonerated_390",
         store=True,
         readonly=False,
@@ -148,7 +155,8 @@ class L10nEsAeatMod303Report(models.Model):
     has_operation_volume = fields.Boolean(
         string=u"¿Volumen de operaciones?",
         default=True,
-        states=NON_EDITABLE_ON_DONE,
+        readonly=True,
+        states=EDITABLE_ON_DRAFT,
         help=u"¿Existe volumen de operaciones (art. 121 LIVA)?",
     )
     has_347 = fields.Boolean(
