@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-13 18:57+0000\n"
-"PO-Revision-Date: 2020-08-06 12:59+0000\n"
+"POT-Creation-Date: 2021-02-17 10:44+0000\n"
+"PO-Revision-Date: 2021-02-17 11:45+0100\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_46
@@ -86,7 +86,8 @@ msgstr "3 - Epígrafe 862 correspondiente a: Alquiler de inmuebles rústicos"
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_4
 msgid "4 - Sin epígrafe, correspondiente a: Actividades AGP, no sujetas al IAE"
-msgstr "4 - Sin epígrafe, correspondiente a: Actividades AGP, no sujetas al IAE"
+msgstr ""
+"4 - Sin epígrafe, correspondiente a: Actividades AGP, no sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_4
@@ -819,6 +820,11 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__potential_cuota_compensar
+msgid "[110] Pending fees to compensate"
+msgstr "[110] A compensar pendiente"
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__total_devengado
 msgid "[27] VAT payable"
 msgstr "[27] IVA devengado"
@@ -853,11 +859,6 @@ msgstr ""
 "Regularización anual [68]"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__cuota_compensar
-msgid "[67] Fees to compensate"
-msgstr "[67] Cuotas a compensar"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__regularizacion_anual
 msgid "[68] Annual regularization"
 msgstr "[68] Regularización anual"
@@ -881,6 +882,16 @@ msgstr "[71] Result. liquidación"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_77
 msgid "[77] VAT deferred (Settle by customs)"
 msgstr "[77] Iva Diferido (Liquidado por aduana)"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__cuota_compensar
+msgid "[78] Applied fees to compensate (old [67])"
+msgstr "[78] A compensar aplicado (antigua [67])"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__remaining_cuota_compensar
+msgid "[87] Remaining fees to compensate"
+msgstr "[78] A compensar remanente"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_88
@@ -915,6 +926,3 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
-
-#~ msgid "Overdue"
-#~ msgstr "Atrasado"

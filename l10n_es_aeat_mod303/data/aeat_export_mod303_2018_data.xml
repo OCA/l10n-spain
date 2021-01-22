@@ -3595,8 +3595,9 @@
     </record>
     <!--  MAIN-303  -->
     <record id="aeat_mod303_2018_main_export_config" model="aeat.model.export.config">
-        <field name="name">Mod.303 2018-actualidad</field>
+        <field name="name">Mod.303 2018-2020</field>
         <field name="date_start">2018-01-01</field>
+        <field name="date_end">2020-12-31</field>
         <field name="model_number">303</field>
         <field
             name="model_id"

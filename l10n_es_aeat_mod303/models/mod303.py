@@ -72,12 +72,21 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_atribuible_estado",
         store=True,
     )
+    potential_cuota_compensar = fields.Float(
+        string="[110] Pending fees to compensate",
+        default=0,
+        states=NON_EDITABLE_ON_DONE,
+    )
     cuota_compensar = fields.Float(
-        string="[67] Fees to compensate",
+        string="[78] Applied fees to compensate (old [67])",
         default=0,
         states=NON_EDITABLE_ON_DONE,
         help="Fee to compensate for prior periods, in which his statement "
         "was to return and compensation back option was chosen",
+    )
+    remaining_cuota_compensar = fields.Float(
+        string="[87] Remaining fees to compensate",
+        compute="_compute_remaining_cuota_compensar",
     )
     regularizacion_anual = fields.Float(
         string="[68] Annual regularization",
@@ -329,6 +338,13 @@ class L10nEsAeatMod303Report(models.Model):
                 report.casilla_46 * report.porcentaje_atribuible_estado / 100.0
             )
 
+    @api.depends("potential_cuota_compensar", "cuota_compensar")
+    def _compute_remaining_cuota_compensar(self):
+        for record in self:
+            record.remaining_cuota_compensar = (
+                record.potential_cuota_compensar - record.cuota_compensar
+            )
+
     @api.depends(
         "atribuible_estado", "cuota_compensar", "regularizacion_anual", "casilla_77"
     )
@@ -420,6 +436,7 @@ class L10nEsAeatMod303Report(models.Model):
             )
             if prev_report.result_type == "C":
                 mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
+                mod303.potential_cuota_compensar = mod303.cuota_compensar
         return res
 
     def button_confirm(self):
@@ -432,9 +449,15 @@ class L10nEsAeatMod303Report(models.Model):
             raise exceptions.Warning(msg)
         return super(L10nEsAeatMod303Report, self).button_confirm()
 
-    @api.constrains("cuota_compensar")
+    @api.constrains("potential_cuota_compensar", "cuota_compensar")
     def check_qty(self):
-        if self.filtered(lambda x: x.cuota_compensar < 0.0):
+        if self.filtered(
+            lambda x: (
+                x.cuota_compensar < 0
+                or x.remaining_cuota_compensar < 0
+                or (x.potential_cuota_compensar - x.cuota_compensar) < 0
+            )
+        ):
             raise exceptions.ValidationError(
                 _("The fee to compensate must be indicated as a positive number.")
             )
