@@ -174,22 +174,23 @@ class L10nEsAeatMod190Report(models.Model):
 
     )
     def _compute_amount(self):
-        registros = 0
-        percepciones = 0.0
-        retenciones = 0.0
-        for line in self.partner_record_ids:
-            registros += 1
-            percepciones += (
-                line.monetary_perception +
-                line.perception_in_kind +
-                line.monetary_perception_incapacity +
-                line.perception_in_kind_incapacity)
-            retenciones += (
-                line.monetary_withholding +
-                line.monetary_withholding_incapacity)
-        self.casilla_01 = registros
-        self.casilla_02 = percepciones
-        self.casilla_03 = retenciones
+        for report in self:
+            registros = 0
+            percepciones = 0.0
+            retenciones = 0.0
+            for line in report.partner_record_ids:
+                registros += 1
+                percepciones += (
+                    line.monetary_perception +
+                    line.perception_in_kind +
+                    line.monetary_perception_incapacity +
+                    line.perception_in_kind_incapacity)
+                retenciones += (
+                    line.monetary_withholding +
+                    line.monetary_withholding_incapacity)
+            report.casilla_01 = registros
+            report.casilla_02 = percepciones
+            report.casilla_03 = retenciones
 
     def _get_line_mod190_vals(self, rp, key_id, subkey_id):
         state_code = self.SPANISH_STATES.get(
