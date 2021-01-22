@@ -51,6 +51,13 @@ class L10nEsAeatMod303Report(models.Model):
             report.casilla_46 = (report.total_devengado -
                                  report.total_deducir)
 
+    @api.depends("potential_cuota_compensar", "cuota_compensar")
+    def _compute_remaining_cuota_compensar(self):
+        for record in self:
+            record.remaining_cuota_compensar = (
+                record.potential_cuota_compensar - record.cuota_compensar
+            )
+
     @api.multi
     @api.depends('porcentaje_atribuible_estado', 'casilla_46')
     def _compute_atribuible_estado(self):
@@ -110,14 +117,21 @@ class L10nEsAeatMod303Report(models.Model):
              "de operaciones en territorio común. Los demás sujetos "
              "pasivos consignarán en esta casilla el 100%", default=100)
     atribuible_estado = fields.Float(
-        string="[66] Atribuible a la Administración", readonly=True,
-        compute="_compute_atribuible_estado", store=True)
-    cuota_compensar = fields.Float(
-        string="[67] Cuotas a compensar", default=0,
+        string="[66] Attributable to the Administration", readonly=True,
+        compute='_compute_atribuible_estado', store=True)
+    potential_cuota_compensar = fields.Float(
+        string="[110] Pending fees to compensate", default=0,
         states={'done': [('readonly', True)]},
-        help="Cuota a compensar de periodos anteriores, en los que su "
-             "declaración fue a devolver y se escogió la opción de "
-             "compensación posterior")
+    )
+    cuota_compensar = fields.Float(
+        string="[78] Applied fees to compensate (old [67])", default=0,
+        states={'done': [('readonly', True)]},
+        help="Fee to compensate for prior periods, in which his statement "
+             "was to return and compensation back option was chosen")
+    remaining_cuota_compensar = fields.Float(
+        string="[87] Remaining fees to compensate",
+        compute="_compute_remaining_cuota_compensar",
+    )
     regularizacion_anual = fields.Float(
         string="[68] Regularización anual",
         states={'done': [('readonly', True)]},
