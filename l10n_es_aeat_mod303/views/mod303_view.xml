@@ -143,7 +143,17 @@
                             options="{'currency_field': 'currency_id'}"
                         />
                         <field
+                            name="potential_cuota_compensar"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
                             name="cuota_compensar"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                        <field
+                            name="remaining_cuota_compensar"
                             widget="monetary"
                             options="{'currency_field': 'currency_id'}"
                         />

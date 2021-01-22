@@ -478,10 +478,12 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         self.model303.write(
             {
                 "porcentaje_atribuible_estado": 95,
+                "potential_cuota_compensar": 250,
                 "cuota_compensar": 250,
                 "casilla_77": 455,
             }
         )
+        self.assertAlmostEqual(self.model303.remaining_cuota_compensar, 0)
         if self.debug:
             self._print_tax_lines(self.model303.tax_line_ids)
         self._check_tax_lines()
@@ -521,6 +523,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         )
         export_config_xml_ids = [
             "l10n_es_aeat_mod303.aeat_mod303_2018_main_export_config",
+            "l10n_es_aeat_mod303.aeat_mod303_2021_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
