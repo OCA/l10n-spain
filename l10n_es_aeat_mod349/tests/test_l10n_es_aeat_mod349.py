@@ -37,10 +37,12 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         # Purchase invoices
         p1 = self._invoice_purchase_create('2017-01-01')
         p2 = self._invoice_purchase_create('2017-01-02')
+        self._invoice_purchase_create('2017-01-03')
         self._invoice_refund(p2, '2017-01-02')
         # Sale invoices
         s1 = self._invoice_sale_create('2017-01-01')
         s2 = self._invoice_sale_create('2017-01-02')
+        s3 = self._invoice_sale_create('2017-01-03')
         self._invoice_refund(s2, '2017-01-02')
         # Create model
         model349_model = self.env['l10n.es.aeat.mod349.report'].sudo(
@@ -62,35 +64,36 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         _logger.debug('Calculate AEAT 349 1T 2017')
         model349.button_calculate()
         self.assertEqual(model349.total_partner_records, 2)
-        # p1 + p2 -p3 + s1 + s2 - s3 = 2400 + 2400 - 2400 + 300 + 300 - 300
-        self.assertEqual(model349.total_partner_records_amount, 2700.00)
+        # p1 + p2 - p2* + p3 + s1 + s2 - s2* + s3 =
+        # 300 + 300 - 300 + 300 + 2400 + 2400 - 2400 + 2400
+        self.assertEqual(model349.total_partner_records_amount, 5400.00)
         self.assertEqual(model349.total_partner_refunds, 0)
         self.assertEqual(model349.total_partner_refunds_amount, 0.0)
         a_record = model349.partner_record_ids.filtered(
             lambda x: x.operation_key == 'A')
         self.assertEqual(len(a_record), 1)
-        self.assertEqual(len(a_record.record_detail_ids), 6)
+        self.assertEqual(len(a_record.record_detail_ids), 8)
         self.assertEqual(a_record.partner_vat,  self.supplier.vat)
         self.assertEqual(a_record.country_id, self.supplier.country_id)
-        # p1 + p2 - p3 = 300 + 300 - 300
-        self.assertEqual(a_record.total_operation_amount, 300)
+        # p1 + p2 - p2* + p3 = 300 + 300 - 300 + 300
+        self.assertEqual(a_record.total_operation_amount, 600)
         e_record = model349.partner_record_ids.filtered(
             lambda x: x.operation_key == 'E')
         self.assertEqual(len(e_record), 1)
-        self.assertEqual(len(e_record.record_detail_ids), 3)
+        self.assertEqual(len(e_record.record_detail_ids), 4)
         self.assertEqual(e_record.partner_vat, self.customer.vat)
         self.assertEqual(e_record.country_id, self.customer.country_id)
-        # s1 + s2 - s3 = 2400 + 2400 - 2400
-        self.assertEqual(e_record.total_operation_amount, 2400)
+        # s1 + s2 - s2* + s3 = 2400 + 2400 - 2400 + 2400
+        self.assertEqual(e_record.total_operation_amount, 4800)
         # Now we delete detailed records to see if totals are recomputed
         model349.partner_record_detail_ids.filtered(
             lambda x: x.invoice_id == p1
         ).unlink()
-        self.assertEqual(a_record.total_operation_amount, 0)
+        self.assertEqual(a_record.total_operation_amount, 300)
         model349.partner_record_detail_ids.filtered(
             lambda x: x.invoice_id == s1
         ).unlink()
-        self.assertEqual(e_record.total_operation_amount, 0)
+        self.assertEqual(e_record.total_operation_amount, 2400)
         # Create a complementary presentation for 1T 2017. We expect the
         #  application to propose the records that were not included in the
         # first presentation.
@@ -140,14 +143,15 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         model349_s.button_calculate()
         e_record = model349_s.partner_record_ids.filtered(
             lambda x: x.operation_key == 'E')
-        self.assertEqual(e_record.total_operation_amount, 2400)
+        self.assertEqual(e_record.total_operation_amount, 4800)
         a_record = model349_s.partner_record_ids.filtered(
             lambda x: x.operation_key == 'A')
-        self.assertEqual(a_record.total_operation_amount, 300)
+        self.assertEqual(a_record.total_operation_amount, 600)
         # Create a substitutive presentation for 2T 2017.
         # We create a refund of p1, and a new sale
         self._invoice_refund(p1, '2017-04-01')
         self._invoice_sale_create('2017-04-01')
+        self._invoice_refund(s3, '2017-04-03')
         model349_2t = model349_model.create({
             'name': '3490000000004',
             'company_id': self.company.id,
@@ -165,8 +169,8 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         _logger.debug('Calculate AEAT 349 2T 2017')
         model349_2t.button_calculate()
         self.assertEqual(model349_2t.total_partner_records, 1)
-        self.assertEqual(model349_2t.total_partner_refunds, 1)
-        self.assertEqual(model349_2t.total_partner_refunds_amount, 300)
+        self.assertEqual(model349_2t.total_partner_refunds, 2)
+        self.assertEqual(model349_2t.total_partner_refunds_amount, 2700)
         e_record = model349_2t.partner_record_ids.filtered(
             lambda x: x.operation_key == 'E')
         self.assertEqual(e_record.total_operation_amount, 2400)
@@ -175,13 +179,20 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
         self.assertEqual(len(a_records), 0)
         e_refunds = model349_2t.partner_refund_ids.filtered(
             lambda x: x.operation_key == 'E')
-        self.assertEqual(len(e_refunds), 0)
+        self.assertEqual(len(e_refunds), 1)
+        self.assertEqual(len(e_refunds.refund_detail_ids), 1)
+        self.assertEqual(e_refunds.total_origin_amount, 4800)
+        # total_origin_amount = Total amount partner in T1
+        # total_operation_amount = T1 partner - refund (4800 - 2400) = 2400
+        self.assertEqual(e_refunds.total_operation_amount, 2400)
         a_refund = model349_2t.partner_refund_ids.filtered(
             lambda x: x.operation_key == 'A')
         self.assertEqual(len(a_refund), 1)
         self.assertEqual(len(a_refund.refund_detail_ids), 2)
-        self.assertEqual(a_refund.total_origin_amount, 300)
-        self.assertEqual(a_refund.total_operation_amount, 0)
+        # total_origin_amount = Total amount partner in T1
+        self.assertEqual(a_refund.total_origin_amount, 600)
+        # total_operation_amount = T1 partner - refund (600 - 300) = 300
+        self.assertEqual(a_refund.total_operation_amount, 300)
         self.assertEqual(a_refund.period_type, model349_s.period_type)
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
