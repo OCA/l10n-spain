@@ -1,0 +1,1137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017-2019 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="aeat_mod390_sub03_export_config" model="aeat.model.export.config">
+        <field name="name">Mod.390 2017 - Página 3</field>
+        <field name="model_number">390</field>
+        <field name="active" eval="False" />
+    </record>
+    <record id="aeat_mod390_sub03_export_line_01" model="aeat.model.export.config.line">
+        <field name="sequence">1</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field name="name">Constante: &lt;T</field>
+        <field name="fixed_value">&lt;T</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_02" model="aeat.model.export.config.line">
+        <field name="sequence">2</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field name="name">Constante: 390</field>
+        <field name="fixed_value">390</field>
+        <field name="export_type">string</field>
+        <field name="size">3</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_03" model="aeat.model.export.config.line">
+        <field name="sequence">3</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field name="name">Página</field>
+        <field name="fixed_value">03</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_04" model="aeat.model.export.config.line">
+        <field name="sequence">4</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field name="name">Constante: 000&gt;</field>
+        <field name="fixed_value">000&gt;</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_05" model="aeat.model.export.config.line">
+        <field name="sequence">5</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field name="name">Indicador de página complementaria: En blanco</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_06" model="aeat.model.export.config.line">
+        <field name="sequence">6</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Base imponible [190]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 190).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_07" model="aeat.model.export.config.line">
+        <field name="sequence">7</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Cuota [191]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 191).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_08" model="aeat.model.export.config.line">
+        <field name="sequence">8</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Base imponible [192]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_09" model="aeat.model.export.config.line">
+        <field name="sequence">9</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Cuota [193]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_10" model="aeat.model.export.config.line">
+        <field name="sequence">10</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Base imponible [555]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_11" model="aeat.model.export.config.line">
+        <field name="sequence">11</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Cuota [556]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_12" model="aeat.model.export.config.line">
+        <field name="sequence">12</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Base imponible [603]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 603).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_13" model="aeat.model.export.config.line">
+        <field name="sequence">13</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Cuota [604]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 604).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_14" model="aeat.model.export.config.line">
+        <field name="sequence">14</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Base imponible [194]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_15" model="aeat.model.export.config.line">
+        <field name="sequence">15</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Cuota [195]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_16" model="aeat.model.export.config.line">
+        <field name="sequence">16</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Base imponible [557]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_17" model="aeat.model.export.config.line">
+        <field name="sequence">17</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Cuota [558]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_18" model="aeat.model.export.config.line">
+        <field name="sequence">18</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Base imponible [605]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 605).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_19" model="aeat.model.export.config.line">
+        <field name="sequence">19</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. corrientes bienes y servic. - Cuota [606]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 606).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_20" model="aeat.model.export.config.line">
+        <field name="sequence">20</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. inter. corrientes bienes y servic. - Base imponible [48]</field>
+        <field name="expression">${object.casilla_48}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_21" model="aeat.model.export.config.line">
+        <field name="sequence">21</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. inter. corrientes bienes y servic. - Cuota [49]</field>
+        <field name="expression">${object.casilla_49}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_22" model="aeat.model.export.config.line">
+        <field name="sequence">22</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Base imponible [506]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_23" model="aeat.model.export.config.line">
+        <field name="sequence">23</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Cuota [507]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_24" model="aeat.model.export.config.line">
+        <field name="sequence">24</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Base imponible [508]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_25" model="aeat.model.export.config.line">
+        <field name="sequence">25</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Cuota [509]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_26" model="aeat.model.export.config.line">
+        <field name="sequence">26</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Base imponible [559]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_27" model="aeat.model.export.config.line">
+        <field name="sequence">27</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Cuota [560]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_28" model="aeat.model.export.config.line">
+        <field name="sequence">28</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Base imponible [607]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_29" model="aeat.model.export.config.line">
+        <field name="sequence">29</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Cuota [608]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_30" model="aeat.model.export.config.line">
+        <field name="sequence">30</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Base imponible [510]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_31" model="aeat.model.export.config.line">
+        <field name="sequence">31</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Cuota [511]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_32" model="aeat.model.export.config.line">
+        <field name="sequence">32</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Base imponible [561]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_33" model="aeat.model.export.config.line">
+        <field name="sequence">33</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Cuota [562]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_34" model="aeat.model.export.config.line">
+        <field name="sequence">34</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Base imponible [609]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_35" model="aeat.model.export.config.line">
+        <field name="sequence">35</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intragrupo corrientes - Cuota [610]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_36" model="aeat.model.export.config.line">
+        <field name="sequence">36</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. intragrupo corrientes - Base imponible [512]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_37" model="aeat.model.export.config.line">
+        <field name="sequence">37</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. intragrupo corrientes - Cuota [513]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_38" model="aeat.model.export.config.line">
+        <field name="sequence">38</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Base imponible [196]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_39" model="aeat.model.export.config.line">
+        <field name="sequence">39</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Cuota [197]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_40" model="aeat.model.export.config.line">
+        <field name="sequence">40</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Base imponible [198]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_41" model="aeat.model.export.config.line">
+        <field name="sequence">41</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Cuota [199]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_42" model="aeat.model.export.config.line">
+        <field name="sequence">42</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Base imponible [563]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_43" model="aeat.model.export.config.line">
+        <field name="sequence">43</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Cuota [564]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_44" model="aeat.model.export.config.line">
+        <field name="sequence">44</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Base imponible [611]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_45" model="aeat.model.export.config.line">
+        <field name="sequence">45</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Cuota [612]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_46" model="aeat.model.export.config.line">
+        <field name="sequence">46</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Base imponible [200]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_47" model="aeat.model.export.config.line">
+        <field name="sequence">47</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Cuota [201]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_48" model="aeat.model.export.config.line">
+        <field name="sequence">48</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Base imponible [565]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_49" model="aeat.model.export.config.line">
+        <field name="sequence">49</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Cuota [566]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_50" model="aeat.model.export.config.line">
+        <field name="sequence">50</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Base imponible [613]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_51" model="aeat.model.export.config.line">
+        <field name="sequence">51</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. inter. bienes de inversion - Cuota [614]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_52" model="aeat.model.export.config.line">
+        <field name="sequence">52</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. inter. bienes de inversion - Base imponible [50]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_53" model="aeat.model.export.config.line">
+        <field name="sequence">53</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. inter. bienes de inversion - Cuota [51]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_54" model="aeat.model.export.config.line">
+        <field name="sequence">54</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Base imponible [514]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_55" model="aeat.model.export.config.line">
+        <field name="sequence">55</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Cuota [515]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_56" model="aeat.model.export.config.line">
+        <field name="sequence">56</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Base imponible [516]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_57" model="aeat.model.export.config.line">
+        <field name="sequence">57</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Cuota [517]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_58" model="aeat.model.export.config.line">
+        <field name="sequence">58</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Base imponible [567]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_59" model="aeat.model.export.config.line">
+        <field name="sequence">59</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Cuota [568]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_60" model="aeat.model.export.config.line">
+        <field name="sequence">60</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Base imponible [615]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_61" model="aeat.model.export.config.line">
+        <field name="sequence">61</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Cuota [616]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_62" model="aeat.model.export.config.line">
+        <field name="sequence">62</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Base imponible [518]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_63" model="aeat.model.export.config.line">
+        <field name="sequence">63</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Cuota [519]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_64" model="aeat.model.export.config.line">
+        <field name="sequence">64</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Base imponible [569]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_65" model="aeat.model.export.config.line">
+        <field name="sequence">65</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Cuota [570]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_66" model="aeat.model.export.config.line">
+        <field name="sequence">66</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Base imponible [617]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_67" model="aeat.model.export.config.line">
+        <field name="sequence">67</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Oper. intra. bienes de inversion - Cuota [618]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_68" model="aeat.model.export.config.line">
+        <field name="sequence">68</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. intra. bienes de inversion - Base imponible [520]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_69" model="aeat.model.export.config.line">
+        <field name="sequence">69</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total oper. intra. bienes de inversion - Cuota [521]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_70" model="aeat.model.export.config.line">
+        <field name="sequence">70</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Base imponible [202]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 202).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_71" model="aeat.model.export.config.line">
+        <field name="sequence">71</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Cuota [203]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 203).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_72" model="aeat.model.export.config.line">
+        <field name="sequence">72</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Base imponible [204]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_73" model="aeat.model.export.config.line">
+        <field name="sequence">73</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Cuota [205]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_74" model="aeat.model.export.config.line">
+        <field name="sequence">74</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Base imponible [571]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_75" model="aeat.model.export.config.line">
+        <field name="sequence">75</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Cuota [572]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_76" model="aeat.model.export.config.line">
+        <field name="sequence">76</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Base imponible [619]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 619).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_77" model="aeat.model.export.config.line">
+        <field name="sequence">77</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Cuota [620]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 620).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_78" model="aeat.model.export.config.line">
+        <field name="sequence">78</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Base imponible [206]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_79" model="aeat.model.export.config.line">
+        <field name="sequence">79</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Cuota [207]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_80" model="aeat.model.export.config.line">
+        <field name="sequence">80</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Base imponible [573]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_81" model="aeat.model.export.config.line">
+        <field name="sequence">81</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Cuota [574]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_82" model="aeat.model.export.config.line">
+        <field name="sequence">82</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Base imponible [621]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 621).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_83" model="aeat.model.export.config.line">
+        <field name="sequence">83</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Import. bienes corrientes - Cuota [622]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 622).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_84" model="aeat.model.export.config.line">
+        <field name="sequence">84</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total import. bienes corrientes - Base imponible [52]</field>
+        <field name="expression">${object.casilla_52}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_85" model="aeat.model.export.config.line">
+        <field name="sequence">85</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field
+            name="name"
+        >5. Operaciones Reg. Gral. - IVA deducible - Total import. bienes corrientes - Cuota [53]</field>
+        <field name="expression">${object.casilla_53}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_86" model="aeat.model.export.config.line">
+        <field name="sequence">86</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field name="name">Reservado para la A.E.A.T. (Dejar en blanco)</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">150</field>
+        <field name="alignment">left</field>
+    </record>
+    <record id="aeat_mod390_sub03_export_line_87" model="aeat.model.export.config.line">
+        <field name="sequence">97</field>
+        <field name="export_config_id" ref="aeat_mod390_sub03_export_config" />
+        <field name="name">Indicador de fin de registro: &lt;/T39003000&gt;</field>
+        <field name="fixed_value">&lt;/T39003000&gt;</field>
+        <field name="export_type">string</field>
+        <field name="size">12</field>
+        <field name="alignment">left</field>
+    </record>
+</odoo>
