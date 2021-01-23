@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo14-addon-l10n_es_aeat',
+        'odoo14-addon-l10n_es_aeat_mod111',
         'odoo14-addon-l10n_es_aeat_mod303',
         'odoo14-addon-l10n_es_aeat_mod390',
         'odoo14-addon-l10n_es_dua',
