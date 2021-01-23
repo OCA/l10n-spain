@@ -70,7 +70,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=REQUIRED_ON_CALCULATED,
     )
     other_first_activity = fields.Char(
-        string="1ª actividad", readonly=True, size=40, states=EDITABLE_ON_CALCULATED,
+        string="1ª actividad",
+        readonly=True,
+        size=40,
+        states=EDITABLE_ON_CALCULATED,
     )
     other_first_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -85,7 +88,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_second_activity = fields.Char(
-        string="2ª actividad", readonly=True, size=40, states=EDITABLE_ON_CALCULATED,
+        string="2ª actividad",
+        readonly=True,
+        size=40,
+        states=EDITABLE_ON_CALCULATED,
     )
     other_second_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -100,7 +106,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_third_activity = fields.Char(
-        string="3ª actividad", readonly=True, size=40, states=EDITABLE_ON_CALCULATED,
+        string="3ª actividad",
+        readonly=True,
+        size=40,
+        states=EDITABLE_ON_CALCULATED,
     )
     other_third_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -115,7 +124,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_fourth_activity = fields.Char(
-        string="4ª actividad", readonly=True, size=40, states=EDITABLE_ON_CALCULATED,
+        string="4ª actividad",
+        readonly=True,
+        size=40,
+        states=EDITABLE_ON_CALCULATED,
     )
     other_fourth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -130,7 +142,10 @@ class L10nEsAeatMod390Report(models.Model):
         states=EDITABLE_ON_CALCULATED,
     )
     other_fifth_activity = fields.Char(
-        string="5ª actividad", readonly=True, size=40, states=EDITABLE_ON_CALCULATED,
+        string="5ª actividad",
+        readonly=True,
+        size=40,
+        states=EDITABLE_ON_CALCULATED,
     )
     other_fifth_activity_code = fields.Selection(
         selection=ACTIVITY_CODE_SELECTION,
@@ -222,10 +237,14 @@ class L10nEsAeatMod390Report(models.Model):
     )
     # 5. Régimen general
     casilla_33 = fields.Float(
-        compute="_compute_casilla_33", string="[33] Total bases IVA", store=True,
+        compute="_compute_casilla_33",
+        string="[33] Total bases IVA",
+        store=True,
     )
     casilla_34 = fields.Float(
-        compute="_compute_casilla_34", string="[34] Total cuotas IVA", store=True,
+        compute="_compute_casilla_34",
+        string="[34] Total cuotas IVA",
+        store=True,
     )
     casilla_47 = fields.Float(
         compute="_compute_casilla_47",
@@ -307,10 +326,14 @@ class L10nEsAeatMod390Report(models.Model):
         string="[598] Total cuota deducible adq. intracomunitarias servicios",
     )
     casilla_64 = fields.Float(
-        compute="_compute_casilla_64", store=True, string="[64] Suma de deducciones",
+        compute="_compute_casilla_64",
+        store=True,
+        string="[64] Suma de deducciones",
     )
     casilla_65 = fields.Float(
-        compute="_compute_casilla_65", store=True, string="[65] Result. rég. gral.",
+        compute="_compute_casilla_65",
+        store=True,
+        string="[65] Result. rég. gral.",
     )
     casilla_85 = fields.Float(
         string="[85] Compens. ejercicio anterior",
@@ -323,7 +346,9 @@ class L10nEsAeatMod390Report(models.Model):
         "Administración, en cuyo caso se consignará esta última.",
     )
     casilla_86 = fields.Float(
-        compute="_compute_casilla_86", store=True, string="[86] Result. liquidación",
+        compute="_compute_casilla_86",
+        store=True,
+        string="[86] Result. liquidación",
     )
     # 9. Resultado de las liquidaciones
     casilla_95 = fields.Float(
@@ -352,7 +377,9 @@ class L10nEsAeatMod390Report(models.Model):
         readonly=True,
     )
     casilla_108 = fields.Float(
-        string="[108] Total vol. oper.", compute="_compute_casilla_108", store=True,
+        string="[108] Total vol. oper.",
+        compute="_compute_casilla_108",
+        store=True,
     )
 
     @api.depends("tax_line_ids", "tax_line_ids.amount")
