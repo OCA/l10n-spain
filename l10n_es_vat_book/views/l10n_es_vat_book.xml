@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_l10n_es_vat_book_form" model="ir.ui.view">
+        <field name="name">l10n_es.vat.book.form</field>
+        <field name="model">l10n.es.vat.book</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
+        <field name="arch" type="xml">
+            <button
+                name="%(l10n_es_aeat.action_wizard_aeat_export)d"
+                position="attributes"
+            >
+                <attribute name="invisible">True</attribute>
+            </button>
+            <header position="inside">
+                <button
+                    name="view_issued_invoices"
+                    string="View Issued Invoices"
+                    type="object"
+                    attrs="{'invisible':[('state', '=', 'draft')]}"
+                />
+                <button
+                    name="view_received_invoices"
+                    string="View Received Invoices"
+                    type="object"
+                    attrs="{'invisible':[('state', '=', 'draft')]}"
+                />
+                <button
+                    name="export_xlsx"
+                    string="Export draft"
+                    type="object"
+                    icon="fa-file-excel"
+                    attrs="{'invisible':[('state', 'in', ('draft', 'done'))]}"
+                />
+                <button
+                    name="export_xlsx"
+                    string="Export BOE"
+                    type="object"
+                    icon="fa-file-excel"
+                    attrs="{'invisible':[('state', '!=', 'done')]}"
+                />
+            </header>
+            <field name="name" position="attributes">
+                <attribute name="readonly">False</attribute>
+            </field>
+            <group name="group_other_parameters" position="inside">
+                <field name="auto_renumber" />
+            </group>
+            <xpath expr="//group[@name='group_declaration']" position="after">
+                <notebook>
+                    <page string="Summary" name="summary">
+                        <group string="Issued Tax Summary" name="issued_tax_summary">
+                            <field name="issued_tax_summary_ids" nolabel="1" />
+                        </group>
+                        <group
+                            string="Received Tax Summary"
+                            name="received_tax_summary"
+                        >
+                            <field name="received_tax_summary_ids" nolabel="1" />
+                        </group>
+                        <group string="Total" name="total_summary">
+                            <field name="summary_ids" nolabel="1" />
+                        </group>
+                    </page>
+                    <page string="Issued Invoices" name="invoices_issued">
+                        <group string="Issued Invoices" name="issued_invoices">
+                            <field name="issued_line_ids" nolabel="1" />
+                        </group>
+                        <group
+                            string="Issued Refund Invoices"
+                            name="issued_rectification_invoices"
+                        >
+                            <field name="rectification_issued_line_ids" nolabel="1" />
+                        </group>
+                    </page>
+                    <page string="Received Invoices" name="received_invoices">
+                        <group string="Received Invoices" name="received_invoices">
+                            <field name="received_line_ids" nolabel="1" />
+                        </group>
+                        <group
+                            string="Received Refund Invoices"
+                            name="received_rectification_invoices"
+                        >
+                            <field name="rectification_received_line_ids" nolabel="1" />
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <record id="l10n_es_vat_book_action" model="ir.actions.act_window">
+        <field name="name">VAT Book</field>
+        <field name="res_model">l10n.es.vat.book</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+          Click to create a new VAT book.
+        </p>
+        </field>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_vat_book_report_tree">
+        <field name="sequence" eval="2" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_tree" />
+        <field name="act_window_id" ref="l10n_es_vat_book_action" />
+    </record>
+    <record model="ir.actions.act_window.view" id="action_l10n_vat_book_report_form">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_l10n_es_vat_book_form" />
+        <field name="act_window_id" ref="l10n_es_vat_book_action" />
+    </record>
+    <menuitem
+        id="menu_vat_book_report"
+        parent="l10n_es_aeat.menu_root_aeat"
+        action="l10n_es_vat_book_action"
+        name="Libro de IVA"
+    />
+    <!-- sequence="340" -->
+</odoo>

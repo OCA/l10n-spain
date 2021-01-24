@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="act_report_vat_book_invoices_issued_html" model="ir.actions.report">
+        <field name="name">Vat book invoices issued</field>
+        <field name="model">l10n.es.vat.book</field>
+        <field name="report_type">qweb-html</field>
+        <field
+            name="report_name"
+        >l10n_es_vat_book.report_vat_book_invoices_issued_html</field>
+        <field
+            name="report_file"
+        >l10n_es_vat_book.report_vat_book_invoices_issued</field>
+        <field name="binding_model_id" ref="model_l10n_es_vat_book" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="act_report_vat_book_invoices_received_html" model="ir.actions.report">
+        <field name="name">Vat book invoices received</field>
+        <field name="model">l10n.es.vat.book</field>
+        <field name="report_type">qweb-html</field>
+        <field
+            name="report_name"
+        >l10n_es_vat_book.report_vat_book_invoices_received_html</field>
+        <field
+            name="report_file"
+        >l10n_es_vat_book.report_vat_book_invoices_received</field>
+        <field name="binding_model_id" ref="model_l10n_es_vat_book" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="act_report_vat_book_invoices_issued_pdf" model="ir.actions.report">
+        <field name="name">Vat book invoices issued</field>
+        <field name="model">l10n.es.vat.book</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_es_vat_book.report_vat_book_invoices_issued_pdf</field>
+        <field
+            name="report_file"
+        >l10n_es_vat_book.report_vat_book_invoices_issued</field>
+        <field name="binding_model_id" ref="model_l10n_es_vat_book" />
+        <field name="binding_type">report</field>
+    </record>
+    <record id="act_report_vat_book_invoices_received_pdf" model="ir.actions.report">
+        <field name="name">Vat book invoices received</field>
+        <field name="model">l10n.es.vat.book</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >l10n_es_vat_book.report_vat_book_invoices_received_pdf</field>
+        <field
+            name="report_file"
+        >l10n_es_vat_book.report_vat_book_invoices_received</field>
+        <field name="binding_model_id" ref="model_l10n_es_vat_book" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

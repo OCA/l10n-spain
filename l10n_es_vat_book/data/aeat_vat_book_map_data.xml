@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="0">
+    <record id="aeat_vat_book_map_line_s_iva" model="aeat.vat.book.map.line">
+        <field name="name">IVA repercutido</field>
+        <field name="book_type">issued</field>
+        <field name="special_tax_group" eval="False" />
+        <field name="fee_type_xlsx_column">N</field>
+        <field name="fee_amount_xlsx_column">O</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_s_iva4b')),
+            (4, ref('l10n_es.account_tax_template_s_iva4s')),
+            (4, ref('l10n_es.account_tax_template_s_iva10b')),
+            (4, ref('l10n_es.account_tax_template_s_iva10s')),
+            (4, ref('l10n_es.account_tax_template_s_iva21b')),
+            (4, ref('l10n_es.account_tax_template_s_iva21s')),
+            (4, ref('l10n_es.account_tax_template_s_iva0_isp')),
+            (4, ref('l10n_es.account_tax_template_s_iva0_sp_i')),
+            (4, ref('l10n_es.account_tax_template_s_iva0_ic')),
+            (4, ref('l10n_es.account_tax_template_s_iva0_e')),
+            (4, ref('l10n_es.account_tax_template_s_iva0')),
+            (4, ref('l10n_es.account_tax_template_s_iva_ns')),
+            (4, ref('l10n_es.account_tax_template_s_iva_e')),
+        ]"
+        />
+    </record>
+    <record id="aeat_vat_book_map_line_p_iva" model="aeat.vat.book.map.line">
+        <field name="name">IVA soportado</field>
+        <field name="book_type">received</field>
+        <field name="special_tax_group" eval="False" />
+        <field name="fee_type_xlsx_column">O</field>
+        <field name="fee_amount_xlsx_column">P</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_p_iva4_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_sc')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_sc')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_sc')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva0_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_sp_in')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_sp_in')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_sp_in')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_ic_bc')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_ic_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_ic_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_ic_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_ibc')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_ibc')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_ibc')),
+            (4, ref('l10n_es.account_tax_template_p_iva12_agr')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_isp')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_isp')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_isp')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_sp_ex')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_sp_ex')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_sp_ex')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva21_bi')),
+            (4, ref('l10n_es.account_tax_template_p_iva0_ns')),
+        ]"
+        />
+    </record>
+    <record id="aeat_vat_book_map_line_p_iva_nd" model="aeat.vat.book.map.line">
+        <field name="name">IVA soportado no deducible</field>
+        <field name="book_type">received</field>
+        <field name="special_tax_group" eval="False" />
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_p_iva0_nd')),
+            (4, ref('l10n_es.account_tax_template_p_iva10_nd')),
+            (4, ref('l10n_es.account_tax_template_p_iva4_nd')),
+        ]"
+        />
+    </record>
+    <record id="aeat_vat_book_map_line_s_req" model="aeat.vat.book.map.line">
+        <field name="name">Recargo Eq.</field>
+        <field name="book_type">issued</field>
+        <field name="special_tax_group">req</field>
+        <field name="fee_type_xlsx_column">P</field>
+        <field name="fee_amount_xlsx_column">Q</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_s_req05')),
+            (4, ref('l10n_es.account_tax_template_s_req014')),
+            (4, ref('l10n_es.account_tax_template_s_req52')),
+        ]"
+        />
+    </record>
+    <record id="aeat_vat_book_map_line_p_req" model="aeat.vat.book.map.line">
+        <field name="name">Recargo Eq.</field>
+        <field name="book_type">received</field>
+        <field name="special_tax_group">req</field>
+        <field name="fee_type_xlsx_column">R</field>
+        <field name="fee_amount_xlsx_column">S</field>
+        <field
+            name="tax_tmpl_ids"
+            eval="[
+            (4, ref('l10n_es.account_tax_template_p_req05')),
+            (4, ref('l10n_es.account_tax_template_p_req014')),
+            (4, ref('l10n_es.account_tax_template_p_req52')),
+        ]"
+        />
+    </record>
+</odoo>
