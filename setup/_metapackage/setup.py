@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_partner',
         'odoo14-addon-l10n_es_partner_mercantil',
         'odoo14-addon-l10n_es_toponyms',
+        'odoo14-addon-l10n_es_vat_book',
         'odoo14-addon-payment_redsys',
     ],
     classifiers=[
