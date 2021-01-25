@@ -14,7 +14,9 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(L10nEsAccountBankStatementImportN43, cls).setUpClass()
-        cls.partner = cls.env['res.partner'].create({'name': 'Test partner'})
+        cls.partner = cls.env['res.partner'].create({
+            "name": "Test partner N43"
+        })
         cls.journal = cls.env['account.journal'].create({
             'type': 'bank',
             'name': 'Test N43 bank',
@@ -36,8 +38,12 @@ class L10nEsAccountBankStatementImportN43(common.SavepointCase):
         statement = self.env['account.bank.statement'].browse(
             action['context']['statement_ids'][0],
         )
+        self.assertEqual(
+            statement.date, fields.Date.to_date('2016-02-01')
+        )
         self.assertEqual(len(statement.line_ids), 3)
         self.assertEqual(
+            statement.line_ids[2].date,
             statement.line_ids[2].date,
             fields.Date.to_date('2016-05-25'),
         )

@@ -1,0 +1,382 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* delivery_seur
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:431
+#, python-format
+msgid "\n"
+"            SEUR API doesn't provide methods to compute delivery rates, so\n"
+"            you should relay on another price method instead or override this\n"
+"            one in your custom code.\n"
+"        "
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_label_size:0
+msgid "1D"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_label_size:0
+msgid "2C"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_label_size:0
+msgid "2D"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_accounting_code
+msgid "Accounting Code (CCC)"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,delivery_type:0
+msgid "Based on Rules"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "CIT Credentials"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+#: selection:delivery.carrier,seur_service_code:0
+msgid "CLASSIC"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "COURIER"
+msgstr ""
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:418
+#, python-format
+msgid "Cancel SEUR shipment (%s): %s"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_printer:0
+msgid "DATAMAX E CLASS 4203"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "DOCUMENTOS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model,name:delivery_seur.model_delivery_carrier
+msgid "Delivery Methods"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "ENTREGA PARTIC"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "ESTANDAR"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "FRIO"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,delivery_type:0
+msgid "Fixed Price"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_franchise_code
+msgid "Franchise Code"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,delivery_type:0
+msgid "GLS ASM"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_printer:0
+msgid "HP LASERJET II"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_printer:0
+msgid "INTERMEC C4"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "INTERNACIONAL A"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "INTERNACIONAL ´T"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Identification"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Integration"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_integration_code
+msgid "Integration Code (CI)"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Label"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_label_format
+msgid "Label format"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_label_size
+msgid "Label size"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_request
+msgid "Last SEUR xml request"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_response
+msgid "Last SEUR xml response"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "MARITIMO"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "MISMO DIA"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "MULTI BOX"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "MULTI DOC"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "MULTIPACK"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "NETEXPRESS"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_label_format:0
+msgid "PDF"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_ws_password
+msgid "Password WS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_printer
+msgid "Printer"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_product_code
+msgid "Product code"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "S-48"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "SEUR - 10"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "SEUR - 24"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "SEUR - 72"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "SEUR 13:30"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_service_code:0
+msgid "SEUR 8:30"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_picking_withcarrier_out_form
+msgid "SEUR Technical"
+msgstr ""
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:321
+#, python-format
+msgid "SEUR exception: %s"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_send_sms
+msgid "Send SMS to customer"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "Service"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_service_code
+msgid "Service code"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,delivery_type:0
+msgid "Seur"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_password
+msgid "Seur Cit Password"
+msgstr ""
+
+#. module: delivery_seur
+#: code:addons/delivery_seur/models/delivery_carrier.py:354
+#, python-format
+msgid "Status cannot be checked, enter webservice carrier credentials"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_printer:0
+msgid "TEC B430"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_label_format:0
+msgid "TXT"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_send_sms
+msgid "This feature has delivery cost"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model,name:delivery_seur.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_password
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_username
+msgid "Used for cit.seur.com webservice (generate labels)"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_request
+#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_response
+msgid "Used for issues debugging"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_ws_password
+#: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_ws_username
+msgid "Used for ws.seur.com webservice (pickup services)"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_cit_username
+msgid "Username CIT"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_ws_username
+msgid "Username WS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields,field_description:delivery_seur.field_delivery_carrier__seur_vat
+msgid "VAT"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_product_code:0
+msgid "VINO"
+msgstr ""
+
+#. module: delivery_seur
+#: model_terms:ir.ui.view,arch_db:delivery_seur.view_delivery_carrier_form
+msgid "WS Credentials"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_printer:0
+msgid "ZEBRA LP2844-Z"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_printer:0
+msgid "ZEBRA S600"
+msgstr ""
+
+#. module: delivery_seur
+#: selection:delivery.carrier,seur_printer:0
+msgid "ZEBRA Z4M PLUS"
+msgstr ""
+

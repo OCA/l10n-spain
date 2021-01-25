@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_payment_promissory_report_db_a4"
+            model="account.payment.check.report">
+        <field name="name">Deutsche Bank Promissory Note</field>
+        <field name="report">account_promissory_note_deutschebank_es.promissory_db</field>
+    </record>
+
+</odoo>

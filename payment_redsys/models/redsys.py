@@ -1,4 +1,5 @@
 # © 2016-2017 Sergio Teruel <sergio.teruel@tecnativa.com>
+# © 2019 Ignacio Ibeas <ignacio@acysos.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import hashlib
@@ -44,8 +45,6 @@ class AcquirerRedsys(models.Model):
     provider = fields.Selection(selection_add=[('redsys', 'Redsys')])
     redsys_merchant_name = fields.Char('Merchant Name',
                                        required_if_provider='redsys')
-    redsys_merchant_titular = fields.Char('Merchant Titular',
-                                          required_if_provider='redsys')
     redsys_merchant_code = fields.Char('Merchant code',
                                        required_if_provider='redsys')
     redsys_merchant_description = fields.Char('Product Description',
@@ -152,9 +151,8 @@ class AcquirerRedsys(models.Model):
             'Ds_Merchant_Terminal': self.redsys_terminal or '1',
             'Ds_Merchant_TransactionType': (
                 self.redsys_transaction_type or '0'),
-            'Ds_Merchant_Titular': (
-                self.redsys_merchant_titular[:60] and
-                self.redsys_merchant_titular[:60]),
+            'Ds_Merchant_Titular': tx_values.get(
+                'billing_partner', self.env.user.partner_id).display_name[:60],
             'Ds_Merchant_MerchantName': (
                 self.redsys_merchant_name and
                 self.redsys_merchant_name[:25]),
@@ -335,16 +333,22 @@ class TxRedsys(models.Model):
         vals = {
             'state': state,
             'redsys_txnid': params.get('Ds_AuthorisationCode'),
+            'date': fields.Datetime.now()
         }
         state_message = ""
         if state == 'done':
             vals['state_message'] = _('Ok: %s') % params.get('Ds_Response')
+            self._set_transaction_done()
+            self._post_process_after_done()
         elif state == 'pending':  # 'Payment error: code: %s.'
             state_message = _('Error: %s (%s)')
+            self._set_transaction_pending()
         elif state == 'cancel':  # 'Payment error: bank unavailable.'
             state_message = _('Bank Error: %s (%s)')
+            self._set_transaction_cancel()
         else:
             state_message = _('Redsys: feedback error %s (%s)')
+            self._set_transaction_error(state_message)
         if state_message:
             vals['state_message'] = state_message % (
                 params.get('Ds_Response'), params.get('Ds_ErrorCode'),
@@ -357,6 +361,8 @@ class TxRedsys(models.Model):
     @api.model
     def form_feedback(self, data, acquirer_name):
         res = super(TxRedsys, self).form_feedback(data, acquirer_name)
+        if acquirer_name != 'redsys':
+            return res
         try:
             tx_find_method_name = '_%s_form_get_tx_from_data' % acquirer_name
             if hasattr(self, tx_find_method_name):

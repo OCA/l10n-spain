@@ -6,11 +6,11 @@
 # Copyright 2016 Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
+# Copyright 2019 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models, api, exceptions, _
 
-import re
 import datetime
 from calendar import monthrange
 import odoo.addons.decimal_precision as dp
@@ -176,42 +176,32 @@ class L10nEsAeatMod347Report(models.Model):
 
     @api.model
     def _get_taxes(self, map):
-        tax_obj = self.env['account.tax']
-        # Obtain all the taxes to be considered
-        tax_templates = map.mapped('tax_ids').mapped('description')
+        """Obtain all the taxes to be considered for 347."""
+        self.ensure_one()
+        tax_templates = map.mapped('tax_ids')
         if not tax_templates:
             raise exceptions.Warning(_('No Tax Mapping was found'))
-        # search the account.tax referred to by the template
-        taxes = tax_obj.search(
-            [('description', 'in', tax_templates),
-             ('company_id', 'child_of', self.company_id.id)])
-        return taxes
+        return self.get_taxes_from_templates(tax_templates)
 
     @api.model
     def _get_partner_347_identification(self, partner):
-        partner_country_code, partner_vat = (
-            re.match(r"([A-Z]{0,2})(.*)", partner.vat or '').groups()
-        )
-        community_vat = ''
-        if not partner_country_code:
-            partner_country_code = partner.country_id.code
-        if partner_country_code == 'ES':
-            # Odoo Spanish states codes use car license plates approach
-            # (CR, A, M...), instead of ZIP (01, 02...), so we need to convert
-            # them, but fallbacking in the existing one if not found.
-            partner_state_code = self.SPANISH_STATES.get(
-                partner.state_id.code, partner.state_id.code,
-            )
+        country_code, _, vat = partner._parse_aeat_vat_info()
+        if country_code == 'ES':
+            return {
+                'partner_vat': vat,
+                # Odoo Spanish states codes use car license plates approach
+                # (CR, A, M...), instead of ZIP (01, 02...), so we need to
+                # convert them, but fallbacking in existing one if not found.
+                'partner_state_code': self.SPANISH_STATES.get(
+                    partner.state_id.code, partner.state_id.code),
+                'partner_country_code': country_code,
+            }
         else:
-            partner_vat = ''
-            community_vat = partner.vat
-            partner_state_code = 99
-        return {
-            'partner_vat': partner_vat,
-            'community_vat': community_vat,
-            'partner_state_code': partner_state_code,
-            'partner_country_code': partner_country_code,
-        }
+            return {
+                'community_vat': vat,
+                'partner_state_code': 99,
+                'partner_country_code': country_code,
+            }
 
     def _create_partner_records(self, key, map_ref, partner_record=None):
         partner_record_obj = self.env['l10n.es.aeat.mod347.partner_record']
@@ -236,7 +226,7 @@ class L10nEsAeatMod347Report(models.Model):
                 'partner_id': partner.id,
                 'representative_vat': '',
                 'operation_key': key,
-                'amount': abs(group['balance']),
+                'amount': (-1 if key == 'B' else 1) * group['balance'],
             }
             vals.update(self._get_partner_347_identification(partner))
             move_groups = self.env['account.move.line'].read_group(
@@ -287,7 +277,8 @@ class L10nEsAeatMod347Report(models.Model):
                 move_lines = move_line_obj.search(cash_group['__domain'])
                 partner_record = partner_record_obj.search([
                     ('partner_id', '=', partner.id),
-                    ('operation_key', '=', 'B')
+                    ('operation_key', '=', 'B'),
+                    ('report_id', '=', self.id),
                 ])
                 if partner_record:
                     partner_record.write({
@@ -545,13 +536,13 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
 
     def get_confirm_url(self):
         self.ensure_one()
-        return self._notification_link_helper(
+        return self._notify_get_action_link(
             'controller', controller='/mod347/accept'
         )
 
     def get_reject_url(self):
         self.ensure_one()
-        return self._notification_link_helper(
+        return self._notify_get_action_link(
             'controller', controller='/mod347/reject'
         )
 
@@ -707,7 +698,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
             vals = self.report_id._get_partner_347_identification(
                 self.partner_id,
             )
-            del vals['community_vat']
+            vals.pop('community_vat', None)
             del vals['partner_country_code']
             self.update(vals)
 

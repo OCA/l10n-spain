@@ -105,6 +105,8 @@ Known issues / Roadmap
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte).
 * Regímenes especiales de seguros y de agencias de viaje.
 * Facturas rectificativas por sustitución.
+* Soportar facturas de canje de facturas simplificadas por facturas completas.
+  Ver https://github.com/OCA/l10n-spain/issues/1171 para más información.
 
 Bug Tracker
 ===========
@@ -142,11 +144,12 @@ Contributors
 * Jordi Tolsà <jordi@studio73.es>
 * Ismael Calvo <ismael.calvo@factorlibre.es>
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
-* Juanjo Algaz <jalgaz@gmail.com>
+* Juanjo Algaz <jalgaz@gmail.com>, Planeta Huerto <juanjoalgaz@planetahuerto.es>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Javi Melendez <javimelex@gmail.com>
 * Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
+* Eric Antonés - NuoBiT Solutions, S.L. <eantones@nuobit.com>
 
 Maintainers
 ~~~~~~~~~~~

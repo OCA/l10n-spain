@@ -1,0 +1,1358 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_facturae
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-26 12:00+0000\n"
+"PO-Revision-Date: 2019-02-04 16:50+0000\n"
+"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
+"Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.4\n"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,help:l10n_es_facturae.field_account_invoice_line__invoice_state
+msgid ""
+" * The 'Draft' status is used when a user is encoding a new and unconfirmed "
+"Invoice.\n"
+" * The 'Open' status is used when user creates invoice, an invoice number is "
+"generated. It stays in the open status till the user pays the invoice.\n"
+" * The 'In Payment' status is used when payments have been registered for "
+"the entirety of the invoice in a journal configured to post entries at bank "
+"reconciliation only, and some of them haven't been reconciled with a bank "
+"statement line yet.\n"
+" * The 'Paid' status is set automatically when the invoice is paid. Its "
+"related journal entries may or may not be reconciled.\n"
+" * The 'Cancelled' status is used when user cancel invoice."
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__integration_count
+msgid "# of Integrations"
+msgstr "# de intregraciones"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid "&lt;/fe:Facturae&gt;"
+msgstr "&lt;/fe:Facturae&gt;"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+msgstr ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
+"Facturae\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
+msgid ""
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
+"Facturaev3_2_2.xml\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:res.company,facturae_version:0
+#: selection:res.partner,facturae_version:0
+msgid "3.2"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:res.company,facturae_version:0
+#: selection:res.partner,facturae_version:0
+msgid "3.2.1"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:res.company,facturae_version:0
+#: selection:res.partner,facturae_version:0
+msgid "3.2.2"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Accepted"
+msgstr "Aceptado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Accounted obligation"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__attachment_ids
+msgid "Annexes"
+msgstr "Anexos"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__attach_invoice_as_annex
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__attach_invoice_as_annex
+msgid "Attach Invoice As Annex"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,correction_method:0
+#: selection:account.invoice.refund,correction_method:0
+msgid "Autorizadas por la Agencia Tributaria"
+msgstr "Autorizadas por la Agencia Tributaria"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Base imponible"
+msgstr "Base imponible"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid ""
+"Base imponible modificada cuotas repercutidas no satisfechas. Auto de "
+"declaración de concurso"
+msgstr ""
+"Base imponible modificada cuotas repercutidas no satisfechas. Auto de "
+"declaración de concurso"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Base imponible modificada por descuentos y bonificaciones"
+msgstr "Base imponible modificada por descuentos y bonificaciones"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Base imponible modificada por devolución de envases/embalajes"
+msgstr "Base imponible modificada por devolución de envases/embalajes"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid ""
+"Base imponible modificada por resolución firme, judicial o administrativa"
+msgstr ""
+"Base imponible modificada por resolución firme, judicial o administrativa"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__can_cancel
+msgid "Can Cancel"
+msgstr "Puede cancelar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__can_integrate
+msgid "Can Integrate"
+msgstr "Puede integrar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__can_send
+msgid "Can Send"
+msgstr "Puede enviar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__can_update
+msgid "Can Update"
+msgstr "Puede actualizar"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration.log,type:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.account_invoice_integration_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_account_invoice_integration_cancel
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.action_account_invoice_integration_cancel
+msgid "Cancel integration"
+msgstr "Cancelar integración"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__cancellation_description
+msgid "Cancellation Description"
+msgstr "Descripción de la cancelación"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__cancellation_motive
+msgid "Cancellation Motive"
+msgstr "Motivo de la cancelación"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__cancellation_status
+msgid "Cancellation Status"
+msgstr "Estado de la cancelación"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Cancellation accepted"
+msgstr "Cancelación aceptada"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Cancellation approved"
+msgstr "Cancelación aprobada"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Cancellation rejected"
+msgstr "Cancelación rechazada"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Cancellation requested"
+msgstr "Cancelación solicitada"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,state:0
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration_cancel
+msgid "Cancels a created integration"
+msgstr "Cancela una integración creada"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration.py:83
+#, python-format
+msgid "Cannot update"
+msgstr "No puede actualizar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_cert
+msgid "Certificado firma electrónica"
+msgstr "Certificado firma electrónica"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Clase de factura"
+msgstr "Clase de factura"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__code
+msgid "Code"
+msgstr "Código"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:209
+#, python-format
+msgid "Company vat is too small"
+msgstr "El identificador fiscal de la compañía es demasiado corto"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:203
+#, python-format
+msgid "Company vat not provided"
+msgstr "Es necesario el identificador fiscal de la compañía"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_cert_password
+msgid "Contraseña certificado"
+msgstr "Contraseña certificado"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__correction_method
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_refund__correction_method
+msgid "Correction Method"
+msgstr "Método de corrección"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/res_partner.py:45
+#, python-format
+msgid "Country must be defined"
+msgstr "Se debe definir el país"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
+msgid "Create Factura-E"
+msgstr "Crear Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
+msgid "Create Factura-E file"
+msgstr "Crear archivo de Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_create_facturae
+#, fuzzy
+msgid "Create Facturae Wizard"
+msgstr "Crear archivo de Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__create_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel__create_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__create_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__create_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__create_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel__create_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__create_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__create_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice_refund
+msgid "Credit Note"
+msgstr "Factura rectificativa"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Cuota tributaria a aplicar"
+msgstr "Cuota tributaria a aplicar"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_res_currency
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Cálculo de cuotas repercutidas"
+msgstr "Cálculo de cuotas repercutidas"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Cálculo de cuotas retenidas"
+msgstr "Cálculo de cuotas retenidas"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Delivered"
+msgstr "Entregado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Detalle Operación"
+msgstr "Detalle Operación"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Domicilio Emisor/Obligado"
+msgstr "Domicilio Emisor/Obligado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Domicilio Receptor"
+msgstr "Domicilio Receptor"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
+msgid "Este proceso creará la factura electrónica"
+msgstr "Este proceso creará la factura electrónica"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
+msgid "Export"
+msgstr "Exportar"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:68
+#, python-format
+msgid ""
+"Export successful\n"
+"\n"
+"Summary:\n"
+"Invoice number: %s\n"
+msgstr ""
+"Exportación satisfactoria\n"
+"\n"
+"Resumen:\n"
+"Nº factura: %s\n"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
+msgid "FACe"
+msgstr "FACe"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae
+msgid "Factura electrónica"
+msgstr "Factura electrónica"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Factura-E"
+msgstr "Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae
+msgid "Factura-E file"
+msgstr "Fichero Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report,name:l10n_es_facturae.report_facturae
+msgid "Factura-E sin firmar"
+msgstr "Factura-E sin firmar"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:93
+#: code:addons/l10n_es_facturae/models/account_invoice.py:541
+#, python-format
+msgid "FacturaE start and end dates are both required if one of them is filled"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
+#, fuzzy
+msgid "Facturae"
+msgstr "facturae"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:559
+#, fuzzy, python-format
+msgid "Facturae Configuration"
+msgstr "Motivo de Reembolso según Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__facturae_end_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_end_date
+#, fuzzy
+msgid "Facturae End Date"
+msgstr "Código de Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_file_date
+#, fuzzy
+msgid "Facturae File Date"
+msgstr "Fichero Factura-E"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_file_reference
+#, fuzzy
+msgid "Facturae File Reference"
+msgstr "Motivo de Reembolso según Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_issuer_contract_date
+msgid "Facturae Issuer Contract Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_issuer_contract_reference
+msgid "Facturae Issuer Contract Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_issuer_transaction_date
+msgid "Facturae Issuer Transaction Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_issuer_transaction_reference
+msgid "Facturae Issuer Transaction Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_receiver_contract_date
+msgid "Facturae Receiver Contract Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_receiver_contract_reference
+msgid "Facturae Receiver Contract Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_receiver_transaction_date
+msgid "Facturae Receiver Transaction Date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_receiver_transaction_reference
+msgid "Facturae Receiver Transaction Reference"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__facturae_refund_reason
+msgid "Facturae Refund Reason"
+msgstr "Motivo de Reembolso según Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__facturae_start_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_start_date
+#, fuzzy
+msgid "Facturae Start Date"
+msgstr "Código de Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__facturae_transaction_date
+#, fuzzy
+msgid "Facturae Transaction Date"
+msgstr "Código de Facturae"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__facturae_version
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_version
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_version
+msgid "Facturae Version"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment_mode__facturae_code
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax__facturae_code
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax_template__facturae_code
+msgid "Facturae code"
+msgstr "Código de Facturae"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,state:0
+#: selection:account.invoice.integration.log,state:0
+msgid "Failed"
+msgstr "Fallado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Fecha expedición"
+msgstr "Fecha expedición"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Fecha/Periodo a aplicar"
+msgstr "Fecha/Periodo a aplicar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae_fname
+msgid "File name"
+msgstr "File name"
+
+#. module: l10n_es_facturae
+#: selection:create.facturae,state:0
+msgid "First"
+msgstr "Primero"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
+msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__id
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel__id
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__id
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__id
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IE: Impuestos especiales"
+msgstr "IE: Impuestos especiales"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid ""
+"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
+"la Comunidad Autonoma Canaria"
+msgstr ""
+"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
+"la Comunidad Autonoma Canaria"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IGIC: Impuesto general indirecto de Canarias"
+msgstr "IGIC: Impuesto general indirecto de Canarias"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid ""
+"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
+"y Melilla"
+msgstr ""
+"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
+"y Melilla"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid ""
+"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
+"en la Baleares"
+msgstr ""
+"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
+"en la Baleares"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IMGSN: Impuesto municipal sobre gastos suntuarios en Navarra"
+msgstr "IMGSN: Impuesto municipal sobre gastos suntuarios en Navarra"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IMPN: Impuesto municipal sobre publicidad en Navarra"
+msgstr "IMPN: Impuesto municipal sobre publicidad en Navarra"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IMSN: Impuesto municipal sobre solares en Navarra"
+msgstr "IMSN: Impuesto municipal sobre solares en Navarra"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IMVDN: Impuesto municipal sobre las viviendas desocupadas en Navarra"
+msgstr "IMVDN: Impuesto municipal sobre las viviendas desocupadas en Navarra"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IPSI: Impuesto sobre la producción, los servicios y la importación"
+msgstr "IPSI: Impuesto sobre la producción, los servicios y la importación"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IRPF: Impuesto sobre la Renta de las personas físicas"
+msgstr "IRPF: Impuesto sobre la Renta de las personas físicas"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid ""
+"ITPAJD: Impuesto sobre transmisiones patrimoniales y actos jurídicos "
+"documentados"
+msgstr ""
+"ITPAJD: Impuesto sobre transmisiones patrimoniales y actos jurídicos "
+"documentados"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "IVA: Impuesto sobre el valor añadido"
+msgstr "IVA: Impuesto sobre el valor añadido"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Identificación fiscal Emisor/Obligado"
+msgstr "Identificación fiscal Emisor/Obligado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Identificación fiscal Receptor"
+msgstr "Identificación fiscal Receptor"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
+msgid "Integrate"
+msgstr "Integrar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__integration_ids
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel__integration_id
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__integration_id
+msgid "Integration"
+msgstr "Integración"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__integration_description
+msgid "Integration Description"
+msgstr "Descripción de la integración"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__invoice_integration_method_ids
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__invoice_integration_method_ids
+msgid "Integration Methods"
+msgstr "Métodos de integración"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__integration_status
+msgid "Integration Status"
+msgstr "Estado de integración"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration_log.py:68
+#, python-format
+msgid "Integration cannot be cancelled"
+msgstr "La integración no puede ser cancelada"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration_log.py:82
+#, python-format
+msgid "Integration cannot be sent"
+msgstr "La integración no puede ser enviada"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration_log.py:55
+#, python-format
+msgid "Integration cannot be update"
+msgstr "La integración no puede ser actualizada"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration
+#, fuzzy
+msgid "Integration for an invoice"
+msgstr "La integración no puede ser enviada"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration_method
+#, fuzzy
+msgid "Integration method for invoices"
+msgstr "Métodos de integración"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
+msgid "Integrations"
+msgstr "Integraciones"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__invoice_id
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:235
+#, python-format
+msgid "Invoice %s"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice_line
+#, fuzzy
+msgid "Invoice Line"
+msgstr "Factura"
+
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.invoice_integration_action
+msgid "Invoice integration"
+msgstr "Integración de factura"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__write_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel__write_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__write_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__write_uid
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__write_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel__write_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__write_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__write_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Literales legales"
+msgstr "Literales legales"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__log_ids
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__log
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__note
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.account_invoice_integration_form
+msgid "Log"
+msgstr "Log"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__attachment_id
+msgid "Main file"
+msgstr "Fichero principal"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__method_id
+msgid "Method"
+msgstr "Método"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration.py:71
+#, python-format
+msgid "Method is required"
+msgstr "El método es obligatorio"
+
+#. module: l10n_es_facturae
+#: sql_constraint:account.invoice.integration:0
+msgid "Method must be unique per invoice"
+msgstr "El método debe ser único por factura"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__name
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__name
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration_log.py:77
+#, python-format
+msgid "No cancel method has been created"
+msgstr "No se ha creado el método de cancelación"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration_log.py:95
+#, python-format
+msgid "No sending method has been created"
+msgstr "No se ha creado el método de envío"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice_integration_log.py:63
+#, python-format
+msgid "No update method has been created"
+msgstr "No se ha creado el método de actualización"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Nombre y apellidos/Razón social - Emisor"
+msgstr "Nombre y apellidos/Razón social - Emisor"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Nombre y apellidos/Razón social - Receptor"
+msgstr "Nombre y apellidos/Razón social - Receptor"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,cancellation_status:0
+msgid "Not requested"
+msgstr "No solicitado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Número de la factura"
+msgstr "Número de la factura"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__oficina_contable
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__oficina_contable
+msgid "Oficina contable"
+msgstr "Oficina contable"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "Otro"
+msgstr "Otro"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Paid"
+msgstr "Pagado"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:215
+#, python-format
+msgid "Partner bank is missing"
+msgstr "El banco es obligatorio"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:207
+#, python-format
+msgid "Partner state not provided"
+msgstr "El estado es obligatorio"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:205
+#, python-format
+msgid "Partner vat is too small"
+msgstr "El identificador fiscal del Cliente es demasiado corto"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:201
+#, python-format
+msgid "Partner vat not provided"
+msgstr "El NIF es obligatorio"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Payed"
+msgstr "Pagado"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_payment_mode
+msgid "Payment Modes"
+msgstr "Modos de pago"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:211
+#, python-format
+msgid "Payment mode is required"
+msgstr "El módo de pago es obligatorio"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,state:0
+#: selection:account.invoice.integration.log,state:0
+msgid "Pending"
+msgstr "Pendiente"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
+msgid "Ponga aquí la contraseña del certificado"
+msgstr "Ponga aquí la contraseña del certificado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Porcentaje impositivo a aplicar"
+msgstr "Porcentaje impositivo a aplicar"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "REIGIC: Régimen especial de IGIC: para agencias deviajes"
+msgstr "REIGIC: Régimen especial de IGIC: para agencias deviajes"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "REIPSI: Régimen especial de IPSI para agencias de viajes"
+msgstr "REIPSI: Régimen especial de IPSI para agencias de viajes"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "REIVA: Régimen especial de IVA para agencias de viajes"
+msgstr "REIVA: Régimen especial de IVA para agencias de viajes"
+
+#. module: l10n_es_facturae
+#: selection:account.tax,facturae_code:0
+#: selection:account.tax.template,facturae_code:0
+msgid "Ra: Renta aduanas"
+msgstr "Ra: Renta aduanas"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,correction_method:0
+#: selection:account.invoice.refund,correction_method:0
+msgid ""
+"Rectificación por descuento por volumen de operaciones durante un periodo"
+msgstr ""
+"Rectificación por descuento por volumen de operaciones durante un periodo"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,correction_method:0
+#: selection:account.invoice.refund,correction_method:0
+msgid "Rectificación por diferencias"
+msgstr "Rectificación por diferencias"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,correction_method:0
+#: selection:account.invoice.refund,correction_method:0
+msgid "Rectificación íntegra"
+msgstr "Rectificación íntegra"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_refund__refund_reason
+msgid "Refund Reason"
+msgstr "Motivo de reembolso"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__register_number
+msgid "Register Number"
+msgstr "Número de registro"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered"
+msgstr "Registrado"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on RCF"
+msgstr "Registrado en RCF"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Registered on REC"
+msgstr "Registrado en REC"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+msgid "Registered on RFC"
+msgstr "Registrado en RCF"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,help:l10n_es_facturae.field_create_facturae__firmar_facturae
+msgid "Requiere certificado en la ficha de la compañía"
+msgstr "Requiere certificado en la ficha de la compañía"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__result_code
+msgid "Result Code"
+msgstr "Código del resultado"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration_log
+msgid "Result logs for integrations of invoices"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: selection:create.facturae,state:0
+msgid "Second"
+msgstr "Segundo"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:218
+#, python-format
+msgid "Selected account BIC must be 11"
+msgstr "El BIC del banco de la cuenta debe tener 11 carácteres"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:220
+#, python-format
+msgid "Selected account is too small"
+msgstr "La cuenta seleccionada es demasiado corta"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration.log,type:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.account_invoice_integration_form
+msgid "Send"
+msgstr "Enviar"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_account_invoice_integration_cancel
+msgid "Send cancel"
+msgstr "Enviar cancelación"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,integration_status:0
+#, fuzzy
+msgid "Sended"
+msgstr "Enviar"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration,state:0
+#: selection:account.invoice.integration.log,state:0
+msgid "Sent"
+msgstr "Enviado"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method__sequence_id
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice,facturae_refund_reason:0
+#: selection:account.invoice.refund,refund_reason:0
+msgid "Serie de la factura"
+msgstr "Serie de la factura"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:101
+#: code:addons/l10n_es_facturae/models/account_invoice.py:549
+#, python-format
+msgid "Start date cannot be later than end date"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__state
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__state
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__state
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/res_partner.py:49
+#, python-format
+msgid "State must be defined"
+msgstr "La provincia es obligatoria"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line__invoice_state
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.account_invoice_integration_form
+msgid "Status"
+msgstr "Estado"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_tax
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:198
+#, python-format
+msgid "Taxes not provided in invoice line %s"
+msgstr "No hay impuestos en la línea de factura %s"
+
+#. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_tax_template
+msgid "Templates for Taxes"
+msgstr "Plantillas para Impuestos"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:492
+#, python-format
+msgid ""
+"The generated XML file is not valid against the official XML Schema "
+"Definition. The generated XML file and the full error have been written in "
+"the server logs. Here is the error, which may give you an idea on the cause "
+"of the problem : %s"
+msgstr ""
+"El fichero XML no es válido al compararlo con el definición oficial de "
+"esquema XML. El fichero XML generado y el error puede encontrarse en los "
+"logs del servidor. el error que puede dar una idea del problema es: %s"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__unidad_tramitadora
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__unidad_tramitadora
+msgid "Unidad tramitadora"
+msgstr "Unidad tramitadora"
+
+#. module: l10n_es_facturae
+#: selection:account.invoice.integration.log,type:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.account_invoice_integration_form
+msgid "Update"
+msgstr "Actualizar"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__update_date
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log__update_date
+msgid "Update Date"
+msgstr "Fecha de actualización"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/res_partner.py:42
+#, python-format
+msgid "Vat must be defined"
+msgstr "El número de IVA debe estar definido"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:222
+#, python-format
+msgid ""
+"You can only create Factura-E files for invoices that have been validated."
+msgstr "Sólo se pueden crear ficheros de Factura-E para facturas validadas."
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:51
+#, python-format
+msgid "You can only select one invoice to export"
+msgstr "Sólo puede seleccionar una factura a exportar"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[01] Al contado"
+msgstr "[01] Al contado"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[02] Recibo Domiciliado"
+msgstr "[02] Recibo Domiciliado"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[03] Recibo"
+msgstr "[03] Recibo"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[04] Transferencia"
+msgstr "[04] Transferencia"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[05] Letra Aceptada"
+msgstr "[05] Letra Aceptada"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[06] Crédito Documentario"
+msgstr "[06] Crédito Documentario"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[07] Contrato Adjudicación"
+msgstr "[07] Contrato Adjudicación"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[08] Letra de cambio"
+msgstr "[08] Letra de cambio"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[09] Pagaré a la Orden"
+msgstr "[09] Pagaré a la Orden"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[10] Pagaré No a la Orden"
+msgstr "[10] Pagaré No a la Orden"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[11] Cheque"
+msgstr "[11] Cheque"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[12] Reposición"
+msgstr "[12] Reposición"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[13] Especiales"
+msgstr "[13] Especiales"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[14] Compensación"
+msgstr "[14] Compensación"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[15] Giro postal"
+msgstr "[15] Giro postal"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[16] Cheque conformado"
+msgstr "[16] Cheque conformado"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[17] Cheque bancario"
+msgstr "[17] Cheque bancario"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[18] Pago contra reembolso"
+msgstr "[18] Pago contra reembolso"
+
+#. module: l10n_es_facturae
+#: selection:account.payment.mode,facturae_code:0
+msgid "[19] Pago mediante tarjeta"
+msgstr "[19] Pago mediante tarjeta"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:457
+#: code:addons/l10n_es_facturae/models/account_invoice.py:465
+#, python-format
+msgid "facturae"
+msgstr "facturae"
+
+#. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
+msgid "or"
+msgstr "o"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__firmar_facturae
+msgid "¿Desea firmar digitalmente el fichero generado?"
+msgstr "¿Desea firmar digitalmente el fichero generado?"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__organo_gestor
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_gestor
+msgid "Órgano gestor"
+msgstr "Órgano gestor"
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__organo_proponente
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
+msgid "Órgano proponente"
+msgstr "Órgano proponente"
+
+#~ msgid "Mandate account BIC must be 11"
+#~ msgstr "El BIC del banco de la cuenta del mandato es demasiado corto"
+
+#~ msgid "Mandate account is too small"
+#~ msgstr "La cuenta del mandato es demasiado corta"
+
+#~ msgid "Mandate is missing"
+#~ msgstr "No existe mandato"
+
+#~ msgid "Partner bank in mandate is missing"
+#~ msgstr "El banco del mandato es obligatorio"
+
+#~ msgid "account.invoice.integration"
+#~ msgstr "account.invoice.integration"
+
+#~ msgid "account.invoice.integration.log"
+#~ msgstr "account.invoice.integration.log"
+
+#~ msgid "account.invoice.integration.method"
+#~ msgstr "account.invoice.integration.method"
+
+#~ msgid "create.facturae"
+#~ msgstr "Crear factura electrónica"

@@ -46,7 +46,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 self._cr, 'l10n_es_partner', dest_file.name, {}, 'init',
                 noupdate=True)
         except requests.exceptions.HTTPError:  # pragma: no cover
-            _logger.exception()
+            _logger.exception("HTTP Error while importing data")
             self.import_fail = True
             return {
                 'name': _('Import spanish bank data'),

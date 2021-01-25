@@ -23,7 +23,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         'S_REQ014': (1800, 25.2),
         'S_REQ52': (1900, 98.8),
         'S_IVA0_E': (2000, 0),
-        'S_IVA_SP_E': (2100, 0),
+        'S_IVA_E': (2100, 0),
         'S_IVA_NS': (2200, 0),
         'S_IVA0_ISP': (2300, 0),
         'S_IVA0_IC': (2400, 0),
@@ -55,7 +55,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         'P_IVA21_BC': (260, 54.6),
         'P_REQ05': (270, 1.35),
         'P_REQ014': (280, 3.92),
-        'P_REQ5.2': (290, 15.08),
+        'P_REQ52': (290, 15.08),
         'P_IVA4_BI': (310, 12.4),
         'P_IVA10_BI': (320, 32),
         'P_IVA21_BI': (330, 69.3),
@@ -101,7 +101,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # Modificación de bases
         ('29', -12450),  # -7140.0 - 4860.0 - 450.0
         # Modificación de cuotas
-        ('30', -897.6 - 619.7),
+        ('30', -897.6 - 673.9),
         # Recargo de equivalencia - Base 0,5%
         ('35', 5100.0),
         # Recargo de equivalencia - Cuota 0,5%
@@ -124,7 +124,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # Operaciones exentas sin derecho a deducción
         ('105', 5200),
         # Adquisiciones intracomunitarias exentas
-        ('109', 6300.0),
+        ('109', 0.0),
         # IVA deducible en oper. corrientes de bienes y servicios - Base 4%
         ('190', 2100.0),
         # IVA deducible en oper. corrientes de bienes y servicios - Cuota 4%
@@ -142,7 +142,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # Adquisiciones interiores exentas
         ('230', 1200),
         # Importaciones exentas
-        ('231', -3150.0),
+        ('231', 0.0),
         # Bases imponibles del IVA soportado no deducible
         ('232', 1260),
         # Adquisiciones intracomunitarias de servicios - Base 4%
@@ -254,8 +254,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
             )
         # Check computed fields
         self.assertAlmostEqual(self.model390.casilla_33, 17700.0, 2)
-        self.assertAlmostEqual(self.model390.casilla_34, 2306.2, 2)
-        self.assertAlmostEqual(self.model390.casilla_47, 2571.2, 2)
+        self.assertAlmostEqual(self.model390.casilla_34, 2252.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_47, 2517.0, 2)
         self.assertAlmostEqual(self.model390.casilla_48, 6660.0, 2)
         self.assertAlmostEqual(self.model390.casilla_49, 797.4, 2)
         self.assertAlmostEqual(self.model390.casilla_50, 2880.0, 2)
@@ -271,8 +271,8 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_597, 4500.0, 2)
         self.assertAlmostEqual(self.model390.casilla_598, 576.0, 2)
         self.assertAlmostEqual(self.model390.casilla_64, 2408.45, 2)
-        self.assertAlmostEqual(self.model390.casilla_65, 162.75, 2)
-        self.assertAlmostEqual(self.model390.casilla_86, 162.75, 2)
+        self.assertAlmostEqual(self.model390.casilla_65, 108.55, 2)
+        self.assertAlmostEqual(self.model390.casilla_86, 108.55, 2)
         self.assertAlmostEqual(self.model390.casilla_108, 21280.0, 2)
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
@@ -281,6 +281,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         export_config_xml_ids = [
             'l10n_es_aeat_mod390.aeat_mod390_main_export_config',
             'l10n_es_aeat_mod390.aeat_mod390_2018_main_export_config',
+            'l10n_es_aeat_mod390.aeat_mod390_2019_main_export_config',
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_invoice_integration_form" model="ir.ui.view">
+        <field name="name">account.invoice.integration.form</field>
+        <field name="model">account.invoice.integration</field>
+        <field name="inherit_id"
+               ref="l10n_es_facturae.account_invoice_integration_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="register_number" position="after">
+                <field name="method_code" invisible="1"/>
+                <field name="efact_hub_id" attrs="{'invisible': [('method_code', '!=', 'eFACT')]}"/>
+                <field name="efact_reference" attrs="{'invisible': [('method_code', '!=', 'eFACT')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>
+

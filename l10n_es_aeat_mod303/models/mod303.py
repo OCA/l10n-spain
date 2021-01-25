@@ -1,7 +1,7 @@
 # Copyright 2013 - Guadaltech - Alberto Martín Cortada
 # Copyright 2015 - AvanzOSC - Ainara Galdona
 # Copyright 2016 Tecnativa - Antonio Espinosa
-# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2014-2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, exceptions, fields, models, _
@@ -14,6 +14,7 @@ _ACCOUNT_PATTERN_MAP = {
 }
 
 NON_EDITABLE_ON_DONE = {'done': [('readonly', True)]}
+EDITABLE_ON_DRAFT = {'draft': [('readonly', False)]}
 
 
 class L10nEsAeatMod303Report(models.Model):
@@ -106,7 +107,8 @@ class L10nEsAeatMod303Report(models.Model):
         ],
         default='2',
         required=True,
-        states=NON_EDITABLE_ON_DONE,
+        readonly=True,
+        states=EDITABLE_ON_DRAFT,
         string=u"Exonerado mod. 390",
         help=u"Exonerado de la Declaración-resumen anual del IVA, modelo 390: "
              u"Volumen de operaciones (art. 121 LIVA)",
@@ -114,7 +116,8 @@ class L10nEsAeatMod303Report(models.Model):
     has_operation_volume = fields.Boolean(
         string=u"¿Volumen de operaciones?",
         default=True,
-        states=NON_EDITABLE_ON_DONE,
+        readonly=True,
+        states=EDITABLE_ON_DRAFT,
         help=u"¿Existe volumen de operaciones (art. 121 LIVA)?",
     )
     has_347 = fields.Boolean(
@@ -220,8 +223,8 @@ class L10nEsAeatMod303Report(models.Model):
                 continue
             prev_report = min(
                 prev_reports, key=lambda x: abs(
-                    fields.Date.from_string(x.date_end) -
-                    fields.Date.from_string(mod303.date_start)
+                    fields.Date.to_date(x.date_end) -
+                    fields.Date.to_date(mod303.date_start)
                 ),
             )
             if prev_report.result_type == 'C' and not mod303.cuota_compensar:
@@ -348,8 +351,8 @@ class L10nEsAeatMod303Report(models.Model):
                 continue
             prev_report = min(
                 prev_reports, key=lambda x: abs(
-                    fields.Date.from_string(x.date_end) -
-                    fields.Date.from_string(mod303.date_start)
+                    fields.Date.to_date(x.date_end) -
+                    fields.Date.to_date(mod303.date_start)
                 ),
             )
             if prev_report.result_type == 'C':

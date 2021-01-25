@@ -11,7 +11,7 @@ from odoo.modules.module import get_resource_path
 
 try:
     from zeep.client import ServiceProxy
-except (ImportError, IOError) as err:
+except (ImportError, IOError):
     ServiceProxy = object
 
 CERTIFICATE_PATH = get_resource_path(
@@ -39,6 +39,26 @@ def _deep_sort(obj):
 
 
 class TestL10nEsAeatSiiBase(common.SavepointCase):
+
+    @classmethod
+    def _get_or_create_tax(cls, xml_id, name, tax_type, percentage, account):
+        tax = cls.env.ref("l10n_es." + xml_id, raise_if_not_found=False)
+        if not tax:
+            tax = cls.env['account.tax'].create({
+                'name': name,
+                'type_tax_use': tax_type,
+                'amount_type': 'percent',
+                'amount': percentage,
+                'account_id': account.id,
+            })
+            cls.env['ir.model.data'].create({
+                'module': 'l10n_es',
+                'name': xml_id,
+                'model': tax._name,
+                'res_id': tax.id,
+            })
+        return tax
+
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsAeatSiiBase, cls).setUpClass()
@@ -66,15 +86,13 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
             'code': 'TAX',
             'user_type_id': cls.account_type.id,
         })
-        cls.tax = cls.env['account.tax'].create({
-            'name': 'Test tax 10%',
-            # Needed for discriminatory tax amount in supplier invoices
-            'description': 'P_IVA10_BC',
-            'type_tax_use': 'purchase',
-            'amount_type': 'percent',
-            'amount': '10',
-            'account_id': cls.account_tax.id,
-        })
+        cls.company = cls.env.user.company_id
+        xml_id = '%s_account_tax_template_p_iva10_bc' % cls.company.id
+        cls.tax = cls._get_or_create_tax(
+            xml_id, "Test tax 10%", "purchase", 10, cls.account_tax)
+        irpf_xml_id = '%s_account_tax_template_p_irpf19' % cls.company.id
+        cls.tax_irpf19 = cls._get_or_create_tax(
+            irpf_xml_id, "IRPF 19%", "purchase", -19, cls.account_tax)
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
@@ -134,7 +152,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         expedida_recibida = 'FacturaExpedida'
         if self.invoice.type in ['in_invoice', 'in_refund']:
             expedida_recibida = 'FacturaRecibida'
-        sign = -1.0 if invoice_type == 'R4' else 1.0
+        sign = -1.0 if invoice_type in ('R1', 'R4') else 1.0
         res = {
             'IDFactura': {
                 'FechaExpedicionFacturaEmisor': '01-02-2018',
@@ -184,7 +202,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 },
                 "CuotaDeducible": sign * 10,
             })
-        if invoice_type == 'R4':
+        if invoice_type in ('R1', 'R4'):
             res[expedida_recibida]['TipoRectificativa'] = 'I'
         return res
 
@@ -204,7 +222,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.invoice.type = 'out_refund'
         self.invoice.sii_refund_type = 'I'
         invoices = self.invoice._get_sii_invoice_dict()
-        test_out_refund = self._get_invoices_test('R4', '01')
+        test_out_refund = self._get_invoices_test('R1', '01')
         for key in list(invoices.keys()):
             self.assertDictEqual(
                 _deep_sort(invoices.get(key)),
@@ -329,3 +347,69 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         for inv_type in ['out_invoice', 'in_invoice']:
             self.invoice.type = inv_type
             self._test_tax_agencies(self.invoice)
+
+    def test_refund_sii_refund_type(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'type': 'out_refund',
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        self.assertEqual(invoice.sii_refund_type, 'I')
+
+    def test_refund_sii_refund_type_write(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'type': 'out_invoice',
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        self.assertFalse(invoice.sii_refund_type)
+        invoice.type = 'out_refund'
+        self.assertEqual(invoice.sii_refund_type, 'I')
+
+    def test_is_sii_simplified_invoice(self):
+        self.assertFalse(self.invoice._is_sii_simplified_invoice())
+        self.partner.sii_simplified_invoice = True
+        self.assertTrue(self.invoice._is_sii_simplified_invoice())
+
+    def test_sii_check_exceptions_case_supplier_simplified(self):
+        self.partner.is_simplified_invoice = True
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'type': 'in_invoice',
+            'account_id': self.partner.property_account_payable_id.id,
+        })
+        with self.assertRaises(exceptions.Warning):
+            invoice._sii_check_exceptions()
+
+    def test_importe_total_when_supplier_invoice_with_irpf(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'date': '2018-02-01',
+            'type': 'in_invoice',
+            'reference': 'PH-2020-0031',
+            'account_id': self.partner.property_account_payable_id.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'product_id': self.product.id,
+                    'account_id': self.account_expense.id,
+                    'account_analytic_id': self.analytic_account.id,
+                    'name': 'Test line with irpf and iva',
+                    'price_unit': 100,
+                    'quantity': 1,
+                    'invoice_line_tax_ids': [
+                        (6, 0, self.tax.ids + self.tax_irpf19.ids)],
+                })],
+            'sii_manual_description': '/',
+        })
+        invoices = invoice._get_sii_invoice_dict()
+        importe_total = invoices['FacturaRecibida']['ImporteTotal']
+        self.assertEqual(110, importe_total)
+
+    def test_unlink_invoice_when_sent_to_sii(self):
+        self.invoice.sii_state = 'sent'
+        with self.assertRaises(exceptions.Warning):
+            self.invoice.unlink()

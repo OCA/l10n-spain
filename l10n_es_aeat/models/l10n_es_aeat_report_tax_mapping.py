@@ -19,7 +19,6 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     @api.multi
     def calculate(self):
         res = super(L10nEsAeatReportTaxMapping, self).calculate()
-        tax_line_obj = self.env['l10n.es.aeat.tax.line']
         for report in self:
             report.tax_line_ids.unlink()
             # Buscar configuración de mapeo de impuestos
@@ -35,17 +34,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
                 tax_lines = []
                 for map_line in tax_code_map.map_line_ids:
                     tax_lines.append(report._prepare_tax_line_vals(map_line))
-                # Due to a bug in ORM that unlinks other tables' records, we
-                # have to avoid (0, 0, x) syntax
-                # Reference: https://github.com/odoo/odoo/issues/18438
-                for tax_line_vals in tax_lines:
-                    tax_line_vals.update({
-                        'model': report._name,
-                        'res_id': report.id,
-                    })
-                    tax_line_obj.create(tax_line_vals)
-                report.modified(['tax_line_ids'])
-                report.recompute()
+                report.tax_line_ids = [(0, 0, x) for x in tax_lines]
         return res
 
     @api.multi
@@ -57,8 +46,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _prepare_tax_line_vals(self, map_line):
         self.ensure_one()
         move_lines = self._get_tax_lines(
-            map_line.mapped('tax_ids.description'),
-            self.date_start, self.date_end, map_line,
+            False, self.date_start, self.date_end, map_line,
         )
         if map_line.sum_type == 'credit':
             amount = sum(move_lines.mapped('credit'))
@@ -83,11 +71,9 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
 
     @api.multi
     def _get_move_line_domain(self, codes, date_start, date_end, map_line):
+        """:param codes: deprecated"""
         self.ensure_one()
-        tax_model = self.env['account.tax']
-        taxes = tax_model.search(
-            [('description', 'in', codes),
-             ('company_id', 'child_of', self.company_id.id)])
+        taxes = self.get_taxes_from_templates(map_line.tax_ids)
         move_line_domain = [
             ('company_id', 'child_of', self.company_id.id),
             ('date', '>=', date_start),
@@ -126,9 +112,9 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _get_tax_lines(self, codes, date_start, date_end, map_line):
         """Get the move lines for the codes and periods associated
 
-        :param codes: List of strings for the tax codes
+        :param codes: List of strings for the tax codes (deprecated)
         :param date_start: Start date of the period
-        :param date_stop: Stop date of the period
+        :param date_end: Stop date of the period
         :param map_line: Mapping line record
         :return: Move lines recordset that matches the criteria.
         """

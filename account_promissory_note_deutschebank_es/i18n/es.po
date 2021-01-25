@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_promissory_note_deutschebank_es
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-30 07:50+0000\n"
+"PO-Revision-Date: 2020-10-30 08:51+0100\n"
+"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#. module: account_promissory_note_deutschebank_es
+#: model:ir.model.fields,field_description:account_promissory_note_deutschebank_es.field_report_account_promissory_note_deutschebank_es_promissory_db__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: account_promissory_note_deutschebank_es
+#: model:ir.model.fields,field_description:account_promissory_note_deutschebank_es.field_report_account_promissory_note_deutschebank_es_promissory_db__id
+msgid "ID"
+msgstr "ID"
+
+#. module: account_promissory_note_deutschebank_es
+#: model:ir.model.fields,field_description:account_promissory_note_deutschebank_es.field_report_account_promissory_note_deutschebank_es_promissory_db____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: account_promissory_note_deutschebank_es
+#: model:ir.actions.report,name:account_promissory_note_deutschebank_es.action_report_promissory_db
+msgid "Payment Promissory Note Deutsche Bank"
+msgstr "Pagaré Deutsche Bank "
+
+#. module: account_promissory_note_deutschebank_es
+#: model:ir.model,name:account_promissory_note_deutschebank_es.model_report_account_promissory_note_deutschebank_es_promissory_db
+msgid "report.account_promissory_note_deutschebank_es.promissory_db"
+msgstr ""

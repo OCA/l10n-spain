@@ -7,25 +7,26 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 15:03+0000\n"
-"PO-Revision-Date: 2017-06-29 15:03+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2020-11-05 11:08+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_chart_template.py:55
 #, python-format
 msgid " (Refund)"
-msgstr ""
+msgstr " (reembossament)"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_chart_template
 msgid "Account Chart Template"
-msgstr ""
+msgstr "Plantilla de gràfic de compte"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
@@ -34,11 +35,11 @@ msgstr "Factura"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_invoice__invoice_number
-#, fuzzy
 msgid "Invoice Number"
-msgstr "Seqüència de la factura"
+msgstr "Nombre de factura"
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__invoice_sequence_id
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal__invoice_sequence_id
 msgid "Invoice sequence"
 msgstr "Seqüència de la factura"
@@ -54,43 +55,49 @@ msgstr "Diari"
 #: code:addons/l10n_es_account_invoice_sequence/models/account_chart_template.py:42
 #, python-format
 msgid "Journal Entries Sequence"
-msgstr ""
+msgstr "Seqüència d’entrades al diari"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:29
 #, python-format
 msgid "Journal company and invoice sequence company do not match."
 msgstr ""
-"La companyia del diari no és la mateixa que la de la seqüència de factura."
+"L'empresa del diari i l'empresa de seqüències de factures no coincideixen."
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:39
 #, python-format
 msgid "Journal company and refund sequence company do not match."
 msgstr ""
+"L'empresa del diari i l'empresa de seqüències de reembossament no "
+"coincideixen."
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_invoice__number
-#, fuzzy
 msgid "Number"
-msgstr "Seqüència de la factura"
+msgstr "Número"
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__refund_inv_sequence_id
 #: model:ir.model.fields,field_description:l10n_es_account_invoice_sequence.field_account_journal__refund_inv_sequence_id
 msgid "Refund sequence"
-msgstr ""
+msgstr "Seqüència de devolució"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_ir_sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Seqüència"
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__invoice_sequence_id
 #: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal__invoice_sequence_id
 msgid "The sequence used for invoice numbers in this journal."
 msgstr "La seqüència utilitzada per als números de factura en aquest diari."
 
 #. module: l10n_es_account_invoice_sequence
+#: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_bank_statement_import_journal_creation__refund_inv_sequence_id
 #: model:ir.model.fields,help:l10n_es_account_invoice_sequence.field_account_journal__refund_inv_sequence_id
 msgid "The sequence used for refund invoices numbers in this journal."
 msgstr ""
+"La seqüència utilitzada per al número de factures de devolució d’aquest "
+"diari."

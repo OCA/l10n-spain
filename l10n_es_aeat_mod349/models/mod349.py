@@ -1,17 +1,17 @@
 # Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2013 - Top Consultant Software Creations S.L.
 #                - (http://www.topconsultant.es/)
-# Copyright 2014 - Serv. Tecnol. Avanzados
-#                - Pedro M. Baeza (http://www.serviciosbaeza.com)
+# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
 #                  <contact@eficent.com>
 # Copyright 2018 - Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
+import math
 import re
 from odoo import models, fields, api, exceptions, _
+from odoo.fields import first
 from odoo.tools import float_is_zero
 
 
@@ -100,9 +100,14 @@ class Mod349(models.Model):
     def _compute_report_refund_totals(self):
         for report in self:
             report.total_partner_refunds = len(report.partner_refund_ids)
-            report.total_partner_refunds_amount = sum(
+            total_origin_amount = sum(
+                report.mapped('partner_refund_ids.total_origin_amount')
+            )
+            total_operation_amount = sum(
                 report.mapped('partner_refund_ids.total_operation_amount')
             )
+            report.total_partner_refunds_amount = total_origin_amount - \
+                total_operation_amount
 
     def _create_349_details(self, move_lines):
         for move_line in move_lines:
@@ -183,26 +188,37 @@ class Mod349(models.Model):
         # This is for avoiding to find same lines several times
         visited_details = self.env['l10n.es.aeat.mod349.partner_record_detail']
         visited_move_lines = self.env['account.move.line']
+        groups = {}
         for refund_detail in self.partner_refund_detail_ids:
+            move_line = refund_detail.refund_line_id
+            origin_invoice = move_line.invoice_id.refund_invoice_id
+            groups.setdefault(origin_invoice, refund_detail_obj)
+            groups[origin_invoice] += refund_detail
+        for origin_invoice in groups:
+            refund_details = groups[origin_invoice]
+            refund_detail = first(refund_details)
             move_line = refund_detail.refund_line_id
             partner = move_line.partner_id
             op_key = move_line.l10n_es_aeat_349_operation_key
-            origin_invoice = move_line.invoice_id.refund_invoice_id
             if not origin_invoice:
                 # TODO: Instead continuing, generate an empty record and a msg
                 continue
             # Fetch the latest presentation made for this move
-            original_detail = detail_obj.search([
+            original_details = detail_obj.search([
                 ('move_line_id.invoice_id', '=', origin_invoice.id),
                 ('partner_record_id.operation_key', '=', op_key),
                 ('id', 'not in', visited_details.ids)
-            ], limit=1, order='report_id desc')
-            if original_detail:
-                # There's a previous 349 declaration report
-                origin_amount = original_detail.amount_untaxed
-                period_type = original_detail.report_id.period_type
-                year = original_detail.report_id.year
-                visited_details |= original_detail
+            ], order='report_id desc')
+            # we add all of them to visited, as we don't want to repeat
+            visited_details |= original_details
+            if original_details:
+                # There's at least one previous 349 declaration report
+                report = original_details.mapped('report_id')[:1]
+                original_details = original_details.filtered(
+                    lambda d: d.report_id == report)
+                origin_amount = sum(original_details.mapped('amount_untaxed'))
+                period_type = report.period_type
+                year = str(report.year)
             else:
                 # There's no previous 349 declaration report in Odoo
                 original_amls = move_line_obj.search([
@@ -220,14 +236,14 @@ class Mod349(models.Model):
                 # * date of the move line
                 if original_amls:
                     original_move = original_amls[:1]
-                    year = original_move.date[:4]
-                    month = original_move.date[5:7]
+                    year = str(original_move.date.year)
+                    month = '%02d' % (original_move.date.month)
                 else:
                     continue  # We can't find information to attach to
                 if self.period_type == '0A':
                     period_type = '0A'
                 elif self.period_type in ('1T', '2T', '3T', '4T'):
-                    period_type = '%sT' % (int(month) % 4)
+                    period_type = '%sT' % int(math.ceil(int(month) / 3.0))
                 else:
                     period_type = month
             key = (partner, op_key, period_type, year)
@@ -236,7 +252,7 @@ class Mod349(models.Model):
                 'refund_details': refund_detail_obj,
             })
             key_vals['original_amount'] += origin_amount
-            key_vals['refund_details'] += refund_detail
+            key_vals['refund_details'] += refund_details
         for key, key_vals in data.items():
             partner, op_key, period_type, year = key
             partner_refund = obj.create({
@@ -267,28 +283,27 @@ class Mod349(models.Model):
 
     @api.model
     def _get_taxes(self):
-        tax_obj = self.env['account.tax']
-        # Obtain all the taxes to be considered
+        """Obtain all the taxes to be considered for 349."""
         map_lines = self.env['aeat.349.map.line'].search([])
-        tax_templates = map_lines.mapped('tax_tmpl_ids').mapped('description')
+        tax_templates = map_lines.mapped('tax_tmpl_ids')
         if not tax_templates:
             raise exceptions.Warning(_('No Tax Mapping was found'))
-        # search the account.tax referred to by the template
-        taxes = tax_obj.search(
-            [('description', 'in', tax_templates),
-             ('company_id', 'child_of', self.company_id.id)])
-        return taxes
+        return self.get_taxes_from_templates(tax_templates)
+
+    def _cleanup_report(self):
+        """Remove previous partner records and partner refunds in report."""
+        self.ensure_one()
+        self.partner_record_ids.unlink()
+        self.partner_refund_ids.unlink()
+        self.partner_record_detail_ids.unlink()
+        self.partner_refund_detail_ids.unlink()
 
     @api.multi
     def calculate(self):
         """Computes the records in report."""
         self.ensure_one()
         with self.env.norecompute():
-            # Remove previous partner records and partner refunds in report
-            self.partner_record_ids.unlink()
-            self.partner_refund_ids.unlink()
-            self.partner_record_detail_ids.unlink()
-            self.partner_refund_detail_ids.unlink()
+            self._cleanup_report()
             taxes = self._get_taxes()
             # Get all the account moves
             move_lines = self.env['account.move.line'].search(
@@ -313,6 +328,13 @@ class Mod349(models.Model):
         # Recompute all pending computed fields
         self.recompute()
         return True
+
+    def button_recover(self):
+        """Clean children records in this state for allowing things like
+        cancelling an invoice that is inside this report.
+        """
+        self._cleanup_report()
+        return super().button_recover()
 
     @api.multi
     def _check_report_lines(self):

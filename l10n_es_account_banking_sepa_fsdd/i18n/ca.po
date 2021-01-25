@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-29 02:56+0000\n"
-"PO-Revision-Date: 2018-06-29 20:44+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2020-11-05 11:08+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_es_account_banking_sepa_fsdd
 #: model:ir.model.fields,help:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
@@ -32,7 +32,7 @@ msgstr "Càrrec finançat"
 #. module: l10n_es_account_banking_sepa_fsdd
 #: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_mode
 msgid "Payment Modes"
-msgstr "Formes de pagament"
+msgstr "Modes de pagament"
 
 #. module: l10n_es_account_banking_sepa_fsdd
 #: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_order
