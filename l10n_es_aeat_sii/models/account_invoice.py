@@ -786,7 +786,13 @@ class AccountInvoice(models.Model):
                         inv_line._get_sii_line_price_unit(), inv_line.quantity,
                         inv_line.product_id, self.partner_id,
                     )
-                    amount_total += sum([t['amount'] for t in taxes['taxes']])
+                    if taxes['total'] >= 0:
+                        amount_total += sum([t['amount'] for t in
+                                             taxes['taxes'] if
+                                             t['amount'] >= 0])
+                    else:
+                        amount_total += sum([t['amount'] for t in
+                                            taxes['taxes'] if t['amount'] < 0])
 
         amount_total_company_signed = amount_total
         if (self.currency_id and self.company_id and
@@ -928,7 +934,6 @@ class AccountInvoice(models.Model):
             )
         else:
             # Check if refund type is 'By differences'. Negative amounts!
-            sign = self._get_sii_sign()
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
