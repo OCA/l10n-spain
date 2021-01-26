@@ -2,9 +2,10 @@
     "name": "SILICIE MRP",
     "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
-    "author": "Alquemy",
+    "author": "Alquemy,"
+              "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "application": False,
     "installable": True,
     "depends": [
         "l10n_es_aeat_silicie",

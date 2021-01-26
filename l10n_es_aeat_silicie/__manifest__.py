@@ -2,7 +2,9 @@
     "name": "SILICIE",
     "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
-    "author": "Alquemy",
+    "author": "Alquemy,"
+              "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "installable": True,
     "external_dependencies": {
