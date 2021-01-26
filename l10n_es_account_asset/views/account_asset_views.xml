@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 Tecnativa - Antonio Espinosa
+     Copyright 2012-2019 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="account_asset_view_form">
+        <field name="model">account.asset</field>
+        <field
+            name="inherit_id"
+            ref="account_asset_management.account_asset_view_form"
+        />
+        <field name="arch" type="xml">
+            <field name="method_time" position="after">
+                <field
+                    name="annual_percentage"
+                    attrs="{'invisible': [('method_time', '!=', 'percentage')], 'required': [('method_time', '=', 'percentage')]}"
+                />
+                <field
+                    name="method_percentage"
+                    attrs="{'invisible': ['|', ('method_time', '!=', 'percentage'), ('method_period', '=', 'year')], 'required': [('method_time', '=', 'percentage')]}"
+                />
+            </field>
+            <button name="remove" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible':[('state', 'not in', ['open', 'close'])]}</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>
