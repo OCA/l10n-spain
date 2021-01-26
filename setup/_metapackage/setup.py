@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-l10n_es_account_asset',
         'odoo14-addon-l10n_es_account_statement_import_n43',
         'odoo14-addon-l10n_es_aeat',
         'odoo14-addon-l10n_es_aeat_mod111',
