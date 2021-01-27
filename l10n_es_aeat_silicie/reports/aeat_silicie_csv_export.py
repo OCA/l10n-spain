@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 import csv
 
-from odoo import _, exceptions, models
+from odoo import _, api, models
 
 
 class AeatSiliceCsv(models.AbstractModel):
@@ -19,9 +19,6 @@ class AeatSiliceCsv(models.AbstractModel):
         return res
 
     def generate_csv_report(self, writer, data, moves):
-        Lots = self.env['stock.production.lot']
-        a14_type = self.env.ref(
-            'l10n_es_aeat_silicie.aeat_move_type_silicie_a14')
         writer.writeheader()
         for move in moves:
             if move.send_silicie or move.not_declare:
@@ -35,84 +32,9 @@ class AeatSiliceCsv(models.AbstractModel):
                     'lot_id': group['lot_id'][0],
                     'qty_done': group['qty_done'],
                 })
-            for item in lot_moves:
-                is_alcohol = move.product_id.silicie_product_type == 'alcohol'
-                is_beer = move.product_id.silicie_product_type == "beer"
-                absolute_alcohol = ''
-                container_code = ''
-                factor_conversion = ''
-                qty_done = ''
-                extract = ''
-                kg_extact = ''
-                density = ''
-                grado_plato = ''
-                partner_name = move.picking_id.partner_id.name or ''
-                alcoholic_grade = move.alcoholic_grade
-                if is_alcohol:
-                    absolute_alcohol = move.absolute_alcohol
-                    container_code = move.container_type_silicie_id.code
-                    factor_conversion = move.factor_conversion_silicie
-                    qty_done = int(move.quantity_done)
-                if is_beer:
-                    qty_done = item['qty_done']
-                    if move.product_id.product_class == "raw":
-                        lot = Lots.browse(item['lot_id'])
-                        extract = lot.extract
-                        if move.silicie_move_type_id == a14_type:
-                            kg_extact = extract * qty_done
-                        if move.product_id.product_class == "manufactured":
-                            alcoholic_grade = ""
-                            density = lot.density
-                            grado_plato = (density * 1000 - 1000) / 4
-                writer.writerow(
-                    self.localize_floats({
-                        'Número Referencia Interno': move.id,
-                        'Número Asiento Previo': '',
-                        'Fecha Movimiento': move.date.strftime('%d/%m/%Y'),
-                        'Fecha Registro Contable': move.date.strftime('%d/%m/%Y'),
-                        'Tipo Movimiento': move.silicie_move_type_id.code,
-                        'Información adicional Diferencia en Menos':
-                            move.silicie_loss_id.code if move.silicie_loss_id else '',
-                        'Régimen Fiscal': move.silice_tax_position,
-                        'Tipo de Operación':
-                            move.silicie_processing_id.code if
-                            move.silicie_processing_id else '',
-                        'Número Operación':
-                            move.silicie_operation_num if
-                            move.silicie_operation_num else '',
-                        'Descripción Unidad de Fabricación': '',
-                        'Código Unidad de Fabricación': '',
-                        'Tipo Justificante': move.silicie_proof_type_id.code,
-                        'Número Justificante': move.reference,
-                        'Tipo Documento Identificativo': '1',
-                        'Número Documento Identificativo':
-                            move.picking_id.partner_id.vat or
-                            move.company_id.vat or '',
-                        'Razón Social': partner_name[:125],
-                        'CAE/Número Seed': '',
-                        'Repercusión Tipo Documento Identificativo': '',
-                        'Repercusión Número Documento Identificativo': '',
-                        'Repercusión Razón Social': '',
-                        'Epígrafe': move.epigraph_silicie_id.fiscal_epigraph_silicie or '',
-                        'Código Epígrafe': move.epigraph_silicie_id.code or '',
-                        'Código NC': move.nc_code,
-                        'Clave': move.product_key_silicie_id.code or '',
-                        'Cantidad': move.qty_conversion_silicie,
-                        'Unidad de Medida': move.uom_silicie_id.code,
-                        'Descripción de Producto': move.product_id.name.strip(),
-                        'Referencia Producto': move.product_id.default_code,
-                        'Densidad': density,
-                        'Grado Alcohólico': alcoholic_grade,
-                        'Cantidad de Alcohol Puro': absolute_alcohol,
-                        'Porcentaje de Extracto': extract,
-                        'Kg. - Extracto': kg_extact,
-                        'Grado Plato Medio': grado_plato,
-                        'Grado Acético': '',
-                        'Tipo de Envase': container_code,
-                        'Capacidad de Envase': factor_conversion,
-                        'Número de Envases': qty_done,
-                        'Observaciones': move.notes_silice or '',
-                    }))
+            for lot in lot_moves:
+                values = move._prepare_values(lot)
+                writer.writerow(self.localize_floats(values))
 
     def csv_report_options(self):
         res = super().csv_report_options()

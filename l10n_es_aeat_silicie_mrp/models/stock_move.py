@@ -100,3 +100,41 @@ class StockMove(models.Model):
                     move.picking_id.partner_id.property_account_position_id
                 # Check if all fields have been correctly generated
                 move.check_silicie_fields()
+
+    @api.multi
+    def _get_data_dict(self, lot):
+        self.ensure_one()
+        Lots = self.env['stock.production.lot']
+        a14_type = self.env.ref(
+            'l10n_es_aeat_silicie.aeat_move_type_silicie_a14')
+        data = super()._get_data_dict(lot)
+        if self.product_id.silicie_product_type == "beer":
+            data.update({'qty_done': lot['qty_done']})
+            if self.product_id.product_class == "raw":
+                lot_id = Lots.browse(lot['lot_id'])
+                data.update({'extract': lot_id.extract})
+                if self.silicie_move_type_id == a14_type:
+                    data.update({
+                        'kg_extract': data['extract'] * data['qty_done']})
+                if self.product_id.product_class == "manufactured":
+                    density = lot_id.density
+                    data.update({
+                        'alcoholic_grade': "",
+                        'density': density,
+                        'grado_plato': density * 1000 - 1000 / 4,
+                    })
+        return data
+
+    @api.multi
+    def _prepare_values(self, lot):
+        self.ensure_one()
+        data = self._get_data_dict(lot)
+        values = super()._prepare_values(lot)
+        values.update({
+            'Porcentaje de Extracto': data.get('extract', ''),
+            'Kg. - Extracto': data.get('kg_extract', ''),
+            'Grado Alcohólico': data.get('alcoholic_grade', ''),
+            'Densidad': data.get('density', ''),
+            'Grado Plato Medio': data.get('grado_plato', ''),
+        })
+        return values

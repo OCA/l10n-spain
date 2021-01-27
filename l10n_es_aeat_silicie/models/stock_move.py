@@ -564,3 +564,66 @@ class StockMove(models.Model):
     @api.multi
     def get_test_mode(self, port_name):
         return port_name
+
+    @api.multi
+    def _get_data_dict(self, lot):
+        self.ensure_one()
+        return {
+            'partner_name': self.picking_id.partner_id.name or '',
+            'alcoholic_grade': self.alcoholic_grade,
+            'absolute_alcohol': self.absolute_alcohol,
+            'container_code': self.container_type_silicie_id.code,
+            'factor_conversion': self.factor_conversion_silicie,
+            'qty_done': self.quantity_done}
+
+    @api.multi
+    def _prepare_values(self, lot):
+        data = self._get_data_dict(lot)
+        return {
+            'Número Referencia Interno': self.id,
+            'Número Asiento Previo': '',
+            'Fecha Movimiento': self.date.strftime('%d/%m/%Y'),
+            'Fecha Registro Contable': self.date.strftime('%d/%m/%Y'),
+            'Tipo Movimiento': self.silicie_move_type_id.code,
+            'Información adicional Diferencia en Menos':
+                self.silicie_loss_id.code if self.silicie_loss_id else '',
+            'Régimen Fiscal': self.silice_tax_position,
+            'Tipo de Operación':
+                self.silicie_processing_id.code if
+                self.silicie_processing_id else '',
+            'Número Operación':
+                self.silicie_operation_num if
+                self.silicie_operation_num else '',
+            'Descripción Unidad de Fabricación': '',
+            'Código Unidad de Fabricación': '',
+            'Tipo Justificante': self.silicie_proof_type_id.code,
+            'Número Justificante': self.reference,
+            'Tipo Documento Identificativo': '1',
+            'Número Documento Identificativo':
+                self.picking_id.partner_id.vat or
+                self.company_id.vat or '',
+            'Razón Social': data['partner_name'][:125],
+            'CAE/Número Seed': '',
+            'Repercusión Tipo Documento Identificativo': '',
+            'Repercusión Número Documento Identificativo': '',
+            'Repercusión Razón Social': '',
+            'Epígrafe': self.epigraph_silicie_id.fiscal_epigraph_silicie or '',
+            'Código Epígrafe': self.epigraph_silicie_id.code or '',
+            'Código NC': self.nc_code,
+            'Clave': self.product_key_silicie_id.code or '',
+            'Cantidad': self.qty_conversion_silicie,
+            'Unidad de Medida': self.uom_silicie_id.code,
+            'Descripción de Producto': self.product_id.name.strip(),
+            'Referencia Producto': self.product_id.default_code,
+            'Densidad': '',
+            'Grado Alcohólico': data['alcoholic_grade'],
+            'Cantidad de Alcohol Puro': data['absolute_alcohol'],
+            'Porcentaje de Extracto': '',
+            'Kg. - Extracto': '',
+            'Grado Plato Medio': '',
+            'Grado Acético': '',
+            'Tipo de Envase': data['container_code'],
+            'Capacidad de Envase': data['factor_conversion'],
+            'Número de Envases': data['qty_done'],
+            'Observaciones': self.notes_silice or '',
+        }
