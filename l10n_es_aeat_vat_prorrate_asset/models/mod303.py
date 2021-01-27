@@ -5,22 +5,25 @@ from odoo import models
 
 
 class L10nEsAeatMod303Report(models.Model):
-    _inherit = 'l10n.es.aeat.mod303.report'
+    _inherit = "l10n.es.aeat.mod303.report"
 
     def _calculate_casilla_44(self):
         super(L10nEsAeatMod303Report, self)._calculate_casilla_44()
         for report in self:
-            if (report.vat_prorrate_type != 'general' or
-                    report.period_type not in ('4T', '12')):
+            if report.vat_prorrate_type != "general" or report.period_type not in (
+                "4T",
+                "12",
+            ):
                 continue
-            assets = self.env['account.asset'].search(
-                [('date_start', 'like', '{}%'.format(report.year))]
+            assets = self.env["account.asset"].search(
+                [("date_start", "like", "{}%".format(report.year))]
             )
             result = report.casilla_44
-            for asset in assets.filtered('vat_prorrate_percent'):
+            for asset in assets.filtered("vat_prorrate_percent"):
                 original_taxes = (
-                    asset.vat_prorrate_increment * 100 /
-                    (100 - asset.vat_prorrate_percent)
+                    asset.vat_prorrate_increment
+                    * 100
+                    / (100 - asset.vat_prorrate_percent)
                 )
                 real_increment = (
                     original_taxes * (100 - report.vat_prorrate_percent) / 100

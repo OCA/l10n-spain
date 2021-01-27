@@ -5,7 +5,7 @@ from odoo import fields, models
 
 
 class AccountAsset(models.Model):
-    _inherit = 'account.asset'
+    _inherit = "account.asset"
 
     vat_prorrate_percent = fields.Float()
     vat_prorrate_increment = fields.Float()
