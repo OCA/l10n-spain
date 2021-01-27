@@ -4,12 +4,12 @@
 
 {
     "name": "AEAT - Prorrata de IVA",
-    "version": "12.0.1.0.1",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
     "author": "AvanzOSC, " "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Invoices & Payments",
-    "depends": ["l10n_es_aeat_mod303",],
+    "depends": ["l10n_es_aeat_mod303"],
     "data": [
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",

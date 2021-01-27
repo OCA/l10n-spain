@@ -4,20 +4,12 @@
 
 from odoo import _, api, exceptions, fields, models
 
-PRORRATE_TAX_LINE_MAPPING = {
-    29: 28,
-    33: 32,
-    35: 34,
-    37: 36,
-    39: 38,
-    41: 40,
-}
+PRORRATE_TAX_LINE_MAPPING = {29: 28, 33: 32, 35: 34, 37: 36, 39: 38, 41: 40}
 
 
 class L10nEsAeatMod303Report(models.Model):
     _inherit = "l10n.es.aeat.mod303.report"
 
-    @api.multi
     @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_44")
     def _compute_total_deducir(self):
         super(L10nEsAeatMod303Report, self)._compute_total_deducir()
@@ -25,14 +17,13 @@ class L10nEsAeatMod303Report(models.Model):
             report.total_deducir += report.casilla_44
 
     casilla_44 = fields.Float(
-        string=u"[44] Regularización de la prorrata",
+        string="[44] Regularización de la prorrata",
         default=0,
         states={"done": [("readonly", True)]},
-        help=u"Regularización por aplicación del porcentaje definitivo de "
-        u"prorrata.",
+        help="Regularización por aplicación del porcentaje definitivo de prorrata.",
     )
     vat_prorrate_type = fields.Selection(
-        [("none", "None"), ("general", "General prorrate"),],
+        [("none", "None"), ("general", "General prorrate")],
         # ('special', 'Special prorrate')],
         readonly=True,
         states={"draft": [("readonly", False)]},
@@ -66,7 +57,6 @@ class L10nEsAeatMod303Report(models.Model):
                 _("VAT prorrate percent must be between 0.01 and 100")
             )
 
-    @api.multi
     def _calculate_casilla_44(self):
         self.ensure_one()
         # Get prorrate from previous declarations
@@ -89,7 +79,6 @@ class L10nEsAeatMod303Report(models.Model):
                 )
         self.casilla_44 = round(result, 2)
 
-    @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
         for report in self:
@@ -113,7 +102,6 @@ class L10nEsAeatMod303Report(models.Model):
             )
         return res
 
-    @api.multi
     def _prepare_tax_line_vals(self, map_line):
         res = super(L10nEsAeatMod303Report, self)._prepare_tax_line_vals(map_line)
         if (
@@ -123,7 +111,6 @@ class L10nEsAeatMod303Report(models.Model):
             res["amount"] *= self.vat_prorrate_percent / 100
         return res
 
-    @api.multi
     def _process_tax_line_regularization(self, tax_lines):
         """Añadir la parte no deducida de la base como gasto repartido
         proporcionalmente entre las cuentas de las líneas de gasto existentes.
@@ -162,7 +149,7 @@ class L10nEsAeatMod303Report(models.Model):
                 prorrate_credit = tax_account_group["credit"]
                 prec = self.env["decimal.precision"].precision_get("Account")
                 subtotal_prorrate = round(
-                    (prorrate_debit - prorrate_credit) * factor, prec,
+                    (prorrate_debit - prorrate_credit) * factor, prec
                 )
                 total_prorrate += subtotal_prorrate
                 account_groups = move_line_obj.read_group(
@@ -195,7 +182,7 @@ class L10nEsAeatMod303Report(models.Model):
                             )[0]
                         extra_lines.append(move_line_vals)
             # Add/substract possible rounding inaccuracy to the first line
-            extra_lines = self._prorrate_diff_distribution(total_prorrate, extra_lines,)
+            extra_lines = self._prorrate_diff_distribution(total_prorrate, extra_lines)
             all_lines += extra_lines
         return all_lines
 
@@ -227,7 +214,6 @@ class L10nEsAeatMod303Report(models.Model):
             n = (n + 1) % count
         return extra_lines
 
-    @api.multi
     def _prepare_regularization_extra_move_lines(self):
         lines = super(
             L10nEsAeatMod303Report, self
@@ -235,7 +221,7 @@ class L10nEsAeatMod303Report(models.Model):
         if self.casilla_44:
             lines.append(
                 {
-                    "name": _(u"Regularización prorrata IVA"),
+                    "name": _("Regularización prorrata IVA"),
                     "account_id": self.prorrate_regularization_account_id.id,
                     "analytic_account_id": (
                         self.prorrate_regularization_analytic_account_id.id
