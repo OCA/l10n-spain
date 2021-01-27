@@ -7,62 +7,63 @@ from odoo.addons.l10n_es_aeat_mod303.tests.test_l10n_es_aeat_mod303 import (
 
 
 class TestL10nEsAeatVatProrrateBase(TestL10nEsAeatMod303Base):
-    def setUp(self):
-        super().setUp()
-        self.taxes_sale = {
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.taxes_sale = {
             # tax code: (base, tax_amount)
             "S_IVA21B": (1400, 294),
             "S_IVA21B//neg": (-140, -29.4),
             "S_IVA0": (200, 0),
         }
-        self.taxes_purchase = {
+        cls.taxes_purchase = {
             # tax code: (base, tax_amount)
             "P_IVA4_BC": (240, 9.6),
             "P_IVA10_BC": (250, 25),
             "P_IVA21_BC": (260, 54.6),
         }
-        self.invoice_purchase = self._invoice_purchase_create("2017-01-03")
-        self.invoice_sale = self._invoice_sale_create("2017-01-13")
-        self.journal = self.env["account.journal"].create(
-            {"name": "Test journal", "code": "TEST", "type": "general",}
+        cls.invoice_purchase = cls._invoice_purchase_create("2017-01-03")
+        cls.invoice_sale = cls._invoice_sale_create("2017-01-13")
+        cls.journal = cls.env["account.journal"].create(
+            {"name": "Test journal", "code": "TEST", "type": "general"}
         )
-        self.account_type = self.env["account.account.type"].create(
-            {"name": "Test account type", "type": "other",}
+        cls.account_type = cls.env["account.account.type"].create(
+            {"name": "Test account type", "type": "other", "internal_group": "expense"}
         )
-        self.counterpart_account = self.env["account.account"].create(
+        cls.counterpart_account = cls.env["account.account"].create(
             {
                 "name": "Test counterpart account",
                 "code": "COUNTERPART",
-                "user_type_id": self.account_type.id,
+                "user_type_id": cls.account_type.id,
             }
         )
-        self.prorrate_regul_account = self.env["account.account"].search(
+        cls.prorrate_regul_account = cls.env["account.account"].search(
             [
                 ("code", "like", "6391%"),
-                ("company_id", "=", self.model303.company_id.id),
+                ("company_id", "=", cls.model303.company_id.id),
             ],
             limit=1,
         )
-        if not self.prorrate_regul_account:
-            self.prorrate_regul_account = self.env["account.account"].create(
+        if not cls.prorrate_regul_account:
+            cls.prorrate_regul_account = cls.env["account.account"].create(
                 {
                     "name": "Test prorrate regularization account",
                     "code": "6391000",
-                    "user_type_id": self.account_type.id,
+                    "user_type_id": cls.account_type.id,
                 }
             )
-        self.model303.write(
+        cls.model303.write(
             {
                 "vat_prorrate_type": "general",
                 "vat_prorrate_percent": 80,
-                "journal_id": self.journal.id,
+                "journal_id": cls.journal.id,
             }
         )
-        self.model303_4t.write(
+        cls.model303_4t.write(
             {
                 "vat_prorrate_type": "general",
                 "vat_prorrate_percent": 80,
-                "journal_id": self.journal.id,
+                "journal_id": cls.journal.id,
             }
         )
 
@@ -83,8 +84,8 @@ class TestL10nEsAeatVatProrrate(TestL10nEsAeatVatProrrateBase):
         # Last trimester
         wizard = (
             self.env["l10n.es.aeat.compute.vat.prorrate"]
-            .with_context(active_id=self.model303_4t.id,)
-            .create({"year": 2017,})
+            .with_context(active_id=self.model303_4t.id)
+            .create({"year": 2017})
         )
         wizard.button_compute()
         self.assertAlmostEqual(self.model303_4t.vat_prorrate_percent, 87, 2)

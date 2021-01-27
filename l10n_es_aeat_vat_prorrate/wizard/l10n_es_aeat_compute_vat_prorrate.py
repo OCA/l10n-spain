@@ -3,7 +3,7 @@
 
 import math
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ComputeVatProrrate(models.TransientModel):
@@ -13,9 +13,8 @@ class ComputeVatProrrate(models.TransientModel):
     def _default_year(self):
         return int(fields.Date.today().year)
 
-    year = fields.Integer(required=True, default=_default_year,)
+    year = fields.Integer(required=True, default=_default_year)
 
-    @api.multi
     def button_compute(self):
         self.ensure_one()
         date_from = "%s-01-01" % self.year
@@ -42,14 +41,14 @@ class ComputeVatProrrate(models.TransientModel):
             "tax_ids": [(4, self.env.ref(x).id) for x in affected_taxes],
         }
         map_line = MapLine.new(mapline_vals)
-        move_lines = mod303._get_tax_lines(False, date_from, date_to, map_line)
+        move_lines = mod303._get_tax_lines(date_from, date_to, map_line)
         taxed = sum(move_lines.mapped("credit")) - sum(move_lines.mapped("debit"))
         # Get base amount of exempt operations
         mapline_vals["tax_ids"] = [
             (4, self.env.ref("l10n_es.account_tax_template_s_iva0").id)
         ]
         map_line = MapLine.new(mapline_vals)
-        move_lines = mod303._get_tax_lines(False, date_from, date_to, map_line)
+        move_lines = mod303._get_tax_lines(date_from, date_to, map_line)
         exempt = sum(move_lines.mapped("credit")) - sum(move_lines.mapped("debit"))
         # compute prorrate percentage performing ceiling operation
         mod303.vat_prorrate_percent = math.ceil(taxed / (taxed + exempt) * 100)
