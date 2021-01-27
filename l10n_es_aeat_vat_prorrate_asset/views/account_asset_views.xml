@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016 Tecnativa - Antonio Espinosa
      Copyright 2017-2020 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
-
     <record model="ir.ui.view" id="account_asset_view_tree">
         <field name="name">account.asset.tree - Add VAT prorrate percent field</field>
         <field name="model">account.asset</field>
-        <field name="inherit_id" ref="account_asset_management.account_asset_view_tree"/>
+        <field
+            name="inherit_id"
+            ref="account_asset_management.account_asset_view_tree"
+        />
         <field name="arch" type="xml">
             <field name="depreciation_base" position="after">
-                <field name="vat_prorrate_percent"/>
+                <field name="vat_prorrate_percent" />
             </field>
         </field>
     </record>
-
 </odoo>
