@@ -16,7 +16,11 @@ configurations = {
         'country': 'DEU', 'vat': 'DE111111125', 'product_code': 'RX'},
 }
 
-
+configurations_customer = {
+    'facturae_customer_01.xml': {
+        'country': 'ESP', 'vat': 'ESA86025558', 'product_code': 'VNAC'
+    }
+}
 class TestImportFacturae(TransactionCase):
     def setUp(self):
         super().setUp()
@@ -69,3 +73,55 @@ class TestImportFacturae(TransactionCase):
     def test_import(self):
         for config in configurations:
             self.check_config(config, configurations[config])
+
+
+class TestImportCustomerFacturae(TransactionCase):
+    def setUp(self):
+        super().setUp()
+        self.config = self.env['account.invoice.import.config'].create({
+            'name': 'Facturae',
+            'invoice_line_method': 'nline_auto_product',
+        })
+        self.tax = self.env['account.tax'].create({
+            'name': 'Test tax',
+            'type_tax_use': 'purchase',
+            'amount_type': 'percent',
+            'amount': 21.,
+            'description': 'TEST TAX',
+        })
+        self.product = self.env['product.product'].create({
+            'name': 'Product',
+            'supplier_taxes_id': [(4, self.tax.id)],
+        })
+
+    def check_config(self, config, vals):
+        country = self.env['res.country'].search([
+            ('code', '=', vals['country'])])
+        country.ensure_one()
+        partner = self.env['res.partner'].create({
+            'name': 'Partner',
+            'invoice_import_ids': [(4, self.config.id)],
+            'country_id': country.id,
+            'vat': vals['vat'],
+            'customer': True,
+        })
+        self.product.default_code = vals['product_code']
+        filename = config
+        f = file_open(
+            'account_invoice_import_facturae/tests/files/' + filename, 'rb')
+        xml_file = f.read()
+        wiz = self.env['account.invoice.import'].with_context(
+            customer=True
+        ).create({
+            'invoice_file': base64.b64encode(xml_file),
+            'invoice_filename': filename,
+        })
+        f.close()
+        action = wiz.import_invoice()
+        invoice = self.env['account.invoice'].browse(action['res_id'])
+        self.assertTrue(invoice)
+        self.assertEqual(invoice.partner_id, partner)
+
+    def test_import(self):
+        for config in configurations_customer:
+            self.check_config(config, configurations_customer[config])

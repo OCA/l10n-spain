@@ -3,10 +3,10 @@
 
 {
     'name': 'Account Invoice Import Facturae',
-    'version': '12.0.1.0.0',
+    'version': '12.0.2.0.0',
     'category': 'Accounting & Finance',
     'license': 'AGPL-3',
-    'summary': 'Import supplier invoices/refunds in facturae format',
+    'summary': 'Import supplier invoices/refunds and customer invoices in facturae format',
     'author': 'Creu Blanca, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-spain',
     'depends': [

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae">
+  <FileHeader>
+    <SchemaVersion>3.2.1</SchemaVersion>
+    <Modality>I</Modality>
+    <InvoiceIssuerType>RE</InvoiceIssuerType>
+    <ThirdParty>
+      <TaxIdentification>
+        <PersonTypeCode>J</PersonTypeCode>
+        <ResidenceTypeCode>R</ResidenceTypeCode>
+        <TaxIdentificationNumber>ES-A-86025558</TaxIdentificationNumber>
+      </TaxIdentification>
+      <LegalEntity>
+        <CorporateName>OMI - POLO ESPAÑOL S.A. (OMIE)</CorporateName>
+        <RegistrationData>
+          <RegisterOfCompaniesLocation>MADRID</RegisterOfCompaniesLocation>
+          <Sheet>M-506799</Sheet>
+          <Folio>76</Folio>
+          <Section>8</Section>
+          <Volume>28132</Volume>
+        </RegistrationData>
+        <AddressInSpain>
+          <Address>Alfonso XI, 6 - 4ª PLANTA</Address>
+          <PostCode>28014</PostCode>
+          <Town>MADRID</Town>
+          <Province>MADRID</Province>
+          <CountryCode>ESP</CountryCode>
+        </AddressInSpain>
+      </LegalEntity>
+    </ThirdParty>
+    <Batch>
+      <BatchIdentifier>306-C_SOMRG</BatchIdentifier>
+      <InvoicesCount>1</InvoicesCount>
+      <TotalInvoicesAmount>
+        <TotalAmount>130.58</TotalAmount>
+      </TotalInvoicesAmount>
+      <TotalOutstandingAmount>
+        <TotalAmount>130.58</TotalAmount>
+      </TotalOutstandingAmount>
+      <TotalExecutableAmount>
+        <TotalAmount>130.58</TotalAmount>
+      </TotalExecutableAmount>
+      <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+    </Batch>
+  </FileHeader>
+  <Parties>
+    <SellerParty>
+      <TaxIdentification>
+        <PersonTypeCode>J</PersonTypeCode>
+        <ResidenceTypeCode>R</ResidenceTypeCode>
+        <TaxIdentificationNumber>ES-B-55339253</TaxIdentificationNumber>
+      </TaxIdentification>
+      <LegalEntity>
+        <CorporateName>SOM RENOVABLES SL</CorporateName>
+        <TradeName>SOMRG</TradeName>
+        <RegistrationData />
+        <AddressInSpain>
+          <Address>C/PIC DE PEGUERA 9</Address>
+          <PostCode>17003</PostCode>
+          <Town>GIRONA</Town>
+          <Province>GERONA</Province>
+          <CountryCode>ESP</CountryCode>
+        </AddressInSpain>
+      </LegalEntity>
+    </SellerParty>
+    <BuyerParty>
+      <TaxIdentification>
+        <PersonTypeCode>J</PersonTypeCode>
+        <ResidenceTypeCode>R</ResidenceTypeCode>
+        <TaxIdentificationNumber>ES-A-86025558</TaxIdentificationNumber>
+      </TaxIdentification>
+      <LegalEntity>
+        <CorporateName>OMI - POLO ESPAÑOL S.A. (OMIE)</CorporateName>
+        <TradeName>OMIE</TradeName>
+        <RegistrationData />
+        <AddressInSpain>
+          <Address>Alfonso XI, 6 - 4ª PLANTA</Address>
+          <PostCode>28014</PostCode>
+          <Town>MADRID</Town>
+          <Province>MADRID</Province>
+          <CountryCode>ESP</CountryCode>
+        </AddressInSpain>
+      </LegalEntity>
+    </BuyerParty>
+  </Parties>
+  <Invoices>
+    <Invoice>
+      <InvoiceHeader>
+        <InvoiceNumber>306</InvoiceNumber>
+        <InvoiceSeriesCode>C_SOMRG</InvoiceSeriesCode>
+        <InvoiceDocumentType>FC</InvoiceDocumentType>
+        <InvoiceClass>OO</InvoiceClass>
+      </InvoiceHeader>
+      <InvoiceIssueData>
+        <IssueDate>2020-06-02</IssueDate>
+        <InvoicingPeriod>
+          <StartDate>2020-06-01</StartDate>
+          <EndDate>2020-06-01</EndDate>
+        </InvoicingPeriod>
+        <InvoiceCurrencyCode>EUR</InvoiceCurrencyCode>
+        <TaxCurrencyCode>EUR</TaxCurrencyCode>
+        <LanguageName>es</LanguageName>
+      </InvoiceIssueData>
+      <TaxesOutputs>
+        <Tax>
+          <TaxTypeCode>01</TaxTypeCode>
+          <TaxRate>21.00</TaxRate>
+          <TaxableBase>
+            <TotalAmount>107.92</TotalAmount>
+            <EquivalentInEuros>107.92</EquivalentInEuros>
+          </TaxableBase>
+          <TaxAmount>
+            <TotalAmount>22.66</TotalAmount>
+            <EquivalentInEuros>22.66</EquivalentInEuros>
+          </TaxAmount>
+        </Tax>
+      </TaxesOutputs>
+      <InvoiceTotals>
+        <TotalGrossAmount>107.92</TotalGrossAmount>
+        <TotalGrossAmountBeforeTaxes>107.92</TotalGrossAmountBeforeTaxes>
+        <TotalTaxOutputs>22.66</TotalTaxOutputs>
+        <TotalTaxesWithheld>0.00</TotalTaxesWithheld>
+        <InvoiceTotal>130.58</InvoiceTotal>
+        <TotalOutstandingAmount>130.58</TotalOutstandingAmount>
+        <TotalExecutableAmount>130.58</TotalExecutableAmount>
+      </InvoiceTotals>
+      <Items>
+        <InvoiceLine>
+          <ItemDescription>Ventas en el mercado diario e intradiario de sujeto pasivo revendedor nacional.</ItemDescription>
+          <Quantity>3.200</Quantity>
+          <UnitPriceWithoutTax>33.725000</UnitPriceWithoutTax>
+          <TotalCost>107.920000</TotalCost>
+          <GrossAmount>107.920000</GrossAmount>
+          <TaxesOutputs>
+            <Tax>
+              <TaxTypeCode>01</TaxTypeCode>
+              <TaxRate>21.00</TaxRate>
+              <TaxableBase>
+                <TotalAmount>107.92</TotalAmount>
+                <EquivalentInEuros>107.92</EquivalentInEuros>
+              </TaxableBase>
+              <TaxAmount>
+                <TotalAmount>22.66</TotalAmount>
+                <EquivalentInEuros>22.66</EquivalentInEuros>
+              </TaxAmount>
+            </Tax>
+          </TaxesOutputs>
+          <ArticleCode>VNAC</ArticleCode>
+        </InvoiceLine>
+      </Items>
+      <PaymentDetails>
+        <Installment>
+          <InstallmentDueDate>2020-06-11</InstallmentDueDate>
+          <InstallmentAmount>130.58</InstallmentAmount>
+          <PaymentMeans>13</PaymentMeans>
+        </Installment>
+      </PaymentDetails>
+      <LegalLiterals />
+      <AdditionalData>
+        <InvoiceAdditionalInformation>Facturación por el destinatario.
+Sujeto pasivo revendedor a los efectos del art 38.1 de la Directiva 2006/112/EC.
+Artículo 38 de la Directiva 2006/112/EC.
+</InvoiceAdditionalInformation>
+        <Extensions />
+      </AdditionalData>
+    </Invoice>
+  </Invoices>
+<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="Signature-b976c940-a084-4817-829c-e32d8805cc03"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" /><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256" /><ds:Reference Id="Reference-43b30bb0-65f6-406f-83dc-047a5ef5c02f" URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><ds:DigestValue>4GCyl+EHwJA9Qng+Hp8DFURdbqz9L3M9vFlnLzw2bLU=</ds:DigestValue></ds:Reference><ds:Reference Id="ReferenceKeyInfo" URI="#KeyInfoId-Signature-b976c940-a084-4817-829c-e32d8805cc03"><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><ds:DigestValue>QEhc22fA2oXlgN//AzYh+iTWtNhgRuW1Cq1icdYgcU4=</ds:DigestValue></ds:Reference><ds:Reference Type="http://uri.etsi.org/01903#SignedProperties" URI="#SignedProperties-Signature-b976c940-a084-4817-829c-e32d8805cc03"><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><ds:DigestValue>SDjmGzsjrBi1zXIWMbhdEiCE92HXzSdq2/rW7DJ45MI=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue Id="SignatureValue-b976c940-a084-4817-829c-e32d8805cc03">gZY8SYoxLqCcwGDlPBMxzE23FaxfJ27qa1s1M/gmF5oB8DNAnG5sd+qmwGCN33B7FMZ4Aq2LPFZbjLQ02vDq7B7Hz2a6gN7LeZU0jCeQxb9rg618Wuf/XL8my6T+JJXTvB2cMHvtb/DIpXKwLkDeZSkwG9CDjkJyBQ2bo5l+4Dz6PNbWNu7TRrKDbev1VkBTaN9xm7FhladkVaV5B2lq5c2Ps8Bee5iDyOLP3nb/J/QN203gjLLKK0SF271/f32xzrhMBd96c7NvYdQYTz6Tkp7ynfGD316rJpzDKn7GAK5b+GGWNCn/2Fa2VBIqEfiqCBym+ZAyt6UQdR9mqJ/H2A==</ds:SignatureValue><ds:KeyInfo Id="KeyInfoId-Signature-b976c940-a084-4817-829c-e32d8805cc03"><ds:X509Data><ds:X509Certificate>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</ds:X509Certificate></ds:X509Data><ds:KeyValue><ds:RSAKeyValue><ds:Modulus>tY20Iww7QOaP8VOKOkCcEYWyEWkHey0SkT74CRPg/+j9sXMjIv8/MEMoZTc6EfN0EiyEkZc5A77p+zX7RmT1IFRzsn6TWKlVlRZN0fvN9o2fBIj17wHQDnIHvGCvnAVKXgXweYLgEGVhDvuaOwn4ivXbXORgvhIEW74vUDMsgECUVrYcB2YhlqKl1GgyatOM0RfxJD20U8lxmV7b//LiWoy6zFYPn1/ADGtPYjnuzHsaofMxtc4pLP9pgHEMn8E79S0+N7/1Ti0eLzloJSvZ+oSuddTTXvoTldub0ylnef7a2U34bOwXWe91xenHxLUwzT/kbYGDvwdw1lNm6tCF0Q==</ds:Modulus><ds:Exponent>AQAB</ds:Exponent></ds:RSAKeyValue></ds:KeyValue></ds:KeyInfo><ds:Object Id="XadesObjectId-b26030d8-e0a4-437f-b599-6722e115fdb6"><xades:QualifyingProperties xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" Id="QualifyingProperties-9f4afc67-b696-4742-8b40-cc663669526b" Target="#Signature-b976c940-a084-4817-829c-e32d8805cc03"><xades:SignedProperties Id="SignedProperties-Signature-b976c940-a084-4817-829c-e32d8805cc03"><xades:SignedSignatureProperties><xades:SigningTime>2020-06-02T08:27:07+02:00</xades:SigningTime><xades:SigningCertificate><xades:Cert><xades:CertDigest><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" /><ds:DigestValue>eNYlwjRH36VFgUb1f2qd448Z1FN8DTF3X3KrqDyW8uM=</ds:DigestValue></xades:CertDigest><xades:IssuerSerial><ds:X509IssuerName>CN=AC Representación, OU=CERES, O=FNMT-RCM, C=ES</ds:X509IssuerName><ds:X509SerialNumber>26243907570736635561718687275600888025</ds:X509SerialNumber></xades:IssuerSerial></xades:Cert></xades:SigningCertificate><xades:SignaturePolicyIdentifier><xades:SignaturePolicyId><xades:SigPolicyId><xades:Identifier>http://www.facturae.es/politica_de_firma_formato_facturae/politica_de_firma_formato_facturae_v3_1.pdf</xades:Identifier><xades:Description /></xades:SigPolicyId><xades:SigPolicyHash><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><ds:DigestValue>Ohixl6upD6av8N7pEvDABhEL6hM=</ds:DigestValue></xades:SigPolicyHash></xades:SignaturePolicyId></xades:SignaturePolicyIdentifier><xades:SignerRole><xades:ClaimedRoles><xades:ClaimedRole>emisor</xades:ClaimedRole></xades:ClaimedRoles></xades:SignerRole></xades:SignedSignatureProperties><xades:SignedDataObjectProperties><xades:DataObjectFormat ObjectReference="#Reference-43b30bb0-65f6-406f-83dc-047a5ef5c02f"><xades:MimeType>text/xml</xades:MimeType><xades:Encoding>UTF-8</xades:Encoding></xades:DataObjectFormat></xades:SignedDataObjectProperties></xades:SignedProperties></xades:QualifyingProperties></ds:Object></ds:Signature></fe:Facturae>
