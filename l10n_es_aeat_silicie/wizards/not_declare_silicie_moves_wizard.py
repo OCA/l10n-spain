@@ -1,12 +1,13 @@
-from odoo import api, exceptions, fields, models, _
-import odoo.addons.decimal_precision as dp
+from odoo import _, api, fields, models
 
 
 class NotDeclareSilicieMovesWizard(models.TransientModel):
     _name = "not.declare.silicie.moves.wizard"
     _description = "Wizard Not Declare SILICIE Moves"
 
-    yes_no = fields.Char(default=_('Do you want to proceed?'))
+    yes_no = fields.Char(
+        default=_('Do you want to proceed?'),
+    )
 
     @api.multi
     def not_declare_silicie_moves(self):

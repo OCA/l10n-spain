@@ -12,6 +12,7 @@
             "zeep",
             "requests",
             "OpenSSL",
+            "xlrd",
         ],
     },
     "depends": [

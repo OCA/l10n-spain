@@ -1,7 +1,7 @@
 # Copyright 2020 Javier de las Heras <jheras@alquemy.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from .product_product import PRODUCT_TYPES
 
 
@@ -179,16 +179,16 @@ class StockMove(models.Model):
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a08')
                     move.silice_tax_position = '4'
                 elif (move.fiscal_position_id.
-                          silicie_partner_identification_type == 'canarias'):
+                        silicie_partner_identification_type == 'canarias'):
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a09')
                     move.silice_tax_position = '6'
                 elif (move.fiscal_position_id.
-                          silicie_partner_identification_type == 'intra'):
+                        silicie_partner_identification_type == 'intra'):
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a10')
                 elif (move.fiscal_position_id.
-                          silicie_partner_identification_type == 'export'):
+                        silicie_partner_identification_type == 'export'):
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a11')
             # Sale Refund
@@ -211,7 +211,7 @@ class StockMove(models.Model):
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a04')
                 elif (move.fiscal_position_id.
-                          silicie_partner_identification_type == 'export'):
+                        silicie_partner_identification_type == 'export'):
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a06')
             # Purchase
@@ -264,29 +264,28 @@ class StockMove(models.Model):
                         silicie_partner_identification_type == 'export'):
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a11')
-
             if is_silicie_move:
                 move.silicie_product_type = \
                     move.product_id.product_tmpl_id.silicie_product_type
                 move.factor_conversion_silicie = \
                     move.product_id.product_tmpl_id.\
-                        factor_conversion_silicie
+                    factor_conversion_silicie
                 move.alcoholic_grade = \
                     move.product_id.product_tmpl_id.alcoholic_grade
                 move.nc_code = move.product_id.product_tmpl_id.nc_code
                 move.product_key_silicie_id = \
                     move.product_id.product_tmpl_id.\
-                        product_key_silicie_id
+                    product_key_silicie_id
                 move.container_type_silicie_id = \
                     move.product_id.product_tmpl_id.\
-                        container_type_silicie_id
+                    container_type_silicie_id
                 move.epigraph_silicie_id = \
                     move.product_id.product_tmpl_id.epigraph_silicie_id
                 move.uom_silicie_id = \
                     move.product_id.product_tmpl_id.uom_silicie_id
                 move.fiscal_position_id = \
                     move.picking_id.partner_id.\
-                        property_account_position_id
+                    property_account_position_id
                 # Check if all fields have been correctly generated
                 move.check_silicie_fields()
 
@@ -572,7 +571,7 @@ class StockMove(models.Model):
             'partner_name': self.picking_id.partner_id.name or '',
             'alcoholic_grade': self.alcoholic_grade,
             'absolute_alcohol': self.absolute_alcohol,
-            'container_code': self.container_type_silicie_id.code,
+            'container_code': self.container_type_silicie_id.code or '',
             'factor_conversion': self.factor_conversion_silicie,
             'qty_done': self.quantity_done}
 

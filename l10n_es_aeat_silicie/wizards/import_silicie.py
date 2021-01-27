@@ -6,13 +6,9 @@ import os
 import csv
 import tempfile
 from odoo.exceptions import UserError
-from odoo import api, fields, models, _, SUPERUSER_ID
-from datetime import datetime, timedelta, date
+from odoo import _, api, fields, models
 import xlrd
-import mmap
-import xlwt
 import base64
-import random
 import io
 import xlsxwriter
 
@@ -86,14 +82,14 @@ class ImportPurchaseOrder(models.TransientModel):
     @api.model
     def valid_columns_keys(self, archive_lines):
         columns = archive_lines[0].keys()
-        print("columns>>", columns)
+        _logger.warning("columns>> {}".format(columns))
         text = _("Las siguientes columnas no están en el fichero:")
         text2 = text
-        if not 'Número Asiento' in columns:
+        if 'Número Asiento' not in columns:
             text += "\n[ Número Asiento ]"
-        if not 'Tipo Asiento' in columns:
+        if 'Tipo Asiento' not in columns:
             text += "\n[ Tipo Asiento ]"
-        if not 'Número Referencia Interno' in columns:
+        if 'Número Referencia Interno' not in columns:
             text += "\n[ Número Referencia Interno ]"
         if text != text2:
             raise UserError(text)

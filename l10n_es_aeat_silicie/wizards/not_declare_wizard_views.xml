@@ -14,7 +14,7 @@
             </form>
         </field>
     </record>
-    <record id="action_regenerate_silicie_moves" model="ir.actions.act_window">
+    <record id="action_not_declare_silicie_moves" model="ir.actions.act_window">
         <field name="name">Not Declare SILICIE Moves</field>
         <field name="res_model">not.declare.silicie.moves.wizard</field>
         <field name="view_type">form</field>

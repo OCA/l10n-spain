@@ -1,12 +1,13 @@
-from odoo import api, exceptions, fields, models, _
-import odoo.addons.decimal_precision as dp
+from odoo import api, fields, models
 
 
 class RegenerateSilicieMovesWizard(models.TransientModel):
     _name = "regenerate.silicie.moves.wizard"
     _description = "Wizard Regenerate SILICIE Moves"
 
-    yes_no = fields.Char(default=_('Do you want to proceed?'))
+    yes_no = fields.Char(
+        default='Do you want to proceed?',
+    )
 
     @api.multi
     def regenerate_silicie_moves(self):
