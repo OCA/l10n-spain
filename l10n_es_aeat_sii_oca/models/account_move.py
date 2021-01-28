@@ -3,7 +3,7 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
-# Copyright 2011-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2011-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -527,6 +527,7 @@ class AccountMove(models.Model):
         taxes_sfesse = self._get_sii_taxes_map(["SFESSE"])
         taxes_sfesns = self._get_sii_taxes_map(["SFESNS"])
         taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"])
+        taxes_not_in_total_neg = self._get_sii_taxes_map(["NotIncludedInTotalNegative"])
         not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         tax_lines = self._get_tax_info()
@@ -535,6 +536,8 @@ class AccountMove(models.Model):
             breakdown_taxes = taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             if tax in taxes_not_in_total:
                 not_in_amount_total += tax_line["amount"]
+            elif tax in taxes_not_in_total_neg:
+                not_in_amount_total -= tax_line["amount"]
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault("DesgloseFactura", {})
             if tax in (taxes_sfesb + taxes_sfesbe + taxes_sfesisp):
@@ -642,6 +645,7 @@ class AccountMove(models.Model):
         taxes_sfrns = self._get_sii_taxes_map(["SFRNS"])
         taxes_sfrnd = self._get_sii_taxes_map(["SFRND"])
         taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"])
+        taxes_not_in_total_neg = self._get_sii_taxes_map(["NotIncludedInTotalNegative"])
         tax_amount = 0.0
         not_in_amount_total = 0.0
         tax_lines = self._get_tax_info()
@@ -649,6 +653,8 @@ class AccountMove(models.Model):
             tax = tax_line["tax"]
             if tax in taxes_not_in_total:
                 not_in_amount_total += tax_line["amount"]
+            elif tax in taxes_not_in_total_neg:
+                not_in_amount_total -= tax_line["amount"]
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
                     "InversionSujetoPasivo", {"DetalleIVA": []},
