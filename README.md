@@ -23,7 +23,7 @@ addon | version | summary
 [l10n_es_account_statement_import_n43](l10n_es_account_statement_import_n43/) | 14.0.1.0.0 | Importación de extractos bancarios españoles (Norma 43)
 [l10n_es_aeat](l10n_es_aeat/) | 14.0.1.0.0 | Modulo base para declaraciones de la AEAT
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 14.0.1.0.0 | AEAT modelo 111
-[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 14.0.1.1.0 | AEAT modelo 303
+[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 14.0.1.2.0 | AEAT modelo 303
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 14.0.1.0.0 | AEAT modelo 390
 [l10n_es_dua](l10n_es_dua/) | 14.0.1.0.0 | Importaciones con DUA
 [l10n_es_partner](l10n_es_partner/) | 14.0.1.0.0 | Adaptación de los clientes, proveedores y bancos para España
