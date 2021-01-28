@@ -485,10 +485,16 @@ class StockMove(models.Model):
             if move.silicie_product_type:
                 datos_envase = ""
                 if move.silicie_product_type == "alcohol":
+                    tipo_envase = move.container_type_silicie_id.code or ""
+                    capacidad_envase = move.factor_conversion_silicie
+                    numero_envases = round(move.quantity_done)
+                    if not tipo_envase:
+                        capacidad_envase = ""
+                        numero_envases = ""
                     datos_envase = {
-                        "TipoEnvase": move.container_type_silicie_id.code or "",
-                        "CapacidadEnvase": move.factor_conversion_silicie,
-                        "NumeroEnvases": int(move.quantity_done),
+                        "TipoEnvase": tipo_envase,
+                        "CapacidadEnvase": capacidad_envase,
+                        "NumeroEnvases": numero_envases,
                     }
                 datos_alcohol = {
                     "GradoAlcoholico": move.alcoholic_grade,
@@ -577,7 +583,7 @@ class StockMove(models.Model):
         self.ensure_one()
         container_code = self.container_type_silicie_id.code or ""
         factor_conversion = self.factor_conversion_silicie
-        qty_done = self.quantity_done
+        qty_done = round(self.quantity_done)
         if not container_code:
             factor_conversion = ""
             qty_done = ""
