@@ -843,7 +843,7 @@
             S_IVA_SP_E, S_IVA_NS, S_IVA0_ISP -->
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva_e'), ref('l10n_es.account_tax_template_s_iva_ns'), ref('l10n_es.account_tax_template_s_iva0_isp')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva_e'), ref('l10n_es.account_tax_template_s_iva_ns'), ref('l10n_es.account_tax_template_s_iva_ns_b'), ref('l10n_es.account_tax_template_s_iva0_isp')])]"
         />
     </record>
     <record id="aeat_mod303_map_line_93" model="l10n.es.aeat.map.tax.line">
@@ -871,7 +871,7 @@
         <field name="inverse" eval="False" />
         <field
             name="tax_ids"
-            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0_e'), ref('l10n_es.account_tax_template_s_iva_e')])]"
+            eval="[(6, False, [ref('l10n_es.account_tax_template_s_iva0_e')])]"
         />
     </record>
     <record id="aeat_mod390_map_line_96" model="l10n.es.aeat.map.tax.line">
