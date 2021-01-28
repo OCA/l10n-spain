@@ -5,7 +5,7 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2017 Factor Libre - Ismael Calvo
 # Copyright 2017 Otherway - Pedro Rodríguez Gil
-# Copyright 2017-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2017-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 Angel Moya <angel.moya@pesol.es>
 # Copyright 2020 Sygel Technology - Valentín Vinagre <valentin.vinagre@sygel.es>
@@ -13,7 +13,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IVA",
-    "version": "13.0.1.0.5",
+    "version": "13.0.1.1.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Acysos S.L.,"
