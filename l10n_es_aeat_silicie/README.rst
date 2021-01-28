@@ -25,7 +25,19 @@ SILICIE
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Módulo para
+Módulo que permite llevar la contabilidad de los productos objecto del impuesto
+especial SILICIE, así como tramitar el impuesto de manera manual o automática.
+
+Desde el 1 de enero de 2020, en el caso de fábricas, depósitos fiscales,
+almacenes fiscales, depósitos de recepción y fábricas de vinagre, el
+cumplimiento la obligación de llevanza de la contabilidad de los productos
+objeto de los Impuestos Especiales, se realizará a través de la Sede
+electrónica de la Agencia Tributaria, mediante el suministro electrónico de los
+asientos contables.
+
+En este módulo solamente se gestiona la venta, compra y almacenamiento de los
+productos. Si se quiere gestionar otros procesos, como por ejemplo la
+fabricación, se deberán de instalar otros módulos de este repositorio.
 
 **Table of contents**
 
@@ -35,7 +47,26 @@ Módulo para
 Usage
 =====
 
-Se usa así
+#. Debe ir al formulario de su compañía y habilitar el check del SILICIE en la
+   pestaña habilitada de configuración del SILICIE.
+#. Debe introducir su CAE de producción y su CAE para los tests si lo desea. El
+   CAE de pruebas solamente se utilizará si marca el check del entorno de
+   pruebas.
+#. Debe asimismo introducir el identificador de la oficina Gestora de la AEAT.
+   Este dato así como los CAES del punto anterior, se los debe haber
+   suministrado la AEAT.
+#. Puede escoger el método para gestionar los registros, manual o automático.
+   Para realizar pruebas es recomandable hacerlo de forma manual.
+#. En caso de escoger el método automático, puede decidir como se enviarán los
+   registros a la Sede Electrónica de la Agencia Tributaria. Al validar el
+   movimiento de almacén, a una hora fija o con retardo.
+#. También tiene la opción de deshabilitar el inventario de productos del
+   SILICIE.
+
+Known issues / Roadmap
+======================
+
+* Desarrollar otros tipos de producto aparte del alcohol y la cerveza.
 
 Bug Tracker
 ===========
