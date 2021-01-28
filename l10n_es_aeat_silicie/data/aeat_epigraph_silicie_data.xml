@@ -88,7 +88,7 @@
         <field name="tax_silicie_intermediate_art" eval="False"/>
         <field name="tax_silicie_wine" eval="False"/>
         <field name="tax_silicie_vinegar" eval="False"/>
-        <field name="fiscal_epigraph_silicie" eval="1.a"/>
+        <field name="fiscal_epigraph_silicie">1.a</field>
     </record>
     <record id="aeat_epigraph_silicie_g1" model="aeat.epigraph.silicie">
         <field name="code">G1</field>
@@ -101,7 +101,7 @@
         <field name="tax_silicie_intermediate_art" eval="False"/>
         <field name="tax_silicie_wine" eval="False"/>
         <field name="tax_silicie_vinegar" eval="False"/>
-        <field name="fiscal_epigraph_silicie" eval="1.b"/>
+        <field name="fiscal_epigraph_silicie">1.b</field>
     </record>
     <record id="aeat_epigraph_silicie_g2" model="aeat.epigraph.silicie">
         <field name="code">G2</field>
