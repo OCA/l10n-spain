@@ -442,9 +442,9 @@ class StockMove(models.Model):
     def _get_wsdl_params(self):
         config_object = self.env['ir.config_parameter'].sudo()
         result = {}
-        for item in self.SILICIE_WDSL_MAPPING.keys():
+        for item in SILICIE_WDSL_MAPPING.keys():
             result[item] = config_object.get_param(
-                self.SILICIE_WDSL_MAPPING[item], False)
+                SILICIE_WDSL_MAPPING[item], False)
         return result
 
     @api.model

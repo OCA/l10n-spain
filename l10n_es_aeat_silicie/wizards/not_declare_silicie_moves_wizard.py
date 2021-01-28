@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class NotDeclareSilicieMovesWizard(models.TransientModel):
@@ -6,7 +6,7 @@ class NotDeclareSilicieMovesWizard(models.TransientModel):
     _description = "Wizard Not Declare SILICIE Moves"
 
     yes_no = fields.Char(
-        default=_('Do you want to proceed?'),
+        default='Do you want to proceed?',
     )
 
     @api.multi

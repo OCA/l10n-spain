@@ -16,5 +16,6 @@
         "views/mrp_routing_views.xml",
         "views/product_views.xml",
         "views/stock_production_lot_views.xml",
+        "views/stock_scrap_views.xml",
     ],
 }

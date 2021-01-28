@@ -66,13 +66,13 @@ class StockMove(models.Model):
                     move.silicie_loss_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_loss_silicie_ad02')
                 # Embotellado AD12
-                elif move.scrap_ids[1].scrap_type == 'bottling':
+                elif move.scrap_ids[:1].scrap_type == 'bottling':
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a32')
                     move.silicie_loss_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_loss_silicie_ad12')
                 # Compras AD15
-                elif move.scrap_ids[0].scrap_type == 'reception':
+                elif move.scrap_ids[:1].scrap_type == 'reception':
                     move.silicie_move_type_id = self.env.ref(
                         'l10n_es_aeat_silicie.aeat_move_type_silicie_a30')
                     move.silicie_loss_id = self.env.ref(
