@@ -38,7 +38,9 @@ class TestL10nEsAeatModBase(common.SavepointCase):
     @classmethod
     def _chart_of_accounts_create(cls):
         _logger.debug("Creating chart of account")
-        cls.company = cls.env["res.company"].create({"name": "Spanish test company"})
+        cls.company = cls.env["res.company"].create(
+            {"name": "Spanish test company", "currency_id": cls.env.ref("base.EUR").id}
+        )
         cls.chart = cls.env.ref("l10n_es.account_chart_template_pymes")
         cls.env.ref("base.group_multi_company").write({"users": [(4, cls.env.uid)]})
         cls.env.user.write(
@@ -276,12 +278,15 @@ class TestL10nEsAeatModBase(common.SavepointCase):
         cls._journals_create()
         # Create partners
         cls._partners_create()
-
+        # Ensure tax rate environment
+        cls.usd = cls.env.ref("base.USD")
+        cls.usd.rate_ids.unlink()
+        cls.usd.rate_ids = [(0, 0, {"name": "2000-01-01", "rate": "1.2"})]
+        # Security groups
         invocing_grp = cls.env.ref("account.group_account_invoice")
         account_user_grp = cls.env.ref("account.group_account_user")
         account_manager_grp = cls.env.ref("account.group_account_manager")
         aeat_grp = cls.env.ref("l10n_es_aeat.group_account_aeat")
-
         # Create test user
         Users = cls.env["res.users"].with_context(
             {"no_reset_password": True, "mail_create_nosubscribe": True}
