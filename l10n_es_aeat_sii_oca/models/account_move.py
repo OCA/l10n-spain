@@ -750,7 +750,7 @@ class AccountMove(models.Model):
         }
         if not cancel:
             tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
-            amount_total = self.amount_total_signed + not_in_amount_total
+            amount_total = self.amount_total_signed - not_in_amount_total
             if self.type == "out_refund":
                 if self.sii_refund_specific_invoice_type:
                     tipo_factura = self.sii_refund_specific_invoice_type
