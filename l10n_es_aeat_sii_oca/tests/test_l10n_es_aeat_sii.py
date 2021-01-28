@@ -207,6 +207,34 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 [(100, ["p_iva0_ns"]), (200, ["p_iva10_bc"])],
                 {"ref": "sup0005", "sii_account_registration_date": "2020-10-01"},
             ),
+            # Out invoice with currency
+            ("out_invoice", [(100, ["s_iva10b"])], {"currency_id": self.usd.id}),
+            # Out invoice with currency and with not included in total amount
+            (
+                "out_invoice",
+                [(100, ["s_iva10b", "s_irpf1"])],
+                {"currency_id": self.usd.id},
+            ),
+            # In invoice with currency
+            (
+                "in_invoice",
+                [(100, ["p_iva10_bc"])],
+                {
+                    "ref": "sup0006",
+                    "sii_account_registration_date": "2020-10-01",
+                    "currency_id": self.usd.id,
+                },
+            ),
+            # In invoice with currency and with not included in total amount
+            (
+                "in_invoice",
+                [(100, ["p_iva10_bc", "p_irpf1"])],
+                {
+                    "ref": "sup0007",
+                    "sii_account_registration_date": "2020-10-01",
+                    "currency_id": self.usd.id,
+                },
+            ),
         ]
         for inv_type, lines, extra_vals in mapping:
             vals = []
