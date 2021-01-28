@@ -480,7 +480,16 @@ class AccountInvoice(models.Model):
                 taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             )
             if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line.amount_total
+                if self.currency_id != self.company_id.currency_id:
+                    amount = self.currency_id._convert(
+                        tax_line.amount_total,
+                        self.company_id.currency_id,
+                        self.company_id,
+                        self._get_currency_rate_date(),
+                    )
+                else:
+                    amount = tax_line.amount_total
+                not_in_amount_total += amount
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault(
                     'DesgloseFactura', {},
@@ -611,7 +620,16 @@ class AccountInvoice(models.Model):
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
             if tax in taxes_not_in_total:
-                not_in_amount_total += tax_line.amount_total
+                if self.currency_id != self.company_id.currency_id:
+                    amount = self.currency_id._convert(
+                        tax_line.amount_total,
+                        self.company_id.currency_id,
+                        self.company_id,
+                        self._get_currency_rate_date(),
+                    )
+                else:
+                    amount = tax_line.amount_total
+                not_in_amount_total += amount
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
                     'InversionSujetoPasivo', {'DetalleIVA': []},
