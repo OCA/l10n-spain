@@ -21,16 +21,15 @@ class TestL10nEsAeatVatProrrateAsset(TestL10nEsAeatVatProrrateBase):
             }
         )
         self.invoice_asset = (
-            self.env["account.invoice"]
-            .sudo(self.billing_user)
+            self.env["account.move"]
+            .with_user(self.billing_user)
             .create(
                 {
                     "company_id": self.company.id,
                     "partner_id": self.customer.id,
-                    "date_invoice": "2017-01-01",
+                    "invoice_date": "2017-01-01",
                     "type": "in_invoice",
-                    "account_id": self.customer.property_account_receivable_id.id,
-                    "journal_id": self.journal_sale.id,
+                    "journal_id": self.journal_purchase.id,
                     "invoice_line_ids": [
                         (
                             0,
@@ -40,7 +39,7 @@ class TestL10nEsAeatVatProrrateAsset(TestL10nEsAeatVatProrrateBase):
                                 "account_id": self.accounts["700000"].id,
                                 "price_unit": 100,
                                 "quantity": 1,
-                                "invoice_line_tax_ids": [
+                                "tax_ids": [
                                     (4, t.id) for t in self._get_taxes("P_IVA21_BC")
                                 ],
                                 "asset_profile_id": self.asset_profile.id,
@@ -52,7 +51,7 @@ class TestL10nEsAeatVatProrrateAsset(TestL10nEsAeatVatProrrateBase):
             )
         )
         all_assets = self.env["account.asset"].search([])
-        self.invoice_asset.action_invoice_open()
+        self.invoice_asset.action_post()
         current_assets = self.env["account.asset"].search([])
         self.asset = current_assets - all_assets
 
