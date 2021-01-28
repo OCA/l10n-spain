@@ -12,3 +12,4 @@
 * Consultoría Informática Studio 73 S.L.
 * Miquel Raïch <miquel.raich@forgeflow.com>
 * Iván Antón <ozono@ozonomultimedia.com>
+* Digital5 S.L.
