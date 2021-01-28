@@ -77,5 +77,43 @@
         <field name="tax_silicie_wine" eval="False"/>
         <field name="tax_silicie_vinegar" eval="False"/>
     </record>
+    <record id="aeat_epigraph_silicie_g0" model="aeat.epigraph.silicie">
+        <field name="code">G0</field>
+        <field name="name">Cervezas con un grado alcohólico volumétrico adquirido no superior a 1,2% vol.</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie" eval="1.a"/>
+    </record>
+    <record id="aeat_epigraph_silicie_g1" model="aeat.epigraph.silicie">
+        <field name="code">G1</field>
+        <field name="name">Cervezas con un grado alcohólico volumétrico adquirido superior a 1,2% vol y no superior a 2,8% vol</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie" eval="1.b"/>
+    </record>
+    <record id="aeat_epigraph_silicie_g2" model="aeat.epigraph.silicie">
+        <field name="code">G2</field>
+        <field name="name">Cervezas con un grado alcohólico volumétrico adquirido no superior a 0,5% vol.</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
 
 </odoo>
