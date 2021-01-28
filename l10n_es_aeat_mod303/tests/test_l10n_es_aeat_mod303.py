@@ -573,7 +573,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             14280.0,
         )
         self.assertAlmostEqual(
-            self.model303_4t.casilla_88, 39880.0,
+            self.model303_4t.casilla_88, 35680.0,
         )
         # Check change of period type
         self.model303_4t.period_type = "1T"
