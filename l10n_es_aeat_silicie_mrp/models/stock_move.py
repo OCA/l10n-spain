@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class StockMove(models.Model):
-    _inherit = 'stock.move'
+    _inherit = "stock.move"
 
     def _action_done(self):
         move = super(StockMove, self)._action_done()
@@ -19,67 +19,67 @@ class StockMove(models.Model):
             if move.send_silicie:
                 continue
             is_silicie_move = False
-            if move.product_id.product_tmpl_id.silicie_product_type == 'none':
+            if move.product_id.product_tmpl_id.silicie_product_type == "none":
                 continue
             # Production
-            if move.location_id.usage == 'production' and \
-                    move.location_dest_id.usage == 'internal':
+            if move.location_id.usage == "production" and \
+                    move.location_dest_id.usage == "internal":
                 is_silicie_move = True
                 move.silicie_proof_type_id = self.env.ref(
-                    'l10n_es_aeat_silicie.aeat_proof_type_silicie_j09')
+                    "l10n_es_aeat_silicie.aeat_proof_type_silicie_j09")
                 move.silicie_move_type_id = self.env.ref(
-                    'l10n_es_aeat_silicie.aeat_move_type_silicie_a15')
+                    "l10n_es_aeat_silicie.aeat_move_type_silicie_a15")
                 if not move.silicie_operation_num:
                     move.silicie_operation_num = self.env[
-                        'ir.sequence'].next_by_code('silicie.operation')
-                move.silice_tax_position = '1'
+                        "ir.sequence"].next_by_code("silicie.operation")
+                move.silice_tax_position = "1"
                 move.silicie_processing_id = \
                     move.production_id.routing_id.silicie_processing_id
             # Production BoM
-            elif move.location_id.usage == 'internal' and \
-                    move.location_dest_id.usage == 'production':
+            elif move.location_id.usage == "internal" and \
+                    move.location_dest_id.usage == "production":
                 is_silicie_move = True
                 move.silicie_proof_type_id = self.env.ref(
-                    'l10n_es_aeat_silicie.aeat_proof_type_silicie_j09')
+                    "l10n_es_aeat_silicie.aeat_proof_type_silicie_j09")
                 move.silicie_move_type_id = self.env.ref(
-                    'l10n_es_aeat_silicie.aeat_move_type_silicie_a14')
+                    "l10n_es_aeat_silicie.aeat_move_type_silicie_a14")
                 if not move.silicie_operation_num:
                     move.silicie_operation_num = self.env[
-                        'ir.sequence'].next_by_code('silicie.operation')
-                move.silice_tax_position = '1'
+                        "ir.sequence"].next_by_code("silicie.operation")
+                move.silice_tax_position = "1"
                 move.silicie_processing_id = move.production_id\
                     .routing_id.silicie_processing_id
             # Loss
-            elif move.location_id.usage == 'internal' and \
-                    move.location_dest_id.usage == 'inventory' and \
+            elif move.location_id.usage == "internal" and \
+                    move.location_dest_id.usage == "inventory" and \
                     move.location_dest_id.scrap_location:
                 is_silicie_move = True
                 move.silicie_proof_type_id = self.env.ref(
-                    'l10n_es_aeat_silicie.aeat_proof_type_silicie_j11')
-                move.silice_tax_position = '1'
+                    "l10n_es_aeat_silicie.aeat_proof_type_silicie_j11")
+                move.silice_tax_position = "1"
                 if move.scrap_ids:
                     move.notes_silice = move.scrap_ids[:1].origin
                 # Elaboración AD02
-                if move.scrap_ids[:1].scrap_type == 'processing':
+                if move.scrap_ids[:1].scrap_type == "processing":
                     move.silicie_move_type_id = self.env.ref(
-                        'l10n_es_aeat_silicie.aeat_move_type_silicie_a32')
+                        "l10n_es_aeat_silicie.aeat_move_type_silicie_a32")
                     move.silicie_loss_id = self.env.ref(
-                        'l10n_es_aeat_silicie.aeat_loss_silicie_ad02')
+                        "l10n_es_aeat_silicie.aeat_loss_silicie_ad02")
                 # Embotellado AD12
-                elif move.scrap_ids[:1].scrap_type == 'bottling':
+                elif move.scrap_ids[:1].scrap_type == "bottling":
                     move.silicie_move_type_id = self.env.ref(
-                        'l10n_es_aeat_silicie.aeat_move_type_silicie_a32')
+                        "l10n_es_aeat_silicie.aeat_move_type_silicie_a32")
                     move.silicie_loss_id = self.env.ref(
-                        'l10n_es_aeat_silicie.aeat_loss_silicie_ad12')
+                        "l10n_es_aeat_silicie.aeat_loss_silicie_ad12")
                 # Compras AD15
-                elif move.scrap_ids[:1].scrap_type == 'reception':
+                elif move.scrap_ids[:1].scrap_type == "reception":
                     move.silicie_move_type_id = self.env.ref(
-                        'l10n_es_aeat_silicie.aeat_move_type_silicie_a30')
+                        "l10n_es_aeat_silicie.aeat_move_type_silicie_a30")
                     move.silicie_loss_id = self.env.ref(
-                        'l10n_es_aeat_silicie.aeat_loss_silicie_ad15')
+                        "l10n_es_aeat_silicie.aeat_loss_silicie_ad15")
                 else:
                     move.silicie_move_type_id = self.env.ref(
-                        'l10n_es_aeat_silicie.aeat_move_type_silicie_a28')
+                        "l10n_es_aeat_silicie.aeat_move_type_silicie_a28")
             if is_silicie_move:
                 move.silicie_product_type = \
                     move.product_id.product_tmpl_id.silicie_product_type
@@ -104,25 +104,27 @@ class StockMove(models.Model):
     @api.multi
     def _get_data_dict(self, lot):
         self.ensure_one()
-        Lots = self.env['stock.production.lot']
+        Lots = self.env["stock.production.lot"]
         a14_type = self.env.ref(
-            'l10n_es_aeat_silicie.aeat_move_type_silicie_a14')
+            "l10n_es_aeat_silicie.aeat_move_type_silicie_a14")
         data = super()._get_data_dict(lot)
         if self.product_id.silicie_product_type == "beer":
-            data.update({'qty_done': lot['qty_done']})
+            data["qty_done"] = lot["qty_done"]
             if self.product_id.product_class == "raw":
-                lot_id = Lots.browse(lot['lot_id'])
-                data.update({'extract': lot_id.extract})
+                lot_id = Lots.browse(lot["lot_id"])
+                data["extract"] = lot_id.extract or ""
                 if self.silicie_move_type_id == a14_type:
-                    data.update({
-                        'kg_extract': data['extract'] * data['qty_done']})
+                    if data["extract"]:
+                        data["kg_extract"] = data["extract"] * data["qty_done"]
+                    else:
+                        data["kg_extract"] = ""
                 if self.product_id.product_class == "manufactured":
                     density = lot_id.density
-                    data.update({
-                        'alcoholic_grade': "",
-                        'density': density,
-                        'grado_plato': density * 1000 - 1000 / 4,
-                    })
+                    data["alcoholic_grade"] = ""
+                    data["density"] = density
+                    data["grado_plato"] = density * 1000 - 1000 / 4
+            if not data['container_code']:
+                data["qty_done"] = ""
         return data
 
     @api.multi
@@ -131,10 +133,10 @@ class StockMove(models.Model):
         data = self._get_data_dict(lot)
         values = super()._prepare_values(lot)
         values.update({
-            'Porcentaje de Extracto': data.get('extract', ''),
-            'Kg. - Extracto': data.get('kg_extract', ''),
-            'Grado Alcohólico': data.get('alcoholic_grade', ''),
-            'Densidad': data.get('density', ''),
-            'Grado Plato Medio': data.get('grado_plato', ''),
+            "Porcentaje de Extracto": data.get("extract", ""),
+            "Kg. - Extracto": data.get("kg_extract", ""),
+            "Grado Alcohólico": data.get("alcoholic_grade", ""),
+            "Densidad": data.get("density", ""),
+            "Grado Plato Medio": data.get("grado_plato", ""),
         })
         return values
