@@ -194,8 +194,12 @@ class StockMove(models.Model):
             # Sale Refund
             elif usage == 'customer' and dest_usage == 'internal':
                 is_silicie_move = True
-                move.silicie_proof_type_id = self.env.ref(
-                    'l10n_es_aeat_silicie.aeat_proof_type_silicie_j05')
+                if product_type == "alcohol":
+                    move.silicie_proof_type_id = self.env.ref(
+                        'l10n_es_aeat_silicie.aeat_proof_type_silicie_j05')
+                elif product_type == "beer":
+                    move.silicie_proof_type_id = self.env.ref(
+                        'l10n_es_aeat_silicie.aeat_proof_type_silicie_j03')
                 if (move.fiscal_position_id.
                         silicie_partner_identification_type == 'national'):
                     move.silicie_move_type_id = self.env.ref(
@@ -217,8 +221,12 @@ class StockMove(models.Model):
             # Purchase
             elif usage == 'supplier' and dest_usage == 'internal':
                 is_silicie_move = True
-                move.silicie_proof_type_id = self.env.ref(
-                    'l10n_es_aeat_silicie.aeat_proof_type_silicie_j01')
+                if product_type == "alcohol":
+                    move.silicie_proof_type_id = self.env.ref(
+                        'l10n_es_aeat_silicie.aeat_proof_type_silicie_j01')
+                elif product_type == "beer":
+                    move.silicie_proof_type_id = self.env.ref(
+                        'l10n_es_aeat_silicie.aeat_proof_type_silicie_j03')
                 move.reference = \
                     move.purchase_line_id.order_id.arc or move.reference
                 if (move.fiscal_position_id.
