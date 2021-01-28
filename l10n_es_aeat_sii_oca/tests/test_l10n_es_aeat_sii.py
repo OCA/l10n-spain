@@ -1,5 +1,5 @@
 # Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
-# Copyright 2017-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2017-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
@@ -234,6 +234,12 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                     "sii_account_registration_date": "2020-10-01",
                     "currency_id": self.usd.id,
                 },
+            ),
+            # Intra-community supplier refund with ImporteTotal with "one side"
+            (
+                "in_refund",
+                [(100, ["p_iva21_sp_in"])],
+                {"ref": "sup0008", "sii_account_registration_date": "2020-10-01"},
             ),
         ]
         for inv_type, lines, extra_vals in mapping:
