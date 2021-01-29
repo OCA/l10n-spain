@@ -478,6 +478,11 @@ msgid "Must have name and surname."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_vat
 msgid "NIF del primer representante"
 msgstr ""
@@ -712,6 +717,15 @@ msgstr ""
 #. module: l10n_es_aeat_mod390
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
 msgid "Tercer representante"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:0
+#, python-format
+msgid ""
+"The result of the manual 303 summary (fields [95], [97] and [98] in the page"
+" '9. Resultado liquidaciones') doesn't match the field [86]. Please check if"
+" you have filled such fields."
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
