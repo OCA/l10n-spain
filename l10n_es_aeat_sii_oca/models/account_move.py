@@ -20,8 +20,8 @@ _logger = logging.getLogger(__name__)
 
 try:
     from zeep import Client
-    from zeep.transports import Transport
     from zeep.plugins import HistoryPlugin
+    from zeep.transports import Transport
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
@@ -56,10 +56,10 @@ SII_VALID_INVOICE_STATES = ["posted"]
 
 
 def round_by_keys(elem, search_keys, prec=2):
-    """ This uses ``round`` method directly as if has been tested that Odoo's
-        ``float_round`` still returns incorrect amounts for certain values. Try
-        3 units x 3,77 €/unit with 10% tax and you will be hit by the error
-        (on regular x86 architectures)."""
+    """This uses ``round`` method directly as if has been tested that Odoo's
+    ``float_round`` still returns incorrect amounts for certain values. Try
+    3 units x 3,77 €/unit with 10% tax and you will be hit by the error
+    (on regular x86 architectures)."""
     if isinstance(elem, dict):
         for key, value in elem.items():
             if key in search_keys:
@@ -129,10 +129,14 @@ class AccountMove(models.Model):
     sii_csv = fields.Char(string="SII CSV", copy=False, readonly=True)
     sii_return = fields.Text(string="SII Return", copy=False, readonly=True)
     sii_header_sent = fields.Text(
-        string="SII last header sent", copy=False, readonly=True,
+        string="SII last header sent",
+        copy=False,
+        readonly=True,
     )
     sii_content_sent = fields.Text(
-        string="SII last content sent", copy=False, readonly=True,
+        string="SII last content sent",
+        copy=False,
+        readonly=True,
     )
     sii_send_error = fields.Text(string="SII Send Error", readonly=True, copy=False)
     sii_send_failed = fields.Boolean(
@@ -189,7 +193,8 @@ class AccountMove(models.Model):
         string="Additional 2 SII registration key",
     )
     sii_registration_key_code = fields.Char(
-        related="sii_registration_key.code", readonly=True,
+        related="sii_registration_key.code",
+        readonly=True,
     )
     sii_enabled = fields.Boolean(string="Enable SII", compute="_compute_sii_enabled")
     sii_property_location = fields.Selection(
@@ -211,7 +216,9 @@ class AccountMove(models.Model):
         ],
     )
     sii_property_cadastrial_code = fields.Char(
-        string="Real property cadastrial code", size=25, copy=False,
+        string="Real property cadastrial code",
+        size=25,
+        copy=False,
     )
     sii_macrodata = fields.Boolean(
         string="MacroData",
@@ -546,7 +553,8 @@ class AccountMove(models.Model):
                 # corrientes nacionales
                 if tax in taxes_sfesbe:
                     exempt_dict = sub_dict.setdefault(
-                        "Exenta", {"DetalleExenta": [{"BaseImponible": 0}]},
+                        "Exenta",
+                        {"DetalleExenta": [{"BaseImponible": 0}]},
                     )
                     det_dict = exempt_dict["DetalleExenta"][0]
                     if exempt_cause:
@@ -575,19 +583,22 @@ class AccountMove(models.Model):
                 # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
                 default_no_taxable_cause = self._get_no_taxable_cause()
                 nsub_dict = tax_breakdown.setdefault(
-                    "NoSujeta", {default_no_taxable_cause: 0},
+                    "NoSujeta",
+                    {default_no_taxable_cause: 0},
                 )
                 nsub_dict[default_no_taxable_cause] += tax_line["base"]
             if tax in (taxes_sfess + taxes_sfesse + taxes_sfesns):
                 type_breakdown = taxes_dict.setdefault(
-                    "DesgloseTipoOperacion", {"PrestacionServicios": {}},
+                    "DesgloseTipoOperacion",
+                    {"PrestacionServicios": {}},
                 )
                 if tax in (taxes_sfesse + taxes_sfess):
                     type_breakdown["PrestacionServicios"].setdefault("Sujeta", {})
                 service_dict = type_breakdown["PrestacionServicios"]
                 if tax in taxes_sfesse:
                     exempt_dict = service_dict["Sujeta"].setdefault(
-                        "Exenta", {"DetalleExenta": [{"BaseImponible": 0}]},
+                        "Exenta",
+                        {"DetalleExenta": [{"BaseImponible": 0}]},
                     )
                     det_dict = exempt_dict["DetalleExenta"][0]
                     if exempt_cause:
@@ -608,7 +619,8 @@ class AccountMove(models.Model):
                     sub.append(self._get_sii_tax_dict(tax_line, tax_lines))
                 if tax in taxes_sfesns:
                     nsub_dict = service_dict.setdefault(
-                        "NoSujeta", {"ImporteTAIReglasLocalizacion": 0},
+                        "NoSujeta",
+                        {"ImporteTAIReglasLocalizacion": 0},
                     )
                     nsub_dict["ImporteTAIReglasLocalizacion"] += tax_line["base"]
         # Ajustes finales breakdown
@@ -657,7 +669,8 @@ class AccountMove(models.Model):
                 not_in_amount_total -= tax_line["amount"]
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
-                    "InversionSujetoPasivo", {"DetalleIVA": []},
+                    "InversionSujetoPasivo",
+                    {"DetalleIVA": []},
                 )
             elif tax in taxes_sfrs + taxes_sfrns + taxes_sfrsa + taxes_sfrnd:
                 base_dict = taxes_dict.setdefault("DesgloseIVA", {"DetalleIVA": []})
@@ -692,8 +705,7 @@ class AccountMove(models.Model):
         return is_simplified
 
     def _sii_check_exceptions(self):
-        """Inheritable method for exceptions control when sending SII invoices.
-        """
+        """Inheritable method for exceptions control when sending SII invoices."""
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
         partner = self.partner_id.commercial_partner_id
@@ -1373,7 +1385,9 @@ class AccountMove(models.Model):
         return SII_COUNTRY_CODE_MAPPING.get(country_code, country_code)
 
     @api.depends(
-        "invoice_line_ids", "invoice_line_ids.name", "company_id",
+        "invoice_line_ids",
+        "invoice_line_ids.name",
+        "company_id",
     )
     def _compute_sii_description(self):
         default_description = self.default_get(["sii_description"])["sii_description"]
@@ -1439,7 +1453,8 @@ class AccountMove(models.Model):
                 if extra_dict:
                     default_values.update(extra_dict)
         res = super(AccountMove, self)._reverse_moves(
-            default_values_list=default_values_list, cancel=cancel,
+            default_values_list=default_values_list,
+            cancel=cancel,
         )
         return res
 
