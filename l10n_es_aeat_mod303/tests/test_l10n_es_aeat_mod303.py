@@ -411,9 +411,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        export_config = cls.env.ref(
-            "l10n_es_aeat_mod303.aeat_mod303_main_export_config"
-        )
         # Create model
         cls.model303 = cls.env["l10n.es.aeat.mod303.report"].create(
             {
@@ -428,7 +425,6 @@ class TestL10nEsAeatMod303Base(TestL10nEsAeatModBase):
                 "period_type": "1T",
                 "date_start": "2017-01-01",
                 "date_end": "2017-03-31",
-                "export_config_id": export_config.id,
                 "journal_id": cls.journal_misc.id,
             }
         )
@@ -524,8 +520,6 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             {"name": "test_export_to_boe.txt"}
         )
         export_config_xml_ids = [
-            "l10n_es_aeat_mod303.aeat_mod303_main_export_config",
-            "l10n_es_aeat_mod303.aeat_mod303_2017_main_export_config",
             "l10n_es_aeat_mod303.aeat_mod303_2018_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
