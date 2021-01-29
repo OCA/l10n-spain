@@ -48,7 +48,9 @@ class PosConfig(models.Model):
         compute="_compute_simplified_invoice_sequence",
     )
     l10n_es_simplified_invoice_number = fields.Integer(
-        "Sim.Inv number", readonly=True, compute="_compute_simplified_invoice_sequence",
+        "Sim.Inv number",
+        readonly=True,
+        compute="_compute_simplified_invoice_sequence",
     )
 
     @api.model
