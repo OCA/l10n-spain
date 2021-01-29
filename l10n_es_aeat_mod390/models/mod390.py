@@ -1,7 +1,8 @@
-# Copyright 2017-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2017-2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl
 
 from odoo import _, api, exceptions, fields, models
+from odoo.tools import float_compare
 
 REQUIRED_ON_CALCULATED = {"calculated": [("required", "True"), ("readonly", "False")]}
 EDITABLE_ON_CALCULATED = {"calculated": [("readonly", "False")]}
@@ -669,3 +670,17 @@ class L10nEsAeatMod390Report(models.Model):
             raise exceptions.UserError(
                 _("You cannot make complementary reports for this model.")
             )
+
+    def button_confirm(self):
+        """Check that the manual 303 results match the report."""
+        self.ensure_one()
+        summary = self.casilla_95 - self.casilla_97 - self.casilla_98
+        if float_compare(summary, self.casilla_86, precision_digits=2) != 0:
+            raise exceptions.UserError(
+                _(
+                    "The result of the manual 303 summary (fields [95], [97] and "
+                    "[98] in the page '9. Resultado liquidaciones') doesn't match "
+                    "the field [86]. Please check if you have filled such fields."
+                )
+            )
+        return super().button_confirm()
