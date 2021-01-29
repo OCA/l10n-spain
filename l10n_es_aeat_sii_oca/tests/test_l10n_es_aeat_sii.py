@@ -20,7 +20,10 @@ except (ImportError, IOError):
     ServiceProxy = object
 
 CERTIFICATE_PATH = get_resource_path(
-    "l10n_es_aeat_sii_oca", "tests", "cert", "entidadspj_act.p12",
+    "l10n_es_aeat_sii_oca",
+    "tests",
+    "cert",
+    "entidadspj_act.p12",
 )
 CERTIFICATE_PASSWD = "794613"
 
@@ -283,12 +286,14 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         # FIXME: Can we auto-trigger the compute method?
         invoice_temp._compute_sii_description()
         self.assertEqual(
-            invoice_temp.sii_description, "Test customer header | Test description",
+            invoice_temp.sii_description,
+            "Test customer header | Test description",
         )
         invoice_temp = self.invoice.copy({"type": "in_invoice"})
         invoice_temp._compute_sii_description()
         self.assertEqual(
-            invoice_temp.sii_description, "Test supplier header | Test description",
+            invoice_temp.sii_description,
+            "Test supplier header | Test description",
         )
         company.sii_description_method = "manual"
         invoice_temp = self.invoice.copy()
@@ -300,7 +305,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         invoice_temp = self.invoice.copy()
         invoice_temp._compute_sii_description()
         self.assertEqual(
-            invoice_temp.sii_description, "Test customer header | Test line",
+            invoice_temp.sii_description,
+            "Test customer header | Test line",
         )
 
     def test_permissions(self):
@@ -321,7 +327,9 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def test_certificate(self):
         self.assertRaises(
-            exceptions.ValidationError, self._activate_certificate, "Wrong passwd",
+            exceptions.ValidationError,
+            self._activate_certificate,
+            "Wrong passwd",
         )
         self._activate_certificate(CERTIFICATE_PASSWD)
         self.assertEqual(self.sii_cert.state, "active")
