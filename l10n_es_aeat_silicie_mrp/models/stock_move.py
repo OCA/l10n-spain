@@ -115,7 +115,8 @@ class StockMove(models.Model):
                 data["extract"] = lot_id.extract or ""
                 if self.silicie_move_type_id == a14_type:
                     if data["extract"]:
-                        data["kg_extract"] = data["extract"] * data["qty_done"]
+                        data["kg_extract"] = \
+                            data["extract"] * data["qty_done"] / 100
                     else:
                         data["kg_extract"] = ""
                 if self.product_id.product_class == "manufactured":
