@@ -61,6 +61,7 @@
                 <field name="fields_check" invisible="1"/>
                 <field name="silicie_move_number"/>
                 <field name="state" invisible="1"/>
+                <button name="open_silicie_move" icon="fa-folder-open-o" string="Edit Move" type="object"/>
             </tree>
         </field>
     </record>

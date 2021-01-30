@@ -12,6 +12,7 @@
         "mrp",
     ],
     "data": [
+        "wizards/silicie_move_editor_views.xml",
         "views/mrp_production_views.xml",
         "views/mrp_routing_views.xml",
         "views/product_views.xml",

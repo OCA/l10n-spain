@@ -24,6 +24,12 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "wizards/import_silicie_views.xml",
+        "wizards/not_declare_wizard_views.xml",
+        "wizards/regenerate_wizard_views.xml",
+        "wizards/send_aeat_wizard_views.xml",
+        "wizards/silicie_move_editor_views.xml",
+        "reports/aeat_silicie_csv_export_views.xml",
         "data/ir_config_parameter.xml",
         "data/aeat_move_type_silicie_data.xml",
         "data/aeat_container_type_silicie_data.xml",
@@ -48,10 +54,5 @@
         "views/stock_move_views.xml",
         "views/account_fiscal_position_views.xml",
         "views/queue_job_views.xml",
-        "reports/aeat_silicie_csv_export_views.xml",
-        "wizards/import_silicie_views.xml",
-        "wizards/not_declare_wizard_views.xml",
-        "wizards/regenerate_wizard_views.xml",
-        "wizards/send_aeat_wizard_views.xml",
     ],
 }

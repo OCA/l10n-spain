@@ -11,6 +11,14 @@ SILICIE_WDSL_MAPPING = {
     "port_name": "l10n_es_aeat_silicie.port_name",
     "operation": "l10n_es_aeat_silicie.operation",
 }
+TAX_POSITIONS = [
+    ("1", "NO SUJETO"),
+    ("2", "SUSPENSIVO"),
+    ("3", "EXENTO"),
+    ("4", "IMPUESTO DEVENGADO TIPO PLENO"),
+    ("5", "IMPUESTO DEVENGADO TIPO REDUCIDO"),
+    ("6", "IMPUESTO DEVENGADO A TIPO DE CANARIAS"),
+]
 
 
 class StockMove(models.Model):
@@ -43,14 +51,7 @@ class StockMove(models.Model):
     )
     silice_tax_position = fields.Selection(
         string="SILICIE Tax Position",
-        selection=[
-            ("1", "NO SUJETO"),
-            ("2", "SUSPENSIVO"),
-            ("3", "EXENTO"),
-            ("4", "IMPUESTO DEVENGADO TIPO PLENO"),
-            ("5", "IMPUESTO DEVENGADO TIPO REDUCIDO"),
-            ("6", "IMPUESTO DEVENGADO A TIPO DE CANARIAS"),
-        ],
+        selection=TAX_POSITIONS,
     )
     silicie_move_type_id = fields.Many2one(
         string="Move Type SILICIE",
@@ -136,6 +137,10 @@ class StockMove(models.Model):
     fields_check = fields.Boolean(
         string="Check Fields",
         copy=False,
+    )
+    density = fields.Float(
+        string="Densidad SILICIE",
+        digits=(3, 3),
     )
 
     @api.depends("date_send_silicie")
@@ -634,7 +639,7 @@ class StockMove(models.Model):
             "Unidad de Medida": self.uom_silicie_id.code,
             "Descripción de Producto": self.product_id.name.strip(),
             "Referencia Producto": self.product_id.default_code,
-            "Densidad": "",
+            "Densidad": self.density,
             "Grado Alcohólico": data["alcoholic_grade"],
             "Cantidad de Alcohol Puro": data["absolute_alcohol"],
             "Porcentaje de Extracto": "",
@@ -646,3 +651,33 @@ class StockMove(models.Model):
             "Número de Envases": data["qty_done"],
             "Observaciones": self.notes_silice or "",
         }
+
+    @api.multi
+    def _get_move_fields(self):
+        return {
+            "silicie_move_type_id": self.silicie_move_type_id.id,
+            "silicie_loss_id": self.silicie_loss_id.id,
+            "silice_tax_position": self.silice_tax_position,
+            "silicie_processing_id": self.silicie_processing_id,
+            "silicie_operation_num": self.silicie_operation_num,
+            "silicie_proof_type_id": self.silicie_proof_type_id.id,
+            "epigraph_silicie_id": self.epigraph_silicie_id.id,
+            "nc_code": self.nc_code,
+            "product_key_silicie_id": self.product_key_silicie_id.id,
+            "uom_silicie_id": self.uom_silicie_id.id,
+            "container_type_silicie_id": self.container_type_silicie_id.id,
+            "factor_conversion_silicie": self.factor_conversion_silicie,
+            "notes_silice": self.notes_silice,
+            "alcoholic_grade": self.alcoholic_grade,
+            "density": self.density,
+        }
+
+    @api.multi
+    def open_silicie_move(self):
+        self.ensure_one()
+        wizard = self.env["silicie.move.editor"].create(
+            self._get_move_fields())
+        action = self.env.ref(
+            "l10n_es_aeat_silicie.action_silicie_edit_move").read()[0]
+        action["res_id"] = wizard.id
+        return action

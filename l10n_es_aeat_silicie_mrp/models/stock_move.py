@@ -1,11 +1,15 @@
 # Copyright 2020 Javier de las Heras <jheras@alquemy.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class StockMove(models.Model):
     _inherit = "stock.move"
+
+    extract = fields.Float(
+        string="Extracto SILICIE",
+    )
 
     def _action_done(self):
         move = super(StockMove, self)._action_done()
@@ -139,5 +143,14 @@ class StockMove(models.Model):
             "Grado Alcohólico": data.get("alcoholic_grade", ""),
             "Densidad": data.get("density", ""),
             "Grado Plato Medio": data.get("grado_plato", ""),
+        })
+        return values
+
+    @api.multi
+    def _get_move_fields(self):
+        self.ensure_one()
+        values = super()._get_move_fields()
+        values.update({
+            'extract': self.extract,
         })
         return values

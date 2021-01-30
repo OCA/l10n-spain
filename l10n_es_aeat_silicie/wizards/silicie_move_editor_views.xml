@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="silicie_edit_move_form" model="ir.ui.view">
+        <field name="name">silicie.move.editor.form</field>
+        <field name="model">silicie.move.editor</field>
+        <field name="arch" type="xml">
+            <form string="Edit SILICIE Move">
+                <group>
+                    <group name="move_data" string="Datos movimiento">
+                        <field name="silicie_move_type_id" widget="selection"/>
+                        <field name="silicie_loss_id" widget="selection"/>
+                        <field name="silice_tax_position" widget="selection"/>
+                    </group>
+                    <group name="operation_data" string="Datos Operaciones Fabricación">
+                        <field name="silicie_processing_id" widget="selection"/>
+                        <field name="silicie_operation_num"/>
+                    </group>
+                    <group name="proof_data" string="Datos Justificante">
+                        <field name="silicie_proof_type_id" widget="selection"/>
+                    </group>
+                    <group/>
+                    <group name="product_data" string="Datos Producto">
+                            <field name="epigraph_silicie_id" widget="selection"/>
+                            <field name="nc_code"/>
+                            <field name="product_key_silicie_id" widget="selection"/>
+                            <field name="uom_silicie_id" widget="selection"/>
+                            <field name="density"/>
+                    </group>
+                    <group name="alcohol_data" string="Datos alcohol">
+                        <field name="alcoholic_grade"/>
+                    </group>
+                    <group name="container_data" string="Datos envase">
+                        <field name="container_type_silicie_id" widget="selection"/>
+                        <field name="factor_conversion_silicie"/>
+                    </group>
+                    <group name="notes" colspan="4">
+                        <field name="notes_silice"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Update" name="save_silicie_move" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_silicie_edit_move" model="ir.actions.act_window">
+        <field name="name">Edit SILICIE Moves</field>
+        <field name="res_model">silicie.move.editor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="silicie_edit_move_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
