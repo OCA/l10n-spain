@@ -3,7 +3,7 @@
 
 {
     'name': 'AEAT modelo 390',
-    'version': '12.0.2.7.0',
+    'version': '12.0.2.7.1',
     'category': "Localisation/Accounting",
     'author': "Tecnativa, "
               "Odoo Community Association (OCA)",
