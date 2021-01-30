@@ -4,7 +4,7 @@
 
     <!--  MAIN-190
         A. TIPO DE REGISTRO 1: REGISTRO DE DECLARANTE -->
-    
+
     <record id="aeat_mod190_main_export_config" model="aeat.model.export.config">
         <field name="name">Exportación modelo 190 - Tipo de Registro 1 – Registro de declarante</field>
         <field name="date_start">2017-01-01</field>
@@ -158,22 +158,32 @@
         <field name="alignment">right</field>
     </record>
 
-    <!-- IMPORTE TOTAL DE LAS PERCEPCIONES (16) -->
+    <!-- SIGNO TOTAL DE LAS PERCEPCIONES (1) -->
     <record id="aeat_mod190_main_export_line_14" model="aeat.model.export.config.line">
         <field name="sequence">14</field>
+        <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
+        <field name="name">Signo Rendimientos del trabajo y en especie - Importe de las percepciones [02]</field>
+        <field name="expression">${' ' if object.casilla_02 >= 0 else 'N'}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+    </record>
+
+    <!-- IMPORTE TOTAL DE LAS PERCEPCIONES (16) -->
+    <record id="aeat_mod190_main_export_line_15" model="aeat.model.export.config.line">
+        <field name="sequence">15</field>
         <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
         <field name="name">Rendimientos del trabajo y en especie - Importe de las percepciones [02]</field>
         <field name="expression">${object.casilla_02}</field>
         <field name="export_type">float</field>
-        <field name="apply_sign" eval="True"/>
-        <field name="size">16</field>
+        <field name="apply_sign" eval="False"/>
+        <field name="size">15</field>
         <field name="decimal_size">2</field>
         <field name="alignment">right</field>
     </record>
 
     <!-- IMPORTE TOTAL DE LAS RETENCIONES E INGRESOS A CUENTA (15) -->
-    <record id="aeat_mod190_main_export_line_15" model="aeat.model.export.config.line">
-        <field name="sequence">15</field>
+    <record id="aeat_mod190_main_export_line_16" model="aeat.model.export.config.line">
+        <field name="sequence">16</field>
         <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
         <field name="name">Rendimientos del trabajo y en especie - Importe de las retenciones [03]</field>
         <field name="expression">${object.casilla_03}</field>
@@ -185,8 +195,8 @@
     </record>
 
     <!-- CORREO ELECTRONICO DE LA PERSONA CON QUIEN RELACIONARSE (55) -->
-    <record id="aeat_mod190_main_export_line_16" model="aeat.model.export.config.line">
-        <field name="sequence">16</field>
+    <record id="aeat_mod190_main_export_line_17" model="aeat.model.export.config.line">
+        <field name="sequence">17</field>
         <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
         <field name="name">Correo electrónico</field>
         <field name="expression">${object.contact_email}</field>
@@ -196,8 +206,8 @@
     </record>
 
     <!-- BLANCOS (260) -->
-    <record id="aeat_mod190_main_export_line_17" model="aeat.model.export.config.line">
-        <field name="sequence">17</field>
+    <record id="aeat_mod190_main_export_line_18" model="aeat.model.export.config.line">
+        <field name="sequence">18</field>
         <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
         <field name="name">Reservado para la Administración. Rellenar con blancos</field>
         <field name="fixed_value"/>
@@ -206,19 +216,19 @@
         <field name="alignment">left</field>
     </record>
 
-    <!-- SELLO ELECTRONICO (13) -->
-    <record id="aeat_mod190_main_export_line_18" model="aeat.model.export.config.line">
-        <field name="sequence">18</field>
+    <!-- SELLO ELECTRONICO (16) -->
+    <record id="aeat_mod190_main_export_line_19" model="aeat.model.export.config.line">
+        <field name="sequence">19</field>
         <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
-        <field name="name">Reservado para el sello electrónico de la AEAT (13)</field>
+        <field name="name">Reservado para el sello electrónico de la AEAT (14)</field>
         <field name="fixed_value"/>
         <field name="export_type">string</field>
-        <field name="size">13</field>
+        <field name="size">16</field>
         <field name="alignment">left</field>
     </record>
 
-    <record id="aeat_mod190_main_export_line_19" model="aeat.model.export.config.line">
-        <field name="sequence">19</field>
+    <record id="aeat_mod190_main_export_line_20" model="aeat.model.export.config.line">
+        <field name="sequence">20</field>
         <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
         <field name="name">Constante CRLF (Hexadecimal 0D0A, Decimal 1310)</field>
         <field name="expression">${"\r\n".encode("ascii")}</field>
@@ -230,7 +240,7 @@
     <!--  B. TIPO DE REGISTRO 2: REGISTRO DE PERCEPTOR -->
 
     <record id="aeat_mod190_main_export_line_20" model="aeat.model.export.config.line">
-        <field name="sequence">20</field>
+        <field name="sequence">21</field>
         <field name="export_config_id" ref="aeat_mod190_main_export_config"/>
         <field name="name">Exportación modelo 190 - Tipo de Registro 2 – Registro de cliente</field>
         <field name="subconfig_id" ref="aeat_mod190_partner_export_config"/>
