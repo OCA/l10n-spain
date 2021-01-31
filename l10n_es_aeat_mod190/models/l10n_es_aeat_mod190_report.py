@@ -1,4 +1,3 @@
-
 from odoo import api, fields, models, exceptions, _
 from odoo.tools import float_compare
 
@@ -214,7 +213,7 @@ class L10nEsAeatMod190Report(models.Model):
         vals = {
             'report_id': self.id,
             'partner_id': rp.id,
-            'partner_vat': rp.vat,
+            'partner_vat': rp._parse_aeat_vat_info()[2],
             'aeat_perception_key_id': key_id.id,
             'aeat_perception_subkey_id': subkey_id.id,
             'codigo_provincia': codigo_provincia,
