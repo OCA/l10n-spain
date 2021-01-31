@@ -1,7 +1,7 @@
 # Copyright 2004-2011 Pexego Sistemas Informáticos - Luis Manuel Angueira
 # Copyright 2013 - Acysos S.L. - Ignacio Ibeas (Migración a v7)
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
-# Copyright 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
+# Copyright 2016 Tecnativa - Antonio Espinosa
+# Copyright 2014-2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import re
@@ -434,7 +434,7 @@ class L10nEsAeatReport(models.AbstractModel):
 
     def button_unpost(self):
         """Remove created account move entry and set state to cancelled."""
-        self.mapped("move_id").unlink()
+        self.mapped("move_id").with_context(force_delete=True).unlink()
         self.write({"state": "cancelled"})
         return True
 
