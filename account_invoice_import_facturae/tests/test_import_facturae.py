@@ -21,6 +21,8 @@ configurations_customer = {
         'country': 'ESP', 'vat': 'ESA86025558', 'product_code': 'VNAC'
     }
 }
+
+
 class TestImportFacturae(TransactionCase):
     def setUp(self):
         super().setUp()

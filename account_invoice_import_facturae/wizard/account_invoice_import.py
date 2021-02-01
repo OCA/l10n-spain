@@ -69,12 +69,12 @@ class AccountInvoiceImport(models.TransientModel):
             partner_dict = self.facturae_parse_partner(xml_root, xml_root.find(
                 'Parties/BuyerParty'
             ))
-            inv_type='out_invoice'
+            inv_type = 'out_invoice'
         else:
             partner_dict = self.facturae_parse_partner(xml_root, xml_root.find(
                 'Parties/SellerParty'
             ))
-            inv_type='in_invoice'
+            inv_type = 'in_invoice'
         invoice = xml_root.find('Invoices/Invoice')
 
         inv_number_xpath = invoice.find('InvoiceHeader/InvoiceNumber')
