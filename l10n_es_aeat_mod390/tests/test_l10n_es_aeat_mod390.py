@@ -119,7 +119,7 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             ("99", 14280.0),
             # Operaciones realizadas por sujetos pasivos acogidos al régimen
             # especial del recargo de equivalencia
-            ("102", -16200.0),
+            ("102", 0.0),
             # Entregas intracomunitarias exentas
             ("103", 9800.0),
             # Exportaciones y otras operaciones exentas con derecho a deducción
@@ -283,7 +283,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_64, 2408.45, 2)
         self.assertAlmostEqual(self.model390.casilla_65, 108.55, 2)
         self.assertAlmostEqual(self.model390.casilla_86, 108.55, 2)
-        self.assertAlmostEqual(self.model390.casilla_108, 21280.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_108, 37480.0, 2)
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
             {"name": "test_export_to_boe.txt"}
