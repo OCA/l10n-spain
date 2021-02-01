@@ -526,8 +526,9 @@
         <field name="to_regularize" eval="True" />
         <field name="move_type">regular</field>
         <field name="field_type">amount</field>
-        <field name="sum_type">debit</field>
-        <field name="inverse" eval="False" />
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field name="account_id" ref="l10n_es.account_common_472" />
         <!-- Cuota facturas de compra (debe):
          P_IVA4_IBI, P_IVA10_IBI, P_IVA21_IBI -->
         <field
@@ -564,8 +565,9 @@
         <field name="to_regularize" eval="True" />
         <field name="move_type">regular</field>
         <field name="field_type">amount</field>
-        <field name="sum_type">debit</field>
-        <field name="inverse" eval="False" />
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field name="account_id" ref="l10n_es.account_common_472" />
         <!-- Cuota facturas de compra (debe):
          P_IVA4_IC_BC,  P_IVA4_SP_IN
          P_IVA10_IC_BC, P_IVA10_SP_IN
@@ -602,8 +604,9 @@
         <field name="to_regularize" eval="True" />
         <field name="move_type">regular</field>
         <field name="field_type">amount</field>
-        <field name="sum_type">debit</field>
-        <field name="inverse" eval="False" />
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="True" />
+        <field name="account_id" ref="l10n_es.account_common_472" />
         <!-- Cuota facturas de compra (debe):
          P_IVA4_IC_BI, P_IVA10_IC_BI, P_IVA21_IC_BI -->
         <field
