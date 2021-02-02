@@ -12,6 +12,8 @@ addons:
   apt:
     packages:
       - expect-dev # provides unbuffer utility
+      - libxmlsec1-dev
+      - libxmlsec1-openssl
 
 stages:
   - linting
