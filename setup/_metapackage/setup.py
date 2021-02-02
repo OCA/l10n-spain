@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_aeat_mod390',
         'odoo13-addon-l10n_es_aeat_sii_oca',
         'odoo13-addon-l10n_es_dua',
+        'odoo13-addon-l10n_es_facturae',
         'odoo13-addon-l10n_es_mis_report',
         'odoo13-addon-l10n_es_partner',
         'odoo13-addon-l10n_es_partner_mercantil',
