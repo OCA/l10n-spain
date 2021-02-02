@@ -1,9 +1,10 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
-from odoo import _, exceptions, models
-from odoo import tools
 import os
+
+from odoo import _, exceptions, models, tools
+
 try:
     import xlrd
 except ImportError:
@@ -20,19 +21,20 @@ UOM_MAPPING = {
 
 
 class L10nEsPartnerImportWizard(models.TransientModel):
-    _name = 'l10n.es.intrastat.code.import'
-    _inherit = 'res.config.installer'
+    _name = "l10n.es.intrastat.code.import"
+    _inherit = "res.config.installer"
 
     @tools.ormcache("name")
     def _get_intrastat_unit(self, name):
-        return self.env['intrastat.unit'].search([('name', '=', name)]).id
+        return self.env["intrastat.unit"].search([("name", "=", name)]).id
 
     def _import_hs_codes(self):
         if not xlrd:  # pragma: no cover
             raise exceptions.UserError(_("xlrd library not found."))
-        code_obj = self.env['hs.code']
+        code_obj = self.env["hs.code"]
         path = os.path.join(
-            os.path.dirname(os.path.dirname(__file__)), "data", "NC_20.xlsx")
+            os.path.dirname(os.path.dirname(__file__)), "data", "NC_20.xlsx"
+        )
         workbook = xlrd.open_workbook(path)
         sheet = workbook.sheet_by_index(0)
         vals_list = []
@@ -56,25 +58,25 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 "description": " /".join(parents + [description]),
             }
             iu = sheet.cell_value(nrow, 6)
-            if iu and iu != '-':  # specific unit
+            if iu and iu != "-":  # specific unit
                 if iu in UOM_MAPPING:
                     iu_unit_id = self.env.ref(
-                        'intrastat_product.%s' % UOM_MAPPING[iu]).id
+                        "intrastat_product.%s" % UOM_MAPPING[iu]
+                    ).id
                 else:
                     iu_unit_id = self._get_intrastat_unit(iu)
                 if iu_unit_id:
-                    vals['intrastat_unit_id'] = iu_unit_id
+                    vals["intrastat_unit_id"] = iu_unit_id
                 else:
                     raise exceptions.UserError(_("Unit not found: '%s'") % iu)
-            if not code_obj.search([('local_code', '=', code)]):
+            if not code_obj.search([("local_code", "=", code)]):
                 vals_list.append(vals)
         if vals_list:
             code_obj.create(vals_list)
 
     def _set_defaults(self, company):
-        module = __name__.split('addons.')[1].split('.')[0]
-        transaction = self.env.ref(
-            '%s.intrastat_transaction_11' % module)
+        module = __name__.split("addons.")[1].split(".")[0]
+        transaction = self.env.ref("%s.intrastat_transaction_11" % module)
         for field in [
             "intrastat_transaction_out_invoice",
             "intrastat_transaction_out_refund",
@@ -86,9 +88,9 @@ class L10nEsPartnerImportWizard(models.TransientModel):
 
     def execute(self):
         company = self.env.user.company_id
-        if company.country_id.code.lower() != 'es':
-            raise exceptions.UserError(_(
-                "Current company is not Spanish, so it can't be configured."
-            ))
+        if company.country_id.code.lower() != "es":
+            raise exceptions.UserError(
+                _("Current company is not Spanish, so it can't be configured.")
+            )
         self._set_defaults(company)
         self._import_hs_codes()
