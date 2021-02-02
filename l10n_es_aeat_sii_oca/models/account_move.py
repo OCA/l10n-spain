@@ -535,6 +535,7 @@ class AccountMove(models.Model):
         taxes_sfesns = self._get_sii_taxes_map(["SFESNS"])
         taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"])
         taxes_not_in_total_neg = self._get_sii_taxes_map(["NotIncludedInTotalNegative"])
+        base_not_in_total = self._get_sii_taxes_map(["BaseNotIncludedInTotal"])
         not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         tax_lines = self._get_tax_info()
@@ -545,6 +546,8 @@ class AccountMove(models.Model):
                 not_in_amount_total += tax_line["amount"]
             elif tax in taxes_not_in_total_neg:
                 not_in_amount_total -= tax_line["amount"]
+            elif tax in base_not_in_total:
+                not_in_amount_total += tax_line["base"]
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault("DesgloseFactura", {})
             if tax in (taxes_sfesb + taxes_sfesbe + taxes_sfesisp):
@@ -658,6 +661,7 @@ class AccountMove(models.Model):
         taxes_sfrnd = self._get_sii_taxes_map(["SFRND"])
         taxes_not_in_total = self._get_sii_taxes_map(["NotIncludedInTotal"])
         taxes_not_in_total_neg = self._get_sii_taxes_map(["NotIncludedInTotalNegative"])
+        base_not_in_total = self._get_sii_taxes_map(["BaseNotIncludedInTotal"])
         tax_amount = 0.0
         not_in_amount_total = 0.0
         tax_lines = self._get_tax_info()
@@ -667,6 +671,8 @@ class AccountMove(models.Model):
                 not_in_amount_total += tax_line["amount"]
             elif tax in taxes_not_in_total_neg:
                 not_in_amount_total -= tax_line["amount"]
+            elif tax in base_not_in_total:
+                not_in_amount_total += tax_line["base"]
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
                     "InversionSujetoPasivo",
