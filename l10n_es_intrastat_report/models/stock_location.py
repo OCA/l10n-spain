@@ -7,7 +7,7 @@ from odoo import models
 
 
 class StockLocation(models.Model):
-    _inherit = 'stock.location'
+    _inherit = "stock.location"
 
     def _get_intrastat_state(self):
         if not self:
@@ -17,7 +17,11 @@ class StockLocation(models.Model):
         while location.location_id:
             locations += location.location_id
             location = location.location_id
-        warehouse = self.env['stock.warehouse'].search([
-            ('lot_stock_id', 'in', locations.ids),
-            ('partner_id.state_id', '!=', False)], limit=1)
+        warehouse = self.env["stock.warehouse"].search(
+            [
+                ("lot_stock_id", "in", locations.ids),
+                ("partner_id.state_id", "!=", False),
+            ],
+            limit=1,
+        )
         return warehouse.partner_id.state_id
