@@ -256,7 +256,7 @@ msgid "Credit Note"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1345
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1360
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
 msgstr ""
@@ -545,7 +545,7 @@ msgid "Never sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:377
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:392
 #, python-format
 msgid "No VAT configured for the company '{}'"
 msgstr ""
@@ -1024,31 +1024,31 @@ msgid "The last attemp to sent to SII has failed"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:689
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:704
 #, python-format
 msgid "The partner has not a VAT configured."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:705
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:720
 #, python-format
 msgid "The supplier number invoice is required"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:407
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:422
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:697
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:712
 #, python-format
 msgid "This company doesn't have SII enabled."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:701
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:716
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr ""
@@ -1080,13 +1080,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1227
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1242
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1197
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1212
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -1094,7 +1094,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1136
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1151
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -1102,19 +1102,19 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1243
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1258
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:684
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:699
 #, python-format
 msgid "You can't make a supplier simplified invoice."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:258
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:273
 #, python-format
 msgid ""
 "You cannot change the invoice date of an invoice already registered at the "
@@ -1122,7 +1122,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:275
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:290
 #, python-format
 msgid ""
 "You cannot change the supplier invoice number of an invoice already "
@@ -1131,7 +1131,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:268
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:283
 #, python-format
 msgid ""
 "You cannot change the supplier of an invoice already registered at the SII. "
@@ -1139,13 +1139,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:297
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:312
 #, python-format
 msgid "You cannot delete an invoice already registered at the SII."
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:692
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:707
 #, python-format
 msgid "You have to select what account chart template use this company."
 msgstr ""
