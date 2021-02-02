@@ -270,4 +270,18 @@
         <field name="sii_map_id" ref="aeat_sii_map" />
         <field name="name">Impuestos no incluidos en ImporteTotal (negativos)</field>
     </record>
+    <record
+        id="aeat_sii_map_line_base_not_included_in_total"
+        model="aeat.sii.map.lines"
+    >
+        <field name="code">BaseNotIncludedInTotal</field>
+        <field
+            name="taxes"
+            eval="[(6, 0, [
+          ref('l10n_es.account_tax_template_s_iva0_ns'),
+        ])]"
+        />
+        <field name="sii_map_id" ref="aeat_sii_map" />
+        <field name="name">Bases no incluidas en ImporteTotal</field>
+    </record>
 </odoo>
