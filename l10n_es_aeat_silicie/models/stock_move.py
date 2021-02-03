@@ -285,7 +285,7 @@ class StockMove(models.Model):
                     factor_conversion_silicie
                 move.alcoholic_grade = \
                     move.product_id.product_tmpl_id.alcoholic_grade
-                move.nc_code = move.product_id.product_tmpl_id.nc_code
+                move.nc_code = move.product_id.product_tmpl_id.nc_code[:8]
                 move.product_key_silicie_id = \
                     move.product_id.product_tmpl_id.\
                     product_key_silicie_id
@@ -489,7 +489,8 @@ class StockMove(models.Model):
                 move.product_id.product_tmpl_id.silicie_product_type
             if move.silicie_product_type:
                 datos_envase = ""
-                if move.silicie_product_type == "alcohol":
+                if move.silicie_product_type == "alcohol" or \
+                        move.silicie_product_type == "beer":
                     tipo_envase = move.container_type_silicie_id.code or ""
                     capacidad_envase = move.factor_conversion_silicie
                     numero_envases = round(move.quantity_done)
@@ -509,7 +510,7 @@ class StockMove(models.Model):
                 datos_producto = {
                     "CodigoEpigrafe": move.epigraph_silicie_id.code or "",
                     "Clave": move.product_key_silicie_id.code or "",
-                    "CodigoNC": move.nc_code,
+                    "CodigoNC": move.nc_code[:8],
                     "Cantidad": move.qty_conversion_silicie,
                     "UnidadMedida": move.uom_silicie_id.code,
                     "DescripcionProducto": move.product_id.name,
@@ -633,7 +634,7 @@ class StockMove(models.Model):
             "Repercusión Razón Social": "",
             "Epígrafe": self.epigraph_silicie_id.fiscal_epigraph_silicie or "",
             "Código Epígrafe": self.epigraph_silicie_id.code or "",
-            "Código NC": self.nc_code,
+            "Código NC": self.nc_code[:8],
             "Clave": self.product_key_silicie_id.code or "",
             "Cantidad": self.qty_conversion_silicie,
             "Unidad de Medida": self.uom_silicie_id.code,
@@ -662,7 +663,7 @@ class StockMove(models.Model):
             "silicie_operation_num": self.silicie_operation_num,
             "silicie_proof_type_id": self.silicie_proof_type_id.id,
             "epigraph_silicie_id": self.epigraph_silicie_id.id,
-            "nc_code": self.nc_code,
+            "nc_code": self.nc_code[:8],
             "product_key_silicie_id": self.product_key_silicie_id.id,
             "uom_silicie_id": self.uom_silicie_id.id,
             "container_type_silicie_id": self.container_type_silicie_id.id,

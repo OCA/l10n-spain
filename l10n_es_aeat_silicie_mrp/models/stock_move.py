@@ -63,24 +63,11 @@ class StockMove(models.Model):
                 move.silice_tax_position = "1"
                 if move.scrap_ids:
                     move.notes_silice = move.scrap_ids[:1].origin
-                # Elaboración AD02
-                if move.scrap_ids[:1].scrap_type == "processing":
-                    move.silicie_move_type_id = self.env.ref(
-                        "l10n_es_aeat_silicie.aeat_move_type_silicie_a32")
-                    move.silicie_loss_id = self.env.ref(
-                        "l10n_es_aeat_silicie.aeat_loss_silicie_ad02")
-                # Embotellado AD12
-                elif move.scrap_ids[:1].scrap_type == "bottling":
-                    move.silicie_move_type_id = self.env.ref(
-                        "l10n_es_aeat_silicie.aeat_move_type_silicie_a32")
-                    move.silicie_loss_id = self.env.ref(
-                        "l10n_es_aeat_silicie.aeat_loss_silicie_ad12")
-                # Compras AD15
-                elif move.scrap_ids[:1].scrap_type == "reception":
-                    move.silicie_move_type_id = self.env.ref(
-                        "l10n_es_aeat_silicie.aeat_move_type_silicie_a30")
-                    move.silicie_loss_id = self.env.ref(
-                        "l10n_es_aeat_silicie.aeat_loss_silicie_ad15")
+                loss_type = move.scrap_ids[:1].silicie_loss_id
+                move_type = move.scrap_ids[:1].silicie_move_type_id
+                if loss_type and move_type:
+                    move.silicie_move_type_id = move_type.id
+                    move.silicie_loss_id = loss_type.id
                 else:
                     move.silicie_move_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_move_type_silicie_a28")

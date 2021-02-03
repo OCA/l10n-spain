@@ -7,10 +7,17 @@ from odoo import fields, models
 class StockScrap(models.Model):
     _inherit = "stock.scrap"
 
-    scrap_type = fields.Selection(
-        selection=[
-            ('processing', 'Processing'),
-            ('bottling', 'Bottling'),
-            ('reception', 'Reception'),
-        ],
+    silicie_loss_id = fields.Many2one(
+        string="Loss SILICIE",
+        comodel_name="aeat.loss.silicie",
+        ondelete="restrict",
+    )
+    silicie_move_type_id = fields.Many2one(
+        string="Move Type SILICIE",
+        comodel_name="aeat.move.type.silicie",
+        ondelete="restrict",
+    )
+    silicie_product_type = fields.Selection(
+        related="product_id.silicie_product_type",
+        readonly=True,
     )
