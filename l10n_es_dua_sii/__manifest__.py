@@ -8,17 +8,10 @@
     "version": "12.0.1.1.2",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Studio73, "
-              "Comunitea, "
-              "Odoo Community Association (OCA)",
+    "author": "Studio73, " "Comunitea, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": [
-        "l10n_es_aeat_sii",
-        "l10n_es_dua",
-    ],
-    "data": [
-        "data/tax_code_map_dua_sii_data.xml",
-    ],
+    "depends": ["l10n_es_aeat_sii", "l10n_es_dua",],
+    "data": ["data/tax_code_map_dua_sii_data.xml",],
     "application": False,
     "installable": True,
     "auto_install": True,
