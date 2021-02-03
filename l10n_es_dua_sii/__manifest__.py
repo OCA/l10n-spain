@@ -12,14 +12,10 @@
               "Comunitea, "
               "Punt Sistemes, "
               "Odoo Community Association (OCA)",
+
     "license": "AGPL-3",
-    "depends": [
-        "l10n_es_aeat_sii",
-        "l10n_es_dua",
-    ],
-    "data": [
-        "data/tax_code_map_dua_sii_data.xml",
-    ],
+    "depends": ["l10n_es_aeat_sii", "l10n_es_dua",],
+    "data": ["data/tax_code_map_dua_sii_data.xml",],
     "application": False,
     "installable": True,
     "auto_install": True,
