@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-spain Odoo addons",
     version=version,
     install_requires=[
+        'odoo12-addon-account_invoice_import_facturae',
         'odoo12-addon-account_promissory_note_bankia',
         'odoo12-addon-account_promissory_note_caixabank',
         'odoo12-addon-account_promissory_note_deutschebank_es',

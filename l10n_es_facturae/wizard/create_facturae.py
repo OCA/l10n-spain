@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # © 2009 Alejandro Sanchez <alejandro@asr-oss.com>
 # © 2015 Ismael Calvo <ismael.calvo@factorlibre.com>
 # © 2015 Tecon

@@ -60,6 +60,10 @@ class RedsysCase(HttpCase):
         })
         self.buyer_id = self.buyer.id
         self.redsys = self.env.ref('payment_redsys.payment_acquirer_redsys')
+        bank_journal = self.env['account.journal'].search([
+            ("type", "=", "bank"),
+        ], limit=1)
+        self.redsys.journal_id = bank_journal.id
         self.redsys.redsys_merchant_code = '069611024'
         self.redsys.redsys_secret_key = 'sq7HjrUOBfKmC576ILgskD5srU870gJ8'
         self.redsys.send_quotation = False
@@ -350,7 +354,7 @@ class RedsysCase(HttpCase):
         self.data_post_redsys(
             url='/payment/redsys/return', data=redsys_post_data)
         mock_confirm.assert_called_once_with()
-        mock_quo_send.assert_called_once_with()
+        mock_quo_send.assert_not_called()
         with self.cursor() as cr:
             env = self.env(cr)
             tx = self.tx.with_env(env)

@@ -100,6 +100,12 @@ msgid "Annexes"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__attach_invoice_as_annex
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__attach_invoice_as_annex
+msgid "Attach Invoice As Annex"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: selection:account.invoice,correction_method:0
 #: selection:account.invoice.refund,correction_method:0
 msgid "Autorizadas por la Agencia Tributaria"
@@ -280,7 +286,7 @@ msgid "Correction Method"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/res_partner.py:44
+#: code:addons/l10n_es_facturae/models/res_partner.py:45
 #, python-format
 msgid "Country must be defined"
 msgstr ""
@@ -389,7 +395,7 @@ msgid "Export"
 msgstr "Exportar"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/wizard/create_facturae.py:69
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:68
 #, python-format
 msgid ""
 "Export successful\n"
@@ -427,7 +433,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:93
-#: code:addons/l10n_es_facturae/models/account_invoice.py:526
+#: code:addons/l10n_es_facturae/models/account_invoice.py:541
 #, python-format
 msgid "FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
@@ -438,7 +444,7 @@ msgid "Facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:544
+#: code:addons/l10n_es_facturae/models/account_invoice.py:559
 #, python-format
 msgid "Facturae Configuration"
 msgstr ""
@@ -737,6 +743,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration__invoice_id
 msgid "Invoice"
 msgstr "Factura"
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_invoice.py:235
+#, python-format
+msgid "Invoice %s"
+msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_line
@@ -1078,7 +1090,7 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:101
-#: code:addons/l10n_es_facturae/models/account_invoice.py:534
+#: code:addons/l10n_es_facturae/models/account_invoice.py:549
 #, python-format
 msgid "Start date cannot be later than end date"
 msgstr ""
@@ -1091,7 +1103,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/res_partner.py:48
+#: code:addons/l10n_es_facturae/models/res_partner.py:49
 #, python-format
 msgid "State must be defined"
 msgstr ""
@@ -1119,7 +1131,7 @@ msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:477
+#: code:addons/l10n_es_facturae/models/account_invoice.py:492
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
@@ -1152,7 +1164,7 @@ msgid "Update Date"
 msgstr "Actualizar data"
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/res_partner.py:41
+#: code:addons/l10n_es_facturae/models/res_partner.py:42
 #, python-format
 msgid "Vat must be defined"
 msgstr ""
@@ -1165,7 +1177,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/wizard/create_facturae.py:52
+#: code:addons/l10n_es_facturae/wizard/create_facturae.py:51
 #, python-format
 msgid "You can only select one invoice to export"
 msgstr "Só podes seleccionar unha factura para exportar"
@@ -1266,8 +1278,8 @@ msgid "[19] Pago mediante tarjeta"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:442
-#: code:addons/l10n_es_facturae/models/account_invoice.py:450
+#: code:addons/l10n_es_facturae/models/account_invoice.py:457
+#: code:addons/l10n_es_facturae/models/account_invoice.py:465
 #, python-format
 msgid "facturae"
 msgstr ""

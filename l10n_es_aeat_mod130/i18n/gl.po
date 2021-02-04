@@ -215,14 +215,12 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__company_partner_id
 #, fuzzy
-#| msgid "Company"
 msgid "Company partner"
 msgstr "Compañía"
 
 #. module: l10n_es_aeat_mod130
 #: selection:l10n.es.aeat.mod130.report,type:0
 #, fuzzy
-#| msgid "Complementary"
 msgid "Complementary"
 msgstr "Complementaria"
 
@@ -267,7 +265,7 @@ msgid "Datos a completar"
 msgstr "Datos a completar"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:235
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:241
 #, python-format
 msgid ""
 "Debe introducir una cantidad en la casilla 18 como ha marcado la casilla de "
@@ -295,7 +293,7 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:167
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:171
 #, python-format
 msgid "Este tipo de actividad no está aún soportado por el módulo."
 msgstr ""
@@ -424,7 +422,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__number
 #, fuzzy
-#| msgid "VAT number"
 msgid "Model number"
 msgstr "NIF"
 
@@ -454,14 +451,13 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:217
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:223
 #, fuzzy, python-format
-#| msgid "Complementary"
 msgid "No implementado"
 msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod130
-#: code:addons/l10n_es_aeat_mod130/models/mod130.py:170
+#: code:addons/l10n_es_aeat_mod130/models/mod130.py:174
 #, python-format
 msgid ""
 "No se pueden calcular por el momento declaraciones que contengan deducciones "
@@ -610,7 +606,6 @@ msgstr "Resultado"
 #. module: l10n_es_aeat_mod130
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod130.field_l10n_es_aeat_mod130_report__date_start
 #, fuzzy
-#| msgid "Calculation date"
 msgid "Starting date"
 msgstr "Data de cálculo"
 
@@ -718,7 +713,6 @@ msgstr "[03] Rendemento neto"
 #. module: l10n_es_aeat_mod130
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod130.view_l10n_es_aeat_mod130_report_form
 #, fuzzy
-#| msgid "[04] 20% de la casilla [03]"
 msgid "[04] 20% casilla (03)"
 msgstr "[04] 20% da casa [03]"
 

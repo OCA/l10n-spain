@@ -22,6 +22,7 @@ class ResPartner(models.Model):
         comodel_name='account.invoice.integration.method',
         string="Integration Methods"
     )
+    attach_invoice_as_annex = fields.Boolean()
 
     def get_facturae_residence(self):
         if not self.country_id:

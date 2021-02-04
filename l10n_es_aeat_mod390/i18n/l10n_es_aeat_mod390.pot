@@ -270,7 +270,7 @@ msgid "Código actividad principal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:31
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_notary
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__third_representative_notary
@@ -514,7 +514,7 @@ msgid "Nombre del tercer representante"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:29
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:30
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__first_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__second_representative_name
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__third_representative_name
@@ -722,6 +722,12 @@ msgid "Tercer representante"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:570
+#, python-format
+msgid "The result of the manual 303 summary (fields [95], [97] and [98] in the page '9. Resultado liquidaciones') doesn't match the field [86]. Please check if you have filled such fields."
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,help:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
 msgid "This account will be the counterpart for all the journal items that are regularized when posting the report."
 msgstr ""
@@ -762,7 +768,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod390
-#: code:addons/l10n_es_aeat_mod390/models/mod390.py:561
+#: code:addons/l10n_es_aeat_mod390/models/mod390.py:562
 #, python-format
 msgid "You cannot make complementary reports for this model."
 msgstr ""
