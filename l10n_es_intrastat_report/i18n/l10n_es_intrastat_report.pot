@@ -1,77 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_intrastat_report
+# 	* l10n_es_intrastat_report
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "01"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "02"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "03"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "04"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "05"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "06"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "07"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "08"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "09"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "10"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "11"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,month:0
-msgid "12"
-msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_accessory_cost_company_currency
@@ -89,18 +29,39 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__amount_company_currency
 msgid "Amount Company Currency"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_accessory_cost_company_currency
-msgid "Amount in company currency of the accessory costs related to this invoice line (by default, these accessory costs are computed at the pro-rata of the amount of each invoice line."
+msgid ""
+"Amount in company currency of the accessory costs related to this invoice "
+"line (by default, these accessory costs are computed at the pro-rata of the "
+"amount of each invoice line."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_company_currency
-msgid "Amount in company currency to write in the declaration. Amount in company currency = amount in invoice currency converted to company currency with the rate of the invoice date."
+msgid ""
+"Amount in company currency to write in the declaration. Amount in company "
+"currency = amount in invoice currency converted to company currency with the"
+" rate of the invoice date."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -177,7 +138,7 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:90
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
 #, python-format
 msgid "Current company is not Spanish, so it can't be configured."
 msgstr ""
@@ -193,16 +154,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__display_name
 msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,state:0
-msgid "Done"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: selection:l10n.es.intrastat.product.declaration,state:0
-msgid "Draft"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -239,17 +190,24 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread
-msgid "If checked new messages require your attention."
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_icon
+msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_needaction
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -391,6 +349,21 @@ msgid "Net weight in Kg"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__note
 msgid "Notes"
 msgstr ""
@@ -407,7 +380,7 @@ msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -443,8 +416,18 @@ msgid "Reporting Level"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__revision
 msgid "Revision"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_has_sms_error
+msgid "SMS Delivery error"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -475,7 +458,18 @@ msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__state
-msgid "State of the declaration. When the state is set to 'Done', the parameters become read-only."
+msgid ""
+"State of the declaration. When the state is set to 'Done', the parameters "
+"become read-only."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -497,14 +491,23 @@ msgid "Supplementary Units Quantity"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:57
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
-msgid "The Spanish Intrastat Declaration requires the Company's Country to be equal to 'Spain'."
+msgid ""
+"The Spanish Intrastat Declaration requires the Company's Country to be equal"
+" to 'Spain'."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__invoice_id
+msgid "The move of this entry line."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
-msgid "This wizard will import Spanish Product HS Codes from the local copy and set company Instrastat type defaults at company level."
+msgid ""
+"This wizard will import Spanish Product HS Codes from the local copy and set"
+" company Instrastat type defaults at company level."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -531,7 +534,12 @@ msgid "Type"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:68
+#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
 #, python-format
 msgid "Unit not found: '%s'"
 msgstr ""
@@ -579,6 +587,11 @@ msgid "Weight"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__xml_attachment_id
+msgid "XML Export"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__year
 msgid "Year"
 msgstr ""
@@ -609,8 +622,7 @@ msgid "l10n.es.intrastat.product.declaration.line"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:32
+#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
 #, python-format
 msgid "xlrd library not found."
 msgstr ""
-
