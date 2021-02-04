@@ -3,12 +3,12 @@
 # Copyright 2019 - FactorLibre - Daniel Duque <daniel.duque@factorlibre.com>
 # Copyright 2019 - Tecnativa - Manuel Calero
 # Copyright 2019 - Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning as UserError
 
-import odoo.addons.decimal_precision as dp
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
 
 
@@ -33,7 +33,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
     def _get_intrastat_state(self, inv_line):
         """Similar logic as in product_intrastat `_get_region` method."""
         intrastat_state = False
-        inv_type = inv_line.invoice_id.type
+        inv_type = inv_line.move_id.type
         if inv_type in ("in_invoice", "in_refund"):
             intrastat_state = inv_line.purchase_line_id.move_ids[
                 :1
@@ -116,9 +116,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         self.ensure_one()
         attach = self.env["ir.attachment"].browse(attach_id)
         filename = "{}_{}.csv".format(self.year_month, declaration_name)
-        attach.write(
-            {"name": filename, "datas_fname": filename,}
-        )
+        attach.write({"name": filename})
         return attach.id
 
     def _generate_csv(self):
@@ -221,5 +219,5 @@ class L10nEsIntrastatProductDeclarationLine(models.Model):
     intrastat_state_id = fields.Many2one(
         comodel_name="res.country.state", string="Intrastat State"
     )
-    weight = fields.Float(digits=dp.get_precision("Stock Weight"))
-    amount_company_currency = fields.Float(digits=dp.get_precision("Account"))
+    weight = fields.Float(digits="Stock Weight")
+    amount_company_currency = fields.Float(digits="Account")

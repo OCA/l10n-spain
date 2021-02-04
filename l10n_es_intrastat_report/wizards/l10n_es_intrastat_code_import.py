@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3).
 
 import os
@@ -87,7 +88,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
                 company[field] = transaction
 
     def execute(self):
-        company = self.env.user.company_id
+        company = self.env.company
         if company.country_id.code.lower() != "es":
             raise exceptions.UserError(
                 _("Current company is not Spanish, so it can't be configured.")
