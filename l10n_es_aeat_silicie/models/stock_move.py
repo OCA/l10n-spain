@@ -594,7 +594,8 @@ class StockMove(models.Model):
             factor_conversion = ""
             qty_done = ""
         return {
-            "partner_name": self.picking_id.partner_id.name or "",
+            "partner_name": self.picking_id.partner_id.name or
+                            self.company_ud.name or "",
             "alcoholic_grade": self.alcoholic_grade or "",
             "absolute_alcohol": self.absolute_alcohol or "",
             "container_code": container_code,
