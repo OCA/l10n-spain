@@ -659,7 +659,7 @@ class StockMove(models.Model):
             "silicie_move_type_id": self.silicie_move_type_id.id,
             "silicie_loss_id": self.silicie_loss_id.id,
             "silice_tax_position": self.silice_tax_position,
-            "silicie_processing_id": self.silicie_processing_id,
+            "silicie_processing_id": self.silicie_processing_id.id,
             "silicie_operation_num": self.silicie_operation_num,
             "silicie_proof_type_id": self.silicie_proof_type_id.id,
             "epigraph_silicie_id": self.epigraph_silicie_id.id,
