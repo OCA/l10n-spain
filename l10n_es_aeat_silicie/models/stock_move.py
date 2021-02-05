@@ -178,7 +178,7 @@ class StockMove(models.Model):
                 elif product_type == "beer":
                     move.silicie_proof_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_proof_type_silicie_j03")
-                if (move.fiscal_position_id.
+                if (not move.fiscal_position_id or move.fiscal_position_id.
                         silicie_partner_identification_type == "national"):
                     move.silicie_move_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_move_type_silicie_a08")
@@ -205,7 +205,7 @@ class StockMove(models.Model):
                 elif product_type == "beer":
                     move.silicie_proof_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_proof_type_silicie_j03")
-                if (move.fiscal_position_id.
+                if (not move.fiscal_position_id or move.fiscal_position_id.
                         silicie_partner_identification_type == "national"):
                     move.silicie_move_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_move_type_silicie_a02")
@@ -234,7 +234,7 @@ class StockMove(models.Model):
                         "l10n_es_aeat_silicie.aeat_proof_type_silicie_j03")
                 move.reference = \
                     move.purchase_line_id.order_id.arc or move.reference
-                if (move.fiscal_position_id.
+                if (not move.fiscal_position_id or move.fiscal_position_id.
                         silicie_partner_identification_type == "national"):
                     move.silicie_move_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_move_type_silicie_a02")
@@ -260,7 +260,7 @@ class StockMove(models.Model):
                 elif product_type == "beer":
                     move.silicie_proof_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_proof_type_silicie_j03")
-                if (move.fiscal_position_id.
+                if (not move.fiscal_position_id or move.fiscal_position_id.
                         silicie_partner_identification_type == "national"):
                     move.silicie_move_type_id = self.env.ref(
                         "l10n_es_aeat_silicie.aeat_move_type_silicie_a08")
