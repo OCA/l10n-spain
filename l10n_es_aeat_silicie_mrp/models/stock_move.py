@@ -93,37 +93,67 @@ class StockMove(models.Model):
                 move.check_silicie_fields()
 
     @api.multi
-    def _get_data_dict(self, lot):
+    def _get_data_dict(self, lot_moves):
         self.ensure_one()
         Lots = self.env["stock.production.lot"]
         a14_type = self.env.ref(
             "l10n_es_aeat_silicie.aeat_move_type_silicie_a14")
-        data = super()._get_data_dict(lot)
+        data = super()._get_data_dict(lot_moves)
         if self.product_id.silicie_product_type == "beer":
-            data["qty_done"] = lot["qty_done"]
-            if self.product_id.product_class == "raw":
-                lot_id = Lots.browse(lot["lot_id"])
-                data["extract"] = lot_id.extract or ""
+            qty_done = 0.0
+            extract = 0.0
+            sum_extract = 0.0
+            density = 0.0
+            sum_density = 0.0
+            kg_extract = 0.0
+            for lot_move in lot_moves:
+                qty_done += lot_move["qty_done"]
+                if self.product_id.product_class == "raw":
+                    lot_id = Lots.browse(lot_move["lot_id"])
+                    extract += lot_id.extract
+                    sum_extract += lot_id.extract * lot_move["qty_done"]
+                    density += lot_id.density
+                    sum_density += lot_id.density * lot_move["qty_done"]
+            if extract:
+                extract = sum_extract / qty_done
                 if self.silicie_move_type_id == a14_type:
-                    if data["extract"]:
-                        data["kg_extract"] = \
-                            data["extract"] * data["qty_done"] / 100
-                    else:
-                        data["kg_extract"] = ""
+                    kg_extract = extract * qty_done / 100
+            if density:
+                density = sum_density / qty_done
                 if self.product_id.product_class == "manufactured":
-                    density = lot_id.density
                     data["alcoholic_grade"] = ""
-                    data["density"] = density
                     data["grado_plato"] = density * 1000 - 1000 / 4
+            if not extract:
+                extract = ""
+            if not kg_extract:
+                kg_extract = ""
+            data['qty_done'] = qty_done
+            data['extract'] = extract
+            data['kg_extract'] = kg_extract
+            data['density'] = density
+            if self.product_id.product_class == "final":
+                data["alcoholic_grade"] = ""
+                data["extract"] = ""
+                data["kg_extract"] = ""
+                data["grado_plato"] = ""
             if not data['container_code']:
                 data["qty_done"] = ""
         return data
 
     @api.multi
-    def _prepare_values(self, lot):
+    def _prepare_values(self):
         self.ensure_one()
-        data = self._get_data_dict(lot)
-        values = super()._prepare_values(lot)
+        lot_moves = []
+        for group in self.env['stock.move.line'].read_group([
+                ('move_id', 'in', self.ids)],
+                ['lot_id', 'qty_done'],
+                ['lot_id']):
+            lot_moves.append({
+                'lot_id': group['lot_id'][0],
+                'qty_done': group['qty_done'],
+            })
+        data = self._get_data_dict(lot_moves)
+        values = super()._prepare_values()
         values.update({
             "Porcentaje de Extracto": data.get("extract", ""),
             "Kg. - Extracto": data.get("kg_extract", ""),

@@ -24,17 +24,8 @@ class AeatSiliceCsv(models.AbstractModel):
             if move.send_silicie or move.not_declare:
                 continue
             lot_moves = []
-            for group in self.env['stock.move.line'].read_group([
-                    ('move_id', 'in', move.ids)],
-                    ['lot_id', 'qty_done'],
-                    ['lot_id']):
-                lot_moves.append({
-                    'lot_id': group['lot_id'][0],
-                    'qty_done': group['qty_done'],
-                })
-            for lot in lot_moves:
-                values = move._prepare_values(lot)
-                writer.writerow(self.localize_floats(values))
+            values = move._prepare_values()
+            writer.writerow(self.localize_floats(values))
 
     def csv_report_options(self):
         res = super().csv_report_options()

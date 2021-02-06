@@ -585,7 +585,7 @@ class StockMove(models.Model):
         return port_name
 
     @api.multi
-    def _get_data_dict(self, lot):
+    def _get_data_dict(self, lot_moves):
         self.ensure_one()
         container_code = self.container_type_silicie_id.code or ""
         factor_conversion = self.factor_conversion_silicie
@@ -594,8 +594,10 @@ class StockMove(models.Model):
             factor_conversion = ""
             qty_done = ""
         return {
-            "partner_name": self.picking_id.partner_id.name or
-                            self.company_ud.name or "",
+            "partner_name":
+                self.picking_id.partner_id.name or
+                self.company_id.name or "",
+            "density": self.density or "",
             "alcoholic_grade": self.alcoholic_grade or "",
             "absolute_alcohol": self.absolute_alcohol or "",
             "container_code": container_code,
@@ -603,8 +605,18 @@ class StockMove(models.Model):
             "qty_done": qty_done}
 
     @api.multi
-    def _prepare_values(self, lot):
-        data = self._get_data_dict(lot)
+    def _prepare_values(self):
+        self.ensure_one()
+        lot_moves = []
+        for group in self.env['stock.move.line'].read_group([
+                ('move_id', 'in', self.ids)],
+                ['lot_id', 'qty_done'],
+                ['lot_id']):
+            lot_moves.append({
+                'lot_id': group['lot_id'][0],
+                'qty_done': group['qty_done'],
+            })
+        data = self._get_data_dict(lot_moves)
         return {
             "Número Referencia Interno": self.id,
             "Número Asiento Previo": "",
@@ -641,7 +653,7 @@ class StockMove(models.Model):
             "Unidad de Medida": self.uom_silicie_id.code,
             "Descripción de Producto": self.product_id.name.strip(),
             "Referencia Producto": self.product_id.default_code,
-            "Densidad": self.density,
+            "Densidad": data['density'],
             "Grado Alcohólico": data["alcoholic_grade"],
             "Cantidad de Alcohol Puro": data["absolute_alcohol"],
             "Porcentaje de Extracto": "",
