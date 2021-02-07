@@ -145,6 +145,7 @@ Contributors
 * Abraham Anes <abraham@studio73.es>
 * Diagram Software S.L.
 * Consultoría Informática Studio 73 S.L.
+* Digital5 S.L.
 
 Maintainers
 ~~~~~~~~~~~
