@@ -952,7 +952,7 @@ class AccountInvoice(models.Model):
             'port_name': self.SII_PORT_NAME_MAPPING[mapping_key],
             'address': False,
         }
-        agency = self.company_id.sii_tax_agency_id
+        agency = self.company_id.tax_agency_id
         if agency:
             params.update(agency._connect_params_sii(
                 mapping_key, self.company_id))
