@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
-# Copyright 2018 Javi Melendez <javimelex@gmail.com>
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
-class AeatSiiTaxAgency(models.Model):
-    _name = 'aeat.sii.tax.agency'
-    _description = 'Aeat SII Tax Agency'
+class AeatTaxAgency(models.Model):
+    _inherit = 'aeat.tax.agency'
 
-    name = fields.Char(string='Tax Agency', required=True)
     wsdl_out = fields.Char(
         string='SuministroFactEmitidas WSDL', required=True)
     wsdl_out_test_address = fields.Char(
