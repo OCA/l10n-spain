@@ -93,12 +93,16 @@ class StockMove(models.Model):
                 move.check_silicie_fields()
 
     @api.multi
-    def _get_data_dict(self, lot_moves):
+    def _get_data_mrp_dict(self, lot_moves):
         self.ensure_one()
         Lots = self.env["stock.production.lot"]
         a14_type = self.env.ref(
             "l10n_es_aeat_silicie.aeat_move_type_silicie_a14")
-        data = super()._get_data_dict(lot_moves)
+        a02_type = self.env.ref(
+            "l10n_es_aeat_silicie.aeat_move_type_silicie_a02")
+        a08_type = self.env.ref(
+            "l10n_es_aeat_silicie.aeat_move_type_silicie_a08")
+        data = {}
         if self.product_id.silicie_product_type == "beer":
             qty_done = 0.0
             extract = 0.0
@@ -116,7 +120,7 @@ class StockMove(models.Model):
                     sum_density += lot_id.density * lot_move["qty_done"]
             if extract:
                 extract = sum_extract / qty_done
-                if self.silicie_move_type_id == a14_type:
+                if self.silicie_move_type_id in (a14_type, a02_type):
                     kg_extract = extract * qty_done / 100
             if density:
                 density = sum_density / qty_done
@@ -127,17 +131,18 @@ class StockMove(models.Model):
                 extract = ""
             if not kg_extract:
                 kg_extract = ""
+            if not density:
+                density = ""
             data['qty_done'] = qty_done
             data['extract'] = extract
             data['kg_extract'] = kg_extract
             data['density'] = density
             if self.product_id.product_class == "final":
-                data["alcoholic_grade"] = ""
+
                 data["extract"] = ""
                 data["kg_extract"] = ""
                 data["grado_plato"] = ""
-            if not data['container_code']:
-                data["qty_done"] = ""
+            data["alcoholic_grade"] = ""
         return data
 
     @api.multi
@@ -152,7 +157,7 @@ class StockMove(models.Model):
                 'lot_id': group['lot_id'][0],
                 'qty_done': group['qty_done'],
             })
-        data = self._get_data_dict(lot_moves)
+        data = self._get_data_mrp_dict(lot_moves)
         values = super()._prepare_values()
         values.update({
             "Porcentaje de Extracto": data.get("extract", ""),

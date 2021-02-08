@@ -585,7 +585,7 @@ class StockMove(models.Model):
         return port_name
 
     @api.multi
-    def _get_data_dict(self, lot_moves):
+    def _get_data_dict(self):
         self.ensure_one()
         container_code = self.container_type_silicie_id.code or ""
         factor_conversion = self.factor_conversion_silicie
@@ -607,16 +607,7 @@ class StockMove(models.Model):
     @api.multi
     def _prepare_values(self):
         self.ensure_one()
-        lot_moves = []
-        for group in self.env['stock.move.line'].read_group([
-                ('move_id', 'in', self.ids)],
-                ['lot_id', 'qty_done'],
-                ['lot_id']):
-            lot_moves.append({
-                'lot_id': group['lot_id'][0],
-                'qty_done': group['qty_done'],
-            })
-        data = self._get_data_dict(lot_moves)
+        data = self._get_data_dict()
         return {
             "Número Referencia Interno": self.id,
             "Número Asiento Previo": "",
