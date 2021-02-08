@@ -153,10 +153,11 @@ class StockMove(models.Model):
                 ('move_id', 'in', self.ids)],
                 ['lot_id', 'qty_done'],
                 ['lot_id']):
-            lot_moves.append({
-                'lot_id': group['lot_id'][0],
-                'qty_done': group['qty_done'],
-            })
+            if group['lot_id']:
+                lot_moves.append({
+                    'lot_id': group['lot_id'][0],
+                    'qty_done': group['qty_done'],
+                })
         data = self._get_data_mrp_dict(lot_moves)
         values = super()._prepare_values()
         values.update({
