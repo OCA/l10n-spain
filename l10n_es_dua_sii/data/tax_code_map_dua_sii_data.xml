@@ -19,7 +19,7 @@
         ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
       ])]"
         />
-        <field name="sii_map_id" ref="l10n_es_aeat_sii.aeat_sii_map" />
+        <field name="sii_map_id" ref="l10n_es_aeat_sii_oca.aeat_sii_map" />
         <field name="name">DUA</field>
     </record>
 </odoo>
