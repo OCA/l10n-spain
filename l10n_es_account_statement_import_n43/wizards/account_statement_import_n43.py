@@ -1,4 +1,4 @@
-# Copyright 2013-2017 Tecnativa - Pedro M. Baeza
+# Copyright 2013-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2021 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
@@ -362,8 +362,7 @@ class AccountStatementImport(models.TransientModel):
                     "date": fields.Date.to_string(
                         line[journal.n43_date_type or "fecha_valor"]
                     ),
-                    "name": " ".join(conceptos),
-                    "payment_ref": self._get_n43_ref(line),
+                    "payment_ref": " ".join(conceptos),
                     "amount": line["importe"],
                     # inject raw parsed N43 dict for later use, that will be
                     # removed before passing final values to create the record
@@ -372,8 +371,6 @@ class AccountStatementImport(models.TransientModel):
                 c = line["conceptos"]
                 if c.get("01"):
                     vals_line["partner_name"] = c["01"][0] + c["01"][1]
-                if not vals_line["name"]:  # pragma: no cover
-                    vals_line["name"] = vals_line["ref"]
                 transactions.append(vals_line)
         vals_bank_statement = {
             "transactions": transactions,
@@ -383,7 +380,7 @@ class AccountStatementImport(models.TransientModel):
         if date:
             vals_bank_statement["date"] = date
         return (
-            journal.currency_id.name,
+            journal.currency_id.name or journal.company_id.currency_id.name,
             n43 and n43[0]["cuenta"] or None,
             [vals_bank_statement],
         )
