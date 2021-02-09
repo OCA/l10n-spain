@@ -8,4 +8,5 @@
 
   * Alexandre Díaz
   * Pedro M. Baeza
+  * João Marques
 * Eric Antones - NuoBiT Solutions, S.L. <eantones@nuobit.com>
