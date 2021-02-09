@@ -50,10 +50,38 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase):
             )
         return tax
 
-    def _compare_sii_dict(self, json_file, inv_type, lines, extra_vals=None):
+    def _create_and_test_invoice_sii_dict(
+        self, inv_type, lines, extra_vals, module=None
+    ):
+        vals = []
+        tax_names = []
+        for line in lines:
+            taxes = self.env["account.tax"]
+            for tax in line[1]:
+                if "." in tax:
+                    xml_id = tax
+                else:
+                    xml_id = "l10n_es.{}_account_tax_template_{}".format(
+                        self.company.id, tax
+                    )
+                taxes += self.env.ref(xml_id)
+                tax_names.append(tax)
+            vals.append({"price_unit": line[0], "taxes": taxes})
+        return self._compare_sii_dict(
+            "sii_{}_{}_dict.json".format(inv_type, "_".join(tax_names)),
+            inv_type,
+            vals,
+            extra_vals=extra_vals,
+            module=module,
+        )
+
+    def _compare_sii_dict(
+        self, json_file, inv_type, lines, extra_vals=None, module=None
+    ):
         """Helper method for creating an invoice according arguments, and
         comparing the expected SII dict with .
         """
+        module = module or "l10n_es_aeat_sii_oca"
         vals = {
             "name": "TEST001",
             "partner_id": self.partner.id,
@@ -80,12 +108,13 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase):
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
         result_dict = invoice._get_sii_invoice_dict()
-        path = get_resource_path("l10n_es_aeat_sii_oca", "tests", json_file)
+        path = get_resource_path(module, "tests", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
             expected_dict = json.loads(f.read())
         self.assertEqual(expected_dict, result_dict)
+        return invoice
 
     @classmethod
     def setUpClass(cls):
@@ -243,24 +272,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             ),
         ]
         for inv_type, lines, extra_vals in mapping:
-            vals = []
-            tax_names = []
-            for line in lines:
-                taxes = self.env["account.tax"]
-                for tax in line[1]:
-                    taxes += self.env.ref(
-                        "l10n_es.{}_account_tax_template_{}".format(
-                            self.company.id, tax
-                        )
-                    )
-                    tax_names.append(tax)
-                vals.append({"price_unit": line[0], "taxes": taxes})
-            self._compare_sii_dict(
-                "sii_{}_{}_dict.json".format(inv_type, "_".join(tax_names)),
-                inv_type,
-                vals,
-                extra_vals=extra_vals,
-            )
+            self._create_and_test_invoice_sii_dict(inv_type, lines, extra_vals)
         return
 
     def test_action_cancel(self):
