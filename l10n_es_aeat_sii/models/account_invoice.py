@@ -512,12 +512,14 @@ class AccountInvoice(models.Model):
             )
             if tax in taxes_not_in_total:
                 if self.currency_id != self.company_id.currency_id:
-                    amount = self.currency_id._convert(
+                    currency = self.currency_id.with_context(
+                        date=self._get_currency_rate_date(),
+                        company_id=self.company_id.id
+                        )
+                    amount = currency.compute(
                         tax_line.amount_total,
-                        self.company_id.currency_id,
-                        self.company_id,
-                        self._get_currency_rate_date(),
-                    )
+                        self.company_id.currency_id
+                        )
                 else:
                     amount = tax_line.amount_total
                 not_in_amount_total += amount
@@ -652,12 +654,14 @@ class AccountInvoice(models.Model):
             tax = tax_line.tax_id
             if tax in taxes_not_in_total:
                 if self.currency_id != self.company_id.currency_id:
-                    amount = self.currency_id._convert(
+                    currency = self.currency_id.with_context(
+                        date=self._get_currency_rate_date(),
+                        company_id=self.company_id.id
+                        )
+                    amount = currency.compute(
                         tax_line.amount_total,
-                        self.company_id.currency_id,
-                        self.company_id,
-                        self._get_currency_rate_date(),
-                    )
+                        self.company_id.currency_id
+                        )
                 else:
                     amount = tax_line.amount_total
                 not_in_amount_total += amount
