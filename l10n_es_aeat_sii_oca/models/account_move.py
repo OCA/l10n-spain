@@ -5,6 +5,7 @@
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # Copyright 2011-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
+# Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -89,7 +90,7 @@ class AccountMove(models.Model):
 
     def _get_default_type(self):
         context = self.env.context
-        return context.get("type", context.get("default_type"))
+        return context.get("move_type", context.get("default_type"))
 
     def _default_sii_refund_type(self):
         inv_type = self._get_default_type()
@@ -114,7 +115,6 @@ class AccountMove(models.Model):
         default="/",
         store=True,
         readonly=False,
-        size=500,
         copy=False,
     )
     sii_state = fields.Selection(
@@ -195,6 +195,7 @@ class AccountMove(models.Model):
     sii_registration_key_code = fields.Char(
         related="sii_registration_key.code",
         readonly=True,
+        string="SII Code",
     )
     sii_enabled = fields.Boolean(string="Enable SII", compute="_compute_sii_enabled")
     sii_property_location = fields.Selection(
@@ -217,7 +218,6 @@ class AccountMove(models.Model):
     )
     sii_property_cadastrial_code = fields.Char(
         string="Real property cadastrial code",
-        size=25,
         copy=False,
     )
     sii_macrodata = fields.Boolean(
@@ -235,12 +235,12 @@ class AccountMove(models.Model):
         copy=False,
     )
 
-    @api.depends("type")
+    @api.depends("move_type")
     def _compute_sii_registration_key_domain(self):
         for record in self:
-            if record.type in {"out_invoice", "out_refund"}:
+            if record.move_type in {"out_invoice", "out_refund"}:
                 record.sii_registration_key_domain = "sale"
-            elif record.type in {"in_invoice", "in_refund"}:
+            elif record.move_type in {"in_invoice", "in_refund"}:
                 record.sii_registration_key_domain = "purchase"
             else:
                 record.sii_registration_key_domain = False
@@ -274,7 +274,7 @@ class AccountMove(models.Model):
     @api.onchange("fiscal_position_id")
     def onchange_fiscal_position_id_l10n_es_aeat_sii(self):
         for invoice in self.filtered("fiscal_position_id"):
-            if "out" in invoice.type:
+            if "out" in invoice.move_type:
                 key = invoice.fiscal_position_id.sii_registration_key_sale
             else:
                 key = invoice.fiscal_position_id.sii_registration_key_purchase
@@ -297,9 +297,9 @@ class AccountMove(models.Model):
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
-        if "refund" in vals.get("type", "") and not vals.get("sii_refund_type"):
+        if "refund" in vals.get("move_type", "") and not vals.get("sii_refund_type"):
             vals["sii_refund_type"] = "I"
-        invoice = super(AccountMove, self).create(vals)
+        invoice = super().create(vals)
         if (
             invoice.is_invoice()
             and vals.get("fiscal_position_id")
@@ -316,19 +316,19 @@ class AccountMove(models.Model):
             lambda x: x.is_invoice() and x.sii_state != "not_sent"
         ):
             if "invoice_date" in vals:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _(
                         "You cannot change the invoice date of an invoice "
                         "already registered at the SII. You must cancel the "
                         "invoice and create a new one with the correct date"
                     )
                 )
-            if invoice.type in ["in_invoice", "in refund"]:
+            if invoice.move_type in ["in_invoice", "in refund"]:
                 if "partner_id" in vals:
                     correct_partners = invoice.partner_id.commercial_partner_id
                     correct_partners |= correct_partners.child_ids
                     if vals["partner_id"] not in correct_partners.ids:
-                        raise exceptions.Warning(
+                        raise exceptions.UserError(
                             _(
                                 "You cannot change the supplier of an invoice "
                                 "already registered at the SII. You must cancel "
@@ -337,7 +337,7 @@ class AccountMove(models.Model):
                             )
                         )
                 elif "supplier_invoice_number" in vals:
-                    raise exceptions.Warning(
+                    raise exceptions.UserError(
                         _(
                             "You cannot change the supplier invoice number of "
                             "an invoice already registered at the SII. You must "
@@ -348,12 +348,12 @@ class AccountMove(models.Model):
         # Fill sii_refund_type if not set previously. It happens on sales
         # order invoicing process for example.
         if (
-            vals.get("type")
+            vals.get("move_type")
             and not vals.get("sii_refund_type")
             and not any(self.mapped("sii_refund_type"))
         ):
             vals["sii_refund_type"] = "I"
-        res = super(AccountMove, self).write(vals)
+        res = super().write(vals)
         if vals.get("fiscal_position_id") and not vals.get("sii_registration_key"):
             self.onchange_fiscal_position_id_l10n_es_aeat_sii()
         return res
@@ -362,10 +362,10 @@ class AccountMove(models.Model):
         """A registered invoice at the SII cannot be deleted"""
         for invoice in self.filtered(lambda x: x.is_invoice()):
             if invoice.sii_state != "not_sent":
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("You cannot delete an invoice already registered at the " "SII.")
                 )
-        return super(AccountMove, self).unlink()
+        return super().unlink()
 
     def _get_sii_taxes_map(self, codes):
         """Return the codes that correspond to that sii map line codes.
@@ -407,7 +407,7 @@ class AccountMove(models.Model):
         self.ensure_one()
         company = self.company_id
         if not company.vat:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("No VAT configured for the company '{}'").format(company.name)
             )
         header = {
@@ -457,7 +457,7 @@ class AccountMove(models.Model):
         else:
             tax_type = abs(tax.amount)
         tax_dict = {"TipoImpositivo": str(tax_type), "BaseImponible": tax_base_amount}
-        if self.type in ["out_invoice", "out_refund"]:
+        if self.move_type in ["out_invoice", "out_refund"]:
             key = "CuotaRepercutida"
         else:
             key = "CuotaSoportada"
@@ -498,13 +498,13 @@ class AccountMove(models.Model):
         self.ensure_one()
         res = {}
         for line in self.line_ids:
-            sign = -1 if self.type[:3] == "out" else 1
+            sign = -1 if self.move_type[:3] == "out" else 1
             for tax in line.tax_ids:
                 res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
                 res[tax]["base"] += line.balance * sign
             if line.tax_line_id:
                 tax = line.tax_line_id
-                if "invoice" in self.type:
+                if "invoice" in self.move_type:
                     repartition_lines = tax.invoice_repartition_line_ids
                 else:
                     repartition_lines = tax.refund_repartition_line_ids
@@ -518,7 +518,7 @@ class AccountMove(models.Model):
                 res[tax]["amount"] += line.balance * sign
         return res
 
-    def _get_sii_out_taxes(self):  # noqa
+    def _get_sii_out_taxes(self):  # noqa: C901
         """Get the taxes for sales invoices.
 
         :param self: Single invoice record.
@@ -712,24 +712,26 @@ class AccountMove(models.Model):
         country_code = self._get_sii_country_code()
         is_simplified_invoice = self._is_sii_simplified_invoice()
 
-        if is_simplified_invoice and self.type[:2] == "in":
-            raise exceptions.Warning(_("You can't make a supplier simplified invoice."))
+        if is_simplified_invoice and self.move_type[:2] == "in":
+            raise exceptions.UserError(
+                _("You can't make a supplier simplified invoice.")
+            )
         if (
             (gen_type != 3 or country_code == "ES")
             and not partner.vat
             and not is_simplified_invoice
         ):
-            raise exceptions.Warning(_("The partner has not a VAT configured."))
+            raise exceptions.UserError(_("The partner has not a VAT configured."))
         if not self.company_id.chart_template_id:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("You have to select what account chart template use this" " company.")
             )
         if not self.company_id.sii_enabled:
-            raise exceptions.Warning(_("This company doesn't have SII enabled."))
+            raise exceptions.UserError(_("This company doesn't have SII enabled."))
         if not self.sii_enabled:
-            raise exceptions.Warning(_("This invoice is not SII enabled."))
-        if not self.ref and self.type in ["in_invoice", "in_refund"]:
-            raise exceptions.Warning(_("The supplier number invoice is required"))
+            raise exceptions.UserError(_("This invoice is not SII enabled."))
+        if not self.ref and self.move_type in ["in_invoice", "in_refund"]:
+            raise exceptions.UserError(_("The supplier number invoice is required"))
 
     def _get_account_registration_date(self):
         """Hook method to allow the setting of the account registration date
@@ -769,7 +771,7 @@ class AccountMove(models.Model):
         if not cancel:
             tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
             amount_total = self.amount_total_signed - not_in_amount_total
-            if self.type == "out_refund":
+            if self.move_type == "out_refund":
                 if self.sii_refund_specific_invoice_type:
                     tipo_factura = self.sii_refund_specific_invoice_type
                 else:
@@ -818,7 +820,7 @@ class AccountMove(models.Model):
                 }
                 # Uso condicional de IDOtro/NIF
                 exp_dict["Contraparte"].update(self._get_sii_identifier())
-            if self.type == "out_refund":
+            if self.move_type == "out_refund":
                 exp_dict["TipoRectificativa"] = self.sii_refund_type
                 if self.sii_refund_type == "S":
                     origin = self.refund_invoice_id
@@ -863,7 +865,7 @@ class AccountMove(models.Model):
             amount_total = -self.amount_total_signed - not_in_amount_total
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
-                "TipoFactura": ("R4" if self.type == "in_refund" else "F1"),
+                "TipoFactura": ("R4" if self.move_type == "in_refund" else "F1"),
                 "ClaveRegimenEspecialOTrascendencia": self.sii_registration_key.code,
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
@@ -894,7 +896,7 @@ class AccountMove(models.Model):
                 )
             # Uso condicional de IDOtro/NIF
             inv_dict["FacturaRecibida"]["Contraparte"].update(ident)
-            if self.type == "in_refund":
+            if self.move_type == "in_refund":
                 rec_dict = inv_dict["FacturaRecibida"]
                 rec_dict["TipoRectificativa"] = self.sii_refund_type
                 if self.sii_refund_type == "S":
@@ -911,9 +913,9 @@ class AccountMove(models.Model):
         self.ensure_one()
         self._sii_check_exceptions()
         inv_dict = {}
-        if self.type in ["out_invoice", "out_refund"]:
+        if self.move_type in ["out_invoice", "out_refund"]:
             inv_dict = self._get_sii_invoice_dict_out()
-        elif self.type in ["in_invoice", "in_refund"]:
+        elif self.move_type in ["in_invoice", "in_refund"]:
             inv_dict = self._get_sii_invoice_dict_in()
         round_by_keys(
             inv_dict,
@@ -937,9 +939,9 @@ class AccountMove(models.Model):
     def _get_cancel_sii_invoice_dict(self):
         self.ensure_one()
         self._sii_check_exceptions()
-        if self.type in ["out_invoice", "out_refund"]:
+        if self.move_type in ["out_invoice", "out_refund"]:
             return self._get_sii_invoice_dict_out(cancel=True)
-        elif self.type in ["in_invoice", "in_refund"]:
+        elif self.move_type in ["in_invoice", "in_refund"]:
             return self._get_sii_invoice_dict_in(cancel=True)
         return {}
 
@@ -961,37 +963,10 @@ class AccountMove(models.Model):
 
     def _connect_sii(self, mapping_key):
         self.ensure_one()
+        public_crt, private_key = self.env[
+            "l10n.es.aeat.certificate"
+        ].get_certificates()
         params = self._connect_params_sii(mapping_key)
-        today = fields.Date.today()
-        sii_config = self.env["l10n.es.aeat.sii"].search(
-            [
-                ("company_id", "=", self.company_id.id),
-                ("public_key", "!=", False),
-                ("private_key", "!=", False),
-                "|",
-                ("date_start", "=", False),
-                ("date_start", "<=", today),
-                "|",
-                ("date_end", "=", False),
-                ("date_end", ">=", today),
-                ("state", "=", "active"),
-            ],
-            limit=1,
-        )
-        if sii_config:
-            public_crt = sii_config.public_key
-            private_key = sii_config.private_key
-        else:
-            public_crt = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param("l10n_es_aeat_sii.publicCrt", False)
-            )
-            private_key = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param("l10n_es_aeat_sii.privateKey", False)
-            )
         session = Session()
         session.cert = (public_crt, private_key)
         transport = Transport(session=session)
@@ -1029,7 +1004,7 @@ class AccountMove(models.Model):
 
     def _send_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in SII_VALID_INVOICE_STATES):
-            serv = invoice._connect_sii(invoice.type)
+            serv = invoice._connect_sii(invoice.move_type)
             if invoice.sii_state == "not_sent":
                 tipo_comunicacion = "A0"
             else:
@@ -1041,9 +1016,9 @@ class AccountMove(models.Model):
             try:
                 inv_dict = invoice._get_sii_invoice_dict()
                 inv_vals["sii_content_sent"] = json.dumps(inv_dict, indent=4)
-                if invoice.type in ["out_invoice", "out_refund"]:
+                if invoice.move_type in ["out_invoice", "out_refund"]:
                     res = serv.SuministroLRFacturasEmitidas(header, inv_dict)
-                elif invoice.type in ["in_invoice", "in_refund"]:
+                elif invoice.move_type in ["in_invoice", "in_refund"]:
                     res = serv.SuministroLRFacturasRecibidas(header, inv_dict)
                 # TODO Facturas intracomunitarias 66 RIVA
                 # elif invoice.fiscal_position_id.id == self.env.ref(
@@ -1075,7 +1050,7 @@ class AccountMove(models.Model):
                 if (
                     "sii_state" in inv_vals
                     and not invoice.sii_account_registration_date
-                    and invoice.type[:2] == "in"
+                    and invoice.move_type[:2] == "in"
                 ):
                     inv_vals[
                         "sii_account_registration_date"
@@ -1112,7 +1087,7 @@ class AccountMove(models.Model):
         return to_send == content_sent
 
     def action_post(self):
-        res = super(AccountMove, self).action_post()
+        res = super().action_post()
         for invoice in self.filtered("sii_enabled"):
             if (
                 invoice.sii_state in ["sent_modified", "sent"]
@@ -1140,7 +1115,7 @@ class AccountMove(models.Model):
             )
         )
         if not invoices._cancel_invoice_jobs():
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "You can not communicate this invoice at this moment "
                     "because there is a job running!"
@@ -1150,7 +1125,7 @@ class AccountMove(models.Model):
 
     def _cancel_invoice_to_sii(self):
         for invoice in self.filtered(lambda i: i.state in ["cancel"]):
-            serv = invoice._connect_sii(invoice.type)
+            serv = invoice._connect_sii(invoice.move_type)
             header = invoice._get_sii_header(cancellation=True)
             inv_vals = {
                 "sii_send_failed": True,
@@ -1158,7 +1133,7 @@ class AccountMove(models.Model):
             }
             try:
                 inv_dict = invoice._get_cancel_sii_invoice_dict()
-                if invoice.type in ["out_invoice", "out_refund"]:
+                if invoice.move_type in ["out_invoice", "out_refund"]:
                     res = serv.AnulacionLRFacturasEmitidas(header, inv_dict)
                 else:
                     res = serv.AnulacionLRFacturasRecibidas(header, inv_dict)
@@ -1208,7 +1183,7 @@ class AccountMove(models.Model):
             )
         )
         if not invoices._cancel_invoice_jobs():
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "You can not communicate the cancellation of this invoice "
                     "at this moment because there is a job running!"
@@ -1240,10 +1215,10 @@ class AccountMove(models.Model):
 
     def button_cancel(self):
         if not self._cancel_invoice_jobs():
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("You can not cancel this invoice because" " there is a job running!")
             )
-        res = super(AccountMove, self).button_cancel()
+        res = super().button_cancel()
         for invoice in self.filtered(lambda x: x.sii_enabled):
             if invoice.sii_state == "sent":
                 invoice.sii_state = "sent_modified"
@@ -1255,13 +1230,13 @@ class AccountMove(models.Model):
 
     def button_draft(self):
         if not self._cancel_invoice_jobs():
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _(
                     "You can not set to draft this invoice because"
                     " there is a job running!"
                 )
             )
-        return super(AccountMove, self).button_draft()
+        return super().button_draft()
 
     def _get_sii_gen_type(self):
         """Make a choice for general invoice type
@@ -1393,9 +1368,9 @@ class AccountMove(models.Model):
         default_description = self.default_get(["sii_description"])["sii_description"]
         for invoice in self:
             description = ""
-            if invoice.type in ["out_invoice", "out_refund"]:
+            if invoice.move_type in ["out_invoice", "out_refund"]:
                 description = invoice.company_id.sii_header_customer or ""
-            elif invoice.type in ["in_invoice", "in_refund"]:
+            elif invoice.move_type in ["in_invoice", "in_refund"]:
                 description = invoice.company_id.sii_header_supplier or ""
             method = invoice.company_id.sii_description_method
             if method == "fixed":
@@ -1414,12 +1389,12 @@ class AccountMove(models.Model):
                         "invoice_line_ids.ref"
                     )
                     description += " - ".join(filter(None, names))
-            invoice.sii_description = description[:500] or "/"
+            invoice.sii_description = (description or "")[:500] or "/"
 
     @api.depends(
         "company_id",
         "company_id.sii_enabled",
-        "type",
+        "move_type",
         "fiscal_position_id",
         "fiscal_position_id.sii_active",
     )
@@ -1448,20 +1423,18 @@ class AccountMove(models.Model):
                     extra_dict["sii_refund_type"] = sii_refund_type
                 if supplier_invoice_number_refund:
                     extra_dict["ref"] = supplier_invoice_number_refund
-                if move.type == "out_invoice":
+                if move.move_type == "out_invoice":
                     extra_dict["sii_refund_specific_invoice_type"] = "R1"
                 if extra_dict:
                     default_values.update(extra_dict)
-        res = super(AccountMove, self)._reverse_moves(
+        res = super()._reverse_moves(
             default_values_list=default_values_list,
             cancel=cancel,
         )
         return res
 
-    @job(default_channel="root.invoice_validate_sii")
     def confirm_one_invoice(self):
         self.sudo()._send_invoice_to_sii()
 
-    @job(default_channel="root.invoice_validate_sii")
     def cancel_one_invoice(self):
         self.sudo()._cancel_invoice_to_sii()
