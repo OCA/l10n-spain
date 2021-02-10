@@ -60,11 +60,12 @@
         <field name="res_model">aeat.sii.tax.agency</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <!-- Reference base AEAT menu until this model gets merged with base one -->
     <menuitem
         id="aeat_sii_tax_agency_menu"
         name="SII Tax Agencies"
         action="aeat_sii_tax_agency_action"
         sequence="6"
-        parent="l10n_es_aeat_sii_parent_menu"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
     />
 </odoo>
