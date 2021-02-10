@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 Sygel - Valentin Vinagre
      Copyright 2020 Tecnativa - Pedro M. Baeza
+     Copyright 2021 Tecnativa - João Marques
     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
     <record id="invoice_sii_form" model="ir.ui.view">
@@ -28,7 +29,7 @@
             <field name="ref" position="attributes">
                 <attribute
                     name="attrs"
-                >{'required':[('state','=', 'draft'), ('type', 'in', ['in_invoice', 'in_refund'])]}</attribute>
+                >{'required':[('state','=', 'draft'), ('move_type', 'in', ['in_invoice', 'in_refund'])]}</attribute>
             </field>
             <notebook position="inside">
                 <page
@@ -43,11 +44,11 @@
                         />
                         <field
                             name="sii_refund_type"
-                            attrs="{'required': [('sii_enabled', '=', True),('type', 'in', ('out_refund','in_refund'))], 'invisible': [('type', 'not in', ('out_refund','in_refund'))]}"
+                            attrs="{'required': [('sii_enabled', '=', True),('move_type', 'in', ('out_refund','in_refund'))], 'invisible': [('move_type', 'not in', ('out_refund','in_refund'))]}"
                         />
                         <field
                             name="sii_refund_specific_invoice_type"
-                            attrs="{'invisible': [('type', '!=', 'out_refund')]}"
+                            attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"
                         />
                         <field name="sii_registration_key_domain" invisible="1" />
                         <field
