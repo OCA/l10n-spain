@@ -6,7 +6,6 @@
 * Ismael Calvo <ismael.calvo@factorlibre.es>
 * Omar Castiñeira - Comunitea S.L. <omar@comunitea.com>
 * Juanjo Algaz <jalgaz@gmail.com>, Planeta Huerto <juanjoalgaz@planetahuerto.es>
-* Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Javi Melendez <javimelex@gmail.com>
 * Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
@@ -14,3 +13,7 @@
 * `Sygel <https://www.sygel.es>`__:
 
   * Valentin Vinagre
+* `Tecnativa <https://www.tecnativa.com>`__:
+
+  * Pedro M. Baeza
+  * João Marques
