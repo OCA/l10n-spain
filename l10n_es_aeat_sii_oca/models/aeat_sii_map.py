@@ -41,7 +41,7 @@ class AeatSiiMap(models.Model):
             domain += [("date_from", "<=", self.date_to)]
         date_lst = self.search(domain)
         if date_lst:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("Error! The dates of the record overlap with an existing " "record.")
             )
 
