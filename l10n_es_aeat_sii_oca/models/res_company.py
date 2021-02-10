@@ -71,7 +71,7 @@ class ResCompany(models.Model):
     )
     sent_time = fields.Float(string="Sent time")
     delay_time = fields.Float(string="Delay time")
-    sii_tax_agency_id = fields.Many2one("aeat.sii.tax.agency", string="Tax Agency")
+    sii_tax_agency_id = fields.Many2one("aeat.sii.tax.agency", string="SII Tax Agency")
 
     def _get_sii_eta(self):
         if self.send_mode == "fixed":
