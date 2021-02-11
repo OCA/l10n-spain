@@ -149,28 +149,28 @@
                                 <strong class="text-right">Amount 1Q:</strong>
                                 <p
                                     class="text-right"
-                                    t-field="o.first_quarter_real_estate_transmissions_amount"
+                                    t-field="o.first_quarter_real_estate_transmission"
                                 />
                             </div>
                             <div class="col-xs-2">
                                 <strong class="text-right">Amount 2Q:</strong>
                                 <p
                                     class="text-right"
-                                    t-field="o.second_quarter_real_estate_transmissions_amount"
+                                    t-field="o.second_quarter_real_estate_transmission"
                                 />
                             </div>
                             <div class="col-xs-2">
                                 <strong class="text-right">Amount 3Q:</strong>
                                 <p
                                     class="text-right"
-                                    t-field="o.third_quarter_real_estate_transmissions_amount"
+                                    t-field="o.third_quarter_real_estate_transmission"
                                 />
                             </div>
                             <div class="col-xs-2">
                                 <strong class="text-right">Amount 4Q:</strong>
                                 <p
                                     class="text-right"
-                                    t-field="o.fourth_quarter_real_estate_transmissions_amount"
+                                    t-field="o.fourth_quarter_real_estate_transmission"
                                 />
                             </div>
                         </div>

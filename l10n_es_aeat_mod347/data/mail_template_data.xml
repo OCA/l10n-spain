@@ -59,10 +59,10 @@
   % if object.real_estate_transmissions_amount:
   <p>
   <strong>Importe de transmisión de inmueble:</strong> ${object.real_estate_transmissions_amount}<br/>
-  <strong>Inmuebles primer trimestre:</strong> ${object.first_quarter_real_estate_transmission_amount}<br/>
-  <strong>Inmuebles segundo trimestre:</strong> ${object.second_quarter_real_estate_transmission_amount}<br/>
-  <strong>Inmuebles tercer trimestre:</strong> ${object.third_quarter_real_estate_transmission_amount}<br/>
-  <strong>Inmuebles cuarto trimestre:</strong> ${object.fourth_quarter_real_estate_transmission_amount}<br/>
+  <strong>Inmuebles primer trimestre:</strong> ${object.first_quarter_real_estate_transmission}<br/>
+  <strong>Inmuebles segundo trimestre:</strong> ${object.second_quarter_real_estate_transmission}<br/>
+  <strong>Inmuebles tercer trimestre:</strong> ${object.third_quarter_real_estate_transmission}<br/>
+  <strong>Inmuebles cuarto trimestre:</strong> ${object.fourth_quarter_real_estate_transmission}<br/>
   </p>
   % endif
   <p>En el documento adjunto se incluyen las facturas en base a las cuales se obtienen los importes anteriores.</p>
