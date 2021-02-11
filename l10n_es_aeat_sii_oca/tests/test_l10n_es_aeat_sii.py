@@ -302,6 +302,7 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertEqual(
             invoice_temp.sii_description, "Test supplier header | Test description",
         )
+        company.sii_description = False
         company.sii_description_method = "manual"
         invoice_temp = self.invoice.copy()
         invoice_temp._compute_sii_description()

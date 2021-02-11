@@ -5,6 +5,7 @@
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # Copyright 2011-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
+# Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -1400,7 +1401,7 @@ class AccountMove(models.Model):
                         "invoice_line_ids.ref"
                     )
                     description += " - ".join(filter(None, names))
-            invoice.sii_description = description[:500] or "/"
+            invoice.sii_description = (description or "")[:500] or "/"
 
     @api.depends(
         "company_id",
