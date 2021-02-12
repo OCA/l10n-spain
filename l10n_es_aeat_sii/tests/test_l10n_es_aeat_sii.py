@@ -143,7 +143,14 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             'file': base64.b64encode(content),
             'company_id': cls.invoice.company_id.id,
         })
-        cls.tax_agencies = cls.env['aeat.sii.tax.agency'].search([])
+        tax_agency_excluded = \
+            cls.env.ref('l10n_es_aeat.aeat_tax_agency_navarra',
+                        raise_if_not_found=False) \
+            + cls.env.ref('l10n_es_aeat.aeat_tax_agency_canarias',
+                          raise_if_not_found=False)
+        cls.tax_agencies = cls.env['aeat.tax.agency'].search([
+            ('id', 'not in', tax_agency_excluded.ids)
+        ])
 
     def test_job_creation(self):
         self.assertTrue(self.invoice.invoice_jobs_ids)
@@ -316,8 +323,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def _test_binding_address(self, invoice):
         company = invoice.company_id
-        tax_agency = company.sii_tax_agency_id
-        self.sii_cert.company_id.sii_tax_agency_id = tax_agency
+        tax_agency = company.tax_agency_id
+        self.sii_cert.company_id.tax_agency_id = tax_agency
         proxy = invoice._connect_sii(invoice.type)
         address = proxy._binding_options['address']
         self.assertTrue(address)
@@ -328,10 +335,10 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def _test_tax_agencies(self, invoice):
         for tax_agency in self.tax_agencies:
-            invoice.company_id.sii_tax_agency_id = tax_agency
+            invoice.company_id.tax_agency_id = tax_agency
             self._test_binding_address(invoice)
         else:
-            invoice.company_id.sii_tax_agency_id = False
+            invoice.company_id.tax_agency_id = False
             self._test_binding_address(invoice)
 
     def test_tax_agencies_sandbox(self):
