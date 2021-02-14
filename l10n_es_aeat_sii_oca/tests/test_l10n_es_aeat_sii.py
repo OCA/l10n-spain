@@ -5,31 +5,20 @@
 # Copyright 2021 Tecnativa - João Marques
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-import base64
 import json
 
 from odoo import exceptions
 from odoo.modules.module import get_resource_path
 
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
+    TestL10nEsAeatCertificateBase,
+)
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
 
-try:
-    from zeep.client import ServiceProxy
-except (ImportError, IOError):
-    ServiceProxy = object
 
-CERTIFICATE_PATH = get_resource_path(
-    "l10n_es_aeat_sii_oca",
-    "tests",
-    "cert",
-    "entidadspj_act.p12",
-)
-CERTIFICATE_PASSWD = "794613"
-
-
-class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase):
+class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase):
     @classmethod
     def _get_or_create_tax(cls, xml_id, name, tax_type, percentage, extra_vals=None):
         """Helper for quick-creating a tax with an specific XML-ID"""
@@ -180,16 +169,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 "email": "somebody@somewhere.com",
             }
         )
-        with open(CERTIFICATE_PATH, "rb") as certificate:
-            content = certificate.read()
-        cls.sii_cert = cls.env["l10n.es.aeat.certificate"].create(
-            {
-                "name": "Test Certificate",
-                "folder": "Test folder",
-                "file": base64.b64encode(content),
-                "company_id": cls.invoice.company_id.id,
-            }
-        )
         cls.tax_agencies = cls.env["aeat.sii.tax.agency"].search([])
 
     def test_job_creation(self):
@@ -327,29 +306,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         """ This should work without errors """
         self.invoice.with_user(self.user).action_post()
 
-    def _activate_certificate(self, passwd=None):
-        """  Obtain Keys from .pfx and activate the cetificate """
-        if passwd:
-            wizard = self.env["l10n.es.aeat.certificate.password"].create(
-                {"password": passwd}
-            )
-            wizard.with_context(active_id=self.sii_cert.id).get_keys()
-        self.sii_cert.action_active()
-        self.sii_cert.company_id.write(
-            {"name": "ENTIDAD FICTICIO ACTIVO", "vat": "ESJ7102572J"}
-        )
-
-    def test_certificate(self):
-        self.assertRaises(
-            exceptions.ValidationError,
-            self._activate_certificate,
-            "Wrong passwd",
-        )
-        self._activate_certificate(CERTIFICATE_PASSWD)
-        self.assertEqual(self.sii_cert.state, "active")
-        proxy = self.invoice._connect_sii(self.invoice.move_type)
-        self.assertIsInstance(proxy, ServiceProxy)
-
     def _check_binding_address(self, invoice):
         company = invoice.company_id
         tax_agency = company.sii_tax_agency_id
@@ -371,14 +327,16 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self._check_binding_address(invoice)
 
     def test_tax_agencies_sandbox(self):
-        self._activate_certificate(CERTIFICATE_PASSWD)
+        self.sii_cert.company_id = self.invoice.company_id.id
+        self._activate_certificate()
         self.invoice.company_id.sii_test = True
         for inv_type in ["out_invoice", "in_invoice"]:
             self.invoice.move_type = inv_type
             self._check_tax_agencies(self.invoice)
 
     def test_tax_agencies_production(self):
-        self._activate_certificate(CERTIFICATE_PASSWD)
+        self.sii_cert.company_id = self.invoice.company_id.id
+        self._activate_certificate()
         self.invoice.company_id.sii_test = False
         for inv_type in ["out_invoice", "in_invoice"]:
             self.invoice.move_type = inv_type
