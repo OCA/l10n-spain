@@ -114,6 +114,9 @@
                 ref('l10n_es.account_tax_template_p_iva4_ibc'),
                 ref('l10n_es.account_tax_template_p_iva10_ibc'),
                 ref('l10n_es.account_tax_template_p_iva21_ibc'),
+                ref('l10n_es.account_tax_template_p_iva4_ibi'),
+                ref('l10n_es.account_tax_template_p_iva10_ibi'),
+                ref('l10n_es.account_tax_template_p_iva21_ibi'),
             ])]"
         />
         <field name="sii_map_id" ref="aeat_sii_map" />
