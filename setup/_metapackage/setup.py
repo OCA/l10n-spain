@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_dua',
         'odoo13-addon-l10n_es_dua_sii',
         'odoo13-addon-l10n_es_facturae',
+        'odoo13-addon-l10n_es_intrastat_report',
         'odoo13-addon-l10n_es_mis_report',
         'odoo13-addon-l10n_es_partner',
         'odoo13-addon-l10n_es_partner_mercantil',
