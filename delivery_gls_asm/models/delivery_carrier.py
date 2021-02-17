@@ -211,7 +211,7 @@ class DeliveryCarrier(models.Model):
                 "GLS Expedition with reference %s cancelled") %
                 picking.carrier_tracking_ref)
 
-    def gls_asm_rate_shipment(self):
+    def gls_asm_rate_shipment(self, order):
         """There's no public API so another price method should be used"""
         raise NotImplementedError(_("""
             GLS ASM API doesn't provide methods to compute delivery rates, so
