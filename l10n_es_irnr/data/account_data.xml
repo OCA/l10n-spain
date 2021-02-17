@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="tax_group_retenciones_24" model="account.tax.group">
+            <field name="name">Retenciones 24% IRNR</field>
+        </record>
+        <record id="tax_group_retenciones_19_irnr" model="account.tax.group">
+            <field name="name">Retenciones 19% IRNR</field>
+        </record>
+    </data>
+</odoo>
