@@ -422,7 +422,7 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:235
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:243
 #, python-format
 msgid ""
 "In previous declarations this year you reported a Result Type 'To "
@@ -697,7 +697,7 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:368
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:384
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -757,7 +757,7 @@ msgid "Telematics"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:377
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:395
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr ""
@@ -820,6 +820,11 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__potential_cuota_compensar
+msgid "[110] Pending fees to compensate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__total_devengado
 msgid "[27] VAT payable"
 msgstr ""
@@ -852,11 +857,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__cuota_compensar
-msgid "[67] Fees to compensate"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__regularizacion_anual
 msgid "[68] Annual regularization"
 msgstr ""
@@ -879,6 +879,16 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_77
 msgid "[77] VAT deferred (Settle by customs)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__cuota_compensar
+msgid "[78] Applied fees to compensate (old [67])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__remaining_cuota_compensar
+msgid "[87] Remaining fees to compensate"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
