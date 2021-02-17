@@ -10,7 +10,7 @@
     'website': 'https://github.com/OCA/l10n-spain',
     'license': 'AGPL-3',
     'category': 'Delivery',
-    'version': '12.0.1.1.3',
+    'version': '12.0.1.1.4',
     'depends': [
         'delivery',
         'delivery_package_number',
