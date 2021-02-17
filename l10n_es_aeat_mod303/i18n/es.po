@@ -177,6 +177,11 @@ msgid "Activity State"
 msgstr "Estado de la actividad"
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__code
 msgid "Activity code"
 msgstr "Código de la actividad"
@@ -390,6 +395,11 @@ msgstr "Seguidores (Canales)"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Socios)"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__contact_name
