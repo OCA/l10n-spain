@@ -110,7 +110,8 @@ msgstr "5 - Sense epígraf, corresponent a: Subjectes passius sense activitat"
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_6
 msgid ""
 "6 - Sin epígrafe, correspondiente a: Otras actividades no sujetas al IAE"
-msgstr "6 - Sense epígraf, corresponent a: Altres activitats no subjectes a IAE"
+msgstr ""
+"6 - Sense epígraf, corresponent a: Altres activitats no subjectes a IAE"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model,name:l10n_es_aeat_mod303.model_l10n_es_aeat_mod303_report
@@ -305,7 +306,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:233
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:241
 #, python-format
 msgid ""
 "In previous declarations this year you reported a Result Type 'To "
@@ -446,7 +447,7 @@ msgid "Resultado"
 msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:366
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:382
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
@@ -471,7 +472,7 @@ msgstr ""
 "esta casilla el 100%"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:375
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:393
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr "La quota a compensar ha de ser indicada com una quantitat positiva."
@@ -499,6 +500,11 @@ msgstr "A ingressar"
 #: selection:l10n.es.aeat.mod303.report,result_type:0
 msgid "To return"
 msgstr "Negativa"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_potential_cuota_compensar
+msgid "[110] Pending fees to compensate"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_total_devengado
@@ -535,11 +541,6 @@ msgstr ""
 "Regularización anual [68]"
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
-msgid "[67] Fees to compensate"
-msgstr "[67] Cuotas a compensar"
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
 msgid "[68] Annual regularization"
 msgstr "[68] Regularización anual"
@@ -563,6 +564,16 @@ msgstr "[71] Result. liquidación"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_77
 msgid "[77] VAT deferred (Settle by customs)"
 msgstr "[77] Iva Diferido (Liquidado por aduana)"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
+msgid "[78] Applied fees to compensate (old [67])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_remaining_cuota_compensar
+msgid "[87] Remaining fees to compensate"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_88
@@ -602,6 +613,9 @@ msgstr "SII voluntari?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "Volum d'operacions?"
+
+#~ msgid "[67] Fees to compensate"
+#~ msgstr "[67] Cuotas a compensar"
 
 #~ msgid "Bank account"
 #~ msgstr "Cuenta bancaria"
