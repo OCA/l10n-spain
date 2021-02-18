@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-16 18:10+0000\n"
+"PO-Revision-Date: 2021-02-16 18:10+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -271,7 +273,22 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:233
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:243
 #, python-format
 msgid "In previous declarations this year you reported a Result Type 'To Compensate'. You might need to fill field '[67] Fees to compensate' in this declaration."
 msgstr ""
@@ -380,7 +397,7 @@ msgid "Resultado"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:366
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:384
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -396,7 +413,12 @@ msgid "Taxpayers who pay jointly to the Central Government and the Provincial Co
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:375
+#: selection:l10n.es.aeat.mod303.report,support_type:0
+msgid "Telematics"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:395
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr ""
@@ -422,7 +444,47 @@ msgid "To return"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_total_devengado
+#: selection:l10n.es.aeat.mod303.report,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__company_vat
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__year
+msgid "Year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__potential_cuota_compensar
+msgid "[110] Pending fees to compensate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__total_devengado
 msgid "[27] VAT payable"
 msgstr ""
 
@@ -452,12 +514,7 @@ msgid "[66] Attributable to the Administration - [67] Fees to compensate + [68] 
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_cuota_compensar
-msgid "[67] Fees to compensate"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_regularizacion_anual
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__regularizacion_anual
 msgid "[68] Annual regularization"
 msgstr ""
 
@@ -482,7 +539,17 @@ msgid "[77] VAT deferred (Settle by customs)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_casilla_88
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__cuota_compensar
+msgid "[78] Applied fees to compensate (old [67])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__remaining_cuota_compensar
+msgid "[87] Remaining fees to compensate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__casilla_88
 msgid "[88] Total volumen operaciones"
 msgstr ""
 
