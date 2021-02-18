@@ -8,41 +8,42 @@ msgstr ""
 "Project-Id-Version: openerp-spain\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-12 08:55+0000\n"
-"PO-Revision-Date: 2013-11-12 09:00+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2021-02-18 11:45+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
 "Language-Team: French (Belgium) <fr_BE@li.org>\n"
-"Language: \n"
+"Language: fr_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 "X-Launchpad-Export-Date: 2014-06-22 05:57+0000\n"
-"X-Generator: Launchpad (build 17058)\n"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_annual_percentage
 msgid "Annual depreciation percentage"
-msgstr ""
+msgstr "Pourcentage d'amortissement annuel"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
 msgid "Asset category"
-msgstr ""
+msgstr "Catégorie d'actif"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
 msgid "Asset/Revenue Recognition"
-msgstr ""
+msgstr "Reconnaissance des actifs / revenus"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_move_end_period
 msgid "At the end of the period"
-msgstr ""
+msgstr "À la fin de la période"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_method_percentage
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_category_method_percentage
 msgid "Depreciation percentage"
-msgstr ""
+msgstr "Pourcentage d'amortissement"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_move_end_period
@@ -51,19 +52,21 @@ msgid ""
 "months, it is put on 31st of December, and in the end of the month in other "
 "case."
 msgstr ""
+"Déplacer l'écriture d'amortissement à la fin de la période. Si le délai est "
+"de 12 mois, il est mis au 31 décembre, et en fin de mois dans les autres cas."
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
 msgid "Only needed if not the same than purchase date"
-msgstr ""
+msgstr "Seulement nécessaire si ce n'est pas le même que la date d'achat"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
 msgid "Start Depreciation Date"
-msgstr ""
+msgstr "Date de début d'amortissement"
 
 #. module: l10n_es_account_asset
 #: sql_constraint:account.asset.asset:0
 #: sql_constraint:account.asset.category:0
 msgid "Wrong percentage!"
-msgstr ""
+msgstr "Mauvais pourcentage!"
