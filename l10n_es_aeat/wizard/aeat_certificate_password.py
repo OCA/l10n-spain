@@ -25,6 +25,8 @@ if tuple(map(int, OpenSSL.__version__.split("."))) < (0, 15):
 
 @contextlib.contextmanager
 def pfx_to_pem(file, pfx_password, directory=None):
+    if isinstance(pfx_password, str):
+        pfx_password = bytes(pfx_password, "utf-8")
     with tempfile.NamedTemporaryFile(
         prefix="private_", suffix=".pem", delete=False, dir=directory
     ) as t_pem:
@@ -41,6 +43,8 @@ def pfx_to_pem(file, pfx_password, directory=None):
 
 @contextlib.contextmanager
 def pfx_to_crt(file, pfx_password, directory=None):
+    if isinstance(pfx_password, str):
+        pfx_password = bytes(pfx_password, "utf-8")
     with tempfile.NamedTemporaryFile(
         prefix="public_", suffix=".crt", delete=False, dir=directory
     ) as t_crt:
