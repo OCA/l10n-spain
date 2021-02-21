@@ -24,7 +24,7 @@ def migrate(env, version):
             sii_registration_key_additional1 = ai.sii_registration_key_additional1,
             sii_registration_key_additional2 = ai.sii_registration_key_additional2,
             sii_property_location = ai.sii_property_location,
-            sii_property_cadastrial_code = ai.sii_property_cadastrial_code,
+            sii_property_cadastrial_code = ai.sii_property_cadastrial_code
         FROM account_invoice ai
         WHERE ai.id = am.old_invoice_id""",
     )
