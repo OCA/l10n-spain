@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record id="account_promissory_note_report_cb_a4"
-            model="account.payment.check.report">
+    <record
+        id="account_promissory_note_report_cb_a4"
+        model="account.payment.check.report"
+    >
         <field name="name">Caixa Bank Promissory Note</field>
-        <field name="report">account_promissory_note_caixabank.promissory_footer_cb</field>
+        <field
+            name="report"
+        >account_promissory_note_caixabank.promissory_footer_cb</field>
     </record>
-
 </odoo>
