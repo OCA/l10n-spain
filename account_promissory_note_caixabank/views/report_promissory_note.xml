@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <template id="promissory_footer_cb" inherit_id="account_check_printing_report_base.report_check_base_a4" primary="True">
+    <template
+        id="promissory_footer_cb"
+        inherit_id="account_check_printing_report_base.report_check_base_a4"
+        primary="True"
+    >
         <xpath expr="//div[@id='check_body']" position="after">
             <div style="font-size:12px;">
                 <div style="position:absolute; left:75mm; top:235mm;">
@@ -9,14 +12,23 @@
                     <span t-field="o.date_due" />
                 </div>
                 <div>
-                    <span style="position:absolute; top:235mm; left:176mm;" t-esc="o.amount" t-options="{'widget': 'float', 'precision': 2}" />
+                    <span
+                        style="position:absolute; top:235mm; left:176mm;"
+                        t-esc="o.amount"
+                        t-options="{'widget': 'float', 'precision': 2}"
+                    />
                 </div>
                 <div>
-                    <span style="position:absolute; top:252mm; left:56mm; white-space: nowrap;" t-field="o.partner_id.name" />
+                    <span
+                        style="position:absolute; top:252mm; left:56mm; white-space: nowrap;"
+                        t-field="o.partner_id.name"
+                    />
                 </div>
-                <div style="position:absolute; left:58mm; top:263mm; white-space: nowrap;">
+                <div
+                    style="position:absolute; left:58mm; top:263mm; white-space: nowrap;"
+                >
                     <strong>
-                        <span t-esc="fill_stars(num2words(o.amount))"/>
+                        <span t-esc="fill_stars(num2words(o.amount))" />
                     </strong>
                 </div>
                 <div>
