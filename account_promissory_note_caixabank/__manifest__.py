@@ -3,9 +3,9 @@
 
 {
     "name": "Impresión de pagaré CaixaBank A4",
-    "version": "12.0.1.1.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Tecnativa," "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-spain",
     "depends": [

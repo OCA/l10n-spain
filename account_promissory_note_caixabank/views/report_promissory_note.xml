@@ -8,7 +8,6 @@
         <xpath expr="//div[@id='check_body']" position="after">
             <div style="font-size:12px;">
                 <div style="position:absolute; left:75mm; top:235mm;">
-                    <!-- TODO: set due date -->
                     <span t-field="o.date_due" />
                 </div>
                 <div>
