@@ -237,7 +237,7 @@ class AccountInvoice(models.Model):
             self.fiscal_position_id
         )
         res = super()._onchange_partner_id()
-        if trigger_fp:
+        if trigger_fp and self.type:
             self.onchange_fiscal_position_id_l10n_es_aeat_sii()
         return res
 
