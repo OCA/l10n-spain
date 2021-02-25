@@ -283,9 +283,7 @@ class GlsAsmRequest:
         :returns dict with GLS response containing the shipping codes, labels,
         an other relevant data
         """
-        vals.update(
-            {"uidcustomer": self.uidcustomer,}
-        )
+        vals.update({"uidcustomer": self.uidcustomer})
         xml = Raw(self._prepare_send_shipping_docin(**vals))
         _logger.debug(xml)
         try:
@@ -309,12 +307,7 @@ class GlsAsmRequest:
                 _(
                     "GLS returned an error trying to record the shipping for {}.\n"
                     "Error:\n{}"
-                ).format(
-                    vals.get("referencia_c", ""),
-                    res.get("Errores", {}).get(
-                        "Error", "code {}".format(res["_return"])
-                    ),
-                )
+                ).format(vals.get("referencia_c", ""), res["_return"])
             )
         if res.get("Etiquetas", {}).get("Etiqueta", {}).get("value"):
             res["gls_label"] = binascii.a2b_base64(
