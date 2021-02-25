@@ -6,18 +6,12 @@
     "version": "12.0.1.0.4",
     "category": "Stock",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Tecnativa, "
-              "Odoo Community Association (OCA)",
+    "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "delivery_package_number",
-        "delivery_state",
-    ],
-    "external_dependencies" : {
-        "python" : ["suds"],
-    },
+    "depends": ["delivery_package_number", "delivery_state",],
+    "external_dependencies": {"python": ["suds"],},
     "data": [
         "data/delivery_asm_data.xml",
         "views/delivery_asm_view.xml",
