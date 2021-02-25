@@ -6,9 +6,9 @@ from odoo.tests.common import SavepointCase
 
 class TestDeliverySeur(SavepointCase):
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         super().setUpClass()
-        product_shipping_cost = self.env["product.product"].create(
+        product_shipping_cost = cls.env["product.product"].create(
             {
                 "type": "service",
                 "name": "Shipping costs",
@@ -16,7 +16,7 @@ class TestDeliverySeur(SavepointCase):
                 "list_price": 100,
             }
         )
-        self.carrier = self.env["delivery.carrier"].create(
+        cls.carrier = cls.env["delivery.carrier"].create(
             {
                 "name": "Seur",
                 "delivery_type": "seur",
@@ -43,11 +43,6 @@ class TestDeliverySeur(SavepointCase):
         self.assertTrue(response)
 
     def test_delivery_carrier_seur_price(self):
-        module = self.env["ir.module.module"].search(
-            [("name", "=", "delivery_price_method")]
-        )
-        if module.state != "installed":
-            self.skipTest("delivery_price_method not installed, ignore price test")
         product = self.env.ref("product.product_delivery_01")
         partner = self.env.ref("base.res_partner_12")
         pricelist = self.env["product.pricelist"].create(
@@ -77,16 +72,10 @@ class TestDeliverySeur(SavepointCase):
                 ],
             }
         )
-        self.carrier.write(
-            {"price_method": "fixed", "fixed_price": 99.99,}
-        )
-        sale.get_delivery_price()
-        self.assertEquals(sale.delivery_price, 99.99)
-        self.carrier.write(
-            {"price_method": "fixed", "fixed_price": 5,}
-        )
-        sale.get_delivery_price()
-        self.assertEquals(sale.delivery_price, 5)
+        self.carrier.write({"price_method": "fixed", "fixed_price": 99.99})
+        self.assertEquals(self.carrier.rate_shipment(sale)["price"], 99.99)
+        self.carrier.write({"price_method": "fixed", "fixed_price": 5})
+        self.assertEquals(self.carrier.rate_shipment(sale)["price"], 5)
         self.carrier.write(
             {
                 "price_method": "base_on_rule",
@@ -105,8 +94,7 @@ class TestDeliverySeur(SavepointCase):
                 ],
             }
         )
-        sale.get_delivery_price()
-        self.assertEquals(sale.delivery_price, 11.11)
+        self.assertEquals(self.carrier.rate_shipment(sale)["price"], 11.11)
 
     def test_delivery_carrier_seur_integration(self):
         if not self.carrier.seur_cit_username:
