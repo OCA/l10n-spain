@@ -92,12 +92,12 @@ class DeliveryCarrier(models.Model):
         string="Send SMS to customer", help="This feature has delivery cost",
     )
     seur_label_format = fields.Selection(
-        selection=[("pdf", "PDF"), ("txt", "TXT"),],
+        selection=[("pdf", "PDF"), ("txt", "TXT")],
         default="pdf",
         string="Label format",
     )
     seur_label_size = fields.Selection(
-        selection=[("1D", "1D"), ("2D", "2D"), ("2C", "2C"),],
+        selection=[("1D", "1D"), ("2D", "2D"), ("2C", "2C")],
         default="2C",
         string="Label size",
     )
