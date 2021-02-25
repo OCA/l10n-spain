@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-account_promissory_note_bankia',
+        'odoo13-addon-account_promissory_note_caixabank',
         'odoo13-addon-l10n_es_account_asset',
         'odoo13-addon-l10n_es_account_bank_statement_import_n43',
         'odoo13-addon-l10n_es_account_banking_sepa_fsdd',
