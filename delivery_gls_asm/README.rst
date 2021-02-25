@@ -114,7 +114,7 @@ Manifiesto de envíos
      del transportista.
   #. En el asistente, seleccione el servicio GLS del cual quiere sacar el
      manifiesto y la fecha desde la que desea listar los envíos.
-  #. Pulse en el botón "Manifiesto GlS" para obtener un listado en PDF de los
+  #. Pulse en el botón "Manifiesto GLS" para obtener un listado en PDF de los
      envíos del servicio seleccionado.
 
 Depuración de errores
