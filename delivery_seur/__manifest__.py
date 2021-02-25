@@ -4,17 +4,17 @@
 {
     "name": "Delivery SEUR",
     "summary": "Integrate SEUR webservice",
-    "author": "Trey (www.trey.es), " "FactorLibre, " "Odoo Community Association (OCA)",
+    "author": "Trey (www.trey.es), FactorLibre, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Delivery",
-    "version": "12.0.1.1.4",
+    "version": "13.0.1.0.0",
     "depends": [
         "delivery",
         "delivery_package_number",
         "delivery_price_method",
         "delivery_state",
     ],
-    "external_dependencies": {"python": ["zeep"],},
-    "data": ["views/delivery_carrier_views.xml", "views/stock_picking_views.xml",],
+    "external_dependencies": {"python": ["zeep"]},
+    "data": ["views/delivery_carrier_views.xml", "views/stock_picking_views.xml"],
 }
