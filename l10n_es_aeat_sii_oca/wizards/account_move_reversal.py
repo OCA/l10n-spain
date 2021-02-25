@@ -20,7 +20,7 @@ class AccountMoveReversal(models.TransientModel):
             .browse(
                 self.env.context.get("active_ids"),
             )
-            .filtered(lambda x: x.type == "in_invoice")
+            .filtered(lambda x: x.move_type == "in_invoice")
         )
         return any(invoices.mapped("company_id.sii_enabled"))
 
