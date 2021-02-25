@@ -1,10 +1,12 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import binascii
+import logging
+import os
+
 from odoo import _
 from odoo.exceptions import UserError
-import logging
-import binascii
-import os
+
 _logger = logging.getLogger(__name__)
 
 try:
@@ -16,67 +18,67 @@ except (ImportError, IOError) as err:
 
 
 GLS_ASM_SERVICES = [
-    ('1', 'COURIER'),
-    ('2', 'VALIJA'),
-    ('5', 'BICI'),
-    ('6', 'CARGA'),
-    ('7', 'RECOGIDA'),
-    ('8', 'RECOGIDA CRUZADA'),
-    ('9', 'DEVOLUCION'),
-    ('10', 'RETORNO'),
-    ('11', 'IBEX'),
-    ('12', 'INTERNACIONAL EXPRESS'),
-    ('13', 'INTERNACIONAL ECONOMY'),
-    ('14', 'DISTRIBUCION PROPIA'),
-    ('15', 'OTROS PUENTES'),
-    ('16', 'PROPIO AGENTE'),
-    ('17', 'RECOGIDA SIN MERCANCIA'),
-    ('18', 'DISTRIBUCION  RED'),
-    ('19', 'OPERACIONES RED'),
-    ('20', 'CARGA MARITIMA'),
-    ('21', 'GLASS'),
-    ('22', 'EURO SMALL'),
-    ('23', 'PREPAGO'),
-    ('24', 'OPTIPLUS'),
-    ('25', 'EASYBAG'),
-    ('26', 'CORREO INTERNO'),
-    ('27', '14H SOBRES'),
-    ('28', '24H SOBRES'),
-    ('29', '72H SOBRES'),
-    ('30', 'ASM0830'),
-    ('31', 'CAN MUESTRAS'),
-    ('32', 'RC.SELLADA'),
-    ('33', 'RECANALIZA'),
-    ('34', 'INT PAQUET'),
-    ('35', 'dPRO'),
-    ('36', 'Int. WEB'),
-    ('37', 'ECONOMY'),
-    ('38', 'SERVICIOS RUTAS'),
-    ('39', 'REC. INT'),
-    ('40', 'SERVICIO LOCAL MOTO'),
-    ('41', 'SERVICIO LOCAL FURGONETA'),
-    ('42', 'SERVICIO LOCAL F. GRANDE'),
-    ('43', 'SERVICIO LOCAL CAMION'),
-    ('44', 'SERVICIO LOCAL'),
-    ('45', 'RECOGIDA MEN. MOTO'),
-    ('46', 'RECOGIDA MEN. FURGONETA'),
-    ('47', 'RECOGIDA MEN. F.GRANDE'),
-    ('48', 'RECOGIDA MEN. CAMION'),
-    ('49', 'RECOGIDA MENSAJERO'),
-    ('50', 'SERVICIOS ESPECIALES'),
-    ('51', 'REC. INT WW'),
-    ('52', 'COMPRAS'),
-    ('53', 'MR1'),
-    ('54', 'EURO ESTANDAR'),
-    ('55', 'INTERC. EUROESTANDAR'),
-    ('56', 'RECOGIDA ECONOMY'),
-    ('57', 'REC. INTERCIUDAD ECONOMY'),
-    ('58', 'RC. PARCEL SHOP'),
-    ('59', 'ASM BUROFAX'),
-    ('60', 'ASM GO'),
-    ('66', 'ASMTRAVELLERS'),
-    ('74', 'EUROBUSINESS PARCEL'),
-    ('76', 'EUROBUSINESS SMALL PARCEL'),
+    ("1", "COURIER"),
+    ("2", "VALIJA"),
+    ("5", "BICI"),
+    ("6", "CARGA"),
+    ("7", "RECOGIDA"),
+    ("8", "RECOGIDA CRUZADA"),
+    ("9", "DEVOLUCION"),
+    ("10", "RETORNO"),
+    ("11", "IBEX"),
+    ("12", "INTERNACIONAL EXPRESS"),
+    ("13", "INTERNACIONAL ECONOMY"),
+    ("14", "DISTRIBUCION PROPIA"),
+    ("15", "OTROS PUENTES"),
+    ("16", "PROPIO AGENTE"),
+    ("17", "RECOGIDA SIN MERCANCIA"),
+    ("18", "DISTRIBUCION  RED"),
+    ("19", "OPERACIONES RED"),
+    ("20", "CARGA MARITIMA"),
+    ("21", "GLASS"),
+    ("22", "EURO SMALL"),
+    ("23", "PREPAGO"),
+    ("24", "OPTIPLUS"),
+    ("25", "EASYBAG"),
+    ("26", "CORREO INTERNO"),
+    ("27", "14H SOBRES"),
+    ("28", "24H SOBRES"),
+    ("29", "72H SOBRES"),
+    ("30", "ASM0830"),
+    ("31", "CAN MUESTRAS"),
+    ("32", "RC.SELLADA"),
+    ("33", "RECANALIZA"),
+    ("34", "INT PAQUET"),
+    ("35", "dPRO"),
+    ("36", "Int. WEB"),
+    ("37", "ECONOMY"),
+    ("38", "SERVICIOS RUTAS"),
+    ("39", "REC. INT"),
+    ("40", "SERVICIO LOCAL MOTO"),
+    ("41", "SERVICIO LOCAL FURGONETA"),
+    ("42", "SERVICIO LOCAL F. GRANDE"),
+    ("43", "SERVICIO LOCAL CAMION"),
+    ("44", "SERVICIO LOCAL"),
+    ("45", "RECOGIDA MEN. MOTO"),
+    ("46", "RECOGIDA MEN. FURGONETA"),
+    ("47", "RECOGIDA MEN. F.GRANDE"),
+    ("48", "RECOGIDA MEN. CAMION"),
+    ("49", "RECOGIDA MENSAJERO"),
+    ("50", "SERVICIOS ESPECIALES"),
+    ("51", "REC. INT WW"),
+    ("52", "COMPRAS"),
+    ("53", "MR1"),
+    ("54", "EURO ESTANDAR"),
+    ("55", "INTERC. EUROESTANDAR"),
+    ("56", "RECOGIDA ECONOMY"),
+    ("57", "REC. INTERCIUDAD ECONOMY"),
+    ("58", "RC. PARCEL SHOP"),
+    ("59", "ASM BUROFAX"),
+    ("60", "ASM GO"),
+    ("66", "ASMTRAVELLERS"),
+    ("74", "EUROBUSINESS PARCEL"),
+    ("76", "EUROBUSINESS SMALL PARCEL"),
 ]
 
 GLS_SHIPPING_TIMES = [
@@ -131,7 +133,7 @@ GLS_DELIVERY_STATES_STATIC = {
 }
 
 
-class GlsAsmRequest():
+class GlsAsmRequest:
     """Interface between GLS-ASM SOAP API and Odoo recordset
        Abstract GLS-ASM API Operations to connect them with Odoo
 
@@ -142,8 +144,8 @@ class GlsAsmRequest():
     def __init__(self, uidcustomer=None):
         """As the wsdl isn't public, we have to load it from local"""
         wsdl_path = os.path.join(
-            os.path.dirname(os.path.realpath(__file__)),
-            '../api/gls_asm_api.wsdl')
+            os.path.dirname(os.path.realpath(__file__)), "../api/gls_asm_api.wsdl"
+        )
         self.uidcustomer = uidcustomer or ""
         self.client = Client("file:{}".format(wsdl_path))
 
@@ -154,12 +156,12 @@ class GlsAsmRequest():
         """
         out = {}
         for k, v in asdict(suds_object).items():
-            if hasattr(v, '__keylist__'):
+            if hasattr(v, "__keylist__"):
                 out[k] = self._recursive_asdict(v)
             elif isinstance(v, list):
                 out[k] = []
                 for item in v:
-                    if hasattr(item, '__keylist__'):
+                    if hasattr(item, "__keylist__"):
                         out[k].append(self._recursive_asdict(item))
                     else:
                         out[k].append(item)
@@ -175,7 +177,9 @@ class GlsAsmRequest():
                        xmlns="http://www.asmred.com/">
                 <Envio referencia="{referencia}" />
             </Servicios>
-        """.format(**kwargs)
+        """.format(
+            **kwargs
+        )
 
     def _prepare__get_manifest_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
@@ -186,7 +190,9 @@ class GlsAsmRequest():
                 <FechaDesde>{date_from}</FechaDesde>
                 <FechaHasta></FechaHasta>
             </Servicios>
-        """.format(**kwargs)
+        """.format(
+            **kwargs
+        )
 
     def _prepare_send_shipping_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
@@ -267,7 +273,9 @@ class GlsAsmRequest():
                     </Cliente>
                 </Envio>
             </Servicios>
-        """.format(**kwargs)
+        """.format(
+            **kwargs
+        )
 
     def _send_shipping(self, vals):
         """Create new shipment
@@ -275,34 +283,43 @@ class GlsAsmRequest():
         :returns dict with GLS response containing the shipping codes, labels,
         an other relevant data
         """
-        vals.update({
-            'uidcustomer': self.uidcustomer,
-        })
+        vals.update(
+            {"uidcustomer": self.uidcustomer,}
+        )
         xml = Raw(self._prepare_send_shipping_docin(**vals))
         _logger.debug(xml)
         try:
             res = self.client.service.GrabaServicios(docIn=xml)
         except Exception as e:
-            raise UserError(_(
-                "No response from server recording GLS delivery {}.\n"
-                "Traceback:\n{}").format(vals.get("referencia_c", ""), e))
+            raise UserError(
+                _(
+                    "No response from server recording GLS delivery {}.\n"
+                    "Traceback:\n{}"
+                ).format(vals.get("referencia_c", ""), e)
+            )
         # Convert result suds object to dict and set the root conveniently
         # GLS API Errors have codes below 0 so we have to
         # convert to int as well
-        res = self._recursive_asdict(res)['Servicios']['Envio']
+        res = self._recursive_asdict(res)["Servicios"]["Envio"]
         res["gls_sent_xml"] = xml
         _logger.debug(res)
         res["_return"] = int(res["Resultado"]["_return"])
         if res["_return"] < 0:
-            raise UserError(_(
-                "GLS returned an error trying to record the shipping for {}.\n"
-                "Error:\n{}").format(
+            raise UserError(
+                _(
+                    "GLS returned an error trying to record the shipping for {}.\n"
+                    "Error:\n{}"
+                ).format(
                     vals.get("referencia_c", ""),
                     res.get("Errores", {}).get(
-                        "Error", "code {}".format(res["_return"]))))
-        if res.get('Etiquetas', {}).get('Etiqueta', {}).get("value"):
-            res["gls_label"] = (
-                binascii.a2b_base64(res["Etiquetas"]["Etiqueta"]["value"]))
+                        "Error", "code {}".format(res["_return"])
+                    ),
+                )
+            )
+        if res.get("Etiquetas", {}).get("Etiqueta", {}).get("value"):
+            res["gls_label"] = binascii.a2b_base64(
+                res["Etiquetas"]["Etiqueta"]["value"]
+            )
         return res
 
     def _get_delivery_info(self, reference=False):
@@ -311,13 +328,15 @@ class GlsAsmRequest():
         :returns: shipping info dict
         """
         try:
-            res = self.client.service.GetExpCli(
-                codigo=reference, uid=self.uidcustomer)
+            res = self.client.service.GetExpCli(codigo=reference, uid=self.uidcustomer)
             _logger.debug(res)
         except Exception as e:
-            raise UserError(_(
-                "GLS: No response from server getting state from ref {}.\n"
-                "Traceback:\n{}").format(reference, e))
+            raise UserError(
+                _(
+                    "GLS: No response from server getting state from ref {}.\n"
+                    "Traceback:\n{}"
+                ).format(reference, e)
+            )
         res = self._recursive_asdict(res)
         return res
 
@@ -327,8 +346,12 @@ class GlsAsmRequest():
         :returns: list of tracking states
         """
         res = self._get_delivery_info(reference)
-        res = res.get("expediciones", {}).get("exp", {}).get(
-            "tracking_list", {}).get("tracking", [])
+        res = (
+            res.get("expediciones", {})
+            .get("exp", {})
+            .get("tracking_list", {})
+            .get("tracking", [])
+        )
         # If there's just one state, we'll get a single dict, otherwise we
         # get a list of dicts
         if isinstance(res, dict):
@@ -341,12 +364,15 @@ class GlsAsmRequest():
         :returns: base64 with pdf label or False
         """
         try:
-            res = self.client.service.EtiquetaEnvio(reference, 'PDF')
+            res = self.client.service.EtiquetaEnvio(reference, "PDF")
             _logger.debug(res)
         except Exception as e:
-            raise UserError(_(
-                "GLS: No response from server printing label with ref {}.\n"
-                "Traceback:\n{}").format(reference, e))
+            raise UserError(
+                _(
+                    "GLS: No response from server printing label with ref {}.\n"
+                    "Traceback:\n{}"
+                ).format(reference, e)
+            )
         res = self._recursive_asdict(res)
         label = res.get("base64Binary")
         return label and binascii.a2b_base64(str(label[0]))
@@ -364,8 +390,11 @@ class GlsAsmRequest():
             -1 -> No existe envío
             -2 -> Tiene tracking operativo
         """
-        xml = Raw(self._prepare_cancel_shipment_docin(
-            uidcustomer=self.uidcustomer, referencia=reference))
+        xml = Raw(
+            self._prepare_cancel_shipment_docin(
+                uidcustomer=self.uidcustomer, referencia=reference
+            )
+        )
         _logger.debug(xml)
         try:
             response = self.client.service.Anula(docIn=xml)
@@ -373,7 +402,8 @@ class GlsAsmRequest():
         except Exception as e:
             _logger.error(
                 "No response from server canceling GLS ref {}.\n"
-                "Traceback:\n{}".format(reference, e))
+                "Traceback:\n{}".format(reference, e)
+            )
             return {}
         response = self._recursive_asdict(response.Servicios.Envio.Resultado)
         response["gls_sent_xml"] = xml
@@ -394,15 +424,21 @@ class GlsAsmRequest():
                 'cp_dst': 77610, 'departamento_dst': , 'pais_dst': FR,
             }
         """
-        xml = Raw(self._prepare__get_manifest_docin(
-            uidcustomer=self.uidcustomer, date_from=date_from))
+        xml = Raw(
+            self._prepare__get_manifest_docin(
+                uidcustomer=self.uidcustomer, date_from=date_from
+            )
+        )
         _logger.debug(xml)
         try:
             res = self.client.service.GetManifiesto(docIn=xml)
             _logger.debug(res)
         except Exception as e:
-            raise UserError(_(
-                "No response from server getting manifisto for GLS.\n"
-                "Traceback:\n{}").format(e))
+            raise UserError(
+                _(
+                    "No response from server getting manifisto for GLS.\n"
+                    "Traceback:\n{}"
+                ).format(e)
+            )
         res = self._recursive_asdict(res.Servicios.Envios).get("Envio", [])
         return res
