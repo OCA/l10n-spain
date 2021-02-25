@@ -1,19 +1,21 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, fields, models
-from .gls_asm_request import GlsAsmRequest
+
 from .gls_asm_request import (
-    GLS_ASM_SERVICES, GLS_SHIPPING_TIMES, GLS_POSTAGE_TYPE,
-    GLS_DELIVERY_STATES_STATIC)
+    GLS_ASM_SERVICES,
+    GLS_DELIVERY_STATES_STATIC,
+    GLS_POSTAGE_TYPE,
+    GLS_SHIPPING_TIMES,
+    GlsAsmRequest,
+)
 
 
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
     delivery_type = fields.Selection(selection_add=[("gls_asm", "GLS ASM")])
-    gls_asm_uid = fields.Char(
-        string="GLS UID",
-    )
+    gls_asm_uid = fields.Char(string="GLS UID",)
     gls_asm_service = fields.Selection(
         selection=GLS_ASM_SERVICES,
         string="GLS Service",
@@ -33,14 +35,10 @@ class DeliveryCarrier(models.Model):
         default="P",
     )
     gls_last_request = fields.Text(
-        string="Last GLS xml request",
-        help="Used for issues debugging",
-        readonly=True,
+        string="Last GLS xml request", help="Used for issues debugging", readonly=True,
     )
     gls_last_response = fields.Text(
-        string="Last GLS xml response",
-        help="Used for issues debugging",
-        readonly=True,
+        string="Last GLS xml response", help="Used for issues debugging", readonly=True,
     )
 
     def _gls_asm_uid(self):
@@ -48,17 +46,21 @@ class DeliveryCarrier(models.Model):
            A default given by GLS is put in the config parameter data """
         self.ensure_one()
         uid = (
-            self.gls_asm_uid if self.prod_environment else
-            self.env['ir.config_parameter'].sudo().get_param(
-                'delivery_gls_asm.api_user_demo', ''))
+            self.gls_asm_uid
+            if self.prod_environment
+            else self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("delivery_gls_asm.api_user_demo", "")
+        )
         return uid
 
     def gls_asm_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
-        tracking_url = ("http://www.asmred.com/extranet/public/"
-                        "ExpedicionASM.aspx?codigo={}&cpDst={}")
-        return tracking_url.format(
-            picking.carrier_tracking_ref, picking.partner_id.zip)
+        tracking_url = (
+            "http://www.asmred.com/extranet/public/"
+            "ExpedicionASM.aspx?codigo={}&cpDst={}"
+        )
+        return tracking_url.format(picking.carrier_tracking_ref, picking.partner_id.zip)
 
     def _prepare_gls_asm_shipping(self, picking):
         """Convert picking values for asm api
@@ -68,8 +70,9 @@ class DeliveryCarrier(models.Model):
         self.ensure_one()
         # A picking can be delivered from any warehouse
         sender_partner = (
-            picking.picking_type_id.warehouse_id.partner_id or
-            picking.company_id.partner_id)
+            picking.picking_type_id.warehouse_id.partner_id
+            or picking.company_id.partner_id
+        )
         return {
             "fecha": fields.Date.today().strftime("%d/%m/%Y"),
             "portes": self.gls_asm_postage_type,
@@ -100,13 +103,12 @@ class DeliveryCarrier(models.Model):
             "destinatario_codigo": "",
             "destinatario_plaza": "",
             "destinatario_nombre": (
-                picking.partner_id.name or
-                picking.partner_id.commercial_partner_id.name),
+                picking.partner_id.name or picking.partner_id.commercial_partner_id.name
+            ),
             "destinatario_direccion": picking.partner_id.street or "",
             "destinatario_poblacion": picking.partner_id.city or "",
             "destinatario_provincia": picking.partner_id.state_id.name or "",
-            "destinatario_pais": (
-                picking.partner_id.country_id.phone_code or ""),
+            "destinatario_pais": (picking.partner_id.country_id.phone_code or ""),
             "destinatario_cp": picking.partner_id.zip,
             "destinatario_telefono": picking.partner_id.phone or "",
             "destinatario_movil": picking.partner_id.mobile or "",
@@ -145,8 +147,7 @@ class DeliveryCarrier(models.Model):
             vals = self._prepare_gls_asm_shipping(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_shipping(vals)
-            self.gls_last_request = response and response.get(
-                "gls_sent_xml", "")
+            self.gls_last_request = response and response.get("gls_sent_xml", "")
             self.gls_last_response = response or ""
             if not response or response.get("_return", -1) < 0:
                 result.append(vals)
@@ -157,15 +158,17 @@ class DeliveryCarrier(models.Model):
             picking.gls_asm_public_tracking_ref = response.get("_codbarras")
             # We post an extra message in the chatter with the barcode and the
             # label because there's clean way to override the one sent by core.
-            body = (_(
-                "GLS Shipping extra info:\n"
-                "barcode: %s") % response.get("_codbarras"))
+            body = _("GLS Shipping extra info:\n" "barcode: %s") % response.get(
+                "_codbarras"
+            )
             attachment = []
             if response.get("gls_label"):
-                attachment = [(
-                    "gls_label_{}.pdf".format(response.get("_codbarras")),
-                    response.get("gls_label")
-                )]
+                attachment = [
+                    (
+                        "gls_label_{}.pdf".format(response.get("_codbarras")),
+                        response.get("gls_label"),
+                    )
+                ]
             picking.message_post(body=body, attachments=attachment)
             result.append(vals)
         return result
@@ -176,48 +179,53 @@ class DeliveryCarrier(models.Model):
         if not picking.carrier_tracking_ref:
             return
         gls_request = GlsAsmRequest(self._gls_asm_uid())
-        tracking_states = gls_request._get_tracking_states(
-            picking.carrier_tracking_ref)
+        tracking_states = gls_request._get_tracking_states(picking.carrier_tracking_ref)
         if not tracking_states:
             return
-        picking.tracking_state_history = "\n".join([
-            "%s - [%s] %s" % (
-                t.get("fecha"), t.get("codigo"), t.get("evento"))
-            for t in tracking_states
-        ])
+        picking.tracking_state_history = "\n".join(
+            [
+                "{} - [{}] {}".format(t.get("fecha"), t.get("codigo"), t.get("evento"))
+                for t in tracking_states
+            ]
+        )
         tracking = tracking_states.pop()
         picking.tracking_state = "[{}] {}".format(
-            tracking.get("codigo"), tracking.get("evento"))
+            tracking.get("codigo"), tracking.get("evento")
+        )
         picking.delivery_state = GLS_DELIVERY_STATES_STATIC.get(
-            tracking.get("codigo"), 'incidence')
+            tracking.get("codigo"), "incidence"
+        )
 
     def gls_asm_cancel_shipment(self, pickings):
         """Cancel the expedition"""
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         for picking in pickings.filtered("carrier_tracking_ref"):
-            response = gls_request._cancel_shipment(
-                picking.carrier_tracking_ref)
-            self.gls_last_request = response and response.get(
-                "gls_sent_xml", "")
+            response = gls_request._cancel_shipment(picking.carrier_tracking_ref)
+            self.gls_last_request = response and response.get("gls_sent_xml", "")
             self.gls_last_response = response or ""
             if not response or response.get("_return") < 0:
-                msg = (_(
-                    "GLS Cancellation failed with reason: %s") %
-                    response.get("value", "Connection Error"))
+                msg = _("GLS Cancellation failed with reason: %s") % response.get(
+                    "value", "Connection Error"
+                )
                 picking.message_post(body=msg)
                 continue
             picking.gls_asm_public_tracking_ref = False
-            picking.message_post(body=_(
-                "GLS Expedition with reference %s cancelled") %
-                picking.carrier_tracking_ref)
+            picking.message_post(
+                body=_("GLS Expedition with reference %s cancelled")
+                % picking.carrier_tracking_ref
+            )
 
     def gls_asm_rate_shipment(self, order):
         """There's no public API so another price method should be used"""
-        raise NotImplementedError(_("""
+        raise NotImplementedError(
+            _(
+                """
             GLS ASM API doesn't provide methods to compute delivery rates, so
             you should relay on another price method instead or override this
             one in your custom code.
-        """))
+        """
+            )
+        )
 
     def gls_asm_get_label(self, gls_asm_public_tracking_ref):
         """Generate label for picking
@@ -236,11 +244,8 @@ class DeliveryCarrier(models.Model):
     def action_get_manifest(self):
         """Action to launch the manifest wizard"""
         self.ensure_one()
-        wizard = self.env["gls.asm.minifest.wizard"].create({
-            "carrier_id": self.id})
-        view_id = self.env.ref(
-            "delivery_gls_asm.delivery_manifest_wizard_form"
-        ).id
+        wizard = self.env["gls.asm.minifest.wizard"].create({"carrier_id": self.id})
+        view_id = self.env.ref("delivery_gls_asm.delivery_manifest_wizard_form").id
         return {
             "name": _("GLS Manifest"),
             "type": "ir.actions.act_window",
