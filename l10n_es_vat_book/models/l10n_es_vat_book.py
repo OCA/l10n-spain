@@ -300,6 +300,7 @@ class L10nEsVatBook(models.Model):
         return [
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
+            ("parent_state", "=", "posted"),
             "|",
             ("tax_ids", "in", taxes.ids),
             ("tax_line_id", "in", taxes.ids),
