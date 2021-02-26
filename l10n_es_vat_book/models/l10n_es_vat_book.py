@@ -357,6 +357,9 @@ class L10nEsVatBook(models.Model):
         VatBookLine = self.env["l10n.es.vat.book.line"]
         moves_dic = {}
         for move_line in move_lines:
+            if move_line.move_id and move_line.move_id.state != 'posted':
+                #avoid adding not posted invoices but add not posted moves
+                continue
             line_key = self.get_book_line_key(move_line)
             if line_key not in moves_dic:
                 moves_dic[line_key] = self._prepare_book_line_vals(move_line, line_type)
