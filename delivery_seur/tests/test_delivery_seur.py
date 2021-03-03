@@ -40,11 +40,6 @@ class TestDeliverySeur(SavepointCase):
         self.assertTrue(response)
 
     def test_delivery_carrier_seur_price(self):
-        module = self.env['ir.module.module'].search([
-            ('name', '=', 'delivery_price_method')])
-        if module.state != 'installed':
-            self.skipTest(
-                'delivery_price_method not installed, ignore price test')
         product = self.env.ref('product.product_delivery_01')
         partner = self.env.ref('base.res_partner_12')
         pricelist = self.env['product.pricelist'].create({
