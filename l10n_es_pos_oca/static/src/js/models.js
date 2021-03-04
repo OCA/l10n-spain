@@ -110,6 +110,20 @@ odoo.define("l10n_es_pos.models", function (require) {
             }
             return res;
         },
+        export_for_printing: function () {
+            var result = order_super.export_for_printing.apply(this, arguments);
+            var company = this.pos.company;
+            result.simplified_invoice = this.simplified_invoice;
+            result.company.street = company.street;
+            result.company.zip = company.zip;
+            result.company.city = company.city;
+            result.company.state_id = company.state_id;
+            var base_by_tax = this.get_base_by_tax();
+            for (const tax of result.tax_details) {
+                tax.base = base_by_tax[tax.tax.id];
+            }
+            return result;
+        },
     });
 
     models.load_fields("res.company", ["street", "city", "state_id", "zip"]);
