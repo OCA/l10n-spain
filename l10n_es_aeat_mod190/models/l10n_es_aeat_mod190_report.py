@@ -141,12 +141,24 @@ class L10nEsAeatMod190Report(models.Model):
                             tax_line.res_id == report.id
                         ):
                             rde += line.credit - line.debit
+                        gd = 0.0
+                        if (
+                            tax_line.field_number == 11 and
+                            tax_line.res_id == report.id
+                        ):
+                            account_gd = self.env.ref('l10n_es.{}_account_common_476'.
+                                                      format(self.env.user.company_id.id))
+                            line_gd = line.mapped('move_id.line_ids').\
+                                filtered(lambda l: l.partner_id == rp and l.account_id == account_gd)
+                            gd += line_gd.credit - line_gd.debit
+
                         if not rp.discapacidad or rp.discapacidad == '0':
                             values['percepciones_dinerarias'] += pd
                             values['retenciones_dinerarias'] += rd
                             values['percepciones_en_especie'] += pde - rde
                             values['ingresos_a_cuenta_efectuados'] += pde
                             values['ingresos_a_cuenta_repercutidos'] += rde
+                            values['gastos_deducibles'] += gd
                         else:
                             values['percepciones_dinerarias_incap'] += pd
                             values['retenciones_dinerarias_incap'] += rd
@@ -155,6 +167,7 @@ class L10nEsAeatMod190Report(models.Model):
                             values['ingresos_a_cuenta_efectuados_incap'] += pde
                             values[
                                 'ingresos_a_cuenta_repercutidos_incap'] += rde
+                            values['gastos_deducibles'] += gd
 
             line_obj = self.env['l10n.es.aeat.mod190.report.line']
             registros = 0
@@ -230,6 +243,7 @@ class L10nEsAeatMod190Report(models.Model):
             'percepciones_en_especie_incap': 0,
             'ingresos_a_cuenta_efectuados_incap': 0,
             'ingresos_a_cuenta_repercutidos_incap': 0,
+            'gastos_deducibles': 0,
         }
         if key_id.ad_required + subkey_id.ad_required >= 2:
             vals.update({
