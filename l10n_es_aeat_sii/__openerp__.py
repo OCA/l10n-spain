@@ -36,6 +36,7 @@
     "depends": [
         "account_refund_original",
         "l10n_es_aeat",
+        "l10n_es",
         "connector",
         "account_invoice_currency",
     ],
