@@ -1,0 +1,195 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_es_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-12 14:13+0000\n"
+"PO-Revision-Date: 2020-07-27 09:19+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+msgid "Above this limit the simplified invoice won't be made"
+msgstr "Por encima de este límite no se creará factura simplificada"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+msgid "Autogenerate for each POS created"
+msgstr "Autogenerada por cada TPV creado"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "Customer:"
+msgstr "Cliente:"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+msgid "Invoice Journal"
+msgstr "Diario de facturas"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Invoices"
+msgstr "Diario de facturas"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+msgid "Over this amount is not legally posible to create a simplified invoice"
+msgstr "Por encima de esta cantidad no es legal crear una factura simplificada"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_config
+msgid "Point of Sale Configuration"
+msgstr "Configuración Punto de Venta"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos del Punto de Venta"
+
+#. module: l10n_es_pos
+#: model:ir.model,name:l10n_es_pos.model_ir_sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+msgid "Set simplified invoice sequence for this POS"
+msgstr "Establecer secuencia de factura simplificada para este TPV"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
+msgid "Sim.Inv limit amount"
+msgstr "Límite de factura simplificada"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_number
+msgid "Sim.Inv number"
+msgstr "Número de factura simplificada"
+
+#. module: l10n_es_pos
+#: code:addons/l10n_es_pos/models/pos_config.py:0
+#, python-format
+msgid "Simplified Invoice %s"
+msgstr "Factura simplificada %s"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_sequence_id
+msgid "Simplified Invoice IDs Sequence"
+msgstr "Secuencia de Factura Simplificada"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+msgid "Simplified Invoice Limit"
+msgstr "Límite de Factura Simplificada"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
+msgid "Simplified Invoice Sequence"
+msgstr "Secuencia de Factura Simplificada"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_padding
+msgid "Simplified Invoice padding"
+msgstr "Relleno de Factura Simplificada"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_prefix
+msgid "Simplified Invoice prefix"
+msgstr "Prefijo de Factura Simplificada"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
+#, python-format
+msgid "Simplified invoice"
+msgstr "Factura simplificada"
+
+#. module: l10n_es_pos
+#: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
+msgid "Simplified invoices"
+msgstr "Facturas simplificadas"
+
+#. module: l10n_es_pos
+#: code:addons/l10n_es_pos/models/ir_sequence.py:0
+#, python-format
+msgid ""
+"There is already a simplified invoice sequence with that prefix and it "
+"should be unique."
+msgstr ""
+"Ya existe una secuencia de Factura Simplificada con ese prefijo y este "
+"debería ser único."
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
+msgid "Unique Order ID"
+msgstr "ID único de pedido"
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
+msgid "Use simplified invoices for this POS"
+msgstr "Usar Facturas Simplificadas en este Punto de Venta"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "VAT:"
+msgstr "NIF:"
+
+#. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid "on"
+msgstr "sobre"
+
+#~ msgid "Address:"
+#~ msgstr "Dirección:"
+
+#~ msgid "Customer data"
+#~ msgstr "Datos de cliente"
+
+#~ msgid "Name:"
+#~ msgstr "Nombre:"
+
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgid "Qty"
+#~ msgstr "Cantidad"
+
+#~ msgid "Simplified invoice:"
+#~ msgstr "Factura Simplificada:"
+
+#~ msgid "Subt"
+#~ msgstr "Subt"
+
+#~ msgid "Unit"
+#~ msgstr "Ud."
+
+#~ msgid ""
+#~ "The current order is already queued and thus it shouldn't be changed. "
+#~ "Click on 'Validate' in order to finalize it."
+#~ msgstr ""
+#~ "Este pedido ya está en cola, de modo que no debería modificarse. Pulsa en "
+#~ "'Validar' para finalizarlo."
+
+#~ msgid "The order is already queued"
+#~ msgstr "El pedido ya está en cola"
+
+#~ msgid "pos.config"
+#~ msgstr "pos.config"
