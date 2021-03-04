@@ -13,8 +13,9 @@
 
 * `Tecnativa <https://www.tecnativa.com>`_:
 
-  * David Vidal <david.vidal@tecnativa.com>
-  * Pedro M. Baeza <pedro.baeza@tecnativa.com>
-  * Antonio Espinosa <antonio.espinosa@tecnativa.com>
-  * Rafael Blasco <rafael.blasco@tecnativa.com>
-  * Carlos Roca <carlos.roca@tecnativa.com>
+  * David Vidal
+  * Pedro M. Baeza
+  * Antonio Espinosa
+  * Rafael Blasco
+  * Carlos Roca
+  * João Marques

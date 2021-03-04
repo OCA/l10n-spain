@@ -68,7 +68,7 @@ class PosConfig(models.Model):
             }
         )
         vals["l10n_es_simplified_invoice_sequence_id"] = simp_inv_seq_id.id
-        return super(PosConfig, self).create(vals)
+        return super().create(vals)
 
     @api.onchange("iface_l10n_es_simplified_invoice")
     def _onchange_l10n_iface_l10n_es_simplified_invoice(self):
@@ -100,11 +100,11 @@ class PosConfig(models.Model):
                         ),
                     }
                 )
-        return super(PosConfig, self).write(vals)
+        return super().write(vals)
 
     def unlink(self):
         self.mapped("l10n_es_simplified_invoice_sequence_id").unlink()
-        return super(PosConfig, self).unlink()
+        return super().unlink()
 
     def _get_default_padding(self):
         return self.env["ir.config_parameter"].get_param(
