@@ -350,12 +350,13 @@ class L10nEsAeatMod303Report(models.Model):
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
         for mod303 in self:
-            mod303.counterpart_account_id = \
-                self.env['account.account'].search([
+            vals = {
+                "counterpart_account_id": self.env['account.account'].search([
                     ('code', '=like', '%s%%' % _ACCOUNT_PATTERN_MAP.get(
                         mod303.result_type, '4750')),
                     ('company_id', '=', mod303.company_id.id),
-                ], limit=1)
+                ], limit=1).id,
+            }
             prev_reports = mod303._get_previous_fiscalyear_reports(
                 mod303.date_start
             ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
@@ -368,8 +369,9 @@ class L10nEsAeatMod303Report(models.Model):
                 ),
             )
             if prev_report.result_type == 'C':
-                mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
-                mod303.potential_cuota_compensar = mod303.cuota_compensar
+                vals["cuota_compensar"] = abs(prev_report.resultado_liquidacion)
+                vals["potential_cuota_compensar"] = vals["cuota_compensar"]
+            mod303.write(vals)
         return res
 
     @api.multi
