@@ -435,8 +435,10 @@ class L10nEsAeatMod303Report(models.Model):
                 ),
             )
             if prev_report.result_type == "C":
-                mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
-                mod303.potential_cuota_compensar = mod303.cuota_compensar
+                amount = abs(prev_report.resultado_liquidacion)
+                mod303.write(
+                    {"cuota_compensar": amount, "potential_cuota_compensar": amount}
+                )
         return res
 
     def button_confirm(self):
