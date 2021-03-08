@@ -2,31 +2,46 @@
 
 from datetime import datetime
 
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
+
+from ..hooks import post_init_hook
 
 
-class TestL10nIntraStatReport(SavepointCase):
+class TestL10nIntraStatReport(AccountTestInvoicingCommon):
     @classmethod
     def _create_invoice(cls, inv_type, partner, product=None):
         product = product or cls.product
-        move_form = Form(cls.env["account.move"].with_context(default_type=inv_type))
+        if inv_type in ("out_invoice", "in_refund"):
+            account = cls.company_data["default_account_revenue"]
+        elif inv_type in ("in_invoice", "out_refund"):
+            account = cls.company_data["default_account_expense"]
+        move_form = Form(
+            cls.env["account.move"].with_context(default_move_type=inv_type)
+        )
         move_form.ref = "ABCDE"
         move_form.partner_id = partner
         move_form.partner_shipping_id = partner
         with move_form.invoice_line_ids.new() as line_form:
             line_form.name = "test"
-            line_form.quantity = 1.0
+            line_form.account_id = account
             line_form.product_id = product
+            line_form.quantity = 1.0
             line_form.price_unit = 100
         inv = move_form.save()
-        inv.post()
+        inv.action_post()
         return inv
 
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUpClass(cls, chart_template_ref=None):
+        chart_template_ref = (
+            "l10n_es.account_chart_template_common" or chart_template_ref
+        )
+        super().setUpClass(chart_template_ref=chart_template_ref)
         # Set current company to Spanish
         cls.env.user.company_id.country_id = cls.env.ref("base.es").id
+        cls.env.user.company_id.incoterm_id = cls.env.ref("account.incoterm_FCA").id
         # Create Intrastat partners
         cls.partner_1 = cls.env["res.partner"].create(
             {"name": "Test Partner FR", "country_id": cls.env.ref("base.fr").id}
@@ -37,8 +52,9 @@ class TestL10nIntraStatReport(SavepointCase):
         # Import Intrastat data
         cls.env["l10n.es.intrastat.code.import"].create({}).execute()
         # Create product ans assign random HS Code
+        cls.hs_code = cls.env["hs.code"].search([], limit=1)
         cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "hs_code_id": cls.env["hs.code"].browse(1).id}
+            {"name": "Test product", "hs_code_id": cls.hs_code.id}
         )
         # Invoices to be used in dispatches
         cls.invoices = {
@@ -59,8 +75,28 @@ class TestL10nIntraStatReport(SavepointCase):
             )
             for partner in (cls.partner_1, cls.partner_2):
                 invoice = cls._create_invoice(inv_type, partner)
+                invoice.intrastat_fiscal_position = True
                 cls.invoices[declaration_type]["invoices"].append(invoice)
                 cls.invoices[declaration_type][partner.country_id] += 1
+
+    def test_post_init_hook(self):
+        fp = self.env["account.fiscal.position"].create(
+            {
+                "name": "Test FP",
+                "intrastat": False,
+            }
+        )
+        item = self.env["ir.model.data"].create(
+            {
+                "name": "l10n_es_intrastat_report_fp_intra_private",
+                "model": "account.fiscal.position",
+                "module": "l10n_es",
+                "res_id": fp.id,
+            }
+        )
+        post_init_hook(self.env.cr, None)
+        fp = self.env["account.fiscal.position"].browse(item.res_id)
+        self.assertTrue(fp.intrastat)
 
     def _check_move_lines_present(self, original, target):
         for move in original:
@@ -70,9 +106,9 @@ class TestL10nIntraStatReport(SavepointCase):
     def _check_declaration_lines(self, lines, fr_qty, pt_qty):
         for line in lines:
             if line.src_dest_country_id == self.env.ref("base.fr"):
-                self.assertEquals(line.suppl_unit_qty, fr_qty)
+                self.assertEqual(line.suppl_unit_qty, fr_qty)
             if line.src_dest_country_id == self.env.ref("base.pt"):
-                self.assertEquals(line.suppl_unit_qty, pt_qty)
+                self.assertEqual(line.suppl_unit_qty, pt_qty)
 
     def test_report_creation_dispatches(self):
         # Generate report
@@ -80,7 +116,7 @@ class TestL10nIntraStatReport(SavepointCase):
             {
                 "year": datetime.today().year,
                 "month": str(datetime.today().month).zfill(2),
-                "type": "dispatches",
+                "declaration_type": "dispatches",
                 "action": "replace",
             }
         )
@@ -90,12 +126,12 @@ class TestL10nIntraStatReport(SavepointCase):
             report_dispatches.computation_line_ids,
         )
         report_dispatches.generate_declaration()
-        self.assertEquals(
+        self.assertEqual(
             len(report_dispatches.declaration_line_ids), 2
         )  # One line for each country
-        self.assertEquals(
+        self.assertEqual(
             report_dispatches.declaration_line_ids.mapped("hs_code_id"),
-            self.env["hs.code"].browse(1),
+            self.hs_code,
         )
         self._check_declaration_lines(
             report_dispatches.declaration_line_ids,
@@ -104,11 +140,11 @@ class TestL10nIntraStatReport(SavepointCase):
         )
         csv_result = report_dispatches._generate_csv()
         csv_lines = csv_result.decode("utf-8").rstrip().splitlines()
-        self.assertEquals(len(csv_lines), 2)
+        self.assertEqual(len(csv_lines), 2)
         for line in csv_lines:
             items = line.split(";")
             self.assertTrue(items[0] in ("PT", "FR"))
-            self.assertEquals(items[6], self.env["hs.code"].browse(1).local_code)
+            self.assertEqual(items[6], self.hs_code.local_code)
 
     def test_report_creation_arrivals(self):
         # Generate report
@@ -116,7 +152,7 @@ class TestL10nIntraStatReport(SavepointCase):
             {
                 "year": datetime.today().year,
                 "month": str(datetime.today().month).zfill(2),
-                "type": "arrivals",
+                "declaration_type": "arrivals",
                 "action": "replace",
             }
         )
@@ -125,12 +161,12 @@ class TestL10nIntraStatReport(SavepointCase):
             self.invoices["arrivals"]["invoices"], report_arrivals.computation_line_ids
         )
         report_arrivals.generate_declaration()
-        self.assertEquals(
+        self.assertEqual(
             len(report_arrivals.declaration_line_ids), 2
         )  # One line for each country
-        self.assertEquals(
+        self.assertEqual(
             report_arrivals.declaration_line_ids.mapped("hs_code_id"),
-            self.env["hs.code"].browse(1),
+            self.hs_code,
         )
         self._check_declaration_lines(
             report_arrivals.declaration_line_ids,
@@ -139,8 +175,8 @@ class TestL10nIntraStatReport(SavepointCase):
         )
         csv_result = report_arrivals._generate_csv()
         csv_lines = csv_result.decode("utf-8").rstrip().splitlines()
-        self.assertEquals(len(csv_lines), 2)
+        self.assertEqual(len(csv_lines), 2)
         for line in csv_lines:
             items = line.split(";")
             self.assertTrue(items[0] in ("PT", "FR"))
-            self.assertEquals(items[6], self.env["hs.code"].browse(1).local_code)
+            self.assertEqual(items[6], self.hs_code.local_code)

@@ -33,7 +33,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
     def _get_intrastat_state(self, inv_line):
         """Similar logic as in product_intrastat `_get_region` method."""
         intrastat_state = False
-        inv_type = inv_line.move_id.type
+        inv_type = inv_line.move_id.move_type
         if inv_type in ("in_invoice", "in_refund"):
             intrastat_state = inv_line.purchase_line_id.move_ids[
                 :1
@@ -45,16 +45,16 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             intrastat_state = inv_line.company_id.partner_id.state_id
         return intrastat_state
 
-    def _update_computation_line_vals(self, inv_line, line_vals):
-        super()._update_computation_line_vals(inv_line, line_vals)
+    def _update_computation_line_vals(self, inv_line, line_vals, notedict):
+        super()._update_computation_line_vals(inv_line, line_vals, notedict)
         intrastat_state = self._get_intrastat_state(inv_line)
         if intrastat_state:
             line_vals["intrastat_state_id"] = intrastat_state.id
-        incoterm_id = self._get_incoterm(inv_line)
+        incoterm_id = self._get_incoterm(inv_line, notedict)
         if incoterm_id:
             line_vals["incoterm_id"] = incoterm_id.id
 
-    def _gather_invoices_init(self):
+    def _gather_invoices_init(self, notedict):
         if self.company_id.country_id.code != "ES":
             raise UserError(
                 _(
@@ -71,10 +71,10 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         - companies subject to arrivals or dispatches only
         """
         domain = super()._prepare_invoice_domain()
-        if self.type == "arrivals":
-            domain.append(("type", "in", ("in_invoice", "out_refund")))
-        elif self.type == "dispatches":
-            domain.append(("type", "in", ("out_invoice", "in_refund")))
+        if self.declaration_type == "arrivals":
+            domain.append(("move_type", "in", ("in_invoice", "out_refund")))
+        elif self.declaration_type == "dispatches":
+            domain.append(("move_type", "in", ("out_invoice", "in_refund")))
         return domain
 
     @api.model
@@ -183,6 +183,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
 class L10nEsIntrastatProductComputationLine(models.Model):
     _name = "l10n.es.intrastat.product.computation.line"
     _inherit = "intrastat.product.computation.line"
+    _description = "Intrastat Product Computation Line for Spain"
 
     parent_id = fields.Many2one(
         comodel_name="l10n.es.intrastat.product.declaration",
@@ -203,6 +204,7 @@ class L10nEsIntrastatProductComputationLine(models.Model):
 class L10nEsIntrastatProductDeclarationLine(models.Model):
     _name = "l10n.es.intrastat.product.declaration.line"
     _inherit = "intrastat.product.declaration.line"
+    _description = "Intrastat Product Declaration Line for Spain"
 
     parent_id = fields.Many2one(
         comodel_name="l10n.es.intrastat.product.declaration",
