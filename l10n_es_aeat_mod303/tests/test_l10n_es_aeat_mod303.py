@@ -105,3 +105,16 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base, common.TransactionCase):
         self.assertEqual(self.model303.total_deducir, 40)
         self.assertEqual(self.model303.casilla_46, -40)
         self.assertEqual(self.model303.casilla_69, -40)
+        # Export to BOE
+        export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
+            'name': 'test_export_to_boe.txt',
+        })
+        export_config_xml_ids = [
+            'l10n_es_aeat_mod303.aeat_mod303_2018_main_export_config',
+            'l10n_es_aeat_mod303.aeat_mod303_2021_main_export_config',
+        ]
+        for xml_id in export_config_xml_ids:
+            export_config = self.env.ref(xml_id)
+            self.assertTrue(
+                export_to_boe._export_config(self.model303, export_config)
+            )
