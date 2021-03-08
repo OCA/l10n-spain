@@ -239,13 +239,6 @@ msgid "Created on"
 msgstr "Date"
 
 #. module: l10n_es_aeat_mod303
-#: help:l10n.es.aeat.mod303.report,cuota_compensar:0
-msgid ""
-"Cuota a compensar de periodos anteriores, en los que su declaración fue a "
-"devolver y se escogió la opción de compensación posterior"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,currency_id:0
 msgid "Currency"
 msgstr "Devise"
@@ -381,6 +374,13 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,export_config:0
 msgid "Export config"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: help:l10n.es.aeat.mod303.report,cuota_compensar:0
+msgid ""
+"Fee to compensate for prior periods, in which his statement was to return "
+"and compensation back option was chosen"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -587,13 +587,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:344
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:358
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:346
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:360
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
@@ -654,6 +654,11 @@ msgid "VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,potential_cuota_compensar:0
+msgid "[110] Pending fees to compensate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,total_devengado:0
 msgid "[27] IVA devengado"
 msgstr ""
@@ -675,12 +680,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,atribuible_estado:0
-msgid "[66] Atribuible a la Administración"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: field:l10n.es.aeat.mod303.report,cuota_compensar:0
-msgid "[67] Cuotas a compensar"
+msgid "[66] Attributable to the Administration"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -706,6 +706,16 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: field:l10n.es.aeat.mod303.report,casilla_77:0
 msgid "[77] Iva Diferido (Liquidado por aduana)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,cuota_compensar:0
+msgid "[78] Applied fees to compensate (old [67])"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,remaining_cuota_compensar:0
+msgid "[87] Remaining fees to compensate"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
