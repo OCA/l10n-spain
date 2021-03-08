@@ -5,6 +5,7 @@
 import os
 
 from odoo import _, exceptions, models, tools
+from odoo.modules.module import get_resource_path
 
 try:
     import xlrd
@@ -24,6 +25,7 @@ UOM_MAPPING = {
 class L10nEsPartnerImportWizard(models.TransientModel):
     _name = "l10n.es.intrastat.code.import"
     _inherit = "res.config.installer"
+    _description = "Intrastat HS Code Import for Spain"
 
     @tools.ormcache("name")
     def _get_intrastat_unit(self, name):
@@ -34,7 +36,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
             raise exceptions.UserError(_("xlrd library not found."))
         code_obj = self.env["hs.code"]
         path = os.path.join(
-            os.path.dirname(os.path.dirname(__file__)), "data", "NC_20.xlsx"
+            get_resource_path("l10n_es_intrastat_report"), "data", "NC_20.xls"
         )
         workbook = xlrd.open_workbook(path)
         sheet = workbook.sheet_by_index(0)
