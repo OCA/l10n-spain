@@ -235,6 +235,16 @@ msgid "Intrastat Code"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_code_import
+msgid "Intrastat Code Import"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_computation_line
+msgid "Intrastat Product Computation Line"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__computation_line_ids
 msgid "Intrastat Product Computation Lines"
 msgstr ""
@@ -243,6 +253,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__parent_id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__parent_id
 msgid "Intrastat Product Declaration"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_declaration_line
+msgid "Intrastat Product Declaration Line"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -604,21 +619,6 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__note
 msgid "You can add some comments here if you want."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_code_import
-msgid "l10n.es.intrastat.code.import"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_computation_line
-msgid "l10n.es.intrastat.product.computation.line"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_declaration_line
-msgid "l10n.es.intrastat.product.declaration.line"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
