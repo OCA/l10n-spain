@@ -1,5 +1,7 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from xml.sax.saxutils import escape
+
 from odoo import _, fields, models
 
 from .gls_asm_request import (
@@ -88,8 +90,8 @@ class DeliveryCarrier(models.Model):
             "pod": "N",  # [optional]
             "podobligatorio": "N",  # [deprecated]
             "remite_plaza": "",  # [optional] Origin agency
-            "remite_nombre": sender_partner.name,
-            "remite_direccion": sender_partner.street or "",
+            "remite_nombre": escape(sender_partner.name),
+            "remite_direccion": escape(sender_partner.street) or "",
             "remite_poblacion": sender_partner.city or "",
             "remite_provincia": sender_partner.state_id.name or "",
             "remite_pais": "34",  # [mandatory] always 34=Spain
@@ -103,7 +105,8 @@ class DeliveryCarrier(models.Model):
             "destinatario_codigo": "",
             "destinatario_plaza": "",
             "destinatario_nombre": (
-                picking.partner_id.name or picking.partner_id.commercial_partner_id.name
+                escape(picking.partner_id.name)
+                or escape(picking.partner_id.commercial_partner_id.name)
             ),
             "destinatario_direccion": picking.partner_id.street or "",
             "destinatario_poblacion": picking.partner_id.city or "",
@@ -117,7 +120,7 @@ class DeliveryCarrier(models.Model):
             "destinatario_att": "",
             "destinatario_departamento": "",
             "destinatario_nif": "",
-            "referencia_c": picking.name,  # Our unique reference
+            "referencia_c": escape(picking.name),  # Our unique reference
             "referencia_0": "",  # Not used if the above is set
             "importes_debido": "0",  # The customer pays the shipping
             "importes_reembolso": "",  # TODO: Support Cash On Delivery
