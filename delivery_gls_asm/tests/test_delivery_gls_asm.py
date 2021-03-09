@@ -31,7 +31,7 @@ class TestDeliveryGlsAsm(common.SavepointCase):
         )
         cls.partner = cls.env["res.partner"].create(
             {
-                "name": "Mr. Odoo",
+                "name": "Mr. Odoo & Co.",
                 "city": "Odoo Ville",
                 "zip": "28001",
                 "street": "Calle de La Rua, 3",
@@ -102,3 +102,9 @@ class TestDeliveryGlsAsm(common.SavepointCase):
         ):
             report = wizard.get_manifest()
             self.assertEqual(report["data"]["deliveries"], mocked_response)
+
+    def test_03_gls_escaping(self):
+        """We must ensure that the values we'll be putting into the XML are
+        properly escaped"""
+        vals = self.carrier_gls_asm._prepare_gls_asm_shipping(self.picking)
+        self.assertEqual(vals.get("destinatario_nombre"), "Mr. Odoo &amp; Co.")
