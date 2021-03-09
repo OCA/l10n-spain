@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:216
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:218
 #, python-format
 msgid "\n"
 "            GLS ASM API doesn't provide methods to compute delivery rates, so\n"
@@ -291,7 +291,7 @@ msgid "GLS Barcode"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:204
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:206
 #, python-format
 msgid "GLS Cancellation failed with reason: %s"
 msgstr ""
@@ -307,7 +307,7 @@ msgid "GLS Deliveries Manifest"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:210
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:212
 #, python-format
 msgid "GLS Expedition with reference %s cancelled"
 msgstr ""
@@ -318,7 +318,7 @@ msgid "GLS Label"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:245
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:247
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -333,7 +333,7 @@ msgid "GLS Service"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:160
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:162
 #, python-format
 msgid "GLS Shipping extra info:\n"
 "barcode: %s"
