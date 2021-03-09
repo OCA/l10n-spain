@@ -23,6 +23,7 @@ UOM_MAPPING = {
 
 class L10nEsPartnerImportWizard(models.TransientModel):
     _name = "l10n.es.intrastat.code.import"
+    _description = "Intrastat Code Import"
     _inherit = "res.config.installer"
 
     @tools.ormcache("name")

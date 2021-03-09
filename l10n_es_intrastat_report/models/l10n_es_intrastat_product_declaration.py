@@ -182,6 +182,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
 
 class L10nEsIntrastatProductComputationLine(models.Model):
     _name = "l10n.es.intrastat.product.computation.line"
+    _description = "Intrastat Product Computation Line"
     _inherit = "intrastat.product.computation.line"
 
     parent_id = fields.Many2one(
@@ -202,6 +203,7 @@ class L10nEsIntrastatProductComputationLine(models.Model):
 
 class L10nEsIntrastatProductDeclarationLine(models.Model):
     _name = "l10n.es.intrastat.product.declaration.line"
+    _description = "Intrastat Product Declaration Line"
     _inherit = "intrastat.product.declaration.line"
 
     parent_id = fields.Many2one(
