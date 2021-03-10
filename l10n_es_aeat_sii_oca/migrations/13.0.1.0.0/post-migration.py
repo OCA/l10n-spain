@@ -34,7 +34,7 @@ def migrate(env, version):
         INSERT INTO account_move_queue_job_rel
         (invoice_id, job_id)
         SELECT am.id, rel.job_id
-        FROM account_invoice_validation_job_rel rel
+        FROM account_invoice_queue_job_rel rel
         JOIN account_move am ON am.old_invoice_id = rel.invoice_id
         """,
     )
