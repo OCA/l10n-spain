@@ -282,7 +282,9 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             invoice_temp.sii_description,
             "Test customer header | Test description",
         )
-        invoice_temp = self.invoice.copy({"move_type": "in_invoice"})
+        invoice_temp = self.invoice.copy(
+            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
+        )
         invoice_temp._compute_sii_description()
         self.assertEqual(
             invoice_temp.sii_description,
@@ -331,17 +333,21 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.sii_cert.company_id = self.invoice.company_id.id
         self._activate_certificate()
         self.invoice.company_id.sii_test = True
-        for inv_type in ["out_invoice", "in_invoice"]:
-            self.invoice.move_type = inv_type
-            self._check_tax_agencies(self.invoice)
+        self._check_tax_agencies(self.invoice)
+        in_invoice = self.invoice.copy(
+            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
+        )
+        self._check_tax_agencies(in_invoice)
 
     def test_tax_agencies_production(self):
         self.sii_cert.company_id = self.invoice.company_id.id
         self._activate_certificate()
         self.invoice.company_id.sii_test = False
-        for inv_type in ["out_invoice", "in_invoice"]:
-            self.invoice.move_type = inv_type
-            self._check_tax_agencies(self.invoice)
+        self._check_tax_agencies(self.invoice)
+        in_invoice = self.invoice.copy(
+            {"move_type": "in_invoice", "journal_id": self.journal_purchase.id}
+        )
+        self._check_tax_agencies(in_invoice)
 
     def test_refund_sii_refund_type(self):
         invoice = self.env["account.move"].create(
