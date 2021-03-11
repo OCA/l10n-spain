@@ -190,12 +190,7 @@ class TestL10nEsAeatModBase(common.SavepointCase):
     def _invoice_refund(cls, invoice, dt):
         _logger.debug("Refund {} invoice: date = {}".format(invoice.move_type, dt))
         default_values_list = [
-            {
-                "date": dt,
-                "invoice_date": dt,
-                "journal_id": cls.journal_misc.id or invoice.journal_id.id,
-                "invoice_payment_term_id": None,
-            }
+            {"date": dt, "invoice_date": dt, "invoice_payment_term_id": None}
         ]
         inv = invoice.with_user(cls.billing_user)._reverse_moves(default_values_list)
         inv.action_post()
