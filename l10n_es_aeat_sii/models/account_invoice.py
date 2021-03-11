@@ -803,8 +803,7 @@ class AccountInvoice(models.Model):
                 self.company_id.currency_id,
                 self.company_id,
                 self.date_invoice or fields.Date.today())
-        return round(float_round(abs(amount_total_company_signed) * sign, 2),
-                     2)
+        return round(float_round(amount_total_company_signed * sign, 2), 2)
 
     @api.multi
     def _get_sii_invoice_dict_out(self, cancel=False):

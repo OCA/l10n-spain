@@ -290,6 +290,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
         # 2/ obtener con get_dict_in los valores a enviar al sii
         # 3/ comprobar el valor de ImporteTotal es igual al estimado
         # 1
+        self._open_invoice()
         amount_base = 100
         amount_tax = 10
         amount_to_communicate_sii = amount_base + amount_tax
@@ -299,6 +300,7 @@ class TestL10nEsAeatSii(common.TransactionCase):
             'period_id': self.period.id,
             'type': 'in_invoice',
             'reference': 'PH-2020-0031',
+            'supplier_invoice_number': 'PH-2020-0031',
             'account_id': self.partner.property_account_payable.id,
             'invoice_line': [
                 (0, 0, {
