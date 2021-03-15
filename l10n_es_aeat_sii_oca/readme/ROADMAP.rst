@@ -3,7 +3,7 @@
 * Facturas simplificadas.
 * Asistente para consultar los documentos comunicados.
 * Libro de bienes de inversión (Libro anual se crea un módulo aparte).
-* Regímenes especiales de seguros y de agencias de viaje.
+* Regímenes especiales de seguros, de agencias de viaje o de bienes usados.
 * Facturas rectificativas por sustitución.
 * Soportar facturas de canje de facturas simplificadas por facturas completas.
   Ver https://github.com/OCA/l10n-spain/issues/1171 para más información.
