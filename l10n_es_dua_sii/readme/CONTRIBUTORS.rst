@@ -10,3 +10,5 @@
   * Pedro M. Baeza
   * João Marques
 * Eric Antones - NuoBiT Solutions, S.L. <eantones@nuobit.com>
+* `Sygel Technology <https://www.sygel.es>`__:
+  * Harald Panten
