@@ -12,7 +12,7 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     comercial = fields.Char('Trade name', size=128, index=True)
-    display_name = fields.Char(compute='_compute_display_name')
+    display_name = fields.Char(compute='_compute_display_name', store=True, index=True)
 
     @api.depends('comercial')
     def _compute_display_name(self):
