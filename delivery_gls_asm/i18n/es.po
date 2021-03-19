@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-05 07:09+0000\n"
-"PO-Revision-Date: 2020-10-06 10:16+0000\n"
-"Last-Translator: David Vidal <david.vidal@tecnativa.com>\n"
+"PO-Revision-Date: 2021-03-19 19:46+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:216
@@ -29,6 +29,15 @@ msgid ""
 "            one in your custom code.\n"
 "        "
 msgstr ""
+"\n"
+"            La API de GLS ASM no proporciona métodos para calcular las tasas "
+"de \n"
+"               entrega, por lo que  debe confiar en otro método de precio en "
+"su \n"
+"               lugar \n"
+"               o anular este\n"
+"               uno en su código personalizado.\n"
+"        "
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
@@ -362,9 +371,9 @@ msgstr "UID GLS"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/stock_picking.py:27
-#, fuzzy, python-format
+#, python-format
 msgid "GLS label for %s"
-msgstr "Etiqueta GLS"
+msgstr "Etiqueta GLS para% s"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:297
@@ -467,12 +476,12 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_request
 msgid "Last GLS xml request"
-msgstr ""
+msgstr "Última solicitud xml de GLS"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_response
 msgid "Last GLS xml response"
-msgstr ""
+msgstr "Última respuesta xml de GLS"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard____last_update
@@ -507,7 +516,7 @@ msgstr "Maritimo"
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
 msgid "Masivo"
-msgstr ""
+msgstr "Masivo"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:404
@@ -517,6 +526,9 @@ msgid ""
 "Traceback:\n"
 "{}"
 msgstr ""
+"No hay respuesta del servidor obteniendo manifisto para GLS.\n"
+"Rastrear:\n"
+"{}"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:286
@@ -526,31 +538,34 @@ msgid ""
 "Traceback:\n"
 "{}"
 msgstr ""
+"No hay respuesta del servidor que registra la entrega de GLS {}.\n"
+"Rastrear:\n"
+"{}"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "OPERACIONES RED"
-msgstr ""
+msgstr "OPERACIONES RED"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "OPTIPLUS"
-msgstr ""
+msgstr "OPTIPLUS"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "OTROS PUENTES"
-msgstr ""
+msgstr "OTROS PUENTES"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "PREPAGO"
-msgstr ""
+msgstr "PREPAGO"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "PROPIO AGENTE"
-msgstr ""
+msgstr "PROPIO AGENTE"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
@@ -559,8 +574,9 @@ msgstr "Bultos"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
+#, fuzzy
 msgid "ParcelShop"
-msgstr ""
+msgstr "ParcelShop"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_postage_type
@@ -584,133 +600,134 @@ msgstr "Proveedor"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
+#, fuzzy
 msgid "RC. PARCEL SHOP"
-msgstr ""
+msgstr "RC. PARCEL SHOP"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RC.SELLADA"
-msgstr ""
+msgstr "RC.SELLADA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "REC. INT"
-msgstr ""
+msgstr "REC. INT"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "REC. INT WW"
-msgstr ""
+msgstr "REC. INT WW"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "REC. INTERCIUDAD ECONOMY"
-msgstr ""
+msgstr "REC. ECONOMÍA INTERCIUDAD"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECANALIZA"
-msgstr ""
+msgstr "RECANALIZA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA"
-msgstr ""
+msgstr "RECOGIDA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA CRUZADA"
-msgstr ""
+msgstr "RECOGIDA CRUZADA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA ECONOMY"
-msgstr ""
+msgstr "ECONOMÍA RECOGIDA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA MEN. CAMION"
-msgstr ""
+msgstr "RECOGIDA MEN. CAMIÓN"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA MEN. F.GRANDE"
-msgstr ""
+msgstr "RECOGIDA MEN. F.GRANDE"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA MEN. FURGONETA"
-msgstr ""
+msgstr "RECOGIDA MEN. FURGONETA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA MEN. MOTO"
-msgstr ""
+msgstr "RECOGIDA MEN. MOTO"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA MENSAJERO"
-msgstr ""
+msgstr "RECOGIDA MENSAJERO"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RECOGIDA SIN MERCANCIA"
-msgstr ""
+msgstr "RECOGIDA SIN MERCANCIA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "RETORNO"
-msgstr ""
+msgstr "RETORNO"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
 msgid "Rec. en NAVE."
-msgstr ""
+msgstr "Rec. en NAVE."
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "Ref."
-msgstr ""
+msgstr "Ref."
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "SERVICIO LOCAL"
-msgstr ""
+msgstr "SERVICIO LOCAL"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "SERVICIO LOCAL CAMION"
-msgstr ""
+msgstr "SERVICIO LOCAL CAMIÓN"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "SERVICIO LOCAL F. GRANDE"
-msgstr ""
+msgstr "SERVICIO LOCAL F. GRANDE"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "SERVICIO LOCAL FURGONETA"
-msgstr ""
+msgstr "SERVICIO LOCAL FURGONETA"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "SERVICIO LOCAL MOTO"
-msgstr ""
+msgstr "SERVICIO LOCAL MOTO"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "SERVICIOS ESPECIALES"
-msgstr ""
+msgstr "SERVICIOS ESPECIALES"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "SERVICIOS RUTAS"
-msgstr ""
+msgstr "SERVICIOS RUTAS"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
 msgid "SaturdayService"
-msgstr ""
+msgstr "Servicio Sábado"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_service
@@ -725,7 +742,7 @@ msgstr "Establezca el tiempo de envío de las opciones de GLS"
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,delivery_type:0
 msgid "Seur"
-msgstr ""
+msgstr "Seur"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_shiptime
@@ -735,7 +752,7 @@ msgstr "Tiempo de envío"
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_delivery_carrier_form
 msgid "Technical"
-msgstr ""
+msgstr "Técnico"
 
 #. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
@@ -746,12 +763,12 @@ msgstr "Albarán"
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_request
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_response
 msgid "Used for issues debugging"
-msgstr ""
+msgstr "Se utiliza para la depuración de problemas"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "VALIJA"
-msgstr ""
+msgstr "VALIJA"
 
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
@@ -766,7 +783,7 @@ msgstr "C.P."
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
 msgid "dPRO"
-msgstr ""
+msgstr "dPRO"
 
 #~ msgid "Carrier"
 #~ msgstr "Transportista"
