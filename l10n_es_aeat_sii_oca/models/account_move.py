@@ -1092,9 +1092,9 @@ class AccountMove(models.Model):
         content_sent = json.loads(self.sii_content_sent)
         return to_send == content_sent
 
-    def action_post(self):
-        res = super().action_post()
-        for invoice in self.filtered("sii_enabled"):
+    def _post(self, soft=True):
+        res = super()._post(soft=soft)
+        for invoice in self.filtered(lambda x: x.sii_enabled and x.is_invoice()):
             if (
                 invoice.sii_state in ["sent_modified", "sent"]
                 and self._sii_invoice_dict_not_modified()
