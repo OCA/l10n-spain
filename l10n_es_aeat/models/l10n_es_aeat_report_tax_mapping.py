@@ -79,7 +79,13 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
 
     def _get_move_line_domain(self, date_start, date_end, map_line):
         self.ensure_one()
-        taxes = self.get_taxes_from_templates(map_line.tax_ids)
+        if map_line != map_line._origin:
+            taxes = self.env["account.tax.template"].browse(
+                [x._origin.id for x in map_line.tax_ids]
+            )
+        else:
+            taxes = map_line.tax_ids
+        taxes = self.get_taxes_from_templates(taxes)
         move_line_domain = [
             ("company_id", "child_of", self.company_id.id),
             ("date", ">=", date_start),
