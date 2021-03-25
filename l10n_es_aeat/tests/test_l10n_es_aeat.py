@@ -19,8 +19,9 @@ class TestL10nEsAeat(SavepointCase):
         )
 
     def test_parse_vat_info_es_wo_prefix(self):
-        self.partner.vat = "12345678Z"
-        self.partner.country_id = self.env.ref("base.es")
+        self.partner.write(
+            {"vat": "12345678Z", "country_id": self.env.ref("base.es").id}
+        )
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
         self.assertEqual(country_code, "ES")
         self.assertEqual(identifier_type, "")
@@ -34,11 +35,11 @@ class TestL10nEsAeat(SavepointCase):
         self.assertEqual(vat_number, "12345678Z")
 
     def test_parse_vat_info_fr_wo_prefix(self):
-        self.partner.vat = "61954506077"
-        self.partner.country_id = self.env.ref("base.fr")
+        self.partner.write(
+            {"vat": "61954506077", "country_id": self.env.ref("base.fr").id}
+        )
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
         self.assertEqual(country_code, "FR")
-        self.assertEqual(identifier_type, "02")
         self.assertEqual(vat_number, "61954506077")
 
     def test_parse_vat_info_fr_w_prefix(self):
@@ -49,11 +50,11 @@ class TestL10nEsAeat(SavepointCase):
         self.assertEqual(vat_number, "61954506077")
 
     def test_parse_vat_info_gf_wo_prefix(self):
-        self.partner.vat = "61954506077"
-        self.partner.country_id = self.env.ref("base.gf")
+        self.partner.write(
+            {"vat": "61954506077", "country_id": self.env.ref("base.gf").id}
+        )
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
         self.assertEqual(country_code, "FR")
-        self.assertEqual(identifier_type, "02")
         self.assertEqual(vat_number, "61954506077")
 
     def test_parse_vat_info_gf_w_prefix(self):
@@ -64,8 +65,9 @@ class TestL10nEsAeat(SavepointCase):
         self.assertEqual(vat_number, "61954506077")
 
     def test_parse_vat_info_cu_wo_prefix(self):
-        self.partner.vat = "12345678Z"
-        self.partner.country_id = self.env.ref("base.cu")
+        self.partner.write(
+            {"vat": "12345678Z", "country_id": self.env.ref("base.cu").id}
+        )
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
         self.assertEqual(country_code, "CU")
         self.assertEqual(identifier_type, "04")
