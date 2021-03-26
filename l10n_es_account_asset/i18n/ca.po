@@ -9,19 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-02 02:44+0000\n"
-"PO-Revision-Date: 2017-07-02 02:44+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-26 11:46+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_annual_percentage
 msgid "Annual depreciation percentage"
-msgstr ""
+msgstr "Percentatge d’amortització anual"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_category
@@ -31,18 +32,18 @@ msgstr "Categoria d'actiu"
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
 msgid "Asset/Revenue Recognition"
-msgstr ""
+msgstr "Reconeixement d’actius / ingressos"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_move_end_period
 msgid "At the end of the period"
-msgstr ""
+msgstr "Al final del període"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_method_percentage
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_category_method_percentage
 msgid "Depreciation percentage"
-msgstr ""
+msgstr "Percentatge d'amortització"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_move_end_period
@@ -51,19 +52,22 @@ msgid ""
 "months, it is put on 31st of December, and in the end of the month in other "
 "case."
 msgstr ""
+"Moveu l'entrada d'amortització al final del període. Si el termini és de 12 "
+"mesos, es posa en marxa el 31 de desembre i, a la fi del mes, en un altre "
+"cas."
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,help:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
 msgid "Only needed if not the same than purchase date"
-msgstr ""
+msgstr "Només cal si no és el mateix que la data de compra"
 
 #. module: l10n_es_account_asset
 #: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_asset_start_depreciation_date
 msgid "Start Depreciation Date"
-msgstr ""
+msgstr "Data d'inici de l'amortització"
 
 #. module: l10n_es_account_asset
 #: sql_constraint:account.asset.asset:0
 #: sql_constraint:account.asset.category:0
 msgid "Wrong percentage!"
-msgstr ""
+msgstr "Percentatge equivocat!"
