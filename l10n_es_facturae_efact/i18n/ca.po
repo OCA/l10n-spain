@@ -6,141 +6,143 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-26 14:46+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/account_invoice_integration_method.py:20
 #, python-format
 msgid "Certificate must be added for company"
-msgstr ""
+msgstr "Cal afegir el certificat per a l’empresa"
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/account_invoice_integration_method.py:23
 #, python-format
 msgid "Certificate password must be added for company"
-msgstr ""
+msgstr "S'ha d'afegir la contrasenya del certificat per a l'empresa"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_method_code_8156
 msgid "Code"
-msgstr ""
+msgstr "Codi"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model,name:l10n_es_facturae_efact.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empreses"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model,name:l10n_es_facturae_efact.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacte"
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/res_partner.py:28
 #, python-format
 msgid "Country must be defined in order to send to e.Fact"
-msgstr ""
+msgstr "Cal definir el país per enviar-lo a e.Fact"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_efact_hub_id
 msgid "Efact Hub"
-msgstr ""
+msgstr "Efact Hub"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_efact_reference
 msgid "Efact Reference"
-msgstr ""
+msgstr "Referència Efact"
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/res_partner.py:21
 #, python-format
 msgid "Facturae must be selected in order to send to e.Fact"
-msgstr ""
+msgstr "Cal seleccionar Facturae per enviar-lo a e.Fact"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_account_invoice_integration_log_hub_message_id
 msgid "Hub Message"
-msgstr ""
+msgstr "Missatge de concentrador"
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/res_partner.py:32
 #, python-format
 msgid "State must be defined in Spain in order to send to e.Fact"
-msgstr ""
+msgstr "L’estat s’ha de definir a Espanya per enviar-lo a e.Fact"
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/res_partner.py:25
 #, python-format
 msgid "Vat must be defined in order to send to e.Fact"
-msgstr ""
+msgstr "Cal definir l’IVA per enviar-lo a e.Fact"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration
 msgid "account.invoice.integration"
-msgstr ""
+msgstr "account.invoice.integration"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_log
 msgid "account.invoice.integration.log"
-msgstr ""
+msgstr "account.invoice.integration.log"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model,name:l10n_es_facturae_efact.model_account_invoice_integration_method
 msgid "account.invoice.integration.method"
-msgstr ""
+msgstr "account.invoice.integration.method"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.ui.view,arch_db:l10n_es_facturae_efact.res_config_settings_view_form
 msgid "e.Fact Configuration"
-msgstr ""
+msgstr "e.Fact Configuració"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_port
 msgid "e.Fact SSH port"
-msgstr ""
+msgstr "e.Fact SSH port"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_company_facturae_efact_code
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_partner_facturae_efact_code
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_users_facturae_efact_code
 msgid "e.Fact code"
-msgstr ""
+msgstr "e.Fact codi"
 
 #. module: l10n_es_facturae_efact
 #: code:addons/l10n_es_facturae_efact/models/res_partner.py:37
 #, python-format
 msgid "e.Fact code must be correctly defined"
-msgstr ""
+msgstr "e.El codi de dades ha d’estar definit correctament"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_password
 msgid "e.Fact password"
-msgstr ""
+msgstr "e.Contrasenya real"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_server
 msgid "e.Fact server location"
-msgstr ""
+msgstr "e. Ubicació del servidor de fets"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model.fields,field_description:l10n_es_facturae_efact.field_res_config_settings_efact_user
 msgid "e.Fact user"
-msgstr ""
+msgstr "e.Fact Usuari"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.actions.server,name:l10n_es_facturae_efact.update_efact_job_ir_actions_server
 #: model:ir.cron,cron_name:l10n_es_facturae_efact.update_efact_job
 #: model:ir.cron,name:l10n_es_facturae_efact.update_efact_job
 msgid "eFACT update Job"
-msgstr ""
+msgstr "Treball d'actualització d'eFACT"
 
 #. module: l10n_es_facturae_efact
 #: model:ir.model,name:l10n_es_facturae_efact.model_res_config_settings
 msgid "res.config.settings"
-msgstr ""
+msgstr "res.config.settings"
