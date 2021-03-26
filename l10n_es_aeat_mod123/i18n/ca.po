@@ -9,44 +9,45 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:41+0000\n"
-"PO-Revision-Date: 2018-02-10 03:41+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-26 14:46+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model,name:l10n_es_aeat_mod123.model_l10n_es_aeat_mod123_report
 msgid "AEAT 123 report"
-msgstr ""
+msgstr "Informe AEAT 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_01
 msgid "Casilla [01] Número de perceptores"
-msgstr ""
+msgstr "Casella [01] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_02
 msgid "Casilla [02] Base de la retención y/o del ingreso a cuenta"
-msgstr ""
+msgstr "Casella [02] Base de la retenció i / o de l'ingrés a compte"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_03
 msgid "Casilla [03] Retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "Casella [03] Retencions i ingressos a compte"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_04
 msgid "Casilla [04] Periodificación - Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "Casella [04] Periodificació - Ingressos exercicis anteriors"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_05
 msgid "Casilla [05] Periodificación - Regularización"
-msgstr ""
+msgstr "Casella [05] Periodificació - Regularització"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_06
@@ -54,6 +55,8 @@ msgid ""
 "Casilla [06] Suma de retenciones e ingresos a cuenta y regularización, en su "
 "caso ([3] + [5])"
 msgstr ""
+"Casella [06] Suma de retencions i ingressos a compte i regularització, si "
+"s'escau ([3] + [5])"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,help:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_07
@@ -62,6 +65,9 @@ msgid ""
 "complementaria) Resultados a ingresar de anteriores declaraciones por el "
 "mismo concepto, ejercicio y período"
 msgstr ""
+"Casella [07] A deduir (exclusivament en cas de declaració complementària) "
+"Resultats a ingressar d'anteriors declaracions pel mateix concepte, exercici "
+"i període"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
@@ -69,6 +75,8 @@ msgid ""
 "Crea y consulta las declaraciones del modelo 123 de\n"
 "            la AEAT."
 msgstr ""
+"Crea i consulta les declaracions de el model 123 de\n"
+"            l'AEAT."
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_create_uid
@@ -83,12 +91,12 @@ msgstr "Creado en"
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_tree
 msgid "Declaraciones AEAT 123"
-msgstr ""
+msgstr "Declaracions AEAT 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod123.action_l10n_es_aeat_mod123_report
 msgid "Declaración AEAT 123"
-msgstr ""
+msgstr "Declaració AEAT 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_display_name
@@ -98,7 +106,7 @@ msgstr "Nombre a mostrar"
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Domiciliación"
-msgstr ""
+msgstr "Domiciliació"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_id
@@ -108,12 +116,12 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Ingreso"
-msgstr ""
+msgstr "ingrés"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Ingreso a anotar en CCT"
-msgstr ""
+msgstr "Ingrés a anotar en CCT"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report___last_update
@@ -138,22 +146,22 @@ msgstr "Nº modelo"
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
 msgid "Modelo 123"
-msgstr ""
+msgstr "Model 123"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_currency_id
 msgid "Moneda"
-msgstr ""
+msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod123
 #: selection:l10n.es.aeat.mod123.report,tipo_declaracion:0
 msgid "Negativa"
-msgstr ""
+msgstr "Negativa"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Periodificación"
-msgstr ""
+msgstr "Periodificació"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
@@ -164,7 +172,7 @@ msgstr "Resultado"
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Retenciones e ingresos a cuenta"
-msgstr ""
+msgstr "Retencions i ingressos a compte"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
@@ -174,49 +182,49 @@ msgstr "Líneas de impuestos"
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_tipo_declaracion
 msgid "Tipo de declaración"
-msgstr ""
+msgstr "Tipus de declaració"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod123.view_l10n_es_aeat_mod123_report_form
 msgid "Total liquidación"
-msgstr ""
+msgstr "Total liquidació"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_01
 msgid "[01] Número de perceptores"
-msgstr ""
+msgstr "[01] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_02
 msgid "[02] Base retenciones"
-msgstr ""
+msgstr "[02] Base retencions"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_03
 msgid "[03] Retenciones"
-msgstr ""
+msgstr "[03] Retencions"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_04
 msgid "[04] Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "[04] Ingressos exercicis anteriors"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_05
 msgid "[05] Regularización"
-msgstr ""
+msgstr "[05] Regularització"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_06
 msgid "[06] Total retenciones"
-msgstr ""
+msgstr "[06] Total retencions"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_07
 msgid "[07] Ingresos ejercicios anteriores"
-msgstr ""
+msgstr "[07] Ingressos exercicis anteriors"
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report_casilla_08
 msgid "[08] Resultado a ingresar"
-msgstr ""
+msgstr "[08] Resultat a ingressar"
