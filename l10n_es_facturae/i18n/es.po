@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2019-02-04 16:50+0000\n"
-"Last-Translator: Marta Vázquez Rodríguez <vazrodmar@gmail.com>\n"
+"PO-Revision-Date: 2021-03-26 14:46+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,help:l10n_es_facturae.field_account_invoice_line_invoice_state
@@ -30,6 +30,14 @@ msgid ""
 "related journal entries may or may not be reconciled.\n"
 " * The 'Cancelled' status is used when user cancel invoice."
 msgstr ""
+" * L'estat \"Esborrany\" s'utilitza quan un usuari codifica una factura nova "
+"i no confirmada.\n"
+" * L'estat \"Obert\" s'utilitza quan l'usuari crea la factura i es genera un "
+"número de factura. Es manté en estat obert fins que l'usuari paga la factura."
+"\n"
+" * L'estat \"Pagat\" s'estableix automàticament quan es paga la factura. Es "
+"poden conciliar o no les seves entrades de diari relacionades.\n"
+" * L'estat \"Cancel·lat\" s'utilitza quan l'usuari cancel·la la factura."
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_count
@@ -390,77 +398,75 @@ msgstr "Factura-E sin firmar"
 #, python-format
 msgid "FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
+"Les dates d'inici i finalització de FacturaE són obligatòries si s'omple una "
+"d'elles"
 
 #. module: l10n_es_facturae
 #: model:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
-#, fuzzy
 msgid "Facturae"
-msgstr "facturae"
+msgstr "Facturae"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_invoice.py:531
-#, fuzzy, python-format
+#, python-format
 msgid "Facturae Configuration"
-msgstr "Motivo de Reembolso según Facturae"
+msgstr "Configuració de Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_end_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_end_date
-#, fuzzy
 msgid "Facturae End Date"
-msgstr "Código de Facturae"
+msgstr "Data de finalització de Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_file_date
-#, fuzzy
 msgid "Facturae File Date"
-msgstr "Fichero Factura-E"
+msgstr "Data del fitxer Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_file_reference
-#, fuzzy
 msgid "Facturae File Reference"
-msgstr "Motivo de Reembolso según Facturae"
+msgstr "Referència del fitxer Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_contract_date
 msgid "Facturae Issuer Contract Date"
-msgstr ""
+msgstr "Data del contracte de l'emissor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_contract_reference
 msgid "Facturae Issuer Contract Reference"
-msgstr ""
+msgstr "Referència del contracte de l'emissor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_transaction_date
 msgid "Facturae Issuer Transaction Date"
-msgstr ""
+msgstr "Data de la transacció de l’emissor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_issuer_transaction_reference
 msgid "Facturae Issuer Transaction Reference"
-msgstr ""
+msgstr "Referència de la transacció de l'emissor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_contract_date
 msgid "Facturae Receiver Contract Date"
-msgstr ""
+msgstr "Data del contracte del receptor de factures"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_contract_reference
 msgid "Facturae Receiver Contract Reference"
-msgstr ""
+msgstr "Referència del contracte del receptor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_transaction_date
 msgid "Facturae Receiver Transaction Date"
-msgstr ""
+msgstr "Data de transacció del receptor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_receiver_transaction_reference
 msgid "Facturae Receiver Transaction Reference"
-msgstr ""
+msgstr "Referència de transaccions del receptor Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_refund_reason
@@ -470,15 +476,13 @@ msgstr "Motivo de Reembolso según Facturae"
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_facturae_start_date
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_start_date
-#, fuzzy
 msgid "Facturae Start Date"
-msgstr "Código de Facturae"
+msgstr "Data d'inici de Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_line_facturae_transaction_date
-#, fuzzy
 msgid "Facturae Transaction Date"
-msgstr "Código de Facturae"
+msgstr "Data de la transacció Facturae"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment_mode_facturae_code
@@ -695,9 +699,8 @@ msgstr "Factura"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_line
-#, fuzzy
 msgid "Invoice Line"
-msgstr "Factura"
+msgstr "Línia de factura"
 
 #. module: l10n_es_facturae
 #: model:ir.actions.act_window,name:l10n_es_facturae.invoice_integration_action
@@ -1026,9 +1029,8 @@ msgstr "Enviar cancelación"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,integration_status:0
-#, fuzzy
 msgid "Sended"
-msgstr "Enviar"
+msgstr "Enviat"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,state:0
@@ -1052,7 +1054,7 @@ msgstr "Serie de la factura"
 #: code:addons/l10n_es_facturae/models/account_invoice.py:521
 #, python-format
 msgid "Start date cannot be later than end date"
-msgstr ""
+msgstr "La data d'inici no pot ser posterior a la data de finalització"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_state
