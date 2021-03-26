@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2018-02-26 12:00+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-03-26 17:46+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
@@ -26,7 +27,7 @@ msgstr "Banco"
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_create_uid
@@ -46,12 +47,12 @@ msgstr "Nombre mostrado"
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr "ID"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_l10n_es_partner_import_wizard_import_fail
 msgid "Import Fail"
-msgstr ""
+msgstr "Error de importación"
 
 #. module: l10n_es_partner
 #: model:ir.ui.view,arch_db:l10n_es_partner.l10n_es_partner_import_wizard
@@ -140,7 +141,7 @@ msgstr "NIF"
 #. module: l10n_es_partner
 #: model:ir.model.fields,help:l10n_es_partner.field_res_bank_vat
 msgid "Value Added Tax number"
-msgstr "Nº de identificación fiscal"
+msgstr "Número de impuesto sobre el valor añadido"
 
 #. module: l10n_es_partner
 #: model:ir.model.fields,field_description:l10n_es_partner.field_res_bank_website
