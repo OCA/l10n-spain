@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-08 12:15+0000\n"
-"PO-Revision-Date: 2019-02-08 12:15+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2021-03-26 14:46+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_mod347
 #: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
@@ -267,7 +268,6 @@ msgstr "<strong class=\"text-right\">Importe:</strong>"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
-#, fuzzy
 msgid ""
 "<strong>Color codes: </strong> <span class=\"text-info\">Refund invoices</"
 "span> - Normal invoices"
@@ -347,9 +347,8 @@ msgstr "Importe 4T:"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record_amount_signed
-#, fuzzy
 msgid "Amount signed"
-msgstr "Importe"
+msgstr "Importe  firmado"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
@@ -759,9 +758,8 @@ msgstr "Registros de asientos"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record_move_type
-#, fuzzy
 msgid "Move type"
-msgstr "Asiento"
+msgstr "Tipo de movimiento"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:183
