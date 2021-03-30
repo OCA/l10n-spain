@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-08-06 12:59+0000\n"
+"PO-Revision-Date: 2021-03-30 09:46+0000\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_pos
 #. openerp-web
@@ -23,6 +23,7 @@ msgstr ""
 msgid ""
 "!env.pos.config.iface_l10n_es_simplified_invoice or receipt.is_to_invoice"
 msgstr ""
+"! env.pos.config.iface_l10n_es_simplified_invoice o ticket.is_to_invoice"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
@@ -46,14 +47,14 @@ msgstr "Client:"
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__display_name
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence__id
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__id
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
@@ -70,7 +71,7 @@ msgstr "Factures"
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config____last_update
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Darrera modificació el"
 
 #. module: l10n_es_pos
 #: model:ir.model.fields,help:l10n_es_pos.field_pos_config__l10n_es_simplified_invoice_limit
@@ -149,7 +150,7 @@ msgstr "Factura simplificada"
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
 #, python-format
 msgid "Simplified invoice>"
-msgstr ""
+msgstr "Factura simplificada>"
 
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
