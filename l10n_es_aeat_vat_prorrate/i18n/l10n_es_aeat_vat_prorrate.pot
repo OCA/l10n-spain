@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_vat_prorrate
+# 	* l10n_es_aeat_vat_prorrate
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +55,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_vat_prorrate.selection__l10n_es_aeat_mod303_report__vat_prorrate_type__general
 msgid "General prorrate"
 msgstr ""
 
@@ -80,13 +80,14 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: selection:l10n.es.aeat.mod303.report,vat_prorrate_type:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_vat_prorrate.selection__l10n_es_aeat_mod303_report__vat_prorrate_type__none
 msgid "None"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
-msgid "Please introduce the year for which you want to compute\n"
+msgid ""
+"Please introduce the year for which you want to compute\n"
 "                        the prorrate percentage."
 msgstr ""
 
@@ -106,30 +107,37 @@ msgid "Regularización por aplicación del porcentaje definitivo de prorrata."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:222
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:0
 #, python-format
 msgid "Regularización prorrata IVA"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:67
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:0
 #, python-format
-msgid "There's at least one previous report in draft state. Please confirm it before making this one."
+msgid ""
+"There's at least one previous report in draft state. Please confirm it "
+"before making this one."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_account_id
-msgid "This account will be the one where charging the regularization of VAT prorrate."
+msgid ""
+"This account will be the one where charging the regularization of VAT "
+"prorrate."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,help:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_mod303_report__prorrate_regularization_analytic_account_id
-msgid "This analytic account will be the one where charging the regularization of the VAT prorrate."
+msgid ""
+"This analytic account will be the one where charging the regularization of "
+"the VAT prorrate."
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
-msgid "This wizard will compute the VAT prorrate for a year.\n"
+msgid ""
+"This wizard will compute the VAT prorrate for a year.\n"
 "                        You have to use the prorrate of the previous year as\n"
 "                        provisional value for all the AEAT reports of the\n"
 "                        following year up to last period, in which the\n"
@@ -138,7 +146,7 @@ msgid "This wizard will compute the VAT prorrate for a year.\n"
 msgstr ""
 
 #. module: l10n_es_aeat_vat_prorrate
-#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:58
+#: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:0
 #, python-format
 msgid "VAT prorrate percent must be between 0.01 and 100"
 msgstr ""
@@ -172,4 +180,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.view_compute_vat_prorrate_form
 msgid "or"
 msgstr ""
-
