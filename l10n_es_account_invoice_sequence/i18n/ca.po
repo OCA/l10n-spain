@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-24 14:00+0000\n"
-"PO-Revision-Date: 2016-03-24 14:01+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2021-03-31 16:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_account_invoice_sequence
 #: model:ir.model,name:l10n_es_account_invoice_sequence.model_account_invoice
@@ -26,7 +27,7 @@ msgstr "Factura"
 #. module: l10n_es_account_invoice_sequence
 #: field:account.invoice,invoice_number:0
 msgid "Invoice number"
-msgstr ""
+msgstr "Número de factura"
 
 #. module: l10n_es_account_invoice_sequence
 #: field:account.journal,invoice_sequence_id:0
@@ -43,7 +44,7 @@ msgstr "Diari"
 #: code:addons/l10n_es_account_invoice_sequence/wizard/wizard_multi_charts_accounts.py:32
 #, python-format
 msgid "Journal Entries Sequence"
-msgstr ""
+msgstr "Seqüència d’entrades al diari"
 
 #. module: l10n_es_account_invoice_sequence
 #: code:addons/l10n_es_account_invoice_sequence/models/account_journal.py:41
