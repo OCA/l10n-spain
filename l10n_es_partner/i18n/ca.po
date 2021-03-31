@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-01-19 10:40+0000\n"
-"PO-Revision-Date: 2017-01-13 09:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2021-03-31 16:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_partner
 #: model:ir.model,name:l10n_es_partner.model_res_bank
@@ -77,21 +78,23 @@ msgid ""
 "If the country of the bank is Spain, it validates the bank code or IBAN, "
 "formatting it accordingly."
 msgstr ""
+"Si el país del banc és Espanya, valida el codi bancari o IBAN, formatant-lo "
+"en conseqüència."
 
 #. module: l10n_es_partner
 #: field:l10n.es.partner.import.wizard,import_fail:0
 msgid "Import fail"
-msgstr ""
+msgstr "La importació ha fallat"
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import from Internet"
-msgstr ""
+msgstr "Importació des d'Internet"
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Import from local file"
-msgstr ""
+msgstr "Importa des de fitxer local"
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/wizard/l10n_es_partner_wizard.py:51
@@ -99,7 +102,7 @@ msgstr ""
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 #, python-format
 msgid "Import spanish bank data"
-msgstr ""
+msgstr "Importar dades bancàries espanyoles"
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
@@ -107,6 +110,8 @@ msgid ""
 "Internet (from Bank of Spain). Maybe this source will be not available from "
 "certain moment in time. You will need xlrd Python library."
 msgstr ""
+"Internet (del Banc d’Espanya). Potser aquesta font no estarà disponible des "
+"de cert moment. Necessitareu xlrd biblioteca Python."
 
 #. module: l10n_es_partner
 #: code:addons/l10n_es_partner/models/l10n_es_partner.py:91
@@ -133,6 +138,8 @@ msgstr "Darrera Actualització el"
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "Local file mirror. This copy was updated last time on 16/02/2015."
 msgstr ""
+"Mirall de fitxers local. Aquesta còpia es va actualitzar la darrera vegada "
+"el 16/02/2015."
 
 #. module: l10n_es_partner
 #: field:res.bank,lname:0
@@ -150,17 +157,21 @@ msgid ""
 "Something has failed importing data from Internet. You will need to import "
 "local data instead."
 msgstr ""
+"S'ha produït un error en importar dades d'Internet. Haureu d’importar dades "
+"locals."
 
 #. module: l10n_es_partner
 #: model:ir.actions.todo,note:l10n_es_partner.config_wizard_l10n_es_partner
 msgid "This wizard will import spanish bank data."
-msgstr ""
+msgstr "Aquest assistent importarà dades bancàries espanyoles."
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 msgid ""
 "This wizard will import spanish bank data. You can choose to import it from:"
 msgstr ""
+"Aquest assistent importarà dades bancàries espanyoles. Podeu importar-lo des "
+"de:"
 
 #. module: l10n_es_partner
 #: view:res.partner:l10n_es_partner.view_partner_form_comercial
@@ -195,7 +206,7 @@ msgstr "Lloc web"
 #. module: l10n_es_partner
 #: view:res.partner.bank:l10n_es_partner.view_partner_bank_form_banco
 msgid "onchange_banco(acc_number, acc_country_id, state)"
-msgstr ""
+msgstr "onchange_banco (acc_number, acc_country_id, state)"
 
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
@@ -205,4 +216,4 @@ msgstr "títol"
 #. module: l10n_es_partner
 #: view:l10n.es.partner.import.wizard:l10n_es_partner.l10n_es_partner_import_wizard
 msgid "{'invisible': [('import_fail', '=', True)]}"
-msgstr ""
+msgstr "{'invisible': [('import_fail', '=', True)]}"
