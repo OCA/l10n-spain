@@ -6,86 +6,88 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2021-03-31 16:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: selection:payment.mode,conf_bankia_type:0
 msgid "Cheque bancario"
-msgstr ""
+msgstr "Consulta bancaria"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:141
 #, python-format
 msgid "Error: El Proveedor %s no tiene                     establecida la Ciudad."
-msgstr ""
+msgstr "Error: El Proveedor %s no té establert la Ciutat."
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:130
 #, python-format
 msgid "Error: El Proveedor %s no tiene                     establecido el C.P."
-msgstr ""
+msgstr "Error: El Proveedor %s no té establert el C.P."
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:119
 #, python-format
 msgid "Error: El Proveedor %s no tiene                     establecido el Domicilio."
-msgstr ""
+msgstr "Error: El Proveedor %s no té establert el Domicili."
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:96
 #, python-format
 msgid "Error: El Proveedor %s no tiene                     establecido el NIF."
-msgstr ""
+msgstr "Error: El Proveedor %s no té establert el NIF."
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:45
 #, python-format
 msgid "Error: Fecha planificada no                         establecida en la Orden de pago."
-msgstr ""
+msgstr "Error: Fecha planificada no establerta en l’Orde de pagament."
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: code:addons/l10n_es_payment_order_confirming_bankia/wizard/confirming_bankia.py:63
 #, python-format
 msgid "Error: Propietario de la cuenta no                     establecido para la cuenta %s."
-msgstr ""
+msgstr "Error: Propietari de la compte no establert per al compte %s."
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: model:ir.model,name:l10n_es_payment_order_confirming_bankia.model_banking_export_csb_wizard
 msgid "Export CSB File"
-msgstr ""
+msgstr "Exporta fitxer CSB"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: field:payment.mode,is_conf_bankia:0
 msgid "Is conf bankia"
-msgstr ""
+msgstr "És conf bankia"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: view:payment.mode:l10n_es_payment_order_confirming_bankia.view_payment_mode_form
 msgid "Opciones Confirming"
-msgstr ""
+msgstr "opcions Confirming"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: selection:payment.mode,conf_bankia_type:0
 msgid "Pago domiciliado"
-msgstr ""
+msgstr "pagament domiciliat"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: model:ir.model,name:l10n_es_payment_order_confirming_bankia.model_payment_mode
 msgid "Payment Mode"
-msgstr ""
+msgstr "Mode de pagament"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: field:payment.mode,conf_bankia_type:0
 msgid "Tipo de pago"
-msgstr ""
+msgstr "Tipus de pagament"
 
 #. module: l10n_es_payment_order_confirming_bankia
 #: selection:payment.mode,conf_bankia_type:0
 msgid "Tranferencia"
-msgstr ""
+msgstr "transferència"
