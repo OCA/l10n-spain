@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-29 00:59+0000\n"
-"PO-Revision-Date: 2017-08-24 09:03+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2021-03-31 16:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
@@ -38,60 +39,66 @@ msgstr "Línia factura"
 #: help:account.invoice,origin_invoices_ids:0
 msgid "Links to original invoice which is referred by current refund invoice"
 msgstr ""
+"Enllaços a la factura original referida per la factura de reembossament "
+"actual"
 
 #. module: account_refund_original
 #: field:account.invoice.line,origin_line_ids:0
 msgid "Original invoice line"
-msgstr ""
+msgstr "Línia de factura original"
 
 #. module: account_refund_original
 #: help:account.invoice.line,origin_line_ids:0
 msgid "Original invoice line to which this refund invoice line is referred to"
 msgstr ""
+"Línia de factura original a la qual es fa referència a aquesta línia de "
+"facturació de reembossament"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
 #: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
 msgid "Payments"
-msgstr ""
+msgstr "Pagaments"
 
 #. module: account_refund_original
 #: field:account.invoice,origin_invoices_ids:0
 msgid "Refund invoice"
-msgstr ""
+msgstr "Factura de devolució"
 
 #. module: account_refund_original
 #: field:account.invoice.line,refund_line_ids:0
 msgid "Refund invoice line"
-msgstr ""
+msgstr "Línia de facturació de devolució"
 
 #. module: account_refund_original
 #: help:account.invoice.line,refund_line_ids:0
 msgid "Refund invoice lines created from this invoice line"
 msgstr ""
+"Reembossar les línies de factura creades a partir d’aquesta línia de "
+"facturació"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
 #: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
 #: field:account.invoice,refund_invoice_ids:0
 msgid "Refund invoices"
-msgstr ""
+msgstr "Factures de devolució"
 
 #. module: account_refund_original
 #: help:account.invoice,refund_invoice_ids:0
 msgid "Refund invoices created from this invoice"
-msgstr ""
+msgstr "Reembossament de les factures creades a partir d’aquesta factura"
 
 #. module: account_refund_original
 #: field:account.invoice,refund_invoices_description:0
 msgid "Refund invoices description"
-msgstr ""
+msgstr "Descripció de les factures de devolució"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
 #: view:account.invoice:account_refund_original.view_supplier_account_invoice_add_refunds_details_form
 msgid "Refunded invoices"
-msgstr ""
+msgstr "Factures reembossades"
 
 #. module: account_refund_original
 #: view:account.invoice:account_refund_original.view_customer_account_invoice_add_refunds_details_form
