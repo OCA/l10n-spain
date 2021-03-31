@@ -9,20 +9,21 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-01 00:54+0000\n"
-"PO-Revision-Date: 2016-06-30 15:01+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"PO-Revision-Date: 2021-03-31 16:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,annual_percentage:0
 msgid "Annual depreciation percentage"
-msgstr ""
+msgstr "Percentatge d’amortització anual"
 
 #. module: l10n_es_account_asset
 #: model:ir.model,name:l10n_es_account_asset.model_account_asset_asset
@@ -37,13 +38,13 @@ msgstr "Categoria d'actiu"
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,move_end_period:0
 msgid "At the end of the period"
-msgstr ""
+msgstr "Al final del període"
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,method_percentage:0
 #: field:account.asset.category,method_percentage:0
 msgid "Depreciation percentage"
-msgstr ""
+msgstr "Percentatge d'amortització"
 
 #. module: l10n_es_account_asset
 #: help:account.asset.asset,move_end_period:0
@@ -52,11 +53,14 @@ msgid ""
 "months, it is put on 31st of December, and in the end of the month in other "
 "case."
 msgstr ""
+"Moveu l'entrada d'amortització al final del període. Si el termini és de 12 "
+"mesos, es posa en marxa el 31 de desembre i, a la fi del mes, en un altre "
+"cas."
 
 #. module: l10n_es_account_asset
 #: help:account.asset.asset,start_depreciation_date:0
 msgid "Only needed if not the same than purchase date"
-msgstr ""
+msgstr "Només cal si no és el mateix que la data de compra"
 
 #. module: l10n_es_account_asset
 #: constraint:account.asset.asset:0
@@ -64,17 +68,19 @@ msgid ""
 "Prorata temporis can be applied only for time method \"number of "
 "depreciations\"."
 msgstr ""
+"Prorata temporis només es pot aplicar per al mètode de temps \"nombre de "
+"depreciacions\"."
 
 #. module: l10n_es_account_asset
 #: field:account.asset.asset,start_depreciation_date:0
 msgid "Start Depreciation Date"
-msgstr ""
+msgstr "Data d'inici de l'amortització"
 
 #. module: l10n_es_account_asset
 #: sql_constraint:account.asset.asset:0
 #: sql_constraint:account.asset.category:0
 msgid "Wrong percentage!"
-msgstr ""
+msgstr "Percentatge equivocat!"
 
 #. module: l10n_es_account_asset
 #: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
@@ -83,6 +89,8 @@ msgid ""
 "{'invisible':[('method_time','!=','end')], 'required':"
 "[('method_time','=','end')]}"
 msgstr ""
+"{'invisible':[('method_time','!=','end')], "
+"'required':[('method_time','=','end')]}"
 
 #. module: l10n_es_account_asset
 #: view:account.asset.asset:l10n_es_account_asset.view_account_asset_asset_form_l10n_es
@@ -91,3 +99,5 @@ msgid ""
 "{'invisible':[('method_time','!=','number')], 'required':"
 "[('method_time','=','number')]}"
 msgstr ""
+"{'invisible':[('method_time','!=','number')], "
+"'required':[('method_time','=','number')]}"
