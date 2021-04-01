@@ -12,7 +12,7 @@
     "author": "Studio73, " "Comunitea, " "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["l10n_es_aeat_sii_oca", "l10n_es_dua"],
-    "data": ["data/tax_code_map_dua_sii_data.xml"],
+    "data": ["data/tax_code_map_dua_sii_data.xml", "views/account_move_views.xml"],
     "application": False,
     "installable": True,
     "auto_install": True,

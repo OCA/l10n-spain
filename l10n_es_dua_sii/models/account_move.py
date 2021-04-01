@@ -11,7 +11,9 @@ from odoo import api, fields, models, tools
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    sii_dua_invoice = fields.Boolean("SII DUA Invoice", compute="_compute_dua_invoice")
+    sii_dua_invoice = fields.Boolean(
+        "SII DUA Invoice", compute="_compute_dua_invoice", store=True
+    )
 
     @api.model
     @tools.ormcache("company")

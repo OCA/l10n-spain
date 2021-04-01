@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_invoice_sii_filter_dua" model="ir.ui.view">
+        <field name="name">view.account.invoice.sii.filter.dua</field>
+        <field name="model">account.move</field>
+        <field
+            name="inherit_id"
+            ref="l10n_es_aeat_sii_oca.view_account_invoice_sii_filter"
+        />
+        <field name="arch" type="xml">
+            <xpath expr='//filter[@name="sii_not_sent"]' position='attributes'>
+                <attribute
+                    name="domain"
+                >[('sii_state', '=', 'not_sent'), ('date', '>=', '2017-01-01'), ('sii_dua_invoice', '=', False)]</attribute>
+            </xpath>
+            <xpath expr='//filter[@name="sii_pending"]' position='attributes'>
+                <attribute
+                    name="domain"
+                >[('sii_state', 'in', ['sent_modified','cancelled_modified']), ('sii_dua_invoice', '=', False)]</attribute>
+            </xpath>
+            <xpath expr='//filter[@name="sii_sent"]' position='attributes'>
+                <attribute
+                    name="domain"
+                >[('sii_state', 'not in', ['not_sent']), ('sii_dua_invoice', '=', False)]</attribute>
+            </xpath>
+            <xpath expr='//filter[@name="sii_send_failed"]' position='attributes'>
+                <attribute
+                    name="domain"
+                >[('sii_send_failed', '=', True), ('sii_dua_invoice', '=', False)]</attribute>
+            </xpath>
+            <xpath expr='//filter[@name="sii_cancelled"]' position='attributes'>
+                <attribute
+                    name="domain"
+                >[('sii_state', 'in', ['cancelled','cancelled_modified']), ('sii_dua_invoice', '=', False)]</attribute>
+            </xpath>
+            <xpath expr='//filter[@name="sii_error"]' position='attributes'>
+                <attribute
+                    name="domain"
+                >[('sii_send_failed', '=', True), ('sii_dua_invoice', '=', False)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
