@@ -28,6 +28,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
         "P_IRPF19": (100, 19),
         "P_IRPF20": (200, 40),
         "P_IRPF21P": (300, 63),
+        "P_IRPF24": (400, 96),
     }
     taxes_result = {
         # Rendimientos del trabajo (dinerarios) - Base
@@ -40,27 +41,29 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
         "6": (2 * 450),  # P_IRPF21TE
         # Rendimientos de actividades económicas (dinerarios) - Base
         "8": (
-            (2 * 4000)
-            + (2 * 5000)
-            + (2 * 6000)  # P_IRPF1, P_IRPF2
-            + (2 * 7000)
-            + (2 * 8000)  # P_IRPF7, P_IRPF9
-            + (2 * 9000)
-            + (2 * 100)  # P_IRPF15, P_IRPF18
-            + (2 * 200)
-            + (2 * 300)  # P_IRPF19, P_IRPF20  # P_IRPF21P
+            (2 * 4000)  # P_IRPF1
+            + (2 * 5000)  # P_IRPF2
+            + (2 * 6000)  # P_IRPF7
+            + (2 * 7000)  # P_IRPF9
+            + (2 * 8000)  # P_IRPF15
+            + (2 * 9000)  # P_IRPF18
+            + (2 * 100)  # P_IRPF19
+            + (2 * 200)  # P_IRPF20
+            + (2 * 300)  # P_IRPF21P
+            + (2 * 400)  # P_IRPF24
         ),
         # Rendimientos de actividades económicas (dinerarios) - Retenciones
         "9": (
-            (2 * 40)
-            + (2 * 100)
-            + (2 * 420)  # P_IRPF1, P_IRPF2
-            + (2 * 630)
-            + (2 * 1200)  # P_IRPF7, P_IRPF9
-            + (2 * 1620)
-            + (2 * 19)  # P_IRPF15, P_IRPF18
-            + (2 * 40)
-            + (2 * 63)  # P_IRPF19, P_IRPF20  # P_IRPF21P
+            (2 * 40)  # P_IRPF1
+            + (2 * 100)  # P_IRPF2
+            + (2 * 420)  # P_IRPF7
+            + (2 * 630)  # P_IRPF9
+            + (2 * 1200)  # P_IRPF15
+            + (2 * 1620)  # P_IRPF18
+            + (2 * 19)  # P_IRPF19
+            + (2 * 40)  # P_IRPF20
+            + (2 * 63)  # P_IRPF21P
+            + (2 * 96)  # P_IRPF24
         ),
     }
 
