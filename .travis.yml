@@ -14,17 +14,10 @@ addons:
       - expect-dev # provides unbuffer utility
 
 stages:
-  - linting
   - test
 
 jobs:
   include:
-    - stage: linting
-      name: "pre-commit"
-      install: pip install pre-commit
-      script: pre-commit run --all --show-diff-on-failure --verbose --color always
-      after_success:
-      before_install:
     - stage: test
       env:
         - TESTS=1 ODOO_REPO="odoo/odoo" MAKEPOT="1"
@@ -34,7 +27,6 @@ jobs:
 env:
   global:
     - VERSION="14.0" TESTS="0" LINT_CHECK="0" MAKEPOT="0"
-    - MQT_DEP=PIP
 
 install:
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="action_aeat_vat_book_mapping">
+        <field name="name">AEAT vat book map</field>
+        <field name="res_model">aeat.vat.book.map.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_aeat_vat_book_map"
+        parent="l10n_es_aeat.menu_l10n_es_aeat_config"
+        action="action_aeat_vat_book_mapping"
+        name="AEAT vat book map"
+    />
+    <record id="l10n_es_aeat_vat_book_map_lines_view_tree" model="ir.ui.view">
+        <field name="name">aeat.vat.book.map.lines.view.tree</field>
+        <field name="model">aeat.vat.book.map.line</field>
+        <field name="arch" type="xml">
+            <tree string="AEAT vat book map" editable="bottom">
+                <field name="name" />
+                <field name="book_type" />
+                <field name="special_tax_group" />
+                <field name="fee_type_xlsx_column" />
+                <field name="fee_amount_xlsx_column" />
+                <field name="tax_tmpl_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+</odoo>
