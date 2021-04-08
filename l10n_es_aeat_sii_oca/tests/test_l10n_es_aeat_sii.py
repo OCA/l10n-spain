@@ -108,7 +108,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase):
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
         result_dict = invoice._get_sii_invoice_dict()
-        path = get_resource_path(module, "tests", json_file)
+        path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
@@ -318,10 +318,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.assertEqual(
             invoice_temp.sii_description, "Test customer header | Test line",
         )
-
-    def test_permissions(self):
-        """ This should work without errors """
-        self.invoice.with_user(self.user).action_post()
 
     def _activate_certificate(self, passwd=None):
         """  Obtain Keys from .pfx and activate the cetificate """
