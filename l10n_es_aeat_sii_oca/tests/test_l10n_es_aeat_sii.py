@@ -101,7 +101,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
             vals.update(extra_vals)
         invoice = self.env["account.move"].create(vals)
         result_dict = invoice._get_sii_invoice_dict()
-        path = get_resource_path(module, "tests", json_file)
+        path = get_resource_path(module, "tests/json", json_file)
         if not path:
             raise Exception("Incorrect JSON file: %s" % json_file)
         with open(path, "r") as f:
@@ -304,10 +304,6 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             invoice_temp.sii_description,
             "Test customer header | Test line",
         )
-
-    def test_permissions(self):
-        """ This should work without errors """
-        self.invoice.with_user(self.user).action_post()
 
     def _check_binding_address(self, invoice):
         company = invoice.company_id
