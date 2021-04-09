@@ -6,14 +6,16 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2017 Factor Libre - Ismael Calvo
 # Copyright 2017 Otherway - Pedro Rodríguez Gil
-# Copyright 2017 Tecnativa - Pedro M. Baeza
+# Copyright 2017-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 Angel Moya <angel.moya@pesol.es>
+# Copyright 2021 Punt Sistemes - Juanvi Pascual <jvpascual@puntsistemes.es>
+# Copyright 2021 Punt Sistemes - Pedro Ortega <portega@puntsistemes.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": u"Suministro Inmediato de Información en el IVA",
-    "version": "10.0.3.4.1",
+    "version": "10.0.4.0.0",
     "category": "Accounting & Finance",
     "website": "https://odoospain.odoo.com",
     "author": "Acysos S.L.,"
@@ -25,6 +27,7 @@
               "Otherway,"
               "Tecnativa,"
               "Javi Melendez,"
+              "Punt Sistemes S.L.U.,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
