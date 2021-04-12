@@ -38,3 +38,30 @@ def migrate(env, version):
         JOIN account_move am ON am.old_invoice_id = rel.invoice_id
         """,
     )
+    # Change jobs reference
+    pattern = r"account\.invoice\((.*),\)\.(confirm_one_invoice|cancel_one_invoice)\(\)"
+    pattern2 = r"(.*)\"model\": \"account.invoice\"(.*)\"ids\": \[(.*)\](.*)"
+    openupgrade.logged_query(
+        env.cr,
+        r"""
+        WITH sub AS (
+            SELECT id, regexp_matches(func_string, $$%(pattern)s$$) as parts,
+                regexp_matches(records, $$%(pattern2)s$$) as parts2
+            FROM queue_job
+            WHERE func_string ~ $$%(pattern)s$$
+        )
+        UPDATE queue_job qj
+        SET func_string = concat('account.move(', am.id::text, ',).', parts[2], '()'),
+            model_name = 'account.move',
+            name = concat('account.move.', method_name),
+            channel_method_name = concat('<account.move>.', parts[2]),
+            record_ids = concat('[', am.id::text, ']'),
+            records = concat(
+                sub.parts2[1], '"model": "account.move"', sub.parts2[2],
+                '"ids": [', am.id, ']', sub.parts2[4]
+            )
+        FROM sub
+        JOIN account_move am ON am.old_invoice_id = sub.parts[1]::int
+        WHERE sub.id = qj.id"""
+        % {"pattern": pattern, "pattern2": pattern2},
+    )
