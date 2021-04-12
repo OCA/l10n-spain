@@ -4,3 +4,6 @@
 
   * Luis M. Ontalba
   * Pedro M. Baeza
+* `Landoo <https://www.landoo.es/>`__:
+
+  * Aritz Olea
