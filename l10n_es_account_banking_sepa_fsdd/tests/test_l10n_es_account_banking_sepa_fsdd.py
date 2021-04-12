@@ -96,7 +96,7 @@ class TestFSDD(TestSDDBase):
         self.payment_order.generated2uploaded()
         self.assertEqual(self.payment_order.state, "uploaded")
         for inv in [invoice1, invoice2]:
-            self.assertEqual(inv.invoice_payment_state, "paid")
+            self.assertEqual(inv.payment_state, "paid")
         self.assertEqual(self.mandate2.recurrent_sequence_type, "recurring")
         return
 
