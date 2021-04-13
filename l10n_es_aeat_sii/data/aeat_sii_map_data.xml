@@ -49,6 +49,7 @@
             <field name="code">SFESS</field>
             <field name="taxes" eval="[(6, 0, [
                 ref('l10n_es.account_tax_template_s_iva21s'),
+                ref('l10n_es.account_tax_template_s_iva21isp'),
                 ref('l10n_es.account_tax_template_s_iva10s'),
                 ref('l10n_es.account_tax_template_s_iva4s'),
             ])]"/>
