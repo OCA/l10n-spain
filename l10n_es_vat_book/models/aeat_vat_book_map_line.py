@@ -27,3 +27,6 @@ class AeatVatBookMapLines(models.Model):
     tax_tmpl_ids = fields.Many2many(
         comodel_name="account.tax.template", string="Taxes",
     )
+    tax_account_id = fields.Many2one(
+        comodel_name="account.account.template", string="Tax Account Restriction",
+    )
