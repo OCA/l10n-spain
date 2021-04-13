@@ -18,12 +18,13 @@
         <field name="model">aeat.vat.book.map.line</field>
         <field name="arch" type="xml">
             <tree string="AEAT vat book map" editable="bottom">
-                <field name="name"/>
-                <field name="book_type"/>
-                <field name="special_tax_group"/>
-                <field name="fee_type_xlsx_column"/>
-                <field name="fee_amount_xlsx_column"/>
-                <field name="tax_tmpl_ids" widget="many2many_tags"/>
+                <field name="name" />
+                <field name="book_type" />
+                <field name="special_tax_group" />
+                <field name="fee_type_xlsx_column" />
+                <field name="fee_amount_xlsx_column" />
+                <field name="tax_tmpl_ids" widget="many2many_tags" />
+                <field name="tax_account_id" />
             </tree>
         </field>
     </record>

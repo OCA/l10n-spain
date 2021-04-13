@@ -281,18 +281,29 @@ class L10nEsVatBook(models.Model):
         self.summary_ids.unlink()
         self.tax_summary_ids.unlink()
 
-    def _account_move_line_domain(self, taxes):
+    def _account_move_line_domain(self, taxes, account=None):
         # search move lines that contain these tax codes
-        return [
-            ('date', '>=', self.date_start),
-            ('date', '<=', self.date_end),
-            '|', ('tax_ids', 'in', taxes.ids),
-            ('tax_line_id', 'in', taxes.ids),
+        domain = [
+            ("date", ">=", self.date_start),
+            ("date", "<=", self.date_end),
+            ("parent_state", "=", "posted"),
+            "|",
+            ("tax_ids", "in", taxes.ids),
         ]
+        if account:
+            domain += [
+                "&",
+                ("tax_line_id", "in", taxes.ids),
+                ("account_id", "=", account.id),
+            ]
+        else:
+            domain.append(("tax_line_id", "in", taxes.ids))
+        return domain
 
-    def _get_account_move_lines(self, taxes):
-        return self.env['account.move.line'].search(
-            self._account_move_line_domain(taxes))
+    def _get_account_move_lines(self, taxes, account=None):
+        return self.env["account.move.line"].search(
+            self._account_move_line_domain(taxes, account=account)
+        )
 
     @ormcache('self.id')
     def get_pos_partner_ids(self):
@@ -366,29 +377,14 @@ class L10nEsVatBook(models.Model):
         """
         for rec in self:
             if not rec.company_id.partner_id.vat:
-                raise UserError(
-                    _("This company doesn't have VAT"))
-
-            # clean the old records
+                raise UserError(_("This company doesn't have VAT"))
             rec._clear_old_data()
-
-            tax_templates = self.env['aeat.vat.book.map.line'].search(
-                []).mapped('tax_tmpl_ids')
-            taxes_issued = self.get_taxes_from_templates(
-                tax_templates.filtered(lambda t: t.type_tax_use == 'sale')
-            )
-            taxes_received = self.get_taxes_from_templates(
-                tax_templates.filtered(lambda t: t.type_tax_use == 'purchase')
-            )
-
-            # Get all the account move lines that contain VAT that is
-            #  applicable to this report.
-            lines_issued = rec._get_account_move_lines(taxes_issued)
-            self.create_vat_book_lines(lines_issued, 'issued', taxes_issued)
-            lines_received = rec._get_account_move_lines(taxes_received)
-            self.create_vat_book_lines(
-                lines_received, 'received', taxes_received)
-
+            map_lines = self.env["aeat.vat.book.map.line"].search([])
+            for map_line in map_lines:
+                taxes = rec.get_taxes_from_templates(map_line.tax_tmpl_ids)
+                account = rec.get_account_from_template(map_line.tax_account_id)
+                lines = rec._get_account_move_lines(taxes, account=account)
+                rec.create_vat_book_lines(lines, map_line.book_type, taxes)
             # Issued
             book_type = 'issued'
             issued_tax_lines = rec.issued_line_ids.mapped(
