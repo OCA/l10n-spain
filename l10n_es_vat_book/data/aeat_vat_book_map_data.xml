@@ -31,6 +31,7 @@
         <field name="special_tax_group" eval="False" />
         <field name="fee_type_xlsx_column">O</field>
         <field name="fee_amount_xlsx_column">P</field>
+        <field name="tax_account_id" ref="l10n_es.account_common_472" />
         <field
             name="tax_tmpl_ids"
             eval="[
