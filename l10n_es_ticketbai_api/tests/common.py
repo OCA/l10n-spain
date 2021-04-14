@@ -466,7 +466,8 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 'l10n_es_ticketbai_api.tbai_tax_agency_gipuzkoa').id,
             'currency_id': self.env.ref('base.EUR').id,
             'tbai_certificate_id': certificate.id,
-            'tbai_installation_id': installation.id
+            'tbai_installation_id': installation.id,
+            'country_id': self.env.ref('base.es').id
         })
         company.write(vals)
 
