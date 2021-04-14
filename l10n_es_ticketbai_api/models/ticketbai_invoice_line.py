@@ -41,17 +41,19 @@ class TicketBaiInvoiceLine(models.Model):
     def _check_quantity(self):
         for record in self:
             tbai_utils.check_str_decimal(_(
-                "TicketBAI Invoice %s: Line %s Quantity"
-            ) % (record.tbai_invoice_id.name, record.description), record.quantity)
+                "TicketBAI Invoice %s: Line %s Quantity")
+                % (record.tbai_invoice_id.name, record.description),
+                record.quantity)
 
     @api.multi
     @api.constrains('price_unit')
     def _check_price_unit(self):
         for record in self:
-            tbai_utils.check_str_decimal(_(
-                "TicketBAI Invoice %s: Line %s Price Unit"
-            ) % (record.tbai_invoice_id.name, record.description),
-                                         record.price_unit, no_decimal_digits=8)
+            tbai_utils.\
+                check_str_decimal(_("TicketBAI Invoice %s: Line %s Price Unit")
+                                  % (record.tbai_invoice_id.name,
+                                  record.description),
+                                  record.price_unit, no_decimal_digits=8)
 
     @api.multi
     @api.constrains('discount_amount')
@@ -59,14 +61,15 @@ class TicketBaiInvoiceLine(models.Model):
         for record in self:
             if record.discount_amount:
                 tbai_utils.check_str_decimal(_(
-                    "TicketBAI Invoice %s: Line %s Discount Amount"
-                ) % (record.tbai_invoice_id.name, record.description),
-                                             record.discount_amount)
+                    "TicketBAI Invoice %s: Line %s Discount Amount")
+                    % (record.tbai_invoice_id.name, record.description),
+                    record.discount_amount)
 
     @api.multi
     @api.constrains('amount_total')
     def _check_amount_total(self):
         for record in self:
             tbai_utils.check_str_decimal(_(
-                "TicketBAI Invoice %s: Line %s Amount Total"
-            ) % (record.tbai_invoice_id.name, record.description), record.amount_total)
+                "TicketBAI Invoice %s: Line %s Amount Total")
+                % (record.tbai_invoice_id.name, record.description),
+                record.amount_total)
