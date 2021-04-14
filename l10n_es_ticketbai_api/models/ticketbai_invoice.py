@@ -457,7 +457,6 @@ class TicketBAIInvoice(models.Model):
         ]
         if company_id:
             domain.append(('company_id', '=', company_id))
-        data = self.search(domain, order='id ASC', limit=limit)
         return self.search(domain, order='id ASC', limit=limit)
 
     @api.multi
@@ -537,7 +536,7 @@ class TicketBAIInvoice(models.Model):
         retry_later = False
         rejected_retries = 0
         while next_pending_invoice and not retry_later and \
-            rejected_retries < TBAI_REJECTED_MAX_RETRIES:
+                rejected_retries < TBAI_REJECTED_MAX_RETRIES:
             tbai_response = next_pending_invoice.send()
             if TicketBaiResponseState.RECEIVED.value == tbai_response.state:
                 next_pending_invoice.mark_as_sent()

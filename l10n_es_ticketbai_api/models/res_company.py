@@ -109,7 +109,8 @@ class ResCompany(models.Model):
 
             if 0 < len(tbai_invoices):
                 raise exceptions.ValidationError(_(
-                    "Tax agency cannot be modified after a TicketBAI invoice has been sent."
+                    "Tax agency cannot be modified after a TicketBAI "
+                    "invoice has been sent."
                 ))
 
     def tbai_certificate_get_p12_buffer(self):

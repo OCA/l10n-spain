@@ -96,7 +96,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             base=100.0, is_subject_to=True, not_subject_to_cause=None,
             is_exempted=False, exempted_cause=None, not_exempted_type=None,
             amount=21.0, amount_total=21.0, re_amount=0.0, re_amount_total=0.0,
-            surcharge_or_simplified_regime='N', type=None):
+            surcharge_or_simplified_regime='N', tax_type=None):
         return {
             'base': "%.2f" % base,
             'is_subject_to': is_subject_to,
@@ -109,7 +109,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             're_amount': re_amount and "%.2f" % re_amount or '',
             're_amount_total': re_amount_total and "%.2f" % re_amount_total or '',
             'surcharge_or_simplified_regime': surcharge_or_simplified_regime,
-            'type': type
+            'type': tax_type
         }
 
     def create_tbai_national_invoice_exempted(
