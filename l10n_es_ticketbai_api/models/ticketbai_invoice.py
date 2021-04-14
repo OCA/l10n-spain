@@ -585,7 +585,6 @@ class TicketBAIInvoice(models.Model):
                 retry_later = True
             if not retry_later:
                 next_pending_invoice = self.get_next_pending_invoice()
-            self.env.cr.commit()
 
     def _get_tbai_identifier_values(self):
         """ V 1.2
