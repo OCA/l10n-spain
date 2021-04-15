@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:TicketBaiResponse xmlns:ns2="urn:ticketbai:emision">
+    <Salida>
+        <FechaRecepcion>09-11-2020 11:39:08</FechaRecepcion>
+        <Estado>01</Estado>
+        <Descripcion>Rechazado</Descripcion>
+        <Azalpena>Baztertua</Azalpena>
+        <ResultadosValidacion>
+            <Codigo>005</Codigo>
+            <Descripcion>Error: Factura ya registrada en sistema</Descripcion>
+            <Azalpena>Akatsa: Faktura dagoeneko erregistratuta dago sisteman</Azalpena>
+        </ResultadosValidacion>
+    </Salida>
+</ns2:TicketBaiResponse>
