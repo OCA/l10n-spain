@@ -10,7 +10,10 @@ class DeliverySeurManifiestoWizard(models.TransientModel):
     _name = "gls.asm.minifest.wizard"
     _description = "Get the GLS Manifest for the given date range"
 
-    date_from = fields.Date(required=True, default=fields.Date.context_today,)
+    date_from = fields.Date(
+        required=True,
+        default=fields.Date.context_today,
+    )
     carrier_id = fields.Many2one(
         string="GLS Service",
         comodel_name="delivery.carrier",
