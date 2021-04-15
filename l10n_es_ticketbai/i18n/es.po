@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-13 14:22+0000\n"
-"PO-Revision-Date: 2021-04-13 14:22+0000\n"
+"POT-Creation-Date: 2021-04-15 13:57+0000\n"
+"PO-Revision-Date: 2021-04-15 13:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,12 @@ msgid "By substitution"
 msgstr "Por sustitución"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:258
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
+msgid "Cancel and recreate"
+msgstr "Cancelar y recrear"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:275
 #, python-format
 msgid "Cancellation"
 msgstr "Anulación factura"
@@ -217,13 +222,12 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_invoice
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice__invoice_id
-#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_response__invoice_id
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
 msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:66
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:67
 #, python-format
 msgid "Invoice %s. You cannot change to draft a TicketBAI invoice!"
 msgstr "Factura %s. No es posible cambiar el estado a borrador de una factura TicketBAI."
@@ -234,7 +238,7 @@ msgid "Invoice Line"
 msgstr "Linea de Factura"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:361
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:378
 #, python-format
 msgid "Invoice Number Prefix %s is not part of Invoice Number %s!"
 msgstr "Número de serie de factura %s no es parte del número de factura %s."
@@ -500,11 +504,6 @@ msgid "TicketBAI Registration Keys"
 msgstr "TicketBAI Claves de regímenes de IVA"
 
 #. module: l10n_es_ticketbai
-#: model:ir.model,name:l10n_es_ticketbai.model_tbai_response
-msgid "TicketBAI Tax Agency Invoice response"
-msgstr "TicketBAI Respuesta Hacienda"
-
-#. module: l10n_es_ticketbai
 #: model:ir.actions.act_window,name:l10n_es_ticketbai.action_tbai_tax_map
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_tax_map
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_tax_map
@@ -531,16 +530,22 @@ msgid "TicketBAI is disabled."
 msgstr "TicketBAI está deshabilitado."
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:139
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:156
 #, python-format
 msgid "TicketBAI refund by differences only available for Customer Credit Notes."
 msgstr "TicketBAI rectificativa por diferencias sólo está disponible para facturas rectificativas de cliente."
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:128
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:145
 #, python-format
 msgid "TicketBAI refund by substitution only available for Customer Invoices."
 msgstr "TicketBAI rectificativa por sustitución sólo está disponible para facturas de cliente."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:38
+#, python-format
+msgid "TicketBAI: You cannot cancel and recreate an Invoice with a state different than 'Error'."
+msgstr "TicketBAI: No es posible cancelar y recrear una factura cuyo estado no sea 'Error'."
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_fp_tbai_tax__tbai_vat_exemption_key
@@ -584,11 +589,11 @@ msgid "VAT Regimes"
 msgstr "Claves de regímenes de IVA"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:127
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:138
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:144
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:155
 #, python-format
 msgid "Warning"
-msgstr "Aviso"
+msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate_password
@@ -596,7 +601,7 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr "Asistente para cargar el certificado AEAT"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:280
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:297
 #, python-format
 msgid "You cannot cancel an invoice while being sent to the Tax Agency.\n"
 "Related invoices: %s"

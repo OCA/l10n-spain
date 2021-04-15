@@ -1,8 +1,10 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import \
+    TicketBaiInvoiceState
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions, _
 
 
 class TicketBAIInvoice(models.Model):
@@ -28,3 +30,18 @@ class TicketBAIInvoice(models.Model):
             return super().send(invoice_id=self.cancelled_invoice_id.id, **kwargs)
         else:
             return super().send(**kwargs)
+
+    @api.multi
+    def cancel_and_recreate(self):
+        if 0 < len(self.filtered(
+            lambda x: x.state != TicketBaiInvoiceState.error.value)):
+            raise exceptions.ValidationError(_(
+                "TicketBAI: You cannot cancel and recreate an Invoice with a state "
+                "different than 'Error'."))
+        for record in self.sudo():
+            record.cancel()
+            if TicketBaiSchema.TicketBai.value == record.schema and record.invoice_id:
+                record.invoice_id._tbai_build_invoice()
+            elif TicketBaiSchema.AnulaTicketBai.value == record.schema and \
+                record.cancelled_invoice_id:
+                record.cancelled_invoice_id._tbai_invoice_cancel()

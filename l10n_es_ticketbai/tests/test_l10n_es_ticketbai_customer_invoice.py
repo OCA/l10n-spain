@@ -2,6 +2,7 @@
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date
+from odoo import exceptions
 from odoo.tests import common
 from .common import TestL10nEsTicketBAI
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import XMLSchema
@@ -26,6 +27,60 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
             invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
+
+    def test_cancel_and_recreate(self):
+        # Build three invoices and check the chaining.
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(invoice.tbai_invoice_id.state, 'pending')
+        self.assertEqual(
+            self.main_company.tbai_last_invoice_id, invoice.tbai_invoice_id)
+
+        invoice2 = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice2.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice2.compute_taxes()
+        invoice2.action_invoice_open()
+        self.assertEqual(invoice2.state, 'open')
+        self.assertEqual(invoice2.tbai_invoice_id.state, 'pending')
+        self.assertEqual(
+            self.main_company.tbai_last_invoice_id, invoice2.tbai_invoice_id)
+
+        invoice3 = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice3.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice3.compute_taxes()
+        invoice3.action_invoice_open()
+        self.assertEqual(invoice3.state, 'open')
+        self.assertEqual(invoice3.tbai_invoice_id.state, 'pending')
+        self.assertEqual(
+            self.main_company.tbai_last_invoice_id, invoice3.tbai_invoice_id)
+
+        # Simulate 1st invoice sent successfully.
+        # 2nd rejected by the Tax Agency. Mark as an error.
+        # 3rd mark as an error.
+        invoice.tbai_invoice_id.sudo().mark_as_sent()
+        self.env['tbai.invoice'].mark_chain_as_error(
+            invoice2.sudo().tbai_invoice_id)
+        self.assertEqual(invoice2.tbai_invoice_id.state, 'error')
+        self.assertEqual(invoice3.tbai_invoice_id.state, 'error')
+        self.assertEqual(
+            self.main_company.tbai_last_invoice_id, invoice.tbai_invoice_id)
+
+        # Cancel and recreate invoices with errors.
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.tbai_invoice_id.cancel_and_recreate()
+        invoices_with_errors = invoice2.tbai_invoice_id
+        invoices_with_errors |= invoice3.tbai_invoice_id
+        invoices_with_errors.cancel_and_recreate()
+        self.assertEqual(invoices_with_errors[0].state, 'cancel')
+        self.assertEqual(invoice2.tbai_invoice_id.state, 'pending')
+        self.assertEqual(invoices_with_errors[1].state, 'cancel')
+        self.assertEqual(invoice3.tbai_invoice_id.state, 'pending')
 
     def test_invoice_foreign_customer_extracommunity(self):
         invoice = self.create_draft_invoice(

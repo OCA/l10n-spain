@@ -53,7 +53,6 @@
                                     </header>
                                     <sheet>
                                         <group name="tbai_response_main_group">
-                                            <field name="invoice_id" invisible="1"/>
                                             <field name="xml" filename="xml_fname" readonly="1"/>
                                             <field name="xml_fname" invisible="1" class="oe_inline oe_right"/>
                                         </group>
@@ -76,7 +75,6 @@
                                     </sheet>
                                 </form>
                                 <tree create="false" delete="false">
-                                    <field name="invoice_id" invisible="1"/>
                                     <field name="create_date"/>
                                     <field name="tbai_response_message_ids" widget="many2many_tags"/>
                                     <field name="state"/>

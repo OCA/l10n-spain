@@ -6,7 +6,6 @@ from . import aeat_certificate
 from . import chart_template
 from . import res_company
 from . import ticketbai_invoice
-from . import ticketbai_response
 from . import ticketbai_tax_map
 from . import ticketbai_vat_exemption_key
 from . import ticketbai_vat_regime_key

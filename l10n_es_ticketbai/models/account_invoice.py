@@ -29,8 +29,9 @@ class AccountInvoice(models.Model):
     tbai_cancellation_ids = fields.One2many(
         comodel_name='tbai.invoice', inverse_name='cancelled_invoice_id',
         string='TicketBAI Cancellations')
-    tbai_response_ids = fields.One2many(
-        comodel_name='tbai.response', inverse_name='invoice_id', string='Responses')
+    tbai_response_ids = fields.Many2many(
+        comodel_name='tbai.response', compute='_compute_tbai_response_ids',
+        string='Responses')
     tbai_datetime_invoice = fields.Datetime(
         compute='_compute_tbai_datetime_invoice', store=True, copy=False)
     tbai_date_operation = fields.Datetime('Operation Date', copy=False)
@@ -104,6 +105,18 @@ class AccountInvoice(models.Model):
                 if vals['name']:
                     vals['tbai_description_operation'] = vals['name']
         return super().create(vals)
+
+    @api.depends(
+        'tbai_invoice_ids', 'tbai_invoice_ids.state',
+        'tbai_cancellation_ids', 'tbai_cancellation_ids.state'
+    )
+    def _compute_tbai_response_ids(self):
+        for record in self:
+            response_ids = record.tbai_invoice_ids.mapped(
+                'tbai_response_ids').ids
+            response_ids += record.tbai_cancellation_ids.mapped(
+                'tbai_response_ids').ids
+            record.tbai_response_ids = [(6, 0, response_ids)]
 
     @api.depends('date', 'date_invoice')
     def _compute_tbai_datetime_invoice(self):
