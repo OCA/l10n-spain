@@ -135,10 +135,10 @@ GLS_DELIVERY_STATES_STATIC = {
 
 class GlsAsmRequest:
     """Interface between GLS-ASM SOAP API and Odoo recordset
-       Abstract GLS-ASM API Operations to connect them with Odoo
+    Abstract GLS-ASM API Operations to connect them with Odoo
 
-       Not all the features are implemented, but could be easily extended with
-       the provided API. We leave the operations empty for future.
+    Not all the features are implemented, but could be easily extended with
+    the provided API. We leave the operations empty for future.
     """
 
     def __init__(self, uidcustomer=None):
@@ -171,7 +171,7 @@ class GlsAsmRequest:
 
     def _prepare_cancel_shipment_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
-           the SOAP message"""
+        the SOAP message"""
         return """
             <Servicios uidcliente="{uidcustomer}"
                        xmlns="http://www.asmred.com/">
@@ -183,7 +183,7 @@ class GlsAsmRequest:
 
     def _prepare__get_manifest_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
-           the SOAP message"""
+        the SOAP message"""
         return """
             <Servicios uidcliente="{uidcustomer}"
                        xmlns="http://www.asmred.com/">
@@ -196,7 +196,7 @@ class GlsAsmRequest:
 
     def _prepare_send_shipping_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
-           the SOAP message"""
+        the SOAP message"""
         return """
             <Servicios uidcliente="{uidcustomer}"
                        xmlns="http://www.asmred.com/">
