@@ -112,9 +112,13 @@ class AccountInvoice(models.Model):
 
     @api.onchange('fiscal_position_id')
     def onchange_fiscal_position_id_tbai_vat_regime_key(self):
-        self.tbai_vat_regime_key = self.fiscal_position_id.tbai_vat_regime_key.id
-        self.tbai_vat_regime_key2 = self.fiscal_position_id.tbai_vat_regime_key2.id
-        self.tbai_vat_regime_key3 = self.fiscal_position_id.tbai_vat_regime_key3.id
+        if self.fiscal_position_id:
+            self.tbai_vat_regime_key =\
+                self.fiscal_position_id.tbai_vat_regime_key.id
+            self.tbai_vat_regime_key2 =\
+                self.fiscal_position_id.tbai_vat_regime_key2.id
+            self.tbai_vat_regime_key3 =\
+                self.fiscal_position_id.tbai_vat_regime_key3.id
 
     @api.onchange('tbai_refund_type')
     def onchange_tbai_refund_type(self):
@@ -222,7 +226,7 @@ class AccountInvoice(models.Model):
             'l10n_es_ticketbai.tbai_tax_map_IRPF').tax_template_ids.mapped(
             'description')
         for tax in self.tax_line_ids.filtered(
-                lambda tax: tax.tax_id.description not in descriptions):
+                lambda x: x.tax_id.description not in descriptions):
             taxes.append((0, 0, {
                 'base': tax.tbai_get_value_base_imponible(),
                 'is_subject_to': tax.tax_id.tbai_is_subject_to_tax(),
@@ -325,10 +329,10 @@ class AccountInvoice(models.Model):
 
     @api.model
     def _get_refund_common_fields(self):
-        fields = super()._get_refund_common_fields()
-        fields.append('tbai_substitution_invoice_id')
-        fields.append('company_id')
-        return fields
+        refund_common_fields = super()._get_refund_common_fields()
+        refund_common_fields.append('tbai_substitution_invoice_id')
+        refund_common_fields.append('company_id')
+        return refund_common_fields
 
     def _prepare_tax_line_vals(self, line, tax):
         vals = super()._prepare_tax_line_vals(line, tax)
@@ -392,11 +396,9 @@ class AccountInvoice(models.Model):
 
     def tbai_get_value_fecha_operacion(self):
         if self.tbai_date_operation:
-            tbai_date_operation = datetime.strptime(
-                self.tbai_date_operation, DEFAULT_SERVER_DATETIME_FORMAT).strftime(
+            tbai_date_operation = self.tbai_date_operation.strftime(
                 "%d-%m-%Y")
-            date_invoice = datetime.strptime(
-                self.date or self.date_invoice, DEFAULT_SERVER_DATE_FORMAT).strftime(
+            date_invoice = (self.date or self.date_invoice).strftime(
                 "%d-%m-%Y")
             if tbai_date_operation == date_invoice:
                 tbai_date_operation = None
