@@ -563,7 +563,8 @@ class TicketBAIInvoice(models.Model):
                             response_codes:
                         retry_later = True
                         cancel_and_recreate = False
-                elif TicketBaiSchema.AnulaTicketBai.value == next_pending_invoice.schema:
+                elif TicketBaiSchema.AnulaTicketBai.value ==\
+                        next_pending_invoice.schema:
                     if TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.\
                             value in response_codes:
                         next_pending_invoice.mark_as_sent()
