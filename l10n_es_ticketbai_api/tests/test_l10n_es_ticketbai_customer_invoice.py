@@ -66,8 +66,9 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
             invoice.build_tbai_invoice()
             self._send_to_tax_agency(invoice)
 
-    def test_invoice_cancel_and_recreate(self):
+    def test_chaining_and_rejected_by_the_tax_agency(self):
         uid = self.tech_user.id
+        # Build three invoices and check the chaining.
         invoice = self.create_tbai_national_invoice(
             name='TBAITEST/00001', company_id=self.main_company.id, number='00001',
             number_prefix='TBAITEST/', uid=uid)
@@ -75,9 +76,8 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
         self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self.assertEqual(invoice.state, 'pending')
-        # Simulate successful request
-        invoice.state = 'sent'
-        # Create a second invoice
+        self.assertEqual(self.main_company.tbai_last_invoice_id, invoice)
+
         invoice2 = self.create_tbai_national_invoice(
             name='TBAITEST/00002', company_id=self.main_company.id, number='00002',
             number_prefix='TBAITEST/', uid=uid)
@@ -85,7 +85,9 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
         self.add_customer_from_odoo_partner_to_invoice(invoice2.id, self.partner)
         invoice2.build_tbai_invoice()
         self.assertEqual(invoice2.state, 'pending')
-        # Create a third invoice
+        self.assertEqual(invoice2.previous_tbai_invoice_id, invoice)
+        self.assertEqual(self.main_company.tbai_last_invoice_id, invoice2)
+
         invoice3 = self.create_tbai_national_invoice(
             name='TBAITEST/00003', company_id=self.main_company.id, number='00003',
             number_prefix='TBAITEST/', uid=uid)
@@ -93,18 +95,17 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
         self.add_customer_from_odoo_partner_to_invoice(invoice3.id, self.partner)
         invoice3.build_tbai_invoice()
         self.assertEqual(invoice3.state, 'pending')
-        # Simulate rejected request from the 2nd TicketBAI Invoice
-        self.env['tbai.invoice'].cancel_and_recreate_pending_invoices(invoice2)
-        self.assertEqual('cancel', invoice2.state)
-        self.assertEqual('cancel', invoice3.state)
-        new_inv2 = self.env['tbai.invoice'].search([
-            ('state', '!=', 'cancel'),
-            ('previous_tbai_invoice_id', '=', invoice.id)])
-        self.assertEqual('pending', new_inv2.state)
-        new_inv3 = self.env['tbai.invoice'].search([
-            ('state', '!=', 'cancel'),
-            ('previous_tbai_invoice_id', '=', new_inv2.id)])
-        self.assertEqual('pending', new_inv3.state)
+        self.assertEqual(invoice3.previous_tbai_invoice_id, invoice2)
+        self.assertEqual(self.main_company.tbai_last_invoice_id, invoice3)
+
+        # Simulate 1st invoice sent successfully.
+        # 2nd rejected by the Tax Agency. Mark as an error.
+        # 3rd mark as an error.
+        invoice.mark_as_sent()
+        self.env['tbai.invoice'].mark_chain_as_error(invoice2)
+        self.assertEqual(invoice2.state, 'error')
+        self.assertEqual(invoice3.state, 'error')
+        self.assertEqual(self.main_company.tbai_last_invoice_id, invoice)
 
     def test_exempted_invoice(self):
         uid = self.tech_user.id

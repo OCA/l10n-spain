@@ -89,8 +89,8 @@ class TicketBaiResponse(models.Model):
                 'state': TicketBaiResponseState.REQUEST_ERROR.value,
                 'tbai_response_message_ids': [
                     (0, 0, {
-                        'code': errno,
-                        'description': strerror
+                        'code': errno or -1,
+                        'description': strerror or ''
                     })
                 ]
             })

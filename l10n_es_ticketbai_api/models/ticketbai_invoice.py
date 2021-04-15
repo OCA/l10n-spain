@@ -35,6 +35,7 @@ class TicketBaiInvoiceState(tbai_utils.EnumValues):
     pending = 'pending'
     sent = 'sent'
     cancel = 'cancel'
+    error = 'error'
 
 
 class RefundType(tbai_utils.EnumValues):
@@ -94,6 +95,9 @@ class TicketBAIInvoice(models.Model):
     tbai_customer_ids = fields.One2many(
         string='TicketBAI Invoice Recipients', copy=True,
         comodel_name='tbai.invoice.customer', inverse_name='tbai_invoice_id')
+    tbai_response_ids = fields.One2many(
+        comodel_name='tbai.response', inverse_name='tbai_invoice_id',
+        string='Responses')
     tbai_invoice_line_ids = fields.One2many(
         string='TicketBAI Invoice Details', copy=True,
         comodel_name='tbai.invoice.line', inverse_name='tbai_invoice_id')
@@ -112,7 +116,8 @@ class TicketBAIInvoice(models.Model):
         (TicketBaiInvoiceState.draft.value, 'Draft'),
         (TicketBaiInvoiceState.pending.value, 'Pending'),
         (TicketBaiInvoiceState.sent.value, 'Sent'),
-        (TicketBaiInvoiceState.cancel.value, 'Cancelled')
+        (TicketBaiInvoiceState.cancel.value, 'Cancelled'),
+        (TicketBaiInvoiceState.error.value, 'Error')
     ], default=TicketBaiInvoiceState.draft.value, required=True, index=True, copy=False)
     schema = fields.Selection(selection=[
         (TicketBaiSchema.TicketBai.value, 'TicketBai'),
@@ -178,7 +183,9 @@ class TicketBAIInvoice(models.Model):
             if r.previous_tbai_invoice_id:
                 if 1 < self.search_count([
                     ('previous_tbai_invoice_id', '=', r.previous_tbai_invoice_id.id),
-                    ('state', '!=', TicketBaiInvoiceState.cancel.value)
+                    ('state', 'in', [
+                        TicketBaiInvoiceState.pending.value,
+                        TicketBaiInvoiceState.sent.value])
                 ]):
                     raise exceptions.ValidationError(_(
                         "TicketBAI Invoice %s:\n"
@@ -460,12 +467,20 @@ class TicketBAIInvoice(models.Model):
         return self.search(domain, order='id ASC', limit=limit)
 
     @api.multi
+    def error(self):
+        self.write({'state': TicketBaiInvoiceState.error.value})
+
+    @api.multi
     def cancel(self):
         self.write({'state': TicketBaiInvoiceState.cancel.value})
 
     @api.multi
     def mark_as_sent(self):
         self.write({'state': TicketBaiInvoiceState.sent.value})
+
+    @api.multi
+    def mark_as_pending(self):
+        self.write({'state': TicketBaiInvoiceState.pending.value})
 
     def get_exempted_taxes(self):
         """
@@ -511,24 +526,17 @@ class TicketBAIInvoice(models.Model):
             taxes = self.tbai_tax_ids
         return taxes
 
-    def recreate(self):
-        new_inv = self.copy()
-        new_inv.build_tbai_invoice()
-        return new_inv
-
     @api.model
-    def cancel_and_recreate_pending_invoices(self, tbai_invoice):
-        if TicketBaiSchema.TicketBai.value == tbai_invoice.schema:
-            tbai_invoice.company_id.tbai_last_invoice_id = \
-                tbai_invoice.previous_tbai_invoice_id
-        invoice_to_cancel_and_recreate = tbai_invoice
-        while invoice_to_cancel_and_recreate:
-            invoice_to_cancel_and_recreate.cancel()
-            new_inv = invoice_to_cancel_and_recreate.recreate()
-            invoice_to_cancel_and_recreate = self.search([
-                ('previous_tbai_invoice_id', '=', invoice_to_cancel_and_recreate.id)])
-            if invoice_to_cancel_and_recreate:
-                invoice_to_cancel_and_recreate.previous_tbai_invoice_id = new_inv
+    def mark_chain_as_error(self, invoice_to_error):
+        # Restore last invoice successfully sent
+        if TicketBaiSchema.TicketBai.value == invoice_to_error.schema:
+            invoice_to_error.company_id.tbai_last_invoice_id = \
+                invoice_to_error.previous_tbai_invoice_id
+        while invoice_to_error:
+            invoice_to_error.error()
+            invoice_to_error = self.search([
+                ('previous_tbai_invoice_id', '=', invoice_to_error.id)
+            ])
 
     @api.model
     def send_pending_invoices(self):
@@ -543,14 +551,14 @@ class TicketBAIInvoice(models.Model):
             elif TicketBaiResponseState.REJECTED.value == tbai_response.state:
                 # Reestablish the company pointer to the last invoice built and
                 # successfully sent.
-                # Cancel and recreate all pending invoices, except in the following:
+                # Mark pending invoices as error, except in the following:
                 # - TicketBai (Invoice)
                 #   - 005: Invoice already registered -> mark as sent.
                 #   - 006: service not available. Retry later.
                 # - AnulaTicketBai (Cancellation)
                 #   - 011: Invoice already registered -> mark as sent.
                 #   - 012: service not available. Retry later.
-                cancel_and_recreate = True
+                error = True
                 # TicketBAI Response warning and error codes
                 response_codes = list(
                     set(tbai_response.tbai_response_message_ids.mapped('code')))
@@ -558,23 +566,23 @@ class TicketBAIInvoice(models.Model):
                     if TicketBaiInvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value \
                             in response_codes:
                         next_pending_invoice.mark_as_sent()
-                        cancel_and_recreate = False
+                        error = False
                     elif TicketBaiInvoiceResponseCode.SERVICE_NOT_AVAILABLE.value in \
                             response_codes:
                         retry_later = True
-                        cancel_and_recreate = False
+                        error = False
                 elif TicketBaiSchema.AnulaTicketBai.value ==\
                         next_pending_invoice.schema:
                     if TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.\
                             value in response_codes:
                         next_pending_invoice.mark_as_sent()
-                        cancel_and_recreate = False
+                        error = False
                     elif TicketBaiCancellationResponseCode.SERVICE_NOT_AVAILABLE.value \
                             in response_codes:
                         retry_later = True
-                        cancel_and_recreate = False
-                if cancel_and_recreate:
-                    self.cancel_and_recreate_pending_invoices(next_pending_invoice)
+                        error = False
+                if error:
+                    self.mark_chain_as_error(next_pending_invoice)
                     rejected_retries += 1
             elif TicketBaiResponseState.REQUEST_ERROR.value == tbai_response.state:
                 # In case of multi-company it would be delaying independently from the
@@ -657,7 +665,7 @@ class TicketBAIInvoice(models.Model):
         self.datas_fname = "%s.xsig" % self.name.replace('/', '-')
         self.file_size = len(self.datas)
         self.signature_value = signature_value
-        self.state = TicketBaiInvoiceState.pending.value
+        self.mark_as_pending()
         if self.schema == TicketBaiSchema.TicketBai.value:
             self.company_id.tbai_last_invoice_id = self
 
