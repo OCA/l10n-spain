@@ -9,7 +9,9 @@ class StockPicking(models.Model):
     # ASM API has two references for each delivery. This one is needed
     # for some operations like getting the label
     gls_asm_public_tracking_ref = fields.Char(
-        string="GLS Barcode", readonly=True, copy=False,
+        string="GLS Barcode",
+        readonly=True,
+        copy=False,
     )
 
     def gls_asm_get_label(self):

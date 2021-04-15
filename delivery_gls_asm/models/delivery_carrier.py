@@ -17,7 +17,9 @@ class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
     delivery_type = fields.Selection(selection_add=[("gls_asm", "GLS ASM")])
-    gls_asm_uid = fields.Char(string="GLS UID",)
+    gls_asm_uid = fields.Char(
+        string="GLS UID",
+    )
     gls_asm_service = fields.Selection(
         selection=GLS_ASM_SERVICES,
         string="GLS Service",
@@ -37,15 +39,19 @@ class DeliveryCarrier(models.Model):
         default="P",
     )
     gls_last_request = fields.Text(
-        string="Last GLS xml request", help="Used for issues debugging", readonly=True,
+        string="Last GLS xml request",
+        help="Used for issues debugging",
+        readonly=True,
     )
     gls_last_response = fields.Text(
-        string="Last GLS xml response", help="Used for issues debugging", readonly=True,
+        string="Last GLS xml response",
+        help="Used for issues debugging",
+        readonly=True,
     )
 
     def _gls_asm_uid(self):
         """The carrier can be put in test mode. The tests user must be set.
-           A default given by GLS is put in the config parameter data """
+        A default given by GLS is put in the config parameter data"""
         self.ensure_one()
         uid = (
             self.gls_asm_uid
