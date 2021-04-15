@@ -1,5 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.asmred.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.asmred.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<?xml version="1.0" encoding="utf-8" ?>
+<wsdl:definitions
+  xmlns:s="http://www.w3.org/2001/XMLSchema"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:tns="http://www.asmred.com/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  targetNamespace="http://www.asmred.com/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+>
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://www.asmred.com/">
       <s:element name="GrabaServicios">
@@ -112,14 +123,24 @@
             <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="codSolucion" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="observaciones" type="s:string" />
+            <s:element
+              minOccurs="0"
+              maxOccurs="1"
+              name="observaciones"
+              type="s:string"
+            />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:element name="GrabaSolucionResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GrabaSolucionResult" type="s:string" />
+            <s:element
+              minOccurs="0"
+              maxOccurs="1"
+              name="GrabaSolucionResult"
+              type="s:string"
+            />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -252,7 +273,12 @@
             <s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="codplaza" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="codrepartidor" type="s:string" />
+            <s:element
+              minOccurs="0"
+              maxOccurs="1"
+              name="codrepartidor"
+              type="s:string"
+            />
             <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
           </s:sequence>
         </s:complexType>
@@ -260,7 +286,12 @@
       <s:element name="AsignaEnvioResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="AsignaEnvioResult" type="s:string" />
+            <s:element
+              minOccurs="0"
+              maxOccurs="1"
+              name="AsignaEnvioResult"
+              type="s:string"
+            />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -275,7 +306,12 @@
       <s:element name="EsPaisEurobusinessResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="EsPaisEurobusinessResult" type="s:boolean" />
+            <s:element
+              minOccurs="1"
+              maxOccurs="1"
+              name="EsPaisEurobusinessResult"
+              type="s:boolean"
+            />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -289,7 +325,12 @@
       <s:element name="EnviaCorreoAgenciaResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="EnviaCorreoAgenciaResult" type="s:int" />
+            <s:element
+              minOccurs="1"
+              maxOccurs="1"
+              name="EnviaCorreoAgenciaResult"
+              type="s:int"
+            />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -317,7 +358,12 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="tipoEtiqueta" type="tns:TiposEtiqueta" />
+            <s:element
+              minOccurs="1"
+              maxOccurs="1"
+              name="tipoEtiqueta"
+              type="tns:TiposEtiqueta"
+            />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -334,13 +380,24 @@
       <s:element name="EtiquetaEnvioResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="EtiquetaEnvioResult" type="tns:ArrayOfBase64Binary" />
+            <s:element
+              minOccurs="0"
+              maxOccurs="1"
+              name="EtiquetaEnvioResult"
+              type="tns:ArrayOfBase64Binary"
+            />
           </s:sequence>
         </s:complexType>
       </s:element>
       <s:complexType name="ArrayOfBase64Binary">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="base64Binary" nillable="true" type="s:base64Binary" />
+          <s:element
+            minOccurs="0"
+            maxOccurs="unbounded"
+            name="base64Binary"
+            nillable="true"
+            type="s:base64Binary"
+          />
         </s:sequence>
       </s:complexType>
       <s:element name="GetExp">
@@ -387,7 +444,11 @@
       <s:element name="string" nillable="true" type="s:string" />
       <s:element name="boolean" type="s:boolean" />
       <s:element name="int" type="s:int" />
-      <s:element name="ArrayOfBase64Binary" nillable="true" type="tns:ArrayOfBase64Binary" />
+      <s:element
+        name="ArrayOfBase64Binary"
+        nillable="true"
+        type="tns:ArrayOfBase64Binary"
+      />
     </s:schema>
   </wsdl:types>
   <wsdl:message name="GrabaServiciosSoapIn">
@@ -831,7 +892,10 @@
   <wsdl:binding name="b2bSoap" type="tns:b2bSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GrabaServicios">
-      <soap:operation soapAction="http://www.asmred.com/GrabaServicios" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/GrabaServicios"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -867,7 +931,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GrabaSolucion">
-      <soap:operation soapAction="http://www.asmred.com/GrabaSolucion" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/GrabaSolucion"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -876,7 +943,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetManifiesto">
-      <soap:operation soapAction="http://www.asmred.com/GetManifiesto" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/GetManifiesto"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -903,7 +973,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AsociaMatricula">
-      <soap:operation soapAction="http://www.asmred.com/AsociaMatricula" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/AsociaMatricula"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -912,7 +985,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PrevisionEnvios">
-      <soap:operation soapAction="http://www.asmred.com/PrevisionEnvios" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/PrevisionEnvios"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -930,7 +1006,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EsPaisEurobusiness">
-      <soap:operation soapAction="http://www.asmred.com/EsPaisEurobusiness" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/EsPaisEurobusiness"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -939,7 +1018,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EnviaCorreoAgencia">
-      <soap:operation soapAction="http://www.asmred.com/EnviaCorreoAgencia" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/EnviaCorreoAgencia"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -948,7 +1030,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="TestGrabaServicios">
-      <soap:operation soapAction="http://www.asmred.com/TestGrabaServicios" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/TestGrabaServicios"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -957,7 +1042,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EtiquetaEnvio">
-      <soap:operation soapAction="http://www.asmred.com/EtiquetaEnvio" style="document" />
+      <soap:operation
+        soapAction="http://www.asmred.com/EtiquetaEnvio"
+        style="document"
+      />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -987,7 +1075,10 @@
   <wsdl:binding name="b2bSoap12" type="tns:b2bSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GrabaServicios">
-      <soap12:operation soapAction="http://www.asmred.com/GrabaServicios" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/GrabaServicios"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1023,7 +1114,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GrabaSolucion">
-      <soap12:operation soapAction="http://www.asmred.com/GrabaSolucion" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/GrabaSolucion"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1032,7 +1126,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetManifiesto">
-      <soap12:operation soapAction="http://www.asmred.com/GetManifiesto" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/GetManifiesto"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1050,7 +1147,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetPlazaXCP">
-      <soap12:operation soapAction="http://www.asmred.com/GetPlazaXCP" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/GetPlazaXCP"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1059,7 +1159,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AsociaMatricula">
-      <soap12:operation soapAction="http://www.asmred.com/AsociaMatricula" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/AsociaMatricula"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1068,7 +1171,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PrevisionEnvios">
-      <soap12:operation soapAction="http://www.asmred.com/PrevisionEnvios" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/PrevisionEnvios"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1077,7 +1183,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AsignaEnvio">
-      <soap12:operation soapAction="http://www.asmred.com/AsignaEnvio" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/AsignaEnvio"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1086,7 +1195,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EsPaisEurobusiness">
-      <soap12:operation soapAction="http://www.asmred.com/EsPaisEurobusiness" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/EsPaisEurobusiness"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1095,7 +1207,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EnviaCorreoAgencia">
-      <soap12:operation soapAction="http://www.asmred.com/EnviaCorreoAgencia" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/EnviaCorreoAgencia"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1104,7 +1219,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="TestGrabaServicios">
-      <soap12:operation soapAction="http://www.asmred.com/TestGrabaServicios" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/TestGrabaServicios"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1113,7 +1231,10 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EtiquetaEnvio">
-      <soap12:operation soapAction="http://www.asmred.com/EtiquetaEnvio" style="document" />
+      <soap12:operation
+        soapAction="http://www.asmred.com/EtiquetaEnvio"
+        style="document"
+      />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
