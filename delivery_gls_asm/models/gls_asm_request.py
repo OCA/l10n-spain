@@ -132,6 +132,152 @@ GLS_DELIVERY_STATES_STATIC = {
     "25": "in_transit",  # ASM PARCELSHOP CONFIRMA RECEPCION
 }
 
+GLS_SHIPMENT_ERROR_CODES = {
+    36: "Error, Consignee Zipcode, wrong format.",
+    38: "Error, Invalid consignee phone number.",
+    -36: "Error, Consignee Zipcode, wrong format.",
+    -38: "Error, Invalid consignee phone number.",
+    -1: (
+        "Exception. Timeout expired."
+        "Se ha forzado la interrupcion de una conexion existente por el host remoto."
+    ),
+    -3: "Error, The barcode of the shipment already exists.",
+    -33: """Error, Various reasons:
+        Cp destino no existe o no es de esa plaza
+        El reembolso debe ser mayor o igual a 0
+        Este contrato de valija no existe/esta dado de baja
+        Formato de codigo de barras no reconocido
+        Fecha expedición anterior a hoy
+        Los bultos no pueden ser 0 o negativos
+        No estas autorizado a grabar envíos de ese cliente
+        Sin tienda ps y horario ps
+        El servicio / horario es incorrecto""",
+    -48: "Error, EuroEstandar/EBP service: the number of parcels should always be 1.",
+    -49: "Error, EuroEstandar/EBP service: weight should be <= 31.5 kgs (<Peso>).",
+    -50: "Error, EuroEstandar/EBP service: there can be no RCS (return stamped copy).",
+    -51: "Error, EuroEstandar/EBP service: there can be no SWAP (<Retorno>).",
+    -52: (
+        "Error, EuroEstandar/EBP service:"
+        "reported a country that is not included on the service."
+    ),
+    -53: (
+        "Error, EuroEstandar/EBP service:"
+        "agency is not authorized to insert EuroEstandar/EBP service."
+    ),
+    -54: (
+        "Error, EuroEstandar/EBP service:"
+        "The consignee mail address is required (<Destinatario>.<Email>)."
+    ),
+    -55: (
+        "Error, EuroEstandar/EBP service:"
+        "The consignee mobile phone is required (<Destinatario>.<Movil>)."
+    ),
+    -57: (
+        "Error, EuroEstandar/EBP service:"
+        "reported a country that is not included on the service (<Destinatario>.<Pais>)."
+    ),
+    -69: "Error, I can not Channeling, wrong consignee zipcode.",
+    -70: "Error, The order number already exists to this date and customer code.",
+    -80: "EuroBusiness shipments. A mandatory field is missing.",
+    -81: "EuroBusiness shipments. A wrong format is transmitted in field.",
+    -82: (
+        "EuroBusiness shipments."
+        "Wrong zipcode /wrong country code."
+        "Error in zip code or its format, "
+        "and maybe a bad combination of city and zip code."
+    ),
+    -83: (
+        "EuroBusiness shipments."
+        "GLS internal error."
+        "No free parcel number is available within the range."
+    ),
+    -84: (
+        "EuroBusiness shipments."
+        "GLS internal error."
+        "A parameter is missing within the configuration file of the UNI-BOX."
+    ),
+    -85: "EuroBusiness shipments. Is not able to make the routing.",
+    -86: (
+        "EuroBusiness shipments."
+        "GLS internal error."
+        "A needed template-file cannot be found or opened."
+    ),
+    -87: "EuroBusiness shipments. GLS internal error. Duplicated sequence.",
+    -88: "EuroBusiness shipments. Other errors.",
+    -96: "Error, EBP service: Sequential error.",
+    -97: (
+        "Error, EuroEstandar/EBP service:"
+        "<Portes> can't be 'D', <Reembolso> can't be > 0."
+    ),
+    -99: "Warning, Webservices are temporarily out of service.",
+    -103: "Error, plaza solicita es null (alta).",
+    -104: "Error, plaza origen es null (alta).",
+    -106: "Error, CodCli es null (alta).",
+    -107: "Error, CodCliRed es null (alta).",
+    -108: "Error, Sender Name must be at least three characters.",
+    -109: "Error, Sender Address must be at least three characters.",
+    -110: "Error, Sender City must be at least three characters.",
+    -111: "Error, Sender Zipcode must be at least four characters.",
+    -117: "Error, los locales solo en la plaza de origen para la web.",
+    -118: "Error, customer reference is duplicated.",
+    -119: "Error, exception, uncontrolled error.",
+    -128: "Error, Consignee Name must be at least three characters.",
+    -129: "Error, Consignee Address must be at least three characters.",
+    -130: "Error, Consignee City must be at least three characters.",
+    -131: "Error, Consignee Zipcode must be at least four characters.",
+    -6565: "Error, Volume is incorrect, remember that the unit is m3.",
+}
+
+GLS_PICKUP_ERROR_CODES = {
+    -1: "Connection exception",
+    -103: "Impossible get the requesting agency",
+    -104: "Impossible get the origin agency.",
+    -105: "Collection date is empty o not informed.",
+    -106: "Impossible get the customer code (CodCli).",
+    -107: "Impossible get the CodCliRed.",
+    -108: "Collection name is empty or not informed.",
+    -109: "Collection Address name is empty or not informed.",
+    -110: "Collection City name is empty or not informed.",
+    -111: "Collection Zipcode is empty or not informed.",
+    -112: "Codsolicitud of agency is not valid.",
+    -113: "Generic zipcodes are not allowed.",
+    -114: "Collection interval must be greater than 2 hours.",
+    -115: "Minimum collection time is 8h.",
+    -116: "Maximum collection time is 22h.",
+    -117: "Los locales solo en la plaza de origen para la web.",
+    -118: "Customer reference is duplicated.",
+    -119: "Zonzoo no puede recoger en islas Portugal.",
+    -120: "Zipcode of consignee is incorrect.",
+    -122: "Login not exists or is deleted.",
+    -123: "Don't have permissions to insert on this agency.",
+    -125: "Can not ask a collect on festive.",
+    -126: (
+        "When country is not Spain (34) the Phone and Celullar are mandatory"
+        "(tags <Telefono> and <Movil> inside <RecogerEn>)."
+    ),
+    -128: (
+        "It is mandatory to inform the Telephone or Email "
+        "where GLS must to collect (<RecogerEn>.<Telefono>, <RecogerEn>.<Movil> "
+        "or <RecogerEn>.<Email>)."
+    ),
+    -303: "Currency amounts must be allways greater than 0.",
+    -402: (
+        "If Amount of insured goods > 0 (in Seguro), "
+        "then tipo and descripcion are mandatory."
+    ),
+    -504: (
+        "Impossible get the last mile agency, "
+        "probably the consignee zipcode is wrong or not exists."
+    ),
+    -505: "Consignee name is not informed.",
+    -506: "Consignee address is not informed.",
+    -507: "Consignee city is not informed.",
+    -508: "Consignee zipcode is not informed.",
+    -602: "The reference must be informed.",
+    -603: "Shipment References, tipo not exists.",
+    -676: "Collection Zipcode is wrong, not exists.",
+}
+
 
 class GlsAsmRequest:
     """Interface between GLS-ASM SOAP API and Odoo recordset
@@ -307,7 +453,10 @@ class GlsAsmRequest:
                 _(
                     "GLS returned an error trying to record the shipping for {}.\n"
                     "Error:\n{}"
-                ).format(vals.get("referencia_c", ""), res["_return"])
+                ).format(
+                    vals.get("referencia_c", ""),
+                    GLS_SHIPMENT_ERROR_CODES.get(res["_return"], res["_return"]),
+                )
             )
         if res.get("Etiquetas", {}).get("Etiqueta", {}).get("value"):
             res["gls_label"] = binascii.a2b_base64(
@@ -340,7 +489,7 @@ class GlsAsmRequest:
         """
         res = self._get_delivery_info(reference)
         res = (
-            res.get("expediciones", {})
+            (res.get("expediciones") or {})
             .get("exp", {})
             .get("tracking_list", {})
             .get("tracking", [])

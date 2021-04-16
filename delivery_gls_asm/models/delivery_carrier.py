@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from xml.sax.saxutils import escape
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 from .gls_asm_request import (
     GLS_ASM_SERVICES,
@@ -16,7 +17,9 @@ from .gls_asm_request import (
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
-    delivery_type = fields.Selection(selection_add=[("gls_asm", "GLS ASM")])
+    delivery_type = fields.Selection(
+        selection_add=[("gls_asm", "GLS ASM")], ondelete={"gls_asm": "set default"}
+    )
     gls_asm_uid = fields.Char(
         string="GLS UID",
     )
@@ -37,16 +40,6 @@ class DeliveryCarrier(models.Model):
         string="Postage Type",
         help="Postage type, usually 'Prepaid'",
         default="P",
-    )
-    gls_last_request = fields.Text(
-        string="Last GLS xml request",
-        help="Used for issues debugging",
-        readonly=True,
-    )
-    gls_last_response = fields.Text(
-        string="Last GLS xml response",
-        help="Used for issues debugging",
-        readonly=True,
     )
 
     def _gls_asm_uid(self):
@@ -81,6 +74,8 @@ class DeliveryCarrier(models.Model):
             picking.picking_type_id.warehouse_id.partner_id
             or picking.company_id.partner_id
         )
+        if not sender_partner.street:
+            raise UserError(_("Couldn't find the sender street"))
         return {
             "fecha": fields.Date.today().strftime("%d/%m/%Y"),
             "portes": self.gls_asm_postage_type,
@@ -96,7 +91,9 @@ class DeliveryCarrier(models.Model):
             "pod": "N",  # [optional]
             "podobligatorio": "N",  # [deprecated]
             "remite_plaza": "",  # [optional] Origin agency
-            "remite_nombre": escape(sender_partner.name),
+            "remite_nombre": escape(
+                sender_partner.name or sender_partner.parent_id.name
+            ),
             "remite_direccion": escape(sender_partner.street) or "",
             "remite_poblacion": sender_partner.city or "",
             "remite_provincia": sender_partner.state_id.name or "",
@@ -111,13 +108,16 @@ class DeliveryCarrier(models.Model):
             "destinatario_codigo": "",
             "destinatario_plaza": "",
             "destinatario_nombre": (
-                escape(picking.partner_id.name)
-                or escape(picking.partner_id.commercial_partner_id.name)
+                escape(picking.partner_id.name or picking.partner_id.parent_id.name)
+                or escape(
+                    picking.partner_id.commercial_partner_id.name
+                    or picking.partner_id.commercial_partner_id.parent_id.name
+                )
             ),
             "destinatario_direccion": picking.partner_id.street or "",
             "destinatario_poblacion": picking.partner_id.city or "",
             "destinatario_provincia": picking.partner_id.state_id.name or "",
-            "destinatario_pais": (picking.partner_id.country_id.phone_code or ""),
+            "destinatario_pais": picking.partner_id.country_id.phone_code or "",
             "destinatario_cp": picking.partner_id.zip,
             "destinatario_telefono": picking.partner_id.phone or "",
             "destinatario_movil": picking.partner_id.mobile or "",
@@ -126,7 +126,9 @@ class DeliveryCarrier(models.Model):
             "destinatario_att": "",
             "destinatario_departamento": "",
             "destinatario_nif": "",
-            "referencia_c": escape(picking.name),  # Our unique reference
+            "referencia_c": escape(
+                picking.name.replace("\\", "/")  # It errors with \ characters
+            ),  # Our unique reference
             "referencia_0": "",  # Not used if the above is set
             "importes_debido": "0",  # The customer pays the shipping
             "importes_reembolso": "",  # TODO: Support Cash On Delivery
@@ -156,8 +158,11 @@ class DeliveryCarrier(models.Model):
             vals = self._prepare_gls_asm_shipping(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_shipping(vals)
-            self.gls_last_request = response and response.get("gls_sent_xml", "")
-            self.gls_last_response = response or ""
+            self.log_xml(
+                response and response.get("gls_sent_xml", ""),
+                "GLS ASM Shipping Request",
+            )
+            self.log_xml(response or "", "GLS ASM Shipping Response")
             if not response or response.get("_return", -1) < 0:
                 result.append(vals)
                 continue
@@ -191,6 +196,7 @@ class DeliveryCarrier(models.Model):
         tracking_states = gls_request._get_tracking_states(picking.carrier_tracking_ref)
         if not tracking_states:
             return
+        self.log_xml(tracking_states or "", "GLS ASM Tracking Response")
         picking.tracking_state_history = "\n".join(
             [
                 "{} - [{}] {}".format(t.get("fecha"), t.get("codigo"), t.get("evento"))
@@ -210,8 +216,10 @@ class DeliveryCarrier(models.Model):
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         for picking in pickings.filtered("carrier_tracking_ref"):
             response = gls_request._cancel_shipment(picking.carrier_tracking_ref)
-            self.gls_last_request = response and response.get("gls_sent_xml", "")
-            self.gls_last_response = response or ""
+            self.log_xml(
+                response and response.get("gls_sent_xml", ""), "GLS ASM Cancel Request"
+            )
+            self.log_xml(response or "", "GLS ASM Cancel Response")
             if not response or response.get("_return") < 0:
                 msg = _("GLS Cancellation failed with reason: %s") % response.get(
                     "value", "Connection Error"
@@ -225,16 +233,22 @@ class DeliveryCarrier(models.Model):
             )
 
     def gls_asm_rate_shipment(self, order):
-        """There's no public API so another price method should be used"""
-        raise NotImplementedError(
-            _(
-                """
-            GLS ASM API doesn't provide methods to compute delivery rates, so
-            you should relay on another price method instead or override this
-            one in your custom code.
-        """
-            )
-        )
+        """There's no public API so another price method should be used
+        Not implemented with GLS-ASM, these values are so it works with websites"""
+        return {
+            "success": True,
+            "price": self.product_id.lst_price,
+            "error_message": _(
+                """GLS ASM API doesn't provide methods to compute delivery rates, so
+                you should relay on another price method instead or override this
+                one in your custom code."""
+            ),
+            "warning_message": _(
+                """GLS ASM API doesn't provide methods to compute delivery rates, so
+                you should relay on another price method instead or override this
+                one in your custom code."""
+            ),
+        }
 
     def gls_asm_get_label(self, gls_asm_public_tracking_ref):
         """Generate label for picking

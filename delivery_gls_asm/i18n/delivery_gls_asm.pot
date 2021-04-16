@@ -178,6 +178,12 @@ msgid "City"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid "Couldn't find the sender street"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__create_uid
 msgid "Created by"
 msgstr ""
@@ -270,6 +276,16 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__delivery_type__gls_asm
 msgid "GLS ASM"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"GLS ASM API doesn't provide methods to compute delivery rates, so\n"
+"                you should relay on another price method instead or override this\n"
+"                one in your custom code."
 msgstr ""
 
 #. module: delivery_gls_asm
