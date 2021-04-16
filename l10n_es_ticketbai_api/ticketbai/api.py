@@ -50,7 +50,6 @@ class TicketBaiApi:
     def requests_post(self, data):
         try:
             response = self.post(data)
-            response.raise_for_status()
             data = response.content.decode(response.encoding)
             if 200 == response.status_code:
                 tb_response = TicketBaiResponse(data=data)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
@@ -9,7 +10,7 @@
             <field name="inherit_id" ref="base.view_company_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//page[last()]" position="after">
-                    <page name="ticketbai" string="TicketBAI" groups="base.group_no_one">
+                    <page name="ticketbai" string="TicketBAI">
                         <group name="ticketbai">
                             <field name="tbai_enabled"/>
                         </group>
@@ -20,7 +21,6 @@
                                    attrs="{'required': [('tbai_enabled', '=', True)]}"
                                    options="{'no_open':True,'no_create':True}"/>
                             <field name="tbai_developer_id"/>
-                            <field name="tbai_license_key"/>
                             <field name="tbai_tax_agency_id" attrs="{'required': [('tbai_enabled', '=', True)]}"
                                    options="{'no_open':True,'no_create':True}"/>
                             <field name="tbai_vat_regime_simplified"/>

@@ -52,7 +52,7 @@ class TicketBaiResponse(models.Model):
 
     tbai_invoice_id = fields.Many2one(
         comodel_name='tbai.invoice', required=True, ondelete='cascade')
-    xml = fields.Binary(string='XML Response')
+    xml = fields.Binary(string='XML Response', attachment=True)
     xml_fname = fields.Char('File Name')
     state = fields.Selection(selection=[
         (TicketBaiResponseState.RECEIVED.value, 'Received'),
