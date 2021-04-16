@@ -13,7 +13,7 @@
                         <field name="developer_id"
                                options="{'no_open':True,'no_create':True}"/>
                         <field name="vat"/>
-                        <field name="license_key"/>
+                        <field name="license_key" password="True"/>
                     </group>
                 </form>
             </field>

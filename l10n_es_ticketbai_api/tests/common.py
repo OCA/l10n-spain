@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import os
 import json
@@ -28,7 +29,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             company_id=self.main_company.id, limit=0)
         self.assertEqual(0, len(pending_invoices))
         invoice.sudo().unlink()
-        self.env.cr.commit()
 
     def create_tbai_national_invoice_cancellation(
             self, name='TBAITEST/00001', company_id=1, number='00001',
@@ -459,7 +459,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             'license_key': vals.pop('tbai_license_key')
         })
         vals.update({
-            'country_id': self.env.ref('base.es').id,
             'tbai_enabled': True,
             'tbai_test_enabled': True,
             'tbai_tax_agency_id': self.env.ref(

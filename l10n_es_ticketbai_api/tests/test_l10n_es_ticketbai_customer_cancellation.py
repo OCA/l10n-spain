@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests import common
 from .common import TestL10nEsTicketBAIAPI
@@ -55,4 +56,3 @@ class TestL10nEsTicketBAICancellation(TestL10nEsTicketBAIAPI):
             self.assertEqual(0, len(pending_invoices))
             invoice.sudo().unlink()
             cancellation.sudo().unlink()
-            self.env.cr.commit()
