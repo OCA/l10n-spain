@@ -154,21 +154,18 @@
             </div>
         </t>
     </template>
-    <report
-        id="gls_asm_manifest_report"
-        model="gls.asm.minifest.wizard"
-        string="GLS Manifest"
-        report_type="qweb-pdf"
-        name="delivery_gls_asm.gls_asm_manifest_report_view"
-        menu="False"
-    />
-    <act_window
-        id="action_delivery_gls_asm_manifest_wizard"
-        name="GLS Manifest"
-        res_model="gls.asm.minifest.wizard"
-        view_mode="form"
-        target="new"
-    />
+    <record id="gls_asm_manifest_report" model="ir.actions.report">
+        <field name="name">GLS Manifest</field>
+        <field name="model">gls.asm.minifest.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">delivery_gls_asm.gls_asm_manifest_report_view</field>
+    </record>
+    <record id="action_delivery_gls_asm_manifest_wizard" model="ir.actions.act_window">
+        <field name="name">GLS Manifest</field>
+        <field name="res_model">gls.asm.minifest.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
     <menuitem
         id="menu_gls_asm_manifest"
         name="GLS Deliveries Manifest"

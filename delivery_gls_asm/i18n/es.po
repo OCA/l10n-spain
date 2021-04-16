@@ -18,28 +18,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:216
-#, python-format
-msgid ""
-"\n"
-"            GLS ASM API doesn't provide methods to compute delivery rates, "
-"so\n"
-"            you should relay on another price method instead or override "
-"this\n"
-"            one in your custom code.\n"
-"        "
-msgstr ""
-"\n"
-"            La API de GLS ASM no proporciona métodos para calcular las tasas "
-"de \n"
-"               entrega, por lo que  debe confiar en otro método de precio en "
-"su \n"
-"               lugar \n"
-"               o anular este\n"
-"               uno en su código personalizado.\n"
-"        "
-
-#. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
 msgid "10:00 Service"
 msgstr "10:00 Service"
@@ -203,6 +181,12 @@ msgid "City"
 msgstr "Ciudad"
 
 #. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid "Couldn't find the sender street"
+msgstr "No se ha podido encontrar la calle del remitente (obligatorio)"
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -306,6 +290,18 @@ msgstr "GLASS"
 #: selection:delivery.carrier,delivery_type:0
 msgid "GLS ASM"
 msgstr "GLS ASM"
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"GLS ASM API doesn't provide methods to compute delivery rates, so\n"
+"                you should relay on another price method instead or override this\n"
+"                one in your custom code."
+msgstr "La API de GLS ASM no proporciona métodos para calcular las tasas"
+"de entrega, por lo que debe confiar en otro método de precio en"
+"su lugar o anular este uno en su código personalizado."
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_asm_public_tracking_ref
