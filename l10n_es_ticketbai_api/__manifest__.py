@@ -1,11 +1,12 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "TicketBAI - API",
-    "version": "11.0.0.1.0",
+    "version": "12.0.0.1.0",
     "category": "Accounting & Finance",
-    "website": "http://www.binovo.es",
+    "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -14,7 +15,7 @@
     "auto_install": False,
     "development_status": "Beta",
     "maintainers": [
-        'ljsalvatierra-binovo'
+        'ao-landoo'
     ],
     "depends": ["base", "base_setup"],
     "external_dependencies": {
