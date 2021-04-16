@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data noupdate="1">
@@ -42,7 +43,7 @@
             <field name="name">Binovo IT Human Project S.L.</field>
             <field name="supplier" eval="True"/>
             <field name="customer" eval="True"/>
-            <field eval="[(6, 0, [ref('base.res_partner_category_7'), ref('base.res_partner_category_8')])]" name="category_id"/>
+            <field eval="[(6, 0, [ref('base.res_partner_category_11'), ref('base.res_partner_category_8')])]" name="category_id"/>
             <field name="is_company">1</field>
             <field name="city">Oiartzun</field>
             <field name="zip">20180</field>

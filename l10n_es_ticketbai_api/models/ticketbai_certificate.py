@@ -20,7 +20,7 @@ class TicketBaiCertificate(models.Model):
     company_id = fields.Many2one(
         string='Company', comodel_name='res.company', required=True,
         default=lambda self: self.env.user.company_id.id)
-    datas = fields.Binary('P12 Certificate', required=True)
+    datas = fields.Binary('P12 Certificate', required=True, attachment=True)
     password = fields.Char(default='')
 
     def get_p12_buffer(self):

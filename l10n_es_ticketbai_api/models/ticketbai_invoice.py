@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 from datetime import datetime
@@ -111,8 +112,9 @@ class TicketBAIInvoice(models.Model):
         string='Refunded Invoices', copy=True,
         comodel_name='tbai.invoice.refund', inverse_name='tbai_invoice_id')
     qr_url = fields.Char('URL', compute='_compute_tbai_qr', store=True, copy=False)
-    qr = fields.Binary(string="QR", compute='_compute_tbai_qr', store=True, copy=False)
-    datas = fields.Binary(copy=False)
+    qr = fields.Binary(string="QR", compute='_compute_tbai_qr', store=True,
+                       copy=False, attachment=True)
+    datas = fields.Binary(copy=False, attachment=True)
     datas_fname = fields.Char('File Name', copy=False)
     file_size = fields.Integer('File Size', copy=False)
     state = fields.Selection(selection=[
@@ -419,7 +421,7 @@ class TicketBAIInvoice(models.Model):
                     border=0, error_correction=qrcode.constants.ERROR_CORRECT_M)
                 qr.add_data(record.qr_url)
                 qr.make()
-                img = qr.make_image(fill_color="white", back_color="black")
+                img = qr.make_image()
                 with io.BytesIO() as temp:
                     img.save(temp, format="PNG")
                     record.qr = base64.b64encode(temp.getvalue())
@@ -548,58 +550,71 @@ class TicketBAIInvoice(models.Model):
         rejected_retries = 0
         while next_pending_invoice and not retry_later and \
                 rejected_retries < TBAI_REJECTED_MAX_RETRIES:
-            tbai_response = next_pending_invoice.send()
-            if TicketBaiResponseState.RECEIVED.value == tbai_response.state:
-                next_pending_invoice.mark_as_sent()
-            elif TicketBaiResponseState.REJECTED.value == tbai_response.state:
-                # Reestablish the company pointer to the last invoice built and
-                # successfully sent.
-                # Mark pending invoices as error, except in the following:
-                # - TicketBai (Invoice)
-                #   - 005: Invoice already registered -> mark as sent.
-                #   - 006: service not available. Retry later.
-                # - AnulaTicketBai (Cancellation)
-                #   - 011: Invoice already registered -> mark as sent.
-                #   - 012: service not available. Retry later.
-                error = True
-                # TicketBAI Response warning and error codes
-                response_codes = list(
-                    set(tbai_response.tbai_response_message_ids.mapped('code')))
-                if TicketBaiSchema.TicketBai.value == next_pending_invoice.schema:
-                    if TicketBaiInvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value \
-                            in response_codes:
+            try:
+                with self.env.cr.savepoint():
+                    tbai_response = next_pending_invoice.send()
+                    if TicketBaiResponseState.RECEIVED.value == \
+                            tbai_response.state:
                         next_pending_invoice.mark_as_sent()
-                        error = False
-                    elif TicketBaiInvoiceResponseCode.SERVICE_NOT_AVAILABLE.value in \
-                            response_codes:
+                    elif TicketBaiResponseState.REJECTED.value \
+                            == tbai_response.state:
+                        # Reestablish the company pointer to the last invoice built and
+                        # successfully sent.
+                        # Mark pending invoices as error, except in the following:
+                        # - TicketBai (Invoice)
+                        #   - 005: Invoice already registered -> mark as sent.
+                        #   - 006: service not available. Retry later.
+                        # - AnulaTicketBai (Cancellation)
+                        #   - 011: Invoice already registered -> mark as sent.
+                        #   - 012: service not available. Retry later.
+                        error = True
+                        # TicketBAI Response warning and error codes
+                        response_codes = list(set(
+                            tbai_response.tbai_response_message_ids
+                            .mapped('code')))
+                        if TicketBaiSchema.TicketBai.value ==\
+                                next_pending_invoice.schema:
+                            if TicketBaiInvoiceResponseCode.\
+                                    INVOICE_ALREADY_REGISTERED.value \
+                                    in response_codes:
+                                next_pending_invoice.mark_as_sent()
+                                error = False
+                            elif TicketBaiInvoiceResponseCode.\
+                                    SERVICE_NOT_AVAILABLE.value \
+                                    in response_codes:
+                                retry_later = True
+                                error = False
+                        elif TicketBaiSchema.AnulaTicketBai.value == \
+                                next_pending_invoice.schema:
+                            if TicketBaiCancellationResponseCode.\
+                                    INVOICE_ALREADY_CANCELLED.value \
+                                    in response_codes:
+                                next_pending_invoice.mark_as_sent()
+                                error = False
+                            elif TicketBaiCancellationResponseCode.\
+                                    SERVICE_NOT_AVAILABLE.value \
+                                    in response_codes:
+                                retry_later = True
+                                error = False
+                        if error:
+                            self.mark_chain_as_error(next_pending_invoice)
+                            rejected_retries += 1
+                    elif TicketBaiResponseState.REQUEST_ERROR.value == \
+                            tbai_response.state:
+                        # In case of multi-company it would be delaying
+                        # independently from the company and tax agency,
+                        # maybe only one of them is out of service.
+                        # For now delay for all companies and all tax agencies.
                         retry_later = True
-                        error = False
-                elif TicketBaiSchema.AnulaTicketBai.value == \
-                        next_pending_invoice.schema:
-                    if TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.\
-                            value in response_codes:
-                        next_pending_invoice.mark_as_sent()
-                        error = False
-                    elif TicketBaiCancellationResponseCode.SERVICE_NOT_AVAILABLE.value \
-                            in response_codes:
+                    elif TicketBaiResponseState.BUILD_ERROR.value == \
+                            tbai_response.state:
                         retry_later = True
-                        error = False
-                if error:
-                    self.mark_chain_as_error(next_pending_invoice)
-                    rejected_retries += 1
-            elif TicketBaiResponseState.REQUEST_ERROR.value == tbai_response.state:
-                # In case of multi-company it would be delaying independently from the
-                # company and tax agency, maybe only one of them is out of service.
-                # For now delay for all companies and all tax agencies.
+                    if not retry_later:
+                        next_pending_invoice = self.get_next_pending_invoice()
+            except Exception:
+                _logger.exception('Communication failed with TicketBAI server.',
+                                  exc_info=True)
                 retry_later = True
-            elif TicketBaiResponseState.BUILD_ERROR.value == tbai_response.state:
-                retry_later = True
-            if not retry_later:
-                next_pending_invoice = self.get_next_pending_invoice()
-            # If an Invoice has been sent successfully to the Tax Agency
-            # we need to make sure that the current state is saved in case an exception
-            # occurs in the following invoices.
-            self.env.cr.commit()
 
     def _get_tbai_identifier_values(self):
         """ V 1.2
@@ -736,7 +751,7 @@ class TicketBAIInvoice(models.Model):
         res = OrderedDict()
         if self.operation_date:
             res["FechaOperacion"] = self.operation_date
-        res["DescripcionFactura"] = self.description[:250]
+        res["DescripcionFactura"] = self.description
         detalles_factura = self.build_detalles_factura()
         if detalles_factura:
             res["DetallesFactura"] = detalles_factura
@@ -895,7 +910,7 @@ class TicketBAIInvoice(models.Model):
         for tax in not_subject_to_taxes:
             res.append(OrderedDict([
                 ("Causa", tax.not_subject_to_cause),
-                ("Importe", tax.amount_total)
+                ("Importe", tax.base)
             ]))
         return res
 
@@ -1032,7 +1047,7 @@ class TicketBAIInvoice(models.Model):
         res = []
         for line in self.tbai_invoice_line_ids:
             res.append(OrderedDict([
-                ("DescripcionDetalle", line.description[:250]),
+                ("DescripcionDetalle", line.description),
                 ("Cantidad", line.quantity),
                 ("ImporteUnitario", line.price_unit),
                 ("Descuento", line.discount_amount or '0.00'),
