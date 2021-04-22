@@ -4,6 +4,8 @@
 # Copyright 2017 Studio73 - Jordi Tolsà <jordi@studio73.es>
 # Copyright 2018 Javi Melendez <javimelex@gmail.com>
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
+# Copyright 2021 Punt Sistemes - Juanvi Pascual <jvpascual@puntsistemes.es>
+# Copyright 2021 Punt Sistemes - Pedro Ortega <portega@puntsistemes.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -527,6 +529,8 @@ class AccountInvoice(models.Model):
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
         default_no_taxable_cause = self._get_no_taxable_cause()
+        taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
+        base_not_in_total = self._get_sii_taxes_map(['BaseNotIncludedInTotal'])
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
@@ -535,6 +539,17 @@ class AccountInvoice(models.Model):
             breakdown_taxes = (
                 taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             )
+
+            if tax in (taxes_not_in_total + base_not_in_total):
+                amount = (
+                    tax_line.base if tax in base_not_in_total else tax_line.amount_total
+                )
+                if self.currency_id != self.company_id.currency_id:
+                    amount = self.currency_id._compute(
+                        self.currency_id,
+                        self.company_id.currency_id,
+                        amount,
+                    )
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault(
                     'DesgloseFactura', {},
@@ -651,11 +666,25 @@ class AccountInvoice(models.Model):
         taxes_sfrisp = self._get_sii_taxes_map(['SFRISP'])
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
         taxes_sfrnd = self._get_sii_taxes_map(['SFRND'])
+
+        taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
+        base_not_in_total = self._get_sii_taxes_map(['BaseNotIncludedInTotal'])
         tax_amount = 0.0
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
+
+            if tax in (taxes_not_in_total + base_not_in_total):
+                amount = (
+                    tax_line.base if tax in base_not_in_total else self.amount_untaxed
+                )
+                if self.currency_id != self.company_id.currency_id:
+                    amount = self.currency_id._compute(
+                        self.currency_id,
+                        self.company_id.currency_id,
+                        amount,
+                    )
             if tax in taxes_sfrisp:
                 isp_dict = taxes_dict.setdefault(
                     'InversionSujetoPasivo', {'DetalleIVA': []},
@@ -671,7 +700,7 @@ class AccountInvoice(models.Model):
                 sfrs_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-                tax_amount += abs(round(tax_line.amount_company, 2))
+                tax_amount += round(tax_line.amount_company, 2)
             elif tax in taxes_sfrns:
                 sfrns_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
@@ -679,6 +708,12 @@ class AccountInvoice(models.Model):
                 sfrns_dict['DetalleIVA'].append({
                     'BaseImponible': sign * tax_line.base_company,
                 })
+            else:
+                continue
+            tax_dict = self._get_sii_tax_dict(tax_line, sign)
+            if tax in taxes_sfrns:
+                tax_dict.pop("TipoImpositivo")
+                tax_dict.pop("CuotaSoportada")
             elif tax in taxes_sfrsa:
                 sfrsa_dict = taxes_dict.setdefault(
                     'DesgloseIVA', {'DetalleIVA': []},
@@ -768,8 +803,7 @@ class AccountInvoice(models.Model):
                 },
                 # On cancelled invoices, number is not filled
                 "NumSerieFacturaEmisor": (
-                    self.number or self.move_name or ''
-                )[0:60],
+                    self.number or self.move_name or '')[0:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
             "PeriodoLiquidacion": {
@@ -879,6 +913,52 @@ class AccountInvoice(models.Model):
         else:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
+            sii_invoice_total_amount = 0.0
+            cuotadeducible = (
+                self.date >= SII_START_DATE and
+                round(tax_amount * sign, 2) or 0.0
+            )
+
+            # El campo cuotadeducible ha de ser cero cuando el valor de
+            # ClaveRegimenEspecialOTrascendencia o alguna
+            # ClaveRegimenEspecialOTrascendenciaAdicional sea 13
+            if self.sii_registration_key and \
+                    self.sii_registration_key.code == '13':
+                cuotadeducible = 0.0
+            elif self.sii_registration_key_additional1 and \
+                    self.sii_registration_key_additional1.code == '13':
+                cuotadeducible = 0.0
+            elif self.sii_registration_key_additional2 and \
+                    self.sii_registration_key_additional2.code == '13':
+                cuotadeducible = 0.0
+
+            if 'DesgloseIVA' in desglose_factura:
+                for x in desglose_factura['DesgloseIVA']['DetalleIVA']:
+                    if 'BaseImponible' in x:
+                        sii_invoice_total_amount += x['BaseImponible']
+                    if 'CuotaSoportada' in x:
+                        sii_invoice_total_amount += x['CuotaSoportada']
+                    if 'CuotaRecargoEquivalencia' in x:
+                        sii_invoice_total_amount += \
+                            x['CuotaRecargoEquivalencia']
+                        # Cuando la CuotaRecargoEquivalencia este cumplimentada,
+                        # la cuotadeducible tiene que ser cero.
+                        cuotadeducible = 0.0
+
+            elif 'InversionSujetoPasivo' in desglose_factura:
+                for x in desglose_factura[
+                        'InversionSujetoPasivo']['DetalleIVA']:
+                    if 'BaseImponible' in x:
+                        sii_invoice_total_amount += x['BaseImponible']
+                    if 'CuotaSoportada' in x:
+                        sii_invoice_total_amount += x['CuotaSoportada']
+                    if 'CuotaRecargoEquivalencia' in x:
+                        sii_invoice_total_amount += x[
+                            'CuotaRecargoEquivalencia']
+                        # Cuando la CuotaRecargoEquivalencia este cumplimentada,
+                        # la cuotadeducible tiene que ser cero.
+                        cuotadeducible = 0.0
+
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
                 "TipoFactura": (
@@ -895,11 +975,8 @@ class AccountInvoice(models.Model):
                     )
                 },
                 "FechaRegContable": reg_date,
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
-                "CuotaDeducible": (
-                    self.date >= SII_START_DATE and
-                    round(tax_amount * sign, 2) or 0.0
-                ),
+                "ImporteTotal": sii_invoice_total_amount,
+                "CuotaDeducible": cuotadeducible,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaRecibida"].update(Macrodato="S")
