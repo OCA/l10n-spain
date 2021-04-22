@@ -68,6 +68,11 @@ msgid "Activity State"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__allow_posting
 msgid "Allow Posting"
 msgstr ""
@@ -273,6 +278,11 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__message_partner_ids
 msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,help:l10n_es_vat_book.field_l10n_es_vat_book__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: l10n_es_vat_book
@@ -728,6 +738,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_invoices_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.vat_book_taxes_head
 msgid "Tax"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_aeat_vat_book_map_line__tax_account_id
+msgid "Tax Account Restriction"
 msgstr ""
 
 #. module: l10n_es_vat_book
