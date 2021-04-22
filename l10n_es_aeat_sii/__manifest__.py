@@ -27,7 +27,6 @@
               "Otherway,"
               "Tecnativa,"
               "Javi Melendez,"
-              "Punt Sistemes"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
