@@ -144,6 +144,8 @@ Contributors
 * Santi Argüeso - Comunitea S.L. <santi@comunitea.com>
 * Angel Moya - PESOL <angel.moya@pesol.es>
 * Nacho Muñoz <nacmuro@gmail.com>
+* Juanvi Pascual <jvpascual@puntsistemes.es>
+* Pedro Ortega <portega@puntsistemes.es>
 
 Maintainers
 ~~~~~~~~~~~
