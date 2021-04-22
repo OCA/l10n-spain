@@ -114,7 +114,12 @@ class TestL10nEsAccountAsset(common.SavepointCase):
     def test_assign_profile(self):
         # direct profile assignation
         asset = self.asset.copy(
-            {"name": "Test Asset 2", "method_time": "year", "method_percentage": 0}
+            {
+                "name": "Test Asset 2",
+                "method_time": "year",
+                "method_percentage": 0,
+                "method_number": self.asset.profile_id.method_number,
+            }
         )
         profile = self.profile.copy(
             {
