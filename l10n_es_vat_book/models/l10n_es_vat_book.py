@@ -331,12 +331,15 @@ class L10nEsVatBook(models.Model):
             line_vals['line_type'] = 'rectification_{}'.format(line_type)
 
     def _check_exceptions(self, line_vals):
-        partner = self.env["res.partner"].browse(line_vals['partner_id'])
-        if (partner._parse_aeat_vat_info()[0] in
-            partner._get_aeat_europe_codes() and
-            (not line_vals['vat_number'] and line_vals['partner_id'] not in
-             self.get_pos_partner_ids())):
-            line_vals['exception_text'] = _("Without VAT")
+        partner = False
+        if 'partner_id' in line_vals.keys() and line_vals['partner_id']:
+            partner = self.env["res.partner"].browse(line_vals['partner_id'])
+
+        if (not line_vals['vat_number'] and line_vals['partner_id'] not
+            in self.get_pos_partner_ids()):
+            if (not partner or partner._parse_aeat_vat_info()[0] in
+                partner._get_aeat_europe_codes()):
+                line_vals['exception_text'] = _("Without VAT")
 
     def create_vat_book_lines(self, move_lines, line_type, taxes):
         VatBookLine = self.env['l10n.es.vat.book.line']
