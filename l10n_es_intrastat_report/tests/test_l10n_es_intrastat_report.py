@@ -23,6 +23,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         move_form.ref = "ABCDE"
         move_form.partner_id = partner
         move_form.partner_shipping_id = partner
+        move_form.invoice_date = datetime.today()
         with move_form.invoice_line_ids.new() as line_form:
             line_form.name = "test"
             line_form.account_id = account
