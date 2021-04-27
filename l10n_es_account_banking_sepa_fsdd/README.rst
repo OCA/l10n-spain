@@ -17,10 +17,10 @@ Account Banking Sepa - FSDD (Anticipos de crédito)
     :target: https://github.com/OCA/l10n-spain/tree/14.0/l10n_es_account_banking_sepa_fsdd
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-13-0/l10n-spain-13-0-l10n_es_account_banking_sepa_fsdd
+    :target: https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-l10n_es_account_banking_sepa_fsdd
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/189/13.0
+    :target: https://runbot.odoo-community.org/runbot/189/14.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -78,7 +78,6 @@ Contributors
 * `Landoo <https://www.landoo.es/>`__:
 
   * Aritz Olea
-
 
 Maintainers
 ~~~~~~~~~~~
