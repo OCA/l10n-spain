@@ -13,7 +13,7 @@
     "Tecnativa,"
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
-    "depends": ["account_statement_import"],
+    "depends": ["account_bank_statement_import"],
     "external_dependencies": {"python": ["chardet"]},
     "data": [
         "views/account_journal_views.xml",
