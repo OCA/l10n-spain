@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_account_banking_sepa_fsdd
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-20 01:14+0000\n"
+"PO-Revision-Date: 2016-03-02 10:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Dutch (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/nl/)\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model.fields,help:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
+msgid "Adds FSDD prefix to sepa file id"
+msgstr ""
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model.fields,field_description:l10n_es_account_banking_sepa_fsdd.field_account_payment_mode__charge_financed
+msgid "Financed Charge"
+msgstr ""
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_mode
+#, fuzzy
+msgid "Payment Modes"
+msgstr "Betaalwijze"
+
+#. module: l10n_es_account_banking_sepa_fsdd
+#: model:ir.model,name:l10n_es_account_banking_sepa_fsdd.model_account_payment_order
+#, fuzzy
+msgid "Payment Order"
+msgstr "Betaalwijze"
