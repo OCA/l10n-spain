@@ -1,3 +1,5 @@
+* No se pueden cambiar las cuentas contables genéricas de los impuestos si se
+  quiere que el modelo recoja correctamente sus cifras.
 * Los regimenes simplificado y agrícola, ganadero y forestal no están
   contemplados en el desarrollo actual.
 * No se permite definir que una compañía realiza tributación conjunta.
