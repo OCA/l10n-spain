@@ -1441,8 +1441,6 @@ class AccountMove(models.Model):
                     extra_dict["sii_refund_type"] = sii_refund_type
                 if supplier_invoice_number_refund:
                     extra_dict["ref"] = supplier_invoice_number_refund
-                if move.type == "out_invoice":
-                    extra_dict["sii_refund_specific_invoice_type"] = "R1"
                 if extra_dict:
                     default_values.update(extra_dict)
         res = super(AccountMove, self)._reverse_moves(
