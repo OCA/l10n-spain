@@ -292,7 +292,7 @@ class L10nEsAeatMod303Report(models.Model):
         for record in self:
             code = ("%s%%" % _ACCOUNT_PATTERN_MAP.get(record.result_type, "4750"),)
             record.counterpart_account_id = self.env["account.account"].search(
-                [("code", "like", code[0]), ("company_id", "=", record.company_id.id)],
+                [("code", "=like", code[0]), ("company_id", "=", record.company_id.id)],
                 limit=1,
             )
 
