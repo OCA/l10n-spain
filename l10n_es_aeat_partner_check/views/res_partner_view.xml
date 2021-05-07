@@ -16,6 +16,8 @@
 						<field name="aeat_partner_vat" />
 						<field name="aeat_partner_check_result"/>
 						<field name="aeat_data_diff"/>
+						<field name="aeat_last_checked" />
+						<field name="aeat_partner_type" />
 					</group>
 				</page>
 			</field>
@@ -33,6 +35,8 @@
 					<filter string="Not Processed" name="not_processed" domain="[('aeat_partner_check_result','=','NO PROCESADO')]"/>
 					<filter string="Not Identifiable" name="not_identifiable" domain="[('aeat_partner_check_result','=','NO IDENTIFICABLE')]"/>
 					<filter string="Data Diff" name="data_diff" domain="[('aeat_partner_check_result','!=','NO IDENTIFICABLE'), ('aeat_data_diff', '=', True)]"/>
+					<filter string="Sales Equiv. regimen" name="se_type" domain="[('aeat_partner_type','=','sales_equalization')]"/>
+					<filter string="Standard regimen" name="standard_type" domain="[('aeat_partner_type','=','standard')]"/>
 				</filter>
 			</field>
 		</record>
