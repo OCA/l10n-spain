@@ -62,7 +62,7 @@ msgid "Data different"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:8
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:10
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "Identificado"
@@ -84,21 +84,27 @@ msgid "If this checkbox is ticked, you will check the partner information in AEA
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:10
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_last_checked
+msgid "Latest AEAT check"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:12
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No identificable"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:7
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:9
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No identificado"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:9
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:11
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No procesado"
@@ -122,6 +128,36 @@ msgstr ""
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_partner_aeat_form
 msgid "Partner Data Quality"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_type
+msgid "Partner type"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:15
+#: selection:res.partner,aeat_partner_type:0
+#, python-format
+msgid "Régimen de recargo de equivalencia"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:16
+#: selection:res.partner,aeat_partner_type:0
+#, python-format
+msgid "Régimen estándar"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Sales Equiv. regimen"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Standard regimen"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check

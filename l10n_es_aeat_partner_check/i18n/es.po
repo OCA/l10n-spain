@@ -7,10 +7,10 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-20 18:33+0000\n"
-"PO-Revision-Date: 2020-03-08 14:13+0000\n"
-"Last-Translator: Antonio Pérez Ruth <antonio.perez@makrin.es>\n"
+"PO-Revision-Date: 2021-05-07 07:04+0000\n"
+"Last-Translator: Ethan Hildick <ethan@studio73.es>\n"
 "Language-Team: \n"
-"Language: es\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -70,7 +70,7 @@ msgid "Data different"
 msgstr "Datos diferentes"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:8
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:10
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "Identificado"
@@ -100,21 +100,27 @@ msgstr ""
 "crear o modificar la empresa."
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:10
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_last_checked
+msgid "Latest AEAT check"
+msgstr "Última petición"
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:12
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No identificable"
 msgstr "No identificable"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:7
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:9
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No identificado"
 msgstr "No identificado"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:9
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:11
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No procesado"
@@ -141,10 +147,40 @@ msgid "Partner Data Quality"
 msgstr "Calidad de datos de la empresa"
 
 #. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_type
+msgid "Partner type"
+msgstr "Tipo asociado"
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:15
+#: selection:res.partner,aeat_partner_type:0
+#, python-format
+msgid "Régimen de recargo de equivalencia"
+msgstr "Régimen de recargo de equivalencia"
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:16
+#: selection:res.partner,aeat_partner_type:0
+#, python-format
+msgid "Régimen estándar"
+msgstr "Régimen estándar"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Sales Equiv. regimen"
+msgstr "Régimen de recargo de equivalencia"
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Standard regimen"
+msgstr "Régimen estándar"
+
+#. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_vat
 msgid "VAT"
-msgstr "IVA"
+msgstr "NIF"
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__vat_check_aeat
