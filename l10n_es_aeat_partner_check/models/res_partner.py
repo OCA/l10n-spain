@@ -1,6 +1,8 @@
 # Copyright 2019 Acysos S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import requests
+
 from odoo import fields, models, api, _
 
 RESULTS = [
@@ -8,6 +10,10 @@ RESULTS = [
     ('IDENTIFICADO', _('Identificado')),
     ('NO PROCESADO', _('No procesado')),
     ('NO IDENTIFICABLE', _('No identificable'))
+]
+TYPES = [
+    ("sales_equalization", _("Régimen de recargo de equivalencia")),
+    ("standard", _("Régimen estándar")),
 ]
 
 
@@ -33,6 +39,10 @@ class ResPartner(models.Model):
     aeat_partner_name = fields.Char(string='AEAT Name', readonly=True)
     aeat_data_diff = fields.Boolean(
         string='Data different', compute='_compute_data_diff', store=True)
+    aeat_last_checked = fields.Datetime(string="Latest AEAT check", readonly=True)
+    aeat_partner_type = fields.Selection(
+        string="Partner type", selection=TYPES, readonly=True
+    )
 
     @api.multi
     def get_test_mode(self, port_name):
@@ -56,16 +66,25 @@ class ResPartner(models.Model):
             }
             res = soap_obj.send_soap(
                 service, wsdl, port_name, partner, operation, request)
+            vals = {
+                "aeat_partner_vat": None,
+                "aeat_partner_name": None,
+                "aeat_partner_check_result": "NO IDENTIFICABLE",
+                "aeat_last_checked": fields.Datetime.now(),
+            }
             if res:
-                partner.aeat_partner_vat = res[0]['Nif']
-                partner.aeat_partner_name = res[0]['Nombre']
-                partner.aeat_partner_check_result = res[0]['Resultado']
-                if partner.aeat_partner_name != partner.name:
-                    partner.aeat_data_diff = True
-            else:
-                partner.aeat_partner_vat = None
-                partner.aeat_partner_name = None
-                partner.aeat_partner_check_result = 'NO IDENTIFICABLE'
+                partner_name = res[0]["Nombre"]
+                vals.update(
+                    {
+                        "aeat_partner_vat": res[0]["Nif"],
+                        "aeat_partner_name": partner_name,
+                        "aeat_partner_check_result": res[0]["Resultado"],
+                    }
+                )
+                if partner_name != partner.name:
+                    vals.update({"aeat_data_diff": True})
+            partner.write(vals)
+        self.aeat_check_re()
 
     @api.multi
     def write(self, vals):
@@ -94,3 +113,32 @@ class ResPartner(models.Model):
         if company.vat_check_aeat:
             partner.aeat_check_partner()
         return partner
+
+    @api.multi
+    def aeat_check_re(self):
+        url = (
+            "https://www1.agenciatributaria.gob.es/wlpl/"
+            + "BUGC-JDIT/CompRecEquivServlet"
+        )
+        for partner in self:
+            country_code, _, vat_number = partner._parse_aeat_vat_info()
+            if country_code != "ES":
+                continue
+            if "company_id" in partner._fields:
+                public_crt, private_key = self.env[
+                    "l10n.es.aeat.certificate"
+                ].get_certificates(partner.company_id)
+            else:
+                public_crt, private_key = self.env[
+                    "l10n.es.aeat.certificate"
+                ].get_certificates()
+            request = {"nif": vat_number, "apellido": partner.name}
+            res = requests.post(url, params=request, cert=(public_crt, private_key))
+            vals = {
+                "aeat_last_checked": fields.Datetime.now(),
+            }
+            if b"NIF sometido" in res.content:
+                vals.update({"aeat_partner_type": "sales_equalization"})
+            else:
+                vals.update({"aeat_partner_type": "standard"})
+            partner.write(vals)
