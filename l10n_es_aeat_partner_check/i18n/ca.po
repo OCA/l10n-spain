@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_es_aeat_partner_check
+# 	* l10n_es_aeat_partner_check
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,9 @@ msgstr ""
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
-msgid "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
@@ -68,7 +70,7 @@ msgid "Data different"
 msgstr "Dades diferents"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:8
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:10
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "Identificado"
@@ -81,34 +83,44 @@ msgstr "Identificat"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.company_form_vat
-msgid "If this checkbox is ticked, you will check the partner information in AEAT in create and write partner"
+msgid ""
+"If this checkbox is ticked, you will check the partner information in AEAT "
+"in create and write partner"
 msgstr ""
 "Si es marca aquesta casella de selecció, comprovareu la informació del soci "
 "a AEAT a crear i escriure soci"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.res_config_settings_aeat_partner_check_view_form
-msgid "If this checkbox is ticked, you will check the partner information in AEAT in create and write partner."
+msgid ""
+"If this checkbox is ticked, you will check the partner information in AEAT "
+"in create and write partner."
 msgstr ""
 "Si es marca aquesta casella de selecció, comprovareu la informació del soci "
 "a AEAT a crear i escriure soci."
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:10
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_last_checked
+msgid "Latest AEAT check"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:12
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No identificable"
 msgstr "No s’identifica"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:7
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:9
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No identificado"
 msgstr "No identificat"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:9
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:11
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
 msgid "No procesado"
@@ -133,6 +145,36 @@ msgstr "No processat"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_partner_aeat_form
 msgid "Partner Data Quality"
 msgstr "Qualitat de les dades dels socis"
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_type
+msgid "Partner type"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:15
+#: selection:res.partner,aeat_partner_type:0
+#, python-format
+msgid "Régimen de recargo de equivalencia"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:16
+#: selection:res.partner,aeat_partner_type:0
+#, python-format
+msgid "Régimen estándar"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Sales Equiv. regimen"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
+msgid "Standard regimen"
+msgstr ""
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
