@@ -178,7 +178,7 @@ class L10nEsVatBook(models.Model):
         """
         values = {
             'invoice_date': invoice_id.date_invoice,
-            'partner_id': invoice_id.partner_id.id,
+            'partner_id': invoice_id.partner_id.commercial_partner_id.id,
             'vat_number': invoice_id.partner_id.vat,
             'invoice_id': invoice_id.id,
             'base': invoice_id.amount_untaxed,

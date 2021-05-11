@@ -3,7 +3,7 @@
 
 {
     "name": "Libro de IVA",
-    "version": "8.0.1.0.0",
+    "version": "8.0.1.0.1",
     "author": "PRAXYA, "
               "Odoo Community Association (OCA)",
     "website": "http://www.praxya.com",
