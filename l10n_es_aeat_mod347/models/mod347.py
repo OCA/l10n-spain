@@ -341,7 +341,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     user_id = fields.Many2one(
         comodel_name="res.users",
         string="Salesperson",
-        track_visibility="onchange",
+        tracking=True,
         default=lambda self: self.env.user,
         copy=False,
     )
@@ -398,7 +398,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         digits="Account",
         help="Total amount of first quarter in, out and refund invoices "
         "for this partner",
-        track_visibility="onchange",
+        tracking=True,
     )
     first_quarter_real_estate_transmission = fields.Float(
         string="First quarter real estate",
@@ -411,7 +411,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         digits="Account",
         help="Total amount of second quarter in, out and refund invoices "
         "for this partner",
-        track_visibility="onchange",
+        tracking=True,
     )
     second_quarter_real_estate_transmission = fields.Float(
         string="Second quarter real estate",
@@ -424,7 +424,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         digits="Account",
         help="Total amount of third quarter in, out and refund invoices "
         "for this partner",
-        track_visibility="onchange",
+        tracking=True,
     )
     third_quarter_real_estate_transmission = fields.Float(
         string="Third quarter real estate",
@@ -437,7 +437,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         digits="Account",
         help="Total amount of fourth quarter in, out and refund invoices "
         "for this partner",
-        track_visibility="onchange",
+        tracking=True,
     )
     fourth_quarter_real_estate_transmission = fields.Float(
         string="Fourth quarter real estate",
@@ -448,7 +448,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     amount = fields.Float(
         string="Operations amount",
         digits="Account",
-        track_visibility="onchange",
+        tracking=True,
     )
     cash_amount = fields.Float(
         string="Received cash amount",
@@ -544,12 +544,10 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         for record in self:
             year = record.report_id.year
             invoices = record.move_record_ids.filtered(
-                lambda rec: rec.move_id.move_type in ("receivable", "payable")
+                lambda rec: rec.move_id.move_type in ("in_invoice", "out_invoice")
             )
             refunds = record.move_record_ids.filtered(
-                lambda rec: (
-                    rec.move_id.move_type in ("receivable_refund", "payable_refund")
-                )
+                lambda rec: (rec.move_id.move_type in ("in_refund", "out_refund"))
             )
             record.first_quarter = calc_amount_by_quarter(
                 invoices,
@@ -708,7 +706,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         selection=[("NUM", "Number"), ("KM.", "Kilometer"), ("S/N", "Without number")],
         string="Number type",
     )
-    number = fields.Integer(string="Number", size=5)
+    number = fields.Integer(string="Number")
     number_calification = fields.Selection(
         selection=[("BIS", "Bis"), ("MOD", "Mod"), ("DUP", "Dup"), ("ANT", "Ant")],
         string="Number calification",
