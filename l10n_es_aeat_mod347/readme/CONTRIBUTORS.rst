@@ -6,8 +6,10 @@
 * Angel Moya <angel.moya@pesol.es>
 * Albert Cabedo <albert@gafic.com>
 * `Tecnativa <https://www.tecnativa.com>`_:
+* `Sygel <https://www.sygel.es>`_:
 
   * Antonio Espinosa
   * Pedro M. Baeza
   * Cristina Martín
   * Carlos Dauden
+  * Manuel Regidor

@@ -62,11 +62,11 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         cls.invoice_2 = cls._invoice_sale_create(
             "2019-04-01", {"partner_id": cls.customer_2.id}
         )
-        # Invoice higher than limit manually excluded
+        # # Invoice higher than limit manually excluded
         cls.invoice_3 = cls._invoice_sale_create(
             "2019-01-01", {"partner_id": cls.customer_3.id, "not_in_mod347": True}
         )
-        # Invoice higher than cash limit
+        # # Invoice higher than cash limit
         cls.taxes_sale = {
             "S_IVA10S": (6000, 600),
         }
@@ -74,7 +74,7 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             "2019-07-01", {"partner_id": cls.customer_4.id}
         )
         # Create payment from invoice
-        cls.payment_model = cls.env["account.payment"]
+        cls.payment_model = cls.env["account.payment.register"]
         payment_form = Form(
             cls.payment_model.with_context(
                 active_model="account.move", active_ids=cls.invoice_4.ids
@@ -82,8 +82,7 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         )
         payment_form.journal_id = cls.journal_cash
         payment_form.payment_date = "2019-07-01"
-        cls.payment = payment_form.save()
-        cls.payment.post()
+        payment_form.save().action_create_payments()
         # Invoice outside period higher than cash limit
         cls.invoice_5 = cls._invoice_sale_create(
             "2018-01-01", {"partner_id": cls.customer_5.id}
@@ -95,14 +94,13 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         )
         payment_form.journal_id = cls.journal_cash
         payment_form.payment_date = "2019-01-01"
-        cls.payment = payment_form.save()
-        cls.payment.post()
+        payment_form.save().action_create_payments()
         # Customer refund higher than limit
         cls.taxes_sale = {
             "S_IVA10S": (5000, 500),
         }
         cls.invoice_5 = cls._invoice_sale_create(
-            "2019-01-01", {"partner_id": cls.customer_6.id, "type": "out_refund"}
+            "2019-01-01", {"partner_id": cls.customer_6.id, "move_type": "out_refund"}
         )
         # Purchase invoice higher than the limit
         cls.taxes_purchase = {
@@ -114,7 +112,7 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             "P_IVA10_SC": (4000, 400),
         }
         cls.invoice_suppler_2 = cls._invoice_purchase_create(
-            "2019-01-01", {"partner_id": cls.supplier_2.id, "type": "in_refund"}
+            "2019-01-01", {"partner_id": cls.supplier_2.id, "move_type": "in_refund"}
         )
 
     def test_model_347(self):
