@@ -23,7 +23,7 @@ AEAT modelo 347
     :target: https://runbot.odoo-community.org/runbot/189/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 (Declaración Anual de Operaciones con Terceros)
 Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los
@@ -39,7 +39,7 @@ presentar el modelo 347:
   cualquiera que sea su naturaleza o carácter, hayan superado la cifra de
   3.005,06 € durante el año natural al que se refiere la declaración. Para el
   cálculo de la cifra de 3.005,06 € se computan de forma separada las entregas
-  de biene y servicios y las adquisiciones de los mismos.
+  de bienes y servicios y las adquisiciones de los mismos.
 * En el caso de Sociedades Irregulares, Sociedades Civiles y Comunidad de
   Bienes no acogidas el regimen de módulos en el IRPF, deben incluir las
   facturas sin incluir la cuantía del IRPF.
