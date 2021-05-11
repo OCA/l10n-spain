@@ -72,11 +72,19 @@ class L10nEsAeatMod347Report(models.Model):
         "this limit",
     )
     total_partner_records = fields.Integer(
-        compute="_compute_totals", string="Partners records", store=True,
+        compute="_compute_totals",
+        string="Partners records",
+        store=True,
     )
-    total_amount = fields.Float(compute="_compute_totals", string="Amount", store=True,)
+    total_amount = fields.Float(
+        compute="_compute_totals",
+        string="Amount",
+        store=True,
+    )
     total_cash_amount = fields.Float(
-        compute="_compute_totals", string="Cash Amount", store=True,
+        compute="_compute_totals",
+        string="Cash Amount",
+        store=True,
     )
     total_real_estate_transmissions_amount = fields.Float(
         compute="_compute_totals",
@@ -84,10 +92,14 @@ class L10nEsAeatMod347Report(models.Model):
         store=True,
     )
     total_real_estate_records = fields.Integer(
-        compute="_compute_totals_real_estate", string="Real estate records", store=True,
+        compute="_compute_totals_real_estate",
+        string="Real estate records",
+        store=True,
     )
     total_real_estate_amount = fields.Float(
-        compute="_compute_totals_real_estate", string="Real Estate Amount", store=True,
+        compute="_compute_totals_real_estate",
+        string="Real Estate Amount",
+        store=True,
     )
     partner_record_ids = fields.One2many(
         comodel_name="l10n.es.aeat.mod347.partner_record",
@@ -205,7 +217,9 @@ class L10nEsAeatMod347Report(models.Model):
         if partner_record:
             domain += [("partner_id", "=", partner_record.partner_id.id)]
         groups = self.env["account.move.line"].read_group(
-            domain, ["partner_id", "balance"], ["partner_id"],
+            domain,
+            ["partner_id", "balance"],
+            ["partner_id"],
         )
         filtered_groups = list(
             filter(lambda d: abs(d["balance"]) > self.operations_limit, groups)
@@ -221,7 +235,9 @@ class L10nEsAeatMod347Report(models.Model):
             }
             vals.update(self._get_partner_347_identification(partner))
             move_groups = self.env["account.move.line"].read_group(
-                group["__domain"], ["move_id", "balance"], ["move_id"],
+                group["__domain"],
+                ["move_id", "balance"],
+                ["move_id"],
             )
             vals["move_record_ids"] = [
                 (
@@ -245,7 +261,9 @@ class L10nEsAeatMod347Report(models.Model):
     def _create_cash_moves(self):
         partner_obj = self.env["res.partner"]
         move_line_obj = self.env["account.move.line"]
-        cash_journals = self.env["account.journal"].search([("type", "=", "cash")],)
+        cash_journals = self.env["account.journal"].search(
+            [("type", "=", "cash")],
+        )
         if not cash_journals:
             return
         domain = [
@@ -428,11 +446,17 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         "for this partner",
     )
     amount = fields.Float(
-        string="Operations amount", digits="Account", track_visibility="onchange",
+        string="Operations amount",
+        digits="Account",
+        track_visibility="onchange",
     )
-    cash_amount = fields.Float(string="Received cash amount", digits="Account",)
+    cash_amount = fields.Float(
+        string="Received cash amount",
+        digits="Account",
+    )
     real_estate_transmissions_amount = fields.Float(
-        string="Real Estate Transmisions amount", digits="Account",
+        string="Real Estate Transmisions amount",
+        digits="Account",
     )
     insurance_operation = fields.Boolean(
         string="Insurance Operation",
@@ -461,7 +485,8 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         "the one that receives the money.",
     )
     origin_year = fields.Integer(
-        string="Origin year", help="Origin cash operation year",
+        string="Origin year",
+        help="Origin cash operation year",
     )
     move_record_ids = fields.One2many(
         comodel_name="l10n.es.aeat.mod347.move.record",
@@ -469,7 +494,9 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         string="Move records",
     )
     cash_record_ids = fields.Many2many(
-        comodel_name="account.move.line", string="Cash payments", readonly=True,
+        comodel_name="account.move.line",
+        string="Cash payments",
+        readonly=True,
     )
     check_ok = fields.Boolean(
         compute="_compute_check_ok",
@@ -524,10 +551,30 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                     rec.move_id.move_type in ("receivable_refund", "payable_refund")
                 )
             )
-            record.first_quarter = calc_amount_by_quarter(invoices, refunds, year, 1,)
-            record.second_quarter = calc_amount_by_quarter(invoices, refunds, year, 4,)
-            record.third_quarter = calc_amount_by_quarter(invoices, refunds, year, 7,)
-            record.fourth_quarter = calc_amount_by_quarter(invoices, refunds, year, 10,)
+            record.first_quarter = calc_amount_by_quarter(
+                invoices,
+                refunds,
+                year,
+                1,
+            )
+            record.second_quarter = calc_amount_by_quarter(
+                invoices,
+                refunds,
+                year,
+                4,
+            )
+            record.third_quarter = calc_amount_by_quarter(
+                invoices,
+                refunds,
+                year,
+                7,
+            )
+            record.fourth_quarter = calc_amount_by_quarter(
+                invoices,
+                refunds,
+                year,
+                10,
+            )
 
     def action_exception(self):
         self.write({"state": "exception"})
@@ -602,7 +649,8 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
                 record.partner_id.address_get(["invoice"])["invoice"]
             )
             record._message_add_suggested_recipient(
-                recipients, partner=partner,
+                recipients,
+                partner=partner,
             )
         return recipients
 
@@ -628,9 +676,14 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         default=_default_record_id,
     )
     partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Partner", required=True,
+        comodel_name="res.partner",
+        string="Partner",
+        required=True,
     )
-    partner_vat = fields.Char(string="VAT number", size=32,)
+    partner_vat = fields.Char(
+        string="VAT number",
+        size=32,
+    )
     representative_vat = fields.Char(
         string="L.R. VAT number",
         size=32,
@@ -691,7 +744,9 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     def _onchange_partner_id(self):
         """Loads some partner data when the selected partner changes."""
         if self.partner_id:
-            vals = self.report_id._get_partner_347_identification(self.partner_id,)
+            vals = self.report_id._get_partner_347_identification(
+                self.partner_id,
+            )
             vals.pop("community_vat", None)
             del vals["partner_country_code"]
             self.update(vals)
@@ -719,14 +774,23 @@ class L10nEsAeatMod347MoveRecord(models.Model):
         ondelete="restrict",
     )
     move_type = fields.Selection(
-        related="move_id.move_type", store=True, readonly=True,
+        related="move_id.move_type",
+        store=True,
+        readonly=True,
     )
     date = fields.Date(
-        string="Date", related="move_id.date", store=True, readonly=True,
+        string="Date",
+        related="move_id.date",
+        store=True,
+        readonly=True,
     )
-    amount = fields.Float(string="Amount", readonly=True,)
+    amount = fields.Float(
+        string="Amount",
+        readonly=True,
+    )
     amount_signed = fields.Float(
-        string="Amount signed", compute="_compute_amount_signed",
+        string="Amount signed",
+        compute="_compute_amount_signed",
     )
 
     def _compute_amount_signed(self):
