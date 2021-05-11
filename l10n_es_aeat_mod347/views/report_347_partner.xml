@@ -188,13 +188,17 @@
                 </t>
             </t>
         </template>
-        <report
-            id="347_partner"
-            model="l10n.es.aeat.mod347.partner_record"
-            string="347 Partner Detail"
-            report_type="qweb-pdf"
-            name="l10n_es_aeat_mod347.report_347_partner"
-            file="l10n_es_aeat_mod347.report_347_partner"
-        />
+        <record id="347_partner" model="ir.actions.report">
+            <field name="name">347 Partner Detail</field>
+            <field name="model">l10n.es.aeat.mod347.partner_record</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">l10n_es_aeat_mod347.report_347_partner</field>
+            <field name="report_file">l10n_es_aeat_mod347.report_347_partner</field>
+            <field
+                name="binding_model_id"
+                ref="model_l10n_es_aeat_mod347_partner_record"
+            />
+            <field name="binding_type">report</field>
+        </record>
     </data>
 </odoo>
