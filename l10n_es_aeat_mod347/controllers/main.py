@@ -16,7 +16,9 @@ class Mod347Controller(http.Controller):
             record,
             redirect,
         ) = MailController._check_token_and_record_or_redirect(
-            "l10n.es.aeat.mod347.partner_record", int(res_id), token,
+            "l10n.es.aeat.mod347.partner_record",
+            int(res_id),
+            token,
         )
         if comparison and record:
             try:
@@ -34,7 +36,9 @@ class Mod347Controller(http.Controller):
             record,
             redirect,
         ) = MailController._check_token_and_record_or_redirect(
-            "l10n.es.aeat.mod347.partner_record", int(res_id), token,
+            "l10n.es.aeat.mod347.partner_record",
+            int(res_id),
+            token,
         )
         if comparison and record:
             try:
