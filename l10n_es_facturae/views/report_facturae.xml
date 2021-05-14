@@ -465,7 +465,7 @@
                             />
                             <t
                                 t-set="subtotal_gross"
-                                t-value="round(line.quantity * line.price_unit, line.company_currency_id.decimal_places)"
+                                t-value="line._get_price_total_and_subtotal_model(line.price_unit, line.quantity,0,line.move_id.currency_id, line.product_id, line.move_id.partner_id, line.tax_ids, line.move_id.type,).get('price_subtotal', 0.0)"
                             />
                             <TotalCost
                                 t-esc="('%.6f' if version == '3_2' else '%.8f') % subtotal_gross"
