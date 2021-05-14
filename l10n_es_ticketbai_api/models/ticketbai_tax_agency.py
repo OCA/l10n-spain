@@ -30,6 +30,8 @@ class TicketBAITaxAgency(models.Model):
     test_rest_url_cancellation = fields.Char(
         string='Test - REST API URL for Invoice Cancellations',
         compute='_compute_ticketbai_version', store=True)
+    sign_file_url = fields.Char(string='Sign File URL', required=True)
+    sign_file_hash = fields.Char(string='Sign File HASH', required=True)
 
     @api.multi
     def get_current_version(self):
