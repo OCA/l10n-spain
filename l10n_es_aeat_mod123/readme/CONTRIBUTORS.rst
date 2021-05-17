@@ -5,3 +5,4 @@
 * `Sygel Technology <https://www.sygel.es>`_:
 
   * Valentin Vinagre
+  * Manuel Regidor
