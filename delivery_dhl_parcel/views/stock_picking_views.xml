@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='tracking']" position="after">
+                <field
+                    name="dhl_parcel_shipment_held"
+                    attrs="{'invisible':[
+                        '|',
+                        ('carrier_tracking_ref', '=', False),
+                        ('delivery_type', '!=', 'dhl_parcel')
+                    ]}"
+                    readonly="1"
+                />
+            </xpath>
+            <xpath expr="//button[@name='print_return_label']/.." position='inside'>
+                <button
+                    name="dhl_parcel_get_label"
+                    string="DHL Parcel Label"
+                    type="object"
+                    attrs="{'invisible':[
+                        '|',
+                        '|',
+                        ('carrier_tracking_ref', '=', False),
+                        ('delivery_type', '!=', 'dhl_parcel'),
+                        ('state', '!=', 'done')
+                    ]}"
+                />
+                <button
+                    name="dhl_parcel_toggle_hold_shipment"
+                    string="Hold DHL Parcel shipment"
+                    type="object"
+                    attrs="{'invisible':[
+                        '|',
+                        '|',
+                        '|',
+                        ('delivery_type', '!=', 'dhl_parcel'),
+                        ('dhl_parcel_shipment_held', '=', True),
+                        ('carrier_tracking_ref', '=', False),
+                        ('state', '!=', 'done')
+                    ]}"
+                />
+                <button
+                    name="dhl_parcel_toggle_hold_shipment"
+                    string="Release DHL Parcel shipment"
+                    type="object"
+                    attrs="{'invisible':[
+                        '|',
+                        '|',
+                        '|',
+                        ('delivery_type', '!=', 'dhl_parcel'),
+                        ('dhl_parcel_shipment_held', '=', False),
+                        ('carrier_tracking_ref', '=', False),
+                        ('state', '!=', 'done')
+                    ]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
