@@ -1,0 +1,22 @@
+<odoo>
+    <record model="ir.ui.view" id="delivery_endday_wizard_form">
+        <field name="model">dhl.parcel.endday.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="DHL Parcel End day">
+                <group>
+                    <field name="customer_accounts" />
+                </group>
+                <footer>
+                    <button
+                        name="button_end_day"
+                        string="End day"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
