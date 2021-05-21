@@ -9,7 +9,6 @@ class ResPartner(models.Model):
     aeat_perception_key_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.key",
         string="Clave percepción",
-        oldname="performance_key",
         help="Se consignará la clave alfabética que corresponda a las "
         "percepciones de que se trate.",
     )
@@ -17,7 +16,6 @@ class ResPartner(models.Model):
     aeat_perception_subkey_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.subkey",
         string="Subclave",
-        oldname="subclave",
         help="""Tratándose de percepciones correspondientes a las claves
             B, E, F, G, H, I, K y L, deberá consignarse, además, la
             subclave numérica de dos dígitos que corresponda a las
