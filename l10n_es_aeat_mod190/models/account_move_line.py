@@ -1,7 +1,7 @@
 # Copyright 2020 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class AccountMoveLine(models.Model):
@@ -10,14 +10,14 @@ class AccountMoveLine(models.Model):
     aeat_perception_key_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.key",
         string="Clave percepción",
-        oldname="performance_key",
         help="Se consignará la clave alfabética que corresponda a las "
         "percepciones de que se trate.",
+        compute="_compute_aeat_perception_keys",
+        store=True,
     )
     aeat_perception_subkey_id = fields.Many2one(
         comodel_name="l10n.es.aeat.report.perception.subkey",
         string="Subclave",
-        oldname="subclave",
         help="""Tratándose de percepciones correspondientes a las claves
                     B, E, F, G, H, I, K y L, deberá consignarse, además, la
                     subclave numérica de dos dígitos que corresponda a las
@@ -34,4 +34,26 @@ class AccountMoveLine(models.Model):
                     cada uno de ellos refleje exclusivamente los datos de
                     percepciones correspondientes a una misma clave y, en
                     su caso, subclave.""",
+        compute="_compute_aeat_perception_keys",
+        store=True,
     )
+
+    @api.depends("move_id.aeat_perception_key_id")
+    def _compute_aeat_perception_keys(self):
+        for l in self:
+            aeat_perception_key_id = False
+            aeat_perception_subkey_id = False
+            if (
+                l.move_id.is_invoice()
+                and not l.exclude_from_invoice_tab
+                and l.id in l.move_id.invoice_line_ids.ids
+                and l.move_id.aeat_perception_key_id
+            ):
+                aeat_perception_key_id = l.move_id.aeat_perception_key_id.id
+                aeat_perception_subkey_id = l.move_id.aeat_perception_subkey_id.id
+            l.write(
+                {
+                    "aeat_perception_key_id": aeat_perception_key_id,
+                    "aeat_perception_subkey_id": aeat_perception_subkey_id,
+                }
+            )
