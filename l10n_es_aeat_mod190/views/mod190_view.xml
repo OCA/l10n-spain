@@ -20,7 +20,7 @@
         <field name="model">l10n.es.aeat.mod190.report</field>
         <field name="inherit_id" ref="l10n_es_aeat.view_l10n_es_aeat_report_form" />
         <field name="arch" type="xml">
-            <field name="type" position="after">
+            <field name="statement_type" position="after">
                 <field name="calculado" invisible="1" />
                 <field
                     name="registro_manual"
@@ -72,7 +72,6 @@
     <record id="action_l10n_es_aeat_mod190_report" model="ir.actions.act_window">
         <field name="name">AEAT model 190</field>
         <field name="res_model">l10n.es.aeat.mod190.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="help">Create and query AEAT Model 190 reports.</field>
     </record>

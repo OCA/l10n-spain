@@ -2,12 +2,14 @@
 
 {
     "name": "AEAT modelo 190",
-    "version": "12.0.1.0.2",
+    "version": "13.0.1.0.0",
     "category": "Localization/Accounting",
-    "author": "Punt Sistemes SLU," "Odoo Community Association (OCA)",
+    "author": "Punt Sistemes SLU,"
+    "Odoo Community Association (OCA),"
+    "Vunkers IT Experts, SLU",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": ["l10n_es", "l10n_es_aeat",],
+    "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
         "views/account_fiscal_position.xml",
         "views/account_invoice_view.xml",

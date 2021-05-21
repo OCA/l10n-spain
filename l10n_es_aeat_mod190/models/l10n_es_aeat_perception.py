@@ -25,9 +25,7 @@ class L10nEsAeatReportPerceptionSubkey(models.Model):
     _description = "Perception Subkey"
 
     aeat_perception_key_id = fields.Many2one(
-        comodel_name="l10n.es.aeat.report.perception.key",
-        oldname="perception_id",
-        string="Perception ID",
+        comodel_name="l10n.es.aeat.report.perception.key", string="Perception ID",
     )
     name = fields.Char(string="Name", size=2, required=True)
     aeat_number = fields.Char(string="Model number", size=3, required=True)
