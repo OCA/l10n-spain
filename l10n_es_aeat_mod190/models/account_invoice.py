@@ -5,22 +5,22 @@ from odoo import api, fields, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _inherit = "account.invoice"
 
     aeat_perception_key_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.report.perception.key',
-        string='Clave percepción',
-        oldname='performance_key',
-        help='Se consignará la clave alfabética que corresponda a las '
-             'percepciones de que se trate.',
+        comodel_name="l10n.es.aeat.report.perception.key",
+        string="Clave percepción",
+        oldname="performance_key",
+        help="Se consignará la clave alfabética que corresponda a las "
+        "percepciones de que se trate.",
         readonly=True,
-        states={'draft': [('readonly', False)]},
+        states={"draft": [("readonly", False)]},
     )
     aeat_perception_subkey_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.report.perception.subkey',
-        string='Subclave',
-        oldname='subclave',
-        help='''Tratándose de percepciones correspondientes a las claves
+        comodel_name="l10n.es.aeat.report.perception.subkey",
+        string="Subclave",
+        oldname="subclave",
+        help="""Tratándose de percepciones correspondientes a las claves
                 B, E, F, G, H, I, K y L, deberá consignarse, además, la
                 subclave numérica de dos dígitos que corresponda a las
                 percepciones de que se trate, según la relación de
@@ -35,20 +35,17 @@ class AccountInvoice(models.Model):
                 registros de percepción como sea necesario, de forma que
                 cada uno de ellos refleje exclusivamente los datos de
                 percepciones correspondientes a una misma clave y, en
-                su caso, subclave.''',
+                su caso, subclave.""",
         readonly=True,
-        states={'draft': [('readonly', False)]},)
+        states={"draft": [("readonly", False)]},
+    )
 
     @api.model
     def line_get_convert(self, line, part):
         """Copy from invoice to move lines"""
         res = super(AccountInvoice, self).line_get_convert(line, part)
-        res['aeat_perception_key_id'] = line.get(
-            'aeat_perception_key_id', False,
-        )
-        res['aeat_perception_subkey_id'] = line.get(
-            'aeat_perception_subkey_id', False,
-        )
+        res["aeat_perception_key_id"] = line.get("aeat_perception_key_id", False,)
+        res["aeat_perception_subkey_id"] = line.get("aeat_perception_subkey_id", False,)
         return res
 
     @api.model
@@ -56,27 +53,27 @@ class AccountInvoice(models.Model):
         """We pass on the operation key from invoice line to the move line"""
         ml_dicts = super(AccountInvoice, self).invoice_line_move_line_get()
         for ml_dict in ml_dicts:
-            if 'invl_id' not in ml_dict:
+            if "invl_id" not in ml_dict:
                 continue
-            ml_dict['aeat_perception_subkey_id'] = (
-                self.aeat_perception_subkey_id.id
-            )
-            ml_dict['aeat_perception_key_id'] = (
-                self.aeat_perception_key_id.id
-            )
+            ml_dict["aeat_perception_subkey_id"] = self.aeat_perception_subkey_id.id
+            ml_dict["aeat_perception_key_id"] = self.aeat_perception_key_id.id
         return ml_dicts
 
-    @api.onchange('aeat_perception_key_id')
+    @api.onchange("aeat_perception_key_id")
     def onchange_aeat_perception_key_id(self):
         if self.aeat_perception_key_id:
             self.aeat_perception_subkey_id = False
-            return {'domain': {'aeat_perception_subkey_id': [
-                ('aeat_perception_key_id', '=', self.aeat_perception_key_id.id)
-            ]}}
+            return {
+                "domain": {
+                    "aeat_perception_subkey_id": [
+                        ("aeat_perception_key_id", "=", self.aeat_perception_key_id.id)
+                    ]
+                }
+            }
         else:
-            return {'domain': {'aeat_perception_subkey_id': []}}
+            return {"domain": {"aeat_perception_subkey_id": []}}
 
-    @api.onchange('partner_id', 'company_id')
+    @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
         res = super()._onchange_partner_id()
         if self.fiscal_position_id.aeat_perception_key_id:
@@ -89,8 +86,8 @@ class AccountInvoice(models.Model):
     def create(self, vals):
         res = super().create(vals)
         if (
-            res.fiscal_position_id.aeat_perception_key_id and
-            'aeat_perception_key_id' not in vals
+            res.fiscal_position_id.aeat_perception_key_id
+            and "aeat_perception_key_id" not in vals
         ):
             # Debemos hacerlo así por si generamos la factura automáticamente
             # (Como en los tests), ya que el sistema del odoo no nos permite
