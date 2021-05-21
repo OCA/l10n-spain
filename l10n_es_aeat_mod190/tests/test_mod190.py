@@ -20,36 +20,37 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
         "P_IRPF20": (1000, -200),
     }
 
-    def setUp(self):
-        super().setUp()
-        self.supplier.write(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.supplier.write(
             {
                 "incluir_190": True,
-                "aeat_perception_key_id": self.browse_ref(
+                "aeat_perception_key_id": cls.env.ref(
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_01"
                 ).id,
                 "a_nacimiento": "2000",
             }
         )
-        self.customer.write(
+        cls.customer.write(
             {
                 "incluir_190": True,
-                "aeat_perception_key_id": self.browse_ref(
+                "aeat_perception_key_id": cls.env.ref(
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_07"
                 ).id,
-                "aeat_perception_subkey_id": self.browse_ref(
+                "aeat_perception_subkey_id": cls.env.ref(
                     "l10n_es_aeat_mod190.aeat_m190_perception_subkey_13"
                 ).id,
             }
         )
-        self.fiscal_position = self.env["account.fiscal.position"].create(
+        cls.fiscal_position = cls.env["account.fiscal.position"].create(
             {
-                "company_id": self.company.id,
+                "company_id": cls.company.id,
                 "name": "Testing Fiscal position",
-                "aeat_perception_key_id": self.browse_ref(
+                "aeat_perception_key_id": cls.env.ref(
                     "l10n_es_aeat_mod190.aeat_m190_perception_key_07"
                 ).id,
-                "aeat_perception_subkey_id": self.browse_ref(
+                "aeat_perception_subkey_id": cls.env.ref(
                     "l10n_es_aeat_mod190.aeat_m190_perception_subkey_14"
                 ).id,
             }
@@ -107,7 +108,7 @@ class TestL10nEsAeatMod190Base(TestL10nEsAeatModBase):
             )
         )
         record_new = self.env["l10n.es.aeat.mod190.report.line"].new(
-            {"report_id": model190.id,}
+            {"report_id": model190.id}
         )
         record_new.partner_id = self.customer
         record_new.onchange_partner_id()
