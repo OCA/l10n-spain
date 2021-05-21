@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
-    <record id="aeat_m190_perception_subkey_01"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02"/>
+    <record
+        id="aeat_m190_perception_subkey_01"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -25,10 +26,11 @@
         <field name="active">True</field>
         <field name="ad_required">1</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_02"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02"/>
+    <record
+        id="aeat_m190_perception_subkey_02"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -40,10 +42,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_03"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02"/>
+    <record
+        id="aeat_m190_perception_subkey_03"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_02" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -54,10 +57,11 @@
         <field name="active">True</field>
         <field name="ad_required">1</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_04"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05"/>
+    <record
+        id="aeat_m190_perception_subkey_04"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -70,10 +74,11 @@
         <field name="active">True</field>
         <field name="ad_required">1</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_05"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05"/>
+    <record
+        id="aeat_m190_perception_subkey_05"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -89,10 +94,11 @@
         <field name="active">True</field>
         <field name="ad_required">1</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_06"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05"/>
+    <record
+        id="aeat_m190_perception_subkey_06"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -107,10 +113,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_07"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05"/>
+    <record
+        id="aeat_m190_perception_subkey_07"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_05" />
         <field name="name">04</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -121,10 +128,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_08"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06"/>
+    <record
+        id="aeat_m190_perception_subkey_08"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -136,10 +144,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_09"
-            model="l10n.es.aeat.report.perception.subkey">
-       <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06"/>
+    <record
+        id="aeat_m190_perception_subkey_09"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_06" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -150,10 +159,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_10"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07"/>
+    <record
+        id="aeat_m190_perception_subkey_10"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -165,10 +175,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_11"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07"/>
+    <record
+        id="aeat_m190_perception_subkey_11"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -184,10 +195,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_12"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07"/>
+    <record
+        id="aeat_m190_perception_subkey_12"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_07" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -202,10 +214,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_13"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08"/>
+    <record
+        id="aeat_m190_perception_subkey_13"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -217,10 +230,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_14"
-            model="l10n.es.aeat.report.perception.subkey">
-       <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08"/>
+    <record
+        id="aeat_m190_perception_subkey_14"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -234,10 +248,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_15"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08"/>
+    <record
+        id="aeat_m190_perception_subkey_15"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -249,10 +264,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_16"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08"/>
+    <record
+        id="aeat_m190_perception_subkey_16"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_08" />
         <field name="name">04</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -264,10 +280,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_17"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_09"/>
+    <record
+        id="aeat_m190_perception_subkey_17"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_09" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -280,10 +297,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_18"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_09"/>
+    <record
+        id="aeat_m190_perception_subkey_18"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_09" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -296,10 +314,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_19"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11"/>
+    <record
+        id="aeat_m190_perception_subkey_19"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -320,10 +339,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_20"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11"/>
+    <record
+        id="aeat_m190_perception_subkey_20"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -335,10 +355,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_21"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11"/>
+    <record
+        id="aeat_m190_perception_subkey_21"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_11" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -357,10 +378,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_22"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_22"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">01</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -371,10 +393,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_23"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_23"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">02</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -387,10 +410,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_24"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_24"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">03</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -401,10 +425,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_25"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_25"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">04</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -416,10 +441,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_26"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_26"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">05</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -431,10 +457,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_27"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_27"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">06</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -446,10 +473,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_28"
-            model="l10n.es.aeat.report.perception.subkey">
-       <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_28"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">07</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -460,10 +488,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_29"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_29"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">08</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -474,10 +503,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_30"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_30"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">09</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -493,10 +523,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_31"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_31"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">10</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -506,10 +537,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_32"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_32"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">11</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -521,10 +553,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_33"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_33"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">12</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -536,10 +569,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_34"
-            model="l10n.es.aeat.report.perception.subkey">
-       <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_34"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">13</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -551,10 +585,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_35"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_35"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">14</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -567,10 +602,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_36"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_36"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">15</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -582,10 +618,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_37"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_37"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">16</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -596,10 +633,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_38"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_38"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">17</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -612,10 +650,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_39"
-            model="l10n.es.aeat.report.perception.subkey">
-       <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_39"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">18</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -628,10 +667,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_40"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_40"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">19</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -646,10 +686,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_41"
-            model="l10n.es.aeat.report.perception.subkey">
-       <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_41"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">20</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -661,10 +702,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_42"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_42"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">21</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -678,10 +720,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_43"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_43"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">22</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -701,10 +744,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_44"
-            model="l10n.es.aeat.report.perception.subkey">
-       <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_44"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">23</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -722,10 +766,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_45"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_45"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">24</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -740,10 +785,11 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
-    <record id="aeat_m190_perception_subkey_46"
-            model="l10n.es.aeat.report.perception.subkey">
-        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12"/>
+    <record
+        id="aeat_m190_perception_subkey_46"
+        model="l10n.es.aeat.report.perception.subkey"
+    >
+        <field name="aeat_perception_key_id" ref="aeat_m190_perception_key_12" />
         <field name="name">25</field>
         <field name="aeat_number">190</field>
         <field name="description">
@@ -756,5 +802,4 @@
         <field name="active">True</field>
         <field name="ad_required">0</field>
     </record>
-
 </odoo>

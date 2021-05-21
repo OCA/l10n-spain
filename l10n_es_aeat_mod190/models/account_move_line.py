@@ -5,20 +5,20 @@ from odoo import fields, models
 
 
 class AccountMoveLine(models.Model):
-    _inherit = 'account.move.line'
+    _inherit = "account.move.line"
 
     aeat_perception_key_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.report.perception.key',
-        string='Clave percepción',
-        oldname='performance_key',
-        help='Se consignará la clave alfabética que corresponda a las '
-             'percepciones de que se trate.',
+        comodel_name="l10n.es.aeat.report.perception.key",
+        string="Clave percepción",
+        oldname="performance_key",
+        help="Se consignará la clave alfabética que corresponda a las "
+        "percepciones de que se trate.",
     )
     aeat_perception_subkey_id = fields.Many2one(
-        comodel_name='l10n.es.aeat.report.perception.subkey',
-        string='Subclave',
-        oldname='subclave',
-        help='''Tratándose de percepciones correspondientes a las claves
+        comodel_name="l10n.es.aeat.report.perception.subkey",
+        string="Subclave",
+        oldname="subclave",
+        help="""Tratándose de percepciones correspondientes a las claves
                     B, E, F, G, H, I, K y L, deberá consignarse, además, la
                     subclave numérica de dos dígitos que corresponda a las
                     percepciones de que se trate, según la relación de
@@ -33,5 +33,5 @@ class AccountMoveLine(models.Model):
                     registros de percepción como sea necesario, de forma que
                     cada uno de ellos refleje exclusivamente los datos de
                     percepciones correspondientes a una misma clave y, en
-                    su caso, subclave.''',
+                    su caso, subclave.""",
     )
