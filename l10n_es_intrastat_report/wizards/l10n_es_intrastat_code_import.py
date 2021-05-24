@@ -91,7 +91,7 @@ class L10nEsPartnerImportWizard(models.TransientModel):
 
     def execute(self):
         company = self.env.company
-        if company.country_id.code.lower() != "es":
+        if (company.country_id.code or "").lower() != "es":
             raise exceptions.UserError(
                 _("Current company is not Spanish, so it can't be configured.")
             )
