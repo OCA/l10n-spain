@@ -65,3 +65,6 @@ def migrate(env, version):
         WHERE sub.id = qj.id"""
         % {"pattern": pattern, "pattern2": pattern2},
     )
+    openupgrade.load_data(
+        env.cr, "l10n_es_aeat_sii_oca", "migrations/13.0.1.0.0/noupdate_changes.xml"
+    )
