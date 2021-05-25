@@ -23,6 +23,7 @@ odoo.define('l10n_es_pos.screens', function (require) {
                 } else {
                     // Force invoice above limit. Online is needed.
                     order.to_invoice = true;
+                    this.$('.js_invoice').addClass('highlight');
                 }
             }
             this._super(force_validate);
