@@ -495,6 +495,12 @@ msgid "Credit"
 msgstr "Haber"
 
 #. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:0
+#, python-format
+msgid "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__currency_id
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__currency_id
 msgid "Currency"
@@ -1150,12 +1156,6 @@ msgstr "Només quantitats no exigibles"
 msgid "Only reports in 'draft' or 'cancelled' state can be removed"
 msgstr ""
 "Només els informes en estat 'esborrany' o 'cancel·lat' poden ser eliminats"
-
-#. module: l10n_es_aeat
-#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:0
-#, python-format
-msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
-msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__move_type
