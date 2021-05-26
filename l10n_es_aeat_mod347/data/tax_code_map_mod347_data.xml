@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019
+     Pesol - Angel Moya <angel.moya@pesol.es>
+     Gafic - Albert Cabedo <albert@gafic.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="aeat_mod347_map" model="l10n.es.aeat.map.tax">
+        <field name="model">347</field>
+    </record>
+    <record id="aeat_mod347_map_a" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod347_map" />
+        <field name="field_number">01</field>
+        <field
+            name="name"
+        >A - Adquisiciones de bienes y servicios superiores al límite</field>
+        <field name="to_regularize" eval="False" />
+        <field name="move_type">regular</field>
+        <field name="field_type">both</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [
+        ref('l10n_es.account_tax_template_p_iva21_bc'),
+        ref('l10n_es.account_tax_template_p_iva21_sc'),
+        ref('l10n_es.account_tax_template_p_iva4_bi'),
+        ref('l10n_es.account_tax_template_p_iva4_sc'),
+        ref('l10n_es.account_tax_template_p_iva10_bi'),
+        ref('l10n_es.account_tax_template_p_iva21_bi'),
+        ref('l10n_es.account_tax_template_p_iva10_bc'),
+        ref('l10n_es.account_tax_template_p_iva4_bc'),
+        ref('l10n_es.account_tax_template_p_iva10_sc'),
+        ref('l10n_es.account_tax_template_p_iva0_nd'),
+        ref('l10n_es.account_tax_template_p_iva0_bc'),
+        ref('l10n_es.account_tax_template_p_iva0_ns'),
+        ref('l10n_es.account_tax_template_p_iva0_ns_b'),
+        ref('l10n_es.account_tax_template_p_iva12_agr'),
+        ref('l10n_es.account_tax_template_p_req014'),
+        ref('l10n_es.account_tax_template_p_req05'),
+        ref('l10n_es.account_tax_template_p_req52'),
+        ref('l10n_es.account_tax_template_p_iva4_isp'),
+        ref('l10n_es.account_tax_template_p_iva10_isp'),
+        ref('l10n_es.account_tax_template_p_iva21_isp'),
+        ref('l10n_es.account_tax_template_p_iva105_gan'),
+        ref('l10n_es.account_tax_template_p_iva10_nd'),
+        ref('l10n_es.account_tax_template_p_iva4_nd'),
+        ])]"
+        />
+    </record>
+    <record id="aeat_mod347_map_b" model="l10n.es.aeat.map.tax.line">
+        <field name="map_parent_id" ref="aeat_mod347_map" />
+        <field name="field_number">02</field>
+        <field
+            name="name"
+        >B - Entregas de bienes y servicios superiores al límite</field>
+        <field name="to_regularize" eval="False" />
+        <field name="move_type">regular</field>
+        <field name="field_type">both</field>
+        <field name="sum_type">both</field>
+        <field name="inverse" eval="False" />
+        <field
+            name="tax_ids"
+            eval="[(6, False, [
+        ref('l10n_es.account_tax_template_s_iva21b'),
+        ref('l10n_es.account_tax_template_s_iva21s'),
+        ref('l10n_es.account_tax_template_s_iva21isp'),
+        ref('l10n_es.account_tax_template_s_iva_ns'),
+        ref('l10n_es.account_tax_template_s_iva_ns_b'),
+        ref('l10n_es.account_tax_template_s_iva0'),
+        ref('l10n_es.account_tax_template_s_iva0_ns'),
+        ref('l10n_es.account_tax_template_s_req05'),
+        ref('l10n_es.account_tax_template_s_iva4b'),
+        ref('l10n_es.account_tax_template_s_iva10b'),
+        ref('l10n_es.account_tax_template_s_iva4s'),
+        ref('l10n_es.account_tax_template_s_iva10s'),
+        ref('l10n_es.account_tax_template_s_req014'),
+        ref('l10n_es.account_tax_template_s_req52'),
+        ref('l10n_es.account_tax_template_s_iva0_isp'),
+        ])]"
+        />
+    </record>
+</odoo>
