@@ -14,16 +14,16 @@ AEAT modelo 347
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/13.0/l10n_es_aeat_mod347
+    :target: https://github.com/OCA/l10n-spain/tree/14.0/l10n_es_aeat_mod347
     :alt: OCA/l10n-spain
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-spain-13-0/l10n-spain-13-0-l10n_es_aeat_mod347
+    :target: https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-l10n_es_aeat_mod347
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/189/13.0
+    :target: https://runbot.odoo-community.org/runbot/189/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 (Declaración Anual de Operaciones con Terceros)
 Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban los
@@ -39,7 +39,7 @@ presentar el modelo 347:
   cualquiera que sea su naturaleza o carácter, hayan superado la cifra de
   3.005,06 € durante el año natural al que se refiere la declaración. Para el
   cálculo de la cifra de 3.005,06 € se computan de forma separada las entregas
-  de bienes y servicios y las adquisiciones de los mismos.
+  de biene y servicios y las adquisiciones de los mismos.
 * En el caso de Sociedades Irregulares, Sociedades Civiles y Comunidad de
   Bienes no acogidas el regimen de módulos en el IRPF, deben incluir las
   facturas sin incluir la cuantía del IRPF.
@@ -164,7 +164,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod347%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_aeat_mod347%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -188,11 +188,13 @@ Contributors
 * Angel Moya <angel.moya@pesol.es>
 * Albert Cabedo <albert@gafic.com>
 * `Tecnativa <https://www.tecnativa.com>`_:
+* `Sygel <https://www.sygel.es>`_:
 
   * Antonio Espinosa
   * Pedro M. Baeza
   * Cristina Martín
   * Carlos Dauden
+  * Manuel Regidor
 
 Maintainers
 ~~~~~~~~~~~
@@ -207,6 +209,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/13.0/l10n_es_aeat_mod347>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/14.0/l10n_es_aeat_mod347>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
