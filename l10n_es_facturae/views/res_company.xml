@@ -14,12 +14,6 @@
                 >
                     <group>
                         <field name="facturae_version" />
-                        <field name="facturae_cert" />
-                        <field
-                            name="facturae_cert_password"
-                            password="True"
-                            placeholder="Ponga aquí la contraseña del certificado"
-                        />
                     </group>
                 </page>
             </notebook>
