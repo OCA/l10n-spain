@@ -31,12 +31,11 @@
             </form>
         </field>
     </record>
-    <act_window
-        name="Create Factura-E file"
-        res_model="create.facturae"
-        binding_model="account.move"
-        view_mode="form"
-        target="new"
-        id="wizard_create_facturae_act_window"
-    />
+    <record id="wizard_create_facturae_act_window" model="ir.actions.act_window">
+        <field name="name">Create Factura-E file</field>
+        <field name="res_model">create.facturae</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+    </record>
 </odoo>

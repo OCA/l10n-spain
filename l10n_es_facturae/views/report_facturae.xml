@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <report
-        id="report_facturae"
-        name="l10n_es_facturae.template_facturae"
-        string="Factura-E sin firmar"
-        report_type="qweb-xml"
-        model="account.move"
-    />
+     <record id="report_facturae" model="ir.actions.report">
+         <field name="report_name">l10n_es_facturae.template_facturae</field>
+         <field name="name">Factura-E sin firmar</field>
+         <field name="report_type">qweb-xml</field>
+         <field name="model">account.move</field>
+     </record>
+
+     <record id="report_facturae_signed" model="ir.actions.report">
+         <field name="report_name">l10n_es_facturae.facturae_signed</field>
+         <field name="name">Factura-E for,adp</field>
+         <field name="report_type">qweb-xml</field>
+         <field name="model">account.move</field>
+     </record>
     <template id="facturae_header">
         <t t-if="version == '3_2'">
         &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
@@ -314,7 +320,7 @@
                                 </TaxableBase>
                                 <t
                                     t-set="sign"
-                                    t-value="1 if move.type != 'out_invoice' else -1"
+                                    t-value="1 if move.move_type != 'out_invoice' else -1"
                                 />
                                 <TaxAmount>
                                     <TotalAmount
@@ -465,7 +471,7 @@
                             />
                             <t
                                 t-set="subtotal_gross"
-                                t-value="line._get_price_total_and_subtotal_model(line.price_unit, line.quantity,0,line.move_id.currency_id, line.product_id, line.move_id.partner_id, line.tax_ids, line.move_id.type,).get('price_subtotal', 0.0)"
+                                t-value="line._get_price_total_and_subtotal_model(line.price_unit, line.quantity,0,line.move_id.currency_id, line.product_id, line.move_id.partner_id, line.tax_ids, line.move_id.move_type,).get('price_subtotal', 0.0)"
                             />
                             <TotalCost
                                 t-esc="('%.6f' if version == '3_2' else '%.8f') % subtotal_gross"
@@ -661,5 +667,9 @@
             </Invoices>
             <Extensions t-if="False" />
         </t>
+    </template>
+
+    <template id="facturae_signed">
+        <t t-call="l10n_es_facturae.template_facturae" />
     </template>
 </odoo>

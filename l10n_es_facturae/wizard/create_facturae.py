@@ -10,7 +10,7 @@
 import base64
 
 from odoo import _, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 
 
 class Log(Exception):
@@ -56,9 +56,17 @@ class CreateFacturae(models.TransientModel):
             raise UserError(_("You can only select one move to export"))
         active_model = self.env.context.get("active_model", False)
         assert active_model == "account.move", "Bad context propagation"
-        move = self.env["account.move"].browse(move_ids[0])
-        move_file, file_name = move.ensure_one().get_facturae(self.firmar_facturae)
-
+        move = self.env["account.move"].browse(move_ids[0]).ensure_one()
+        if self.firmar_facturae:
+            move_file = self.env.ref("l10n_es_facturae.report_facturae_signed")._render(
+                move.ids
+            )[0]
+            file_name = (_("facturae") + "_" + move.name + ".xsig").replace("/", "-")
+        else:
+            move_file = self.env.ref("l10n_es_facturae.report_facturae")._render(
+                move.ids
+            )[0]
+            file_name = (_("facturae") + "_" + move.name + ".xml").replace("/", "-")
         file = base64.b64encode(move_file)
         self.env["ir.attachment"].create(
             {
