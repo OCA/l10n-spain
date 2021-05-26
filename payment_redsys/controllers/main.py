@@ -27,7 +27,7 @@ class RedsysController(http.Controller):
             "/payment/redsys/reject",
         ],
         type="http",
-        auth="none",
+        auth="public",
         csrf=False,
     )
     def redsys_return(self, **post):
