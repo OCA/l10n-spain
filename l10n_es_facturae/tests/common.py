@@ -8,10 +8,12 @@ from datetime import timedelta
 
 from lxml import etree
 from mock import patch
-from OpenSSL import crypto
 
 from odoo import exceptions, fields
-from odoo.tests import common
+
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
+    TestL10nEsAeatCertificateBase,
+)
 
 try:
     import xmlsig
@@ -19,7 +21,7 @@ except (ImportError, IOError) as err:
     logging.info(err)
 
 
-class CommonTest(common.TransactionCase):
+class CommonTest(TestL10nEsAeatCertificateBase):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # We want to avoid testing on the CommonTest class
@@ -29,8 +31,10 @@ class CommonTest(common.TransactionCase):
         ):
             self.test_tags -= {"at_install"}
 
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        self = cls
         self.tax = self.env["account.tax"].create(
             {
                 "name": "Test tax",
@@ -42,7 +46,11 @@ class CommonTest(common.TransactionCase):
         )
 
         self.state = self.env["res.country.state"].create(
-            {"name": "Ciudad Real", "code": "13", "country_id": self.ref("base.es")}
+            {
+                "name": "Ciudad Real",
+                "code": "13",
+                "country_id": self.env.ref("base.es").id,
+            }
         )
         self.partner = self.env["res.partner"].create(
             {
@@ -51,7 +59,7 @@ class CommonTest(common.TransactionCase):
                 "zip": "13700",
                 "city": "Tomelloso",
                 "state_id": self.state.id,
-                "country_id": self.ref("base.es"),
+                "country_id": self.env.ref("base.es").id,
                 "vat": "ES05680675C",
                 "facturae": True,
                 "attach_invoice_as_annex": False,
@@ -62,7 +70,7 @@ class CommonTest(common.TransactionCase):
         )
         main_company = self.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.ref("base.uk")
+        main_company.partner_id.country_id = self.env.ref("base.uk")
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
@@ -150,7 +158,7 @@ class CommonTest(common.TransactionCase):
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -179,7 +187,7 @@ class CommonTest(common.TransactionCase):
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode_02.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -203,10 +211,9 @@ class CommonTest(common.TransactionCase):
         self.move_line_02 = self.move_02.invoice_line_ids
         self.partner.vat = "ES05680675C"
         self.partner.is_company = False
-        self.partner.firstname = "Cliente"
-        self.partner.lastname = "de Prueba"
-        self.partner.country_id = self.ref("base.us")
-        self.partner.state_id = self.ref("base.state_us_2")
+        self.partner.name = "Cliente de Prueba"
+        self.partner.country_id = self.env.ref("base.us")
+        self.partner.state_id = self.env.ref("base.state_us_2")
         self.main_company = self.env.ref("base.main_company")
         self.wizard = self.env["create.facturae"].create({})
         self.fe = "http://www.facturae.es/Facturae/2009/v3.2/Facturae"
@@ -221,6 +228,7 @@ class CommonTest(common.TransactionCase):
 
     def test_facturae_generation(self):
         self.move.action_post()
+        self._activate_certificate(self.certificate_password)
         self.move.name = "2999/99999"
         self.wizard.with_context(
             active_ids=self.move.ids, active_model="account.move"
@@ -250,11 +258,12 @@ class CommonTest(common.TransactionCase):
         )
 
     def test_facturae_with_attachments(self):
+        self._activate_certificate(self.certificate_password)
         self.move.action_post()
         self.move.name = "2999/99999"
         self.partner.attach_invoice_as_annex = True
         with patch(
-            "odoo.addons.base.models.ir_actions_report.IrActionsReport.render"
+            "odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf"
         ) as ptch:
             ptch.return_value = (b"1234", "pdf")
             self.wizard.with_context(
@@ -265,7 +274,7 @@ class CommonTest(common.TransactionCase):
         generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertTrue(
             generated_facturae.xpath(
-                "/fe:Facturae/Invoices/Invoice/AdditionalData/" "RelatedDocuments",
+                "/fe:Facturae/Invoices/Invoice/AdditionalData/RelatedDocuments",
                 namespaces={"fe": self.fe},
             ),
         )
@@ -292,35 +301,20 @@ class CommonTest(common.TransactionCase):
         self.bank.acc_number = "BE96 9988 7766 5544"
 
     def test_validation_error(self):
+        self._activate_certificate(self.certificate_password)
         self.main_company.partner_id.country_id = False
         self.move.action_post()
         self.move.name = "2999/99999"
         with self.assertRaises(exceptions.UserError):
-            self.env["create.facturae"].with_context(
+            self.wizard.with_context(
                 active_ids=self.move.ids, active_model="account.move"
             ).create_facturae_file()
 
     def test_signature(self):
+        self._activate_certificate(self.certificate_password)
         self.move.action_post()
         self.move.name = "2999/99999"
-        pkcs12 = crypto.PKCS12()
-        pkey = crypto.PKey()
-        pkey.generate_key(crypto.TYPE_RSA, 512)
-        x509 = crypto.X509()
-        x509.set_pubkey(pkey)
-        x509.set_serial_number(0)
-        x509.get_subject().CN = "me"
-        x509.set_issuer(x509.get_subject())
-        x509.gmtime_adj_notBefore(0)
-        x509.gmtime_adj_notAfter(10 * 365 * 24 * 60 * 60)
-        x509.sign(pkey, "md5")
-        pkcs12.set_privatekey(pkey)
-        pkcs12.set_certificate(x509)
-        self.main_company.facturae_cert = base64.b64encode(
-            pkcs12.export(passphrase="password")
-        )
-        self.main_company.facturae_cert_password = "password"
-        self.main_company.partner_id.country_id = self.ref("base.es")
+        self.main_company.partner_id.country_id = self.env.ref("base.es")
         self.wizard.with_context(
             active_ids=self.move.ids, active_model="account.move"
         ).create_facturae_file()
@@ -332,10 +326,6 @@ class CommonTest(common.TransactionCase):
 
         node = generated_facturae.find(".//ds:Signature", {"ds": ns})
         ctx = xmlsig.SignatureContext()
-        certificate = crypto.load_pkcs12(
-            base64.b64decode(self.main_company.facturae_cert), "password"
-        )
-        certificate.set_ca_certificates(None)
         verification_error = False
         error_message = ""
         try:
@@ -351,19 +341,21 @@ class CommonTest(common.TransactionCase):
         )
 
     def test_refund(self):
+        self._activate_certificate(self.certificate_password)
         self.move.action_post()
         self.move.name = "2999/99999"
         motive = "Description motive"
-        refund = self.env["account.move.reversal"].create(
-            {"refund_reason": "01", "reason": motive}
+        refund = (
+            self.env["account.move.reversal"]
+            .with_context(active_ids=self.move.ids, active_model=self.move._name)
+            .create({"refund_reason": "01", "reason": motive})
         )
-        refund_result = refund.with_context(
-            active_ids=self.move.ids, active_model=self.move._name
-        ).reverse_moves()
+        refund_result = refund.reverse_moves()
         domain = refund_result.get("domain", False)
         if not domain:
             domain = [("id", "=", refund_result["res_id"])]
         refund_inv = self.env["account.move"].search(domain)
+        self.assertTrue(refund_inv)
         self.assertIn(motive, refund_inv.ref)
         self.assertEqual(refund_inv.facturae_refund_reason, "01")
         refund_inv.action_post()
@@ -537,6 +529,7 @@ class CommonTest(common.TransactionCase):
             )
 
     def test_move_rounding(self):
+        self._activate_certificate(self.certificate_password)
         self.main_company.tax_calculation_rounding_method = "round_globally"
         dp = self.env.ref("product.decimal_price")
         dp.digits = 4
@@ -549,7 +542,7 @@ class CommonTest(common.TransactionCase):
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -572,6 +565,7 @@ class CommonTest(common.TransactionCase):
         self._check_amounts(move, *self.first_check_amount)
 
     def test_move_rounding_with_discount(self):
+        self._activate_certificate(self.certificate_password)
         self.main_company.tax_calculation_rounding_method = "round_globally"
         dp = self.env.ref("product.decimal_price")
         dp.digits = 4
@@ -584,7 +578,7 @@ class CommonTest(common.TransactionCase):
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
