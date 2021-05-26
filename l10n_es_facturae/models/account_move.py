@@ -75,10 +75,12 @@ class AccountMove(models.Model):
         ]
     )
     facturae_start_date = fields.Date(
-        readonly=True, states={"draft": [("readonly", False)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     facturae_end_date = fields.Date(
-        readonly=True, states={"draft": [("readonly", False)]},
+        readonly=True,
+        states={"draft": [("readonly", False)]},
     )
     l10n_es_facturae_status = fields.Selection(
         [], tracking=True, readonly=True, string="Facturae status", copy=False
