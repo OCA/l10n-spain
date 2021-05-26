@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_account_statement_import_n43',
         'odoo14-addon-l10n_es_aeat',
         'odoo14-addon-l10n_es_aeat_mod111',
+        'odoo14-addon-l10n_es_aeat_mod115',
         'odoo14-addon-l10n_es_aeat_mod303',
         'odoo14-addon-l10n_es_aeat_mod390',
         'odoo14-addon-l10n_es_aeat_sii_oca',
