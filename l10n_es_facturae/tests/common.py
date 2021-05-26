@@ -343,7 +343,6 @@ class CommonTest(common.TransactionCase):
         except Exception as e:
             verification_error = True
             error_message = str(e)
-            pass
         self.assertEqual(
             verification_error,
             False,
@@ -374,7 +373,8 @@ class CommonTest(common.TransactionCase):
         ).create_facturae_file()
         with self.assertRaises(exceptions.UserError):
             self.wizard.with_context(
-                active_ids=[self.move_02.id, self.move.id], active_model="account.move",
+                active_ids=[self.move_02.id, self.move.id],
+                active_model="account.move",
             ).create_facturae_file()
 
     def test_constrains_01(self):
@@ -515,20 +515,25 @@ class CommonTest(common.TransactionCase):
         ).create_facturae_file()
         facturae_xml = etree.fromstring(base64.b64decode(self.wizard.facturae))
         self.assertEqual(
-            facturae_xml.xpath("//InvoiceLine/TotalCost")[0].text, wo_discount,
+            facturae_xml.xpath("//InvoiceLine/TotalCost")[0].text,
+            wo_discount,
         )
         self.assertEqual(
-            facturae_xml.xpath("//InvoiceLine/GrossAmount")[0].text, subtotal,
+            facturae_xml.xpath("//InvoiceLine/GrossAmount")[0].text,
+            subtotal,
         )
         self.assertEqual(
-            facturae_xml.xpath("//TaxesOutputs//TaxableBase/TotalAmount")[0].text, base,
+            facturae_xml.xpath("//TaxesOutputs//TaxableBase/TotalAmount")[0].text,
+            base,
         )
         self.assertEqual(
-            facturae_xml.xpath("//TaxesOutputs//TaxAmount/TotalAmount")[0].text, tax,
+            facturae_xml.xpath("//TaxesOutputs//TaxAmount/TotalAmount")[0].text,
+            tax,
         )
         if discount:
             self.assertEqual(
-                facturae_xml.xpath("//InvoiceLine//DiscountAmount")[0].text, discount,
+                facturae_xml.xpath("//InvoiceLine//DiscountAmount")[0].text,
+                discount,
             )
 
     def test_move_rounding(self):
