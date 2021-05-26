@@ -25,6 +25,7 @@ addon | version | summary
 [l10n_es_aeat](l10n_es_aeat/) | 14.0.1.3.0 | Modulo base para declaraciones de la AEAT
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 14.0.1.1.0 | AEAT modelo 111
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 14.0.1.0.0 | AEAT modelo 115
+[l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 14.0.1.0.0 | AEAT modelo 123
 [l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 14.0.1.5.2 | AEAT modelo 303
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 14.0.1.2.0 | AEAT modelo 390
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 14.0.1.2.0 | Suministro Inmediato de Información en el IVA
