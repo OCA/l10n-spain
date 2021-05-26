@@ -22,7 +22,10 @@ class EdiExchangeRecord(models.Model):
         readonly=True,
         string="Facturae Cancellation state",
     )
-    l10n_es_facturae_motive = fields.Text(string="Facturae description", readonly=True,)
+    l10n_es_facturae_motive = fields.Text(
+        string="Facturae description",
+        readonly=True,
+    )
     l10n_es_facturae_cancellation_motive = fields.Text(
         readonly=True, string="Facturae Cancellation motive"
     )
