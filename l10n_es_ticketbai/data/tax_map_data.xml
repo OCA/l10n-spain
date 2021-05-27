@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
@@ -91,6 +92,7 @@
                 ref('l10n_es.account_tax_template_s_irpf20a'),
                 ref('l10n_es.account_tax_template_s_irpf21'),
                 ref('l10n_es.account_tax_template_s_irpf21a'),
+                ref('l10n_es.account_tax_template_s_irpf24'),
             ])]"/>
             <field name="name">Retenciones a cuenta del IRPF</field>
         </record>
