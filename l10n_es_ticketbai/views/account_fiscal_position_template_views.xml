@@ -43,7 +43,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <record id="tbai_account_fiscal_position_template_view_search" model="ir.ui.view">
             <field name="name">account.fiscal.position.template.view.search</field>
             <field name="model">account.fiscal.position.template</field>

@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import os
 from datetime import date
@@ -37,8 +38,8 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             'name': 'TBAI Invoice Test',
             'account_id': self.account_receivable.id,
             'type': 'out_invoice',
-            'date_invoice': date.today(),
-            'tbai_date_operation': date.today(),
+            'date_invoice': str(date.today()),
+            'tbai_date_operation': str(date.today()),
             'fiscal_position_id': fp.id
         })
         self.env['account.invoice.line'].sudo(uid).create({
@@ -93,7 +94,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         aeat_certificate = self.create_aeat_certificate()
         self.main_company.tbai_aeat_certificate_id = aeat_certificate.id
         self.product_delivery = self.env.ref('product.product_delivery_01')
-        self.product_service = self.env.ref('product.product_product_6c')
+        self.product_service = self.env.ref('product.product_product_6')
         self.group_user = self.env.ref('base.group_user')  # Employee
         self.res_users_account_billing = self.env.ref(
             'account.group_account_invoice')  # Billing
@@ -115,32 +116,23 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         # Otros
         self.vat_exemption_E6 = self.env.ref('l10n_es_ticketbai.tbai_vat_exemption_E6')
         # Bienes
-        self.tax_21b = self.env['account.tax'].search(
-            [('description', '=', 'S_IVA21B')])
+        self.tax_21b = self.env.ref('l10n_es.1_account_tax_template_s_iva21b')
         # Servicios
-        self.tax_10s = self.env['account.tax'].search(
-            [('description', '=', 'S_IVA10S')])
+        self.tax_10s = self.env.ref('l10n_es.1_account_tax_template_s_iva10s')
         # Retenciones a cuenta IRPF 15%
-        self.tax_irpf_15 = self.env['account.tax'].search(
-            [('description', '=', 'S_IRPF15')])
+        self.tax_irpf_15 = self.env.ref('l10n_es.1_account_tax_template_s_irpf15')
         # 1.4% Recargo Equivalencia Ventas
-        self.tax_req14 = self.env['account.tax'].search(
-            [('description', '=', 'S_REQ014')])
+        self.tax_req14 = self.env.ref('l10n_es.1_account_tax_template_s_req014')
         # 5.2% Recargo Equivalencia Ventas
-        self.tax_req52 = self.env['account.tax'].search(
-            [('description', '=', 'S_REQ52')])
+        self.tax_req52 = self.env.ref('l10n_es.1_account_tax_template_s_req52')
         # Bienes intracomunitarios
-        self.tax_iva0_ic = self.env['account.tax'].search(
-            [('description', '=', 'S_IVA0_IC')])
+        self.tax_iva0_ic = self.env.ref('l10n_es.1_account_tax_template_s_iva0_ic')
         # Servicios intracomunitarios
-        self.tax_iva0_sp_i = self.env['account.tax'].search(
-            [('description', '=', 'S_IVA0_SP_I')])
+        self.tax_iva0_sp_i = self.env.ref('l10n_es.1_account_tax_template_s_iva0_sp_i')
         # Bienes extracomunitarios
-        self.tax_iva0_e = self.env['account.tax'].search(
-            [('description', '=', 'S_IVA0_E')])
+        self.tax_iva0_e = self.env.ref('l10n_es.1_account_tax_template_s_iva0_e')
         # Servicios extracomunitarios
-        self.tax_iva0_sp_e = self.env['account.tax'].search(
-            [('description', '=', 'S_IVA_SP_E')])
+        self.tax_iva0_sp_e = self.env.ref('l10n_es.1_account_tax_template_s_iva_e')
         self.product_delivery.taxes_id = [(6, 0, [self.tax_21b.id])]
         self.product_service.taxes_id = [(6, 0, [self.tax_10s.id])]
         # 07 - Régimen especial criterio de caja

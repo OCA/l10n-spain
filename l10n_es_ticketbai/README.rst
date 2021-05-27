@@ -1,8 +1,8 @@
-==========================
-TicketBAI - Gobierno Vasco
-==========================
+====================================
+TicketBAI - Haciendas Forales Vascas
+====================================
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
@@ -15,7 +15,10 @@ TicketBAI - Gobierno Vasco
 |badge1| |badge2| |badge3|
 
 Módulo para la declaración de todas las operaciones de venta realizadas por las personas y entidades
-que desarrollan actividades económicas
+que desarrollan actividades económicas y tributan en alguno de los territorios históricos del País Vasco/Euskadi.
+
+TicketBAI es un proyecto común de las Haciendas Forales Vascas
+y del Gobierno Vasco.
 https://www.euskadi.eus/contenidos/informacion/ticketbai/es_14815/adjuntos/TicketBAI_Especificaciones_v_1_1.pdf
 
 **Table of contents**
@@ -28,21 +31,16 @@ Installation
 
 Para instalar este módulo se necesita:
 
-#. Los módulos `l10n_es_ticketbai_api`, `l10n_es_aeat`, `l10n_es_aeat_certificate`, `l10n_es_account_invoice_sequence`, `account_cancel`
-
-y el módulo `account_invoice_tax_required` que se encuentra en:
-
-https://github.com/OCA/account-invoicing
+#. Los módulos l10n_es_ticketbai_api, l10n_es_aeat, account_cancel
 
 Configuration
 =============
-
-Ver descripción módulo `l10n_es_ticketbai_api`.
 
 Para configurar este módulo es necesario:
 
 En la compañía:
 
+* Ver descripción módulo l10n_es_ticketbai_api
 * Certificado AEAT, dar de alta en la configuración de certificados AEAT en facturación
 
 Posición fiscal:
@@ -71,13 +69,15 @@ Usage
 
     * Parcial: se genera el fichero y se firma al validar la factura rectificativa. La factura se ha tenido que generar desde el asistente de emitir rectificativa
     * Total: se genera el fichero y se firma al crear la rectificativa desde el asistente de emitir rectificativa, escogiendo la opción `cancelar`
-  * Sustitución
 
-    * Se genera el fichero y se firma al validar la factura. La factura se ha tenido que generar desde el asistente de emitir rectificativa
 * Anulación de factura
 
-  * Se genera el fichero y se firma al cancelar una factura validada
+  * Se genera un nuevo fichero de anulación y se firma al cancelar una factura validada. La factura se queda en estado cancelado y no puede ser pasada a borrador para volver a validarse.
 
+* Secuencias de diarios (aplicado cuando la compañía habilita TicketBAI)
+
+  * Por limitaciones de TicketBAI, se eliminan los sufijos de las secuencias de los diarios de ventas.
+  * Por legalidad, se obliga a especificar una secuencia dedicada para las facturas rectificativas.
 
 Bug Tracker
 ===========
@@ -100,8 +100,8 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Victor Laskurain <blaskurain@binovo.es>
-* Luis J. Salvatierra <ljsalvatierra@binovo.es>
+* Josean Soroa <js@landoo.es>
+* Aritz Olea <ao@landoo.es>
 
 Maintainers
 ~~~~~~~~~~~
