@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import date
 from odoo import exceptions
@@ -63,7 +64,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         # 2nd rejected by the Tax Agency. Mark as an error.
         # 3rd mark as an error.
         invoice.tbai_invoice_id.sudo().mark_as_sent()
-        self.env['tbai.invoice'].mark_chain_as_error(invoice2.sudo().tbai_invoice_id)
+        self.env['tbai.invoice'].mark_chain_as_error(
+            invoice2.sudo().tbai_invoice_id)
         self.assertEqual(invoice2.tbai_invoice_id.state, 'error')
         self.assertEqual(invoice3.tbai_invoice_id.state, 'error')
         self.assertEqual(
@@ -241,13 +243,15 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         self.assertEqual(1, len(invoice.refund_invoice_ids))
         refund = invoice.refund_invoice_ids
         self.assertEqual(refund.state, 'paid')
+        refund_invoice = invoice.refund_invoice_ids[0]
+        self.assertEqual('I', refund_invoice.tbai_refund_type)
+        self.assertEqual('R1', refund_invoice.tbai_refund_key)
+        self.assertEqual(1, len(refund_invoice.tbai_invoice_ids))
         substitute_invoice = self.env['account.invoice'].search([
             ('type', '=', 'out_invoice'), ('id', '!=', invoice.id),
             ('origin', '=', invoice.origin)
         ])
         self.assertEqual(1, len(substitute_invoice))
-        self.assertEqual('S', substitute_invoice.tbai_refund_type)
-        self.assertEqual('R1', substitute_invoice.tbai_refund_key)
         substitute_invoice.compute_taxes()
         substitute_invoice.action_invoice_open()
         self.assertEqual(substitute_invoice.state, 'open')

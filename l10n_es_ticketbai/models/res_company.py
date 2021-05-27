@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api
 
@@ -32,3 +33,20 @@ class ResCompany(models.Model):
             return self.tbai_aeat_certificate_id.private_key
         else:
             return None
+
+    def write(self, vals):
+        super().write(vals)
+        if vals.get('tbai_enabled', False):
+            for record in self:
+                if record.tbai_enabled:
+                    journals = self.env['account.journal'].search([])
+                    for journal in journals:
+                        if 'sale' == journal.type:
+                            if self.env['ir.module.module'].search([
+                                ('name', '=', 'l10n_es_account_invoice_sequence'),
+                                ('state', '=', 'installed')
+                            ]):
+                                journal.invoice_sequence_id.suffix = ''
+                            else:
+                                journal.sequence_id.suffix = ''
+                                journal.refund_sequence = True

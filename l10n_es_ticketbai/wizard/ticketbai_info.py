@@ -1,14 +1,16 @@
 # Copyright 2020 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api
 
 
 class TicketBaiGeneralInfo(models.TransientModel):
     _name = 'tbai.info'
+    _description = 'TicketBAI general information'
 
     tbai_enabled = fields.Boolean(
         default=lambda self: self.env.user.company_id.tbai_enabled)
-    name = fields.Char(string='Developer', compute='_compute_name')
+    name = fields.Char(string='Developer name', compute='_compute_name')
     company_id = fields.Many2one(
         comodel_name='res.company', string='Company', readonly=True,
         default=lambda self: self.env.user.company_id)
@@ -32,8 +34,12 @@ class TicketBaiGeneralInfo(models.TransientModel):
         for record in self:
             software_version = self.sudo().env['ir.module.module'].search([
                 ('name', '=', 'l10n_es_ticketbai')]).latest_version
-            record.software = "(%s) %s" % (
-                software_version, record.company_id.tbai_software_name)
+            software_version_api = self.sudo().env['ir.module.module'].search([
+                ('name', '=', 'l10n_es_ticketbai_api')]).latest_version
+            record.software = "(%s, %s API) %s" % (
+                software_version,
+                software_version_api,
+                record.company_id.tbai_software_name)
 
     @api.multi
     @api.depends('company_id')

@@ -1,12 +1,13 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "TicketBAI - "
             "declaración de todas las operaciones de venta realizadas por las personas "
             "y entidades que desarrollan actividades económicas",
-    "version": "11.0.0.1.0",
+    "version": "12.0.0.1.0",
     "category": "Accounting & Finance",
-    "website": "http://www.binovo.es",
+    "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo,"
               "Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -15,17 +16,16 @@
     "auto_install": False,
     "development_status": "Beta",
     "maintainers": [
-        'ljsalvatierra-binovo'
+        'ljsalvatierra-binovo',
+        'ao-landoo'
     ],
     "depends": [
         "base_vat",
         "l10n_es",
         "l10n_es_aeat",
-        "l10n_es_aeat_certificate",
-        "l10n_es_ticketbai_api",
-        "account_invoice_tax_required",
-        "l10n_es_account_invoice_sequence",
-        "account_cancel"
+        "account",
+        "account_cancel",
+        "l10n_es_ticketbai_api"
     ],
     "external_dependencies": {
         "python": ["OpenSSL"]
@@ -40,6 +40,8 @@
         "views/account_fiscal_position_template_views.xml",
         "views/account_fiscal_position_views.xml",
         "views/account_invoice_views.xml",
+        "views/account_journal_views.xml",
+        "views/ir_sequence_views.xml",
         "views/report_invoice.xml",
         "views/res_company_views.xml",
         "views/res_partner_views.xml",
