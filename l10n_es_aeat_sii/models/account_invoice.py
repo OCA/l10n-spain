@@ -795,14 +795,13 @@ class AccountInvoice(models.Model):
                                             taxes['taxes'] if t['amount'] < 0])
 
         amount_total_company_signed = amount_total
-        if (self.currency_id and self.company_id and
-                self.currency_id != self.company_id.currency_id):
-            currency_id = self.currency_id
-            amount_total_company_signed = currency_id._convert(
-                amount_total,
-                self.company_id.currency_id,
-                self.company_id,
-                self.date_invoice or fields.Date.today())
+        if self.currency_id != self.company_id.currency_id:
+            from_currency = self.currency_id.with_context(
+                date=self.date_invoice
+            )
+            amount_total_company_signed = from_currency.compute(
+                amount_total, self.company_id.currency_id, round=False,
+            )
         return round(float_round(amount_total_company_signed * sign, 2), 2)
 
     @api.multi
