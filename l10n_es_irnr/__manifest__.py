@@ -5,7 +5,7 @@
 
 {
     "name": "Retenciones IRNR (No residentes)",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "category": "Localization",
     "depends": ["l10n_es"],
     "data": [
@@ -14,7 +14,7 @@
         "data/fiscal_positions_irnr.xml",
         "data/fiscal_position_taxes_irnr.xml",
     ],
-    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "installable": True,
