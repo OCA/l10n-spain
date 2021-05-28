@@ -6,7 +6,7 @@
 
 <!-- Retenciones IRPF No residentes no-UE 24% -->
 
-    <record id="tax_group_irnr_no_ue" model="account.tax.group">
+    <record id="tax_group_retenciones_24" model="account.tax.group">
         <field name="name">Retenciones no residentes no-UE</field>
     </record>
 
@@ -18,7 +18,7 @@
     <field name="refund_account_id" ref="l10n_es.account_common_473"/>
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-24"/>
-    <field name="tax_group_id" ref="tax_group_irnr_no_ue"/>
+    <field name="tax_group_id" ref="tax_group_retenciones_24"/>
     <field name="amount_type">percent</field>
 </record>
 
@@ -31,13 +31,13 @@
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-24"/>
     <field name="amount_type">percent</field>
-    <field name="tax_group_id" ref="tax_group_irnr_no_ue"/>
+    <field name="tax_group_id" ref="tax_group_retenciones_24"/>
 </record>
 
 <!-- Retenciones IRPF No residentes UE 19% -->
 
 
-    <record id="tax_group_irnr_ue" model="account.tax.group">
+    <record id="tax_group_retenciones_19_irnr" model="account.tax.group">
         <field name="name">Retenciones no residentes UE</field>
     </record>
 
@@ -49,7 +49,7 @@
     <field name="refund_account_id" ref="l10n_es.account_common_473"/>
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-19"/>
-    <field name="tax_group_id" ref="tax_group_irnr_ue"/>
+    <field name="tax_group_id" ref="tax_group_retenciones_19_irnr"/>
     <field name="amount_type">percent</field>
 </record>
 
@@ -61,7 +61,7 @@
     <field name="refund_account_id" ref="l10n_es.account_common_4751"/>
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-19"/>
-    <field name="tax_group_id" ref="tax_group_irnr_ue"/>
+    <field name="tax_group_id" ref="tax_group_retenciones_19_irnr"/>
     <field name="amount_type">percent</field>
 </record>
 
