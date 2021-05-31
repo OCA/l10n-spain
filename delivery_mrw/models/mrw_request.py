@@ -338,6 +338,7 @@ class MrwRequest():
             <mrw:EntregaSabado>{entrega_sabado}</mrw:EntregaSabado>
             <mrw:Retorno>{retorno}</mrw:Retorno>
             <mrw:Reembolso>{reembolso}</mrw:Reembolso>
+            <mrw:ImporteReembolso>{importe_reembolso}</mrw:ImporteReembolso>
         </mrw:DatosServicio>
         """.format(**kwargs)
 

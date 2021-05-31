@@ -96,6 +96,7 @@ class DeliveryCarrier(models.Model):
 
             'retorno': self.mrw_return or '',
             'reembolso': self.mrw_refund or '',
+            'importe_reembolso': '',
         }
 
     def mrw_send_shipping(self, pickings):
