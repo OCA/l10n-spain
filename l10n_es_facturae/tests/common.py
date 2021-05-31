@@ -111,6 +111,18 @@ class CommonTest(common.TransactionCase):
                 "company_id": main_company.id,
             }
         )
+        self.refund_payment_mode = self.env["account.payment.mode"].create(
+            {
+                "name": "Test payment mode Refund",
+                "bank_account_link": "fixed",
+                "fixed_journal_id": self.journal.id,
+                "payment_method_id": self.env.ref(
+                    "account.account_payment_method_manual_out"
+                ).id,
+                "show_bank_account_from_journal": True,
+                "facturae_code": "01",
+            }
+        )
         self.payment_mode = self.env["account.payment.mode"].create(
             {
                 "name": "Test payment mode",
@@ -121,6 +133,7 @@ class CommonTest(common.TransactionCase):
                 ).id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
+                "refund_payment_mode_id": self.refund_payment_mode.id,
             }
         )
 
@@ -132,6 +145,7 @@ class CommonTest(common.TransactionCase):
                 "payment_method_id": self.payment_method.id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "02",
+                "refund_payment_mode_id": self.refund_payment_mode.id,
             }
         )
 
