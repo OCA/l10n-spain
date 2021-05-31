@@ -386,7 +386,7 @@
                     </PaymentDetails>
                     <LegalLiterals t-if="False"/>
                     <t t-set="attachments" t-value="invoice._get_facturae_invoice_attachments()"/>
-                    <AdditionalData t-if="invoice.comment or attachments">
+                    <AdditionalData t-if="invoice.comment or attachments or invoice.fiscal_position_id.note">
                         <RelatedInvoice t-if="False"/>
                         <RelatedDocuments t-if="attachments">
                             <Attachment t-foreach="attachments" t-as="attachment">
@@ -398,7 +398,7 @@
                                 <AttachmentData t-esc="attachment['data']"/>
                             </Attachment>
                         </RelatedDocuments>
-                        <InvoiceAdditionalInformation t-length="2500" t-esc="invoice.comment" t-if="invoice.comment"/>
+                        <InvoiceAdditionalInformation t-length="2500" t-esc="invoice.comment + invoice.fiscal_position_id.note" t-if="invoice.comment"/>
                         <Extensions t-if="False"/>
                     </AdditionalData>
                 </Invoice>
