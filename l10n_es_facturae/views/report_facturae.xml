@@ -398,7 +398,7 @@
                                 <AttachmentData t-esc="attachment['data']"/>
                             </Attachment>
                         </RelatedDocuments>
-                        <InvoiceAdditionalInformation t-length="2500" t-esc="invoice.comment + invoice.fiscal_position_id.note" t-if="invoice.comment"/>
+                        <InvoiceAdditionalInformation t-length="2500" t-esc="invoice.comment or '' + invoice.fiscal_position_id.note" t-if="invoice.comment or invoice.fiscal_position_id.note"/>
                         <Extensions t-if="False"/>
                     </AdditionalData>
                 </Invoice>
