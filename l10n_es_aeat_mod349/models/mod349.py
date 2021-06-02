@@ -46,7 +46,9 @@ class Mod349(models.Model):
         string="Frequency change", states={"confirmed": [("readonly", True)]}
     )
     total_partner_records = fields.Integer(
-        compute="_compute_report_regular_totals", string="Partners records", store=True,
+        compute="_compute_report_regular_totals",
+        string="Partners records",
+        store=True,
     )
     total_partner_records_amount = fields.Float(
         compute="_compute_report_regular_totals",
@@ -54,7 +56,9 @@ class Mod349(models.Model):
         store=True,
     )
     total_partner_refunds = fields.Integer(
-        compute="_compute_report_refund_totals", string="Partners refunds", store=True,
+        compute="_compute_report_refund_totals",
+        string="Partners refunds",
+        store=True,
     )
     total_partner_refunds_amount = fields.Float(
         compute="_compute_report_refund_totals",
@@ -161,7 +165,8 @@ class Mod349(models.Model):
             op_key = move_line.l10n_es_aeat_349_operation_key
             partner_dict = data.setdefault(partner, {})
             op_key_dict = partner_dict.setdefault(
-                op_key, {"record_details": detail_obj},
+                op_key,
+                {"record_details": detail_obj},
             )
             op_key_dict["record_details"] += record_detail
         for partner in list(data.keys()):
@@ -171,7 +176,8 @@ class Mod349(models.Model):
                         "report_id": self.id,
                         "partner_id": partner.id,
                         "partner_vat": _format_partner_vat(
-                            partner_vat=partner.vat, country=partner.country_id,
+                            partner_vat=partner.vat,
+                            country=partner.country_id,
                         ),
                         "operation_key": op_key,
                         "country_id": partner.country_id.id,
@@ -276,7 +282,8 @@ class Mod349(models.Model):
                     "report_id": self.id,
                     "partner_id": partner.id,
                     "partner_vat": _format_partner_vat(
-                        partner_vat=partner.vat, country=partner.country_id,
+                        partner_vat=partner.vat,
+                        country=partner.country_id,
                     ),
                     "operation_key": op_key,
                     "country_id": partner.country_id.id,
@@ -426,12 +433,15 @@ class Mod349PartnerRecord(models.Model):
         ondelete="cascade",
     )
     partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Partner", required=True,
+        comodel_name="res.partner",
+        string="Partner",
+        required=True,
     )
     partner_vat = fields.Char(string="VAT", size=15, index=True)
     country_id = fields.Many2one(comodel_name="res.country", string="Country")
     operation_key = fields.Selection(
-        selection=_selection_operation_key, string="Operation key",
+        selection=_selection_operation_key,
+        string="Operation key",
     )
     total_operation_amount = fields.Float(
         compute="_compute_total_operation_amount",
@@ -479,7 +489,9 @@ class Mod349PartnerRecordDetail(models.Model):
         ondelete="cascade",
     )
     report_type = fields.Selection(
-        related="report_id.statement_type", readonly=True, store=True,
+        related="report_id.statement_type",
+        readonly=True,
+        store=True,
     )
     partner_record_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod349.partner_record",
@@ -505,7 +517,9 @@ class Mod349PartnerRecordDetail(models.Model):
     )
     amount_untaxed = fields.Float(string="Amount untaxed")
     date = fields.Date(
-        related="move_line_id.move_id.invoice_date", string="Date", readonly=True,
+        related="move_line_id.move_id.invoice_date",
+        string="Date",
+        readonly=True,
     )
 
 
@@ -529,11 +543,15 @@ class Mod349PartnerRefund(models.Model):
         ondelete="cascade",
     )
     partner_id = fields.Many2one(
-        comodel_name="res.partner", string="Partner", required=True, index=True,
+        comodel_name="res.partner",
+        string="Partner",
+        required=True,
+        index=True,
     )
     partner_vat = fields.Char(string="VAT", size=15)
     operation_key = fields.Selection(
-        selection=_selection_operation_key, string="Operation key",
+        selection=_selection_operation_key,
+        string="Operation key",
     )
     country_id = fields.Many2one(comodel_name="res.country", string="Country")
     total_operation_amount = fields.Float(
@@ -550,7 +568,8 @@ class Mod349PartnerRefund(models.Model):
         help="Checked if refund record is OK",
     )
     period_type = fields.Selection(
-        selection="get_period_type_selection", string="Period type",
+        selection="get_period_type_selection",
+        string="Period type",
     )
     year = fields.Integer()
     refund_detail_ids = fields.One2many(
@@ -599,7 +618,9 @@ class Mod349PartnerRefundDetail(models.Model):
         ondelete="cascade",
     )
     report_type = fields.Selection(
-        related="report_id.statement_type", readonly=True, store=True,
+        related="report_id.statement_type",
+        readonly=True,
+        store=True,
     )
     refund_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod349.partner_refund",
@@ -622,4 +643,8 @@ class Mod349PartnerRefundDetail(models.Model):
         readonly=True,
     )
     amount_untaxed = fields.Float(string="Amount untaxed")
-    date = fields.Date(related="refund_line_id.date", string="Date", readonly=True,)
+    date = fields.Date(
+        related="refund_line_id.date",
+        string="Date",
+        readonly=True,
+    )

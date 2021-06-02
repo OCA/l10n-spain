@@ -9,5 +9,6 @@ class AccountTaxTemplate(models.Model):
     _inherit = "account.tax.template"
 
     aeat_349_map_line = fields.Many2one(
-        string="AEAT 349 Operation key", comodel_name="aeat.349.map.line",
+        string="AEAT 349 Operation key",
+        comodel_name="aeat.349.map.line",
     )

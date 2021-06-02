@@ -29,4 +29,7 @@ class Aeat349MapLines(models.Model):
         inverse_name="aeat_349_map_line",
         string="Taxes",
     )
-    operation_key = fields.Selection(selection=_selection_operation_key, required=True,)
+    operation_key = fields.Selection(
+        selection=_selection_operation_key,
+        required=True,
+    )
