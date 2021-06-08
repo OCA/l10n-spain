@@ -9,8 +9,15 @@ class AccountMoveReversal(models.TransientModel):
     _inherit = "account.move.reversal"
 
     def _default_sii_refund_type_required(self):
-        invoices = self.env["account.move"].browse(self.env.context.get("active_ids"),)
-        return any(invoices.mapped("company_id.sii_enabled"))
+        invoices = self.env["account.move"].browse(self.env.context.get("active_ids"))
+        # If any of the invoices part of the active_ids match the criteria,
+        # show the field
+        return bool(
+            invoices.filtered(
+                lambda i: i.type in ("in_invoice", "out_invoice")
+                and i.company_id.sii_enabled
+            )
+        )
 
     def _default_supplier_invoice_number_refund_required(self):
         invoices = (
