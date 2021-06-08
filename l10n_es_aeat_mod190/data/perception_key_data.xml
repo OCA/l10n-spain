@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="aeat_m190_perception_key_01" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >A. Rendimientos del trabajo: Empleados por cuenta ajena en general.</field>
+        <field name="code">A</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se utilizará esta clave para relacionar todas aquellas percepciones,
+            dinerarias o en especie, que hayan sido satisfechas por la persona
+            o entidad declarante en concepto de rendimientos del trabajo,
+            siempre que para determinar el importe de la retención hubiese
+            resultado aplicable el procedimiento general establecido en el
+            artículo 82 del Reglamento del Impuesto y que sean distintas de las
+            que deban reflejarse específicamente en las claves B, C y D. Por
+            consiguiente, también se incluirán en esta clave, entre otras, las
+            percepciones correspondientes a los trabajadores manuales que
+            perciban sus retribuciones por peonadas o jornales diarios como
+            consecuencia de una relación esporádica y diaria con el empleador,
+            así como las correspondientes a las relaciones laborales especiales
+            de carácter dependiente y a los contratos o relaciones laborales de
+            duración inferior al año.
+            Se incluirán también en esta clave las percepciones en concepto de
+            incapacidad laboral abonadas directamente por el empleador al
+            trabajador (en virtud del respectivo acuerdo de colaboración con la
+            Seguridad Social, sea esta colaboración de carácter obligatorio o
+            voluntario). En otro caso, estas percepciones por incapacidad
+            laboral se reflejarán por parte de la entidad pagadora en la
+            Clave B, subclave 01.
+
+            Por excepción, no se incluirán en el modelo 190 las retribuciones
+            del trabajo en especie respecto de las cuales no exista obligación
+            de efectuar ingresos a cuenta conforme a lo previsto en el artículo
+            102.2 del Reglamento del Impuesto (contribuciones satisfechas por
+            los promotores de Planes de Pensiones y de Mutualidades de
+            Previsión Social y los Planes de Previsión Social Empresarial que
+            reduzcan la base imponible), sin perjuicio de la obligación de
+            declarar los datos relativos a dichos conceptos en el modelo 345.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">2</field>
+    </record>
+    <record id="aeat_m190_perception_key_02" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >B. Rendimientos del trabajo: Pensionistas y  perceptores de haberes pasivos y demás prestaciones previstas en el artículo 17.2.a de la Ley del Impuesto.</field>
+        <field name="code">B</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las percepciones no exentas del IRPF
+            correspondientes a las pensiones y haberes pasivos de los regímenes
+            públicos de la Seguridad Social y clases pasivas, así como las que
+            correspondan a las demás, sean dinerarias o en especie, a que hace
+            referencia el artículo 17.2, letra a), de la Ley del Impuesto.
+            Se consignará, obligatoriamente, la subclave que en cada caso
+            proceda de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">1</field>
+    </record>
+    <record id="aeat_m190_perception_key_03" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >C. Rendimientos del trabajo: Prestaciones o subsidios por desempleo.</field>
+        <field name="code">C</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las percepciones correspondientes a
+            las prestaciones o subsidios por desempleo, con excepción de las
+            prestaciones satisfechas por este concepto en la modalidad de pago único.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">2</field>
+    </record>
+    <record id="aeat_m190_perception_key_04" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >D. Rendimientos del trabajo: Prestaciones por desempleo abonadas en la modalidad de pago único.</field>
+        <field name="code">D</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Desde el 1 de enero de 2013 esta clave queda suprimida en relación
+            con las prestaciones por desempleo abonadas en la modalidad de pago
+            único, establecida en el Real Decreto 1044/1985, de 19 de junio,
+            cuyo reconocimiento por la respectiva entidad gestora haya tenido
+            lugar a partir de dicha fecha. Al estar dichas prestaciones totalmente
+            exentas del IRPF, conforme a lo establecido en el artículo 7, letra n),
+            de la Ley del Impuesto, el importe de las mismas se incluirá entre
+            las percepciones de la clave L, subclave 13.
+            No obstante, se utilizará esta clave para relacionar las
+            prestaciones reintegradas por sus perceptores en el ejercicio como
+            consecuencia de haber sido indebidamente percibidas en ejercicios
+            anteriores a 2013, en la medida en que correspondan a percepciones
+            originariamente declaradas con esta misma clave. A estos efectos, se
+            seguirán las indicaciones contenidas en la descripción del campo
+            "Ejercicio de devengo" (posiciones 148-151) queresulten de aplicación.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record id="aeat_m190_perception_key_05" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >E. Rendimientos del trabajo: Consejeros y administradores.</field>
+        <field name="code">E</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las retribuciones, dinerarias o en
+            especie, satisfechas a personas físicas por su condición de
+            administradores y miembros de los Consejos de administración o de las
+            Juntas que hagan sus veces y demás miembros de otros órganos
+            representativos. Se consignará obligatoriamente la subclave que en cada
+            caso proceda de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">1</field>
+    </record>
+    <record id="aeat_m190_perception_key_06" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >F. Rendimientos del trabajo: Cursos, conferencias, seminarios y similares y elaboración de obras literarias, artísticas o científicas.</field>
+        <field name="code">F</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las percepciones, dinerarias o en especie,
+            satisfechas por la persona o entidad declarante en concepto de
+            rendimientos del trabajo, cuando deriven de impartir cursos,
+            conferencias, coloquios, seminarios y similares, o bien de la
+            elaboración de obras literarias, artísticas o científicas, siempre
+            que se hubiera cedido el derecho a la explotación de las mismas.
+            Se consignará, obligatoriamente, la subclave que en cada caso proceda
+            de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record id="aeat_m190_perception_key_07" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >G. Rendimientos de actividades económicas: Actividades profesionales.</field>
+        <field name="code">G</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las percepciones, dinerarias o en especie,
+            satisfechas por la persona o entidad declarante que sean contraprestación
+            de las actividades económicas de naturaleza profesional a que se
+            refiere la letra a) del apartado 5 del artículo 101 de la Ley del
+            Impuesto. Se consignará, obligatoriamente, la subclave que en cada
+            caso proceda de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record id="aeat_m190_perception_key_08" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >H. Rendimientos de actividades económicas: actividades agrícolas, ganaderas y forestales y  actividades en estimación objetiva a las que se refiere el artículo 95.6 del Reglamento del Impuesto.</field>
+        <field name="code">H</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las percepciones, dinerarias o
+            en especie, satisfechas por la persona o entidad
+            declarante que sean contraprestación de las siguientes
+            actividades económicas:
+            a) Las actividades agrícolas, ganaderas o forestales a que
+            se refieren los apartados 4 y 5 del artículo 95 del
+            Reglamento del Impuesto. Respecto de estas actividades,
+            no se incluirán las subvenciones corrientes o de capital ni
+            las indemnizaciones, conceptos que, en su caso, deberán
+            ser declarados en el modelo 346.
+            b) Las actividades económicas en estimación objetiva
+            previstas en el apartado 6.2.o del artículo 95 del
+            Reglamento del Impuesto.
+            Se consignará, obligatoriamente, la subclave que en cada
+            caso proceda de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record id="aeat_m190_perception_key_09" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >I. Rendimientos de actividades económicas: rendimientos a que se refiere el artículo 75.2, letra b), del Reglamento del Impuesto.</field>
+        <field name="code">I</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta
+            clave las percepciones, dinerarias o en especie,
+            satisfechas por la persona o entidad declarante en
+            concepto de rendimientos de la propiedad intelectual o
+            industrial, de la prestación de asistencia técnica, del
+            arrendamiento de bienes muebles, negocios o minas o del
+            subarrendamiento de dichos bienes, así como los
+            procedentes de la cesión del derecho a la explotación del
+            derecho de imagen, cuando dichos rendimientos tengan
+            para su perceptor la calificación fiscal de rendimientos de
+            actividades económicas distintos de los procedentes de
+            actividades profesionales que deban incluirse en la clave
+            G.
+            Se consignará, obligatoriamente, la subclave que en cada
+            caso proceda de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record id="aeat_m190_perception_key_10" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >J. Imputación de rentas por la cesión de derechos de imagen</field>
+        <field name="code">J</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            contraprestaciones a que se refiere el artículo
+            92.8 de la Ley del Impuesto. Se identificarán con esta
+            clave las contraprestaciones, dinerarias o en especie,
+            satisfechas por la persona o entidad declarante a personas
+            o entidades no residentes en territorio español, que estén
+            sujetas a la obligación de efectuar el ingreso a cuenta
+            previsto en el artículo 92.8 de la Ley del Impuesto.
+            En las percepciones de esta clave se consignará como
+            NIF del perceptor el correspondiente a la persona física
+            residente que deba efectuar la imputación en la base
+            imponible del IRPF de las rentas derivadas de la cesión
+            del derecho de imagen, en aplicación del régimen especial
+            establecido en el artículo 92 de la Ley del Impuesto.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record id="aeat_m190_perception_key_11" model="l10n.es.aeat.report.perception.key">
+        <field
+            name="name"
+        >K. Premios y ganancias patrimoniales de los vecinos derivadas de los aprovechamientos forestales en montes públicos.</field>
+        <field name="code">K</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las
+            siguientes rentas sometidas a retención o ingreso a
+            cuenta:
+            a) Los premios, dinerarios o en especie, a que se refiere el
+            artículo 75.2, letra c), del Reglamento del Impuesto, que
+            hayan sido entregados por la persona o entidad declarante
+            como consecuencia de la participación de los perceptores
+            en juegos, concursos, rifas o combinaciones aleatorias,
+            incluyendo aquellos sobre los que no exista obligación de
+            practicar retención o ingreso a cuenta por no superar la
+            base de retención la cantidad de 300 euros. Se exceptúan
+            los premios sujetos al Gravamen Especial sobre los
+            premios de determinadas loterías y apuestas a que se
+            refiere la Disposición Adicional Trigésima Tercera de la
+            Ley del Impuesto, así como los premios que se entreguen
+            como consecuencia de juegos organizados al amparo de
+            lo previsto en el Real Decreto-ley 16/1977, de 25 de
+            febrero, por el que se regulan los aspectos penales,
+            administrativos y fiscales de los juegos de suerte, envite oazar
+            y apuestas, y demás normativa estatal o autonómica sobre el juego.
+            b) Las ganancias patrimoniales a que se refiere el último
+            inciso del artículo 75.1, letra d), del Reglamento del
+            Impuesto, consistentes en percepciones obtenidas por los
+            vecinos como consecuencia de aprovechamientos
+            forestales en montes públicos.
+            Se consignará, obligatoriamente, la subclave que en cada
+            caso proceda de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+    <record id="aeat_m190_perception_key_12" model="l10n.es.aeat.report.perception.key">
+        <field name="name">L. Rentas exentas y dietas exceptuadas de gravamen.</field>
+        <field name="code">L</field>
+        <field name="aeat_number">190</field>
+        <field name="description">
+            Se identificarán con esta clave las dietas y asignaciones
+            para gastos de viaje, en las cuantías que resulten
+            exceptuadas de gravamen con arreglo a lo dispuesto en el
+            artículo 9 del Reglamento del Impuesto, así como las
+            rentas exentas del IRPF que tengan la consideración de
+            rendimientos del trabajo, con excepción de las anualidades
+            por alimentos a que se refiere la letra k) del artículo 7 de la
+            Ley del Impuesto, y aquellas otras que, teniendo la
+            consideración de rendimientos de actividades económicas,
+            estén exentas en virtud de lo dispuesto en el citado
+            artículo 7 de la Ley del Impuesto.
+            Tratándose de dietas y asignaciones para gastos de viaje,
+            así como cuando la exención esté sujeta a límites
+            cuantitativos, si la persona o entidad declarante hubiera
+            satisfecho cantidades superiores a los límites legal o
+            reglamentariamente establecidos, el exceso deberá
+            incluirse en la clave y, en su caso, subclave, que
+            corresponda de las demás claves y subclaves que en
+            estas instrucciones se indican.
+            Se consignará, obligatoriamente, la subclave que en cada
+            caso proceda de las indicadas en el campo subclave.
+        </field>
+        <field name="active">True</field>
+        <field name="ad_required">0</field>
+    </record>
+</odoo>

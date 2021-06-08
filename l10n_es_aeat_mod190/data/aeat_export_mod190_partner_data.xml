@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--  PARTNER-190
+        A. TIPO DE REGISTRO 2: REGISTRO DE CLIENTE -->
+    <record id="aeat_mod190_partner_export_config" model="aeat.model.export.config">
+        <field
+            name="name"
+        >Exportación modelo 190 - Tipo de Registro 2 – Registro de cliente</field>
+        <field name="model_number">190</field>
+    </record>
+    <!-- (1) TIPO DE REGISTRO (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_01"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">1</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Tipo de Registro</field>
+        <field name="fixed_value">2</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (2-4) MODELO DECLARACION (3) -->
+    <record
+        id="aeat_mod190_partner_export_line_02"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">2</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Modelo de la declaración</field>
+        <field name="fixed_value">190</field>
+        <field name="export_type">string</field>
+        <field name="size">3</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (5-8) EJERCICIO (4) -->
+    <record
+        id="aeat_mod190_partner_export_line_03"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">3</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Ejercicio</field>
+        <field name="expression">${object.report_id.year}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (9-17) NIF DECLARANTE (9) -->
+    <record
+        id="aeat_mod190_partner_export_line_04"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">4</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">NIF</field>
+        <field name="expression">${object.report_id.company_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (18-26) NIF CLIENTE (9) -->
+    <record
+        id="aeat_mod190_partner_export_line_05"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">5</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">NIF Cliente</field>
+        <field name="expression">${object.partner_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (27-35) NIF REPRESENTANTE LEGAL (9) -->
+    <record
+        id="aeat_mod190_partner_export_line_06"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">6</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">NIF representante legal</field>
+        <field name="expression">${object.representante_legal_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (36-75) DENOMINACION DEL PERCEPTOR (40) -->
+    <record
+        id="aeat_mod190_partner_export_line_07"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">7</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Nombre del cliente</field>
+        <field name="expression">${object.partner_id.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">40</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (76-77) CODIGO PROVINCIA (2) -->
+    <record
+        id="aeat_mod190_partner_export_line_08"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">8</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Código provincia</field>
+        <field name="expression">${object.codigo_provincia}</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (78) CLAVE DE PERCEPCION (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_09"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">9</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Clave de percepción</field>
+        <field name="expression">${object.aeat_perception_key_id.code}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (79-80) SUBCLAVE (2) -->
+    <record
+        id="aeat_mod190_partner_export_line_10"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">10</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Subclave</field>
+        <field name="expression">${object.aeat_perception_subkey_id.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (81-107) PERCEPCIONES DINERARIAS NO DERIVADAS DE INCAPACIDAD LABORAL (27) -->
+    <record
+        id="aeat_mod190_partner_export_line_11"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">11</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones dinerarias no derivadas de incapacidad laboral</field>
+        <field
+            name="expression"
+        >${'N' if object.percepciones_dinerarias &lt; 0 else ''}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_12"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">12</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones dinerarias no derivadas de incapacidad laboral</field>
+        <field name="expression">${object.percepciones_dinerarias}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_13"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">13</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones dinerarias no derivadas de incapacidad laboral</field>
+        <field name="expression">${object.retenciones_dinerarias}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (108-147) PERCEPCIONES EN ESPECIE NO DERIVADAS DE INCAPACIDAD LABORAL (40) -->
+    <record
+        id="aeat_mod190_partner_export_line_14"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">14</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Signo de las percepciones en especie no derivadas de incapacidad laboral</field>
+        <field
+            name="expression"
+        >${'N' if object.percepciones_en_especie &lt; 0 else ''}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_15"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">15</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones en especie no derivadas de incapacidad laboral</field>
+        <field name="expression">${object.percepciones_en_especie}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_16"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">17</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Ingresos a cuenta efectuados no derivados de incapacidad laboral</field>
+        <field name="expression">${object.ingresos_a_cuenta_efectuados}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_17"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">17</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Ingresos a cuenta repercutidos no derivados de incapacidad laboral</field>
+        <field name="expression">${object.ingresos_a_cuenta_repercutidos}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (148-151) EJERCICIO DEVENGO (4) -->
+    <record
+        id="aeat_mod190_partner_export_line_18"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">18</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Ejercicio devengo</field>
+        <field name="expression">${object.ejercicio_devengo}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (152) CEUTA Y MELILLA (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_19"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">19</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Ceuta y Melilla</field>
+        <field name="expression">${object.ceuta_melilla == True}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">1</field>
+        <field name="bool_no">0</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (153-254) DATOS ADICIONALES (102) -->
+    <!-- (153-156) AÑO DE NACIMIENTO (4) -->
+    <record
+        id="aeat_mod190_partner_export_line_20"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">20</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Año de nacimiento</field>
+        <field name="expression">${object.a_nacimiento}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (157) SITUACION FAMILIAR (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_21"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">21</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Situación familiar</field>
+        <field name="expression">${object.situacion_familiar}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (158-166) NIF DEL CONYUGE (9) -->
+    <record
+        id="aeat_mod190_partner_export_line_22"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">22</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: NIF del conyuge</field>
+        <field name="expression">${object.nif_conyuge}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (167) DISCAPACIDAD (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_23"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">23</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Discapacidad</field>
+        <field name="expression">${object.discapacidad}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (168) CONTRATO O RELACIÓN (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_24"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">24</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Contrato o relación</field>
+        <field name="expression">${object.contrato_o_relacion}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (169) - (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_25"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">25</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: - </field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (170) MOVILIDAD GEOGRÁFICA (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_26"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">26</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Movilidad geográfica</field>
+        <field name="expression">${object.movilidad_geografica}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- (171-183) REDUCCIONES APLICABLES (13) -->
+    <record
+        id="aeat_mod190_partner_export_line_27"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">27</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Reducciones aplicables</field>
+        <field name="expression">${object.reduccion_aplicable}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (184-196) GASTOS DEDUCIBLES (13) -->
+    <record
+        id="aeat_mod190_partner_export_line_28"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">28</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Gastos deducibles</field>
+        <field name="expression">${object.gastos_deducibles}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (197-209) PENSIONES COMPENSATORIAS (13) -->
+    <record
+        id="aeat_mod190_partner_export_line_29"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">29</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Pensiones compensatorias</field>
+        <field name="expression">${object.pensiones_compensatorias}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (210-222) ANUALIDADES POR ALIMENTOS (13) -->
+    <record
+        id="aeat_mod190_partner_export_line_30"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">30</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Anualidades por alimentos</field>
+        <field name="expression">${object.anualidades_por_alimentos}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (223-228) HIJOS Y OTROS DESCENDIENTES (6) -->
+    <record
+        id="aeat_mod190_partner_export_line_31"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">31</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Hijos y otros descendientes</field>
+        <field name="expression">${object.hijos_y_descendientes_m}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_32"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">32</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Hijos y otros descendientes</field>
+        <field name="expression">${object.hijos_y_descendientes_m_entero}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_33"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">33</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Hijos y otros descendientes</field>
+        <field name="expression">${object.hijos_y_descendientes}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_34"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">34</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Hijos y otros descendientes</field>
+        <field name="expression">${object.hijos_y_descendientes_entero}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (229-240) HIJOS Y OTROS DESCENDIENTES CON DISCAPACIDAD (12) -->
+    <record
+        id="aeat_mod190_partner_export_line_35"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">35</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Hijos y otros descendientes con discapacidad</field>
+        <field name="expression">${object.hijos_y_desc_discapacidad_33}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_36"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">36</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Hijos y otros descendientes con discapacidad</field>
+        <field name="expression">${object.hijos_y_desc_discapacidad_entero_33}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_37"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">37</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Hijos y otros descendientes con discapacidad</field>
+        <field name="expression">${object.hijos_y_desc_discapacidad_mr}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_38"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">38</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Hijos y otros descendientes con discapacidad</field>
+        <field name="expression">${object.hijos_y_desc_discapacidad_entero_mr}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_39"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">39</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Hijos y otros descendientes con discapacidad</field>
+        <field name="expression">${object.hijos_y_desc_discapacidad_66}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_40"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">40</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Hijos y otros descendientes con discapacidad</field>
+        <field name="expression">${object.hijos_y_desc_discapacidad_entero_66}</field>
+        <field name="export_type">integer</field>
+        <field name="size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (241-244) ASCENDIENTES (4) -->
+    <record
+        id="aeat_mod190_partner_export_line_41"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">41</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes</field>
+        <field name="expression">${object.ascendientes}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_42"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">42</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes</field>
+        <field name="expression">${object.ascendientes_entero}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_43"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">43</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes</field>
+        <field name="expression">${object.ascendientes_m75}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_44"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">44</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes</field>
+        <field name="expression">${object.ascendientes_entero_m75}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (245-250) ASCENDIENTES CON DISCAPACIDAD(6) -->
+    <record
+        id="aeat_mod190_partner_export_line_45"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">45</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
+        <field name="expression">${object.ascendientes_discapacidad_33}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_46"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">46</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
+        <field name="expression">${object.ascendientes_discapacidad_entero_33}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_47"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">47</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
+        <field name="expression">${object.ascendientes_discapacidad_mr}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_48"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">48</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
+        <field name="expression">${object.ascendientes_discapacidad_entero_mr}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_49"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">49</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
+        <field name="expression">${object.ascendientes_discapacidad_66}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_50"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">50</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Datos adicionales: Ascendientes con discapacidad</field>
+        <field name="expression">${object.ascendientes_discapacidad_entero_66}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (251-253) CÓMPUTO DE LOS 3 PRIMEROS HIJOS.(3) -->
+    <record
+        id="aeat_mod190_partner_export_line_51"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">51</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Cómputo de los 3 primeros hijos (1)</field>
+        <field name="expression">${object.computo_primeros_hijos_1}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_52"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">52</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Cómputo de los 3 primeros hijos (2)</field>
+        <field name="expression">${object.computo_primeros_hijos_2}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_53"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">53</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Cómputo de los 3 primeros hijos (3)</field>
+        <field name="expression">${object.computo_primeros_hijos_3}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (254) COMUNICACIÓN PRÉSTAMOS VIVIENDA HABITUAL (1) -->
+    <record
+        id="aeat_mod190_partner_export_line_54"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">54</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Datos adicionales: Comunicación préstamos vivienda habitual</field>
+        <field name="expression">${object.prestamos_vh}</field>
+        <field name="export_type">integer</field>
+        <field name="size">1</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (255-281) PERCEPCIONES DINERARIAS DERIVADAS DE INCAPACIDAD LABORAL (27) -->
+    <record
+        id="aeat_mod190_partner_export_line_55"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">55</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones dinerarias derivadas de incapacidad laboral</field>
+        <field
+            name="expression"
+        >${'N' if object.percepciones_dinerarias_incap &lt; 0 else ''}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_56"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">56</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones dinerarias no derivadas de incapacidad laboral</field>
+        <field name="expression">${object.percepciones_dinerarias_incap}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_57"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">57</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones dinerarias no derivadas de incapacidad laboral</field>
+        <field name="expression">${object.retenciones_dinerarias_incap}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (282-321) PERCEPCIONES EN ESPECIE DERIVADAS DE INCAPACIDAD LABORAL (40) -->
+    <record
+        id="aeat_mod190_partner_export_line_58"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">58</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Signo de las percepciones en especie no derivadas de incapacidad laboral</field>
+        <field
+            name="expression"
+        >${'N' if object.percepciones_en_especie &lt; 0 else ''}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_59"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">59</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Percepciones en especie no derivadas de incapacidad laboral</field>
+        <field name="expression">${object.percepciones_en_especie}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_60"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">60</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Ingresos a cuenta efectuados no derivados de incapacidad laboral</field>
+        <field name="expression">${object.ingresos_a_cuenta_efectuados_incap}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod190_partner_export_line_61"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">61</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field
+            name="name"
+        >Ingresos a cuenta repercutidos no derivados de incapacidad laboral</field>
+        <field name="expression">${object.ingresos_a_cuenta_repercutidos_incap}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!-- (322-500) BLANCOS (179) -->
+    <record
+        id="aeat_mod190_partner_export_line_62"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">62</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Espacios en blanco</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">179</field>
+        <field name="alignment">left</field>
+    </record>
+    <!-- FIN DE REGISTRO -->
+    <!-- (0) NUEVA LINEA -->
+    <record
+        id="aeat_mod190_partner_export_line_63"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">63</field>
+        <field name="export_config_id" ref="aeat_mod190_partner_export_config" />
+        <field name="name">Constante CRLF (Hexadecimal 0D0A, Decimal 1310)</field>
+        <field name="expression">${"\r\n".encode("ascii")}</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+</odoo>
