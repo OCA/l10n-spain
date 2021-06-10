@@ -238,11 +238,6 @@ msgid "Aditional data required"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_res_country_state__aeat_code
-msgid "Aeat Code"
-msgstr ""
-
-#. module: l10n_es_aeat_mod190
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "All partner records fields (country, VAT number) must be filled."
@@ -495,11 +490,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__counterpart_account_id
 msgid "Counterpart account"
-msgstr ""
-
-#. module: l10n_es_aeat_mod190
-#: model:ir.model,name:l10n_es_aeat_mod190.model_res_country_state
-msgid "Country state"
 msgstr ""
 
 #. module: l10n_es_aeat_mod190
