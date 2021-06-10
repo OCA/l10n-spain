@@ -13,7 +13,6 @@
     "data": [
         "views/account_fiscal_position.xml",
         "views/account_invoice_view.xml",
-        "data/res_country_state.xml",
         "data/perception_key_data.xml",
         "data/perception_subkey_data.xml",
         "data/aeat_export_mod190_partner_data.xml",
