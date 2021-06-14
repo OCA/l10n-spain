@@ -793,16 +793,7 @@ class AccountInvoice(models.Model):
                     else:
                         amount_total += sum([t['amount'] for t in
                                             taxes['taxes'] if t['amount'] < 0])
-
-        amount_total_company_signed = amount_total
-        if self.currency_id != self.company_id.currency_id:
-            from_currency = self.currency_id.with_context(
-                date=self.date_invoice
-            )
-            amount_total_company_signed = from_currency.compute(
-                amount_total, self.company_id.currency_id, round=False,
-            )
-        return round(float_round(amount_total_company_signed * sign, 2), 2)
+        return round(float_round(amount_total * sign, 2), 2)
 
     @api.multi
     def _get_sii_invoice_dict_out(self, cancel=False):
