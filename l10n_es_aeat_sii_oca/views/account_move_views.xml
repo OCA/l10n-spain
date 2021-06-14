@@ -71,12 +71,32 @@
                         <field name="sii_enabled" invisible="1" />
                         <field
                             name="sii_property_location"
-                            attrs="{'invisible': [('sii_registration_key_code', 'not in', ['12', '13'])], 'required': [('sii_registration_key_code', 'in', ['12', '13'])]}"
+                            attrs="{
+                                'invisible': [
+                                    '|',
+                                    ('sii_registration_key_code', 'not in', ['12', '13']),
+                                    ('type', 'not in', ['out_invoice', 'out_refund']),
+                                ],
+                                'required': [
+                                    ('sii_registration_key_code', 'in', ['12', '13']),
+                                    ('type', 'in', ['out_invoice', 'out_refund']),
+                                ],
+                            }"
                         />
                         <field
                             name="sii_property_cadastrial_code"
-                            attrs="{'invisible': [('sii_registration_key_code', 'not in', ['12', '13'])],
-                                           'required': [('sii_registration_key_code', 'in', ['12', '13']), ('sii_property_location', 'in', ['1', '2'])]}"
+                            attrs="{
+                                'invisible': [
+                                    '|',
+                                    ('sii_registration_key_code', 'not in', ['12', '13']),
+                                    ('type', 'not in', ['out_invoice', 'out_refund']),
+                                ],
+                                'required': [
+                                    ('sii_registration_key_code', 'in', ['12', '13']),
+                                    ('sii_property_location', 'in', ['1', '2']),
+                                    ('type', 'in', ['out_invoice', 'out_refund']),
+                                ],
+                            }"
                         />
                     </group>
                     <group
