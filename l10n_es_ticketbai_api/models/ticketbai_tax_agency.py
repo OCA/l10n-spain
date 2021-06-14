@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields, exceptions, _
 
@@ -7,7 +8,7 @@ class TicketBAITaxAgency(models.Model):
     _name = 'tbai.tax.agency'
     _description = 'TicketBAI Tax Agency'
 
-    name = fields.Char(string='Tax Agency', required=True)
+    name = fields.Char(string='Tax Agency name', required=True)
     version = fields.Char(
         string='TicketBAI version', compute='_compute_ticketbai_version', store=True)
     qr_base_url = fields.Char(
