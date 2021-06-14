@@ -3,13 +3,13 @@
 
 import requests
 
-from odoo import fields, models, api, _
+from odoo import _, api, fields, models
 
 RESULTS = [
-    ('NO IDENTIFICADO', _('No identificado')),
-    ('IDENTIFICADO', _('Identificado')),
-    ('NO PROCESADO', _('No procesado')),
-    ('NO IDENTIFICABLE', _('No identificable'))
+    ("NO IDENTIFICADO", _("No identificado")),
+    ("IDENTIFICADO", _("Identificado")),
+    ("NO PROCESADO", _("No procesado")),
+    ("NO IDENTIFICABLE", _("No identificable")),
 ]
 TYPES = [
     ("sales_equalization", _("Régimen de recargo de equivalencia")),
@@ -21,24 +21,25 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     @api.multi
-    @api.depends('aeat_partner_name', 'name')
+    @api.depends("aeat_partner_name", "name")
     def _compute_data_diff(self):
-        for partner in self.filtered('aeat_partner_check_result'):
-            if partner.aeat_partner_check_result != 'NO IDENTIFICABLE':
+        for partner in self.filtered("aeat_partner_check_result"):
+            if partner.aeat_partner_check_result != "NO IDENTIFICABLE":
                 # Odoo don't support two space between name. Some names
                 # in AEAT has two space instead one
                 partner.aeat_data_diff = False
                 if partner.aeat_partner_name:
-                    if partner.name != partner.aeat_partner_name.replace(
-                            '  ', ' '):
+                    if partner.name != partner.aeat_partner_name.replace("  ", " "):
                         partner.aeat_data_diff = True
 
     aeat_partner_check_result = fields.Selection(
-        selection=RESULTS, string='Check Result', readonly=True)
-    aeat_partner_vat = fields.Char(string='VAT', readonly=True)
-    aeat_partner_name = fields.Char(string='AEAT Name', readonly=True)
+        selection=RESULTS, string="Check Result", readonly=True
+    )
+    aeat_partner_vat = fields.Char(string="VAT", readonly=True)
+    aeat_partner_name = fields.Char(string="AEAT Name", readonly=True)
     aeat_data_diff = fields.Boolean(
-        string='Data different', compute='_compute_data_diff', store=True)
+        string="Data different", compute="_compute_data_diff", store=True
+    )
     aeat_last_checked = fields.Datetime(string="Latest AEAT check", readonly=True)
     aeat_partner_type = fields.Selection(
         string="Partner type", selection=TYPES, readonly=True
@@ -50,22 +51,22 @@ class ResPartner(models.Model):
 
     @api.multi
     def aeat_check_partner(self):
-        soap_obj = self.env['l10n.es.aeat.soap']
-        service = 'VNifV2Service'
-        wsdl = 'https://www2.agenciatributaria.gob.es/static_files/common/' + \
-            'internet/dep/aplicaciones/es/aeat/burt/jdit/ws/VNifV2.wsdl'
-        port_name = 'VNifPort1'
-        operation = 'VNifV2'
+        soap_obj = self.env["l10n.es.aeat.soap"]
+        service = "VNifV2Service"
+        wsdl = (
+            "https://www2.agenciatributaria.gob.es/static_files/common/"
+            + "internet/dep/aplicaciones/es/aeat/burt/jdit/ws/VNifV2.wsdl"
+        )
+        port_name = "VNifPort1"
+        operation = "VNifV2"
         for partner in self:
             country_code, _, vat_number = partner._parse_aeat_vat_info()
-            if country_code != 'ES':
+            if country_code != "ES":
                 continue
-            request = {
-                'Nif': vat_number,
-                'Nombre': partner.name
-            }
+            request = {"Nif": vat_number, "Nombre": partner.name}
             res = soap_obj.send_soap(
-                service, wsdl, port_name, partner, operation, request)
+                service, wsdl, port_name, partner, operation, request
+            )
             vals = {
                 "aeat_partner_vat": None,
                 "aeat_partner_name": None,
@@ -89,10 +90,10 @@ class ResPartner(models.Model):
     @api.multi
     def write(self, vals):
         res = super(ResPartner, self).write(vals)
-        if 'name' in vals or 'vat' in vals:
+        if "name" in vals or "vat" in vals:
             for partner in self:
-                if 'company_id' in vals:
-                    company = self.env['res.company'].browse(vals['company_id'])
+                if "company_id" in vals:
+                    company = self.env["res.company"].browse(vals["company_id"])
                 elif partner.company_id:
                     company = partner.company_id
                 else:
@@ -104,8 +105,8 @@ class ResPartner(models.Model):
     @api.model
     def create(self, vals):
         partner = super(ResPartner, self).create(vals)
-        if 'company_id' in vals:
-            company = self.env['res.company'].browse(vals['company_id'])
+        if "company_id" in vals:
+            company = self.env["res.company"].browse(vals["company_id"])
         elif partner.company_id:
             company = partner.company_id
         else:
@@ -134,9 +135,7 @@ class ResPartner(models.Model):
                 ].get_certificates()
             request = {"nif": vat_number, "apellido": partner.name}
             res = requests.post(url, params=request, cert=(public_crt, private_key))
-            vals = {
-                "aeat_last_checked": fields.Datetime.now(),
-            }
+            vals = {"aeat_last_checked": fields.Datetime.now()}
             if b"NIF sometido" in res.content:
                 vals.update({"aeat_partner_type": "sales_equalization"})
             else:
