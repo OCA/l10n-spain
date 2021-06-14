@@ -27,7 +27,7 @@ addon | version | summary
 [l10n_es_aeat_mod115](l10n_es_aeat_mod115/) | 14.0.1.0.0 | AEAT modelo 115
 [l10n_es_aeat_mod123](l10n_es_aeat_mod123/) | 14.0.1.0.0 | AEAT modelo 123
 [l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 14.0.1.5.2 | AEAT modelo 303
-[l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 14.0.1.0.0 | AEAT modelo 347
+[l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 14.0.1.0.1 | AEAT modelo 347
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 14.0.1.2.0 | AEAT modelo 390
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 14.0.1.2.1 | Suministro Inmediato de Información en el IVA
 [l10n_es_dua](l10n_es_dua/) | 14.0.1.0.0 | Importaciones con DUA
