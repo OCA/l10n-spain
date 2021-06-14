@@ -248,6 +248,12 @@ msgid "Activity State"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_type_icon
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__address
 msgid "Address"
 msgstr "Enderezo"
@@ -529,10 +535,12 @@ msgid "Details"
 msgstr "Detalles"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -610,7 +618,15 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_type_icon
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 #, fuzzy
 msgid "Force not included in 347 report"
 msgstr "Non incluída na declaración AEAT modelo 347"
@@ -651,10 +667,12 @@ msgid "Ha habido un error registrando la comunicación."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -687,7 +705,9 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
 msgid ""
 "If you mark this field, this invoice will not be included in any AEAT 347 "
 "model report."
@@ -751,9 +771,8 @@ msgstr "Diario"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model,name:l10n_es_aeat_mod347.model_account_move
-#, fuzzy
-msgid "Journal Entries"
-msgstr "Diario"
+msgid "Journal Entry"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__journal_id
@@ -778,10 +797,12 @@ msgid "La comunicación se ha registrado correctamente."
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_partner____last_update
 #, fuzzy
 msgid "Last Modified on"
 msgstr "Actualizado por derradeira vez o"
@@ -861,11 +882,6 @@ msgid "Move Record"
 msgstr "Rexistro de factura"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
-msgid "Move Type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
 #, fuzzy
 msgid "Move record"
@@ -882,6 +898,12 @@ msgstr "Rexistros de facturas"
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__contact_name
 msgid "Must have name and surname."
 msgstr "Debe conter nome e apelidos"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__my_activity_date_deadline
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_date_deadline
@@ -1496,6 +1518,11 @@ msgid "Township Code"
 msgstr "Código de municipio"
 
 #. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
+msgid "Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
@@ -1554,6 +1581,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Journal Entries"
+#~ msgstr "Diario"
 
 #~ msgid "Cancelled"
 #~ msgstr "Cancelado"
