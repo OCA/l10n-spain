@@ -5,6 +5,6 @@ from odoo import fields, models
 
 
 class ResCompany(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
-    vat_check_aeat = fields.Boolean(string='Verify AEAT Partner Data')
+    vat_check_aeat = fields.Boolean(string="Verify AEAT Partner Data")
