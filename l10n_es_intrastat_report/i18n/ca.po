@@ -66,8 +66,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__amount_company_currency
 msgid ""
 "Amount in company currency to write in the declaration. Amount in company "
-"currency = amount in invoice currency converted to company currency with the"
-" rate of the invoice date."
+"currency = amount in invoice currency converted to company currency with the "
+"rate of the invoice date."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -373,6 +373,11 @@ msgid "Month"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__weight
 msgid "Net weight in Kg"
 msgstr ""
@@ -521,8 +526,8 @@ msgstr ""
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
 #, python-format
 msgid ""
-"The Spanish Intrastat Declaration requires the Company's Country to be equal"
-" to 'Spain'."
+"The Spanish Intrastat Declaration requires the Company's Country to be equal "
+"to 'Spain'."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -533,8 +538,8 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.view_l10n_es_intrastat_code_import
 msgid ""
-"This wizard will import Spanish Product HS Codes from the local copy and set"
-" company Instrastat type defaults at company level."
+"This wizard will import Spanish Product HS Codes from the local copy and set "
+"company Instrastat type defaults at company level."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
