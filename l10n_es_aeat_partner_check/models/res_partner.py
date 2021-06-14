@@ -20,7 +20,6 @@ TYPES = [
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    @api.multi
     @api.depends("aeat_partner_name", "name")
     def _compute_data_diff(self):
         for partner in self.filtered("aeat_partner_check_result"):
@@ -45,11 +44,9 @@ class ResPartner(models.Model):
         string="Partner type", selection=TYPES, readonly=True
     )
 
-    @api.multi
     def get_test_mode(self, port_name):
         return port_name
 
-    @api.multi
     def aeat_check_partner(self):
         soap_obj = self.env["l10n.es.aeat.soap"]
         service = "VNifV2Service"
@@ -87,9 +84,8 @@ class ResPartner(models.Model):
             partner.write(vals)
         self.aeat_check_re()
 
-    @api.multi
     def write(self, vals):
-        res = super(ResPartner, self).write(vals)
+        res = super().write(vals)
         if "name" in vals or "vat" in vals:
             for partner in self:
                 if "company_id" in vals:
@@ -104,7 +100,7 @@ class ResPartner(models.Model):
 
     @api.model
     def create(self, vals):
-        partner = super(ResPartner, self).create(vals)
+        partner = super().create(vals)
         if "company_id" in vals:
             company = self.env["res.company"].browse(vals["company_id"])
         elif partner.company_id:
@@ -115,7 +111,6 @@ class ResPartner(models.Model):
             partner.aeat_check_partner()
         return partner
 
-    @api.multi
     def aeat_check_re(self):
         url = (
             "https://www1.agenciatributaria.gob.es/wlpl/"
