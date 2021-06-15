@@ -7,7 +7,6 @@
         <record id="partner_tech" model="res.partner">
             <field name="name">Tech User</field>
             <field name="company_id" ref="base.main_company" />
-            <field name="customer" eval="False" />
             <field name="email">tech@yourcompany.example.com</field>
             <field name="company_name">Binovo IT Human Project S.L.</field>
             <field
@@ -32,8 +31,6 @@
         </record>
         <record id="res_partner_oca" model="res.partner">
             <field name="name">Odoo Community Association (OCA)</field>
-            <field name="supplier" eval="True" />
-            <field name="customer" eval="True" />
             <field name="is_company">1</field>
             <field name="city">Lausanne</field>
             <field name="zip">1015</field>
@@ -43,15 +40,13 @@
             <field name="street">EPFL Innovation Park, Bat. A</field>
             <field name="website">https://odoo-community.org/</field>
             <field
-                name="image"
+                name="image_1920"
                 type="base64"
                 file="l10n_es_ticketbai_api/static/src/img/oca_logo.png"
             />
         </record>
         <record id="res_partner_binovo" model="res.partner">
             <field name="name">Binovo IT Human Project S.L.</field>
-            <field name="supplier" eval="True" />
-            <field name="customer" eval="True" />
             <field
                 eval="[(6, 0, [ref('base.res_partner_category_11'), ref('base.res_partner_category_8')])]"
                 name="category_id"
@@ -68,15 +63,13 @@
             <field name="phone">+34 943569206</field>
             <field name="website">https://www.binovo.es/</field>
             <field
-                name="image"
+                name="image_1920"
                 type="base64"
                 file="l10n_es_ticketbai_api/static/src/img/binovo_logo.jpg"
             />
         </record>
         <record id="res_partner_yamaha_jp" model="res.partner">
             <field name="name">Yamaha Motor Co., Ltd.</field>
-            <field name="supplier" eval="True" />
-            <field name="customer" eval="True" />
             <field
                 eval="[(6, 0, [ref('base.res_partner_category_14')])]"
                 name="category_id"
@@ -91,7 +84,7 @@
             <field name="phone">+81 03-5713-3820</field>
             <field name="website">https://global.yamaha-motor.com</field>
             <field
-                name="image"
+                name="image_1920"
                 type="base64"
                 file="l10n_es_ticketbai_api/static/src/img/yamaha_logo.png"
             />

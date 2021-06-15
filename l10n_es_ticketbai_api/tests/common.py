@@ -37,7 +37,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             company_id=self.main_company.id, limit=0
         )
         self.assertEqual(0, len(pending_invoices))
-        invoice.sudo().unlink()
+        invoice.with_user().unlink()
 
     def create_tbai_national_invoice_cancellation(
         self,
@@ -49,7 +49,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     ):
         return (
             self.env["tbai.invoice"]
-            .sudo(uid)
+            .with_user(uid)
             .create(
                 {
                     "schema": TicketBaiSchema.AnulaTicketBai.value,
@@ -203,7 +203,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_national_invoice(
         self,
@@ -252,7 +252,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_national_invoice_not_subject_to(
         self,
@@ -295,7 +295,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_extracommunity_invoice(
         self,
@@ -343,7 +343,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_intracommunity_invoice(
         self,
@@ -387,7 +387,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_national_invoice_irpf(
         self,
@@ -440,7 +440,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_national_invoice_surcharge(
         self,
@@ -495,7 +495,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_national_invoice_refund_by_differences(
         self,
@@ -542,7 +542,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def create_tbai_national_invoice_refund_by_substitution(
         self,
@@ -615,7 +615,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
                 "amount_total": "%.2f" % amount_total,
             }
         )
-        return self.env["tbai.invoice"].sudo(uid).create(vals)
+        return self.env["tbai.invoice"].with_user(uid).create(vals)
 
     def add_customer_from_odoo_partner_to_invoice(self, tbai_invoice_id, partner):
         return self.env["tbai.invoice.customer"].create(

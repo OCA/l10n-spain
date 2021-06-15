@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, exceptions, fields, models
 
@@ -33,8 +34,8 @@ class TicketBaiInvoiceCustomer(models.Model):
             (TicketBaiCustomerIdType.T03.value, "Passport"),
             (
                 TicketBaiCustomerIdType.T04.value,
-                "Official identification document issued by the country or territory of "
-                "residence",
+                "Official identification document issued by the "
+                "country or territory of residence",
             ),
             (TicketBaiCustomerIdType.T05.value, "Residence certificate"),
             (TicketBaiCustomerIdType.T06.value, "Other document"),
@@ -46,7 +47,6 @@ class TicketBaiInvoiceCustomer(models.Model):
     address = fields.Char(default="")
     zip = fields.Char("ZIP Code", default="")
 
-    @api.multi
     @api.constrains("name")
     def _check_name(self):
         for record in self:
@@ -60,7 +60,6 @@ class TicketBaiInvoiceCustomer(models.Model):
                     % (record.tbai_invoice_id.name, record.name)
                 )
 
-    @api.multi
     @api.constrains("country_code")
     def _check_country_code(self):
         for record in self:
@@ -70,7 +69,6 @@ class TicketBaiInvoiceCustomer(models.Model):
                     % (record.tbai_invoice_id.name, record.name, record.country_code)
                 )
 
-    @api.multi
     @api.constrains("nif")
     def _check_nif(self):
         for record in self:
@@ -90,7 +88,6 @@ class TicketBaiInvoiceCustomer(models.Model):
                     % record.tbai_invoice_id.name
                 )
 
-    @api.multi
     @api.constrains("identification_number")
     def _check_identification_number(self):
         for record in self:
@@ -111,13 +108,12 @@ class TicketBaiInvoiceCustomer(models.Model):
                 raise exceptions.ValidationError(
                     _(
                         "TicketBAI Invoice %s:\n"
-                        "Customer %s Identification Number for non spanish customers is "
-                        "required."
+                        "Customer %s Identification Number for "
+                        "non spanish customers is required."
                     )
                     % (record.tbai_invoice_id.name, record.name)
                 )
 
-    @api.multi
     @api.constrains("idtype")
     def _check_idtype(self):
         for record in self:
@@ -131,7 +127,6 @@ class TicketBaiInvoiceCustomer(models.Model):
                     % (record.tbai_invoice_id.name, record.name)
                 )
 
-    @api.multi
     @api.constrains("address")
     def _check_address(self):
         for record in self:
@@ -145,7 +140,6 @@ class TicketBaiInvoiceCustomer(models.Model):
                     % (record.tbai_invoice_id.name, record.name, record.address)
                 )
 
-    @api.multi
     @api.constrains("zip")
     def _check_zip(self):
         for record in self:

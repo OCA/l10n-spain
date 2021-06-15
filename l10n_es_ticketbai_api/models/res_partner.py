@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, exceptions, fields, models
 from odoo.tools.misc import ustr
@@ -17,8 +18,8 @@ class ResPartner(models.Model):
             (TicketBaiCustomerIdType.T03.value, "Passport"),
             (
                 TicketBaiCustomerIdType.T04.value,
-                "Official identification document issued by the country or territory of "
-                "residence",
+                "Official identification document issued by "
+                "the country or territory of residence",
             ),
             (TicketBaiCustomerIdType.T05.value, "Residence certificate"),
             (TicketBaiCustomerIdType.T06.value, "Other document"),
@@ -32,7 +33,6 @@ class ResPartner(models.Model):
         help="Used when the identification type code is not VAT identification number.",
     )
 
-    @api.multi
     @api.constrains("tbai_partner_identification_number")
     def _check_tbai_partner_identification_number(self):
         for record in self:

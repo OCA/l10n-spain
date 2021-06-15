@@ -18,9 +18,9 @@ from ..ticketbai.xml_schema import TicketBaiSchema, XMLSchema, XMLSchemaModeNotS
 from ..utils import utils as tbai_utils
 from .ticketbai_invoice_tax import TicketBaiTaxType, VATRegimeKey
 from .ticketbai_response import (
-    TicketBaiCancellationResponseCode,
-    TicketBaiInvoiceResponseCode,
-    TicketBaiResponseState,
+    TicketBaiCancellationResponseCode as CancellationResponseCode,
+    TicketBaiInvoiceResponseCode as InvoiceResponseCode,
+    TicketBaiResponseState as ResponseState,
 )
 
 _logger = logging.getLogger(__name__)
@@ -70,7 +70,6 @@ class TicketBAIInvoice(models.Model):
     _order = "id desc"
     _description = "TicketBAI Invoices"
 
-    @api.multi
     def send(self, **kwargs):
         self.ensure_one()
         error_msg = ""
@@ -82,14 +81,10 @@ class TicketBAIInvoice(models.Model):
             error_msg = ve.name
         if tbai_api is not None:
             response = tbai_api.requests_post(base64.decodebytes(self.datas))
-            values = self.env["tbai.response"].prepare_tbai_response_values(
-                response, **kwargs
-            )
+            values = self.env["tbai.response"].prepare_tbai_response_values(response)
             values.update({"xml_fname": "_".join([_("Response"), self.datas_fname])})
         else:
-            values = self.env["tbai.response"].prepare_tbai_api_error_values(
-                error_msg, **kwargs
-            )
+            values = self.env["tbai.response"].prepare_tbai_api_error_values(error_msg)
         values.update({"tbai_invoice_id": self.id})
         return self.env["tbai.response"].create(values)
 
@@ -223,7 +218,6 @@ class TicketBAIInvoice(models.Model):
         "Invoice Tax Retention Total Amount", default=""
     )
 
-    @api.multi
     @api.constrains("previous_tbai_invoice_id")
     def _check_previous_tbai_invoice_id(self):
         for r in self:
@@ -248,13 +242,12 @@ class TicketBAIInvoice(models.Model):
                     raise exceptions.ValidationError(
                         _(
                             "TicketBAI Invoice %s:\n"
-                            "Already exists a TicketBAI Invoice with the same link to its "
-                            "previous TicketBAI Invoice."
+                            "Already exists a TicketBAI Invoice with the  "
+                            "same link to itsprevious TicketBAI Invoice."
                         )
                         % r.name
                     )
 
-    @api.multi
     @api.constrains("vat_regime_key")
     def _check_vat_regime_key(self):
         for record in self:
@@ -266,7 +259,6 @@ class TicketBAIInvoice(models.Model):
                     _("TicketBAI Invoice %s: VAT Regime Key not valid.") % record.name
                 )
 
-    @api.multi
     @api.constrains("vat_regime_key2")
     def _check_vat_regime_key2(self):
         for record in self:
@@ -279,7 +271,6 @@ class TicketBAIInvoice(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("vat_regime_key3")
     def _check_vat_regime_key3(self):
         for record in self:
@@ -292,7 +283,6 @@ class TicketBAIInvoice(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("is_invoice_refund")
     def _check_is_invoice_refund(self):
         for record in self:
@@ -304,7 +294,6 @@ class TicketBAIInvoice(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("substituted_invoice_amount_total_untaxed")
     def _check_substituted_invoice_amount_total_untaxed(self):
         for record in self:
@@ -330,7 +319,6 @@ class TicketBAIInvoice(models.Model):
                     record.substituted_invoice_amount_total_untaxed,
                 )
 
-    @api.multi
     @api.constrains("substituted_invoice_total_tax_amount")
     def _check_substituted_invoice_total_tax_amount(self):
         for record in self:
@@ -353,7 +341,6 @@ class TicketBAIInvoice(models.Model):
                     record.substituted_invoice_total_tax_amount,
                 )
 
-    @api.multi
     @api.constrains("refund_code")
     def _check_refund_code(self):
         for record in self:
@@ -366,7 +353,6 @@ class TicketBAIInvoice(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("description")
     def _check_description(self):
         for record in self:
@@ -388,7 +374,6 @@ class TicketBAIInvoice(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("expedition_date")
     def _check_expedition_date(self):
         for record in self:
@@ -397,7 +382,6 @@ class TicketBAIInvoice(models.Model):
                 record.expedition_date,
             )
 
-    @api.multi
     @api.constrains("expedition_hour")
     def _check_expedition_hour(self):
         for record in self:
@@ -407,7 +391,6 @@ class TicketBAIInvoice(models.Model):
                     record.expedition_hour,
                 )
 
-    @api.multi
     @api.constrains("operation_date")
     def _check_operation_date(self):
         for record in self:
@@ -417,7 +400,6 @@ class TicketBAIInvoice(models.Model):
                     record.operation_date,
                 )
 
-    @api.multi
     @api.constrains("amount_total")
     def _check_amount_total(self):
         for record in self:
@@ -427,7 +409,6 @@ class TicketBAIInvoice(models.Model):
                     record.amount_total,
                 )
 
-    @api.multi
     @api.constrains("number")
     def _check_number(self):
         for record in self:
@@ -441,7 +422,6 @@ class TicketBAIInvoice(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("number_prefix")
     def _check_number_prefix(self):
         for record in self:
@@ -455,7 +435,6 @@ class TicketBAIInvoice(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("tax_retention_amount_total")
     def _check_tax_retention_amount_total(self):
         for record in self:
@@ -466,7 +445,6 @@ class TicketBAIInvoice(models.Model):
                     record.tax_retention_amount_total,
                 )
 
-    @api.multi
     @api.depends("signature_value")
     def _compute_tbai_identifier(self):
         for record in self:
@@ -479,7 +457,8 @@ class TicketBAIInvoice(models.Model):
                     raise exceptions.ValidationError(
                         _(
                             "TicketBAI Invoice %s:\n"
-                            "TBAI identifier without CRC-8 %s should be %d characters long!"
+                            "TBAI identifier without CRC-8 %s "
+                            "should be %d characters long!"
                         )
                         % (
                             record.name,
@@ -494,7 +473,8 @@ class TicketBAIInvoice(models.Model):
                     raise exceptions.ValidationError(
                         _(
                             "TicketBAI Invoice %s:\n"
-                            "TBAI identifier %s should be %d characters long with CRC-8!"
+                            "TBAI identifier %s should be %d "
+                            "characters long with CRC-8!"
                         )
                         % (
                             record.name,
@@ -504,7 +484,6 @@ class TicketBAIInvoice(models.Model):
                     )
                 record.tbai_identifier = tbai_identifier_with_crc
 
-    @api.multi
     @api.depends(
         "tbai_identifier",
         "company_id",
@@ -528,14 +507,12 @@ class TicketBAIInvoice(models.Model):
                     qr_base_url = record.company_id.tbai_tax_agency_id.qr_base_url
                 qr_values = record._get_qr_url_values()
                 qr_url_without_crc = "{}?{}".format(
-                    qr_base_url,
-                    urlencode(qr_values, encoding="utf-8"),
+                    qr_base_url, urlencode(qr_values, encoding="utf-8"),
                 )
                 qr_crc = crc8(qr_url_without_crc)
                 qr_values["cr"] = qr_crc
                 qr_url_with_crc = "{}?{}".format(
-                    qr_base_url,
-                    urlencode(qr_values, encoding="utf-8"),
+                    qr_base_url, urlencode(qr_values, encoding="utf-8"),
                 )
                 record.qr_url = qr_url_with_crc
                 # Let QRCode decide the best version when calling make()
@@ -549,7 +526,6 @@ class TicketBAIInvoice(models.Model):
                     img.save(temp, format="PNG")
                     record.qr = base64.b64encode(temp.getvalue())
 
-    @api.multi
     @api.depends(
         "company_id",
         "company_id.tbai_tax_agency_id",
@@ -579,7 +555,6 @@ class TicketBAIInvoice(models.Model):
                 )
             record.api_url = url
 
-    @api.multi
     def get_ticketbai_api(self, **kwargs):
         self.ensure_one()
         p12_buffer = self.company_id.tbai_certificate_get_p12_buffer()
@@ -595,19 +570,15 @@ class TicketBAIInvoice(models.Model):
             domain.append(("company_id", "=", company_id))
         return self.search(domain, order="id ASC", limit=limit)
 
-    @api.multi
     def error(self):
         self.write({"state": TicketBaiInvoiceState.error.value})
 
-    @api.multi
     def cancel(self):
         self.write({"state": TicketBaiInvoiceState.cancel.value})
 
-    @api.multi
     def mark_as_sent(self):
         self.write({"state": TicketBaiInvoiceState.sent.value})
 
-    @api.multi
     def mark_as_pending(self):
         self.write({"state": TicketBaiInvoiceState.pending.value})
 
@@ -681,9 +652,9 @@ class TicketBAIInvoice(models.Model):
             try:
                 with self.env.cr.savepoint():
                     tbai_response = next_pending_invoice.send()
-                    if TicketBaiResponseState.RECEIVED.value == tbai_response.state:
+                    if ResponseState.RECEIVED.value == tbai_response.state:
                         next_pending_invoice.mark_as_sent()
-                    elif TicketBaiResponseState.REJECTED.value == tbai_response.state:
+                    elif ResponseState.REJECTED.value == tbai_response.state:
                         # Reestablish the company pointer to the last invoice built and
                         # successfully sent.
                         # Mark pending invoices as error, except in the following:
@@ -703,13 +674,13 @@ class TicketBAIInvoice(models.Model):
                             == next_pending_invoice.schema
                         ):
                             if (
-                                TicketBaiInvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value
+                                InvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value
                                 in response_codes
                             ):
                                 next_pending_invoice.mark_as_sent()
                                 error = False
                             elif (
-                                TicketBaiInvoiceResponseCode.SERVICE_NOT_AVAILABLE.value
+                                InvoiceResponseCode.SERVICE_NOT_AVAILABLE.value
                                 in response_codes
                             ):
                                 retry_later = True
@@ -719,13 +690,13 @@ class TicketBAIInvoice(models.Model):
                             == next_pending_invoice.schema
                         ):
                             if (
-                                TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.value
+                                CancellationResponseCode.INVOICE_ALREADY_CANCELLED.value
                                 in response_codes
                             ):
                                 next_pending_invoice.mark_as_sent()
                                 error = False
                             elif (
-                                TicketBaiCancellationResponseCode.SERVICE_NOT_AVAILABLE.value
+                                CancellationResponseCode.SERVICE_NOT_AVAILABLE.value
                                 in response_codes
                             ):
                                 retry_later = True
@@ -733,18 +704,13 @@ class TicketBAIInvoice(models.Model):
                         if error:
                             self.mark_chain_as_error(next_pending_invoice)
                             rejected_retries += 1
-                    elif (
-                        TicketBaiResponseState.REQUEST_ERROR.value
-                        == tbai_response.state
-                    ):
+                    elif ResponseState.REQUEST_ERROR.value == tbai_response.state:
                         # In case of multi-company it would be delaying
                         # independently from the company and tax agency,
                         # maybe only one of them is out of service.
                         # For now delay for all companies and all tax agencies.
                         retry_later = True
-                    elif (
-                        TicketBaiResponseState.BUILD_ERROR.value == tbai_response.state
-                    ):
+                    elif ResponseState.BUILD_ERROR.value == tbai_response.state:
                         retry_later = True
                     if not retry_later:
                         next_pending_invoice = self.get_next_pending_invoice()
@@ -776,7 +742,7 @@ class TicketBAIInvoice(models.Model):
         :return: OrderedDict
         """
         res = OrderedDict(
-            [(TicketBaiQRParams.tbai_identifier.value, self.tbai_identifier),]
+            [(TicketBaiQRParams.tbai_identifier.value, self.tbai_identifier)]
         )
         if self.number_prefix:
             res[TicketBaiQRParams.invoice_number_prefix.value] = self.number_prefix
@@ -1399,7 +1365,6 @@ class TicketBAIInvoiceRefund(models.Model):
     number_prefix = fields.Char(default="")
     expedition_date = fields.Char(required=True)
 
-    @api.multi
     @api.constrains("number")
     def _check_number(self):
         for record in self:
@@ -1413,7 +1378,6 @@ class TicketBAIInvoiceRefund(models.Model):
                     % (record.tbai_invoice_id.name, record.number)
                 )
 
-    @api.multi
     @api.constrains("number_prefix")
     def _check_number_prefix(self):
         for record in self:
@@ -1427,7 +1391,6 @@ class TicketBAIInvoiceRefund(models.Model):
                     % (record.tbai_invoice_id.name, record.number, record.number_prefix)
                 )
 
-    @api.multi
     @api.constrains("expedition_date")
     def _check_expedition_date(self):
         for record in self:
