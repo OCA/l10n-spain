@@ -122,6 +122,7 @@ class DeliveryCarrier(models.Model):
                 result.append(vals)
                 continue
             vals["tracking_number"] = response['tracking_number']
+            picking.carrier_tracking_ref = response['tracking_number']
             # request for label:
             label_response = self.mrw_request_label(
                 response['tracking_number'])
