@@ -44,7 +44,6 @@ class ResCompany(models.Model):
         string="Last TicketBAI Invoice sent", comodel_name="tbai.invoice", copy=False
     )
 
-    @api.multi
     @api.constrains("tbai_certificate_id")
     def _check_tbai_certificate_id(self):
         for record in self:
@@ -53,7 +52,6 @@ class ResCompany(models.Model):
                     _("Company %s TicketBAI Certificate is required.") % record.name
                 )
 
-    @api.multi
     @api.constrains("tbai_license_key")
     def _check_tbai_license_key(self):
         for record in self:
@@ -70,7 +68,6 @@ class ResCompany(models.Model):
                     % record.name
                 )
 
-    @api.multi
     @api.constrains("tbai_developer_id")
     def _check_tbai_developer_id(self):
         for record in self:
@@ -79,7 +76,6 @@ class ResCompany(models.Model):
                     _("Company %s TicketBAI Developer is required.") % record.name
                 )
 
-    @api.multi
     @api.constrains("tbai_software_name")
     def _check_tbai_software_name(self):
         for record in self:
@@ -88,7 +84,6 @@ class ResCompany(models.Model):
                     _("Company %s TicketBAI Software Name is required.") % record.name
                 )
 
-    @api.multi
     @api.constrains("tbai_device_serial_number")
     def _check_tbai_device_serial_number(self):
         for record in self:
@@ -103,15 +98,6 @@ class ResCompany(models.Model):
                         "Should be 30 characters max.!"
                     )
                     % record.name
-                )
-
-    @api.multi
-    @api.constrains("tbai_tax_agency_id")
-    def _check_tbai_tax_agency_id(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_tax_agency_id:
-                raise exceptions.ValidationError(
-                    _("Company %s TicketBAI Tax Agency is required.") % record.name
                 )
 
     @api.onchange("tbai_enabled")
@@ -129,6 +115,11 @@ class ResCompany(models.Model):
     @api.constrains("tbai_tax_agency_id")
     def _check_tbai_tax_agency_id(self):
         for record in self:
+            if record.tbai_enabled and not record.tbai_tax_agency_id:
+                raise exceptions.ValidationError(
+                    _("Company %s TicketBAI Tax Agency is required.") % record.name
+                )
+
             tbai_invoices = record.env["tbai.invoice"].search([])
 
             if 0 < len(tbai_invoices):
@@ -169,8 +160,8 @@ class ResCompany(models.Model):
         if "NIF" not in res and "IDOtro" not in res:
             raise exceptions.ValidationError(
                 _(
-                    "TicketBAI Developer %s VAT Number or another type of identification "
-                    "is required."
+                    "TicketBAI Developer %s VAT Number or another "
+                    "type of identification is required."
                 )
                 % self.tbai_developer_id.name
             )
