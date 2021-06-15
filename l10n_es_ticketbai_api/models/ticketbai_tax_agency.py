@@ -42,7 +42,6 @@ class TicketBAITaxAgency(models.Model):
         store=True,
     )
 
-    @api.multi
     def get_current_version(self):
         self.ensure_one()
         today = fields.Date.today()
@@ -57,7 +56,6 @@ class TicketBAITaxAgency(models.Model):
         ]
         return self.env["tbai.tax.agency.version"].search(search_domain)
 
-    @api.multi
     @api.depends(
         "tax_agency_version_ids",
         "tax_agency_version_ids.date_from",
@@ -82,7 +80,6 @@ class TicketBAITaxAgencyVersion(models.Model):
     _name = "tbai.tax.agency.version"
     _description = "TicketBAI Tax Agency - version"
 
-    @api.multi
     @api.constrains("version")
     def _check_ticketbai_version(self):
         for record in self:
@@ -95,7 +92,6 @@ class TicketBAITaxAgencyVersion(models.Model):
                     % (record.tbai_tax_agency_id.name, record.version)
                 )
 
-    @api.multi
     @api.constrains("date_from", "date_to")
     def _unique_date_range(self):
         # Based in l10n_es_aeat module
@@ -131,7 +127,8 @@ class TicketBAITaxAgencyVersion(models.Model):
                 raise exceptions.ValidationError(
                     _(
                         "TicketBAI Tax Agency %s:\n"
-                        "Version %s dates of the record overlap with an existing record."
+                        "Version %s dates of the record "
+                        "overlap with an existing record."
                     )
                     % (record.tbai_tax_agency_id.name, record.version)
                 )

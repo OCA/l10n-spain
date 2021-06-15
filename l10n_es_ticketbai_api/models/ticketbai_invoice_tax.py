@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, exceptions, fields, models
 
@@ -143,7 +144,6 @@ class TicketBaiTax(models.Model):
         ]
     )
 
-    @api.multi
     @api.constrains("base")
     def _check_base(self):
         for record in self:
@@ -153,7 +153,6 @@ class TicketBaiTax(models.Model):
                     record.base,
                 )
 
-    @api.multi
     @api.constrains("not_subject_to_cause")
     def _check_not_subject_to_cause(self):
         for record in self:
@@ -163,7 +162,6 @@ class TicketBaiTax(models.Model):
                     % record.tbai_invoice_id.name
                 )
 
-    @api.multi
     @api.constrains("is_exempted")
     def _check_is_exempted(self):
         for record in self:
@@ -173,7 +171,6 @@ class TicketBaiTax(models.Model):
                     % record.tbai_invoice_id.name
                 )
 
-    @api.multi
     @api.constrains("exempted_cause")
     def _check_exempted_cause(self):
         for record in self:
@@ -187,7 +184,6 @@ class TicketBaiTax(models.Model):
                     % record.tbai_invoice_id.name
                 )
 
-    @api.multi
     @api.constrains("not_exempted_type")
     def _check_not_exempted_type(self):
         for record in self:
@@ -201,7 +197,6 @@ class TicketBaiTax(models.Model):
                     % record.tbai_invoice_id.name
                 )
 
-    @api.multi
     @api.constrains("amount")
     def _check_amount(self):
         for record in self:
@@ -212,7 +207,6 @@ class TicketBaiTax(models.Model):
                     record.amount,
                 )
 
-    @api.multi
     @api.constrains("amount_total")
     def _check_amount_total(self):
         for record in self:
@@ -225,7 +219,6 @@ class TicketBaiTax(models.Model):
                     record.amount_total,
                 )
 
-    @api.multi
     @api.constrains("re_amount")
     def _check_re_amount(self):
         for record in self:
@@ -242,7 +235,6 @@ class TicketBaiTax(models.Model):
                     record.re_amount,
                 )
 
-    @api.multi
     @api.constrains("re_amount_total")
     def _check_re_amount_total(self):
         for record in self:
@@ -259,7 +251,6 @@ class TicketBaiTax(models.Model):
                     record.re_amount_total,
                 )
 
-    @api.multi
     @api.constrains("surcharge_or_simplified_regime")
     def _check_surcharge_or_simplified_regime(self):
         for record in self:

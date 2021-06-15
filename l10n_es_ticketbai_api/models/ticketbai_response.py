@@ -1,4 +1,5 @@
 # Copyright 2020 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 
@@ -72,8 +73,8 @@ class TicketBaiResponse(models.Model):
     )
 
     @api.model
-    def prepare_tbai_api_error_values(self, msg, **kwargs):
-        values = kwargs
+    def prepare_tbai_api_error_values(self, msg):
+        values = {}
         values.update(
             {
                 "state": TicketBaiResponseState.BUILD_ERROR.value,
@@ -92,8 +93,8 @@ class TicketBaiResponse(models.Model):
         return values
 
     @api.model
-    def prepare_tbai_response_values(self, response, **kwargs):
-        values = kwargs
+    def prepare_tbai_response_values(self, response):
+        values = {}
         if response.error:
             errno = response.errno
             strerror = response.strerror
@@ -177,7 +178,6 @@ class TicketBaiResponseMessage(models.Model):
     code = fields.Char(required=True)
     description = fields.Char(required=True, translate=True)
 
-    @api.multi
     @api.depends("code", "description")
     def name_get(self):
         result = []
