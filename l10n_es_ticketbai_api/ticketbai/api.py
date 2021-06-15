@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 
@@ -15,6 +16,8 @@ except (ImportError, IOError) as err:
 
 
 class TicketBaiResponse:
+    __slots__ = ["data", "error", "strerror", "errno"]
+
     def __init__(self, data=None, error=False, strerror="", errno=0):
         self.data = data
         self.error = error
@@ -23,6 +26,8 @@ class TicketBaiResponse:
 
 
 class TicketBaiApi:
+    __slots__ = ["url", "p12_buffer", "password", "cert", "key"]
+
     def __init__(self, url, **kwargs):
         self.url = url
         self.p12_buffer = kwargs.get("p12_buffer", None)

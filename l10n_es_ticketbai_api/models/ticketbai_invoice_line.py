@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, exceptions, fields, models
 
@@ -34,7 +35,6 @@ class TicketBaiInvoiceLine(models.Model):
         help="String of float with 12 digits and 2 decimal points.",
     )
 
-    @api.multi
     @api.constrains("description")
     def _check_description(self):
         for record in self:
@@ -48,7 +48,6 @@ class TicketBaiInvoiceLine(models.Model):
                     % (record.tbai_invoice_id.name, record.description)
                 )
 
-    @api.multi
     @api.constrains("quantity")
     def _check_quantity(self):
         for record in self:
@@ -58,7 +57,6 @@ class TicketBaiInvoiceLine(models.Model):
                 record.quantity,
             )
 
-    @api.multi
     @api.constrains("price_unit")
     def _check_price_unit(self):
         for record in self:
@@ -69,7 +67,6 @@ class TicketBaiInvoiceLine(models.Model):
                 no_decimal_digits=8,
             )
 
-    @api.multi
     @api.constrains("discount_amount")
     def _check_discount_amount(self):
         for record in self:
@@ -80,7 +77,6 @@ class TicketBaiInvoiceLine(models.Model):
                     record.discount_amount,
                 )
 
-    @api.multi
     @api.constrains("amount_total")
     def _check_amount_total(self):
         for record in self:
