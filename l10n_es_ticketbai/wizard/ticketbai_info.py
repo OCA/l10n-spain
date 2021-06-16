@@ -29,16 +29,13 @@ class TicketBaiGeneralInfo(models.TransientModel):
         "Device Serial Number", compute="_compute_device_serial_number"
     )
 
-    @api.multi
     @api.depends("developer_id", "developer_id.vat", "developer_id.name")
     def _compute_name(self):
         for record in self:
             record.name = "({}) {}".format(
-                record.developer_id.vat,
-                record.developer_id.name,
+                record.developer_id.vat, record.developer_id.name,
             )
 
-    @api.multi
     @api.depends("company_id")
     def _compute_software(self):
         for record in self:
@@ -64,7 +61,6 @@ class TicketBaiGeneralInfo(models.TransientModel):
                 software_version,
             )
 
-    @api.multi
     @api.depends("company_id")
     def _compute_device_serial_number(self):
         for record in self:

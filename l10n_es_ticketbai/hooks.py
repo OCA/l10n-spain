@@ -46,7 +46,9 @@ def post_init_hook(cr, registry):
                                 0,
                                 {
                                     "tax_id": tax.id,
-                                    "tbai_vat_exemption_key": exemption.tbai_vat_exemption_key.id,
+                                    "tbai_vat_exemption_key": (
+                                        exemption.tbai_vat_exemption_key.id
+                                    ),
                                 },
                             )
                         )
@@ -62,13 +64,5 @@ def post_init_hook(cr, registry):
             journals = env["account.journal"].search([("company_id", "=", company.id)])
             for journal in journals:
                 if "sale" == journal.type:
-                    if env["ir.module.module"].search(
-                        [
-                            ("name", "=", "l10n_es_account_invoice_sequence"),
-                            ("state", "=", "installed"),
-                        ]
-                    ):
-                        journal.invoice_sequence_id.suffix = ""
-                    else:
-                        journal.sequence_id.suffix = ""
-                        journal.refund_sequence = True
+                    journal.sequence_id.suffix = ""
+                    journal.refund_sequence = True

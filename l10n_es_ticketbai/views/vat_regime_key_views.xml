@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
@@ -26,7 +27,6 @@
         <record id="action_tbai_vat_regime_key" model="ir.actions.act_window">
             <field name="name">TicketBAI Registration Keys</field>
             <field name="res_model">tbai.vat.regime.key</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem

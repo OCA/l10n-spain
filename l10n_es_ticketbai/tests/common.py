@@ -62,56 +62,89 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             )
         )
 
-    def create_draft_invoice(self, uid, fp):
+    def create_draft_invoice(self, uid, fp, partner):
+        invoice_line_ids = []
+
+        invoice_line_ids.append(
+            (
+                0,
+                0,
+                {
+                    "product_id": self.product_delivery.id,
+                    "quantity": 1,
+                    "price_unit": 100.0,
+                    "name": "TBAI Invoice Line Test - delivery 1",
+                    "account_id": self.account_revenue.id,
+                    "tax_ids": [
+                        (
+                            6,
+                            0,
+                            fp.map_tax([self.product_delivery.taxes_id]).mapped("id"),
+                        )
+                    ],
+                },
+            )
+        )
+
+        invoice_line_ids.append(
+            (
+                0,
+                0,
+                {
+                    "product_id": self.product_delivery.id,
+                    "quantity": 1,
+                    "price_unit": 100.0,
+                    "name": "TBAI Invoice Line Test - delivery 2",
+                    "account_id": self.account_revenue.id,
+                    "tax_ids": [
+                        (
+                            6,
+                            0,
+                            fp.map_tax([self.product_delivery.taxes_id]).mapped("id"),
+                        )
+                    ],
+                },
+            )
+        )
+
+        invoice_line_ids.append(
+            (
+                0,
+                0,
+                {
+                    "product_id": self.product_service.id,
+                    "quantity": 1,
+                    "discount": 10.0,
+                    "price_unit": 100.0,
+                    "name": "TBAI Invoice Line Test - service",
+                    "account_id": self.account_revenue.id,
+                    "tax_ids": [
+                        (
+                            6,
+                            0,
+                            fp.map_tax([self.product_service.taxes_id]).mapped("id"),
+                        )
+                    ],
+                },
+            )
+        )
+
         invoice = (
-            self.env["account.invoice"]
-            .sudo(uid)
+            self.env["account.move"]
+            .with_user(uid)
             .create(
                 {
-                    "partner_id": self.partner.id,
+                    "partner_id": partner,
                     "currency_id": self.env.ref("base.EUR").id,
-                    "name": "TBAI Invoice Test",
-                    "account_id": self.account_receivable.id,
                     "type": "out_invoice",
-                    "date_invoice": str(date.today()),
+                    "invoice_date": str(date.today()),
                     "tbai_date_operation": str(date.today()),
                     "fiscal_position_id": fp.id,
+                    "invoice_line_ids": invoice_line_ids,
                 }
             )
         )
-        self.env["account.invoice.line"].sudo(uid).create(
-            {
-                "invoice_id": invoice.id,
-                "product_id": self.product_delivery.id,
-                "quantity": 1,
-                "price_unit": 100.0,
-                "name": "TBAI Invoice Line Test - delivery 1",
-                "account_id": self.account_revenue.id,
-            }
-        )
-        self.env["account.invoice.line"].sudo(uid).create(
-            {
-                "invoice_id": invoice.id,
-                "product_id": self.product_delivery.id,
-                "quantity": 1,
-                "price_unit": 100.0,
-                "name": "TBAI Invoice Line Test - delivery 2",
-                "account_id": self.account_revenue.id,
-            }
-        )
-        self.env["account.invoice.line"].sudo(uid).create(
-            {
-                "invoice_id": invoice.id,
-                "product_id": self.product_service.id,
-                "quantity": 1,
-                "discount": 10.0,
-                "price_unit": 100.0,
-                "name": "TBAI Invoice Line Test - service",
-                "account_id": self.account_revenue.id,
-            }
-        )
-        for line in invoice.invoice_line_ids:
-            line._onchange_product_id()
+
         return invoice
 
     def create_aeat_certificate(self):
@@ -274,7 +307,8 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         )
         self.fiscal_position_ic = self.env["account.fiscal.position"].create(
             {
-                "name": "TBAI Fiscal Position - European Union (Intracommunity Operations)",
+                "name": "TBAI Fiscal Position - European Union "
+                "(Intracommunity Operations)",
                 "tbai_vat_regime_key": self.env.ref(
                     "l10n_es_ticketbai.tbai_vat_regime_01"
                 ).id,
