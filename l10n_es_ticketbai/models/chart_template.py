@@ -1,7 +1,8 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class AccountFiscalPosition(models.Model):
@@ -57,7 +58,6 @@ class AccountFiscalPositionTicketBAITaxTemplate(models.Model):
 class AccountChartTemplate(models.Model):
     _inherit = "account.chart.template"
 
-    @api.multi
     def _get_fp_vals(self, company, position):
         res = super()._get_fp_vals(company, position)
         res.update(
@@ -69,7 +69,6 @@ class AccountChartTemplate(models.Model):
         )
         return res
 
-    @api.multi
     def create_record_with_xmlid(self, company, template, model, vals):
         res_id = super().create_record_with_xmlid(company, template, model, vals)
         if "account.fiscal.position" == model:
@@ -84,7 +83,9 @@ class AccountChartTemplate(models.Model):
                             0,
                             {
                                 "tax_id": tax.id,
-                                "tbai_vat_exemption_key": exemption.tbai_vat_exemption_key.id,
+                                "tbai_vat_exemption_key": (
+                                    exemption.tbai_vat_exemption_key.id
+                                ),
                             },
                         )
                     )

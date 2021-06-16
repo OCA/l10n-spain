@@ -5,6 +5,7 @@
     <data>
         <record id="view_ir_sequence_form_inherit" model="ir.ui.view">
             <field name="model">ir.sequence</field>
+            <field name="priority" eval="1000" />
             <field name="inherit_id" ref="base.sequence_view" />
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='suffix']" position="replace">

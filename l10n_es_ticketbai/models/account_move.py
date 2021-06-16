@@ -12,12 +12,12 @@ from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import (
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     tbai_enabled = fields.Boolean(related="company_id.tbai_enabled", readonly=True)
     tbai_substitution_invoice_id = fields.Many2one(
-        comodel_name="account.invoice",
+        comodel_name="account.move",
         copy=False,
         help="Link between a validated Customer Invoice and its substitute.",
     )
@@ -80,7 +80,6 @@ class AccountInvoice(models.Model):
         comodel_name="tbai.vat.regime.key", string="VAT Regime 3rd Key", copy=True
     )
 
-    @api.multi
     @api.constrains("state")
     def _check_cancel_number_invoice(self):
         for record in self:
@@ -98,9 +97,9 @@ class AccountInvoice(models.Model):
         if vals and vals.get("company_id", False):
             company = self.env["res.company"].browse(vals["company_id"])
             if company.tbai_enabled:
-                filter_refund = self._context.get("filter_refund", False)
+                refund_method = self._context.get("refund_method", False)
                 invoice_type = vals.get("type", False)
-                if filter_refund and invoice_type:
+                if refund_method and invoice_type:
                     if "out_refund" == vals["type"]:
                         if "tbai_refund_type" not in vals:
                             vals["tbai_refund_type"] = RefundType.differences.value
@@ -133,12 +132,12 @@ class AccountInvoice(models.Model):
             response_ids += record.tbai_cancellation_ids.mapped("tbai_response_ids").ids
             record.tbai_response_ids = [(6, 0, response_ids)]
 
-    @api.depends("date", "date_invoice")
+    @api.depends("date", "invoice_date")
     def _compute_tbai_datetime_invoice(self):
         for record in self:
             record.tbai_datetime_invoice = fields.Datetime.now()
 
-    @api.onchange("fiscal_position_id")
+    @api.onchange("fiscal_position_id", "partner_id")
     def onchange_fiscal_position_id_tbai_vat_regime_key(self):
         if self.fiscal_position_id:
             self.tbai_vat_regime_key = self.fiscal_position_id.tbai_vat_regime_key.id
@@ -151,13 +150,15 @@ class AccountInvoice(models.Model):
         vals = {
             "invoice_id": self.id,
             "schema": TicketBaiSchema.TicketBai.value,
-            "name": self._get_report_base_filename(),
+            "name": self._get_move_display_name(),
             "company_id": self.company_id.id,
             "number_prefix": self.tbai_get_value_serie_factura(),
             "number": self.tbai_get_value_num_factura(),
-            "expedition_date": self.tbai_get_value_fecha_expedicion_factura(),
-            "expedition_hour": self.tbai_get_value_hora_expedicion_factura(),
-            "substitutes_simplified_invoice": self.tbai_get_value_factura_emitida_sustitucion_simplificada(),
+            "expedition_date": self.tbai_get_value_fecha_exp_factura(),
+            "expedition_hour": self.tbai_get_value_hora_exp_factura(),
+            "substitutes_simplified_invoice": (
+                self.tbai_get_value_factura_emitida_sustitucion_simplificada()
+            ),
             "tbai_customer_ids": [
                 (
                     0,
@@ -166,8 +167,9 @@ class AccountInvoice(models.Model):
                         "name": partner.tbai_get_value_apellidos_nombre_razon_social(),
                         "country_code": partner.tbai_get_partner_country_code(),
                         "nif": partner.tbai_get_value_nif(),
-                        "identification_number": partner.tbai_partner_identification_number
-                        or partner.vat,
+                        "identification_number": (
+                            partner.tbai_partner_identification_number or partner.vat
+                        ),
                         "idtype": partner.tbai_partner_idtype,
                         "address": partner.tbai_get_value_direccion(),
                         "zip": partner.zip,
@@ -175,7 +177,7 @@ class AccountInvoice(models.Model):
                 )
             ],
             "description": self.tbai_description_operation[:250],
-            "amount_total": "%.2f" % self.amount_total_company_signed,
+            "amount_total": "%.2f" % self.amount_total_signed,
             "vat_regime_key": self.tbai_vat_regime_key.code,
             "vat_regime_key2": self.tbai_vat_regime_key2.code,
             "vat_regime_key3": self.tbai_vat_regime_key3.code,
@@ -188,12 +190,16 @@ class AccountInvoice(models.Model):
                 refunded_invoice = self.tbai_substitution_invoice_id
                 vals.update(
                     {
-                        "substituted_invoice_amount_total_untaxed": refunded_invoice.tbai_get_value_base_rectificada(),
-                        "substituted_invoice_total_tax_amount": refunded_invoice.tbai_get_value_cuota_rectificada(),
+                        "substituted_invoice_amount_total_untaxed": (
+                            refunded_invoice.tbai_get_value_base_rectificada()
+                        ),
+                        "substituted_invoice_total_tax_amount": (
+                            refunded_invoice.tbai_get_value_cuota_rectificada()
+                        ),
                     }
                 )
             else:
-                refunded_invoice = self.refund_invoice_id
+                refunded_invoice = self.reversed_entry_id
             vals.update(
                 {
                     "is_invoice_refund": True,
@@ -204,9 +210,15 @@ class AccountInvoice(models.Model):
                             0,
                             0,
                             {
-                                "number_prefix": refunded_invoice.tbai_get_value_serie_factura(),
-                                "number": refunded_invoice.tbai_get_value_num_factura(),
-                                "expedition_date": refunded_invoice.tbai_get_value_fecha_expedicion_factura(),
+                                "number_prefix": (
+                                    refunded_invoice.tbai_get_value_serie_factura()
+                                ),
+                                "number": (
+                                    refunded_invoice.tbai_get_value_num_factura()
+                                ),
+                                "expedition_date": (
+                                    refunded_invoice.tbai_get_value_fecha_exp_factura()
+                                ),
                             },
                         )
                     ],
@@ -242,33 +254,38 @@ class AccountInvoice(models.Model):
         exclude_taxes = self.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
-        for tax in self.tax_line_ids.filtered(lambda x: x.tax_id not in exclude_taxes):
-            taxes.append(
-                (
-                    0,
-                    0,
-                    {
-                        "base": tax.tbai_get_value_base_imponible(),
-                        "is_subject_to": tax.tax_id.tbai_is_subject_to_tax(),
-                        "not_subject_to_cause": tax.tbai_get_value_causa(),
-                        "is_exempted": tax.tax_id.tbai_is_tax_exempted(),
-                        "exempted_cause": tax.tbai_vat_exemption_key.code,
-                        "not_exempted_type": tax.tbai_get_value_tipo_no_exenta(),
-                        "amount": "%.2f" % abs(tax.tax_id.amount),
-                        "amount_total": tax.tbai_get_value_cuota_impuesto(),
-                        "re_amount": tax.tbai_get_value_tipo_recargo_equivalencia()
-                        or "",
-                        "re_amount_total": tax.tbai_get_value_cuota_recargo_equivalencia()
-                        or "",
-                        "surcharge_or_simplified_regime": tax.tbai_get_value_op_recargo_equivalencia_o_reg_simplificado(),
-                        "type": tax.tbai_get_value_tax_type(),
-                    },
+        for tax in self.invoice_line_ids.filtered(lambda x: x.tax_ids).mapped(
+            "tax_ids"
+        ):
+            if tax not in exclude_taxes:
+                taxes.append(
+                    (
+                        0,
+                        0,
+                        {
+                            "base": tax.tbai_get_value_base_imponible(self),
+                            "is_subject_to": tax.tbai_is_subject_to_tax(),
+                            "not_subject_to_cause": tax.tbai_get_value_causa(self),
+                            "is_exempted": tax.tbai_is_tax_exempted(),
+                            "exempted_cause": tax.tbai_get_exemption_cause(self),
+                            "not_exempted_type": tax.tbai_get_value_tipo_no_exenta(),
+                            "amount": "%.2f" % abs(tax.amount),
+                            "amount_total": tax.tbai_get_value_cuota_impuesto(self),
+                            "re_amount": tax.tbai_get_value_tipo_recargo_equiv(self)
+                            or "",
+                            "re_amount_total": (
+                                tax.tbai_get_value_cuota_recargo_equiv(self) or ""
+                            ),
+                            "surcharge_or_simplified_regime": (
+                                tax.tbai_get_value_op_recargo_equiv_o_reg_simpl(self)
+                            ),
+                            "type": tax.tbai_get_value_tax_type(),
+                        },
+                    )
                 )
-            )
         vals["tbai_tax_ids"] = taxes
         return vals
 
-    @api.multi
     def _tbai_build_invoice(self):
         for record in self:
             vals = record.tbai_prepare_invoice_values()
@@ -281,15 +298,14 @@ class AccountInvoice(models.Model):
         vals = {
             "cancelled_invoice_id": self.id,
             "schema": TicketBaiSchema.AnulaTicketBai.value,
-            "name": "{} - {}".format(_("Cancellation"), self.number),
+            "name": "{} - {}".format(_("Cancellation"), self.name),
             "company_id": self.company_id.id,
             "number_prefix": self.tbai_get_value_serie_factura(),
             "number": self.tbai_get_value_num_factura(),
-            "expedition_date": self.tbai_get_value_fecha_expedicion_factura(),
+            "expedition_date": self.tbai_get_value_fecha_exp_factura(),
         }
         return vals
 
-    @api.multi
     def _tbai_invoice_cancel(self):
         for record in self:
             vals = record.tbai_prepare_cancellation_values()
@@ -297,40 +313,38 @@ class AccountInvoice(models.Model):
             tbai_invoice.build_tbai_invoice()
             record.tbai_cancellation_id = tbai_invoice.id
 
-    @api.multi
-    def action_cancel(self):
-        for record in self:
-            non_cancelled_refunds = record.refund_invoice_ids.filtered(
-                lambda x: "cancel" != x.state
-            )
-
-            if len(non_cancelled_refunds) > 0:
-                raise exceptions.ValidationError(
-                    _(
-                        "Refund invoices must be cancelled in order to cancel "
-                        "the original invoice."
-                    )
+    def button_cancel(self):
+        if self.company_id.tbai_enabled:
+            for record in self:
+                non_cancelled_refunds = record.reversal_move_id.filtered(
+                    lambda x: "cancel" != x.state
                 )
+
+                if len(non_cancelled_refunds) > 0:
+                    raise exceptions.ValidationError(
+                        _(
+                            "Refund invoices must be cancelled in order "
+                            "to cancel the original invoice."
+                        )
+                    )
 
             tbai_invoices = record.sudo().filtered(
-                lambda x: x.tbai_enabled
-                and x.state in ["open", "in_payment", "paid"]
-                and x.tbai_invoice_id
+                lambda x: x.tbai_enabled and "posted" == x.state and x.tbai_invoice_id
             )
             tbai_invoices._tbai_invoice_cancel()
-        return super().action_cancel()
+        return super().button_cancel()
 
-    @api.multi
-    def invoice_validate(self):
-        for inv in self:
-            if inv.type == "out_refund" and not inv.origin:
-                raise exceptions.ValidationError(
-                    _(
-                        "You cannot validate a refund invoice "
-                        "without the origin invoice!"
+    def post(self):
+        if self.company_id.tbai_enabled:
+            for inv in self:
+                if inv.type == "out_refund" and not inv.reversed_entry_id:
+                    raise exceptions.ValidationError(
+                        _(
+                            "You cannot validate a refund invoice "
+                            "without the origin invoice!"
+                        )
                     )
-                )
-        res = super().invoice_validate()
+        res = super().post()
         filter_refund = self._context.get("filter_refund", False)
         if not filter_refund or "refund" != filter_refund:
             # Do not send Credit Note to the Tax Agency when created
@@ -341,19 +355,18 @@ class AccountInvoice(models.Model):
                 and (
                     "out_invoice" == x.type
                     or (
-                        x.refund_invoice_id
+                        x.reversed_entry_id
                         and "out_refund" == x.type
                         and x.tbai_refund_type
                         in [RefundType.differences.value, RefundType.substitution.value]
-                        and x.refund_invoice_id.tbai_invoice_id
-                        and not x.refund_invoice_id.tbai_cancellation_id
+                        and x.reversed_entry_id.tbai_invoice_id
+                        and not x.reversed_entry_id.tbai_cancellation_id
                     )
                 )
             )
             tbai_invoices._tbai_build_invoice()
         return res
 
-    @api.model
     def _get_refund_common_fields(self):
         refund_common_fields = super()._get_refund_common_fields()
         refund_common_fields.append("tbai_substitution_invoice_id")
@@ -382,30 +395,30 @@ class AccountInvoice(models.Model):
 
     def tbai_get_value_serie_factura(self):
         num_invoice = ""
-        for char in self.number[::-1]:
+        for char in self.name[::-1]:
             if not char.isdigit():
                 break
             num_invoice = char + num_invoice
 
-        a = self.number[: (len(self.number) - len(num_invoice))]
+        a = self.name[: (len(self.name) - len(num_invoice))]
         return a
 
     def tbai_get_value_num_factura(self):
         num_invoice = ""
-        for char in self.number[::-1]:
+        for char in self.name[::-1]:
             if not char.isdigit():
                 break
             num_invoice = char + num_invoice
         return num_invoice
 
-    def tbai_get_value_fecha_expedicion_factura(self):
-        invoice_date = self.date or self.date_invoice
+    def tbai_get_value_fecha_exp_factura(self):
+        invoice_date = self.date or self.invoice_date
         date = fields.Datetime.context_timestamp(
             self, fields.Datetime.from_string(invoice_date)
         )
         return date.strftime("%d-%m-%Y")
 
-    def tbai_get_value_hora_expedicion_factura(self):
+    def tbai_get_value_hora_exp_factura(self):
         invoice_datetime = self.tbai_datetime_invoice
         date = fields.Datetime.context_timestamp(
             self, fields.Datetime.from_string(invoice_datetime)
@@ -423,13 +436,13 @@ class AccountInvoice(models.Model):
         return "%.2f" % abs(self.amount_untaxed_signed)
 
     def tbai_get_value_cuota_rectificada(self):
-        amount = abs(self.amount_total_company_signed - self.amount_untaxed_signed)
+        amount = abs(self.amount_total_signed - self.amount_untaxed_signed)
         return "%.2f" % amount
 
     def tbai_get_value_fecha_operacion(self):
         if self.tbai_date_operation:
             tbai_date_operation = self.tbai_date_operation.strftime("%d-%m-%Y")
-            date_invoice = (self.date or self.date_invoice).strftime("%d-%m-%Y")
+            date_invoice = (self.date or self.invoice_date).strftime("%d-%m-%Y")
             if tbai_date_operation == date_invoice:
                 tbai_date_operation = None
         else:
@@ -441,19 +454,34 @@ class AccountInvoice(models.Model):
         irpf_taxes = self.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
-        taxes = self.tax_line_ids.filtered(lambda tax: tax.tax_id in irpf_taxes)
+        taxes = self.invoice_line_ids.filtered(
+            lambda x: any([tax in irpf_taxes for tax in x.tax_ids])
+        ).mapped("tax_ids")
+        inv_id = self
         if 0 < len(taxes):
-            res = "%.2f" % sum([tax.tbai_get_amount_total_company() for tax in taxes])
+            res = "%.2f" % sum(
+                [tax.tbai_get_amount_total_company(inv_id) for tax in taxes]
+            )
         else:
             res = None
         return res
 
+    def copy_data(self, default=None):
+        res = super().copy_data(default=default)
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+        res[0].update(
+            {"tbai_substitution_invoice_id": self.tbai_substitution_invoice_id.id}
+        )
+        res[0].update({"company_id": self.company_id.id})
+
+        return res
+
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     def tbai_get_value_cantidad(self):
-        if RefundType.differences.value == self.invoice_id.tbai_refund_type:
+        if RefundType.differences.value == self.move_id.tbai_refund_type:
             sign = -1
         else:
             sign = 1
@@ -467,8 +495,17 @@ class AccountInvoiceLine(models.Model):
         return res
 
     def tbai_get_value_importe_total(self):
-        if RefundType.differences.value == self.invoice_id.tbai_refund_type:
+        if RefundType.differences.value == self.move_id.tbai_refund_type:
             sign = -1
         else:
             sign = 1
         return "%.2f" % (sign * self.price_total)
+
+
+class AccountMoveReversal(models.TransientModel):
+    _inherit = "account.move.reversal"
+
+    def _prepare_default_reversal(self, move):
+        res = super()._prepare_default_reversal(move)
+        res.update({"company_id": self.move_id.company_id.id})
+        return res
