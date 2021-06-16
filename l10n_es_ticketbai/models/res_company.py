@@ -45,13 +45,5 @@ class ResCompany(models.Model):
                     journals = self.env["account.journal"].search([])
                     for journal in journals:
                         if "sale" == journal.type:
-                            if self.env["ir.module.module"].search(
-                                [
-                                    ("name", "=", "l10n_es_account_invoice_sequence"),
-                                    ("state", "=", "installed"),
-                                ]
-                            ):
-                                journal.invoice_sequence_id.suffix = ""
-                            else:
-                                journal.sequence_id.suffix = ""
-                                journal.refund_sequence = True
+                            journal.sequence_id.suffix = ""
+                            journal.refund_sequence = True

@@ -19,12 +19,27 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_invoice(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        (
+            root,
+            signature_value,
+        ) = invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
+        self.assertTrue(res)
+
+    def test_invoice_foreign_currency(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national, self.partner
+        )
+        invoice.currency_id = self.env.ref("base.USD")
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -36,36 +51,33 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def test_cancel_and_recreate(self):
         # Build three invoices and check the chaining.
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(invoice.tbai_invoice_id.state, "pending")
         self.assertEqual(
             self.main_company.tbai_last_invoice_id, invoice.tbai_invoice_id
         )
 
         invoice2 = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner
         )
         invoice2.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice2.compute_taxes()
-        invoice2.action_invoice_open()
-        self.assertEqual(invoice2.state, "open")
+        invoice2.action_post()
+        self.assertEqual(invoice2.state, "posted")
         self.assertEqual(invoice2.tbai_invoice_id.state, "pending")
         self.assertEqual(
             self.main_company.tbai_last_invoice_id, invoice2.tbai_invoice_id
         )
 
         invoice3 = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner
         )
         invoice3.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice3.compute_taxes()
-        invoice3.action_invoice_open()
-        self.assertEqual(invoice3.state, "open")
+        invoice3.action_post()
+        self.assertEqual(invoice3.state, "posted")
         self.assertEqual(invoice3.tbai_invoice_id.state, "pending")
         self.assertEqual(
             self.main_company.tbai_last_invoice_id, invoice3.tbai_invoice_id
@@ -95,27 +107,40 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_invoice_foreign_customer_extracommunity(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_e
+            self.account_billing.id,
+            self.fiscal_position_e,
+            self.partner_extracommunity.id,
         )
-        invoice.partner_id = self.partner_extracommunity.id
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
         # Artículo 21.- Exenciones en las exportaciones de bienes
+        tax = invoice.invoice_line_ids.filtered(
+            lambda line: any([t.id == self.tax_iva0_e.id for t in line.tax_ids])
+        ).mapped("tax_ids")
+
+        fp_tbai_tax = self.env["account.fp.tbai.tax"].search(
+            [("tax_id", "=", tax.id), ("position_id", "=", self.fiscal_position_e.id)],
+            limit=1,
+        )
+
         self.assertEqual(
-            invoice.tax_line_ids.filtered(
-                lambda tax: tax.tax_id.id == self.tax_iva0_e.id
-            ).tbai_vat_exemption_key,
-            self.vat_exemption_E2,
+            fp_tbai_tax.tbai_vat_exemption_key, self.vat_exemption_E2,
         )
         # Otros
-        self.assertEqual(
-            invoice.tax_line_ids.filtered(
-                lambda tax: tax.tax_id.id == self.tax_iva0_sp_e.id
-            ).tbai_vat_exemption_key,
-            self.vat_exemption_E6,
+        tax = invoice.invoice_line_ids.filtered(
+            lambda line: any([t.id == self.tax_iva0_sp_e.id for t in line.tax_ids])
+        ).mapped("tax_ids")
+
+        fp_tbai_tax = self.env["account.fp.tbai.tax"].search(
+            [("tax_id", "=", tax.id), ("position_id", "=", self.fiscal_position_e.id)],
+            limit=1,
         )
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+
+        self.assertEqual(
+            fp_tbai_tax.tbai_vat_exemption_key, self.vat_exemption_E6,
+        )
+
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -126,21 +151,21 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_invoice_foreign_customer_intracommunity(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_ic
+            self.account_billing.id,
+            self.fiscal_position_ic,
+            self.partner_intracommunity.id,
         )
-        invoice.partner_id = self.partner_intracommunity.id
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
         # Artículo 25.- Exenciones en las entregas de bienes destinados a otro Estado
         # miembro
         self.assertTrue(
             all(
                 tax.tbai_vat_exemption_key == self.vat_exemption_E5
-                for tax in invoice.tax_line_ids
+                for tax in invoice.line_ids.filtered(lambda line: line.tax_line_id)
             )
         )
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -151,12 +176,11 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_invoice_irpf_taxes(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_irpf15
+            self.account_billing.id, self.fiscal_position_irpf15, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -167,12 +191,11 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_invoice_equivalence_surcharge_taxes(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_surcharge
+            self.account_billing.id, self.fiscal_position_surcharge, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -183,12 +206,11 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_out_refund_refund(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -197,25 +219,24 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
         # Create an invoice refund by differences
-        account_invoice_refund = (
-            self.env["account.invoice.refund"]
-            .with_context(active_id=invoice.id, active_ids=invoice.ids)
+        account_move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=[invoice.id])
             .create(
                 dict(
-                    description="Credit Note for Binovo",
+                    reason="Credit Note for Binovo",
                     date=date.today(),
-                    filter_refund="refund",
+                    refund_method="refund",
                 )
             )
         )
-        account_invoice_refund.invoice_refund()
-        self.assertEqual(1, len(invoice.refund_invoice_ids))
-        refund = invoice.refund_invoice_ids
+        account_move_reversal.with_context(refund_method="refund").reverse_moves()
+        self.assertEqual(1, len(invoice.reversal_move_id))
+        refund = invoice.reversal_move_id
         self.assertEqual("I", refund.tbai_refund_type)
         self.assertEqual("R1", refund.tbai_refund_key)
-        refund.compute_taxes()
-        refund.action_invoice_open()
-        self.assertEqual(refund.state, "open")
+        refund.action_post()
+        self.assertEqual(refund.state, "posted")
         self.assertEqual(1, len(refund.tbai_invoice_ids))
         (
             r_root,
@@ -227,45 +248,42 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def test_out_refund_refund_not_sent_invoice(self):
         self.main_company.tbai_enabled = False
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(0, len(invoice.tbai_invoice_ids))
         self.main_company.tbai_enabled = True
         # Create an invoice refund by differences
-        account_invoice_refund = (
-            self.env["account.invoice.refund"]
-            .with_context(active_id=invoice.id, active_ids=invoice.ids)
+        account_move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=[invoice.id])
             .create(
                 dict(
-                    description="Credit Note for Binovo",
+                    reason="Credit Note for Binovo",
                     date=date.today(),
-                    filter_refund="refund",
+                    refund_method="refund",
                 )
             )
         )
-        account_invoice_refund.invoice_refund()
-        self.assertEqual(1, len(invoice.refund_invoice_ids))
-        refund = invoice.refund_invoice_ids
+        account_move_reversal.with_context(refund_method="refund").reverse_moves()
+        self.assertEqual(1, len(invoice.reversal_move_id))
+        refund = invoice.reversal_move_id
         self.assertEqual("I", refund.tbai_refund_type)
         self.assertEqual("R1", refund.tbai_refund_key)
-        refund.compute_taxes()
-        refund.action_invoice_open()
-        self.assertEqual(refund.state, "open")
+        refund.action_post()
+        self.assertEqual(refund.state, "posted")
         self.assertEqual(0, len(refund.tbai_invoice_ids))
 
     def test_out_refund_modify(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
-        invoice.origin = "TBAI-REFUND-MODIFY-TEST"
+        invoice.invoice_origin = "TBAI-REFUND-MODIFY-TEST"
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -274,36 +292,35 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
         # Create an invoice refund by substitution
-        account_invoice_refund = (
-            self.env["account.invoice.refund"]
-            .with_context(active_id=invoice.id, active_ids=invoice.ids)
+        account_move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=[invoice.id])
             .create(
                 dict(
-                    description="Credit Note for Binovo",
+                    reason="Credit Note for Binovo",
                     date=date.today(),
-                    filter_refund="modify",
+                    refund_method="modify",
                 )
             )
         )
-        account_invoice_refund.invoice_refund()
-        self.assertEqual(1, len(invoice.refund_invoice_ids))
-        refund = invoice.refund_invoice_ids
-        self.assertEqual(refund.state, "paid")
-        refund_invoice = invoice.refund_invoice_ids[0]
+        account_move_reversal.with_context(refund_method="modify").reverse_moves()
+        self.assertEqual(1, len(invoice.reversal_move_id))
+        refund = invoice.reversal_move_id
+        self.assertEqual(refund.invoice_payment_state, "paid")
+        refund_invoice = invoice.reversal_move_id[0]
         self.assertEqual("I", refund_invoice.tbai_refund_type)
         self.assertEqual("R1", refund_invoice.tbai_refund_key)
         self.assertEqual(1, len(refund_invoice.tbai_invoice_ids))
-        substitute_invoice = self.env["account.invoice"].search(
+        substitute_invoice = self.env["account.move"].search(
             [
                 ("type", "=", "out_invoice"),
                 ("id", "!=", invoice.id),
-                ("origin", "=", invoice.origin),
+                ("invoice_origin", "=", invoice.invoice_origin),
             ]
         )
         self.assertEqual(1, len(substitute_invoice))
-        substitute_invoice.compute_taxes()
-        substitute_invoice.action_invoice_open()
-        self.assertEqual(substitute_invoice.state, "open")
+        substitute_invoice.action_post()
+        self.assertEqual(substitute_invoice.state, "posted")
         self.assertEqual(1, len(substitute_invoice.tbai_invoice_ids))
         invs = substitute_invoice.sudo().tbai_invoice_ids
         r_root, r_signature_value = invs.get_tbai_xml_signed_and_signature_value()
@@ -312,12 +329,11 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
     def test_out_refund_cancel(self):
         invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
         )
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, "open")
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
         (
             root,
@@ -326,23 +342,23 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
         # Create an invoice refund by substitution
-        account_invoice_refund = (
-            self.env["account.invoice.refund"]
-            .with_context(active_id=invoice.id, active_ids=invoice.ids)
+        account_move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=[invoice.id])
             .create(
                 dict(
-                    description="Credit Note for Binovo",
+                    reason="Credit Note for Binovo",
                     date=date.today(),
-                    filter_refund="cancel",
+                    refund_method="cancel",
                 )
             )
         )
-        account_invoice_refund.invoice_refund()
-        self.assertEqual(1, len(invoice.refund_invoice_ids))
-        refund = invoice.refund_invoice_ids
+        account_move_reversal.with_context(refund_method="cancel").reverse_moves()
+        self.assertEqual(1, len(invoice.reversal_move_id))
+        refund = invoice.reversal_move_id
         self.assertEqual("I", refund.tbai_refund_type)
         self.assertEqual("R1", refund.tbai_refund_key)
-        self.assertEqual(refund.state, "paid")
+        self.assertEqual(refund.invoice_payment_state, "paid")
         self.assertEqual(1, len(refund.tbai_invoice_ids))
         (
             r_root,

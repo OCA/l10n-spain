@@ -1,9 +1,10 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import logging
 
-from odoo import api, models
+from odoo import models
 
 _logger = logging.getLogger(__name__)
 
@@ -16,7 +17,6 @@ except (ImportError, IOError) as err:
 class L10nEsAeatCertificatePassword(models.TransientModel):
     _inherit = "l10n.es.aeat.certificate.password"
 
-    @api.multi
     def get_keys(self):
         super().get_keys()
         record = self.env["l10n.es.aeat.certificate"].browse(

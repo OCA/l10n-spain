@@ -1,3 +1,3 @@
-from . import account_invoice_refund
+from . import account_move_reversal
 from . import aeat_certificate_password
 from . import ticketbai_info
