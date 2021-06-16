@@ -4,26 +4,16 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
-        <record id="invoice_form_inherit" model="ir.ui.view">
-            <field name="name">account.invoice.form</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_form" />
+        <record id="view_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
             <field name="arch" type="xml">
-                <xpath
-                    expr="//field[@name='tax_line_ids']/tree/field[@name='amount']"
-                    position="before"
-                >
-                    <field
-                        name="tbai_vat_exemption_key"
-                        attrs="{'column_invisible': [('parent.tbai_enabled', '=', False)]}"
-                        options="{'no_open':True,'no_create':True}"
-                    />
-                </xpath>
                 <page name="other_info" position="after">
                     <page
                         name="ticketbai"
                         string="TicketBAI"
-                        attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '=', False)]}"
+                        attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('type', '!=', 'out_invoice'), '|', ('type', '!=', 'out_refund'), ('reversed_entry_id', '=', False)]}"
                     >
                         <group name="main_grp" col="4">
                             <group name="ticketbai" colspan="2" col="2">
@@ -56,20 +46,20 @@
                             string="Refund"
                             attrs="{'invisible': [('type', '!=', 'out_refund')]}"
                         >
-                            <field name="refund_invoice_id" invisible="1" />
+                            <field name="reversed_entry_id" invisible="1" />
                             <field
                                 name="tbai_refund_key"
-                                attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                                attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('reversed_entry_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
                             />
                             <field
                                 name="tbai_refund_type"
-                                attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                                attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('reversed_entry_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
                             />
                         </group>
                         <group name="tbai_vat_regimes" string="VAT Regimes">
                             <field
                                 name="tbai_vat_regime_key"
-                                attrs="{'required': [('tbai_enabled', '=', True), '|', ('type', '=', 'out_invoice'), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                                attrs="{'required': [('tbai_enabled', '=', True), '|', ('type', '=', 'out_invoice'), '&amp;', ('type', '=', 'out_refund'), ('reversed_entry_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
                                 options="{'no_open':True,'no_create':True}"
                             />
                             <field
@@ -198,6 +188,16 @@
                         </group>
                     </page>
                 </page>
+                <xpath expr="//button[@name='button_draft']" position="attributes">
+                    <attribute
+                        name="attrs"
+                    >{'invisible' : ['|', ('restrict_mode_hash_table', '=', True), '|', '&amp;', ('tbai_enabled', '=', True), ('type', 'in', ('out_invoice', 'out_refund')), ('state', 'not in', ('posted', 'cancel'))]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_cancel']" position="attributes">
+                    <attribute
+                        name="attrs"
+                    >{'invisible' : ['|', ('id', '=', False), '|', '&amp;', ('type', 'in', ('out_invoice', 'out_refund')), '&amp;', '|', ('tbai_enabled', '=', False), ('state', '!=', 'posted'), '|', ('tbai_enabled', '=', True), ('state', '!=', 'draft'), '&amp;', ('type', 'not in', ('out_invoice', 'out_refund')), ('state', '!=', 'draft')]}</attribute>
+                </xpath>
             </field>
         </record>
     </data>

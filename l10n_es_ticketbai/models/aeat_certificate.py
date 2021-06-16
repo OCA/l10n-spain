@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import logging
@@ -37,7 +38,6 @@ class L10nEsAeatCertificate(models.Model):
         p12.set_privatekey(crypto.load_privatekey(crypto.FILETYPE_PEM, private_key))
         return p12
 
-    @api.multi
     @api.depends("public_key", "private_key", "tbai_p12_friendlyname")
     def _compute_tbai_p12(self):
         for record in self:
