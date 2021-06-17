@@ -54,7 +54,7 @@ class TicketBaiResponse(models.Model):
         comodel_name='tbai.invoice', required=True, ondelete='cascade')
     xml = fields.Binary(string='XML Response', attachment=True)
     xml_fname = fields.Char('File Name')
-    state = fields.Selection(selection=[
+    state = fields.Selection(string='Status', selection=[
         (TicketBaiResponseState.RECEIVED.value, 'Received'),
         (TicketBaiResponseState.REJECTED.value, 'Rejected'),
         (TicketBaiResponseState.REQUEST_ERROR.value, 'Request error'),
