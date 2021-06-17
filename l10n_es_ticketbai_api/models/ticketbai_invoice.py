@@ -117,7 +117,7 @@ class TicketBAIInvoice(models.Model):
     datas = fields.Binary(copy=False, attachment=True)
     datas_fname = fields.Char('File Name', copy=False)
     file_size = fields.Integer('File Size', copy=False)
-    state = fields.Selection(selection=[
+    state = fields.Selection(string='Status', selection=[
         (TicketBaiInvoiceState.draft.value, 'Draft'),
         (TicketBaiInvoiceState.pending.value, 'Pending'),
         (TicketBaiInvoiceState.sent.value, 'Sent'),
