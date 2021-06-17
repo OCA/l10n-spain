@@ -1,4 +1,4 @@
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:T="urn:ticketbai:emision" targetNamespace="urn:ticketbai:emision">            
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:T="urn:ticketbai:emision" targetNamespace="urn:ticketbai:emision">
 	<element  name="TicketBaiResponse">
 		<complexType>
 			<sequence>
@@ -42,15 +42,15 @@
 	<simpleType name="CodigoType">
 		<restriction base="string">
 			<length value="3"/>
-			<pattern value="[0-9]*">				
+			<pattern value="[0-9]*">
 			</pattern>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="IdentificadorTBAIType">
 		<restriction base="string">
 			<length value="39"/>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="FechaHoraType">
 		<restriction base="string">
 			<length value="19" />

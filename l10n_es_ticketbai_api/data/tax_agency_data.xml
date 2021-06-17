@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2021 Binovo IT Human Project SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -6,16 +6,23 @@
         <record id="tbai_tax_agency_gipuzkoa" model="tbai.tax.agency">
             <field name="name">Hacienda Foral de Gipuzkoa</field>
         </record>
-
         <record id="tbai_tax_agency_gipuzkoa_1_2" model="tbai.tax.agency.version">
-            <field name="tbai_tax_agency_id" ref="tbai_tax_agency_gipuzkoa"/>
+            <field name="tbai_tax_agency_id" ref="tbai_tax_agency_gipuzkoa" />
             <field name="version">1.2</field>
             <field name="qr_base_url">https://tbai.egoitza.gipuzkoa.eus/qr/</field>
             <field name="test_qr_base_url">https://tbai.prep.gipuzkoa.eus/qr/</field>
-            <field name="rest_url_invoice">https://tbai.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
-            <field name="test_rest_url_invoice">https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
-            <field name="rest_url_cancellation">https://tbai.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
-            <field name="test_rest_url_cancellation">https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
+            <field
+                name="rest_url_invoice"
+            >https://tbai.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
+            <field
+                name="test_rest_url_invoice"
+            >https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
+            <field
+                name="rest_url_cancellation"
+            >https://tbai.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
+            <field
+                name="test_rest_url_cancellation"
+            >https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
         </record>
     </data>
 </odoo>
