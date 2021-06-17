@@ -47,7 +47,7 @@
 	<!-- End RenewedDigests-->
 	<!-- -->
 	<!-- ArchiveTimeStamp in namespace with URI 'http://uri.etsi.org/01903/v1.4.1#'-->
-	<xsd:element name="ArchiveTimeStamp" type="xades:XAdESTimeStampType"/>	
+	<xsd:element name="ArchiveTimeStamp" type="xades:XAdESTimeStampType"/>
 	<!--CompleteCertificateRefsV2 and AttributeCertificateRefsV2-->
 	<xsd:element name="CompleteCertificateRefsV2" type="CompleteCertificateRefsTypeV2"/>
 	<xsd:element name="AttributeCertificateRefsV2" type="CompleteCertificateRefsTypeV2"/>

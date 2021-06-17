@@ -8,7 +8,7 @@
 	<element  name="AnulaTicketBai">
 		<complexType>
 			<sequence>
-				<element name="Cabecera" type="T:Cabecera"/>				
+				<element name="Cabecera" type="T:Cabecera"/>
 				<element name="IDFactura" type="T:IDFactura"/>
 				<element name="HuellaTBAI" type="T:HuellaTBAI"/>
 				<element ref="ds:Signature"/>
@@ -21,9 +21,9 @@
 		</sequence>
 	</complexType>
 	<complexType name="Emisor">
-		<sequence>		
-			<element name="NIF" type="T:NIFType"/>			
-			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>			
+		<sequence>
+			<element name="NIF" type="T:NIFType"/>
+			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>
 		</sequence>
 	</complexType>
 	<complexType name="IDFactura">
@@ -34,25 +34,25 @@
 	</complexType>
 	<complexType name="CabeceraFacturaType">
 		<sequence>
-			<element name="SerieFactura" type="T:TextMax20Type" minOccurs="0"/>			
+			<element name="SerieFactura" type="T:TextMax20Type" minOccurs="0"/>
 			<element name="NumFactura" type="T:TextMax20Type"/>
 			<element name="FechaExpedicionFactura" type="T:FechaType"/>
 		</sequence>
-	</complexType>	  
+	</complexType>
     <complexType name="HuellaTBAI">
 		<sequence>
 			<element name="Software" type="T:SoftwareFacturacionType"/>
 			<element name="NumSerieDispositivo" type="T:TextMax30Type" minOccurs="0"/>
 		</sequence>
-	</complexType>	
+	</complexType>
      <complexType name="SoftwareFacturacionType">
 		<sequence>
-			<element name="LicenciaTBAI" type="T:TextMax20Type"/>		
-            <element name="EntidadDesarrolladora" type="T:EntidadDesarrolladoraType"/>			
+			<element name="LicenciaTBAI" type="T:TextMax20Type"/>
+            <element name="EntidadDesarrolladora" type="T:EntidadDesarrolladoraType"/>
 			<element name="Nombre" type="T:TextMax120Type"/>
 			<element name="Version" type="T:TextMax20Type"/>
 		</sequence>
-	</complexType>	
+	</complexType>
      <complexType name="EntidadDesarrolladoraType">
 		<sequence>
 			<choice>
@@ -64,8 +64,8 @@
 	<complexType name="IDOtro">
 		<sequence>
 			<element name="CodigoPais" type="T:CountryType2" minOccurs="0"/>
-			<element name="IDType" type="T:IDTypeType"/>			
-			<element name="ID" type="T:TextMax20Type"/>			
+			<element name="IDType" type="T:IDTypeType"/>
+			<element name="ID" type="T:TextMax20Type"/>
 		</sequence>
 	</complexType>
 	<simpleType name="CountryType2">
@@ -316,7 +316,7 @@
 			<enumeration value="XU"/>
 			<enumeration value="XN"/>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="IDTypeType">
 		<restriction base="string">
 			<enumeration value="02">
@@ -348,7 +348,7 @@
 				</annotation>
 			</enumeration>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="NIFType">
 		<annotation>
 			<documentation >NIF: Secuencia de 9 dígitos o
@@ -367,7 +367,7 @@
 			<length value="10" />
 			<pattern value="\d{2,2}-\d{2,2}-\d{4,4}"/>
 		</restriction>
-	</simpleType>	
+	</simpleType>
     <!-- Cadena de 5 caracteres -->
 	<simpleType name="TextMax5Type">
 		<restriction base="string">
@@ -415,5 +415,5 @@
 		<restriction base="string">
 			<maxLength value="500"/>
 		</restriction>
-	</simpleType>		
+	</simpleType>
 </schema>

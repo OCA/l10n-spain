@@ -7,16 +7,13 @@
     "version": "12.0.0.1.1",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Binovo,"
-              "Odoo Community Association (OCA)",
+    "author": "Binovo," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "auto_install": False,
     "development_status": "Beta",
-    "maintainers": [
-        'ao-landoo'
-    ],
+    "maintainers": ["ao-landoo"],
     "depends": ["base", "base_setup"],
     "external_dependencies": {
         "python": [
@@ -25,7 +22,7 @@
             "cryptography",
             "qrcode",
             "xmltodict",
-            "requests_pkcs12"
+            "requests_pkcs12",
         ],
     },
     "data": [
@@ -36,9 +33,7 @@
         "views/res_company_views.xml",
         "views/res_config_settings_views.xml",
         "views/ticketbai_certificate_views.xml",
-        "views/ticketbai_installation_views.xml"
+        "views/ticketbai_installation_views.xml",
     ],
-    "demo": [
-        "demo/res_partner_demo.xml"
-    ]
+    "demo": ["demo/res_partner_demo.xml"],
 }
