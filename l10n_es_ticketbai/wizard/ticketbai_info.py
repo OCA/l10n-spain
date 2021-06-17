@@ -32,13 +32,17 @@ class TicketBaiGeneralInfo(models.TransientModel):
     @api.depends('company_id')
     def _compute_software(self):
         for record in self:
+            name = 'l10n_es_ticketbai'
+            name_api = 'l10n_es_ticketbai_api'
             software_version = self.sudo().env['ir.module.module'].search([
-                ('name', '=', 'l10n_es_ticketbai')]).latest_version
+                ('name', '=', name)]).latest_version
             software_version_api = self.sudo().env['ir.module.module'].search([
-                ('name', '=', 'l10n_es_ticketbai_api')]).latest_version
-            record.software = "(%s, %s API) %s" % (
-                software_version,
+                ('name', '=', name_api)]).latest_version
+            record.software = "(%s %s, %s %s) %s" % (
+                name_api,
                 software_version_api,
+                name,
+                software_version,
                 record.company_id.tbai_software_name)
 
     @api.multi
