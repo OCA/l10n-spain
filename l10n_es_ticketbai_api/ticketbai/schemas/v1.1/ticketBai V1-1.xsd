@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:T="http://ticketbai.eus" targetNamespace="http://ticketbai.eus">
 
-	<import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>		
+	<import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
 
 	<element  name="TicketBai">
 		<complexType>
@@ -29,9 +29,9 @@
 	</complexType>
 
 	<complexType name="Emisor">
-		<sequence>		
-			<element name="NIF" type="T:NIFType"/>			
-			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>			
+		<sequence>
+			<element name="NIF" type="T:NIFType"/>
+			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>
 		</sequence>
 	</complexType>
 	<complexType name="Destinatarios">
@@ -42,19 +42,19 @@
 	<complexType name="IDDestinatario">
 		<sequence>
 			<choice>
-				<element name="NIF" type="T:NIFType"/>				
-				<element name="IDOtro" type="T:IDOtro"/>				
+				<element name="NIF" type="T:NIFType"/>
+				<element name="IDOtro" type="T:IDOtro"/>
 			</choice>
-			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>	
-			<element name="CodigoPostal" type="T:CodigoPostalType" minOccurs="0"/>									
+			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>
+			<element name="CodigoPostal" type="T:CodigoPostalType" minOccurs="0"/>
 		</sequence>
 	</complexType>
 
 	<complexType name="IDOtro">
 		<sequence>
 			<element name="CodigoPais" type="T:CountryType2" minOccurs="0"/>
-			<element name="IDType" type="T:IDTypeType"/>			
-			<element name="ID" type="T:TextMax20Type"/>			
+			<element name="IDType" type="T:IDTypeType"/>
+			<element name="ID" type="T:TextMax20Type"/>
 		</sequence>
 	</complexType>
 
@@ -67,7 +67,7 @@
 	</complexType>
 	<complexType name="CabeceraFacturaType">
 		<sequence>
-			<element name="SerieFactura" type="T:TextMax20Type" minOccurs="0"/>			
+			<element name="SerieFactura" type="T:TextMax20Type" minOccurs="0"/>
 			<element name="NumFactura" type="T:TextMax20Type"/>
 			<element name="FechaExpedicionFactura" type="T:FechaType">
             </element>
@@ -75,31 +75,31 @@
 			<element name="FacturaSimplificada" type="T:SiNoType" default="N"  minOccurs="0"/>
 			<element name="FacturaEmitidaSustitucionSimplificada" type="T:SiNoType" default="N"  minOccurs="0"/>
 			<element name="FacturaRectificativa" type="T:FacturaRectificativaType" minOccurs="0"/>
-			<element name="FacturasRectificadasSustituidas" type="T:FacturasRectificadasSustituidasType" minOccurs="0" />			
+			<element name="FacturasRectificadasSustituidas" type="T:FacturasRectificadasSustituidasType" minOccurs="0" />
 		</sequence>
 	</complexType>
 	<complexType name="FacturaRectificativaType">
 		<sequence>
-			<element name="Codigo" type="T:ClaveTipoFacturaType"/>			
+			<element name="Codigo" type="T:ClaveTipoFacturaType"/>
 			<element name="Tipo" type="T:ClaveTipoRectificativaType"/>
-			<element name="ImporteRectificacionSustitutiva" type="T:ImporteRectificacionSustitutivaType" minOccurs="0" />			
+			<element name="ImporteRectificacionSustitutiva" type="T:ImporteRectificacionSustitutivaType" minOccurs="0" />
 		</sequence>
 	</complexType>
 	<complexType name="ImporteRectificacionSustitutivaType">
 		<sequence>
 			<element name="BaseRectificada" type="T:ImporteSgn12.2Type"/>
 			<element name="CuotaRectificada" type="T:ImporteSgn12.2Type"/>
-			<element name="CuotaRecargoRectificada" type="T:ImporteSgn12.2Type" minOccurs="0"/>			
+			<element name="CuotaRecargoRectificada" type="T:ImporteSgn12.2Type" minOccurs="0"/>
 		</sequence>
-	</complexType>		
+	</complexType>
 	<complexType name="DatosFacturaType">
 		<sequence>
 			<element name="FechaOperacion" type="T:FechaType" minOccurs="0"/>
-			<element name="DescripcionFactura" type="T:TextMax250Type"/>			
+			<element name="DescripcionFactura" type="T:TextMax250Type"/>
 			<element name="DetallesFactura" type="T:DetallesFacturaType" minOccurs="0"/>
 			<element name="ImporteTotalFactura" type="T:ImporteSgn12.2Type"/>
 			<element name="RetencionSoportada" type="T:ImporteSgn12.2Type" minOccurs="0"/>
-			<element name="BaseImponibleACoste" type="T:ImporteSgn12.2Type" minOccurs="0"/>			
+			<element name="BaseImponibleACoste" type="T:ImporteSgn12.2Type" minOccurs="0"/>
 			<element name="Claves" type="T:ClavesType"/>
 		</sequence>
 	</complexType>
@@ -107,26 +107,26 @@
 			<sequence>
 				<element name="IDDetalleFactura" type="T:IDDetalleFacturaType" maxOccurs="1000"/>
 			</sequence>
-	</complexType>	
+	</complexType>
 	<complexType name="IDDetalleFacturaType">
-		<sequence>	
-			<element  name="DescripcionDetalle" type="T:TextMax250Type"/>				
-			<element  name="Cantidad" type="T:ImporteSgn12.2Type"/>				
-			<element  name="ImporteUnitario" type="T:ImporteSgn12.2Type"/>				
-			<element  name="Descuento" type="T:ImporteSgn12.2Type" minOccurs="0"/>				
-			<element  name="ImporteTotal" type="T:ImporteSgn12.2Type"/>				
-		</sequence>				
+		<sequence>
+			<element  name="DescripcionDetalle" type="T:TextMax250Type"/>
+			<element  name="Cantidad" type="T:ImporteSgn12.2Type"/>
+			<element  name="ImporteUnitario" type="T:ImporteSgn12.2Type"/>
+			<element  name="Descuento" type="T:ImporteSgn12.2Type" minOccurs="0"/>
+			<element  name="ImporteTotal" type="T:ImporteSgn12.2Type"/>
+		</sequence>
 	</complexType>
 	<complexType name="ClavesType">
 		<sequence>
 			<element name="IDClave" type="T:IDClaveType" maxOccurs="3"/>
 		</sequence>
-	</complexType>	
+	</complexType>
 	<complexType name="IDClaveType">
-		<sequence>	
-			<element  name="ClaveRegimenIvaOpTrascendencia" type="T:IdOperacionesTrascendenciaTributariaType"/>				
-		</sequence>				
-	</complexType>			
+		<sequence>
+			<element  name="ClaveRegimenIvaOpTrascendencia" type="T:IdOperacionesTrascendenciaTributariaType"/>
+		</sequence>
+	</complexType>
 	<complexType name="FacturasRectificadasSustituidasType">
 		<sequence>
 			<element name="IDFacturaRectificadaSustituida" type="T:IDFacturaRectificadaSustituidaType" maxOccurs="100" />
@@ -139,19 +139,19 @@
 			<element name="FechaExpedicionFactura" type="T:FechaType"/>
 		</sequence>
 	</complexType>
-	<complexType name="TipoDesgloseType">  
+	<complexType name="TipoDesgloseType">
 	   <sequence>
 			<choice>
-				<element name="DesgloseFactura" type="T:DesgloseFacturaType"/> 
+				<element name="DesgloseFactura" type="T:DesgloseFacturaType"/>
 				<element name="DesgloseTipoOperacion" type="T:DesgloseTipoOperacionType"/>
 			</choice>
        </sequence>
 	</complexType>
     <complexType name="DesgloseTipoOperacionType">
          <sequence>
-        <element name="PrestacionServicios" type="T:PrestacionServicios" minOccurs="0"/> 
-        <element name="Entrega" type="T:Entrega" minOccurs="0"/> 
-       </sequence>    
+        <element name="PrestacionServicios" type="T:PrestacionServicios" minOccurs="0"/>
+        <element name="Entrega" type="T:Entrega" minOccurs="0"/>
+       </sequence>
     </complexType>
      <complexType name="PrestacionServicios">
         <sequence>
@@ -182,7 +182,7 @@
 			<element name="DetalleNoSujeta" type="T:DetalleNoSujeta"
 				minOccurs="1" maxOccurs="2" />
 		</sequence>
-	</complexType>	
+	</complexType>
 	<complexType name="DetalleNoSujeta">
 		<sequence>
 			<element name="Causa" type="T:CausaNoSujetaType"/>
@@ -199,11 +199,11 @@
 			<element name="CausaExencion" type="T:CausaExencionType" />
 			<element name="BaseImponible" type="T:ImporteSgn12.2Type"/>
 		</sequence>
-	</complexType>	
+	</complexType>
 	<complexType name="NoExentaType">
 		<sequence>
 			<element name="DetalleNoExenta" type="T:DetalleNoExentaType" minOccurs="1" maxOccurs="2" />
-		</sequence>		
+		</sequence>
 	</complexType>
 	<complexType name="DetalleNoExentaType">
 		<sequence>
@@ -222,8 +222,8 @@
 			<element name="TipoImpositivo" type="T:Tipo3.2Type" minOccurs="0"/>
 			<element name="CuotaImpuesto" type="T:ImporteSgn12.2Type" minOccurs="0" />
 			<element name="TipoRecargoEquivalencia" type="T:Tipo3.2Type" minOccurs="0"/>
-			<element name="CuotaRecargoEquivalencia" type="T:ImporteSgn12.2Type" minOccurs="0"/>			
-			<element name="OperacionEnRecargoDeEquivalenciaORegimenSimplificado" type="T:SiNoType" minOccurs="0"/>			
+			<element name="CuotaRecargoEquivalencia" type="T:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="OperacionEnRecargoDeEquivalenciaORegimenSimplificado" type="T:SiNoType" minOccurs="0"/>
 		</sequence>
 	</complexType>
 	<complexType name="EncadenamientoFacturaAnteriorType">
@@ -231,20 +231,20 @@
 			<element name="SerieFacturaAnterior" type="T:TextMax20Type" minOccurs="0"/>
 			<element name="NumFacturaAnterior" type="T:TextMax20Type"/>
 			<element name="FechaExpedicionFacturaAnterior" type="T:FechaType"/>
-			<element name="SignatureValueFirmaFacturaAnterior" type="T:TextMax100Type"/>			
+			<element name="SignatureValueFirmaFacturaAnterior" type="T:TextMax100Type"/>
 		</sequence>
-	</complexType>   
+	</complexType>
     <complexType name="HuellaTBAI">
 		<sequence>
 			<element name="EncadenamientoFacturaAnterior" type="T:EncadenamientoFacturaAnteriorType" minOccurs="0"/>
 			<element name="Software" type="T:SoftwareFacturacionType"/>
 			<element name="NumSerieDispositivo" type="T:TextMax30Type" minOccurs="0"/>
 		</sequence>
-	</complexType>     
+	</complexType>
      <complexType name="SoftwareFacturacionType">
 		<sequence>
-			<element name="LicenciaTBAI" type="T:TextMax20Type"/>		
-            <element name="EntidadDesarrolladora" type="T:EntidadDesarrolladoraType"/>			
+			<element name="LicenciaTBAI" type="T:TextMax20Type"/>
+            <element name="EntidadDesarrolladora" type="T:EntidadDesarrolladoraType"/>
 			<element name="Nombre" type="T:TextMax120Type"/>
 			<element name="Version" type="T:TextMax20Type"/>
 		</sequence>
@@ -436,7 +436,7 @@
                 <annotation>
                     <documentation>Factura con IVA pendiente de devengo en operaciones de tracto sucesivo.</documentation>
                 </annotation>
-            </enumeration>			
+            </enumeration>
 			 <enumeration value="51" >
                 <annotation>
                     <documentation>Operaciones en recargo de equivalencia.</documentation>
@@ -446,7 +446,7 @@
                 <annotation>
                     <documentation>Operaciones en régimen simplificado.</documentation>
                 </annotation>
-            </enumeration>			
+            </enumeration>
 		</restriction>
 	</simpleType>
 	<simpleType name="CausaExencionType">
@@ -505,13 +505,13 @@
 				</annotation>
 			</enumeration>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="SiNoType">
 		<restriction base="string">
-			<enumeration value="S"/>			
-			<enumeration value="N"/>			
+			<enumeration value="S"/>
+			<enumeration value="N"/>
 		</restriction>
-	</simpleType>		
+	</simpleType>
 	<simpleType name="Tipo3.2Type">
 		<restriction base="string">
 			<pattern value="\d{1,3}(\.\d{0,2})?"/>
@@ -776,17 +776,17 @@
 		<restriction base="string">
 			<enumeration value="T">
                 <annotation>
-                  <documentation>Factura emitida por tercero.</documentation>  
+                  <documentation>Factura emitida por tercero.</documentation>
                 </annotation>
             </enumeration>
 			<enumeration value="N">
                 <annotation>
-                  <documentation>No. Factura emitida por el propio emisor.</documentation>  
+                  <documentation>No. Factura emitida por el propio emisor.</documentation>
                 </annotation>
             </enumeration>
             <enumeration value="D">
                 <annotation>
-                  <documentation>Factura emitida por el destinatario de la operación.</documentation>  
+                  <documentation>Factura emitida por el destinatario de la operación.</documentation>
                 </annotation>
             </enumeration>
 		</restriction>
@@ -795,17 +795,17 @@
 		<restriction base="string">
 			<enumeration value="OT">
                 <annotation>
-                  <documentation>No sujeto art. 7, 14, Otros.</documentation>  
+                  <documentation>No sujeto art. 7, 14, Otros.</documentation>
                 </annotation>
             </enumeration>
 			<enumeration value="RL">
                 <annotation>
-                  <documentation>No sujeto por reglas de localización.</documentation>  
+                  <documentation>No sujeto por reglas de localización.</documentation>
                 </annotation>
             </enumeration>
 		</restriction>
-	</simpleType>    
-  
+	</simpleType>
+
 
     <!-- Cadena de 5 caracteres -->
 	<simpleType name="TextMax5Type">
@@ -855,7 +855,7 @@
 			<maxLength value="500"/>
 		</restriction>
 	</simpleType>
-	
+
     <simpleType name="HoraType">
         <restriction base="string">
             <pattern value="\d{2,2}:\d{2,2}:\d{2,2}"/>
@@ -864,8 +864,8 @@
 	<simpleType name="CodigoPostalType">
 		<restriction base="string">
 			<length value="5"/>
-			<pattern value="[0-9]*">				
+			<pattern value="[0-9]*">
 			</pattern>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 </schema>

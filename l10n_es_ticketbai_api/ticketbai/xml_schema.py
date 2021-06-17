@@ -1,10 +1,12 @@
 # Copyright 2020 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from datetime import datetime
-from base64 import b64encode
-from uuid import uuid4
-from lxml import etree
 import logging
+from base64 import b64encode
+from datetime import datetime
+from uuid import uuid4
+
+from lxml import etree
+
 from ..utils import utils as tbai_utils
 
 _logger = logging.getLogger(__name__)
@@ -13,7 +15,7 @@ try:
     import xmlsig
     import xmltodict
     from cryptography.hazmat.primitives import hashes
-except(ImportError, IOError) as err:
+except (ImportError, IOError) as err:
     _logger.error(err)
 
 
@@ -22,7 +24,8 @@ class XMLSchemaException(Exception):
         if type(self) == XMLSchemaException:
             _logger.warning(
                 "You should implement a non generic Exception for your particular use "
-                "case.")
+                "case."
+            )
         self.name = name
         self.value = value
         self.args = (name, value)
@@ -34,38 +37,36 @@ class XMLSchemaModeNotSupported(XMLSchemaException):
 
 
 class TicketBaiSchema(tbai_utils.EnumValues):
-    TicketBai = 'TicketBai'
-    AnulaTicketBai = 'AnulaTicketBai'
-    TicketBaiResponse = 'TicketBaiResponse'
+    TicketBai = "TicketBai"
+    AnulaTicketBai = "AnulaTicketBai"
+    TicketBaiResponse = "TicketBaiResponse"
 
 
 class XMLSchema:
-    version = '1.2'
+    version = "1.2"
     schemas_version_dirname = "v1.2"
-    ns = 'http://www.w3.org/2001/XMLSchema'
+    ns = "http://www.w3.org/2001/XMLSchema"
     default_min_occurs = 1
-    tags_to_ignore = [
-        "{%s}complexType" % ns,
-        "{%s}sequence" % ns
-    ]
+    tags_to_ignore = ["{%s}complexType" % ns, "{%s}sequence" % ns]
     choice_tag = "{%s}choice" % ns
 
     def __init__(self, mode):
         if mode == TicketBaiSchema.TicketBai.value:
-            invoice_ns = 'urn:ticketbai:emision'
+            invoice_ns = "urn:ticketbai:emision"
         elif mode == TicketBaiSchema.AnulaTicketBai.value:
-            invoice_ns = 'urn:ticketbai:anulacion'
+            invoice_ns = "urn:ticketbai:anulacion"
         elif mode == TicketBaiSchema.TicketBaiResponse.value:
-            invoice_ns = 'urn:ticketbai:emision'
+            invoice_ns = "urn:ticketbai:emision"
         else:
             raise XMLSchemaModeNotSupported(
-                "TicketBAI - XML Invoice mode not supported!")
+                "TicketBAI - XML Invoice mode not supported!"
+            )
         self.mode = mode
         self.invoice_ns = invoice_ns
         self.invoice_nsmap = {
-            'ds': 'http://www.w3.org/2000/09/xmldsig#',
-            'etsi': 'http://uri.etsi.org/01903/v1.3.2#',
-            'T': self.invoice_ns
+            "ds": "http://www.w3.org/2000/09/xmldsig#",
+            "etsi": "http://uri.etsi.org/01903/v1.3.2#",
+            "T": self.invoice_ns,
         }
 
     @staticmethod
@@ -91,6 +92,7 @@ class XMLSchema:
         :author: Victor Laskurain <blaskurain@binovo.es>
         :return: SignatureValue
         """
+
         def create_node_tree(root_node, elem_list):
             """Convierte una lista en XML.
 
@@ -106,35 +108,35 @@ class XMLSchema:
             """
             for elem_def in elem_list:
                 if isinstance(elem_def, str):
-                    root_node.text = (root_node.text or '') + elem_def
+                    root_node.text = (root_node.text or "") + elem_def
                 else:
-                    ns = ''
+                    ns = ""
                     elemname = elem_def[0]
                     attrs = elem_def[1]
                     children = elem_def[2:]
-                    if ':' in elemname:
-                        ns, elemname = elemname.split(':')
+                    if ":" in elemname:
+                        ns, elemname = elemname.split(":")
                         ns = root_node.nsmap[ns]
                     node = xmlsig.utils.create_node(elemname, root_node, ns)
                     for attr_name, attr_value in zip(attrs[::2], attrs[1::2]):
                         node.set(attr_name, attr_value)
                     create_node_tree(node, children)
 
-        doc_id = 'id-' + str(uuid4())
-        signature_id = 'sig-' + doc_id
-        kinfo_id = 'ki-' + doc_id
-        sp_id = 'sp-' + doc_id
+        doc_id = "id-" + str(uuid4())
+        signature_id = "sig-" + doc_id
+        kinfo_id = "ki-" + doc_id
+        sp_id = "sp-" + doc_id
         signature = xmlsig.template.create(
             xmlsig.constants.TransformInclC14N,
             xmlsig.constants.TransformRsaSha256,
             signature_id,
         )
         ref = xmlsig.template.add_reference(
-            signature, xmlsig.constants.TransformSha256, uri=''
+            signature, xmlsig.constants.TransformSha256, uri=""
         )
         xmlsig.template.add_transform(ref, xmlsig.constants.TransformEnveloped)
         xmlsig.template.add_reference(
-            signature, xmlsig.constants.TransformSha256, uri='#' + kinfo_id
+            signature, xmlsig.constants.TransformSha256, uri="#" + kinfo_id
         )
         xmlsig.template.add_reference(
             signature, xmlsig.constants.TransformSha256, uri="#" + sp_id
@@ -148,37 +150,97 @@ class XMLSchema:
         ctx.x509 = certificate.get_certificate().to_cryptography()
         ctx.public_key = ctx.x509.public_key()
         ctx.private_key = certificate.get_privatekey().to_cryptography_key()
-        dslist = ('ds:Object', (),
-                  ('etsi:QualifyingProperties', ('Target', signature_id),
-                   ('etsi:SignedProperties', ('Id', sp_id),
-                    ('etsi:SignedSignatureProperties', (),
-                     ('etsi:SigningTime', (), datetime.now().isoformat()),
-                     ('etsi:SigningCertificateV2', (),
-                      ('etsi:Cert', (),
-                       ('etsi:CertDigest', (),
-                        ('ds:DigestMethod',
-                         ('Algorithm', 'http://www.w3.org/2000/09/xmldsig#sha256')),
-                        ('ds:DigestValue', (),
-                         b64encode(ctx.x509.fingerprint(hashes.SHA256())).decode())))),
-                     ('etsi:SignaturePolicyIdentifier', (),
-                      ('etsi:SignaturePolicyId', (),
-                       ('etsi:SigPolicyId', (),
-                        ('etsi:Identifier', (), 'http://ticketbai.eus/politicafirma'),
-                        ('etsi:Description', (), 'Política de Firma TicketBAI 1.0')),
-                       ('etsi:SigPolicyHash', (),
-                        ('ds:DigestMethod',
-                         ('Algorithm', 'http://www.w3.org/2000/09/xmldsig#sha256')),
-                        ('ds:DigestValue', (),
-                         'lX1xDvBVAsPXkkJ7R07WCVbAm9e0H33I1sCpDtQNkbc='))))))))
+        dslist = (
+            "ds:Object",
+            (),
+            (
+                "etsi:QualifyingProperties",
+                ("Target", signature_id),
+                (
+                    "etsi:SignedProperties",
+                    ("Id", sp_id),
+                    (
+                        "etsi:SignedSignatureProperties",
+                        (),
+                        ("etsi:SigningTime", (), datetime.now().isoformat()),
+                        (
+                            "etsi:SigningCertificateV2",
+                            (),
+                            (
+                                "etsi:Cert",
+                                (),
+                                (
+                                    "etsi:CertDigest",
+                                    (),
+                                    (
+                                        "ds:DigestMethod",
+                                        (
+                                            "Algorithm",
+                                            "http://www.w3.org/2000/09/xmldsig#sha256",
+                                        ),
+                                    ),
+                                    (
+                                        "ds:DigestValue",
+                                        (),
+                                        b64encode(
+                                            ctx.x509.fingerprint(hashes.SHA256())
+                                        ).decode(),
+                                    ),
+                                ),
+                            ),
+                        ),
+                        (
+                            "etsi:SignaturePolicyIdentifier",
+                            (),
+                            (
+                                "etsi:SignaturePolicyId",
+                                (),
+                                (
+                                    "etsi:SigPolicyId",
+                                    (),
+                                    (
+                                        "etsi:Identifier",
+                                        (),
+                                        "http://ticketbai.eus/politicafirma",
+                                    ),
+                                    (
+                                        "etsi:Description",
+                                        (),
+                                        "Política de Firma TicketBAI 1.0",
+                                    ),
+                                ),
+                                (
+                                    "etsi:SigPolicyHash",
+                                    (),
+                                    (
+                                        "ds:DigestMethod",
+                                        (
+                                            "Algorithm",
+                                            "http://www.w3.org/2000/09/xmldsig#sha256",
+                                        ),
+                                    ),
+                                    (
+                                        "ds:DigestValue",
+                                        (),
+                                        "lX1xDvBVAsPXkkJ7R07WCVbAm9e0H33I1sCpDtQNkbc=",
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        )
         root.append(signature)
         create_node_tree(signature, [dslist])
         ctx.sign(signature)
-        signature_value = signature.find('ds:SignatureValue',
-                                         namespaces=xmlsig.constants.NS_MAP).text
+        signature_value = signature.find(
+            "ds:SignatureValue", namespaces=xmlsig.constants.NS_MAP
+        ).text
         # RFC2045 - Base64 Content-Transfer-Encoding (page 25)
         # Any characters outside of the base64 alphabet are to be ignored in
         # base64-encoded data.
-        return signature_value.replace('\n', '')
+        return signature_value.replace("\n", "")
 
     def create_node_from_dict(self, xml_root, key, value):
         if isinstance(value, dict):
@@ -197,8 +259,9 @@ class XMLSchema:
 
     def dict2xml(self, invoice_ordered_dict):
         tag = next(iter(invoice_ordered_dict))
-        root = etree.Element("{%s}%s" % (self.invoice_ns, tag),
-                             nsmap=self.invoice_nsmap)
+        root = etree.Element(
+            "{{{}}}{}".format(self.invoice_ns, tag), nsmap=self.invoice_nsmap
+        )
         ticketbai_dict = invoice_ordered_dict.get(tag)
         for key, value in ticketbai_dict.items():
             self.create_node_from_dict(root, key, value)
@@ -210,7 +273,5 @@ class XMLSchema:
         :param xml: XML string
         :return: OrderedDict
         """
-        namespaces = {
-            self.invoice_ns: None
-        }
+        namespaces = {self.invoice_ns: None}
         return xmltodict.parse(xml, process_namespaces=True, namespaces=namespaces)
