@@ -207,6 +207,6 @@ class TestL10nEsAeatMod349Base(TestL10nEsAeatModBase):
             export_config = self.env.ref(xml_id)
             self.assertTrue(export_to_boe._export_config(model349, export_config))
         # Test report printing
-        self.env.ref("l10n_es_aeat_mod349.act_report_aeat_mod349_pdf").render_qweb_html(
+        self.env.ref("l10n_es_aeat_mod349.act_report_aeat_mod349_pdf")._render(
             model349.ids
         )
