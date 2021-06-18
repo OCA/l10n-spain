@@ -38,12 +38,12 @@ class TicketBaiGeneralInfo(models.TransientModel):
                 ('name', '=', name)]).latest_version
             software_version_api = self.sudo().env['ir.module.module'].search([
                 ('name', '=', name_api)]).latest_version
-            record.software = "(%s %s, %s %s) %s" % (
+            record.software = "%s (%s %s, %s %s)" % (
+                record.company_id.tbai_software_name,
                 name_api,
                 software_version_api,
                 name,
-                software_version,
-                record.company_id.tbai_software_name)
+                software_version)
 
     @api.multi
     @api.depends('company_id')
