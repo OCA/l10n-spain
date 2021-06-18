@@ -23,7 +23,7 @@ class RedsysController(http.Controller):
         '/payment/redsys/cancel',
         '/payment/redsys/error',
         '/payment/redsys/reject',
-    ], type='http', auth='none', csrf=False)
+    ], type='http', auth='public', csrf=False)
     def redsys_return(self, **post):
         """ Redsys."""
         _logger.info('Redsys: entering form_feedback with post data %s',
