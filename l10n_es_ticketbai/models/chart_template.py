@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api, _
 
@@ -57,8 +58,7 @@ class AccountChartTemplate(models.Model):
             fiscal_position = self.env['account.fiscal.position'].browse(res_id)
             tbai_vat_exemptions = []
             for exemption in template.tbai_vat_exemption_ids:
-                tax = self.env['account.tax'].search(
-                    [('description', '=', exemption.tax_id.description)])
+                tax = company.get_taxes_from_templates(exemption.tax_id)
                 if 1 == len(tax):
                     tbai_vat_exemptions.append((0, 0, {
                         'tax_id': tax.id,

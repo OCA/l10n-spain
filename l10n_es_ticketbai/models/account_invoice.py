@@ -1,5 +1,6 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
+# Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, exceptions, _, api
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice \
@@ -196,13 +197,14 @@ class AccountInvoice(models.Model):
             vals['tbai_invoice_line_ids'] = lines
         taxes = []
         # Discard RecargoEquivalencia and IRPF Taxes
-        descriptions = self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_RE').tax_template_ids.mapped('description')
-        descriptions += self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_IRPF').tax_template_ids.mapped(
-            'description')
+        tbai_maps = self.env["tbai.tax.map"].search(
+            [('code', 'in', ("RE", "IRPF"))]
+        )
+        exclude_taxes = self.company_id.get_taxes_from_templates(
+            tbai_maps.mapped("tax_template_ids")
+        )
         for tax in self.tax_line_ids.filtered(
-                lambda x: x.tax_id.description not in descriptions):
+                lambda x: x.tax_id not in exclude_taxes):
             taxes.append((0, 0, {
                 'base': tax.tbai_get_value_base_imponible(),
                 'is_subject_to': tax.tax_id.tbai_is_subject_to_tax(),
@@ -386,11 +388,14 @@ class AccountInvoice(models.Model):
         return tbai_date_operation
 
     def tbai_get_value_retencion_soportada(self):
-        irpf_descriptions = self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_IRPF').tax_template_ids.mapped(
-            'description')
+        tbai_maps = self.env["tbai.tax.map"].search(
+            [('code', '=', "IRPF")]
+        )
+        irpf_taxes = self.company_id.get_taxes_from_templates(
+            tbai_maps.mapped("tax_template_ids")
+        )
         taxes = self.tax_line_ids.filtered(
-            lambda tax: tax.tax_id.description in irpf_descriptions)
+            lambda tax: tax.tax_id in irpf_taxes)
         if 0 < len(taxes):
             res = "%.2f" % sum(
                 [tax.tbai_get_amount_total_company() for tax in taxes])

@@ -1,5 +1,6 @@
 # Copyright 2020 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
+# Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, SUPERUSER_ID
 
@@ -29,8 +30,7 @@ def post_init_hook(cr, registry):
             if 0 < len(fiscal_position_template.tbai_vat_exemption_ids):
                 tbai_vat_exemptions = []
                 for exemption in fiscal_position_template.tbai_vat_exemption_ids:
-                    tax = env['account.tax'].search(
-                        [('description', '=', exemption.tax_id.description)])
+                    tax = position.company_id.get_taxes_from_templates(exemption.tax_id)
                     if 1 == len(tax):
                         tbai_vat_exemptions.append((0, 0, {
                             'tax_id': tax.id,
