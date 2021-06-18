@@ -69,28 +69,24 @@ class Mod349(models.Model):
         comodel_name="l10n.es.aeat.mod349.partner_record",
         inverse_name="report_id",
         string="Partner records",
-        ondelete="cascade",
         readonly=True,
     )
     partner_record_detail_ids = fields.One2many(
         comodel_name="l10n.es.aeat.mod349.partner_record_detail",
         inverse_name="report_id",
         string="Partner record details",
-        ondelete="cascade",
         states={"confirmed": [("readonly", True)]},
     )
     partner_refund_ids = fields.One2many(
         comodel_name="l10n.es.aeat.mod349.partner_refund",
         inverse_name="report_id",
         string="Partner refund IDS",
-        ondelete="cascade",
         readonly=True,
     )
     partner_refund_detail_ids = fields.One2many(
         comodel_name="l10n.es.aeat.mod349.partner_refund_detail",
         inverse_name="report_id",
         string="Partner refund details",
-        ondelete="cascade",
         states={"confirmed": [("readonly", True)]},
     )
     number = fields.Char(default="349")
@@ -119,7 +115,7 @@ class Mod349(models.Model):
 
     def _create_349_details(self, move_lines):
         for move_line in move_lines:
-            if move_line.move_id.type in ("in_refund", "out_refund"):
+            if move_line.move_id.move_type in ("in_refund", "out_refund"):
                 # Check for refunds if the origin invoice period is different
                 # from the declaration
                 origin_invoice = move_line.move_id.reversed_entry_id
