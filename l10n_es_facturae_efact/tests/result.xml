@@ -3,7 +3,8 @@
     <StatusFeedback>
         <HubFeedback>
             <HubId>12</HubId>
-            <HubFilename>0123456789012345678901@0123456789012345678901@R_0001</HubFilename>
+            <HubFilename
+            >0123456789012345678901@0123456789012345678901@R_0001</HubFilename>
         </HubFeedback>
         <InvoiceFeedback>
             <InvoiceId>R/0001</InvoiceId>
@@ -23,8 +24,8 @@
                 <Status>DELIVERED</Status>
                 <StatusDate>2017-07-20T13:30:50</StatusDate>
                 <Reason>
-                    <Code></Code>
-                    <Description></Description>
+                    <Code />
+                    <Description />
                 </Reason>
                 <ElectronicAcknowledgment>
                     <formatType>txt</formatType>
