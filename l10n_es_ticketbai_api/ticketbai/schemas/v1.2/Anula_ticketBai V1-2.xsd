@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:T="urn:ticketbai:anulacion" targetNamespace="urn:ticketbai:anulacion">
+
+	<import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
+
+	<element  name="AnulaTicketBai">
+		<complexType>
+			<sequence>
+				<element name="Cabecera" type="T:Cabecera"/>
+				<element name="IDFactura" type="T:IDFactura"/>
+				<element name="HuellaTBAI" type="T:HuellaTBAI"/>
+				<element ref="ds:Signature"/>
+			</sequence>
+		</complexType>
+	</element>
+	<complexType name="Cabecera">
+		<sequence>
+			<element name="IDVersionTBAI" type="T:IDVersionTicketBaiType"/>
+		</sequence>
+	</complexType>
+	<complexType name="Emisor">
+		<sequence>
+			<element name="NIF" type="T:NIFType"/>
+			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>
+		</sequence>
+	</complexType>
+	<complexType name="IDFactura">
+		<sequence>
+			<element name="Emisor" type="T:Emisor"/>
+			<element name="CabeceraFactura" type="T:CabeceraFacturaType"/>
+		</sequence>
+	</complexType>
+	<complexType name="CabeceraFacturaType">
+		<sequence>
+			<element name="SerieFactura" type="T:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="T:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="T:FechaType"/>
+		</sequence>
+	</complexType>
+    <complexType name="HuellaTBAI">
+		<sequence>
+			<element name="Software" type="T:SoftwareFacturacionType"/>
+			<element name="NumSerieDispositivo" type="T:TextMax30Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+     <complexType name="SoftwareFacturacionType">
+		<sequence>
+			<element name="LicenciaTBAI" type="T:TextMax20Type"/>
+            <element name="EntidadDesarrolladora" type="T:EntidadDesarrolladoraType"/>
+			<element name="Nombre" type="T:TextMax120Type"/>
+			<element name="Version" type="T:TextMax20Type"/>
+		</sequence>
+	</complexType>
+     <complexType name="EntidadDesarrolladoraType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="T:NIFType"/>
+				<element name="IDOtro" type="T:IDOtro"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<complexType name="IDOtro">
+		<sequence>
+			<element name="CodigoPais" type="T:CountryType2" minOccurs="0"/>
+			<element name="IDType" type="T:IDTypeType"/>
+			<element name="ID" type="T:TextMax20Type"/>
+		</sequence>
+	</complexType>
+		<simpleType name="NIFType">
+		<annotation>
+			<documentation >NIF: Secuencia de 9 dígitos o
+				letras mayúsculas
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="9" />
+			<pattern
+				value="(([a-z|A-Z]{1}\d{7}[a-z|A-Z]{1})|(\d{8}[a-z|A-Z]{1})|([a-z|A-Z]{1}\d{8}))" />
+		</restriction>
+		<!-- ([A-Z]|\d){9} -->
+	</simpleType>
+	<simpleType name="FechaType">
+		<restriction base="string">
+			<length value="10" />
+			<pattern value="\d{2,2}-\d{2,2}-\d{4,4}"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 20 caracteres -->
+	<simpleType name="TextMax20Type">
+		<restriction base="string">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 30 caracteres -->
+	<simpleType name="TextMax30Type">
+		<restriction base="string">
+			<maxLength value="30"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 120 caracteres -->
+	<simpleType name="TextMax120Type">
+		<restriction base="string">
+			<maxLength value="120"/>
+		</restriction>
+	</simpleType>
+	<!--  IDTicketBaiBertsioa - IDVersionTicketBai -->
+	<simpleType name="IDVersionTicketBaiType">
+		<restriction base="string">
+			<enumeration value="1.2"/>
+		</restriction>
+	</simpleType>
+	<!-- Herrialdearen kodea - Código de país -->
+	<simpleType name="CountryType2">
+		<restriction base="string">
+			<enumeration value="AF"/>
+			<enumeration value="AL"/>
+			<enumeration value="DE"/>
+			<enumeration value="AD"/>
+			<enumeration value="AO"/>
+			<enumeration value="AI"/>
+			<enumeration value="AQ"/>
+			<enumeration value="AG"/>
+			<enumeration value="SA"/>
+			<enumeration value="DZ"/>
+			<enumeration value="AR"/>
+			<enumeration value="AM"/>
+			<enumeration value="AW"/>
+			<enumeration value="AU"/>
+			<enumeration value="AT"/>
+			<enumeration value="AZ"/>
+			<enumeration value="BS"/>
+			<enumeration value="BH"/>
+			<enumeration value="BD"/>
+			<enumeration value="BB"/>
+			<enumeration value="BE"/>
+			<enumeration value="BZ"/>
+			<enumeration value="BJ"/>
+			<enumeration value="BM"/>
+			<enumeration value="BY"/>
+			<enumeration value="BO"/>
+			<enumeration value="BA"/>
+			<enumeration value="BW"/>
+			<enumeration value="BV"/>
+			<enumeration value="BR"/>
+			<enumeration value="BN"/>
+			<enumeration value="BG"/>
+			<enumeration value="BF"/>
+			<enumeration value="BI"/>
+			<enumeration value="BT"/>
+			<enumeration value="CV"/>
+			<enumeration value="KY"/>
+			<enumeration value="KH"/>
+			<enumeration value="CM"/>
+			<enumeration value="CA"/>
+			<enumeration value="CF"/>
+			<enumeration value="CC"/>
+			<enumeration value="CO"/>
+			<enumeration value="KM"/>
+			<enumeration value="CG"/>
+			<enumeration value="CD"/>
+			<enumeration value="CK"/>
+			<enumeration value="KP"/>
+			<enumeration value="KR"/>
+			<enumeration value="CI"/>
+			<enumeration value="CR"/>
+			<enumeration value="HR"/>
+			<enumeration value="CU"/>
+			<enumeration value="TD"/>
+			<enumeration value="CZ"/>
+			<enumeration value="CL"/>
+			<enumeration value="CN"/>
+			<enumeration value="CY"/>
+			<enumeration value="CW"/>
+			<enumeration value="DK"/>
+			<enumeration value="DM"/>
+			<enumeration value="DO"/>
+			<enumeration value="EC"/>
+			<enumeration value="EG"/>
+			<enumeration value="AE"/>
+			<enumeration value="ER"/>
+			<enumeration value="SK"/>
+			<enumeration value="SI"/>
+			<enumeration value="ES"/>
+			<enumeration value="US"/>
+			<enumeration value="EE"/>
+			<enumeration value="ET"/>
+			<enumeration value="FO"/>
+			<enumeration value="PH"/>
+			<enumeration value="FI"/>
+			<enumeration value="FJ"/>
+			<enumeration value="FR"/>
+			<enumeration value="GA"/>
+			<enumeration value="GM"/>
+			<enumeration value="GE"/>
+			<enumeration value="GS"/>
+			<enumeration value="GH"/>
+			<enumeration value="GI"/>
+			<enumeration value="GD"/>
+			<enumeration value="GR"/>
+			<enumeration value="GL"/>
+			<enumeration value="GU"/>
+			<enumeration value="GT"/>
+			<enumeration value="GG"/>
+			<enumeration value="GN"/>
+			<enumeration value="GQ"/>
+			<enumeration value="GW"/>
+			<enumeration value="GY"/>
+			<enumeration value="HT"/>
+			<enumeration value="HM"/>
+			<enumeration value="HN"/>
+			<enumeration value="HK"/>
+			<enumeration value="HU"/>
+			<enumeration value="IN"/>
+			<enumeration value="ID"/>
+			<enumeration value="IR"/>
+			<enumeration value="IQ"/>
+			<enumeration value="IE"/>
+			<enumeration value="IM"/>
+			<enumeration value="IS"/>
+			<enumeration value="IL"/>
+			<enumeration value="IT"/>
+			<enumeration value="JM"/>
+			<enumeration value="JP"/>
+			<enumeration value="JE"/>
+			<enumeration value="JO"/>
+			<enumeration value="KZ"/>
+			<enumeration value="KE"/>
+			<enumeration value="KG"/>
+			<enumeration value="KI"/>
+			<enumeration value="KW"/>
+			<enumeration value="LA"/>
+			<enumeration value="LS"/>
+			<enumeration value="LV"/>
+			<enumeration value="LB"/>
+			<enumeration value="LR"/>
+			<enumeration value="LY"/>
+			<enumeration value="LI"/>
+			<enumeration value="LT"/>
+			<enumeration value="LU"/>
+			<enumeration value="XG"/>
+			<enumeration value="MO"/>
+			<enumeration value="MK"/>
+			<enumeration value="MG"/>
+			<enumeration value="MY"/>
+			<enumeration value="MW"/>
+			<enumeration value="MV"/>
+			<enumeration value="ML"/>
+			<enumeration value="MT"/>
+			<enumeration value="FK"/>
+			<enumeration value="MP"/>
+			<enumeration value="MA"/>
+			<enumeration value="MH"/>
+			<enumeration value="MU"/>
+			<enumeration value="MR"/>
+			<enumeration value="YT"/>
+			<enumeration value="UM"/>
+			<enumeration value="MX"/>
+			<enumeration value="FM"/>
+			<enumeration value="MD"/>
+			<enumeration value="MC"/>
+			<enumeration value="MN"/>
+			<enumeration value="ME"/>
+			<enumeration value="MS"/>
+			<enumeration value="MZ"/>
+			<enumeration value="MM"/>
+			<enumeration value="NA"/>
+			<enumeration value="NR"/>
+			<enumeration value="CX"/>
+			<enumeration value="NP"/>
+			<enumeration value="NI"/>
+			<enumeration value="NE"/>
+			<enumeration value="NG"/>
+			<enumeration value="NU"/>
+			<enumeration value="NF"/>
+			<enumeration value="NO"/>
+			<enumeration value="NC"/>
+			<enumeration value="NZ"/>
+			<enumeration value="IO"/>
+			<enumeration value="OM"/>
+			<enumeration value="NL"/>
+			<enumeration value="BQ"/>
+			<enumeration value="PK"/>
+			<enumeration value="PW"/>
+			<enumeration value="PA"/>
+			<enumeration value="PG"/>
+			<enumeration value="PY"/>
+			<enumeration value="PE"/>
+			<enumeration value="PN"/>
+			<enumeration value="PF"/>
+			<enumeration value="PL"/>
+			<enumeration value="PT"/>
+			<enumeration value="PR"/>
+			<enumeration value="QA"/>
+			<enumeration value="GB"/>
+			<enumeration value="RW"/>
+			<enumeration value="RO"/>
+			<enumeration value="RU"/>
+			<enumeration value="SB"/>
+			<enumeration value="SV"/>
+			<enumeration value="WS"/>
+			<enumeration value="AS"/>
+			<enumeration value="KN"/>
+			<enumeration value="SM"/>
+			<enumeration value="SX"/>
+			<enumeration value="PM"/>
+			<enumeration value="VC"/>
+			<enumeration value="SH"/>
+			<enumeration value="LC"/>
+			<enumeration value="ST"/>
+			<enumeration value="SN"/>
+			<enumeration value="RS"/>
+			<enumeration value="SC"/>
+			<enumeration value="SL"/>
+			<enumeration value="SG"/>
+			<enumeration value="SY"/>
+			<enumeration value="SO"/>
+			<enumeration value="LK"/>
+			<enumeration value="SZ"/>
+			<enumeration value="ZA"/>
+			<enumeration value="SD"/>
+			<enumeration value="SS"/>
+			<enumeration value="SE"/>
+			<enumeration value="CH"/>
+			<enumeration value="SR"/>
+			<enumeration value="TH"/>
+			<enumeration value="TW"/>
+			<enumeration value="TZ"/>
+			<enumeration value="TJ"/>
+			<enumeration value="PS"/>
+			<enumeration value="TF"/>
+			<enumeration value="TL"/>
+			<enumeration value="TG"/>
+			<enumeration value="TK"/>
+			<enumeration value="TO"/>
+			<enumeration value="TT"/>
+			<enumeration value="TN"/>
+			<enumeration value="TC"/>
+			<enumeration value="TM"/>
+			<enumeration value="TR"/>
+			<enumeration value="TV"/>
+			<enumeration value="UA"/>
+			<enumeration value="UG"/>
+			<enumeration value="UY"/>
+			<enumeration value="UZ"/>
+			<enumeration value="VU"/>
+			<enumeration value="VA"/>
+			<enumeration value="VE"/>
+			<enumeration value="VN"/>
+			<enumeration value="VG"/>
+			<enumeration value="VI"/>
+			<enumeration value="WF"/>
+			<enumeration value="YE"/>
+			<enumeration value="DJ"/>
+			<enumeration value="ZM"/>
+			<enumeration value="ZW"/>
+			<enumeration value="QU"/>
+			<enumeration value="XB"/>
+			<enumeration value="XU"/>
+			<enumeration value="XN"/>
+		</restriction>
+	</simpleType>
+	<!--  Egoitza herrialdeko identifikazio motak - Tipos de identificación en el país de residencia -->
+	<simpleType name="IDTypeType">
+		<restriction base="string">
+			<enumeration value="02">
+				<annotation>
+					<documentation >IFZ BEZ - NIF IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation >Pasaportea - Pasaporte</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation >Egoitza dagoen herrialdeak edo lurraldeak emandako nortasun agiri ofiziala - Documento oficial de identificación expedido por el país o territorio de residencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+				<annotation>
+					<documentation >Egoitza ziurtagiria - Certificado de residencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="06">
+				<annotation>
+					<documentation >Beste frogagiri bat - Otro documento probatorio</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+</schema>

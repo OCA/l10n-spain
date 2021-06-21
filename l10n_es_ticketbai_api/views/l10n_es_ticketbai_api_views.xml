@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <menuitem
+            id="menu_l10n_es_tbai_config"
+            parent="base.menu_administration"
+            sequence="35"
+            groups="base.group_system"
+            name="TicketBAI"
+        />
+    </data>
+</odoo>
