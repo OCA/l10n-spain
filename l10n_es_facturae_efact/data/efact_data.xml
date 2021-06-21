@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo noupdate="1">
     <record id="account_invoice_efact_server" model="ir.config_parameter">
         <field name="key">account.invoice.efact.server</field>
@@ -25,17 +25,23 @@
     <record id="integration_efact" model="account.invoice.integration.method">
         <field name="name">eFACT</field>
         <field name="code">eFACT</field>
-        <field name="sequence_id" ref="l10n_es_facturae_efact.seq_account_invoice_efact"/>
+        <field
+            name="sequence_id"
+            ref="l10n_es_facturae_efact.seq_account_invoice_efact"
+        />
     </record>
     <record id="update_efact_job" model="ir.cron">
         <field name="name">eFACT update Job</field>
         <field name="active">True</field>
-        <field name="user_id" ref="base.user_root"/>
+        <field name="user_id" ref="base.user_root" />
         <field name="priority">8</field>
         <field name="interval_type">hours</field>
         <field name="state">code</field>
         <field name="numbercall">-1</field>
-        <field name="model_id" ref="l10n_es_facturae.model_account_invoice_integration_log"/>
+        <field
+            name="model_id"
+            ref="l10n_es_facturae.model_account_invoice_integration_log"
+        />
         <field name="code">model.efact_check_history()</field>
     </record>
 </odoo>
