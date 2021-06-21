@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_partner',
         'odoo13-addon-l10n_es_partner_mercantil',
         'odoo13-addon-l10n_es_pos',
+        'odoo13-addon-l10n_es_ticketbai_api',
         'odoo13-addon-l10n_es_toponyms',
         'odoo13-addon-l10n_es_vat_book',
         'odoo13-addon-payment_redsys',
