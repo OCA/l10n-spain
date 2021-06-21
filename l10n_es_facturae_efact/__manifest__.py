@@ -5,14 +5,11 @@
 {
     "name": "Envío de Factura-e a e.FACT",
     "version": "12.0.1.0.3",
-    "author": "Creu Blanca, "
-              "Odoo Community Association (OCA)",
+    "author": "Creu Blanca, " "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
-    "depends": [
-        "l10n_es_facturae",
-    ],
+    "depends": ["l10n_es_facturae",],
     "data": [
         "data/efact_data.xml",
         "views/res_partner_view.xml",
@@ -20,12 +17,6 @@
         "views/res_config_views.xml",
         "views/res_company_view.xml",
     ],
-    "external_dependencies": {
-        "python": [
-            "paramiko",
-            "OpenSSL",
-            "xmlsec"
-        ]
-    },
+    "external_dependencies": {"python": ["paramiko", "OpenSSL", "xmlsec"]},
     "installable": True,
 }
