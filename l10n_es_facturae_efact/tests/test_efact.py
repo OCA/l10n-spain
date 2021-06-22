@@ -5,13 +5,12 @@
 
 import base64
 import logging
-from datetime import datetime
-from io import BytesIO
-
-from mock import patch
+import os
 
 from odoo import exceptions, tools
 from odoo.tests import common
+
+from odoo.addons.component.tests.common import SavepointComponentRegistryCase
 
 _logger = logging.getLogger(__name__)
 try:
@@ -20,69 +19,26 @@ except (ImportError, IOError) as err:
     _logger.info(err)
 
 
-class TestConnection:
-    def __init__(self, data, filename=""):
-        self.data = data
-        self.filename = filename
-        self._host_keys = {}
-        self._system_host_keys = {}
-
-    def connect(self, hostname, port, username, password):
-        return
-
-    def open_sftp(self):
-        return SftpConnection(self.data, self.filename)
-
-    def close(self):
-        return
-
-    def load_system_host_keys(self):
-        return
-
-    def get_host_keys(self):
-        return Keys()
-
-
-class Keys:
-    def add(self, *args):
-        return
-
-
-class SftpConnection:
-    def __init__(self, data, filename):
-        self.data = data
-        self.filename = filename
-
-    def close(self):
-        return
-
-    def normalize(self, path):
-        return path
-
-    def chdir(self, path):
-        return
-
-    def open(self, path, type=""):
-        return BytesIO(self.data)
-
-    def listdir_attr(self, path):
-        return [TestAttribute(self.filename)]
-
-    def remove(self, filename):
-        return
-
-
-class TestAttribute:
-    def __init__(self, name):
-        self.filename = name
-        self.st_atime = datetime.now()
-
-
-class TestL10nEsFacturae(common.SavepointCase):
+@common.tagged("-at_install", "post_install")
+class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context, tracking_disable=True, test_queue_job_no_delay=True
+            )
+        )
+
         self = cls
+
+        self._load_module_components(self, "component_event")
+        self._load_module_components(self, "edi")
+        self._load_module_components(self, "storage_backend")
+        self._load_module_components(self, "edi_storage")
+        self._load_module_components(self, "edi_account")
+        self._load_module_components(self, "l10n_es_facturae")
+        self._load_module_components(self, "l10n_es_facturae_efact")
         pkcs12 = crypto.PKCS12()
         pkey = crypto.PKey()
         pkey.generate_key(crypto.TYPE_RSA, 512)
@@ -96,11 +52,6 @@ class TestL10nEsFacturae(common.SavepointCase):
         x509.sign(pkey, "md5")
         pkcs12.set_privatekey(pkey)
         pkcs12.set_certificate(x509)
-        main_company = self.env.ref("base.main_company")
-        main_company.facturae_cert = base64.b64encode(
-            pkcs12.export(passphrase="password")
-        )
-        main_company.facturae_cert_password = "password"
         self.tax = self.env["account.tax"].create(
             {
                 "name": "Test tax",
@@ -110,6 +61,7 @@ class TestL10nEsFacturae(common.SavepointCase):
                 "facturae_code": "01",
             }
         )
+
         self.state = self.env["res.country.state"].create(
             {
                 "name": "Ciudad Real",
@@ -127,62 +79,45 @@ class TestL10nEsFacturae(common.SavepointCase):
                 "country_id": self.env.ref("base.es").id,
                 "vat": "ES05680675C",
                 "facturae": True,
+                "attach_invoice_as_annex": False,
                 "organo_gestor": "U00000038",
                 "unidad_tramitadora": "U00000038",
                 "oficina_contable": "U00000038",
+                "l10n_es_facturae_sending_code": "efact",
                 "facturae_efact_code": "0123456789012345678901",
-                "invoice_integration_method_ids": [
-                    (
-                        6,
-                        0,
-                        [self.env.ref("l10n_es_facturae_efact.integration_efact").id],
-                    )
-                ],
             }
         )
-        main_company.partner_id.facturae_efact_code = "0123456789012345678901"
+        main_company = self.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
-        main_company.partner_id.country_id = self.env.ref("base.uk").id
-        # set this by SQL due to the upstream constraint
-        self.env.cr.execute(
-            "UPDATE res_company SET currency_id = %s", (self.env.ref("base.EUR").id,)
+        main_company.partner_id.country_id = self.env.ref("base.uk")
+        main_company.facturae_cert = base64.b64encode(
+            pkcs12.export(passphrase="password")
         )
+        main_company.facturae_cert_password = "password"
+        main_company.partner_id.facturae_efact_code = "0123456789012345678901"
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
         bank_obj = self.env["res.partner.bank"]
         self.bank = bank_obj.search(
-            [("acc_number", "=", "BE96 9988 7766 5544")], limit=1
+            [("acc_number", "=", "FR20 1242 1242 1242 1242 1242 124")], limit=1
         )
         if not self.bank:
             self.bank = bank_obj.create(
                 {
-                    "state": "iban",
-                    "acc_number": "BE96 9988 7766 5544",
-                    "partner_id": self.partner.id,
+                    "acc_number": "FR20 1242 1242 1242 1242 1242 124",
+                    "partner_id": main_company.partner.id,
                     "bank_id": self.env["res.bank"]
                     .search([("bic", "=", "PSSTFRPPXXX")], limit=1)
                     .id,
                 }
             )
-        self.mandate = self.env["account.banking.mandate"].create(
-            {
-                "company_id": main_company.id,
-                "format": "basic",
-                "partner_id": self.partner.id,
-                "state": "valid",
-                "partner_bank_id": self.bank.id,
-                "signature_date": "2016-03-12",
-            }
-        )
-
         self.payment_method = self.env["account.payment.method"].create(
             {
                 "name": "inbound_mandate",
                 "code": "inbound_mandate",
                 "payment_type": "inbound",
                 "bank_account_required": False,
-                "mandate_required": True,
                 "active": True,
             }
         )
@@ -195,7 +130,17 @@ class TestL10nEsFacturae(common.SavepointCase):
                 "code": "TEST",
                 "type": "bank",
                 "company_id": main_company.id,
+                "bank_account_id": self.bank.id,
                 "inbound_payment_method_ids": [(6, 0, payment_methods.ids)],
+            }
+        )
+
+        self.sale_journal = self.env["account.journal"].create(
+            {
+                "name": "Sale journal",
+                "code": "SALE_TEST",
+                "type": "sale",
+                "company_id": main_company.id,
             }
         )
         self.payment_mode = self.env["account.payment.mode"].create(
@@ -206,6 +151,7 @@ class TestL10nEsFacturae(common.SavepointCase):
                 "payment_method_id": self.env.ref(
                     "payment.account_payment_method_electronic_in"
                 ).id,
+                "show_bank_account_from_journal": True,
                 "facturae_code": "01",
             }
         )
@@ -216,11 +162,12 @@ class TestL10nEsFacturae(common.SavepointCase):
                 "bank_account_link": "fixed",
                 "fixed_journal_id": self.journal.id,
                 "payment_method_id": self.payment_method.id,
+                "show_bank_account_from_journal": True,
                 "facturae_code": "02",
             }
         )
 
-        account = self.env["account.account"].create(
+        self.account = self.env["account.account"].create(
             {
                 "company_id": main_company.id,
                 "name": "Facturae Product account",
@@ -228,30 +175,39 @@ class TestL10nEsFacturae(common.SavepointCase):
                 "user_type_id": self.env.ref("account.data_account_type_revenue").id,
             }
         )
-        self.invoice = self.env["account.invoice"].create(
+        self.move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                "account_id": self.partner.property_account_receivable_id.id,
-                "journal_id": self.journal.id,
-                "date_invoice": "2016-03-12",
-                "partner_bank_id": self.bank.id,
+                # "account_id": self.partner.property_account_receivable_id.id,
+                "journal_id": self.sale_journal.id,
+                "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
+                "type": "out_invoice",
+                "name": "R/0001",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref(
+                                "product.product_delivery_02"
+                            ).id,
+                            "account_id": self.account.id,
+                            "name": "Producto de prueba",
+                            "quantity": 1.0,
+                            "price_unit": 100.0,
+                            "tax_ids": [(6, 0, self.tax.ids)],
+                        },
+                    )
+                ],
             }
         )
-        self.invoice_line = self.env["account.invoice.line"].create(
-            {
-                "product_id": self.env.ref("product.product_delivery_02").id,
-                "account_id": account.id,
-                "invoice_id": self.invoice.id,
-                "name": "Producto de prueba",
-                "quantity": 1.0,
-                "price_unit": 100.0,
-                "invoice_line_tax_ids": [(6, 0, self.tax.ids)],
-            }
+        self.move.refresh()
+        self.efact_update_type = self.env.ref(
+            "l10n_es_facturae_efact.facturae_efact_update_exchange_type"
         )
-        self.invoice._onchange_invoice_line_ids()
-        self.invoice.action_invoice_open()
-        self.invoice.number = "R/0001"
+        self.backend = self.env.ref("l10n_es_facturae_efact.efact_backend")
+        self.backend.storage_id.backend_type = "filesystem"
 
     def test_constrain_facturae_code_01(self):
         with self.assertRaises(exceptions.ValidationError):
@@ -278,95 +234,48 @@ class TestL10nEsFacturae(common.SavepointCase):
             self.partner.state_id = False
 
     def test_efact_sending(self):
-        patch_class = (
-            "odoo.addons.l10n_es_facturae_efact.models."
-            "account_invoice_integration_log.SSHClient"
+        self.move.with_context(force_edi_send=True).post()
+        self.move.refresh()
+        self.assertTrue(self.move.exchange_record_ids)
+        exchange_record = self.move.exchange_record_ids
+        self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+        exchange_record.backend_id.exchange_send(exchange_record)
+        self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+        self.backend.storage_id.add(
+            os.path.join("statout", exchange_record.exchange_filename + "@001"),
+            bytes(
+                tools.file_open(
+                    "result.xml", subdir="addons/l10n_es_facturae_efact/tests"
+                )
+                .read()
+                .encode("utf-8")
+            ),
         )
-        self.invoice.action_integrations()
-        integration = self.env["account.invoice.integration"].search(
-            [("invoice_id", "=", self.invoice.id)]
-        )
-        self.assertEqual(integration.method_code, "eFACT")
-        self.assertEqual(integration.can_send, True)
-        attachment = self.env["ir.attachment"].create(
-            {
-                "name": "attach.txt",
-                "datas": base64.b64encode(b"attachment"),
-                "datas_fname": "attach.txt",
-                "res_model": "account.invoice",
-                "res_id": self.invoice.id,
-                "mimetype": "text/plain",
-            }
-        )
-        integration.attachment_ids = [(6, 0, attachment.ids)]
-        with patch(patch_class) as mock:
-            mock.return_value = TestConnection(bytes(b""))
-            integration.send_action()
-        self.assertEqual(integration.state, "sent")
-        with self.assertRaises(exceptions.UserError):
-            integration.update_action()
-        with self.assertRaises(exceptions.ValidationError):
-            self.env["account.invoice.integration.cancel"].create(
-                {"integration_id": integration.id}
-            ).cancel_integration()
-        with patch(patch_class) as mock:
-            mock.return_value = TestConnection(
-                bytes(
-                    tools.file_open(
-                        "result.xml", subdir="addons/l10n_es_facturae_efact/tests"
-                    )
-                    .read()
-                    .encode("utf-8")
-                ),
-                integration.efact_reference + "@001",
-            )
-            self.env["account.invoice.integration.log"].efact_check_history()
-        self.assertEqual(integration.efact_hub_id, "12")
-        self.assertEqual(integration.register_number, "111")
+        self.env["edi.exchange.record"].efact_check_history()
+        exchange_record.flush()
+        self.assertEqual(exchange_record.external_identifier, "12")
+        self.assertFalse(exchange_record.exchange_error)
+        self.assertEqual(self.move.l10n_es_facturae_status, "efact-DELIVERED")
 
     def test_efact_sending_error(self):
-        patch_class = (
-            "odoo.addons.l10n_es_facturae_efact.models."
-            "account_invoice_integration_log.SSHClient"
+        self.move.with_context(force_edi_send=True).post()
+        self.move.refresh()
+        self.assertTrue(self.move.exchange_record_ids)
+        exchange_record = self.move.exchange_record_ids
+        self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+        exchange_record.backend_id.exchange_send(exchange_record)
+        self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+        self.backend.storage_id.add(
+            os.path.join("statout", exchange_record.exchange_filename + "@001"),
+            bytes(
+                tools.file_open(
+                    "result_02.xml", subdir="addons/l10n_es_facturae_efact/tests"
+                )
+                .read()
+                .encode("utf-8")
+            ),
         )
-        self.invoice.action_integrations()
-        integration = self.env["account.invoice.integration"].search(
-            [("invoice_id", "=", self.invoice.id)]
-        )
-        self.assertEqual(integration.method_code, "eFACT")
-        self.assertEqual(integration.can_send, True)
-        attachment = self.env["ir.attachment"].create(
-            {
-                "name": "attach.txt",
-                "datas": base64.b64encode(b"attachment"),
-                "datas_fname": "attach.txt",
-                "res_model": "account.invoice",
-                "res_id": self.invoice.id,
-                "mimetype": "text/plain",
-            }
-        )
-        integration.attachment_ids = [(6, 0, attachment.ids)]
-        with patch(patch_class) as mock:
-            mock.return_value = TestConnection(bytes(b""))
-            integration.send_action()
-        self.assertEqual(integration.state, "sent")
-        with self.assertRaises(exceptions.UserError):
-            integration.update_action()
-        with self.assertRaises(exceptions.ValidationError):
-            self.env["account.invoice.integration.cancel"].create(
-                {"integration_id": integration.id}
-            ).cancel_integration()
-        with patch(patch_class) as mock:
-            mock.return_value = TestConnection(
-                bytes(
-                    tools.file_open(
-                        "result_02.xml", subdir="addons/l10n_es_facturae_efact/tests"
-                    )
-                    .read()
-                    .encode("utf-8")
-                ),
-                integration.efact_reference + "@001",
-            )
-            self.env["account.invoice.integration.log"].efact_check_history()
-        self.assertEqual(integration.efact_hub_id, "12")
-        self.assertEqual(integration.register_number, False)
+        self.env["edi.exchange.record"].efact_check_history()
+        exchange_record.flush()
+        self.assertEqual(exchange_record.external_identifier, "12")
+        self.assertTrue(exchange_record.exchange_error)

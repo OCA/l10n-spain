@@ -7,4 +7,6 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    facturae_efact_code = fields.Char(related="partner_id.facturae_efact_code")
+    facturae_efact_code = fields.Char(
+        related="partner_id.facturae_efact_code", readonly=False
+    )
