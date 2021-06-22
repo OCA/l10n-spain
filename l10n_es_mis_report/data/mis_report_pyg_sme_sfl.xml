@@ -461,7 +461,7 @@
             />
             <field
                 name="expression"
-            > +es40110 +es40200 +es40300 +es40400 +es40500 +es40600 +es40700 +es40800 +es40900 +es40A00 +es40B00 +es40C00 +es40D00</field>
+            > +es40100 +es40200 +es40300 +es40400 +es40500 +es40600 +es40700 +es40800 +es40900 +es40A00 +es40B00 +es40C00 +es40D00</field>
         </record>
         <record id="mis_report_kpi_es_pyg_pyme_sfl_41100" model="mis.report.kpi">
             <field name="report_id" ref="mis_report_es_pyg_pyme_sfl" />
