@@ -33,7 +33,7 @@ addon | version | summary
 [l10n_es_dua](l10n_es_dua/) | 14.0.1.0.0 | Importaciones con DUA
 [l10n_es_dua_sii](l10n_es_dua_sii/) | 14.0.1.0.0 | Suministro Inmediato de Información de importaciones con DUA
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.1.0.1 | Spanish Intrastat Product Declaration
-[l10n_es_mis_report](l10n_es_mis_report/) | 14.0.1.1.0 | Plantillas MIS Builder para informes contables españoles
+[l10n_es_mis_report](l10n_es_mis_report/) | 14.0.1.2.0 | Plantillas MIS Builder para informes contables españoles
 [l10n_es_partner](l10n_es_partner/) | 14.0.1.0.1 | Adaptación de los clientes, proveedores y bancos para España
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 14.0.1.0.0 | Añade los datos del registro mercantil a la empresa
 [l10n_es_pos](l10n_es_pos/) | 14.0.1.0.0 | Punto de venta adaptado a la legislación española
