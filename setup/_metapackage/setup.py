@@ -40,6 +40,7 @@ setuptools.setup(
         'odoo11-addon-l10n_es_partner',
         'odoo11-addon-l10n_es_partner_mercantil',
         'odoo11-addon-l10n_es_pos',
+        'odoo11-addon-l10n_es_ticketbai_api',
         'odoo11-addon-l10n_es_toponyms',
         'odoo11-addon-l10n_es_vat_book',
         'odoo11-addon-payment_redsys',
