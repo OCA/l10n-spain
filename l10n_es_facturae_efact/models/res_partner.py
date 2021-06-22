@@ -8,6 +8,9 @@ from odoo import _, api, exceptions, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    l10n_es_facturae_sending_code = fields.Selection(
+        selection_add=[("efact", "e.Fact")]
+    )
     facturae_efact_code = fields.Char(string="e.Fact code")
 
     @api.constrains(
@@ -15,14 +18,13 @@ class ResPartner(models.Model):
         "vat",
         "country_id",
         "state_id",
-        "invoice_integration_method_ids",
+        "l10n_es_facturae_sending_code",
         "facturae_efact_code",
     )
     def constrain_efact(self):
-        efact = self.env.ref("l10n_es_facturae_efact.integration_efact")
-        for record in self.filtered(
-            lambda x: efact in x.invoice_integration_method_ids
-        ):
+        for record in self:
+            if record.l10n_es_facturae_sending_code != "efact":
+                continue
             if not record.facturae:
                 raise exceptions.ValidationError(
                     _("Facturae must be selected in order to send to e.Fact")
