@@ -33,8 +33,8 @@ msgstr ""
 " * L'estat \"Esborrany\" s'utilitza quan un usuari codifica una factura nova "
 "i no confirmada.\n"
 " * L'estat \"Obert\" s'utilitza quan l'usuari crea la factura i es genera un "
-"número de factura. Es manté en estat obert fins que l'usuari paga la factura."
-"\n"
+"número de factura. Es manté en estat obert fins que l'usuari paga la "
+"factura.\n"
 " * L'estat \"Pagat\" s'estableix automàticament quan es paga la factura. Es "
 "poden conciliar o no les seves entrades de diari relacionades.\n"
 " * L'estat \"Cancel·lat\" s'utilitza quan l'usuari cancel·la la factura."
@@ -529,7 +529,7 @@ msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_cancel_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_log_id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_8077
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice_integration_method_id_8277
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae_id
 msgid "ID"
 msgstr "ID"
