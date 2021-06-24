@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import logging
@@ -8,7 +9,7 @@ from odoo import fields, models
 _logger = logging.getLogger(__name__)
 
 try:
-    from OpenSSL import crypto
+    from cryptography.hazmat.primitives.serialization import pkcs12
 except (ImportError, IOError) as err:
     _logger.error(err)
 
@@ -36,7 +37,9 @@ class TicketBaiCertificate(models.Model):
 
     def get_p12(self):
         """
-        :return: OpenSSL.crypto.PKCS12
+        :return: cryptography.pkcs12
         """
         self.ensure_one()
-        return crypto.load_pkcs12(self.get_p12_buffer(), self.password)
+        return pkcs12.load_key_and_certificates(
+            self.get_p12_buffer(), self.password.encode()
+        )

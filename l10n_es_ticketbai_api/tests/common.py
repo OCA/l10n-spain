@@ -11,6 +11,7 @@ from lxml import etree
 
 from odoo import fields
 from odoo.tests import common
+from odoo.tests.common import tagged
 
 from ..models.ticketbai_invoice import RefundCode, RefundType
 from ..models.ticketbai_invoice_tax import (
@@ -23,8 +24,7 @@ from ..models.ticketbai_invoice_tax import (
 from ..ticketbai.xml_schema import TicketBaiSchema, XMLSchema
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def _send_to_tax_agency(self, invoice):
         pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(

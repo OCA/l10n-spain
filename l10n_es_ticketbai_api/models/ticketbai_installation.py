@@ -1,7 +1,7 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, fields, models
+from odoo import _, api, exceptions, fields, models
 
 
 class TicketBaiInstallation(models.Model):
@@ -19,6 +19,35 @@ class TicketBaiInstallation(models.Model):
     )
     vat = fields.Char("TIN", related="developer_id.vat")
     license_key = fields.Char("License Key", required=True, copy=False)
+
+    @api.constrains("license_key")
+    def _check_license_key(self):
+        for record in self:
+            if not record.license_key:
+                raise exceptions.ValidationError(
+                    _("TicketBAI License Key is required.")
+                )
+            elif 20 < len(record.license_key):
+                raise exceptions.ValidationError(
+                    _(
+                        "TicketBAI License Key longer than expected. "
+                        "Should be 20 characters max.!"
+                    )
+                )
+
+    @api.constrains("developer_id")
+    def _check_developer_id(self):
+        for record in self:
+            if not record.developer_id:
+                raise exceptions.ValidationError(_("TicketBAI Developer is required."))
+
+    @api.constrains("name")
+    def _check_name(self):
+        for record in self:
+            if not record.name:
+                raise exceptions.ValidationError(
+                    _("TicketBAI Software Name is required.")
+                )
 
     _sql_constraints = [
         ("name_ref_uniq", "UNIQUE(name)", _("Software Name must be unique!")),
