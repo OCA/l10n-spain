@@ -1,4 +1,5 @@
 # Copyright 2020 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 from base64 import b64encode
@@ -146,10 +147,9 @@ class XMLSchema:
         xmlsig.template.x509_data_add_certificate(data)
         xmlsig.template.add_key_value(ki)
         ctx = xmlsig.SignatureContext()
-        ctx.load_pkcs12(certificate)
-        ctx.x509 = certificate.get_certificate().to_cryptography()
+        ctx.x509 = certificate[1]
         ctx.public_key = ctx.x509.public_key()
-        ctx.private_key = certificate.get_privatekey().to_cryptography_key()
+        ctx.private_key = certificate[0]
         dslist = (
             "ds:Object",
             (),

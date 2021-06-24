@@ -2,15 +2,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime, timedelta
 
-from odoo.tests import common
+from odoo.tests.common import tagged
 from odoo.tools.misc import DEFAULT_SERVER_DATE_FORMAT
 
 from ..ticketbai.xml_schema import XMLSchema
 from .common import TestL10nEsTicketBAIAPI
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def setUp(self):
         super().setUp()

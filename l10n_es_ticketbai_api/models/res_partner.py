@@ -56,6 +56,11 @@ class ResPartner(models.Model):
             country_code = country_code
         elif self.country_id:
             country_code = self.country_id.code
+        if not country_code:
+            raise exceptions.ValidationError(
+                _("The invoice customer %s does not have a valid country assigned.")
+                % self.name
+            )
         return country_code.upper()
 
     def tbai_get_partner_vat_number(self):
