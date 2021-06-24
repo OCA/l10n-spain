@@ -1,18 +1,11 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import logging
 
+import requests
 from requests import exceptions
 
 from odoo.tools.safe_eval import safe_eval
-
-_logger = logging.getLogger(__name__)
-
-try:
-    from requests_pkcs12 import post as pkcs12_post
-except (ImportError, IOError) as err:
-    _logger.error(err)
 
 
 class TicketBaiResponse:
@@ -37,22 +30,14 @@ class TicketBaiApi:
 
     def post(self, data):
         headers = {"Content-Type": "application/xml; charset=UTF-8"}
-        if self.cert is None and self.key is None:
-            response = pkcs12_post(
-                self.url,
-                data=data,
-                headers=headers,
-                pkcs12_data=self.p12_buffer,
-                pkcs12_password=self.password,
-            )
-        elif self.p12_buffer is None and self.password is None:
-            response = pkcs12_post(
-                self.url, data=data, headers=headers, cert=(self.cert, self.key)
+        if self.cert and self.key:
+            response = requests.post(
+                url=self.url, data=data, headers=headers, cert=(self.cert, self.key)
             )
         else:
             raise exceptions.RequestException(
                 errno="1",
-                strerror="Please provide cert and key, or p12 buffer and its password.",
+                strerror="Please provide cert and key.",
             )
         return response
 

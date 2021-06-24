@@ -37,7 +37,7 @@ class ResCompany(models.Model):
         "Device Serial Number", default="", copy=False
     )
     tbai_tax_agency_id = fields.Many2one(
-        comodel_name="tbai.tax.agency", string="TicketBAI Tax Agency", copy=False
+        comodel_name="tbai.tax.agency", string="TBAI Tax Agency", copy=False
     )
     tbai_vat_regime_simplified = fields.Boolean("Regime Simplified", copy=False)
     tbai_last_invoice_id = fields.Many2one(
@@ -50,38 +50,6 @@ class ResCompany(models.Model):
             if record.tbai_enabled and not record.tbai_certificate_id:
                 raise exceptions.ValidationError(
                     _("Company %s TicketBAI Certificate is required.") % record.name
-                )
-
-    @api.constrains("tbai_license_key")
-    def _check_tbai_license_key(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_license_key:
-                raise exceptions.ValidationError(
-                    _("Company %s TicketBAI License Key is required.") % record.name
-                )
-            elif record.tbai_enabled and 20 < len(record.tbai_license_key):
-                raise exceptions.ValidationError(
-                    _(
-                        "Company %s TicketBAI License Key longer than expected. "
-                        "Should be 20 characters max.!"
-                    )
-                    % record.name
-                )
-
-    @api.constrains("tbai_developer_id")
-    def _check_tbai_developer_id(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_developer_id:
-                raise exceptions.ValidationError(
-                    _("Company %s TicketBAI Developer is required.") % record.name
-                )
-
-    @api.constrains("tbai_software_name")
-    def _check_tbai_software_name(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_software_name:
-                raise exceptions.ValidationError(
-                    _("Company %s TicketBAI Software Name is required.") % record.name
                 )
 
     @api.constrains("tbai_device_serial_number")
