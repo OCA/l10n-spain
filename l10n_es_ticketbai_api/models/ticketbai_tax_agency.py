@@ -16,7 +16,7 @@ class TicketBAITaxAgency(models.Model):
         string="QR Base URL", compute="_compute_ticketbai_version", store=True
     )
     test_qr_base_url = fields.Char(
-        string="QR Base URL", compute="_compute_ticketbai_version", store=True
+        string="Test QR Base URL", compute="_compute_ticketbai_version", store=True
     )
     tax_agency_version_ids = fields.One2many(
         comodel_name="tbai.tax.agency.version", inverse_name="tbai_tax_agency_id"
