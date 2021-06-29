@@ -9,49 +9,50 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2017-06-29 22:48+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2021-06-29 17:48+0000\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
 msgid "AEAT 111 model"
-msgstr ""
+msgstr "Model AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_report
 msgid "AEAT 111 report"
-msgstr ""
+msgstr "Informe AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_tree
 msgid "AEAT 111 reports"
-msgstr ""
+msgstr "Informes AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
 msgid "AEAT model 111"
-msgstr ""
+msgstr "Model AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__move_id
 msgid "Account entry"
-msgstr ""
+msgstr "Apunt comptable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acció necessària"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Activitats"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_exception_decoration
