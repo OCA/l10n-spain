@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-29 22:48+0000\n"
-"PO-Revision-Date: 2021-04-01 11:56+0000\n"
+"PO-Revision-Date: 2021-06-29 16:14+0000\n"
 "Last-Translator: jabelchi <jabelchi@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
@@ -22,52 +22,52 @@ msgstr ""
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
 msgid "AEAT 111 model"
-msgstr ""
+msgstr "Model AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model,name:l10n_es_aeat_mod111.model_l10n_es_aeat_mod111_report
 msgid "AEAT 111 report"
-msgstr ""
+msgstr "Informe AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_tree
 msgid "AEAT 111 reports"
-msgstr ""
+msgstr "Informes AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
 msgid "AEAT model 111"
-msgstr ""
+msgstr "Model AEAT 111"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__move_id
 msgid "Account entry"
-msgstr ""
+msgstr "Assentament comptable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acció necesària"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Activitats"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decoració d'activitat d'excepció"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estat de activitats"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__allow_posting
 msgid "Allow Posting"
-msgstr ""
+msgstr "Permetre el registre"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_28
@@ -75,16 +75,18 @@ msgid ""
 "Amount of retentions: ([03] + [06] + [09] + [12] + [15] + [18] + [21] + [24] "
 "+ [27])"
 msgstr ""
+"Import de retencións: ([03] + [06] + [09] + [12] + [15] + [18] + [21] + [24] "
+"+ [27])"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nombre d'adjunts"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Awards"
-msgstr ""
+msgstr "Premis"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_18
@@ -92,6 +94,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- In kind - Amount retained"
 msgstr ""
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
+" En espècies - Quantitat retinguda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_17
@@ -99,6 +103,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- In kind - Base taxable value"
 msgstr ""
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
+" En espècies - Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_16
@@ -106,6 +112,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- In kind - Number of recipients"
 msgstr ""
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
+" En espècies - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_15
@@ -113,6 +121,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- Monetary - Amount retained"
 msgstr ""
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
+" Monetari - Quantitat retinguda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_14
@@ -120,6 +130,8 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- Monetary - Base taxable value"
 msgstr ""
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
+" Monetari - Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_13
@@ -127,46 +139,48 @@ msgid ""
 "Awards for participation in games, contests, raffles or random combinations "
 "- Monetary - Number of recipients"
 msgstr ""
+"Premis per participació en jocs, concursos, rifes o combinacions aleatòries -"
+" Monetari - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__partner_bank_id
 msgid "Bank account"
-msgstr ""
+msgstr "Compte bancari"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Business income"
-msgstr ""
+msgstr "Rendiment activitats econòmiques"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_12
 msgid "Business income - In kind - Amount retained"
-msgstr ""
+msgstr "Rendiments activitats econòmiques - En espècies - Quantitat retinguda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_11
 msgid "Business income - In kind - Base taxable value"
-msgstr ""
+msgstr "Rendiments activitats econòmiques - En espècies - Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_10
 msgid "Business income - In kind - Number of recipients"
-msgstr ""
+msgstr "Rendiments activitats econòmiques - En espècies - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_07
 msgid "Business income - Monetary - Number of recipients"
-msgstr ""
+msgstr "Rendiments activitats econòmiques - Monetari - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__calculation_date
 msgid "Calculation date"
-msgstr ""
+msgstr "Data de càlcul"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Capital gains derived from the forest exploitation"
-msgstr ""
+msgstr "Guanys patrimonials derivats de l'explotació forestal"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_24
@@ -174,6 +188,8 @@ msgid ""
 "Capital gains derived from the forest exploitation of residents in public "
 "forests - In kind - Amount retained"
 msgstr ""
+"Guanys patrimonials derivats de l'explotació forestal de veïns de boscos "
+"públics - En espècie - Quantitat retinguda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_23
@@ -181,6 +197,8 @@ msgid ""
 "Capital gains derived from the forest exploitation of residents in public "
 "forests - In kind - Base taxable value"
 msgstr ""
+"Guanys patrimonials derivats de l'explotació forestal de veïns de boscos "
+"públics - En espècie - Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_22
@@ -188,6 +206,8 @@ msgid ""
 "Capital gains derived from the forest exploitation of residents in public "
 "forests - In kind - Number of recipients"
 msgstr ""
+"Guanys patrimonials derivats de l'explotació forestal de veïns de boscos "
+"públics - En espècie - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_21
@@ -195,6 +215,8 @@ msgid ""
 "Capital gains derived from the forest exploitation of residents in public "
 "forests - Monetary - Amount retained"
 msgstr ""
+"Guanys patrimonials derivats de l'explotació forestals de veïns de boscos "
+"públics - Monetari - Quantitat retinguda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_20
@@ -202,6 +224,8 @@ msgid ""
 "Capital gains derived from the forest exploitation of residents in public "
 "forests - Monetary - Base taxable value"
 msgstr ""
+"Guanys patrimonials derivats de l'explotació forestal de veïns de boscos "
+"públics - Monetari - Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_19
@@ -209,26 +233,28 @@ msgid ""
 "Capital gains derived from the forest exploitation of residents in public "
 "forests - Monetary - Number of recipients"
 msgstr ""
+"Guanys patrimonials derivats de l'explotació forestal de veïns de boscos "
+"públics - Monetari - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__colegio_concertado
 msgid "College concerted"
-msgstr ""
+msgstr "Col·legi concertat"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__partner_bank_id
 msgid "Company bank account used for the presentation"
-msgstr ""
+msgstr "Compte bancari de l'empresa utilitzat per a la presentació"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Consideration for the transfer of image rights"
-msgstr ""
+msgstr "Contraprestació per cessió de drets d'imatge"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_27
@@ -236,6 +262,9 @@ msgid ""
 "Consideration for the transfer of image rights: income account provided in "
 "Article 92.8 of the Tax Law - Monetary or in kind - Amount retained"
 msgstr ""
+"Contraprestacions per la cessió de drets d'imatge: ingressos a compte "
+"previstos a l'article 92.8 de la Llei de l'Impost - Monetari o en espècie - "
+"Import de les despeses a compte"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_26
@@ -243,6 +272,9 @@ msgid ""
 "Consideration for the transfer of image rights: income account provided in "
 "Article 92.8 of the Tax Law - Monetary or in kind - Base taxable value"
 msgstr ""
+"Contraprestacions per la cessió de drets d'imatge: ingressos a compte "
+"previstos a l'article 92.8 de la Llei de l'Impost - Monetari o en espècie - "
+"Valor base imposable"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_25
@@ -250,21 +282,24 @@ msgid ""
 "Consideration for the transfer of image rights: income account provided in "
 "Article 92.8 of the Tax Law - Monetary or in kind - Number of recipients"
 msgstr ""
+"Contraprestacions per la cessió de drets d'imatge: ingressos a compte "
+"previstos a l'article 92.8 de la Llei de l'Impost - Monetari o en espècie - "
+"Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__contact_email
 msgid "Contact email"
-msgstr ""
+msgstr "Email de contacte"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__counterpart_account_id
 msgid "Counterpart account"
-msgstr ""
+msgstr "Contrapartida"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod111.action_l10n_es_aeat_mod111_report
 msgid "Create and query AEAT Model 111 reports."
-msgstr ""
+msgstr "Crear i consultar declaracions del model 111 de l'AEAT."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__create_uid
@@ -279,12 +314,12 @@ msgstr "Creat el"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moneda"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__u
 msgid "Direct debit"
-msgstr ""
+msgstr "Domiciliació"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__display_name
@@ -294,12 +329,12 @@ msgstr "Nom a mostrar"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_end
 msgid "Ending date"
-msgstr ""
+msgstr "Data final"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__export_config_id
 msgid "Export config"
-msgstr ""
+msgstr "Exportar configuració"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_29
@@ -308,26 +343,29 @@ msgid ""
 "period (in which his statement was to return and compensation back option "
 "was chosen)."
 msgstr ""
+"A deduir (solament en cas d'autoliquidació complementària): Resultats a "
+"ingressar d'autoliquidacions anteriors pel mateix concepte, exercici i "
+"període."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_channel_ids
 msgid "Followers (Channels)"
-msgstr ""
+msgstr "Seguidors (canals)"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidors (empresa)"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__contact_name
 msgid "Full Name"
-msgstr ""
+msgstr "Nom complet"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__id
@@ -337,49 +375,49 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona per a indicar una activitat d'excepció."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_needaction
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si està marcat, hi ha nous missatges que requereixen atenció."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_error
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si està marcat, hi ha missatges amb error d'entrega."
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "In kind:"
-msgstr ""
+msgstr "En espècie:"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "És seguidor"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Diari"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__journal_id
 msgid "Journal in which post the move."
-msgstr ""
+msgstr "Diari en el que es publica l'apunt."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__representative_vat
 msgid "L.R. VAT number"
-msgstr ""
+msgstr "NIF del representant legal"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report____last_update
@@ -399,117 +437,117 @@ msgstr "Darrera Actualització el"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__representative_vat
 msgid "Legal Representative VAT number."
-msgstr ""
+msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjunt principal"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error d'entrega de missatge"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Missatges"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__model_id
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__number
 msgid "Model number"
-msgstr ""
+msgstr "Número de model"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Monetary:"
-msgstr ""
+msgstr "Monetari:"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__contact_name
 msgid "Must have name and surname."
-msgstr ""
+msgstr "Calen nom i cognom."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Data límit pròxima activitat"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Resum de la pròxima activitat"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Tipus de la pròxima activitat"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Nombre d'accions"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Nombre d'errors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Nombre de missatges que requereixen una acció"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Nombre de missatges amb error d'entrega"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Nombre de missatges no llegits"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__partner_id
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__period_type
 msgid "Period type"
-msgstr ""
+msgstr "Tipus de període"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__contact_phone
 msgid "Phone"
-msgstr ""
+msgstr "Telèfon"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__previous_number
 msgid "Previous declaration number"
-msgstr ""
+msgstr "Número de la declaració anterior"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__name
 msgid "Report identifier"
-msgstr ""
+msgstr "Identificador de l'informe"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuari responsable"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Result"
-msgstr ""
+msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__tipo_declaracion
@@ -519,27 +557,27 @@ msgstr "Tipo de resultado"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "Result: ([28] - [29])"
-msgstr ""
+msgstr "Resultat: ([28] - [29])"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error d'entrega SMS"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__date_start
 msgid "Starting date"
-msgstr ""
+msgstr "Data inicial"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__state
 msgid "State"
-msgstr ""
+msgstr "Estat"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__statement_type
 msgid "Statement Type"
-msgstr ""
+msgstr "Tipus de declaració"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_state
@@ -549,11 +587,15 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estat basat en activitats\n"
+"Endarrerit: Data de venciment passada\n"
+"Avui: La data de l'activitat és avui\n"
+"Planificat: Activitat futures."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__support_type
 msgid "Support Type"
-msgstr ""
+msgstr "Tipus de suport"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__tax_line_ids
@@ -567,6 +609,8 @@ msgid ""
 "This account will be the counterpart for all the journal items that are "
 "regularized when posting the report."
 msgstr ""
+"Aquest compte serà la contrapartida per a tots els apunts que es registren "
+"al confirmar l'informe."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__i
@@ -576,184 +620,184 @@ msgstr "A ingresar"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__g
 msgid "To enter on CCT"
-msgstr ""
+msgstr "Ingrés a anotar en CCT"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod111.selection__l10n_es_aeat_mod111_report__tipo_declaracion__n
 msgid "To return"
-msgstr "A devolver"
+msgstr "A retornar"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Totals"
-msgstr ""
+msgstr "Totals"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipus d'activitat d'excepció al registre."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Missatges no llegits"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Nombre de missatges no llegits"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__company_vat
 msgid "VAT number"
-msgstr ""
+msgstr "NIF"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Missatges del web"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicació del web"
 
 #. module: l10n_es_aeat_mod111
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Work income"
-msgstr ""
+msgstr "Rendiments del treball"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_04
 msgid "Work income - In kind - Number of recipients"
-msgstr ""
+msgstr "Rendiments del treball - En espècie - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_01
 msgid "Work income - Monetary - Number of recipients"
-msgstr ""
+msgstr "Rendiments del treball - Monetari - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__year
 msgid "Year"
-msgstr ""
+msgstr "Any"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_01
 msgid "[01] # Recipients"
-msgstr ""
+msgstr "[01] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_04
 msgid "[04] # Recipients"
-msgstr ""
+msgstr "[04] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_07
 msgid "[07] # Recipients"
-msgstr ""
+msgstr "[07] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_10
 msgid "[10] # Recipients"
-msgstr ""
+msgstr "[10] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_11
 msgid "[11] Taxable"
-msgstr ""
+msgstr "[11] Valor percepcions en espècie"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_12
 msgid "[12] Amount retained"
-msgstr ""
+msgstr "[12] Import retingut"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_13
 msgid "[13] # Recipients"
-msgstr ""
+msgstr "[13] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_14
 msgid "[14] Taxable"
-msgstr ""
+msgstr "[14] Import de les percepcions"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_15
 msgid "[15] Amount retained"
-msgstr ""
+msgstr "[15] Import retingut"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_16
 msgid "[16] # Recipients"
-msgstr ""
+msgstr "[16] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_17
 msgid "[17] Taxable"
-msgstr ""
+msgstr "[17] Valor percepcions en espècie"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_18
 msgid "[18] Amount retained"
-msgstr ""
+msgstr "[18] Import retingut"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_19
 msgid "[19] # Recipients"
-msgstr ""
+msgstr "[19] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_20
 msgid "[20] Taxable"
-msgstr ""
+msgstr "[20] Import de les percepcions"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_21
 msgid "[21] Amount retained"
-msgstr ""
+msgstr "[21] Import retingut"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_22
 msgid "[22] # Recipients"
-msgstr ""
+msgstr "[22] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_23
 msgid "[23] Taxable"
-msgstr ""
+msgstr "[23] Valor percepcions en espècie"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_24
 msgid "[24] Amount retained"
-msgstr ""
+msgstr "[24] Import retingut"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_25
 msgid "[25] # Recipients"
-msgstr ""
+msgstr "[25] Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_26
 msgid "[26] Taxable"
-msgstr ""
+msgstr "[26] Contraprestacions satisfetes"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_27
 msgid "[27] Amount retained"
-msgstr ""
+msgstr "[27] Import retingut"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_28
 msgid "[28] Amount of retentions"
-msgstr ""
+msgstr "[28] Suma de retencions"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_29
 msgid "[29] Fees to compensate"
-msgstr ""
+msgstr "[29] Resultats anteriors a compensar"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report__casilla_30
 msgid "[30] Result"
-msgstr ""
+msgstr "[30] Resultat a ingressar"
