@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2021-06-29 08:08+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -46,7 +47,8 @@ msgstr ""
 msgid ""
 "\n"
 "    OT:\n"
-"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos de no\n"
+"      - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos "
+"de no\n"
 "      sujeción.\n"
 "    RL:\n"
 "      - No sujeto por reglas de localización.\n"
@@ -233,8 +235,7 @@ msgstr "El certificado de TicketBAI en la compañía %s es requerido."
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
 #, python-format
 msgid "Company %s TicketBAI Developer is required."
-msgstr ""
-"La entidad desarrolladora de TicketBAI en la compañía %s es requerida."
+msgstr "La entidad desarrolladora de TicketBAI en la compañía %s es requerida."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/res_company.py:0
@@ -484,8 +485,6 @@ msgid "Identification Type Code"
 msgstr "Tipo de identificación"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
-#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "Invalid %s format '%s'."
@@ -897,8 +896,8 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_tax__re_amount
 msgid "String of float with 3 digits and 2 decimal points."
 msgstr ""
-"Cadena de caracteres que represente un número en coma flotante con 3 dígitos"
-" y 2 dígitos decimales."
+"Cadena de caracteres que represente un número en coma flotante con 3 dígitos "
+"y 2 dígitos decimales."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__substituted_invoice_amount_total_untaxed
@@ -1119,7 +1118,8 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Already exists a TicketBAI Invoice with the  same link to itsprevious TicketBAI Invoice."
+"Already exists a TicketBAI Invoice with the  same link to itsprevious "
+"TicketBAI Invoice."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1130,17 +1130,20 @@ msgid ""
 "Customer %s Address %s longer than expected. Should be 250 characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Cliente %s con la dirección %s más largo de lo esperado. Debería tener un máximo de 250 caracteres."
+"Cliente %s con la dirección %s más largo de lo esperado. Debería tener un "
+"máximo de 250 caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Customer %s Identification Number %s longer than expected. Should be 20 characters max.!"
+"Customer %s Identification Number %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Cliente %s con número de identificación %s más largo de lo esperado. Debería tener un máximo de 20 caracteres."
+"Cliente %s con número de identificación %s más largo de lo esperado. Debería "
+"tener un máximo de 20 caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
@@ -1157,10 +1160,12 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Customer %s Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+"Customer %s Spanish Fiscal Identification Number or Identification Number "
+"for non spanish customers is required."
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Cliente %s NIF o número de identificación es requerido para clientes no españoles."
+"Cliente %s NIF o número de identificación es requerido para clientes no "
+"españoles."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
@@ -1170,7 +1175,8 @@ msgid ""
 "Customer %s ZIP Code %s longer than expected. Should be 20 characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Cliente %s código postal %s más largo de lo esperado. Debería tener un máximo de 20 caracteres."
+"Cliente %s código postal %s más largo de lo esperado. Debería tener un "
+"máximo de 20 caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
@@ -1180,7 +1186,8 @@ msgid ""
 "Customer name %s longer than expected. Should be 120 characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Nombre de cliente %s más largo de lo esperado. Debería tener un máximo de 120 caracteres."
+"Nombre de cliente %s más largo de lo esperado. Debería tener un máximo de "
+"120 caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
@@ -1190,7 +1197,8 @@ msgid ""
 "Description %s longer than expected. Should be 250 characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Descripción %s más largo de lo esperado. Debería tener un máximo de 250 caracteres."
+"Descripción %s más largo de lo esperado. Debería tener un máximo de 250 "
+"caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1210,7 +1218,8 @@ msgid ""
 "Invoice Number Prefix longer than expected. Should be 20 characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Serie factura más largo de lo esperado. Debería tener un máximo de 20 caracteres."
+"Serie factura más largo de lo esperado. Debería tener un máximo de 20 "
+"caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1220,7 +1229,8 @@ msgid ""
 "Invoice Number longer than expected. Should be 20 characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Número factura más largo de lo esperado. Debería tener un máximo de 20 caracteres."
+"Número factura más largo de lo esperado. Debería tener un máximo de 20 "
+"caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1250,7 +1260,8 @@ msgid ""
 "Invoice description longer than expected. Should be 250 characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Descripción factura más larga de lo esperado. Debería tener un máximo de 250 caracteres."
+"Descripción factura más larga de lo esperado. Debería tener un máximo de 250 "
+"caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
@@ -1307,27 +1318,32 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
+"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 "
+"characters max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Factura rectificada o sustituida %s con la serie %s más larga de lo esperado. Debería tener un máximo de 20 caracteres."
+"Factura rectificada o sustituida %s con la serie %s más larga de lo "
+"esperado. Debería tener un máximo de 20 caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+"Refunded Invoice Number %s longer than expected. Should be 20 characters "
+"max.!"
 msgstr ""
 "TicketBAI Factura %s:\n"
-"Número factura rectificada o sustituida %s más largo de lo esperado. Debería tener un máximo de 20 caracteres."
+"Número factura rectificada o sustituida %s más largo de lo esperado. Debería "
+"tener un máximo de 20 caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+"Spanish Fiscal Identification Number or Identification Number for non "
+"spanish customers is required."
 msgstr ""
 "TicketBAI Factura %s:\n"
 "NIF o número de identificación es requerido para clientes no españoles."
