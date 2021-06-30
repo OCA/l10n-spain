@@ -65,7 +65,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:238
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:240
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -94,7 +94,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:97
+#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:98
 #, python-format
 msgid "Country code for partner %s not found!"
 msgstr ""
@@ -308,7 +308,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:261
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:263
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -345,7 +345,7 @@ msgstr ""
 #: sql_constraint:account.fp.tbai.tax:0
 #: sql_constraint:account.fp.tbai.tax_template:0
 #: code:addons/l10n_es_ticketbai/models/account_fiscal_position.py:35
-#: code:addons/l10n_es_ticketbai/models/chart_template.py:36
+#: code:addons/l10n_es_ticketbai/models/chart_template.py:37
 #, python-format
 msgid "Tax must be unique per fiscal position!"
 msgstr ""
@@ -478,13 +478,13 @@ msgid "TicketBAI Invoice"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:37
+#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:42
 #, python-format
 msgid "TicketBAI Invoice %s Error: Tax %s contains multiple Equivalence Surcharge Taxes"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:46
+#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:51
 #, python-format
 msgid "TicketBAI Invoice %s Error: the Invoice should have one tax line for Tax %s"
 msgstr ""
@@ -587,13 +587,13 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:67
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:68
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:278
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:280
 #, python-format
 msgid "You cannot validate a refund invoice without the origin invoice!"
 msgstr ""
