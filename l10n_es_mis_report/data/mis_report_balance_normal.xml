@@ -386,6 +386,8 @@
             <field name="sequence">230</field>
             <field name="name">es11460</field>
             <field name="description">6. Otras inversiones</field>
+            <!-- For emptying previous value -->
+            <field name="expression" />
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
