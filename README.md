@@ -30,7 +30,7 @@ addon | version | summary
 [l10n_es_aeat_mod347](l10n_es_aeat_mod347/) | 14.0.1.0.1 | AEAT modelo 347
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 14.0.1.2.0 | AEAT modelo 390
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 14.0.1.4.0 | Suministro Inmediato de Información en el IVA
-[l10n_es_dua](l10n_es_dua/) | 14.0.1.0.0 | Importaciones con DUA
+[l10n_es_dua](l10n_es_dua/) | 14.0.1.1.0 | Importaciones con DUA
 [l10n_es_dua_sii](l10n_es_dua_sii/) | 14.0.1.0.0 | Suministro Inmediato de Información de importaciones con DUA
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.1.0.1 | Spanish Intrastat Product Declaration
 [l10n_es_mis_report](l10n_es_mis_report/) | 14.0.1.2.0 | Plantillas MIS Builder para informes contables españoles
