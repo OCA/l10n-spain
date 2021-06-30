@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundType
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice_tax import \
@@ -27,12 +28,16 @@ class AccountInvoiceTax(models.Model):
 
     def tbai_get_associated_re_tax(self):
         re_invoice_tax = None
-        s_iva_re_descriptions = self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_RE').tax_template_ids.mapped('description')
+        tbai_maps = self.env["tbai.tax.map"].search(
+            [('code', '=', "RE")]
+        )
+        s_iva_re_taxes = self.company_id.get_taxes_from_templates(
+            tbai_maps.mapped("tax_template_ids")
+        )
         lines = self.invoice_id.invoice_line_ids.filtered(
             lambda l: self.tax_id in l.invoice_line_tax_ids)
         re_taxes = lines.mapped('invoice_line_tax_ids').filtered(
-            lambda tax: tax.description in s_iva_re_descriptions)
+            lambda tax: tax in s_iva_re_taxes)
         if 1 < len(re_taxes):
             raise exceptions.ValidationError(_(
                 "TicketBAI Invoice %s Error: Tax %s contains multiple Equivalence "
@@ -59,33 +64,29 @@ class AccountInvoiceTax(models.Model):
 
     def tbai_es_prestacion_servicios(self):
         # No sujeto Repercutido (Servicios)
-        descriptions = self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_SNS').tax_template_ids.mapped('description')
         # Prestación de servicios intracomunitario y extracomunitario
-        descriptions += self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_SIE').tax_template_ids.mapped('description')
         # Servicios
-        descriptions += self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_S').tax_template_ids.mapped('description')
         # Servicios Exento Repercutido
-        descriptions += self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_SER').tax_template_ids.mapped('description')
-        return self.tax_id.description in descriptions
+        tbai_maps = self.env["tbai.tax.map"].search(
+            [("code", "in", ("SNS", "SIE", "S", "SER"))]
+        )
+        taxes = self.company_id.get_taxes_from_templates(
+            tbai_maps.mapped("tax_template_ids")
+        )
+        return self.tax_id in taxes
 
     def tbai_es_entrega(self):
         # Bienes
-        descriptions = self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_B').tax_template_ids.mapped('description')
         # No sujeto Repercutido (Bienes)
-        descriptions += self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_BNS').tax_template_ids.mapped('description')
         # Entregas Intracomunitarias y Exportaciones exentas
-        descriptions += self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_IEE').tax_template_ids.mapped('description')
         # Servicios Exento Repercutido
-        descriptions += self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_SER').tax_template_ids.mapped('description')
-        return self.tax_id.description in descriptions
+        tbai_maps = self.env["tbai.tax.map"].search(
+            [("code", "in", ("B", "BNS", "IEE", "SER"))]
+        )
+        taxes = self.company_id.get_taxes_from_templates(
+            tbai_maps.mapped("tax_template_ids")
+        )
+        return self.tax_id in taxes
 
     def tbai_get_value_causa(self):
         country_code = self.invoice_id.partner_id.tbai_get_partner_country_code()
@@ -115,9 +116,13 @@ class AccountInvoiceTax(models.Model):
         return "%.2f" % (sign * base)
 
     def tbai_get_value_tipo_no_exenta(self):
-        isp_descriptions = self.env.ref(
-            'l10n_es_ticketbai.tbai_tax_map_ISP').tax_template_ids.mapped('description')
-        if self.tax_id.description in isp_descriptions:
+        tbai_maps = self.env["tbai.tax.map"].search(
+            [("code", "=", "ISP")]
+        )
+        isp_taxes = self.company_id.get_taxes_from_templates(
+            tbai_maps.mapped("tax_template_ids")
+        )
+        if self.tax_id in isp_taxes:
             res = 'S2'
         else:
             res = 'S1'
