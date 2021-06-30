@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 FactorLibre - Janire Olagibel
+     Copyright 2021 Tecnativa - Víctor Martínez
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record id="view_ecoembes_market_type_tree" model="ir.ui.view">
+        <field name="name">view.ecoembes.market.type.tree</field>
+        <field name="model">ecoembes.market.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_ecoembes_market_type_form" model="ir.ui.view">
+        <field name="name">view.ecoembes.market.type.form</field>
+        <field name="model">ecoembes.market.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title" style="width:100%;">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="header">
+                        <field name="reference" style="width:40%;" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_ecoembes_market_type_search" model="ir.ui.view">
+        <field name="name">view.ecoembes.market.type.search</field>
+        <field name="model">ecoembes.market.type</field>
+        <field name="arch" type="xml">
+            <search string="Search EcoembesMarketType">
+                <field
+                    name="name"
+                    filter_domain="['|', ('name','ilike',self), ('reference','ilike',self)]"
+                    string="Market Type"
+                />
+            </search>
+        </field>
+    </record>
+    <record id="action_ecoembes_market_type" model="ir.actions.act_window">
+        <field name="name">Market Type</field>
+        <field name="res_model">ecoembes.market.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

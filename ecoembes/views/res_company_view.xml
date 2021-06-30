@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_company_sii_form" model="ir.ui.view">
+        <field name="name">res.company.sii.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="ecoembes" string="Ecoembes">
+                    <separator name="ecoembes_config" string="Ecoembes Configuration" />
+                    <group>
+                        <group>
+                            <field name="ecoembes_inscription" />
+                            <field name="ecoembes_partner_member" />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

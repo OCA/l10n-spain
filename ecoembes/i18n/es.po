@@ -1,0 +1,400 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ecoembes
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-25 10:58+0000\n"
+"PO-Revision-Date: 2021-08-25 12:59+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__reference
+msgid "Abbreviation"
+msgstr "Abreviatura"
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_abstract_ecoembes_mixin
+msgid "Abstract Ecoembes Mixin"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_account_move_line_ecoembes_report
+msgid "Account Move Lines Ecoembes report"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__billing
+msgid "Billing"
+msgstr "Facturación"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.ecoembes_sig_report_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_comment
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__composition
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "Composition"
+msgstr "Composición"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_product__composition_ids
+#: model_terms:ir.ui.view,arch_db:ecoembes.nan_product_pack_form
+msgid "Compositions"
+msgstr "Composiciones"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__create_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__create_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__create_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__create_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__create_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__create_uid
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__create_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__create_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__create_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__create_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__create_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__create_date
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__date_end
+msgid "Date end"
+msgstr "Fecha fin"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_date_expiry
+msgid "Date expiry"
+msgstr "Fecha de expiración"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__date_start
+msgid "Date start"
+msgstr "Fecha inicial"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_abstract_ecoembes_mixin__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__display_name
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: ecoembes
+#: model:ir.ui.menu,name:ecoembes.menu_ecoembes_report_sig
+#: model_terms:ir.ui.view,arch_db:ecoembes.nan_product_pack_form
+msgid "Ecoembes"
+msgstr "Ecoembes"
+
+#. module: ecoembes
+#: model:ir.actions.act_window,name:ecoembes.action_ecoembes_sig_report_wizard
+#: model_terms:ir.ui.view,arch_db:ecoembes.ecoembes_sig_report_wizard_form
+msgid "Ecoembes Sig Report"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_ecoembes_sig_report_wizard
+msgid "Ecoembes Sig Report Wizard"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.actions.act_window,name:ecoembes.action_ecoembes_packaging
+msgid "Ecoembes packaging"
+msgstr ""
+
+#. module: ecoembes
+#: code:addons/ecoembes/wizard/ecoembes_sig_report_wizard.py:0
+#: model:ir.model.fields.selection,name:ecoembes.selection__ecoembes_sig_report_wizard__state__end
+#, python-format
+msgid "End"
+msgstr "Fin"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.ecoembes_sig_report_wizard_form
+msgid "Export"
+msgstr "Exportar"
+
+#. module: ecoembes
+#: code:addons/ecoembes/models/abstract_ecoembes_mixin.py:0
+#, python-format
+msgid "Field 'reference' must have only digit characters"
+msgstr "El campo 'referencia' debe ser un dígito"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__datas
+msgid "File"
+msgstr "Archivo"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__name
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_submaterial_search
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_abstract_ecoembes_mixin__id
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__id
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__id
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__id
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__id
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__id
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__id
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__id
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__id
+msgid "ID"
+msgstr "ID"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__default_code
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__default_code
+msgid "Internal Reference"
+msgstr "Referencia interna"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__invoice_date
+msgid "Invoice Date"
+msgstr "Fecha factura"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_abstract_ecoembes_mixin____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial____last_update
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__write_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__write_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__write_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__write_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__write_uid
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__write_uid
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__write_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__write_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__write_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__write_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__write_date
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__write_date
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: ecoembes
+#: model:ir.actions.act_window,name:ecoembes.action_ecoembes_market_type
+#: model:ir.model,name:ecoembes.model_ecoembes_market_type
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_market_type_search
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "Market Type"
+msgstr "Tipo de mercado"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__name
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__market_type_id
+msgid "Market type"
+msgstr "Tipo de mercado"
+
+#. module: ecoembes
+#: model:ir.actions.act_window,name:ecoembes.action_ecoembes_material
+#: model:ir.model,name:ecoembes.model_ecoembes_material
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__name
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__material_id
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__material_id
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_material_search
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_submaterial_search
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "Material"
+msgstr "Material"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__move_id
+msgid "Move"
+msgstr "Movimiento"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_abstract_ecoembes_mixin__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "No composition"
+msgstr "Sin composición"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__order
+msgid "Order"
+msgstr "Pedido"
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_ecoembes_packaging
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__name
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__packaging_id
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_packaging_search
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "Packaging"
+msgstr "Embalaje"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__period
+msgid "Period"
+msgstr "Periodo"
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_product_product
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__product_id
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__product_id
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "Product"
+msgstr "Producto"
+
+#. module: ecoembes
+#: model:ir.actions.act_window,name:ecoembes.action_product_composition
+#: model:ir.model,name:ecoembes.model_product_composition
+msgid "Product Composition"
+msgstr "Composición de producto"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_product_master
+msgid "Product master"
+msgstr "Maestro de producto"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__product_name
+msgid "Product name"
+msgstr "Nombre del producto"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__qty
+msgid "Qty"
+msgstr "Cantidad"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_account_move_line_ecoembes_report__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_abstract_ecoembes_mixin__reference
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_material__reference
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_packaging__reference
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__reference
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__reference
+msgid "Ref."
+msgstr "Ref."
+
+#. module: ecoembes
+#: code:addons/ecoembes/wizard/ecoembes_sig_report_wizard.py:0
+#, python-format
+msgid "SIG-%s.xls"
+msgstr "SIG-%s.xls"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_sig
+msgid "SIG/NOSIG option"
+msgstr "Opción SIG/NOSIG"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_market_type_search
+msgid "Search EcoembesMarketType"
+msgstr ""
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_material_search
+msgid "Search EcoembesMaterial"
+msgstr ""
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_packaging_search
+msgid "Search EcoembesPackaging"
+msgstr ""
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_sector_search
+msgid "Search EcoembesSector"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.actions.act_window,name:ecoembes.action_ecoembes_sector
+#: model:ir.model,name:ecoembes.model_ecoembes_sector
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sector__name
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_sector_search
+msgid "Sector"
+msgstr "Sector"
+
+#. module: ecoembes
+#: code:addons/ecoembes/wizard/ecoembes_sig_report_wizard.py:0
+#: model:ir.model.fields.selection,name:ecoembes.selection__ecoembes_sig_report_wizard__state__start
+#, python-format
+msgid "Start"
+msgstr "Inicio"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_sig_report_wizard__state
+msgid "State"
+msgstr "Estado"
+
+#. module: ecoembes
+#: model:ir.actions.act_window,name:ecoembes.action_ecoembes_submaterial
+#: model:ir.model,name:ecoembes.model_ecoembes_submaterial
+#: model:ir.model.fields,field_description:ecoembes.field_ecoembes_submaterial__name
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__submaterial_id
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_ecoembes_submaterial_search
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_product_composition_search
+msgid "Submaterial"
+msgstr "Submaterial"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__volume
+msgid "Volume (mL)"
+msgstr "Volumen (mL)"
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_product_composition__weight
+#: model:ir.model.fields,field_description:ecoembes.field_product_product__weight_net_gram_round
+msgid "Weight (g)"
+msgstr "Peso (g)"
