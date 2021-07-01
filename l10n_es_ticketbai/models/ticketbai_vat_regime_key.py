@@ -1,6 +1,6 @@
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, models, fields
+from odoo import api, fields, models
 
 
 class TicketBAIVATRegimeKey(models.Model):
@@ -40,16 +40,17 @@ class TicketBAIVATRegimeKey(models.Model):
     objetos de colección) debe ser la primera clave a informar cuando concurra con la
     clave 01.
     """
-    _name = 'tbai.vat.regime.key'
-    _description = 'TicketBAI VAT Regime mapping keys'
 
-    code = fields.Char(string='Code', required=True)
-    name = fields.Char('Name', required=True)
+    _name = "tbai.vat.regime.key"
+    _description = "TicketBAI VAT Regime mapping keys"
+
+    code = fields.Char(string="Code", required=True)
+    name = fields.Char("Name", required=True)
 
     @api.multi
     def name_get(self):
         vals = []
         for record in self:
-            name = '[{}]-{}'.format(record.code, record.name)
+            name = "[{}]-{}".format(record.code, record.name)
             vals.append(tuple([record.id, name]))
         return vals
