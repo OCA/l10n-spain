@@ -735,15 +735,73 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         )
         self.main_company = self.env.ref("base.main_company")
         self._prepare_company(self.main_company)
-        self.partner = self.env.ref("l10n_es_ticketbai_api.res_partner_binovo")
-        self.partner_extracommunity = self.env.ref(
-            "l10n_es_ticketbai_api.res_partner_yamaha_jp"
-        )
-        self.partner_intracommunity = self.env.ref(
-            "l10n_es_ticketbai_api.res_partner_oca"
-        )
+
         self.group_system = self.env.ref("base.group_system")  # Settings
         self.group_user = self.env.ref("base.group_user")  # Employee
+
         # Contact creation
-        self.demo_user = self.env.ref("base.user_demo")  # Demo user
-        self.tech_user = self.env.ref("l10n_es_ticketbai_api.user_tech")  # Root user
+        self.partner = self.env["res.partner"].create(
+            {
+                "name": "Binovo IT Human Project S.L.",
+                "is_company": True,
+                "city": "Oiartzun",
+                "zip": "20180",
+                "country_id": self.env.ref("base.es").id,
+                "vat": "ESB20990602",
+                "street": "Astigarraga bidea 2, 2ª Izquierda, Oficina 10-11",
+                "email": "sales@binovo.es",
+                "phone": "+34 943569206",
+                "website": "https://www.binovo.es/",
+            }
+        )
+
+        self.partner_extracommunity = self.env["res.partner"].create(
+            {
+                "name": "Yamaha Motor Co., Ltd.",
+                "is_company": True,
+                "city": "Iwata",
+                "zip": "438-8501",
+                "country_id": self.env.ref("base.jp").id,
+                "street": "2500 Shingai, Iwata-shi",
+                "tbai_partner_idtype": "06",
+                "tbai_partner_identification_number": "JP3942800008",
+                "phone": "+81 03-5713-3820",
+                "website": "https://global.yamaha-motor.com",
+            }
+        )
+
+        self.partner_intracommunity = self.env["res.partner"].create(
+            {
+                "name": "Odoo Community Association (OCA)",
+                "is_company": True,
+                "city": "Paris",
+                "zip": "75010",
+                "country_id": self.env.ref("base.fr").id,
+                "vat": "FR87352651673",
+                "street": "Rue Eugène Varlin 1",
+                "tbai_partner_idtype": "02",
+                "website": "https://odoo-community.org/",
+            }
+        )
+
+        self.tech_partner = self.env["res.partner"].create(
+            {
+                "name": "Tech User",
+                "company_id": self.env.ref("base.main_company").id,
+                "city": "Oiartzun",
+                "zip": "20180",
+                "country_id": self.env.ref("base.es").id,
+                "street": "Astigarraga bidea 2, 2ª Izquierda, Oficina 10-11",
+                "email": "tech@yourcompany.example.com",
+                "company_name": "Binovo IT Human Project S.L.",
+            }
+        )
+
+        group_ids = [
+            self.env.ref("base.group_user").id,
+            self.env.ref("base.group_partner_manager").id,
+            self.env.ref("base.group_system").id,
+        ]
+
+        self.tech_user = self.env.ref("base.user_demo")
+        self.tech_user.write({"groups_id": [(6, 0, group_ids,)]})
