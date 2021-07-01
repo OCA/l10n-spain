@@ -45,7 +45,7 @@
                     <group string="Totals">
                         <field
                             name="casilla_06"
-                            attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('type', '!=', 'C')]}"
+                            attrs="{'readonly': ['|', ('state', '!=', 'calculated'), ('statement_type', '!=', 'C')]}"
                         />
                         <field name="casilla_07" />
                     </group>
@@ -75,7 +75,6 @@
     <record id="action_l10n_es_aeat_mod216_report" model="ir.actions.act_window">
         <field name="name">AEAT model 216</field>
         <field name="res_model">l10n.es.aeat.mod216.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form,tree</field>
         <field name="help">Create and query AEAT Model 216 reports.</field>
     </record>

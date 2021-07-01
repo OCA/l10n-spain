@@ -40,7 +40,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
                 "company_id": self.company.id,
                 "company_vat": "1234567890",
                 "contact_name": "Test owner",
-                "type": "N",
+                "statement_type": "N",
                 "support_type": "T",
                 "contact_phone": "911234455",
                 "year": 2015,
@@ -77,7 +77,7 @@ class TestL10nEsAeatMod216Base(TestL10nEsAeatModBase):
         self.assertEqual(round(self.model216.casilla_07, 2), round(result, 2))
         # Export to BOE
         export_to_boe = self.env["l10n.es.aeat.report.export_to_boe"].create(
-            {"name": "test_export_to_boe.txt",}
+            {"name": "test_export_to_boe.txt"}
         )
         export_config_xml_ids = [
             "l10n_es_aeat_mod216.aeat_mod216_main_export_config",
