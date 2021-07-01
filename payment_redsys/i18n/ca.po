@@ -55,7 +55,7 @@ msgid "Alemán"
 msgstr "Alemany"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:347
+#: code:addons/payment_redsys/models/redsys.py:346
 #, python-format
 msgid "Bank Error: %s (%s)"
 msgstr "Error del banc: %s (%s)"
@@ -81,7 +81,7 @@ msgid "Domiciliacion"
 msgstr "Domiciliació"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:344
+#: code:addons/payment_redsys/models/redsys.py:343
 #, python-format
 msgid "Error: %s (%s)"
 msgstr "Error: %s (%s)"
@@ -147,7 +147,7 @@ msgid "Merchant code"
 msgstr ""
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:340
+#: code:addons/payment_redsys/models/redsys.py:339
 #, python-format
 msgid "Ok: %s"
 msgstr "Ok: %s"
@@ -163,7 +163,7 @@ msgid "Pago por Transferencia"
 msgstr "Pagament per transferència"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:98
+#: code:addons/payment_redsys/models/redsys.py:97
 #, python-format
 msgid "Partial payment percent must be between 0 and 100"
 msgstr ""
@@ -216,7 +216,7 @@ msgid "Redsys Signature Version"
 msgstr "Versió de signatura Redsys"
 
 #. module: payment_redsys
-#: code:addons/payment_redsys/models/redsys.py:350
+#: code:addons/payment_redsys/models/redsys.py:349
 #, python-format
 msgid "Redsys: feedback error %s (%s)"
 msgstr ""
@@ -230,11 +230,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__redsys_secret_key
 msgid "Secret Key"
 msgstr "Clau secreta"
-
-#. module: payment_redsys
-#: model:ir.model.fields,field_description:payment_redsys.field_payment_acquirer__send_quotation
-msgid "Send quotation"
-msgstr "Enviar pressupost"
 
 #. module: payment_redsys
 #: selection:payment.acquirer,redsys_merchant_lang:0
@@ -280,6 +275,9 @@ msgid ""
 "You will be redirected to the Redsys payment gateway after clicking on the "
 "payment button."
 msgstr ""
+
+#~ msgid "Send quotation"
+#~ msgstr "Enviar pressupost"
 
 #, fuzzy
 #~ msgid "<strong>Invoicing Address</strong>"
