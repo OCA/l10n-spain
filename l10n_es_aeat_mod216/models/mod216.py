@@ -65,7 +65,6 @@ class L10nEsAeatMod216Report(models.Model):
         required=True,
     )
 
-    @api.multi
     @api.depends("tax_line_ids", "tax_line_ids.move_line_ids.partner_id")
     def _compute_casilla_01(self):
         casillas = (2, 3)
@@ -77,14 +76,12 @@ class L10nEsAeatMod216Report(models.Model):
                 tax_lines.mapped("move_line_ids").mapped("partner_id")
             )
 
-    @api.multi
     @api.depends("tax_line_ids", "tax_line_ids.amount")
     def _compute_casilla_03(self):
         for report in self:
             tax_lines = report.tax_line_ids.filtered(lambda x: x.field_number == 3)
             report.casilla_03 = sum(tax_lines.mapped("amount"))
 
-    @api.multi
     @api.depends("casilla_03", "casilla_06")
     def _compute_casilla_07(self):
         for report in self:
