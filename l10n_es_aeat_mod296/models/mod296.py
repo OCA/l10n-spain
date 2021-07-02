@@ -43,10 +43,11 @@ class L10nEsAeatMod296Report(models.Model):
         "Retentions and income on account entered",
     )
     lines296 = fields.One2many(
-        "l10n.es.aeat.mod296.report.line", "mod296_id", string="Lines"
+        comodel_name="l10n.es.aeat.mod296.report.line",
+        inverse_name="mod296_id",
+        string="Lines",
     )
 
-    @api.multi
     def partner_group(self, move_lines_base_ids, move_lines_cuota_ids):
         partner_groups = {}
         for group in self.env["account.move.line"].read_group(
@@ -68,7 +69,6 @@ class L10nEsAeatMod296Report(models.Model):
             }
         return partner_groups
 
-    @api.multi
     def calculate(self):
         res = super(L10nEsAeatMod296Report, self).calculate()
         for report in self:
@@ -85,7 +85,7 @@ class L10nEsAeatMod296Report(models.Model):
             )
             for partner_id in partner_groups:
                 partner = self.env["res.partner"].browse(partner_id)
-                line_lst.append(
+                line = self.env["l10n.es.aeat.mod296.report.line"].create(
                     {
                         "mod296_id": report.id,
                         "partner_id": partner_id,
@@ -109,6 +109,7 @@ class L10nEsAeatMod296Report(models.Model):
                         - partner_groups[partner_id]["cuota"]["debit"],
                     }
                 )
+                line_lst.append(line.id)
             report.lines296 = line_lst
             report.casilla_01 = len(partner_groups)
             report.casilla_02 = sum(
@@ -128,23 +129,28 @@ class L10nEsAeatMod296ReportLine(models.Model):
     _description = "AEAT 296 report line"
     _name = "l10n.es.aeat.mod296.report.line"
 
-    mod296_id = fields.Many2one("l10n.es.aeat.mod296.report", string="Mod 296")
-    partner_id = fields.Many2one("res.partner", string="Partner")
-    move_line_ids = fields.Many2many("account.move.line", string="Move Lines")
+    mod296_id = fields.Many2one(
+        comodel_name="l10n.es.aeat.mod296.report", string="Mod 296"
+    )
+    partner_id = fields.Many2one(comodel_name="res.partner", string="Partner")
+    move_line_ids = fields.Many2many(
+        comodel_name="account.move.line", string="Move Lines"
+    )
     base_retenciones_ingresos = fields.Float(
         string="Base retention and " "income on account"
     )
     porcentaje_retencion = fields.Float(string="% retention")
     retenciones_ingresos = fields.Float(string="Retention and income on " "account")
     fisica_juridica = fields.Selection(
-        [("F", "Physical person"), ("J", "Legal person or entity")], string="F/J"
+        selection=[("F", "Physical person"), ("J", "Legal person or entity")],
+        string="F/J",
     )
     naturaleza = fields.Selection(
-        [("D", "Money income"), ("E", "Income in kind")], string="Nature"
+        selection=[("D", "Money income"), ("E", "Income in kind")], string="Nature"
     )
     fecha_devengo = fields.Date(string="Devengo date")
     clave = fields.Selection(
-        [
+        selection=[
             (
                 "1",
                 "1 - Dividends and other income derived from the participation "
@@ -210,7 +216,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
         string="Key",
     )
     subclave = fields.Selection(
-        [
+        selection=[
             (
                 "1",
                 "1 - Retention practiced at the general rates or scales of "
@@ -264,7 +270,7 @@ class L10nEsAeatMod296ReportLine(models.Model):
     )
     mediador = fields.Boolean(string="Mediator")
     codigo = fields.Selection(
-        [
+        selection=[
             ("1", "1. Emisor code corresponds to an N.I.F."),
             ("2", "2. Emisor code corresponds to an code I.S.I.N."),
             (
@@ -277,29 +283,35 @@ class L10nEsAeatMod296ReportLine(models.Model):
     )
     codigo_emisor = fields.Char(string="Emisor code", size=12)
     pago = fields.Selection(
-        [("1", "As transmitter"), ("2", "As mediator")], string="Payment"
+        selection=[("1", "As transmitter"), ("2", "As mediator")], string="Payment"
     )
     tipo_codigo = fields.Selection(
-        [
+        selection=[
             ("C", "Identification with the Account " "Code Values (C.C.V.)"),
             ("O", "Other identification"),
         ],
         string="Code type",
     )
-    cuenta_valores = fields.Many2one("res.partner.bank", string="Code Account Values")
+    cuenta_valores = fields.Many2one(
+        comodel_name="res.partner.bank", string="Code Account Values"
+    )
     pendiente = fields.Boolean(string="Pending")
     domicilio = fields.Char(string="Domicile", size=50)
     complemento_domicilio = fields.Char(string="Domicile Complement", size=40)
     poblacion = fields.Char(string="Population/City", size=30)
-    provincia = fields.Many2one("res.country.state", string="Province/Region/State")
+    provincia = fields.Many2one(
+        comodel_name="res.country.state", string="Province/Region/State"
+    )
     zip = fields.Char(string="Postal Code", size=10)
-    pais = fields.Many2one("res.country", string="Country")
+    pais = fields.Many2one(comodel_name="res.country", string="Country")
     nif_pais_residencia = fields.Char(string="Nif in the country of residence", size=20)
     fecha_nacimiento = fields.Date(string="Date of birth")
     ciudad_nacimiento = fields.Char(string="Birth city", size=35)
-    pais_nacimiento = fields.Many2one("res.country", string="Country of birth")
+    pais_nacimiento = fields.Many2one(
+        comodel_name="res.country", string="Country of birth"
+    )
     pais_residencia_fiscal = fields.Many2one(
-        "res.country", string="Country " "territory of fiscal residence"
+        comodel_name="res.country", string="Country territory of fiscal residence"
     )
     fecha_devengo_export = fields.Char(
         string="Devengo date export", compute="_compute_get_fecha_devengo_export"
@@ -308,25 +320,22 @@ class L10nEsAeatMod296ReportLine(models.Model):
         string="Date of birth export", compute="_compute_get_fecha_nacimiento_export"
     )
 
-    @api.multi
-    @api.depends("fecha_nacimiento")
-    def _compute_get_fecha_devengo_export(self):
-        for sel in self:
-            res = ""
-            if sel.fecha_nacimiento:
-                res = fields.Date.to_date(sel.fecha_nacimiento).strftime("%d%m%Y")
-            sel.fecha_nacimiento_export = res
-
-    @api.multi
     @api.depends("fecha_devengo")
-    def _compute_get_fecha_nacimiento_export(self):
+    def _compute_get_fecha_devengo_export(self):
         for sel in self:
             res = ""
             if sel.fecha_devengo:
                 res = fields.Date.to_date(sel.fecha_devengo).strftime("%d%m%Y")
             sel.fecha_devengo_export = res
 
-    @api.multi
+    @api.depends("fecha_nacimiento")
+    def _compute_get_fecha_nacimiento_export(self):
+        for sel in self:
+            res = ""
+            if sel.fecha_nacimiento:
+                res = fields.Date.to_date(sel.fecha_nacimiento).strftime("%d%m%Y")
+            sel.fecha_nacimiento_export = res
+
     @api.onchange("partner_id")
     def onchange_partner(self):
         for sel in self.filtered(lambda x: x.partner_id):
