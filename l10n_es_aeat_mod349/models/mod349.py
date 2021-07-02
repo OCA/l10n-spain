@@ -193,67 +193,70 @@ class Mod349(models.Model):
         for refund_detail in self.partner_refund_detail_ids:
             move_line = refund_detail.refund_line_id
             origin_invoice = move_line.invoice_id.refund_invoice_id
-            groups.setdefault(origin_invoice, refund_detail_obj)
-            groups[origin_invoice] += refund_detail
+            groups.setdefault(origin_invoice, {})
+            groups[origin_invoice].setdefault(
+                move_line.l10n_es_aeat_349_operation_key, refund_detail_obj)
+            groups[origin_invoice][
+                move_line.l10n_es_aeat_349_operation_key] += refund_detail
         for origin_invoice in groups:
-            refund_details = groups[origin_invoice]
-            refund_detail = first(refund_details)
-            move_line = refund_detail.refund_line_id
-            partner = move_line.partner_id
-            op_key = move_line.l10n_es_aeat_349_operation_key
-            if not origin_invoice:
-                # TODO: Instead continuing, generate an empty record and a msg
-                continue
-            # Fetch the latest presentation made for this move
-            original_details = detail_obj.search([
-                ('move_line_id.invoice_id', '=', origin_invoice.id),
-                ('partner_record_id.operation_key', '=', op_key),
-                ('id', 'not in', visited_details.ids)
-            ], order='report_id desc')
-            # we add all of them to visited, as we don't want to repeat
-            visited_details |= original_details
-            if original_details:
-                # There's at least one previous 349 declaration report
-                report = original_details.mapped('report_id')[:1]
-                original_details = original_details.filtered(
-                    lambda d: d.report_id == report)
-                origin_amount = sum(original_details.mapped('amount_untaxed'))
-                period_type = report.period_type
-                year = str(report.year)
-            else:
-                # There's no previous 349 declaration report in Odoo
-                original_amls = move_line_obj.search([
-                    ('tax_ids', 'in', taxes.ids),
-                    ('l10n_es_aeat_349_operation_key', '=', op_key),
-                    ('invoice_id', '=', origin_invoice.id),
-                ])
-                origin_amount = abs(sum(
-                    (original_amls - visited_move_lines).mapped('balance')
-                ))
-                visited_move_lines |= original_amls
-                # We have to guess the period type, as we don't have that info
-                # through move lines. Inferred from:
-                # * current record period scheme (monthly/quarterly/yearly)
-                # * date of the move line
-                if original_amls:
-                    original_move = original_amls[:1]
-                    year = original_move.date[:4]
-                    month = original_move.date[5:7]
+            for op_key in groups[origin_invoice]:
+                refund_details = groups[origin_invoice][op_key]
+                refund_detail = first(refund_details)
+                move_line = refund_detail.refund_line_id
+                partner = move_line.partner_id
+                if not origin_invoice:
+                    # TODO: Instead continuing, generate an empty record and a msg
+                    continue
+                # Fetch the latest presentation made for this move
+                original_details = detail_obj.search([
+                    ('move_line_id.invoice_id', '=', origin_invoice.id),
+                    ('partner_record_id.operation_key', '=', op_key),
+                    ('id', 'not in', visited_details.ids)
+                ], order='report_id desc')
+                # we add all of them to visited, as we don't want to repeat
+                visited_details |= original_details
+                if original_details:
+                    # There's at least one previous 349 declaration report
+                    report = original_details.mapped('report_id')[:1]
+                    original_details = original_details.filtered(
+                        lambda d: d.report_id == report)
+                    origin_amount = sum(original_details.mapped('amount_untaxed'))
+                    period_type = report.period_type
+                    year = str(report.year)
                 else:
-                    continue  # We can't find information to attach to
-                if self.period_type == '0A':
-                    period_type = '0A'
-                elif self.period_type in ('1T', '2T', '3T', '4T'):
-                    period_type = '%sT' % int(math.ceil(int(month) / 3.0))
-                else:
-                    period_type = month
-            key = (partner, op_key, period_type, year)
-            key_vals = data.setdefault(key, {
-                'original_amount': 0,
-                'refund_details': refund_detail_obj,
-            })
-            key_vals['original_amount'] += origin_amount
-            key_vals['refund_details'] += refund_details
+                    # There's no previous 349 declaration report in Odoo
+                    original_amls = move_line_obj.search([
+                        ('tax_ids', 'in', taxes.ids),
+                        ('l10n_es_aeat_349_operation_key', '=', op_key),
+                        ('invoice_id', '=', origin_invoice.id),
+                    ])
+                    origin_amount = abs(sum(
+                        (original_amls - visited_move_lines).mapped('balance')
+                    ))
+                    visited_move_lines |= original_amls
+                    # We have to guess the period type, as we don't have that info
+                    # through move lines. Inferred from:
+                    # * current record period scheme (monthly/quarterly/yearly)
+                    # * date of the move line
+                    if original_amls:
+                        original_move = original_amls[:1]
+                        year = original_move.date[:4]
+                        month = original_move.date[5:7]
+                    else:
+                        continue  # We can't find information to attach to
+                    if self.period_type == '0A':
+                        period_type = '0A'
+                    elif self.period_type in ('1T', '2T', '3T', '4T'):
+                        period_type = '%sT' % int(math.ceil(int(month) / 3.0))
+                    else:
+                        period_type = month
+                key = (partner, op_key, period_type, year)
+                key_vals = data.setdefault(key, {
+                    'original_amount': 0,
+                    'refund_details': refund_detail_obj,
+                })
+                key_vals['original_amount'] += origin_amount
+                key_vals['refund_details'] += refund_details
         for key, key_vals in data.items():
             partner, op_key, period_type, year = key
             partner_refund = obj.create({
