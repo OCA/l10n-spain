@@ -11,7 +11,7 @@
                 t-if="env.pos.config.iface_l10n_es_simplified_invoice and !receipt.is_to_invoice"
             >
                 <div><t t-esc='receipt.date.localestring' /></div>
-                <div>Simplified invoice></div>
+                <div>Simplified invoice</div>
                 <div><t t-esc="receipt.simplified_invoice" /></div><br />
                 <t t-log="receipt" />
             </t>
