@@ -15,6 +15,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#, python-format
+msgid ""
+"!env.pos.config.iface_l10n_es_simplified_invoice or receipt.is_to_invoice"
+msgstr ""
+
+#. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Above this limit the simplified invoice won't be made"
 msgstr ""
@@ -32,6 +40,20 @@ msgid "Customer:"
 msgstr ""
 
 #. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence__display_name
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__display_name
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence__id
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__id
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.pos_config_view_form
 msgid "Invoice Journal"
 msgstr ""
@@ -39,6 +61,13 @@ msgstr ""
 #. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Invoices"
+msgstr ""
+
+#. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_ir_sequence____last_update
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config____last_update
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order____last_update
+msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_pos
@@ -136,13 +165,6 @@ msgstr ""
 #. module: l10n_es_pos
 #: model:ir.model.fields,field_description:l10n_es_pos.field_pos_config__iface_l10n_es_simplified_invoice
 msgid "Use simplified invoices for this POS"
-msgstr ""
-
-#. module: l10n_es_pos
-#. openerp-web
-#: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
-#, python-format
-msgid "VAT:"
 msgstr ""
 
 #. module: l10n_es_pos
