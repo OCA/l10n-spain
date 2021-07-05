@@ -137,13 +137,9 @@ msgid "Simplified Invoice prefix"
 msgstr ""
 
 #. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
-msgid "Simplified invoice"
-msgstr ""
-
-#. module: l10n_es_pos
 #. openerp-web
 #: code:addons/l10n_es_pos/static/src/xml/pos.xml:0
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__is_l10n_es_simplified_invoice
 #, python-format
 msgid "Simplified invoice"
 msgstr ""
