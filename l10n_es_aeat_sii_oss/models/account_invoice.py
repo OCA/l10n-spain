@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 # Copyright 2021 FactorLibre - Rodrigo Bonilla <rodrigo.bonilla@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from openerp import api, models
 
 
 class AccountInvoice(models.Model):
@@ -15,7 +16,7 @@ class AccountInvoice(models.Model):
         :param codes: List of code strings to get the mapping.
         :return: Recordset with the corresponding codes
         """
-        taxes = super()._get_sii_taxes_map(codes)
+        taxes = super(AccountInvoice, self)._get_sii_taxes_map(codes)
         if any([x for x in codes if x in ['SFENS', 'NotIncludedInTotal']]):
             taxes |= self.env['account.tax'].search([
                 ('oss_country_id', '!=', False),

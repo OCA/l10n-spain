@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 # Copyright 2021 FactorLibre - Rodrigo Bonilla <rodrigo.bonilla@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Suministro Inmediato de Información en el IVA: OSS",
-    "version": "11.0.1.0.0",
+    "version": "8.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://odoospain.odoo.com",
     "author": "FactorLibre,"
