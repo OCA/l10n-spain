@@ -8,15 +8,14 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     has_mrw_carrier = fields.Boolean(
-        string='Has MRW carrier', compute='_get_has_mrw_carrier')
+        string='Has MRW carrier', compute='_compute_has_mrw_carrier')
 
-    def _get_has_mrw_carrier(self):
+    def _compute_has_mrw_carrier(self):
         for picking in self:
-            mrw_carrier = False
-            if picking.carrier_id\
-                    and picking.carrier_id.delivery_type == 'mrw':
-                mrw_carrier = True
-            picking.has_mrw_carrier = mrw_carrier
+            picking.has_mrw_carrier = (
+                picking.carrier_id
+                and picking.carrier_id.delivery_type == 'mrw'
+            )
 
     def mrw_get_label(self):
         """Get MRW Label for this picking expedition"""

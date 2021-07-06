@@ -16,6 +16,15 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_mrw
+#: code:addons/delivery_mrw/models/delivery_carrier.py:164
+#, python-format
+msgid "\n"
+"            El cálculo del precio no está implementado.\n"
+"            Se debería implementar en una personalización.\n"
+"        "
+msgstr ""
+
+#. module: delivery_mrw
 #: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_return
 msgid "(Optional) delivery with return"
 msgstr "Eenvío con retorno"
@@ -64,6 +73,11 @@ msgstr "Con entrega en franquicia"
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_delivery_on_saturday
 msgid "Delivery on Saturday"
 msgstr "Entrega en sábado"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_dept_code
+msgid "Department Code"
+msgstr "Código Departamento"
 
 #. module: delivery_mrw
 #: selection:delivery.carrier,mrw_service:0

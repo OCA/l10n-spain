@@ -14,6 +14,7 @@
                             <field name="mrw_api_subscriber" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
                             <field name="mrw_api_user" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
                             <field name="mrw_api_password" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
+                            <field name="mrw_api_dept_code" attrs="{'required': [('delivery_type', '=', 'mrw')]}"/>
                             <field name="mrw_service"/>
                         </group>
                         <group>

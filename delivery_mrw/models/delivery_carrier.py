@@ -14,34 +14,28 @@ class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
     delivery_type = fields.Selection(selection_add=[("mrw", "MRW")])
-
     mrw_api_franchise = fields.Char(string='Franchise')
     mrw_api_subscriber = fields.Char(string='Subscriber')
     mrw_api_user = fields.Char(string='UID')
     mrw_api_password = fields.Char(string='Password')
-
+    mrw_api_dept_code = fields.Char(string='Department Code')
     mrw_service = fields.Selection(
         selection=MRW_SERVICES,
         string="Service",
         help="Set the contracted MRW Service",
     )
-
     mrw_in_franchise = fields.Selection(
         selection=MRW_IN_FRANCHISE,
         string='In Franchise', default='N'
     )
-
     mrw_delivery_on_saturday = fields.Selection(
         selection=MRW_BOOLEAN,
         string='Delivery on Saturday', default='N')
-
     mrw_return = fields.Selection(
         selection=MRW_RETURN, string='Return',
         help='(Optional) delivery with return', default='N')
-
     mrw_refund = fields.Selection(
         selection=MRW_REFUND, string='Refund')
-
     mrw_label_type = fields.Integer(string='Label Type', default=0)
     mrw_margin_top = fields.Integer(string='Margin Top', default=1100)
     mrw_margin_left = fields.Integer(string='Margin Left', default=650)
@@ -83,17 +77,14 @@ class DeliveryCarrier(models.Model):
             'entrega_horario_rango_desde': '08:00',
             'entrega_horario_rango_hasta': '18:00',
             'entrega_observaciones': '',
-
             'fecha': fields.Date.today().strftime('%d/%m/%Y'),
             'referencia_albaran': picking.name,
             'en_franquicia': self.mrw_in_franchise,
             'codigo_servicio': self.mrw_service,
             'descripcion_servicio': '',
-
             'numero_bultos': picking.number_of_packages or '1',
             'peso': str(picking.weight).replace('.', ','),
             'entrega_sabado': self.mrw_delivery_on_saturday or '',
-
             'retorno': self.mrw_return or '',
             'reembolso': self.mrw_refund or '',
             'importe_reembolso': '',
@@ -110,7 +101,7 @@ class DeliveryCarrier(models.Model):
         wsdl_file = self._get_mrw_wsdl_file()
         mrw_request = MrwRequest(
             wsdl_file, self.mrw_api_franchise, self.mrw_api_subscriber,
-            self.mrw_api_user, self.mrw_api_password)
+            self.mrw_api_user, self.mrw_api_password, self.mrw_api_dept_code)
         result = []
         for picking in pickings:
             vals = self._prepare_mrw_shipping(picking)
@@ -134,10 +125,7 @@ class DeliveryCarrier(models.Model):
                 file_name = 'mrw_label_{}.pdf'.format(
                     response.get('tracking_number'))
                 file_content = label_response.get("label_file")
-                attachment = [(
-                    file_name,
-                    file_content
-                )]
+                attachment = [(file_name, file_content)]
             picking.message_post(body=body, attachments=attachment)
 
             result.append(vals)
@@ -164,7 +152,7 @@ class DeliveryCarrier(models.Model):
         wsdl_file = self._get_mrw_wsdl_file()
         mrw_request = MrwRequest(
             wsdl_file, self.mrw_api_franchise, self.mrw_api_subscriber,
-            self.mrw_api_user, self.mrw_api_password)
+            self.mrw_api_user, self.mrw_api_password, self.mrw_api_dept_code)
         vals = self._prepare_mrw_request_label(tracking_number)
         response = mrw_request._request_label(vals)
         return response
