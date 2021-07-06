@@ -67,7 +67,7 @@ class ResPartner(models.Model):
         return vat_number
 
     def tbai_get_value_apellidos_nombre_razon_social(self):
-        """ V 1.2
+        """V 1.2
         <element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>
             <maxLength value="120"/>
         :return: Name and surname, or business name
@@ -79,7 +79,7 @@ class ResPartner(models.Model):
         return self.name.strip()  # Remove leading and trailing whitespace
 
     def tbai_get_value_nif(self):
-        """ V 1.2
+        """V 1.2
         <element name="NIF" type="T:NIFType"/>
             <length value="9" />
             <pattern value="(([a-z|A-Z]{1}\\d{7}[a-z|A-Z]{1})|(\\d{8}[a-z|A-Z]{1})|
@@ -102,7 +102,7 @@ class ResPartner(models.Model):
         return res
 
     def tbai_get_value_direccion(self):
-        """ V 1.2
+        """V 1.2
         <element name="Direccion" type="T:TextMax250Type" minOccurs="0"/>
             <maxLength value="250"/>
         """
