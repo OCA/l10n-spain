@@ -492,7 +492,7 @@ class TicketBAIInvoice(models.Model):
         "company_id.tbai_tax_agency_id.qr_base_url",
     )
     def _compute_tbai_qr(self):
-        """ V 1.1
+        """V 1.1
         Código QR TBAI, que consiste en un código con formato QR de tamaño mayor o igual
          a 30x30 milímetros y
         menor o igual a 40x40 milímetros (en adelante, QR TBAI).
@@ -507,12 +507,14 @@ class TicketBAIInvoice(models.Model):
                     qr_base_url = record.company_id.tbai_tax_agency_id.qr_base_url
                 qr_values = record._get_qr_url_values()
                 qr_url_without_crc = "{}?{}".format(
-                    qr_base_url, urlencode(qr_values, encoding="utf-8"),
+                    qr_base_url,
+                    urlencode(qr_values, encoding="utf-8"),
                 )
                 qr_crc = crc8(qr_url_without_crc)
                 qr_values["cr"] = qr_crc
                 qr_url_with_crc = "{}?{}".format(
-                    qr_base_url, urlencode(qr_values, encoding="utf-8"),
+                    qr_base_url,
+                    urlencode(qr_values, encoding="utf-8"),
                 )
                 record.qr_url = qr_url_with_crc
                 # Let QRCode decide the best version when calling make()
@@ -613,7 +615,7 @@ class TicketBAIInvoice(models.Model):
         return self.get_taxes().filtered(lambda x: not x.is_subject_to)
 
     def get_taxes(self):
-        """ Filter TicketBai Taxes when Customer is not from Spain.
+        """Filter TicketBai Taxes when Customer is not from Spain.
         * DesgloseTipoOperacion
           - PrestacionServicios
           - Entrega
@@ -721,7 +723,7 @@ class TicketBAIInvoice(models.Model):
                 retry_later = True
 
     def _get_tbai_identifier_values(self):
-        """ V 1.2
+        """V 1.2
         TBAI-<vat_number>-<invoice_date>-<signature_value>
         :return: list<str>
         """
@@ -736,7 +738,7 @@ class TicketBAIInvoice(models.Model):
         return ["TBAI", nif, expedition_date, self.signature_value[:13]]
 
     def _get_qr_url_values(self):
-        """ V 1.2
+        """V 1.2
         <base_url>?id=<tbai_identifier>&s=<invoice_number_prefix>&nf=<invoice_number>
         &i=<invoice_total_amount>&cr=<crc8>
         :return: OrderedDict
@@ -805,7 +807,7 @@ class TicketBAIInvoice(models.Model):
             self.company_id.tbai_last_invoice_id = self
 
     def build_cabecera(self):
-        """ V 1.2
+        """V 1.2
         Get TicketBAI version from the Company Tax Agency.
 
         <element name="Cabecera" type="T:Cabecera"/>
@@ -845,7 +847,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_claves(self):
-        """ V 1.2
+        """V 1.2
         The specification document indicates that at least 1 regime key is required.
         <element name="IDClave" type="T:IDClaveType" maxOccurs="3"/>
         <sequence>
@@ -933,7 +935,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_detalle_exenta(self):
-        """ V 1.2
+        """V 1.2
         <element name="DetalleExenta" type="T:DetalleExentaType" minOccurs="1"
                  maxOccurs="7" />
             <sequence>
@@ -961,7 +963,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_detalle_no_exenta(self):
-        """ V 1.2
+        """V 1.2
         1. Inversión del Sujeto Pasivo (ISP) taxes (tax is paid by the customer).
         2. Other taxes
         <element name="DetalleNoExenta" type="T:DetalleNoExentaType" minOccurs="1"
@@ -1024,7 +1026,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_detalle_no_sujeta(self):
-        """ V 1.2
+        """V 1.2
         <element name="DetalleNoSujeta" type="T:DetalleNoSujeta" minOccurs="1"
         maxOccurs="2" />
         <sequence>
@@ -1115,7 +1117,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_entrega(self):
-        """ V 1.2
+        """V 1.2
         <element name="Entrega" type="T:Entrega" minOccurs="0"/>
             <sequence>
                 <element name="Sujeta" type="T:SujetaType" minOccurs="0" />
@@ -1133,7 +1135,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_exenta(self):
-        """ V 1.2
+        """V 1.2
         <element name="DetalleExenta" type="T:DetalleExentaType" minOccurs="1"
                  maxOccurs="7" />
         :return: dict
@@ -1243,7 +1245,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_no_exenta(self):
-        """ V 1.2
+        """V 1.2
         <element name="DetalleNoExenta" type="T:DetalleNoExentaType" minOccurs="1"
                  maxOccurs="2" />
         :return: dict
@@ -1256,7 +1258,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_no_sujeta(self):
-        """ V 1.2
+        """V 1.2
         <element name="NoSujeta" type="T:NoSujetaType" minOccurs="0" />
             <sequence>
                 <element name="DetalleNoSujeta" type="T:DetalleNoSujeta" minOccurs="1"
@@ -1271,7 +1273,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_prestacion_servicios(self):
-        """ V 1.2
+        """V 1.2
         <element name="PrestacionServicios" type="T:PrestacionServicios" minOccurs="0"/>
             <sequence>
                 <element name="Sujeta" type="T:SujetaType" minOccurs="0" />
@@ -1289,7 +1291,7 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_sujeta(self):
-        """ V 1.2
+        """V 1.2
         <element name="Sujeta" type="T:SujetaType" minOccurs="0" />
             <sequence>
                 <element name="Exenta" type="T:ExentaType" minOccurs="0" />

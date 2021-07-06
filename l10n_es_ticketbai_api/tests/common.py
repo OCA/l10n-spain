@@ -804,4 +804,14 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         ]
 
         self.tech_user = self.env.ref("base.user_demo")
-        self.tech_user.write({"groups_id": [(6, 0, group_ids,)]})
+        self.tech_user.write(
+            {
+                "groups_id": [
+                    (
+                        6,
+                        0,
+                        group_ids,
+                    )
+                ]
+            }
+        )
