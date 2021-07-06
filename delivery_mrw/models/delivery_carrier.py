@@ -168,3 +168,12 @@ class DeliveryCarrier(models.Model):
         vals = self._prepare_mrw_request_label(tracking_number)
         response = mrw_request._request_label(vals)
         return response
+
+    def mrw_rate_shipment(self, order):
+        """Maybe there's a public MRW API method to compute price
+        but it is not implemented, just define this function to be able
+        to develop a personalized method"""
+        raise NotImplementedError(_("""
+            Computation of delivery price is not implemented. You should
+            develope it.
+        """))
