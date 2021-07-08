@@ -434,6 +434,12 @@ msgid "Identification Type Code"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:49
+#, python-format
+msgid "Incorrect country code."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:43
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:51
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:59
