@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-17 09:33+0000\n"
-"PO-Revision-Date: 2021-06-17 09:33+0000\n"
+"PO-Revision-Date: 2021-07-08 09:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -101,7 +101,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:79
+#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:82
 #, python-format
 msgid "%s VAT Number"
 msgstr "%s NIF"
@@ -485,6 +485,12 @@ msgid "Identification Type Code"
 msgstr "Tipo de identificación"
 
 #. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:49
+#, python-format
+msgid "Incorrect country code."
+msgstr "Código de país incorrecto."
+
+#. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:43
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:51
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:59
@@ -593,7 +599,7 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:63
+#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:66
 #, python-format
 msgid "Name %s too long. Should be 120 characters max.!"
 msgstr "Nombre %s demasiado largo. Debería tener un máximo de 120 caracteres."
