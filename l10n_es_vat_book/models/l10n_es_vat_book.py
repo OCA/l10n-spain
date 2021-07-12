@@ -203,7 +203,8 @@ class L10nEsVatBook(models.Model):
         invoice = move_line.move_id
         partner = move_line.partner_id
         if invoice:
-            partner = invoice.commercial_partner_id
+            if invoice.is_invoice():
+                partner = invoice.commercial_partner_id
             ref = invoice.name
             ext_ref = invoice.ref
         return {
