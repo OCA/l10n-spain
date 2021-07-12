@@ -20,6 +20,9 @@ class PosConfig(models.Model):
             pos.l10n_es_simplified_invoice_prefix = seq._get_prefix_suffix()[0]
             pos.l10n_es_simplified_invoice_padding = seq.padding
 
+    l10n_es_show_address_company = fields.Boolean(
+        string="Show full company address", default=True
+    )
     iface_l10n_es_simplified_invoice = fields.Boolean(
         string="Use simplified invoices for this POS",
     )

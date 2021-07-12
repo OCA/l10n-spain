@@ -65,6 +65,7 @@
                         <div class="content-group mt16" groups="base.group_no_one">
                             <field name="l10n_es_simplified_invoice_sequence_id" />
                         </div>
+
                         <div
                             class="content-group mt16"
                             attrs="{'invisible': ['|', ('iface_l10n_es_simplified_invoice', '=', False), '&amp;', ('module_account', '=', True), ('iface_l10n_es_simplified_invoice', '!=', False)]}"
@@ -82,6 +83,23 @@
                                     context="{'default_company_id': company_id, 'default_type': 'sale'}"
                                 />
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="l10n_es_pos_address_comp"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="l10n_es_show_address_company" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="l10n_es_show_address_company"
+                            string="Show full company address"
+                        />
+                        <div class="text-muted">
+                            Show full company address for this POS
                         </div>
                     </div>
                 </div>
