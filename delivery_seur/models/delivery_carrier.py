@@ -322,8 +322,6 @@ class DeliveryCarrier(models.Model):
                 {
                     "name": "SEUR %s" % picking.carrier_tracking_ref,
                     "datas": label_content,
-                    "datas_fname": "seur_%s.%s"
-                    % (picking.carrier_tracking_ref, self.seur_label_format),
                     "res_model": "stock.picking",
                     "res_id": picking.id,
                     "mimetype": "application/%s" % self.seur_label_format,
