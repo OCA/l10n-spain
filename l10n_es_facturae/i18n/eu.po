@@ -256,13 +256,13 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:209
+#: code:addons/l10n_es_facturae/models/account_invoice.py:229
 #, python-format
 msgid "Company vat is too small"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:203
+#: code:addons/l10n_es_facturae/models/account_invoice.py:223
 #, python-format
 msgid "Company vat not provided"
 msgstr ""
@@ -430,8 +430,8 @@ msgid "Factura-E sin firmar"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:93
-#: code:addons/l10n_es_facturae/models/account_invoice.py:541
+#: code:addons/l10n_es_facturae/models/account_invoice.py:98
+#: code:addons/l10n_es_facturae/models/account_invoice.py:561
 #, python-format
 msgid "FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
@@ -442,7 +442,7 @@ msgid "Facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:559
+#: code:addons/l10n_es_facturae/models/account_invoice.py:579
 #, python-format
 msgid "Facturae Configuration"
 msgstr ""
@@ -692,6 +692,11 @@ msgid "Integration Description"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__integration_issue
+msgid "Integration Issue"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__invoice_integration_method_ids
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__invoice_integration_method_ids
 msgid "Integration Methods"
@@ -726,6 +731,11 @@ msgid "Integration for an invoice"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_account_invoice_filter
+msgid "Integration issue"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_invoice_integration_method
 msgid "Integration method for invoices"
 msgstr ""
@@ -742,7 +752,7 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:235
+#: code:addons/l10n_es_facturae/models/account_invoice.py:255
 #, python-format
 msgid "Invoice %s"
 msgstr ""
@@ -885,25 +895,25 @@ msgid "Paid"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:215
+#: code:addons/l10n_es_facturae/models/account_invoice.py:235
 #, python-format
 msgid "Partner bank is missing"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:207
+#: code:addons/l10n_es_facturae/models/account_invoice.py:227
 #, python-format
 msgid "Partner state not provided"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:205
+#: code:addons/l10n_es_facturae/models/account_invoice.py:225
 #, python-format
 msgid "Partner vat is too small"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:201
+#: code:addons/l10n_es_facturae/models/account_invoice.py:221
 #, python-format
 msgid "Partner vat not provided"
 msgstr ""
@@ -919,7 +929,7 @@ msgid "Payment Modes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:211
+#: code:addons/l10n_es_facturae/models/account_invoice.py:231
 #, python-format
 msgid "Payment mode is required"
 msgstr ""
@@ -1040,13 +1050,13 @@ msgid "Second"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:218
+#: code:addons/l10n_es_facturae/models/account_invoice.py:238
 #, python-format
 msgid "Selected account BIC must be 11"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:220
+#: code:addons/l10n_es_facturae/models/account_invoice.py:240
 #, python-format
 msgid "Selected account is too small"
 msgstr ""
@@ -1085,8 +1095,8 @@ msgid "Serie de la factura"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:101
-#: code:addons/l10n_es_facturae/models/account_invoice.py:549
+#: code:addons/l10n_es_facturae/models/account_invoice.py:106
+#: code:addons/l10n_es_facturae/models/account_invoice.py:569
 #, python-format
 msgid "Start date cannot be later than end date"
 msgstr ""
@@ -1116,7 +1126,7 @@ msgid "Tax"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:198
+#: code:addons/l10n_es_facturae/models/account_invoice.py:218
 #, python-format
 msgid "Taxes not provided in invoice line %s"
 msgstr ""
@@ -1127,13 +1137,19 @@ msgid "Templates for Taxes"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:492
+#: code:addons/l10n_es_facturae/models/account_invoice.py:512
 #, python-format
 msgid ""
 "The generated XML file is not valid against the official XML Schema "
 "Definition. The generated XML file and the full error have been written in "
 "the server logs. Here is the error, which may give you an idea on the cause "
 "of the problem : %s"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,help:l10n_es_facturae.field_account_invoice__integration_issue
+msgid ""
+"This field should show if the invoice has been integrated and has any issues"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -1166,7 +1182,7 @@ msgid "Vat must be defined"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:222
+#: code:addons/l10n_es_facturae/models/account_invoice.py:242
 #, python-format
 msgid ""
 "You can only create Factura-E files for invoices that have been validated."
@@ -1274,8 +1290,8 @@ msgid "[19] Pago mediante tarjeta"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_invoice.py:457
-#: code:addons/l10n_es_facturae/models/account_invoice.py:465
+#: code:addons/l10n_es_facturae/models/account_invoice.py:477
+#: code:addons/l10n_es_facturae/models/account_invoice.py:485
 #, python-format
 msgid "facturae"
 msgstr ""

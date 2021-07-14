@@ -393,15 +393,29 @@ formato c14n.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#id2">Configuration</a></h1>
-<ul class="simple">
-<li>Es necesario añadir el correo electrónico al que notificar los cambios de
-estado en la empresa</li>
-<li>Se debe configurar el servidor de envío</li>
-<li>Por defecto se añado el servicio web de test:
-<a class="reference external" href="https://se-face-webservice.redsara.es/facturasspp2">https://se-face-webservice.redsara.es/facturasspp2</a></li>
-<li>Si queremos añadir el de producción, debemos cambiar el parámetro por
+<ul>
+<li><p class="first">Es necesario añadir el correo electrónico al que notificar los cambios de
+estado en la empresa</p>
+</li>
+<li><p class="first">Se debe configurar el servidor de envío</p>
+</li>
+<li><p class="first">Por defecto se añade el servicio web de test:
+<a class="reference external" href="https://se-face-webservice.redsara.es/facturasspp2">https://se-face-webservice.redsara.es/facturasspp2</a></p>
+</li>
+<li><p class="first">Si queremos añadir el de producción, debemos cambiar el parámetro por
 <a class="reference external" href="https://webservice.face.gob.es/facturasspp2">https://webservice.face.gob.es/facturasspp2</a> y modificar el certificado en
-parámetros de sistema</li>
+parámetros de sistema</p>
+</li>
+<li><p class="first">Para el correcto funcionamiento debe ir a FACe y registrar el certificado.</p>
+<p>Pasos a seguir para registrar su certificado en FACe:</p>
+<ol class="arabic simple">
+<li>Acceder a <a class="reference external" href="https://face.gob.es/">https://face.gob.es/</a></li>
+<li>Acceder a “Integradores &gt; Gestión de certificados”</li>
+<li>Acceder con un certificado</li>
+<li>Registrar el certificado utilizando la clave pública (PEM)</li>
+</ol>
+<p>Cuando el certificado caduque, se deberá de volver a acceder para actualizar el certificado. Para realizarlo, se necesitará la parte pública del certificado.</p>
+</li>
 </ul>
 </div>
 <div class="section" id="usage">
