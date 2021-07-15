@@ -362,7 +362,9 @@ class AccountStatementImport(models.TransientModel):
                     "date": fields.Date.to_string(
                         line[journal.n43_date_type or "fecha_valor"]
                     ),
-                    "payment_ref": " ".join(conceptos),
+                    "payment_ref": " ".join(conceptos)
+                    or self._get_n43_ref(line)
+                    or "/",
                     "amount": line["importe"],
                     # inject raw parsed N43 dict for later use, that will be
                     # removed before passing final values to create the record
