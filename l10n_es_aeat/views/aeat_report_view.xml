@@ -92,6 +92,7 @@
                     />
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box" />
                     <field name="allow_posting" invisible="1" />
                     <field name="number" invisible="1" />
                     <field name="currency_id" invisible="1" />
