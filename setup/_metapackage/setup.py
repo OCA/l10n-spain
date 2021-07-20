@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo11-addon-l10n_es_aeat_mod349',
         'odoo11-addon-l10n_es_aeat_mod390',
         'odoo11-addon-l10n_es_aeat_sii',
+        'odoo11-addon-l10n_es_aeat_sii_oss',
         'odoo11-addon-l10n_es_aeat_soap',
         'odoo11-addon-l10n_es_dua',
         'odoo11-addon-l10n_es_dua_sii',
