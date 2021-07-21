@@ -2,8 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
+from collections import defaultdict
 
-from odoo import _, api, fields, models
+from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
 
 
@@ -243,6 +244,25 @@ class AccountMove(models.Model):
     def _get_l10n_es_facturae_backend(self):
         """To be inherited by all facturae sending modules"""
         return False
+
+    def _get_facturae_tax_info(self):
+        self.ensure_one()
+        output_taxes = defaultdict(lambda: {"base": 0, "amount": 0})
+        withheld_taxes = defaultdict(lambda: {"base": 0, "amount": 0})
+        for line in self.line_ids:
+            sign = -1 if self.move_type[:3] == "out" else 1
+            for tax in line.tax_ids:
+                if tools.float_compare(tax.amount, 0, precision_digits=2) >= 0:
+                    output_taxes[tax]["base"] += line.balance * sign
+                else:
+                    withheld_taxes[tax]["base"] += line.balance * sign
+        for tax in output_taxes:
+            output_taxes[tax]["amount"] = output_taxes[tax]["base"] * tax.amount / 100
+        for tax in withheld_taxes:
+            withheld_taxes[tax]["amount"] = (
+                withheld_taxes[tax]["base"] * tax.amount / 100
+            )
+        return output_taxes, withheld_taxes
 
 
 class AccountMoveLine(models.Model):
