@@ -25,7 +25,9 @@ Pasarela de pago Redsys
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Este módulo añade la opción de pago a través de la pasarela de Redsys.
+Este módulo añade la opción de pago a través de la pasarela de Redsys, pudiendo
+seleccionar entre los métodos de pago: pago con tarjeta, pago por transferencia,
+domiciliación y Bizum.
 
 **Table of contents**
 
@@ -65,6 +67,9 @@ Parámetros
 
 * **Idioma TPV**: Indicaremos el idioma en el TPV.
 
+* **Método de pago**: Indicaremos qué tipo de pago se debe aceptar, pago con
+  tarjeta, Bizum u otro de los disponibles.
+
 * **Porcentaje de pago**: Indicar el porcentaje de pago que se permite, si
   se deja a 0.0 se entiende 100%.
 
@@ -79,6 +84,13 @@ En caso de que exista más de una base de datos en la instalación, cuando la
 pasarela de pago envía el formulario a "/payment/redsys/return" odoo no sabe
 con que base de datos procesar esta información, por lo que hay que establecer
 los parametros **dbfilter** y **dbname** en el archivo de configuración.
+
+Para mostrar simultáneamente en el comercio electrónico varios de los métodos
+de pago que proporciona Redsys, como pago con tarjeta y Bizum por ejemplo,
+debemos duplicar el medio de pago y escoger en el campo método de pago el que
+corresponda en cada caso.
+
+En el caso de Bizum, el titular del TPV deberá solicitar al banco su activación.
 
 Known issues / Roadmap
 ======================
