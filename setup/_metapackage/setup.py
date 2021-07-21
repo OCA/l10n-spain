@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo8-addon-l10n_es_aeat_mod347',
         'odoo8-addon-l10n_es_aeat_mod349',
         'odoo8-addon-l10n_es_aeat_sii',
+        'odoo8-addon-l10n_es_aeat_sii_oss',
         'odoo8-addon-l10n_es_aeat_vat_prorrate',
         'odoo8-addon-l10n_es_aeat_vat_prorrate_asset',
         'odoo8-addon-l10n_es_cnae',
