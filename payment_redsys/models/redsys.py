@@ -81,6 +81,7 @@ class AcquirerRedsys(models.Model):
             ("T", "Pago con Tarjeta"),
             ("R", "Pago por Transferencia"),
             ("D", "Domiciliacion"),
+            ("z", "Bizum"),
         ],
         "Payment Method",
         default="T",
