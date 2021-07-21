@@ -368,7 +368,9 @@ ul.auto-toc {
 !! changes will be overwritten.                   !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external" href="https://github.com/OCA/l10n-spain/tree/14.0/payment_redsys"><img alt="OCA/l10n-spain" src="https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github" /></a> <a class="reference external" href="https://translation.odoo-community.org/projects/l10n-spain-14-0/l10n-spain-14-0-payment_redsys"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external" href="https://runbot.odoo-community.org/runbot/189/14.0"><img alt="Try me on Runbot" src="https://img.shields.io/badge/runbot-Try%20me-875A7B.png" /></a></p>
-<p>Este módulo añade la opción de pago a través de la pasarela de Redsys.</p>
+<p>Este módulo añade la opción de pago a través de la pasarela de Redsys, pudiendo
+seleccionar entre los métodos de pago: pago con tarjeta, pago por transferencia,
+domiciliación y Bizum.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -411,6 +413,8 @@ que tiene el comercio.</li>
 (Normalmente EUR - Euros).</li>
 <li><strong>Tipo de transacción</strong>: Indicaremos el tipo de transacción, 0.</li>
 <li><strong>Idioma TPV</strong>: Indicaremos el idioma en el TPV.</li>
+<li><strong>Método de pago</strong>: Indicaremos qué tipo de pago se debe aceptar, pago con
+tarjeta, Bizum u otro de los disponibles.</li>
 <li><strong>Porcentaje de pago</strong>: Indicar el porcentaje de pago que se permite, si
 se deja a 0.0 se entiende 100%.</li>
 </ul>
@@ -424,6 +428,11 @@ URLs” debe tener el valor “SI”.</p>
 pasarela de pago envía el formulario a “/payment/redsys/return” odoo no sabe
 con que base de datos procesar esta información, por lo que hay que establecer
 los parametros <strong>dbfilter</strong> y <strong>dbname</strong> en el archivo de configuración.</p>
+<p>Para mostrar simultáneamente en el comercio electrónico varios de los métodos
+de pago que proporciona Redsys, como pago con tarjeta y Bizum por ejemplo,
+debemos duplicar el medio de pago y escoger en el campo método de pago el que
+corresponda en cada caso.</p>
+<p>En el caso de Bizum, el titular del TPV deberá solicitar al banco su activación.</p>
 </div>
 </div>
 <div class="section" id="known-issues-roadmap">

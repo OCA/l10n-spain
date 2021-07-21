@@ -30,4 +30,8 @@
         ><![CDATA[
 <p>You will be redirected to the Redsys payment gateway after clicking on the payment button.</p>]]></field>
     </record>
+    <record id="payment_icon_cc_bizum" model="payment.icon">
+        <field name="name">Bizum</field>
+        <field name="image" type="base64" file="payment_redsys/static/img/bizum.png" />
+    </record>
 </odoo>
