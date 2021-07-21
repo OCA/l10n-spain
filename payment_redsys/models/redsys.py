@@ -76,6 +76,7 @@ class AcquirerRedsys(models.Model):
     redsys_pay_method = fields.Selection([('T', 'Pago con Tarjeta'),
                                           ('R', 'Pago por Transferencia'),
                                           ('D', 'Domiciliacion'),
+                                          ('z', 'Bizum'),
                                           ], 'Payment Method',
                                          default='T')
     redsys_signature_version = fields.Selection(
