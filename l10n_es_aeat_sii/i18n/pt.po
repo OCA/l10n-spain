@@ -1066,13 +1066,13 @@ msgid "With modifications not sent to SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1290
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1281
 #, python-format
 msgid "You can not cancel this invoice because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1256
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1247
 #, python-format
 msgid ""
 "You can not communicate the cancellation of this invoice at this moment "
@@ -1080,7 +1080,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1184
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1175
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -1088,7 +1088,7 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1305
+#: code:addons/l10n_es_aeat_sii/models/account_invoice.py:1296
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
