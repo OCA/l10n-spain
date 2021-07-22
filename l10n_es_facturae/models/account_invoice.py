@@ -209,7 +209,7 @@ class AccountInvoice(models.Model):
                 'correction_method']['selection'])[self.correction_method]
 
     def _get_valid_invoice_statuses(self):
-        return ['open', 'paid']
+        return ['open', 'paid', 'in_payment']
 
     def validate_facturae_fields(self):
         lines = self.invoice_line_ids.filtered(lambda r: not r.display_type)
