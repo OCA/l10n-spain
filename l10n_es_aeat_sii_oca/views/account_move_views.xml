@@ -69,6 +69,7 @@
                         />
                         <field name="sii_registration_key_code" invisible="1" />
                         <field name="sii_enabled" invisible="1" />
+                        <field name="sii_lc_operation" />
                         <field
                             name="sii_property_location"
                             attrs="{

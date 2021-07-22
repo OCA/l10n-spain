@@ -226,6 +226,13 @@ class AccountMove(models.Model):
         "greater o equal to 100 000 000,00 euros.",
         compute="_compute_macrodata",
     )
+    sii_lc_operation = fields.Boolean(
+        string="Customs - Complementary settlement",
+        help="Check this mark if this invoice represents a complementary "
+        "settlement for customs.\n"
+        "The invoice number should start with LC, QZC, QRC, A01 or A02.",
+        copy=False,
+    )
     invoice_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
         column1="invoice_id",
@@ -750,6 +757,22 @@ class AccountMove(models.Model):
         self.ensure_one()
         return self.sii_account_registration_date or fields.Date.today()
 
+    def _get_sii_invoice_type(self):
+        tipo_factura = ""
+        if self.sii_lc_operation:
+            return "LC"
+        if self.move_type in ["in_invoice", "in_refund"]:
+            tipo_factura = "R4" if self.move_type == "in_refund" else "F1"
+        elif self.move_type in ["out_invoice", "out_refund"]:
+            is_simplified = self._is_sii_simplified_invoice()
+            tipo_factura = "F2" if is_simplified else "F1"
+            if self.move_type == "out_refund":
+                if self.sii_refund_specific_invoice_type:
+                    tipo_factura = self.sii_refund_specific_invoice_type
+                else:
+                    tipo_factura = "R5" if is_simplified else "R1"
+        return tipo_factura
+
     def _get_sii_invoice_dict_out(self, cancel=False):
         """Build dict with data to send to AEAT WS for invoice types:
         out_invoice and out_refund.
@@ -777,15 +800,8 @@ class AccountMove(models.Model):
         if not cancel:
             tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
             amount_total = self.amount_total_signed - not_in_amount_total
-            if self.move_type == "out_refund":
-                if self.sii_refund_specific_invoice_type:
-                    tipo_factura = self.sii_refund_specific_invoice_type
-                else:
-                    tipo_factura = "R5" if is_simplified_invoice else "R1"
-            else:
-                tipo_factura = "F2" if is_simplified_invoice else "F1"
             inv_dict["FacturaExpedida"] = {
-                "TipoFactura": tipo_factura,
+                "TipoFactura": self._get_sii_invoice_type(),
                 "ClaveRegimenEspecialOTrascendencia": (self.sii_registration_key.code),
                 "DescripcionOperacion": self.sii_description,
                 "TipoDesglose": tipo_desglose,
@@ -871,7 +887,7 @@ class AccountMove(models.Model):
             amount_total = -self.amount_total_signed - not_in_amount_total
             inv_dict["FacturaRecibida"] = {
                 # TODO: Incluir los 5 tipos de facturas rectificativas
-                "TipoFactura": ("R4" if self.move_type == "in_refund" else "F1"),
+                "TipoFactura": self._get_sii_invoice_type(),
                 "ClaveRegimenEspecialOTrascendencia": self.sii_registration_key.code,
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
