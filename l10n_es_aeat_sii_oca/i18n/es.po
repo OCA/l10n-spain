@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 18:31+0000\n"
-"PO-Revision-Date: 2020-10-23 20:32+0200\n"
+"POT-Creation-Date: 2021-07-22 14:39+0000\n"
+"PO-Revision-Date: 2021-07-22 16:40+0200\n"
 "Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -194,6 +194,17 @@ msgstr ""
 "cuando se valida"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_lc_operation
+msgid ""
+"Check this mark if this invoice represents a complementary settlement for "
+"customs.\n"
+"The invoice number should start with LC, QZC, QRC, A01 or A02."
+msgstr ""
+"Marque esta casilla si esta factura representa una liquidación "
+"complementaria para la aduana.\n"
+"El número de factura debe comenzar con LC, QZC, QRC, A01 o A02."
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
 msgid ""
 "Check to confirm that the invoice has an absolute amount greater o equal to "
@@ -270,6 +281,11 @@ msgstr "Creado en"
 #, python-format
 msgid "Currently there's no support for multiple exempt causes."
 msgstr "Actualmente no hay soporte para múltiples causas de exención."
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_lc_operation
+msgid "Customs - Complementary settlement"
+msgstr "Aduanas - Liquidación complementaria"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__date_from
@@ -752,6 +768,11 @@ msgstr "Cabecera de proveedor para SII"
 #: model:ir.ui.menu,name:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_menu
 msgid "SII Tax Agencies"
 msgstr "Agencias tributarias SII"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_tax_agency_id
+msgid "SII Tax Agency"
+msgstr "Agencia Tributaria SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_account_registration_date
