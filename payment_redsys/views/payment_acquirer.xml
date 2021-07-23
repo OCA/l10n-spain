@@ -58,9 +58,6 @@
                         attrs="{'required': [('provider', '=', 'redsys')]}"
                     />
                 </group>
-                <group attrs="{'invisible': [('provider', '!=', 'redsys')]}">
-                    <field name="send_quotation" />
-                </group>
             </xpath>
         </field>
     </record>
