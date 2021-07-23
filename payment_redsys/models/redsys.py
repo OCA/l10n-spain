@@ -88,7 +88,6 @@ class AcquirerRedsys(models.Model):
     redsys_signature_version = fields.Selection(
         [("HMAC_SHA256_V1", "HMAC SHA256 V1")], default="HMAC_SHA256_V1"
     )
-    send_quotation = fields.Boolean("Send quotation", default=True)
     redsys_percent_partial = fields.Float(
         string="Reduction percent",
         digits="Account",
