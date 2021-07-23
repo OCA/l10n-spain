@@ -67,7 +67,6 @@ class RedsysCase(HttpCase):
         self.redsys.journal_id = bank_journal.id
         self.redsys.redsys_merchant_code = "069611024"
         self.redsys.redsys_secret_key = "sq7HjrUOBfKmC576ILgskD5srU870gJ8"
-        self.redsys.send_quotation = False
         self.redsys_ds_parameters = {
             "Ds_AuthorisationCode": "999999",
             "Ds_Date": "14%2F05%2F2017",
