@@ -39,22 +39,19 @@ class AccountMove(models.Model):
     )
 
     def add_keys(self, set_fiscal_position=True):
-        if set_fiscal_position:
-            delivery_partner_id = self._get_invoice_delivery_partner_id()
-            new_fiscal_position_id = (
-                self.env["account.fiscal.position"]
-                .with_context(force_company=self.company_id.id)
-                .get_fiscal_position(
-                    self.partner_id.id, delivery_id=delivery_partner_id
+        FiscalPosition = self.env["account.fiscal.position"]
+        for invoice in self:
+            if set_fiscal_position:
+                delivery_partner_id = invoice._get_invoice_delivery_partner_id()
+                invoice.fiscal_position_id = FiscalPosition.with_context(
+                    force_company=invoice.company_id.id
+                ).get_fiscal_position(
+                    invoice.partner_id.id, delivery_id=delivery_partner_id
                 )
-            )
-            self.fiscal_position_id = self.env["account.fiscal.position"].browse(
-                new_fiscal_position_id
-            )
-        if self.fiscal_position_id.aeat_perception_key_id:
-            fp = self.fiscal_position_id
-            self.aeat_perception_key_id = fp.aeat_perception_key_id
-            self.aeat_perception_subkey_id = fp.aeat_perception_subkey_id
+            if invoice.fiscal_position_id.aeat_perception_key_id:
+                fp = invoice.fiscal_position_id
+                invoice.aeat_perception_key_id = fp.aeat_perception_key_id
+                invoice.aeat_perception_subkey_id = fp.aeat_perception_subkey_id
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
