@@ -139,6 +139,6 @@ class ResPartner(models.Model):
             }
             if b"NIF sometido" in res.content:
                 vals.update({"aeat_partner_type": "sales_equalization"})
-            else:
+            elif b"NIF no sometido" in res.content:
                 vals.update({"aeat_partner_type": "standard"})
             partner.write(vals)
