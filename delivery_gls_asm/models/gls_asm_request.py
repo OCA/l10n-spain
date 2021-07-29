@@ -96,10 +96,7 @@ GLS_SHIPPING_TIMES = [
     ("19", "ParcelShop"),
 ]
 
-GLS_POSTAGE_TYPE = [
-    ("P", "Prepaid"),
-    ("D", "Cash On Delivery"),
-]
+GLS_POSTAGE_TYPE = [("P", "Prepaid"), ("D", "Cash On Delivery")]
 
 GLS_DELIVERY_STATES_STATIC = {
     "-10": "shipping_recorded_in_carrier",  # GRABADO
@@ -130,6 +127,40 @@ GLS_DELIVERY_STATES_STATIC = {
     "21": "incidence",  # RECANALIZADA (A EXTINGUIR)
     "22": "in_transit",  # ENTREGADO EN ASM PARCELSHOP
     "25": "in_transit",  # ASM PARCELSHOP CONFIRMA RECEPCION
+}
+
+GLS_PICKUP_STATES_STATIC = {
+    "0": "canceled_shipment",  # ANULADA
+    "1": "shipping_recorded_in_carrier",  # SOLICITADA
+    "2": "customer_delivered",  # REALIZADA CON ÉXITO
+    "3": "in_transit",  # NO REALIZADA
+    "4": "customer_delivered",  # RECIBIDA
+    "5": "incidence",  # REALIZADA CON INCIDENCIA
+    "6": "in_transit",  # RECOGIDO EN CLIENTE
+    "7": "in_transit",  # RECEPCIONADA EN AGENCIA
+    "9": "shipping_recorded_in_carrier",  # ASIGNADA
+    "10": "shipping_recorded_in_carrier",  # A PRECONFIRMAR
+    "11": "shipping_recorded_in_carrier",  # PENDIENTE GESTIÓN
+    "12": "customer_delivered",  # CERRADO
+    "13": "shipping_recorded_in_carrier",  # PENDIENTE AUTORIZACIÓN
+    "20": "customer_delivered",  # CERRADO DEFINITIVO
+}
+
+GLS_PICKUP_TYPE_STATES = {
+    "0": "cancel",  # ANULADA
+    "1": "recorded",  # SOLICITADA
+    "2": "done",  # REALIZADA CON ÉXITO
+    "3": "not_done",  # NO REALIZADA
+    "4": "received",  # RECIBIDA
+    "5": "incidence",  # REALIZADA CON INCIDENCIA
+    "6": "picked_up_customer",  # RECOGIDO EN CLIENTE
+    "7": "picked_up_agency",  # RECEPCIONADA EN AGENCIA
+    "9": "assigned",  # ASIGNADA
+    "10": "preconfirm",  # A PRECONFIRMAR
+    "11": "pending",  # PENDIENTE GESTIÓN
+    "12": "closed",  # CERRADO
+    "13": "pending_auth",  # PENDIENTE AUTORIZACIÓN
+    "20": "closed_final",  # CERRADO DEFINITIVO
 }
 
 GLS_SHIPMENT_ERROR_CODES = {
@@ -327,6 +358,16 @@ class GlsAsmRequest:
             **kwargs
         )
 
+    def _prepare_cancel_pickup_docin(self, **kwargs):
+        return """
+            <Servicios uidcliente="{uidcustomer}"
+                       xmlns="http://www.asmred.com/">
+                <Recogida referencia="{referencia}" />
+            </Servicios>
+        """.format(
+            **kwargs
+        )
+
     def _prepare__get_manifest_docin(self, **kwargs):
         """ASM API is not very standard. Prepare parameters to pass them raw in
         the SOAP message"""
@@ -423,6 +464,62 @@ class GlsAsmRequest:
             **kwargs
         )
 
+    def _prepare_send_pickup_docin(self, **kwargs):
+        """ASM API is not very standard. Prepare parameters to pass them raw in
+        the SOAP message"""
+        return """
+            <Servicios uidcliente="{uidcustomer}"
+                       xmlns="http://www.asmred.com/">
+                <Recogida codrecogida="">
+                    <Horarios>
+                        <Fecha dia="{fecha}">
+                            <Horario desde="09:00" hasta="18:00" />
+                        </Fecha>
+                    </Horarios>
+                    <RecogerEn>
+                        <Nombre>{remite_nombre}</Nombre>
+                        <Direccion>{remite_direccion}</Direccion>
+                        <Poblacion>{remite_poblacion}</Poblacion>
+                        <Provincia>{remite_provincia}</Provincia>
+                        <Pais>{remite_pais}</Pais>
+                        <CP>{remite_cp}</CP>
+                        <Telefono>{remite_telefono}</Telefono>
+                        <Movil>{remite_movil}</Movil>
+                        <Email>{remite_email}</Email>
+                        <Contacto></Contacto>
+                    </RecogerEn>
+                    <Entregas>
+                        <Envio>
+                            <FechaPrevistaEntrega>{fechaentrega}</FechaPrevistaEntrega>
+                            <Portes>{portes}</Portes>
+                            <Servicio>{servicio}</Servicio>
+                            <Horario>{horario}</Horario>
+                            <Bultos>{bultos}</Bultos>
+                            <Peso>{peso}</Peso>
+                            <Destinatario>
+                                <Nombre>{destinatario_nombre}</Nombre>
+                                <Direccion>{destinatario_direccion}</Direccion>
+                                <Poblacion>{destinatario_poblacion}</Poblacion>
+                                <Provincia>{destinatario_provincia}</Provincia>
+                                <Pais>{destinatario_pais}</Pais>
+                                <CP>{destinatario_cp}</CP>
+                                <Telefono>{destinatario_telefono}</Telefono>
+                                <Movil>{destinatario_movil}</Movil>
+                                <Email>{destinatario_email}</Email>
+                                <Observaciones>{observaciones}</Observaciones>
+                            </Destinatario>
+                        </Envio>
+                    </Entregas>
+                    <Referencias>
+                        <Referencia tipo="C">{referencia_c}</Referencia>
+                        <Referencia tipo="A">{referencia_a}</Referencia>
+                    </Referencias>
+                </Recogida>
+            </Servicios>
+        """.format(
+            **kwargs
+        )
+
     def _send_shipping(self, vals):
         """Create new shipment
         :params vals dict of needed values
@@ -464,6 +561,43 @@ class GlsAsmRequest:
             )
         return res
 
+    def _send_pickup(self, vals):
+        """Create new pickup
+        :params vals dict of needed values
+        :returns dict with GLS response containing the shipping codes, labels,
+        an other relevant data
+        """
+        vals.update({"uidcustomer": self.uidcustomer})
+        xml = Raw(self._prepare_send_pickup_docin(**vals))
+        _logger.debug(xml)
+        try:
+            res = self.client.service.GrabaServicios(docIn=xml)
+        except Exception as e:
+            raise UserError(
+                _(
+                    "No response from server recording GLS delivery {}.\n"
+                    "Traceback:\n{}"
+                ).format(vals.get("referencia_c", ""), e)
+            )
+        # Convert result suds object to dict and set the root conveniently
+        # GLS API Errors have codes below 0 so we have to
+        # convert to int as well
+        res = self._recursive_asdict(res)["Servicios"]["Recogida"]
+        res["gls_sent_xml"] = xml
+        _logger.debug(res)
+        res["_return"] = int(res["Resultado"]["_return"])
+        if res["_return"] < 0:
+            raise UserError(
+                _(
+                    "GLS returned an error trying to record the shipping for {}.\n"
+                    "Error:\n{}"
+                ).format(
+                    vals.get("referencia_c", ""),
+                    GLS_PICKUP_ERROR_CODES.get(res["_return"], res["_return"]),
+                )
+            )
+        return res
+
     def _get_delivery_info(self, reference=False):
         """Get delivery info recorded in GLS for the given reference
         :param str reference -- GLS tracking number
@@ -482,6 +616,20 @@ class GlsAsmRequest:
         res = self._recursive_asdict(res)
         return res
 
+    def _get_pickup_info(self, reference=False):
+        xml = Raw(
+            """
+            <Servicios uidcliente="{uidcustomer}" xmlns="http://www.asmred.com/">
+                <Recogida codrecogida="{codrecogida}" />
+            </Servicios>
+        """.format(
+                uidcustomer=self.uidcustomer, codrecogida=reference
+            )
+        )
+        res = self.client.service.Tracking(docIn=xml)
+        _logger.debug(res)
+        return self._recursive_asdict(res)
+
     def _get_tracking_states(self, reference=False):
         """Get just tracking states from GLS info for the given reference
         :param str reference -- GLS tracking number
@@ -493,6 +641,20 @@ class GlsAsmRequest:
             .get("exp", {})
             .get("tracking_list", {})
             .get("tracking", [])
+        )
+        # If there's just one state, we'll get a single dict, otherwise we
+        # get a list of dicts
+        if isinstance(res, dict):
+            return [res]
+        return res
+
+    def _get_pickup_tracking_states(self, reference=False):
+        res = self._get_pickup_info(reference)
+        res = (
+            res.get("Servicios", {})
+            .get("Recogida", {})
+            .get("Tracking", {})
+            .get("TrackingCliente", {})
         )
         # If there's just one state, we'll get a single dict, otherwise we
         # get a list of dicts
@@ -548,6 +710,39 @@ class GlsAsmRequest:
             )
             return {}
         response = self._recursive_asdict(response.Servicios.Envio.Resultado)
+        response["gls_sent_xml"] = xml
+        response["_return"] = int(response["_return"])
+        return response
+
+    def _cancel_pickup(self, reference=False):
+        """Cancel shipment for a given reference
+        :param str reference -- shipping reference to cancel
+        :returns: dict -- result of operation with format
+        {
+            'value': str - response message,
+            '_return': int  - response status
+        }
+        Possible response values:
+             0 -> Recogida anulada
+            -1 -> No existe recogida
+            -2 -> Tiene tracking operativo
+        """
+        xml = Raw(
+            self._prepare_cancel_pickup_docin(
+                uidcustomer=self.uidcustomer, referencia=reference
+            )
+        )
+        _logger.debug(xml)
+        try:
+            response = self.client.service.Anula(docIn=xml)
+            _logger.debug(response)
+        except Exception as e:
+            _logger.error(
+                "No response from server canceling GLS ref {}.\n"
+                "Traceback:\n{}".format(reference, e)
+            )
+            return {}
+        response = self._recursive_asdict(response.Servicios.Recogida.Resultado)
         response["gls_sent_xml"] = xml
         response["_return"] = int(response["_return"])
         return response

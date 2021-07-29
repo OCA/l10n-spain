@@ -4,8 +4,26 @@
 <odoo>
     <record id="view_picking_form" model="ir.ui.view">
         <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="inherit_id" ref="delivery.view_picking_withcarrier_out_form" />
         <field name="arch" type="xml">
+            <xpath expr="//div[@name='tracking']" position="inside">
+                <!-- extra button that is visible outside of "done" to cancel pickups -->
+                <button
+                    type='object'
+                    class="fa fa-arrow-right oe_link"
+                    name="cancel_shipment"
+                    string="Cancel"
+                    attrs="{'invisible':[
+                        '|',
+                        '|',
+                        '|',
+                        ('carrier_tracking_ref','=',False),
+                        ('delivery_type','in', ['fixed', 'base_on_rule']),
+                        ('delivery_type','=',False),
+                        ('state','=','done')]
+                    }"
+                />
+            </xpath>
             <xpath expr="//div[@name='tracking']" position="after">
                 <field
                     name="gls_asm_public_tracking_ref"
@@ -18,6 +36,52 @@
                     string="GLS Label"
                     type="object"
                     attrs="{'invisible':['|', ('gls_asm_public_tracking_ref', '=', False), ('state', '!=', 'done')]}"
+                />
+                <button
+                    name="gls_asm_send_pickup"
+                    string="Send pick-up"
+                    type="object"
+                    attrs="{'invisible':['|', '|', ('gls_carrier_is_pickup_service', '=', False), ('carrier_tracking_ref', '!=', False), ('state', 'in', ['draft','cancel'])]}"
+                />
+                <field name="gls_carrier_is_pickup_service" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="delivery_state.view_picking_withcarrier_out_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='delivery_tracking']" position="attributes">
+                <attribute name="attrs">{
+                    'invisible': [
+                        '|',
+                        ('carrier_id', '=', False),
+                        '|',
+                        '&amp;',
+                        ('gls_carrier_is_pickup_service', '=', False),
+                        ('state', '!=', 'done'),
+                        '&amp;',
+                        ('gls_carrier_is_pickup_service', '=', True),
+                        ('state', '=', 'draft')
+                    ]
+                }</attribute>
+            </xpath>
+            <xpath expr="//button[@name='tracking_state_update']" position="attributes">
+                <attribute name="attrs">{
+                    'invisible': [('delivery_type', 'in', ['base_one_rule', 'fixed'])]
+                }</attribute>
+            </xpath>
+            <xpath expr="//field[@name='tracking_state']" position="after">
+                <field
+                    name="gls_pickup_state"
+                    attrs="{
+                    'invisible': [
+                        ('gls_carrier_is_pickup_service', '=', False)
+                    ]
+                }"
                 />
             </xpath>
         </field>

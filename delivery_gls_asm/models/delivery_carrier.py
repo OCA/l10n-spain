@@ -8,6 +8,8 @@ from odoo.exceptions import UserError
 from .gls_asm_request import (
     GLS_ASM_SERVICES,
     GLS_DELIVERY_STATES_STATIC,
+    GLS_PICKUP_STATES_STATIC,
+    GLS_PICKUP_TYPE_STATES,
     GLS_POSTAGE_TYPE,
     GLS_SHIPPING_TIMES,
     GlsAsmRequest,
@@ -20,9 +22,7 @@ class DeliveryCarrier(models.Model):
     delivery_type = fields.Selection(
         selection_add=[("gls_asm", "GLS ASM")], ondelete={"gls_asm": "set default"}
     )
-    gls_asm_uid = fields.Char(
-        string="GLS UID",
-    )
+    gls_asm_uid = fields.Char(string="GLS UID")
     gls_asm_service = fields.Selection(
         selection=GLS_ASM_SERVICES,
         string="GLS Service",
@@ -41,6 +41,29 @@ class DeliveryCarrier(models.Model):
         help="Postage type, usually 'Prepaid'",
         default="P",
     )
+    gls_is_pickup_service = fields.Boolean(
+        string="Pick-up service",
+        help="Checked if this service is used for pickups",
+        compute="_compute_gls_pickup_service",
+    )
+
+    @api.depends("gls_asm_service")
+    def _compute_gls_pickup_service(self):
+        for carrier in self:
+            carrier.gls_is_pickup_service = carrier.gls_asm_service in [
+                "7",  # RECOGIDA
+                "8",  # RECOGIDA CRUZADA
+                "17",  # RECOGIDA SIN MERCANCIA
+                "39",  # REC. INT
+                "45",  # RECOGIDA MEN. MOTO
+                "46",  # RECOGIDA MEN. FURGONETA
+                "47",  # RECOGIDA MEN. F. GRANDE
+                "48",  # RECGOIDA CAMIÓN
+                "49",  # RECOGIDA MENSAJERO
+                "51",  # REC. INT WW
+                "56",  # RECOGIDA ECONOMY
+                "57",  # REC. INTERCIUDAD ECONOMY
+            ]
 
     def _gls_asm_uid(self):
         """The carrier can be put in test mode. The tests user must be set.
@@ -144,6 +167,68 @@ class DeliveryCarrier(models.Model):
             "cliente_agente": "",
         }
 
+    def _prepare_gls_asm_pickup(self, picking):
+        """Convert picking values for asm api pickup
+        :param picking record with picking to send
+        :returns dict values for the connector
+        """
+        self.ensure_one()
+        sender_partner = picking.partner_id
+        receiving_partner = (
+            picking.picking_type_id.warehouse_id.partner_id
+            or picking.company_id.partner_id
+        )
+        if not sender_partner.street:
+            raise UserError(_("Couldn't find the sender street"))
+        if not receiving_partner.street:
+            raise UserError(_("Couldn't find the consignee street"))
+        return {
+            "fecha": fields.Date.today().strftime("%d/%m/%Y"),
+            "portes": self.gls_asm_postage_type,
+            "servicio": self.gls_asm_service,
+            "horario": self.gls_asm_shiptime,
+            "bultos": picking.number_of_packages,
+            "peso": round(picking.shipping_weight, 3),
+            "fechaentrega": "",  # [optional]
+            "observaciones": "",  # [optional]
+            "remite_nombre": escape(
+                sender_partner.name or sender_partner.parent_id.name
+            ),
+            "remite_direccion": escape(sender_partner.street) or "",
+            "remite_poblacion": sender_partner.city or "",
+            "remite_provincia": sender_partner.state_id.name or "",
+            "remite_pais": (sender_partner.country_id.phone_code or ""),
+            "remite_cp": sender_partner.zip or "",
+            "remite_telefono": (
+                sender_partner.phone or sender_partner.parent_id.phone or ""
+            ),
+            "remite_movil": (
+                sender_partner.mobile or sender_partner.parent_id.mobile or ""
+            ),
+            "remite_email": (
+                sender_partner.email or sender_partner.parent_id.email or ""
+            ),
+            "destinatario_nombre": escape(
+                receiving_partner.name or receiving_partner.parent_id.name
+            ),
+            "destinatario_direccion": escape(receiving_partner.street) or "",
+            "destinatario_poblacion": receiving_partner.city or "",
+            "destinatario_provincia": receiving_partner.state_id.name or "",
+            "destinatario_pais": (receiving_partner.country_id.phone_code or ""),
+            "destinatario_cp": receiving_partner.zip or "",
+            "destinatario_telefono": (
+                receiving_partner.phone or receiving_partner.parent_id.phone or ""
+            ),
+            "destinatario_movil": (
+                receiving_partner.mobile or receiving_partner.parent_id.mobile or ""
+            ),
+            "destinatario_email": (
+                receiving_partner.email or receiving_partner.parent_id.email or ""
+            ),
+            "referencia_c": escape(picking.name),  # Our unique reference
+            "referencia_a": "",  # Not used if the above is set
+        }
+
     def gls_asm_send_shipping(self, pickings):
         """Send the package to GLS
         :param pickings: A recordset of pickings
@@ -155,6 +240,8 @@ class DeliveryCarrier(models.Model):
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         result = []
         for picking in pickings:
+            if picking.carrier_id.gls_is_pickup_service:
+                continue
             vals = self._prepare_gls_asm_shipping(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_shipping(vals)
@@ -187,35 +274,112 @@ class DeliveryCarrier(models.Model):
             result.append(vals)
         return result
 
+    def gls_asm_send_pickup(self, pickings):
+        """Send the request to GLS to pick a package up
+        :param pickings: A recordset of pickings
+        :return list: A list of dictionaries although in practice it's
+        called one by one and only the first item in the dict is taken. Due
+        to this design, we have to inject vals in the context to be able to
+        add them to the message.
+        """
+        gls_request = GlsAsmRequest(self._gls_asm_uid())
+        result = []
+        for picking in pickings:
+            if not picking.carrier_id.gls_is_pickup_service:
+                continue
+            vals = self._prepare_gls_asm_pickup(picking)
+            vals.update({"tracking_number": False, "exact_price": 0})
+            response = gls_request._send_pickup(vals)
+            self.log_xml(
+                response and response.get("gls_sent_xml", ""), "GLS ASM Pick-up Request"
+            )
+            self.log_xml(response or "", "GLS ASM Pick-up Response")
+            if not response or response.get("_return", -1) < 0:
+                result.append(vals)
+                continue
+            # For compatibility we provide this number although we get
+            # two more codes: codbarras and uid
+            vals["tracking_number"] = response.get("_codigo")
+            picking.gls_asm_public_tracking_ref = response.get("_codigo")
+            # We post an extra message in the chatter with the barcode and the
+            # label because there's clean way to override the one sent by core.
+            body = _(
+                "GLS Pickup extra info:<br/> Tracking number: %s<br/> Bultos: %s"
+            ) % (response.get("_codigo"), vals["bultos"])
+            picking.message_post(body=body)
+            result.append(vals)
+        return result
+
     def gls_asm_tracking_state_update(self, picking):
         """Tracking state update"""
         self.ensure_one()
         if not picking.carrier_tracking_ref:
             return
         gls_request = GlsAsmRequest(self._gls_asm_uid())
-        tracking_states = gls_request._get_tracking_states(picking.carrier_tracking_ref)
+        if not picking.carrier_id.gls_is_pickup_service:
+            tracking_states = gls_request._get_tracking_states(
+                picking.carrier_tracking_ref
+            )
+        else:
+            tracking_states = gls_request._get_pickup_tracking_states(
+                picking.carrier_tracking_ref
+            )
         if not tracking_states:
             return
         self.log_xml(tracking_states or "", "GLS ASM Tracking Response")
         picking.tracking_state_history = "\n".join(
             [
-                "{} - [{}] {}".format(t.get("fecha"), t.get("codigo"), t.get("evento"))
+                "{} - [{}] {}".format(
+                    t.get("fecha") or "{} {}".format(t.get("Fecha"), t.get("Hora")),
+                    t.get("codigo") or t.get("Codigo"),
+                    t.get("evento") or t.get("Descripcion"),
+                )
                 for t in tracking_states
             ]
         )
         tracking = tracking_states.pop()
         picking.tracking_state = "[{}] {}".format(
-            tracking.get("codigo"), tracking.get("evento")
+            tracking.get("codigo") or tracking.get("Codigo"),
+            tracking.get("evento") or tracking.get("Descripcion"),
         )
-        picking.delivery_state = GLS_DELIVERY_STATES_STATIC.get(
-            tracking.get("codigo"), "incidence"
+        if not picking.carrier_id.gls_is_pickup_service:
+            states_to_check = GLS_DELIVERY_STATES_STATIC
+        else:
+            states_to_check = GLS_PICKUP_STATES_STATIC
+            # Portuguese pick-ups use the 0 code for extra states that aren't "Canceled"
+            # In order to not incorrectly mark as canceled, we take the most recent
+            # non-0 code (that isn't "Cancel") as the current state
+            if (
+                picking.partner_id.country_id.code == "PT"
+                and "Anulada" not in tracking.get("Descripcion")
+            ):
+                tracking = list(
+                    filter(lambda t: t["Codigo"] != "0", tracking_states)
+                ).pop()
+            picking.gls_pickup_state = GLS_PICKUP_TYPE_STATES.get(
+                tracking.get("Codigo"), "incidence"
+            )
+        picking.delivery_state = states_to_check.get(
+            tracking.get("codigo") or tracking.get("Codigo"), "incidence"
         )
 
     def gls_asm_cancel_shipment(self, pickings):
         """Cancel the expedition"""
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         for picking in pickings.filtered("carrier_tracking_ref"):
-            response = gls_request._cancel_shipment(picking.carrier_tracking_ref)
+            self.gls_asm_tracking_state_update(picking=picking)
+            if picking.delivery_state != "shipping_recorded_in_carrier":
+                raise UserError(
+                    _(
+                        "Unable to cancel GLS Expedition with reference {} "
+                        + "as it is in state {}.\nPlease manage the cancellation "
+                        + "of this shipment/pickup with GLS via email."
+                    ).format(picking.carrier_tracking_ref, picking.tracking_state)
+                )
+            if picking.carrier_id.gls_is_pickup_service:
+                response = gls_request._cancel_pickup(picking.carrier_tracking_ref)
+            else:
+                response = gls_request._cancel_shipment(picking.carrier_tracking_ref)
             self.log_xml(
                 response and response.get("gls_sent_xml", ""), "GLS ASM Cancel Request"
             )
@@ -227,10 +391,7 @@ class DeliveryCarrier(models.Model):
                 picking.message_post(body=msg)
                 continue
             picking.gls_asm_public_tracking_ref = False
-            picking.message_post(
-                body=_("GLS Expedition with reference %s cancelled")
-                % picking.carrier_tracking_ref
-            )
+            self.gls_asm_tracking_state_update(picking=picking)
 
     def gls_asm_rate_shipment(self, order):
         """There's no public API so another price method should be used
