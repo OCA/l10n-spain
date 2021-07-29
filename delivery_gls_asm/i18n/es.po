@@ -176,11 +176,24 @@ msgid "Cash On Delivery"
 msgstr "Portes debidos"
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_is_pickup_service
+#: model:ir.model.fields,help:delivery_gls_asm.field_stock_picking__gls_carrier_is_pickup_service
+msgid "Checked if this service is used for pickups"
+msgstr "Marcado si este servicio se usa para recogidas"
+
+#. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "City"
 msgstr "Ciudad"
 
 #. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid "Couldn't find the consignee street"
+msgstr "No se ha podido encontrar la calle del consignatario (obligatorio)"
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
 #, python-format
 msgid "Couldn't find the sender street"
@@ -343,6 +356,12 @@ msgstr "Etiqueta GLS"
 #, python-format
 msgid "GLS Manifest"
 msgstr "Manifiesto GLS"
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid "GLS Pickup extra info:<br/> Tracking number: %s"
+msgstr "Información adicional de la recogida GLS:<br/> Número de seguimiento: %s"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_service
@@ -575,6 +594,12 @@ msgid "ParcelShop"
 msgstr "ParcelShop"
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_is_pickup_service
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_carrier_is_pickup_service
+msgid "Pick-up service"
+msgstr "Servicio de recogida"
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_postage_type
 msgid "Postage Type"
 msgstr "Tipo de envío"
@@ -726,6 +751,11 @@ msgid "SaturdayService"
 msgstr "Servicio Sábado"
 
 #. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_form
+msgid "Send pick-up"
+msgstr "Enviar recogida"
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_service
 msgid "Set the contracted GLS Service"
 msgstr "Establezca el servicio GLS contratado"
@@ -754,6 +784,17 @@ msgstr "Técnico"
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
 msgstr "Albarán"
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"Unable to cancel GLS Expedition with reference {} as it is in state {}.\n"
+"Please manage the cancellation of this shipment/pickup with GLS via email."
+msgstr ""
+"No es posible cancelar la expedición GLS con la reference {} ya que está"
+"en el estado {}. \nPor favor gestonia la cancelación de este envío/recogida"
+" con GLS por correo."
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_request
