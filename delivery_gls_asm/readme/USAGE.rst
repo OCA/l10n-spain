@@ -12,6 +12,17 @@ Grabar servicios
      módulo mandará a la API de GLS/ASM el número correspondiente y podremos
      descargar las etiquetas en PDF con su correspondiente numeración.
 
+Pedir recogidas
+~~~~~~~~~~~~~~~
+
+  #. Al confirmar el albarán con un servicio de recogida,
+     el envío NO se grabará en GLS.
+  #. Aparecerá un botón de "Enviar recogida" en la parte superior para solicitarlo
+  #. Con la respuesta, se registrará en el chatter la referencia de envío
+  #. Para gestionar los bultos del envío, se puede utilizar el campo de número
+     de bultos que añade `delivery_package_number` (ver el README para mayor
+     información) o bien el flujo nativo de Odoo con paquetes de envío.
+
 Cancelar servicios
 ~~~~~~~~~~~~~~~~~~
 
