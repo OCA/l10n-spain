@@ -12,9 +12,9 @@ from .mrw_request import (
 
 
 class DeliveryCarrier(models.Model):
-    _inherit = "delivery.carrier"
+    _inherit = 'delivery.carrier'
 
-    delivery_type = fields.Selection(selection_add=[("mrw", "MRW")])
+    delivery_type = fields.Selection(selection_add=[('mrw', 'MRW')])
     mrw_api_franchise = fields.Char(string='Franchise')
     mrw_api_subscriber = fields.Char(string='Subscriber')
     mrw_api_user = fields.Char(string='UID')
@@ -32,8 +32,8 @@ class DeliveryCarrier(models.Model):
 
     mrw_service = fields.Selection(
         selection=MRW_SERVICES,
-        string="Service",
-        help="Set the contracted MRW Service",
+        string='Service',
+        help='Set the contracted MRW Service',
     )
     mrw_in_franchise = fields.Selection(
         selection=MRW_IN_FRANCHISE,
@@ -120,14 +120,14 @@ class DeliveryCarrier(models.Model):
         result = []
         for picking in pickings:
             vals = self._prepare_mrw_shipping(picking)
-            vals.update({"tracking_number": False, "exact_price": 0})
+            vals.update({'tracking_number': False, 'exact_price': 0})
             response = mrw_request._send_shipping(vals)
             self.mrw_request = response['mrw_sent_xml']
             self.mrw_response = response['response'] or ''
             if not response['tracking_number']:
                 result.append(vals)
                 continue
-            vals["tracking_number"] = response['tracking_number']
+            vals['tracking_number'] = response['tracking_number']
             picking.carrier_tracking_ref = response['tracking_number']
             # request for label:
             label_response = self.mrw_request_label(
@@ -136,10 +136,10 @@ class DeliveryCarrier(models.Model):
                 'MRW Shipping extra info:\n'
                 'barcode: %s') % response.get('tracking_number'))
             attachment = []
-            if label_response.get("label_file"):
+            if label_response.get('label_file'):
                 file_name = 'mrw_label_{}.pdf'.format(
                     response.get('tracking_number'))
-                file_content = label_response.get("label_file")
+                file_content = label_response.get('label_file')
                 attachment = [(file_name, file_content)]
             picking.message_post(body=body, attachments=attachment)
 
@@ -208,14 +208,14 @@ class DeliveryCarrier(models.Model):
         tracking_states = mrw_request._get_tracking_states(vals)
         if not tracking_states:
             return
-        picking.tracking_state_history = "\n".join([
-            "%s %s - [%s] %s" % (
-                t.get("date"), t.get('time'), t.get("state_code"),
-                t.get("description"))
+        picking.tracking_state_history = '\n'.join([
+            '%s %s - [%s] %s' % (
+                t.get('date'), t.get('time'), t.get('state_code'),
+                t.get('description'))
             for t in tracking_states
         ])
         tracking = tracking_states.pop()
-        picking.tracking_state = "[{}] {}".format(
-            tracking.get("state_code"), tracking.get("description"))
+        picking.tracking_state = '[{}] {}'.format(
+            tracking.get('state_code'), tracking.get('description'))
         picking.delivery_state = MRW_DELIVERY_STATES_STATIC.get(
-            tracking.get("state_code"), 'incidence')
+            tracking.get('state_code'), 'incidence')

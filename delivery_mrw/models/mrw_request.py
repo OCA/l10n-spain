@@ -247,7 +247,7 @@ MRW_TIPO_VIA = [
 ]
 
 MRW_DELIVERY_STATES_STATIC = {
-    "00": "customer_delivered",  # ENTREGADO
+    '00': 'customer_delivered',  # ENTREGADO
 }
 
 
@@ -270,7 +270,7 @@ class MrwRequest():
         self.mrw_user_id = user_id
         self.mrw_pass = password
         self.dept_code = dept_code or ''
-        self.client = Client("file:{}".format(self.wsdl_path))
+        self.client = Client('file:{}'.format(self.wsdl_path))
 
     def _recursive_asdict(self, suds_object):
         """As suds response is an special object, we convert it into
@@ -384,8 +384,8 @@ class MrwRequest():
             res = self.client.service.TransmEnvio(xml)
         except Exception as e:
             raise UserError(_(
-                "No response from server recording MRW delivery {}.\n"
-                "Traceback:\n{}").format(vals.get("referencia_c", ""), e))
+                'No response from server recording MRW delivery {}.\n'
+                'Traceback:\n{}').format(vals.get('referencia_c', ''), e))
         # Convert result suds object to dict:
         res_mrw = self._recursive_asdict(res)
         if res_mrw['Estado'] == '0':
@@ -423,8 +423,8 @@ class MrwRequest():
             res = self.client.service.EtiquetaEnvio(xml)
         except Exception as e:
             raise UserError(_(
-                "MRW: No response from server getting label from ref {}.\n"
-                "Traceback:\n{}").format(vals['numero_envio'], e))
+                'MRW: No response from server getting label from ref {}.\n'
+                'Traceback:\n{}').format(vals['numero_envio'], e))
         res_mrw = self._recursive_asdict(res)
         res = {
             'mrw_sent_xml': xml,
@@ -468,7 +468,7 @@ class MrwRequest():
             _logger.debug(response)
         except Exception as e:
             raise UserError(_(
-                "MRW: No response from server getting state from ref {}.\n"
-                "Traceback:\n{}").format(vals['filter_init'], e))
+                'MRW: No response from server getting state from ref {}.\n'
+                'Traceback:\n{}').format(vals['filter_init'], e))
         states = self._read_tracking_response(response)
         return states

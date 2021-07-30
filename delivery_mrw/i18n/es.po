@@ -30,6 +30,21 @@ msgid "(Optional) delivery with return"
 msgstr "Eenvío con retorno"
 
 #. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_information_type
+msgid "0 for Basic Information; 1 for Detailed"
+msgstr "0 para informacíon básica; 1 para información detallada"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_filter_type
+msgid "0 for tracking number; 1 for reference; 2 package reference"
+msgstr "0 para número de seguimiento; 1 para referencia; 2 para referencia del bulto"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,help:delivery_mrw.field_delivery_carrier__mrw_api_language
+msgid "3082 for Spanish; 2070 for Portuguese"
+msgstr "3082 para Español; 2070 para Portugués"
+
+#. module: delivery_mrw
 #: selection:delivery.carrier,mrw_service:0
 msgid "Bag 14"
 msgstr ""
@@ -120,6 +135,11 @@ msgid "Express Documentos"
 msgstr "Express Documentos"
 
 #. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_filter_type
+msgid "Filter Type"
+msgstr "Tipo de Filtro"
+
+#. module: delivery_mrw
 #: selection:delivery.carrier,delivery_type:0
 msgid "Fixed Price"
 msgstr "Precio fijo"
@@ -141,9 +161,19 @@ msgid "In Franchise"
 msgstr "En Franquicia"
 
 #. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_information_type
+msgid "Information Type"
+msgstr "Tipo de Información"
+
+#. module: delivery_mrw
 #: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_label_type
 msgid "Label Type"
 msgstr "Tipo Etiqueta"
+
+#. module: delivery_mrw
+#: model:ir.model.fields,field_description:delivery_mrw.field_delivery_carrier__mrw_api_language
+msgid "Language Code"
+msgstr "Código idioma"
 
 #. module: delivery_mrw
 #: selection:delivery.carrier,delivery_type:0
@@ -190,6 +220,16 @@ msgid "MRW: No response from server getting label from ref {}.\n"
 "{}"
 msgstr "MRWW: No hay respuesta del servidor para obtener la etiqueta de la referencia {}.\n"
 "Mensaje de Error:\n"
+"{}"
+
+#. module: delivery_mrw
+#: code:addons/delivery_mrw/models/mrw_request.py:470
+#, python-format
+msgid "MRW: No response from server getting state from ref {}.\n"
+"Traceback:\n"
+"{}"
+msgstr "MRW: No hay respuesta para obtener el estado del envío de {}\n"
+"Detalles técnicos:\n"
 "{}"
 
 #. module: delivery_mrw
