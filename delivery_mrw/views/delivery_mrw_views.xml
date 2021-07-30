@@ -26,6 +26,11 @@
                             <field name="mrw_margin_top"/>
                             <field name="mrw_margin_left"/>
                         </group>
+                        <group name="mrw_tracking">
+                            <field name="mrw_api_language" />
+                            <field name="mrw_api_filter_type" />
+                            <field name="mrw_api_information_type" />
+                        </group>
                     </group>
                 </page>
             </xpath>

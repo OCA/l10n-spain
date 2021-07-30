@@ -6,9 +6,13 @@ from odoo.exceptions import UserError
 import logging
 import binascii
 import os
+
 _logger = logging.getLogger(__name__)
 
 try:
+    from zeep import Client as ZeepClient
+    from zeep.transports import Transport as ZeepTransport
+    from zeep import ZeepHelpers
     from suds.client import Client
     from suds.sax.text import Raw
     from suds.sudsobject import asdict
@@ -242,6 +246,10 @@ MRW_TIPO_VIA = [
     ('ZN', 'ZONA')
 ]
 
+MRW_DELIVERY_STATES_STATIC = {
+    "00": "customer_delivered",  # ENTREGADO
+}
+
 
 class MrwRequest():
     """Interface between MRW SOAP API and Odoo recordset
@@ -254,7 +262,7 @@ class MrwRequest():
     def __init__(self, wsdl_file, franchise, subscriber, user_id, password,
                  dept_code):
         """As the wsdl isn't public, we have to load it from local"""
-        wsdl_path = os.path.join(
+        self.wsdl_path = os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
             '../api/%s' % wsdl_file)
         self.franchise = franchise or ''
@@ -262,7 +270,7 @@ class MrwRequest():
         self.mrw_user_id = user_id
         self.mrw_pass = password
         self.dept_code = dept_code or ''
-        self.client = Client("file:{}".format(wsdl_path))
+        self.client = Client("file:{}".format(self.wsdl_path))
 
     def _recursive_asdict(self, suds_object):
         """As suds response is an special object, we convert it into
@@ -349,6 +357,19 @@ class MrwRequest():
         </mrw:DatosServicio>
         """.format(**kwargs)
 
+    def _prepare_getenvios(self, **kwargs):
+        return {
+            'login': kwargs['login'],
+            'pass': kwargs['password'],
+            'codigoIdioma': kwargs['language'],
+            'tipoFiltro': kwargs['filtertype'],
+            'valorFiltroDesde': kwargs['filter_init'],
+            'valorFiltroHasta': kwargs['filter_finish'],
+            'fechaDesde': kwargs['date_from'],
+            'fechaHasta': kwargs['date_until'],
+            'tipoInformacion': kwargs['information_type'],
+        }
+
     def _send_shipping(self, vals):
         """Create new shipment
         :params vals dict of needed values
@@ -391,7 +412,7 @@ class MrwRequest():
 
     def _request_label(self, vals):
         """Get delivery info recorded in MRW for the given reference
-        :param str reference -- MRW tracking number
+        :param str vals -- MRW dictionary data
         :returns: shipping info dict
         """
         try:
@@ -413,3 +434,41 @@ class MrwRequest():
             'response': res_mrw,
         }
         return res
+
+    def _read_tracking_response(self, response):
+        json_res = ZeepHelpers.serialize_object(response, dict)
+
+        subscribers = json_res.get('Seguimiento', {}).get('Abonado', [])
+        if not subscribers:
+            return False
+        trackings = subscribers[0].get('SeguimientoAbonado', {}).get(
+            'Seguimiento', {})
+        if not trackings:
+            return False
+        states = []
+        for tracking in trackings:
+            track_dict = {
+                'state_code': tracking.get('Estado', False),
+                'description': tracking.get('EstadoDescripcion'),
+                'date': tracking.get('FechaEntrega'),
+                'time': tracking.get('HoraEntrega'),
+            }
+            states.append(track_dict)
+
+        return states
+
+    def _get_tracking_states(self, vals):
+        """Get just tracking states from MRW info for the given reference"""
+        try:
+            data = self._prepare_getenvios(**vals)
+            _logger.debug(data)
+            transport = ZeepTransport(timeout=10)
+            zeep_client = ZeepClient(self.wsdl_path, transport=transport)
+            response = zeep_client.service.GetEnvios(**data)
+            _logger.debug(response)
+        except Exception as e:
+            raise UserError(_(
+                "MRW: No response from server getting state from ref {}.\n"
+                "Traceback:\n{}").format(vals['filter_init'], e))
+        states = self._read_tracking_response(response)
+        return states
