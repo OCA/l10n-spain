@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 try:
     from zeep import Client as ZeepClient
     from zeep.transports import Transport as ZeepTransport
-    from zeep import ZeepHelpers
+    from zeep import helpers as ZeepHelpers
     from suds.client import Client
     from suds.sax.text import Raw
     from suds.sudsobject import asdict
