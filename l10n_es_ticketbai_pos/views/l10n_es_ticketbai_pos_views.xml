@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="view_pos_config_form_inherit" model="ir.ui.view">
+            <field name="name">pos.config.form.inherit</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="l10n_es_pos.view_pos_config_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='receipt']" position="after">
+                    <field name="tbai_enabled" invisible="1"/>
+                    <t attrs="{'invisible': [('tbai_enabled','=',False)]}">
+                        <h2>TicketBAI</h2>
+                        <div class="row mt16 o_settings_container" id="ticketbai">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label string="Device Serial Number" for="tbai_device_serial_number"/>
+                                    <span class="fa fa-lg fa-desktop" title="Values set here are company-specific" groups="base.group_multi_company"/>
+                                    <div class="text-muted">
+                                        PoS Device Serial Number. As of TicketBAI v1.1, is not required.
+                                    </div>
+                                    <field name="tbai_device_serial_number"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="Certificate" for="tbai_certificate_id"/>
+                                    <span class="fa fa-lg fa-desktop" title="Values set here are company-specific" groups="base.group_multi_company"/>
+                                    <div class="text-muted">
+                                        TicketBAI Certificate (optional). If not set, the certificate from the company is used instead.
+                                    </div>
+                                    <field name="tbai_certificate_id" options="{'no_open':True,'no_create':True}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

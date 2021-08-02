@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <data>
+        <menuitem id="menu_pos_tbai_certificates"
+                  parent="point_of_sale.menu_point_config_product"
+                  action="l10n_es_ticketbai_api.action_tbai_certificates"
+                  name="TicketBAI Certificates"
+                  groups="point_of_sale.group_pos_manager"/>
+    </data>
+</odoo>
