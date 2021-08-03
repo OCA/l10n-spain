@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -129,6 +129,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_state
 msgid "Activity State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_type_icon
+msgid "Activity Type Icon"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -296,6 +301,10 @@ msgid "Details"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__display_name
@@ -311,7 +320,9 @@ msgid "E - Intra-Community supplies"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid "EU Triangular deal"
 msgstr ""
 
@@ -346,6 +357,11 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.report_aeat_mod349_document
 msgid ""
 "Form 349. Information Return. Recapitulatory\n"
@@ -373,6 +389,10 @@ msgid "I - Intra-Community services acquisitions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__id
@@ -433,7 +453,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model,name:l10n_es_aeat_mod349.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -454,6 +474,10 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail____last_update
@@ -521,6 +545,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__contact_name
 msgid "Must have name and surname."
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__my_activity_date_deadline
+msgid "My Activity Deadline"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -849,7 +878,9 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_bank_statement_line__eu_triangular_deal
 #: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_move__eu_triangular_deal
+#: model:ir.model.fields,help:l10n_es_aeat_mod349.field_account_payment__eu_triangular_deal
 msgid ""
 "This invoice constitutes a triangular operation for the purposes of intra-"
 "community operations."
