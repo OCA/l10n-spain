@@ -374,12 +374,15 @@ class L10nEsVatBook(models.Model):
 
             tax_templates = self.env['aeat.vat.book.map.line'].search(
                 []).mapped('tax_tmpl_ids')
-            taxes_issued = self.get_taxes_from_templates(
-                tax_templates.filtered(lambda t: t.type_tax_use == 'sale')
-            )
-            taxes_received = self.get_taxes_from_templates(
-                tax_templates.filtered(lambda t: t.type_tax_use == 'purchase')
-            )
+            
+            tax_obj = self.env['account.tax']
+            
+            taxes_issued = tax_obj.search([
+                ('type_tax_use', '=', 'sale')
+            ])
+            taxes_received = tax_obj.search([
+                ('type_tax_use', '=', 'purchase')
+            ])
 
             # Get all the account move lines that contain VAT that is
             #  applicable to this report.
