@@ -221,6 +221,5 @@ class DeliveryCarrier(models.Model):
         picking.delivery_state = MRW_DELIVERY_STATES_STATIC.get(
             tracking.get('state_code'), 'incidence')
         if picking.delivery_state == 'customer_delivered':
-            delivery_date = tracking.get('delivery_date').strftime(date_format)
             picking.write({
-                'date_delivered': delivery_date})
+                'date_delivered': tracking.get('delivery_date')})
