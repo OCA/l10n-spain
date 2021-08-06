@@ -208,14 +208,19 @@ class DeliveryCarrier(models.Model):
         tracking_states = mrw_request._get_tracking_states(vals)
         if not tracking_states:
             return
-        picking.tracking_state_history = '\n'.join([
-            '%s %s - [%s] %s' % (
-                t.get('date'), t.get('time'), t.get('state_code'),
-                t.get('description'))
-            for t in tracking_states
-        ])
+        date_format = '%d/%m/%Y %H:%M'
+        tracking_lines = []
+        for t in tracking_states:
+            date_str = t.get('delivery_date').strftime(date_format)
+            tracking_lines.append('%s - [%s] %s' % (
+                date_str, t.get('state_code'), t.get('description')))
+        picking.tracking_state_history = '\n'.join(tracking_lines)
         tracking = tracking_states.pop()
         picking.tracking_state = '[{}] {}'.format(
             tracking.get('state_code'), tracking.get('description'))
         picking.delivery_state = MRW_DELIVERY_STATES_STATIC.get(
             tracking.get('state_code'), 'incidence')
+        if picking.delivery_state == 'customer_delivered':
+            delivery_date = tracking.get('delivery_date').strftime(date_format)
+            picking.write({
+                'date_delivered': delivery_date})

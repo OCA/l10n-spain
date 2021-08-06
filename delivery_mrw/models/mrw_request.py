@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 import logging
 import binascii
 import os
+from datetime import datetime
 
 _logger = logging.getLogger(__name__)
 
@@ -248,6 +249,7 @@ MRW_TIPO_VIA = [
 
 MRW_DELIVERY_STATES_STATIC = {
     '00': 'customer_delivered',  # ENTREGADO
+    '57': 'in_transit',  # Salida de FQ origen a plataforma
 }
 
 
@@ -436,6 +438,23 @@ class MrwRequest():
         return res
 
     def _read_tracking_response(self, response):
+        def parse_date(date_str, time_str):
+            input_date = False
+            try:
+                if date_str and len(date_str) == 8:
+                    day = int(date_str[:2])
+                    month = int(date_str[2:4])
+                    year = int(date_str[4:])
+                    input_date = datetime(year, month, day)
+                    if time_str and len(time_str) == 4:
+                        hour = int(time_str[:2])
+                        minute = int(time_str[2:4])
+                        input_date = input_date.replace(
+                            hour=hour, minute=minute)
+            except Exception:
+                pass
+            return input_date
+
         json_res = ZeepHelpers.serialize_object(response, dict)
 
         subscribers = json_res.get('Seguimiento', {}).get('Abonado', [])
@@ -447,11 +466,16 @@ class MrwRequest():
             return False
         states = []
         for tracking in trackings:
+            delivery_date = parse_date(
+                tracking.get('FechaEntrega', False),
+                tracking.get('HoraEntrega', False)
+            )
+            if not delivery_date:
+                delivery_date = datetime.now()
             track_dict = {
                 'state_code': tracking.get('Estado', False),
                 'description': tracking.get('EstadoDescripcion'),
-                'date': tracking.get('FechaEntrega'),
-                'time': tracking.get('HoraEntrega'),
+                'delivery_date': delivery_date,
             }
             states.append(track_dict)
 
