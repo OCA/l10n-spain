@@ -13,7 +13,7 @@
                            options="{'no_open':True,'no_create':True}"/>
                 </xpath>
                 <page name="other_info" position="after">
-                    <page name="ticketbai" string="TicketBAI" attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '=', False)]}">
+                    <page name="ticketbai" string="TicketBAI" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
                         <group name="main_grp" col="4">
                             <group name="ticketbai" colspan="2" col="2">
                                 <field name="tbai_enabled" invisible="1"/>
@@ -28,8 +28,21 @@
                         </group>
                         <group name="tbai_refund" string="Refund" attrs="{'invisible': [('type', '=', 'out_invoice'), ('tbai_substitute_simplified_invoice', '=', False)]}">
                             <field name="refund_invoice_id" invisible="1"/>
-                            <field name="tbai_refund_key" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
-                            <field name="tbai_refund_type" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                            <group name="tbai_refund_key_type" string="Key/Type" colspan="4">
+                                <field name="tbai_refund_key" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="tbai_refund_type" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group name="tbai_refund_origin_invoices_data" string="Origin Invoices Data" colspan="4"
+                                   attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('refund_invoice_id', '!=', False), ('type', '!=', 'out_refund')]}">
+                                <field name="tbai_refund_origin_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree editable="bottom">
+                                        <field name="account_refund_invoice_id" invisible="1"/>
+                                        <field name="number_prefix" string="Invoice Serial"/>
+                                        <field name="number" string="Invoice Number"/>
+                                        <field name="expedition_date" string="Invoice Date"/>
+                                    </tree>
+                                </field>
+                            </group>
                         </group>
                         <group name="tbai_vat_regimes" string="VAT Regimes">
                             <field name="tbai_vat_regime_key" attrs="{'required': [('tbai_enabled', '=', True), '|', ('type', '=', 'out_invoice'), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
