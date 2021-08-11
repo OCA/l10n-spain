@@ -336,7 +336,7 @@ class L10nEsVatBook(models.Model):
         )
         special_dic = {}
         for map_line in map_lines:
-            for tax in self.get_taxes_from_templates(map_line.tax_tmpl_ids):
+            for tax in map_line.get_taxes(self):
                 special_dic[tax.id] = {
                     "name": map_line.name,
                     "book_type": map_line.book_type,
@@ -401,7 +401,7 @@ class L10nEsVatBook(models.Model):
             rec._clear_old_data()
             map_lines = self.env["aeat.vat.book.map.line"].search([])
             for map_line in map_lines:
-                taxes = rec.get_taxes_from_templates(map_line.tax_tmpl_ids)
+                taxes = map_line.get_taxes(rec)
                 account = rec.get_account_from_template(map_line.tax_account_id)
                 lines = rec._get_account_move_lines(taxes, account=account)
                 rec.create_vat_book_lines(lines, map_line.book_type, taxes)
