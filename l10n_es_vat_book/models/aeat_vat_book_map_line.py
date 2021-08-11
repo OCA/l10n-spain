@@ -40,3 +40,7 @@ class AeatVatBookMapLines(models.Model):
     tax_account_id = fields.Many2one(
         comodel_name="account.account.template", string="Tax Account Restriction",
     )
+
+    def get_taxes(self, report):
+        self.ensure_one()
+        return report.get_taxes_from_templates(self.tax_tmpl_ids)
