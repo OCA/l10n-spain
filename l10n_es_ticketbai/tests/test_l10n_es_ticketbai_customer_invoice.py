@@ -4,15 +4,14 @@
 from datetime import date
 
 from odoo import exceptions
-from odoo.tests import common
+from odoo.tests.common import tagged
 
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import XMLSchema
 
 from .common import TestL10nEsTicketBAI
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def setUp(self):
         super().setUp()
@@ -31,6 +30,23 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         ) = invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
+
+    def test_resequence_customer(self):
+        self.main_company.tbai_enabled = True
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national, self.partner
+        )
+        invoice_name = "INV/2021/0001"
+        resequence_wizard = (
+            self.env["account.resequence.wizard"]
+            .with_context(active_model="account.move", active_ids=[invoice.id])
+            .sudo()
+            .create({"move_ids": [invoice.id], "first_name": invoice_name})
+        )
+        with self.assertRaises(exceptions.UserError):
+            resequence_wizard.resequence()
+        self.main_company.tbai_enabled = False
+        resequence_wizard.resequence()
 
     def test_invoice_foreign_currency(self):
         invoice = self.create_draft_invoice(
@@ -308,14 +324,14 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         account_move_reversal.with_context(refund_method="modify").reverse_moves()
         self.assertEqual(1, len(invoice.reversal_move_id))
         refund = invoice.reversal_move_id
-        self.assertEqual(refund.invoice_payment_state, "paid")
+        self.assertEqual(refund.payment_state, "paid")
         refund_invoice = invoice.reversal_move_id[0]
         self.assertEqual("I", refund_invoice.tbai_refund_type)
         self.assertEqual("R1", refund_invoice.tbai_refund_key)
         self.assertEqual(1, len(refund_invoice.tbai_invoice_ids))
         substitute_invoice = self.env["account.move"].search(
             [
-                ("type", "=", "out_invoice"),
+                ("move_type", "=", "out_invoice"),
                 ("id", "!=", invoice.id),
                 ("invoice_origin", "=", invoice.invoice_origin),
             ]
@@ -360,7 +376,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         refund = invoice.reversal_move_id
         self.assertEqual("I", refund.tbai_refund_type)
         self.assertEqual("R1", refund.tbai_refund_key)
-        self.assertEqual(refund.invoice_payment_state, "paid")
+        self.assertEqual(refund.payment_state, "paid")
         self.assertEqual(1, len(refund.tbai_invoice_ids))
         (
             r_root,

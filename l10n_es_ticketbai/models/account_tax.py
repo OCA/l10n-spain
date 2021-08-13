@@ -26,9 +26,6 @@ class AccountTax(models.Model):
     def tbai_is_tax_exempted(self):
         return self.tax_group_id.id == self.env.ref("l10n_es.tax_group_iva_0").id
 
-    def tbai_is_not_tax_exempted(self):
-        return self.tax_group_id.id != self.env.ref("l10n_es.tax_group_iva_0").id
-
     def tbai_get_exemption_cause(self, invoice_id):
         return (
             self.env["account.fp.tbai.tax"]

@@ -45,5 +45,4 @@ class ResCompany(models.Model):
                     journals = self.env["account.journal"].search([])
                     for journal in journals:
                         if "sale" == journal.type:
-                            journal.sequence_id.suffix = ""
                             journal.refund_sequence = True

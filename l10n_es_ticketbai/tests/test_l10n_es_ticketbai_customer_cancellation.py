@@ -1,15 +1,14 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import common
+from odoo.tests.common import tagged
 
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import XMLSchema
 
 from .common import TestL10nEsTicketBAI
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestL10nEsTicketBAICustomerCancellation(TestL10nEsTicketBAI):
     def setUp(self):
         super().setUp()
@@ -29,7 +28,6 @@ class TestL10nEsTicketBAICustomerCancellation(TestL10nEsTicketBAI):
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
         invoice.sudo().tbai_invoice_ids.state = "sent"
-        invoice.sudo().journal_id.update_posted = True
         invoice.button_cancel()
         self.assertEqual(invoice.state, "cancel")
         self.assertEqual(1, len(invoice.tbai_cancellation_ids))
@@ -48,7 +46,6 @@ class TestL10nEsTicketBAICustomerCancellation(TestL10nEsTicketBAI):
         self.assertEqual(invoice.state, "posted")
         self.assertEqual(0, len(invoice.tbai_invoice_ids))
         self.main_company.tbai_enabled = True
-        invoice.sudo().journal_id.update_posted = True
         invoice.button_cancel()
         self.assertEqual(invoice.state, "cancel")
         self.assertEqual(0, len(invoice.tbai_cancellation_ids))

@@ -64,5 +64,4 @@ def post_init_hook(cr, registry):
             journals = env["account.journal"].search([("company_id", "=", company.id)])
             for journal in journals:
                 if "sale" == journal.type:
-                    journal.sequence_id.suffix = ""
                     journal.refund_sequence = True

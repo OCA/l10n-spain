@@ -9,7 +9,7 @@ from odoo import models
 _logger = logging.getLogger(__name__)
 
 try:
-    from OpenSSL import crypto
+    from cryptography.hazmat.primitives.serialization import pkcs12
 except (ImportError, IOError) as err:
     _logger.error(err)
 
@@ -23,5 +23,8 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
             self.env.context.get("active_id")
         )
         file = base64.decodebytes(record.file)
-        p12 = crypto.load_pkcs12(file, self.password)
-        record.tbai_p12_friendlyname = p12.get_friendlyname()
+        password = self.password
+        if isinstance(password, str):
+            password = bytes(password, "utf-8")
+        p12 = pkcs12.load_key_and_certificates(file, password)
+        record.tbai_p12_friendlyname = bytes(str(p12[1].subject), "utf-8")
