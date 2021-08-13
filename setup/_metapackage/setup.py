@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_aeat_mod390',
         'odoo13-addon-l10n_es_aeat_sii_oca',
         'odoo13-addon-l10n_es_aeat_vat_prorrate',
+        'odoo13-addon-l10n_es_aeat_vat_prorrate_asset',
         'odoo13-addon-l10n_es_dua',
         'odoo13-addon-l10n_es_dua_sii',
         'odoo13-addon-l10n_es_facturae',
