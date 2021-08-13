@@ -123,7 +123,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         )
 
         self.assertEqual(
-            fp_tbai_tax.tbai_vat_exemption_key, self.vat_exemption_E2,
+            fp_tbai_tax.tbai_vat_exemption_key,
+            self.vat_exemption_E2,
         )
         # Otros
         tax = invoice.invoice_line_ids.filtered(
@@ -136,7 +137,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         )
 
         self.assertEqual(
-            fp_tbai_tax.tbai_vat_exemption_key, self.vat_exemption_E6,
+            fp_tbai_tax.tbai_vat_exemption_key,
+            self.vat_exemption_E6,
         )
 
         invoice.action_post()
