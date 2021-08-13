@@ -33,7 +33,8 @@ class TicketBaiGeneralInfo(models.TransientModel):
     def _compute_name(self):
         for record in self:
             record.name = "({}) {}".format(
-                record.developer_id.vat, record.developer_id.name,
+                record.developer_id.vat,
+                record.developer_id.name,
             )
 
     @api.depends("company_id")
