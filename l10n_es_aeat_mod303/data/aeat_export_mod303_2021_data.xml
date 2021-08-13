@@ -2377,6 +2377,7 @@
     <record id="aeat_mod303_2021_main_export_config" model="aeat.model.export.config">
         <field name="name">Mod.303 2021-actualidad</field>
         <field name="date_start">2021-01-01</field>
+        <field name="date_end">2021-06-30</field>
         <field name="model_number">303</field>
         <field
             name="model_id"
