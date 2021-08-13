@@ -18,7 +18,10 @@
     "license": "AGPL-3",
     "depends": ["l10n_es", "l10n_es_aeat"],
     "data": [
+        "data/aeat.model.export.config.csv",
+        "data/aeat.model.export.config.line.csv",
         "data/tax_code_map_mod303_data.xml",
+        "data/tax_code_map_mod303_202107_data.xml",
         "data/aeat_export_mod303_2018_data.xml",
         "data/aeat_export_mod303_2021_data.xml",
         "data/l10n_es_aeat_mod303_report_activity_code_data.xml",
