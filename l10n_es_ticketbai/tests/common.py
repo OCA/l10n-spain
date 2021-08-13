@@ -4,13 +4,12 @@
 import os
 from datetime import date
 
-from odoo.tests import common
+from odoo.tests.common import tagged
 
 from odoo.addons.l10n_es_ticketbai_api.tests.common import TestL10nEsTicketBAIAPI
 
 
-@common.at_install(False)
-@common.post_install(True)
+@tagged("post_install", "-at_install")
 class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
     def create_account_billing(self):
         return (
@@ -136,7 +135,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
                 {
                     "partner_id": partner,
                     "currency_id": self.env.ref("base.EUR").id,
-                    "type": "out_invoice",
+                    "move_type": "out_invoice",
                     "invoice_date": str(date.today()),
                     "tbai_date_operation": str(date.today()),
                     "fiscal_position_id": fp.id,
@@ -189,7 +188,8 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
                     "user_type_id",
                     "=",
                     self.env.ref("account.data_account_type_receivable").id,
-                )
+                ),
+                ("company_id", "=", self.main_company.id),
             ],
             limit=1,
         )
@@ -199,7 +199,8 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
                     "user_type_id",
                     "=",
                     self.env.ref("account.data_account_type_revenue").id,
-                )
+                ),
+                ("company_id", "=", self.main_company.id),
             ],
             limit=1,
         )

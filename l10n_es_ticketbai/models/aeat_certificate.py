@@ -9,7 +9,8 @@ from odoo import api, fields, models
 _logger = logging.getLogger(__name__)
 
 try:
-    from OpenSSL import crypto
+    from cryptography import x509
+    from cryptography.hazmat.primitives import serialization
 except (ImportError, IOError) as err:
     _logger.error(err)
 
@@ -30,12 +31,14 @@ class L10nEsAeatCertificate(models.Model):
         """
         self.ensure_one()
         with open(self.public_key, "rb") as f_crt:
-            cert = crypto.load_certificate(crypto.FILETYPE_PEM, f_crt.read())
-        p12 = crypto.PKCS12()
-        p12.set_certificate(cert)
-        with open(self.private_key, "rb") as f_pem:
-            private_key = f_pem.read()
-        p12.set_privatekey(crypto.load_privatekey(crypto.FILETYPE_PEM, private_key))
+            with open(self.private_key, "rb") as f_pem:
+                f_crt = f_crt.read()
+                f_pem = f_pem.read()
+                if isinstance(f_pem, str):
+                    f_pem = bytes(f_pem, "utf-8")
+                pkey = serialization.load_pem_private_key(f_pem, password=None)
+                cert = x509.load_pem_x509_certificate(f_crt)
+                p12 = (pkey, cert, [])
         return p12
 
     @api.depends("public_key", "private_key", "tbai_p12_friendlyname")

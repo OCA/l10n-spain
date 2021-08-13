@@ -5,7 +5,7 @@
     "name": "TicketBAI - "
     "declaración de todas las operaciones de venta realizadas por las personas "
     "y entidades que desarrollan actividades económicas",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo," "Odoo Community Association (OCA)",
@@ -22,7 +22,7 @@
         "account",
         "l10n_es_ticketbai_api",
     ],
-    "external_dependencies": {"python": ["OpenSSL"]},
+    "external_dependencies": {"python": ["cryptography"]},
     "data": [
         "security/ir.model.access.csv",
         "data/tax_map_data.xml",

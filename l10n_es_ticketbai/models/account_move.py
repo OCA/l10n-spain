@@ -98,9 +98,9 @@ class AccountMove(models.Model):
             company = self.env["res.company"].browse(vals["company_id"])
             if company.tbai_enabled:
                 refund_method = self._context.get("refund_method", False)
-                invoice_type = vals.get("type", False)
+                invoice_type = vals.get("move_type", False)
                 if refund_method and invoice_type:
-                    if "out_refund" == vals["type"]:
+                    if "out_refund" == vals["move_type"]:
                         if "tbai_refund_type" not in vals:
                             vals["tbai_refund_type"] = RefundType.differences.value
                         if "tbai_refund_key" not in vals:
@@ -334,17 +334,25 @@ class AccountMove(models.Model):
             tbai_invoices._tbai_invoice_cancel()
         return super().button_cancel()
 
-    def post(self):
+    def _post(self, soft=True):
         if self.company_id.tbai_enabled:
             for inv in self:
-                if inv.type == "out_refund" and not inv.reversed_entry_id:
+                if inv.move_type == "out_refund" and not inv.reversed_entry_id:
                     raise exceptions.ValidationError(
                         _(
                             "You cannot validate a refund invoice "
                             "without the origin invoice!"
                         )
                     )
-        res = super().post()
+        res = super()._post(soft)
+        # Remove move suffix if TBAI enabled and sale journal
+        if self.company_id.tbai_enabled and "sale" == self.journal_id.type:
+            no_suffix_name_len = len(self.sequence_prefix)
+            for c in self.name[no_suffix_name_len:]:
+                if not c.isdigit():
+                    break
+                no_suffix_name_len += 1
+            self.name = self.name[:no_suffix_name_len]
         filter_refund = self._context.get("filter_refund", False)
         if not filter_refund or "refund" != filter_refund:
             # Do not send Credit Note to the Tax Agency when created
@@ -353,10 +361,10 @@ class AccountMove(models.Model):
             tbai_invoices = self.sudo().filtered(
                 lambda x: x.tbai_enabled
                 and (
-                    "out_invoice" == x.type
+                    "out_invoice" == x.move_type
                     or (
                         x.reversed_entry_id
-                        and "out_refund" == x.type
+                        and "out_refund" == x.move_type
                         and x.tbai_refund_type
                         in [RefundType.differences.value, RefundType.substitution.value]
                         and x.reversed_entry_id.tbai_invoice_id
@@ -384,8 +392,8 @@ class AccountMove(models.Model):
         return vals
 
     def tbai_is_invoice_refund(self):
-        if "out_refund" == self.type or (
-            "out_invoice" == self.type
+        if "out_refund" == self.move_type or (
+            "out_invoice" == self.move_type
             and RefundType.substitution.value == self.tbai_refund_type
         ):
             res = True
@@ -507,5 +515,5 @@ class AccountMoveReversal(models.TransientModel):
 
     def _prepare_default_reversal(self, move):
         res = super()._prepare_default_reversal(move)
-        res.update({"company_id": self.move_id.company_id.id})
+        res.update({"company_id": self.move_ids[0].company_id.id})
         return res
