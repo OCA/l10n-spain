@@ -112,9 +112,90 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base, common.TransactionCase):
         export_config_xml_ids = [
             'l10n_es_aeat_mod303.aeat_mod303_2018_main_export_config',
             'l10n_es_aeat_mod303.aeat_mod303_2021_main_export_config',
+            'l10n_es_aeat_mod303.aeat_mod303_202107_main_export_config',
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
             self.assertTrue(
                 export_to_boe._export_config(self.model303, export_config)
             )
+        with self.assertRaises(exceptions.ValidationError):
+            self.model303.cuota_compensar = -250
+        self.model303.button_post()
+        self.assertTrue(self.model303.move_id)
+        self.assertEqual(self.model303.move_id.ref, self.model303.name)
+        self.assertEqual(
+            self.model303.move_id.journal_id, self.model303.journal_id,
+        )
+        self.assertEqual(self.model303.move_id.partner_id,
+                         self.env.ref('l10n_es_aeat.res_partner_aeat'))
+        codes = self.model303.move_id.mapped('line_ids.account_id.code')
+        self.assertIn('475000', codes)
+        self.assertIn('477000', codes)
+        self.assertIn('472000', codes)
+        self.model303.button_unpost()
+        self.assertFalse(self.model303.move_id)
+        self.assertEqual(self.model303.state, 'cancelled')
+        self.model303.button_recover()
+        self.assertEqual(self.model303.state, 'draft')
+        self.assertEqual(self.model303.calculation_date, False)
+        self.model303.button_cancel()
+        self.assertEqual(self.model303.state, 'cancelled')
+        # Check 4T without exonerated
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 0,
+        )
+        # Check 4T with exonerated
+        self.model303_4t.exonerated_390 = '1'
+        self.model303_4t.button_calculate()
+        self.assertAlmostEqual(
+            self.model303_4t.tax_line_ids.filtered(
+                lambda x: x.field_number == 80
+            ).amount, 14280.0,
+        )
+        self.assertAlmostEqual(
+            self.model303_4t.casilla_88, 37280.0,
+        )
+        # Check change of period type
+        self.model303_4t.period_type = '1T'
+        self.model303_4t.onchange_period_type()
+        self.assertEqual(self.model303_4t.exonerated_390, '2')
+
+    def test_model_303_negative_special_case(self):
+        self.taxes_sale = {
+            # tax code: (base, tax_amount)
+            'S_IVA4B': (1000, 40),
+            'S_IVA21B//neg': (-140, -29.4),
+        }
+        self.taxes_purchase = {
+            # tax code: (base, tax_amount)
+            'P_IVA4_BC': (240, 9.6),
+            'P_IVA21_SC//neg': (-23, -4.83),
+        }
+        self.taxes_result = {
+            # Régimen General - Base imponible 4%
+            '1': 1000,  # S_IVA4B
+            # Régimen General - Cuota 4%
+            '3': 40,  # S_IVA4B
+            # Régimen General - Base imponible 21%
+            '7': -140,  # S_IVA21B
+            # Régimen General - Cuota 21%
+            '9': -29.4,  # S_IVA21B
+            # Modificación bases y cuotas - Base (Compras y ventas)
+            '14': 0,
+            # Modificación bases y cuotas - Cuota (Compras y ventas)
+            '15': 0,
+            # Cuotas soportadas en op. int. corrientes - Base
+            '28': 240 - 23,  # P_IVA4_IC_BC, P_IVA21_SC
+            # Cuotas soportadas en op. int. corrientes - Cuota
+            '29': 9.6 - 4.83,  # P_IVA4_IC_BC, P_IVA21_SC
+        }
+        self._invoice_sale_create('2020-01-01')
+        self._invoice_purchase_create('2020-01-01')
+        self.model303.date_start = '2020-01-01'
+        self.model303.date_end = '2020-03-31'
+        self.model303.button_calculate()
+        self._check_tax_lines()
