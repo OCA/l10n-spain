@@ -1,0 +1,4469 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://www.schenker.com/Booking/v1_1"
+    targetNamespace="http://www.schenker.com/Booking/v1_1"
+    version="1.0"
+>
+    <!-- Booking Internal Types -->
+    <xs:complexType name="bookingType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Booking type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="barcodeRequest">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Barcode request - A4 or A6 and the starting position on A4 format</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:restriction base="tns:format">
+                            <xs:enumeration value="A4" />
+                            <xs:enumeration value="A6" />
+                        </xs:restriction>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="barcodeRequestEmail"
+                type="tns:barcodeRequestEmailType"
+            />
+            <xs:element
+                maxOccurs="6"
+                minOccurs="2"
+                name="address"
+                nillable="false"
+                type="tns:addressType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds list of addresses</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="incoterm" type="tns:incotermType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines incoterm code</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="incotermLocation">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines incoterm location</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="productCode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines product code</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="productOption" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines product option</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="measurementType" type="tns:measurementType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines measurement type: METRIC or IMPERIAL</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="cargoDescription">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines cargo description</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="cargoInsurance" type="tns:currency">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines insurance value with currency</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="cashOnDelivery" type="tns:currency">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines cash on delivery amount and currency</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customsClearance" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines if customs clearance is required</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="customsClearanceEu" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines if customs clearance EU is required</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="exportCustomsDeclarant"
+                type="tns:customsDeclarant"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines exportCustomsDeclarant</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="importCustomsDeclarant"
+                type="tns:customsDeclarant"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines importCustomsDeclarant</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="0"
+                name="file"
+                nillable="true"
+                type="tns:fileType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds list of files</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="grossWeight">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines total gross weight</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="7" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="indoorDelivery" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines if indoor delivery is required</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="pickupDates" type="tns:pickupDate">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines pickup dates of the Booking</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="0"
+                name="reference"
+                nillable="true"
+                type="tns:reference"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds references</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="handlingInstructions">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines handling instructions</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="2000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="neutralShipping" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines a business scenario where the Schenker customer sends a booking request in the name of his ordering party</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="specialCargo" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies if special cargo is required</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="specialCargoDescription">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines special cargo description</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="valueOfGoods" type="tns:currency">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines amount of value of goods and the currency</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="wayBillNumber">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds Waybill number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="0"
+                name="barcodeReference"
+                nillable="true"
+                type="tns:barcodeReferenceType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds list of barcode references</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="submitBooking" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation
+                    source="Desc"
+                    xml:lang="EN"
+                >Defines booking status: IN_PROCESS(false) or SUBMITTED(true)</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="updateBooking" type="tns:bookingId">
+            <xs:annotation>
+                <xs:documentation
+                    source="Desc"
+                    xml:lang="EN"
+                >Takes a booking id. Defines the booking to be updated.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="readyForConsolidation" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation
+                    source="Desc"
+                    xml:lang="EN"
+                >Prepares the booking for later consolidation. Can only be used with submitBooking = false!</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="immediateResponse" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation
+                    source="Desc"
+                    xml:lang="EN"
+                >Use if not interested in the response.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:complexType name="bookingAirType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Air Booking type</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:bookingType">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="serviceType"
+                        type="tns:serviceAirType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines service type: D2D, D2A, A2D, A2A</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="1"
+                        name="shippingInformation"
+                        type="tns:shippingInformationType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds the air shipping information</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="myAirBusiness">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Specifies "My Air Business"</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="500" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="departureAirport">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines 3-character airport code of departure</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="3" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="destinationAirport">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines 3-character airport code of destination</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="3" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="1"
+                        name="precarriageType"
+                        type="tns:precarriageType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds precarriage value: PICKUP_REQUEST or OWN_DELIVERY</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="bookingOceanLCLType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Ocean Booking (LCL and FCL)</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:bookingType">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="serviceType"
+                        type="tns:serviceOceanType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines service type: D2D, D2P, P2D, P2P</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="1"
+                        name="shippingInformation"
+                        type="tns:shippingInformationType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds the ocean lcl shipping information</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="myOceanBusiness">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines "My Ocean Business"</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="500" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="portDischarge">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds port of discharge</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="5" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="portLoading">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines port of loading</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="5" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="precarriageType"
+                        type="tns:precarriageType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Specifies precarriage type: PICKUP_REQUEST or OWN_DELIVERY; only for Ocean (LCL)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="positioningType">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Specifies positioning type: CONTAINER_POS_BY_CUSTOMER or CONTAINER_POS_BY_SCHENKER; only for Ocean (FCL)</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="30" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <!-- becomes mandatory in next version -->
+                    <xs:element
+                        minOccurs="0"
+                        name="latestDeliveryDate"
+                        type="xs:dateTime"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Latest delivery date</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <!-- deprecated, will not be available in next version -->
+                    <xs:element
+                        maxOccurs="unbounded"
+                        minOccurs="0"
+                        name="vesselDates"
+                        nillable="false"
+                        type="tns:vesselDateType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds list of vessel dates. Deprecated, use latestDeliveryDate instead.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <!-- deprecated, will not be available in next version -->
+                    <xs:element minOccurs="0" name="vesselName">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines vessel name. Deprecated, will not be available in next version.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="250" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="bookingOceanFCLType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Ocean Booking (FCL)</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:bookingType">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="serviceType"
+                        type="tns:serviceOceanType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines service type: D2D, D2P, P2D, P2P</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        maxOccurs="unbounded"
+                        minOccurs="1"
+                        name="container"
+                        nillable="false"
+                        type="tns:containerType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds list of containers. For OCEAN_FCL there must be always 1 "container".</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="myOceanBusiness">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines "My Ocean Business"</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="500" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="portDischarge">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds port of discharge</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="5" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="portLoading">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines port of loading</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:length value="5" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="precarriageType"
+                        type="tns:precarriageType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Specifies precarriage type: PICKUP_REQUEST or OWN_DELIVERY; only for Ocean (LCL)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="positioningType">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Specifies positioning type: CONTAINER_POS_BY_CUSTOMER or CONTAINER_POS_BY_SCHENKER; only for Ocean (FCL)</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="CONTAINER_POS_BY_CUSTOMER" />
+                                <xs:enumeration value="CONTAINER_POS_BY_SCHENKER" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <!-- becomes mandatory in next version -->
+                    <xs:element
+                        minOccurs="0"
+                        name="latestDeliveryDate"
+                        type="xs:dateTime"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Latest delivery date</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <!-- deprecated, will not be available in next version -->
+                    <xs:element
+                        maxOccurs="unbounded"
+                        minOccurs="0"
+                        name="vesselDates"
+                        nillable="false"
+                        type="tns:vesselDateType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds list of vessel dates. Deprecated, use latestDeliveryDate instead.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <!-- deprecated, will not be available in next version -->
+                    <xs:element minOccurs="0" name="vesselName">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines vessel name. Deprecated, will not be available in next version.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="250" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="bookingLandType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Land Booking</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:bookingType">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="serviceType"
+                        type="tns:serviceLandType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines service type: D2D</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="incotermDestinationType"
+                        type="tns:incotermDestinationType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines incoterm destination type</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="1"
+                        name="shippingInformation"
+                        type="tns:shippingInformationType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds the land shipping information</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="preAdviseToConsignee"
+                        type="tns:preAdvise"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds the preAdviseToConsignee contact</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="deliveryDateConsignee"
+                        nillable="true"
+                        type="tns:deliveryDateConsignee"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines delivery date consignee</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="express" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment is express</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="foodRelated" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment is food related</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="heatedTransport" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment is required heated transport</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="homeDelivery" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment is required home delivery</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="1"
+                        name="measureUnit"
+                        type="tns:measureUnitType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds measure unit: VOLUME, LOADING_METERS, PIECES, PALLET_SPACE</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="measureUnitLoadingMeters">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds measure unit loading meters</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:minExclusive value="0" />
+                                <xs:totalDigits value="5" />
+                                <xs:fractionDigits value="2" />
+                                <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="measureUnitPalletSpace">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds measure unit pallet space</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:minExclusive value="0" />
+                                <xs:totalDigits value="9" />
+                                <xs:fractionDigits value="2" />
+                                <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="measureUnitPieces"
+                        type="xs:nonNegativeInteger"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds measure unit pieces</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="measureUnitVolume">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds measure unit volume</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:decimal">
+                                <xs:minExclusive value="0" />
+                                <xs:totalDigits value="9" />
+                                <xs:fractionDigits value="2" />
+                                <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="ownPickup" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines is shipment requires own pickup</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="pharmaceuticals" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment is pharmaceutical</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="driverPreAdvise"
+                        type="tns:preAdvise"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment requires pre advise to driver</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="transportTemperature"
+                        type="tns:temperature"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment requires transport temperature</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="returnPallet"
+                        type="tns:returnPallet"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment requires returning pallets</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="loadingDevice"
+                        type="tns:loadingDevice"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment requires loading devices</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="preAdviseToConsigneeEmail">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment requires pre advise to consignee via email</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="80" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="frostFree" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment is required to be frost free</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="preNotice" type="tns:preAdvise">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds the preNotice contact</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="deliveryDateFixToBeAgreed"
+                        type="tns:preAdvise"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Holds the deliveryDateFixToBeAgreed contact</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="customData">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Custom data. Usage has to be aligned with Schenker.</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="1000" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="preadviseToPickup"
+                        type="tns:preAdvise"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines preadvise to Pickup (Consignor)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="equipment"
+                        type="tns:landEquipmentType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines the Equipment</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        maxOccurs="4"
+                        minOccurs="0"
+                        name="loadSecuringEquipment"
+                        type="tns:loadSecuringEquipmentType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines the Load Securing Equipments</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="palletExchange" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment requires pallet exchange</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="mixedLoadingRestriction"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment has mixed loading restrictions</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="mixedLoadingRestrictionDescription"
+                        type="xs:string"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Describes mixed loading restrictions</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="transShipmentRestriction"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment has trans-shipment restrictions</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        maxOccurs="unbounded"
+                        minOccurs="0"
+                        name="liftingPlatform"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment has Tail lift platform at pickup and/or delivery</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="LIFTING_PLATFORM_PICKUP" />
+                                <xs:enumeration value="LIFTING_PLATFORM_DELIVERY" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ekaerNumber">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Can be applied for shipments with destination country HU. EKAER number only contains alphanumeric characters with a maximum of 15 characters and always needs to start with an E</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="E[a-zA-Z0-9]{0,14}" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="printCmrEmail">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >CMR will be sent on confirmation from your responsible Schenker office</xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:maxLength value="250" />
+                                <xs:pattern value="[^@]+@[^\.]+\..+" />
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="sentApplicable"
+                        type="tns:sentApplicable"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Can be applied for shipments with departure or destination country PL.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="longGoods" type="tns:longGoodsType">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Long goods specification. Can be used with the DB SCHENKERsystem product.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="nextDayCollection"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Use only in conjunction with the following products: DB SCHENKERfull load (71) / DB SCHENKERpart load (72). Please note that this service is not part of our standard frameset and may require a higher and individual pricing.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="proofOfDelivery" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Proof of Delivery (POD).</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="preNoticePickup"
+                        type="tns:preNoticeContactType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Pre-Notice before pick-up</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="preNoticeDelivery"
+                        type="tns:preNoticeContactType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Pre-Notice before delivery</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="fixDayPickup" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Use only in conjunction with the following products: DB SCHENKERfull load (71) / DB SCHENKERpart load (72). Please note that this service is not part of our standard frameset and may require a higher and individual pricing.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="timeWindowPickup"
+                        type="tns:timeWindowOptionType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Use only in conjunction with the following products: DB SCHENKERfull load (71) / DB SCHENKERpart load (72). Please note that this service is not part of our standard frameset and may require a higher and individual pricing.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="timeWindowDelivery"
+                        type="tns:timeWindowOptionType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Use only in conjunction with the following products: DB SCHENKERfull load (71) / DB SCHENKERpart load (72). Please note that this service is not part of our standard frameset and may require a higher and individual pricing.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        maxOccurs="unbounded"
+                        minOccurs="0"
+                        name="specialLoadingSpecification"
+                        type="tns:specialLoadingSpecificationType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Use only in conjunction with the following products: DB SCHENKERfull load (71) / DB SCHENKERpart load (72). Please note that this service is not part of our standard frameset and may require a higher and individual pricing.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="ecoNeutral" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines if shipment is eco neutral</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="partloadPickedUp" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Partload picked up</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="giroservice" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Giroservice</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="giroserviceNetFreightSurcharge"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Giroservice with net freight surcharge</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="giroserviceRegularShippingSurcharge"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Giroservice with regular shipping surcharge</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="schenkerSpecial" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Schenker special</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="reshipping" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Reshipping</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="privateDeliveryInside"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Private delivery, delivered inside</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="privateDeliveryAtWork"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Private delivery, at work</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="privateDeliveryInsideReturnablePackaging"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Private delivery, delivered inside with returnable packaging</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="privateDeliveryInsideReturnOfOldDevice"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Private delivery, delivered inside with return of old device</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="privateDeliveryInsideReturnablePackagingOldDevice"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Private delivery, delivered inside with returnable packaging and return of old device</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="returnShipment" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Return shipment</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="dispersionAgreement"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Dispersion Agreement</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="customsClearanceImportShipmentSentToCustomsWarehouse"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Customs pass - customs clearance import shipment sent to customs warehouse</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="refrigerated" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Refrigerated</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="volumeGoods" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Volume goods</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="deliveryPreNoticeSms"
+                        type="tns:deliveryPreNoticeSmsType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Delivery Pre-Notice SMS</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="deliveryPreNoticeEmail"
+                        type="tns:deliveryPreNoticeEmailType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Delivery Pre-Notice Email</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="assistanceDriverDelivery"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Assistance driver (delivery)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="assistanceDriverPickup"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Assistance driver (pickup)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="indoorPickup" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Indoor Pickup</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="unmannedLocationDelivery"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Unmanned location (delivery)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="unmannedLocationPickup"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Unmanned location (pickup)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="craneServiceDelivery"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Crane service (delivery)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="craneServicePickup"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Crane service (pickup)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        maxOccurs="1"
+                        minOccurs="0"
+                        name="recycling"
+                        type="xs:int"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Recycling - Amount of products. Service available only on agreement</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element
+                        minOccurs="0"
+                        name="removalAndRecyclingOfPackagingMaterial"
+                        type="xs:boolean"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Removal and recycling of packaging material</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="sar" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Shipper's Scanned Delivery Note</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="pharma" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Service dedicated to the transport of drugs at ambient temperature</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="pallet" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Pallet special courier</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="weCare" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >We Care</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="expressFr" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Express (FR)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="addressType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Booking Address type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="0"
+                name="contactPerson"
+                nillable="true"
+                type="tns:contactPersonType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds list of contact persons</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="name1">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines name</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="name2">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines additional name</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="customerAddressIdentifier">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines customer address identifier</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="vatNo">
+                <xs:annotation>
+                    <xs:documentation
+                        source="VatNo"
+                        xml:lang="EN"
+                    >Defines customer VAT number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="customsId">
+                <xs:annotation>
+                    <xs:documentation
+                        source="customsId"
+                        xml:lang="EN"
+                    >Defines customs ID</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="email">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines email address</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="fax">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines fax</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="industry" type="tns:industryType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines industry value</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="locationType" type="tns:locationType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines location type: POSTAL or PHYSICAL</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="mobilePhone">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines mobile phone</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="personType" type="tns:personType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines person type: PERSON or COMPANY</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="phone">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines phone</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="poBox">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines PO Box</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="postalCode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines postal code</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="20" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="stateCode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines state code</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="5" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="stateName">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines state name</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="preferredLanguage">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines preferred language</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="schenkerAddressId">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Schenker Address Id</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="36" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="street">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines street information</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="street2">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines additional street information</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="city">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines city</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="countryCode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines code of the country</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="type" type="tns:addressDirectionType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies address type: SHIPPER, CONSIGNEE, PICKUP, DELIVERY, NOTIFY, INVOICE, POS_PICKUP_OCEAN, POS_CONTAINER</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="contactPersonType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Contact person details</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="email">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines email of contact person</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="currency">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines a value with a currency. For instance: 110 EUR</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="value">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines value - amount of money</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="12" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="currency">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines currency like EUR, USD, YEN ... </xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:length value="3" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="containerType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines container</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="containerType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds container type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="containerNo">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies container number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="positioningDate"
+                nillable="true"
+                type="xs:dateTime"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies container positioning date</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="sealNumber">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies container seal number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="positioningAddress" type="tns:addressType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds container positioning address</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                minOccurs="1"
+                name="shippingInformation"
+                type="tns:shippingInformationType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds container shipping information</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="shippingInformationType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds shipping information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="1"
+                name="shipmentPosition"
+                nillable="true"
+                type="tns:shipmentPositionType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds list of shipment positions</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="grossWeight">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds shipment positions total gross weight</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="volume">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds shipment positions total volume</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="shipmentPositionType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines shipment position of shipping information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="0"
+                name="dangerousGoods"
+                nillable="true"
+                type="tns:dangerousGoodsType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds list of dangerous goods</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="dgr" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies if dangerous goods are required</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="cargoDesc">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies cargo description</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="length">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies shipment position length</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="width">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies shipment position width</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="height">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies shipment position height</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="volume">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies shipment position volume</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="grossWeight">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies shipment position gross weight</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="marksAndNumbers">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies shipment position marks and numbers</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="0"
+                name="packageLine"
+                nillable="true"
+                type="tns:packageLineType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds shipment position package lines</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="packageType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines shipment position package type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="pieces" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies shipment position pieces amount</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stackable" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines if shipment position is stackable</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="dangerousGoodsType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines dangerous goods</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="pieces" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods pieces amount</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="packageType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods package type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="weightType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods weight type: KGS, LBS, LITER</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="KGS" />
+                        <xs:enumeration value="LBS" />
+                        <xs:enumeration value="LITER" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="weight" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods weight</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="weightBasis">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods weight basis: NET or GROSS; should be empty when 'weightType' is LITER</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="NET" />
+                        <xs:enumeration value="GROSS" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element
+                maxOccurs="unbounded"
+                minOccurs="1"
+                name="subitems"
+                nillable="true"
+                type="tns:dangerousGoodsUnNoType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds list of dangerous goods UnNo numbers</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="dangerousGoodsUnNoType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds dangerous goods UnNo number</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="unNo">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods UnNo number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="4" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="labelType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds dangerous goods label type: LN_1, LN_1_4, LN_2_1, LN_2_2, LN_2_3, LN_3, LN_4_1, LN_4_2, LN_4_3, LN_5_1, LN_5_2, LN_6_1, LN_6_2, LN_7, LN_8, LN_9, LN_LQ</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="packageGroup">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods package group: I, II, III, NA</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="I" />
+                        <xs:enumeration value="II" />
+                        <xs:enumeration value="III" />
+                        <xs:enumeration value="NA" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="shippingName">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods shipping name</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="technicalName">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods technical name</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="specialProvision">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods special provision</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="tunnelCode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods technical code</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="waste" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies if dangerous goods are waste</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="europeanWasteCode" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines european waste code if 'waste' is set to true</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="NEM" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies dangerous goods NEM weight</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="exceptedQuantities" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies if dangerous goods are of excepted quantities</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="limitedQuantity" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies if dangerous goods are of limited quantity</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="emptyUncleanedPackages" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies if dangerous goods are of empty uncleaned packages</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="marinePollutant" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies if dangerous goods are marine pollutant</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="packageLineType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines package line of shipment position</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="cargoDesc">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies cargo description of package line</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="length">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies length of package line</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="width">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies width of package line</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="height">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies height of package line</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="volume">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies volume of package line</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="grossWeight">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies gross weight of package line</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0" />
+                        <xs:totalDigits value="10" />
+                        <xs:fractionDigits value="2" />
+                        <xs:pattern value="[^\.]*(\.[0-9]{1,2})?" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="customsDeclarant">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Customs Declarant</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="type" type="tns:customsDeclarantType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Customs Declarant type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="declarantInformation"
+                type="tns:declarantInformation"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies declarant Information details</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="declarantInformation">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines declarant information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="companyName">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines companyName</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="street">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines street</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="postalCode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines postalCode</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="city">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines city</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="35" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="countryCode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines countryCode</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="10" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="phone">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines phone</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="email">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines email</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                        <xs:pattern value="[^@]+@[^\.]+\..+" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="fileType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines file type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="fileSizeBytes" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines file size in bytes</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="name">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Specifies file name</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="type">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds file type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="5" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="typeOfDocument"
+                type="tns:fileTypeOfDocumentType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >holds type of document</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="data" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds Base64 data of the file (max. 6Mb)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="applicationAreaRequest">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Access Key of booking creator(person)</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="accessKey">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds the access key (user token)</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="groupId" type="xs:unsignedLong">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds optional user group id</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="requestID">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines request ID, which will be returned with response</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="userId" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines the user id for which the booking should be done</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="groupName" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines the group name for which the booking should be done</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="temperature">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds transport temperature From/To -199/+199</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="temperatureFrom" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds transport temperature From</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="temperatureTo" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds transport temperature To</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="returnPallet">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds return pallet pieces information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="pieces" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Number of pieces (1-999)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="loadingDevice">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds loading device pieces information</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="pieces" type="xs:int">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Number of pieces (1-999)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="bookingId">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[\d]{6}-[\d]{6}" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="format">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute default="1" name="start_pos">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:positiveInteger">
+                            <xs:minInclusive value="1" />
+                            <xs:maxInclusive value="4" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute default="false" name="separated" type="xs:boolean" />
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - ENUMS  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <xs:simpleType name="serviceLandType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines the service type like door2door(D2D)</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="D2D" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="serviceAirType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines the service type like door2door(D2D), airport2airport(A2A)...</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="D2D" />
+            <xs:enumeration value="D2A" />
+            <xs:enumeration value="A2D" />
+            <xs:enumeration value="A2A" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="serviceOceanType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines the service type like door2door(D2D), port2port(P2P) ...</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="D2D" />
+            <xs:enumeration value="D2P" />
+            <xs:enumeration value="P2D" />
+            <xs:enumeration value="P2P" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="incotermType">
+        <xs:annotation>
+            <xs:documentation source="Desc" xml:lang="EN">
+                Cost and freight (CFR), Cost insurance and freight (CIF), Carriage and insurance paid to (CIP),
+                Carriage paid to (CPT), Delivered at frontier (DAF), Delivered at Place (INCO Term 2010) (DAP),
+                Delivered at Terminal (DAT), Delivered duty paid (DDP), Delivered duty unpaid (DDU),
+                Delivered ex quai (DEQ), Delivered ex ship (DES), Ex works (EXW),
+                Free along side ship (FAS), Free carrier (FCA), Free on board (FOB), Delivered at Place Unloaded (DPU);
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CFR" />
+            <xs:enumeration value="CIF" />
+            <xs:enumeration value="CIP" />
+            <xs:enumeration value="CPT" />
+            <xs:enumeration value="DAF" />
+            <xs:enumeration value="DAP" />
+            <xs:enumeration value="DAT" />
+            <xs:enumeration value="DDP" />
+            <xs:enumeration value="DDU" />
+            <xs:enumeration value="DEQ" />
+            <xs:enumeration value="DES" />
+            <xs:enumeration value="EXW" />
+            <xs:enumeration value="FAS" />
+            <xs:enumeration value="FCA" />
+            <xs:enumeration value="FOB" />
+            <xs:enumeration value="DPU" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="addressDirectionType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines the type of address like SHIPPER, CONSIGNEE, PICKUP, DELIVERY, NOTIFY, INVOICE, POS_PICKUP_OCEAN, POS_CONTAINER </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SHIPPER" />
+            <xs:enumeration value="CONSIGNEE" />
+            <xs:enumeration value="PICKUP" />
+            <xs:enumeration value="DELIVERY" />
+            <xs:enumeration value="NOTIFY" />
+            <xs:enumeration value="INVOICE" />
+            <xs:enumeration value="POS_PICKUP_OCEAN" />
+            <xs:enumeration value="POS_CONTAINER" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- WEBSERVICE CHANGE ENUMS SECTION -->
+    <!-- location type -->
+    <xs:simpleType name="locationType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : PHYSICAL,POSTAL</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PHYSICAL" />
+            <xs:enumeration value="POSTAL" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo location type -->
+    <!-- Industry -->
+    <xs:simpleType name="industryType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : AUTOMOTIVE, CHEMICALS, CONSUMER, ELECTRONICS, FASHION_RETAIL, HEALTHCARE, INDUSTRIAL, SEMICON_SOLAR, OTHER</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="AUTOMOTIVE" />
+            <xs:enumeration value="CHEMICALS" />
+            <xs:enumeration value="CONSUMER" />
+            <xs:enumeration value="ELECTRONICS" />
+            <xs:enumeration value="FASHION_RETAIL" />
+            <xs:enumeration value="HEALTHCARE" />
+            <xs:enumeration value="INDUSTRIAL" />
+            <xs:enumeration value="SEMICON_SOLAR" />
+            <xs:enumeration value="OTHER" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo Industry -->
+    <!-- Day of week -->
+    <xs:simpleType name="dayOfWeekType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MONDAY" />
+            <xs:enumeration value="TUESDAY" />
+            <xs:enumeration value="WEDNESDAY" />
+            <xs:enumeration value="THURSDAY" />
+            <xs:enumeration value="FRIDAY" />
+            <xs:enumeration value="SATURDAY" />
+            <xs:enumeration value="SUNDAY" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo Day of weel -->
+    <!-- Person type -->
+    <xs:simpleType name="personType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : PERSON, COMPANY</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PERSON" />
+            <xs:enumeration value="COMPANY" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo Person type -->
+    <!-- Measurament type -->
+    <xs:simpleType name="measurementType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : METRIC , IMPERIAL</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="METRIC" />
+            <xs:enumeration value="IMPERIAL" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo measurament type -->
+    <!-- Precarriage type -->
+    <xs:simpleType name="precarriageType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : PICKUP_REQUEST, OWN_DELIVERY</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PICKUP_REQUEST" />
+            <xs:enumeration value="OWN_DELIVERY" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo precarriage type -->
+    <!-- Delivery date consignee type -->
+    <xs:simpleType name="deliveryDateConsigneeType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : FIX, LATEST, EARLIEST, TIME</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="FIX" />
+            <xs:enumeration value="LATEST" />
+            <xs:enumeration value="EARLIEST" />
+            <xs:enumeration value="TIME" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo delivery date consignee type -->
+    <!-- Measure unit -->
+    <xs:simpleType name="measureUnitType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : cargoDesc, LOADING_METERS, PIECES, PALLET_SPACE</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VOLUME" />
+            <xs:enumeration value="LOADING_METERS" />
+            <xs:enumeration value="PIECES" />
+            <xs:enumeration value="PALLET_SPACE" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- Eo measure unit -->
+    <!-- Reference Type -->
+    <xs:simpleType name="referenceIdType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >valid values : SHIPPER_REFERENCE_NUMBER(6),SHIPPER_BILLING_NUMBER, CONSIGNEE_REFERENCE_NUMBER(7), CONSIGNEE_BILLING_NUMBER, PURCHASE_ORDER_NUMBER(10),COMERCIAL_INVOICE(13),CUSTOMER_BOOKING_REFERENCE(14),CUSTOMER_RATE_REFERENCE(15),DATE_OF_PURCHASE(16),DELIVERY_ORDER_NUMBER(17),EQUIPMENT_CODE(18),FACTORY_CODE(19),INVOICE_REFERENCE(20),LOAD_PLAN_NUMBER(21),MOVEMENT_REFERENCE(22),PACKING_LIST_NUMBER(23),PROFORMA_INVOICE(24),PURCHASE_DEPARTMENT_NUMBER(25),SALES_ORDER_NUMBER(26),SAP_NUMBER(27),SHIPPING_ORDER_NUMBER(28), CONTACT_PERSON_CUSTOMER, SUPPLIER_NUMBER</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SHIPPER_REFERENCE_NUMBER" />
+            <xs:enumeration value="SHIPPER_BILLING_NUMBER" />
+            <xs:enumeration value="CONSIGNEE_REFERENCE_NUMBER" />
+            <xs:enumeration value="CONSIGNEE_BILLING_NUMBER" />
+            <xs:enumeration value="PURCHASE_ORDER_NUMBER" />
+            <xs:enumeration value="COMERCIAL_INVOICE" />
+            <xs:enumeration value="CUSTOMER_BOOKING_REFERENCE" />
+            <xs:enumeration value="CUSTOMER_RATE_REFERENCE" />
+            <xs:enumeration value="DATE_OF_PURCHASE" />
+            <xs:enumeration value="DELIVERY_ORDER_NUMBER" />
+            <xs:enumeration value="EQUIPMENT_CODE" />
+            <xs:enumeration value="FACTORY_CODE" />
+            <xs:enumeration value="INVOICE_REFERENCE" />
+            <xs:enumeration value="LOAD_PLAN_NUMBER" />
+            <xs:enumeration value="MOVEMENT_REFERENCE" />
+            <xs:enumeration value="PACKING_LIST_NUMBER" />
+            <xs:enumeration value="PROFORMA_INVOICE" />
+            <xs:enumeration value="PURCHASE_DEPARTMENT_NUMBER" />
+            <xs:enumeration value="SALES_ORDER_NUMBER" />
+            <xs:enumeration value="SAP_NUMBER" />
+            <xs:enumeration value="SHIPPING_ORDER_NUMBER" />
+            <xs:enumeration value="CONTACT_PERSON_CUSTOMER" />
+            <xs:enumeration value="SUPPLIER_NUMBER" />
+            <xs:enumeration value="ADM" />
+            <xs:enumeration value="ALL" />
+            <xs:enumeration value="ALO" />
+            <xs:enumeration value="ART" />
+            <xs:enumeration value="ASN" />
+            <xs:enumeration value="LS" />
+            <xs:enumeration value="ZZZ" />
+            <xs:enumeration value="CN" />
+            <xs:enumeration value="CH" />
+            <xs:enumeration value="AIO" />
+            <xs:enumeration value="akb" />
+            <xs:enumeration value="AEL" />
+            <xs:enumeration value="CTN" />
+            <xs:enumeration value="CR" />
+            <xs:enumeration value="AUS" />
+            <xs:enumeration value="DID" />
+            <xs:enumeration value="DQ" />
+            <xs:enumeration value="ATS" />
+            <xs:enumeration value="VM" />
+            <xs:enumeration value="bm" />
+            <xs:enumeration value="ADW" />
+            <xs:enumeration value="MB" />
+            <xs:enumeration value="AVU" />
+            <xs:enumeration value="AVX" />
+            <xs:enumeration value="MF" />
+            <xs:enumeration value="VP" />
+            <xs:enumeration value="SSCC" />
+            <xs:enumeration value="AIQ" />
+            <xs:enumeration value="FT" />
+            <xs:enumeration value="AHX" />
+            <xs:enumeration value="AKH" />
+            <xs:enumeration value="ABF" />
+            <xs:enumeration value="ALS" />
+            <xs:enumeration value="ASE" />
+            <xs:enumeration value="AMI" />
+            <xs:enumeration value="IL" />
+            <xs:enumeration value="AAN" />
+            <xs:enumeration value="LC" />
+            <xs:enumeration value="ADK" />
+            <xs:enumeration value="AJK" />
+            <xs:enumeration value="SPN" />
+            <xs:enumeration value="WCO" />
+            <xs:enumeration value="WON" />
+            <xs:enumeration value="SHIPNO" />
+            <xs:enumeration value="VIN" />
+            <xs:enumeration value="BON" />
+            <xs:enumeration value="XXX" />
+            <xs:enumeration value="AKW" />
+            <xs:enumeration value="XRF:PKN" />
+            <xs:enumeration value="XRF:CLO" />
+            <xs:enumeration value="XRF:PGP" />
+            <xs:enumeration value="XRF:PUZ" />
+            <xs:enumeration value="XRF:SRC" />
+            <xs:enumeration value="XRF:XRE" />
+            <xs:enumeration value="XRF:EDI" />
+            <xs:enumeration value="IT" />
+            <xs:enumeration value="XRF:CUS" />
+            <xs:enumeration value="XRF:CTN" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="incotermDestinationType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines the incoterm destination type</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BOD" />
+            <xs:enumeration value="BOR" />
+            <xs:enumeration value="CON" />
+            <xs:enumeration value="SHP" />
+            <xs:enumeration value="SBR" />
+            <xs:enumeration value="RBR" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="longGoodsType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Long goods specification. TYPE_1: Long goods from 2.40 m to 3.00 m - TYPE_2: Long goods from 3.00 m to 6.00 m</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TYPE_1" />
+            <xs:enumeration value="TYPE_2" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="timeWindowOptionType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >MORNING: 09:00 - 12:00 / AFTERNOON: 13:00 - 16:00</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MORNING" />
+            <xs:enumeration value="AFTERNOON" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="specialLoadingSpecificationType">
+        <xs:annotation>
+            <xs:documentation source="Desc" xml:lang="EN">TBD</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LOADING_FROM_SIDE_AT_SHIPPER" />
+            <xs:enumeration value="LOADING_FROM_TOP_AT_SHIPPER" />
+            <xs:enumeration value="OFFLOADING_FROM_SIDE_AT_CONSIGNEE" />
+            <xs:enumeration value="OFFLOADING_FROM_TOP_AT_CONSIGNEE" />
+            <xs:enumeration value="LOADING_AND_OFFLOADING_FROM_SIDE" />
+            <xs:enumeration value="LOADING_AND_OFFLOADING_FROM_TOP" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="fileTypeOfDocumentType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Document Types enum</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Phytosanitarian Certificate" />
+            <xs:enumeration value="ATA Carnet" />
+            <xs:enumeration value="Certificate of Origin" />
+            <xs:enumeration value="CMR Document" />
+            <xs:enumeration value="Commercial Invoice" />
+            <xs:enumeration value="Excise Document" />
+            <xs:enumeration value="Goods Certificates" />
+            <xs:enumeration value="Import Customs Document" />
+            <xs:enumeration value="Licenses and Permits" />
+            <xs:enumeration value="Customer Delivery Note" />
+            <xs:enumeration value="Dangerous Goods Documents" />
+            <xs:enumeration value="Export Customs Declaration" />
+            <xs:enumeration value="Loading Device Document" />
+            <xs:enumeration value="Others" />
+            <xs:enumeration value="Packing List" />
+            <xs:enumeration value="Customs Preference Document" />
+            <xs:enumeration value="Price Quotation" />
+            <xs:enumeration value="Export Declaration" />
+            <xs:enumeration value="Transit Customs Document" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="customsDeclarantType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines customsDeclarant type enum</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="dbschenker" />
+            <xs:enumeration value="other" />
+            <xs:enumeration value="notrequired" />
+            <xs:enumeration value="notspecified" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- EO Reference Type -->
+    <!-- EO WEBSERVICE CHANGE ENUMS SECTION -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - -  End enum - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <xs:complexType name="pickupDate">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines pickup dates</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="pickUpDateFrom" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines pick up date From</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="pickUpDateTo" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines pick up date To</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="preAdvise">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines preAdvise</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="contact">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines contact</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="phone">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines contact phone</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="1000" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="deliveryDateConsignee">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Delivery Date Consignee</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="0"
+                name="deliveryDate"
+                nillable="true"
+                type="xs:dateTime"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines delivery date consignee</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="deliveryType"
+                type="tns:deliveryDateConsigneeType"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines delivery date consignee type: LATEST, EARLIEST, FIX or TIME</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="timeFrom">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines delivery date consignee time FROM (00:00 upto 23:59) when type TIME is selected</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(([01][0-9])|(2[0-3])):[0-5][0-9]" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="timeTo">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines delivery date consignee time TO (00:00 upto 23:59) when type TIME is selected</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(([01][0-9])|(2[0-3])):[0-5][0-9]" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="reference">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines reference</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="number">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines reference number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="id" type="tns:referenceIdType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines reference type</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="barcodeReferenceType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines barcode reference</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="barcode">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines barcode value</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="barcodeType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines type of the barcode: SSCC</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="30" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="vesselDateType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines vessel date</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="date" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines vessel date</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="1" name="type">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines vessel date type: LATEST_ARR, LATEST_DEP</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="LATEST_ARR" />
+                        <xs:enumeration value="LATEST_DEP" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="loadSecuringEquipmentType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines load securing equipment type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="type">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines equipment type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="SPAN_SET" />
+                        <xs:enumeration value="ANTI_SKID_MAT" />
+                        <xs:enumeration value="LASHING_CHAIN" />
+                        <xs:enumeration value="CLIPBOARD" />
+                        <xs:enumeration value="EDGE_PROTECTOR" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="1" name="quantity" type="xs:positiveInteger">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines equipment quantity</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="landEquipmentType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines land equipment type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="vehicleType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines vehicle type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="TRAILER" />
+                        <xs:enumeration value="ROAD_TRAIN" />
+                        <xs:enumeration value="RIGID_TRUCK" />
+                        <xs:enumeration value="VAN" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="formatType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines format type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="STANDARD_SIZE" />
+                        <xs:enumeration value="MEGA_TRAILER" />
+                        <xs:enumeration value="JUMBO" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="bodyType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines body type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="TILT" />
+                        <xs:enumeration value="DRY_BOX" />
+                        <xs:enumeration value="REFFER_BOX" />
+                        <xs:enumeration value="FLATBED_TRAILER" />
+                        <xs:enumeration value="SEMI_TRAILER" />
+                        <xs:enumeration value="CONTAINER_CHASSIS_40" />
+                        <xs:enumeration value="CONTAINER_CHASSIS_20" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="technologyType">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines technology type</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="CODE_XL_TARPAULIN" />
+                        <xs:enumeration value="COIL_RECESS" />
+                        <xs:enumeration value="TAIL_LIFT" />
+                        <xs:enumeration value="FORK_LIFT" />
+                        <xs:enumeration value="JOLODA_ROLLER_BED" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="sentApplicable">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Can only be applied for bookings with departure or destination country PL.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="sentNumber">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Please enter 14 digits received from PUESC platform as SENT number</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{14}" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="sentCarrierUpdateKey">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="KD-[1-9]{2}[XLANTCYDRUEFZPHMJSKW]{2}" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="preNoticeContactType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds contact information.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contactPerson">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's name.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="phone">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's phone number.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="email">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's email address.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                        <xs:pattern value="[^@]+@[^\.]+\..+" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="deliveryPreNoticeSmsType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds delivery pre-notice sms information.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contact">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's name.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="phone">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's phone number.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="deliveryPreNoticeEmailType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds delivery pre-notice email information.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="contact">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's name.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="500" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="email">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's email address.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                        <xs:pattern value="[^@]+@[^\.]+\..+" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Web Service Internal Types-->
+    <xs:complexType name="externalBookingRequest">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Base type external booking request</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="1"
+                name="applicationArea"
+                type="tns:applicationAreaRequest"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds access key (user token), optional user group id and request ID, which will be returned with response</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  LAND   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getBookingRequestLand">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Create Land Booking operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="in" type="tns:externalBookingRequestLand">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Land booking request</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalBookingRequestLand">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds bookingLand</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:externalBookingRequest">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="bookingLand"
+                        type="tns:bookingLandType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines Land booking</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  AIR   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getBookingRequestAir">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Create Air Booking operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="in" type="tns:externalBookingRequestAir">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Air booking</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalBookingRequestAir">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds bookingAir</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:externalBookingRequest">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="bookingAir"
+                        type="tns:bookingAirType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines Air booking</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  OCEAN LCL   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getBookingOceanLCL">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Create Ocean LCL Booking operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="1"
+                name="in"
+                type="tns:externalBookingRequestOceanLCL"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines BookingOceanLCL</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalBookingRequestOceanLCL">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds bookingOceanLCL</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:externalBookingRequest">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="bookingOceanLCL"
+                        type="tns:bookingOceanLCLType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines Ocean LCL booking</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  OCEAN FCL   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getBookingOceanFCL">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Create Ocean FCL Booking operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="1"
+                name="in"
+                type="tns:externalBookingRequestOceanFCL"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines FCL Ocean booking</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalBookingRequestOceanFCL">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds bookingOceanFCL</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:externalBookingRequest">
+                <xs:sequence>
+                    <xs:element
+                        minOccurs="1"
+                        name="bookingOceanFCL"
+                        type="tns:bookingOceanFCLType"
+                    >
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines Ocean FCL booking</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  Cancel   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getCancelRequest">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Get Cancel Request for Cancel operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="in" type="tns:externalCancelRequest">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Cancel request</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalCancelRequest">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds Cancel Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:externalBookingRequest">
+                <xs:sequence>
+                    <xs:element name="cancelRequest" type="tns:cancelRequestType">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines Barcode request type</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="cancelRequestType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Cancel Request Type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                maxOccurs="1"
+                minOccurs="1"
+                name="bookingId"
+                type="tns:bookingId"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds the canceled booking ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  BARCODE   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getBarcodeRequest">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Get Barcode Request for Barcode operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="in" type="tns:externalBarcodeRequest">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Barcode request</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalBarcodeRequest">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds Barcode Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:externalBookingRequest">
+                <xs:sequence>
+                    <xs:element name="barcodeRequest" type="tns:barcodeRequestType">
+                        <xs:annotation>
+                            <xs:documentation
+                                source="Desc"
+                                xml:lang="EN"
+                            >Defines Barcode request type</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="barcodeRequestType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Barcode Request Type</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="format">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:restriction base="tns:format">
+                            <xs:enumeration value="A4" />
+                            <xs:enumeration value="A6" />
+                        </xs:restriction>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element
+                minOccurs="0"
+                name="barcodeRequestEmail"
+                type="tns:barcodeRequestEmailType"
+            />
+            <xs:element
+                maxOccurs="999"
+                minOccurs="1"
+                name="bookingId"
+                type="tns:bookingId"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds response booking ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="barcodeRequestEmailType">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Sends barcode labels to defined email addresses</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element maxOccurs="25" minOccurs="1" name="email">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >The contact person's email address.</xs:documentation>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="250" />
+                        <xs:pattern value="[^@]+@[^\.]+\..+" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  Barcode Response     - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getBarcodeResponse">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Get Barcode Response for Barcode operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="out" type="tns:externalBarcodeResponse">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Barcode response</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalBarcodeResponse">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds Barcode Response</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="1"
+                name="applicationArea"
+                type="tns:applicationAreaResponse"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds access request ID of the request, which will be returned with response</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="document" type="xs:base64Binary" />
+            <xs:element minOccurs="0" name="noBarcodeAvailable">
+                <xs:simpleType>
+                    <xs:list itemType="tns:bookingId" />
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  Cancel Response     - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getCancelResponse">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Get Barcode Response for Barcode operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="1" name="out" type="tns:externalCancelResponse">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Defines Cancel response</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalCancelResponse">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds Cancel Response</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="1"
+                name="applicationArea"
+                type="tns:applicationAreaResponse"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds access request ID of the request, which will be returned with response</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                maxOccurs="1"
+                minOccurs="1"
+                name="bookingId"
+                type="tns:bookingId"
+            />
+        </xs:sequence>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  Response   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="getBookingResponse">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Booking response of create operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="out" type="tns:externalBookingResponse">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds "create booking" operation response</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="externalBookingResponse">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds the in tag of the "create booking" operation response</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="1"
+                name="applicationArea"
+                type="tns:applicationAreaResponse"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds access request ID of the request, which will be returned with response</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="bookingId" type="tns:bookingId">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds response booking ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element
+                maxOccurs="1"
+                minOccurs="0"
+                name="barcodeDocument"
+                type="xs:base64Binary"
+            >
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds the barcode labels for the booking</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="applicationAreaResponse">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Holds the reuqest id of request</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="requestID" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds response request ID</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <!--  - -  - -  - -  - -  - -  - -  - -  End Response   - -  - -  - -  - -  - -  - -  - -  - -  -->
+    <xs:complexType name="schenkerServiceExceptionError">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines the schenker exception error</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" name="code" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds exception error code</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="message" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation
+                        source="Desc"
+                        xml:lang="EN"
+                    >Holds exception error message</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="schenkerServiceException">
+        <xs:annotation>
+            <xs:documentation
+                source="Desc"
+                xml:lang="EN"
+            >Defines Booking exception of create operation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element
+                minOccurs="1"
+                name="error"
+                type="tns:schenkerServiceExceptionError"
+            />
+        </xs:sequence>
+    </xs:complexType>
+    <!-- Elements of Web Service -->
+    <xs:element name="getBookingRequestLand" type="tns:getBookingRequestLand" />
+    <xs:element name="getBookingRequestAir" type="tns:getBookingRequestAir" />
+    <xs:element name="getBookingRequestOceanLCL" type="tns:getBookingOceanLCL" />
+    <xs:element name="getBookingRequestOceanFCL" type="tns:getBookingOceanFCL" />
+    <xs:element name="getBookingResponse" type="tns:getBookingResponse" />
+    <xs:element name="getBookingBarcodeRequest" type="tns:getBarcodeRequest" />
+    <xs:element name="getBookingBarcodeResponse" type="tns:getBarcodeResponse" />
+    <xs:element name="getBookingCancelRequest" type="tns:getCancelRequest" />
+    <xs:element name="getBookingCancelResponse" type="tns:getCancelResponse" />
+    <xs:element name="schenkerServiceException" type="tns:schenkerServiceException" />
+</xs:schema>

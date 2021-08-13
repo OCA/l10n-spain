@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<definitions
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+    xmlns:tns="http://www.schenker.com/Booking/v1_1"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="BookingWebService"
+    targetNamespace="http://www.schenker.com/Booking/v1_1"
+>
+  <types>
+    <xsd:schema
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+            xmlns:tns="http://www.schenker.com/Booking/v1_1"
+            xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+            xmlns="http://schemas.xmlsoap.org/wsdl/"
+        >
+      <xsd:import
+                namespace="http://www.schenker.com/Booking/v1_1"
+                schemaLocation="https://eschenker.dbschenker.com/webservice/bookingWebServiceV1_1?xsd=BookingWebService_v1.1.xsd"
+            />
+    </xsd:schema>
+  </types>
+  <message name="getBookingRequestLand">
+    <part element="tns:getBookingRequestLand" name="parameters">
+    </part>
+  </message>
+  <message name="getBookingRequestOceanFCL">
+    <part element="tns:getBookingRequestOceanFCL" name="parameters">
+    </part>
+  </message>
+  <message name="getBookingCancelRequest">
+    <part element="tns:getBookingCancelRequest" name="parameters">
+    </part>
+  </message>
+  <message name="getBookingResponse">
+    <part element="tns:getBookingResponse" name="parameters">
+    </part>
+  </message>
+  <message name="getBookingBarcodeResponse">
+    <part element="tns:getBookingBarcodeResponse" name="parameters">
+    </part>
+  </message>
+  <message name="getBookingRequestAir">
+    <part element="tns:getBookingRequestAir" name="parameters">
+    </part>
+  </message>
+  <message name="schenkerServiceException">
+    <part element="tns:schenkerServiceException" name="fault">
+    </part>
+  </message>
+  <message name="getBookingBarcodeRequest">
+    <part element="tns:getBookingBarcodeRequest" name="parameters">
+    </part>
+  </message>
+  <message name="getBookingCancelResponse">
+    <part element="tns:getBookingCancelResponse" name="parameters">
+    </part>
+  </message>
+  <message name="getBookingRequestOceanLCL">
+    <part element="tns:getBookingRequestOceanLCL" name="parameters">
+    </part>
+  </message>
+  <portType name="BookingWebService">
+<documentation
+        >Booking Web Service to create Land, Ocean and Air bookings</documentation>
+    <operation name="getBookingRequestLand">
+<documentation>Booking Web Service operation to create Land bookings</documentation>
+      <input
+                message="tns:getBookingRequestLand"
+                name="in"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/getBookingRequestLand"
+            >
+    </input>
+      <output
+                message="tns:getBookingResponse"
+                name="out"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/getBookingResponseLand"
+            >
+    </output>
+      <fault
+                message="tns:schenkerServiceException"
+                name="SchenkerServiceException"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/Fault/SchenkerServiceException"
+            >
+    </fault>
+    </operation>
+    <operation name="getBookingRequestAir">
+<documentation>Booking Web Service operation to create Air bookings</documentation>
+      <input
+                message="tns:getBookingRequestAir"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/getBookingRequestAir"
+            >
+    </input>
+      <output
+                message="tns:getBookingResponse"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/getBookingResponseAir"
+            >
+    </output>
+      <fault
+                message="tns:schenkerServiceException"
+                name="SchenkerServiceException"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/Fault/SchenkerServiceException"
+            >
+    </fault>
+    </operation>
+    <operation name="getBookingRequestOceanLCL">
+<documentation
+            >Booking Web Service operation to create Ocean LCL bookings</documentation>
+      <input
+                message="tns:getBookingRequestOceanLCL"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/getBookingRequestOceanLCL"
+            >
+    </input>
+      <output
+                message="tns:getBookingResponse"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/getBookingResponseOcean"
+            >
+    </output>
+      <fault
+                message="tns:schenkerServiceException"
+                name="SchenkerServiceException"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/Fault/SchenkerServiceException"
+            >
+    </fault>
+    </operation>
+    <operation name="getBookingRequestOceanFCL">
+<documentation
+            >Booking Web Service operation to create Ocean FCL bookings</documentation>
+      <input
+                message="tns:getBookingRequestOceanFCL"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/getBookingRequestOceanFCL"
+            >
+    </input>
+      <output
+                message="tns:getBookingResponse"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/OceanResponse"
+            >
+    </output>
+      <fault
+                message="tns:schenkerServiceException"
+                name="SchenkerServiceException"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/Fault/SchenkerServiceException"
+            >
+    </fault>
+    </operation>
+    <operation name="getBookingBarcodeRequest">
+<documentation
+            >Booking Web Service operation to get a barcode based on a booking id</documentation>
+      <input
+                message="tns:getBookingBarcodeRequest"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/getBookingBarcodeRequest"
+            >
+    </input>
+      <output
+                message="tns:getBookingBarcodeResponse"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/BarcodeResponse"
+            >
+    </output>
+      <fault
+                message="tns:schenkerServiceException"
+                name="SchenkerServiceException"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/Fault/SchenkerServiceException"
+            >
+    </fault>
+    </operation>
+    <operation name="getBookingCancelRequest">
+<documentation
+            >Booking Web Service operation to cancel a booking by booking id</documentation>
+      <input
+                message="tns:getBookingCancelRequest"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/getBookingCancelRequest"
+            >
+    </input>
+      <output
+                message="tns:getBookingCancelResponse"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/CancelResponse"
+            >
+    </output>
+      <fault
+                message="tns:schenkerServiceException"
+                name="SchenkerServiceException"
+                wsam:Action="http://www.schenker.com/Booking/v1_1/BookingWebService/Fault/SchenkerServiceException"
+            >
+    </fault>
+    </operation>
+  </portType>
+  <binding name="BookingWebServiceServiceSOAPBinding" type="tns:BookingWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getBookingRequestLand">
+      <soap:operation
+                soapAction="http://www.schenker.com/Booking/v1_1/getBookingRequestLand"
+            />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SchenkerServiceException">
+        <soap:fault name="SchenkerServiceException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="getBookingRequestAir">
+      <soap:operation
+                soapAction="http://www.schenker.com/Booking/v1_1/getBookingRequestAir"
+            />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SchenkerServiceException">
+        <soap:fault name="SchenkerServiceException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="getBookingRequestOceanLCL">
+      <soap:operation
+                soapAction="http://www.schenker.com/Booking/v1_1/getBookingRequestOceanLCL"
+            />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SchenkerServiceException">
+        <soap:fault name="SchenkerServiceException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="getBookingRequestOceanFCL">
+      <soap:operation
+                soapAction="http://www.schenker.com/Booking/v1_1/getBookingRequestOceanFCL"
+            />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SchenkerServiceException">
+        <soap:fault name="SchenkerServiceException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="getBookingBarcodeRequest">
+      <soap:operation
+                soapAction="http://www.schenker.com/Booking/v1_1/getBookingBarcodeRequest"
+            />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SchenkerServiceException">
+        <soap:fault name="SchenkerServiceException" use="literal" />
+      </fault>
+    </operation>
+    <operation name="getBookingCancelRequest">
+      <soap:operation
+                soapAction="http://www.schenker.com/Booking/v1_1/getBookingCancelRequest"
+            />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="SchenkerServiceException">
+        <soap:fault name="SchenkerServiceException" use="literal" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="BookingWebService">
+    <port
+            binding="tns:BookingWebServiceServiceSOAPBinding"
+            name="BookingWebServiceServiceSOAPBinding"
+        >
+      <soap:address
+                location="https://eschenker.dbschenker.com/webservice/bookingWebServiceV1_1"
+            />
+    </port>
+  </service>
+</definitions>

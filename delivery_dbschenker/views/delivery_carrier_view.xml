@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position='before'>
+                <page
+                    string="DB Schenker Configuration"
+                    attrs="{'invisible': [('delivery_type', '!=', 'dbschenker')]}"
+                >
+                    <group>
+                        <group>
+                            <field
+                                name="dbschenker_accesskey"
+                                attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                            />
+                            <field name="dbschenker_request" />
+                            <field name="dbschenker_user" />
+                            <field name="dbschenker_group" />
+                            <field name="dbschenker_groupname" />
+                            <field
+                                name="dbschenker_request_type"
+                                attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                            />
+                            <field
+                                name="dbschenker_product_code"
+                                attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                            />
+                            <field
+                                name="dbschenker_service_type"
+                                attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                            />
+                        </group>
+                        <group>
+                            <field name="dbschenker_request_label" />
+                            <field
+                                name="dbschenker_label_size"
+                                attrs="{
+                                    'required': [('dbschenker_request_label', '=', True)],
+                                    'invisible': [('dbschenker_request_label', '=', False)]
+                                }"
+                            />
+                            <field
+                                name="dbschenker_measurement"
+                                attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                            />
+                            <field
+                                name="dbschenker_customs_clearance"
+                                attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                            />
+                            <field
+                                name="dbschenker_indoors_delivery"
+                                attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

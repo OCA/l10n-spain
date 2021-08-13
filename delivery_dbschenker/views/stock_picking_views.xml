@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_withcarrier_out_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field
+            name="inherit_id"
+            ref="delivery_state.view_picking_withcarrier_out_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='print_return_label']/.." position='inside'>
+                <button
+                    name="dbschenker_get_label"
+                    string="DB Schenker Label"
+                    type="object"
+                    attrs="{'invisible':[
+                        '|',
+                        '|',
+                        ('carrier_tracking_ref', '=', False),
+                        ('delivery_type', '!=', 'dbschenker'),
+                        ('state', '!=', 'done')
+                    ]}"
+                />
+            </xpath>
+            <xpath expr="//group[@name='delivery_tracking']" position="after">
+                <group
+                    name="dbschenker_info"
+                    string="DB Schenker Information"
+                    attrs="{'invisible': [('delivery_type', '!=', 'dbschenker')]}"
+                >
+                    <field name="dbschenker_request_type" invisible="1" />
+                    <field name="dbschenker_service_type" invisible="1" />
+                    <field
+                        name="dbschenker_incoterm_id"
+                        attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                    />
+                    <field
+                        name="dbschenker_incoterm_location"
+                        attrs="{'required': [('delivery_type', '=', 'dbschenker')]}"
+                    />
+                    <!-- shipping position -->
+                    <field
+                        name="dbschenker_package_type"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', 'in', [
+                                'Land', 'Air', 'OceanLCL'
+                            ])
+                        ], 'invisible': [
+                            ('dbschenker_request_type', 'not in', [
+                                'Land', 'Air', 'OceanLCL'
+                            ])
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_volume"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', 'in', [
+                                'Land', 'Air', 'OceanLCL'
+                            ])
+                        ] , 'invisible': [
+                            ('dbschenker_request_type', 'not in', [
+                                'Land', 'Air', 'OceanLCL'
+                            ])
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_cargo_desc"
+                        attrs="{'invisible': [
+                            ('dbschenker_request_type', 'not in', [
+                                'Land', 'Air', 'OceanLCL'
+                            ])
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_stackable"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', 'in', [
+                                'Land', 'Air', 'OceanLCL'
+                            ])
+                        ], 'invisible': [
+                            ('dbschenker_request_type', 'not in', [
+                                'Land', 'Air', 'OceanLCL'
+                            ])
+                        ]}"
+                    />
+                    <!-- Air -->
+                    <field
+                        name="dbschenker_departure_airport"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Air'),
+                            ('dbschenker_service_type', 'in', ['A2D','A2A'])
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Air')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_destination_airport"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Air'),
+                            ('dbschenker_service_type', 'in', ['D2A','A2A'])
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Air')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_precarriage_type"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', 'in', [
+                                'Air', 'OceanLCL'
+                            ])
+                        ], 'invisible': [
+                            ('dbschenker_request_type', 'not in', [
+                                'Air', 'OceanLCL'
+                            ])
+                        ]}"
+                    />
+                    <!-- Ocean FCL -->
+                    <field
+                        name="dbschenker_container_type"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'OceanFCL')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'OceanFCL')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_container_number"
+                        attrs="{'invisible': [
+                            ('dbschenker_request_type', '!=', 'OceanFCL')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_loading_port"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', 'in', [
+                                'OceanFCL', 'OceanLCL'
+                            ]),
+                            ('dbschenker_service_type', 'in', ['P2D','P2P'])
+                        ], 'invisible': [
+                            ('dbschenker_request_type', 'not in', [
+                                'OceanFCL', 'OceanLCL'
+                            ])
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_discharge_port"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', 'in', [
+                                'OceanFCL', 'OceanLCL'
+                            ]),
+                            ('dbschenker_service_type', 'in', ['D2P','P2P'])
+                        ], 'invisible': [
+                            ('dbschenker_request_type', 'not in', [
+                                'OceanFCL', 'OceanLCL'
+                            ])
+                        ]}"
+                    />
+                    <!-- Land -->
+                    <field
+                        name="dbschenker_show_consignee_date_info"
+                        attrs="{'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_consignee_date_type"
+                        attrs="{'required': [
+                                ('delivery_type', '=', 'dbschenker'),
+                                ('dbschenker_request_type', '=', 'Land'),
+                                ('dbschenker_show_consignee_date_info', '=', True),
+                            ],'invisible': [
+                            '|',
+                            ('dbschenker_request_type', '!=', 'Land'),
+                            ('dbschenker_show_consignee_date_info', '=', False)
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_consignee_date"
+                        attrs="{'required': [
+                                ('delivery_type', '=', 'dbschenker'),
+                                ('dbschenker_request_type', '=', 'Land'),
+                                ('dbschenker_show_consignee_date_info', '=', True),
+                            ],'invisible': [
+                            '|',
+                            ('dbschenker_request_type', '!=', 'Land'),
+                            ('dbschenker_show_consignee_date_info', '=', False)
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_time_from"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land'),
+                            ('dbschenker_consignee_date_type', '=', 'TIME'),
+                        ], 'invisible': [
+                            '|',
+                            '|',
+                            ('dbschenker_request_type', '!=', 'Land'),
+                            ('dbschenker_consignee_date_type', '!=', 'TIME'),
+                            ('dbschenker_show_consignee_date_info', '=', False)
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_time_to"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land'),
+                            ('dbschenker_consignee_date_type', '=', 'TIME'),
+                        ], 'invisible': [
+                            '|',
+                            '|',
+                            ('dbschenker_request_type', '!=', 'Land'),
+                            ('dbschenker_consignee_date_type', '!=', 'TIME'),
+                            ('dbschenker_show_consignee_date_info', '=', False)
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_measure_unit"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_measure_value"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land'),
+                            ('dbschenker_measure_unit', '!=', 'PIECES')
+                        ], 'invisible': [
+                            '|',
+                            ('dbschenker_request_type', '!=', 'Land'),
+                            ('dbschenker_measure_unit', '=', 'PIECES')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_express"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_food"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_heated"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_home_delivery"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_own_pickup"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                    <field
+                        name="dbschenker_pharmaceuticals"
+                        attrs="{'required': [
+                            ('delivery_type', '=', 'dbschenker'),
+                            ('dbschenker_request_type', '=', 'Land')
+                        ], 'invisible': [
+                            ('dbschenker_request_type', '!=', 'Land')
+                        ]}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

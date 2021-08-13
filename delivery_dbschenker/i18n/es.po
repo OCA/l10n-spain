@@ -1,0 +1,930 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* delivery_dbschenker
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-07 15:59+0000\n"
+"PO-Revision-Date: 2021-09-07 15:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"\n"
+"                DB Schenker API doesn't provide methods to compute delivery rates, so\n"
+"                you should rely on another price method instead or override this\n"
+"                one in your custom code.\n"
+"            "
+msgstr ""
+"\n"
+"                DB Schenker API no provee ninguna forma de calcular las tarifas de envío, por\n"
+"                lo tanto se deberia usar otro método o sobreescribir este en una herencia \n"
+"            "
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"\n"
+"                Tracking states not implemented for DB Schenker currently\n"
+"            "
+msgstr ""
+"\n"
+"                Actualmente los estados de envío no están implementados para DB Schenker            "
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,help:delivery_dbschenker.field_stock_picking__dbschenker_time_from
+#: model:ir.model.fields,help:delivery_dbschenker.field_stock_picking__dbschenker_time_to
+msgid "00:00-23:59"
+msgstr "00:00-23:59"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22bu
+msgid "20' BB (Bulk Container)"
+msgstr "20' BB (Bulk Container)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22gp
+msgid "20' DC (Standard /Dry Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22p1
+msgid "20' FR (Flat Rack Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22dc
+msgid "20' GH (Garments on Hanger)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__25gp
+msgid "20' HQ (High Cube Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22up
+msgid "20' HT (Hard Top)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__20g2
+msgid "20' OS (Open Sided Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22ut
+msgid "20' OT (Open Top Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22pc
+msgid "20' PL (Platform Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22re
+msgid "20' RE (Reefer Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22tn
+msgid "20' TC (Tank Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__22vh
+msgid "20' VC (Ventilated Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42bu
+msgid "40' BB (Bulk Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42gp
+msgid "40' DC (Standard /Dry Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42p1
+msgid "40' FR (Flat Rack Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__40dc
+msgid "40' GH (Garmentson Hanger)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__45bk
+msgid "40' HB (Bulk High Cube Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__45pc
+msgid "40' HF (Flat Rack High Cube Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__45ut
+msgid "40' HO (Open Top High Cube Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__45gp
+msgid "40' HQ (High-Cube Standard / Dry Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__45re
+msgid "40' HR (Reefer High Cube Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42up
+msgid "40' HT (Hard Top)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__4eg0
+msgid "40' HW (High CubePalletwide)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__49pl
+msgid "40' MA (Mafi Trailer)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42ps
+msgid "40' OS (Open Sided Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42ut
+msgid "40' OT (Open Top Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42pl
+msgid "40' PL (Platform Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42re
+msgid "40' RE (Reefer Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42tn
+msgid "40' TC (Tank Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__42vh
+msgid "40' VC (Ventilated Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__l5re
+msgid "45' HR (Reefer High Cube Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__l5vh
+msgid "45' HV (Ventilated High Cube Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__leg0
+msgid "45' HW (High Cube Palletwide)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_container_type__p6gp
+msgid "53' DC (Standard /Dry Container)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_label_size__a4
+msgid "A4"
+msgstr "A4"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_label_size__a6
+msgid "A6"
+msgstr "A6"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_accesskey
+msgid "Access Key"
+msgstr "Clave de acceso"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_request_type__air
+msgid "Air"
+msgstr "Aéreo"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_service_type__a2a
+msgid "Airport-to-Airport"
+msgstr "Aéropuerto-a-Aéropuerto"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_service_type__a2d
+msgid "Airport-to-Door"
+msgstr "Aéropuerto-a-Puerta"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__auco
+msgid "Austro cargo"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__auc0
+msgid "Austro express PUNKT 10"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__auc2
+msgid "Austro express PUNKT 12"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__aucc
+msgid "Austro express PUNKT 17"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__auc8
+msgid "Austro express PUNKT 8"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__bg
+msgid "Bag(s)"
+msgstr "Bolsa(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__bl
+msgid "Bale(s)"
+msgstr "Bala(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__dr
+msgid "Barrel(s)"
+msgstr "Barril(es)"
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/dbschenker_request.py:0
+#: code:addons/delivery_dbschenker/models/dbschenker_request.py:0
+#: code:addons/delivery_dbschenker/models/delivery_carrier.py:0
+#, python-format
+msgid "Booking requests of type {} are not implemented."
+msgstr "Envíos de tipo {} no están implementados."
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__bx
+msgid "Box(es)"
+msgstr "Caja(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__by
+msgid "Bundle(s)"
+msgstr "Manojo(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__ci
+msgid "Canister(s)"
+msgstr "Frasco(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_cargo_desc
+msgid "Cargo description"
+msgstr "Descripción de cargamento"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__ct
+msgid "Carton(s)"
+msgstr "Cartón(es)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__cs
+msgid "Case(s)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__co
+msgid "Colli(s)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_consignee_date
+msgid "Consignee delivery date"
+msgstr "Fecha de entrega del consignatario"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_consignee_date_type
+msgid "Consignee delivery date type"
+msgstr "Tipo de fecha de entrega del consignatario"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_container_number
+msgid "Container number"
+msgstr "Número de contenedor"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_container_type
+msgid "Container type"
+msgstr "Tipo de contenedor"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__ch
+msgid "Crate(s)"
+msgstr "Caja(s) de madera"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__lcl
+msgid "DB SCHENKER combine - LCL"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__fcl
+msgid "DB SCHENKER complete - FCL"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__71
+msgid "DB SCHENKER direct"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__b
+msgid "DB SCHENKER jetcargo business"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__e
+msgid "DB SCHENKER jetcargo economy"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__f
+msgid "DB SCHENKER jetcargo first"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__s
+msgid "DB SCHENKER jetcargo special"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__eagd
+msgid "DB SCHENKER jetexpress gold"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__easv
+msgid "DB SCHENKER jetexpress silver"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__ecpa
+msgid "DB SCHENKER parcel"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__ectn
+msgid "DB SCHENKER speed"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__ect1
+msgid "DB SCHENKER speed 10"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__ect2
+msgid "DB SCHENKER speed 12"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__ect8
+msgid "DB SCHENKER speed 8"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__40
+msgid "DB SCHENKER system classic"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__sysd
+msgid "DB SCHENKER system domestic"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__schx
+msgid "DB SCHENKER system fix"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__42
+msgid "DB SCHENKER system fixday"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__schs
+msgid "DB SCHENKER system international"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__41
+msgid "DB SCHENKER system speed"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__escp
+msgid "DB SCHENKER system-plus"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__scht
+msgid "DB SCHENKER top"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__sch2
+msgid "DB SCHENKER top 12"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__delivery_type__dbschenker
+msgid "DB Schenker"
+msgstr "DB Schenker"
+
+#. module: delivery_dbschenker
+#: model_terms:ir.ui.view,arch_db:delivery_dbschenker.view_delivery_carrier_form
+msgid "DB Schenker Configuration"
+msgstr "Configuración DB Schenker"
+
+#. module: delivery_dbschenker
+#: model_terms:ir.ui.view,arch_db:delivery_dbschenker.view_picking_withcarrier_out_form
+msgid "DB Schenker Information"
+msgstr "Información DB Schenker"
+
+#. module: delivery_dbschenker
+#: model_terms:ir.ui.view,arch_db:delivery_dbschenker.view_picking_withcarrier_out_form
+msgid "DB Schenker Label"
+msgstr "Etiqueta DB Schenker"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__43
+msgid "DB Schenker System"
+msgstr "Sistema DB Schenker"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__44
+msgid "DB Schenker System Premium"
+msgstr "Sistema premium DB Schenker"
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/delivery_carrier.py:0
+#, python-format
+msgid "DB Schenker booking with id %s cancelled"
+msgstr "Envío DB Schenker con id %s cancelado"
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/delivery_carrier.py:0
+#, python-format
+msgid "DB Schenker cancellation failed with reason: %s"
+msgstr "Cancelacíon DB Schenker fallado con motivo: %s"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__con
+msgid "DB Schenker concepts"
+msgstr "Conceptos DB Schenker"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__dir
+msgid "DB Schenker directs"
+msgstr "Directos DB Schenker"
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/stock_picking.py:0
+#, python-format
+msgid "DB Schenker label for %s"
+msgstr "Etiqueta DB Schenker para %s"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__pal
+msgid "DB Schenker pallets"
+msgstr "Palés DB Schenker"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_product_code__lpa
+msgid "DB Schenker parcel Logistics Parcel"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/dbschenker_request.py:0
+#, python-format
+msgid ""
+"DB Schenker: No response from server printing label with ref {}.\n"
+"Traceback:\n"
+"{}"
+msgstr ""
+"DB Schenker: No responde el servidor, imprimiendo etiqueta con referencia {}.\n"
+"Traceback:\n"
+"{}"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,help:delivery_dbschenker.field_stock_picking__dbschenker_departure_airport
+#: model:ir.model.fields,help:delivery_dbschenker.field_stock_picking__dbschenker_destination_airport
+msgid "Defines 3-character IATA airport code of destination"
+msgstr "Define un código destino de 3 cifras de aéropuerto IATA"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_departure_airport
+msgid "Departure airport"
+msgstr "Aéropuerto salida"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_destination_airport
+msgid "Destination airport"
+msgstr "Aéropuerto destino"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_discharge_port
+msgid "Discharge port"
+msgstr "Puerto descarga"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__display_name
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_service_type__d2a
+msgid "Door-to-Airport"
+msgstr "Puerta-a-Aéropuerto"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_service_type__d2d
+msgid "Door-to-Door"
+msgstr "Puerta-a-Puerta"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_service_type__d2p
+msgid "Door-to-Port"
+msgstr "Puerta-a-Puerto"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__tr
+msgid "Drum(s)"
+msgstr "Bidón(es)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_consignee_date_type__earliest
+msgid "Earliest"
+msgstr "Más pronto posible"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__ep
+msgid "Europallet(s)"
+msgstr "Europallet(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_express
+msgid "Express shipment"
+msgstr "Envío exprés"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_food
+msgid "Food related shipment"
+msgstr "Envío relacionado con alimientos"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__fr
+msgid "Frame(s)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_group
+msgid "Group ID"
+msgstr "ID de grupo"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_groupname
+msgid "Group Name"
+msgstr "Nombre de grupo"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_heated
+msgid "Heated transport required"
+msgstr "Requiere transporte calentado"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__ho
+msgid "Hobbock(s)"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_home_delivery
+msgid "Home delivery required"
+msgstr "Requiere entrega a domicilio"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__id
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_measurement__imperial
+msgid "Imperial"
+msgstr "Imperial"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_incoterm_location
+msgid "Incoterm location"
+msgstr "Ubicación de Incoterm"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_incoterm_id
+msgid "Incoterms"
+msgstr "Incoterms"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_customs_clearance
+msgid "Is customs clearance required?"
+msgstr "Requiere despacho de aduana"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_indoors_delivery
+msgid "Is indoors delivery required?"
+msgstr "Requiere entrega interior"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_measure_unit__loading_meters
+msgid "LOADING_METERS"
+msgstr "Metros de carga"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_label_size
+msgid "Label size"
+msgstr "Tamaño de etiqueta"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_request_type__land
+msgid "Land"
+msgstr "Terrestre"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier____last_update
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_consignee_date_type__latest
+msgid "Latest"
+msgstr "Más tarde posible"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_loading_port
+msgid "Loading port"
+msgstr "Puerto de carga"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_measurement
+msgid "Measurement"
+msgstr "Medida"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_measurement__metric
+msgid "Metric"
+msgstr "Métrico"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,help:delivery_dbschenker.field_stock_picking__dbschenker_discharge_port
+#: model:ir.model.fields,help:delivery_dbschenker.field_stock_picking__dbschenker_loading_port
+msgid "Needs to be UN LOCODE format"
+msgstr "Debe esta en formato UN LOCODE"
+
+#. module: delivery_dbschenker
+#: code:addons/delivery_dbschenker/models/dbschenker_request.py:0
+#, python-format
+msgid ""
+"No response from server recording DB Schenker delivery.\n"
+"Traceback:\n"
+"{}"
+msgstr ""
+"No responde el servidor de envíos DB Schenker.\n"
+"Traceback:\n"
+"{}"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_precarriage_type__own_delivery
+msgid "OWN_DELIVERY"
+msgstr "Entrega propia"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_request_type__oceanfcl
+msgid "Ocean FCL"
+msgstr "Océano FCL"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_request_type__oceanlcl
+msgid "Ocean LCL"
+msgstr "Océano LCL"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__op
+msgid "One-way pallet(s)"
+msgstr "Palé(s) de una dirección"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__zz
+msgid "Other(s)"
+msgstr "Otro(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_own_pickup
+msgid "Own pickup required"
+msgstr "Requiere recogida propia"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_measure_unit__pallet_space
+msgid "PALLET_SPACE"
+msgstr "Espacio palé"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_precarriage_type__pickup_request
+msgid "PICKUP_REQUEST"
+msgstr "Petición recogida"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_measure_unit__pieces
+msgid "PIECES"
+msgstr "Bultos"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_package_type
+msgid "Package type"
+msgstr "Tipo de paquete"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__pk
+msgid "Package(s)"
+msgstr "Paquete(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__xp
+msgid "Pallet(s)"
+msgstr "Palé(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_pharmaceuticals
+msgid "Pharmaceutical shipment"
+msgstr "Envío farmaceútico"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__pz
+msgid "Pipe(s)"
+msgstr "Tubo(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__delivery_carrier__dbschenker_service_type__p2d
+msgid "Port-to-Door"
+msgstr "Puerto-a-Puerta"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_precarriage_type
+msgid "Precarriage type"
+msgstr "Tipo de camionaje"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_product_code
+msgid "Product code"
+msgstr "Código de producto"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__delivery_type
+msgid "Provider"
+msgstr "Proveedor"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_request
+msgid "Request ID"
+msgstr "ID de petición"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_request_label
+msgid "Request label with booking"
+msgstr "Pedir etiqueta al crear envío"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_request_type
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_request_type
+msgid "Request type"
+msgstr "Tipo petición"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__ro
+msgid "Roll(s)"
+msgstr "Rollo(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__sk
+msgid "Sack(s)"
+msgstr "Saco(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_service_type
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_service_type
+msgid "Service type"
+msgstr "Tipo de servicio"
+
+#. module: delivery_dbschenker
+#: model:ir.model,name:delivery_dbschenker.model_delivery_carrier
+msgid "Shipping Methods"
+msgstr "Métodos de envío"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_show_consignee_date_info
+msgid "Show consignee delivery date info"
+msgstr "Mostrar información de fecha de entrega del consignatario"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__gp
+msgid "Skeleton box pallet(s)"
+msgstr "Palé(s) caja esqueleto"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_consignee_date_type__time
+msgid "Specific time"
+msgstr "Hora específica"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_stackable
+msgid "Stackable"
+msgstr "Apilable"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_time_from
+msgid "Time from"
+msgstr "Hora desde"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_time_to
+msgid "Time to"
+msgstr "Hora hasta"
+
+#. module: delivery_dbschenker
+#: model:ir.model,name:delivery_dbschenker.model_stock_picking
+msgid "Transfer"
+msgstr "Albarán"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_measure_unit
+msgid "Unit of measure"
+msgstr "Unidad de medida"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_package_type__ne
+msgid "Unpacked Skid(s)"
+msgstr "Patín(es) desembalado(s)"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_delivery_carrier__dbschenker_user
+msgid "User ID"
+msgstr "ID de usuario"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields.selection,name:delivery_dbschenker.selection__stock_picking__dbschenker_measure_unit__volume
+msgid "VOLUME"
+msgstr "Volumen"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_measure_value
+msgid "Value"
+msgstr "Valor"
+
+#. module: delivery_dbschenker
+#: model:ir.model.fields,field_description:delivery_dbschenker.field_stock_picking__dbschenker_volume
+msgid "Volume"
+msgstr "Volumen"
