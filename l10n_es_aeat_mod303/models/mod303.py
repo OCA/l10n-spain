@@ -253,10 +253,36 @@ class L10nEsAeatMod303Report(models.Model):
         string=u"[88] Total volumen operaciones",
         compute="_compute_casilla_88",
         help=u"Información adicional - Operaciones realizadas en el ejercicio"
-        u" - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]+"
-        u"[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
+        u" - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]"
+        u"+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
         store=True,
     )
+    marca_sepa = fields.Selection(
+        selection=[
+            ("0", "0 Vacía"),
+            ("1", "1 Cuenta España"),
+            ("2", "2 Unión Europea SEPA"),
+            ("3", "3 Resto Países"),
+        ],
+        compute="_compute_marca_sepa",
+    )
+
+    @api.depends("partner_bank_id")
+    def _compute_marca_sepa(self):
+        for record in self:
+            if not record.partner_bank_id:
+                record.marca_sepa = False
+            elif not record.partner_bank_id.bank_id:
+                record.marca_sepa = "0"
+            elif record.partner_bank_id.bank_id.country_id == self.env.ref("base.es"):
+                record.marca_sepa = "1"
+            elif (
+                record.partner_bank_id.bank_id.country_id
+                in self.env.ref("base.europe").country_ids
+            ):
+                record.marca_sepa = "2"
+            else:
+                record.marca_sepa = "3"
 
     @api.depends("date_start", "cuota_compensar")
     def _compute_exception_msg(self):
@@ -368,20 +394,7 @@ class L10nEsAeatMod303Report(models.Model):
             report.casilla_88 = sum(
                 report.tax_line_ids.filtered(
                     lambda x: x.field_number
-                    in (
-                        80,
-                        81,
-                        83,
-                        84,
-                        85,
-                        86,
-                        93,
-                        94,
-                        95,
-                        96,
-                        97,
-                        98,
-                    )
+                    in (80, 81, 83, 84, 86, 93, 94, 95, 96, 97, 98, 125, 126, 127, 128)
                 ).mapped("amount")
             ) - sum(
                 report.tax_line_ids.filtered(
@@ -468,7 +481,7 @@ class L10nEsAeatMod303Report(models.Model):
         """Don't populate results for fields 79-99 for reports different from
         last of the year one or when not exonerated of presenting model 390.
         """
-        if 79 <= map_line.field_number <= 99:
+        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
             if (
                 self.exonerated_390 == "2"
                 or not self.has_operation_volume
@@ -487,7 +500,7 @@ class L10nEsAeatMod303Report(models.Model):
         the complete check for not bringing results is done on
         `_get_tax_lines`.
         """
-        if 79 <= map_line.field_number <= 99:
+        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
             date_start = date_start.replace(day=1, month=1)
             date_end = date_end.replace(day=31, month=12)
         return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
