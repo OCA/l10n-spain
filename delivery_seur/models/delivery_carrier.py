@@ -78,12 +78,20 @@ class DeliveryCarrier(models.Model):
             ("004", "MULTIPACK"),
             ("006", "MULTI BOX"),
             ("018", "FRIO"),
+            ("048", "SEUR 24 PICKUP"),
             ("052", "MULTI DOC"),
             ("054", "DOCUMENTOS"),
             ("070", "INTERNACIONAL ´T"),
             ("072", "INTERNACIONAL A"),
             ("076", "CLASSIC"),
+            ("086", "ECCOMMERCE RETURN 2HOME"),
+            ("088", "ECCOMMERCE RETURN 2SHOP"),
+            ("104", "CROSSBORDER NETEXPRES INTERNACIONAL"),
+            ("108", "COURIER MUESTRAS"),
+            ("116", "CLASSIC MULTIPARCEL"),
             ("118", "VINO"),
+            ("122", "NEUMATICOS B2B"),
+            ("124", "NEUMATICOS B2C"),
         ],
         default="002",
         string="Product code",
@@ -194,6 +202,12 @@ class DeliveryCarrier(models.Model):
         company = picking.company_id
         phone = partner.phone and partner.phone.replace(" ", "") or ""
         mobile = partner.mobile and partner.mobile.replace(" ", "") or ""
+        # Para envíos domésticos el código de mercancía mejor no ponerlo
+        if partner.country_id.code in ["ES", "PT", "AD"]:
+            goods = ""
+        else:
+            # Para el resto es obligado
+            goods = "400"
         return {
             "ci": self.seur_integration_code,
             "nif": self.seur_vat,
@@ -241,7 +255,7 @@ class DeliveryCarrier(models.Model):
             "test_reparto": "S",
             "test_email": partner.email and "S" or "N",
             "test_sms": mobile and "S" or "N",
-            "id_mercancia": (company.country_id == partner.country_id and "400" or ""),
+            "id_mercancia": goods,
             "nombre_remitente": company.name,
             "direccion_remitente": " ".join(
                 [s for s in [company.street, company.street2] if s]
