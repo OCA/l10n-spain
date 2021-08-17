@@ -56,8 +56,23 @@ msgid "CLASSIC"
 msgstr ""
 
 #. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__116
+msgid "CLASSIC MULTIPARCEL"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__007
 msgid "COURIER"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__108
+msgid "COURIER MUESTRAS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__104
+msgid "CROSSBORDER NETEXPRES INTERNACIONAL"
 msgstr ""
 
 #. module: delivery_seur
@@ -74,6 +89,16 @@ msgstr ""
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__054
 msgid "DOCUMENTOS"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__086
+msgid "ECCOMMERCE RETURN 2HOME"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__088
+msgid "ECCOMMERCE RETURN 2SHOP"
 msgstr ""
 
 #. module: delivery_seur
@@ -187,6 +212,16 @@ msgid "NETEXPRESS"
 msgstr ""
 
 #. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__122
+msgid "NEUMATICOS B2B"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__124
+msgid "NEUMATICOS B2C"
+msgstr ""
+
+#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_label_format__pdf
 msgid "PDF"
 msgstr ""
@@ -234,6 +269,11 @@ msgstr ""
 #. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__009
 msgid "SEUR 13:30"
+msgstr ""
+
+#. module: delivery_seur
+#: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_product_code__048
+msgid "SEUR 24 PICKUP"
 msgstr ""
 
 #. module: delivery_seur
