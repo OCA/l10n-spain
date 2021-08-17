@@ -295,21 +295,23 @@ class L10nEsAeatMod303Report(models.Model):
         ],
         compute='_compute_marca_sepa')
 
-    @api.depends("partner_bank_id")
+    @api.depends("partner_bank_id", "period_type")
     def _compute_marca_sepa(self):
         for record in self:
-            if not record.partner_bank_id:
+            if record.period_type in {
+                "1T", "2T", "01", "02", "03", "04", "05", "06"
+            }:
                 record.marca_sepa = False
-            elif not record.partner_bank_id.bank_id:
-                record.marca_sepa = "0"
-            elif record.partner_bank_id.bank_id.country_id == \
+            elif record.partner_bank_id.bank_id.country == \
                     self.env.ref("base.es"):
                 record.marca_sepa = "1"
-            elif record.partner_bank_id.bank_id.country_id in \
+            elif record.partner_bank_id.bank_id.country in \
                     self.env.ref("base.europe").country_ids:
                 record.marca_sepa = "2"
-            else:
+            elif record.partner_bank_id.bank_id.country:
                 record.marca_sepa = "3"
+            else:
+                record.marca_sepa = "0"
 
     def __init__(self, pool, cr):
         self._aeat_number = '303'
@@ -320,7 +322,7 @@ class L10nEsAeatMod303Report(models.Model):
         for report in self:
             report.casilla_88 = sum(
                 report.tax_line_ids.filtered(lambda x: x.field_number in (
-                    80, 81, 83, 84, 86, 93, 94, 95, 96, 97, 98, 125, 126,
+                    80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98, 125, 126,
                     127, 128
                 )).mapped('amount')
             ) - sum(
