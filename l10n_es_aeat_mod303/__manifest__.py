@@ -33,5 +33,6 @@
         "security/l10n_es_aeat_mod303_security.xml",
         "security/ir.model.access.csv",
     ],
+    "maintainers": ["pedrobaeza"],
     "installable": True,
 }
