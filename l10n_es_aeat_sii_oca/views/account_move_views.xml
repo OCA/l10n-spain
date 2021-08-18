@@ -31,6 +31,12 @@
                     name="attrs"
                 >{'required':[('state','=', 'draft'), ('move_type', 'in', ['in_invoice', 'in_refund'])]}</attribute>
             </field>
+            <field name="partner_bank_id" position="after">
+                <field
+                    name="sii_simplified_invoice"
+                    attrs="{'invisible': [('sii_enabled', '=', False)]}"
+                />
+            </field>
             <notebook position="inside">
                 <page
                     string="SII"

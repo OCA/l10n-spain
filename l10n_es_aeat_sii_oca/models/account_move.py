@@ -241,6 +241,10 @@ class AccountMove(models.Model):
         string="Connector Jobs",
         copy=False,
     )
+    sii_simplified_invoice = fields.Boolean(
+        string="Simplified invoices in SII?",
+        help="Checking this mark, the invoice will be sent to SII as simplified",
+    )
 
     @api.depends("move_type")
     def _compute_sii_registration_key_domain(self):
@@ -714,7 +718,7 @@ class AccountMove(models.Model):
         """Inheritable method to allow control when an
         invoice are simplified or normal"""
         partner = self.partner_id.commercial_partner_id
-        is_simplified = partner.sii_simplified_invoice
+        is_simplified = self.sii_simplified_invoice or partner.sii_simplified_invoice
         return is_simplified
 
     def _sii_check_exceptions(self):

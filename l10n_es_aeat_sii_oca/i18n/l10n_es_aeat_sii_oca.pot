@@ -187,6 +187,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_simplified_invoice
+msgid "Checking this mark, the invoice will be sent to SII as simplified"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__code
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__code
 msgid "Code"
@@ -829,6 +836,9 @@ msgid "Sii Refund Specific Invoice Type"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__sii_simplified_invoice
 msgid "Simplified invoices in SII?"
