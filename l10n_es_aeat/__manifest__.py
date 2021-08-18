@@ -42,4 +42,5 @@
         "views/aeat_certificate_view.xml",
     ],
     "installable": True,
+    "maintainers": ["pedrobaeza"],
 }
