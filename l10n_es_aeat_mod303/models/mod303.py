@@ -270,8 +270,8 @@ class L10nEsAeatMod303Report(models.Model):
     @api.depends("partner_bank_id", "period_type")
     def _compute_marca_sepa(self):
         for record in self:
-            if record.period_type in {"1T", "2T", "01", "02", "03", "04", "05", "06"}:
-                record.marca_sepa = False
+            if record.result_type != "D":
+                record.marca_sepa = "0"
             elif record.partner_bank_id.bank_id.country == self.env.ref("base.es"):
                 record.marca_sepa = "1"
             elif (
