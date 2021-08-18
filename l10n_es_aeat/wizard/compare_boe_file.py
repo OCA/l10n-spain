@@ -105,6 +105,7 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
 
     @api.depends("content")
     def _compute_content_float(self):
+        self.content_float = False
         for line in self.filtered(lambda x: x.export_line_id.export_type == "float"):
             content = line.content
             sign = 1
