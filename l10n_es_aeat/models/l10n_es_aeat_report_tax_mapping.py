@@ -70,53 +70,50 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
             "move_line_ids": [(6, 0, move_lines.ids)],
         }
 
+    @api.multi
     def _get_partner_domain(self):
         return []
 
-    def _get_move_line_domain(self, date_start, date_end, map_line):
+    def get_taxes_from_map(self, map_line):
+        return self.get_taxes_from_templates(map_line.tax_ids)
+
+    @api.multi
+    def _get_move_line_domain(self, codes, date_start, date_end, map_line):
+        """:param codes: deprecated"""
         self.ensure_one()
-        if map_line != map_line._origin:
-            taxes = self.env["account.tax.template"].browse(
-                [x._origin.id for x in map_line.tax_ids]
-            )
-        else:
-            taxes = map_line.tax_ids
-        taxes = self.get_taxes_from_templates(taxes)
+        taxes = self.get_taxes_from_map(map_line)
         move_line_domain = [
-            ("company_id", "child_of", self.company_id.id),
-            ("date", ">=", date_start),
-            ("date", "<=", date_end),
-            ("parent_state", "=", "posted"),
+            ('company_id', 'child_of', self.company_id.id),
+            ('date', '>=', date_start),
+            ('date', '<=', date_end)
         ]
-        if map_line.move_type == "regular":
+        if map_line.move_type == 'regular':
             move_line_domain.append(
-                ("move_id.move_type", "in", ("receivable", "payable", "liquidity"))
+                ('move_id.move_type', 'in',
+                 ('receivable', 'payable', 'liquidity'))
             )
-        elif map_line.move_type == "refund":
+        elif map_line.move_type == 'refund':
             move_line_domain.append(
-                ("move_id.move_type", "in", ("receivable_refund", "payable_refund"))
-            )
-        if map_line.field_type == "base":
-            move_line_domain.append(("tax_ids", "in", taxes.ids))
-        elif map_line.field_type == "amount":
-            move_line_domain.append(("tax_line_id", "in", taxes.ids))
+                ('move_id.move_type', 'in', ('receivable_refund',
+                                             'payable_refund')))
+        if map_line.field_type == 'base':
+            move_line_domain.append(('tax_ids', 'in', taxes.ids))
+        elif map_line.field_type == 'amount':
+            move_line_domain.append(('tax_line_id', 'in', taxes.ids))
         else:  # map_line.field_type == 'both'
             move_line_domain += [
-                "|",
-                ("tax_line_id", "in", taxes.ids),
-                ("tax_ids", "in", taxes.ids),
+                '|',
+                ('tax_line_id', 'in', taxes.ids),
+                ('tax_ids', 'in', taxes.ids)
             ]
-        if map_line.account_id:
-            account = self.get_account_from_template(map_line.account_id)
-            move_line_domain.append(("account_id", "in", account.ids))
-        if map_line.sum_type == "debit":
-            move_line_domain.append(("debit", ">", 0))
-        elif map_line.sum_type == "credit":
-            move_line_domain.append(("credit", ">", 0))
-        if map_line.exigible_type == "yes":
-            move_line_domain.append(("tax_exigible", "=", True))
-        elif map_line.exigible_type == "no":
-            move_line_domain.append(("tax_exigible", "=", False))
+        if map_line.sum_type == 'debit':
+            move_line_domain.append(('debit', '>', 0))
+        elif map_line.sum_type == 'credit':
+            move_line_domain.append(('credit', '>', 0))
+        if map_line.exigible_type == 'yes':
+            move_line_domain.append(('tax_exigible', '=', True))
+        elif map_line.exigible_type == 'no':
+            move_line_domain.append(('tax_exigible', '=', False))
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 
