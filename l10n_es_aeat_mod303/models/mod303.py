@@ -267,7 +267,7 @@ class L10nEsAeatMod303Report(models.Model):
         compute="_compute_marca_sepa",
     )
 
-    @api.depends("partner_bank_id", "period_type")
+    @api.depends("partner_bank_id", "result_type")
     def _compute_marca_sepa(self):
         for record in self:
             if record.result_type != "D":
