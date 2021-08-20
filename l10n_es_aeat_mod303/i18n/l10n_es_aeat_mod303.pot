@@ -29,6 +29,11 @@ msgid "0 - Sin epígrafe"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__marca_sepa__0
+msgid "0 Vacía"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_1b
 msgid "1 - Epígrafes correspondientes a: Actividades AGP con IAE"
 msgstr ""
@@ -47,6 +52,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__marca_sepa__1
+msgid "1 Cuenta España"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2b
 msgid ""
 "2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
@@ -56,6 +66,11 @@ msgstr ""
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2a
 msgid ""
 "2 - Epígrafes correspondientes a: Actividades profesionales sujetas al IAE"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__marca_sepa__2
+msgid "2 Unión Europea SEPA"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -73,6 +88,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_3c
 msgid "3 - Epígrafe 862 correspondiente a: Alquiler de inmuebles rústicos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__marca_sepa__3
+msgid "3 Resto Países"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -438,7 +458,7 @@ msgstr ""
 msgid ""
 "Información adicional - Operaciones realizadas en el ejercicio - Total "
 "volumen de operaciones "
-"([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
+"([80]+[81]+[93]+[94]+[83]+[84]+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -487,6 +507,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_main_attachment_id
 msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__marca_sepa
+msgid "Marca Sepa"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
