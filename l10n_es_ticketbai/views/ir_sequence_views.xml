@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="view_ir_sequence_form_inherit" model="ir.ui.view">
+            <field name="model">ir.sequence</field>
+            <field name="priority" eval="1000" />
+            <field name="inherit_id" ref="base.sequence_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='suffix']" position="replace">
+                    <field name="tbai_enabled" invisible="1" />
+                    <field
+                        name="suffix"
+                        attrs="{'readonly': [('tbai_enabled', '=', True)]}"
+                    />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
