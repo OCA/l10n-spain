@@ -84,7 +84,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
 
     def get_taxes_from_map(self, map_line):
         return self.get_taxes_from_templates(map_line.tax_ids)
-        
+
     @api.multi
     def _get_move_line_domain(self, codes, date_start, date_end, map_line):
         self.ensure_one()
