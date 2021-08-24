@@ -4,7 +4,6 @@
 import logging
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \
     TestL10nEsAeatModBase
-from odoo import exceptions
 
 _logger = logging.getLogger('aeat.303')
 
@@ -21,9 +20,9 @@ class TestL10nEsAeatMod303OSSBase(TestL10nEsAeatModBase):
     }
 
     taxes_result = {
-        '123': (3 * (81.3 + 88.5 + 93.3)) - (1 * (81.3 + 88.5 + 93.3)),  # EU-OSS-VAT-PT-x
+        # EU-OSS-VAT-PT-x
+        '123': (3 * (81.3 + 88.5 + 93.3)) - (1 * (81.3 + 88.5 + 93.3)),
     }
-
 
     def setUp(self):
         super(TestL10nEsAeatMod303OSSBase, self).setUp()
@@ -58,6 +57,7 @@ class TestL10nEsAeatMod303OSSBase(TestL10nEsAeatModBase):
         Need to include taxes without templates (OSS wizard)
         """
         taxes = self.env['account.tax']
+        tax = False
         for desc in descs.split(','):
             parts = desc.split('.')
             module = parts[0] if len(parts) > 1 else 'l10n_es'
@@ -82,7 +82,8 @@ class TestL10nEsAeatMod303OSSBase(TestL10nEsAeatModBase):
         return taxes
 
     def _create_oss_taxes_pt(self):
-        self.country_pt_id = self.env['res.country'].search([('code', '=', 'PT')], limit=1)
+        self.country_pt_id = self.env['res.country'].search(
+            [('code', '=', 'PT')], limit=1)
         self.eu_oss_vat_pt_6 = self.env['account.tax'].create({
             'name': 'Test OSS for EU to Portugal: 6.0',
             'description': 'EU-OSS-VAT-PT-6',
@@ -130,8 +131,10 @@ class TestL10nEsAeatMod303OSS(TestL10nEsAeatMod303OSSBase):
             )
 
     def test_model_303(self):
-        map_line_123 = self.env.ref('l10n_es_aeat_mod303_oss.aeat_mod303_map_line_123')
-        map_line_126 = self.env.ref('l10n_es_aeat_mod303_oss.aeat_mod303_map_line_126')
+        map_line_123 = self.env.ref(
+            'l10n_es_aeat_mod303_oss.aeat_mod303_map_line_123')
+        map_line_126 = self.env.ref(
+            'l10n_es_aeat_mod303_oss.aeat_mod303_map_line_126')
         self.assertTrue(map_line_123)
         self.assertTrue(map_line_126)
 
@@ -153,4 +156,3 @@ class TestL10nEsAeatMod303OSS(TestL10nEsAeatMod303OSSBase):
             self._print_tax_lines(self.model303.tax_line_ids)
 
         self._check_tax_lines()
-
