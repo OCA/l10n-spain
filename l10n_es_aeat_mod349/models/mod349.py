@@ -1,7 +1,7 @@
 # Copyright 2004-2011 - Pexego Sistemas Informáticos. (http://pexego.es)
 # Copyright 2013 - Top Consultant Software Creations S.L.
 #                - (http://www.topconsultant.es/)
-# Copyright 2014-2020 Tecnativa - Pedro M. Baeza
+# Copyright 2014-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
 # Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
@@ -9,28 +9,10 @@
 # Copyright 2018 - Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import math
-import re
 
 from odoo import _, api, exceptions, fields, models
 from odoo.fields import first
 from odoo.tools import float_is_zero
-
-
-def _format_partner_vat(partner_vat=None, country=None):
-    """Formats VAT to match XXVATNUMBER (where XX is country code).
-
-    An exception is made with Greece, that has a different prefix than its
-    country code.
-    """
-    if country.code:
-        code = country.code
-        if code == "GR":
-            code = "EL"
-        country_pattern = "{}|{}.*".format(code, code.lower())
-        vat_regex = re.compile(country_pattern, re.UNICODE | re.X)
-        if partner_vat and not vat_regex.match(partner_vat):
-            partner_vat = code + partner_vat
-    return partner_vat
 
 
 class Mod349(models.Model):
@@ -171,10 +153,7 @@ class Mod349(models.Model):
                     {
                         "report_id": self.id,
                         "partner_id": partner.id,
-                        "partner_vat": _format_partner_vat(
-                            partner_vat=partner.vat,
-                            country=partner.country_id,
-                        ),
+                        "partner_vat": partner.vat,
                         "operation_key": op_key,
                         "country_id": partner.country_id.id,
                     }
@@ -318,10 +297,7 @@ class Mod349(models.Model):
                 {
                     "report_id": self.id,
                     "partner_id": partner.id,
-                    "partner_vat": _format_partner_vat(
-                        partner_vat=partner.vat,
-                        country=partner.country_id,
-                    ),
+                    "partner_vat": partner.vat,
                     "operation_key": op_key,
                     "country_id": partner.country_id.id,
                     "total_origin_amount": key_vals["original_amount"],
@@ -503,13 +479,6 @@ class Mod349PartnerRecord(models.Model):
                 record.mapped("record_detail_ids.amount_untaxed")
             )
 
-    def onchange_format_partner_vat(self, partner_vat, country_id):
-        """Formats VAT to match XXVATNUMBER (where XX is country code)"""
-        if country_id:
-            country = self.env["res.country"].browse(country_id)
-            partner_vat = _format_partner_vat(partner_vat=partner_vat, country=country)
-        return {"value": {"partner_vat": partner_vat}}
-
 
 class Mod349PartnerRecordDetail(models.Model):
     """AEAT 349 Model - Partner record detail
@@ -635,13 +604,6 @@ class Mod349PartnerRefund(models.Model):
             record.total_operation_amount = (
                 record.total_origin_amount - rectified_amount
             )
-
-    def onchange_format_partner_vat(self, partner_vat, country_id):
-        """Formats VAT to match XXVATNUMBER (where XX is country code)"""
-        if country_id:
-            country = self.env["res.country"].browse(country_id)
-            partner_vat = _format_partner_vat(partner_vat=partner_vat, country=country)
-        return {"value": {"partner_vat": partner_vat}}
 
 
 class Mod349PartnerRefundDetail(models.Model):

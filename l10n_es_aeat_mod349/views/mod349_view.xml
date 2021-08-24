@@ -67,10 +67,7 @@
                             <field name="operation_key" />
                             <field name="partner_id" />
                             <field name="country_id" />
-                            <field
-                                name="partner_vat"
-                                on_change="onchange_format_partner_vat(partner_vat,country_id)"
-                            />
+                            <field name="partner_vat" />
                             <field name="total_operation_amount" />
                         </group>
                     </page>
