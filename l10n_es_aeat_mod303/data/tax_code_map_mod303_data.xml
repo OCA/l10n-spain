@@ -3,6 +3,7 @@
     <data>
         <record id="aeat_mod303_map" model="aeat.mod.map.tax.code">
             <field name="model">303</field>
+            <field name="date_to">2021-06-30</field>
         </record>
         <record id="aeat_mod303_map_line_01" model="aeat.mod.map.tax.code.line">
             <field name="field_number">01</field>

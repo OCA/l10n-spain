@@ -300,13 +300,13 @@ class L10nEsAeatMod303Report(models.Model):
         for record in self:
             if record.result_type != 'D':
                 record.marca_sepa = '0'
-            elif record.partner_bank_id.bank_id.country == \
+            elif record.partner_bank_id.bank.country == \
                     self.env.ref("base.es"):
                 record.marca_sepa = "1"
-            elif record.partner_bank_id.bank_id.country in \
+            elif record.partner_bank_id.bank.country in \
                     self.env.ref("base.europe").country_ids:
                 record.marca_sepa = "2"
-            elif record.partner_bank_id.bank_id.country:
+            elif record.partner_bank_id.bank.country:
                 record.marca_sepa = "3"
             else:
                 record.marca_sepa = "0"
@@ -319,7 +319,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _compute_casilla_88(self):
         for report in self:
             report.casilla_88 = sum(
-                report.tax_line_ids.filtered(lambda x: x.field_number in (
+                report.tax_lines.filtered(lambda x: x.field_number in (
                     80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98, 125, 126,
                     127, 128
                 )).mapped('amount')
@@ -394,7 +394,8 @@ class L10nEsAeatMod303Report(models.Model):
         """Don't populate results for fields 79-99 for reports different from
         last of the year one or when not exonerated of presenting model 390.
         """
-        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
+        if 79 <= self.env.context.get('field_number', 0) <= 99 or \
+                self.env.context.get('field_number', 0) == 125:
             if (self.exonerated_390 == '2' or not self.has_operation_volume
                     or self.period_type not in ('4T', '12')):
                 return self.env['account.move.line']
@@ -410,9 +411,18 @@ class L10nEsAeatMod303Report(models.Model):
         the complete check for not bringing results is done on
         `_get_tax_code_lines`.
         """
-        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
-            date_start = date_start.replace(day=1, month=1)
-            date_end = date_end.replace(day=31, month=12)
+        if 79 <= self.env.context.get('field_number', 0) <= 99 or \
+                self.env.context.get('field_number', 0) == 125:
+            fiscalyear_code = fields.Date.from_string(
+                periods[:1].date_stop
+            ).year
+            date_start = "%s-01-01" % fiscalyear_code
+            date_stop = "%s-12-31" % fiscalyear_code
+            periods = self.env["account.period"].search([
+                ('date_start', '>=', date_start),
+                ('date_stop', '<=', date_stop),
+                ('special', '=', False)
+            ])
         return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
             codes, periods=periods, include_children=include_children,
         )
