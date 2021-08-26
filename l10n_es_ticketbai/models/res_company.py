@@ -2,6 +2,7 @@
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
+from odoo.tools import ormcache
 
 
 class ResCompany(models.Model):
@@ -36,6 +37,31 @@ class ResCompany(models.Model):
             return self.tbai_aeat_certificate_id.private_key
         else:
             return None
+
+    @ormcache('fp_template', 'company')
+    def _get_fp_id_from_fp_template(self, fp_template, company):
+        """Low level cached search for a fiscal position given its template and
+        company.
+        """
+        xmlids = self.env['ir.model.data'].search_read([
+            ('model', '=', 'account.fiscal.position.template'),
+            ('res_id', '=', fp_template.id)
+        ], ['name', 'module'])
+        return xmlids and self.env['ir.model.data'].search([
+            ('model', '=', 'account.fiscal.position'),
+            ('module', '=', xmlids[0]['module']),
+            ('name', '=', '{}_{}'.format(company.id, xmlids[0]['name']))
+        ]).res_id or False
+
+    def get_fps_from_templates(self, fp_templates):
+        """Return company fiscal positions that match the given templates."""
+        self.ensure_one()
+        fp_ids = []
+        for tmpl in fp_templates:
+            fp_id = self._get_fp_id_from_fp_template(tmpl, self)
+            if fp_id:
+                fp_ids.append(fp_id)
+        return self.env['account.fiscal.position'].browse(fp_ids)
 
     def write(self, vals):
         super().write(vals)
