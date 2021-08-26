@@ -80,6 +80,24 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         self.assertEqual(invoices_with_errors[1].state, 'cancel')
         self.assertEqual(invoice3.tbai_invoice_id.state, 'pending')
 
+    def test_invoice_ipsi_igic(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_ipsi_igic)
+        for line in invoice.invoice_line_ids:
+            if line.product_id != self.product_service:
+                line.unlink()
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        self.assertEqual(1, len(invoice.invoice_line_ids))
+        self.assertEqual('RL', invoice.tax_line_ids.tbai_get_value_causa())
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        root, signature_value = \
+            invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
+        self.assertTrue(res)
+
     def test_invoice_foreign_customer_extracommunity(self):
         invoice = self.create_draft_invoice(
             self.account_billing.id, self.fiscal_position_e)
