@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-26 10:55+0000\n"
+"PO-Revision-Date: 2021-08-26 10:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,7 +66,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:254
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:260
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -93,7 +95,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:97
+#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:103
 #, python-format
 msgid "Country code for partner %s not found!"
 msgstr ""
@@ -224,7 +226,7 @@ msgid "Invoice Line"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:352
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:358
 #, python-format
 msgid "Invoice Number Prefix %s is not part of Invoice Number %s!"
 msgstr ""
@@ -579,14 +581,14 @@ msgid "Warning"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:284
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:290
 #, python-format
 msgid "You cannot cancel an invoice while being sent to the Tax Agency.\n"
 "Related invoices: %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:275
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:281
 #, python-format
 msgid "You cannot cancel an invoice with non cancelled credit notes.\n"
 "Related invoices: %s"
