@@ -29,6 +29,13 @@
             >Transacciones que supongan un traspaso de propiedad real o previsto de residentes a no residentes a cambio de una compensación financiera o de otro tipo: Arrendamiento financiero (alquiler - compra).</field>
             <field name="company_id" eval="False" />
         </record>
+        <record id="intrastat_transaction_15" model="intrastat.transaction">
+            <field name="code">15</field>
+            <field
+                name="description"
+            >Arrendamiento financiero (alquiler-compra).</field>
+            <field name="company_id" eval="False" />
+        </record>
         <record id="intrastat_transaction_19" model="intrastat.transaction">
             <field name="code">19</field>
             <field
@@ -85,6 +92,18 @@
             >Transacciones que supongan un traspaso de propiedad sin compensación financiera o en especie: Otras ayudas (particulares, organizaciones no gubernamentales).</field>
             <field name="company_id" eval="False" />
         </record>
+        <record id="intrastat_transaction_34" model="intrastat.transaction">
+            <field name="code">34</field>
+            <field name="description">Otros.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_40" model="intrastat.transaction">
+            <field name="code">40</field>
+            <field
+                name="description"
+            >Operaciones con miras al trabajo por encargo (excepto las que se registren en el epígrafe 7).</field>
+            <field name="company_id" eval="False" />
+        </record>
         <record id="intrastat_transaction_41" model="intrastat.transaction">
             <field name="code">41</field>
             <field
@@ -111,6 +130,13 @@
             <field
                 name="description"
             >Operaciones con vistas a un perfeccionamiento bajo contrato (no se traspasa la propiedad al contratista): Reparación o mantenimiento a título oneroso.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_50" model="intrastat.transaction">
+            <field name="code">50</field>
+            <field
+                name="description"
+            >Operaciones tras el trabajo por encargo (excepto las que se registren en el epígrafe 7).</field>
             <field name="company_id" eval="False" />
         </record>
         <record id="intrastat_transaction_51" model="intrastat.transaction">
@@ -153,6 +179,11 @@
             <field
                 name="description"
             >Suministro de materiales de construcción y maquinaria para trabajos en el marco de un contrato general de construcción o ingeniería.</field>
+            <field name="company_id" eval="False" />
+        </record>
+        <record id="intrastat_transaction_90" model="intrastat.transaction">
+            <field name="code">90</field>
+            <field name="description">Otras transacciones.</field>
             <field name="company_id" eval="False" />
         </record>
         <record id="intrastat_transaction_91" model="intrastat.transaction">
