@@ -381,11 +381,23 @@ class AccountMove(models.Model):
         refund_common_fields.append("company_id")
         return refund_common_fields
 
-    def _prepare_tax_line_vals(self, line, tax):
-        vals = super()._prepare_tax_line_vals(line, tax)
+    @api.model
+    def _get_tax_grouping_key_from_tax_line(self, tax_line):
+        vals = super()._get_tax_grouping_key_from_tax_line(tax_line)
         if self.fiscal_position_id:
             exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                lambda e: e.tax_id.id == tax["id"]
+                lambda e: e.tax_id.id == tax_line.tax_line_id.id
+            )
+            if 1 == len(exemption):
+                vals["tbai_vat_exemption_key"] = exemption.tbai_vat_exemption_key.id
+        return vals
+
+    @api.model
+    def _get_tax_grouping_key_from_base_line(self, base_line, tax_vals):
+        vals = super()._get_tax_grouping_key_from_base_line(base_line, tax_vals)
+        if self.fiscal_position_id:
+            exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
+                lambda e: e.tax_id.id == tax_vals["id"]
             )
             if 1 == len(exemption):
                 vals["tbai_vat_exemption_key"] = exemption.tbai_vat_exemption_key.id
