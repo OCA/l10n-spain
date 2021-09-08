@@ -1,6 +1,7 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, fields, models
+from xml.sax.saxutils import escape
 from .gls_asm_request import GlsAsmRequest
 from .gls_asm_request import (
     GLS_ASM_SERVICES, GLS_SHIPPING_TIMES, GLS_POSTAGE_TYPE,
@@ -85,8 +86,8 @@ class DeliveryCarrier(models.Model):
             "pod": "N",  # [optional]
             "podobligatorio": "N",  # [deprecated]
             "remite_plaza": "",  # [optional] Origin agency
-            "remite_nombre": sender_partner.name,
-            "remite_direccion": sender_partner.street or "",
+            "remite_nombre": escape(sender_partner.name),
+            "remite_direccion": escape(sender_partner.street) or "",
             "remite_poblacion": sender_partner.city or "",
             "remite_provincia": sender_partner.state_id.name or "",
             "remite_pais": "34",  # [mandatory] always 34=Spain
@@ -100,8 +101,9 @@ class DeliveryCarrier(models.Model):
             "destinatario_codigo": "",
             "destinatario_plaza": "",
             "destinatario_nombre": (
-                picking.partner_id.name or
-                picking.partner_id.commercial_partner_id.name),
+                escape(picking.partner_id.name)
+                or escape(picking.partner_id.commercial_partner_id.name)
+            ),
             "destinatario_direccion": picking.partner_id.street or "",
             "destinatario_poblacion": picking.partner_id.city or "",
             "destinatario_provincia": picking.partner_id.state_id.name or "",
@@ -115,7 +117,7 @@ class DeliveryCarrier(models.Model):
             "destinatario_att": "",
             "destinatario_departamento": "",
             "destinatario_nif": "",
-            "referencia_c": picking.name,  # Our unique reference
+            "referencia_c": escape(picking.name),  # Our unique reference
             "referencia_0": "",  # Not used if the above is set
             "importes_debido": "0",  # The customer pays the shipping
             "importes_reembolso": "",  # TODO: Support Cash On Delivery
@@ -211,7 +213,7 @@ class DeliveryCarrier(models.Model):
                 "GLS Expedition with reference %s cancelled") %
                 picking.carrier_tracking_ref)
 
-    def gls_asm_rate_shipment(self):
+    def gls_asm_rate_shipment(self, order):
         """There's no public API so another price method should be used"""
         raise NotImplementedError(_("""
             GLS ASM API doesn't provide methods to compute delivery rates, so

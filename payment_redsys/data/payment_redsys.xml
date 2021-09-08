@@ -15,6 +15,7 @@
         <field name="redsys_merchant_code">8888888</field>
         <field name="redsys_merchant_description">Bussines description</field>
         <field name="redsys_secret_key">xxxxxxxxxxxx -- SHA256</field>
+        <field name="module_id" ref="base.module_payment_redsys"/>
         <field name="description" type="html">
             <p>
                 A payment gateway to accept online payments via credit cards.

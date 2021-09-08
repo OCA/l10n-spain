@@ -6,6 +6,10 @@
 
 <!-- Retenciones IRPF No residentes no-UE 24% -->
 
+    <record id="tax_group_irnr_no_ue" model="account.tax.group">
+        <field name="name">Retenciones no residentes no-UE</field>
+    </record>
+
 <record id="account_tax_template_s_irpfnrnue24" model="account.tax.template">
     <field name="description">IRPF 24%</field>
     <field name="type_tax_use">sale</field>
@@ -14,6 +18,7 @@
     <field name="refund_account_id" ref="l10n_es.account_common_473"/>
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-24"/>
+    <field name="tax_group_id" ref="tax_group_irnr_no_ue"/>
     <field name="amount_type">percent</field>
 </record>
 
@@ -26,9 +31,15 @@
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-24"/>
     <field name="amount_type">percent</field>
+    <field name="tax_group_id" ref="tax_group_irnr_no_ue"/>
 </record>
 
 <!-- Retenciones IRPF No residentes UE 19% -->
+
+
+    <record id="tax_group_irnr_ue" model="account.tax.group">
+        <field name="name">Retenciones no residentes UE</field>
+    </record>
 
 <record id="account_tax_template_s_irpfnrue19" model="account.tax.template">
     <field name="description">IRPF 19%</field>
@@ -38,6 +49,7 @@
     <field name="refund_account_id" ref="l10n_es.account_common_473"/>
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-19"/>
+    <field name="tax_group_id" ref="tax_group_irnr_ue"/>
     <field name="amount_type">percent</field>
 </record>
 
@@ -49,6 +61,7 @@
     <field name="refund_account_id" ref="l10n_es.account_common_4751"/>
     <field name="chart_template_id" ref="l10n_es.account_chart_template_common"/>
     <field name="amount" eval="-19"/>
+    <field name="tax_group_id" ref="tax_group_irnr_ue"/>
     <field name="amount_type">percent</field>
 </record>
 

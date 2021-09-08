@@ -69,7 +69,6 @@ class AccountInvoice(models.Model):
                    'satisfechas. Auto de declaración de concurso')
         ]
     )
-
     integration_ids = fields.One2many(
         comodel_name='account.invoice.integration',
         inverse_name='invoice_id',
@@ -82,6 +81,12 @@ class AccountInvoice(models.Model):
     facturae_end_date = fields.Date(
         readonly=True,
         states={'draft': [('readonly', False)]},
+    )
+    integration_issue = fields.Boolean(
+        compute='_compute_integration_issue',
+        store=True,
+        help="This field should show if the invoice has been integrated and "
+             "has any issues"
     )
 
     @api.constrains('facturae_start_date', 'facturae_end_date')
@@ -124,6 +129,21 @@ class AccountInvoice(models.Model):
                     break
 
     can_integrate = fields.Boolean(compute="_compute_can_integrate")
+
+    def _integration_issue_fields(self):
+        return (
+            'integration_ids', 'integration_ids.state',
+            'integration_ids.method_id', 'integration_ids.integration_status')
+
+    @api.depends(lambda r: r._integration_issue_fields())
+    def _compute_integration_issue(self):
+        for record in self:
+            integration_issue = False
+            for integration in record.integration_ids:
+                if integration._check_integration_issue():
+                    integration_issue = True
+                    break
+            record.integration_issue = integration_issue
 
     @api.multi
     def action_integrations(self):
@@ -189,7 +209,7 @@ class AccountInvoice(models.Model):
                 'correction_method']['selection'])[self.correction_method]
 
     def _get_valid_invoice_statuses(self):
-        return ['open', 'paid']
+        return ['open', 'paid', 'in_payment']
 
     def validate_facturae_fields(self):
         lines = self.invoice_line_ids.filtered(lambda r: not r.display_type)

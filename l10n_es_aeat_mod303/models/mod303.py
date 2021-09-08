@@ -53,11 +53,19 @@ class L10nEsAeatMod303Report(models.Model):
     atribuible_estado = fields.Float(
         string="[66] Attributable to the Administration", readonly=True,
         compute='_compute_atribuible_estado', store=True)
+    potential_cuota_compensar = fields.Float(
+        string="[110] Pending fees to compensate", default=0,
+        states=NON_EDITABLE_ON_DONE,
+    )
     cuota_compensar = fields.Float(
-        string="[67] Fees to compensate", default=0,
+        string="[78] Applied fees to compensate (old [67])", default=0,
         states=NON_EDITABLE_ON_DONE,
         help="Fee to compensate for prior periods, in which his statement "
              "was to return and compensation back option was chosen")
+    remaining_cuota_compensar = fields.Float(
+        string="[87] Remaining fees to compensate",
+        compute="_compute_remaining_cuota_compensar",
+    )
     regularizacion_anual = fields.Float(
         string="[68] Annual regularization",
         states=NON_EDITABLE_ON_DONE,
@@ -205,9 +213,33 @@ class L10nEsAeatMod303Report(models.Model):
         string=u"[88] Total volumen operaciones",
         compute='_compute_casilla_88',
         help=u"Información adicional - Operaciones realizadas en el ejercicio"
-             u" - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]+"
-             u"[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
+             u" - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]"
+             u"+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
         store=True)
+    marca_sepa = fields.Selection(
+        selection=[
+            ("0", "0 Vacía"),
+            ("1", "1 Cuenta España"),
+            ("2", "2 Unión Europea SEPA"),
+            ("3", "3 Resto Países"),
+        ],
+        compute='_compute_marca_sepa')
+
+    @api.depends("partner_bank_id", "result_type")
+    def _compute_marca_sepa(self):
+        for record in self:
+            if record.result_type != 'D':
+                record.marca_sepa = '0'
+            elif record.partner_bank_id.bank_id.country == \
+                    self.env.ref("base.es"):
+                record.marca_sepa = "1"
+            elif record.partner_bank_id.bank_id.country in \
+                    self.env.ref("base.europe").country_ids:
+                record.marca_sepa = "2"
+            elif record.partner_bank_id.bank_id.country:
+                record.marca_sepa = "3"
+            else:
+                record.marca_sepa = "0"
 
     @api.multi
     @api.depends('date_start', 'cuota_compensar')
@@ -269,6 +301,13 @@ class L10nEsAeatMod303Report(models.Model):
             report.atribuible_estado = (
                 report.casilla_46 * report.porcentaje_atribuible_estado / 100.)
 
+    @api.depends("potential_cuota_compensar", "cuota_compensar")
+    def _compute_remaining_cuota_compensar(self):
+        for record in self:
+            record.remaining_cuota_compensar = (
+                record.potential_cuota_compensar - record.cuota_compensar
+            )
+
     @api.multi
     @api.depends('atribuible_estado', 'cuota_compensar',
                  'regularizacion_anual', 'casilla_77')
@@ -290,7 +329,8 @@ class L10nEsAeatMod303Report(models.Model):
         for report in self:
             report.casilla_88 = sum(
                 report.tax_line_ids.filtered(lambda x: x.field_number in (
-                    80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98,
+                    80, 81, 83, 84, 85, 86, 93, 94, 95, 96, 97, 98, 125, 126,
+                    127, 128
                 )).mapped('amount')
             ) - sum(
                 report.tax_line_ids.filtered(lambda x: x.field_number in (
@@ -338,12 +378,13 @@ class L10nEsAeatMod303Report(models.Model):
     def calculate(self):
         res = super(L10nEsAeatMod303Report, self).calculate()
         for mod303 in self:
-            mod303.counterpart_account_id = \
-                self.env['account.account'].search([
+            vals = {
+                "counterpart_account_id": self.env['account.account'].search([
                     ('code', '=like', '%s%%' % _ACCOUNT_PATTERN_MAP.get(
                         mod303.result_type, '4750')),
                     ('company_id', '=', mod303.company_id.id),
-                ], limit=1)
+                ], limit=1).id,
+            }
             prev_reports = mod303._get_previous_fiscalyear_reports(
                 mod303.date_start
             ).filtered(lambda x: x.state not in ['draft', 'cancelled'])
@@ -356,7 +397,9 @@ class L10nEsAeatMod303Report(models.Model):
                 ),
             )
             if prev_report.result_type == 'C':
-                mod303.cuota_compensar = abs(prev_report.resultado_liquidacion)
+                vals["cuota_compensar"] = abs(prev_report.resultado_liquidacion)
+                vals["potential_cuota_compensar"] = vals["cuota_compensar"]
+            mod303.write(vals)
         return res
 
     @api.multi
@@ -370,10 +413,12 @@ class L10nEsAeatMod303Report(models.Model):
             raise exceptions.Warning(msg)
         return super(L10nEsAeatMod303Report, self).button_confirm()
 
-    @api.multi
-    @api.constrains('cuota_compensar')
+    @api.constrains("potential_cuota_compensar", "cuota_compensar")
     def check_qty(self):
-        if self.filtered(lambda x: x.cuota_compensar < 0.0):
+        if self.filtered(lambda x: (
+            x.cuota_compensar < 0 or x.remaining_cuota_compensar < 0 or
+            (x.potential_cuota_compensar - x.cuota_compensar) < 0
+        )):
             raise exceptions.ValidationError(_(
                 'The fee to compensate must be indicated as a positive number.'
             ))
@@ -382,7 +427,7 @@ class L10nEsAeatMod303Report(models.Model):
         """Don't populate results for fields 79-99 for reports different from
         last of the year one or when not exonerated of presenting model 390.
         """
-        if 79 <= map_line.field_number <= 99:
+        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
             if (self.exonerated_390 == '2' or not self.has_operation_volume
                     or self.period_type not in ('4T', '12')):
                 return self.env['account.move.line']
@@ -396,7 +441,7 @@ class L10nEsAeatMod303Report(models.Model):
         the complete check for not bringing results is done on
         `_get_tax_lines`.
         """
-        if 79 <= map_line.field_number <= 99:
+        if 79 <= map_line.field_number <= 99 or map_line.field_number == 125:
             date_start = date_start.replace(day=1, month=1)
             date_end = date_end.replace(day=31, month=12)
         return super(L10nEsAeatMod303Report, self)._get_move_line_domain(

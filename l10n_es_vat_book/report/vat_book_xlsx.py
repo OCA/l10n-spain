@@ -137,8 +137,8 @@ class VatNumberXlsx(models.AbstractModel):
             line.partner_id._parse_aeat_vat_info())
         sheet.write('A' + str(row), self.format_boe_date(line.invoice_date))
         # sheet.write('B' + str(row), self.format_boe_date(line.invoice_date))
-        sheet.write('C' + str(row), line.ref[:-20])
-        sheet.write('D' + str(row), line.ref[-20:])
+        sheet.write('C' + str(row), (line.ref or "")[:-20])
+        sheet.write('D' + str(row), (line.ref or "")[-20:])
         sheet.write('E' + str(row), '')  # Final number
         sheet.write('F' + str(row), identifier_type)
         if country_code != 'ES':
@@ -277,7 +277,7 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write('C' + str(row),
                     line.external_ref and line.external_ref[:40] or '')
         sheet.write('D' + str(row), '')
-        sheet.write('E' + str(row), line.ref[:20])
+        sheet.write('E' + str(row), (line.ref or "")[:20])
         sheet.write('F' + str(row), '')
         sheet.write('G' + str(row), identifier_type)
         if country_code != 'ES':
@@ -317,7 +317,7 @@ class VatNumberXlsx(models.AbstractModel):
         # Issued
         issued_sheet = self.create_issued_sheet(workbook, book, draft_export)
         lines = book.issued_line_ids + book.rectification_issued_line_ids
-        lines = lines.sorted(key=lambda l: (l.invoice_date, l.ref))
+        lines = lines.sorted(key=lambda l: (l.invoice_date, l.ref or ""))
         row = 8
         for line in lines:
             with_total = True
@@ -334,7 +334,7 @@ class VatNumberXlsx(models.AbstractModel):
         received_sheet = self.create_received_sheet(workbook, book,
                                                     draft_export)
         lines = book.received_line_ids + book.rectification_received_line_ids
-        lines = lines.sorted(key=lambda l: (l.invoice_date, l.ref))
+        lines = lines.sorted(key=lambda l: (l.invoice_date, l.ref or ""))
         row = 8
         for line in lines:
             with_total = True

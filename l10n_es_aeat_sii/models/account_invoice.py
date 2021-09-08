@@ -470,6 +470,7 @@ class AccountInvoice(models.Model):
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
         taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
+        base_not_in_total = self._get_sii_taxes_map(['BaseNotIncludedInTotal'])
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         not_in_amount_total = 0
@@ -479,16 +480,17 @@ class AccountInvoice(models.Model):
             breakdown_taxes = (
                 taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             )
-            if tax in taxes_not_in_total:
+            if tax in (taxes_not_in_total + base_not_in_total):
+                amount = (
+                    tax_line.base if tax in base_not_in_total else tax_line.amount_total
+                )
                 if self.currency_id != self.company_id.currency_id:
                     amount = self.currency_id._convert(
-                        tax_line.amount_total,
+                        amount,
                         self.company_id.currency_id,
                         self.company_id,
                         self._get_currency_rate_date(),
                     )
-                else:
-                    amount = tax_line.amount_total
                 not_in_amount_total += amount
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault(
@@ -613,22 +615,24 @@ class AccountInvoice(models.Model):
         taxes_sfrns = self._get_sii_taxes_map(['SFRNS'])
         taxes_sfrnd = self._get_sii_taxes_map(['SFRND'])
         taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
+        base_not_in_total = self._get_sii_taxes_map(['BaseNotIncludedInTotal'])
         tax_amount = 0.0
         not_in_amount_total = 0.0
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
-            if tax in taxes_not_in_total:
+            if tax in (taxes_not_in_total + base_not_in_total):
+                amount = (
+                    tax_line.base if tax in base_not_in_total else tax_line.amount_total
+                )
                 if self.currency_id != self.company_id.currency_id:
                     amount = self.currency_id._convert(
-                        tax_line.amount_total,
+                        amount,
                         self.company_id.currency_id,
                         self.company_id,
                         self._get_currency_rate_date(),
                     )
-                else:
-                    amount = tax_line.amount_total
                 not_in_amount_total += amount
             if tax in taxes_sfrisp:
                 base_dict = taxes_dict.setdefault(
