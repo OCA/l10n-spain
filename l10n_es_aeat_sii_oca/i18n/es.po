@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-22 14:39+0000\n"
-"PO-Revision-Date: 2021-07-22 16:40+0200\n"
+"POT-Creation-Date: 2021-07-22 14:33+0000\n"
+"PO-Revision-Date: 2021-07-22 16:34+0200\n"
 "Last-Translator: Josep M <jmyepes@mac.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -771,6 +771,7 @@ msgstr "Agencias tributarias SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_tax_agency_id
+#, fuzzy
 msgid "SII Tax Agency"
 msgstr "Agencia Tributaria SII"
 
@@ -848,6 +849,16 @@ msgstr "Estado de envío SII"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
 msgid "SII sent"
 msgstr "Enviadas SII"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_invoice
+msgid "SII third-party invoice"
+msgstr "Factura de terceros SII"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
+msgid "SII third-party number"
+msgstr "Número de terceros SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__sale
