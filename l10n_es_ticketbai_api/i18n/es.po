@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-17 09:33+0000\n"
-"PO-Revision-Date: 2021-06-17 09:33+0000\n"
+"POT-Creation-Date: 2021-09-16 08:39+0000\n"
+"PO-Revision-Date: 2021-09-16 10:42+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0\n"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice__schema
@@ -347,7 +348,6 @@ msgstr "Entidad desarrolladora"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:21
-#: sql_constraint:tbai.installation:0
 #, python-format
 msgid "Developer must be unique!"
 msgstr "¡La entidad desarrolladora debe ser única!"
@@ -575,7 +575,6 @@ msgstr "Licencia TBAI"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:22
-#: sql_constraint:tbai.installation:0
 #, python-format
 msgid "License Key must be unique!"
 msgstr "¡La licencia TicketBAI debe ser única!"
@@ -704,10 +703,9 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__qr_base_url
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__test_qr_base_url
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version__qr_base_url
 msgid "QR Base URL"
-msgstr ""
+msgstr "URL base del QR"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_line__quantity
@@ -853,7 +851,6 @@ msgstr "Nombre del software"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:20
-#: sql_constraint:tbai.installation:0
 #, python-format
 msgid "Software Name must be unique!"
 msgstr "¡El nombre de Software TicketBAI debe ser único!"
@@ -943,11 +940,6 @@ msgid "TIN"
 msgstr "NIF"
 
 #. module: l10n_es_ticketbai_api
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_tax_agency_id
-msgid "Tax Agency"
-msgstr "Hacienda"
-
-#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__tax_agency_version_ids
 msgid "Tax Agency Version"
 msgstr "Hacienda - versión"
@@ -997,7 +989,7 @@ msgstr "Hacienda TicketBAI"
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version__test_qr_base_url
 msgid "Test - QR Base URL"
-msgstr ""
+msgstr "Test - URL base del QR"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__test_rest_url_cancellation
@@ -1010,6 +1002,11 @@ msgstr "Entorno de pruebas - REST API URL para la anulación de facturas"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version__test_rest_url_invoice
 msgid "Test - REST API URL for Invoices"
 msgstr "Entorno de pruebas - REST API URL para facturas"
+
+#. module: l10n_es_ticketbai_api
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency__test_qr_base_url
+msgid "Test QR Base URL"
+msgstr "URL base del QR test"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:628
@@ -1652,6 +1649,7 @@ msgstr "TicketBAI Facturas rectificadas"
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_tax_agency
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__tbai_tax_agency_id
 msgid "TicketBAI Tax Agency"
 msgstr "TicketBAI Hacienda"
 
@@ -1749,3 +1747,18 @@ msgstr "XML Respuesta"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer__zip
 msgid "ZIP Code"
 msgstr "Código postal"
+
+#. module: l10n_es_ticketbai_api
+#: sql_constraint:tbai.installation:0
+msgid "¡El nombre de Software TicketBAI debe ser único!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: sql_constraint:tbai.installation:0
+msgid "¡La entidad desarrolladora debe ser única!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: sql_constraint:tbai.installation:0
+msgid "¡La licencia TicketBAI debe ser única!"
+msgstr ""
