@@ -233,6 +233,17 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
+    sii_thirdparty_invoice = fields.Boolean(
+        string="SII third-party invoice", copy=False
+    )
+    sii_thirdparty_number = fields.Char(
+        string="SII third-party number",
+        help="[RD 1619/2012] Cumplimiento de la obligación de expedir factura "
+        "por el destinatario o por un tercero.\n"
+        "Se permite notificar de Factura emitida por Terceros mediante el campo "
+        "'Factura de terceros SII' y 'Número de terceros SII'.",
+        copy=False,
+    )
     invoice_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
         column1="invoice_id",
@@ -788,11 +799,14 @@ class AccountMove(models.Model):
         ejercicio = fields.Date.to_date(self.date).year
         periodo = "%02d" % fields.Date.to_date(self.date).month
         is_simplified_invoice = self._is_sii_simplified_invoice()
+        serial_number = (self.name or "")[0:60]
+        if self.sii_thirdparty_invoice:
+            serial_number = self.sii_thirdparty_number[0:60]
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {"NIF": company.vat[2:]},
                 # On cancelled invoices, number is not filled
-                "NumSerieFacturaEmisor": (self.name or "")[0:60],
+                "NumSerieFacturaEmisor": serial_number,
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
             "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
@@ -807,6 +821,8 @@ class AccountMove(models.Model):
                 "TipoDesglose": tipo_desglose,
                 "ImporteTotal": amount_total,
             }
+            if self.sii_thirdparty_invoice:
+                inv_dict["FacturaExpedida"]["EmitidaPorTercerosODestinatario"] = "S"
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
             if self.sii_registration_key_additional1:
