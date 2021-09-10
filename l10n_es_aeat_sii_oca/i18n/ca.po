@@ -836,6 +836,20 @@ msgid "SII sent"
 msgstr "SII enviat"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_invoice
+msgid "SII third-party invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
+msgid "SII third-party number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__sale
 msgid "Sale"
 msgstr "Venda"
@@ -1230,6 +1244,17 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__product_template__sii_exempt_cause__e6
 msgid "[E6] Otros"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
+msgid ""
+"[RD 1619/2012] Cumplimiento de la obligación de expedir factura por el "
+"destinatario o por un tercero.\n"
+"Se permite notificar de Factura emitida por Terceros mediante el campo "
+"'Factura de terceros SII' y 'Número de terceros SII'."
 msgstr ""
 
 #~ msgid "Activate"
