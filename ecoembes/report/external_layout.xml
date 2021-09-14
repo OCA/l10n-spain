@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="external_layout_standard_ecoembes"
+        inherit_id="web.external_layout_standard"
+    >
+        <xpath expr="//div[@t-field='company.partner_id']" position="after">
+            <t t-if="company.ecoembes_inscription">
+                <strong>Ecoembes Inscription:</strong>
+                <span t-field="company.ecoembes_inscription" />
+                <br />
+            </t>
+            <t t-if="company.ecoembes_partner_member">
+                <strong>Ecoembes Partner Member:</strong>
+                <span t-field="company.ecoembes_partner_member" />
+            </t>
+        </xpath>
+    </template>
+</odoo>

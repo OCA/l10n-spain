@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 FactorLibre - Janire Olagibel
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <record model="ir.ui.view" id="ecoembes_sig_report_wizard_form">
+        <field name="name">Ecoembes Sig Report</field>
+        <field name="model">ecoembes.sig.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Ecoembes Sig Report">
+                <field name="state" invisible="1" />
+                <group name="loaded" states="end">
+                    <field name="datas" readonly="1" filename="name" />
+                </group>
+                <group name="not_loaded" states="start">
+                    <field name="date_start" />
+                    <field name="date_end" />
+                </group>
+                <footer states="start">
+                    <button
+                        name="confirm"
+                        string="Export"
+                        class="oe_highlight"
+                        type="object"
+                    />
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        class="oe_link"
+                        special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_ecoembes_sig_report_wizard" model="ir.actions.act_window">
+        <field name="name">Ecoembes Sig Report</field>
+        <field name="res_model">ecoembes.sig.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="ecoembes_sig_report_wizard_form" />
+    </record>
+    <menuitem
+        id="menu_ecoembes_report_sig"
+        name="Ecoembes"
+        parent="account.menu_finance_reports"
+        action="action_ecoembes_sig_report_wizard"
+    />
+</odoo>
