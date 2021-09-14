@@ -6,14 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-25 10:58+0000\n"
-"PO-Revision-Date: 2021-08-25 10:58+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.external_layout_standard_ecoembes
+msgid "<strong>Ecoembes Inscription:</strong>"
+msgstr ""
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.external_layout_standard_ecoembes
+msgid "<strong>Ecoembes Partner Member:</strong>"
+msgstr ""
 
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_ecoembes_market_type__reference
@@ -43,6 +51,11 @@ msgstr ""
 #. module: ecoembes
 #: model:ir.model.fields,field_description:ecoembes.field_product_product__ecoembes_comment
 msgid "Comments"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.model,name:ecoembes.model_res_company
+msgid "Companies"
 msgstr ""
 
 #. module: ecoembes
@@ -110,7 +123,23 @@ msgstr ""
 #. module: ecoembes
 #: model:ir.ui.menu,name:ecoembes.menu_ecoembes_report_sig
 #: model_terms:ir.ui.view,arch_db:ecoembes.nan_product_pack_form
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_company_sii_form
 msgid "Ecoembes"
+msgstr ""
+
+#. module: ecoembes
+#: model_terms:ir.ui.view,arch_db:ecoembes.view_company_sii_form
+msgid "Ecoembes Configuration"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_res_company__ecoembes_inscription
+msgid "Ecoembes Inscription"
+msgstr ""
+
+#. module: ecoembes
+#: model:ir.model.fields,field_description:ecoembes.field_res_company__ecoembes_partner_member
+msgid "Ecoembes Partner Member"
 msgstr ""
 
 #. module: ecoembes
