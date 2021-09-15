@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_ticketbai_api',
         'odoo13-addon-l10n_es_toponyms',
         'odoo13-addon-l10n_es_vat_book',
+        'odoo13-addon-l10n_es_vat_book_oss',
         'odoo13-addon-payment_redsys',
     ],
     classifiers=[
