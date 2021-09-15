@@ -243,3 +243,5 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
                 })
             ]
         })
+        self.fiscal_position_ipsi_igic = self.main_company.get_fps_from_templates(
+            self.env.ref("l10n_es.fp_not_subject_tai"))

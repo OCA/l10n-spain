@@ -219,13 +219,19 @@ class AccountInvoice(models.Model):
         )
         for tax in self.tax_line_ids.filtered(
                 lambda x: x.tax_id not in exclude_taxes):
+            tax_subject_to = tax.tax_id.tbai_is_subject_to_tax()
+            not_subject_to_cause = \
+                not tax_subject_to and tax.tbai_get_value_causa() or ''
+            is_exempted = tax_subject_to and tax.tax_id.tbai_is_tax_exempted() or False
+            not_exempted_type = tax_subject_to and \
+                not is_exempted and tax.tbai_get_value_tipo_no_exenta() or ''
             taxes.append((0, 0, {
                 'base': tax.tbai_get_value_base_imponible(),
-                'is_subject_to': tax.tax_id.tbai_is_subject_to_tax(),
-                'not_subject_to_cause': tax.tbai_get_value_causa(),
-                'is_exempted': tax.tax_id.tbai_is_tax_exempted(),
-                'exempted_cause': tax.tbai_vat_exemption_key.code,
-                'not_exempted_type': tax.tbai_get_value_tipo_no_exenta(),
+                'is_subject_to': tax_subject_to,
+                'not_subject_to_cause': not_subject_to_cause,
+                'is_exempted': is_exempted,
+                'exempted_cause': is_exempted and tax.tbai_vat_exemption_key.code or '',
+                'not_exempted_type': not_exempted_type,
                 'amount': "%.2f" % abs(tax.tax_id.amount),
                 'amount_total': tax.tbai_get_value_cuota_impuesto(),
                 're_amount': tax.tbai_get_value_tipo_recargo_equivalencia() or '',
@@ -395,9 +401,6 @@ class AccountInvoice(models.Model):
         return tbai_date_operation
 
     def tbai_get_value_retencion_soportada(self):
-        # irpf_descriptions = self.env.ref(
-        #     'l10n_es_ticketbai.tbai_tax_map_IRPF').tax_template_ids.mapped(
-        #     'description')
         tbai_maps = self.env["tbai.tax.map"].search(
             [('code', '=', "IRPF")]
         )
