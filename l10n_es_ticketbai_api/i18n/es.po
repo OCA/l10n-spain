@@ -348,6 +348,7 @@ msgstr "Entidad desarrolladora"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:21
+#: sql_constraint:tbai.installation:0
 #, python-format
 msgid "Developer must be unique!"
 msgstr "¡La entidad desarrolladora debe ser única!"
@@ -575,6 +576,7 @@ msgstr "Licencia TBAI"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:22
+#: sql_constraint:tbai.installation:0
 #, python-format
 msgid "License Key must be unique!"
 msgstr "¡La licencia TicketBAI debe ser única!"
@@ -851,6 +853,7 @@ msgstr "Nombre del software"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:20
+#: sql_constraint:tbai.installation:0
 #, python-format
 msgid "Software Name must be unique!"
 msgstr "¡El nombre de Software TicketBAI debe ser único!"
@@ -1747,18 +1750,3 @@ msgstr "XML Respuesta"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer__zip
 msgid "ZIP Code"
 msgstr "Código postal"
-
-#. module: l10n_es_ticketbai_api
-#: sql_constraint:tbai.installation:0
-msgid "¡El nombre de Software TicketBAI debe ser único!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: sql_constraint:tbai.installation:0
-msgid "¡La entidad desarrolladora debe ser única!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: sql_constraint:tbai.installation:0
-msgid "¡La licencia TicketBAI debe ser única!"
-msgstr ""
