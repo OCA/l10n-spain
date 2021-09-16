@@ -25,7 +25,7 @@ class ResCompany(models.Model):
     tbai_device_serial_number = fields.Char(
         'Device Serial Number', default='', copy=False)
     tbai_tax_agency_id = fields.Many2one(
-        comodel_name='tbai.tax.agency', string='Tax Agency', copy=False)
+        comodel_name='tbai.tax.agency', string='TicketBAI Tax Agency', copy=False)
     tbai_vat_regime_simplified = fields.Boolean('Regime Simplified', copy=False)
     tbai_last_invoice_id = fields.Many2one(
         string='Last TicketBAI Invoice sent', comodel_name='tbai.invoice', copy=False)
