@@ -38,20 +38,31 @@ class ResCompany(models.Model):
         else:
             return None
 
-    @ormcache('fp_template', 'company')
+    @ormcache("fp_template", "company")
     def _get_fp_id_from_fp_template(self, fp_template, company):
         """Low level cached search for a fiscal position given its template and
         company.
         """
-        xmlids = self.env['ir.model.data'].search_read([
-            ('model', '=', 'account.fiscal.position.template'),
-            ('res_id', '=', fp_template.id)
-        ], ['name', 'module'])
-        return xmlids and self.env['ir.model.data'].search([
-            ('model', '=', 'account.fiscal.position'),
-            ('module', '=', xmlids[0]['module']),
-            ('name', '=', '{}_{}'.format(company.id, xmlids[0]['name']))
-        ]).res_id or False
+        xmlids = self.env["ir.model.data"].search_read(
+            [
+                ("model", "=", "account.fiscal.position.template"),
+                ("res_id", "=", fp_template.id),
+            ],
+            ["name", "module"],
+        )
+        return (
+            xmlids
+            and self.env["ir.model.data"]
+            .search(
+                [
+                    ("model", "=", "account.fiscal.position"),
+                    ("module", "=", xmlids[0]["module"]),
+                    ("name", "=", "{}_{}".format(company.id, xmlids[0]["name"])),
+                ]
+            )
+            .res_id
+            or False
+        )
 
     def get_fps_from_templates(self, fp_templates):
         """Return company fiscal positions that match the given templates."""
@@ -61,7 +72,7 @@ class ResCompany(models.Model):
             fp_id = self._get_fp_id_from_fp_template(tmpl, self)
             if fp_id:
                 fp_ids.append(fp_id)
-        return self.env['account.fiscal.position'].browse(fp_ids)
+        return self.env["account.fiscal.position"].browse(fp_ids)
 
     def write(self, vals):
         super().write(vals)
