@@ -122,6 +122,7 @@ Contributors
 
   * Pedro M. Baeza
   * Carlos Dauden
+* Manuel Regidor <manuel.regidor@sygel.es>
 
 Maintainers
 ~~~~~~~~~~~
