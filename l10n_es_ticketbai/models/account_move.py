@@ -258,17 +258,33 @@ class AccountMove(models.Model):
             "tax_ids"
         ):
             if tax not in exclude_taxes:
+                tax_subject_to = tax.tbai_is_subject_to_tax()
+                not_subject_to_cause = (
+                    not tax_subject_to and tax.tbai_get_value_causa(self) or ""
+                )
+                is_exempted = tax_subject_to and tax.tbai_is_tax_exempted() or False
+                not_exempted_type = (
+                    tax_subject_to
+                    and not is_exempted
+                    and tax.tbai_get_value_tipo_no_exenta()
+                    or ""
+                )
+                exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
+                    lambda e: e.tax_id.id == tax["id"]
+                )
                 taxes.append(
                     (
                         0,
                         0,
                         {
                             "base": tax.tbai_get_value_base_imponible(self),
-                            "is_subject_to": tax.tbai_is_subject_to_tax(),
-                            "not_subject_to_cause": tax.tbai_get_value_causa(self),
-                            "is_exempted": tax.tbai_is_tax_exempted(),
-                            "exempted_cause": tax.tbai_get_exemption_cause(self),
-                            "not_exempted_type": tax.tbai_get_value_tipo_no_exenta(),
+                            "is_subject_to": tax_subject_to,
+                            "not_subject_to_cause": not_subject_to_cause,
+                            "is_exempted": is_exempted,
+                            "exempted_cause": is_exempted
+                            and exemption.tbai_vat_exemption_key.code
+                            or "",
+                            "not_exempted_type": not_exempted_type,
                             "amount": "%.2f" % abs(tax.amount),
                             "amount_total": tax.tbai_get_value_cuota_impuesto(self),
                             "re_amount": tax.tbai_get_value_tipo_recargo_equiv(self)

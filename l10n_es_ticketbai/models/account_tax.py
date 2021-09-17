@@ -128,7 +128,16 @@ class AccountTax(models.Model):
     def tbai_get_value_causa(self, invoice_id):
         country_code = invoice_id.partner_id.tbai_get_partner_country_code()
         if country_code and self.env.ref("base.es").code.upper() == country_code:
-            res = NotSubjectToCause.OT.value
+            fp_not_subject_tai = invoice_id.company_id.get_fps_from_templates(
+                self.env.ref("l10n_es.fp_not_subject_tai")
+            )
+            if (
+                fp_not_subject_tai
+                and fp_not_subject_tai == invoice_id.fiscal_position_id
+            ):
+                res = NotSubjectToCause.RL.value
+            else:
+                res = NotSubjectToCause.OT.value
         elif country_code:
             res = NotSubjectToCause.RL.value
         else:
