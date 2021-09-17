@@ -61,50 +61,55 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             )
         )
 
-    def create_draft_invoice(self, uid, fp, partner):
+    def create_draft_invoice(self, uid, fp, partner, only_service=False):
         invoice_line_ids = []
 
-        invoice_line_ids.append(
-            (
-                0,
-                0,
-                {
-                    "product_id": self.product_delivery.id,
-                    "quantity": 1,
-                    "price_unit": 100.0,
-                    "name": "TBAI Invoice Line Test - delivery 1",
-                    "account_id": self.account_revenue.id,
-                    "tax_ids": [
-                        (
-                            6,
-                            0,
-                            fp.map_tax([self.product_delivery.taxes_id]).mapped("id"),
-                        )
-                    ],
-                },
+        if not only_service:
+            invoice_line_ids.append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": self.product_delivery.id,
+                        "quantity": 1,
+                        "price_unit": 100.0,
+                        "name": "TBAI Invoice Line Test - delivery 1",
+                        "account_id": self.account_revenue.id,
+                        "tax_ids": [
+                            (
+                                6,
+                                0,
+                                fp.map_tax([self.product_delivery.taxes_id]).mapped(
+                                    "id"
+                                ),
+                            )
+                        ],
+                    },
+                )
             )
-        )
 
-        invoice_line_ids.append(
-            (
-                0,
-                0,
-                {
-                    "product_id": self.product_delivery.id,
-                    "quantity": 1,
-                    "price_unit": 100.0,
-                    "name": "TBAI Invoice Line Test - delivery 2",
-                    "account_id": self.account_revenue.id,
-                    "tax_ids": [
-                        (
-                            6,
-                            0,
-                            fp.map_tax([self.product_delivery.taxes_id]).mapped("id"),
-                        )
-                    ],
-                },
+            invoice_line_ids.append(
+                (
+                    0,
+                    0,
+                    {
+                        "product_id": self.product_delivery.id,
+                        "quantity": 1,
+                        "price_unit": 100.0,
+                        "name": "TBAI Invoice Line Test - delivery 2",
+                        "account_id": self.account_revenue.id,
+                        "tax_ids": [
+                            (
+                                6,
+                                0,
+                                fp.map_tax([self.product_delivery.taxes_id]).mapped(
+                                    "id"
+                                ),
+                            )
+                        ],
+                    },
+                )
             )
-        )
 
         invoice_line_ids.append(
             (
@@ -396,4 +401,5 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             }
         )
         self.fiscal_position_ipsi_igic = self.main_company.get_fps_from_templates(
-            self.env.ref("l10n_es.fp_not_subject_tai"))
+            self.env.ref("l10n_es.fp_not_subject_tai")
+        )
