@@ -121,6 +121,34 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         self.assertEqual(invoices_with_errors[1].state, "cancel")
         self.assertEqual(invoice3.tbai_invoice_id.state, "pending")
 
+    def test_invoice_ipsi_igic(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_ipsi_igic,
+            self.partner_extracommunity.id,
+            only_service=True,
+        )
+        invoice.fiscal_position_id = invoice.company_id.get_fps_from_templates(
+            self.env.ref("l10n_es.fp_not_subject_tai")
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        self.assertEqual(1, len(invoice.invoice_line_ids))
+        self.partner_extracommunity.country_id = self.env.ref("base.es").id
+        for tax in invoice.invoice_line_ids.filtered(lambda x: x.tax_ids).mapped(
+            "tax_ids"
+        ):
+            self.assertEqual("RL", tax.tbai_get_value_causa(invoice))
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        (
+            root,
+            signature_value,
+        ) = invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
+        self.assertTrue(res)
+        self.partner_extracommunity.country_id = self.env.ref("base.jp").id
+
     def test_invoice_foreign_customer_extracommunity(self):
         invoice = self.create_draft_invoice(
             self.account_billing.id,
