@@ -399,7 +399,8 @@ class L10nEsAeatMod303Report(models.Model):
                 ),
             )
             if prev_report.result_type == 'C':
-                vals["cuota_compensar"] = abs(prev_report.resultado_liquidacion)
+                vals["cuota_compensar"] = abs(
+                    prev_report.resultado_liquidacion)
                 vals["potential_cuota_compensar"] = vals["cuota_compensar"]
             mod303.write(vals)
         return res
