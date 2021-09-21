@@ -90,7 +90,7 @@ class AccountMove(models.Model):
 
     def _get_default_type(self):
         context = self.env.context
-        return context.get("move_type", context.get("default_type"))
+        return context.get("move_type", context.get("default_move_type"))
 
     def _default_sii_refund_type(self):
         inv_type = self._get_default_type()
