@@ -40,8 +40,9 @@ class L10nEsAeatMod303Report(models.Model):
         `_get_tax_lines`.
         """
         if 126 <= map_line.field_number <= 127:
-            date_start = date_start[:4] + '-01-01'
-            date_end = date_end[:4] + '-12-31'
+            date_start = date_start.replace(day=1, month=1)
+            date_end = date_end.replace(day=31, month=12)
+
         return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
             codes, date_start, date_end, map_line,
         )
