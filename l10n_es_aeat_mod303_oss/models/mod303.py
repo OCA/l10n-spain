@@ -21,7 +21,7 @@ class L10nEsAeatMod303Report(models.Model):
             map_line,
         )
 
-     def _get_tax_lines(self, codes, date_start, date_end, map_line):
+    def _get_tax_lines(self, codes, date_start, date_end, map_line):
         """Don't populate results for fields 126-127 for reports different from
         last of the year one or when not exonerated of presenting model 390.
         """
