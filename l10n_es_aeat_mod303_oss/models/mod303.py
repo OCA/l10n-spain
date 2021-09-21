@@ -6,7 +6,7 @@ from odoo import models
 
 class L10nEsAeatMod303Report(models.Model):
     _inherit = "l10n.es.aeat.mod303.report"
-        
+
     def get_taxes_from_map(self, map_line):
         oss_map_lines = [
             self.env.ref('l10n_es_aeat_mod303_oss.aeat_mod303_map_line_123'),
