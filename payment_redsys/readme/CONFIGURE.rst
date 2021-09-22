@@ -20,6 +20,9 @@ Parámetros
 
 * **Idioma TPV**: Indicaremos el idioma en el TPV.
 
+* **Método de pago**: Indicaremos que tipo de pago se debe aceptar, pago con
+  tarjeta, Bizum u otro de los disponibles.
+
 * **URL_OK/URL_KO**: Durante el proceso del pago, y una vez que
   se muestra al cliente la pantalla con el resultado del mismo, es
   posible redirigir su navegador a una URL para las transacciones
@@ -41,3 +44,11 @@ En caso de que exista más de una base de datos en la instalación, cuando la
 pasarela de pago envía el formulario a "/payment/redsys/return" odoo no sabe
 con que base de datos procesar esta información, por lo que hay que establecer
 los parametros **dbfilter** y **dbname** en el archivo de configuración.
+
+Para mostrar simultáneamente en el comercio electrónico varios de los métodos
+de pago que proporciona Redsys, como pago con tarjeta y Bizum por ejemplo,
+debemos duplicar el medio de pago y escoger en el campo método de pago el que
+corresponda en cada caso.
+
+En el caso de Bizum, el titular del TPV deberá solicitar al banco su activación.
+
