@@ -24,9 +24,8 @@ class Aeat349MapLines(models.Model):
         )["l10n_es_aeat_349_operation_key"]["selection"]
 
     physical_product = fields.Boolean(string="Involves physical product")
-    tax_tmpl_ids = fields.One2many(
+    tax_tmpl_ids = fields.Many2many(
         comodel_name="account.tax.template",
-        inverse_name="aeat_349_map_line",
         string="Taxes",
     )
     operation_key = fields.Selection(selection=_selection_operation_key, required=True,)

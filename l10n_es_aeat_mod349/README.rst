@@ -23,7 +23,7 @@ Modelo 349 AEAT
     :target: https://runbot.odoo-community.org/runbot/189/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Módulo para la presentación del Modelo AEAT 349 (Declaración Recapitulativa de
 Operaciones Intracomunitarias)
@@ -155,6 +155,10 @@ Contributors
 
   * Ignacio Ibeas
 
+* Punt Sistemes (https://www.puntsistemes.es)
+
+  * Isaac Gallart <igallart@puntsistemes.es>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -174,7 +178,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza|
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/13.0/l10n_es_aeat_mod349>`_ project on GitHub.
 
