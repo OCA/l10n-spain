@@ -11,7 +11,7 @@ class TestL10nEsDuaSii(TestL10nEsAeatSiiBase):
     def test_dua_sii(self):
         invoice = self._create_and_test_invoice_sii_dict(
             inv_type="in_invoice",
-            lines=[(100, ["p_iva21_sp_ex"])],
+            lines=[(100, ["p_iva21_ibc"])],
             extra_vals={
                 "ref": "sup0001",
                 "sii_account_registration_date": "2020-10-01",
