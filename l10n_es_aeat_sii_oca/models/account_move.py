@@ -296,7 +296,9 @@ class AccountMove(models.Model):
                 key = invoice.fiscal_position_id.sii_registration_key_sale
             else:
                 key = invoice.fiscal_position_id.sii_registration_key_purchase
-            invoice.sii_registration_key = key
+            # Only assign sii_registration_key if is set in fiscal position
+            if key:
+                invoice.sii_registration_key = key
 
     @api.onchange("partner_id", "company_id")
     def _onchange_partner_id(self):
