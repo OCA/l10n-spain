@@ -5,7 +5,7 @@
 
 {
     "name": "Retenciones IRNR (No residentes)",
-    "version": "13.0.1.0.1",
+    "version": "14.0.1.0.0",
     "category": "Localization",
     "depends": ["l10n_es"],
     "data": [
