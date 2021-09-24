@@ -31,6 +31,11 @@ msgid "Bank Error: %s (%s)"
 msgstr ""
 
 #. module: payment_redsys
+#: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_pay_method__z
+msgid "Bizum"
+msgstr ""
+
+#. module: payment_redsys
 #: model:ir.model.fields.selection,name:payment_redsys.selection__payment_acquirer__redsys_merchant_lang__001
 msgid "Castellano"
 msgstr "Castelán"
