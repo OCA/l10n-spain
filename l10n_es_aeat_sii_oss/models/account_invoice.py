@@ -5,7 +5,7 @@ from odoo import api, models
 
 
 class AccountInvoice(models.Model):
-    _inherit = 'account.invoice'
+    _inherit = "account.invoice"
 
     @api.multi
     def _get_sii_taxes_map(self, codes):
@@ -16,8 +16,11 @@ class AccountInvoice(models.Model):
         :return: Recordset with the corresponding codes
         """
         taxes = super()._get_sii_taxes_map(codes)
-        if any([x for x in codes if x in ['SFENS', 'NotIncludedInTotal']]):
-            taxes |= self.env['account.tax'].search([
-                ('oss_country_id', '!=', False),
-                ('company_id', '=', self.company_id.id), ])
+        if any([x for x in codes if x in ["SFENS", "NotIncludedInTotal"]]):
+            taxes |= self.env["account.tax"].search(
+                [
+                    ("oss_country_id", "!=", False),
+                    ("company_id", "=", self.company_id.id),
+                ]
+            )
         return taxes
