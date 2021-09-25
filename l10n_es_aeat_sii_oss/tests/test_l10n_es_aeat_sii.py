@@ -1,23 +1,21 @@
 # Copyright 2021 FactorLibre - Rodrigo Bonilla <rodrigo.bonilla@factorlibre.com>
+# Copyright 2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.addons.l10n_es_aeat_sii.tests.test_l10n_es_aeat_sii import (
+from odoo.tests import Form
+
+from odoo.addons.l10n_es_aeat_sii_oca.tests.test_l10n_es_aeat_sii import (
     TestL10nEsAeatSiiBase,
 )
 
 
 class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
-    at_install = False
-    post_install = True
-
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsAeatSiiBaseOss, cls).setUpClass()
         account_fiscal_position_env = cls.env["account.fiscal.position"]
         xml_id = "%s_account_tax_template_s_oss20" % cls.company.id
-        cls.tax_fr_20 = cls._get_or_create_tax(
-            xml_id, "Test tax 20%", "sale", 20, cls.account_tax
-        )
+        cls.tax_fr_20 = cls._get_or_create_tax(xml_id, "Test tax 20%", "sale", 20)
         cls.tax_fr_20.write({"oss_country_id": cls.env.ref("base.fr").id})
         cls.fpos_fr_id = account_fiscal_position_env.create(
             {
@@ -37,35 +35,20 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
 
     def test_invoice_sii_oss(self):
         self.partner.sii_simplified_invoice = True
-        invoice = self.env["account.invoice"].create(
-            {
-                "partner_id": self.partner.id,
-                "date_invoice": "2021-07-01",
-                "date": "2021-07-01",
-                "type": "out_invoice",
-                "fiscal_position_id": self.fpos_fr_id.id,
-                "invoice_line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": self.product.id,
-                            "account_id": self.account_expense.id,
-                            "account_analytic_id": self.analytic_account.id,
-                            "name": "Test line with iva FR",
-                            "price_unit": 100,
-                            "quantity": 1,
-                            "invoice_line_tax_ids": [(6, 0, self.tax_fr_20.ids)],
-                        },
-                    )
-                ],
-                "sii_manual_description": "/",
-            }
+        invoice_form = Form(
+            self.env["account.move"].with_context(default_type="out_invoice")
         )
-        invoices = invoice._get_sii_invoice_dict()
-        ImporteTotal = invoices["FacturaExpedida"]["ImporteTotal"]
-        ClaveRegimenEspecialOTrascendencia = invoices["FacturaExpedida"][
-            "ClaveRegimenEspecialOTrascendencia"
-        ]
-        self.assertEqual(100, ImporteTotal)
-        self.assertEqual("17", ClaveRegimenEspecialOTrascendencia)
+        invoice_form.partner_id = self.partner
+        invoice_form.invoice_date = "2021-07-01"
+        invoice_form.fiscal_position_id = self.fpos_fr_id
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.product_id = self.product
+            line_form.price_unit = 100
+            line_form.quantity = 1
+            line_form.tax_ids.clear()
+            line_form.tax_ids.add(self.tax_fr_20)
+        invoice = invoice_form.save()
+        res = invoice._get_sii_invoice_dict()
+        res_issue = res["FacturaExpedida"]
+        self.assertEqual(res_issue["ImporteTotal"], 100)
+        self.assertEqual(res_issue["ClaveRegimenEspecialOTrascendencia"], "17")
