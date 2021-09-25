@@ -6,12 +6,11 @@
     "version": "11.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://odoospain.odoo.com",
-    "author": "FactorLibre,"
-              "Odoo Community Association (OCA)",
+    "author": "FactorLibre," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    'autoinstall': True,
+    "autoinstall": True,
     "development_status": "Production/Stable",
     "maintainers": [],
     "depends": [
@@ -19,7 +18,5 @@
         "account_fiscal_position_partner_type",
         "l10n_eu_oss",
     ],
-    "data": [
-        "data/aeat_sii_mapping_registration_keys_data.xml",
-        ],
+    "data": ["data/aeat_sii_mapping_registration_keys_data.xml",],
 }
