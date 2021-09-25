@@ -1,22 +1,17 @@
 # Copyright 2021 FactorLibre - Rodrigo Bonilla <rodrigo.bonilla@factorlibre.com>
+# Copyright 2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import models
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
-    @api.multi
     def _get_sii_taxes_map(self, codes):
-        """Return the codes that correspond to that sii map line codes.
-
-        :param self: Single invoice record.
-        :param codes: List of code strings to get the mapping.
-        :return: Recordset with the corresponding codes
-        """
+        """Inject OSS taxes when querying not subjected invoices."""
         taxes = super()._get_sii_taxes_map(codes)
-        if any([x for x in codes if x in ["SFENS", "NotIncludedInTotal"]]):
+        if any([x in ["SFENS", "NotIncludedInTotal"] for x in codes]):
             taxes |= self.env["account.tax"].search(
                 [
                     ("oss_country_id", "!=", False),
