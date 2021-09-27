@@ -32,7 +32,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod390](l10n_es_aeat_mod390/) | 14.0.1.2.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 390
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 14.0.1.7.2 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
 [l10n_es_dua](l10n_es_dua/) | 14.0.1.1.0 |  | Importaciones con DUA
-[l10n_es_dua_sii](l10n_es_dua_sii/) | 14.0.1.0.0 |  | Suministro Inmediato de Información de importaciones con DUA
+[l10n_es_dua_sii](l10n_es_dua_sii/) | 14.0.1.1.0 |  | Suministro Inmediato de Información de importaciones con DUA
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.1.0.1 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 14.0.1.0.0 |  | Retenciones IRNR (No residentes)
 [l10n_es_mis_report](l10n_es_mis_report/) | 14.0.1.3.0 |  | Plantillas MIS Builder para informes contables españoles
