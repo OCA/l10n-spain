@@ -33,6 +33,11 @@ msgid "0 - Sin epígrafe"
 msgstr "0 - Sin epígrafe"
 
 #. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "0 Vacía"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_1b
 msgid "1 - Epígrafes correspondientes a: Actividades AGP con IAE"
 msgstr "1 - Epígrafes correspondientes a: Actividades AGP con IAE"
@@ -54,9 +59,15 @@ msgstr ""
 "excepto las agrícolas, ganaderas y pesqueras (AGP)"
 
 #. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "1 Cuenta España"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2b
 msgid "2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
-msgstr "2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
+msgstr ""
+"2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2a
@@ -64,6 +75,11 @@ msgid ""
 "2 - Epígrafes correspondientes a: Actividades profesionales sujetas al IAE"
 msgstr ""
 "2 - Epígrafes correspondientes a: Actividades profesionales sujetas al IAE"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "2 Unión Europea SEPA"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_3a
@@ -81,6 +97,11 @@ msgstr "3 - Epígrafe 861.2 correspondiente a: Alquiler de locales industriales"
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_3c
 msgid "3 - Epígrafe 862 correspondiente a: Alquiler de inmuebles rústicos"
 msgstr "3 - Epígrafe 862 correspondiente a: Alquiler de inmuebles rústicos"
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "3 Resto Países"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_4
@@ -307,7 +328,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:240
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:264
 #, python-format
 msgid ""
 "In previous declarations this year you reported a Result Type 'To "
@@ -338,11 +359,9 @@ msgstr ""
 msgid ""
 "Información adicional - Operaciones realizadas en el ejercicio - Total "
 "volumen de operaciones "
-"([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
+"([80]+[81]+[93]+[94]+[83]+[84]+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-"
+"[79]-[99])"
 msgstr ""
-"Información adicional - Operaciones realizadas en el ejercicio - Total "
-"volumen de operaciones "
-"([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report___last_update
@@ -361,6 +380,11 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_marca_sepa
+msgid "Marca Sepa"
+msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_has_347
@@ -448,7 +472,7 @@ msgid "Resultado"
 msgstr "Resultado"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:383
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:408
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr "Seleccione una cuenta bancaria para recibir el dinero"
@@ -473,7 +497,7 @@ msgstr ""
 "esta casilla el 100%"
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:394
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:419
 #, python-format
 msgid "The fee to compensate must be indicated as a positive number."
 msgstr "La cuota a compensar debe ser indicada como una cantidad positiva."
@@ -614,6 +638,15 @@ msgstr "¿SII voluntario?"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_has_operation_volume
 msgid "¿Volumen de operaciones?"
 msgstr "¿Volumen de operaciones?"
+
+#~ msgid ""
+#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
+#~ "volumen de operaciones "
+#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
+#~ msgstr ""
+#~ "Información adicional - Operaciones realizadas en el ejercicio - Total "
+#~ "volumen de operaciones "
+#~ "([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
 
 #~ msgid "AEAT 303 Report Activities Codes"
 #~ msgstr "Códigos de actividad de la declaración AEAT 303"
