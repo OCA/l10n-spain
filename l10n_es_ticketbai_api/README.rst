@@ -61,6 +61,10 @@ En la configuración general:
 
 * Número de serie del dispositivo (opcional)
 
+En los parámetros del sistema:
+
+* Alimentar el dato "database.ticketbai" con el nombre de la BBDD de la instalación.
+
 
 Bug Tracker
 ===========
