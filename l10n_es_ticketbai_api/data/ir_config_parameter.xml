@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="database_ticketbai" model="ir.config_parameter" forcecreate="True">
+            <field name="key">database.ticketbai</field>
+            <field name="value"></field>
+        </record>
+    </data>
+</odoo>
