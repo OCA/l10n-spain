@@ -545,8 +545,8 @@ class TicketBAIInvoice(models.Model):
 
     @api.model
     def send_pending_invoices(self):
-        config_DDBB = self.env['ir.config_parameter'].sudo().\
-                      get_param('database.ticketbai')
+        icp = self.env['ir.config_parameter'].sudo()
+        config_DDBB = icp.get_param('database.ticketbai')
         ticketbai_DDBB = self.env.cr.dbname
         if config_DDBB != ticketbai_DDBB:
             _logger.info(
