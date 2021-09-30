@@ -545,10 +545,12 @@ class TicketBAIInvoice(models.Model):
 
     @api.model
     def send_pending_invoices(self):
-        config_DDBB = self.env['ir.config_parameter'].sudo().get_param('database.ticketbai')
+        config_DDBB = self.env['ir.config_parameter'].sudo().\
+                      get_param('database.ticketbai')
         ticketbai_DDBB = self.env.cr.dbname
         if config_DDBB != ticketbai_DDBB:
-            _logger.info(_("The ticketbai database is not active for sending invoices"))
+            _logger.info(
+                _("The ticketbai database is not active for sending invoices"))
             return
         next_pending_invoice = self.get_next_pending_invoice()
         retry_later = False
