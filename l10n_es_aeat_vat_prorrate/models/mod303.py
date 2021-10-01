@@ -1,5 +1,5 @@
 # Copyright 2015 AvanzOSC - Ainara Galdona
-# Copyright 2015-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2015-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import _, api, exceptions, fields, models
@@ -12,7 +12,7 @@ class L10nEsAeatMod303Report(models.Model):
 
     @api.depends("tax_line_ids", "tax_line_ids.amount", "casilla_44")
     def _compute_total_deducir(self):
-        super(L10nEsAeatMod303Report, self)._compute_total_deducir()
+        super()._compute_total_deducir()
         for report in self:
             report.total_deducir += report.casilla_44
 
@@ -80,7 +80,7 @@ class L10nEsAeatMod303Report(models.Model):
         self.casilla_44 = round(result, 2)
 
     def calculate(self):
-        res = super(L10nEsAeatMod303Report, self).calculate()
+        res = super().calculate()
         for report in self:
             report.casilla_44 = 0
             if report.vat_prorrate_type != "general" or report.period_type not in (
@@ -103,7 +103,7 @@ class L10nEsAeatMod303Report(models.Model):
         return res
 
     def _prepare_tax_line_vals(self, map_line):
-        res = super(L10nEsAeatMod303Report, self)._prepare_tax_line_vals(map_line)
+        res = super()._prepare_tax_line_vals(map_line)
         if (
             self.vat_prorrate_type == "general"
             and map_line.field_number in PRORRATE_TAX_LINE_MAPPING.keys()
@@ -119,9 +119,7 @@ class L10nEsAeatMod303Report(models.Model):
         move_line_obj = self.env["account.move.line"]
         for tax_line in tax_lines:
             # We need to treat each tax_line independently
-            lines = super(
-                L10nEsAeatMod303Report, self
-            )._process_tax_line_regularization(tax_line)
+            lines = super()._process_tax_line_regularization(tax_line)
             all_lines += lines
             if (
                 self.vat_prorrate_type != "general"
@@ -195,10 +193,7 @@ class L10nEsAeatMod303Report(models.Model):
         extra_credit = sum(x["credit"] for x in extra_lines)
         extra_balance = extra_debit - extra_credit
         diff = round(prorrate - extra_balance, prec)
-        if prorrate < 0:
-            column = "credit"
-        else:
-            column = "debit"
+        column = "credit" if prorrate < 0 else "debit"
         n = 0
         count = len(extra_lines)
         step = 1.0 / (10 ** prec)
@@ -215,9 +210,7 @@ class L10nEsAeatMod303Report(models.Model):
         return extra_lines
 
     def _prepare_regularization_extra_move_lines(self):
-        lines = super(
-            L10nEsAeatMod303Report, self
-        )._prepare_regularization_extra_move_lines()
+        lines = super()._prepare_regularization_extra_move_lines()
         if self.casilla_44:
             lines.append(
                 {
