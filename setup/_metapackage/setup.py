@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_aeat_mod349',
         'odoo14-addon-l10n_es_aeat_mod390',
         'odoo14-addon-l10n_es_aeat_sii_oca',
+        'odoo14-addon-l10n_es_aeat_vat_prorrate',
         'odoo14-addon-l10n_es_dua',
         'odoo14-addon-l10n_es_dua_sii',
         'odoo14-addon-l10n_es_intrastat_report',
