@@ -3,9 +3,9 @@
 
 {
     "name": "AEAT - Prorrata de IVA - Extensión para los activos",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting",
     "depends": ["l10n_es_aeat_vat_prorrate", "account_asset_management"],

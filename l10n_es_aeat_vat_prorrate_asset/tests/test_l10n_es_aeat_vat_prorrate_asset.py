@@ -28,7 +28,7 @@ class TestL10nEsAeatVatProrrateAsset(TestL10nEsAeatVatProrrateBase):
                     "company_id": self.company.id,
                     "partner_id": self.customer.id,
                     "invoice_date": "2017-01-01",
-                    "type": "in_invoice",
+                    "move_type": "in_invoice",
                     "journal_id": self.journal_purchase.id,
                     "invoice_line_ids": [
                         (

@@ -7,8 +7,8 @@ from odoo import _, api, exceptions, fields, models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    def post(self):
-        super().post()
+    def action_post(self):
+        super().action_post()
         for move in self:
             for aml in move.line_ids.filtered("asset_id"):
                 aml.asset_id.write(aml._get_asset_analytic_values())

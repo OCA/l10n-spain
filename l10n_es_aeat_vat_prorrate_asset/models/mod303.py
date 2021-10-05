@@ -1,4 +1,4 @@
-# Copyright 2015-2017 Tecnativa - Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2015-2017 Tecnativa - Pedro M. Baeza
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import models
@@ -8,7 +8,7 @@ class L10nEsAeatMod303Report(models.Model):
     _inherit = "l10n.es.aeat.mod303.report"
 
     def _calculate_casilla_44(self):
-        super(L10nEsAeatMod303Report, self)._calculate_casilla_44()
+        super()._calculate_casilla_44()
         for report in self:
             if report.vat_prorrate_type != "general" or report.period_type not in (
                 "4T",
