@@ -284,7 +284,7 @@ class EDIBackendTestCase(
         self.assertTrue(self.move.exchange_record_ids)
         self.assertIn(
             str(self.face_update_type.id),
-            self.move.expected_edi_configuration,
+            self.move.edi_config,
         )
         with self.assertRaises(exceptions.UserError):
             self.move.edi_create_exchange_record(self.face_update_type.id)
