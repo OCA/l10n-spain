@@ -21,6 +21,8 @@ class AccountMoveL10nEsFacturaeListener(Component):
 
     def on_post_account_move(self, records):
         for record in records:
+            if record.disable_edi_auto:
+                continue
             partner = record.partner_id
             if record.move_type not in ["out_invoice", "out_refund"]:
                 continue
