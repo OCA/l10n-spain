@@ -14,6 +14,7 @@ class AccountInvoice(models.Model):
 
     tbai_enabled = fields.Boolean(
         related='company_id.tbai_enabled', readonly=True)
+    tbai_send_invoice = fields.Boolean(related='journal_id.tbai_send_invoice')
     tbai_substitution_invoice_id = fields.Many2one(
         comodel_name='account.invoice', copy=False,
         help="Link between a validated Customer Invoice and its substitute.")
@@ -308,7 +309,7 @@ class AccountInvoice(models.Model):
                         x.refund_invoice_id.tbai_invoice_id and not
                         x.refund_invoice_id.tbai_cancellation_id
                     )
-                )
+                ) and x.tbai_send_invoice
             )
             tbai_invoices._tbai_build_invoice()
         return res

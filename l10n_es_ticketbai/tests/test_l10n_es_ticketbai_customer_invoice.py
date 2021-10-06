@@ -48,6 +48,16 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice._compute_tbai_description()
         self.assertEqual(invoice.tbai_description_operation, description)
 
+    def test_invoice_non_tbai_journal(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice.journal_id = self.non_tbai_journal
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(0, len(invoice.tbai_invoice_ids))
+
     def test_cancel_and_recreate(self):
         # Build three invoices and check the chaining.
         invoice = self.create_draft_invoice(

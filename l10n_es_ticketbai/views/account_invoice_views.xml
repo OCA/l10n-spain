@@ -14,10 +14,11 @@
                            options="{'no_open':True,'no_create':True}"/>
                 </xpath>
                 <page name="other_info" position="after">
-                    <page name="ticketbai" string="TicketBAI" attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '=', False)]}">
+                    <page name="ticketbai" string="TicketBAI" attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '|', ('tbai_send_invoice', '=', False), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '=', False)]}">
                         <group name="main_grp" col="4">
                             <group name="ticketbai" colspan="2" col="2">
                                 <field name="tbai_enabled" invisible="1"/>
+                                <field name="tbai_send_invoice" invisible="1"/>
                                 <field name="tbai_invoice_id" readonly="1" options="{'no_create':True}"
                                        attrs="{'invisible': [('tbai_invoice_id', '=', False)]}"/>
                                 <field name="tbai_cancellation_id" readonly="1" options="{'no_create':True}"

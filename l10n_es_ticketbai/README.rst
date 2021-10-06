@@ -79,6 +79,10 @@ Usage
   * Por limitaciones de TicketBAI, se eliminan los sufijos de las secuencias de los diarios de ventas.
   * Por legalidad, se obliga a especificar una secuencia dedicada para las facturas rectificativas.
 
+* Habilitar/deshabilitar envio de facturas TicketBAI por diarios de ventas
+
+  * En caso de que se tengan varias series de facturación, si una de ellas se envía a TicketBAI a través de otro software, en el diario de ventas en el cual se contabilizan estas facturas en Odoo deberá estar desactivado el envío de facturas TicketBAI para evitar duplicar la información en hacienda.
+
 Bug Tracker
 ===========
 
