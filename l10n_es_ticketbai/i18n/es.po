@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-03 08:05+0000\n"
-"PO-Revision-Date: 2022-02-03 09:08+0100\n"
+"POT-Creation-Date: 2022-02-03 15:25+0000\n"
+"PO-Revision-Date: 2022-02-03 16:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -534,6 +534,14 @@ msgid "Responses"
 msgstr "Respuestas"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_send_invoice
+msgid "Send TicketBAI invoices to tax agency"
+msgstr "Enviar facturas a hacienda TicketBAI"
+
+#. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_ir_sequence
 msgid "Sequence"
 msgstr "Secuencia"
@@ -906,3 +914,13 @@ msgid "You cannot resequence a customer invoice when TicketBAI is enabled."
 msgstr ""
 "No puedes resecuenciar una factura de cliente cuando TicketBAI está "
 "habilitado."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:0
+#, python-format
+msgid ""
+"You cannot stop sending invoices from this journal, an invoice has already "
+"been sent."
+msgstr ""
+"No puedes dejar de enviar facturas de este diario, al menos una factura ya "
+"ha sido enviada."

@@ -84,6 +84,19 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
 
+    def test_invoice_non_tbai_journal(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner,
+            journal_id=self.non_tbai_journal,
+        )
+        # invoice.journal_id = self.non_tbai_journal
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(0, len(invoice.tbai_invoice_ids))
+
     def test_cancel_and_recreate(self):
         # Build three invoices and check the chaining.
         invoice = self.create_draft_invoice(
