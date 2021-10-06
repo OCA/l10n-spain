@@ -10,9 +10,9 @@ Delivery DHL Parcel
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
-    :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
-    :alt: License: LGPL-3
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+    :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
     :target: https://github.com/OCA/l10n-spain/tree/14.0/delivery_dhl_parcel
     :alt: OCA/l10n-spain
@@ -27,6 +27,18 @@ Delivery DHL Parcel
 
 Este módulo integra la API de DHL Parcel con Odoo. No es
 válido para otras integraciones de DHL como el Express, que usan otras APIs.
+
+IMPORTANTE:
+Hay varias APIs distintas para DHL España y DHL Parcel, esta API solo funciona para
+una de ellas. Para notificar y pedir las credenciales correctas a tu comercial
+de integración, se puede pasar el documento que hay en /doc para indicar
+exactamente cuál es la API que se quiere usar.
+El formato de las credenciales que se usan en esta es el siguiente:
+
+Usuario: 11000000EMPRESA
+Pass: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+Puede que acepte algún otro, pero no puedo verificarlo.
 
 **Table of contents**
 
@@ -83,7 +95,7 @@ Cancelar servicios
   #. Podremos generar una nueva expedición una vez cancelado si fuese necesario.
 
 Obtener etiquetas
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
   #. Si por error hubiésemos eliminado el adjunto de las etiquetas que obtuvimos
      en la grabación del servicio, podemos obtenerlas de nuevo pulsando en el
@@ -101,7 +113,7 @@ Seguimiento de envíos
      a la API que actualice el estado de este envío en Odoo.
 
 Cierre del día
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
   #. Desde un smart button en el formulario del transportista, se puede
      cerrar el día manualmente.
@@ -110,7 +122,7 @@ Depuración de errores
 ~~~~~~~~~~~~~~~~~~~~~
 
   #. Es importante tener en cuenta que solo funcionará con códigos postales de
-     España.
+     España (por lo menos para el consignatario).
   #. En cada servicio DHL Parcel dispone de una pestaña llamada "Técnico" en la
      que puede consultar la última petición y respuesta a la API de DHL Parcel.
      Esto le servirá como ayuda a la hora de depurar posibles errores de
