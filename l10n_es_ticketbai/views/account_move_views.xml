@@ -13,11 +13,12 @@
                     <page
                         name="ticketbai"
                         string="TicketBAI"
-                        attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('move_type', '!=', 'out_invoice'), ('move_type', '!=', 'out_refund')]}"
+                        attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '|', ('tbai_send_invoice', '=', False), '&amp;', ('move_type', '!=', 'out_invoice'), ('move_type', '!=', 'out_refund')]}"
                     >
                         <group name="main_grp" col="4">
                             <group name="ticketbai" colspan="2" col="2">
                                 <field name="tbai_enabled" invisible="1" />
+                                <field name="tbai_send_invoice" invisible="1" />
                                 <field
                                     name="tbai_invoice_id"
                                     readonly="1"

@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-03 15:25+0000\n"
+"PO-Revision-Date: 2022-02-03 15:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -510,6 +512,14 @@ msgid "Responses"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_send_invoice
+msgid "Send TicketBAI invoices to tax agency"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_ir_sequence
 msgid "Sequence"
 msgstr ""
@@ -865,4 +875,12 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai/models/account_resequence.py:0
 #, python-format
 msgid "You cannot resequence a customer invoice when TicketBAI is enabled."
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:0
+#, python-format
+msgid ""
+"You cannot stop sending invoices from this journal, an invoice has already "
+"been sent."
 msgstr ""
