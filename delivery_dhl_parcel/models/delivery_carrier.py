@@ -14,10 +14,7 @@ from .dhl_parcel_request import (
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
-    delivery_type = fields.Selection(
-        selection_add=[("dhl_parcel", "DHL Parcel")],
-        ondelete={"dhl_parcel": "set default"},
-    )
+    delivery_type = fields.Selection(selection_add=[("dhl_parcel", "DHL Parcel")],)
     dhl_parcel_customer_code = fields.Char(string="DHL Parcel customer code")
     dhl_parcel_incoterm = fields.Selection(
         string="DHL Parcel incoterms", selection=DHL_PARCEL_INCOTERMS_STATIC
