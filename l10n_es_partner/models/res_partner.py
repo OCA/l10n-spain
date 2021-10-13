@@ -56,24 +56,20 @@ class ResPartner(models.Model):
             )
         return res
 
-    def name_get(self):
-        result = []
+    def _get_name(self):
         name_pattern = (
             self.env["ir.config_parameter"]
             .sudo()
             .get_param("l10n_es_partner.name_pattern", default="")
         )
-        origin = super().name_get()
-        if self.env.context.get("no_display_commercial", False):
+        origin = super()._get_name()
+        if (
+            self.env.context.get("no_display_commercial", False)
+            or not name_pattern
+            or not self.comercial
+        ):
             return origin
-        orig_name = dict(origin)
-        for partner in self:
-            name = orig_name[partner.id]
-            comercial = partner.comercial
-            if comercial and name_pattern:
-                name = name_pattern % {"name": name, "comercial_name": comercial}
-            result.append((partner.id, name))
-        return result
+        return name_pattern % {"name": origin, "comercial_name": self.comercial}
 
     @api.model
     def _commercial_fields(self):
