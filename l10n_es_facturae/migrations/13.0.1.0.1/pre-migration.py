@@ -32,3 +32,11 @@ def migrate(env, version):
                 'account.move.integration.method'
             )""",
     )
+    openupgrade.remove_tables_fks(
+        env.cr,
+        [
+            "account_move_integration_method",
+            "account_move_integration_log",
+            "account_move_integration",
+        ],
+    )

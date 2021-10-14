@@ -49,5 +49,21 @@ def migrate(env, version):
             facturae_end_date = ail.facturae_end_date,
             facturae_transaction_date = ail.facturae_transaction_date
         FROM account_invoice_line ail
-        WHERE ail.id = aml.old_invoice_line_id""",
+        WHERE ail.id = aml.old_invoice_line_id
+            AND (
+                ail.facturae_receiver_contract_reference is not NULL
+                OR ail.facturae_receiver_contract_date is not NULL
+                OR ail.facturae_receiver_transaction_reference is not NULL
+                OR ail.facturae_receiver_transaction_date is not NULL
+                OR ail.facturae_issuer_contract_reference is not NULL
+                OR ail.facturae_issuer_contract_date is not NULL
+                OR ail.facturae_issuer_transaction_reference is not NULL
+                OR ail.facturae_issuer_transaction_date is not NULL
+                OR ail.facturae_file_reference is not NULL
+                OR ail.facturae_file_date is not NULL
+                OR ail.facturae_start_date is not NULL
+                OR ail.facturae_end_date is not NULL
+                OR ail.facturae_transaction_date is not NULL
+            )
+        """,
     )
