@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-20 15:13+0000\n"
-"PO-Revision-Date: 2021-09-20 17:15+0200\n"
+"POT-Creation-Date: 2021-12-01 13:35+0000\n"
+"PO-Revision-Date: 2021-12-01 15:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -57,6 +57,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__account_move__tbai_refund_key__r3
 msgid "Art. 80.4"
 msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__auto
+msgid "Automatic"
+msgstr "Automático"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_bank_statement_line__tbai_refund_key
@@ -223,6 +228,11 @@ msgid "Fiscal Position Template"
 msgstr "Plantilla de posición fiscal"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__fixed
+msgid "Fixed"
+msgstr "Predefinido"
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai_general_info
 msgid "General Info"
 msgstr "Información general"
@@ -334,9 +344,32 @@ msgid "Link between a validated Customer Invoice and its substitute."
 msgstr "Enlace entre la factura del cliente y su sustituta."
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields.selection,name:l10n_es_ticketbai.selection__res_company__tbai_description_method__manual
+msgid "Manual"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Messages"
 msgstr "Mensajes"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description_method
+msgid ""
+"Method for the TicketBAI invoices description, can be one of these:\n"
+"- Automatic: the description will be the join of the invoice   lines "
+"description\n"
+"- Fixed: the description write on the below field 'TBAI   Description'\n"
+"- Manual (by default): It will be necessary to manually enter   the "
+"description on each invoice"
+msgstr ""
+"Método para la descripción de facturas TicketBAI, puede ser uno de éstos:\n"
+"- Automático: la descripción será la unión de las descripciones de las "
+"lineas de la factura\n"
+"- Predefinido: la descripción escrita en el campo de abajo 'Descripción "
+"TBAI'\n"
+"- Manual (por defecto): Es necesario insertar la descripción de la factura "
+"manualmente en cada factura"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_tax_map__name
@@ -478,6 +511,15 @@ msgid "Template for Fiscal Position"
 msgstr "Plantilla de posición fiscal"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description
+msgid ""
+"The description for invoices. Only used when the field TicketBAI Description "
+"Method is 'Fixed'."
+msgstr ""
+"Descripción de las facturas. Utilizado cuando el campo Método de descripción "
+"TicketBAI es 'Predefinido'."
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_l10n_es_tbai_config
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_position_form_inherit
@@ -514,6 +556,16 @@ msgstr "TicketBAI anulación"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_cancellation_ids
 msgid "TicketBAI Cancellations"
 msgstr "TicketBAI anulaciones"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_description
+msgid "TicketBAI Description"
+msgstr "Descripción TBAI"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_description_method
+msgid "TicketBAI Description Method"
+msgstr "Método descripción TBAI"
 
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_account_fiscal_position_template_view_search

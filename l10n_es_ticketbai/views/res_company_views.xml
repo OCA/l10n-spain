@@ -22,6 +22,24 @@
                         options="{'no_open':True,'no_create':True}"
                     />
                 </field>
+                <xpath
+                    expr="//group[@name='ticketbai_company_config']"
+                    position="after"
+                >
+                    <group
+                        name="ticketbai_operation_desc_config"
+                        attrs="{'invisible': [('tbai_enabled', '=', False)]}"
+                    >
+                        <field name="tbai_description_method" />
+                        <field
+                            name="tbai_description"
+                            attrs="{
+                                'invisible': [('tbai_description_method', '!=', 'fixed')],
+                                'required': [('tbai_description_method', '=', 'fixed')],
+                            }"
+                        />
+                    </group>
+                </xpath>
             </field>
         </record>
     </data>
