@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_delivery_carrier_form" model="ir.ui.view">
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position='before'>
+                <page
+                    string="DHL Parcel Configuration"
+                    attrs="{'invisible': [('delivery_type', '!=', 'dhl_parcel')]}"
+                >
+                    <group>
+                        <group>
+                            <field
+                                name="dhl_parcel_uid"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                            />
+                            <field
+                                name="dhl_parcel_password"
+                                password="True"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                            />
+                            <field
+                                name="dhl_parcel_customer_code"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                            />
+                            <field
+                                name="dhl_parcel_incoterm"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                            />
+                            <field
+                                name="dhl_parcel_last_end_day_report"
+                                filename="dhl_parcel_last_end_day_report_name"
+                            />
+                            <field
+                                name="dhl_parcel_last_end_day_report_name"
+                                invisible="1"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook" position='inside'>
+                <page
+                    string="Technical"
+                    attrs="{'invisible': [('delivery_type', '!=', 'dhl_parcel')]}"
+                >
+                    <group>
+                        <group>
+                            <field name="dhl_parcel_last_request" />
+                            <field name="dhl_parcel_last_response" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//button[@name='toggle_prod_environment']" position="before">
+                <button
+                    name="action_open_end_day"
+                    string="End day"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-text-o"
+                    attrs="{'invisible': [('delivery_type', '!=', 'dhl_parcel')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
