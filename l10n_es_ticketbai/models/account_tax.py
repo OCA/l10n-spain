@@ -47,11 +47,10 @@ class AccountTax(models.Model):
                     "company_id": invoice_id.company_id.id,
                 }
             )
-            amount_total = currency.compute(
-                self.amount, invoice_id.company_id.currency_id
-            )
+            amount = self.tbai_get_invoice_amount_for_tax_group(invoice_id)
+            amount_total = currency.compute(amount, invoice_id.company_id.currency_id)
         else:
-            amount_total = self.amount
+            amount_total = self.tbai_get_invoice_amount_for_tax_group(invoice_id)
         return amount_total
 
     def tbai_get_associated_re_tax(self, invoice_id):
@@ -158,11 +157,10 @@ class AccountTax(models.Model):
                     "company_id": invoice_id.company_id.id,
                 }
             )
-            base = currency.compute(
-                self.base_balance, invoice_id.company_id.currency_id
-            )
+            base_balance = self.tbai_get_invoice_base_balace_for_tax_group(invoice_id)
+            base = currency.compute(base_balance, invoice_id.company_id.currency_id)
         else:
-            base = self.base_balance
+            base = self.tbai_get_invoice_base_balace_for_tax_group(invoice_id)
         return "%.2f" % (sign * base)
 
     def tbai_get_value_tipo_no_exenta(self):
@@ -208,3 +206,15 @@ class AccountTax(models.Model):
         else:
             res = "N"
         return res
+
+    def tbai_get_invoice_base_balace_for_tax_group(self, invoice_id):
+        for line in invoice_id.line_ids:
+            if line.tax_line_id.id == self.id:
+                return line.tax_base_amount
+        return 0
+
+    def tbai_get_invoice_amount_for_tax_group(self, invoice_id):
+        for line in invoice_id.line_ids:
+            if line.tax_line_id.id == self.id:
+                return line.price_total
+        return 0
