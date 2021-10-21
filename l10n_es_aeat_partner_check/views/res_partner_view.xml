@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Ignacio Ibeas <ignacio@acysos.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_aeat_form" model="ir.ui.view">
+        <field name="name">res.partner.aeat.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_es_aeat.view_partner_form" />
+        <field name="arch" type="xml">
+            <page id="aeat" position="inside">
+                <group string="Partner Data Quality">
+                    <button
+                        type="object"
+                        string="Check Partner Data"
+                        name="aeat_check_partner"
+                    />
+                    <field name="aeat_partner_name" />
+                    <field name="aeat_partner_vat" />
+                    <field name="aeat_partner_check_result" />
+                    <field name="aeat_data_diff" />
+                    <field name="aeat_last_checked" />
+                    <field name="aeat_partner_type" />
+                </group>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_res_partner_aeat_filter" model="ir.ui.view">
+        <field name="name">res.partner.aeat.select</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter" />
+        <field name="arch" type="xml">
+            <filter name="inactive" position="after">
+                <separator />
+                <filter
+                    string="Identified"
+                    name="identified"
+                    domain="[('aeat_partner_check_result','=','IDENTIFICADO')]"
+                />
+                <filter
+                    string="Not Identified"
+                    name="not_identified"
+                    domain="[('aeat_partner_check_result','=','NO IDENTIFICADO')]"
+                />
+                <filter
+                    string="Not Processed"
+                    name="not_processed"
+                    domain="[('aeat_partner_check_result','=','NO PROCESADO')]"
+                />
+                <filter
+                    string="Not Identifiable"
+                    name="not_identifiable"
+                    domain="[('aeat_partner_check_result','=','NO IDENTIFICABLE')]"
+                />
+                <filter
+                    string="Data Diff"
+                    name="data_diff"
+                    domain="[('aeat_partner_check_result','!=','NO IDENTIFICABLE'), ('aeat_data_diff', '=', True)]"
+                />
+                <filter
+                    string="Sales Equiv. regimen"
+                    name="se_type"
+                    domain="[('aeat_partner_type','=','sales_equalization')]"
+                />
+                <filter
+                    string="Standard regimen"
+                    name="standard_type"
+                    domain="[('aeat_partner_type','=','standard')]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
