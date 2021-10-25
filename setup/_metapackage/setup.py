@@ -58,5 +58,6 @@ setuptools.setup(
     classifiers=[
         'Programming Language :: Python',
         'Framework :: Odoo',
+        'Framework :: Odoo :: 12.0',
     ]
 )

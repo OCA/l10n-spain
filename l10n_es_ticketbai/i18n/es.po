@@ -6,15 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-08 09:06+0000\n"
-"PO-Revision-Date: 2021-06-08 09:06+0000\n"
+"POT-Creation-Date: 2021-09-17 07:48+0000\n"
+"PO-Revision-Date: 2021-09-17 09:49+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0\n"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_l10n_es_aeat_certificate
@@ -70,7 +71,7 @@ msgid "Cancel and recreate"
 msgstr "Cancelar y recrear"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:240
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:246
 #, python-format
 msgid "Cancellation"
 msgstr "Anulación factura"
@@ -99,7 +100,7 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:98
+#: code:addons/l10n_es_ticketbai/models/account_invoice_tax.py:104
 #, python-format
 msgid "Country code for partner %s not found!"
 msgstr "Código de país para la empresa %s no encontrado."
@@ -278,7 +279,7 @@ msgstr "Última actualización el"
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_account_invoice__tbai_substitution_invoice_id
 msgid "Link between a validated Customer Invoice and its substitute."
-msgstr ""
+msgstr "Enlace entre la factura del cliente y su sustituta."
 
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
@@ -313,7 +314,7 @@ msgid "Refund"
 msgstr "Rectificativa"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:263
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:269
 #, python-format
 msgid ""
 "Refund invoices must be cancelled in order to cancel the original invoice."
@@ -612,7 +613,7 @@ msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr "No es posible cambiar el estado a borrador de una factura TicketBAI."
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:280
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:286
 #, python-format
 msgid "You cannot validate a refund invoice without the origin invoice!"
 msgstr "No es posible validar la factura rectificativa sin factura origen."
