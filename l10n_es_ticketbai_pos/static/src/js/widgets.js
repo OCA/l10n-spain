@@ -9,6 +9,28 @@ odoo.define('l10n_es_ticketbai_pos.widgets', function (require) {
     var tbai_models = require('l10n_es_ticketbai_pos.tbai_models');
 
     widgets.OrderListScreenWidget.include({
+
+        order_action: function(order_data, action) {
+            var self = this;
+            if (order_data.tbai_qr_src) {
+                self._super(order_data, action);
+            } else {
+                self.generate_qr_code(order_data).then(function(src) {
+                    order_data.tbai_qr_src = src;
+                    self.order_action(order_data, action);
+                });
+            }
+        },
+
+        generate_qr_code: function(order_data) {
+            var qr_url = order_data.tbai_qr_url;
+            var qr_options = tbai_models.TicketBAISimplifiedInvoice.prototype.qr_options;
+            var src = QRCode.toDataURL(qr_url, qr_options).then(function(src) {
+                return src;
+            });
+            return src;
+        },
+
         _prepare_order_from_order_data: function (order_data) {
             var order = this._super(order_data);
             if (this.pos.company.tbai_enabled) {
@@ -16,7 +38,7 @@ odoo.define('l10n_es_ticketbai_pos.widgets', function (require) {
                     pos: this.pos,
                     order: order,
                     tbai_identifier: order_data.tbai_identifier,
-                    tbai_qr_src: "data:image/png;base64," + order_data.tbai_qr_src,
+                    tbai_qr_src: order_data.tbai_qr_src,
                 });
             }
             return order;

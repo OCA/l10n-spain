@@ -31,6 +31,15 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
             this.unsigned_datas = null;
             this.datas = null;
         },
+
+        // Tested on Epson TM-20II
+        // 164 (default pixels with margin '0') * 35 (required QR image width in mm) / 22 (default width in mm) = 260
+        // Pixels. 255 is the maximum.
+        var qr_options: {
+            margin: 0,
+            width: 255,
+        },
+
         build_invoice: function () {
             var self = this;
             var built = new $.Deferred();
@@ -39,13 +48,6 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
             // Addon l10n_es_pos -> Order.export_as_JSON()
             var simplified_invoice = null;
             var tbai_json = null;
-            // Tested on Epson TM-20II
-            // 164 (default pixels with margin '0') * 35 (required QR image width in mm) / 22 (default width in mm) = 260
-            // Pixels. 255 is the maximum.
-            var qr_options = {
-                margin: 0,
-                width: 255,
-            };
 
             this.previous_tbai_invoice = this.pos.tbai_last_invoice || null;
             this.expedition_date = new Date();
@@ -87,7 +89,7 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
                         self.tbai_identifier = tbai.getTbaiId(datas);
                         self.tbai_qr_url = tbai.getTbaiUrlFromBaseURL(
                             datas, self.pos.tbai_qr_base_url);
-                        QRCode.toDataURL(self.tbai_qr_url, qr_options).then(function (src) {
+                        QRCode.toDataURL(self.tbai_qr_url, self.qr_options).then(function (src) {
                             self.tbai_qr_src = src;
                             built.resolve();
                         }, function (err) {
