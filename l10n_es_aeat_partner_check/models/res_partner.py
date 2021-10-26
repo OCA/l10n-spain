@@ -14,6 +14,7 @@ RESULTS = [
 TYPES = [
     ("sales_equalization", _("Régimen de recargo de equivalencia")),
     ("standard", _("Régimen estándar")),
+    ("unknown", _("No es posible reportar información sobre el NIF consultado"))
 ]
 
 
@@ -134,11 +135,20 @@ class ResPartner(models.Model):
                 ].get_certificates()
             request = {"nif": vat_number, "apellido": partner.name}
             res = requests.post(url, params=request, cert=(public_crt, private_key))
-            vals = {
-                "aeat_last_checked": fields.Datetime.now(),
-            }
-            if b"NIF sometido" in res.content:
-                vals.update({"aeat_partner_type": "sales_equalization"})
-            elif b"NIF no sometido" in res.content:
-                vals.update({"aeat_partner_type": "standard"})
-            partner.write(vals)
+            partner._handle_re_check_result(res)
+
+    def _handle_re_check_result(self, result):
+        self.ensure_one()
+        vals = {
+            "aeat_last_checked": fields.Datetime.now(),
+        }
+        if b"NIF sometido" in result.content:
+            vals.update({"aeat_partner_type": "sales_equalization"})
+        elif b"NIF no sometido" in result.content:
+            vals.update({"aeat_partner_type": "standard"})
+        elif (
+            b"No es posible reportar informacion sobre el NIF consultado"
+            in result.content
+        ):
+            vals.update({"aeat_partner_type": "unknown"})
+        self.write(vals)
