@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from collections import OrderedDict
@@ -42,7 +44,6 @@ class ResCompany(models.Model):
                 ) % record.name)
 
     @api.multi
-    @api.constrains('tbai_license_key')
     def _check_tbai_license_key(self):
         for record in self:
             if record.tbai_enabled and not record.tbai_license_key:
@@ -56,7 +57,6 @@ class ResCompany(models.Model):
                 ) % record.name)
 
     @api.multi
-    @api.constrains('tbai_developer_id')
     def _check_tbai_developer_id(self):
         for record in self:
             if record.tbai_enabled and not record.tbai_developer_id:
@@ -65,7 +65,6 @@ class ResCompany(models.Model):
                 ) % record.name)
 
     @api.multi
-    @api.constrains('tbai_software_name')
     def _check_tbai_software_name(self):
         for record in self:
             if record.tbai_enabled and not record.tbai_software_name:

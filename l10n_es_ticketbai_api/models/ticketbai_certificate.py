@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
@@ -28,7 +30,7 @@ class TicketBaiCertificate(models.Model):
         :return: p12 Buffer
         """
         self.ensure_one()
-        return base64.decodebytes(self.datas)
+        return base64.b64decode(self.datas)
 
     def get_p12(self):
         """

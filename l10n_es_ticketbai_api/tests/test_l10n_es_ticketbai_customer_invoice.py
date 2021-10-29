@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime, timedelta
@@ -12,7 +14,7 @@ from ..ticketbai.xml_schema import XMLSchema
 class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
 
     def setUp(self):
-        super().setUp()
+        super(TestL10nEsTicketBAIInvoice, self).setUp()
 
     def test_invoice(self):
         uid = self.tech_user.id
