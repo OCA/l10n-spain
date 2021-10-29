@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import os
@@ -5,7 +7,7 @@ import json
 import base64
 from random import randrange
 from lxml import etree
-from urllib.request import pathname2url
+from urllib import pathname2url
 from ..models.ticketbai_invoice import RefundCode, RefundType
 from ..models.ticketbai_invoice_tax import ExemptedCause, NotExemptedType, \
     NotSubjectToCause, VATRegimeKey, SurchargeOrSimplifiedRegimeType
@@ -460,12 +462,12 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             'license_key': vals.pop('tbai_license_key')
         })
         vals.update({
+            'vat': 'ESA12345674',
             'country_id': self.env.ref('base.es').id,
             'tbai_enabled': True,
             'tbai_test_enabled': True,
             'tbai_tax_agency_id': self.env.ref(
                 'l10n_es_ticketbai_api.tbai_tax_agency_gipuzkoa').id,
-            'currency_id': self.env.ref('base.EUR').id,
             'tbai_certificate_id': certificate.id,
             'tbai_installation_id': installation.id
         })
@@ -490,7 +492,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         return number
 
     def setUp(self):
-        super().setUp()
+        super(TestL10nEsTicketBAIAPI, self).setUp()
         test_dir_path = os.path.abspath(os.path.dirname(__file__))
         self.company_values_json_filepath = os.path.join(test_dir_path, 'company.json')
         # Disabled by default for automatic tests

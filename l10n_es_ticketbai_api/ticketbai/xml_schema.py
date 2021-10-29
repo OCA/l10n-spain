@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright 2020 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime
@@ -159,12 +161,12 @@ class XMLSchema:
                         ('ds:DigestMethod',
                          ('Algorithm', 'http://www.w3.org/2000/09/xmldsig#sha256')),
                         ('ds:DigestValue', (),
-                         b64encode(ctx.x509.fingerprint(hashes.SHA256())).decode())))),
+                         b64encode(ctx.x509.fingerprint(hashes.SHA256())))))),
                      ('etsi:SignaturePolicyIdentifier', (),
                       ('etsi:SignaturePolicyId', (),
                        ('etsi:SigPolicyId', (),
                         ('etsi:Identifier', (), 'http://ticketbai.eus/politicafirma'),
-                        ('etsi:Description', (), 'Política de Firma TicketBAI 1.0')),
+                        ('etsi:Description', (), 'Politica de Firma TicketBAI 1.0')),
                        ('etsi:SigPolicyHash', (),
                         ('ds:DigestMethod',
                          ('Algorithm', 'http://www.w3.org/2000/09/xmldsig#sha256')),
