@@ -7,7 +7,7 @@ import json
 import base64
 from random import randrange
 from lxml import etree
-from urllib.request import pathname2url
+from urllib import pathname2url
 from ..models.ticketbai_invoice import RefundCode, RefundType
 from ..models.ticketbai_invoice_tax import ExemptedCause, NotExemptedType, \
     NotSubjectToCause, VATRegimeKey, SurchargeOrSimplifiedRegimeType
@@ -492,7 +492,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         return number
 
     def setUp(self):
-        super().setUp()
+        super(TestL10nEsTicketBAIAPI, self).setUp()
         test_dir_path = os.path.abspath(os.path.dirname(__file__))
         self.company_values_json_filepath = os.path.join(test_dir_path, 'company.json')
         # Disabled by default for automatic tests

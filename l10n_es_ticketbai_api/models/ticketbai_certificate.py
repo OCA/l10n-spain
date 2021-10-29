@@ -30,7 +30,7 @@ class TicketBaiCertificate(models.Model):
         :return: p12 Buffer
         """
         self.ensure_one()
-        return base64.decodebytes(self.datas)
+        return base64.b64decode(self.datas)
 
     def get_p12(self):
         """

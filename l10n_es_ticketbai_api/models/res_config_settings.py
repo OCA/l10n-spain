@@ -5,8 +5,8 @@
 from odoo import models, fields
 
 
-class ResConfigSettings(models.TransientModel):
-    _inherit = 'res.config.settings'
+class AccountConfigSettings(models.TransientModel):
+    _inherit = 'account.config.settings'
 
     tbai_enabled = fields.Boolean(
         related='company_id.tbai_enabled', company_dependent=True, readonly=True)

@@ -9,7 +9,7 @@ TicketBAI (API) - Gobierno Vasco
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/11.0/l10n_es_ticketbai_api
+    :target: https://github.com/OCA/l10n-spain/tree/10.0/l10n_es_ticketbai_api
     :alt: OCA/l10n-spain
 
 |badge1| |badge2| |badge3|
@@ -101,6 +101,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/11.0/l10n_es_ticketbai_api>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/10.0/l10n_es_ticketbai_api>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

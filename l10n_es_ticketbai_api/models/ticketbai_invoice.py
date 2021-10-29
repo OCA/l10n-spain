@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 from datetime import datetime
-from urllib.parse import urlencode
+from urllib import urlencode
 import io
 import base64
 from lxml import etree
@@ -412,11 +412,11 @@ class TicketBAIInvoice(models.Model):
                     qr_base_url = record.company_id.tbai_tax_agency_id.qr_base_url
                 qr_values = record._get_qr_url_values()
                 qr_url_without_crc = "%s?%s" % (
-                    qr_base_url, urlencode(qr_values, encoding='utf-8'))
+                    qr_base_url, urlencode(qr_values, 'utf-8'))
                 qr_crc = crc8(qr_url_without_crc)
                 qr_values['cr'] = qr_crc
                 qr_url_with_crc = "%s?%s" % (
-                    qr_base_url, urlencode(qr_values, encoding='utf-8'))
+                    qr_base_url, urlencode(qr_values, 'utf-8'))
                 record.qr_url = qr_url_with_crc
                 # Let QRCode decide the best version when calling make()
                 qr = qrcode.QRCode(

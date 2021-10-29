@@ -18,7 +18,7 @@
     "maintainers": [
         'ljsalvatierra-binovo'
     ],
-    "depends": ["base", "base_setup"],
+    "depends": ["base", "base_setup", "account"],
     "external_dependencies": {
         "python": [
             "OpenSSL",
@@ -35,7 +35,7 @@
         "data/ticketbai_invoice.xml",
         "views/l10n_es_ticketbai_api_views.xml",
         "views/res_company_views.xml",
-        "views/res_config_settings_views.xml",
+        "views/account_config_settings_views.xml",
         "views/ticketbai_certificate_views.xml",
         "views/ticketbai_installation_views.xml"
     ],

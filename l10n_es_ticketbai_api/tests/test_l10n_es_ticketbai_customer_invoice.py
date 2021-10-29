@@ -14,7 +14,7 @@ from ..ticketbai.xml_schema import XMLSchema
 class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
 
     def setUp(self):
-        super().setUp()
+        super(TestL10nEsTicketBAIInvoice, self).setUp()
 
     def test_invoice(self):
         uid = self.tech_user.id

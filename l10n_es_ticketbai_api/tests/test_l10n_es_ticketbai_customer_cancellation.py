@@ -12,7 +12,7 @@ from ..ticketbai.xml_schema import XMLSchema
 class TestL10nEsTicketBAICancellation(TestL10nEsTicketBAIAPI):
 
     def setUp(self):
-        super().setUp()
+        super(TestL10nEsTicketBAICancellation, self).setUp()
 
     def test_invoice_cancel(self):
         uid = self.tech_user.id
