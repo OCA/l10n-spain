@@ -29,6 +29,10 @@
                                 attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
                             />
                             <field
+                                name="dhl_parcel_product"
+                                attrs="{'required': [('delivery_type', '=', 'dhl_parcel')]}"
+                            />
+                            <field
                                 name="dhl_parcel_last_end_day_report"
                                 filename="dhl_parcel_last_end_day_report_name"
                             />

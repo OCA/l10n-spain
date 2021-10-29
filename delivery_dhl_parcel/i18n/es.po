@@ -4,17 +4,28 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-12 13:38+0000\n"
-"PO-Revision-Date: 2021-05-12 13:38+0000\n"
+"POT-Creation-Date: 2021-11-02 07:36+0000\n"
+"PO-Revision-Date: 2021-11-02 08:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 2.3\n"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_product__b2b
+msgid "B2B Product"
+msgstr "Producto B2B"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_product__b2c
+msgid "B2C Product"
+msgstr "Producto B2C"
 
 #. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
@@ -120,7 +131,6 @@ msgstr "Código de cliente DHL Parcel"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_incoterm
-#, fuzzy
 msgid "DHL Parcel incoterms"
 msgstr "Servicio DHL Parcel"
 
@@ -141,9 +151,12 @@ msgid "DHL Parcel shipment on hold"
 msgstr "Envío DHL Parcel retenido"
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__display_name
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_product
+msgid "DHL Product"
+msgstr "Producto DHL"
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__display_name
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -170,9 +183,7 @@ msgid "Hold DHL Parcel shipment"
 msgstr "Retener envío DHL Parcel"
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__id
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
 
@@ -188,6 +199,11 @@ msgstr ""
 "También se puede usar 'ALL' para cerrarlos todos"
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_product
+msgid "If the product is not specified, it is considered B2B"
+msgstr "Si no se especifica el producto, se considera producto B2B"
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_request
 msgid "Last DHL Parcel API request"
 msgstr "Último pedido a la API DHL Parcel"
@@ -198,9 +214,7 @@ msgid "Last DHL Parcel API response"
 msgstr "Última respuesta a la API DHL Parcel"
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
@@ -283,6 +297,3 @@ msgstr "Tipo de respuesta no soportado, por favor solo usa 'GET' o 'POST'"
 #: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_response
 msgid "Used for debugging"
 msgstr "Usado para debug"
-
-#~ msgid "DHL Parcel Tracking reference"
-#~ msgstr "Referencia de seguimiento DHL Parcel"
