@@ -28,6 +28,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_mod216',
         'odoo12-addon-l10n_es_aeat_mod296',
         'odoo12-addon-l10n_es_aeat_mod303',
+        'odoo12-addon-l10n_es_aeat_mod303_oss',
         'odoo12-addon-l10n_es_aeat_mod347',
         'odoo12-addon-l10n_es_aeat_mod349',
         'odoo12-addon-l10n_es_aeat_mod390',
