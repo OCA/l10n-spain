@@ -9,9 +9,9 @@ from odoo.addons.l10n_es_aeat_mod303.tests.test_l10n_es_aeat_mod303 import (
 
 
 class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUp(self):
+        super().setUp()
+        cls = self
         cls.oss_country = cls.env.ref("base.fr")
         general_tax = cls.env.ref(
             "l10n_es.%s_account_tax_template_s_iva21b" % cls.company.id
@@ -36,7 +36,7 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             "account_id": cls.accounts["700000"].id,
             "price_unit": 100,
             "quantity": 1,
-            "tax_ids": [(4, cls.oss_tax.id)],
+            "invoice_line_tax_ids": [(4, cls.oss_tax.id)],
         }
         extra_vals = {"invoice_line_ids": [(0, 0, line_data)]}
         cls._invoice_sale_create("2021-07-01", extra_vals)
