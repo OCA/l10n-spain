@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-10 03:41+0000\n"
-"PO-Revision-Date: 2019-12-28 17:13+0000\n"
-"Last-Translator: Carles Antoli <carlesantoli@hotmail.com>\n"
+"PO-Revision-Date: 2021-12-09 14:39+0000\n"
+"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
@@ -48,7 +48,7 @@ msgstr "AEAT: Client anònim"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_certificate
 msgid "AEAT Certificate"
-msgstr ""
+msgstr "Certificat AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__model
@@ -57,9 +57,8 @@ msgstr "Declaració AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
-#, fuzzy
 msgid "AEAT SOAP"
-msgstr "AEAT"
+msgstr "AEAT SOAP"
 
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_aeat_model_export_config
@@ -139,9 +138,8 @@ msgstr "Línia de mapeig d'impostos AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__account_id
-#, fuzzy
 msgid "Account Template"
-msgstr "Entrada cuenta"
+msgstr "Plantilla del compte"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__move_id
@@ -171,7 +169,7 @@ msgstr "Activitats"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decorador d'excepció d'activitat"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_state
@@ -183,7 +181,7 @@ msgstr "Estat de activitats"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_icon
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icona del tipus d'activitat"
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
@@ -193,7 +191,7 @@ msgstr "Configuració avançada"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_aeat_tax_agency
 msgid "Aeat Tax Agency"
-msgstr ""
+msgstr "Agència tributària AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__alignment
@@ -339,7 +337,7 @@ msgstr "Declaraciones canceladas"
 #: model:ir.actions.act_window,name:l10n_es_aeat.l10n_es_certificate_action
 #: model:ir.ui.menu,name:l10n_es_aeat.l10n_es_aeat_certificate_menu
 msgid "Certificates AEAT"
-msgstr ""
+msgstr "Certificats AEAT"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
@@ -503,6 +501,8 @@ msgstr "Haber"
 #, python-format
 msgid "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
 msgstr ""
+"La versió de criptografia no està suportada. Actualitzi a la versió 3.0.0 o "
+"superior."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__currency_id
@@ -576,9 +576,8 @@ msgstr "Declaraciones borrador"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_end
-#, fuzzy
 msgid "End Date"
-msgstr "Fins la data"
+msgstr "Data fi"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__date_end
@@ -598,7 +597,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
 #, python-format
 msgid "Error! There aren't certificates."
-msgstr ""
+msgstr "Error! No hi ha certificats."
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
@@ -721,9 +720,8 @@ msgstr "Fixe: {}"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__folder
-#, fuzzy
 msgid "Folder Name"
-msgstr "Nom complet"
+msgstr "Nom de la carpeta"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_follower_ids
@@ -747,7 +745,7 @@ msgstr "Seguidors (Empreses)"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_icon
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona Font awesome p.e. fa-tasks"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__date_from
@@ -786,13 +784,13 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona per a indicar una excepció d'activitat."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
@@ -860,7 +858,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 #, python-format
 msgid "Insert Password"
-msgstr ""
+msgstr "Introdueixi la contrassenya"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__inverse
@@ -970,7 +968,7 @@ msgstr "Línies"
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
 msgid "Load Certificate"
-msgstr ""
+msgstr "Carrega certificat"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_main_attachment_id
@@ -1045,7 +1043,7 @@ msgstr "Ha de tenir cognoms i nom."
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__my_activity_date_deadline
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Data límit de l'activitat"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__name
@@ -1107,9 +1105,8 @@ msgstr "Nombre de caràcters per als decimals"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
-#, fuzzy
 msgid "Number of errors"
-msgstr "Nº d'errors"
+msgstr "Número d'errors"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction_counter
@@ -1143,7 +1140,7 @@ msgstr "Nombre sense decimals"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
 msgid "Obtain Keys"
-msgstr ""
+msgstr "Obtenir claus"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__model_id
@@ -1186,7 +1183,7 @@ msgstr "Empresa"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__password
 msgid "Password"
-msgstr ""
+msgstr "Contrassenya"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__period_type
@@ -1237,7 +1234,7 @@ msgstr "Nº previ de declaració"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__private_key
 msgid "Private Key"
-msgstr ""
+msgstr "Clau privada"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__calculated
@@ -1248,7 +1245,7 @@ msgstr "Processada"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__public_key
 msgid "Public Key"
-msgstr ""
+msgstr "Clau púublica"
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
@@ -1320,7 +1317,6 @@ msgstr "Dreta"
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_sms_error
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_sms_error
-#, fuzzy
 msgid "SMS Delivery error"
 msgstr "Missatge d'error de lliurament"
 
@@ -1342,7 +1338,6 @@ msgstr "Veure assentament"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_start
-#, fuzzy
 msgid "Start Date"
 msgstr "Data inicial"
 
@@ -1408,7 +1403,7 @@ msgstr "Tipus de soport"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_account_tax
 msgid "Tax"
-msgstr ""
+msgstr "Impost"
 
 #. module: l10n_es_aeat
 #: model:ir.actions.act_window,name:l10n_es_aeat.aeat_tax_agency_action
@@ -1416,7 +1411,7 @@ msgstr ""
 #: model:ir.ui.menu,name:l10n_es_aeat.aeat_tax_agency_menu
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_tax_agency_form_view
 msgid "Tax Agency"
-msgstr ""
+msgstr "Agència Tributària"
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_form
@@ -1478,6 +1473,8 @@ msgid ""
 "conditional parts in the export configuration that can't be evaled "
 "statically."
 msgstr ""
+"La longitud del fitxer és diferent de l'esperada, o hi ha parts condicionals "
+"a la configuració d'exportació que no es poden avaluar estàticament."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__counterpart_account_id
@@ -1497,9 +1494,8 @@ msgstr ""
 
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
-#, fuzzy
 msgid "To Active"
-msgstr "Actiu"
+msgstr "A activar"
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__date_to
@@ -1532,7 +1528,7 @@ msgstr "Tipus compte bancari"
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipus d'activitat d'excepció registrada."
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
@@ -1588,7 +1584,7 @@ msgstr "Assistent"
 #. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_certificate_password
 msgid "Wizard to Load AEAT Certificate"
-msgstr ""
+msgstr "Asssitent per a carregar certificat AEAT"
 
 #. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0

@@ -77,7 +77,9 @@ class ResCompany(models.Model):
         """Return company taxes that match the given tax templates."""
         self.ensure_one()
         tax_ids = []
-        for tmpl in tax_templates:
+        # We need to rebrowse the records to avoid a problem with the ormcache
+        # and virtual records that populate m2m as NewId.
+        for tmpl in self.env["account.tax.template"].browse(tax_templates.ids):
             tax_id = self._get_tax_id_from_tax_template(tmpl, self)
             if tax_id:
                 tax_ids.append(tax_id)
