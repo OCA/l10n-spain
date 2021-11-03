@@ -140,11 +140,6 @@ msgid "At fixed time"
 msgstr "A una hora fija"
 
 #. module: l10n_es_aeat_sii
-#: selection:res.company,send_mode:0
-msgid "At the end of the quarter"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
 #: selection:res.company,sii_description_method:0
 #: selection:res.company,sii_method:0
 msgid "Automatic"
@@ -418,10 +413,10 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_sii
-#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__delay_time
-#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__sent_time
-msgid "In hours"
-msgstr ""
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_partner__sii_identification_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_users__sii_identification_type
+msgid "SII Identification type"
+msgstr "Tipo de identificación SII"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,help:l10n_es_aeat_sii.field_account_invoice__sii_send_failed
@@ -623,6 +618,11 @@ msgid "Obtain Keys"
 msgstr "Obtener claves"
 
 #. module: l10n_es_aeat_sii
+#: selection:res.partner,sii_identification_type:0
+msgid "Official identification document issues by the country or territory of residence"
+msgstr "Documento oficial de identificación expedido por el país o territorio de residencia"
+
+#. module: l10n_es_aeat_sii
 #: selection:res.company,send_mode:0
 msgid "On validate"
 msgstr "Al validar"
@@ -637,6 +637,11 @@ msgstr "La versión OpenSSL no está soportada. Actualice a 0.15 o superior."
 #: selection:account.fiscal.position,sii_no_taxable_cause:0
 msgid "Operaciones no sujetas en el TAI por reglas de localización"
 msgstr "Operaciones no sujetas en el TAI por reglas de localización"
+
+#. module: l10n_es_aeat_sii
+#: selection:res.partner,sii_identification_type:0
+msgid "Passport"
+msgstr "Pasaporte"
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_l10n_es_aeat_sii_password__password
@@ -687,6 +692,11 @@ msgstr "Registro correcto en SII con modificaciones pendientes de comunicar"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii.view_queue_job_sii
 msgid "Requeue"
 msgstr "Re-encolar"
+
+#. module: l10n_es_aeat_sii
+#: selection:res.partner,sii_identification_type:0
+msgid "Residential certificate"
+msgstr "Certificado de residencia"
 
 #. module: l10n_es_aeat_sii
 #: selection:account.invoice,sii_refund_specific_invoice_type:0
@@ -1105,6 +1115,19 @@ msgstr "Esta compañía no tiene habilitado el SII."
 #, python-format
 msgid "This invoice is not SII enabled."
 msgstr "Esta factura no está habilitada para el SII."
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_partner__sii_identification_type
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_users__sii_identification_type
+msgid "Used to specify an identification type to send to SII. Normally for sending national and export invoices to SII "
+"where the customer country is not Spain, it would calculate an identification type of 04 if the VAT field is filled and 06 "
+"if it was not. This field is to specify types of 03 through 05, in the event that the customer doesn't identify with a foreign VAT "
+"and instead with their passport or residential certificate. If there is no value it will work as before."
+msgstr "Usado para especificar un tipo de identificación para enviar al SII. Normalmente para enviar facturas nacionales y de exportación "
+"donde el cliente no es español al SII, se calcularia un tipo de identificación de 04 si tiene el campo NIF lleno y 06 "
+"en caso contrario. Este campo es para especificar tipos de 03 hasta 05, en el evento de que un cliente no se identifica con un NIF extranjero "
+"y en su lugar con su pasaporte o certificado de residencia. Si no se rellena, funcionará igual que antes."
+
 
 #. module: l10n_es_aeat_sii
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_aeat_sii_mapping_registration_keys__type

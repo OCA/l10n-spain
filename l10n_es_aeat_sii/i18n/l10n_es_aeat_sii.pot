@@ -128,11 +128,6 @@ msgid "At fixed time"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: selection:res.company,send_mode:0
-msgid "At the end of the quarter"
-msgstr ""
-
-#. module: l10n_es_aeat_sii
 #: selection:res.company,sii_description_method:0
 #: selection:res.company,sii_method:0
 msgid "Automatic"
@@ -384,9 +379,9 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
-#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__delay_time
-#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_company__sent_time
-msgid "In hours"
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_partner__sii_identification_type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii.field_res_users__sii_identification_type
+msgid "Identification type"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -563,6 +558,11 @@ msgid "Obtain Keys"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
+#: selection:res.partner,sii_identification_type:0
+msgid "Official identification document issues by the country or territory of residence"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
 #: selection:res.company,send_mode:0
 msgid "On validate"
 msgstr ""
@@ -576,6 +576,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: selection:account.fiscal.position,sii_no_taxable_cause:0
 msgid "Operaciones no sujetas en el TAI por reglas de localización"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:res.partner,sii_identification_type:0
+msgid "Passport"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -626,6 +631,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii.view_queue_job_sii
 msgid "Requeue"
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: selection:res.partner,sii_identification_type:0
+msgid "Residential certificate"
 msgstr ""
 
 #. module: l10n_es_aeat_sii
@@ -1040,6 +1050,15 @@ msgstr ""
 #: code:addons/l10n_es_aeat_sii/models/account_invoice.py:707
 #, python-format
 msgid "This invoice is not SII enabled."
+msgstr ""
+
+#. module: l10n_es_aeat_sii
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_partner__sii_identification_type
+#: model:ir.model.fields,help:l10n_es_aeat_sii.field_res_users__sii_identification_type
+msgid "Used to specify an identification type to send to SII. Normally for sending national and export invoices to SII "
+"where the customer country is not Spain, it would calculate an identification type of 04 if the VAT field is filled and 06 "
+"if it was not. This field is to specify types of 03 through 05, in the event that the customer doesn't identify with a foreign VAT "
+"and instead with their passport or residential certificate. If there is no value it will work as before."
 msgstr ""
 
 #. module: l10n_es_aeat_sii

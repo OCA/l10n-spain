@@ -1293,11 +1293,10 @@ class AccountInvoice(models.Model):
                 }
             else:
                 if country_code != 'ES':
-                    id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
                     return {
                         "IDOtro": {
                             "CodigoPais": country_code,
-                            "IDType": id_type,
+                            "IDType": self._get_sii_id_type(vat),
                             "ID": vat,
                         },
                     }
@@ -1311,16 +1310,23 @@ class AccountInvoice(models.Model):
                 }
             }
         elif gen_type == 3 and country_code != 'ES':
-            id_type = '06' if vat == 'NO_DISPONIBLE' else '04'
             return {
                 "IDOtro": {
                     "CodigoPais": country_code,
-                    "IDType": id_type,
+                    "IDType": self._get_sii_id_type(vat),
                     "ID": vat,
                 },
             }
         elif gen_type == 3:
             return {"NIF": vat[2:]}
+
+    def _get_sii_id_type(self, vat):
+        id_type = "04"
+        if self.partner_id.sii_identification_type:
+            id_type = self.partner_id.sii_identification_type
+        elif vat == "NO_DISPONIBLE":
+            id_type = "06"
+        return id_type
 
     @api.multi
     def _get_sii_exempt_cause(self, applied_taxes):

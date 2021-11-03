@@ -11,6 +11,9 @@
                 <field name="sii_simplified_invoice"
                        attrs="{'invisible': [('sii_enabled', '=', False)]}"
                 />
+                <field name="sii_identification_type"
+                    attrs="{'invisible': [('sii_enabled', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
