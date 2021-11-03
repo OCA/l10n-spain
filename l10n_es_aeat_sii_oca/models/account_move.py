@@ -1003,9 +1003,9 @@ class AccountMove(models.Model):
 
     def _connect_sii(self, mapping_key):
         self.ensure_one()
-        public_crt, private_key = self.env[
-            "l10n.es.aeat.certificate"
-        ].get_certificates()
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            company=self.company_id
+        )
         params = self._connect_params_sii(mapping_key)
         session = Session()
         session.cert = (public_crt, private_key)
