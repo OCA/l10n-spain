@@ -17,9 +17,9 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
 
     @api.multi
     def get_keys(self):
-        super().get_keys()
+        super(L10nEsAeatCertificatePassword, self).get_keys()
         record = self.env['l10n.es.aeat.certificate'].browse(
             self.env.context.get('active_id'))
-        file = base64.decodebytes(record.file)
+        file = base64.b64decode(record.file)
         p12 = crypto.load_pkcs12(file, self.password)
         record.tbai_p12_friendlyname = p12.get_friendlyname()

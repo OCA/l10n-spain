@@ -1,10 +1,12 @@
+# -*- encoding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "TicketBAI - "
             "declaración de todas las operaciones de venta realizadas por las personas "
             "y entidades que desarrollan actividades económicas",
-    "version": "11.0.0.2.0",
+    "version": "10.0.0.2.0",
     "category": "Accounting & Finance",
     "website": "http://www.binovo.es",
     "author": "Binovo,"
@@ -21,11 +23,10 @@
         "base_vat",
         "l10n_es",
         "l10n_es_aeat",
+        "l10n_es_account_invoice_sequence",
+        "account_cancel",
         "l10n_es_aeat_certificate",
         "l10n_es_ticketbai_api",
-        "account_invoice_tax_required",
-        "l10n_es_account_invoice_sequence",
-        "account_cancel"
     ],
     "external_dependencies": {
         "python": ["OpenSSL"]

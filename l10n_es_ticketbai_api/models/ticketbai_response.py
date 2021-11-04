@@ -100,7 +100,7 @@ class TicketBaiResponse(models.Model):
                 response.data)['TicketBaiResponse'] or {}
             state = xml_dict['Salida']['Estado']
             values.update({
-                'xml': base64.encodebytes(response.data.encode('utf-8')),
+                'xml': base64.b64encode(response.data.encode('utf-8')),
                 'state': state
             })
             if state == TicketBaiResponseState.RECEIVED.value:
@@ -159,7 +159,7 @@ class TicketBaiResponseMessage(models.Model):
             vals['description'] = description
         else:
             description_basque_translation = ''
-        record = super().create(vals)
+        record = super(TicketBaiResponseMessage, self).create(vals)
         lang = self.env['res.lang'].search([('code', '=', 'eu_ES')], limit=1)
         if lang and description_basque_translation:
             record.with_context(lang='eu_ES').description = \

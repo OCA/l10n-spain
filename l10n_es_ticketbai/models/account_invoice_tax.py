@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundType
@@ -22,7 +24,7 @@ class AccountInvoiceTax(models.Model):
             amount_total = currency.compute(
                 self.amount_total, self.invoice_id.company_id.currency_id)
         else:
-            amount_total = self.amount_total
+            amount_total = self.amount
         return amount_total
 
     def tbai_get_associated_re_tax(self):
@@ -90,13 +92,7 @@ class AccountInvoiceTax(models.Model):
     def tbai_get_value_causa(self):
         country_code = self.invoice_id.partner_id.tbai_get_partner_country_code()
         if country_code and self.env.ref('base.es').code.upper() == country_code:
-            fp_not_subject_tai = self.invoice_id.company_id.get_fps_from_templates(
-                self.env.ref("l10n_es.fp_not_subject_tai"))
-            if fp_not_subject_tai and \
-                    fp_not_subject_tai == self.invoice_id.fiscal_position_id:
-                res = NotSubjectToCause.RL.value
-            else:
-                res = NotSubjectToCause.OT.value
+            res = NotSubjectToCause.OT.value
         elif country_code:
             res = NotSubjectToCause.RL.value
         else:

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import os
@@ -9,6 +11,34 @@ from odoo.tests import common
 @common.at_install(False)
 @common.post_install(True)
 class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
+
+    def with_context(self, *args, **kwargs):
+        context = dict(args[0] if args else self.env.context, **kwargs)
+        self.env = self.env(context=context)
+        return self
+
+    def _chart_of_accounts_create(self):
+        self.company = self.main_company
+        self.chart = self.env.ref('l10n_es.account_chart_template_pymes')
+        self.env.ref('base.group_multi_company').write({
+            'users': [(4, self.env.uid)],
+        })
+        self.env.user.write({
+            'company_ids': [(4, self.company.id)],
+            'company_id': self.company.id,
+        })
+        self.with_context(
+            company_id=self.company.id, force_company=self.company.id)
+        wizard = self.env['wizard.multi.charts.accounts'].create({
+            'company_id': self.company.id,
+            'chart_template_id': self.chart.id,
+            'code_digits': 6,
+            'currency_id': self.ref('base.EUR'),
+            'transfer_account_id': self.chart.transfer_account_id.id,
+        })
+        wizard.onchange_chart_template_id()
+        wizard.execute()
+        return True
 
     def create_account_billing(self):
         return self.env['res.users'].with_context({'no_reset_password': True}).create({
@@ -89,11 +119,12 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         return aeat_certificate
 
     def setUp(self):
-        super().setUp()
+        super(TestL10nEsTicketBAI, self).setUp()
+        self._chart_of_accounts_create()
         aeat_certificate = self.create_aeat_certificate()
         self.main_company.tbai_aeat_certificate_id = aeat_certificate.id
         self.product_delivery = self.env.ref('product.product_delivery_01')
-        self.product_service = self.env.ref('product.product_product_6c')
+        self.product_service = self.env.ref('product.product_product_1')
         self.group_user = self.env.ref('base.group_user')  # Employee
         self.res_users_account_billing = self.env.ref(
             'account.group_account_invoice')  # Billing
@@ -104,7 +135,8 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         self.account_manager = self.create_account_manager()  # Billing Manager user
         self.account_receivable = self.env['account.account'].search(
             [('user_type_id', '=',
-              self.env.ref('account.data_account_type_receivable').id)], limit=1)
+              self.env.ref('account.data_account_type_receivable').id),
+                ('company_id','=',self.main_company.id)], limit=1)
         self.account_revenue = self.env['account.account'].search(
             [('user_type_id', '=',
               self.env.ref('account.data_account_type_revenue').id)], limit=1)
@@ -243,5 +275,3 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
                 })
             ]
         })
-        self.fiscal_position_ipsi_igic = self.main_company.get_fps_from_templates(
-            self.env.ref("l10n_es.fp_not_subject_tai"))

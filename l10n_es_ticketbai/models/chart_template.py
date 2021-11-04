@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api, _
@@ -42,7 +44,7 @@ class AccountChartTemplate(models.Model):
 
     @api.multi
     def _get_fp_vals(self, company, position):
-        res = super()._get_fp_vals(company, position)
+        res = super(AccountChartTemplate, self)._get_fp_vals(company, position)
         res.update({
             'tbai_vat_regime_key': position.tbai_vat_regime_key.id,
             'tbai_vat_regime_key2': position.tbai_vat_regime_key2.id,
@@ -52,16 +54,16 @@ class AccountChartTemplate(models.Model):
 
     @api.multi
     def create_record_with_xmlid(self, company, template, model, vals):
-        res_id = super().create_record_with_xmlid(company, template, model, vals)
+        res_id = super(AccountChartTemplate, self).create_record_with_xmlid(company, template, model, vals)
         if 'account.fiscal.position' == model:
             fiscal_position = self.env['account.fiscal.position'].browse(res_id)
             tbai_vat_exemptions = []
             for exemption in template.tbai_vat_exemption_ids:
-                tax = self.env['l10n.es.aeat.report'].\
-                    get_taxes_from_templates(exemption.tax_id)
+                tax = [self.env['l10n.es.aeat.report']._get_tax_id_from_tax_template(
+                    tmpl, company.id)for tmpl in exemption.tax_id]
                 if 1 == len(tax):
                     tbai_vat_exemptions.append((0, 0, {
-                        'tax_id': tax.id,
+                        'tax_id': tax[0],
                         'tbai_vat_exemption_key': exemption.tbai_vat_exemption_key.id
                     }))
             if tbai_vat_exemptions:

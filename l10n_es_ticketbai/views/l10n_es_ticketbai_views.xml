@@ -8,14 +8,15 @@
                   parent="account.menu_finance" sequence="100"/>
 
         <!-- Configuration / Settings -->
-        <menuitem id="menu_l10n_es_tbai_config"
+
+        <menuitem id="menu_l10nes_tbai_menu_config"
                   parent="account.menu_finance_configuration"
                   sequence="35"
-                  groups="account.group_account_manager"
                   name="TicketBAI"/>
 
         <menuitem id="menu_tbai_invoices"
-                  parent="menu_l10n_es_tbai_config"
+                  parent="menu_l10nes_tbai_menu_config"
+                  sequence="35"
                   name="TicketBAI Invoices"/>
 
         <!-- Hide TicketBAI Certificates Menu -->
@@ -28,7 +29,7 @@
         </record>
         <!-- Add TicketBAI Installations Menu -->
         <menuitem id="menu_tbai_installation"
-                  parent="menu_l10n_es_tbai_config"
+                  parent="menu_l10nes_tbai_menu_config"
                   action="l10n_es_ticketbai_api.action_tbai_installations"
                   name="TicketBAI Installations"/>
     </data>

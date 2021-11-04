@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests import common
@@ -10,7 +12,7 @@ from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import XMLSchema
 class TestL10nEsTicketBAICustomerCancellation(TestL10nEsTicketBAI):
 
     def setUp(self):
-        super().setUp()
+        super(TestL10nEsTicketBAICustomerCancellation, self).setUp()
 
     def test_out_invoice_cancel(self):
         invoice = self.create_draft_invoice(

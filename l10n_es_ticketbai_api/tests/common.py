@@ -517,7 +517,9 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             '%s/test_Anula_ticketBai V1-2.xsd' % schemas_version_dirname))
         self.test_xml_cancellation_schema_doc = etree.parse(
             test_xml_cancellation_filepath, parser=etree.ETCompatXMLParser())
-        self.main_company = self.env.ref('base.main_company')
+        self.main_company = self.env['res.company'].create({
+            'name': 'Spanish test company',
+        })
         self._prepare_company(self.main_company)
         self.partner = self.env.ref("l10n_es_ticketbai_api.res_partner_binovo")
         self.partner_extracommunity = self.env.ref(

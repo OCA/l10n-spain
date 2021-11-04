@@ -11,7 +11,7 @@
                             <strong t-field="o.tbai_invoice_id.tbai_identifier"/>
                         </div>
                         <div id="tbai_qr" class="row mb32">
-                            <img t-att-src="'data:image/png;base64,%s' % to_text(o.tbai_invoice_id.qr)" style="min-width: 30mm; max-width: 40mm"/>
+                            <img t-att-src="'data:image/png;base64,%s' % o.tbai_invoice_id.qr" style="min-width: 30mm; max-width: 40mm"/>
                         </div>
                     </div>
                 </div>

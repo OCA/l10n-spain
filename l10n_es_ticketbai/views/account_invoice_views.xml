@@ -8,10 +8,6 @@
             <field name="model">account.invoice</field>
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='tax_line_ids']/tree/field[@name='amount']" position="before">
-                    <field name="tbai_vat_exemption_key" attrs="{'column_invisible': [('parent.tbai_enabled', '=', False)]}"
-                           options="{'no_open':True,'no_create':True}"/>
-                </xpath>
                 <page name="other_info" position="after">
                     <page name="ticketbai" string="TicketBAI" attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('type', '=', 'out_refund'), ('refund_invoice_id', '=', False)]}">
                         <group name="main_grp" col="4">

@@ -30,7 +30,7 @@
         <record id="tbai_tax_map_BNS" model="tbai.tax.map">
             <field name="code">BNS</field>
             <field name="tax_template_ids" eval="[(6, 0, [
-                ref('l10n_es.account_tax_template_s_iva_ns_b'),
+                ref('l10n_es.account_tax_template_s_iva_ns'),
             ])]"/>
             <field name="name">No sujeto Repercutido (Bienes)</field>
         </record>

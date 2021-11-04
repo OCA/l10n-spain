@@ -77,7 +77,7 @@ class TicketBAIInvoice(models.Model):
             tbai_api = None
             error_msg = ve.name
         if tbai_api is not None:
-            response = tbai_api.requests_post(base64.decodebytes(self.datas))
+            response = tbai_api.requests_post(base64.b64decode(self.datas))
             values = self.env['tbai.response'].prepare_tbai_response_values(
                 response, **kwargs)
             values.update({

@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api
@@ -20,7 +22,7 @@ class ResCompany(models.Model):
         if self.tbai_aeat_certificate_id:
             return self.tbai_aeat_certificate_id.get_p12()
         else:
-            return super().tbai_certificate_get_p12()
+            return super(ResCompany, self).tbai_certificate_get_p12()
 
     def tbai_certificate_get_public_key(self):
         if self.tbai_aeat_certificate_id:

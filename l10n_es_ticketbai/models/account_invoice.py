@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime
@@ -55,6 +57,18 @@ class AccountInvoice(models.Model):
         comodel_name='tbai.vat.regime.key', string='VAT Regime 3rd Key', copy=True)
 
     @api.multi
+    def _get_printed_report_name(self):
+        self.ensure_one()
+        return  self.type == 'out_invoice' and self.state == 'draft' and _('Draft Invoice') or \
+                self.type == 'out_invoice' and self.state in ('open','paid') and _('Invoice - %s') % (self.number) or \
+                self.type == 'out_refund' and self.state == 'draft' and _('Credit Note') or \
+                self.type == 'out_refund' and _('Credit Note - %s') % (self.number) or \
+                self.type == 'in_invoice' and self.state == 'draft' and _('Vendor Bill') or \
+                self.type == 'in_invoice' and self.state in ('open','paid') and _('Vendor Bill - %s') % (self.number) or \
+                self.type == 'in_refund' and self.state == 'draft' and _('Vendor Credit Note') or \
+                self.type == 'in_refund' and _('Vendor Credit Note - %s') % (self.number)
+
+    @api.multi
     @api.constrains('state')
     def _check_cancel_number_invoice(self):
         for record in self:
@@ -70,31 +84,30 @@ class AccountInvoice(models.Model):
                 raise exceptions.UserError(_(
                     'You cannot delete an invoice which is not draft. '
                     'You should create a credit note instead.'))
-        return super().unlink()
+        return super(AccountInvoice, self).unlink()
 
     @api.model
     def create(self, vals):
-        if vals and vals.get('company_id', False):
-            company = self.env['res.company'].browse(vals['company_id'])
-            if company.tbai_enabled:
-                filter_refund = self._context.get('filter_refund', False)
-                invoice_type = vals.get('type', False)
-                if filter_refund and invoice_type:
-                    if 'out_refund' == vals['type']:
-                        if 'tbai_refund_type' not in vals:
-                            vals['tbai_refund_type'] = RefundType.differences.value
-                        if 'tbai_refund_key' not in vals:
-                            vals['tbai_refund_key'] = RefundCode.R1.value
-                if vals.get('fiscal_position_id', False):
-                    fiscal_position = self.env['account.fiscal.position'].browse(
-                        vals['fiscal_position_id'])
-                    vals['tbai_vat_regime_key'] = \
-                        fiscal_position.tbai_vat_regime_key.id
-                    vals['tbai_vat_regime_key2'] = \
-                        fiscal_position.tbai_vat_regime_key2.id
-                    vals['tbai_vat_regime_key3'] = \
-                        fiscal_position.tbai_vat_regime_key3.id
-        return super().create(vals)
+        company = self.env.user.company_id
+        if company.tbai_enabled:
+            filter_refund = self._context.get('filter_refund', False)
+            invoice_type = vals.get('type', False)
+            if filter_refund and invoice_type:
+                if 'out_refund' == vals['type']:
+                    if 'tbai_refund_type' not in vals:
+                        vals['tbai_refund_type'] = RefundType.differences.value
+                    if 'tbai_refund_key' not in vals:
+                        vals['tbai_refund_key'] = RefundCode.R1.value
+            if vals.get('fiscal_position_id', False):
+                fiscal_position = self.env['account.fiscal.position'].browse(
+                    vals['fiscal_position_id'])
+                vals['tbai_vat_regime_key'] = \
+                    fiscal_position.tbai_vat_regime_key.id
+                vals['tbai_vat_regime_key2'] = \
+                    fiscal_position.tbai_vat_regime_key2.id
+                vals['tbai_vat_regime_key3'] = \
+                    fiscal_position.tbai_vat_regime_key3.id
+        return super(AccountInvoice, self).create(vals)
 
     @api.depends(
         'tbai_invoice_ids', 'tbai_invoice_ids.state',
@@ -276,7 +289,7 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_cancel(self):
         non_cancelled_refunds = \
-            self.mapped('refund_invoice_ids').filtered(lambda x: 'cancel' != x.state)
+            self.mapped('refund_invoice_id').filtered(lambda x: 'cancel' != x.state)
         if 0 < len(non_cancelled_refunds):
             raise exceptions.ValidationError(_(
                 "You cannot cancel an invoice with non cancelled credit notes.\n"
@@ -295,11 +308,11 @@ class AccountInvoice(models.Model):
             x.tbai_invoice_id and
             TicketBaiInvoiceState.sent.value == x.tbai_invoice_id.state)
         tbai_invoices._tbai_invoice_cancel()
-        return super().action_cancel()
+        return super(AccountInvoice, self).action_cancel()
 
     @api.multi
     def invoice_validate(self):
-        res = super().invoice_validate()
+        res = super(AccountInvoice, self).invoice_validate()
         # Credit Notes:
         # A. refund: creates a draft credit note, not validated from wizard.
         # B. cancel: creates a validated credit note from wizard
@@ -323,12 +336,12 @@ class AccountInvoice(models.Model):
 
     @api.model
     def _get_refund_common_fields(self):
-        refund_common_fields = super()._get_refund_common_fields()
+        refund_common_fields = super(AccountInvoice, self)._get_refund_common_fields()
         refund_common_fields.append('company_id')
         return refund_common_fields
 
     def _prepare_tax_line_vals(self, line, tax):
-        vals = super()._prepare_tax_line_vals(line, tax)
+        vals = super(AccountInvoice, self)._prepare_tax_line_vals(line, tax)
         if self.fiscal_position_id:
             exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
                 lambda e: e.tax_id.id == tax['id'])
@@ -348,13 +361,14 @@ class AccountInvoice(models.Model):
     def tbai_get_value_serie_factura(self):
         sequence = self.journal_id.invoice_sequence_id
         date = self.date or self.date_invoice
-        prefix, suffix = sequence.with_context(
+        prefix, sufix = sequence.with_context(
             ir_sequence_date=date, ir_sequence_date_range=date)._get_prefix_suffix()
         return prefix
 
     def tbai_get_value_num_factura(self):
         invoice_number_prefix = self.tbai_get_value_serie_factura()
-        if invoice_number_prefix and not self.number.startswith(invoice_number_prefix):
+        clear_number = self.number[1:] if self.tbai_is_invoice_refund() else self.number
+        if invoice_number_prefix and not clear_number.startswith(invoice_number_prefix):
             raise exceptions.ValidationError(_(
                 "Invoice Number Prefix %s is not part of Invoice Number %s!"
             ) % (invoice_number_prefix, self.number))
@@ -438,4 +452,5 @@ class AccountInvoiceLine(models.Model):
             sign = -1
         else:
             sign = 1
-        return "%.2f" % (sign * self.price_total)
+        amount_tax = sum(self.invoice_line_tax_ids.mapped('balance'))
+        return "%.2f" % (sign * self.price_subtotal + amount_tax)
