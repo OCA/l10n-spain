@@ -36,7 +36,9 @@ class AccountInvoice(models.Model):
         compute='_compute_tbai_datetime_invoice', store=True, copy=False)
     tbai_date_operation = fields.Datetime('Operation Date', copy=False)
     tbai_description_operation = fields.Text(
-        'Operation Description', default="/", copy=False)
+        'Operation Description', default="/", copy=False,
+        compute="_compute_tbai_description", store=True
+    )
     tbai_substitute_simplified_invoice = fields.Boolean(
         'Substitute Simplified Invoice', copy=False)
     tbai_refund_key = fields.Selection(selection=[
@@ -408,6 +410,32 @@ class AccountInvoice(models.Model):
         else:
             res = None
         return res
+
+    @api.depends(
+        "invoice_line_ids",
+        "invoice_line_ids.name",
+        "company_id",
+    )
+    def _compute_tbai_description(self):
+        default_description = self.default_get(
+            ["tbai_description_operation"]
+        )["tbai_description_operation"]
+        for invoice in self.filtered(lambda inv: not inv.tbai_invoice_id):
+            description = ""
+            method = invoice.company_id.tbai_description_method
+            if method == "fixed":
+                description = invoice.company_id.tbai_description or default_description
+            elif method == "manual":
+                if invoice.tbai_description_operation != default_description:
+                    # keep current content if not default
+                    description = invoice.tbai_description_operation
+            else:  # auto method
+                if invoice.invoice_line_ids:
+                    names = invoice.mapped("invoice_line_ids.name") or invoice.mapped(
+                        "invoice_line_ids.ref"
+                    )
+                    description += " - ".join(filter(None, names))
+            invoice.tbai_description_operation = (description or "")[:250] or "/"
 
 
 class AccountInvoiceLine(models.Model):

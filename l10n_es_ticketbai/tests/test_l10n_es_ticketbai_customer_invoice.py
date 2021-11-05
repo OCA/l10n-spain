@@ -28,6 +28,26 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
 
+    def test_invoice_operation_desc(self):
+        self.main_company.tbai_description_method = 'manual'
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        self.assertEqual(invoice.tbai_description_operation, '/')
+        self.main_company.tbai_description_method = 'fixed'
+        description = 'description test'
+        self.main_company.tbai_description = description
+        invoice._compute_tbai_description()
+        self.assertEqual(invoice.tbai_description_operation, description)
+        self.main_company.tbai_description_method = 'auto'
+        description = ''
+        for line in invoice.invoice_line_ids:
+            description += (line.name or line.ref) + ' - '
+        description = description[:-3]
+        invoice._compute_tbai_description()
+        self.assertEqual(invoice.tbai_description_operation, description)
+
     def test_cancel_and_recreate(self):
         # Build three invoices and check the chaining.
         invoice = self.create_draft_invoice(
