@@ -77,6 +77,11 @@ class AccountMove(models.Model):
         string="Facturae cancellation status",
         copy=False,
     )
+    l10n_es_facturae_attachment_ids = fields.One2many(
+        "l10n.es.facturae.attachment",
+        inverse_name="move_id",
+        copy=False,
+    )
 
     def _get_edi_missing_records(self):
         result = super()._get_edi_missing_records()
@@ -210,6 +215,17 @@ class AccountMove(models.Model):
                     "compression": False,
                 }
             )
+        for attachment in self.l10n_es_facturae_attachment_ids:
+            description, content_type = attachment.filename.rsplit(".", 1)
+            result.append(
+                {
+                    "data": attachment.file,
+                    "content_type": content_type,
+                    "encoding": "BASE64",
+                    "description": description,
+                    "compression": False,
+                }
+            )
         return result
 
     def get_facturae_version(self):
@@ -312,3 +328,12 @@ class AccountMoveLine(models.Model):
             "res_id": self.id,
             "context": self.env.context,
         }
+
+
+class L10nEsFacturaeAttachment(models.Model):
+    _name = "l10n.es.facturae.attachment"
+    _description = "Facturae Attachment"
+
+    move_id = fields.Many2one("account.move", required=True, ondelete="cascade")
+    file = fields.Binary(required=True)
+    filename = fields.Char()
