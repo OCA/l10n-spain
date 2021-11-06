@@ -300,6 +300,45 @@ class CommonTest(TestL10nEsAeatCertificateBase):
             ),
         )
 
+    def test_facturae_with_extra_attachments(self):
+        self._activate_certificate(self.certificate_password)
+        self.move.action_post()
+        self.move.name = "2999/99999"
+        self.partner.attach_invoice_as_annex = False
+        self.move.write(
+            {
+                "l10n_es_facturae_attachment_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "filename": "new_file.pdf",
+                            "file": base64.b64encode(b"DEMO FILE"),
+                        },
+                    )
+                ]
+            }
+        )
+        self.wizard.with_context(
+            force_report_rendering=True,
+            active_ids=self.move.ids,
+            active_model="account.move",
+        ).create_facturae_file()
+        generated_facturae = etree.fromstring(base64.b64decode(self.wizard.facturae))
+        self.assertTrue(
+            generated_facturae.xpath(
+                "/fe:Facturae/Invoices/Invoice/AdditionalData/" "RelatedDocuments",
+                namespaces={"fe": self.fe},
+            ),
+        )
+        self.assertTrue(
+            generated_facturae.xpath(
+                "/fe:Facturae/Invoices/Invoice/AdditionalData/"
+                "RelatedDocuments/Attachment",
+                namespaces={"fe": self.fe},
+            ),
+        )
+
     def test_bank(self):
         self.bank.bank_id.bic = "CAIXESBB"
         with self.assertRaises(exceptions.ValidationError):

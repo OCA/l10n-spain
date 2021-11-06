@@ -32,6 +32,8 @@
     ],
     "data": [
         "security/ir.model.access.csv",
+        "data/account_tax_template.xml",
+        "security/ir.model.access.csv",
         "data/edi.xml",
         "data/account_tax_template.xml",
         "views/res_partner_view.xml",
