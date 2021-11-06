@@ -250,10 +250,12 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
 
     def test_facturae_face_error(self):
         self.assertFalse(self.move.exchange_record_ids)
-        self.move.with_context(force_edi_send=True).post()
+        self.move.with_context(force_edi_send=True, test_queue_job_no_delay=True).post()
         self.move.refresh()
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
+        self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+        exchange_record.backend_id.exchange_send(exchange_record)
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
     def test_facturae_face(self):
@@ -283,9 +285,16 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_ok)
 
-            self.move.with_context(force_edi_send=True).post()
+            self.move.with_context(
+                force_edi_send=True, test_queue_job_no_delay=True
+            ).post()
             self.move.number = "2999/99998"
-
+            mock_client.assert_not_called()
+            exchange_record = self.move.exchange_record_ids
+            self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+            exchange_record.backend_id.exchange_send(exchange_record)
+            self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+            mock_client.assert_called_once()
         self.move.refresh()
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
@@ -334,7 +343,8 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
 
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(multi_response)
-            self.env["edi.exchange.record"]._cron_face_update_method()
+            self.env["edi.exchange.record"].with_context()._cron_face_update_method()
+        exchange_record.flush()
         exchange_record.refresh()
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1300")
         cancel = self.env["edi.l10n.es.facturae.face.cancel"].create(
