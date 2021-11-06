@@ -3,7 +3,7 @@
     <record id="view_move_form" model="ir.ui.view">
         <field name="name">account.move.form</field>
         <field name="model">account.move</field>
-        <field name="inherit_id" ref="edi_account.account_move_form_view" />
+        <field name="inherit_id" ref="edi_account_oca.account_move_form_view" />
         <field name="type">form</field>
         <field name="arch" type="xml">
             <field name="name" position="after">
@@ -37,6 +37,29 @@
                     name="l10n_es_facturae_cancellation_status"
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 />
+            </group>
+            <group name="edi_invoice_group" position="after">
+                <group
+                    name="facturae_attachment"
+                    string="Facturae Attachment"
+                    attrs="{'invisible': [('facturae', '=', False)]}"
+                >
+                    <field name="l10n_es_facturae_attachment_ids">
+                        <tree>
+                            <field name="move_id" invisible="1" />
+                            <field name="filename" />
+                            <field name="file" filename="filename" />
+                        </tree>
+                        <form>
+                            <sheet>
+                                <group>
+                                    <field name="file" filename="filename" />
+                                    <field name="filename" invisible="1" />
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </group>
             </group>
         </field>
     </record>
