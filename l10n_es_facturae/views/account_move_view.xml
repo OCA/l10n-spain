@@ -32,6 +32,27 @@
                             <field name="facturae_end_date" />
                         </group>
                     </group>
+                    <group
+                        name="facturae_attachment"
+                        string="Facturae Attachment"
+                        attrs="{'invisible': [('facturae', '=', False)]}"
+                    >
+                    <field name="l10n_es_facturae_attachment_ids" nolabel="1">
+                        <tree>
+                            <field name="move_id" invisible="1" />
+                            <field name="filename" />
+                            <field name="file" filename="filename" />
+                        </tree>
+                        <form>
+                            <sheet>
+                                <group>
+                                    <field name="file" filename="filename" />
+                                    <field name="filename" invisible="1" />
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </group>
                 </page>
             </notebook>
         </field>

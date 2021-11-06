@@ -101,6 +101,9 @@ class AccountMove(models.Model):
         copy=False,
         help="Número de la factura emitida por un tercero.",
     )
+    l10n_es_facturae_attachment_ids = fields.One2many(
+        "l10n.es.facturae.attachment", inverse_name="move_id", copy=False,
+    )
 
     @api.depends("journal_id")
     def _compute_thirdparty_invoice(self):
@@ -210,6 +213,17 @@ class AccountMove(models.Model):
                     "content_type": content_type,
                     "encoding": "BASE64",
                     "description": _("Invoice %s") % self.name,
+                    "compression": False,
+                }
+            )
+        for attachment in self.l10n_es_facturae_attachment_ids:
+            description, content_type = attachment.filename.rsplit(".", 1)
+            result.append(
+                {
+                    "data": attachment.file,
+                    "content_type": content_type,
+                    "encoding": "BASE64",
+                    "description": description,
                     "compression": False,
                 }
             )
@@ -544,3 +558,11 @@ class AccountMoveLine(models.Model):
             "res_id": self.id,
             "context": self.env.context,
         }
+
+
+class L10nEsFacturaeAttachment(models.Model):
+    _name = "l10n.es.facturae.attachment"
+
+    move_id = fields.Many2one("account.move", required=True, ondelete="cascade")
+    file = fields.Binary(required=True)
+    filename = fields.Char()
