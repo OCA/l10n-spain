@@ -16,5 +16,5 @@
         "delivery_state",
     ],
     "external_dependencies": {"python": ["zeep"]},
-    "data": ["views/delivery_carrier_views.xml", "views/stock_picking_views.xml"],
+    "data": ["views/delivery_carrier_views.xml"],
 }
