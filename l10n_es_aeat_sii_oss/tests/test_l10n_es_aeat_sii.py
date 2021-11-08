@@ -36,11 +36,12 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
     def test_invoice_sii_oss(self):
         self.partner.sii_simplified_invoice = True
         invoice_form = Form(
-            self.env["account.move"].with_context(default_type="out_invoice")
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         invoice_form.partner_id = self.partner
         invoice_form.invoice_date = "2021-07-01"
         invoice_form.fiscal_position_id = self.fpos_fr_id
+
         with invoice_form.invoice_line_ids.new() as line_form:
             line_form.product_id = self.product
             line_form.price_unit = 100
