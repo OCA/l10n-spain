@@ -424,16 +424,6 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_request
-msgid "Last GLS xml request"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_response
-msgid "Last GLS xml response"
-msgstr ""
-
-#. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -692,19 +682,8 @@ msgid "Shipping Time"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_delivery_carrier_form
-msgid "Technical"
-msgstr ""
-
-#. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_request
-#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_response
-msgid "Used for issues debugging"
 msgstr ""
 
 #. module: delivery_gls_asm
