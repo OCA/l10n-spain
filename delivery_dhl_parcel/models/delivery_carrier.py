@@ -35,12 +35,6 @@ class DeliveryCarrier(models.Model):
     )
     dhl_parcel_uid = fields.Char(string="DHL Parcel UID")
     dhl_parcel_password = fields.Char(string="DHL Parcel Password")
-    dhl_parcel_last_request = fields.Text(
-        string="Last DHL Parcel API request", help="Used for debugging", readonly=True
-    )
-    dhl_parcel_last_response = fields.Text(
-        string="Last DHL Parcel API response", help="Used for debugging", readonly=True
-    )
     dhl_parcel_last_end_day_report = fields.Binary(
         string="DHL Parcel last manual end day report"
     )
