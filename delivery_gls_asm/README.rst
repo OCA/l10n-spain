@@ -122,10 +122,6 @@ Depuración de errores
 
   #. Es importante tener en cuenta que solo funcionará con códigos postales de
      España.
-  #. En cada servicio GLS-ASM dispone de una pestaña llamada "Técnico" en la
-     que puede consultar la última petición y respuesta a la API de GLS-ASM.
-     Esto le servirá como ayuda a la hora de depurar posibles errores de
-     comunicación.
   #. También puede activar Odoo con `--log-level=debug` para registrar las
      peticiones y las respuestas en el log.
 

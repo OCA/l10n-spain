@@ -36,12 +36,6 @@ class DeliveryCarrier(models.Model):
         help="Postage type, usually 'Prepaid'",
         default="P",
     )
-    gls_last_request = fields.Text(
-        string="Last GLS xml request", help="Used for issues debugging", readonly=True,
-    )
-    gls_last_response = fields.Text(
-        string="Last GLS xml response", help="Used for issues debugging", readonly=True,
-    )
 
     def _gls_asm_uid(self):
         """The carrier can be put in test mode. The tests user must be set.
@@ -150,8 +144,9 @@ class DeliveryCarrier(models.Model):
             vals = self._prepare_gls_asm_shipping(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_shipping(vals)
-            self.gls_last_request = response and response.get("gls_sent_xml", "")
-            self.gls_last_response = response or ""
+            gls_last_request = response and response.get("gls_sent_xml", "")
+            self.log_xml(gls_last_request, "gls_last_request")
+            self.log_xml(response or "", "gls_last_response")
             if not response or response.get("_return", -1) < 0:
                 result.append(vals)
                 continue
@@ -204,8 +199,9 @@ class DeliveryCarrier(models.Model):
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         for picking in pickings.filtered("carrier_tracking_ref"):
             response = gls_request._cancel_shipment(picking.carrier_tracking_ref)
-            self.gls_last_request = response and response.get("gls_sent_xml", "")
-            self.gls_last_response = response or ""
+            gls_last_request = response and response.get("gls_sent_xml", "")
+            self.log_xml(gls_last_request, "gls_last_request")
+            self.log_xml(response or "", "gls_last_response")
             if not response or response.get("_return") < 0:
                 msg = _("GLS Cancellation failed with reason: %s") % response.get(
                     "value", "Connection Error"
