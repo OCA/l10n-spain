@@ -314,6 +314,9 @@ class AccountMove(models.Model):
             self.onchange_fiscal_position_id_l10n_es_aeat_sii()
         return res
 
+    def _sii_get_partner(self):
+        return self.commercial_partner_id
+
     @api.model
     def create(self, vals):
         """Complete registration key for auto-generated invoices."""
@@ -345,7 +348,7 @@ class AccountMove(models.Model):
                 )
             if invoice.move_type in ["in_invoice", "in refund"]:
                 if "partner_id" in vals:
-                    correct_partners = invoice.commercial_partner_id
+                    correct_partners = invoice._sii_get_partner()
                     correct_partners |= correct_partners.child_ids
                     if vals["partner_id"] not in correct_partners.ids:
                         raise exceptions.UserError(
@@ -508,7 +511,7 @@ class AccountMove(models.Model):
             # DesgloseTipoOperacion required for national operations
             # with 'IDOtro' in the SII identifier block
             return True
-        elif sii_gen_type == 1 and (self.commercial_partner_id.vat or "").startswith(
+        elif sii_gen_type == 1 and (self._sii_get_partner().vat or "").startswith(
             "ESN"
         ):
             # DesgloseTipoOperacion required if customer's country is Spain and
@@ -728,7 +731,7 @@ class AccountMove(models.Model):
     def _is_sii_simplified_invoice(self):
         """Inheritable method to allow control when an
         invoice are simplified or normal"""
-        partner = self.commercial_partner_id
+        partner = self._sii_get_partner()
         is_simplified = partner.sii_simplified_invoice
         return is_simplified
 
@@ -736,7 +739,7 @@ class AccountMove(models.Model):
         """Inheritable method for exceptions control when sending SII invoices."""
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
-        partner = self.commercial_partner_id
+        partner = self._sii_get_partner()
         country_code = self._get_sii_country_code()
         is_simplified_invoice = self._is_sii_simplified_invoice()
 
@@ -798,7 +801,7 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         invoice_date = self._change_date_format(self.invoice_date)
-        partner = self.commercial_partner_id
+        partner = self._sii_get_partner()
         company = self.company_id
         ejercicio = fields.Date.to_date(self.date).year
         periodo = "%02d" % fields.Date.to_date(self.date).month
@@ -887,6 +890,7 @@ class AccountMove(models.Model):
         reg_date = self._change_date_format(self._get_account_registration_date())
         ejercicio = fields.Date.to_date(self.date).year
         periodo = "%02d" % fields.Date.to_date(self.date).month
+        partner = self._sii_get_partner()
         desglose_factura, tax_amount, not_in_amount_total = self._get_sii_in_taxes()
         inv_dict = {
             "IDFactura": {
@@ -901,7 +905,7 @@ class AccountMove(models.Model):
         inv_dict["IDFactura"]["IDEmisorFactura"].update(ident)
         if cancel:
             inv_dict["IDFactura"]["IDEmisorFactura"].update(
-                {"NombreRazon": (self.commercial_partner_id.name[0:120])}
+                {"NombreRazon": partner.name[0:120]}
             )
         else:
             amount_total = -self.amount_total_signed - not_in_amount_total
@@ -911,9 +915,7 @@ class AccountMove(models.Model):
                 "ClaveRegimenEspecialOTrascendencia": self.sii_registration_key.code,
                 "DescripcionOperacion": self.sii_description,
                 "DesgloseFactura": desglose_factura,
-                "Contraparte": {
-                    "NombreRazon": (self.commercial_partner_id.name[0:120])
-                },
+                "Contraparte": {"NombreRazon": partner.name[0:120]},
                 "FechaRegContable": reg_date,
                 "ImporteTotal": amount_total,
                 "CuotaDeducible": tax_amount,
@@ -1304,11 +1306,10 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
+        partner = self._sii_get_partner()
         # Limpiar alfanum
-        if self.partner_id.vat:
-            vat = "".join(
-                e for e in self.commercial_partner_id.vat if e.isalnum()
-            ).upper()
+        if partner.vat:
+            vat = "".join(e for e in partner.vat if e.isalnum()).upper()
         else:
             vat = "NO_DISPONIBLE"
         country_code = self._get_sii_country_code()
@@ -1397,10 +1398,8 @@ class AccountMove(models.Model):
 
     def _get_sii_country_code(self):
         self.ensure_one()
-        country_code = (
-            self.commercial_partner_id.country_id.code
-            or (self.commercial_partner_id.vat or "")[:2]
-        ).upper()
+        partner = self._sii_get_partner()
+        country_code = (partner.country_id.code or (partner.vat or "")[:2]).upper()
         return SII_COUNTRY_CODE_MAPPING.get(country_code, country_code)
 
     @api.depends(
