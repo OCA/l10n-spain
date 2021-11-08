@@ -44,19 +44,6 @@
                     </group>
                 </page>
             </xpath>
-            <xpath expr="//notebook" position='inside'>
-                <page
-                    string="Technical"
-                    attrs="{'invisible': [('delivery_type', '!=', 'dhl_parcel')]}"
-                >
-                    <group>
-                        <group>
-                            <field name="dhl_parcel_last_request" />
-                            <field name="dhl_parcel_last_response" />
-                        </group>
-                    </group>
-                </page>
-            </xpath>
             <xpath expr="//button[@name='toggle_prod_environment']" position="before">
                 <button
                     name="action_open_end_day"
