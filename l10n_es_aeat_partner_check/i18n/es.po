@@ -106,6 +106,13 @@ msgid "Latest AEAT check"
 msgstr "Última petición"
 
 #. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:17
+#: selection:res.partner,aeat_partner_type:0
+#, python-format
+msgid "No es posible reportar información sobre el NIF consultado"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:12
 #: selection:res.partner,aeat_partner_check_result:0
 #, python-format
