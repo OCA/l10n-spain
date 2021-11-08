@@ -258,17 +258,10 @@ class AccountBankStatementImport(models.TransientModel):
     def _get_n43_partner_from_caixabank(self, conceptos):
         partner_obj = self.env["res.partner"]
         partner = partner_obj.browse()
-        # Try to match from VAT included in concept complementary record #02
-        if conceptos.get("02"):  # pragma: no cover
-            vat = conceptos["02"][0][:2] + conceptos["02"][0][7:]
-            if vat:
-                partner = partner_obj.search([("vat", "=", vat)])[:1]
-        if not partner:
-            # Try to match from partner name
-            if conceptos.get("01"):
-                name = conceptos["01"][0][4:] + conceptos["01"][1]
-                if name:
-                    partner = partner_obj.search([("name", "ilike", name)])[:1]
+        if conceptos.get("01"):
+            name = conceptos["01"][0][9:]
+            if name:
+                partner = partner_obj.search([("name", "ilike", name)])[:1]
         return partner
 
     def _get_n43_partner_from_santander(self, conceptos):
