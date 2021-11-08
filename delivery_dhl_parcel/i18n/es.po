@@ -207,16 +207,6 @@ msgid "If the product is not specified, it is considered B2B"
 msgstr "Si no se especifica el producto, se considera producto B2B"
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_request
-msgid "Last DHL Parcel API request"
-msgstr "Último pedido a la API DHL Parcel"
-
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_response
-msgid "Last DHL Parcel API response"
-msgstr "Última respuesta a la API DHL Parcel"
-
-#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
@@ -276,11 +266,6 @@ msgid "Shipping Methods"
 msgstr "Métodos de envío"
 
 #. module: delivery_dhl_parcel
-#: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_delivery_carrier_form
-msgid "Technical"
-msgstr "Técnico"
-
-#. module: delivery_dhl_parcel
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Timeout: the server did not reply within 60s"
@@ -297,8 +282,14 @@ msgstr "Albarán"
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
 msgstr "Tipo de respuesta no soportado, por favor solo usa 'GET' o 'POST'"
 
-#. module: delivery_dhl_parcel
-#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_request
-#: model:ir.model.fields,help:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_last_response
-msgid "Used for debugging"
-msgstr "Usado para debug"
+#~ msgid "Last DHL Parcel API request"
+#~ msgstr "Último pedido a la API DHL Parcel"
+
+#~ msgid "Last DHL Parcel API response"
+#~ msgstr "Última respuesta a la API DHL Parcel"
+
+#~ msgid "Technical"
+#~ msgstr "Técnico"
+
+#~ msgid "Used for debugging"
+#~ msgstr "Usado para debug"
