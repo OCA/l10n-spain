@@ -41,24 +41,19 @@ class DhlParcelRequest(object):
             if not skip_auth:
                 auth = {"Authorization": "Bearer {}".format(self.token)}
             if request_type == "GET":
-                res = requests.get(url=url, headers=auth)
+                res = requests.get(url=url, headers=auth, timeout=60)
             elif request_type == "POST":
-                res = requests.post(url=url, json=data, headers=auth)
+                res = requests.post(url=url, json=data, headers=auth, timeout=60)
             else:
                 raise UserError(
                     _("Unsupported request type, please only use 'GET' or 'POST'")
                 )
             res.raise_for_status()
-            self.carrier_id.write(
-                {
-                    "dhl_parcel_last_request": (
-                        ("Request type: {}\nURL: {}\nData: {}").format(
-                            request_type, url, data
-                        )
-                    ),
-                    "dhl_parcel_last_response": res.text or "",
-                }
+            dhl_parcel_last_request = ("Request type: {}\nURL: {}\nData: {}").format(
+                request_type, url, data
             )
+            self.log_xml(dhl_parcel_last_request, "dhl_parcel_last_request")
+            self.log_xml(res.text or "", "dhl_parcel_last_response")
         except requests.exceptions.Timeout:
             raise UserError(_("Timeout: the server did not reply within 60s"))
         except (ValueError, requests.exceptions.ConnectionError):
