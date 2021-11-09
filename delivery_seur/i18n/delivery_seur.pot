@@ -172,16 +172,6 @@ msgid "Label size"
 msgstr ""
 
 #. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_request
-msgid "Last SEUR xml request"
-msgstr ""
-
-#. module: delivery_seur
-#: model:ir.model.fields,field_description:delivery_seur.field_stock_picking__seur_last_response
-msgid "Last SEUR xml response"
-msgstr ""
-
-#. module: delivery_seur
 #: model:ir.model.fields.selection,name:delivery_seur.selection__delivery_carrier__seur_service_code__017
 msgid "MARITIMO"
 msgstr ""
@@ -282,11 +272,6 @@ msgid "SEUR 8:30"
 msgstr ""
 
 #. module: delivery_seur
-#: model_terms:ir.ui.view,arch_db:delivery_seur.view_picking_withcarrier_out_form
-msgid "SEUR Technical"
-msgstr ""
-
-#. module: delivery_seur
 #: code:addons/delivery_seur/models/delivery_carrier.py:0
 #, python-format
 msgid "SEUR exception: %s"
@@ -344,20 +329,9 @@ msgid "This feature has delivery cost"
 msgstr ""
 
 #. module: delivery_seur
-#: model:ir.model,name:delivery_seur.model_stock_picking
-msgid "Transfer"
-msgstr ""
-
-#. module: delivery_seur
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_password
 #: model:ir.model.fields,help:delivery_seur.field_delivery_carrier__seur_cit_username
 msgid "Used for cit.seur.com webservice (generate labels)"
-msgstr ""
-
-#. module: delivery_seur
-#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_request
-#: model:ir.model.fields,help:delivery_seur.field_stock_picking__seur_last_response
-msgid "Used for issues debugging"
 msgstr ""
 
 #. module: delivery_seur
