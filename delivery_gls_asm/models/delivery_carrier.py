@@ -11,6 +11,7 @@ from .gls_asm_request import (
     GLS_PICKUP_STATES_STATIC,
     GLS_PICKUP_TYPE_STATES,
     GLS_POSTAGE_TYPE,
+    GLS_SHIPMENT_TYPE_STATES,
     GLS_SHIPPING_TIMES,
     GlsAsmRequest,
 )
@@ -316,10 +317,16 @@ class DeliveryCarrier(models.Model):
         if not picking.carrier_tracking_ref:
             return
         gls_request = GlsAsmRequest(self._gls_asm_uid())
+        tracking_info = {}
         if not picking.carrier_id.gls_is_pickup_service:
-            tracking_states = gls_request._get_tracking_states(
+            tracking_info = gls_request._get_tracking_states(
                 picking.carrier_tracking_ref
             )
+            tracking_states = tracking_info.get("tracking_list", {}).get("tracking", [])
+            # If there's just one state, we'll get a single dict, otherwise we
+            # get a list of dicts
+            if isinstance(tracking_states, dict):
+                tracking_states = [tracking_states]
         else:
             tracking_states = gls_request._get_pickup_tracking_states(
                 picking.carrier_tracking_ref
@@ -339,11 +346,14 @@ class DeliveryCarrier(models.Model):
         )
         tracking = tracking_states.pop()
         picking.tracking_state = "[{}] {}".format(
-            tracking.get("codigo") or tracking.get("Codigo"),
-            tracking.get("evento") or tracking.get("Descripcion"),
+            tracking_info.get("codestado") or tracking.get("Codigo"),
+            tracking_info.get("estado") or tracking.get("Descripcion"),
         )
         if not picking.carrier_id.gls_is_pickup_service:
             states_to_check = GLS_DELIVERY_STATES_STATIC
+            picking.gls_shipment_state = GLS_SHIPMENT_TYPE_STATES.get(
+                tracking_info.get("codestado"), "incidence"
+            )
         else:
             states_to_check = GLS_PICKUP_STATES_STATIC
             # Portuguese pick-ups use the 0 code for extra states that aren't "Canceled"
@@ -360,7 +370,7 @@ class DeliveryCarrier(models.Model):
                 tracking.get("Codigo"), "incidence"
             )
         picking.delivery_state = states_to_check.get(
-            tracking.get("codigo") or tracking.get("Codigo"), "incidence"
+            tracking_info.get("codestado") or tracking.get("Codigo"), "incidence"
         )
 
     def gls_asm_cancel_shipment(self, pickings):
