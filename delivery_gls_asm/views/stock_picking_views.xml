@@ -83,6 +83,16 @@
                     ]
                 }"
                 />
+                <field
+                    name="gls_shipment_state"
+                    attrs="{
+                    'invisible': [
+                        '|',
+                        ('gls_carrier_is_pickup_service', '=', True),
+                        ('delivery_type', '!=', 'gls_asm')
+                    ]
+                }"
+                />
             </xpath>
         </field>
     </record>
