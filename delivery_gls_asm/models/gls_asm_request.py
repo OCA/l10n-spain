@@ -129,6 +129,37 @@ GLS_DELIVERY_STATES_STATIC = {
     "25": "in_transit",  # ASM PARCELSHOP CONFIRMA RECEPCION
 }
 
+GLS_SHIPMENT_TYPE_STATES = {
+    "-10": "recorded",  # GRABADO
+    "0": "manifested",  # MANIFESTADA
+    "2": "transit",  # EN TRANSITO A DESTINO
+    "3": "agency_transit",  # EN DELEGACION DESTINO
+    "20": "closed",  # CERRADO POR SINIESTRO
+    "5": "cancel",  # ANULADA
+    "6": "shipping",  # EN REPARTO
+    "7": "delivered",  # ENTREGADO
+    "8": "partially_delivered",  # ENTREGA PARCIAL
+    "9": "warehouse",  # ALMACENADO
+    "10": "return_agency",  # DEVUELTA
+    "11": "pending",  # PENDIENTE DATOS. EN DELEGACIÓN
+    "1": "held",  # PENDIENTE AUTORIZACIÓN
+    "91": "incidence",  # CON INCIDENCIA
+    "90": "closed_final",  # CERRADO DEFINITIVO
+    "50": "preconfirmed",  # PRECONFIRMADA ENTREGA
+    "51": "cancel_returned",  # ENTREGA ANULADA (DEVUELTA)
+    "12": "return_customer",  # DEVUELTA AL CLIENTE
+    "13": "possible_return",  # POSIBLE DEVOLUCIÓN
+    "14": "requested_return",  # SOLICITUD DE DEVOLUCIÓN
+    "15": "returning",  # EN DEVOLUCIÓN
+    "16": "origin",  # EN DELEGACIÓN ORIGEN
+    "17": "destroyed",  # DESTRUIDO POR ORDEN DEL CLIENTE
+    "18": "held_order",  # RETENIDO POR ORDEN DE PAGA
+    "19": "in_platform",  # EN PLATAFORMA DE DESTINO
+    "21": "extinguished",  # RECANALIZADA (A EXTINGUIR)
+    "22": "parcelshop",  # ENTREGADO EN ASM PARCELSHOP,
+    "25": "parcelshop_confirm",  # ASM PARCELSHOP CONFIRMA RECEPCIÓN
+}
+
 GLS_PICKUP_STATES_STATIC = {
     "0": "canceled_shipment",  # ANULADA
     "1": "shipping_recorded_in_carrier",  # SOLICITADA
@@ -636,16 +667,7 @@ class GlsAsmRequest:
         :returns: list of tracking states
         """
         res = self._get_delivery_info(reference)
-        res = (
-            (res.get("expediciones") or {})
-            .get("exp", {})
-            .get("tracking_list", {})
-            .get("tracking", [])
-        )
-        # If there's just one state, we'll get a single dict, otherwise we
-        # get a list of dicts
-        if isinstance(res, dict):
-            return [res]
+        res = (res.get("expediciones") or {}).get("exp", {})
         return res
 
     def _get_pickup_tracking_states(self, reference=False):

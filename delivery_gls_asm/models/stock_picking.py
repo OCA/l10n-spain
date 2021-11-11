@@ -34,6 +34,40 @@ class StockPicking(models.Model):
         ],
         copy=False,
     )
+    gls_shipment_state = fields.Selection(
+        string="Estado envío GLS",
+        selection=[
+            ("recorded", "Grabado"),
+            ("manifested", "Manifestada"),
+            ("transit", "En tránsito al destino"),
+            ("agency_transit", "En delegación destino"),
+            ("closed", "Cerrado por siniestro"),
+            ("cancel", "Anualada"),
+            ("shipping", "En reparto"),
+            ("delivered", "Entregado"),
+            ("partially_delivered", "Entrega parcial"),
+            ("warehouse", "Almacenado"),
+            ("return_agency", "Devuelta"),
+            ("pending", "Pendiente datos en delegación"),
+            ("held", "Pendiente autorización"),
+            ("incidence", "Con incidencia"),
+            ("closed_final", "Cerrado definitivo"),
+            ("preconfirmed", "Preconfirmada enrega"),
+            ("cancel_returned", "Entrega anulada (devuelta)"),
+            ("return_customer", "Devuelta al cliente"),
+            ("possible_return", "Posible devolución"),
+            ("requested_return", "Solicitud de devolución"),
+            ("returning", "En devolución"),
+            ("origin", "En delegación origen"),
+            ("destroyed", "Destruido por orden del cliente"),
+            ("held_order", "Retenido por orden de paga"),
+            ("in_platform", "En plataforma de destino"),
+            ("extinguished", "Recanalizada (A extinguir)"),
+            ("parcelshop", "Entregado en ASM PARCELSHOP"),
+            ("parcelshop_confirm", "ASM PARCELSHOP CONFIRMA RECEPCIÓN"),
+        ],
+        copy=False,
+    )
 
     def gls_asm_get_label(self):
         """Get GLS Label for this picking expedition"""
