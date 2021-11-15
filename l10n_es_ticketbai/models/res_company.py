@@ -93,7 +93,7 @@ class ResCompany(models.Model):
                             if self.env['ir.module.module'].search([
                                 ('name', '=', 'l10n_es_account_invoice_sequence'),
                                 ('state', '=', 'installed')
-                            ]):
+                            ]) and journal.invoice_sequence_id:
                                 journal.invoice_sequence_id.suffix = ''
                             else:
                                 journal.sequence_id.suffix = ''

@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-11 11:38+0000\n"
+"PO-Revision-Date: 2021-11-11 11:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -70,7 +72,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:248
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:249
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -331,7 +333,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:271
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:272
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -340,6 +342,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_response_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Responses"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_import_journal_creation__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_send_invoice
+msgid "Send TicketBAI invoices to tax agency"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -625,13 +634,19 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:70
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:71
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:288
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:34
+#, python-format
+msgid "You cannot stop sending invoices from this journal, an invoice has already been sent."
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:289
 #, python-format
 msgid "You cannot validate a refund invoice without the origin invoice!"
 msgstr ""
