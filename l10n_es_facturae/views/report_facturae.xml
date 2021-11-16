@@ -164,12 +164,30 @@
                     t-esc="'3.2.1' if version == '3_2_1' else ('3.2.2' if version == '3_2_2' else '3.2')"
                 />
                 <Modality t-esc="'I'" />
-                <InvoiceIssuerType t-esc="'EM'" />
+                <t t-if="not move.thirdparty_number">
+                    <InvoiceIssuerType t-esc="'EM'" />
+                </t>
+                <t t-if="move.thirdparty_number">
+                    <InvoiceIssuerType t-esc="'TE'" />
+                    <ThirdParty>
+                        <t t-call="l10n_es_facturae.entity">
+                            <t t-set="partner" t-value="company_partner" />
+                        </t>
+                    </ThirdParty>
+                </t>
                 <Batch>
-                    <BatchIdentifier
-                        t-length="70"
-                        t-esc="(move.name or '') + (company_partner.vat or '')"
-                    />
+                    <t t-if="not move.thirdparty_number">
+                        <BatchIdentifier
+                            t-length="70"
+                            t-esc="(move.name or '') + (company_partner.vat or '')"
+                        />
+                    </t>
+                    <t t-if="move.thirdparty_number">
+                        <BatchIdentifier
+                            t-length="70"
+                            t-esc="(move.thirdparty_number or '') + (company_partner.vat or '')"
+                        />
+                    </t>
                     <InvoicesCount t-esc="'1'" />
                     <TotalInvoicesAmount>
                         <TotalAmount
@@ -234,7 +252,15 @@
                         </t>
                     </t>
                     <InvoiceHeader>
-                        <InvoiceNumber t-length="20" t-esc="move.name" />
+                        <t t-if="not move.thirdparty_number">
+                            <InvoiceNumber t-length="20" t-esc="move.name" />
+                        </t>
+                        <t t-if="move.thirdparty_number">
+                            <InvoiceNumber
+                                t-length="20"
+                                t-esc="move.thirdparty_number"
+                            />
+                        </t>
                         <InvoiceSeriesCode t-length="20" t-esc="''" />
                         <InvoiceDocumentType t-esc="'FC'" />
                         <InvoiceClass
