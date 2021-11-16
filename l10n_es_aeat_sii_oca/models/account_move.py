@@ -215,16 +215,21 @@ class AccountMove(models.Model):
         "The invoice number should start with LC, QZC, QRC, A01 or A02.",
         copy=False,
     )
-    sii_thirdparty_invoice = fields.Boolean(
-        string="SII third-party invoice", copy=False
-    )
-    sii_thirdparty_number = fields.Char(
-        string="SII third-party number",
-        help="[RD 1619/2012] Cumplimiento de la obligación de expedir factura "
-        "por el destinatario o por un tercero.\n"
-        "Se permite notificar de Factura emitida por Terceros mediante el campo "
-        "'Factura de terceros SII' y 'Número de terceros SII'.",
+    thirdparty_invoice = fields.Boolean(
+        string="Third-party invoice",
         copy=False,
+        compute="_compute_thirdparty_invoice",
+        store=True,
+        readonly=False,
+    )
+    thirdparty_number = fields.Char(
+        string="Third-party number",
+        index=True,
+        readonly=True,
+        states={"draft": [("readonly", False)]},
+        copy=False,
+        help="Número de la factura emitida por un tercero.",
+        tracking=True,
     )
     invoice_jobs_ids = fields.Many2many(
         comodel_name="queue.job",
@@ -234,6 +239,11 @@ class AccountMove(models.Model):
         string="Connector Jobs",
         copy=False,
     )
+
+    @api.depends("journal_id")
+    def _compute_thirdparty_invoice(self):
+        for item in self:
+            item.thirdparty_invoice = item.journal_id.thirdparty_invoice
 
     @api.depends("move_type")
     def _compute_sii_registration_key_domain(self):
@@ -313,6 +323,16 @@ class AccountMove(models.Model):
             invoice.onchange_fiscal_position_id_l10n_es_aeat_sii()
         return invoice
 
+    def _raise_exception_sii(self, field_name):
+        raise exceptions.UserError(
+            _(
+                "You cannot change the %s of an invoice "
+                "already registered at the SII. You must cancel the "
+                "invoice and create a new one with the correct value"
+            )
+            % field_name
+        )
+
     def write(self, vals):
         """For supplier invoices the SII primary key is the supplier
         VAT/ID Otro and the supplier invoice number. Cannot let change these
@@ -321,35 +341,20 @@ class AccountMove(models.Model):
             lambda x: x.is_invoice() and x.sii_state != "not_sent"
         ):
             if "invoice_date" in vals:
-                raise exceptions.UserError(
-                    _(
-                        "You cannot change the invoice date of an invoice "
-                        "already registered at the SII. You must cancel the "
-                        "invoice and create a new one with the correct date"
-                    )
-                )
-            if invoice.move_type in ["in_invoice", "in refund"]:
+                self._raise_exception_sii(_("invoice date"))
+            elif "thirdparty_number" in vals:
+                self._raise_exception_sii(_("third-party number"))
+            if invoice.move_type in ["in_invoice", "in_refund"]:
                 if "partner_id" in vals:
                     correct_partners = invoice._sii_get_partner()
                     correct_partners |= correct_partners.child_ids
                     if vals["partner_id"] not in correct_partners.ids:
-                        raise exceptions.UserError(
-                            _(
-                                "You cannot change the supplier of an invoice "
-                                "already registered at the SII. You must cancel "
-                                "the invoice and create a new one with the "
-                                "correct supplier"
-                            )
-                        )
+                        self._raise_exception_sii(_("supplier"))
                 elif "ref" in vals:
-                    raise exceptions.UserError(
-                        _(
-                            "You cannot change the supplier invoice number of "
-                            "an invoice already registered at the SII. You must "
-                            "cancel the invoice and create a new one with the "
-                            "correct number"
-                        )
-                    )
+                    self._raise_exception_sii(_("supplier invoice number"))
+            elif invoice.move_type in ["out_invoice", "out_refund"]:
+                if "name" in vals:
+                    self._raise_exception_sii(_("invoice number"))
         # Fill sii_refund_type if not set previously. It happens on sales
         # order invoicing process for example.
         if (
@@ -788,8 +793,8 @@ class AccountMove(models.Model):
         periodo = "%02d" % fields.Date.to_date(self.date).month
         is_simplified_invoice = self._is_sii_simplified_invoice()
         serial_number = (self.name or "")[0:60]
-        if self.sii_thirdparty_invoice:
-            serial_number = self.sii_thirdparty_number[0:60]
+        if self.thirdparty_invoice:
+            serial_number = self.thirdparty_number[0:60]
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {"NIF": company.vat[2:]},
@@ -809,7 +814,7 @@ class AccountMove(models.Model):
                 "TipoDesglose": tipo_desglose,
                 "ImporteTotal": amount_total,
             }
-            if self.sii_thirdparty_invoice:
+            if self.thirdparty_invoice:
                 inv_dict["FacturaExpedida"]["EmitidaPorTercerosODestinatario"] = "S"
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
