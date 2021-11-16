@@ -421,6 +421,11 @@ msgid "Is Test Environment?"
 msgstr "L’entorn de prova és?"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_move
 msgid "Journal Entry"
 msgstr "Assentament"
@@ -538,6 +543,13 @@ msgstr "None"
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__not_sent
 msgid "Not sent"
 msgstr "No enviat"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
+msgid "Número de la factura emitida por un tercero."
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__auto
@@ -777,20 +789,6 @@ msgid "SII sent"
 msgstr "SII enviat"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_invoice
-msgid "SII third-party invoice"
-msgstr "Factura de tercers SII"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
-msgid "SII third-party number"
-msgstr "Número de factura de tercers SII"
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__sale
 msgid "Sale"
 msgstr "Venda"
@@ -1007,6 +1005,21 @@ msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hi ha un desajust en els impostos per a RE. Comproveu-los."
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_invoice
+msgid "Third-party invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
+msgid "Third-party number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This company doesn't have SII enabled."
@@ -1088,33 +1101,9 @@ msgstr "No podeu fer una factura simplificada de proveïdor."
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
-"You cannot change the invoice date of an invoice already registered at the "
-"SII. You must cancel the invoice and create a new one with the correct date"
+"You cannot change the %s of an invoice already registered at the SII. You "
+"must cancel the invoice and create a new one with the correct value"
 msgstr ""
-"No podeu canviar la data de factura d'una factura ja registrada al SII. Heu "
-"de cancel·lar la factura i crear-ne una de nova amb la data correcta"
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid ""
-"You cannot change the supplier invoice number of an invoice already "
-"registered at the SII. You must cancel the invoice and create a new one with "
-"the correct number"
-msgstr ""
-"No es pot modificar el número de factura del proveïdor d'una factura ja "
-"registrada al SII. Heu de cancel·lar la factura i crear-ne una de nova amb "
-"el número correcte"
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid ""
-"You cannot change the supplier of an invoice already registered at the SII. "
-"You must cancel the invoice and create a new one with the correct supplier"
-msgstr ""
-"No es pot canviar de proveïdor d'una factura ja registrada al SII. Heu de "
-"cancel·lar la factura i crear-ne una de nova amb el proveïdor correcte"
 
 #. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
@@ -1204,19 +1193,76 @@ msgid "[E6] Otros"
 msgstr "[E6] Altres"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
-msgid ""
-"[RD 1619/2012] Cumplimiento de la obligación de expedir factura por el "
-"destinatario o por un tercero.\n"
-"Se permite notificar de Factura emitida por Terceros mediante el campo "
-"'Factura de terceros SII' y 'Número de terceros SII'."
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "invoice date"
 msgstr ""
-"[RD 1619/2012] Compliment de l'obligació d'expedir la factura pel "
-"destinatari o per un tercer.\n"
-"Es permet notificar de Factura emesa per Tercers mitjançant el camp 'Factura "
-"de tercers SII' i 'Número de tercers SII'."
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "invoice number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "supplier"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "supplier invoice number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "third-party number"
+msgstr ""
+
+#~ msgid "SII third-party invoice"
+#~ msgstr "Factura de tercers SII"
+
+#~ msgid "SII third-party number"
+#~ msgstr "Número de factura de tercers SII"
+
+#~ msgid ""
+#~ "You cannot change the invoice date of an invoice already registered at "
+#~ "the SII. You must cancel the invoice and create a new one with the "
+#~ "correct date"
+#~ msgstr ""
+#~ "No podeu canviar la data de factura d'una factura ja registrada al SII. "
+#~ "Heu de cancel·lar la factura i crear-ne una de nova amb la data correcta"
+
+#~ msgid ""
+#~ "You cannot change the supplier invoice number of an invoice already "
+#~ "registered at the SII. You must cancel the invoice and create a new one "
+#~ "with the correct number"
+#~ msgstr ""
+#~ "No es pot modificar el número de factura del proveïdor d'una factura ja "
+#~ "registrada al SII. Heu de cancel·lar la factura i crear-ne una de nova "
+#~ "amb el número correcte"
+
+#~ msgid ""
+#~ "You cannot change the supplier of an invoice already registered at the "
+#~ "SII. You must cancel the invoice and create a new one with the correct "
+#~ "supplier"
+#~ msgstr ""
+#~ "No es pot canviar de proveïdor d'una factura ja registrada al SII. Heu de "
+#~ "cancel·lar la factura i crear-ne una de nova amb el proveïdor correcte"
+
+#~ msgid ""
+#~ "[RD 1619/2012] Cumplimiento de la obligación de expedir factura por el "
+#~ "destinatario o por un tercero.\n"
+#~ "Se permite notificar de Factura emitida por Terceros mediante el campo "
+#~ "'Factura de terceros SII' y 'Número de terceros SII'."
+#~ msgstr ""
+#~ "[RD 1619/2012] Compliment de l'obligació d'expedir la factura pel "
+#~ "destinatari o per un tercer.\n"
+#~ "Es permet notificar de Factura emesa per Tercers mitjançant el camp "
+#~ "'Factura de tercers SII' i 'Número de tercers SII'."
 
 #~ msgid "Aeat SII Tax Agency"
 #~ msgstr "Aeat SII Agència Tributària"
