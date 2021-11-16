@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-10 06:09+0000\n"
-"PO-Revision-Date: 2022-04-11 19:05+0000\n"
+"POT-Creation-Date: 2022-08-01 14:14+0000\n"
+"PO-Revision-Date: 2022-08-01 16:16+0200\n"
 "Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -262,12 +262,12 @@ msgstr "Aduanas - Liquidación complementaria"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__date_from
 msgid "Date From"
-msgstr ""
+msgstr "Desde"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__date_to
 msgid "Date To"
-msgstr ""
+msgstr "Hasta"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_registration_key_purchase
@@ -282,7 +282,7 @@ msgstr "Clave de registro SII por defecto para ventas"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__delay_time
 msgid "Delay Time"
-msgstr ""
+msgstr "Tiempo de retardo"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -420,6 +420,11 @@ msgid "Is Test Environment?"
 msgstr "¿Es un entorno de pruebas?"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_journal
+msgid "Journal"
+msgstr "Diario"
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
@@ -538,6 +543,13 @@ msgstr "Ninguno"
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__not_sent
 msgid "Not sent"
 msgstr "No registrada"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
+msgid "Número de la factura emitida por un tercero."
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__auto
@@ -777,20 +789,6 @@ msgid "SII sent"
 msgstr "Enviadas SII"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_invoice
-msgid "SII third-party invoice"
-msgstr "Factura de terceros SII"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
-msgid "SII third-party number"
-msgstr "Número de terceros SII"
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__sale
 msgid "Sale"
 msgstr "Ventas"
@@ -803,7 +801,7 @@ msgstr "Enviar facturas al SII"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__send_mode
 msgid "Send Mode"
-msgstr ""
+msgstr "Modo de envío"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
@@ -828,7 +826,7 @@ msgstr "Enviada"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sent_time
 msgid "Sent Time"
-msgstr ""
+msgstr "Hora de envío"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_enabled
@@ -1007,6 +1005,21 @@ msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hay un cruce erróneo para tasas en RE. Chequéelas."
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_invoice
+msgid "Third-party invoice"
+msgstr "Factura de terceros SII"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
+msgid "Third-party number"
+msgstr "Número de factura de terceros"
+
+#. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This company doesn't have SII enabled."
@@ -1027,7 +1040,7 @@ msgstr "Tipo"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__use_connector
 msgid "Use Connector"
-msgstr ""
+msgstr "Usar conector"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
@@ -1088,32 +1101,11 @@ msgstr "No puede realizar una factura simplificada a un proveedor."
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid ""
-"You cannot change the invoice date of an invoice already registered at the "
-"SII. You must cancel the invoice and create a new one with the correct date"
+"You cannot change the %s of an invoice already registered at the SII. You "
+"must cancel the invoice and create a new one with the correct value"
 msgstr ""
-"No puede cambiar la fecha de factura de una factura enviada al SII. Debe "
-"cancelar la factura y crear una nueva con la fecha correcta"
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid ""
-"You cannot change the supplier invoice number of an invoice already "
-"registered at the SII. You must cancel the invoice and create a new one with "
-"the correct number"
-msgstr ""
-"No puede cambiar el número de factura del proveedor de una factura enviada "
-"al SII. Debe cancelar la factura y crear una nueva con el número correcto"
-
-#. module: l10n_es_aeat_sii_oca
-#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
-#, python-format
-msgid ""
-"You cannot change the supplier of an invoice already registered at the SII. "
-"You must cancel the invoice and create a new one with the correct supplier"
-msgstr ""
-"No puede cambiar el proveedor de una factura enviada al SII. Debe cancelar "
-"la factura y crear una nueva con el proveedor correcto"
+"No puede cambiar el %s de una factura enviada al SII. Debe cancelar la "
+"factura y crear una nueva con el valor correcto"
 
 #. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
@@ -1201,112 +1193,31 @@ msgid "[E6] Otros"
 msgstr "[E6] Otros"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
-msgid ""
-"[RD 1619/2012] Cumplimiento de la obligación de expedir factura por el "
-"destinatario o por un tercero.\n"
-"Se permite notificar de Factura emitida por Terceros mediante el campo "
-"'Factura de terceros SII' y 'Número de terceros SII'."
-msgstr ""
-"[RD 1619/2012] Cumplimiento de la obligación de expedir factura por el "
-"destinatario o por un tercero.\n"
-"Se permite notificar de Factura emitida por Terceros mediante el campo "
-"'Factura de terceros SII' y 'Número de terceros SII'."
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "invoice date"
+msgstr "fecha de la factura"
 
-#~ msgid "Aeat SII Tax Agency"
-#~ msgstr "Agencia tributaria AEAT SII"
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "invoice number"
+msgstr "número de la factura"
 
-#~ msgid "Date from"
-#~ msgstr "Desde"
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "supplier"
+msgstr "proveedor"
 
-#~ msgid "Date to"
-#~ msgstr "Hasta"
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "supplier invoice number"
+msgstr "número de factura del proveedor"
 
-#~ msgid "Delay time"
-#~ msgstr "Tiempo de retardo"
-
-#~ msgid "SII Tax Agencies"
-#~ msgstr "Agencias tributarias SII"
-
-#~ msgid "SII Tax Agency"
-#~ msgstr "Agencia Tributaria SII"
-
-#~ msgid "Send mode"
-#~ msgstr "Modo de envío"
-
-#~ msgid "Sent time"
-#~ msgstr "Hora de envío"
-
-#~ msgid "Tax Agency"
-#~ msgstr "Agencia tributaria"
-
-#~ msgid "Use connector"
-#~ msgstr "Usar conector"
-
-#~ msgid "Activate"
-#~ msgstr "Activar"
-
-#~ msgid "Active"
-#~ msgstr "Activo"
-
-#~ msgid "Aeat SII"
-#~ msgstr "AEAT SII"
-
-#~ msgid "Aeat SII password"
-#~ msgstr "AEAT SII Password"
-
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
-
-#~ msgid "Company"
-#~ msgstr "Compañía"
-
-#~ msgid "Draft"
-#~ msgstr "Borrador"
-
-#~ msgid "End Date"
-#~ msgstr "Fecha final"
-
-#~ msgid "File"
-#~ msgstr "Archivo"
-
-#~ msgid "Folder Name"
-#~ msgstr "Nombre de carpeta"
-
-#~ msgid "Insert Password"
-#~ msgstr "Introduzca contraseña"
-
-#~ msgid "Journal Entries"
-#~ msgstr "Asientos contables"
-
-#~ msgid "Load Certificate"
-#~ msgstr "Cargar certificado"
-
-#~ msgid "Obtain Keys"
-#~ msgstr "Obtener claves"
-
-#~ msgid "OpenSSL version is not supported. Upgrade to 0.15 or greater."
-#~ msgstr "La versión OpenSSL no está soportada. Actualice a 0.15 o superior."
-
-#~ msgid "Password"
-#~ msgstr "Contraseña"
-
-#~ msgid "Private Key"
-#~ msgstr "Clave privada"
-
-#~ msgid "Public Key"
-#~ msgstr "Clave pública"
-
-#~ msgid "SII Certificates"
-#~ msgstr "Certificados SII"
-
-#~ msgid "Start Date"
-#~ msgstr "Fecha de inicio"
-
-#~ msgid "State"
-#~ msgstr "Estado"
-
-#~ msgid "or"
-#~ msgstr "o"
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
+#, python-format
+msgid "third-party number"
+msgstr "número de factura de terceros"
