@@ -213,8 +213,12 @@ class AccountInvoice(models.Model):
         if tax_agency in (gipuzkoa_tax_agency, araba_tax_agency):
             lines = []
             for line in self.invoice_line_ids:
+                description_line = line.name[:250]
+                if self.company_id.tbai_protected_data \
+                   and self.company_id.tbai_protected_data_txt:
+                    description_line = self.company_id.tbai_protected_data_txt[:250]
                 lines.append((0, 0, {
-                    'description': line.name[:250],
+                    'description': description_line,
                     'quantity': line.tbai_get_value_cantidad(),
                     'price_unit': "%.8f" % line.price_unit,
                     'discount_amount': line.tbai_get_value_descuento(),
