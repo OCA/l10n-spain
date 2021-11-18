@@ -38,6 +38,36 @@
             <field name="image" type="base64" file="l10n_es_ticketbai_api/static/src/img/oca_logo.png"/>
         </record>
 
+        <record id="res_partner_derbi" model="res.partner">
+            <field name="name">Nacional Motor sa</field>
+            <field name="supplier" eval="True"/>
+            <field name="customer" eval="True"/>
+            <field name="is_company">1</field>
+            <field name="city">BARCELONA</field>
+            <field name="zip">08021</field>
+            <field name="country_id" ref="base.es"/>
+            <field name="vat">A08049447</field>
+            <field name="tbai_partner_idtype">02</field>
+            <field name="street">C/ DIAGONAL NUM, 550 P.PL PTA.2.</field>
+            <field name="website">www.derbi.es</field>
+            <field name="image" type="base64" file="l10n_es_ticketbai_api/static/src/img/derbi.png"/>
+        </record>
+
+        <record id="res_partner_peugeot" model="res.partner">
+            <field name="name">SA PSA AUTOMOBILES SA</field>
+            <field name="supplier" eval="True"/>
+            <field name="customer" eval="True"/>
+            <field name="is_company">1</field>
+            <field name="city">POISSY</field>
+            <field name="zip">78300</field>
+            <field name="country_id" ref="base.fr"/>
+            <field name="vat">FR82542065479</field>
+            <field name="tbai_partner_idtype">02</field>
+            <field name="street">2 BD DE L EUROPE</field>
+            <field name="website">www.groupe-psa.com</field>
+            <field name="image" type="base64" file="l10n_es_ticketbai_api/static/src/img/peugeot.png"/>
+        </record>
+
         <record id="res_partner_binovo" model="res.partner">
             <field name="name">Binovo IT Human Project S.L.</field>
             <field name="supplier" eval="True"/>

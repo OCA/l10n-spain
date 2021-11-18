@@ -5,6 +5,7 @@
 from datetime import datetime, timedelta
 from odoo.tools.misc import DEFAULT_SERVER_DATE_FORMAT
 from odoo.tests import common
+from odoo import exceptions
 from .common import TestL10nEsTicketBAIAPI
 from ..ticketbai.xml_schema import XMLSchema
 
@@ -27,6 +28,12 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
         root, signature_value = invoice.get_tbai_xml_signed_and_signature_value()
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
+
+    def test_partner_missing_country_code(self):
+        self.partner.country_id = False
+        self.partner.vat = 'B00000000'
+        with self.assertRaises(exceptions.ValidationError):
+            self.partner.tbai_get_partner_country_code()
 
     def test_qr_url(self):
         uid = self.tech_user.id

@@ -57,4 +57,3 @@ class TestL10nEsTicketBAICancellation(TestL10nEsTicketBAIAPI):
             self.assertEqual(0, len(pending_invoices))
             invoice.sudo().unlink()
             cancellation.sudo().unlink()
-            self.env.cr.commit()
