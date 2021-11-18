@@ -76,13 +76,7 @@ class XMLSchema:
         :return: bool
         """
         schema = etree.XMLSchema(test_xmlschema_doc)
-        try:
-            schema.assertValid(root)
-            valid = True
-        except etree.DocumentInvalid as error:
-            _logger.exception(error)
-            valid = False
-        return valid
+        return schema(root)
 
     @staticmethod
     def sign(root, certificate, tax_agency):
