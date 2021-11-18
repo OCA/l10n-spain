@@ -593,17 +593,17 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
 
         self.partner_intracommunity = self.env['res.partner'].create(
             {
-                'name': 'Odoo Community Association (OCA)',
+                'name': 'SA PSA AUTOMOBILES SA',
                 'supplier': True,
                 'customer': True,
                 'is_company': True,
-                'city': 'Paris',
-                'zip': '75010',
+                'city': 'POISSY',
+                'zip': '78300',
                 'country_id': self.env.ref('base.fr').id,
-                'vat': 'FR87352651673',
-                'street': 'Rue Eugène Varlin 1',
+                'vat': 'FR82542065479',
+                'street': '2 BD DE L EUROPE',
                 'tbai_partner_idtype': '02',
-                'website': 'https://odoo-community.org/',
+                'website': 'www.groupe-psa.com',
             }
         )
 

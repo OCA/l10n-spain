@@ -234,6 +234,54 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
             self.test_xml_invoice_schema_doc, r_root)
         self.assertTrue(r_res)
 
+    def test_out_refund_inconsistent_state_raises(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        invoice.sudo().tbai_invoice_ids.state = 'cancel'
+        # Create an invoice refund by differences
+        account_invoice_refund = \
+            self.env['account.invoice.refund'].with_context(
+                active_id=invoice.id,
+                active_ids=invoice.ids
+            ).create(dict(
+                description='Credit Note for Binovo',
+                date=date.today(),
+                filter_refund='refund'
+            ))
+        account_invoice_refund.invoice_refund()
+        refund = invoice.refund_invoice_ids
+        with self.assertRaises(exceptions.ValidationError):
+            refund.action_invoice_open()
+
+    def test_out_refund_cancelled_raises(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        invoice.tbai_cancellation_id = invoice.tbai_invoice_ids
+        # Create an invoice refund by differences
+        account_invoice_refund = \
+            self.env['account.invoice.refund'].with_context(
+                active_id=invoice.id,
+                active_ids=invoice.ids
+            ).create(dict(
+                description='Credit Note for Binovo',
+                date=date.today(),
+                filter_refund='refund'
+            ))
+        account_invoice_refund.invoice_refund()
+        refund = invoice.refund_invoice_ids
+        with self.assertRaises(exceptions.ValidationError):
+            refund.action_invoice_open()
+
     def test_out_refund_refund_not_sent_invoice(self):
         self.main_company.tbai_enabled = False
         invoice = self.create_draft_invoice(
