@@ -33,7 +33,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             company_id=self.main_company.id, limit=0)
         self.assertEqual(0, len(pending_invoices))
         invoice.sudo().unlink()
-        self.env.cr.commit()
 
     def create_tbai_national_invoice_cancellation(
             self, name='TBAITEST/00001', company_id=1, number='00001',
@@ -528,6 +527,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         self.partner_extracommunity = self.env.ref(
             'l10n_es_ticketbai_api.res_partner_yamaha_jp')
         self.partner_intracommunity = self.env.ref(
-            'l10n_es_ticketbai_api.res_partner_oca')
+            'l10n_es_ticketbai_api.res_partner_peugeot')
         # Contact creation
         self.tech_user = self.env.ref('l10n_es_ticketbai_api.user_tech')  # Root user
