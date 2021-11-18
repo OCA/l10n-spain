@@ -118,6 +118,23 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         aeat_certificate.action_active()
         return aeat_certificate
 
+    def create_product(self, product_name, product_type='consu', product_taxes=None):
+
+        def create_template():
+            template_model = self.env['product.template']
+            template_dict = {'name': product_name + ' template',
+                             'type': product_type}
+            return template_model.create(template_dict)
+
+        product_model = self.env['product.product']
+        product_dict = {'name': product_name,
+                        'product_tmpl_id': create_template().id
+                        }
+        product_obj = product_model.create(product_dict)
+        if product_taxes:
+            product_obj['taxes_id'] = [(6, 0, product_taxes)]
+        return product_obj
+
     def setUp(self):
         super(TestL10nEsTicketBAI, self).setUp()
         self._chart_of_accounts_create()
@@ -140,6 +157,8 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         self.account_revenue = self.env['account.account'].search(
             [('user_type_id', '=',
               self.env.ref('account.data_account_type_revenue').id)], limit=1)
+        # Exenciones en operaciones interiores
+        self.vat_exemption_E1 = self.env.ref('l10n_es_ticketbai.tbai_vat_exemption_E1')
         # Exportaciones de mercancías
         self.vat_exemption_E2 = self.env.ref('l10n_es_ticketbai.tbai_vat_exemption_E2')
         # Entregas a otro estado miembro
@@ -173,6 +192,9 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         # Servicios extracomunitarios
         self.tax_iva0_sp_e = self.env['account.tax'].search(
             [('description', '=', 'S_IVA_SP_E')])
+        # IVA Exento Repercutido Sujeto
+        self.tax_iva0_exento_sujeto = self.env['account.tax'].search(
+            [('description', '=', 'S_IVA0')])
         self.product_delivery.taxes_id = [(6, 0, [self.tax_21b.id])]
         self.product_service.taxes_id = [(6, 0, [self.tax_10s.id])]
         # 07 - Régimen especial criterio de caja
@@ -185,7 +207,13 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             'tbai_vat_regime_key2': self.env.ref(
                 'l10n_es_ticketbai.tbai_vat_regime_05').id,
             'tbai_vat_regime_key3': self.env.ref(
-                'l10n_es_ticketbai.tbai_vat_regime_01').id
+                'l10n_es_ticketbai.tbai_vat_regime_01').id,
+            'tbai_vat_exemption_ids': [
+                (0, 0, {
+                    'tax_id': self.tax_iva0_exento_sujeto.id,
+                    'tbai_vat_exemption_key': self.vat_exemption_E1.id
+                })
+            ]
         })
         self.fiscal_position_surcharge = self.env['account.fiscal.position'].create({
             'name': 'TBAI Fiscal Position - Surcharge',
