@@ -293,6 +293,58 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         r_res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, r_root)
         self.assertTrue(r_res)
 
+    def test_out_refund_inconsistent_state_raises(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        invoice.sudo().tbai_invoice_ids.state = "cancel"
+        # Create an invoice refund by differences
+        account_move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=[invoice.id])
+            .create(
+                dict(
+                    reason="Credit Note for Binovo",
+                    date=date.today(),
+                    refund_method="refund",
+                )
+            )
+        )
+        account_move_reversal.with_context(refund_method="refund").reverse_moves()
+        refund = invoice.reversal_move_id
+        with self.assertRaises(exceptions.ValidationError):
+            refund.action_post()
+
+    def test_out_refund_cancelled_raises(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        invoice.tbai_cancellation_id = invoice.tbai_invoice_ids
+        # Create an invoice refund by differences
+        account_move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=[invoice.id])
+            .create(
+                dict(
+                    reason="Credit Note for Binovo",
+                    date=date.today(),
+                    refund_method="refund",
+                )
+            )
+        )
+        account_move_reversal.with_context(refund_method="refund").reverse_moves()
+        refund = invoice.reversal_move_id
+        with self.assertRaises(exceptions.ValidationError):
+            refund.action_post()
+
     def test_out_refund_refund_not_sent_invoice(self):
         self.main_company.tbai_enabled = False
         invoice = self.create_draft_invoice(
