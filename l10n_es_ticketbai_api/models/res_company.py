@@ -10,6 +10,7 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     tbai_enabled = fields.Boolean("Enable TicketBAI", copy=False)
+    tbai_test_available = fields.Boolean("Are Tests URLs Available", copy=False)
     tbai_test_enabled = fields.Boolean("Enable testing", copy=False)
     tbai_certificate_id = fields.Many2one(
         comodel_name="tbai.certificate",
@@ -129,6 +130,18 @@ class ResCompany(models.Model):
                         "invoice has been sent."
                     )
                 )
+
+    @api.onchange("tbai_tax_agency_id")
+    def onchange_tbai_tax_agency(self):
+        if not (
+            self.tbai_tax_agency_id.test_qr_base_url
+            and self.tbai_tax_agency_id.test_rest_url_invoice
+            and self.tbai_tax_agency_id.test_rest_url_cancellation
+        ):
+            self.tbai_test_available = False
+            self.tbai_test_enabled = False
+        else:
+            self.tbai_test_available = True
 
     def tbai_certificate_get_p12_buffer(self):
         if self.tbai_certificate_id:
