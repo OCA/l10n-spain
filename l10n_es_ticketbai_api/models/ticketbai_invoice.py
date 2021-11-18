@@ -70,7 +70,7 @@ class TicketBAIInvoice(models.Model):
         self.ensure_one()
         error_msg = ''
         try:
-            tbai_api = self.get_ticketbai_api()
+            tbai_api = self.sudo().get_ticketbai_api()
         except exceptions.ValidationError as ve:
             _logger.exception(ve)
             tbai_api = None
