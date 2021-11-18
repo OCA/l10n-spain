@@ -41,6 +41,8 @@ class TicketBAITaxAgency(models.Model):
         compute="_compute_ticketbai_version",
         store=True,
     )
+    sign_file_url = fields.Char(string="Sign File URL", required=True)
+    sign_file_hash = fields.Char(string="Sign File HASH", required=True)
 
     def get_current_version(self):
         self.ensure_one()
