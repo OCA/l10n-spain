@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data noupdate="1">
+        <record id="database_ticketbai" model="ir.config_parameter" forcecreate="True">
+            <field name="key">database.ticketbai</field>
+            <field name="value" model="ir.config_parameter" eval="obj().env.cr.dbname"/>
+        </record>
+    </data>
+</odoo>
