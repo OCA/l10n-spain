@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="view_invoice_form_tbai_batuz" model="ir.ui.view">
+            <field name="name">view.invoice.form.tbai.batuz</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="l10n_es_ticketbai.invoice_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='ticketbai']/group[@name='tbai_responses']" position="after">
+                    <group name="lroe_responses_lines"
+                           string="LROE Responses"
+                           attrs="{'invisible': [('lroe_response_line_ids', '=', [])]}">
+                        <field name="lroe_response_line_ids" nolabel="1" options="{'no_create_edit': True}">
+                            <form>
+                                <header>
+                                    <field name="state" widget="statusbar" readonly="1"/>
+                                </header>
+                                <sheet>
+                                    <group name="lroe_response_main_group">
+                                        <field name="lroe_operation_id"/>
+                                        <field name="code"/>
+                                        <field name="description"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                            <tree create="false" delete="false" decoration-danger="state=='Incorrecto'">
+                                <field name="create_date"/>
+                                <field name="response_message"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
