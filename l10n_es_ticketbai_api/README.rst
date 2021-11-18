@@ -61,6 +61,10 @@ En la configuración general:
 
 * Número de serie del dispositivo (opcional)
 
+En los parámetros del sistema:
+
+* Alimentar el dato "database.ticketbai" con el nombre de la BBDD de la instalación. Este parámetro está concebido como medida de seguridad para evitar que una BB.DD. copiada envíe facturas que están en estado pendiente en lugar de la BB.DD. original. Se inicializará si no está presente con el nombre de la BB.DD. actual. Si está presente las actualizaciones conservarán el valor original.
+
 
 Bug Tracker
 ===========

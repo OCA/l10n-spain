@@ -30,8 +30,8 @@ def post_init_hook(cr, registry):
             if 0 < len(fiscal_position_template.tbai_vat_exemption_ids):
                 tbai_vat_exemptions = []
                 for exemption in fiscal_position_template.tbai_vat_exemption_ids:
-                    tax = env['l10n.es.aeat.report'].\
-                        get_taxes_from_templates(exemption.tax_id)
+                    tax = env['l10n.es.aeat.report']\
+                        .get_taxes_from_templates(exemption.tax_id)
                     if 1 == len(tax):
                         tbai_vat_exemptions.append((0, 0, {
                             'tax_id': tax.id,
