@@ -38,6 +38,7 @@ class ResPartner(models.Model):
                     ) % record.name)
 
     def tbai_get_partner_country_code(self):
+        self.ensure_one()
         country_code, vat_number = \
             self.vat and tbai_utils.split_vat(self.vat) or (None, None)
         if not ustr(country_code).encode('utf-8').isalpha():
@@ -46,6 +47,8 @@ class ResPartner(models.Model):
             country_code = country_code
         elif self.country_id:
             country_code = self.country_id.code
+        if not country_code:
+            raise exceptions.ValidationError(_("Incorrect country code."))
         return country_code.upper()
 
     def tbai_get_partner_vat_number(self):
