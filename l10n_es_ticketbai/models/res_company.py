@@ -12,6 +12,11 @@ class ResCompany(models.Model):
     tbai_aeat_certificate_id = fields.Many2one(
         comodel_name='l10n.es.aeat.certificate', string='AEAT Certificate',
         domain="[('state', '=', 'active'), ('company_id', '=', id)]", copy=False)
+    tbai_protected_data = fields.Boolean('Protected Data', default=False)
+    tbai_protected_data_txt = fields.Text(
+        "Substitution Text",
+        translate=True,
+        default='Information protected by Article 9 Regulation 679/2016')
 
     @api.onchange('tbai_enabled')
     def onchange_tbai_enabled_unset_tbai_aeat_certificate_id(self):
