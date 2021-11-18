@@ -123,6 +123,13 @@
                                         attrs="{'invisible': [('sii_send_failed', '=', False)]}"
                                     />
                                     <field name="sii_csv" />
+                                    <label for="sii_result_ids" colspan="4" />
+                                    <field
+                                        name="sii_result_ids"
+                                        nolabel="1"
+                                        colspan="4"
+                                        readonly="1"
+                                    />
                                 </group>
                             </page>
                             <page

@@ -252,6 +252,12 @@ class AccountMove(models.Model):
         string="Connector Jobs",
         copy=False,
     )
+    sii_result_ids = fields.One2many(
+        comodel_name="aeat.sii.result",
+        inverse_name="invoice_id",
+        string="Invoice results",
+        domain=[("inv_type", "=", "normal")],
+    )
 
     @api.depends("move_type")
     def _compute_sii_registration_key_domain(self):
@@ -1100,6 +1106,9 @@ class AccountMove(models.Model):
                         "sii_account_registration_date"
                     ] = self._get_account_registration_date()
                 inv_vals["sii_return"] = res
+                self.env["aeat.sii.result"].create_result(
+                    invoice, res, "normal", False, "account.move"
+                )
                 send_error = False
                 if res_line["CodigoErrorRegistro"]:
                     send_error = "{} | {}".format(
@@ -1109,6 +1118,9 @@ class AccountMove(models.Model):
                 inv_vals["sii_send_error"] = send_error
                 invoice.write(inv_vals)
             except Exception as fault:
+                self.env["aeat.sii.result"].create_result(
+                    invoice, False, "normal", fault, "account.move"
+                )
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env["account.move"].browse(invoice.id)
@@ -1186,6 +1198,9 @@ class AccountMove(models.Model):
                 #     'account.fp_intra').id:
                 #     res = serv.AnulacionLRDetOperacionIntracomunitaria(
                 #         header, invoices)
+                self.env["aeat.sii.result"].create_result(
+                    invoice, res, "normal", False, "account.move"
+                )
                 inv_vals["sii_return"] = res
                 if res["EstadoEnvio"] == "Correcto":
                     inv_vals.update(
@@ -1203,6 +1218,9 @@ class AccountMove(models.Model):
                     )
                 invoice.write(inv_vals)
             except Exception as fault:
+                self.env["aeat.sii.result"].create_result(
+                    invoice, False, "normal", fault, "account.move"
+                )
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 invoice = env["account.move"].browse(invoice.id)

@@ -52,6 +52,7 @@
         "views/account_fiscal_position_view.xml",
         "views/res_partner_views.xml",
         "views/aeat_sii_tax_agency_view.xml",
+        "views/aeat_sii_result_view.xml",
     ],
     "images": ["static/description/SII_1.jpg"],
     "post_init_hook": "add_key_to_existing_invoices",

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+
+        <record id="aeat_sii_result_view_tree" model="ir.ui.view">
+            <field name="name">aeat.sii.result.view.tree</field>
+            <field name="model">aeat.sii.result</field>
+            <field name="arch" type="xml">
+                <tree string="Aeat SII Result">
+                    <field name="csv" />
+                    <field name="timestamp_presentation" />
+                    <field name="sent_state" />
+                    <field name="serial_number" />
+                    <field name="date" />
+                    <field name="registry_error_description" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="aeat_sii_result_view_form" model="ir.ui.view">
+            <field name="name">aeat.sii.result.view.form</field>
+            <field name="model">aeat.sii.result</field>
+            <field name="arch" type="xml">
+                <form string="Aeat SII Result">
+                    <group>
+                        <group string="Result">
+                            <field name="csv" />
+                            <field name="sent_state" />
+                            <separator string="Presentation Data" colspan="4" />
+                            <field name="vat_presenter" />
+                            <field name="timestamp_presentation" />
+                        </group>
+                        <group string="Header">
+                            <field name="id_version_sii" />
+                            <field name="type_communication" />
+                            <separator string="Owner" colspan="4" />
+                            <field name="name" />
+                            <field name="vat_agent" />
+                            <field name="vat" />
+                        </group>
+                    </group>
+                    <group string="Line reply">
+                        <group>
+                            <field name="registry_state" />
+                            <field name="registry_csv" />
+                        </group>
+                        <group>
+                            <field name="registry_error_code" />
+                            <field name="registry_error_description" />
+                        </group>
+                        <group colspan="4" string="Invoice information">
+                            <group>
+                                <field name="vat_emitting" />
+                                <field name="country_code" />
+                                <field name="type_id" />
+                                <field name="number_id" />
+                            </group>
+                            <group>
+                                <field name="serial_number" />
+                                <field name="serial_number_resume" />
+                                <field name="date" />
+                            </group>
+                        </group>
+                        <group colspan="4" string="Duplicate registry information">
+                            <field name="duplicate_registry_state" />
+                            <field name="duplicate_registry_error_code" />
+                            <field name="duplicate_registry_error_des" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>
