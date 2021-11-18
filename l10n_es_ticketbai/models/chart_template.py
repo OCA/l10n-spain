@@ -9,13 +9,17 @@ class AccountFiscalPosition(models.Model):
     _inherit = 'account.fiscal.position.template'
 
     tbai_vat_regime_key = fields.Many2one(
-        comodel_name='tbai.vat.regime.key', string='VAT Regime Key', copy=False)
+        comodel_name='tbai.vat.regime.key',
+        string='VAT Regime Key', copy=False)
     tbai_vat_regime_key2 = fields.Many2one(
-        comodel_name='tbai.vat.regime.key', string='VAT Regime 2nd Key', copy=False)
+        comodel_name='tbai.vat.regime.key',
+        string='VAT Regime 2nd Key', copy=False)
     tbai_vat_regime_key3 = fields.Many2one(
-        comodel_name='tbai.vat.regime.key', string='VAT Regime 3rd Key', copy=False)
+        comodel_name='tbai.vat.regime.key',
+        string='VAT Regime 3rd Key', copy=False)
     tbai_vat_exemption_ids = fields.One2many(
-        comodel_name='account.fp.tbai.tax_template', inverse_name='position_id')
+        comodel_name='account.fp.tbai.tax_template',
+        inverse_name='position_id')
 
 
 class AccountFiscalPositionTicketBAITaxTemplate(models.Model):
@@ -24,7 +28,8 @@ class AccountFiscalPositionTicketBAITaxTemplate(models.Model):
     _rec_name = 'tbai_vat_exemption_key'
 
     position_id = fields.Many2one(
-        comodel_name='account.fiscal.position.template', string='Fiscal Position',
+        comodel_name='account.fiscal.position.template',
+        string='Fiscal Position',
         required=True, ondelete='cascade')
     tax_id = fields.Many2one(
         comodel_name='account.tax.template', string='Tax', required=True,
@@ -54,13 +59,18 @@ class AccountChartTemplate(models.Model):
 
     @api.multi
     def create_record_with_xmlid(self, company, template, model, vals):
-        res_id = super(AccountChartTemplate, self).create_record_with_xmlid(company, template, model, vals)
+        res_id = super(AccountChartTemplate, self).create_record_with_xmlid(
+            company, template, model, vals)
         if 'account.fiscal.position' == model:
             fiscal_position = self.env['account.fiscal.position'].browse(res_id)
             tbai_vat_exemptions = []
             for exemption in template.tbai_vat_exemption_ids:
-                tax = [self.env['l10n.es.aeat.report']._get_tax_id_from_tax_template(
-                    tmpl, company.id)for tmpl in exemption.tax_id]
+                tax =\
+                    [
+                        self.env['l10n.es.aeat.report'].
+                        _get_tax_id_from_tax_template(
+                            tmpl, company.id)for tmpl in exemption.tax_id
+                    ]
                 if 1 == len(tax):
                     tbai_vat_exemptions.append((0, 0, {
                         'tax_id': tax[0],

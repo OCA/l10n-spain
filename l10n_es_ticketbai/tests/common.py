@@ -158,7 +158,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         self.account_receivable = self.env['account.account'].search(
             [('user_type_id', '=',
               self.env.ref('account.data_account_type_receivable').id),
-                ('company_id','=',self.main_company.id)], limit=1)
+                ('company_id', '=', self.main_company.id)], limit=1)
         self.account_revenue = self.env['account.account'].search(
             [('user_type_id', '=',
               self.env.ref('account.data_account_type_revenue').id)], limit=1)

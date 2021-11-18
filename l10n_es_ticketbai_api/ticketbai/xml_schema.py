@@ -8,6 +8,7 @@ from uuid import uuid4
 from lxml import etree
 import logging
 from ..utils import utils as tbai_utils
+from unidecode import unidecode
 
 _logger = logging.getLogger(__name__)
 
@@ -161,13 +162,13 @@ class XMLSchema:
                       ('etsi:SignaturePolicyId', (),
                        ('etsi:SigPolicyId', (),
                         ('etsi:Identifier', (),
-                         tax_agency.sign_file_url),
+                         unidecode(tax_agency.sign_file_url)),
                         ('etsi:Description', (), )),
                        ('etsi:SigPolicyHash', (),
                         ('ds:DigestMethod',
                          ('Algorithm', 'http://www.w3.org/2001/04/xmlenc#sha256')),
                         ('ds:DigestValue', (),
-                         tax_agency.sign_file_hash))))))))
+                         unidecode(tax_agency.sign_file_hash)))))))))
         root.append(signature)
         create_node_tree(signature, [dslist])
         ctx.sign(signature)

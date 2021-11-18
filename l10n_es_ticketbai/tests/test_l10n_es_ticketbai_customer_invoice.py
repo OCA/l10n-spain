@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 from datetime import date
-from odoo import exceptions
+from odoo.exceptions import ValidationError
 from odoo.tests import common
 from .common import TestL10nEsTicketBAI
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import XMLSchema
@@ -75,7 +75,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
             self.main_company.tbai_last_invoice_id, invoice.tbai_invoice_id)
 
         # Cancel and recreate invoices with errors.
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(ValidationError):
             invoice.tbai_invoice_id.cancel_and_recreate()
         invoices_with_errors = invoice2.tbai_invoice_id
         invoices_with_errors |= invoice3.tbai_invoice_id
@@ -160,8 +160,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice.action_invoice_open()
         self.assertEqual(invoice.state, 'open')
         self.assertEqual(1, len(invoice.tbai_invoice_ids))
-        root, signature_value = \
-            invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        root, signature_value = invoice.sudo().tbai_invoice_ids.\
+            get_tbai_xml_signed_and_signature_value()
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
         # Create an invoice refund by differences
@@ -175,7 +175,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                 filter_refund='refund'
             ))
         account_invoice_refund.invoice_refund()
-        invoice_refund = self.env['account.invoice'].search([('refund_invoice_id','=',invoice.id)])
+        invoice_refund = self.env['account.invoice'].search(
+            [('refund_invoice_id', '=', invoice.id)])
         self.assertEqual(1, len(invoice_refund))
         self.assertEqual('I', invoice_refund.tbai_refund_type)
         self.assertEqual('R1', invoice_refund.tbai_refund_key)
@@ -183,8 +184,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice_refund.action_invoice_open()
         self.assertEqual(invoice_refund.state, 'open')
         self.assertEqual(1, len(invoice_refund.tbai_invoice_ids))
-        r_root, r_signature_value = \
-            invoice_refund.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        r_root, r_signature_value = invoice_refund.sudo().tbai_invoice_ids.\
+            get_tbai_xml_signed_and_signature_value()
         r_res = XMLSchema.xml_is_valid(
             self.test_xml_invoice_schema_doc, r_root)
         self.assertTrue(r_res)
@@ -209,8 +210,9 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                 filter_refund='refund'
             ))
         account_invoice_refund.invoice_refund()
-        refund = invoice.refund_invoice_ids
-        with self.assertRaises(exceptions.ValidationError):
+        refund = self.env['account.invoice'].search(
+            [('refund_invoice_id', '=', invoice.id)])
+        with self.assertRaises(ValidationError):
             refund.action_invoice_open()
 
     def test_out_refund_cancelled_raises(self):
@@ -233,39 +235,10 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                 filter_refund='refund'
             ))
         account_invoice_refund.invoice_refund()
-        refund = invoice.refund_invoice_ids
-        with self.assertRaises(exceptions.ValidationError):
+        refund = self.env['account.invoice'].search(
+            [('refund_invoice_id', '=', invoice.id)])
+        with self.assertRaises(ValidationError):
             refund.action_invoice_open()
-
-    def test_out_refund_refund_not_sent_invoice(self):
-        self.main_company.tbai_enabled = False
-        invoice = self.create_draft_invoice(
-            self.account_billing.id, self.fiscal_position_national)
-        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
-        invoice.compute_taxes()
-        invoice.action_invoice_open()
-        self.assertEqual(invoice.state, 'open')
-        self.assertEqual(0, len(invoice.tbai_invoice_ids))
-        self.main_company.tbai_enabled = True
-        # Create an invoice refund by differences
-        account_invoice_refund = \
-            self.env['account.invoice.refund'].with_context(
-                active_id=invoice.id,
-                active_ids=invoice.ids
-            ).create(dict(
-                description='Credit Note for Binovo',
-                date=date.today(),
-                filter_refund='refund'
-            ))
-        account_invoice_refund.invoice_refund()
-        invoice_refund = self.env['account.invoice'].search([('refund_invoice_id','=',invoice.id)])
-        self.assertEqual(1, len(invoice_refund))
-        self.assertEqual('I', invoice_refund.tbai_refund_type)
-        self.assertEqual('R1', invoice_refund.tbai_refund_key)
-        invoice_refund.compute_taxes()
-        invoice_refund.action_invoice_open()
-        self.assertEqual(invoice_refund.state, 'open')
-        self.assertEqual(0, len(invoice_refund.tbai_invoice_ids))
 
     def test_out_refund_modify(self):
         invoice = self.create_draft_invoice(
@@ -291,7 +264,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                 filter_refund='modify'
             ))
         account_invoice_refund.invoice_refund()
-        invoice_refund = self.env['account.invoice'].search([('refund_invoice_id','=',invoice.id)])
+        invoice_refund = self.env['account.invoice'].search(
+            [('refund_invoice_id', '=', invoice.id)])
         self.assertEqual(1, len(invoice_refund))
         self.assertEqual(invoice_refund.state, 'paid')
         self.assertEqual('I', invoice_refund.tbai_refund_type)
@@ -326,14 +300,15 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                 filter_refund='cancel'
             ))
         account_invoice_refund.invoice_refund()
-        invoice_refund = self.env['account.invoice'].search([('refund_invoice_id','=',invoice.id)])
+        invoice_refund = self.env['account.invoice'].search(
+            [('refund_invoice_id', '=', invoice.id)])
         self.assertEqual(1, len(invoice_refund))
         self.assertEqual('I', invoice_refund.tbai_refund_type)
         self.assertEqual('R1', invoice_refund.tbai_refund_key)
         self.assertEqual(invoice_refund.state, 'paid')
         self.assertEqual(1, len(invoice_refund.tbai_invoice_ids))
-        r_root, r_signature_value = \
-            invoice_refund.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        r_root, r_signature_value = invoice_refund.sudo().\
+            tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
         r_res = XMLSchema.xml_is_valid(
             self.test_xml_invoice_schema_doc, r_root)
         self.assertTrue(r_res)
@@ -376,7 +351,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice.compute_taxes()
         self.assertEqual(invoice.type, 'out_refund')
         invoice.sudo().tbai_refund_origin_ids = False
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(ValidationError):
             invoice.action_invoice_open()
 
     def test_invoice_out_refund_from_origin_number_too_long(self):
@@ -387,7 +362,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                                             context=ctx)
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice.compute_taxes()
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(ValidationError):
             invoice.sudo().tbai_refund_origin_ids = [
                 (0, 0, {'number_prefix': 'INV_XYZ/2021/',
                         'number': '000000000000000000001',
@@ -401,7 +376,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                                             context=ctx)
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice.compute_taxes()
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(ValidationError):
             invoice.sudo().tbai_refund_origin_ids = [
                 (0, 0, {'number_prefix': 'S00000000000000000000',
                         'number': '01',
@@ -422,7 +397,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                                            self.fiscal_position_national,
                                            invoice_type='out_refund',
                                            context=ctx)
-        with self.assertRaises(exceptions.ValidationError):
+        with self.assertRaises(ValidationError):
             refund.sudo().tbai_refund_origin_ids = [
                 (0, 0, {'number_prefix': number_prefix,
                         'number': number,

@@ -16,8 +16,8 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
     _inherit = 'l10n.es.aeat.certificate.password'
 
     @api.multi
-    def get_keys(self):
-        super(L10nEsAeatCertificatePassword, self).get_keys()
+    def get_cert_keys(self):
+        super(L10nEsAeatCertificatePassword, self).get_cert_keys()
         record = self.env['l10n.es.aeat.certificate'].browse(
             self.env.context.get('active_id'))
         file = base64.b64decode(record.file)

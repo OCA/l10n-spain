@@ -63,22 +63,32 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_printed_report_name(self):
         self.ensure_one()
-        return  self.type == 'out_invoice' and self.state == 'draft' and _('Draft Invoice') or \
-                self.type == 'out_invoice' and self.state in ('open','paid') and _('Invoice - %s') % (self.number) or \
-                self.type == 'out_refund' and self.state == 'draft' and _('Credit Note') or \
-                self.type == 'out_refund' and _('Credit Note - %s') % (self.number) or \
-                self.type == 'in_invoice' and self.state == 'draft' and _('Vendor Bill') or \
-                self.type == 'in_invoice' and self.state in ('open','paid') and _('Vendor Bill - %s') % (self.number) or \
-                self.type == 'in_refund' and self.state == 'draft' and _('Vendor Credit Note') or \
-                self.type == 'in_refund' and _('Vendor Credit Note - %s') % (self.number)
+        return self.type == 'out_invoice' and self.state == 'draft' and _(
+            'Draft Invoice') or \
+            self.type == 'out_invoice' and self.state in (
+                'open', 'paid') and _('Invoice - %s') % (self.number) or \
+            self.type == 'out_refund' and self.state == 'draft' and _(
+                'Credit Note') or \
+            self.type == 'out_refund' and _('Credit Note - %s') % (
+                self.number) or \
+            self.type == 'in_invoice' and self.state == 'draft' and _(
+                'Vendor Bill') or \
+            self.type == 'in_invoice' and self.state in ('open', 'paid') and _(
+                'Vendor Bill - %s') % (self.number) or \
+            self.type == 'in_refund' and self.state == 'draft' and _(
+                'Vendor Credit Note') or \
+            self.type == 'in_refund' and _('Vendor Credit Note - %s') % (
+                self.number)
 
     @api.multi
     @api.constrains('state')
     def _check_cancel_number_invoice(self):
         for record in self:
-            if record.tbai_enabled and 'draft' == record.state and record.number:
+            if record.tbai_enabled and\
+                    'draft' == record.state and record.number:
                 raise exceptions.ValidationError(_(
-                    "Invoice %s. You cannot change to draft a numbered invoice!"
+                    "Invoice %s. You cannot change to draft a"
+                    " numbered invoice!"
                 ) % record.number)
 
     @api.multi
@@ -92,7 +102,6 @@ class AccountInvoice(models.Model):
 
     @api.model
     def create(self, vals):
-        
         company = self.env.user.company_id
         if company.tbai_enabled:
             filter_refund = self._context.get('filter_refund', False) \
@@ -114,7 +123,7 @@ class AccountInvoice(models.Model):
                     fiscal_position.tbai_vat_regime_key2.id
                 vals['tbai_vat_regime_key3'] = \
                     fiscal_position.tbai_vat_regime_key3.id
-        return super().create(vals)
+        return super(AccountInvoice, self).create(vals)
 
     @api.depends(
         'tbai_invoice_ids', 'tbai_invoice_ids.state',
@@ -122,8 +131,10 @@ class AccountInvoice(models.Model):
     )
     def _compute_tbai_response_ids(self):
         for record in self:
-            response_ids = record.tbai_invoice_ids.mapped('tbai_response_ids').ids
-            response_ids += record.tbai_cancellation_ids.mapped('tbai_response_ids').ids
+            response_ids = record.tbai_invoice_ids.mapped(
+                'tbai_response_ids').ids
+            response_ids += record.tbai_cancellation_ids.mapped(
+                'tbai_response_ids').ids
             record.tbai_response_ids = [(6, 0, response_ids)]
 
     @api.depends('date', 'date_invoice')
@@ -134,9 +145,12 @@ class AccountInvoice(models.Model):
     @api.onchange('fiscal_position_id')
     def onchange_fiscal_position_id_tbai_vat_regime_key(self):
         if self.fiscal_position_id:
-            self.tbai_vat_regime_key = self.fiscal_position_id.tbai_vat_regime_key.id
-            self.tbai_vat_regime_key2 = self.fiscal_position_id.tbai_vat_regime_key2.id
-            self.tbai_vat_regime_key3 = self.fiscal_position_id.tbai_vat_regime_key3.id
+            self.tbai_vat_regime_key =\
+                self.fiscal_position_id.tbai_vat_regime_key.id
+            self.tbai_vat_regime_key2 =\
+                self.fiscal_position_id.tbai_vat_regime_key2.id
+            self.tbai_vat_regime_key3 =\
+                self.fiscal_position_id.tbai_vat_regime_key3.id
 
     @api.onchange('tbai_refund_type')
     def onchange_tbai_refund_type(self):
@@ -150,7 +164,8 @@ class AccountInvoice(models.Model):
                     'warning': {
                         'title': _("Warning"),
                         'message': _(
-                            "TicketBAI refund by substitution is not supported.")
+                            "TicketBAI refund by substitution"
+                            " is not supported.")
                     }
                 }
             elif 'out_refund' != self.type and \
@@ -160,8 +175,8 @@ class AccountInvoice(models.Model):
                     'warning': {
                         'title': _("Warning"),
                         'message': _(
-                            "TicketBAI refund by differences only available for "
-                            "Customer Credit Notes.")
+                            "TicketBAI refund by differences only available "
+                            "for customer Credit Notes.")
                     }
                 }
 
@@ -175,10 +190,13 @@ class AccountInvoice(models.Model):
                     'refund_code': self.tbai_refund_key,
                     'refund_type': self.tbai_refund_type,
                     'tbai_invoice_refund_ids': [(0, 0, {
-                        'number_prefix': refunded_inv.tbai_get_value_serie_factura(),
-                        'number': refunded_inv.tbai_get_value_num_factura(),
+                        'number_prefix':
+                            refunded_inv.tbai_get_value_serie_factura(),
+                        'number':
+                            refunded_inv.tbai_get_value_num_factura(),
                         'expedition_date':
-                            refunded_inv.tbai_get_value_fecha_expedicion_factura()
+                            refunded_inv.
+                            tbai_get_value_fecha_expedicion_factura()
                     })]
                 })
             else:
@@ -187,9 +205,12 @@ class AccountInvoice(models.Model):
                     for refund_origin_id in self.tbai_refund_origin_ids:
                         refund_id_dicts.append(
                             (0, 0, {
-                                'number_prefix': refund_origin_id.number_prefix,
-                                'number': refund_origin_id.number,
-                                'expedition_date': refund_origin_id.expedition_date
+                                'number_prefix':
+                                    refund_origin_id.number_prefix,
+                                'number':
+                                    refund_origin_id.number,
+                                'expedition_date':
+                                    refund_origin_id.expedition_date
                             }))
                     vals.update({
                         'is_invoice_refund': True,
@@ -258,15 +279,15 @@ class AccountInvoice(models.Model):
         tbai_maps = self.env["tbai.tax.map"].search(
             [('code', 'in', ("RE", "IRPF"))]
         )
-        exclude_taxes = self.env['l10n.es.aeat.report'].get_taxes_from_templates(
-            tbai_maps.mapped("tax_template_ids")
-        )
+        exclude_taxes = self.env['l10n.es.aeat.report'].\
+            get_taxes_from_templates(tbai_maps.mapped("tax_template_ids"))
         for tax in self.tax_line_ids.filtered(
                 lambda x: x.tax_id not in exclude_taxes):
             tax_subject_to = tax.tax_id.tbai_is_subject_to_tax()
             not_subject_to_cause = \
                 not tax_subject_to and tax.tbai_get_value_causa() or ''
-            is_exempted = tax_subject_to and tax.tax_id.tbai_is_tax_exempted() or False
+            is_exempted = tax_subject_to and\
+                tax.tax_id.tbai_is_tax_exempted() or False
             not_exempted_type = tax_subject_to and \
                 not is_exempted and tax.tbai_get_value_tipo_no_exenta() or ''
             taxes.append((0, 0, {
@@ -274,16 +295,19 @@ class AccountInvoice(models.Model):
                 'is_subject_to': tax_subject_to,
                 'not_subject_to_cause': not_subject_to_cause,
                 'is_exempted': is_exempted,
-                'exempted_cause': is_exempted and tax.tbai_vat_exemption_key.code or '',
+                'exempted_cause': is_exempted and
+                tax.tbai_vat_exemption_key.code or '',
                 'not_exempted_type': not_exempted_type,
                 'amount': "%.2f" % abs(tax.tax_id.amount),
                 'amount_total': tax.tbai_get_value_cuota_impuesto(),
-                're_amount': tax.tbai_get_value_tipo_recargo_equivalencia() or '',
+                're_amount':
+                tax.tbai_get_value_tipo_recargo_equivalencia() or '',
                 're_amount_total':
                     tax.tbai_get_value_cuota_recargo_equivalencia() or '',
+                'type': tax.tbai_get_value_tax_type(),
                 'surcharge_or_simplified_regime':
-                    tax.tbai_get_value_op_recargo_equivalencia_o_reg_simplificado(),
-                'type': tax.tbai_get_value_tax_type()
+                    tax.
+                    tbai_get_value_op_recargo_equivalencia_o_reg_simplificado()
             }))
         vals['tbai_tax_ids'] = taxes
         return vals
@@ -320,11 +344,12 @@ class AccountInvoice(models.Model):
     @api.multi
     def action_cancel(self):
         non_cancelled_refunds = \
-            self.mapped('refund_invoice_id').filtered(lambda x: 'cancel' != x.state)
+            self.mapped('refund_invoice_id').filtered(
+                lambda x: 'cancel' != x.state)
         if 0 < len(non_cancelled_refunds):
             raise exceptions.ValidationError(_(
-                "You cannot cancel an invoice with non cancelled credit notes.\n"
-                "Related invoices: %s") % ', '.join(
+                "You cannot cancel an invoice with non cancelled credit notes"
+                ".\nRelated invoices: %s") % ', '.join(
                 x.number for x in non_cancelled_refunds))
         pending_invoices = self.filtered(
             lambda x: x.tbai_enabled and 'open' == x.state and
@@ -332,10 +357,12 @@ class AccountInvoice(models.Model):
             TicketBaiInvoiceState.pending.value == x.tbai_invoice_id.state)
         if 0 < len(pending_invoices):
             raise exceptions.ValidationError(_(
-                "You cannot cancel an invoice while being sent to the Tax Agency.\n"
-                "Related invoices: %s") % ', '.join(x.number for x in pending_invoices))
+                "You cannot cancel an invoice while being"
+                " sent to the Tax Agency.\nRelated invoices: %s"
+                ) % ', '.join(x.number for x in pending_invoices))
         tbai_invoices = self.sudo().filtered(
-            lambda x: x.tbai_enabled and x.state in ['open', 'in_payment', 'paid'] and
+            lambda x: x.tbai_enabled and
+            x.state in ['open', 'in_payment', 'paid'] and
             x.tbai_invoice_id and
             TicketBaiInvoiceState.sent.value == x.tbai_invoice_id.state)
         tbai_invoices._tbai_invoice_cancel()
@@ -348,21 +375,26 @@ class AccountInvoice(models.Model):
             for invoice in refund_invoices:
                 valid_refund = True
                 error_refund_msg = None
-                if not invoice.refund_invoice_id and not invoice.tbai_refund_origin_ids:
+                if not invoice.refund_invoice_id and\
+                        not invoice.tbai_refund_origin_ids:
                     valid_refund = False
-                    error_refund_msg = _("Please, specify data for the original"
-                                         " invoices that are going to be refunded")
+                    error_refund_msg = _("Please, specify data for the"
+                                         " original invoices that are going"
+                                         " to be refunded")
                 if invoice.refund_invoice_id.tbai_invoice_id:
-                    valid_refund = invoice.refund_invoice_id.tbai_invoice_id.state in \
+                    valid_refund =\
+                        invoice.refund_invoice_id.tbai_invoice_id.state in \
                         [
                             TicketBaiInvoiceState.pending.value,
                             TicketBaiInvoiceState.sent.value
                         ]
                     if not valid_refund:
                         error_refund_msg = _(
-                            "Some of the original invoices have related tbai invoices "
-                            "in inconsistent state please fix them beforehand.")
-                if valid_refund and invoice.refund_invoice_id.tbai_cancellation_id:
+                            "Some of the original invoices have related tbai "
+                            "invoices in inconsistent state please"
+                            " fix them beforehand.")
+                if valid_refund and invoice.\
+                        refund_invoice_id.tbai_cancellation_id:
                     valid_refund = False
                     error_refund_msg = _("Some of the original invoices "
                                          "have related tbai cancelled invoices")
@@ -398,10 +430,11 @@ class AccountInvoice(models.Model):
     def _prepare_tax_line_vals(self, line, tax):
         vals = super(AccountInvoice, self)._prepare_tax_line_vals(line, tax)
         if self.fiscal_position_id:
-            exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                lambda e: e.tax_id.id == tax['id'])
+            exemption = self.fiscal_position_id.tbai_vat_exemption_ids.\
+                filtered(lambda e: e.tax_id.id == tax['id'])
             if 1 == len(exemption):
-                vals['tbai_vat_exemption_key'] = exemption.tbai_vat_exemption_key.id
+                vals['tbai_vat_exemption_key'] =\
+                    exemption.tbai_vat_exemption_key.id
         return vals
 
     def tbai_is_invoice_refund(self):
@@ -422,8 +455,10 @@ class AccountInvoice(models.Model):
 
     def tbai_get_value_num_factura(self):
         invoice_number_prefix = self.tbai_get_value_serie_factura()
-        clear_number = self.number[1:] if self.tbai_is_invoice_refund() else self.number
-        if invoice_number_prefix and not clear_number.startswith(invoice_number_prefix):
+        clear_number =\
+            self.number[1:] if self.tbai_is_invoice_refund() else self.number
+        if invoice_number_prefix and not clear_number.startswith(
+                invoice_number_prefix):
             raise exceptions.ValidationError(_(
                 "Invoice Number Prefix %s is not part of Invoice Number %s!"
             ) % (invoice_number_prefix, self.number))
@@ -431,8 +466,8 @@ class AccountInvoice(models.Model):
 
     def tbai_get_value_fecha_expedicion_factura(self):
         invoice_date = self.date or self.date_invoice
-        date = fields.Datetime.context_timestamp(self, fields.Datetime.from_string(
-            invoice_date))
+        date = fields.Datetime.context_timestamp(
+            self, fields.Datetime.from_string(invoice_date))
         return date.strftime("%d-%m-%Y")
 
     def tbai_get_value_hora_expedicion_factura(self):
@@ -452,16 +487,19 @@ class AccountInvoice(models.Model):
         return "%.2f" % abs(self.amount_untaxed_signed)
 
     def tbai_get_value_cuota_rectificada(self):
-        amount = abs(self.amount_total_company_signed - self.amount_untaxed_signed)
+        amount =\
+            abs(self.amount_total_company_signed - self.amount_untaxed_signed)
         return "%.2f" % amount
 
     def tbai_get_value_fecha_operacion(self):
         if self.tbai_date_operation:
             tbai_date_operation = datetime.strptime(
-                self.tbai_date_operation, DEFAULT_SERVER_DATETIME_FORMAT).strftime(
+                self.tbai_date_operation,
+                DEFAULT_SERVER_DATETIME_FORMAT).strftime(
                 "%d-%m-%Y")
             date_invoice = datetime.strptime(
-                self.date or self.date_invoice, DEFAULT_SERVER_DATE_FORMAT).strftime(
+                self.date or self.date_invoice,
+                DEFAULT_SERVER_DATE_FORMAT).strftime(
                 "%d-%m-%Y")
             if tbai_date_operation == date_invoice:
                 tbai_date_operation = None
@@ -502,10 +540,22 @@ class AccountInvoiceLine(models.Model):
             res = '0.00'
         return res
 
+    def _get_price_total(self):
+        self.ensure_one()
+        currency = self.invoice_id and self.invoice_id.currency_id or None
+        price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        taxes = False
+        if self.invoice_line_tax_ids:
+            taxes = self.invoice_line_tax_ids.compute_all(
+                price, currency, self.quantity, product=self.product_id,
+                partner=self.invoice_id.partner_id)
+        price_subtotal =\
+            taxes['total_excluded'] if taxes else self.quantity * price
+        return taxes['total_included'] if taxes else price_subtotal
+
     def tbai_get_value_importe_total(self):
         if RefundType.differences.value == self.invoice_id.tbai_refund_type:
             sign = -1
         else:
             sign = 1
-        amount_tax = sum(self.invoice_line_tax_ids.mapped('balance'))
-        return "%.2f" % (sign * self.price_subtotal + amount_tax)
+        return "%.2f" % (sign * self._get_price_total())

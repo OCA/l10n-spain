@@ -21,16 +21,19 @@ class TicketBAIInvoice(models.Model):
         self.ensure_one()
         cert = self.company_id.tbai_certificate_get_public_key()
         key = self.company_id.tbai_certificate_get_private_key()
-        return super(TicketBAIInvoice, self).get_ticketbai_api(cert=cert, key=key, **kwargs)
+        return super(TicketBAIInvoice, self).get_ticketbai_api(
+            cert=cert, key=key, **kwargs)
 
     @api.multi
     def send(self, **kwargs):
         self.ensure_one()
         if TicketBaiSchema.TicketBai.value == self.schema and self.invoice_id:
-            return super(TicketBAIInvoice, self).send(invoice_id=self.invoice_id.id, **kwargs)
+            return super(TicketBAIInvoice, self).send(
+                invoice_id=self.invoice_id.id, **kwargs)
         elif TicketBaiSchema.AnulaTicketBai.value == self.schema and \
                 self.cancelled_invoice_id:
-            return super(TicketBAIInvoice, self).send(invoice_id=self.cancelled_invoice_id.id, **kwargs)
+            return super(TicketBAIInvoice, self).send(
+                invoice_id=self.cancelled_invoice_id.id, **kwargs)
         else:
             return super(TicketBAIInvoice, self).send(**kwargs)
 

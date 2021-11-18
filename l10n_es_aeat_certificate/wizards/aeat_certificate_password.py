@@ -26,7 +26,7 @@ if tuple(map(int, OpenSSL.__version__.split('.'))) < (0, 15):
 
 
 @contextlib.contextmanager
-def pfx_to_pem(file, pfx_password, directory=None):
+def open_pfx_to_pem(file, pfx_password, directory=None):
     with tempfile.NamedTemporaryFile(
             prefix='private_', suffix='.pem', delete=False,
             dir=directory) as t_pem:
@@ -39,7 +39,7 @@ def pfx_to_pem(file, pfx_password, directory=None):
 
 
 @contextlib.contextmanager
-def pfx_to_crt(file, pfx_password, directory=None):
+def open_pfx_to_crt(file, pfx_password, directory=None):
     with tempfile.NamedTemporaryFile(
             prefix='public_', suffix='.crt', delete=False,
             dir=directory) as t_crt:
@@ -57,7 +57,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
     password = fields.Char(string="Password", required=True)
 
     @api.multi
-    def get_keys(self):
+    def get_cert_keys(self):
         record = self.env['l10n.es.aeat.certificate'].browse(
             self.env.context.get('active_id'))
         directory = os.path.join(
@@ -71,9 +71,9 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
         try:
             if directory and not os.path.exists(directory):
                 os.makedirs(directory)
-            with pfx_to_pem(file, self.password, directory) as private_key:
+            with open_pfx_to_pem(file, self.password, directory) as private_key:
                 record.private_key = private_key
-            with pfx_to_crt(file, self.password, directory) as public_key:
+            with open_pfx_to_crt(file, self.password, directory) as public_key:
                 record.public_key = public_key
         except Exception as e:
             if e.args:

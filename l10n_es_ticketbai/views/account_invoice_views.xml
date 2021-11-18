@@ -92,6 +92,9 @@
                         </group>
                     </page>
                 </page>
+                <xpath expr="//field[@name='tax_line_ids']/tree" position="inside">
+                    <field name="tbai_vat_exemption_key" invisible="1"/>
+                </xpath>
             </field>
         </record>
     </data>

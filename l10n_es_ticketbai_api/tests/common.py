@@ -7,10 +7,6 @@ import json
 import base64
 from random import randrange
 from lxml import etree
-<<<<<<< HEAD
-from urllib import pathname2url
-=======
->>>>>>> [REF] l10n_es_ticketbai_api Move XML schema dir to tests and make usage more flexible.
 from ..models.ticketbai_invoice import RefundCode, RefundType
 from ..models.ticketbai_invoice_tax import ExemptedCause, NotExemptedType, \
     NotSubjectToCause, VATRegimeKey, SurchargeOrSimplifiedRegimeType
