@@ -13,9 +13,9 @@
             <field name="version">1.2</field>
             <field name="qr_base_url">https://tbai.egoitza.gipuzkoa.eus/qr/</field>
             <field name="test_qr_base_url">https://tbai.prep.gipuzkoa.eus/qr/</field>
-            <field name="rest_url_invoice">https://tbai.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
+            <field name="rest_url_invoice">https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/alta</field>
             <field name="test_rest_url_invoice">https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/alta</field>
-            <field name="rest_url_cancellation">https://tbai.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
+            <field name="rest_url_cancellation">https://tbai-z.egoitza.gipuzkoa.eus/sarrerak/baja</field>
             <field name="test_rest_url_cancellation">https://tbai-prep.egoitza.gipuzkoa.eus/WAS/HACI/HTBRecepcionFacturasWEB/rest/recepcionFacturas/anulacion</field>
         </record>
     </data>
