@@ -537,8 +537,5 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             'l10n_es_ticketbai_api.res_partner_yamaha_jp')
         self.partner_intracommunity = self.env.ref(
             'l10n_es_ticketbai_api.res_partner_oca')
-        self.group_system = self.env.ref('base.group_system')  # Settings
-        self.group_user = self.env.ref('base.group_user')  # Employee
         # Contact creation
-        self.demo_user = self.env.ref('base.user_demo')  # Demo user
         self.tech_user = self.env.ref('l10n_es_ticketbai_api.user_tech')  # Root user
