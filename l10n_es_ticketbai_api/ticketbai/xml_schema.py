@@ -86,7 +86,7 @@ class XMLSchema:
         return valid
 
     @staticmethod
-    def sign(root, certificate):
+    def sign(root, certificate, tax_agency):
         """
         Sign XML with PKCS #12
         :author: Victor Laskurain <blaskurain@binovo.es>
@@ -139,7 +139,8 @@ class XMLSchema:
             signature, xmlsig.constants.TransformSha256, uri="#" + kinfo_id
         )
         xmlsig.template.add_reference(
-            signature, xmlsig.constants.TransformSha256, uri="#" + sp_id
+            signature, xmlsig.constants.TransformSha256, uri="#" + sp_id,
+            uri_type='http://uri.etsi.org/01903#SignedProperties'
         )
         ki = xmlsig.template.ensure_key_info(signature, name=kinfo_id)
         data = xmlsig.template.add_x509_data(ki)
@@ -176,7 +177,7 @@ class XMLSchema:
                                         "ds:DigestMethod",
                                         (
                                             "Algorithm",
-                                            "http://www.w3.org/2000/09/xmldsig#sha256",
+                                            "http://www.w3.org/2001/04/xmlenc#sha256",
                                         ),
                                     ),
                                     (
@@ -201,7 +202,7 @@ class XMLSchema:
                                     (
                                         "etsi:Identifier",
                                         (),
-                                        "http://ticketbai.eus/politicafirma",
+                                        tax_agency.sign_file_url,
                                     ),
                                     (
                                         "etsi:Description",
@@ -216,13 +217,13 @@ class XMLSchema:
                                         "ds:DigestMethod",
                                         (
                                             "Algorithm",
-                                            "http://www.w3.org/2000/09/xmldsig#sha256",
+                                            "http://www.w3.org/2001/04/xmlenc#sha256",
                                         ),
                                     ),
                                     (
                                         "ds:DigestValue",
                                         (),
-                                        "lX1xDvBVAsPXkkJ7R07WCVbAm9e0H33I1sCpDtQNkbc=",
+                                        tax_agency.sign_file_hash,
                                     ),
                                 ),
                             ),
