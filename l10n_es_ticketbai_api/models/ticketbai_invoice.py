@@ -787,7 +787,8 @@ class TicketBAIInvoice(models.Model):
     def get_tbai_xml_signed_and_signature_value(self):
         root = self.get_tbai_xml_unsigned()
         p12 = self.company_id.tbai_certificate_get_p12()
-        signature_value = XMLSchema.sign(root, p12)
+        tax_agency = self.company_id.tbai_tax_agency_id
+        signature_value = XMLSchema.sign(root, p12, tax_agency)
         return root, signature_value
 
     def build_tbai_invoice(self):

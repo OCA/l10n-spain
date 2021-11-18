@@ -80,7 +80,7 @@ class XMLSchema:
         return schema(root)
 
     @staticmethod
-    def sign(root, certificate):
+    def sign(root, certificate, tax_agency):
         """
         Sign XML with PKCS #12
         :author: Victor Laskurain <blaskurain@binovo.es>
@@ -133,7 +133,8 @@ class XMLSchema:
             signature, xmlsig.constants.TransformSha256, uri="#" + kinfo_id
         )
         xmlsig.template.add_reference(
-            signature, xmlsig.constants.TransformSha256, uri="#" + sp_id
+            signature, xmlsig.constants.TransformSha256, uri="#" + sp_id,
+            uri_type='http://uri.etsi.org/01903#SignedProperties'
         )
         ki = xmlsig.template.ensure_key_info(signature, name=kinfo_id)
         data = xmlsig.template.add_x509_data(ki)
@@ -144,87 +145,29 @@ class XMLSchema:
         ctx.x509 = certificate.get_certificate().to_cryptography()
         ctx.public_key = ctx.x509.public_key()
         ctx.private_key = certificate.get_privatekey().to_cryptography_key()
-        dslist = (
-            "ds:Object",
-            (),
-            (
-                "etsi:QualifyingProperties",
-                ("Target", signature_id),
-                (
-                    "etsi:SignedProperties",
-                    ("Id", sp_id),
-                    (
-                        "etsi:SignedSignatureProperties",
-                        (),
-                        ("etsi:SigningTime", (), datetime.now().isoformat()),
-                        (
-                            "etsi:SigningCertificateV2",
-                            (),
-                            (
-                                "etsi:Cert",
-                                (),
-                                (
-                                    "etsi:CertDigest",
-                                    (),
-                                    (
-                                        "ds:DigestMethod",
-                                        (
-                                            "Algorithm",
-                                            "http://www.w3.org/2000/09/xmldsig#sha256",
-                                        ),
-                                    ),
-                                    (
-                                        "ds:DigestValue",
-                                        (),
-                                        b64encode(
-                                            ctx.x509.fingerprint(hashes.SHA256())
-                                        ).decode(),
-                                    ),
-                                ),
-                            ),
-                        ),
-                        (
-                            "etsi:SignaturePolicyIdentifier",
-                            (),
-                            (
-                                "etsi:SignaturePolicyId",
-                                (),
-                                (
-                                    "etsi:SigPolicyId",
-                                    (),
-                                    (
-                                        "etsi:Identifier",
-                                        (),
-                                        "http://ticketbai.eus/politicafirma",
-                                    ),
-                                    (
-                                        "etsi:Description",
-                                        (),
-                                        "Política de Firma TicketBAI 1.0",
-                                    ),
-                                ),
-                                (
-                                    "etsi:SigPolicyHash",
-                                    (),
-                                    (
-                                        "ds:DigestMethod",
-                                        (
-                                            "Algorithm",
-                                            "http://www.w3.org/2000/09/xmldsig#sha256",
-                                        ),
-                                    ),
-                                    (
-                                        "ds:DigestValue",
-                                        (),
-                                        "lX1xDvBVAsPXkkJ7R07WCVbAm9e0H33I1sCpDtQNkbc=",
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-        )
+        dslist = ('ds:Object', (),
+                  ('etsi:QualifyingProperties', ('Target', '#' + signature_id),
+                   ('etsi:SignedProperties', ('Id', sp_id),
+                    ('etsi:SignedSignatureProperties', (),
+                     ('etsi:SigningTime', (), datetime.now().isoformat()),
+                     ('etsi:SigningCertificateV2', (),
+                      ('etsi:Cert', (),
+                       ('etsi:CertDigest', (),
+                        ('ds:DigestMethod',
+                         ('Algorithm', 'http://www.w3.org/2001/04/xmlenc#sha256')),
+                        ('ds:DigestValue', (),
+                         b64encode(ctx.x509.fingerprint(hashes.SHA256())).decode())))),
+                     ('etsi:SignaturePolicyIdentifier', (),
+                      ('etsi:SignaturePolicyId', (),
+                       ('etsi:SigPolicyId', (),
+                        ('etsi:Identifier', (),
+                         tax_agency.sign_file_url),
+                        ('etsi:Description', (), )),
+                       ('etsi:SigPolicyHash', (),
+                        ('ds:DigestMethod',
+                         ('Algorithm', 'http://www.w3.org/2001/04/xmlenc#sha256')),
+                        ('ds:DigestValue', (),
+                         tax_agency.sign_file_hash))))))))
         root.append(signature)
         create_node_tree(signature, [dslist])
         ctx.sign(signature)
