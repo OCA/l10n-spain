@@ -60,16 +60,21 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
                                   self.partner_manager.id])]
         })
 
-    def create_draft_invoice(self, uid, fp):
-        invoice = self.env['account.invoice'].sudo(uid).create({
+    def create_draft_invoice(
+            self, uid, fp, company_id=None, invoice_type='out_invoice', context=None
+    ):
+        if not context:
+            context = {}
+        invoice = self.env['account.invoice'].sudo(uid).with_context(context).create({
             'partner_id': self.partner.id,
             'currency_id': self.env.ref('base.EUR').id,
             'name': 'TBAI Invoice Test',
             'account_id': self.account_receivable.id,
-            'type': 'out_invoice',
+            'type': invoice_type,
             'date_invoice': date.today(),
             'tbai_date_operation': date.today(),
-            'fiscal_position_id': fp.id
+            'fiscal_position_id': fp.id,
+            'company_id': company_id or self.main_company.id
         })
         self.env['account.invoice.line'].sudo(uid).create({
             'invoice_id': invoice.id,
