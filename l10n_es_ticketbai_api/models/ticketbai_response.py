@@ -134,6 +134,24 @@ class TicketBaiResponse(models.Model):
                         },
                     )
                 ]
+                messages = xml_dict.get("Salida").get("ResultadosValidacion", False)
+                if messages:
+                    if isinstance(messages, dict):
+                        messages = [messages]
+                    for msg in messages:
+                        tbai_response_message_ids.append(
+                            (
+                                0,
+                                0,
+                                {
+                                    "code": msg["Codigo"],
+                                    "description": {
+                                        "es_ES": msg["Descripcion"],
+                                        "eu_ES": msg["Azalpena"],
+                                    },
+                                },
+                            )
+                        )
             elif state == TicketBaiResponseState.REJECTED.value:
                 messages = xml_dict["Salida"]["ResultadosValidacion"]
                 tbai_response_message_ids = []
