@@ -1801,3 +1801,9 @@ msgstr "res.config.settings"
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_installation
 msgid "tbai.installation"
 msgstr "TicketBAI Instalación"
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:551
+#, python-format
+msgid "The ticketbai database is not active for sending invoices"
+msgstr "La base de datos de ticketbai no está activa para enviar facturas"
