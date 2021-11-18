@@ -5,7 +5,6 @@ import json
 import base64
 from random import randrange
 from lxml import etree
-from urllib.request import pathname2url
 from ..models.ticketbai_invoice import RefundCode, RefundType
 from ..models.ticketbai_invoice_tax import ExemptedCause, NotExemptedType, \
     NotSubjectToCause, VATRegimeKey, SurchargeOrSimplifiedRegimeType
@@ -18,6 +17,12 @@ from odoo.tests import common
 @common.post_install(True)
 class TestL10nEsTicketBAIAPI(common.TransactionCase):
 
+    catalogs = [
+        'file:' + (os.path.join(
+            os.path.abspath(
+                os.path.dirname(__file__)), 'schemas/catalog.xml'))
+    ]
+
     def _send_to_tax_agency(self, invoice):
         pending_invoices = self.env['tbai.invoice'].get_next_pending_invoice(
             company_id=self.main_company.id, limit=0)
@@ -28,7 +33,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             company_id=self.main_company.id, limit=0)
         self.assertEqual(0, len(pending_invoices))
         invoice.sudo().unlink()
-        self.env.cr.commit()
 
     def create_tbai_national_invoice_cancellation(
             self, name='TBAITEST/00001', company_id=1, number='00001',
@@ -491,6 +495,11 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
 
     def setUp(self):
         super().setUp()
+        # can only set this environment variable once because lxml
+        # loads it only at startup. Luckily having several catalogs is
+        # supported so we provide the catalogs variable for related
+        # addons to plug any required additional catalog.
+        os.environ['XML_CATALOG_FILES'] = ' '.join(self.catalogs)
         test_dir_path = os.path.abspath(os.path.dirname(__file__))
         self.company_values_json_filepath = os.path.join(test_dir_path, 'company.json')
         # Disabled by default for automatic tests
@@ -499,10 +508,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         self.refund_number_prefix = '%d/' % randrange(1, 10 ** 19)
         schemas_version_dirname = XMLSchema.schemas_version_dirname
         script_dirpath = os.path.abspath(os.path.dirname(__file__))
-        schemas_dirpath = os.path.join(script_dirpath, '../ticketbai/schemas')
-        url = pathname2url(os.path.join(schemas_dirpath, 'catalog.xml'))
-        catalog_path = "file:%s" % url
-        os.environ['XML_CATALOG_FILES'] = catalog_path
+        schemas_dirpath = os.path.join(script_dirpath, 'schemas')
         # Load XSD file with XADES imports
         test_xml_invoice_filepath = os.path.abspath(
             os.path.join(schemas_dirpath,
@@ -521,9 +527,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         self.partner_extracommunity = self.env.ref(
             'l10n_es_ticketbai_api.res_partner_yamaha_jp')
         self.partner_intracommunity = self.env.ref(
-            'l10n_es_ticketbai_api.res_partner_oca')
-        self.group_system = self.env.ref('base.group_system')  # Settings
-        self.group_user = self.env.ref('base.group_user')  # Employee
+            'l10n_es_ticketbai_api.res_partner_peugeot')
         # Contact creation
-        self.demo_user = self.env.ref('base.user_demo')  # Demo user
         self.tech_user = self.env.ref('l10n_es_ticketbai_api.user_tech')  # Root user

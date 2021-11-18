@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-26 10:55+0000\n"
-"PO-Revision-Date: 2021-08-26 10:55+0000\n"
+"PO-Revision-Date: 2021-10-13 18:45+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -647,3 +647,131 @@ msgstr "Asistente obtención llaves de certificado AEAT"
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
 msgid "tbai.info"
 msgstr "TicketBAI Información general"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_account_refund_invoice_id
+msgid "Account Refund Invoice"
+msgstr "Factura rectificativa"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_tbai_invoice_refund_origin
+msgid "TicketBAI Refunded Invoices Origin Invoice Data"
+msgstr "Datos de facturas origen para la factura rectificativa TicketBAI"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_refund_origin_ids
+msgid "TicketBAI Refund Origin References"
+msgstr "TicketBAI rectificativas referencias de origen"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_expedition_date
+msgid "Expected string date format: %dd-%mm-%yyyy"
+msgstr "Formato de fecha esperado: %dd-%mm-%yyyy"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:110
+#, python-format
+msgid "Invoice: number %s prefix %s invoice_date %s exists. Create a credit note from this invoice."
+msgstr "La factura con número %s , prefijo %s y fecha %s existe. Crea una rectificativa partiendo de esa factura."
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
+msgid "Key/Type"
+msgstr "Clave/Tipo"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number
+msgid "Number"
+msgstr "Número"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number_prefix
+msgid "Number Prefix"
+msgstr "Serie"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number_prefix
+msgid "Number prefix of this invoice name e.g. if the invoice name is INV/2021/00001 then the prefix is INV/2021/, ending back slash included"
+msgstr "Prefijo de factura hasta el número p.e. si la factura es FV/2021/00001 entonces el prefijo es FV/2021/, incluyendo el caracter separador final"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:89
+#, python-format
+msgid "Refunded Invoice %s Expedition Date"
+msgstr "Factura rectificativa %s fecha"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:80
+#, python-format
+msgid "Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
+msgstr "Factura rectificativa %s. Prefijo %s más largo de lo esperado. Debería de contener 20 caracteres como máximo."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:70
+#, python-format
+msgid "Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
+msgstr "Factura rectificativa número %s más largo de lo esperado. Debería de contener 20 caracteres como máximo."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:331
+#, python-format
+msgid "Some of the original invoices have related tbai cancelled invoices"
+msgstr "Algunas de las facturas origen tienen facturas TicketBAI de anulación relacionadas"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:327
+#, python-format
+msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
+msgstr "Algunas de las facturas origen tienen facturas TicketBAI relacionadas en estado incosistente, por favor corrija primero esos errores."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_tbai_invoice_refund_origin_number
+msgid "The number of the invoice name e.g. if the invoice name is INV/2021/00001 then the number is 00001"
+msgstr "El número de la factura p.e. si la actura es FV/2021/00001 entonces el número es 00001"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
+msgid "Origin Invoices Data"
+msgstr "Datos facturas origen"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
+msgid "Invoice Serial"
+msgstr "Número de serie"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
+msgid "Invoice Number"
+msgstr "Número de factura"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
+msgid "Invoice Date"
+msgstr "Fecha de la factura"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_refund_origin_expedition_date
+msgid "Expedition Date"
+msgstr "Fecha de la factura"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:326
+#, python-format
+msgid "Please, specify data for the original invoices that are going to be refunded"
+msgstr "Por favor, introduzca la información de las facturas originales a rectificar."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/res_company.py:15
+#, python-format
+msgid "Information protected by Article 9 Regulation 679/2016"
+msgstr "Información protegida por el artículo 9 Reglamento 679/2016"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_protected_data
+msgid "Protected Data"
+msgstr "Datos protegidos"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_protected_data_txt
+msgid "Substitution Text"
+msgstr "Texto de substitución"

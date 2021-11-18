@@ -545,6 +545,19 @@ class TicketBAIInvoice(models.Model):
 
     @api.model
     def send_pending_invoices(self):
+        try:
+            self.send_pending_invoices_impl()
+        except Exception as e:
+            _logger.warning('Exception sending invoices:', exc_info=e)
+
+    @api.model
+    def send_pending_invoices_impl(self):
+        Parameter = self.env['ir.config_parameter']
+        config_ddbb = Parameter.sudo().get_param('database.ticketbai')
+        ticketbai_ddbb = self.env.cr.dbname
+        if config_ddbb != ticketbai_ddbb:
+            _logger.info(_("The ticketbai database is not active for sending invoices"))
+            return
         next_pending_invoice = self.get_next_pending_invoice()
         retry_later = False
         rejected_retries = 0
@@ -598,10 +611,6 @@ class TicketBAIInvoice(models.Model):
                 retry_later = True
             if not retry_later:
                 next_pending_invoice = self.get_next_pending_invoice()
-            # If an Invoice has been sent successfully to the Tax Agency
-            # we need to make sure that the current state is saved in case an exception
-            # occurs in the following invoices.
-            self.env.cr.commit()
 
     def _get_tbai_identifier_values(self):
         """ V 1.2
@@ -661,7 +670,8 @@ class TicketBAIInvoice(models.Model):
     def get_tbai_xml_signed_and_signature_value(self):
         root = self.get_tbai_xml_unsigned()
         p12 = self.company_id.tbai_certificate_get_p12()
-        signature_value = XMLSchema.sign(root, p12)
+        tax_agency = self.company_id.tbai_tax_agency_id
+        signature_value = XMLSchema.sign(root, p12, tax_agency)
         return root, signature_value
 
     def build_tbai_invoice(self):
@@ -1001,7 +1011,9 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_facturas_rectificadas_sustituidas(self):
-        if self.is_invoice_refund:
+        res = {}
+        if self.is_invoice_refund or \
+                SiNoType.S.value == self.substitutes_simplified_invoice:
             refunds_values = []
             for refund in self.tbai_invoice_refund_ids:
                 vals = OrderedDict()
@@ -1012,8 +1024,6 @@ class TicketBAIInvoice(models.Model):
                 vals["FechaExpedicionFactura"] = refund.expedition_date
                 refunds_values.append(vals)
             res = {"IDFacturaRectificadaSustituida": refunds_values}
-        else:
-            res = {}
         return res
 
     def build_huella_tbai(self):
