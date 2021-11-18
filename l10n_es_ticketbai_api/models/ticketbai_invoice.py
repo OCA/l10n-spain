@@ -1019,7 +1019,9 @@ class TicketBAIInvoice(models.Model):
         return res
 
     def build_facturas_rectificadas_sustituidas(self):
-        if self.is_invoice_refund:
+        res = {}
+        if self.is_invoice_refund or \
+                SiNoType.S.value == self.substitutes_simplified_invoice:
             refunds_values = []
             for refund in self.tbai_invoice_refund_ids:
                 vals = OrderedDict()
@@ -1030,8 +1032,6 @@ class TicketBAIInvoice(models.Model):
                 vals["FechaExpedicionFactura"] = refund.expedition_date
                 refunds_values.append(vals)
             res = {"IDFacturaRectificadaSustituida": refunds_values}
-        else:
-            res = {}
         return res
 
     def build_huella_tbai(self):
