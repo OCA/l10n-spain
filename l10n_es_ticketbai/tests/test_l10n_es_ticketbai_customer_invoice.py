@@ -432,3 +432,41 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         ) = refund.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
         r_res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, r_root)
         self.assertTrue(r_res)
+
+    def test_invoice_line_iva_exento(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national, self.partner.id
+        )
+        product_iva_exento = self.create_product(
+            product_name="Servicio Exento",
+            product_type="service",
+            product_taxes=[self.tax_iva0_exento_sujeto.id],
+        )
+        invoice.write(
+            {
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "move_id": invoice.id,
+                            "product_id": product_iva_exento.id,
+                            "quantity": 1,
+                            "price_unit": 100.0,
+                            "name": "TBAI Invoice Line Test - service IVA Exento",
+                            "account_id": self.account_revenue.id,
+                        },
+                    )
+                ]
+            }
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        (
+            root,
+            signature_value,
+        ) = invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
+        self.assertTrue(res)
