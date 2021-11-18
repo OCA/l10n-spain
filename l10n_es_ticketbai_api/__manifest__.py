@@ -32,6 +32,7 @@
         "security/ir.model.access.csv",
         "data/tax_agency_data.xml",
         "data/ticketbai_invoice.xml",
+        "data/ir_config_parameter.xml",
         "views/l10n_es_ticketbai_api_views.xml",
         "views/res_company_views.xml",
         "views/res_config_settings_views.xml",

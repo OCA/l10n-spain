@@ -57,19 +57,9 @@ En la configuración general:
 
 * Número de serie del dispositivo (opcional)
 
-TODO
-====
+En los parámetros del sistema:
 
-* Incorporar URLs servidores de producción (TBD)
-
-  * Araba
-  * Bizkaia
-
-* Desarrollar envío a TicketBAI Araba
-
-* Desarrollar envío a Batuz para Bizkaia
-
-* Si la comunicación con hacienda falla una cantidad establecida de veces, dejar de intentar enviar y mostrar un botón para volver a realizar una cantidad de intentos cuando el usuario haga click.
+* Alimentar el dato "database.ticketbai" con el nombre de la BBDD de la instalación. Este parámetro está concebido como medida de seguridad para evitar que una BB.DD. copiada envíe facturas que están en estado pendiente en lugar de la BB.DD. original. Se inicializará si no está presente con el nombre de la BB.DD. actual. Si está presente las actualizaciones conservarán el valor original.
 
 Bug Tracker
 ===========
