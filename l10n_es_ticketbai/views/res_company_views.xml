@@ -16,6 +16,13 @@
                     <field name="tbai_aeat_certificate_id" attrs="{'required': [('tbai_enabled', '=', True)]}"
                            options="{'no_open':True,'no_create':True}"/>
                 </field>
+                <xpath expr="//group[@name='ticketbai_company_config']" position="after">
+                    <group name="ticketbai_protected_data" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                        <field name="tbai_protected_data"/>
+                        <field name="tbai_protected_data_txt"
+                               attrs="{'invisible': [('tbai_protected_data', '!=', True)]}"/>
+                    </group>
+                </xpath>
             </field>
         </record>
     </data>

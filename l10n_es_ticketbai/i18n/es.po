@@ -647,3 +647,19 @@ msgstr "Asistente obtención llaves de certificado AEAT"
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
 msgid "tbai.info"
 msgstr "TicketBAI Información general"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/res_company.py:15
+#, python-format
+msgid "Information protected by Article 9 Regulation 679/2016"
+msgstr "Información protegida por el artículo 9 Reglamento 679/2016"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_protected_data
+msgid "Protected Data"
+msgstr "Datos protegidos"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_protected_data_txt
+msgid "Substitution Text"
+msgstr "Texto de substitución"
