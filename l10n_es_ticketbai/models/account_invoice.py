@@ -186,8 +186,10 @@ class AccountInvoice(models.Model):
             vals['operation_date'] = operation_date
         gipuzkoa_tax_agency = self.env.ref(
             "l10n_es_ticketbai_api.tbai_tax_agency_gipuzkoa")
+        araba_tax_agency = self.env.ref(
+            "l10n_es_ticketbai_api.tbai_tax_agency_araba")
         tax_agency = self.company_id.tbai_tax_agency_id
-        if tax_agency == gipuzkoa_tax_agency:
+        if tax_agency in (gipuzkoa_tax_agency, araba_tax_agency):
             lines = []
             for line in self.invoice_line_ids:
                 lines.append((0, 0, {
