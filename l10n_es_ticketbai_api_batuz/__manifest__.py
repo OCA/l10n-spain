@@ -5,7 +5,7 @@
     "name": "TicketBAI (API) - Batuz - "
             "declaración de todas las operaciones de venta realizadas por las personas "
             " y entidades que desarrollan actividades económicas en Bizkaia",
-    "version": "11.0.1.1.1",
+    "version": "11.0.1.2.0",
     "category": "Accounting & Finance",
     "website": "http://www.binovo.es",
     "author": "Binovo,"
@@ -30,6 +30,7 @@
     "data": [
         "security/ir.model.access.csv",
         "data/tax_agency_data.xml",
+        "data/lroe_chapter_data.xml",
         "views/res_company_views.xml",
         "views/lroe_operation_views.xml"
     ],
