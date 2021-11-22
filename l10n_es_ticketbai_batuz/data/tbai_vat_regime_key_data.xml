@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Digital5 S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- For sale - TicketBAI -->
+    <record id="l10n_es_ticketbai.tbai_vat_regime_01" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_02" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_03" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_04" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_05" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_06" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_07" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_08" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_09" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_10" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_11" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_12" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_13" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_14" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_15" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_51" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="l10n_es_ticketbai.tbai_vat_regime_52" model="tbai.vat.regime.key">
+        <field name="type">sale</field>
+    </record>
+    <record id="tbai_vat_regime_53" model="tbai.vat.regime.key">
+        <field name="code">53</field>
+        <field name="name">Operaciones realizadas por personas o entidades que no tengan la consideración de empresarios, empresarias o profesionales a efectos del IVA</field>
+        <field name="type">sale</field>
+    </record>
+
+    <!-- For purchase - Batuz/LROE -->
+    <record id="tbai_vat_regime_purchase_01" model="tbai.vat.regime.key">
+        <field name="code">01</field>
+        <field name="name">Operación de régimen general</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_02" model="tbai.vat.regime.key">
+        <field name="code">02</field>
+        <field name="name">Operaciones por las que los empresarios o las empresarias satisfacen compensaciones en las adquisiciones a personas acogidas al Régimen especial de la agricultura, ganadería y pesca</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_03" model="tbai.vat.regime.key">
+        <field name="code">03</field>
+        <field name="name">Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_04" model="tbai.vat.regime.key">
+        <field name="code">04</field>
+        <field name="name">Régimen especial del oro de inversión</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_05" model="tbai.vat.regime.key">
+        <field name="code">05</field>
+        <field name="name">Régimen especial de las agencias de viajes</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_06" model="tbai.vat.regime.key">
+        <field name="code">06</field>
+        <field name="name">Régimen especial grupo de entidades en IVA (Nivel Avanzado)</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_07" model="tbai.vat.regime.key">
+        <field name="code">07</field>
+        <field name="name">Régimen especial del criterio de caja</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_08" model="tbai.vat.regime.key">
+        <field name="code">08</field>
+        <field name="name">Operaciones sujetas al IPSI/IGIC (Impuesto sobre la Producción, los Servicios y la Importación / Impuesto General Indirecto Canario)</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_09" model="tbai.vat.regime.key">
+        <field name="code">09</field>
+        <field name="name">Adquisiciones intracomunitarias de bienes y prestaciones de servicios</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_12" model="tbai.vat.regime.key">
+        <field name="code">12</field>
+        <field name="name">Operaciones de arrendamiento de local de negocio</field>
+        <field name="type">purchase</field>
+    </record>
+    <record id="tbai_vat_regime_purchase_13" model="tbai.vat.regime.key">
+        <field name="code">13</field>
+        <field name="name">Factura correspondiente a una importación (informada sin asociar a un DUA)</field>
+        <field name="type">purchase</field>
+    </record>
+
+</odoo>
