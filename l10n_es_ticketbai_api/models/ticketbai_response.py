@@ -109,19 +109,15 @@ class TicketBaiResponse(models.Model):
                 }
             )
         else:
-            xml_dict = (
-                XMLSchema(TicketBaiSchema.TicketBaiResponse.value).parse_xml(
-                    response.data
-                )["TicketBaiResponse"]
-                or {}
-            )
-            state = xml_dict["Salida"]["Estado"]
-            values.update(
-                {
-                    "xml": base64.encodebytes(response.data.encode("utf-8")),
-                    "state": state,
-                }
-            )
+            xml_dict = XMLSchema(
+                TicketBaiSchema.TicketBaiResponse.value).parse_xml(
+                response.data)['TicketBaiResponse'] or {}
+            state = xml_dict['Salida']['Estado']
+            values.update({
+                'xml': base64.encodebytes(response.data.encode('utf-8')),
+                'state': state
+            })
+            tbai_response_message_ids = []
             if state == TicketBaiResponseState.RECEIVED.value:
                 tbai_response_message_ids = [
                     (
@@ -155,8 +151,7 @@ class TicketBaiResponse(models.Model):
                             )
                         )
             elif state == TicketBaiResponseState.REJECTED.value:
-                messages = xml_dict["Salida"]["ResultadosValidacion"]
-                tbai_response_message_ids = []
+                messages = xml_dict['Salida']['ResultadosValidacion']
                 if isinstance(messages, dict):
                     messages = [messages]
                 for msg in messages:
@@ -174,16 +169,10 @@ class TicketBaiResponse(models.Model):
                         )
                     )
             else:
-                tbai_response_message_ids = [
-                    (
-                        0,
-                        0,
-                        {
-                            "code": state,
-                            "description": _("Unknown TicketBAI response code."),
-                        },
-                    )
-                ]
+                tbai_response_message_ids.append((0, 0, {
+                    'code': state,
+                    'description': _('Unknown TicketBAI response code.')
+                }))
             values.update(tbai_response_message_ids=tbai_response_message_ids)
         return values
 
