@@ -645,6 +645,44 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         )
         return certificate
 
+    def _prepare_gipuzkoa_company(self, company):
+        test_dir_path = os.path.abspath(os.path.dirname(__file__))
+        self.company_values_json_filepath = os.path.join(test_dir_path, "company.json")
+        with open(self.company_values_json_filepath) as fp:
+            vals = json.load(fp)
+        if "invoice_number" in vals:
+            vals.pop("invoice_number")
+        if "refund_invoice_number" in vals:
+            vals.pop("refund_invoice_number")
+        vals.update(
+            {
+                "tbai_tax_agency_id": self.env.ref(
+                    "l10n_es_ticketbai_api.tbai_tax_agency_gipuzkoa"
+                ).id,
+            }
+        )
+        company.write(vals)
+
+    def _prepare_araba_company(self, company):
+        test_dir_path = os.path.abspath(os.path.dirname(__file__))
+        self.company_values_json_filepath = os.path.join(
+            test_dir_path, "company-araba.json"
+        )
+        with open(self.company_values_json_filepath) as fp:
+            vals = json.load(fp)
+        if "invoice_number" in vals:
+            vals.pop("invoice_number")
+        if "refund_invoice_number" in vals:
+            vals.pop("refund_invoice_number")
+        vals.update(
+            {
+                "tbai_tax_agency_id": self.env.ref(
+                    "l10n_es_ticketbai_api.tbai_tax_agency_araba"
+                ).id,
+            }
+        )
+        company.write(vals)
+
     def _prepare_company(self, company):
         test_dir_path = os.path.abspath(os.path.dirname(__file__))
         json_filepath = self.company_values_json_filepath

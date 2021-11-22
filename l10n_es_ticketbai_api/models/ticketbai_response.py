@@ -120,23 +120,24 @@ class TicketBaiResponse(models.Model):
                     "state": state,
                 }
             )
+            tbai_response_message_ids = []
             if state == TicketBaiResponseState.RECEIVED.value:
-                tbai_response_message_ids = [
-                    (
-                        0,
-                        0,
-                        {
-                            "code": xml_dict["Salida"]["CSV"],
-                            "description": {
-                                "es_ES": xml_dict["Salida"]["Descripcion"],
-                                "eu_ES": xml_dict["Salida"]["Azalpena"],
+                if xml_dict.get("Salida").get("CSV"):
+                    tbai_response_message_ids = [
+                        (
+                            0,
+                            0,
+                            {
+                                "code": xml_dict["Salida"]["CSV"],
+                                "description": {
+                                    "es_ES": xml_dict["Salida"]["Descripcion"],
+                                    "eu_ES": xml_dict["Salida"]["Azalpena"],
+                                },
                             },
-                        },
-                    )
-                ]
+                        )
+                    ]
             elif state == TicketBaiResponseState.REJECTED.value:
                 messages = xml_dict["Salida"]["ResultadosValidacion"]
-                tbai_response_message_ids = []
                 if isinstance(messages, dict):
                     messages = [messages]
                 for msg in messages:
@@ -154,7 +155,7 @@ class TicketBaiResponse(models.Model):
                         )
                     )
             else:
-                tbai_response_message_ids = [
+                tbai_response_message_ids.append(
                     (
                         0,
                         0,
@@ -163,7 +164,7 @@ class TicketBaiResponse(models.Model):
                             "description": _("Unknown TicketBAI response code."),
                         },
                     )
-                ]
+                )
             values.update(tbai_response_message_ids=tbai_response_message_ids)
         return values
 
