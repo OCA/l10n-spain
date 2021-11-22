@@ -128,6 +128,14 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         schemas_version_dirname = LROEXMLSchema.schemas_version_dirname
         script_dirpath = os.path.abspath(os.path.dirname(__file__))
         schemas_dirpath = os.path.join(script_dirpath, 'schemas')
+        lroe_240_chapter_1 = self.env.ref(
+            "l10n_es_ticketbai_api_batuz.lroe_chapter_pj_240_1")
+        lroe_240_subchapter_1 = self.env.ref(
+            "l10n_es_ticketbai_api_batuz.lroe_subchapter_pj_240_1_1")
+        lroe_140_chapter_1 = self.env.ref(
+            "l10n_es_ticketbai_api_batuz.lroe_chapter_pf_140_1")
+        lroe_140_subchapter_1 = self.env.ref(
+            "l10n_es_ticketbai_api_batuz.lroe_subchapter_pf_140_1_1")
         # Load XSD file with XADES imports
         test_01_xsd_filepath = os.path.abspath(
             os.path.join(schemas_dirpath,
@@ -153,6 +161,10 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         self.test_04_schema_doc = etree.parse(
             test_04_xsd_filepath,
             parser=etree.ETCompatXMLParser())
+        self.lroe_240_chapter_1 = lroe_240_chapter_1
+        self.lroe_240_subchapter_1 = lroe_240_subchapter_1
+        self.lroe_140_chapter_1 = lroe_140_chapter_1
+        self.lroe_140_subchapter_1 = lroe_140_subchapter_1
 
     def test_lroe_xml_schema_unknown_raises(self):
         with self.assertRaises(LROEXMLSchemaModeNotSupported):
@@ -164,9 +176,11 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         tbai_invoice_ids = tbai_invoice1_ids.ids + tbai_invoice2_ids.ids
         self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
         lroe_op_alta_pj_240_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.create.value,
-            'tbai_invoice_ids': [(6, 0, tbai_invoice_ids)]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.create.value,
+            "tbai_invoice_ids": [(6, 0, tbai_invoice_ids)],
+            "lroe_chapter_id": self.lroe_240_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_240_subchapter_1.id,
         }
         lroe_op_alta_model_pj_240 = self.lroe_op_model.create(lroe_op_alta_pj_240_dict)
         lroe_xml_root = lroe_op_alta_model_pj_240.get_lroe_operations_xml()
@@ -194,10 +208,13 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         tbai_invoice2_ids = self.create_tbai_invoice('00002')
         tbai_invoice_ids = tbai_invoice1_ids.ids + tbai_invoice2_ids.ids
         self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+        self.main_company.main_activity_iae = "276300"
         lroe_op_alta_pf_140_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.create.value,
-            'tbai_invoice_ids': [(6, 0, tbai_invoice_ids)]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.create.value,
+            "tbai_invoice_ids": [(6, 0, tbai_invoice_ids)],
+            "lroe_chapter_id": self.lroe_140_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_140_subchapter_1.id,
         }
         lroe_op_alta_model_pf_140 = self.lroe_op_model.create(lroe_op_alta_pf_140_dict)
         lroe_xml_root = lroe_op_alta_model_pf_140.get_lroe_operations_xml()
@@ -213,9 +230,11 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
             + tbai_invoice2_cancel_ids.ids
         self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
         lroe_op_cancel_pj_240_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.cancel.value,
-            'tbai_invoice_ids': [(6, 0, tbai_cancel_invoice_ids)]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.cancel.value,
+            "tbai_invoice_ids": [(6, 0, tbai_cancel_invoice_ids)],
+            "lroe_chapter_id": self.lroe_240_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_240_subchapter_1.id,
         }
         lroe_op_cancel_model_pj_240 = self.lroe_op_model.create(
             lroe_op_cancel_pj_240_dict
@@ -230,10 +249,13 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         tbai_cancel_invoice_ids = tbai_invoice1_cancel_ids.ids +\
             tbai_invoice2_cancel_ids.ids
         self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+        self.main_company.main_activity_iae = "276300"
         lroe_op_cancel_pf_140_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.cancel.value,
-            'tbai_invoice_ids': [(6, 0, tbai_cancel_invoice_ids)]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.cancel.value,
+            "tbai_invoice_ids": [(6, 0, tbai_cancel_invoice_ids)],
+            "lroe_chapter_id": self.lroe_140_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_140_subchapter_1.id,
         }
         lroe_op_cancel_model_pf_140 = self.lroe_op_model.create(
             lroe_op_cancel_pf_140_dict
@@ -246,9 +268,11 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         tbai_invoice_obj = self.create_tbai_invoice('00001')
         self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
         lroe_op_alta_pj_240_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.create.value,
-            'tbai_invoice_ids': [(6, 0, [tbai_invoice_obj.id])]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.create.value,
+            "tbai_invoice_ids": [(6, 0, [tbai_invoice_obj.id])],
+            "lroe_chapter_id": self.lroe_240_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_240_subchapter_1.id,
         }
         lroe_op_alta_model_pj_240 = self.lroe_op_model.create(lroe_op_alta_pj_240_dict)
         response_headers = {
@@ -280,10 +304,13 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def test_06_prepare_lroe_response_values_alta_model_pf_140(self):
         tbai_invoice_obj = self.create_tbai_invoice('00001')
         self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+        self.main_company.main_activity_iae = "276300"
         lroe_op_alta_pf_140_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.create.value,
-            'tbai_invoice_ids': [(6, 0, [tbai_invoice_obj.id])]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.create.value,
+            "tbai_invoice_ids": [(6, 0, [tbai_invoice_obj.id])],
+            "lroe_chapter_id": self.lroe_140_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_140_subchapter_1.id,
         }
         lroe_op_alta_model_pf_140 = self.lroe_op_model.create(lroe_op_alta_pf_140_dict)
         response_headers = {
@@ -316,9 +343,11 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         tbai_invoice_obj = self.create_tbai_invoice('00001')
         self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
         lroe_op_alta_pj_240_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.create.value,
-            'tbai_invoice_ids': [(6, 0, [tbai_invoice_obj.id])]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.create.value,
+            "tbai_invoice_ids": [(6, 0, [tbai_invoice_obj.id])],
+            "lroe_chapter_id": self.lroe_240_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_240_subchapter_1.id,
         }
         lroe_op_alta_model_pj_240 = self.lroe_op_model.create(lroe_op_alta_pj_240_dict)
         response_headers = {
@@ -360,10 +389,13 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def test_08_prepare_lroe_response_values_alta_model_pf_140_w_errors(self):
         tbai_invoice_obj = self.create_tbai_invoice('00001')
         self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+        self.main_company.main_activity_iae = "276300"
         lroe_op_alta_pf_140_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.create.value,
-            'tbai_invoice_ids': [(6, 0, [tbai_invoice_obj.id])]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.create.value,
+            "tbai_invoice_ids": [(6, 0, [tbai_invoice_obj.id])],
+            "lroe_chapter_id": self.lroe_140_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_140_subchapter_1.id,
         }
         lroe_op_alta_model_pf_140 = self.lroe_op_model.create(lroe_op_alta_pf_140_dict)
         response_headers = {
@@ -406,9 +438,11 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         tbai_invoice_obj = self.create_tbai_invoice('00001')
         self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
         lroe_op_alta_pj_240_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.create.value,
-            'tbai_invoice_ids': [(6, 0, [tbai_invoice_obj.id])]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.create.value,
+            "tbai_invoice_ids": [(6, 0, [tbai_invoice_obj.id])],
+            "lroe_chapter_id": self.lroe_240_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_240_subchapter_1.id,
         }
         lroe_op_alta_model_pj_240 = self.lroe_op_model.create(lroe_op_alta_pj_240_dict)
         response_headers = {
@@ -439,10 +473,13 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def test_10_prepare_lroe_response_values_cancel_model_pf_140(self):
         tbai_invoice_obj = self.create_tbai_cancel_invoice('00001')
         self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+        self.main_company.main_activity_iae = "276300"
         lroe_op_cancel_pf_140_dict = {
-            'company_id': self.main_company.id,
-            'type': LROEOperationEnum.cancel.value,
-            'tbai_invoice_ids': [(6, 0, [tbai_invoice_obj.id])]
+            "company_id": self.main_company.id,
+            "type": LROEOperationEnum.cancel.value,
+            "tbai_invoice_ids": [(6, 0, [tbai_invoice_obj.id])],
+            "lroe_chapter_id": self.lroe_140_chapter_1.id,
+            "lroe_subchapter_id": self.lroe_140_subchapter_1.id,
         }
         lroe_op_cancel_model_pf_140 = self.lroe_op_model.create(
             lroe_op_cancel_pf_140_dict)

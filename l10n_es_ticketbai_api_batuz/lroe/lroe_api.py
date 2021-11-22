@@ -72,11 +72,20 @@ class LROETicketBaiApi(TicketBaiApi):
                     else:
                         return str(datetime.now().year)
 
+                if hasattr(lroe_operation, "lroe_chapter_id"):
+                    apa = (
+                        lroe_operation.lroe_subchapter_id.code
+                        or lroe_operation.lroe_chapter_id.code
+                    )
+                else:
+                    apa = "1.1"
+                partner = lroe_operation.company_id.partner_id
+                nif = partner.tbai_get_value_nif()
                 n3_dat_dict = {
                     'con': 'LROE',
-                    'apa': '1.1',
+                    'apa': apa,
                     'inte': {
-                        'nif': lroe_operation.company_id.vat,
+                        'nif': nif,
                         'nrs':  lroe_operation.company_id.name
                     },
                     'drs': {

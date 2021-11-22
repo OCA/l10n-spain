@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Digital5, S.L.
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
@@ -144,6 +145,56 @@
             </field>
         </record>
 
+        <!-- LROE CHAPTER -->
+        <record id="lroe_chapter_form_view" model="ir.ui.view">
+            <field name="name">lroe.chapter.form.view</field>
+            <field name="model">lroe.chapter</field>
+            <field name="arch" type="xml">
+                <form string="LROE Chapter" create="false" delete="false" edit="false" >
+                    <sheet>
+                        <group name="chapter_data">
+                            <group>
+                                <field name="name" readonly="1" />
+                                <field name="code" readonly="1"/>
+                                <field name="model" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="lroe_chapter_id" readonly="1" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lroe_chapter_tree_view" model="ir.ui.view">
+            <field name="name">lroe.chapter.tree.view</field>
+            <field name="model">lroe.chapter</field>
+            <field name="arch" type="xml">
+                <tree string="LROE OpeChapterration" create="false" delete="false" edit="false" import="false">
+                    <field name="model" />
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="lroe_chapter_id"  />
+                </tree>
+            </field>
+        </record>
+
+        <record id="lroe_chapter_search_view" model="ir.ui.view">
+            <field name="name">lroe.chapter.search.view</field>
+            <field name="model">lroe.chapter</field>
+            <field name="arch" type="xml">
+                <search string="LROE Chapter">
+                    <field name="name"/>
+                    <field name="model"/>
+                    <field name="code"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Model" name="group_model" context="{'group_by':'model'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
         <!-- LROE OPERATION RESPONSE -->
         <record id="lroe_operation_response_form_view" model="ir.ui.view">
             <field name="name">lroe.operation.response.form.view</field>
@@ -195,9 +246,22 @@
             <field name="context">{"search_default_operation_done":1}</field>
         </record>
 
+        <record id="action_lroe_chapter" model="ir.actions.act_window">
+            <field name="name">Batuz/LROE - Chapters</field>
+            <field name="res_model">lroe.chapter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_group_model":1}</field>
+        </record>
+
         <menuitem id="menu_lroe_operations"
                   parent="menu_lroe_root"
                   action="action_lroe_operation"
-                  name="Operations"/>
+                  name="Operations"/>        
+        
+        <menuitem id="menu_lroe_chapters"
+                  parent="menu_lroe_root"
+                  action="action_lroe_chapter"
+                  name="Chapters"/>
     </data>
 </odoo>
