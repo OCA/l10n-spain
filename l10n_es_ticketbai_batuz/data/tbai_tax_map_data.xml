@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="tbai_tax_map_FRS" model="tbai.tax.map">
+        <field name="code">FRS</field>
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva21_sc'),
+            ref('l10n_es.account_tax_template_p_iva10_sc'),
+            ref('l10n_es.account_tax_template_p_iva4_sc'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_ex_2'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_ex_2'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_ex_2'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_in_2'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_in_2'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_in_2'),
+            ref('l10n_es.account_tax_template_p_iva0_ns'),
+            ref('l10n_es.account_tax_template_p_iva0_ns_b'),
+        ])]" />
+        <field name="name">Facturas Recibidas Servicios</field>
+    </record>
+
+    <record id="tbai_tax_map_FRBC" model="tbai.tax.map">
+        <field name="code">FRBC</field>
+        <!-- TODO: comprobar: account_tax_template_p_iva0_bc -->
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva21_bc'),
+            ref('l10n_es.account_tax_template_p_iva10_bc'),
+            ref('l10n_es.account_tax_template_p_iva4_bc'),
+            ref('l10n_es.account_tax_template_p_iva0_bc'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bc_1'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bc_1'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bc_1'),
+            ref('l10n_es.account_tax_template_p_iva21_ibc'),
+            ref('l10n_es.account_tax_template_p_iva10_ibc'),
+            ref('l10n_es.account_tax_template_p_iva4_ibc'),
+        ])]" />
+        <field name="name">Facturas Recibidas Bienes Corrientes</field>
+    </record>
+
+    <record id="tbai_tax_map_FRBI" model="tbai.tax.map">
+        <field name="code">FRBI</field>
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva21_bi'),
+            ref('l10n_es.account_tax_template_p_iva10_bi'),
+            ref('l10n_es.account_tax_template_p_iva4_bi'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bi_1'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bi_1'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bi_1'),
+            ref('l10n_es.account_tax_template_p_iva21_ibi'),
+            ref('l10n_es.account_tax_template_p_iva10_ibi'),
+            ref('l10n_es.account_tax_template_p_iva4_ibi'),
+        ])]" />
+        <field name="name">Facturas Recibidas Bienes de Inversión</field>
+    </record>
+
+    <record id="tbai_tax_map_FRSA" model="tbai.tax.map">
+        <field name="code">FRSA</field>
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva12_agr'),
+        ])]" />
+        <field name="name">Facturas Recibidas Sujetas Agricultura</field>
+    </record>
+
+    <record id="tbai_tax_map_FRISP" model="tbai.tax.map">
+        <field name="code">FRISP</field>
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva21_isp_1'),
+            ref('l10n_es.account_tax_template_p_iva10_isp_1'),
+            ref('l10n_es.account_tax_template_p_iva4_isp_1'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_ex_2'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_ex_2'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_ex_2'),
+        ])]" />
+        <field name="name">Facturas Recibidas ISP</field>
+    </record>
+
+    <record id="tbai_tax_map_FRNS" model="tbai.tax.map">
+        <field name="code">FRNS</field>
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva0_ns'),
+            ref('l10n_es.account_tax_template_p_iva0_ns_b'),
+        ])]" />
+        <field name="name">Facturas Recibidas No Sujeta</field>
+    </record>
+
+    <record id="tbai_tax_map_FRND" model="tbai.tax.map">
+        <field name="code">FRND</field>
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_iva10_nd'),
+            ref('l10n_es.account_tax_template_p_iva4_nd'),
+            ref('l10n_es.account_tax_template_p_iva0_nd'),
+        ])]" />
+        <field name="name">Facturas Recibidas No Deducible</field>
+    </record>
+
+    <record id="tbai_tax_map_NotIncludedInTotal" model="tbai.tax.map">
+        <field name="code">NotIncludedInTotal</field>
+        <field name="tax_template_ids" eval="[(6, 0, [
+            ref('l10n_es.account_tax_template_p_irpf1'),
+            ref('l10n_es.account_tax_template_p_irpf2'),
+            ref('l10n_es.account_tax_template_p_irpf7'),
+            ref('l10n_es.account_tax_template_p_irpf9'),
+            ref('l10n_es.account_tax_template_p_irpf15'),
+            ref('l10n_es.account_tax_template_p_irpf18'),
+            ref('l10n_es.account_tax_template_p_irpf19'),
+            ref('l10n_es.account_tax_template_p_irpf19a'),
+            ref('l10n_es.account_tax_template_p_irpf195a'),
+            ref('l10n_es.account_tax_template_p_irpf20'),
+            ref('l10n_es.account_tax_template_p_irpf20a'),
+            ref('l10n_es.account_tax_template_p_irpf21a'),
+            ref('l10n_es.account_tax_template_p_irpf21p'),
+            ref('l10n_es.account_tax_template_p_irpf21t'),
+            ref('l10n_es.account_tax_template_p_irpf21td'),
+            ref('l10n_es.account_tax_template_p_irpf21te'),
+            ref('l10n_es.account_tax_template_p_iva21_isp_2'),
+            ref('l10n_es.account_tax_template_p_iva10_isp_2'),
+            ref('l10n_es.account_tax_template_p_iva4_isp_2'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_ex_1'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_ex_1'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_ex_1'),
+            ref('l10n_es.account_tax_template_p_iva4_sp_in_1'),
+            ref('l10n_es.account_tax_template_p_iva10_sp_in_1'),
+            ref('l10n_es.account_tax_template_p_iva21_sp_in_1'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bc_2'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bc_2'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bc_2'),
+            ref('l10n_es.account_tax_template_p_iva4_ic_bi_2'),
+            ref('l10n_es.account_tax_template_p_iva10_ic_bi_2'),
+            ref('l10n_es.account_tax_template_p_iva21_ic_bi_2'),
+        ])]" />
+        <field name="name">Impuestos no incluidos en Importe Total</field>
+    </record>
+
+</odoo>

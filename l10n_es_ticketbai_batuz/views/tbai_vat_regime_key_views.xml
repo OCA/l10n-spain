@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="tbai_vat_regime_key_view_tree_inherit_batuz" model="ir.ui.view">
+        <field name="name">tbai.vat.regime.key.view.tree</field>
+        <field name="model">tbai.vat.regime.key</field>
+        <field name="inherit_id" ref="l10n_es_ticketbai.tbai_vat_regime_key_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="type"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="tbai_vat_regime_key_view_search_inherit_batuz" model="ir.ui.view">
+        <field name="name">tbai.vat.regime.key.view.search</field>
+        <field name="model">tbai.vat.regime.key</field>
+        <field name="inherit_id" ref="l10n_es_ticketbai.tbai_vat_regime_key_view_search"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="type"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
