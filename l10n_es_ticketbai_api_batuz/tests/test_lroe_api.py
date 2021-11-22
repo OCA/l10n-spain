@@ -16,6 +16,7 @@ class TestLroeTicketBaiApi(common.TransactionCase):
         class Company:
             vat = 'VAT'
             name = 'Name'
+            partner_id = self.env.ref("l10n_es_ticketbai_api.res_partner_binovo")
 
         class Op:
             tbai_invoice_ids = False
@@ -24,7 +25,7 @@ class TestLroeTicketBaiApi(common.TransactionCase):
         h = api.get_request_headers(Op())
 
         data = json.loads(h['eus-bizkaia-n3-data'])
-        self.assertEqual('VAT', data['inte']['nif'])
+        self.assertEqual('B20990602', data["inte"]['nif'])  # Sin el código país
         self.assertEqual('Name', data['inte']['nrs'])
         self.assertEqual('MODE', data['drs']['mode'])
 
