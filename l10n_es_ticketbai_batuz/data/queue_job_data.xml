@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Digital5 S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="channel_invoice_send_lroe" model="queue.job.channel">
+        <field name="name">invoice_send_lroe</field>
+        <field name="parent_id" ref="queue_job.channel_root" />
+    </record>
+
+    <record id="job_function_lroe_operation_send_one_operation" model="queue.job.function">
+        <field name="model_id" ref="l10n_es_ticketbai_api_batuz.model_lroe_operation" />
+        <field name="method">send_one_operation_job</field>
+        <field name="channel_id" ref="l10n_es_ticketbai_batuz.channel_invoice_send_lroe"/>
+    </record>
+
+</odoo>

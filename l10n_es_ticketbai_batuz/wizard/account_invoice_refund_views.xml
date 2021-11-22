@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Digital5, S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_account_invoice_refund_inherit_batuz" model="ir.ui.view">
+        <field name="name">account.invoice.refund.batuz.form</field>
+        <field name="model">account.invoice.refund</field>
+        <field name="inherit_id" ref="account.view_account_invoice_refund"/>
+        <field name="arch" type="xml">
+            <field name="description" position="before">
+                <field name="batuz_supplier_invoice_number_required" invisible="1" />
+                <field name="batuz_supplier_invoice_number"
+                       attrs="{'required': [('batuz_supplier_invoice_number_required', '=', True)], 'invisible': [('batuz_supplier_invoice_number_required', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
