@@ -139,8 +139,10 @@ class XMLSchema:
             signature, xmlsig.constants.TransformSha256, uri="#" + kinfo_id
         )
         xmlsig.template.add_reference(
-            signature, xmlsig.constants.TransformSha256, uri="#" + sp_id,
-            uri_type='http://uri.etsi.org/01903#SignedProperties'
+            signature,
+            xmlsig.constants.TransformSha256,
+            uri="#" + sp_id,
+            uri_type="http://uri.etsi.org/01903#SignedProperties",
         )
         ki = xmlsig.template.ensure_key_info(signature, name=kinfo_id)
         data = xmlsig.template.add_x509_data(ki)
@@ -199,11 +201,7 @@ class XMLSchema:
                                 (
                                     "etsi:SigPolicyId",
                                     (),
-                                    (
-                                        "etsi:Identifier",
-                                        (),
-                                        tax_agency.sign_file_url,
-                                    ),
+                                    ("etsi:Identifier", (), tax_agency.sign_file_url,),
                                     (
                                         "etsi:Description",
                                         (),
@@ -220,11 +218,7 @@ class XMLSchema:
                                             "http://www.w3.org/2001/04/xmlenc#sha256",
                                         ),
                                     ),
-                                    (
-                                        "ds:DigestValue",
-                                        (),
-                                        tax_agency.sign_file_hash,
-                                    ),
+                                    ("ds:DigestValue", (), tax_agency.sign_file_hash,),
                                 ),
                             ),
                         ),

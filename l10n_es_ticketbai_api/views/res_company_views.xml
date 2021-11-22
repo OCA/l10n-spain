@@ -18,6 +18,8 @@
                             name="ticketbai_company_config"
                             attrs="{'invisible': [('tbai_enabled', '=', False)]}"
                         >
+                            <field name="tbai_test_available" invisible="1" />
+                            <field name="tbai_pro_available" invisible="1" />
                             <field name="tbai_test_enabled" />
                             <field name="tbai_device_serial_number" invisible="1" />
                             <field
