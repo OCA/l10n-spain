@@ -5,7 +5,7 @@ from odoo import models, fields, api, exceptions
 from ..lroe.lroe_api import LROETicketBaiApi
 from .lroe_operation import LROEOperationStateEnum
 from .lroe_operation_response import LROEOperationResponseState
-from .lroe_operation import LROEOperationEnum
+from .lroe_operation import LROEOperationEnum, LROEModelEnum
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
 
 
@@ -34,7 +34,7 @@ class TicketBAIInvoice(models.Model):
     def create_tbai_lroe_operation(self):
 
         def lroe_operation_company():
-            return self.company_id.id
+            return self.company_id
 
         def lroe_operation_type():
             if self.schema == TicketBaiSchema.TicketBai.value:
@@ -46,11 +46,29 @@ class TicketBAIInvoice(models.Model):
             return [self.id]
 
         self.ensure_one()
-        lroe_op_db_model = self.env['lroe.operation']
-        lroe_operation_dict = {'company_id': lroe_operation_company(),
-                               'type': lroe_operation_type(),
-                               'tbai_invoice_ids': [(6, 0, lroe_customer_invoices())]
-                               }
+        lroe_op_db_model = self.env["lroe.operation"]
+        company = lroe_operation_company()
+        if company.lroe_model == LROEModelEnum.model_pf_140.value:
+            lroe_chapter_id = self.env.ref(
+                "l10n_es_ticketbai_api_batuz.lroe_chapter_pf_140_1"
+            )
+            lroe_subchapter_id = self.env.ref(
+                "l10n_es_ticketbai_api_batuz.lroe_subchapter_pf_140_1_1"
+            )
+        else:
+            lroe_chapter_id = self.env.ref(
+                "l10n_es_ticketbai_api_batuz.lroe_chapter_pj_240_1"
+            )
+            lroe_subchapter_id = self.env.ref(
+                "l10n_es_ticketbai_api_batuz.lroe_subchapter_pj_240_1_1"
+            )
+        lroe_operation_dict = {
+            "company_id": company.id,
+            "type": lroe_operation_type(),
+            "tbai_invoice_ids": [(6, 0, lroe_customer_invoices())],
+            "lroe_chapter_id": lroe_chapter_id.id,
+            "lroe_subchapter_id": lroe_subchapter_id.id,
+        }
         lroe_operation = lroe_op_db_model.create(lroe_operation_dict)
         if lroe_operation:
             lroe_operation.build_xml_file()
