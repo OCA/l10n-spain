@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields
 from .lroe_operation import LROEModelEnum
@@ -13,3 +14,7 @@ class ResCompany(models.Model):
         string="LROE Model",
         required=True,
         default=LROEModelEnum.model_pj_240.value)
+    main_activity_iae = fields.Char(
+        string="Epígrafe I.A.E. actividad principal",
+        size=7,
+    )
