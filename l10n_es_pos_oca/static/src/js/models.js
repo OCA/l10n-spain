@@ -47,10 +47,9 @@ odoo.define("l10n_es_pos.models", function (require) {
         },
         push_simple_invoice: function (order) {
             if (
-                this.pushed_simple_invoices.indexOf(order.data.simplified_invoice) ===
-                -1
+                this.pushed_simple_invoices.indexOf(order.data.l10n_es_unique_id) === -1
             ) {
-                this.pushed_simple_invoices.push(order.data.simplified_invoice);
+                this.pushed_simple_invoices.push(order.data.l10n_es_unique_id);
                 ++this.config.l10n_es_simplified_invoice_number;
             }
         },
@@ -76,8 +75,7 @@ odoo.define("l10n_es_pos.models", function (require) {
             return total;
         },
         set_simple_inv_number: function () {
-            this.simplified_invoice = this.pos.get_simple_inv_next_number();
-            this.name = this.simplified_invoice;
+            this.l10n_es_unique_id = this.pos.get_simple_inv_next_number();
             this.is_simplified_invoice = true;
         },
         get_base_by_tax: function () {
@@ -100,20 +98,21 @@ odoo.define("l10n_es_pos.models", function (require) {
         init_from_JSON: function (json) {
             order_super.init_from_JSON.apply(this, arguments);
             this.to_invoice = json.to_invoice;
-            this.simplified_invoice = json.simplified_invoice;
+            this.l10n_es_unique_id = json.l10n_es_unique_id;
         },
         export_as_JSON: function () {
             var res = order_super.export_as_JSON.apply(this, arguments);
             res.to_invoice = this.is_to_invoice();
             if (!res.to_invoice) {
-                res.simplified_invoice = this.simplified_invoice;
+                res.l10n_es_unique_id = this.l10n_es_unique_id;
             }
             return res;
         },
         export_for_printing: function () {
             var result = order_super.export_for_printing.apply(this, arguments);
             var company = this.pos.company;
-            result.simplified_invoice = this.simplified_invoice;
+            result.l10n_es_unique_id = this.l10n_es_unique_id;
+            result.to_invoice = this.to_invoice;
             result.company.street = company.street;
             result.company.zip = company.zip;
             result.company.city = company.city;
