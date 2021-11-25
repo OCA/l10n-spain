@@ -52,8 +52,8 @@ class DhlParcelRequest(object):
             dhl_parcel_last_request = ("Request type: {}\nURL: {}\nData: {}").format(
                 request_type, url, data
             )
-            self.log_xml(dhl_parcel_last_request, "dhl_parcel_last_request")
-            self.log_xml(res.text or "", "dhl_parcel_last_response")
+            self.carrier_id.log_xml(dhl_parcel_last_request, "dhl_parcel_last_request")
+            self.carrier_id.log_xml(res.text or "", "dhl_parcel_last_response")
         except requests.exceptions.Timeout:
             raise UserError(_("Timeout: the server did not reply within 60s"))
         except (ValueError, requests.exceptions.ConnectionError):
