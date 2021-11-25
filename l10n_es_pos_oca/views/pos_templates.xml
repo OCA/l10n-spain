@@ -5,6 +5,14 @@
             <script type="text/javascript" src="/l10n_es_pos/static/src/js/models.js" />
             <script
                 type="text/javascript"
+                src="/l10n_es_pos/static/src/js/Screens/OrderManagementScreen/OrderRow.js"
+            />
+            <script
+                type="text/javascript"
+                src="/l10n_es_pos/static/src/js/Screens/OrderManagementScreen/OrderManagementControlPanel.js"
+            />
+            <script
+                type="text/javascript"
                 src="/l10n_es_pos/static/src/js/PaymentScreen.js"
             />
         </xpath>
