@@ -8,11 +8,11 @@
     >
         <xpath expr="//t[@t-if='receipt.company.contact_address']" position="before">
             <t
-                t-if="env.pos.config.iface_l10n_es_simplified_invoice and !receipt.is_to_invoice"
+                t-if="env.pos.config.iface_l10n_es_simplified_invoice and !receipt.to_invoice"
             >
                 <div><t t-esc='receipt.date.localestring' /></div>
                 <div>Simplified invoice</div>
-                <div><t t-esc="receipt.simplified_invoice" /></div><br />
+                <div><t t-esc="receipt.l10n_es_unique_id" /></div><br />
                 <t t-log="receipt" />
             </t>
         </xpath>

@@ -13,7 +13,7 @@ class PosOrder(models.Model):
         default=False,
     )
     l10n_es_unique_id = fields.Char(
-        "Unique Order ID",
+        "Simplified invoice number",
         copy=False,
     )
 
@@ -27,20 +27,19 @@ class PosOrder(models.Model):
     @api.model
     def _order_fields(self, ui_order):
         res = super(PosOrder, self)._order_fields(ui_order)
-        if ui_order.get("simplified_invoice", False):
+        if ui_order.get("l10n_es_unique_id", False):
             res.update(
                 {
-                    "pos_reference": ui_order["simplified_invoice"],
+                    "l10n_es_unique_id": ui_order["l10n_es_unique_id"],
                     "is_l10n_es_simplified_invoice": True,
                 }
             )
-        res.update({"l10n_es_unique_id": ui_order["uid"]})
         return res
 
     @api.model
     def _process_order(self, pos_order, draft, existing_order):
         order_data = pos_order.get("data", {})
-        simplified_invoice_number = order_data.get("simplified_invoice", False)
+        simplified_invoice_number = order_data.get("l10n_es_unique_id", False)
         if not simplified_invoice_number:
             return super()._process_order(pos_order, draft, existing_order)
         pos_order_obj = self.env["pos.order"]
@@ -50,42 +49,22 @@ class PosOrder(models.Model):
         ):
             pos_order["data"].update(
                 {
-                    "pos_reference": simplified_invoice_number,
+                    "l10n_es_unique_id": simplified_invoice_number,
                     "is_l10n_es_simplified_invoice": True,
                 }
             )
             pos.l10n_es_simplified_invoice_sequence_id.next_by_id()
         return super()._process_order(pos_order, draft, existing_order)
 
-    @api.model
-    def create_from_ui(self, orders, draft=False):
-        """Provide a context with the current session id"""
-        if not orders:
-            return super().create_from_ui(orders, draft)
-        # We take the uid from every order in the sync queue to discard only
-        # those orders that are really unique
-        # TODO: Duplicated simp. invoice ids shouldn't happen but in certain
-        # circumstances it can ocurr, so we choose to save them anyway.
-        submitted_uids = [o["data"]["uid"] for o in orders]
-        self_ctx = self.with_context(l10n_es_pos_submitted_uids=submitted_uids)
-        return super(PosOrder, self_ctx).create_from_ui(orders, draft)
+    def _get_fields_for_order_line(self):
+        fields = super()._get_fields_for_order_line()
 
-    @api.model
-    def search(self, args, offset=0, limit=0, order=None, count=False):
-        """If the context provided from create_from_ui() is given, we add
-        the unique_uid to the domain filter. This way, we prevent missing
-        orders if a sequence is reset. If they belong to another session
-        we grant them for valid despite the duped sequence number"""
-        submitted_uids = self.env.context.get("l10n_es_pos_submitted_uids")
-        # Only use these context values for the specific case of
-        # [('pos_reference', 'in', ids)]
-        # to avoid side effects when other calls are received in the same ctx
-        args_set = {x[0]: x[1] for x in args if len(x) > 1}
-        filter_uids = False
-        if {"pos_reference"}.issubset(args_set):
-            filter_uids = args_set["pos_reference"] == "="
-        if submitted_uids and filter_uids:
-            args += [("l10n_es_unique_id", "in", submitted_uids)]
-        return super().search(
-            args, offset=offset, limit=limit, order=order, count=count
-        )
+        fields += ["l10n_es_unique_id"]
+        return fields
+
+    def _export_for_ui(self, order):
+        res = super()._export_for_ui(order)
+
+        res.update({"l10n_es_unique_id": order.l10n_es_unique_id})
+
+        return res

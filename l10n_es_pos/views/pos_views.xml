@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="point_of_sale.view_pos_pos_form" />
         <field name="arch" type="xml">
             <field name="pos_reference" position="after">
+                <field name="l10n_es_unique_id" readonly="1" />
                 <field name="is_l10n_es_simplified_invoice" readonly="1" />
             </field>
         </field>
@@ -17,6 +18,7 @@
         <field name="inherit_id" ref="point_of_sale.view_pos_order_tree" />
         <field name="arch" type="xml">
             <field name="pos_reference" position="before">
+                <field name="l10n_es_unique_id" />
                 <field name="is_l10n_es_simplified_invoice" />
             </field>
         </field>
