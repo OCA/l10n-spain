@@ -76,7 +76,7 @@ msgid "Cancel and recreate"
 msgstr "Cancelar y recrear"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:290
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:292
 #, python-format
 msgid "Cancellation"
 msgstr "Anulación factura"
@@ -262,7 +262,7 @@ msgid "Invoice Number"
 msgstr "Número de factura"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:412
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:414
 #, python-format
 msgid "Invoice Number Prefix %s is not part of Invoice Number %s!"
 msgstr "Número de serie de factura %s no es parte del número de factura %s."
@@ -377,7 +377,7 @@ msgid "Origin Invoices Data"
 msgstr "Datos facturas origen"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:339
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:341
 #, python-format
 msgid ""
 "Please, specify data for the original invoices that are going to be refunded"
@@ -437,7 +437,7 @@ msgid "Software"
 msgstr "Software"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:353
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:355
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
@@ -445,7 +445,7 @@ msgstr ""
 "relacionadas"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:348
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:350
 #, python-format
 msgid ""
 "Some of the original invoices have related tbai invoices in inconsistent "
@@ -759,7 +759,7 @@ msgid "Warning"
 msgstr "Aviso"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:320
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:322
 #, python-format
 msgid ""
 "You cannot cancel an invoice while being sent to the Tax Agency.\n"
@@ -770,7 +770,7 @@ msgstr ""
 "Facturas relacionadas: %s"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:311
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:313
 #, python-format
 msgid ""
 "You cannot cancel an invoice with non cancelled credit notes.\n"
