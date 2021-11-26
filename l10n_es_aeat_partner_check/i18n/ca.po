@@ -70,11 +70,39 @@ msgid "Data different"
 msgstr "Dades diferents"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:10
-#: selection:res.partner,aeat_partner_check_result:0
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado
 #, python-format
 msgid "Identificado"
 msgstr "Identificat"
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-baja
+#, python-format
+msgid "Identificado, baja"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-revocado
+#, python-format
+msgid "Identificado, revocado"
+msgstr ""
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
@@ -100,28 +128,35 @@ msgstr ""
 "a AEAT a crear i escriure soci."
 
 #. module: l10n_es_aeat_partner_check
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_last_checked
 msgid "Latest AEAT check"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:12
-#: selection:res.partner,aeat_partner_check_result:0
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_identificable
 #, python-format
 msgid "No identificable"
 msgstr "No s’identifica"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:9
-#: selection:res.partner,aeat_partner_check_result:0
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_identificado
 #, python-format
 msgid "No identificado"
 msgstr "No identificat"
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:11
-#: selection:res.partner,aeat_partner_check_result:0
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__no_procesado
 #, python-format
 msgid "No procesado"
 msgstr "No processat"
@@ -153,15 +188,15 @@ msgid "Partner type"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:15
-#: selection:res.partner,aeat_partner_type:0
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__sales_equalization
 #, python-format
 msgid "Régimen de recargo de equivalencia"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
-#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:16
-#: selection:res.partner,aeat_partner_type:0
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__standard
 #, python-format
 msgid "Régimen estándar"
 msgstr ""
