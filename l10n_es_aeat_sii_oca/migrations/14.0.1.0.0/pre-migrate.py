@@ -13,10 +13,10 @@ def migrate_l10n_es_aeat_sii(env):
             """
         INSERT INTO l10n_es_aeat_certificate
         (name, state, file, date_start, date_end,
-         public_key, private_key, company_id)
+         public_key, private_key, company_id, folder)
         SELECT
         name, state, file, date_start, date_end,
-        public_key, private_key, company_id
+        public_key, private_key, company_id, 'OU'
         FROM l10n_es_aeat_sii
         """
         ),
