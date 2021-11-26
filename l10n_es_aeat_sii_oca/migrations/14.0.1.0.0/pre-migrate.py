@@ -1,4 +1,5 @@
 # Copyright 2021 Tecnativa - João Marques
+# Copyright 2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openupgradelib import openupgrade
@@ -12,10 +13,10 @@ def migrate_l10n_es_aeat_sii(env):
         sql.SQL(
             """
         INSERT INTO l10n_es_aeat_certificate
-        (name, state, file, date_start, date_end,
+        (name, state, file, date_start, date_end, folder,
          public_key, private_key, company_id)
         SELECT
-        name, state, file, date_start, date_end,
+        name, state, file, date_start, date_end, 'OU',
         public_key, private_key, company_id
         FROM l10n_es_aeat_sii
         """
