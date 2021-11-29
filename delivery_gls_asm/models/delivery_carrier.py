@@ -86,14 +86,14 @@ class DeliveryCarrier(models.Model):
             "podobligatorio": "N",  # [deprecated]
             "remite_plaza": "",  # [optional] Origin agency
             "remite_nombre": escape(sender_partner.name),
-            "remite_direccion": escape(sender_partner.street) or "",
-            "remite_poblacion": sender_partner.city or "",
-            "remite_provincia": sender_partner.state_id.name or "",
+            "remite_direccion": escape(sender_partner.street or ""),
+            "remite_poblacion": escape(sender_partner.city or ""),
+            "remite_provincia": escape(sender_partner.state_id.name or ""),
             "remite_pais": "34",  # [mandatory] always 34=Spain
             "remite_cp": sender_partner.zip or "",
             "remite_telefono": sender_partner.phone or "",
             "remite_movil": sender_partner.mobile or "",
-            "remite_email": sender_partner.email or "",
+            "remite_email": escape(sender_partner.email or ""),
             "remite_departamento": "",
             "remite_nif": sender_partner.vat or "",
             "remite_observaciones": "",
@@ -103,14 +103,14 @@ class DeliveryCarrier(models.Model):
                 escape(picking.partner_id.name)
                 or escape(picking.partner_id.commercial_partner_id.name)
             ),
-            "destinatario_direccion": picking.partner_id.street or "",
-            "destinatario_poblacion": picking.partner_id.city or "",
-            "destinatario_provincia": picking.partner_id.state_id.name or "",
-            "destinatario_pais": (picking.partner_id.country_id.phone_code or ""),
+            "destinatario_direccion": escape(picking.partner_id.street or ""),
+            "destinatario_poblacion": escape(picking.partner_id.city or ""),
+            "destinatario_provincia": escape(picking.partner_id.state_id.name or ""),
+            "destinatario_pais": escape(picking.partner_id.country_id.phone_code or ""),
             "destinatario_cp": picking.partner_id.zip,
             "destinatario_telefono": picking.partner_id.phone or "",
             "destinatario_movil": picking.partner_id.mobile or "",
-            "destinatario_email": picking.partner_id.email or "",
+            "destinatario_email": escape(picking.partner_id.email or ""),
             "destinatario_observaciones": "",
             "destinatario_att": "",
             "destinatario_departamento": "",
