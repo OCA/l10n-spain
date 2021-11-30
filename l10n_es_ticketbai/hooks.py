@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 # Copyright 2020 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, SUPERUSER_ID
 
@@ -42,3 +43,21 @@ def post_init_hook(cr, registry):
                     vals['tbai_vat_exemption_ids'] = tbai_vat_exemptions
             if vals:
                 position.write(vals)
+
+    companies = env['res.company'].search([])
+
+    for company in companies:
+        if company.tbai_enabled:
+            journals = env['account.journal'].search(
+                [('company_id', '=', company.id)]
+            )
+            for journal in journals:
+                if 'sale' == journal.type:
+                    if env['ir.module.module'].search([
+                        ('name', '=', 'l10n_es_account_invoice_sequence'),
+                        ('state', '=', 'installed')
+                    ]):
+                        journal.invoice_sequence_id.suffix = ''
+                    else:
+                        journal.sequence_id.suffix = ''
+                        journal.refund_sequence = True

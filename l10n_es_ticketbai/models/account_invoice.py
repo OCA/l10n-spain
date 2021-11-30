@@ -1,13 +1,17 @@
 # -*- encoding: utf-8 -*-
 
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime
+import re
 from odoo import models, fields, exceptions, _, api
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundCode, \
     RefundType, SiNoType, TicketBaiInvoiceState
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
+
+INVOICE_NUMBER_RE = re.compile(r'^(.*\D)?(\d*)$')
 
 
 class AccountInvoice(models.Model):
@@ -446,23 +450,15 @@ class AccountInvoice(models.Model):
             res = False
         return res
 
+    def split_invoice_number(self):
+        m = re.match(INVOICE_NUMBER_RE, self.number)
+        return m.group(1), m.group(2)
+
     def tbai_get_value_serie_factura(self):
-        sequence = self.journal_id.invoice_sequence_id
-        date = self.date or self.date_invoice
-        prefix, sufix = sequence.with_context(
-            ir_sequence_date=date, ir_sequence_date_range=date)._get_prefix_suffix()
-        return prefix
+        return self.split_invoice_number()[0]
 
     def tbai_get_value_num_factura(self):
-        invoice_number_prefix = self.tbai_get_value_serie_factura()
-        clear_number =\
-            self.number[1:] if self.tbai_is_invoice_refund() else self.number
-        if invoice_number_prefix and not clear_number.startswith(
-                invoice_number_prefix):
-            raise exceptions.ValidationError(_(
-                "Invoice Number Prefix %s is not part of Invoice Number %s!"
-            ) % (invoice_number_prefix, self.number))
-        return self.number[len(invoice_number_prefix):]
+        return self.split_invoice_number()[1]
 
     def tbai_get_value_fecha_expedicion_factura(self):
         invoice_date = self.date or self.date_invoice

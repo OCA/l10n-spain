@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import models, fields, api
 from odoo.tools import ormcache
@@ -65,3 +66,21 @@ class ResCompany(models.Model):
             if fp_id:
                 fp_ids.append(fp_id)
         return self.env['account.fiscal.position'].browse(fp_ids)
+
+    def write(self, vals):
+        res = super(ResCompany, self).write(vals)
+        if not vals.get('tbai_enabled', False):
+            return res
+        for record in self:
+            if record.tbai_enabled:
+                journals = self.env['account.journal'].search([('type', '=', 'sale')])
+                for journal in journals:
+                    if self.env['ir.module.module'].search([
+                        ('name', '=', 'l10n_es_account_invoice_sequence'),
+                        ('state', '=', 'installed')
+                    ]) and journal.invoice_sequence_id:
+                        journal.invoice_sequence_id.suffix = ''
+                    else:
+                        journal.sequence_id.suffix = ''
+                        journal.refund_sequence = True
+        return res

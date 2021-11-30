@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "TicketBAI - "
@@ -23,10 +24,11 @@
         "base_vat",
         "l10n_es",
         "l10n_es_aeat",
-        "l10n_es_account_invoice_sequence",
         "account_cancel",
         "l10n_es_aeat_certificate",
         "l10n_es_ticketbai_api",
+        "account_invoice_tax_required",
+        "account_cancel"
     ],
     "external_dependencies": {
         "python": ["OpenSSL"]
@@ -41,6 +43,7 @@
         "views/account_fiscal_position_template_views.xml",
         "views/account_fiscal_position_views.xml",
         "views/account_invoice_views.xml",
+        "views/ir_sequence_views.xml",
         "views/report_invoice.xml",
         "views/res_company_views.xml",
         "views/res_partner_views.xml",

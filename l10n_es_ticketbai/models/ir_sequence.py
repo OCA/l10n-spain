@@ -2,7 +2,7 @@
 
 # Copyright 2021 Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import models, _
+from odoo import models, _, fields
 from odoo.exceptions import UserError
 from datetime import datetime
 import pytz
@@ -10,6 +10,9 @@ import pytz
 
 class irSequence(models.Model):
     _inherit = 'ir.sequence'
+
+    tbai_enabled = fields.Boolean(
+        related='company_id.tbai_enabled', readonly=True)
 
     def _get_prefix_suffix(self):
         def _interpolate(s, d):
