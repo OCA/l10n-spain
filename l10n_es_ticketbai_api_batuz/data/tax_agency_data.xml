@@ -12,11 +12,11 @@
             <field name="tbai_tax_agency_id" ref="tbai_tax_agency_bizkaia"/>
             <field name="version">1.2</field>
             <field name="qr_base_url">https://batuz.eus/QRTBAI/</field>
-            <field name="test_qr_base_url"></field>
+            <field name="test_qr_base_url">https://batuz.eus/QRTBAI/</field>
             <field name="rest_url_invoice">https://sarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
-            <field name="test_rest_url_invoice"></field>
+            <field name="test_rest_url_invoice">https://pruesarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
             <field name="rest_url_cancellation">https://sarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
-            <field name="test_rest_url_cancellation"></field>
+            <field name="test_rest_url_cancellation">https://pruesarrerak.bizkaia.eus/N3B4000M/aurkezpena</field>
         </record>
     </data>
 </odoo>
