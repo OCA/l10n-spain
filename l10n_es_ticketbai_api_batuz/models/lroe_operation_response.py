@@ -165,16 +165,14 @@ class LROEOperationResponse(models.Model):
 
             tbai_response_model = self.env['tbai.response']
             tbai_msg_description = response_line_record_message
-            tbai_msg_code = \
+            tbai_msg_code =\
                 TicketBaiInvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value \
-                    if LROEOperationResponseLineCode.DUPLICATED_RECORD.value ==\
-                       response_line_record_code \
-                    else TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.value\
-                    if LROEOperationResponseLineCode.ALREADY_CANCELLED_RECORD.value == \
-                       response_line_record_code\
-                    else response_line_record_code\
-                    if response_line_record_code\
-                    else ''
+                if LROEOperationResponseLineCode.DUPLICATED_RECORD.value == \
+                response_line_record_code else \
+                TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.value \
+                if LROEOperationResponseLineCode.ALREADY_CANCELLED_RECORD.value == \
+                response_line_record_code else response_line_record_code\
+                if response_line_record_code else ''
             tbai_response_dict = {
                 'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
                 'state': LROEOperationResponse.get_tbai_state(
