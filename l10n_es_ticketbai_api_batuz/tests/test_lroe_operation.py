@@ -4,6 +4,7 @@ import os
 import base64
 import datetime
 import gzip
+import json
 from odoo.tests import common
 from ..models.lroe_operation import LROEOperationEnum, LROEModelEnum
 from ..models.lroe_operation_response\
@@ -76,6 +77,50 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         return invoice
+
+    def _prepare_bizkaia_company(self, company):
+        test_dir_path = os.path.abspath(os.path.dirname(__file__))
+        pj_240 = 'company-bizkaia-pj-240.json'
+        pf_140 = 'company-bizkaia-pf-140.json'
+        p12_pj_240 = 'tbai-p12-bizkaia-pj-240.json'
+        p12_pf_140 = 'tbai-p12-bizkaia-pf-140.json'
+        lroe_240 = LROEModelEnum.model_pj_240.value
+        lroe_model = company.lroe_model
+        company_json = pj_240 if lroe_model == lroe_240 else pf_140
+        tbai_p12_json = p12_pj_240 if lroe_model == lroe_240 else p12_pf_140
+        tbai_p12_json_path = os.path.join(test_dir_path, tbai_p12_json)
+        self.company_values_json_filepath = os.path.join(test_dir_path, company_json)
+        with open(self.company_values_json_filepath) as fp:
+            company_vals = json.load(fp)
+        if 'invoice_number' in company_vals:
+            company_vals.pop('invoice_number')
+        if 'refund_invoice_number' in company_vals:
+            company_vals.pop('refund_invoice_number')
+        with open(tbai_p12_json_path) as fp:
+            p12_vals = json.load(fp)
+            cert_path = os.path.join(test_dir_path,
+                                     p12_vals.pop('tbai_p12_certificate_path'))
+            cert_password = p12_vals.pop('tbai_p12_certificate_password')
+            certificate = self.create_certificate(company.id, cert_path, cert_password)
+        company_vals.update({
+            'tbai_certificate_id': certificate.id,
+            'tbai_tax_agency_id': self.env.ref(
+                'l10n_es_ticketbai_api_batuz.tbai_tax_agency_bizkaia').id,
+        })
+        tbai_developer_json = os.path.join(test_dir_path,
+                                           'tbai-batuz-soft-developer.json')
+        with open(tbai_developer_json) as fp:
+            developer_vals = json.load(fp)
+        tbai_installation = self.env['tbai.installation'].create({
+            'name': developer_vals.pop('name'),
+            'version': developer_vals.pop('version'),
+            'developer_id':
+                self.env['res.partner'].create({'name': 'TBai Bizkaia Developer',
+                                                'vat': developer_vals.pop('vat')}).id,
+            'license_key': developer_vals.pop('license_key')
+        })
+        company_vals.update({'tbai_installation_id': tbai_installation.id})
+        company.write(company_vals)
 
     def setUp(self):
         super().setUp()
@@ -460,3 +505,39 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
                 in_state
             )
             self.assertEqual(s, out_state)
+
+    def test_alta_pj_240_send_to_tax_agency(self):
+        if self.send_to_tax_agency:
+            self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
+            self._prepare_bizkaia_company(self.main_company)
+            invoice_number_str = self.get_next_number()
+            tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)
+            self._send_to_tax_agency(tbai_invoice_id)
+
+    def test_alta_model_pf_140_send_to_tax_agency(self):
+        if self.send_to_tax_agency:
+            self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+            self._prepare_bizkaia_company(self.main_company)
+            invoice_number_str = self.get_next_number()
+            tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)
+            self._send_to_tax_agency(tbai_invoice_id)
+
+    def test_cancel_model_pj_240_send_to_tax_agency(self):
+        if self.send_to_tax_agency:
+            self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
+            self._prepare_bizkaia_company(self.main_company)
+            invoice_number_str = self.get_next_number()
+            tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)
+            self._send_to_tax_agency(tbai_invoice_id)
+            tbai_cancel_invoice_id = self.create_tbai_cancel_invoice(invoice_number_str)
+            self._send_to_tax_agency(tbai_cancel_invoice_id)
+
+    def test_cancel_model_pf_140_send_to_tax_agency(self):
+        if self.send_to_tax_agency:
+            self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+            self._prepare_bizkaia_company(self.main_company)
+            invoice_number_str = self.get_next_number()
+            tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)
+            self._send_to_tax_agency(tbai_invoice_id)
+            tbai_cancel_invoice_id = self.create_tbai_cancel_invoice(invoice_number_str)
+            self._send_to_tax_agency(tbai_cancel_invoice_id)
