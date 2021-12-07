@@ -12,4 +12,4 @@ class ResBank(models.Model):
 
     lname = fields.Char("Long name", size=128)
     vat = fields.Char("VAT code", size=32, help="Value Added Tax number")
-    website = fields.Char("Website", size=64)
+    website = fields.Char(size=64)
