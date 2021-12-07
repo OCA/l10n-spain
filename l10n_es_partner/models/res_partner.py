@@ -16,7 +16,7 @@ class ResPartner(models.Model):
 
     @api.depends("comercial")
     def _compute_display_name(self):
-        super()._compute_display_name()
+        return super()._compute_display_name()
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
