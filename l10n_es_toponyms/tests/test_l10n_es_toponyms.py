@@ -1,13 +1,13 @@
-# Copyright 2013-2019 Tecnativa - Pedro M. Baeza
+# Copyright 2013-2021 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.tests import common
 
 
-class TestL10nEsToponyms(common.SavepointCase):
+class TestL10nEsToponyms(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestL10nEsToponyms, cls).setUpClass()
+        super().setUpClass()
         cls.wizard = cls.env["config.es.toponyms"].create({"name": ""})
 
     def test_import(self):
