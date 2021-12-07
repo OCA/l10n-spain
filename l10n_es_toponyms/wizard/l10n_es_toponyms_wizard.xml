@@ -5,6 +5,7 @@
         <field name="model">config.es.toponyms</field>
         <field name="inherit_id" ref="base.res_config_installer" />
         <field name="mode">primary</field>
+        <field name="priority" eval="100" />
         <field name="arch" type="xml">
             <form position="attributes">
                 <attribute name="string">Spanish cities configuration</attribute>
