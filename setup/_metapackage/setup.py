@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-l10n_es_partner_mercantil>=15.0dev,<15.1dev',
+        'odoo-addon-l10n_es_toponyms>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
