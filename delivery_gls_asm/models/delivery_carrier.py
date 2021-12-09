@@ -3,6 +3,7 @@
 from xml.sax.saxutils import escape
 
 from odoo import _, fields, models
+from odoo.exceptions import UserError
 
 from .gls_asm_request import (
     GLS_ASM_SERVICES,
@@ -141,6 +142,17 @@ class DeliveryCarrier(models.Model):
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         result = []
         for picking in pickings:
+            if len(picking.name) > 15:
+                raise UserError(
+                    _(
+                        "GLS-ASM API doesn't admit a reference number higher than "
+                        "15 characters. In order to handle it, they trim the"
+                        "reference and as the reference is unique to every "
+                        "customer we soon would have duplicated reference "
+                        "collisions. To prevent this, you should edit your picking "
+                        "sequence to a max of 15 characters."
+                    )
+                )
             vals = self._prepare_gls_asm_shipping(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_shipping(vals)
