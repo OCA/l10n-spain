@@ -19,6 +19,7 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting & Finance",
+    "development_status": "Mature",
     "depends": ["l10n_es", "account_tax_balance"],
     "external_dependencies": {"python": ["unidecode", "cryptography"]},
     "data": [
