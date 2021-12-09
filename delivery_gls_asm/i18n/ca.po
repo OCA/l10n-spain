@@ -17,23 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
-msgid ""
-"\n"
-"            GLS ASM API doesn't provide methods to compute delivery rates, so\n"
-"            you should relay on another price method instead or override this\n"
-"            one in your custom code.\n"
-"        "
-msgstr ""
-"\n"
-"            La API de GLS ASM no proporciona métodos para calcular las tasas "
-"de entrega, por lo que\n"
-"            debe confiar en otro método de precio en su lugar o anular este\n"
-"            uno en su código personalizado.\n"
-"        "
-
-#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__0
 msgid "10:00 Service"
 msgstr "10:00 Servicio"
@@ -72,7 +55,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid ""
 "<span>\n"
-"                                        <strong>Carrier Signature / Stamp</strong>\n"
+"                                        <strong>Carrier Signature / Stamp</"
+"strong>\n"
 "                                    </span>"
 msgstr ""
 
@@ -112,6 +96,11 @@ msgid "<strong>TOTAL</strong>"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__preconfirm
+msgid "A preconfirmar"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__59
 msgid "ASM BUROFAX"
 msgstr ""
@@ -122,6 +111,11 @@ msgid "ASM GO"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__parcelshop_confirm
+msgid "ASM PARCELSHOP CONFIRMA RECEPCIÓN"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__30
 msgid "ASM0830"
 msgstr ""
@@ -129,6 +123,26 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__66
 msgid "ASMTRAVELLERS"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__warehouse
+msgid "Almacenado"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__cancel
+msgid "Anualada"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__cancel
+msgid "Anulada"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__assigned
+msgid "Asignada"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -172,6 +186,11 @@ msgid "COURIER"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_form
+msgid "Cancel"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
 msgid "Cancelar"
 msgstr ""
@@ -182,8 +201,51 @@ msgid "Cash On Delivery"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__closed
+msgid "Cerrado"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__closed_final
+msgid "Cerrado Definitivo"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__closed_final
+msgid "Cerrado definitivo"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__closed
+msgid "Cerrado por siniestro"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_is_pickup_service
+#: model:ir.model.fields,help:delivery_gls_asm.field_stock_picking__gls_carrier_is_pickup_service
+msgid "Checked if this service is used for pickups"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "City"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__incidence
+msgid "Con incidencia"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid "Couldn't find the consignee street"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid "Couldn't find the sender street"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -222,7 +284,24 @@ msgid "Date From"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__destroyed
+msgid "Destruido por orden del cliente"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__return_agency
+msgid "Devuelta"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__return_customer
+msgid "Devuelta al cliente"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__display_name
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__display_name
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -262,8 +341,68 @@ msgid "EconomyParcel"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__agency_transit
+msgid "En delegación destino"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__origin
+msgid "En delegación origen"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__returning
+msgid "En devolución"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__in_platform
+msgid "En plataforma de destino"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__shipping
+msgid "En reparto"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__transit
+msgid "En tránsito al destino"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__13
 msgid "Ent. Pto. ASM"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__cancel_returned
+msgid "Entrega anulada (devuelta)"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__partially_delivered
+msgid "Entrega parcial"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__delivered
+msgid "Entregado"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__parcelshop
+msgid "Entregado en ASM PARCELSHOP"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_shipment_state
+msgid "Estado envío GLS"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_pickup_state
+msgid "Estado recogida GLS"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -279,6 +418,16 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__delivery_type__gls_asm
 msgid "GLS ASM"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"GLS ASM API doesn't provide methods to compute delivery rates, so\n"
+"                you should relay on another price method instead or override "
+"this\n"
+"                one in your custom code."
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -303,12 +452,6 @@ msgid "GLS Deliveries Manifest"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
-#, python-format
-msgid "GLS Expedition with reference %s cancelled"
-msgstr ""
-
-#. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_form
 msgid "GLS Label"
 msgstr ""
@@ -320,6 +463,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
 #, python-format
 msgid "GLS Manifest"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid "GLS Pickup extra info:<br/> Tracking number: %s<br/> Bultos: %s"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -357,6 +506,17 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"GLS-ASM API doesn't admit a reference number higher than 15 characters. In "
+"order to handle it, they trim thereference and as the reference is unique to "
+"every customer we soon would have duplicated reference collisions. To "
+"prevent this, you should edit your picking sequence to a max of 15 "
+"characters."
+msgstr ""
+
+#. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
@@ -385,12 +545,19 @@ msgid "Get the GLS Manifest for the given date range"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__recorded
+msgid "Grabado"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__11
 msgid "IBEX"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__id
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard__id
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__id
 msgid "ID"
 msgstr ""
 
@@ -428,22 +595,14 @@ msgstr ""
 #: code:addons/delivery_gls_asm/wizard/gls_asm_manifest_wizard.py:0
 #, python-format
 msgid ""
-"It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the"
-" selected date."
+"It wasn't possible to get the manifest. Maybe there aren'tdeliveries for the "
+"selected date."
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_request
-msgid "Last GLS xml request"
-msgstr ""
-
-#. module: delivery_gls_asm
-#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_last_response
-msgid "Last GLS xml response"
-msgstr ""
-
-#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_gls_asm_minifest_wizard____last_update
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -468,6 +627,11 @@ msgid "Manifest"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__manifested
+msgid "Manifestada"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__10
 msgid "Maritimo"
 msgstr ""
@@ -475,6 +639,11 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__4
 msgid "Masivo"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__not_done
+msgid "No Realizada"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -531,6 +700,37 @@ msgid "ParcelShop"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__pending
+msgid "Pendiente Gestión"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__held
+msgid "Pendiente autorización"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__pending
+msgid "Pendiente datos en delegación"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__pending_auth
+msgid "Pending Autorización"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_is_pickup_service
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_stock_picking__gls_carrier_is_pickup_service
+msgid "Pick-up service"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__possible_return
+msgid "Posible devolución"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_postage_type
 msgid "Postage Type"
 msgstr ""
@@ -538,6 +738,11 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_postage_type
 msgid "Postage type, usually 'Prepaid'"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__preconfirmed
+msgid "Preconfirmada enrega"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -631,13 +836,48 @@ msgid "RETORNO"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__incidence
+msgid "Realizada con Incidencia"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__done
+msgid "Realizada con éxito"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_shiptime__11
 msgid "Rec. en NAVE."
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__extinguished
+msgid "Recanalizada (A extinguir)"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__picked_up_agency
+msgid "Recepcionada en Agencia"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__received
+msgid "Recibida"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__picked_up_customer
+msgid "Recogido en Cliente"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "Ref."
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__held_order
+msgid "Retenido por orden de paga"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -681,6 +921,11 @@ msgid "SaturdayService"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_picking_form
+msgid "Send pick-up"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_service
 msgid "Set the contracted GLS Service"
 msgstr ""
@@ -701,8 +946,13 @@ msgid "Shipping Time"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model_terms:ir.ui.view,arch_db:delivery_gls_asm.view_delivery_carrier_form
-msgid "Technical"
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__recorded
+msgid "Solicitada"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_shipment_state__requested_return
+msgid "Solicitud de devolución"
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -711,9 +961,11 @@ msgid "Transfer"
 msgstr ""
 
 #. module: delivery_gls_asm
-#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_request
-#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_last_response
-msgid "Used for issues debugging"
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"Unable to cancel GLS Expedition with reference {} as it is in state {}.\n"
+"Please manage the cancellation of this shipment/pickup with GLS via email."
 msgstr ""
 
 #. module: delivery_gls_asm
@@ -735,3 +987,20 @@ msgstr ""
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__35
 msgid "dPRO"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "            GLS ASM API doesn't provide methods to compute delivery "
+#~ "rates, so\n"
+#~ "            you should relay on another price method instead or override "
+#~ "this\n"
+#~ "            one in your custom code.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "            La API de GLS ASM no proporciona métodos para calcular las "
+#~ "tasas de entrega, por lo que\n"
+#~ "            debe confiar en otro método de precio en su lugar o anular "
+#~ "este\n"
+#~ "            uno en su código personalizado.\n"
+#~ "        "
