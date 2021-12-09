@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:218
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:228
 #, python-format
 msgid ""
 "\n"
@@ -304,7 +304,7 @@ msgid "GLS Barcode"
 msgstr "Código de barras GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:206
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:216
 #, python-format
 msgid "GLS Cancellation failed with reason: %s"
 msgstr "La cancelación de GLS falló por esta causa: %s"
@@ -320,7 +320,7 @@ msgid "GLS Deliveries Manifest"
 msgstr "Manifiesto de Envíos GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:212
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:222
 #, python-format
 msgid "GLS Expedition with reference %s cancelled"
 msgstr "Expedición GLS con referencia %s cancelada"
@@ -331,7 +331,7 @@ msgid "GLS Label"
 msgstr "Etiqueta GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:247
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:257
 #: model:ir.actions.act_window,name:delivery_gls_asm.action_delivery_gls_asm_manifest_wizard
 #: model:ir.actions.report,name:delivery_gls_asm.gls_asm_manifest_report
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.delivery_manifest_wizard_form
@@ -346,7 +346,7 @@ msgid "GLS Service"
 msgstr "Servicio GLS"
 
 #. module: delivery_gls_asm
-#: code:addons/delivery_gls_asm/models/delivery_carrier.py:162
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:172
 #, python-format
 msgid ""
 "GLS Shipping extra info:\n"
@@ -377,6 +377,17 @@ msgstr ""
 "GLS ha devuelto un error tratando de registrar la expedición para {}.\n"
 "Error:\n"
 "{}"
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:149
+#, python-format
+msgid ""
+"GLS-ASM API doesn't admit a reference number higher than 15 characters. In "
+"order to handle it, they trim thereference and as the reference is unique to "
+"every customer we soon would have duplicated reference collisions. To "
+"prevent this, you should edit your picking sequence to a max of 15 "
+"characters."
+msgstr ""
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:318
