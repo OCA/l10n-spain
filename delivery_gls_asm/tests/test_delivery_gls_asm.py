@@ -50,6 +50,9 @@ class TestDeliveryGlsAsm(common.SavepointCase):
         # unique key that doesn't collide with any CI around, as every test really
         # records an expedition
         self.picking.name = "ODOO-TEST-{}".format(time.time())
+        with self.assertRaises(UserError):
+            self.picking.button_validate()
+        self.picking.name = "ODOO-{}".format(int(time.time()))
         self.picking.button_validate()
         self.assertTrue(self.picking.carrier_tracking_ref)
         self.assertTrue(self.picking.gls_asm_public_tracking_ref)
