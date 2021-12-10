@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="facturae_backend_type" model="edi.backend.type">
+        <field name="name">Spanish Facturae Backend type</field>
+        <field name="code">l10n_es_facturae</field>
+    </record>
+    <record id="facturae_exchange_type" model="edi.exchange.type">
+        <field name="name">Spanish Facturae</field>
+        <field name="code">l10n_es_facturae</field>
+        <field name="backend_type_id" ref="facturae_backend_type" />
+        <field name="direction">output</field>
+        <field name="exchange_filename_pattern">{record_name}--{dt}</field>
+        <field name="exchange_file_ext">xsig</field>
+        <field name="model_ids" eval="[(4, ref('account.model_account_move'))]" />
+        <field name="exchange_file_auto_generate" eval="True" />
+        <field
+            name="enable_domain"
+        >[('state', '!=', 'draft'), ('partner_id', '!=', False), ('partner_id.l10n_es_facturae_sending_code', '!=', False),('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
+        <field
+            name="enable_snippet"
+        >result = not record._has_exchange_record(exchange_type.code)</field>
+    </record>
+</odoo>
