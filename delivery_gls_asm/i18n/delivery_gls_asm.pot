@@ -348,6 +348,17 @@ msgid ""
 msgstr ""
 
 #. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/delivery_carrier.py:0
+#, python-format
+msgid ""
+"GLS-ASM API doesn't admit a reference number higher than 15 characters. In "
+"order to handle it, they trim thereference and as the reference is unique to"
+" every customer we soon would have duplicated reference collisions. To "
+"prevent this, you should edit your picking sequence to a max of 15 "
+"characters."
+msgstr ""
+
+#. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
 #, python-format
 msgid ""
