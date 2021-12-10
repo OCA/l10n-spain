@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_aeat_vat_prorrate_asset',
         'odoo14-addon-l10n_es_dua',
         'odoo14-addon-l10n_es_dua_sii',
+        'odoo14-addon-l10n_es_facturae',
         'odoo14-addon-l10n_es_intrastat_report',
         'odoo14-addon-l10n_es_irnr',
         'odoo14-addon-l10n_es_mis_report',
