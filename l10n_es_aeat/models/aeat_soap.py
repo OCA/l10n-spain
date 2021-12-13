@@ -9,7 +9,7 @@ from odoo import models
 _logger = logging.getLogger(__name__)
 
 try:
-    from zeep import Client
+    from zeep import Client, Settings
     from zeep.plugins import HistoryPlugin
     from zeep.transports import Transport
 except (ImportError, IOError) as err:
@@ -20,7 +20,7 @@ class L10nEsAeatSoap(models.TransientModel):
     _name = "l10n.es.aeat.soap"
     _description = "AEAT SOAP"
 
-    def connect_soap(self, wsdl, model):
+    def connect_soap(self, wsdl, model, settings=None):
         if "company_id" in model._fields:
             public_crt, private_key = self.env[
                 "l10n.es.aeat.certificate"
@@ -35,20 +35,25 @@ class L10nEsAeatSoap(models.TransientModel):
         transport = Transport(session=session)
 
         history = HistoryPlugin()
-        client = Client(wsdl=wsdl, transport=transport, plugins=[history])
+        settings = Settings(**settings)
+        client = Client(
+            wsdl=wsdl, transport=transport, settings=settings, plugins=[history]
+        )
         return client
 
     def get_test_mode(self, port_name, model):
         port_name = model.get_test_mode(port_name)
         return port_name
 
-    def connect_wsdl(self, service, wsdl, port_name, model):
-        client = self.connect_soap(wsdl, model)
+    def connect_wsdl(self, service, wsdl, port_name, model, settings=None):
+        client = self.connect_soap(wsdl, model, settings=settings)
         port_name = self.get_test_mode(port_name, model)
         serv = client.bind(service, port_name)
         return serv
 
-    def send_soap(self, service, wsdl, port_name, model, operation, *args):
-        serv = self.connect_wsdl(service, wsdl, port_name, model)
+    def send_soap(
+        self, service, wsdl, port_name, model, operation, *args, settings=None
+    ):
+        serv = self.connect_wsdl(service, wsdl, port_name, model, settings=settings)
         res = serv[operation](*args)
         return res
