@@ -70,7 +70,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:249
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:251
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -331,7 +331,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:272
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:274
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -644,7 +644,7 @@ msgid "You cannot stop sending invoices from this journal, an invoice has alread
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:289
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:291
 #, python-format
 msgid "You cannot validate a refund invoice without the origin invoice!"
 msgstr ""
