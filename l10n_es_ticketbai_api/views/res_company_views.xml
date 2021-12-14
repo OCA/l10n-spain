@@ -15,7 +15,12 @@
                             <field name="tbai_enabled"/>
                         </group>
                         <group name="ticketbai_company_config" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
-                            <field name="tbai_test_enabled"/>
+                            <field name="tbai_test_available" invisible="1"/>
+                            <field name="tbai_pro_available" invisible="1"/>
+                            <field name="tbai_test_enabled"
+                                   attrs="{'invisible': [('tbai_test_available', '=', False)],
+                                   'readonly': [('tbai_pro_available', '=', False)]}"
+                                   force_save="1"/>
                             <field name="tbai_device_serial_number" invisible="1"/>
                             <field name="tbai_installation_id"
                                    attrs="{'required': [('tbai_enabled', '=', True)]}"
