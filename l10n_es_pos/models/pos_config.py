@@ -60,7 +60,7 @@ class PosConfig(models.Model):
     def create(self, vals):
         # Auto create simp. inv. sequence
         prefix = "%s%s" % (vals['name'], self._get_default_prefix())
-        simp_inv_seq_id = self.env['ir.sequence'].create({
+        simp_inv_seq_id = self.env['ir.sequence'].sudo().create({
             'name': _('Simplified Invoice %s') % vals['name'],
             'implementation': 'no_gap',
             'padding': self._get_default_padding(),
@@ -97,11 +97,11 @@ class PosConfig(models.Model):
         return super(PosConfig, self).unlink()
 
     def _get_default_padding(self):
-        return self.env['ir.config_parameter'].get_param(
+        return self.env['ir.config_parameter'].sudo().get_param(
             'l10n_es_pos.simplified_invoice_sequence.padding', 4)
 
     def _get_default_prefix(self):
-        return self.env['ir.config_parameter'].get_param(
+        return self.env['ir.config_parameter'].sudo().get_param(
             'l10n_es_pos.simplified_invoice_sequence.prefix', '')
 
     def _get_l10n_es_sequence_name(self):
