@@ -141,7 +141,7 @@ class TestL10nEsAeatMod111Base(TestL10nEsAeatModBase):
         # Check result
         _logger.debug("Checking results")
         # ([03] + [06] + [09] + [12] + [15] + [18] + [21] + [24] + [27])
-        retenciones = sum([self.taxes_result.get(b, 0.0) for b in ("3", "6", "9")])
+        retenciones = sum(self.taxes_result.get(b, 0.0) for b in ("3", "6", "9"))
         retenciones += sum([180 + 209 + 228 + 26 + 28 + 285])
         # ([28] - [29])
         result = retenciones - 145
