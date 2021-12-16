@@ -2,9 +2,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
+import logging
 
 from odoo import _, api, exceptions, fields, models
 from odoo.tools.safe_eval import safe_eval
+
+_logger = logging.getLogger(__name__)
 
 
 class L10nEsAeatReportExportToBoe(models.TransientModel):
@@ -14,7 +17,6 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     data = fields.Binary(string="File", required=True)
     state = fields.Selection(
         selection=[("open", "open"), ("compare", "compare")],
-        string="State",
         default="open",
     )
     line_ids = fields.One2many(
@@ -100,7 +102,7 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
         string="Sequence", related="export_line_id.sequence", readonly=True
     )
     name = fields.Char(string="Name", related="export_line_id.name", readonly=True)
-    content = fields.Char(string="Content")
+    content = fields.Char()
     content_float = fields.Float(compute="_compute_content_float", string="Amount")
 
     @api.depends("content")
@@ -118,7 +120,7 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
                     line.content_float = sign * (
                         float(content) / 10 ** line.export_line_id.decimal_size
                     )
-                except Exception:
-                    pass
+                except Exception as e:
+                    _logger.debug(e)
             else:
                 line.content_float = sign * line.content
