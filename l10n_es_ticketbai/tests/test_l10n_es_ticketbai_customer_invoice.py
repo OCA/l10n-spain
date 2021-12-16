@@ -494,3 +494,15 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
             invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
+
+    def test_enable_tbai_no_invoice_sequence(self):
+        self.main_company.tbai_enabled = False
+        account_invoice_sequence = self.env['ir.module.module'].search([
+            ('name', '=', 'l10n_es_account_invoice_sequence')
+        ], limit=1)
+        account_invoice_sequence.state = 'uninstalled'
+        self.main_company.tbai_enabled = True
+        journals = self.env['account.journal'].search([('type', '=', 'sale')])
+        for journal in journals:
+            self.assertEqual(journal.sequence_id.suffix, '')
+            self.assertEqual(journal.refund_sequence, True)

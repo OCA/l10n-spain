@@ -28,7 +28,7 @@ Installation
 
 Para instalar este módulo se necesita:
 
-#. Los módulos `l10n_es_ticketbai_api`, `l10n_es_aeat`, `l10n_es_aeat_certificate`, `l10n_es_account_invoice_sequence`, `account_cancel`
+#. Los módulos `l10n_es_ticketbai_api`, `l10n_es_aeat`, `l10n_es_aeat_certificate`, `account_cancel`
 
 y el módulo `account_invoice_tax_required` que se encuentra en:
 
@@ -102,6 +102,7 @@ Contributors
 
 * Victor Laskurain <blaskurain@binovo.es>
 * Luis J. Salvatierra <ljsalvatierra@binovo.es>
+* Aritz Olea <ao@landoo.es>
 
 Maintainers
 ~~~~~~~~~~~
