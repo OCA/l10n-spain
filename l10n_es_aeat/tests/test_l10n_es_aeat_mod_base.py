@@ -8,7 +8,7 @@ from odoo.tests import common
 _logger = logging.getLogger("aeat")
 
 
-class TestL10nEsAeatModBase(common.SavepointCase):
+class TestL10nEsAeatModBase(common.TransactionCase):
     accounts = {}
     # Set 'debug' attribute to True to easy debug this test
     # Do not forget to include '--log-handler aeat:DEBUG' in Odoo command line
