@@ -119,9 +119,23 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
         elif map_line.sum_type == "credit":
             move_line_domain.append(("credit", ">", 0))
         if map_line.exigible_type == "yes":
-            move_line_domain.append(("tax_exigible", "=", True))
+            move_line_domain.extend(
+                (
+                    "|",
+                    ("move_id.tax_cash_basis_rec_id", "!=", False),
+                    "|",
+                    ("tax_line_id.tax_exigibility", "!=", "on_payment"),
+                    ("tax_ids.tax_exigibility", "!=", "on_payment"),
+                )
+            )
         elif map_line.exigible_type == "no":
-            move_line_domain.append(("tax_exigible", "=", False))
+            move_line_domain.extend(
+                (
+                    ("move_id.tax_cash_basis_rec_id", "=", False),
+                    ("tax_line_id.tax_exigibility", "=", "on_payment"),
+                    ("tax_ids.tax_exigibility", "=", "on_payment"),
+                )
+            )
         move_line_domain += self._get_partner_domain()
         return move_line_domain
 

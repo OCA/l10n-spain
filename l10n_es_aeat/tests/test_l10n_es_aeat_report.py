@@ -1,54 +1,26 @@
 # Copyright 2016 Pedro M. Baeza <pedro.baeza@tecnativa.com>
+# Copyright 2021 Valentin Vinagre <valentin.vinagre@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import exceptions, fields, models
-from odoo.tests import common, tagged
+from odoo_test_helper import FakeModelLoader
+
+from odoo import exceptions, fields
+from odoo.tests import common
 
 TEST_MODEL_NAME = "l10n.es.aeat.mod999.report"
 
 
-class L10nEsAeatTestReport(models.TransientModel):
-    _name = TEST_MODEL_NAME
-    _inherit = "l10n.es.aeat.report"
-    _description = "L10nEsAeatTestReport"
-    _aeat_number = "999"
-
-
-@tagged("post_install", "-at_install")
-class TestL10nEsAeatReport(common.SavepointCase):
-    @classmethod
-    def _init_test_model(cls, model_cls):
-        """It builds a model from model_cls in order to test abstract models.
-        Note that this does not actually create a table in the database, so
-        there may be some unidentified edge cases.
-
-        Requirements: test to be executed at post_install.
-
-        : Args:
-            model_cls (odoo.models.BaseModel): Class of model to initialize
-        Returns:
-            Instance
-        """
-        registry = cls.env.registry
-        cls.env.cr.execute(
-            'INSERT INTO ir_model (model, name, "order") VALUES (%s, %s, %s) '
-            "ON CONFLICT DO NOTHING",
-            (TEST_MODEL_NAME, "Test AEAT model", "id"),
-        )
-        inst = model_cls._build_model(registry, cls.env.cr)
-        registry.setup_models(cls.env.cr)
-        registry.init_models(
-            cls.env.cr,
-            [model_cls._name],
-            dict(cls.env.context, update_custom_fields=True),
-        )
-        return inst
-
+class TestL10nEsAeatReport(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls._init_test_model(L10nEsAeatTestReport)
-        cls.AeatReport = cls.env["l10n.es.aeat.report"]
+        # Load a test model using odoo_test_helper
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        from .models import L10nEsAeatTestReport
+
+        cls.loader.update_registry((L10nEsAeatTestReport,))
+        cls.AeatReport = cls.env[TEST_MODEL_NAME]
         cls.period_types = {
             "0A": ("2016-01-01", "2016-12-31"),
             "1T": ("2016-01-01", "2016-03-31"),
@@ -68,6 +40,11 @@ class TestL10nEsAeatReport(common.SavepointCase):
             "11": ("2016-11-01", "2016-11-30"),
             "12": ("2016-12-01", "2016-12-31"),
         }
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.loader.restore_registry()
+        return super().tearDownClass()
 
     def test_compute_dates(self):
         report = self.AeatReport.new({"year": 2016})
@@ -89,7 +66,12 @@ class TestL10nEsAeatReport(common.SavepointCase):
             report.invalidate_cache(["date_start", "date_end"])
 
     def test_check_complementary(self):
-        report = self.AeatReport.new({"year": 2016, "statement_type": "S"})
+        report = self.AeatReport.new(
+            {
+                "year": 2016,
+                "statement_type": "S",
+            }
+        )
         with self.assertRaises(exceptions.UserError):
             report._check_previous_number()
 
