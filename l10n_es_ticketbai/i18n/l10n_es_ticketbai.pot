@@ -69,7 +69,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:292
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:296
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -164,6 +164,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_ir_sequence_tbai_enabled
 msgid "Enable TicketBAI"
 msgstr ""
 
@@ -232,7 +233,7 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:66
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:70
 #, python-format
 msgid "Invoice %s. You cannot change to draft a numbered invoice!"
 msgstr ""
@@ -250,12 +251,6 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Invoice Number"
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:414
-#, python-format
-msgid "Invoice Number Prefix %s is not part of Invoice Number %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -360,7 +355,7 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:341
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:345
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
@@ -410,13 +405,13 @@ msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:355
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:359
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:350
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:354
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
@@ -642,13 +637,13 @@ msgid "TicketBAI is disabled."
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:148
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:152
 #, python-format
 msgid "TicketBAI refund by differences only available for Customer Credit Notes."
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:138
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:142
 #, python-format
 msgid "TicketBAI refund by substitution is not supported."
 msgstr ""
@@ -701,30 +696,35 @@ msgid "VAT Regimes"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:137
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:147
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:141
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:151
 #, python-format
 msgid "Warning"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:322
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:326
 #, python-format
 msgid "You cannot cancel an invoice while being sent to the Tax Agency.\n"
 "Related invoices: %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:313
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:317
 #, python-format
 msgid "You cannot cancel an invoice with non cancelled credit notes.\n"
 "Related invoices: %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:74
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:78
 #, python-format
 msgid "You cannot delete an invoice which is not draft. You should create a credit note instead."
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_ir_sequence
+msgid "ir.sequence"
 msgstr ""
 
 #. module: l10n_es_ticketbai
