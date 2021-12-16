@@ -10,22 +10,20 @@ class AeatModelExportConfigLine(models.Model):
     _order = "sequence"
     _description = "AEAT export configuration line"
 
-    sequence = fields.Integer(string="Sequence")
+    sequence = fields.Integer()
     export_config_id = fields.Many2one(
         comodel_name="aeat.model.export.config",
         string="Config parent",
         ondelete="cascade",
         required=True,
     )
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
     repeat_expression = fields.Char(
-        string="Repeat expression",
         help="If set, this expression will be used for getting the list of "
         "elements to iterate on",
     )
     repeat = fields.Boolean(compute="_compute_repeat", store=True)
     conditional_expression = fields.Char(
-        string="Conditional expression",
         help="If set, this expression will be used to evaluate if this line "
         "should be added",
     )
@@ -47,14 +45,13 @@ class AeatModelExportConfigLine(models.Model):
         required=True,
     )
     apply_sign = fields.Boolean(
-        string="Apply sign", compute="_compute_apply_sign", readonly=False, store=True
+        compute="_compute_apply_sign", readonly=False, store=True
     )
     positive_sign = fields.Char(string="Positive sign character", size=1, default="0")
     negative_sign = fields.Char(string="Negative sign character", size=1, default="N")
     size = fields.Integer(string="Field size")
     alignment = fields.Selection(
         selection=[("left", "Left"), ("right", "Right")],
-        string="Alignment",
         compute="_compute_alignment",
         readonly=False,
         store=True,
@@ -67,8 +64,8 @@ class AeatModelExportConfigLine(models.Model):
         readonly=False,
         store=True,
     )
-    expression = fields.Char(string="Expression")
-    fixed_value = fields.Char(string="Fixed value")
+    expression = fields.Char()
+    fixed_value = fields.Char()
     position = fields.Integer(compute="_compute_position")
     value = fields.Char(compute="_compute_value", store=True)
 
