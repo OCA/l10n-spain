@@ -1,8 +1,12 @@
 # Copyright 2019-2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import logging
+
 from odoo import api, fields, models
 from odoo.tools import ormcache
+
+_logger = logging.getLogger(__name__)
 
 
 class ResCompany(models.Model):
@@ -20,8 +24,8 @@ class ResCompany(models.Model):
         for model in models:
             try:
                 self.env[model.model]._register_hook(companies=companies)
-            except Exception:
-                pass
+            except Exception as e:
+                _logger.debug(e)
         return companies
 
     @ormcache("tax_template", "company")

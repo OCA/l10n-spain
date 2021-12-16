@@ -8,4 +8,4 @@ class AeatTaxAgency(models.Model):
     _name = "aeat.tax.agency"
     _description = "Aeat Tax Agency"
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
