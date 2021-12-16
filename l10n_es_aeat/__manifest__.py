@@ -20,6 +20,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting & Finance",
     "depends": ["l10n_es", "account_tax_balance"],
+    # odoo_test_helper is needed for the tests
     "external_dependencies": {"python": ["unidecode", "cryptography"]},
     "data": [
         "security/aeat_security.xml",
