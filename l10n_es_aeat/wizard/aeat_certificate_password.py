@@ -64,7 +64,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
     _name = "l10n.es.aeat.certificate.password"
     _description = "Wizard to Load AEAT Certificate"
 
-    password = fields.Char(string="Password", required=True)
+    password = fields.Char(required=True)
 
     def get_keys(self):
         record = self.env["l10n.es.aeat.certificate"].browse(
@@ -94,7 +94,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
         except Exception as e:
             if e.args:
                 args = list(e.args)
-            raise ValidationError(args[-1])
+            raise ValidationError(args[-1]) from e
 
     def _process_certificate_vals(self, record, p12, directory):
         vals = {}

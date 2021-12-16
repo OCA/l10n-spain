@@ -9,7 +9,7 @@ class L10nEsAeatMapTaxLine(models.Model):
     _order = "field_number asc, id asc"
     _description = "AEAT tax mapping line"
 
-    field_number = fields.Integer(string="Field number", required=True)
+    field_number = fields.Integer(required=True)
     tax_ids = fields.Many2many(
         comodel_name="account.tax.template", string="Taxes templates"
     )
@@ -17,7 +17,7 @@ class L10nEsAeatMapTaxLine(models.Model):
         comodel_name="account.account.template",
         string="Account Template",
     )
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
     map_parent_id = fields.Many2one(comodel_name="l10n.es.aeat.map.tax", required=True)
     move_type = fields.Selection(
         selection=[("all", "All"), ("regular", "Regular"), ("refund", "Refund")],
@@ -27,7 +27,6 @@ class L10nEsAeatMapTaxLine(models.Model):
     )
     field_type = fields.Selection(
         selection=[("base", "Base"), ("amount", "Amount"), ("both", "Both")],
-        string="Field type",
         default="amount",
         required=True,
     )
@@ -52,4 +51,4 @@ class L10nEsAeatMapTaxLine(models.Model):
         default="yes",
     )
     inverse = fields.Boolean(string="Inverse summarize sign", default=False)
-    to_regularize = fields.Boolean(string="To regularize")
+    to_regularize = fields.Boolean()
