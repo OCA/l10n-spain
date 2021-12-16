@@ -6,7 +6,7 @@
         <field name="name">l10n_es.aeat.report.tree</field>
         <field name="model">l10n.es.aeat.report</field>
         <field name="arch" type="xml">
-            <tree string="AEAT report">
+            <tree>
                 <field name="name" />
                 <field name="year" />
                 <field name="period_type" />
