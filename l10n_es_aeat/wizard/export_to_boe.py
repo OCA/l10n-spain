@@ -21,7 +21,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
     name = fields.Char(string="File name", readonly=True)
     data = fields.Binary(string="File", readonly=True)
     state = fields.Selection(
-        selection=[("open", "open"), ("get", "get")], string="State", default="open"
+        selection=[("open", "open"), ("get", "get")], default="open"
     )
 
     def _format_string(self, text, length, fill=" ", align="<"):
@@ -141,7 +141,10 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
             raise exceptions.UserError(_("No export configuration selected."))
         # Generate the file and save as attachment
         file = base64.encodebytes(contents)
-        file_name = _("%s_report_%s.txt") % (report.number, fields.Date.today())
+        file_name = _("%(number)s_report_%(date)s.txt") % {
+            "number": report.number,
+            "date": fields.Date.today(),
+        }
         # Delete old files
         attachment_obj = self.env["ir.attachment"]
         attachment_ids = attachment_obj.search(
