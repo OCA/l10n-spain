@@ -14,7 +14,7 @@ from odoo import exceptions
 from odoo.tests import common
 
 
-class TestL10nEsAeatCertificateBase(common.SavepointCase):
+class TestL10nEsAeatCertificateBase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
