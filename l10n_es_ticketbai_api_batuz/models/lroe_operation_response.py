@@ -8,7 +8,9 @@ from ..lroe.lroe_xml_schema import LROEXMLSchema,\
     LROEOperationTypeEnum
 from .lroe_operation import LROEOperationEnum, LROEModelEnum
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_response\
-    import TicketBaiResponseState
+    import TicketBaiResponseState, TicketBaiInvoiceResponseCode, \
+    TicketBaiCancellationResponseCode
+from odoo.addons.l10n_es_ticketbai_api.utils import utils as tbai_utils
 from odoo.exceptions import ValidationError
 
 
@@ -24,6 +26,11 @@ class LROEOperationResponseLineState(Enum):
     CORRECT = 'Correcto'
     CORRECT_WITH_ERRORS = 'Aceptado con errores'
     INCORRECT = 'Incorrecto'
+
+
+class LROEOperationResponseLineCode(tbai_utils.EnumValues):
+    DUPLICATED_RECORD = 'B4_2000003'
+    ALREADY_CANCELLED_RECORD = 'B4_2000006'
 
 
 class LROEOperationResponse(models.Model):
@@ -145,8 +152,8 @@ class LROEOperationResponse(models.Model):
             response_line_record_data = response_line_record.get('SituacionRegistro')
             response_line_record_state = response_line_record_data.get('EstadoRegistro')
             validate_response_line_state(response_line_record_state)
-            response_line_record_code = None
-            response_line_record_message = None
+            response_line_record_code = ''
+            response_line_record_message = ''
             if not response_line_record_state\
                == LROEOperationResponseLineState.CORRECT.value:
                 response_line_record_code =\
@@ -157,11 +164,22 @@ class LROEOperationResponse(models.Model):
                     + response_line_record_data.get('DescripcionErrorRegistroEU')
 
             tbai_response_model = self.env['tbai.response']
+            tbai_msg_description = response_line_record_message
+            tbai_msg_code =\
+                TicketBaiInvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value \
+                if LROEOperationResponseLineCode.DUPLICATED_RECORD.value == \
+                response_line_record_code else \
+                TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.value \
+                if LROEOperationResponseLineCode.ALREADY_CANCELLED_RECORD.value == \
+                response_line_record_code else response_line_record_code\
+                if response_line_record_code else ''
             tbai_response_dict = {
                 'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
                 'state': LROEOperationResponse.get_tbai_state(
-                    response_line_record_state)
-            }
+                    response_line_record_state),
+                'tbai_response_message_ids': [(0, 0, {
+                    'code': tbai_msg_code,
+                    'description': tbai_msg_description})]}
             for key in kwargs:
                 tbai_response_dict[key] = kwargs[key]
             tbai_response_obj = tbai_response_model.create(tbai_response_dict)
