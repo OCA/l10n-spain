@@ -85,6 +85,20 @@ msgid "Identificado"
 msgstr ""
 
 #. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-baja
+#, python-format
+msgid "Identificado, baja"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
+#: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-revocado
+#, python-format
+msgid "Identificado, revocado"
+msgstr ""
+
+#. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
 msgid "Identified"
 msgstr ""
