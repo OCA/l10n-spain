@@ -3,7 +3,7 @@
 
 {
     "name": "TicketBAI - API",
-    "version": "11.0.0.5.0",
+    "version": "11.0.0.6.0",
     "category": "Accounting & Finance",
     "website": "http://www.binovo.es",
     "author": "Binovo,"
