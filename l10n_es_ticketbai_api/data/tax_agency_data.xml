@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
@@ -16,11 +17,11 @@
         <record id="tbai_tax_agency_araba_1_2" model="tbai.tax.agency.version">
             <field name="tbai_tax_agency_id" ref="tbai_tax_agency_araba"/>
             <field name="version">1.2</field>
-            <field name="qr_base_url"/>
+            <field name="qr_base_url">https://ticketbai.araba.eus/tbai/qrtbai/</field>
             <field name="test_qr_base_url">https://pruebas-ticketbai.araba.eus/tbai/qrtbai/</field>
-            <field name="rest_url_invoice"/>
+            <field name="rest_url_invoice">https://ticketbai.araba.eus/TicketBAI/v1/facturas/</field>
             <field name="test_rest_url_invoice">https://pruebas-ticketbai.araba.eus/TicketBAI/v1/facturas/</field>
-            <field name="rest_url_cancellation"/>
+            <field name="rest_url_cancellation">https://ticketbai.araba.eus/TicketBAI/v1/anulaciones/</field>
             <field name="test_rest_url_cancellation">https://pruebas-ticketbai.araba.eus/TicketBAI/v1/anulaciones/</field>
         </record>
         <record id="tbai_tax_agency_gipuzkoa_1_2" model="tbai.tax.agency.version">
