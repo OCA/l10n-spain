@@ -137,7 +137,6 @@ class L10nEsAeatMod303Report(models.Model):
             ("C", "To compensate"),
             ("N", "No activity/Zero result"),
         ],
-        string="Result type",
         compute="_compute_result_type",
     )
     counterpart_account_id = fields.Many2one(
@@ -148,7 +147,7 @@ class L10nEsAeatMod303Report(models.Model):
         store=True,
         readonly=False,
     )
-    allow_posting = fields.Boolean(string="Allow posting", default=True)
+    allow_posting = fields.Boolean(default=True)
     exonerated_390 = fields.Selection(
         selection=[("1", u"Exonerado"), ("2", u"No exonerado")],
         default="2",
@@ -284,6 +283,7 @@ class L10nEsAeatMod303Report(models.Model):
             else:
                 record.marca_sepa = "0"
 
+    # pylint:disable=missing-return
     @api.depends("date_start", "cuota_compensar")
     def _compute_exception_msg(self):
         super(L10nEsAeatMod303Report, self)._compute_exception_msg()
