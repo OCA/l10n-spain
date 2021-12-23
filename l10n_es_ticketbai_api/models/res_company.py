@@ -9,11 +9,10 @@ from odoo import _, api, exceptions, fields, models, release
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    tbai_enabled = fields.Boolean('Enable TicketBAI', copy=False)
-    tbai_test_available = fields.Boolean('Are Tests URLs Available', copy=False)
-    tbai_pro_available = fields.Boolean('Are Production URLs Available',
-                                        copy=False)
-    tbai_test_enabled = fields.Boolean('Enable testing', copy=False)
+    tbai_enabled = fields.Boolean("Enable TicketBAI", copy=False)
+    tbai_test_available = fields.Boolean("Are Tests URLs Available", copy=False)
+    tbai_pro_available = fields.Boolean("Are Production URLs Available", copy=False)
+    tbai_test_enabled = fields.Boolean("Enable testing", copy=False)
     tbai_certificate_id = fields.Many2one(
         comodel_name="tbai.certificate",
         string="Certificate",
@@ -90,39 +89,41 @@ class ResCompany(models.Model):
     @api.constrains("tbai_device_serial_number")
     def _check_tbai_device_serial_number(self):
         for record in self:
-            if record.tbai_enabled and record.tbai_device_serial_number and \
-                    30 < len(record.tbai_device_serial_number):
-                raise exceptions.ValidationError(_(
-                    "Company %s Device Serial Number longer than expected. "
-                    "Should be 30 characters max.!") % record.name)
+            if (
+                record.tbai_enabled
+                and record.tbai_device_serial_number
+                and 30 < len(record.tbai_device_serial_number)
+            ):
+                raise exceptions.ValidationError(
+                    _(
+                        "Company %s Device Serial Number longer than expected. "
+                        "Should be 30 characters max.!"
+                    )
+                    % record.name
+                )
 
-    @api.multi
-    @api.constrains('tbai_tax_agency_id')
-    def _check_tbai_tax_agency_id(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_tax_agency_id:
-                raise exceptions.ValidationError(_(
-                    "Company %s TicketBAI Tax Agency is required."
-                ) % record.name)
-
-    @api.onchange('tbai_tax_agency_id')
+    @api.onchange("tbai_tax_agency_id")
     def onchange_tbai_tax_agency(self):
-        if not (self.tbai_tax_agency_id.test_qr_base_url and
-                self.tbai_tax_agency_id.test_rest_url_invoice and
-                self.tbai_tax_agency_id.test_rest_url_cancellation):
+        if not (
+            self.tbai_tax_agency_id.test_qr_base_url
+            and self.tbai_tax_agency_id.test_rest_url_invoice
+            and self.tbai_tax_agency_id.test_rest_url_cancellation
+        ):
             self.tbai_test_available = False
             self.tbai_test_enabled = False
         else:
             self.tbai_test_available = True
-        if not (self.tbai_tax_agency_id.qr_base_url and
-                self.tbai_tax_agency_id.rest_url_invoice and
-                self.tbai_tax_agency_id.rest_url_cancellation):
+        if not (
+            self.tbai_tax_agency_id.qr_base_url
+            and self.tbai_tax_agency_id.rest_url_invoice
+            and self.tbai_tax_agency_id.rest_url_cancellation
+        ):
             self.tbai_pro_available = False
             self.tbai_test_enabled = True
         else:
             self.tbai_pro_available = True
 
-    @api.onchange('tbai_enabled')
+    @api.onchange("tbai_enabled")
     def onchange_tbai_enabled(self):
         if not self.tbai_enabled:
             self.tbai_test_enabled = False

@@ -261,11 +261,11 @@ class AccountMove(models.Model):
             tbai_prepare_refund_values()
         operation_date = self.tbai_get_value_fecha_operacion()
         if operation_date:
-            vals['operation_date'] = operation_date
+            vals["operation_date"] = operation_date
         gipuzkoa_tax_agency = self.env.ref(
-            "l10n_es_ticketbai_api.tbai_tax_agency_gipuzkoa")
-        araba_tax_agency = self.env.ref(
-            "l10n_es_ticketbai_api.tbai_tax_agency_araba")
+            "l10n_es_ticketbai_api.tbai_tax_agency_gipuzkoa"
+        )
+        araba_tax_agency = self.env.ref("l10n_es_ticketbai_api.tbai_tax_agency_araba")
         tax_agency = self.company_id.tbai_tax_agency_id
         if tax_agency in (gipuzkoa_tax_agency, araba_tax_agency):
             lines = []

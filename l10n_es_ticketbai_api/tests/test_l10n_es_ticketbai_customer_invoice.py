@@ -2,11 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime, timedelta
 
+from odoo import exceptions
 from odoo.tests import common
 from odoo.tools.misc import DEFAULT_SERVER_DATE_FORMAT
 
-from odoo import exceptions
-from .common import TestL10nEsTicketBAIAPI
 from ..ticketbai.xml_schema import XMLSchema
 from .common import TestL10nEsTicketBAIAPI
 
@@ -36,20 +35,25 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def test_missing_customer_address(self):
         uid = self.tech_user.id
         invoice = self.create_tbai_national_invoice(
-            name='TBAITEST/00001', company_id=self.main_company.id,
-            number='00001',
-            number_prefix='TBAITEST/', uid=uid)
-        self.assertEqual(invoice.state, 'draft')
-        self.env['tbai.invoice.customer'].create({
-            'tbai_invoice_id': invoice.id,
-            'name': self.partner.tbai_get_value_apellidos_nombre_razon_social(),
-            'country_code': self.partner.country_id.code.upper(),
-            'nif': self.partner.tbai_get_value_nif(),
-            'identification_number':
-                self.partner.tbai_partner_identification_number or self.partner.vat,
-            'idtype': self.partner.tbai_partner_idtype,
-            'zip': self.partner.zip
-        })
+            name="TBAITEST/00001",
+            company_id=self.main_company.id,
+            number="00001",
+            number_prefix="TBAITEST/",
+            uid=uid,
+        )
+        self.assertEqual(invoice.state, "draft")
+        self.env["tbai.invoice.customer"].create(
+            {
+                "tbai_invoice_id": invoice.id,
+                "name": self.partner.tbai_get_value_apellidos_nombre_razon_social(),
+                "country_code": self.partner.country_id.code.upper(),
+                "nif": self.partner.tbai_get_value_nif(),
+                "identification_number": self.partner.tbai_partner_identification_number
+                or self.partner.vat,
+                "idtype": self.partner.tbai_partner_idtype,
+                "zip": self.partner.zip,
+            }
+        )
         self.assertEqual(1, len(invoice.tbai_customer_ids))
         with self.assertRaises(exceptions.ValidationError):
             invoice.get_tbai_xml_signed_and_signature_value()
@@ -57,27 +61,32 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def test_missing_customer_zip(self):
         uid = self.tech_user.id
         invoice = self.create_tbai_national_invoice(
-            name='TBAITEST/00001', company_id=self.main_company.id,
-            number='00001',
-            number_prefix='TBAITEST/', uid=uid)
-        self.assertEqual(invoice.state, 'draft')
-        self.env['tbai.invoice.customer'].create({
-            'tbai_invoice_id': invoice.id,
-            'name': self.partner.tbai_get_value_apellidos_nombre_razon_social(),
-            'country_code': self.partner.country_id.code.upper(),
-            'nif': self.partner.tbai_get_value_nif(),
-            'identification_number':
-                self.partner.tbai_partner_identification_number or self.partner.vat,
-            'idtype': self.partner.tbai_partner_idtype,
-            'address': self.partner.tbai_get_value_direccion(),
-        })
+            name="TBAITEST/00001",
+            company_id=self.main_company.id,
+            number="00001",
+            number_prefix="TBAITEST/",
+            uid=uid,
+        )
+        self.assertEqual(invoice.state, "draft")
+        self.env["tbai.invoice.customer"].create(
+            {
+                "tbai_invoice_id": invoice.id,
+                "name": self.partner.tbai_get_value_apellidos_nombre_razon_social(),
+                "country_code": self.partner.country_id.code.upper(),
+                "nif": self.partner.tbai_get_value_nif(),
+                "identification_number": self.partner.tbai_partner_identification_number
+                or self.partner.vat,
+                "idtype": self.partner.tbai_partner_idtype,
+                "address": self.partner.tbai_get_value_direccion(),
+            }
+        )
         self.assertEqual(1, len(invoice.tbai_customer_ids))
         with self.assertRaises(exceptions.ValidationError):
             invoice.get_tbai_xml_signed_and_signature_value()
 
     def test_partner_missing_country_code(self):
         self.partner.country_id = False
-        self.partner.vat = 'B00000000'
+        self.partner.vat = "B00000000"
         with self.assertRaises(exceptions.ValidationError):
             self.partner.tbai_get_partner_country_code()
 
@@ -118,12 +127,15 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def _prepare_invoice_send_to_tax_agency(self):
         uid = self.tech_user.id
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_national_invoice(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
 
@@ -206,12 +218,15 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def _prepare_exempted_invoice_send_to_tax_agency(self):
         uid = self.tech_user.id
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_national_invoice_exempted(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
 
@@ -241,12 +256,15 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def _prepare_not_subject_to_invoice_send_to_tax_agency(self):
         uid = self.tech_user.id
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_national_invoice_not_subject_to(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
 
@@ -278,12 +296,17 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def _prepare_invoice_foreign_customer_extracommunity_send_to_tax_agency(self):
         uid = self.tech_user.id
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_extracommunity_invoice(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
         self.add_customer_from_odoo_partner_to_invoice(
-            invoice.id, self.partner_extracommunity)
+            invoice.id, self.partner_extracommunity
+        )
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
 
@@ -315,12 +338,17 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def _prepare_invoice_foreign_customer_intracommunity_send_to_tax_agency(self):
         uid = self.tech_user.id
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_intracommunity_invoice(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
         self.add_customer_from_odoo_partner_to_invoice(
-            invoice.id, self.partner_intracommunity)
+            invoice.id, self.partner_intracommunity
+        )
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
 
@@ -350,12 +378,15 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def _prepare_invoice_irpf_taxes_send_to_tax_agency(self):
         uid = self.tech_user.id
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_national_invoice_irpf(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
 
@@ -385,12 +416,15 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def _prepare_invoice_equivalence_surcharge_taxes_send_to_tax_agency(self):
         uid = self.tech_user.id
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_national_invoice_surcharge(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
 
@@ -447,22 +481,30 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
         uid = self.tech_user.id
         # First we need a registered Invoice to refund
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_national_invoice(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
         # By differences
         number = self.get_next_refund_number()
-        name = "%s%s" % (self.refund_number_prefix, number)
+        name = "{}{}".format(self.refund_number_prefix, number)
         refund_invoice_i = self.create_tbai_national_invoice_refund_by_differences(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.refund_number_prefix, uid=uid)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.refund_number_prefix,
+            uid=uid,
+        )
         self.add_customer_from_odoo_partner_to_invoice(
-            refund_invoice_i.id, self.partner)
+            refund_invoice_i.id, self.partner
+        )
         refund_invoice_i.build_tbai_invoice()
         self._send_to_tax_agency(refund_invoice_i)
 
@@ -477,22 +519,30 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
         uid = self.tech_user.id
         # First we need a registered Invoice to refund
         number = self.get_next_number()
-        name = "%s%s" % (self.number_prefix, number)
+        name = "{}{}".format(self.number_prefix, number)
         invoice = self.create_tbai_national_invoice(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         self._send_to_tax_agency(invoice)
         # By substitution
         number = self.get_next_refund_number()
-        name = "%s%s" % (self.refund_number_prefix, number)
+        name = "{}{}".format(self.refund_number_prefix, number)
         refund_invoice_i = self.create_tbai_national_invoice_refund_by_substitution(
-            name=name, company_id=self.main_company.id, number=number,
-            number_prefix=self.refund_number_prefix, uid=uid)
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.refund_number_prefix,
+            uid=uid,
+        )
         self.add_customer_from_odoo_partner_to_invoice(
-            refund_invoice_i.id, self.partner)
+            refund_invoice_i.id, self.partner
+        )
         refund_invoice_i.build_tbai_invoice()
         self._send_to_tax_agency(refund_invoice_i)
 
