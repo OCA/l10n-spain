@@ -490,16 +490,12 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
         # Check result
         _logger.debug("Checking results")
         devengado = sum(
-            [
-                self.taxes_result.get(b, 0.0)
-                for b in ("3", "6", "9", "11", "13", "15", "18", "21", "24", "26")
-            ]
+            self.taxes_result.get(b, 0.0)
+            for b in ("3", "6", "9", "11", "13", "15", "18", "21", "24", "26")
         )
         deducir = sum(
-            [
-                self.taxes_result.get(b, 0.0)
-                for b in ("29", "31", "33", "35", "37", "39", "41", "42", "43", "44")
-            ]
+            self.taxes_result.get(b, 0.0)
+            for b in ("29", "31", "33", "35", "37", "39", "41", "42", "43", "44")
         )
         subtotal = round(devengado - deducir, 3)
         estado = round(subtotal * 0.95, 3)
