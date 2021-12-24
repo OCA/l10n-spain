@@ -296,29 +296,19 @@ class L10nEsVatBook(models.Model):
         self.summary_ids.unlink()
         self.tax_summary_ids.unlink()
 
-    def _account_move_line_domain(self, taxes, account=None):
-        # search move lines that contain these tax codes
+    def _account_move_line_domain(self):
         domain = [
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
             ("parent_state", "=", "posted"),
             "|",
-            ("tax_ids", "in", taxes.ids),
+            ("tax_ids", "!=", []),
+            ("tax_line_id", "!=", False),
         ]
-        if account:
-            domain += [
-                "&",
-                ("tax_line_id", "in", taxes.ids),
-                ("account_id", "=", account.id),
-            ]
-        else:
-            domain.append(("tax_line_id", "in", taxes.ids))
         return domain
 
-    def _get_account_move_lines(self, taxes, account=None):
-        return self.env["account.move.line"].search(
-            self._account_move_line_domain(taxes, account=account)
-        )
+    def _get_account_move_lines(self):
+        return self.env["account.move.line"].search(self._account_move_line_domain())
 
     @ormcache("self.id")
     def get_pos_partner_ids(self):
@@ -400,10 +390,19 @@ class L10nEsVatBook(models.Model):
                 raise UserError(_("This company doesn't have VAT"))
             rec._clear_old_data()
             map_lines = self.env["aeat.vat.book.map.line"].search([])
+            moves = self._get_account_move_lines()
             for map_line in map_lines:
                 taxes = map_line.get_taxes(rec)
                 account = rec.get_account_from_template(map_line.tax_account_id)
-                lines = rec._get_account_move_lines(taxes, account=account)
+                if account:
+                    lines = moves.filtered(
+                        lambda x: x.tax_ids & taxes
+                        or (x.tax_line_id in taxes and x.account_id == account)
+                    )
+                else:
+                    lines = moves.filtered(
+                        lambda x: x.tax_ids & taxes or x.tax_line_id in taxes
+                    )
                 rec.create_vat_book_lines(lines, map_line.book_type, taxes)
             # Issued
             book_type = "issued"
