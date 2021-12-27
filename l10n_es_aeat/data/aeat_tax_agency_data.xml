@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Enrique Martin <enriquemartin@digital5.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="aeat_tax_agency_spain" model="aeat.tax.agency">
+        <field name="name">Agencia Tributaria española (1.1)</field>
+    </record>
+    <record id="aeat_tax_agency_gipuzkoa" model="aeat.tax.agency">
+        <field name="name">Hacienda Foral de Gipuzkoa (1.1)</field>
+    </record>
+    <record id="aeat_tax_agency_bizkaia" model="aeat.tax.agency">
+        <field name="name">Hacienda Foral de Bizkaia</field>
+    </record>
+    <record id="aeat_tax_agency_araba" model="aeat.tax.agency">
+        <field name="name">Hacienda Foral de Araba</field>
+    </record>
+    <record id="aeat_tax_agency_navarra" model="aeat.tax.agency">
+        <field name="name">Hacienda Foral de Navarra</field>
+    </record>
+    <record id="aeat_tax_agency_canarias" model="aeat.tax.agency">
+        <field name="name">Agencia Tributaria Canaria</field>
+    </record>
+</odoo>

@@ -1,0 +1,1638 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-10 03:41+0000\n"
+"PO-Revision-Date: 2021-12-09 14:39+0000\n"
+"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
+#, python-format
+msgid "%s_report_%s.txt"
+msgstr "%s_report_%s.txt"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
+#, python-format
+msgid "<blank>"
+msgstr "<blank>"
+
+#. module: l10n_es_aeat
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_config
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_company_aeat_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_partner_form
+msgid "AEAT"
+msgstr "AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
+msgid "AEAT - Anonymous customer"
+msgstr "AEAT: Client anònim"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_certificate
+msgid "AEAT Certificate"
+msgstr "Certificat AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__model
+msgid "AEAT Model"
+msgstr "Declaració AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_soap
+msgid "AEAT SOAP"
+msgstr "AEAT SOAP"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_aeat_model_export_config
+msgid "AEAT export configuration"
+msgstr "Configuració d'exportació de l'AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_aeat_model_export_config_line
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
+msgid "AEAT export configuration line"
+msgstr "Línia de configuració d'exportació de l'AEAT"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_tree
+msgid "AEAT export configurationline"
+msgstr "Línia de configuració d'exportació de l'AEAT"
+
+#. module: l10n_es_aeat
+#: model:res.groups,name:l10n_es_aeat.group_account_aeat
+msgid "AEAT manager"
+msgstr "Responsable AEAT"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
+#, python-format
+msgid ""
+"AEAT model sequence not found. You can try to restart your Odoo service for "
+"recreating the sequences."
+msgstr ""
+"No s'ha trobat la seqüència del model AEAT. Podeu provar de reiniciar el seu "
+"servei Odoo per recrear les seqüències."
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_tree
+msgid "AEAT report"
+msgstr "Informe AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report
+msgid "AEAT report base module"
+msgstr "Mòdul base per declaracions AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod111_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod115_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod123_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod303_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod347_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod349_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_mod390_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_report_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_aeat_report_tax_mapping_name_uniq
+#: model:ir.model.constraint,message:l10n_es_aeat.constraint_l10n_es_vat_book_name_uniq
+msgid "AEAT report identifier must be unique"
+msgstr "L'identificador de la declaració AEAT ha de ser únic"
+
+#. module: l10n_es_aeat
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_root_aeat
+msgid "AEAT reports"
+msgstr "Declaracions AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_tax_line
+msgid "AEAT tax line"
+msgstr "Línia d'impostos AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_map_tax
+msgid "AEAT tax mapping"
+msgstr "Mapeig d'impostos AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_map_tax_line
+msgid "AEAT tax mapping line"
+msgstr "Línia de mapeig d'impostos AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__account_id
+msgid "Account Template"
+msgstr "Plantilla del compte"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__move_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__move_id
+msgid "Account entry"
+msgstr "Entrada cuenta"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction
+msgid "Action Needed"
+msgstr "Acció necesària"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__active
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__active
+msgid "Active"
+msgstr "Actiu"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_ids
+msgid "Activities"
+msgstr "Activitats"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Decorador d'excepció d'activitat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_state
+msgid "Activity State"
+msgstr "Estat de activitats"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_icon
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Icona del tipus d'activitat"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
+msgid "Advanced configuration"
+msgstr "Configuració avançada"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_aeat_tax_agency
+msgid "Aeat Tax Agency"
+msgstr "Agència tributària AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__alignment
+msgid "Alignment"
+msgstr "Alineació"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__move_type__all
+msgid "All"
+msgstr "Tots"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__allow_posting
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__allow_posting
+msgid "Allow Posting"
+msgstr "Permetre el registre"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__alphabetic
+msgid "Alphabetic"
+msgstr "Alfabètic"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__string
+msgid "Alphanumeric"
+msgstr "Alfanumèric"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__content_float
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__amount
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__amount
+msgid "Amount"
+msgstr "Import"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__apply_sign
+msgid "Apply sign"
+msgstr "Aplicar signe"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+msgid "Aquí está el archivo BOE de la AEAT exportado:"
+msgstr "Aquí està l'arxiu BOE del AEAT exportat:"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_attachment_count
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_attachment_count
+msgid "Attachment Count"
+msgstr "Nº adjunts"
+
+#. module: l10n_es_aeat
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_aeat_export_config
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
+msgid "BOE export configuration"
+msgstr "Configuració d'exportació a BOE"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_tree
+msgid "BOE export configurations"
+msgstr "Configuració d'exportació a BOE"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr "Comptes bancaris"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__partner_bank_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__partner_bank_id
+msgid "Bank account"
+msgstr "Compte bancari"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_account_setup_bank_manual_config__acc_type
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner_bank__acc_type
+msgid ""
+"Bank account type: Normal or IBAN. Inferred from the bank account number."
+msgstr ""
+"Tipus de compte bancari: Normal o IBAN. Deduït del número de compte bancari."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__base
+msgid "Base"
+msgstr "Base"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
+msgid "Basic configuration"
+msgstr "Configuració bàsica"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__boolean
+msgid "Boolean"
+msgstr "Booleano"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__both
+msgid "Both"
+msgstr "Tots dos"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__both
+msgid "Both (Credit - Debit)"
+msgstr "Tots dos (Haver - Deure)"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__both
+msgid "Both exigible and non-exigible amounts"
+msgstr "Tots dos (exigible i no exigible)"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Calculate"
+msgstr "Calcular"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__calculation_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__calculation_date
+msgid "Calculation date"
+msgstr "Fecha de cálculo"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__cancelled
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__cancelled
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Cancelled models"
+msgstr "Declaraciones canceladas"
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.l10n_es_certificate_action
+#: model:ir.ui.menu,name:l10n_es_aeat.l10n_es_aeat_certificate_menu
+msgid "Certificates AEAT"
+msgstr "Certificats AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_anonymous_cash_customer
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_anonymous_cash_customer
+msgid "Check this for anonymous cash customer. AEAT communication"
+msgstr "Marqueu això per a clients de caixa anònims. Comunicació amb AEAT"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_res_company
+msgid "Companies"
+msgstr "Empreses"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__company_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__company_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__company_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Company"
+msgstr "Compañía"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__partner_bank_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr "Compte bancari de la companyia utilitzat per la presentació"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
+msgid "Compare"
+msgstr "Comparar"
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_compare_boe_file
+msgid "Compare AEAT BOE file"
+msgstr "Comparar arxiu BOE AEAT"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_compare_boe_file
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_compare_boe_file_line
+msgid "Compare BOE file wizard"
+msgstr "Assistent per comparar arxiu BOE"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
+msgid "Compare file"
+msgstr "Comparar arxiu"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__statement_type__c
+msgid "Complementary"
+msgstr "Complementaria"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__conditional
+msgid "Conditional"
+msgstr "Condicional"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__conditional_expression
+msgid "Conditional expression"
+msgstr "Expresión condicional"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__export_config_id
+msgid "Config parent"
+msgstr "Configuración padre"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_form
+msgid "Configuration lines"
+msgstr "Líneas de configuración"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Confirmed models"
+msgstr "Declaraciones confirmadas"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_res_partner
+msgid "Contact"
+msgstr "Contacte"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Contact data"
+msgstr "Datos de contacto"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__contact_email
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__contact_email
+msgid "Contact email"
+msgstr "Correu electrònic"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__content
+msgid "Content"
+msgstr "Contingut"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__counterpart_account_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__counterpart_account_id
+msgid "Counterpart account"
+msgstr "Cuenta contrapartida"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Create move"
+msgstr "Crear asiento"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_soap__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_soap__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__credit
+msgid "Credit"
+msgstr "Haber"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/aeat_certificate_password.py:0
+#, python-format
+msgid "Cryptography version is not supported. Upgrade to 3.0.0 or greater."
+msgstr ""
+"La versió de criptografia no està suportada. Actualitzi a la versió 3.0.0 o "
+"superior."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__currency_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__support_type__c
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__support_type__c
+msgid "DVD"
+msgstr "DVD"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Dates"
+msgstr "Fechas"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__sum_type__debit
+msgid "Debit"
+msgstr "Debe"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Declaración"
+msgstr "Declaració"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_soap__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__done
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__done
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Done"
+msgstr "Realizada"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_certificate__state__draft
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__draft
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__draft
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Draft models"
+msgstr "Declaraciones borrador"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_end
+msgid "End Date"
+msgstr "Data fi"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__date_end
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__date_end
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__date_end
+msgid "Ending date"
+msgstr "Fecha final"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:0
+#, python-format
+msgid "Error! The dates of the record overlap with an existing record."
+msgstr ""
+"Error! Las fechas de los registros se solapan con un registro existente."
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
+#, python-format
+msgid "Error! There aren't certificates."
+msgstr "Error! No hi ha certificats."
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_compare_boe_file
+msgid ""
+"Escoja el archivo para comparar con el actual formato de exportación. NOTA: "
+"Solo es válido de momento para formatos sin partes condicionales ni "
+"subpartes con bucle de repetición."
+msgstr ""
+"Esculli l'arxiu per comparar amb el format actual d'exportació. NOTA: De "
+"moment només és vàlid per a formats sense parts condicionals ni sub-parts "
+"amb bucle de repetició."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__exigible_type
+msgid "Exigibility"
+msgstr "Exigibilitat"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+msgid "Export"
+msgstr "Exportar"
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.action_wizard_aeat_export
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+msgid "Export AEAT BOE file"
+msgstr "Exportar archivo AEAT BOE"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_export_to_boe
+msgid "Export Report to BOE Format"
+msgstr "Exportar declaración al formato BOE"
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.action_aeat_export_config
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__export_config_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__export_config_id
+msgid "Export config"
+msgstr "Configuración de exportación"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__export_type
+msgid "Export field type"
+msgstr "Tipo de campo de exportación"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__export_line_id
+msgid "Export line"
+msgstr "Exportar línia"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Export to BOE"
+msgstr "Exportar a BOE"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+msgid "Exportación completada"
+msgstr "Exportació complerta"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__expression
+msgid "Expression"
+msgstr "Expresión"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
+#, python-format
+msgid "Expression: "
+msgstr "Expresión: "
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
+msgid "Field especification"
+msgstr "Especificación de campo"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__field_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__field_number
+msgid "Field number"
+msgstr "Nº de casilla"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__size
+msgid "Field size"
+msgstr "Tamaño del campo"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__field_type
+msgid "Field type"
+msgstr "Tipo de campo"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__file
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__data
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__data
+msgid "File"
+msgstr "Archivo"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__name
+msgid "File name"
+msgstr "Nombre de archivo"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "Fiscal year"
+msgstr "Ejercicio fiscal"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__fixed_value
+msgid "Fixed value"
+msgstr "Valor fijo"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_export_config_line.py:0
+#, python-format
+msgid "Fixed: {}"
+msgstr "Fixe: {}"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__folder
+msgid "Folder Name"
+msgstr "Nom de la carpeta"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_follower_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_follower_ids
+msgid "Followers"
+msgstr "Seguidors"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_channel_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Seguidors (Canals)"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_partner_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Seguidors (Empreses)"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_icon
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Icona Font awesome p.e. fa-tasks"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__date_from
+msgid "From Date"
+msgstr "Des de la data"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__contact_name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__contact_name
+msgid "Full Name"
+msgstr "Nom complet"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_soap__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
+msgid "Icon"
+msgstr "Icona"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_icon
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Icona per a indicar una excepció d'activitat."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Si està marcat, hi ha missatges que requereixen la seva atenció."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_sms_error
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Si està marcat, hi ha missatges que tenen error de lliurament."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_aeat_model_export_config_line__repeat_expression
+msgid ""
+"If set, this expression will be used for getting the list of elements to "
+"iterate on"
+msgstr ""
+"Si està establerta, aquesta expressió es farà servir per obtenir una llista "
+"dels elements pels quals iterar"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_aeat_model_export_config_line__conditional_expression
+msgid ""
+"If set, this expression will be used to evaluate if this line should be added"
+msgstr ""
+"Si està establerta, aquesta expressió serà usada per a avaluar si la línia "
+"ha de ser afegida"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
+#, python-format
+msgid ""
+"If this declaration is complementary or substitutive, a previous declaration "
+"number should be provided."
+msgstr ""
+"Si aquesta declaració és complementària o substitutiva, ha de proporcionar "
+"un nombre de la declaració anterior."
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "In process"
+msgstr "En procés"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
+msgid "In process models"
+msgstr "Declaracions en procés"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_report_tax_mapping
+msgid ""
+"Inheritable abstract model to add taxes by code mapping in any AEAT report"
+msgstr ""
+"Model abstracte heretable per afegir impostos per mapeig de codi en "
+"qualsevol declaració AEAT"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/aeat_certificate.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
+#, python-format
+msgid "Insert Password"
+msgstr "Introdueixi la contrassenya"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__inverse
+msgid "Inverse summarize sign"
+msgstr "Invertir el signe de la suma"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_is_follower
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_is_follower
+msgid "Is Follower"
+msgstr "És seguidor"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__journal_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__journal_id
+msgid "Journal"
+msgstr "Diari"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__journal_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__journal_id
+msgid "Journal in which post the move."
+msgstr "Diari en el qual publicar l'assentament."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__move_line_ids
+msgid "Journal items"
+msgstr "Apunts comptables"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__representative_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__representative_vat
+msgid "L.R. VAT number"
+msgstr "NIF repr. legal"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_tax____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_soap____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank____last_update
+msgid "Last Modified on"
+msgstr "Darrera modificació de"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_soap__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__write_uid
+msgid "Last Updated by"
+msgstr "Darrera actualització per"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_soap__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__write_date
+msgid "Last Updated on"
+msgstr "Darrera actualització el"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__alignment__left
+msgid "Left"
+msgstr "Esquerra"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__representative_vat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__representative_vat
+msgid "Legal Representative VAT number."
+msgstr "NIF del representant legal."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__config_line_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__line_ids
+msgid "Lines"
+msgstr "Línies"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
+msgid "Load Certificate"
+msgstr "Carrega certificat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_main_attachment_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Adjunt principal"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__map_parent_id
+msgid "Map Parent"
+msgstr "Mapeig pare"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__map_line_id
+msgid "Map line"
+msgstr "Línia de mapeig"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__map_line_ids
+msgid "Map lines"
+msgstr "Línies de mapeig"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_form
+msgid "Mapping Lines"
+msgstr "Línies de mapeig"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error
+msgid "Message Delivery error"
+msgstr "Missatge d'error de lliurament"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_ids
+msgid "Messages"
+msgstr "Missatges"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__model_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__model_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__model_id
+msgid "Model"
+msgstr "Model"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__model
+msgid "Model name"
+msgstr "Nom model"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__model_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__number
+msgid "Model number"
+msgstr "Nº model"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
+#, python-format
+msgid "Modelo no válido: %s. Debe declarar una variable '_aeat_number'"
+msgstr "Model no vàlid: %s. Ha de declarar una variable '_aeat_number'"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__contact_name
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__contact_name
+msgid "Must have name and surname."
+msgstr "Ha de tenir cognoms i nom."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__my_activity_date_deadline
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Data límit de l'activitat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_tax_agency__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__negative_sign
+msgid "Negative sign character"
+msgstr "Caràcter del signe negatiu"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_date_deadline
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Data límit de la següent activitat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_summary
+msgid "Next Activity Summary"
+msgstr "Resum de la següent activitat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_type_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipus de la següent activitat"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
+#, python-format
+msgid "No export configuration selected."
+msgstr "Cap configuració d'exportació seleccionada."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__n
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__statement_type__n
+msgid "Normal"
+msgstr "Normal"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction_counter
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Nombre d'accions"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__decimal_size
+msgid "Number of char for decimals"
+msgstr "Nombre de caràcters per als decimals"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
+msgid "Number of errors"
+msgstr "Número d'errors"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction_counter
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Nº de missatges que requereixen acció"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_has_error_counter
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Nº de missatge amb error de lliurament"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_unread_counter
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Nº de missatges sense llegir"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__float
+msgid "Number with decimals"
+msgstr "Nombre amb decimals"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__integer
+msgid "Number without decimals"
+msgstr "Nombre sense decimals"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
+msgid "Obtain Keys"
+msgstr "Obtenir claus"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__model_id
+msgid "Odoo model"
+msgstr "Model Odoo"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__yes
+msgid "Only exigible amounts"
+msgstr "Només quantitats exigibles"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__exigible_type__no
+msgid "Only non-exigible amounts"
+msgstr "Només quantitats no exigibles"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report.py:0
+#, python-format
+msgid "Only reports in 'draft' or 'cancelled' state can be removed"
+msgstr ""
+"Només els informes en estat 'esborrany' o 'cancel·lat' poden ser eliminats"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__move_type
+msgid "Operation type"
+msgstr "Tipus d'operació"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Other parameters"
+msgstr "Altres paràmetres"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__password
+msgid "Password"
+msgstr "Contrassenya"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__period_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__period_type
+msgid "Period type"
+msgstr "Tipus de període"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__contact_phone
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__contact_phone
+msgid "Phone"
+msgstr "Telèfon"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+msgid ""
+"Ponga este archivo dentro de su carpeta personal de la AEAT, y úselo en el "
+"programa <strong>Informativas</strong> o pulsando en el botón "
+"<strong>Optativo: Importar datos de fichero</strong> en el formulario on-"
+"line."
+msgstr ""
+"Poseu aquest arxiu dins de la vostra carpeta personal de l'AEAT, i utilitzeu-"
+"lo al programa <strong> Informatives </strong> o fent clic al botó <strong> "
+"Optatiu: Importar dades de fitxer </strong> en el formulari on-line."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__position
+msgid "Position"
+msgstr "Posició"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__positive_sign
+msgid "Positive sign character"
+msgstr "Caràcter del signe positiu"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__posted
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__posted
+msgid "Posted"
+msgstr "Comptabilitzat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__previous_number
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__previous_number
+msgid "Previous declaration number"
+msgstr "Nº previ de declaració"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__private_key
+msgid "Private Key"
+msgstr "Clau privada"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__state__calculated
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__state__calculated
+msgid "Processed"
+msgstr "Processada"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__public_key
+msgid "Public Key"
+msgstr "Clau púublica"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.wizard_aeat_export
+msgid ""
+"Pulse el botón <strong>Exportar</strong> para iniciar el proceso de "
+"exportación del archivo BOE de la AEAT."
+msgstr ""
+"Premi el botó <strong> Exporta </strong> per iniciar el procés d'exportació "
+"de l'arxiu BOE de l'AEAT."
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Recalculate"
+msgstr "Recalcular"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__move_type__refund
+msgid "Refund"
+msgstr "Factura rectificativa"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__move_type__regular
+msgid "Regular"
+msgstr "Regular"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
+#, python-format
+msgid "Regularization"
+msgstr "Regularització"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__repeat
+msgid "Repeat"
+msgstr "Repetir"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__repeat_expression
+msgid "Repeat expression"
+msgstr "Expresió de repetició"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Report"
+msgstr "Informe"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__name
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__name
+msgid "Report identifier"
+msgstr "Identificador de l'informe"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__res_id
+msgid "Resource ID"
+msgstr "ID recurs"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__activity_user_id
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_user_id
+msgid "Responsible User"
+msgstr "Usuari responsable"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__alignment__right
+msgid "Right"
+msgstr "Dreta"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_has_sms_error
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Missatge d'error de lliurament"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__sequence
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__sequence
+msgid "Sequence"
+msgstr "Seqüència"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
+msgid "Show journal items"
+msgstr "Mostra apunts comptables"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "Show move"
+msgstr "Veure assentament"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__date_start
+msgid "Start Date"
+msgstr "Data inicial"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config__date_start
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__date_start
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__date_start
+msgid "Starting date"
+msgstr "Data inicial"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate__state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file__state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_export_to_boe__state
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__state
+msgid "State"
+msgstr "Estat"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__statement_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__statement_type
+msgid "Statement Type"
+msgstr "Tipus de declaració"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_state
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Estat basat en les activitats\n"
+"Tard: La data de venciment ja està vençuda\n"
+"Avui: La data de l'activitat és avui\n"
+"Planificat: Activitats futures."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__subconfig_id
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__aeat_model_export_config_line__export_type__subconfig
+msgid "Sub-configuration"
+msgstr "Sub-configuració"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__statement_type__s
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__statement_type__s
+msgid "Substitutive"
+msgstr "Substitutiva"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__sum_type
+msgid "Summarize type"
+msgstr "Tipus de suma"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__support_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__support_type
+msgid "Support Type"
+msgstr "Tipus de soport"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_account_tax
+msgid "Tax"
+msgstr "Impost"
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.aeat_tax_agency_action
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_company__tax_agency_id
+#: model:ir.ui.menu,name:l10n_es_aeat.aeat_tax_agency_menu
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_tax_agency_form_view
+msgid "Tax Agency"
+msgstr "Agència Tributària"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_form
+msgid "Tax code mapping line"
+msgstr "Línia de mapeig d'impostos"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_line_tree
+msgid "Tax code mapping lines"
+msgstr "Línies de mapeig d'impostos"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__tax_line_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_tax_line_tree
+msgid "Tax lines"
+msgstr "Línies d'impostos"
+
+#. module: l10n_es_aeat
+#: model:ir.actions.act_window,name:l10n_es_aeat.action_l10n_es_aeat_map_tax
+#: model:ir.ui.menu,name:l10n_es_aeat.menu_l10n_es_aeat_map_tax_code
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_map_tax_tree
+msgid "Tax mapping"
+msgstr "Mapeig d'impostos"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
+msgid "Taxes (Taxable base)"
+msgstr "Impostos (Base imposable)"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
+msgid "Taxes (fee)"
+msgstr "Impostos (Quota)"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__tax_ids
+msgid "Taxes templates"
+msgstr "Plantilles d'impostos"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report__support_type__t
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_tax_mapping__support_type__t
+msgid "Telematics"
+msgstr "Telemàtica"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
+#, python-format
+msgid "The formated string must match the given length"
+msgstr "La cadena formatada ha de satisfer la mida donada"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/compare_boe_file.py:0
+#, python-format
+msgid ""
+"The length of the file is different from the expected one, or there are "
+"conditional parts in the export configuration that can't be evaled "
+"statically."
+msgstr ""
+"La longitud del fitxer és diferent de l'esperada, o hi ha parts condicionals "
+"a la configuració d'exportació que no es poden avaluar estàticament."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__counterpart_account_id
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+"Aquest compte serà la contrapartida per a tots els elements del diari que "
+"estan regularitzats al comptabilitzar l'informe."
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "This button creates the regularization move for the selected report"
+msgstr ""
+"Aquest botó crea el moviment de regularització per a l'informe seleccionat"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_form_view
+msgid "To Active"
+msgstr "A activar"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__date_to
+msgid "To Date"
+msgstr "Fins la data"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__to_regularize
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__to_regularize
+msgid "To regularize"
+msgstr "Per regularitzar"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
+msgid "Total taxes (Taxable base)"
+msgstr "Total impostos (Base imposable)"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
+msgid "Total taxes (fee)"
+msgstr "Total impostos (Quota)"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_account_setup_bank_manual_config__acc_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner_bank__acc_type
+msgid "Type"
+msgstr "Tipus compte bancari"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__activity_exception_decoration
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipus d'activitat d'excepció registrada."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_unread
+msgid "Unread Messages"
+msgstr "Missatges sense llegir"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_unread_counter
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Comptador de missatges sense llegir"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__company_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__company_vat
+msgid "VAT number"
+msgstr "NIF"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__value
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.aeat_model_export_config_line_form
+msgid "Value"
+msgstr "Valor"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__bool_no
+msgid "Value for no"
+msgstr "Valor per al no"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_aeat_model_export_config_line__bool_yes
+msgid "Value for yes"
+msgstr "Valor per al sí"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__website_message_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__website_message_ids
+msgid "Website Messages"
+msgstr "Missatges del lloc web"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__website_message_ids
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__website_message_ids
+msgid "Website communication history"
+msgstr "Històric de comunicació de la pàgina web"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_compare_boe_file_line__wizard_id
+msgid "Wizard"
+msgstr "Assistent"
+
+#. module: l10n_es_aeat
+#: model:ir.model,name:l10n_es_aeat.model_l10n_es_aeat_certificate_password
+msgid "Wizard to Load AEAT Certificate"
+msgstr "Asssitent per a carregar certificat AEAT"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/wizard/export_to_boe.py:0
+#, python-format
+msgid "Wrong align option. It should be < or >"
+msgstr "Opció d'alineament errònia. Hauria de ser <o>"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__year
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__year
+msgid "Year"
+msgstr "Any"
+
+#. module: l10n_es_aeat
+#: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
+#, python-format
+msgid "You must fill both journal and counterpart account."
+msgstr "Ha d'omplir tant el diari com el compte de contrapartida."
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_compare_boe_file__state__compare
+msgid "compare"
+msgstr "Comparar"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_export_to_boe__state__get
+msgid "get"
+msgstr "obtenir"
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_compare_boe_file__state__open
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_export_to_boe__state__open
+msgid "open"
+msgstr "obert"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.l10n_es_aeat_certificate_password_wizard_view
+msgid "or"
+msgstr "o"
+
+#~ msgid "If checked new messages require your attention."
+#~ msgstr "Si està marcat, hi ha missatges que requereixen la seva atenció."
+
+#~ msgid "Overdue"
+#~ msgstr "Endarrerit"
+
+#~ msgid "Planned"
+#~ msgstr "Planificat"
+
+#~ msgid "Today"
+#~ msgstr "Avui"
