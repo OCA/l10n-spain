@@ -99,6 +99,16 @@ class SeurRequest(object):
 
     def _prepare_create_shipping(self):
         partner = self.record.partner_id
+        partner_name = partner.display_name
+        # When we get a specific delivery address we want to prioritize its
+        # name over the commercial one
+        if partner.parent_id and partner.type == "delivery" and partner.name:
+            partner_name = "{} ({})".format(
+                partner.name, partner.commercial_partner_id.name
+            )
+        partner_att = (
+            partner.name if partner.parent_id and partner.type == "contact" else ""
+        )
         company = self.record.company_id
         phone = partner.phone and partner.phone.replace(" ", "") or ""
         mobile = partner.mobile and partner.mobile.replace(" ", "") or ""
@@ -132,7 +142,7 @@ class SeurRequest(object):
             "claveReembolso": "F",
             "valorReembolso": "",
             "libroControl": "",
-            "nombre_consignatario": partner.display_name,
+            "nombre_consignatario": partner_name,
             "direccion_consignatario": " ".join(
                 [s for s in [partner.street, partner.street2] if s]
             ),
@@ -150,7 +160,7 @@ class SeurRequest(object):
             "email_consignatario": partner.email,
             "telefono_consignatario": phone or mobile,
             "sms_consignatario": self.send_sms and mobile or "",
-            "atencion_de": "",
+            "atencion_de": partner_att,
             "test_preaviso": "S",
             "test_reparto": "S",
             "test_email": partner.email and "S" or "N",
