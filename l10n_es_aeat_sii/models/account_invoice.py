@@ -6,6 +6,7 @@
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
 # Copyright 2021 Punt Sistemes - Juanvi Pascual <jvpascual@puntsistemes.es>
 # Copyright 2021 Punt Sistemes - Pedro Ortega <portega@puntsistemes.es>
+# Copyright 2021 FactorLibre - Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -530,26 +531,25 @@ class AccountInvoice(models.Model):
         taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
         default_no_taxable_cause = self._get_no_taxable_cause()
         taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
-        base_not_in_total = self._get_sii_taxes_map(['BaseNotIncludedInTotal'])
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
+        not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
             breakdown_taxes = (
                 taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             )
-
-            if tax in (taxes_not_in_total + base_not_in_total):
-                amount = (
-                    tax_line.base if tax in base_not_in_total else tax_line.amount_total
-                )
+            if tax in taxes_not_in_total:
                 if self.currency_id != self.company_id.currency_id:
                     amount = self.currency_id._compute(
                         self.currency_id,
                         self.company_id.currency_id,
-                        amount,
+                        tax_line.amount,
                     )
+                else:
+                    amount = tax_line.amount
+                not_in_amount_total += amount
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault(
                     'DesgloseFactura', {},
@@ -651,7 +651,7 @@ class AccountInvoice(models.Model):
         # primer semestre.
         if self.date < SII_START_DATE:
             return self._sii_adjust_first_semester(taxes_dict)
-        return taxes_dict
+        return taxes_dict, not_in_amount_total
 
     @api.multi
     def _get_sii_in_taxes(self):
@@ -668,23 +668,23 @@ class AccountInvoice(models.Model):
         taxes_sfrnd = self._get_sii_taxes_map(['SFRND'])
 
         taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
-        base_not_in_total = self._get_sii_taxes_map(['BaseNotIncludedInTotal'])
+        not_in_amount_total = 0.0
         tax_amount = 0.0
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
 
-            if tax in (taxes_not_in_total + base_not_in_total):
-                amount = (
-                    tax_line.base if tax in base_not_in_total else self.amount_untaxed
-                )
+            if tax in taxes_not_in_total:
                 if self.currency_id != self.company_id.currency_id:
                     amount = self.currency_id._compute(
                         self.currency_id,
                         self.company_id.currency_id,
-                        amount,
+                        tax_line.amount,
                     )
+                else:
+                    amount = tax_line.amount
+                not_in_amount_total += amount
             if tax in taxes_sfrisp:
                 isp_dict = taxes_dict.setdefault(
                     'InversionSujetoPasivo', {'DetalleIVA': []},
@@ -733,7 +733,7 @@ class AccountInvoice(models.Model):
                 sfrnd_dict['DetalleIVA'].append(
                     self._get_sii_tax_dict(tax_line, sign),
                 )
-        return taxes_dict, tax_amount
+        return taxes_dict, tax_amount, not_in_amount_total
 
     @api.multi
     def _sii_check_exceptions(self):
@@ -814,6 +814,10 @@ class AccountInvoice(models.Model):
         if not cancel:
             # Check if refund type is 'By differences'. Negative amounts!
             sign = self._get_sii_sign()
+            tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
+            amount_total = (
+                abs(self.amount_total_company_signed) - not_in_amount_total
+            ) * sign
             if partner.sii_simplified_invoice:
                 tipo_factura = 'R5' if self.type == 'out_refund' else 'F2'
             else:
@@ -824,8 +828,8 @@ class AccountInvoice(models.Model):
                     self.sii_registration_key.code
                 ),
                 "DescripcionOperacion": self.sii_description,
-                "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
+                "TipoDesglose": tipo_desglose,
+                "ImporteTotal": amount_total,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
@@ -888,7 +892,8 @@ class AccountInvoice(models.Model):
             self._get_account_registration_date())
         ejercicio = fields.Date.from_string(self.date).year
         periodo = '%02d' % fields.Date.from_string(self.date).month
-        desglose_factura, tax_amount = self._get_sii_in_taxes()
+        desglose_factura, tax_amount, not_in_amount_total = (
+            self._get_sii_in_taxes())
         inv_dict = {
             "IDFactura": {
                 "IDEmisorFactura": {},

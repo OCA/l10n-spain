@@ -146,6 +146,7 @@ Contributors
 * Nacho Muñoz <nacmuro@gmail.com>
 * Juanvi Pascual <jvpascual@puntsistemes.es>
 * Pedro Ortega <portega@puntsistemes.es>
+* Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
 
 Maintainers
 ~~~~~~~~~~~

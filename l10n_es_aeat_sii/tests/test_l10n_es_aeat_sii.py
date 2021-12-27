@@ -2,6 +2,7 @@
 # Copyright 2017 FactorLibre - Ismael Calvo <ismael.calvo@factorlibre.com>
 # Copyright 2017 Tecnativa - Pedro M. Baeza
 # Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
+# Copyright 2021 FactorLibre - Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
 import base64
@@ -40,6 +41,28 @@ def _deep_sort(obj):
 
 
 class TestL10nEsAeatSiiBase(common.SavepointCase):
+
+    @classmethod
+    def _get_or_create_tax(cls, xml_id, name, tax_type, percentage, account,
+                           description=''):
+        tax = cls.env.ref("l10n_es." + xml_id, raise_if_not_found=False)
+        if not tax:
+            tax = cls.env['account.tax'].create({
+                'name': name,
+                'type_tax_use': tax_type,
+                'amount_type': 'percent',
+                'amount': percentage,
+                'account_id': account.id,
+                'description': description
+            })
+            cls.env['ir.model.data'].create({
+                'module': 'l10n_es',
+                'name': xml_id,
+                'model': tax._name,
+                'res_id': tax.id,
+            })
+        return tax
+
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsAeatSiiBase, cls).setUpClass()
@@ -67,15 +90,15 @@ class TestL10nEsAeatSiiBase(common.SavepointCase):
             'code': 'TAX',
             'user_type_id': cls.account_type.id,
         })
-        cls.tax = cls.env['account.tax'].create({
-            'name': 'Test tax 10%',
-            # Needed for discriminatory tax amount in supplier invoices
-            'description': 'P_IVA10_BC',
-            'type_tax_use': 'purchase',
-            'amount_type': 'percent',
-            'amount': '10',
-            'account_id': cls.account_tax.id,
-        })
+        cls.company = cls.env.user.company_id
+        xml_id = '%s_account_tax_template_p_iva10_bc' % cls.company.id
+        cls.tax = cls._get_or_create_tax(
+            xml_id, "Test tax 10%", "purchase", 10, cls.account_tax,
+            description='P_IVA10_BC')
+        irpf_xml_id = '%s_account_tax_template_p_irpf19' % cls.company.id
+        cls.tax_irpf19 = cls._get_or_create_tax(
+            irpf_xml_id, "IRPF 19%", "purchase", -19, cls.account_tax,
+            description='P_IRPF19')
         cls.env.user.company_id.sii_description_method = 'manual'
         cls.invoice = cls.env['account.invoice'].create({
             'partner_id': cls.partner.id,
@@ -330,3 +353,28 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         for inv_type in ['out_invoice', 'in_invoice']:
             self.invoice.type = inv_type
             self._test_tax_agencies(self.invoice)
+
+    def test_importe_total_when_supplier_invoice_with_irpf(self):
+        invoice = self.env['account.invoice'].create({
+            'partner_id': self.partner.id,
+            'date_invoice': '2018-02-01',
+            'date': '2018-02-01',
+            'type': 'in_invoice',
+            'reference': 'PH-2020-0031',
+            'account_id': self.partner.property_account_payable_id.id,
+            'invoice_line_ids': [
+                (0, 0, {
+                    'product_id': self.product.id,
+                    'account_id': self.account_expense.id,
+                    'account_analytic_id': self.analytic_account.id,
+                    'name': 'Test line with irpf and iva',
+                    'price_unit': 100,
+                    'quantity': 1,
+                    'invoice_line_tax_ids': [
+                        (6, 0, self.tax.ids + self.tax_irpf19.ids)],
+                })],
+            'sii_manual_description': '/',
+        })
+        invoices = invoice._get_sii_invoice_dict()
+        importe_total = invoices['FacturaRecibida']['ImporteTotal']
+        self.assertEqual(110, importe_total)
