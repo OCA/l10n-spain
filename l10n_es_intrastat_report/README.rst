@@ -159,6 +159,11 @@ Contributors
   * João Marques
   * Víctor Martínez
 
+* `Sygel <https://www.sygel.es>`__:
+
+  * Harald Panten
+  * Valentin Vinagre
+
 Maintainers
 ~~~~~~~~~~~
 

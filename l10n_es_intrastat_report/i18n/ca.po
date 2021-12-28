@@ -158,6 +158,12 @@ msgid "Current company is not Spanish, so it can't be configured."
 msgstr "La companyia actual no es d'Espanya. No es pot configurar."
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__partner_vat
+msgid "Customer VAT"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__declaration_line_id
 msgid "Declaration Line"
 msgstr "Línia de declaració"
@@ -167,6 +173,7 @@ msgstr "Línia de declaració"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__display_name
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location__display_name
 msgid "Display Name"
 msgstr "Nom a mostrar"
@@ -206,6 +213,7 @@ msgstr "Generar fitxer CSV de la declaració"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__id
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location__id
 msgid "ID"
 msgstr "ID"
@@ -316,6 +324,11 @@ msgid "Intrastat Transaction"
 msgstr "Transacció Intrastat"
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_report_intrastat_product_product_declaration_xls
+msgid "Intrastat declaration"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model,name:l10n_es_intrastat_report.model_stock_location
 msgid "Inventory Locations"
 msgstr "Ubicacions d'inventari"
@@ -340,6 +353,7 @@ msgstr "És seguidor"
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration____last_update
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line____last_update
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls____last_update
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location____last_update
 msgid "Last Modified on"
 msgstr "Darrera modificació el"
@@ -609,6 +623,12 @@ msgstr "Comptador de missatges no llegits"
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__revision
 msgid "Used to keep track of changes"
 msgstr "Usat per a rastrejar els canvis"
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:0
+#, python-format
+msgid "VAT"
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__vat
