@@ -7,3 +7,8 @@
   * Pedro M. Baeza
   * João Marques
   * Víctor Martínez
+
+* `Sygel <https://www.sygel.es>`__:
+
+  * Harald Panten
+  * Valentin Vinagre

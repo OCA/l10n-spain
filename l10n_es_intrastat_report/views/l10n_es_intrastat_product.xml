@@ -21,6 +21,12 @@
                     name="attrs"
                 >{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
             </field>
+            <field name="invoice_id" position="after">
+                <field
+                    name="partner_vat"
+                    attrs="{'invisible': [('declaration_type', '!=', 'dispatches')]}"
+                />
+            </field>
         </field>
     </record>
     <record
@@ -39,8 +45,11 @@
                 <field name="intrastat_state_id" />
             </field>
             <field name="amount_accessory_cost_company_currency" position="attributes">
-        <attribute name="invisible">1</attribute>/>
-      </field>
+                <attribute name="invisible">1</attribute>/>
+            </field>
+            <field name="invoice_id" position="after">
+                <field name="partner_vat" />
+            </field>
         </field>
     </record>
     <record
@@ -61,6 +70,12 @@
                     name="attrs"
                 >{'required': [('reporting_level', '=', 'extended')], 'invisible': [('reporting_level', '!=', 'extended')]}</attribute>
             </field>
+            <field name="hs_code_id" position="after">
+                <field
+                    name="partner_vat"
+                    attrs="{'invisible': [('declaration_type', '!=', 'dispatches')]}"
+                />
+            </field>
         </field>
     </record>
     <record
@@ -77,6 +92,9 @@
         <field name="arch" type="xml">
             <field name="region_id" position="after">
                 <field name="intrastat_state_id" />
+            </field>
+            <field name="hs_code_id" position="after">
+                <field name="partner_vat" />
             </field>
         </field>
     </record>

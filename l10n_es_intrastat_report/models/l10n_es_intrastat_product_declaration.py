@@ -53,6 +53,10 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         incoterm_id = self._get_incoterm(inv_line, notedict)
         if incoterm_id:
             line_vals["incoterm_id"] = incoterm_id.id
+        if self.declaration_type == "dispatches" and int(self.year) >= 2022:
+            line_vals["partner_vat"] = (
+                inv_line.move_id.partner_shipping_id.vat or "QV999999999999"
+            )
 
     def _gather_invoices_init(self, notedict):
         if self.company_id.country_id.code != "ES":
@@ -82,6 +86,11 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         vals = super()._prepare_grouped_fields(computation_line, fields_to_sum)
         vals["intrastat_state_id"] = computation_line.intrastat_state_id.id
         vals["incoterm_id"] = computation_line.incoterm_id.id
+        if (
+            computation_line.declaration_type == "dispatches"
+            and int(computation_line.parent_id.year) >= 2022
+        ):
+            vals["partner_vat"] = computation_line.partner_vat
         return vals
 
     @api.model
@@ -106,6 +115,11 @@ class L10nEsIntrastatProductDeclaration(models.Model):
     def _group_line_hashcode_fields(self, computation_line):
         res = super()._group_line_hashcode_fields(computation_line)
         res["intrastat_state_id"] = computation_line.intrastat_state_id.id
+        if (
+            computation_line.declaration_type == "dispatches"
+            and int(computation_line.parent_id.year) >= 2022
+        ):
+            res["partner_vat"] = computation_line.partner_vat
         return res
 
     def _generate_xml(self):
@@ -119,41 +133,46 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         attach.write({"name": filename})
         return attach.id
 
+    def _generate_csv_line(self, line):
+        state_code = line.intrastat_state_id.code
+        vals = (
+            # Estado destino/origen
+            line.src_dest_country_id.code,
+            # Provincia destino/origen
+            SPANISH_STATES.get(state_code, state_code),
+            # Condiciones de entrega
+            line.incoterm_id.code,
+            # Naturaleza de la transacción
+            line.transaction_id.code,
+            # Modalidad de transporte
+            line.transport_id.code,
+            # Puerto/Aeropuerto de carga o descarga
+            False,
+            # Código mercancías CN8
+            line.hs_code_id.local_code,
+            # País origen
+            line.product_origin_country_id.code,
+            # Régimen estadístico
+            False,
+            # Masa neta
+            str(line.weight).replace(".", ","),
+            # Unidades suplementarias
+            str(line.suppl_unit_qty).replace(".", ","),
+            # Valor
+            str(line.amount_company_currency).replace(".", ","),
+            # Valor estadístico
+            str(line.amount_company_currency).replace(".", ","),
+        )
+        # Nº IVA-VIES asignado a la contraparte de la operación
+        if self.declaration_type == "dispatches" and int(self.year) >= 2022:
+            vals = vals + (str(line.partner_vat),)
+        return vals
+
     def _generate_csv(self):
         """Generate the AEAT csv file export."""
         rows = []
         for line in self.declaration_line_ids:
-            state_code = line.intrastat_state_id.code
-            rows.append(
-                (
-                    # Estado destino/origen
-                    line.src_dest_country_id.code,
-                    # Provincia destino/origen
-                    SPANISH_STATES.get(state_code, state_code),
-                    # Condiciones de entrega
-                    line.incoterm_id.code,
-                    # Naturaleza de la transacción
-                    line.transaction_id.code,
-                    # Modalidad de transporte
-                    line.transport_id.code,
-                    # Puerto/Aeropuerto de carga o descarga
-                    False,
-                    # Código mercancías CN8
-                    line.hs_code_id.local_code,
-                    # País origen
-                    line.product_origin_country_id.code,
-                    # Régimen estadístico
-                    False,
-                    # Masa neta
-                    str(line.weight).replace(".", ","),
-                    # Unidades suplementarias
-                    str(line.suppl_unit_qty).replace(".", ","),
-                    # Valor
-                    str(line.amount_company_currency).replace(".", ","),
-                    # Valor estadístico
-                    str(line.amount_company_currency).replace(".", ","),
-                )
-            )
+            rows.append(self._generate_csv_line(line))
         csv_string = self._format_csv(rows, ";")
         return csv_string.encode("utf-8")
 
@@ -175,9 +194,34 @@ class L10nEsIntrastatProductDeclaration(models.Model):
             "type": "ir.actions.report",
             "report_type": "xlsx",
             "report_name": "intrastat_product.product_declaration_xls",
-            "context": dict(self.env.context, report_file=report_file),
+            "context": dict(
+                self.env.context,
+                report_file=report_file,
+                declaration_type=self.declaration_type,
+                declaration_year=self.year,
+            ),
             "data": {"dynamic_report": True},
         }
+
+    @api.model
+    def _xls_computation_line_fields(self):
+        res = super()._xls_computation_line_fields()
+        if (
+            self.env.context.get("declaration_type", False) == "dispatches"
+            and int(self.env.context.get("declaration_year", 0)) >= 2022
+        ):
+            res.append("partner_vat")
+        return res
+
+    @api.model
+    def _xls_declaration_line_fields(self):
+        res = super()._xls_declaration_line_fields()
+        if (
+            self.env.context.get("declaration_type", False) == "dispatches"
+            and int(self.env.context.get("declaration_year", 0)) >= 2022
+        ):
+            res.append("partner_vat")
+        return res
 
 
 class L10nEsIntrastatProductComputationLine(models.Model):
@@ -199,6 +243,7 @@ class L10nEsIntrastatProductComputationLine(models.Model):
     intrastat_state_id = fields.Many2one(
         comodel_name="res.country.state", string="Intrastat State"
     )
+    partner_vat = fields.Char(string="Customer VAT")
 
 
 class L10nEsIntrastatProductDeclarationLine(models.Model):
@@ -223,3 +268,4 @@ class L10nEsIntrastatProductDeclarationLine(models.Model):
     )
     weight = fields.Float(digits="Stock Weight")
     amount_company_currency = fields.Float(digits="Account")
+    partner_vat = fields.Char(string="Customer VAT")
