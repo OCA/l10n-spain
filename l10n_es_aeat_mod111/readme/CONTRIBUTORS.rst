@@ -8,3 +8,4 @@
 * Jose Maria Alzaga (http://www.aselcis.com)
 * Ismael Calvo (http://factorlibre.com)
 * Iván Antón (https://www.ozonomultimedia.com)
+* Valentin Vinagre <valentin.vinagre@sygel.es>
