@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -202,7 +202,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__allow_posting
-msgid "Allow posting"
+msgid "Allow Posting"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -217,7 +217,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__calculation_date
-msgid "Calculation date"
+msgid "Calculation Date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -232,7 +232,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__contact_email
-msgid "Contact email"
+msgid "Contact Email"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -387,11 +387,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -404,6 +399,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__contact_name
 msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -643,13 +643,9 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report_activity_code__period_type
 msgid "Period Type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__period_type
-msgid "Period type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -678,15 +674,15 @@ msgid "Responsible User"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__result_type
+msgid "Result Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields,help:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__previous_result
 msgid ""
 "Result of the previous or prior statements of the same concept, exercise and"
 " period"
-msgstr ""
-
-#. module: l10n_es_aeat_mod303
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__result_type
-msgid "Result type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
