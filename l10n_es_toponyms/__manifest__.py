@@ -8,6 +8,7 @@
 {
     "name": "Topónimos españoles",
     "version": "15.0.1.0.0",
+    "development_status": "Mature",
     "author": "Spanish Localization Team, "
     "ZikZakMedia, "
     "Tecnativa, "
