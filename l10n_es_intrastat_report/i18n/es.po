@@ -602,11 +602,6 @@ msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
 
 #. module: l10n_es_intrastat_report
-#: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__company_country_code
-msgid "Used in views and methods of localization modules."
-msgstr "Usado en vistas y métodos de módulos de localización."
-
-#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__revision
 msgid "Used to keep track of changes"
 msgstr "Usado para rastrear los cambios"
@@ -674,6 +669,9 @@ msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
 #, python-format
 msgid "xlrd library not found."
 msgstr "Librería xlrd no encontrada."
+
+#~ msgid "Used in views and methods of localization modules."
+#~ msgstr "Usado en vistas y métodos de módulos de localización."
 
 #~ msgid "01"
 #~ msgstr "01"
