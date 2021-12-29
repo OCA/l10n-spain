@@ -8,6 +8,7 @@
     "name": "Importaciones con DUA",
     "category": "Localization/Account Charts",
     "version": "15.0.1.0.0",
+    "development_status": "Mature",
     "depends": ["l10n_es"],
     "data": [
         "data/tax_group_data.xml",
