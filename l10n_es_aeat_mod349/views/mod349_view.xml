@@ -8,7 +8,7 @@
         <field name="name">AEAT 349 Partner record detail (tree)</field>
         <field name="model">l10n.es.aeat.mod349.partner_record_detail</field>
         <field name="arch" type="xml">
-            <tree string="AEAT 349 Partner record detail">
+            <tree>
                 <field name="move_line_id" />
                 <field name="move_id" />
                 <field name="partner_id" />
@@ -42,10 +42,7 @@
         <field name="name">AEAT 349 Partner record (tree)</field>
         <field name="model">l10n.es.aeat.mod349.partner_record</field>
         <field name="arch" type="xml">
-            <tree
-                string="AEAT 349 Partner records"
-                decoration-danger="not partner_record_ok"
-            >
+            <tree decoration-danger="not partner_record_ok">
                 <field name="partner_record_ok" invisible="1" />
                 <field name="country_id" />
                 <field name="partner_vat" />
@@ -86,7 +83,7 @@
         <field name="name">AEAT 349 Partner refund detail (tree)</field>
         <field name="model">l10n.es.aeat.mod349.partner_refund_detail</field>
         <field name="arch" type="xml">
-            <tree string="AEAT 349 Partner refund detail">
+            <tree>
                 <field name="refund_line_id" />
                 <field name="move_id" />
                 <field name="partner_id" />
@@ -120,10 +117,7 @@
         <field name="name">AEAT 349 Partner refund (tree)</field>
         <field name="model">l10n.es.aeat.mod349.partner_refund</field>
         <field name="arch" type="xml">
-            <tree
-                string="AEAT 349 Partner refunds"
-                decoration-danger="not partner_refund_ok"
-            >
+            <tree decoration-danger="not partner_refund_ok">
                 <field name="partner_refund_ok" invisible="1" />
                 <field name="country_id" />
                 <field name="partner_vat" />
