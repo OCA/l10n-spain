@@ -173,7 +173,7 @@
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_account_invoice_filter" />
         <field name="arch" type="xml">
-            <filter name="unpaid" position="after">
+            <filter name="late" position="after">
                 <group string="SII filters">
                     <separator />
                     <filter
