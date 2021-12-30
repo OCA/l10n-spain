@@ -24,9 +24,7 @@ class Mod349(models.Model):
     _period_yearly = True
     _aeat_number = "349"
 
-    frequency_change = fields.Boolean(
-        string="Frequency change", states={"confirmed": [("readonly", True)]}
-    )
+    frequency_change = fields.Boolean(states={"confirmed": [("readonly", True)]})
     total_partner_records = fields.Integer(
         compute="_compute_report_regular_totals",
         string="Partners records",
@@ -454,11 +452,9 @@ class Mod349PartnerRecord(models.Model):
     country_id = fields.Many2one(comodel_name="res.country", string="Country")
     operation_key = fields.Selection(
         selection=_selection_operation_key,
-        string="Operation key",
     )
     total_operation_amount = fields.Float(
         compute="_compute_total_operation_amount",
-        string="Total operation amount",
         store=True,
     )
     partner_record_ok = fields.Boolean(
@@ -521,10 +517,9 @@ class Mod349PartnerRecordDetail(models.Model):
         related="partner_record_id.partner_id",
         readonly=True,
     )
-    amount_untaxed = fields.Float(string="Amount untaxed")
+    amount_untaxed = fields.Float()
     date = fields.Date(
         related="move_line_id.move_id.invoice_date",
-        string="Date",
         readonly=True,
     )
 
@@ -557,7 +552,6 @@ class Mod349PartnerRefund(models.Model):
     partner_vat = fields.Char(string="VAT", size=15)
     operation_key = fields.Selection(
         selection=_selection_operation_key,
-        string="Operation key",
     )
     country_id = fields.Many2one(comodel_name="res.country", string="Country")
     total_operation_amount = fields.Float(
@@ -575,7 +569,6 @@ class Mod349PartnerRefund(models.Model):
     )
     period_type = fields.Selection(
         selection="get_period_type_selection",
-        string="Period type",
     )
     year = fields.Integer()
     refund_detail_ids = fields.One2many(
@@ -641,9 +634,8 @@ class Mod349PartnerRefundDetail(models.Model):
         related="refund_line_id.move_id",
         readonly=True,
     )
-    amount_untaxed = fields.Float(string="Amount untaxed")
+    amount_untaxed = fields.Float()
     date = fields.Date(
         related="refund_line_id.date",
-        string="Date",
         readonly=True,
     )
