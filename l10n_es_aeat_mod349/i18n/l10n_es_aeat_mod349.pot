@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -56,13 +56,7 @@ msgid "AEAT 349 Partner record"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_detail_tree
-msgid "AEAT 349 Partner record detail"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_record_tree
 msgid "AEAT 349 Partner records"
 msgstr ""
 
@@ -72,13 +66,7 @@ msgid "AEAT 349 Partner refund"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_detail_tree
-msgid "AEAT 349 Partner refund detail"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.view_l10n_ES_aeat_mod349_partner_refund_tree
 msgid "AEAT 349 Partner refunds"
 msgstr ""
 
@@ -138,7 +126,6 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.ui.menu,name:l10n_es_aeat_mod349.menu_aeat_349_map
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.l10n_es_aeat_349_map_lines_view_tree
 msgid "Aeat 349 Map"
 msgstr ""
 
@@ -167,7 +154,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__amount_untaxed
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__amount_untaxed
-msgid "Amount untaxed"
+msgid "Amount Untaxed"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -182,7 +169,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__calculation_date
-msgid "Calculation date"
+msgid "Calculation Date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -223,7 +210,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__contact_email
-msgid "Contact email"
+msgid "Contact Email"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -279,7 +266,6 @@ msgid "Currency"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__date
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund_detail__date
 msgid "Date"
 msgstr ""
@@ -301,10 +287,6 @@ msgid "Details"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__display_name
@@ -347,11 +329,6 @@ msgid "Followers"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__message_partner_ids
 msgid "Followers (Partners)"
 msgstr ""
@@ -370,7 +347,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__frequency_change
-msgid "Frequency change"
+msgid "Frequency Change"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -384,15 +361,16 @@ msgid "General"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod349.selection__account_move_line__l10n_es_aeat_349_operation_key__i
 msgid "I - Intra-Community services acquisitions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__id
@@ -437,6 +415,11 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail__date
+msgid "Invoice/Bill Date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__physical_product
 msgid "Involves physical product"
 msgstr ""
@@ -474,10 +457,6 @@ msgid "L.R. VAT number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_move_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_account_tax_template____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record_detail____last_update
@@ -610,12 +589,12 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_aeat_349_map_line__operation_key
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__operation_key
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__operation_key
 msgid "Operation Key"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__operation_key
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__operation_key
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_record_head
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_partner_refund_head
 msgid "Operation key"
@@ -715,7 +694,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_refund__period_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_report__period_type
-msgid "Period type"
+msgid "Period Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
@@ -887,6 +866,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__total_operation_amount
+msgid "Total Operation Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Total amount of intra-community operations:"
 msgstr ""
@@ -904,11 +888,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod349
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod349.mod349_summary
 msgid "Total number of intra-community operators:"
-msgstr ""
-
-#. module: l10n_es_aeat_mod349
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod349.field_l10n_es_aeat_mod349_partner_record__total_operation_amount
-msgid "Total operation amount"
 msgstr ""
 
 #. module: l10n_es_aeat_mod349
