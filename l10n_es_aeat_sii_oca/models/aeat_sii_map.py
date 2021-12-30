@@ -46,8 +46,8 @@ class AeatSiiMap(models.Model):
             )
 
     name = fields.Char(string="Model", required=True)
-    date_from = fields.Date(string="Date from")
-    date_to = fields.Date(string="Date to")
+    date_from = fields.Date()
+    date_to = fields.Date()
     map_lines = fields.One2many(
         comodel_name="aeat.sii.map.lines", inverse_name="sii_map_id", string="Lines"
     )
@@ -57,9 +57,9 @@ class AeatSiiMapLines(models.Model):
     _name = "aeat.sii.map.lines"
     _description = "Aeat SII Map Lines"
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char(string="Name")
-    taxes = fields.Many2many(comodel_name="account.tax.template", string="Taxes")
+    code = fields.Char(required=True)
+    name = fields.Char()
+    taxes = fields.Many2many(comodel_name="account.tax.template")
     sii_map_id = fields.Many2one(
         comodel_name="aeat.sii.map", string="Aeat SII Map", ondelete="cascade"
     )
