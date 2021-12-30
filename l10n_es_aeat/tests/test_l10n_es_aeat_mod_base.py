@@ -282,7 +282,6 @@ class TestL10nEsAeatModBase(common.TransactionCase):
         account_user_grp = cls.env.ref("account.group_account_user")
         account_manager_grp = cls.env.ref("account.group_account_manager")
         aeat_grp = cls.env.ref("l10n_es_aeat.group_account_aeat")
-        access_rights_grp = cls.env.ref("base.group_erp_manager")
         # Create test user
         Users = cls.env["res.users"].with_context(
             no_reset_password=True, mail_create_nosubscribe=True
@@ -308,8 +307,6 @@ class TestL10nEsAeatModBase(common.TransactionCase):
                 "name": "Account manager",
                 "login": "account_manager",
                 "email": "account.manager@example.com",
-                "groups_id": [
-                    (6, 0, [account_manager_grp.id, aeat_grp.id, access_rights_grp.id])
-                ],
+                "groups_id": [(6, 0, [account_manager_grp.id, aeat_grp.id])],
             }
         )
