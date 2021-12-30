@@ -56,12 +56,10 @@ class ResCompany(models.Model):
         "With manual method, there's a button to send the invoice.",
     )
     use_connector = fields.Boolean(
-        string="Use connector",
         help="Check it to use connector instead of sending the invoice "
         "directly when it's validated",
     )
     send_mode = fields.Selection(
-        string="Send mode",
         selection=[
             ("auto", "On validate"),
             ("fixed", "At fixed time"),
@@ -69,8 +67,8 @@ class ResCompany(models.Model):
         ],
         default="auto",
     )
-    sent_time = fields.Float(string="Sent time")
-    delay_time = fields.Float(string="Delay time")
+    sent_time = fields.Float()
+    delay_time = fields.Float()
     sii_tax_agency_id = fields.Many2one("aeat.sii.tax.agency", string="SII Tax Agency")
 
     def _get_sii_eta(self):
