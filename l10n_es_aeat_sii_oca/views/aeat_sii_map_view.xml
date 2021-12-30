@@ -5,7 +5,7 @@
         <field name="name">aeat.sii.map.view.tree</field>
         <field name="model">aeat.sii.map</field>
         <field name="arch" type="xml">
-            <tree string="Aeat SII Map">
+            <tree>
                 <field name="name" />
                 <field name="date_from" />
                 <field name="date_to" />
@@ -43,7 +43,7 @@
         <field name="name">aeat.sii.map.lines.view.tree</field>
         <field name="model">aeat.sii.map.lines</field>
         <field name="arch" type="xml">
-            <tree string="Aeat SII Map" editable="bottom">
+            <tree editable="bottom">
                 <field name="code" />
                 <field name="name" />
                 <field name="taxes" widget="many2many_tags" />
