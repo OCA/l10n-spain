@@ -6,7 +6,7 @@
         <field name="name">aeat.sii.mapping.registration.keys.view.tree</field>
         <field name="model">aeat.sii.mapping.registration.keys</field>
         <field name="arch" type="xml">
-            <tree string="Aeat SII Registration Keys" editable="bottom">
+            <tree editable="bottom">
                 <field name="code" />
                 <field name="name" />
                 <field name="type" />
