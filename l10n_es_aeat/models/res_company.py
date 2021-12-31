@@ -33,13 +33,21 @@ class ResCompany(models.Model):
         """Low level cached search for a tax given its tax template and
         company.
         """
-        xmlids = self.env["ir.model.data"].search_read(
-            [("model", "=", "account.tax.template"), ("res_id", "=", tax_template.id)],
-            ["name", "module"],
+        xmlids = (
+            self.sudo()
+            .env["ir.model.data"]
+            .search_read(
+                [
+                    ("model", "=", "account.tax.template"),
+                    ("res_id", "=", tax_template.id),
+                ],
+                ["name", "module"],
+            )
         )
         return (
             xmlids
-            and self.env["ir.model.data"]
+            and self.sudo()
+            .env["ir.model.data"]
             .search(
                 [
                     ("model", "=", "account.tax"),
@@ -56,16 +64,21 @@ class ResCompany(models.Model):
         """Low level cached search for a tax given its account template and
         company.
         """
-        xmlids = self.env["ir.model.data"].search_read(
-            [
-                ("model", "=", "account.account.template"),
-                ("res_id", "=", account_template.id),
-            ],
-            ["name", "module"],
+        xmlids = (
+            self.sudo()
+            .env["ir.model.data"]
+            .search_read(
+                [
+                    ("model", "=", "account.account.template"),
+                    ("res_id", "=", account_template.id),
+                ],
+                ["name", "module"],
+            )
         )
         return (
             xmlids
-            and self.env["ir.model.data"]
+            and self.sudo()
+            .env["ir.model.data"]
             .search(
                 [
                     ("model", "=", "account.account"),
