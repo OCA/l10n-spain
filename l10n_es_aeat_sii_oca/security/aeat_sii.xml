@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="queue_job_sii_rule" model="ir.rule">
+        <field name="name">Queue job AEAT SII visibility</field>
+        <field name="model_id" ref="queue_job.model_queue_job" />
+        <field
+            name="domain_force"
+        >[('channel', '=', 'root.invoice_validate_sii')]</field>
+        <field name="groups" eval="[(4, ref('l10n_es_aeat.group_account_aeat'))]" />
+    </record>
+    <record id="queue_job_manager_rule" model="ir.rule">
+        <field name="name">Queue job manager</field>
+        <field name="model_id" ref="queue_job.model_queue_job" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('queue_job.group_queue_job_manager'))]" />
+    </record>
+</odoo>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2017 Ignacio Ibeas <ignacio@acysos.com>
+     Copyright 2018 PESOL - Angel Moya <angel.moya@pesol.es>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="config_parameter_sii_wsdl_out"
+        model="ir.config_parameter"
+        forcecreate="True"
+    >
+        <field name="key">l10n_es_aeat_sii.wsdl_out</field>
+        <field
+            name="value"
+        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroFactEmitidas.wsdl</field>
+    </record>
+    <record
+        id="config_parameter_sii_wsdl_in"
+        model="ir.config_parameter"
+        forcecreate="True"
+    >
+        <field name="key">l10n_es_aeat_sii.wsdl_in</field>
+        <field
+            name="value"
+        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroFactRecibidas.wsdl</field>
+    </record>
+    <record
+        id="config_parameter_sii_wsdl_pi"
+        model="ir.config_parameter"
+        forcecreate="True"
+    >
+        <field name="key">l10n_es_aeat_sii.wsdl_pi</field>
+        <field
+            name="value"
+        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroBienesInversion.wsdl</field>
+    </record>
+    <record
+        id="config_parameter_sii_wsdl_ic"
+        model="ir.config_parameter"
+        forcecreate="True"
+    >
+        <field name="key">l10n_es_aeat_sii.wsdl_ic</field>
+        <field
+            name="value"
+        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroOpIntracomunitarias.wsdl</field>
+    </record>
+    <record
+        id="config_parameter_sii_wsdl_pr"
+        model="ir.config_parameter"
+        forcecreate="True"
+    >
+        <field name="key">l10n_es_aeat_sii.wsdl_pr</field>
+        <field
+            name="value"
+        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroCobrosEmitidas.wsdl</field>
+    </record>
+    <record
+        id="config_parameter_sii_wsdl_ott"
+        model="ir.config_parameter"
+        forcecreate="True"
+    >
+        <field name="key">l10n_es_aeat_sii.wsdl_ott</field>
+        <field
+            name="value"
+        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroOpTrascendTribu.wsdl</field>
+    </record>
+    <record
+        id="config_parameter_sii_wsdl_ps"
+        model="ir.config_parameter"
+        forcecreate="True"
+    >
+        <field name="key">l10n_es_aeat_sii.wsdl_ps</field>
+        <field
+            name="value"
+        >https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroPagosRecibidas.wsdl</field>
+    </record>
+</odoo>
