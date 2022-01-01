@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_slide_channel_partner_fundae" model="ir.ui.view">
+        <field name="name">website_slides.slide.channel.partner</field>
+        <field name="model">slide.channel.partner</field>
+        <field name="inherit_id" ref="website_slides.slide_channel_partner_view_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_email" position="after">
+                <field name="partner_bonificable" string="Bonificable" />
+                <field name="partner_profesor" string="Profesor" />
+                <field name="partner_inspector" string="Inspector" /></field>
+        </field>
+    </record>
+</odoo>
