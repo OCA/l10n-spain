@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Gestión de formaciones bonificables para FUNDAE",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "summary": "Gestión de formaciones bonificables para FUNDAE.",
     "author": "C2i Change 2 improve, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",

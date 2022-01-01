@@ -4,7 +4,7 @@
         <field name="name">website_slides.slide.channel.group.view.tree</field>
         <field name="model">slide.channel.group</field>
         <field name="arch" type="xml">
-            <tree string="Grupos formativos" editable="bottom">
+            <tree editable="bottom">
                 <field name="name" />
                 <field name="code" />
                 <field name="channel_id" />
