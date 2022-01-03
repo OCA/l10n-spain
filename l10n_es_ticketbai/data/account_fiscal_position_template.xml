@@ -78,6 +78,13 @@
             <field name="tbai_vat_regime_key" ref="tbai_vat_regime_01"/>
         </record>
 
+        <!-- Tax Templates: Régimen Nacional -->
+        <record id="tbai_fp_nacional_s_iva0" model="account.fp.tbai.tax_template">
+            <field name="position_id" ref="l10n_es.fp_nacional"/>
+            <field name="tax_id" ref="l10n_es.account_tax_template_s_iva0"/>
+            <field name="tbai_vat_exemption_key" ref="tbai_vat_exemption_E1"/>
+        </record>
+
         <!-- Tax Templates: Intracommunity -->
         <record id="tbai_fp_intra_s_iva0_ic" model="account.fp.tbai.tax_template">
             <field name="position_id" ref="l10n_es.fp_intra"/>
