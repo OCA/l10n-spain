@@ -4,7 +4,8 @@
 import base64
 import logging
 
-from odoo import models
+from odoo import models,_
+from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -24,4 +25,4 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
         )
         file = base64.decodebytes(record.file)
         p12 = crypto.load_pkcs12(file, self.password)
-        record.tbai_p12_friendlyname = p12.get_friendlyname()
+        record.tbai_p12_friendlyname = str(p12.get_friendlyname())

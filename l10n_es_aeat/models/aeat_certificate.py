@@ -20,8 +20,8 @@ class L10nEsAeatCertificate(models.Model):
     folder = fields.Char(string="Folder Name", required=True)
     date_start = fields.Date(string="Start Date")
     date_end = fields.Date(string="End Date")
-    public_key = fields.Char(string="Public Key", readonly=True)
-    private_key = fields.Char(string="Private Key", readonly=True)
+    public_key = fields.Char(string="Public Key")
+    private_key = fields.Char(string="Private Key")
     company_id = fields.Many2one(
         comodel_name="res.company",
         string="Company",
