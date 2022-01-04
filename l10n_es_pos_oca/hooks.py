@@ -25,9 +25,7 @@ def post_init_hook(cr, registry, vals=None):
         pos.l10n_es_simplified_invoice_sequence_id = IrSequence.create(
             {
                 "name": (
-                    pos.with_context(
-                        {"lang": env.user.lang}
-                    )._get_l10n_es_sequence_name()
+                    pos.with_context(lang=env.user.lang)._get_l10n_es_sequence_name()
                     % pos_name
                 ),
                 "prefix": pos_vals.get(
