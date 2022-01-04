@@ -105,6 +105,13 @@ msgid "Sim.Inv number"
 msgstr ""
 
 #. module: l10n_es_pos
+#. openerp-web
+#: code:addons/l10n_es_pos/static/src/xml/Screens/OrderManagementScreen/OrderList.xml:0
+#, python-format
+msgid "Simplified Invoice"
+msgstr ""
+
+#. module: l10n_es_pos
 #: code:addons/l10n_es_pos/models/pos_config.py:0
 #: code:addons/l10n_es_pos/models/pos_config.py:0
 #, python-format
@@ -145,6 +152,11 @@ msgid "Simplified invoice"
 msgstr ""
 
 #. module: l10n_es_pos
+#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
+msgid "Simplified invoice number"
+msgstr ""
+
+#. module: l10n_es_pos
 #: model_terms:ir.ui.view,arch_db:l10n_es_pos.view_pos_order_filter_simplified_invoice
 msgid "Simplified invoices"
 msgstr ""
@@ -155,11 +167,6 @@ msgstr ""
 msgid ""
 "There is already a simplified invoice sequence with that prefix and it "
 "should be unique."
-msgstr ""
-
-#. module: l10n_es_pos
-#: model:ir.model.fields,field_description:l10n_es_pos.field_pos_order__l10n_es_unique_id
-msgid "Unique Order ID"
 msgstr ""
 
 #. module: l10n_es_pos
