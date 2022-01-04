@@ -76,9 +76,10 @@ class PosConfig(models.Model):
             self.invoice_journal_id = self._default_invoice_journal()
 
     def copy(self, default=None):
-        ctx = dict(self._context)
-        ctx.update(copy_pos_config=True)
-        return super(PosConfig, self.with_context(ctx)).copy(default)
+        return super(
+            PosConfig,
+            self.with_context(copy_pos_config=True),
+        ).copy(default)
 
     def write(self, vals):
         if not self._context.get("copy_pos_config") and "name" not in vals:
