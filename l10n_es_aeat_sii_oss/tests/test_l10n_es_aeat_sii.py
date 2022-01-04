@@ -36,7 +36,7 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
     def test_invoice_sii_oss(self):
         self.partner.sii_simplified_invoice = True
         invoice_form = Form(
-            self.env["account.move"].with_context(default_type="out_invoice")
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         invoice_form.partner_id = self.partner
         invoice_form.invoice_date = "2021-07-01"
