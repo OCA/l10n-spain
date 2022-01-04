@@ -19,3 +19,7 @@
   * Rafael Blasco
   * Carlos Roca
   * João Marques
+
+* `Sygel <https://www.sygel.es>`_:
+
+  * Manuel Regidor

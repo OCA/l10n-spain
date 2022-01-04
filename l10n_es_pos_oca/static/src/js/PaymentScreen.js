@@ -10,6 +10,7 @@ odoo.define("l10n_es_pos.PaymentScreen", function (require) {
     const PaymentScreen = require("point_of_sale.PaymentScreen");
     const Registries = require("point_of_sale.Registries");
 
+    // eslint-disable-next-line no-shadow
     const L10nEsPosPaymentScreen = (PaymentScreen) =>
         class extends PaymentScreen {
             async validateOrder(isForceValidate) {
