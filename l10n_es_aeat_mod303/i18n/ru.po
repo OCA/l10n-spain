@@ -36,6 +36,11 @@ msgid "0 - Sin epígrafe"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "0 Vacía"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_4t_1b
 msgid "1 - Epígrafes correspondientes a: Actividades AGP con IAE"
 msgstr ""
@@ -54,6 +59,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "1 Cuenta España"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2b
 msgid "2 - Epígrafes correspondientes a: Actividades artísticas sujetas al IAE"
 msgstr ""
@@ -62,6 +72,11 @@ msgstr ""
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_2a
 msgid ""
 "2 - Epígrafes correspondientes a: Actividades profesionales sujetas al IAE"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "2 Unión Europea SEPA"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -79,6 +94,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod303
 #: model:l10n.es.aeat.mod303.report.activity.code,name:l10n_es_aeat_mod303.aeat_mod303_activity_code_12_3c
 msgid "3 - Epígrafe 862 correspondiente a: Alquiler de inmuebles rústicos"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: selection:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "3 Resto Países"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -406,7 +426,8 @@ msgstr "ID"
 msgid ""
 "Información adicional - Operaciones realizadas en el ejercicio - Total "
 "volumen de operaciones "
-"([80]+[81]+[93]+[94]+[83]+[84]+[85]+[86]+[95]+[96]+[97]+[98]-[79]-[99])"
+"([80]+[81]+[93]+[94]+[83]+[84]+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-"
+"[79]-[99])"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -460,6 +481,11 @@ msgid ""
 "Navarra, consignarán en esta casilla el porcentaje del volumen de "
 "operaciones en territorio común. Los demás sujetos pasivos consignarán en "
 "esta casilla el 100%"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
+#: field:l10n.es.aeat.mod303.report,marca_sepa:0
+msgid "Marca sepa"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
@@ -589,13 +615,13 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:358
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:383
 #, python-format
 msgid "Select an account for making the charge"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
-#: code:addons/l10n_es_aeat_mod303/models/mod303.py:360
+#: code:addons/l10n_es_aeat_mod303/models/mod303.py:385
 #, python-format
 msgid "Select an account for receiving the money"
 msgstr ""
