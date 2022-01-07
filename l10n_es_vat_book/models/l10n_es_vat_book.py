@@ -286,7 +286,7 @@ class L10nEsVatBook(models.Model):
         domain = [
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
-            ("parent_state", "=", "posted"),
+            ("move_id.state", "=", "posted"),
             "|",
             ("tax_ids", "in", taxes.ids),
         ]
@@ -382,8 +382,11 @@ class L10nEsVatBook(models.Model):
             map_lines = self.env["aeat.vat.book.map.line"].search([])
             for map_line in map_lines:
                 taxes = map_line.get_taxes(rec)
-                account = rec.get_account_from_template(map_line.tax_account_id)
-                lines = rec._get_account_move_lines(taxes, account=account)
+                # TO FIX: This was created on version 13.0 ...
+                # so maybe we need to backport
+                # account = rec.get_account_from_template(map_line.tax_account_id)
+                # lines = rec._get_account_move_lines(taxes, account=account)
+                lines = rec._get_account_move_lines(taxes)
                 rec.create_vat_book_lines(lines, map_line.book_type, taxes)
             # Issued
             book_type = 'issued'
