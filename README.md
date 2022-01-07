@@ -7,7 +7,7 @@
 
 # l10n-spain
 
-TODO: add repo description.
+Spanish localization modules
 
 <!-- /!\ do not modify below this line -->
 
