@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_loss_silicie_ad02" model="aeat.loss.silicie">
+        <field name="code">AD02</field>
+        <field name="name">Rectificación de alcohol</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ad12" model="aeat.loss.silicie">
+        <field name="code">AD12</field>
+        <field name="name">Embotellado</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ad15" model="aeat.loss.silicie">
+        <field name="code">AD15</field>
+        <field name="name">Almacenamiento de primeras materias</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce01" model="aeat.loss.silicie">
+        <field name="code">CE01</field>
+        <field name="name">Primeras Materias</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce02" model="aeat.loss.silicie">
+        <field name="code">CE02</field>
+        <field name="name">Cocción</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce03" model="aeat.loss.silicie">
+        <field name="code">CE03</field>
+        <field name="name">ELABORACION: Separación entre fermentación y maduración</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce04" model="aeat.loss.silicie">
+        <field name="code">CE04</field>
+        <field name="name">ELABORACION: Separación de fermentación y maduración con doble filtrado</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce05" model="aeat.loss.silicie">
+        <field name="code">CE05</field>
+        <field name="name">ELABORACION: Fermentación y maduración sucesivamente en mismo tanque</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce06" model="aeat.loss.silicie">
+        <field name="code">CE06</field>
+        <field name="name">ELABORACION:Fermentación y maduración en el mismo tanque con Doble filtrado</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce07" model="aeat.loss.silicie">
+        <field name="code">CE07</field>
+        <field name="name">ALMACENAMIENTO de cerveza a granel</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce08" model="aeat.loss.silicie">
+        <field name="code">CE08</field>
+        <field name="name">ENVASADO DE CERVEZA: en barriles</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce09" model="aeat.loss.silicie">
+        <field name="code">CE09</field>
+        <field name="name">ENVASADO DE CERVEZA: grandes formatos</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce10" model="aeat.loss.silicie">
+        <field name="code">CE10</field>
+        <field name="name">ENVASADO DE CERVEZA: Otros envases</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce11" model="aeat.loss.silicie">
+        <field name="code">CE11</field>
+        <field name="name">ALMACENAMIENTO DE CERVEZA EN BARRILES</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce12" model="aeat.loss.silicie">
+        <field name="code">CE12</field>
+        <field name="name">ALMACENAMIENTO DE CERVEZA EN OTROS ENVASES</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_loss_silicie_ce13" model="aeat.loss.silicie">
+        <field name="code">CE13</field>
+        <field name="name">TRANSPORTE</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+</odoo>

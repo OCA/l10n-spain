@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_company_form" model="ir.ui.view">
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="silicie" string="SILICIE">
+                    <separator name="aeat_silicie_config" string="AEAT SILICIE Configuration" />
+                    <group name="cae">
+                        <field name="cae"/>
+                        <field name="cae_for_tests"/>
+                        <field name="aeat_office"/>
+                    </group>
+                    <group name="silicie_enabled">
+                        <field name="silicie_enabled"/>
+                    </group>
+                    <group attrs="{'invisible': [('silicie_enabled', '=', False)]}">
+                        <group name="silicie_config">
+                            <field name="silicie_test" />
+                            <field name="silicie_method"/>
+                            <field name="silicie_inventory_disabled"/>
+                        </group>
+                        <group name="silicie_connector" string="Connector config">
+                            <field name="silicie_send_mode"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>

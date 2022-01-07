@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_epigraph_silicie_a0" model="aeat.epigraph.silicie">
+        <field name="code">A0</field>
+        <field name="name">Alcohol y bebidas derivadas</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_epigraph_silicie_a3" model="aeat.epigraph.silicie">
+        <field name="code">A3</field>
+        <field name="name">Cervezas con un grado alcohólico volumétrico adquirido superior a 2,8% vol y con un grado Plato inferior a 11</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie" eval="2"/>
+    </record>
+    <record id="aeat_epigraph_silicie_a4" model="aeat.epigraph.silicie">
+        <field name="code">A4</field>
+        <field name="name">Cervezas grado Plato no inferior a 11 y no superior a 15</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie" eval="3"/>
+    </record>
+    <record id="aeat_epigraph_silicie_a5" model="aeat.epigraph.silicie">
+        <field name="code">A5</field>
+        <field name="name">Cervezas grado Plato superior a 15 y no superior a 19</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie" eval="4"/>
+    </record>
+    <record id="aeat_epigraph_silicie_a6" model="aeat.epigraph.silicie">
+        <field name="code">A6</field>
+        <field name="name">Cervezas con un grado Plato superior a 19</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie" eval="5"/>
+    </record>
+    <record id="aeat_epigraph_silicie_a7" model="aeat.epigraph.silicie">
+        <field name="code">A7</field>
+        <field name="name">Alcohol y bebidas derivadas consumo en Canarias</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_epigraph_silicie_g0" model="aeat.epigraph.silicie">
+        <field name="code">G0</field>
+        <field name="name">Cervezas con un grado alcohólico volumétrico adquirido no superior a 1,2% vol.</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie">1.a</field>
+    </record>
+    <record id="aeat_epigraph_silicie_g1" model="aeat.epigraph.silicie">
+        <field name="code">G1</field>
+        <field name="name">Cervezas con un grado alcohólico volumétrico adquirido superior a 1,2% vol y no superior a 2,8% vol</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+        <field name="fiscal_epigraph_silicie">1.b</field>
+    </record>
+    <record id="aeat_epigraph_silicie_g2" model="aeat.epigraph.silicie">
+        <field name="code">G2</field>
+        <field name="name">Cervezas con un grado alcohólico volumétrico adquirido no superior a 0,5% vol.</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+</odoo>

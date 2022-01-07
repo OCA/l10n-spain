@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="silicie_edit_move_form" model="ir.ui.view">
+        <field name="model">silicie.move.editor</field>
+        <field name="inherit_id" ref="l10n_es_aeat_silicie.silicie_edit_move_form"/>
+        <field name="arch" type="xml">
+            <group name="alcohol_data" position="after">
+                <group name="beer_data" string="Datos cerveza">
+                    <field name="extract"/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_proof_type_silicie_j01" model="aeat.proof.type.silicie">
+        <field name="code">J01</field>
+        <field name="name">Documento Administrativo Electrónico (E-DA)</field>
+        <field name="description">ARC</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j02" model="aeat.proof.type.silicie">
+        <field name="code">J02</field>
+        <field name="name">Documento de acompañamiento de emergencia</field>
+        <field name="description">Número referencia local</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j03" model="aeat.proof.type.silicie">
+        <field name="code">J03</field>
+        <field name="name">Albarán de Circulación</field>
+        <field name="description">Número referencia</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j04" model="aeat.proof.type.silicie">
+        <field name="code">J04</field>
+        <field name="name">Albarán de Circulación Ventas en ruta</field>
+        <field name="description">Código referencia electrónico (CRE)</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j05" model="aeat.proof.type.silicie">
+        <field name="code">J05</field>
+        <field name="name">Comprobante de Entrega</field>
+        <field name="description">Número de referencia</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j06" model="aeat.proof.type.silicie">
+        <field name="code">J06</field>
+        <field name="name">DUA Importación</field>
+        <field name="description">MRN</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j07" model="aeat.proof.type.silicie">
+        <field name="code">J07</field>
+        <field name="name">Autorización de la Oficina Gestora</field>
+        <field name="description">Número autorización</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j08" model="aeat.proof.type.silicie">
+        <field name="code">J08</field>
+        <field name="name">Diligencia del servicio de Intervención</field>
+        <field name="description">Fecha diligencia</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j09" model="aeat.proof.type.silicie">
+        <field name="code">J09</field>
+        <field name="name">Parte de Fabricación o Trabajo</field>
+        <field name="description">Número de parte</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j10" model="aeat.proof.type.silicie">
+        <field name="code">J10</field>
+        <field name="name">Declaración de Trabajo</field>
+        <field name="description">Número de declaración de trabajo</field>
+    </record>
+    <record id="aeat_proof_type_silicie_j11" model="aeat.proof.type.silicie">
+        <field name="code">J11</field>
+        <field name="name">Otros</field>
+        <field name="description">Número de identificación del documento</field>
+    </record>
+
+</odoo>

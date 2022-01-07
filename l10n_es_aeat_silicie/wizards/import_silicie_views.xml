@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="form_wizard_import_silicie" model="ir.ui.view">
+        <field name="name">form.wizard.import.silicie</field>
+        <field name="model">wizard.import.silicie</field>
+        <field name="arch" type="xml">
+            <form string="Import Receipt AEAT SILICIE">
+                <group>
+                    <group>
+                        <field name="file_data" filename="file_name" widget="binary" required="1" class="oe_inline"/>
+                    </group>
+                    <field name="file_name" invisible="1"/>
+                </group>
+                <footer>
+                    <button string="Import" name="import_button" type="object" context="{'open_order': True}"
+                            class="btn-primary"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_form_wizard_import_silicie" model="ir.actions.act_window">
+        <field name="name">Import Receipt AEAT SILICIE</field>
+        <field name="res_model">wizard.import.silicie</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="form_wizard_import_silicie"/>
+        <field name="target">new</field>
+    </record>
+    <menuitem id="menu_form_wizard_import_silicie"
+              parent="stock.menu_stock_warehouse_mgmt" sequence="100"
+              action="action_form_wizard_import_silicie"/>
+
+</odoo>

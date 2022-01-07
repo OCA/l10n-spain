@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="priority">6</field>
+        <field name="inherit_id" ref="stock.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='origin_grp']" position="before">
+                <group name="silicie" string="SILICIE" attrs="{ 'invisible': [('silicie_product_type','=','none')] }">
+                    <field name="send_silicie"/>
+                    <field name="not_declare"/>
+                    <field name="silicie_move_number"/>
+                    <field name="silicie_entry_type"/>
+                    <field name="silicie_move_type_id"/>
+                    <field name="silice_tax_position"/>
+                    <field name="fiscal_position_id"/>
+                    <field name="silicie_proof_type_id"/>
+                    <field name="silicie_loss_id"/>
+                    <field name="silicie_processing_id"/>
+                    <field name="silicie_operation_num"/>
+                    <field name="silicie_product_type"/>
+                    <field name="nc_code"/>
+                    <field name="epigraph_silicie_id"/>
+                    <field name="product_key_silicie_id"/>
+                    <field name="container_type_silicie_id"/>
+                    <field name="uom_silicie_id" options="{'no_open': True, 'no_create': True}"/>
+                    <field name="qty_conversion_silicie"/>
+                    <field name="alcoholic_grade"/>
+                    <field name="absolute_alcohol"/>
+                    <field name="notes_silice"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="stock_move_silicie_tree_view" model="ir.ui.view">
+        <field name="name">stock.move.silicie.tree</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="send_silicie == True or not_declare == True" decoration-danger="fields_check == False and send_silicie == False and not_declare == False" create="0">
+                <field name="id"/>
+                <field name="date" groups="base.group_no_one"/>
+                <field name="reference"/>
+                <field name="picking_type_id" invisible="1"/>
+                <field name="create_date" invisible="1" groups="base.group_no_one"/>
+                <field name="product_id"/>
+                <field name="nc_code"/>
+                <field name="epigraph_silicie_id"/>
+                <field name="product_key_silicie_id"/>
+                <field name="alcoholic_grade"/>
+                <field name="silicie_move_type_id"/>
+                <field name="location_id" groups="stock.group_stock_multi_locations" string="From"/>
+                <field name="location_dest_id" groups="stock.group_stock_multi_locations" string="To"/>
+                <field name="product_uom_qty"/>
+                <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
+                <field name="qty_conversion_silicie"/>
+                <field name="uom_silicie_id" options="{'no_open': True, 'no_create': True}"/>
+                <field name="absolute_alcohol"/>
+                <field name="container_type_silicie_id"/>
+                <field name="send_silicie"/>
+                <field name="not_declare" invisible="1"/>
+                <field name="fields_check" invisible="1"/>
+                <field name="silicie_move_number"/>
+                <field name="state" invisible="1"/>
+                <button name="open_silicie_move" icon="fa-folder-open-o" string="Edit Move" type="object"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_silicie_move_search" model="ir.ui.view">
+        <field name="name">stock.silicie.move.search</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <search string="SILICIE Moves">
+                <field name="origin" filter_domain="['|', '|', ('origin', 'ilike', self), ('name', 'ilike', self), ('picking_id', 'ilike', self)]" string="Reference"/>
+                <field name="date" groups="base.group_no_one"/>
+                <filter string="Pending to Send" name="send_pending" domain="[('send_silicie','=',False)]"/>
+                <separator/>
+                <filter string="Not Valid" name="not_valid" domain="[('fields_check','=',False)]"/>
+                <field name="product_id"/>
+                <field name="name" string="Location" filter_domain="['|',('location_id','ilike',self),('location_dest_id','ilike',self)]"/>
+                <field name="partner_id" string="Partner" filter_domain="[('picking_id.partner_id','child_of',self)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Date" name="by_date" domain="[]" context="{'group_by':'date:day'}"/>
+                    <filter string="Product" name="by_product" domain="[]" context="{'group_by':'product_id'}"/>
+                    <filter string="SILICIE Move Type" name="by_silicie_move_type" domain="[]" context="{'group_by':'silicie_move_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="stock_move_silicie_action" model="ir.actions.act_window">
+        <field name="name">SILICIE Moves</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_id" ref="l10n_es_aeat_silicie.stock_move_silicie_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[("state", "=", "done"),("silicie_product_type", "!=", "none"),("not_declare", "!=", True)]</field>
+        <field name="context">{'search_default_by_date': 1, 'search_default_send_pending': 1}</field>
+        <field name="search_view_id" ref="view_silicie_move_search"/>
+    </record>
+    <menuitem id="stock_move_silicie_menu" name="SILICIE Moves" action="stock_move_silicie_action" sequence="100" parent="stock.menu_warehouse_report" />
+
+</odoo>
+
+
+

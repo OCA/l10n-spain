@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_product_key_silicie_a01" model="aeat.product.key.silicie">
+        <field name="code">A01</field>
+        <field name="name">Vinos</field>
+        <field name="corresp_554">21</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a02" model="aeat.product.key.silicie">
+        <field name="code">A02</field>
+        <field name="name">Subproductos de vinificación</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a03" model="aeat.product.key.silicie">
+        <field name="code">A03</field>
+        <field name="name">Holandas de vino, hasta 70% Vol.</field>
+        <field name="corresp_554">40</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">40</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a04" model="aeat.product.key.silicie">
+        <field name="code">A04</field>
+        <field name="name">Aguardientes de vino</field>
+        <field name="corresp_554">41</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">41</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a05" model="aeat.product.key.silicie">
+        <field name="code">A05</field>
+        <field name="name">Aguardientes de subproductos (orujos, piquetas, lías)</field>
+        <field name="corresp_554">22,23</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a06" model="aeat.product.key.silicie">
+        <field name="code">A06</field>
+        <field name="name">Destilados de vino</field>
+        <field name="corresp_554">41</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">41</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a07" model="aeat.product.key.silicie">
+        <field name="code">A07</field>
+        <field name="name">Destilados de subproductos (orujos, piquetas, lías)</field>
+        <field name="corresp_554">22,23</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a08" model="aeat.product.key.silicie">
+        <field name="code">A08</field>
+        <field name="name">Alcohol etílico de vino (neutro o rectificado de vino)</field>
+        <field name="corresp_554">42</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">42</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a09" model="aeat.product.key.silicie">
+        <field name="code">A09</field>
+        <field name="name">Alcohol etílico de subproductos (orujos, piquetas y lías)</field>
+        <field name="corresp_554">46</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a11" model="aeat.product.key.silicie">
+        <field name="code">A11</field>
+        <field name="name">Aguardientes y destilados de frutas distintos de la uva</field>
+        <field name="corresp_554">43</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">43</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a12" model="aeat.product.key.silicie">
+        <field name="code">A12</field>
+        <field name="name">Los demás aguardientes y destilados de origen agrícola</field>
+        <field name="corresp_554">44</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">44</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a13" model="aeat.product.key.silicie">
+        <field name="code">A13</field>
+        <field name="name">Alcoholes neutros de origen agrícola</field>
+        <field name="corresp_554">45</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">45</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a14" model="aeat.product.key.silicie">
+        <field name="code">A14</field>
+        <field name="name">Otros alcoholes no expresados.</field>
+        <field name="corresp_554">47,48</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">48</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a15" model="aeat.product.key.silicie">
+        <field name="code">A15</field>
+        <field name="name">Las demás materias primas</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">32</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a16" model="aeat.product.key.silicie">
+        <field name="code">A16</field>
+        <field name="name">Extractos y concentrados alcohólicos</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">91</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a17" model="aeat.product.key.silicie">
+        <field name="code">A17</field>
+        <field name="name">Bebidas derivadas: aguardientes de vino o de orujo de uvas (incluido brandy)</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">86</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a18" model="aeat.product.key.silicie">
+        <field name="code">A18</field>
+        <field name="name">Bebidas derivadas: Ron y aguardiente de caña o tafia</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">87</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a19" model="aeat.product.key.silicie">
+        <field name="code">A19</field>
+        <field name="name">Bebidas derivadas: Gin y ginebra</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">88</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a20" model="aeat.product.key.silicie">
+        <field name="code">A20</field>
+        <field name="name">Bebidas derivadas: Güisqui</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">89</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a21" model="aeat.product.key.silicie">
+        <field name="code">A21</field>
+        <field name="name">Las demás Bebidas Derivadas</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557">90</field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a22" model="aeat.product.key.silicie">
+        <field name="code">A22</field>
+        <field name="name">Caldos fermentados de jugos, mieles y melazas de caña</field>
+        <field name="corresp_554">24</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a23" model="aeat.product.key.silicie">
+        <field name="code">A23</field>
+        <field name="name">Caldos fermentados de jugos, mieles y melazas de remolacha</field>
+        <field name="corresp_554">25</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a24" model="aeat.product.key.silicie">
+        <field name="code">A24</field>
+        <field name="name">Caldos fermentados de malta y cereales</field>
+        <field name="corresp_554">26</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a25" model="aeat.product.key.silicie">
+        <field name="code">A25</field>
+        <field name="name">Caldos fermentados de otras materias</field>
+        <field name="corresp_554">27</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a26" model="aeat.product.key.silicie">
+        <field name="code">A26</field>
+        <field name="name">Desnaturalizante</field>
+        <field name="corresp_554">31</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a27" model="aeat.product.key.silicie">
+        <field name="code">A27</field>
+        <field name="name">Alcohol totalmente desnaturalizado</field>
+        <field name="corresp_554">49</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a28" model="aeat.product.key.silicie">
+        <field name="code">A28</field>
+        <field name="name">Alcohol parcialmente desnaturalizado (desnaturalizante general)</field>
+        <field name="corresp_554">50</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_a29" model="aeat.product.key.silicie">
+        <field name="code">A29</field>
+        <field name="name">Alcohol parcialmente desnaturalizado (desnaturalizante especial)</field>
+        <field name="corresp_554">51</field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_c01" model="aeat.product.key.silicie">
+        <field name="code">C01</field>
+        <field name="name">Malta</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558">1</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_c02" model="aeat.product.key.silicie">
+        <field name="code">C02</field>
+        <field name="name">Cebada</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558">2</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_c03" model="aeat.product.key.silicie">
+        <field name="code">C03</field>
+        <field name="name">Arroz y sémola</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558">3</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_c04" model="aeat.product.key.silicie">
+        <field name="code">C04</field>
+        <field name="name">Maíz y grítz</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558">4</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_c05" model="aeat.product.key.silicie">
+        <field name="code">C05</field>
+        <field name="name">Fécula y almidón</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558">5</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_c06" model="aeat.product.key.silicie">
+        <field name="code">C06</field>
+        <field name="name">Otras materias extractivas</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558">7</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_c07" model="aeat.product.key.silicie">
+        <field name="code">C07</field>
+        <field name="name">Malta color</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558">8</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_f01" model="aeat.product.key.silicie">
+        <field name="code">F01</field>
+        <field name="name">Manzana</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_p01" model="aeat.product.key.silicie">
+        <field name="code">P01</field>
+        <field name="name">Mostos (incluso concentrados)</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556">20</field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_p21" model="aeat.product.key.silicie">
+        <field name="code">P21</field>
+        <field name="name">Moriles-Montilla (&lt; o =1% Vol. alc. añadido)</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556">77</field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_v01" model="aeat.product.key.silicie">
+        <field name="code">V01</field>
+        <field name="name">Uva</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_product_key_silicie_v02" model="aeat.product.key.silicie">
+        <field name="code">V02</field>
+        <field name="name">Mostos (incluso concentrados)</field>
+        <field name="corresp_554"></field>
+        <field name="corresp_555_556"></field>
+        <field name="corresp_557"></field>
+        <field name="corresp_558"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+</odoo>

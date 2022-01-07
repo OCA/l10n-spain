@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="aeat_move_type_silicie_a01" model="aeat.move.type.silicie">
+        <field name="code">A01</field>
+        <field name="name">Apertura</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a02" model="aeat.move.type.silicie">
+        <field name="code">A02</field>
+        <field name="name">Entrada interior</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a03" model="aeat.move.type.silicie">
+        <field name="code">A03</field>
+        <field name="name">Entrada Canarias</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a04" model="aeat.move.type.silicie">
+        <field name="code">A04</field>
+        <field name="name">Entrada UE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a05" model="aeat.move.type.silicie">
+        <field name="code">A05</field>
+        <field name="name">Entrada artículo 12 RIE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a06" model="aeat.move.type.silicie">
+        <field name="code">A06</field>
+        <field name="name">Entrada importación</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a07" model="aeat.move.type.silicie">
+        <field name="code">A07</field>
+        <field name="name">Entrada artículo 55 RIE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a08" model="aeat.move.type.silicie">
+        <field name="code">A08</field>
+        <field name="name">Salida interior</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a09" model="aeat.move.type.silicie">
+        <field name="code">A09</field>
+        <field name="name">Salida Canarias</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a10" model="aeat.move.type.silicie">
+        <field name="code">A10</field>
+        <field name="name">Salida UE</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a11" model="aeat.move.type.silicie">
+        <field name="code">A11</field>
+        <field name="name">Salida exportación</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a12" model="aeat.move.type.silicie">
+        <field name="code">A12</field>
+        <field name="name">Salida artículo 12 RIE</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a13" model="aeat.move.type.silicie">
+        <field name="code">A13</field>
+        <field name="name">Cambio de destino</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a14" model="aeat.move.type.silicie">
+        <field name="code">A14</field>
+        <field name="name">Autoconsumo/empleado</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a15" model="aeat.move.type.silicie">
+        <field name="code">A15</field>
+        <field name="name">Fabricado/obtenido</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a16" model="aeat.move.type.silicie">
+        <field name="code">A16</field>
+        <field name="name">Entrada por cambio de Código</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a17" model="aeat.move.type.silicie">
+        <field name="code">A17</field>
+        <field name="name">Salida por cambio de Código</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a18" model="aeat.move.type.silicie">
+        <field name="code">A18</field>
+        <field name="name">Compensación automática artículo 88 RIE</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a19" model="aeat.move.type.silicie">
+        <field name="code">A19</field>
+        <field name="name">Salida artículo 14.3 RIE</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a20" model="aeat.move.type.silicie">
+        <field name="code">A20</field>
+        <field name="name">Entrada artículo 14.3 RIE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a21" model="aeat.move.type.silicie">
+        <field name="code">A21</field>
+        <field name="name">Salida almacén auxiliar</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a22" model="aeat.move.type.silicie">
+        <field name="code">A22</field>
+        <field name="name">Entrada almacén auxiliar</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a23" model="aeat.move.type.silicie">
+        <field name="code">A23</field>
+        <field name="name">Entrada por cese actividad art. 15.5 LIE</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a24" model="aeat.move.type.silicie">
+        <field name="code">A24</field>
+        <field name="name">Reintroducción artículo 38.1 RIE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a25" model="aeat.move.type.silicie">
+        <field name="code">A25</field>
+        <field name="name">Reintroducción artículo 38.2 y 38.3 RIE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a26" model="aeat.move.type.silicie">
+        <field name="code">A26</field>
+        <field name="name">Reintroducción artículo 27 RIE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a27" model="aeat.move.type.silicie">
+        <field name="code">A27</field>
+        <field name="name">Entrada artículo 10 LIE</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a28" model="aeat.move.type.silicie">
+        <field name="code">A28</field>
+        <field name="name">Destrucción</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a29" model="aeat.move.type.silicie">
+        <field name="code">A29</field>
+        <field name="name">Pérdidas artículo 6.2 LIE</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a30" model="aeat.move.type.silicie">
+        <field name="code">A30</field>
+        <field name="name">Diferencias en menos almacenamiento</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a31" model="aeat.move.type.silicie">
+        <field name="code">A31</field>
+        <field name="name">Diferencias en más almacenamiento</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a32" model="aeat.move.type.silicie">
+        <field name="code">A32</field>
+        <field name="name">Diferencias en menos fabricación</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a33" model="aeat.move.type.silicie">
+        <field name="code">A33</field>
+        <field name="name">Diferencias en más fabricación</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a34" model="aeat.move.type.silicie">
+        <field name="code">A34</field>
+        <field name="name">Diferencias en menos transporte</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a35" model="aeat.move.type.silicie">
+        <field name="code">A35</field>
+        <field name="name">Ajustes positivos de mediciones</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a36" model="aeat.move.type.silicie">
+        <field name="code">A36</field>
+        <field name="name">Ajustes negativos de mediciones</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a37" model="aeat.move.type.silicie">
+        <field name="code">A37</field>
+        <field name="name">Entrada por reproceso de cerveza</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a38" model="aeat.move.type.silicie">
+        <field name="code">A38</field>
+        <field name="name">Salida por reproceso de cerveza</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a39" model="aeat.move.type.silicie">
+        <field name="code">A39</field>
+        <field name="name">Diferencias en menos en fábricas de cerveza art. 61.2.c RIE</field>
+        <field name="sign"></field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a40" model="aeat.move.type.silicie">
+        <field name="code">A40</field>
+        <field name="name">Utilización fines exentos art. 74, 75, 76 y 77 RIE</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_a41" model="aeat.move.type.silicie">
+        <field name="code">A41</field>
+        <field name="name">Autoconsumo/Empleado en operaciones propias</field>
+        <field name="sign">-</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_h01" model="aeat.move.type.silicie">
+        <field name="code">H01</field>
+        <field name="name">Apertura</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="True"/>
+        <field name="tax_silicie_tobacco" eval="False"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_m01" model="aeat.move.type.silicie">
+        <field name="code">M01</field>
+        <field name="name">Apertura</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="True"/>
+        <field name="tax_silicie_alcohol" eval="True"/>
+        <field name="tax_silicie_beer" eval="True"/>
+        <field name="tax_silicie_intermediate" eval="True"/>
+        <field name="tax_silicie_intermediate_art" eval="True"/>
+        <field name="tax_silicie_wine" eval="True"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+    <record id="aeat_move_type_silicie_t01" model="aeat.move.type.silicie">
+        <field name="code">T01</field>
+        <field name="name">Apertura</field>
+        <field name="sign">+</field>
+        <field name="tax_silicie_hydrocarbons" eval="False"/>
+        <field name="tax_silicie_tobacco" eval="True"/>
+        <field name="tax_silicie_alcohol" eval="False"/>
+        <field name="tax_silicie_beer" eval="False"/>
+        <field name="tax_silicie_intermediate" eval="False"/>
+        <field name="tax_silicie_intermediate_art" eval="False"/>
+        <field name="tax_silicie_wine" eval="False"/>
+        <field name="tax_silicie_vinegar" eval="False"/>
+    </record>
+
+</odoo>

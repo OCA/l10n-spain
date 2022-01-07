@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_production_lot_form_simple" model="ir.ui.view">
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form_simple" />
+        <field name="arch" type="xml">
+            <field name="ref" position="after">
+                <field name="silicie_product_type" invisible="True"/>
+                <field name="extract" attrs="{'invisible': [('silicie_product_type', '=', 'none')]}"/>
+                <field name="density" attrs="{'invisible': [('silicie_product_type', '=', 'none')]}"/>
+            </field>
+        </field>
+    </record>
+    <record id="view_production_lot_form" model="ir.ui.view">
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form" />
+        <field name="arch" type="xml">
+            <field name="ref" position="after">
+                <field name="silicie_product_type" invisible="True"/>
+                <field name="extract" attrs="{'invisible': [('silicie_product_type', '=', 'none')]}"/>
+                <field name="density" attrs="{'invisible': [('silicie_product_type', '=', 'none')]}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

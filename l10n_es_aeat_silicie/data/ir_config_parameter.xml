@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="config_parameter_silicie_wsdl" model="ir.config_parameter" forcecreate="True">
+        <field name="key">l10n_es_aeat_silicie.wsdl</field>
+        <field name="value">https://www3.agenciatributaria.gob.es/static_files/common/internet/dep/aduanas/es/aeat/adsi/lico/ws/v1/altas/alc/IESA1V1.wsdl</field>
+    </record>
+    <record id="config_parameter_silicie_service" model="ir.config_parameter" forcecreate="True">
+        <field name="key">l10n_es_aeat_silicie.service</field>
+        <field name="value">IESA1V1Service</field>
+    </record>
+    <record id="config_parameter_silicie_port_name" model="ir.config_parameter" forcecreate="True">
+        <field name="key">l10n_es_aeat_silicie.port_name</field>
+        <field name="value">IESA1V1</field>
+    </record>
+    <record id="config_parameter_silicie_operation" model="ir.config_parameter" forcecreate="True">
+        <field name="key">l10n_es_aeat_silicie.operation</field>
+        <field name="value">IESA1V1</field>
+    </record>
+</odoo>

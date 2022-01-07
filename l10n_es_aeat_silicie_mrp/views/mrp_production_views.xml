@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mrp_production_form_view" model="ir.ui.view">
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="arch" type="xml">
+            <field name="routing_id" position="after">
+                <field name="silicie_processing_id"/>
+                <field name="silicie_loss_id"/>
+            </field>
+            <xpath expr="//field[@name='move_raw_ids']/tree//field[@name='product_uom_qty']" position="before">
+                <field name="silicie_loss_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

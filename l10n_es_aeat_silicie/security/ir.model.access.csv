@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_model_aeat_silicie_container_type_admin,aeat.silicie.container.type admin,model_aeat_container_type_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_container_type_aeat,aeat.silicie.container.type aeat,model_aeat_container_type_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_silicie_epigraph_admin,aeat.silicie.epigraph admin,model_aeat_epigraph_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_epigraph_aeat,aeat.silicie.epigraph aeat,model_aeat_epigraph_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_silicie_product_key_admin,aeat.silicie.product.key admin,model_aeat_product_key_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_product_key_aeat,aeat.silicie.product.key aeat,model_aeat_product_key_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_silicie_move_type_admin,aeat.silicie.move.type admin,model_aeat_move_type_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_move_type_aeat,aeat.silicie.move.type aeat,model_aeat_move_type_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_silicie_uom_admin,aeat.silicie.uom admin,model_aeat_uom_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_uom_aeat,aeat.silicie.uom aeat,model_aeat_uom_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_silicie_proof_type_admin,aeat.silicie.proof.type admin,model_aeat_proof_type_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_proof_type_aeat,aeat.silicie.proof.type aeat,model_aeat_proof_type_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_silicie_processing_admin,aeat.silicie.proof.type admin,model_aeat_processing_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_processing_aeat,aeat.silicie.proof.type aeat,model_aeat_processing_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0
+access_model_aeat_silicie_loss_admin,aeat.silicie.proof.type admin,model_aeat_loss_silicie,base.group_system,1,1,1,1
+access_model_aeat_silicie_loss_aeat,aeat.silicie.proof.type aeat,model_aeat_loss_silicie,l10n_es_aeat.group_account_aeat,1,0,0,0

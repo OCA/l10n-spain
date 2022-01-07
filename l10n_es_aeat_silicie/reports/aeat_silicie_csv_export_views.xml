@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--
+    Copyright 2019 Creu Blanca
+    License AGPL-3.0 or later (https://www.gnuorg/licenses/agpl.html).
+    -->
+    <report
+        id="aeat_silice_csv"
+        model="stock.move"
+        string="SILICIE Export CSV"
+        report_type="csv"
+        name="report_csv.aeat_silice_csv"
+        file="stock_move"
+        attachment_use="False"
+    />
+</odoo>
