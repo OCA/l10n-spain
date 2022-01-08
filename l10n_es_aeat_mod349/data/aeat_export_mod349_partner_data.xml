@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Tipo registro 2 – Registro de clientes: -->
+    <record id="aeat_mod349_partner_export_config" model="aeat.model.export.config">
+        <field name="name">Mod. 349 - Registro de cliente</field>
+        <field name="model_number">349</field>
+        <field name="active" eval="False" />
+    </record>
+    <!--            1           Numérico        Tipo de Registro       Constante = '2' -->
+    <record
+        id="aeat_mod349_partner_export_line_01"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">1</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">Constante: 2</field>
+        <field name="fixed_value">2</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            2-4         Numérico        Modelo Declaración     onstante = '349' -->
+    <record
+        id="aeat_mod349_partner_export_line_02"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">2</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">Constante: 349</field>
+        <field name="fixed_value">349</field>
+        <field name="export_type">string</field>
+        <field name="size">3</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            5-8         Numérico        Ejercicio -->
+    <record
+        id="aeat_mod349_partner_export_line_03"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">3</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">Ejercicio</field>
+        <field name="expression">${object.report_id.year}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            9-17        Alfanumérico    NIF del declarante -->
+    <record
+        id="aeat_mod349_partner_export_line_04"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">4</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">NIF del declarante</field>
+        <field name="expression">${object.report_id.company_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            18-75       Blancos          -->
+    <record
+        id="aeat_mod349_partner_export_line_05"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">5</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">Blancos</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">58</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            76-92       Alfanumérico    NIF operador Intracomunitario -->
+    <record
+        id="aeat_mod349_partner_export_line_06"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">6</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">NIF operador Intracomunitario</field>
+        <field name="expression">${object.partner_vat}</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">17</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            93-132      Alfanumérico    Apellidos y nombre o razón social del -->
+    <!--                                        operador intracomunitario -->
+    <record
+        id="aeat_mod349_partner_export_line_07"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">7</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field
+            name="name"
+        >Apellidos y nombre o razón social del operador intracomunitario</field>
+        <field name="expression">${object.partner_id.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">40</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            133         Alfanumérico    Clave de operación -->
+    <record
+        id="aeat_mod349_partner_export_line_08"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">8</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">Clave de operación</field>
+        <field name="expression">${object.operation_key}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--            134-146     Numérico        Base imponible -->
+    <record
+        id="aeat_mod349_partner_export_line_09"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">9</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">Base imponible</field>
+        <field name="expression">${object.total_operation_amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">13</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--            147-500     Blancos          -->
+    <record
+        id="aeat_mod349_partner_export_line_10"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">10</field>
+        <field name="export_config_id" ref="aeat_mod349_partner_export_config" />
+        <field name="name">Blancos</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">354</field>
+        <field name="alignment">left</field>
+    </record>
+</odoo>
