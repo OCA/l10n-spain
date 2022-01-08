@@ -22,6 +22,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat](l10n_es_aeat/) | 15.0.1.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Modulo base para declaraciones de la AEAT
 [l10n_es_aeat_mod111](l10n_es_aeat_mod111/) | 15.0.1.0.0 |  | AEAT modelo 111
 [l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 15.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | AEAT modelo 303
+[l10n_es_aeat_mod349](l10n_es_aeat_mod349/) | 15.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Modelo 349 AEAT
 [l10n_es_aeat_sii_oca](l10n_es_aeat_sii_oca/) | 15.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Suministro Inmediato de Información en el IVA
 [l10n_es_dua](l10n_es_dua/) | 15.0.1.0.0 |  | Importaciones con DUA
 [l10n_es_partner](l10n_es_partner/) | 15.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Adaptación de los clientes, proveedores y bancos para España
