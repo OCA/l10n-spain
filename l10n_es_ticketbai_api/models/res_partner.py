@@ -73,11 +73,7 @@ class ResPartner(models.Model):
         :return: Name and surname, or business name
         """
         name = self.commercial_partner_id.name
-        if 120 < len(name.strip()):
-            raise exceptions.ValidationError(
-                _("Name %s too long. Should be 120 characters max.!") % name
-            )
-        return name.strip()  # Remove leading and trailing whitespace
+        return name.strip()[:120]  # Remove leading and trailing whitespace
 
     def tbai_get_value_nif(self):
         """ V 1.2
