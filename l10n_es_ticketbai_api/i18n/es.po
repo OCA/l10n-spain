@@ -121,7 +121,7 @@ msgstr ""
 "    "
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:82
+#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:80
 #, python-format
 msgid "%s VAT Number"
 msgstr "%s NIF"
@@ -628,12 +628,6 @@ msgstr "NIF"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_name
 msgid "Name"
 msgstr "Nombre"
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:66
-#, python-format
-msgid "Name %s too long. Should be 120 characters max.!"
-msgstr "Nombre %s demasiado largo. Debería tener un máximo de 120 caracteres."
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_customer_name
@@ -1806,3 +1800,7 @@ msgstr "res.config.settings"
 #: model:ir.model,name:l10n_es_ticketbai_api.model_tbai_installation
 msgid "tbai.installation"
 msgstr "TicketBAI Instalación"
+
+#~ msgid "Name %s too long. Should be 120 characters max.!"
+#~ msgstr ""
+#~ "Nombre %s demasiado largo. Debería tener un máximo de 120 caracteres."
