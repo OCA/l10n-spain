@@ -268,7 +268,7 @@ class LROEOperationResponse(models.Model):
                 tbai_response_dict = {
                     'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
                     'state': LROEOperationResponse.get_tbai_state(
-                        LROEOperationResponseState.REQUEST_ERROR.value)
+                        lroe_srv_response_type)
                 }
                 for key in kwargs:
                     tbai_response_dict[key] = kwargs[key]
