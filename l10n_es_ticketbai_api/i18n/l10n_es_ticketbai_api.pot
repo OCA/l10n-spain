@@ -74,7 +74,7 @@ msgid "\n"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:84
+#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:82
 #, python-format
 msgid "%s VAT Number"
 msgstr ""
@@ -560,12 +560,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer__name
 msgid "Name"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:68
-#, python-format
-msgid "Name %s too long. Should be 120 characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
