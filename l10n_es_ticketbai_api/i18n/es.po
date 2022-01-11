@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-17 12:41+0000\n"
-"PO-Revision-Date: 2021-09-17 14:44+0200\n"
+"POT-Creation-Date: 2022-01-03 14:49+0000\n"
+"PO-Revision-Date: 2022-01-03 15:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -348,6 +348,7 @@ msgstr "Entidad desarrolladora"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
+#: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_developer_ref_uniq
 #, python-format
 msgid "Developer must be unique!"
 msgstr "¡La entidad desarrolladora debe ser única!"
@@ -485,6 +486,12 @@ msgid "Identification Type Code"
 msgstr "Tipo de identificación"
 
 #. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
+#, python-format
+msgid "Incorrect country code."
+msgstr "Código de país incorrecto."
+
+#. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "Invalid %s format '%s'."
@@ -573,6 +580,7 @@ msgstr "Licencia TBAI"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
+#: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_license_ref_uniq
 #, python-format
 msgid "License Key must be unique!"
 msgstr "¡La licencia TicketBAI debe ser única!"
@@ -849,6 +857,7 @@ msgstr "Nombre del software"
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_installation.py:0
+#: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_name_ref_uniq
 #, python-format
 msgid "Software Name must be unique!"
 msgstr "¡El nombre de Software TicketBAI debe ser único!"
@@ -1746,18 +1755,3 @@ msgstr "XML Respuesta"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice_customer__zip
 msgid "ZIP Code"
 msgstr "Código postal"
-
-#. module: l10n_es_ticketbai_api
-#: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_name_ref_uniq
-msgid "¡El nombre de Software TicketBAI debe ser único!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_developer_ref_uniq
-msgid "¡La entidad desarrolladora debe ser única!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: model:ir.model.constraint,message:l10n_es_ticketbai_api.constraint_tbai_installation_license_ref_uniq
-msgid "¡La licencia TicketBAI debe ser única!"
-msgstr ""
