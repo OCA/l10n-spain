@@ -565,12 +565,6 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
-#, python-format
-msgid "Name %s too long. Should be 120 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,help:l10n_es_ticketbai_api.field_tbai_invoice_customer__name
 msgid "Name and surname, or business name."
 msgstr ""
