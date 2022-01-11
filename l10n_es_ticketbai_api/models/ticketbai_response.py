@@ -9,33 +9,35 @@ from odoo import models, fields, api, _
 class TicketBaiCancellationResponseCode(tbai_utils.EnumValues):
     INCORRECT_SENDER_CERTIFICATE = '001'
     XSD_SCHEMA_NOT_COMPLY = '002'
-    INVALID_SENDER_CERTIFICATE = '003'
-    WRONG_SIGNATURE = '004'
-    INVALID_SIGNER_CERTIFICATE = '005'
-    REQUIRED_FIELD_MISSING = '006'
-    INVALID_TBAI_LICENSE = '007'
-    DEVICE_NOT_REGISTERED = '008'
-    ADDRESSEE_NOT_REGISTERED = '009'
-    INVOICE_NOT_REGISTERED = '010'
-    INVOICE_ALREADY_CANCELLED = '011'
-    SERVICE_NOT_AVAILABLE = '012'
+    REQUIRED_FIELD_MISSING = '004'
+    SERVICE_NOT_AVAILABLE = '006'
+    INVALID_SENDER_CERTIFICATE = '007'
+    WRONG_SIGNATURE = '008'
+    INVALID_TBAI_LICENSE = '012'
+    DEVICE_NOT_REGISTERED = '013'
+    EXPIRED_SENDER_CERTIFICATE = '015'
+    EXPIRED_SIGNER_CERTIFICATE = '016'
+    MESSAGE_TOO_LONG = '017'
+    INVOICE_NOT_REGISTERED = '018'
+    INVOICE_ALREADY_CANCELLED = '019'
 
 
 class TicketBaiInvoiceResponseCode(tbai_utils.EnumValues):
     INCORRECT_SENDER_CERTIFICATE = '001'
     XSD_SCHEMA_NOT_COMPLY = '002'
     INVOICE_WITHOUT_LINES = '003'
-    TBAI_IDENTIFIER_FIELD_MISSING = '004'
+    REQUIRED_FIELD_MISSING = '004'
     INVOICE_ALREADY_REGISTERED = '005'
     SERVICE_NOT_AVAILABLE = '006'
     INVALID_SENDER_CERTIFICATE = '007'
     WRONG_SIGNATURE = '008'
-    INVALID_SIGNER_CERTIFICATE = '009'
     INCORRECT_INVOICE_CHAINING = '010'
-    REQUIRED_FIELD_MISSING = '011'
+    BUSINESS_VALIDATION_DATA_ERROR = '011'
     INVALID_TBAI_LICENSE = '012'
     DEVICE_NOT_REGISTERED = '013'
-    ADDRESSEE_NOT_REGISTERED = '014'
+    EXPIRED_SENDER_CERTIFICATE = '015'
+    EXPIRED_SIGNER_CERTIFICATE = '016'
+    MESSAGE_TOO_LONG = '017'
 
 
 class TicketBaiResponseState(tbai_utils.EnumValues):
@@ -101,17 +103,30 @@ class TicketBaiResponse(models.Model):
                 'xml': base64.encodebytes(response.data.encode('utf-8')),
                 'state': state
             })
+            tbai_response_message_ids = []
             if state == TicketBaiResponseState.RECEIVED.value:
-                tbai_response_message_ids = [(0, 0, {
-                    'code': xml_dict['Salida']['CSV'],
-                    'description': {
-                        'es_ES': xml_dict['Salida']['Descripcion'],
-                        'eu_ES': xml_dict['Salida']['Azalpena']
-                    }
-                })]
+                if xml_dict.get('Salida').get('CSV'):
+                    tbai_response_message_ids.append((0, 0, {
+                        'code': xml_dict['Salida']['CSV'],
+                        'description': {
+                            'es_ES': xml_dict['Salida']['Descripcion'],
+                            'eu_ES': xml_dict['Salida']['Azalpena']
+                        }
+                    }))
+                messages = xml_dict.get('Salida').get('ResultadosValidacion', False)
+                if messages:
+                    if isinstance(messages, dict):
+                        messages = [messages]
+                    for msg in messages:
+                        tbai_response_message_ids.append((0, 0, {
+                            'code': msg['Codigo'],
+                            'description': {
+                                'es_ES': msg['Descripcion'],
+                                'eu_ES': msg['Azalpena']
+                            }
+                        }))
             elif state == TicketBaiResponseState.REJECTED.value:
                 messages = xml_dict['Salida']['ResultadosValidacion']
-                tbai_response_message_ids = []
                 if isinstance(messages, dict):
                     messages = [messages]
                 for msg in messages:
@@ -123,10 +138,10 @@ class TicketBaiResponse(models.Model):
                         }
                     }))
             else:
-                tbai_response_message_ids = [(0, 0, {
+                tbai_response_message_ids.append((0, 0, {
                     'code': state,
                     'description': _('Unknown TicketBAI response code.')
-                })]
+                }))
             values.update(tbai_response_message_ids=tbai_response_message_ids)
         return values
 

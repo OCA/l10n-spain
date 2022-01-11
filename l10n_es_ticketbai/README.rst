@@ -9,7 +9,7 @@ TicketBAI - Haciendas Forales Vascas
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--spain-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-spain/tree/11.0/l10n_es_ticketbai
+    :target: https://github.com/OCA/l10n-spain/tree/12.0/l10n_es_ticketbai
     :alt: OCA/l10n-spain
 
 |badge1| |badge2| |badge3|
@@ -79,13 +79,17 @@ Usage
   * Por limitaciones de TicketBAI, se eliminan los sufijos de las secuencias de los diarios de ventas.
   * Por legalidad, se obliga a especificar una secuencia dedicada para las facturas rectificativas.
 
+* Habilitar/deshabilitar envio de facturas TicketBAI por diarios de ventas
+
+  * En caso de que se tengan varias series de facturación, si una de ellas se envía a TicketBAI a través de otro software, en el diario de ventas en el cual se contabilizan estas facturas en Odoo deberá estar desactivado el envío de facturas TicketBAI para evitar duplicar la información en hacienda.
+
 Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-spain/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_ticketbai%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-spain/issues/new?body=module:%20l10n_es_ticketbai%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -116,6 +120,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/11.0/l10n_es_ticketbai>`_ project on GitHub.
+This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/12.0/l10n_es_ticketbai>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

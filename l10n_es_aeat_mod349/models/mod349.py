@@ -11,7 +11,7 @@
 import math
 from odoo import models, fields, api, exceptions, _
 from odoo.fields import first
-from odoo.tools import float_is_zero
+from odoo.tools import float_is_zero, float_round
 
 
 class Mod349(models.Model):
@@ -512,8 +512,10 @@ class Mod349PartnerRefund(models.Model):
             rectified_amount = sum(
                 record.mapped('refund_detail_ids.amount_untaxed')
             )
-            record.total_operation_amount = (
-                record.total_origin_amount - rectified_amount
+            rounding = self.env.user.company_id.currency_id.rounding
+            record.total_operation_amount = float_round(
+                record.total_origin_amount - rectified_amount,
+                precision_rounding=rounding,
             )
 
 

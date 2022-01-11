@@ -69,11 +69,14 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def _get_partner_domain(self):
         return []
 
+    def get_taxes_from_map(self, map_line):
+        return self.get_taxes_from_templates(map_line.tax_ids)
+
     @api.multi
     def _get_move_line_domain(self, codes, date_start, date_end, map_line):
         """:param codes: deprecated"""
         self.ensure_one()
-        taxes = self.get_taxes_from_templates(map_line.tax_ids)
+        taxes = self.get_taxes_from_map(map_line)
         move_line_domain = [
             ('company_id', 'child_of', self.company_id.id),
             ('date', '>=', date_start),

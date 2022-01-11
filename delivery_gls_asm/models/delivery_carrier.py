@@ -1,6 +1,7 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, fields, models
+from odoo.exceptions import UserError
 from xml.sax.saxutils import escape
 from .gls_asm_request import GlsAsmRequest
 from .gls_asm_request import (
@@ -87,14 +88,14 @@ class DeliveryCarrier(models.Model):
             "podobligatorio": "N",  # [deprecated]
             "remite_plaza": "",  # [optional] Origin agency
             "remite_nombre": escape(sender_partner.name),
-            "remite_direccion": escape(sender_partner.street) or "",
-            "remite_poblacion": sender_partner.city or "",
-            "remite_provincia": sender_partner.state_id.name or "",
+            "remite_direccion": escape(sender_partner.street or ""),
+            "remite_poblacion": escape(sender_partner.city or ""),
+            "remite_provincia": escape(sender_partner.state_id.name or ""),
             "remite_pais": "34",  # [mandatory] always 34=Spain
             "remite_cp": sender_partner.zip or "",
             "remite_telefono": sender_partner.phone or "",
             "remite_movil": sender_partner.mobile or "",
-            "remite_email": sender_partner.email or "",
+            "remite_email": escape(sender_partner.email or ""),
             "remite_departamento": "",
             "remite_nif": sender_partner.vat or "",
             "remite_observaciones": "",
@@ -104,15 +105,15 @@ class DeliveryCarrier(models.Model):
                 escape(picking.partner_id.name)
                 or escape(picking.partner_id.commercial_partner_id.name)
             ),
-            "destinatario_direccion": picking.partner_id.street or "",
-            "destinatario_poblacion": picking.partner_id.city or "",
-            "destinatario_provincia": picking.partner_id.state_id.name or "",
+            "destinatario_direccion": escape(picking.partner_id.street or ""),
+            "destinatario_poblacion": escape(picking.partner_id.city or ""),
+            "destinatario_provincia": escape(picking.partner_id.state_id.name or ""),
             "destinatario_pais": (
                 picking.partner_id.country_id.phone_code or ""),
             "destinatario_cp": picking.partner_id.zip,
             "destinatario_telefono": picking.partner_id.phone or "",
             "destinatario_movil": picking.partner_id.mobile or "",
-            "destinatario_email": picking.partner_id.email or "",
+            "destinatario_email": escape(picking.partner_id.email or ""),
             "destinatario_observaciones": "",
             "destinatario_att": "",
             "destinatario_departamento": "",
@@ -144,6 +145,15 @@ class DeliveryCarrier(models.Model):
         gls_request = GlsAsmRequest(self._gls_asm_uid())
         result = []
         for picking in pickings:
+            if len(picking.name) > 15:
+                raise UserError(_(
+                    "GLS-ASM API doesn't admit a reference number higher than "
+                    "15 characters. In order to handle it, they trim the"
+                    "reference and as the reference is unique to every "
+                    "customer we soon would have duplicated reference "
+                    "collisions. To prevent this, you should edit your picking "
+                    "sequence to a max of 15 characters."
+                ))
             vals = self._prepare_gls_asm_shipping(picking)
             vals.update({"tracking_number": False, "exact_price": 0})
             response = gls_request._send_shipping(vals)
