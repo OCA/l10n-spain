@@ -9,7 +9,7 @@
     "author": "Tecnativa," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "depends": ["payment", "website_sale"],
-    "external_dependencies": {"python": ["Crypto.Cipher.DES3"]},
+    "external_dependencies": {"python": ["pycrypto"]},
     "data": [
         "views/redsys.xml",
         "views/payment_acquirer.xml",
