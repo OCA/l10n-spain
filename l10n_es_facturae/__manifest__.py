@@ -47,6 +47,8 @@
         "views/edi_exchange_record.xml",
         "data/edi_output.xml",
     ],
-    "external_dependencies": {"python": ["cryptography", "xmlsig", "pycountry"]},
+    "external_dependencies": {
+        "python": ["cryptography", "pyOpenSSL", "pycountry", "xmlsig"]
+    },
     "installable": True,
 }
