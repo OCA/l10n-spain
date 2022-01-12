@@ -29,6 +29,7 @@
     },
     "data": [
         "security/ir.model.access.csv",
+        "security/l10n_es_ticketbai_security.xml",
         "data/tax_agency_data.xml",
         "data/ticketbai_invoice.xml",
         "data/ir_config_parameter.xml",
