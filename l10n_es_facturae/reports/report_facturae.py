@@ -8,20 +8,16 @@ import random
 from datetime import datetime
 
 import pytz
+import xmlsig
+from cryptography import x509
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.serialization import Encoding
 from lxml import etree
 
 from odoo import _, api, models, tools
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
-
-try:
-    import xmlsig
-    from cryptography import x509
-    from cryptography.hazmat.primitives import serialization
-    from cryptography.hazmat.primitives.serialization import Encoding
-except (ImportError, IOError) as err:
-    _logger.info(err)
 
 
 class ReportFacturae(models.AbstractModel):
