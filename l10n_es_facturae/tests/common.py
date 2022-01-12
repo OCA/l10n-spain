@@ -3,9 +3,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 import base64
-import logging
 from datetime import timedelta
 
+import xmlsig
 from lxml import etree
 from mock import patch
 
@@ -14,11 +14,6 @@ from odoo import exceptions, fields
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
 )
-
-try:
-    import xmlsig
-except (ImportError, IOError) as err:
-    logging.info(err)
 
 
 class CommonTest(TestL10nEsAeatCertificateBase):
