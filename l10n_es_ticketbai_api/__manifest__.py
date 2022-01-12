@@ -17,9 +17,10 @@
     "depends": ["base", "base_setup"],
     "external_dependencies": {
         "python": [
-            "xmlsig",
             "cryptography",
+            "pyOpenSSL",
             "qrcode",
+            "xmlsig",
             "xmltodict",
         ],
     },
