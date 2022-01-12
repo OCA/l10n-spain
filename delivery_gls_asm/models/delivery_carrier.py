@@ -141,7 +141,7 @@ class DeliveryCarrier(models.Model):
             "destinatario_direccion": escape(picking.partner_id.street or ""),
             "destinatario_poblacion": escape(picking.partner_id.city or ""),
             "destinatario_provincia": escape(picking.partner_id.state_id.name or ""),
-            "destinatario_pais": (picking.partner_id.country_id.phone_code or ""),
+            "destinatario_pais": picking.partner_id.country_id.phone_code or "",
             "destinatario_cp": picking.partner_id.zip,
             "destinatario_telefono": picking.partner_id.phone or "",
             "destinatario_movil": picking.partner_id.mobile or "",
