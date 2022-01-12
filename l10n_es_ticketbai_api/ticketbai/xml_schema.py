@@ -6,18 +6,14 @@ from base64 import b64encode
 from datetime import datetime
 from uuid import uuid4
 
+import xmlsig
+import xmltodict
+from cryptography.hazmat.primitives import hashes
 from lxml import etree
 
 from ..utils import utils as tbai_utils
 
 _logger = logging.getLogger(__name__)
-
-try:
-    import xmlsig
-    import xmltodict
-    from cryptography.hazmat.primitives import hashes
-except (ImportError, IOError) as err:
-    _logger.error(err)
 
 
 class XMLSchemaException(Exception):
