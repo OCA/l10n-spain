@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2022 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Fiscal Position Templates -->
+    <record id="l10n_es_dua.fp_dua" model="account.fiscal.position.template">
+        <field name="tbai_vat_regime_purchase_key" ref="l10n_es_ticketbai_batuz.tbai_vat_regime_purchase_13" />
+    </record>
+</odoo>
