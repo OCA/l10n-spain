@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_company_vat_prorate,access res.company.vat.prorate,model_res_company_vat_prorate,base.group_user,1,0,0,0
+manage_res_company_vat_prorate,manage res.company.vat.prorate,model_res_company_vat_prorate,base.group_system,1,1,1,1
