@@ -55,6 +55,9 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
             "S_IVA10B": (2000, 200),
         }
         cls.invoice_1 = cls._invoice_sale_create("2019-01-01")
+        # Cancelled invoice - Shouldn't count for partner `customer`
+        cls.invoice_cancel = cls._invoice_sale_create("2019-01-01")
+        cls.invoice_cancel.button_cancel()
         # Invoice higher than limit with IRPF
         cls.taxes_sale = {
             "S_IVA10S,S_IRPF20": (4000, 400),
