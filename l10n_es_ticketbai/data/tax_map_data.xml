@@ -23,6 +23,8 @@
         <record id="tbai_tax_map_SNS" model="tbai.tax.map">
             <field name="code">SNS</field>
             <field name="tax_template_ids" eval="[(6, 0, [
+                ref('l10n_es.account_tax_template_s_iva_e'),
+                ref('l10n_es.account_tax_template_s_iva0_sp_i'),
                 ref('l10n_es.account_tax_template_s_iva_ns'),
             ])]"/>
             <field name="name">No sujeto Repercutido (Servicios)</field>
