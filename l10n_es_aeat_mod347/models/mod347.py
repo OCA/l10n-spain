@@ -164,6 +164,7 @@ class L10nEsAeatMod347Report(models.Model):
             "|",
             ("tax_ids", "in", taxes.ids),
             ("tax_line_id", "in", taxes.ids),
+            ("parent_state", "=", "posted"),
         ]
 
     @api.model
