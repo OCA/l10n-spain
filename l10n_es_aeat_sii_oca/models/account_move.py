@@ -508,14 +508,22 @@ class AccountMove(models.Model):
             return True
         return False
 
+    def _get_tax_base_info(self, res, tax, line, sign):
+        res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
+        res[tax]["base"] += line.balance * sign
+
+    def _get_tax_quote_info(self, res, tax, line, sign):
+        res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0, "quote_amount": 0})
+        res[tax]["amount"] += line.balance * sign
+        res[tax]["quote_amount"] += line.balance * sign
+
     def _get_tax_info(self):
         self.ensure_one()
         res = {}
         for line in self.line_ids:
             sign = -1 if self.type[:3] == "out" else 1
             for tax in line.tax_ids:
-                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
-                res[tax]["base"] += line.balance * sign
+                self._get_tax_base_info(res, tax, line, sign)
             if line.tax_line_id:
                 tax = line.tax_line_id
                 if "invoice" in self.type:
@@ -528,8 +536,7 @@ class AccountMove(models.Model):
                 ):
                     # taxes with more than one "tax" repartition line must be discarded
                     continue
-                res.setdefault(tax, {"tax": tax, "base": 0, "amount": 0})
-                res[tax]["amount"] += line.balance * sign
+                self._get_tax_quote_info(res, tax, line, sign)
         return res
 
     def _get_sii_out_taxes(self):  # noqa
@@ -692,7 +699,7 @@ class AccountMove(models.Model):
                 continue
             tax_dict = self._get_sii_tax_dict(tax_line, tax_lines)
             if tax in taxes_sfrisp + taxes_sfrs:
-                tax_amount += tax_line["amount"]
+                tax_amount += tax_line["quote_amount"]
             if tax in taxes_sfrns:
                 tax_dict.pop("TipoImpositivo")
                 tax_dict.pop("CuotaSoportada")
