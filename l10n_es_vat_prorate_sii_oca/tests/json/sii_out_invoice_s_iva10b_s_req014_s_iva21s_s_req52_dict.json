@@ -1,0 +1,55 @@
+{
+  "IDFactura": {
+    "IDEmisorFactura": {"NIF": "U2687761C"},
+    "NumSerieFacturaEmisor": "TEST001",
+    "FechaExpedicionFacturaEmisor": "01-01-2020"
+  },
+  "PeriodoLiquidacion": {"Ejercicio": 2020, "Periodo": "01"},
+  "FacturaExpedida": {
+    "TipoFactura": "F1",
+    "ClaveRegimenEspecialOTrascendencia": "01",
+    "DescripcionOperacion": "/",
+    "TipoDesglose": {
+      "DesgloseTipoOperacion": {
+        "PrestacionServicios": {
+          "Sujeta": {
+            "NoExenta": {
+              "TipoNoExenta": "S1",
+              "DesgloseIVA": {
+                "DetalleIVA": [
+                  {
+                    "TipoImpositivo": "21.0",
+                    "BaseImponible": 200.0,
+                    "CuotaRepercutida": 42.0,
+                    "CuotaRecargoEquivalencia": 10.4,
+                    "TipoRecargoEquivalencia": 5.2
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Entrega": {
+          "Sujeta": {
+            "NoExenta": {
+              "TipoNoExenta": "S1",
+              "DesgloseIVA": {
+                "DetalleIVA": [
+                  {
+                    "TipoImpositivo": "10.0",
+                    "BaseImponible": 100.0,
+                    "CuotaRepercutida": 10.0,
+                    "CuotaRecargoEquivalencia": 1.4,
+                    "TipoRecargoEquivalencia": 1.4
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "ImporteTotal": 363.8,
+    "Contraparte": {"NombreRazon": "Test partner", "NIF": "F35999705"}
+  }
+}
