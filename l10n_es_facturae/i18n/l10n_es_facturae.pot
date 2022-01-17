@@ -562,6 +562,11 @@ msgid "Invoice %s"
 msgstr ""
 
 #. module: l10n_es_facturae
+#: model:ir.model,name:l10n_es_facturae.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entries"
 msgstr ""
@@ -613,6 +618,11 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__01
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__01
 msgid "Número de la factura"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
+msgid "Número de la factura emitida por un tercero."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -797,6 +807,18 @@ msgid ""
 "Definition. The generated XML file and the full error have been written in "
 "the server logs. Here is the error, which may give you an idea on the cause "
 "of the problem : %s"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_import_journal_creation__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
+msgid "Third-party invoice"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
+msgid "Third-party number"
 msgstr ""
 
 #. module: l10n_es_facturae
