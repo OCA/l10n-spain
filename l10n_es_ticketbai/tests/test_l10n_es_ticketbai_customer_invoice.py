@@ -340,7 +340,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         self.assertEqual("R1", refund.tbai_refund_key)
         refund.action_post()
         self.assertEqual(refund.state, "posted")
-        self.assertEqual(0, len(refund.tbai_invoice_ids))
+        self.assertEqual(1, len(refund.tbai_invoice_ids))
 
     def test_out_refund_modify(self):
         invoice = self.create_draft_invoice(
@@ -497,3 +497,125 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         ) = invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
+
+    def test_invoice_out_refund_from_origin(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+            invoice_type="out_refund",
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        self.assertEqual(invoice.move_type, "out_refund")
+        invoice.sudo().tbai_refund_origin_ids = [
+            (
+                0,
+                0,
+                {
+                    "number_prefix": "INV_XYZ/2021/",
+                    "number": "001",
+                    "expedition_date": "01-01-1901",
+                },
+            )
+        ]
+        invoice.action_post()
+        self.assertEqual(invoice.state, "posted")
+        self.assertEqual(1, len(invoice.tbai_refund_origin_ids))
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        self.assertEqual(1, len(invoice.tbai_invoice_ids[0].tbai_invoice_refund_ids))
+        self.assertEqual(
+            "INV_XYZ/2021/",
+            invoice.tbai_invoice_ids[0].tbai_invoice_refund_ids.number_prefix,
+        )
+        self.assertEqual(
+            "001", invoice.tbai_invoice_ids[0].tbai_invoice_refund_ids.number
+        )
+        self.assertEqual(
+            "01-01-1901",
+            invoice.tbai_invoice_ids[0].tbai_invoice_refund_ids.expedition_date,
+        )
+
+    def test_invoice_out_refund_from_origin_error_path_origin_missing(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+            invoice_type="out_refund",
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        self.assertEqual(invoice.move_type, "out_refund")
+        invoice.sudo().tbai_refund_origin_ids = False
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.action_post()
+
+    def test_invoice_out_refund_from_origin_number_too_long(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+            invoice_type="out_refund",
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.sudo().tbai_refund_origin_ids = [
+                (
+                    0,
+                    0,
+                    {
+                        "number_prefix": "INV_XYZ/2021/",
+                        "number": "000000000000000000001",
+                        "expedition_date": "01-01-1901",
+                    },
+                )
+            ]
+
+    def test_invoice_out_refund_from_origin_prefix_too_long(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+            invoice_type="out_refund",
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        with self.assertRaises(exceptions.ValidationError):
+            invoice.sudo().tbai_refund_origin_ids = [
+                (
+                    0,
+                    0,
+                    {
+                        "number_prefix": "S00000000000000000000",
+                        "number": "01",
+                        "expedition_date": "01-01-1901",
+                    },
+                )
+            ]
+
+    def test_invoice_out_refund_from_origin_invoice_exists(self):
+        invoice = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+        )
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.invoice_date = "1901-01-01"
+        invoice.action_post()
+        number_prefix = "/".join(invoice.name.split("/")[:-1]) + "/"
+        number = invoice.name.split("/")[-1]
+        refund = self.create_draft_invoice(
+            self.account_billing.id,
+            self.fiscal_position_national,
+            self.partner.id,
+            invoice_type="out_refund",
+        )
+        with self.assertRaises(exceptions.ValidationError):
+            refund.sudo().tbai_refund_origin_ids = [
+                (
+                    0,
+                    0,
+                    {
+                        "number_prefix": number_prefix,
+                        "number": number,
+                        "expedition_date": "01-01-1901",
+                    },
+                )
+            ]
