@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-13 09:00+0000\n"
-"PO-Revision-Date: 2022-01-13 09:00+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,16 +16,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
 msgid "Already sent to LROE. It includes cancelled invoices"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "At fixed time"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "At the end of the quarter"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -46,15 +34,9 @@ msgid "Chapter"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:625
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:660
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:648
 #, python-format
 msgid "Chapter and type are required for search a pending LROE Operation"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company_use_connector
-msgid "Check it to use connector instead of sending the invoice directly when it's validated"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -89,19 +71,8 @@ msgid "Credit Note"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_delay_time
-msgid "Delay time"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company_delay_time
-#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company_sent_time
-msgid "In hours"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -126,11 +97,6 @@ msgid "Is Supplier Invoice Number Required?"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_journal
-msgid "Journal"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "LROE"
 msgstr ""
@@ -141,15 +107,13 @@ msgid "LROE API URL"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:690
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:740
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:713
 #, python-format
 msgid "LROE Build: method for model %s chapter %s not implemented!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:671
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:708
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:694
 #, python-format
 msgid "LROE Build: operation type is necessary!"
 msgstr ""
@@ -211,11 +175,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_batuz
 #: selection:account.invoice,lroe_state:0
 msgid "Not recorded"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "On validate"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -284,16 +243,6 @@ msgid "Sale"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_send_mode
-msgid "Send mode"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_sent_time
-msgid "Sent time"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner_lroe_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_users_lroe_simplified_invoice
 msgid "Simplified invoices in LROE?"
@@ -325,8 +274,7 @@ msgid "The last attemp to sent to LROE has failed"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:370
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:374
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:398
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr ""
@@ -344,11 +292,6 @@ msgstr ""
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key_type
 msgid "Type"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_use_connector
-msgid "Use connector"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
@@ -380,22 +323,14 @@ msgid "VAT Regimes Purchase"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "With delay"
-msgstr ""
-
-#. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:676
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:713
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:699
 #, python-format
 msgid "You can not communicate this invoice at this moment because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:768
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:801
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:818
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:851
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:791
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:824
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
