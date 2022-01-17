@@ -421,7 +421,7 @@ class TicketBAIInvoice(models.Model):
                     border=0, error_correction=qrcode.constants.ERROR_CORRECT_M)
                 qr.add_data(record.qr_url)
                 qr.make()
-                img = qr.make_image(fill_color="white", back_color="black")
+                img = qr.make_image()
                 with io.BytesIO() as temp:
                     img.save(temp, format="PNG")
                     record.qr = base64.b64encode(temp.getvalue())
