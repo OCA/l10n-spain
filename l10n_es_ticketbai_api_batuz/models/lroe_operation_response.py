@@ -101,7 +101,6 @@ class LROEOperationResponse(models.Model):
 
     @api.model
     def prepare_lroe_response_values(self, lroe_srv_response, lroe_operation, **kwargs):
-
         def validate_response_line_state(response_line_record_state):
             if response_line_record_state not in [
                 LROEOperationResponseLineState.CORRECT.value,
@@ -126,26 +125,47 @@ class LROEOperationResponse(models.Model):
             return len_lroe_records, xml_lroe_records
 
         def get_lroe_xml_schema():
+            if not lroe_operation:
+                raise ValidationError(_('LROE Operation required!'))
             operation_type = None
-            if lroe_operation.model == LROEModelEnum.model_pj_240.value:
-                if lroe_operation.type == LROEOperationEnum.create.value:
-                    operation_type =\
-                        LROEOperationTypeEnum.resp_alta_sg_invoice_pj_240.value
-                elif lroe_operation.type == LROEOperationEnum.cancel.value:
-                    operation_type =\
-                        LROEOperationTypeEnum.resp_cancel_sg_invoice_pj_240.value
-                xml_schema = LROEXMLSchema(operation_type)
-            elif lroe_operation.model == LROEModelEnum.model_pf_140.value:
-                if lroe_operation.type == LROEOperationEnum.create.value:
-                    operation_type =\
-                        LROEOperationTypeEnum.resp_alta_sg_invoice_pf_140.value
-                elif lroe_operation.type == LROEOperationEnum.cancel.value:
-                    operation_type =\
-                        LROEOperationTypeEnum.resp_cancel_sg_invoice_pf_140.value
+            lroe_operation_model = (
+                "pj_240"
+                if LROEModelEnum.model_pj_240.value == lroe_operation.model
+                else "pf_140"
+            )
+            if lroe_operation.type in (
+                LROEOperationEnum.create.value,
+                LROEOperationEnum.update.value,
+            ):
+                lroe_operation_type = "resp_alta"
+            elif lroe_operation.type == LROEOperationEnum.cancel.value:
+                lroe_operation_type = 'resp_cancel'
+            if lroe_operation.lroe_chapter_id.code == '1':
+                lroe_operation_chapter = 'sg_invoice'
+            elif lroe_operation.lroe_chapter_id.code == '2':
+                lroe_operation_chapter = 'invoice_in'
+            if hasattr(
+                LROEOperationTypeEnum,
+                "%s_%s_%s"
+                % (
+                    lroe_operation_type,
+                    lroe_operation_chapter,
+                    lroe_operation_model,
+                ),
+            ):
+                operation_type = getattr(
+                    LROEOperationTypeEnum,
+                    "%s_%s_%s"
+                    % (
+                        lroe_operation_type,
+                        lroe_operation_chapter,
+                        lroe_operation_model,
+                    ),
+                ).value
                 xml_schema = LROEXMLSchema(operation_type)
             else:
                 raise LROEXMLSchemaModeNotSupported(
-                    "TicketBAI - Batuz LROE XML model not supported!")
+                    "Batuz LROE XML model not supported!")
             return operation_type, xml_schema
 
         def set_tbai_response_lroe_line():
@@ -163,26 +183,27 @@ class LROEOperationResponse(models.Model):
                     + '(EU): '\
                     + response_line_record_data.get('DescripcionErrorRegistroEU')
 
-            tbai_response_model = self.env['tbai.response']
-            tbai_msg_description = response_line_record_message
-            tbai_msg_code =\
-                TicketBaiInvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value \
-                if LROEOperationResponseLineCode.DUPLICATED_RECORD.value == \
-                response_line_record_code else \
-                TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.value \
-                if LROEOperationResponseLineCode.ALREADY_CANCELLED_RECORD.value == \
-                response_line_record_code else response_line_record_code\
-                if response_line_record_code else ''
-            tbai_response_dict = {
-                'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
-                'state': LROEOperationResponse.get_tbai_state(
-                    response_line_record_state),
-                'tbai_response_message_ids': [(0, 0, {
-                    'code': tbai_msg_code,
-                    'description': tbai_msg_description})]}
-            for key in kwargs:
-                tbai_response_dict[key] = kwargs[key]
-            tbai_response_obj = tbai_response_model.create(tbai_response_dict)
+            tbai_response_model = tbai_response_obj = self.env['tbai.response']
+            if lroe_operation.tbai_invoice_ids:
+                tbai_msg_description = response_line_record_message
+                tbai_msg_code =\
+                    TicketBaiInvoiceResponseCode.INVOICE_ALREADY_REGISTERED.value \
+                    if LROEOperationResponseLineCode.DUPLICATED_RECORD.value == \
+                    response_line_record_code else \
+                    TicketBaiCancellationResponseCode.INVOICE_ALREADY_CANCELLED.value \
+                    if LROEOperationResponseLineCode.ALREADY_CANCELLED_RECORD.value == \
+                    response_line_record_code else response_line_record_code\
+                    if response_line_record_code else ''
+                tbai_response_dict = {
+                    'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
+                    'state': LROEOperationResponse.get_tbai_state(
+                        response_line_record_state),
+                    'tbai_response_message_ids': [(0, 0, {
+                        'code': tbai_msg_code,
+                        'description': tbai_msg_description})]}
+                for key in kwargs:
+                    tbai_response_dict[key] = kwargs[key]
+                tbai_response_obj = tbai_response_model.create(tbai_response_dict)
             response_line_ids.append((0, 0, {
                 'state': response_line_record_state,
                 'code': response_line_record_code,
@@ -202,7 +223,7 @@ class LROEOperationResponse(models.Model):
         if lroe_srv_response.error:
             tbai_response_model = self.env['tbai.response']
             tbai_response_dict = {
-                'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
+                'tbai_invoice_id': lroe_operation.tbai_invoice_ids[:1].id,
                 'state': LROEOperationResponse.get_tbai_state(
                     LROEOperationResponseState.REQUEST_ERROR.value)
             }
@@ -264,15 +285,16 @@ class LROEOperationResponse(models.Model):
                     for response_line_record in response_line_records:
                         set_tbai_response_lroe_line()
             else:
-                tbai_response_model = self.env['tbai.response']
-                tbai_response_dict = {
-                    'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
-                    'state': LROEOperationResponse.get_tbai_state(
-                        lroe_srv_response_type)
-                }
-                for key in kwargs:
-                    tbai_response_dict[key] = kwargs[key]
-                tbai_response_obj = tbai_response_model.create(tbai_response_dict)
+                tbai_response_model = tbai_response_obj = self.env['tbai.response']
+                if lroe_operation.tbai_invoice_ids:
+                    tbai_response_dict = {
+                        'tbai_invoice_id': lroe_operation.tbai_invoice_ids[0].id,
+                        'state': LROEOperationResponse.get_tbai_state(
+                            lroe_srv_response_type)
+                    }
+                    for key in kwargs:
+                        tbai_response_dict[key] = kwargs[key]
+                    tbai_response_obj = tbai_response_model.create(tbai_response_dict)
                 values.update({
                     'response_line_ids': [(0, 0, {
                         'state': LROEOperationResponseLineState.INCORRECT.value,
@@ -300,7 +322,6 @@ class LROEOperationResponseLine(models.Model):
         related='lroe_response_id.lroe_operation_id')
     tbai_response_id = fields.Many2one(
         comodel_name='tbai.response',
-        required=True,
         ondelete='cascade')
     tbai_invoice_id = fields.Many2one(
         related='tbai_response_id.tbai_invoice_id',
