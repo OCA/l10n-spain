@@ -7,6 +7,8 @@
 import base64
 import json
 
+from lxml import etree
+
 from odoo import exceptions
 from odoo.modules.module import get_resource_path
 
@@ -421,3 +423,11 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
         self.invoice.sii_state = "sent"
         with self.assertRaises(exceptions.Warning):
             self.invoice.unlink()
+
+    def test_account_move_thirdparty_fields(self):
+        view = self.env["account.move"].fields_view_get(
+            view_id=self.env.ref("account.view_move_form").id, view_type="form",
+        )
+        doc = etree.XML(view["arch"])
+        self.assertTrue(doc.xpath("//field[@name='thirdparty_number']"))
+        self.assertTrue(doc.xpath("//field[@name='thirdparty_invoice']"))
