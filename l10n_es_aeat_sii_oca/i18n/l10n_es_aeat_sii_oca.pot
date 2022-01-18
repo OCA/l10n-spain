@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-18 18:30+0000\n"
+"PO-Revision-Date: 2021-11-18 18:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,6 +74,12 @@ msgid "Aeat SII Registration Keys"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_tree
+msgid "Aeat SII Result"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_aeat_sii_tax_agency
 msgid "Aeat SII Tax Agency"
 msgstr ""
@@ -131,6 +139,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_type__i
 msgid "By differences"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__csv
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__registry_csv
+msgid "CSV"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -198,6 +212,11 @@ msgid "Companies"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__name
+msgid "Company Name"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__invoice_jobs_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__invoice_jobs_ids
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__invoice_jobs_ids
@@ -216,9 +235,15 @@ msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__country_code
+msgid "Country Code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__create_uid
 msgid "Created by"
 msgstr ""
@@ -227,6 +252,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__create_date
 msgid "Created on"
 msgstr ""
@@ -242,6 +268,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_lc_operation
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_lc_operation
 msgid "Customs - Complementary settlement"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__date
+msgid "Date Invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -281,12 +312,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_queue_job__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+msgid "Duplicate registry information"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -306,6 +343,16 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_specific_invoice_type__r1
 msgid "Error based on law and Art. 80 One and Two LIVA (R1)"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__duplicate_registry_error_code
+msgid "Error code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__duplicate_registry_error_des
+msgid "Error description"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -349,18 +396,30 @@ msgid "Group By..."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+msgid "Header"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__number_id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_queue_job__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__id
 msgid "ID"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__id_version_sii
+msgid "ID Version SII"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -397,6 +456,23 @@ msgid "Intracom"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__invoice_id
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+msgid "Invoice information"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_results
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_results
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_results
+msgid "Invoice results"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__sii_refund_type_required
 msgid "Is SII Refund Type required?"
 msgstr ""
@@ -423,6 +499,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_queue_job____last_update
@@ -435,6 +512,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -443,8 +521,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+msgid "Line reply"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -524,6 +608,11 @@ msgid "None"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_result__inv_type__normal
+msgid "Normal"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__not_sent
 msgid "Not sent"
 msgstr ""
@@ -539,6 +628,16 @@ msgid "Operaciones no sujetas en el TAI por reglas de localización"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+msgid "Owner"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+msgid "Presentation Data"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_product_template
 msgid "Product Template"
 msgstr ""
@@ -551,6 +650,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_queue_job
 msgid "Queue Job"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_result__inv_type__recc
+msgid "RECC"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -573,6 +677,21 @@ msgid "Registered in SII but last modifications not sent"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__registry_error_code
+msgid "Registry Error Code"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__registry_error_description
+msgid "Registry Error Description"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__registry_state
+msgid "Registry State"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_queue_job_sii
 msgid "Requeue"
 msgstr ""
@@ -580,6 +699,11 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_refund_specific_invoice_type__r4
 msgid "Rest of causes (R4)"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_result_view_form
+msgid "Result"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -634,6 +758,12 @@ msgstr ""
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "SII Information"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: code:addons/l10n_es_aeat_sii_oca/models/aeat_sii_result.py:0
+#, python-format
+msgid "SII Invoice Canceled. Create a new invoice"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -825,8 +955,23 @@ msgid "Sent"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__sent_state
+msgid "Sent State"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sent_time
 msgid "Sent time"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__serial_number
+msgid "Serial number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__serial_number_resume
+msgid "Serial number end resume"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -846,6 +991,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_users__sii_simplified_invoice
 msgid "Simplified invoices in SII?"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__duplicate_registry_state
+msgid "State"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -1021,14 +1171,50 @@ msgid "This invoice is not SII enabled."
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__timestamp_presentation
+msgid "Timestamp Presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__type
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__inv_type
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_view_search
 msgid "Type"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__type_communication
+msgid "Type Communication"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__type_id
+msgid "Type ID"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__use_connector
 msgid "Use connector"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__vat
+msgid "Vat"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__vat_agent
+msgid "Vat Agent"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__vat_emitting
+msgid "Vat Emitting"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_result__vat_presenter
+msgid "Vat Presenter"
 msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
@@ -1188,4 +1374,9 @@ msgstr ""
 msgid ""
 "[RD 1619/2012] Cumplimiento de la obligación de expedir factura por el destinatario o por un tercero.\n"
 "Se permite notificar de Factura emitida por Terceros mediante el campo 'Factura de terceros SII' y 'Número de terceros SII'."
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_aeat_sii_result
+msgid "aeat.sii.result"
 msgstr ""

@@ -260,6 +260,44 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             self._create_and_test_invoice_sii_dict(inv_type, lines, extra_vals)
         return
 
+    def test_create_result(self):
+        result = {
+            "CSV": "2XCN76T7TZBAEERN",
+            "DatosPresentacion": {
+                "NIFPresentador": "U2687761C",
+                "TimestampPresentacion": "01-01-2020 00:00:00",
+            },
+            "Cabecera": {
+                "IDVersionSii": "1.1",
+                "Titular": {
+                    "NombreRazon": "Test partner",
+                    "NIFRepresentante": None,
+                    "NIF": "F35999705",
+                },
+                "TipoComunicacion": "A0",
+            },
+            "EstadoEnvio": "Correcto",
+            "RespuestaLinea": [
+                {
+                    "IDFactura": {
+                        "IDEmisorFactura": {"NIF": "F35999705"},
+                        "NumSerieFacturaEmisor": "TEST001",
+                        "NumSerieFacturaEmisorResumenFin": None,
+                        "FechaExpedicionFacturaEmisor": "01-01-2020",
+                    },
+                    "RefExterna": None,
+                    "EstadoRegistro": "Correcto",
+                    "CodigoErrorRegistro": None,
+                    "DescripcionErrorRegistro": None,
+                    "CSV": None,
+                    "RegistroDuplicado": None,
+                }
+            ],
+        }
+        self.env["aeat.sii.result"].sudo().create_result(
+            self.invoice, result, "normal", False, "account.move"
+        )
+
     def test_action_cancel(self):
         self.invoice.invoice_jobs_ids.state = "started"
         with self.assertRaises(exceptions.UserError):
