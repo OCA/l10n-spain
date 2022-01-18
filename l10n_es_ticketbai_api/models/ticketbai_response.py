@@ -122,6 +122,7 @@ class TicketBaiResponse(models.Model):
                     "state": state,
                 }
             )
+            tbai_response_message_ids = []
             if state == TicketBaiResponseState.RECEIVED.value:
                 tbai_response_message_ids = [
                     (
@@ -156,7 +157,6 @@ class TicketBaiResponse(models.Model):
                         )
             elif state == TicketBaiResponseState.REJECTED.value:
                 messages = xml_dict["Salida"]["ResultadosValidacion"]
-                tbai_response_message_ids = []
                 if isinstance(messages, dict):
                     messages = [messages]
                 for msg in messages:
@@ -174,7 +174,7 @@ class TicketBaiResponse(models.Model):
                         )
                     )
             else:
-                tbai_response_message_ids = [
+                tbai_response_message_ids.append(
                     (
                         0,
                         0,
@@ -183,7 +183,7 @@ class TicketBaiResponse(models.Model):
                             "description": _("Unknown TicketBAI response code."),
                         },
                     )
-                ]
+                )
             values.update(tbai_response_message_ids=tbai_response_message_ids)
         return values
 

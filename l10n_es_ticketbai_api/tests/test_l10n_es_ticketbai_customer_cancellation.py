@@ -27,48 +27,54 @@ class TestL10nEsTicketBAICancellation(TestL10nEsTicketBAIAPI):
         res = XMLSchema.xml_is_valid(self.test_xml_cancellation_schema_doc, root)
         self.assertTrue(res)
 
+    def _prepare_invoice_cancel_send_to_tax_agency(self):
+        uid = self.tech_user.id
+        # First we need a registered (send to the Tax Agency) Invoice to Cancel
+        number = self.get_next_number()
+        name = "{}{}".format(self.number_prefix, number)
+        invoice = self.create_tbai_national_invoice(
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
+        invoice.build_tbai_invoice()
+        pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
+            company_id=self.main_company.id, limit=0
+        )
+        self.assertEqual(1, len(pending_invoices))
+        self.env["tbai.invoice"].send_pending_invoices()
+        self.assertEqual("sent", invoice.state)
+        pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
+            company_id=self.main_company.id, limit=0
+        )
+        self.assertEqual(0, len(pending_invoices))
+        cancellation = self.create_tbai_national_invoice_cancellation(
+            name=name,
+            company_id=self.main_company.id,
+            number=number,
+            number_prefix=self.number_prefix,
+            uid=uid,
+        )
+        cancellation.build_tbai_invoice()
+        pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
+            company_id=self.main_company.id, limit=0
+        )
+        self.assertEqual(1, len(pending_invoices))
+        self.env["tbai.invoice"].send_pending_invoices()
+        self.assertEqual("sent", cancellation.state)
+        pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
+            company_id=self.main_company.id, limit=0
+        )
+        self.assertEqual(0, len(pending_invoices))
+        invoice.sudo().unlink()
+        cancellation.sudo().unlink()
+
     def test_invoice_cancel_send_to_tax_agency(self):
         if self.send_to_tax_agency:
-            uid = self.tech_user.id
-            # First we need a registered (send to the Tax Agency) Invoice to Cancel
-            number = self.get_next_number()
-            name = "{}{}".format(self.number_prefix, number)
-            invoice = self.create_tbai_national_invoice(
-                name=name,
-                company_id=self.main_company.id,
-                number=number,
-                number_prefix=self.number_prefix,
-                uid=uid,
-            )
-            self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
-            invoice.build_tbai_invoice()
-            pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
-                company_id=self.main_company.id, limit=0
-            )
-            self.assertEqual(1, len(pending_invoices))
-            self.env["tbai.invoice"].send_pending_invoices()
-            self.assertEqual("sent", invoice.state)
-            pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
-                company_id=self.main_company.id, limit=0
-            )
-            self.assertEqual(0, len(pending_invoices))
-            cancellation = self.create_tbai_national_invoice_cancellation(
-                name=name,
-                company_id=self.main_company.id,
-                number=number,
-                number_prefix=self.number_prefix,
-                uid=uid,
-            )
-            cancellation.build_tbai_invoice()
-            pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
-                company_id=self.main_company.id, limit=0
-            )
-            self.assertEqual(1, len(pending_invoices))
-            self.env["tbai.invoice"].send_pending_invoices()
-            self.assertEqual("sent", cancellation.state)
-            pending_invoices = self.env["tbai.invoice"].get_next_pending_invoice(
-                company_id=self.main_company.id, limit=0
-            )
-            self.assertEqual(0, len(pending_invoices))
-            invoice.sudo().unlink()
-            cancellation.sudo().unlink()
+            self._prepare_gipuzkoa_company(self.main_company)
+            self._prepare_invoice_cancel_send_to_tax_agency()
+            self._prepare_araba_company(self.main_company)
+            self._prepare_invoice_cancel_send_to_tax_agency()

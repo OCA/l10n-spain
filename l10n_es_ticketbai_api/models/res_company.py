@@ -10,6 +10,8 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     tbai_enabled = fields.Boolean("Enable TicketBAI", copy=False)
+    tbai_test_available = fields.Boolean("Are Tests URLs Available", copy=False)
+    tbai_pro_available = fields.Boolean("Are Production URLs Available", copy=False)
     tbai_test_enabled = fields.Boolean("Enable testing", copy=False)
     tbai_certificate_id = fields.Many2one(
         comodel_name="tbai.certificate",
@@ -99,6 +101,27 @@ class ResCompany(models.Model):
                     )
                     % record.name
                 )
+
+    @api.onchange("tbai_tax_agency_id")
+    def onchange_tbai_tax_agency(self):
+        if not (
+            self.tbai_tax_agency_id.test_qr_base_url
+            and self.tbai_tax_agency_id.test_rest_url_invoice
+            and self.tbai_tax_agency_id.test_rest_url_cancellation
+        ):
+            self.tbai_test_available = False
+            self.tbai_test_enabled = False
+        else:
+            self.tbai_test_available = True
+        if not (
+            self.tbai_tax_agency_id.qr_base_url
+            and self.tbai_tax_agency_id.rest_url_invoice
+            and self.tbai_tax_agency_id.rest_url_cancellation
+        ):
+            self.tbai_pro_available = False
+            self.tbai_test_enabled = True
+        else:
+            self.tbai_pro_available = True
 
     @api.onchange("tbai_enabled")
     def onchange_tbai_enabled(self):
