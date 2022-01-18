@@ -296,6 +296,7 @@ msgstr "Configuración de descripción"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__display_name
@@ -374,6 +375,7 @@ msgstr "Agrupar por..."
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__id
@@ -441,12 +443,18 @@ msgid "Is Test Environment?"
 msgstr "¿Es un entorno de pruebas?"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_journal
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_account_move
 msgid "Journal Entry"
 msgstr "Asiento contable"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map____last_update
@@ -569,6 +577,13 @@ msgstr "Ninguno"
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__account_move__sii_state__not_sent
 msgid "Not sent"
 msgstr "No registrada"
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
+msgid "Número de la factura emitida por un tercero."
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__res_company__send_mode__auto
@@ -818,20 +833,6 @@ msgid "SII sent"
 msgstr "Enviadas SII"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_invoice
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_invoice
-msgid "SII third-party invoice"
-msgstr "Factura de terceros SII"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
-msgid "SII third-party number"
-msgstr "Número de terceros SII"
-
-#. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields.selection,name:l10n_es_aeat_sii_oca.selection__aeat_sii_mapping_registration_keys__type__sale
 msgid "Sale"
 msgstr "Ventas"
@@ -1053,6 +1054,21 @@ msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hay un cruce erróneo para tasas en RE. Chequéelas."
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_journal__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_invoice
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_invoice
+msgid "Third-party invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__thirdparty_number
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_payment__thirdparty_number
+msgid "Third-party number"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: code:addons/l10n_es_aeat_sii_oca/models/account_move.py:0
 #, python-format
 msgid "This company doesn't have SII enabled."
@@ -1246,16 +1262,11 @@ msgstr ""
 msgid "[E6] Otros"
 msgstr "[E6] Otros"
 
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_move__sii_thirdparty_number
-#: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_account_payment__sii_thirdparty_number
-msgid ""
-"[RD 1619/2012] Cumplimiento de la obligación de expedir factura por el "
-"destinatario o por un tercero.\n"
-"Se permite notificar de Factura emitida por Terceros mediante el campo "
-"'Factura de terceros SII' y 'Número de terceros SII'."
-msgstr ""
+#~ msgid "SII third-party invoice"
+#~ msgstr "Factura de terceros SII"
+
+#~ msgid "SII third-party number"
+#~ msgstr "Número de terceros SII"
 
 #~ msgid "Activate"
 #~ msgstr "Activar"
