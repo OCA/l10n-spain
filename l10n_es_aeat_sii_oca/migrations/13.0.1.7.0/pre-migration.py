@@ -12,4 +12,5 @@ _column_renames = {
 
 @openupgrade.migrate()
 def migrate(env, version):
-    openupgrade.rename_columns(env.cr, _column_renames)
+    if openupgrade.column_exists(env.cr, "account_move", "sii_thirdparty_invoice"):
+        openupgrade.rename_columns(env.cr, _column_renames)
