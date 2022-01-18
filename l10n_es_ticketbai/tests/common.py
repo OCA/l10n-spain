@@ -62,7 +62,18 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             )
         )
 
-    def create_draft_invoice(self, uid, fp, partner, only_service=False):
+    def create_draft_invoice(
+        self,
+        uid,
+        fp,
+        partner,
+        only_service=False,
+        company_id=None,
+        invoice_type="out_invoice",
+        context=None,
+    ):
+        if not context:
+            context = {}
         invoice_line_ids = []
 
         if not only_service:
@@ -137,15 +148,16 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         invoice = (
             self.env["account.move"]
             .with_user(uid)
+            .with_context(default_type=invoice_type)
             .create(
                 {
                     "partner_id": partner,
                     "currency_id": self.env.ref("base.EUR").id,
-                    "type": "out_invoice",
                     "invoice_date": str(date.today()),
                     "tbai_date_operation": str(date.today()),
                     "fiscal_position_id": fp.id,
                     "invoice_line_ids": invoice_line_ids,
+                    "company_id": company_id or self.main_company.id,
                 }
             )
         )
