@@ -4,9 +4,9 @@
 # Copyright 2013 Joaquín Pedrosa Gutierrez (http://gutierrezweb.es)
 # Copyright 2016 Tecnativa - Antonio Espinosa
 # Copyright 2016 Tecnativa - Angel Moya <odoo@tecnativa.com>
-# Copyright 2014-2019 Tecnativa - Pedro M. Baeza
 # Copyright 2018 PESOL - Angel Moya <info@pesol.es>
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2014-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import datetime
@@ -743,12 +743,13 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     def _onchange_partner_id(self):
         """Loads some partner data when the selected partner changes."""
         if self.partner_id:
-            vals = self.report_id._get_partner_347_identification(
-                self.partner_id,
+            vals = self.report_id._get_partner_347_identification(self.partner_id)
+            self.update(
+                {
+                    "partner_vat": vals.pop("partner_vat"),
+                    "state_code": vals.pop("partner_state_code"),
+                }
             )
-            vals.pop("community_vat", None)
-            del vals["partner_country_code"]
-            self.update(vals)
 
 
 class L10nEsAeatMod347MoveRecord(models.Model):
