@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-03 15:25+0000\n"
+"PO-Revision-Date: 2022-01-03 15:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,7 +77,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:272
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:276
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -389,9 +391,14 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:317
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:321
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_protected_data
+msgid "Protected Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -405,7 +412,7 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:295
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:299
 #, python-format
 msgid "Refund invoices must be cancelled in order to cancel the original invoice."
 msgstr ""
@@ -452,13 +459,13 @@ msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:331
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:335
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:326
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:330
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
@@ -466,6 +473,11 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_substitute_simplified_invoice
 msgid "Substitute Simplified Invoice"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_protected_data_txt
+msgid "Substitution Text"
 msgstr ""
 
 #. module: l10n_es_ticketbai
