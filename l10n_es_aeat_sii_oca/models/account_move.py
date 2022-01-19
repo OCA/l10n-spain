@@ -46,12 +46,6 @@ SII_STATES = [
     ("cancelled_modified", "Cancelled in SII but last modifications not sent"),
 ]
 SII_VERSION = "1.1"
-SII_COUNTRY_CODE_MAPPING = {
-    "RE": "FR",
-    "GP": "FR",
-    "MQ": "FR",
-    "GF": "FR",
-}
 SII_MACRODATA_LIMIT = 100000000.0
 SII_VALID_INVOICE_STATES = ["posted"]
 
@@ -1305,43 +1299,48 @@ class AccountMove(models.Model):
         """
         self.ensure_one()
         gen_type = self._get_sii_gen_type()
-        partner = self._sii_get_partner()
+        (
+            country_code,
+            identifier_type,
+            identifier,
+        ) = self.commercial_partner_id._parse_aeat_vat_info()
         # Limpiar alfanum
-        if partner.vat:
-            vat = "".join(e for e in partner.vat if e.isalnum()).upper()
+        if identifier:
+            identifier = "".join(e for e in identifier if e.isalnum()).upper()
         else:
-            vat = "NO_DISPONIBLE"
-        country_code = self._get_sii_country_code()
+            identifier = "NO_DISPONIBLE"
+            identifier_type = "06"
         if gen_type == 1:
             if "1117" in (self.sii_send_error or ""):
                 return {
                     "IDOtro": {
                         "CodigoPais": country_code,
                         "IDType": "07",
-                        "ID": vat[2:],
+                        "ID": identifier,
                     }
                 }
             else:
-                if country_code != "ES":
-                    id_type = "06" if vat == "NO_DISPONIBLE" else "04"
-                    return {
-                        "IDOtro": {
-                            "CodigoPais": country_code,
-                            "IDType": id_type,
-                            "ID": vat,
-                        },
-                    }
-                else:
-                    return {"NIF": vat[2:]}
+                if identifier_type == "":
+                    return {"NIF": identifier}
+                return {
+                    "IDOtro": {
+                        "CodigoPais": country_code,
+                        "IDType": identifier_type,
+                        "ID": identifier,
+                    },
+                }
         elif gen_type == 2:
-            return {"IDOtro": {"IDType": "02", "ID": vat}}
-        elif gen_type == 3 and country_code != "ES":
-            id_type = "06" if vat == "NO_DISPONIBLE" else "04"
+            return {"IDOtro": {"IDType": "02", "ID": identifier}}
+        elif gen_type == 3 and identifier_type:
             return {
-                "IDOtro": {"CodigoPais": country_code, "IDType": id_type, "ID": vat},
+                "IDOtro": {
+                    "CodigoPais": country_code,
+                    "IDType": identifier_type,
+                    "ID": identifier,
+                },
             }
         elif gen_type == 3:
-            return {"NIF": vat[2:]}
+            return {"NIF": identifier[2:]}
 
     def _get_sii_exempt_cause(self, applied_taxes):
         """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII.
@@ -1397,9 +1396,7 @@ class AccountMove(models.Model):
 
     def _get_sii_country_code(self):
         self.ensure_one()
-        partner = self._sii_get_partner()
-        country_code = (partner.country_id.code or (partner.vat or "")[:2]).upper()
-        return SII_COUNTRY_CODE_MAPPING.get(country_code, country_code)
+        return self.commercial_partner_id._parse_aeat_vat_info()[0]
 
     @api.depends(
         "invoice_line_ids",
