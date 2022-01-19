@@ -321,6 +321,12 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             invoice_temp.sii_description, "Test customer header | Test line",
         )
 
+    def test_vat_number_check(self):
+        self.partner.write(
+            {"vat": "F35999705", "country_id": self.env.ref("base.es").id}
+        )
+        self.test_get_invoice_data()
+
     def _activate_certificate(self, passwd=None):
         """  Obtain Keys from .pfx and activate the cetificate """
         if passwd:
