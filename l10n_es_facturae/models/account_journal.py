@@ -34,7 +34,7 @@ class AccountJournal(models.Model):
                 node.addnext(elem)
             res["arch"] = etree.tostring(doc)
             xarch, xfields = self.env["ir.ui.view"].postprocess_and_fields(
-                self._name, etree.fromstring(res["arch"]), view_id
+                etree.fromstring(res["arch"]), self._name
             )
             res["arch"] = xarch
             res["fields"] = xfields
