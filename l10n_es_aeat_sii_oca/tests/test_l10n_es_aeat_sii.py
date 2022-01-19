@@ -305,6 +305,12 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             "Test customer header | Test line",
         )
 
+    def test_vat_number_check(self):
+        self.partner.write(
+            {"vat": "F35999705", "country_id": self.env.ref("base.es").id}
+        )
+        self.test_get_invoice_data()
+
     def _check_binding_address(self, invoice):
         company = invoice.company_id
         tax_agency = company.sii_tax_agency_id
