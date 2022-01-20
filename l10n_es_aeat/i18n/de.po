@@ -55,6 +55,12 @@ msgid "AEAT Certificate"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_identification_type
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_identification_type
+msgid "AEAT Identification type"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax__model
 msgid "AEAT Model"
 msgstr ""
@@ -185,6 +191,12 @@ msgid "Advanced configuration"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_partner__aeat_identification
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_res_users__aeat_identification
+msgid "Aeat Identification"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model,name:l10n_es_aeat.model_aeat_tax_agency
 msgid "Aeat Tax Agency"
 msgstr ""
@@ -220,6 +232,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_tax_line__amount
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_map_tax_line__field_type__amount
 msgid "Amount"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__06
+msgid "Another document"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -769,6 +786,12 @@ msgid "Icon to indicate an exception activity."
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_identification
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_identification
+msgid "Identification for AEAT purposes"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_needaction
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report__message_unread
 #: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_needaction
@@ -1146,6 +1169,11 @@ msgid "Partner"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__03
+msgid "Passport"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_certificate_password__password
 msgid "Password"
 msgstr ""
@@ -1256,6 +1284,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__name
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__name
 msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields.selection,name:l10n_es_aeat.selection__res_partner__aeat_identification_type__05
+msgid "Residential certificate"
 msgstr ""
 
 #. module: l10n_es_aeat
@@ -1484,6 +1517,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__message_unread_counter
 #: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__message_unread_counter
 msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_partner__aeat_identification_type
+#: model:ir.model.fields,help:l10n_es_aeat.field_res_users__aeat_identification_type
+msgid ""
+"Used to specify an identification type to send to SII. Normally for sending "
+"national and export invoices to SII where the customer country is not Spain, "
+"it would calculate an identification type of 04 if the VAT field is filled "
+"and 06 if it was not. This field is to specify types of 03 through 05, in "
+"the event that the customer doesn't identify with a foreign VAT and instead "
+"with their passport or residential certificate. If there is no value it will "
+"work as before."
 msgstr ""
 
 #. module: l10n_es_aeat

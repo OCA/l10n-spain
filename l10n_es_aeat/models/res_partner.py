@@ -12,6 +12,29 @@ class ResPartner(models.Model):
         string="AEAT - Anonymous customer",
         help="Check this for anonymous cash customer. AEAT communication",
     )
+    aeat_identification_type = fields.Selection(
+        string="AEAT Identification type",
+        help=(
+            "Used to specify an identification type to send to SII. Normally for "
+            "sending national and export invoices to SII where the customer country "
+            "is not Spain, it would calculate an identification type of 04 if the VAT "
+            "field is filled and 06 if it was not. This field is to specify "
+            "types of 03 through 05, in the event that the customer doesn't identify "
+            "with a foreign VAT and instead with their passport "
+            "or residential certificate. If there is no value it will work as before."
+        ),
+        selection=[
+            ("03", "Passport"),
+            ("05", "Residential certificate"),
+            ("06", "Another document"),
+        ],
+    )
+    aeat_identification = fields.Char(help="Identification for AEAT purposes")
+    # There are other options (but these options are managed automatically
+    #   on _parse_aeat_vat_info):
+    # 02 - NIF - VAT
+    # 04 - Official document from the original country
+    # 07 - Not registered on census
 
     def _map_aeat_country_code(self, country_code):
         country_code_map = {"RE": "FR", "GP": "FR", "MQ": "FR", "GF": "FR", "EL": "GR"}
@@ -46,4 +69,8 @@ class ResPartner(models.Model):
                 identifier_type = "04"
         if country_code == "ES":
             identifier_type = ""
-        return country_code, identifier_type, vat_number
+        return (
+            country_code,
+            self.aeat_identification_type or identifier_type,
+            self.aeat_identification if self.aeat_identification_type else vat_number,
+        )
