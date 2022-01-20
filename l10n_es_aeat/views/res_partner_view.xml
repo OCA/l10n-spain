@@ -8,6 +8,11 @@
                 <page string="AEAT" id="aeat">
                     <group name="aeat_general">
                         <field name="aeat_anonymous_cash_customer" />
+                        <field name="aeat_identification_type" />
+                        <field
+                            name="aeat_identification"
+                            attrs="{'required': [('aeat_identification_type', '!=', False)], 'invisible': [('aeat_identification_type', '=', False)]}"
+                        />
                     </group>
                 </page>
             </notebook>
