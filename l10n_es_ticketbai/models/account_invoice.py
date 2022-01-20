@@ -82,28 +82,30 @@ class AccountInvoice(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals and vals.get('company_id', False):
+        if vals.get('company_id', False):
             company = self.env['res.company'].browse(vals['company_id'])
-            if company.tbai_enabled:
-                filter_refund = self._context.get('filter_refund', False) \
-                    or self._context.get('type', False) == 'out_refund'
-                invoice_type = vals.get('type', False) \
-                    or self._context.get('type', False)
-                if filter_refund and invoice_type:
-                    if 'out_refund' == invoice_type:
-                        if not vals.get('tbai_refund_type', False):
-                            vals['tbai_refund_type'] = RefundType.differences.value
-                        if not vals.get('tbai_refund_key', False):
-                            vals['tbai_refund_key'] = RefundCode.R1.value
-                if vals.get('fiscal_position_id', False):
-                    fiscal_position = self.env['account.fiscal.position'].browse(
-                        vals['fiscal_position_id'])
-                    vals['tbai_vat_regime_key'] = \
-                        fiscal_position.tbai_vat_regime_key.id
-                    vals['tbai_vat_regime_key2'] = \
-                        fiscal_position.tbai_vat_regime_key2.id
-                    vals['tbai_vat_regime_key3'] = \
-                        fiscal_position.tbai_vat_regime_key3.id
+        else:
+            company = self.env.user.company_id
+        if company.tbai_enabled:
+            filter_refund = self._context.get('filter_refund', False) \
+                or self._context.get('type', False) == 'out_refund'
+            invoice_type = vals.get('type', False) \
+                or self._context.get('type', False)
+            if filter_refund and invoice_type:
+                if 'out_refund' == invoice_type:
+                    if not vals.get('tbai_refund_type', False):
+                        vals['tbai_refund_type'] = RefundType.differences.value
+                    if not vals.get('tbai_refund_key', False):
+                        vals['tbai_refund_key'] = RefundCode.R1.value
+            if vals.get('fiscal_position_id', False):
+                fiscal_position = self.env['account.fiscal.position'].browse(
+                    vals['fiscal_position_id'])
+                vals['tbai_vat_regime_key'] = \
+                    fiscal_position.tbai_vat_regime_key.id
+                vals['tbai_vat_regime_key2'] = \
+                    fiscal_position.tbai_vat_regime_key2.id
+                vals['tbai_vat_regime_key3'] = \
+                    fiscal_position.tbai_vat_regime_key3.id
         return super().create(vals)
 
     @api.depends(
