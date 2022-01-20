@@ -1,6 +1,7 @@
 # Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.exceptions import ValidationError
 from odoo.tests.common import SavepointCase
 
 
@@ -33,6 +34,25 @@ class TestL10nEsAeat(SavepointCase):
         self.assertEqual(country_code, "ES")
         self.assertEqual(identifier_type, "")
         self.assertEqual(vat_number, "12345678Z")
+
+    def test_parse_vat_info_es_passport_exception(self):
+        with self.assertRaises(ValidationError):
+            self.partner.write(
+                {"vat": "ZZ_MY_PASSPORT", "country_id": self.env.ref("base.es").id}
+            )
+
+    def test_parse_vat_info_es_passport(self):
+        self.partner.write(
+            {
+                "aeat_identification": "ZZ_MY_PASSPORT",
+                "aeat_identification_type": "05",
+                "country_id": self.env.ref("base.es").id,
+            }
+        )
+        country_code, identifier_type, identifier = self.partner._parse_aeat_vat_info()
+        self.assertEqual(country_code, "ES")
+        self.assertEqual(identifier_type, "05")
+        self.assertEqual(identifier, "ZZ_MY_PASSPORT")
 
     def test_parse_vat_info_fr_wo_prefix(self):
         self.partner.write(
