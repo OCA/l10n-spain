@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-10 13:20+0000\n"
-"PO-Revision-Date: 2022-01-10 14:21+0100\n"
+"POT-Creation-Date: 2022-01-19 15:30+0000\n"
+"PO-Revision-Date: 2022-01-19 16:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -477,6 +477,13 @@ msgid "Responses"
 msgstr "Respuestas"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_import_journal_creation__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_send_invoice
+msgid "Send TicketBAI invoices to tax agency"
+msgstr "Enviar facturas a hacienda TicketBAI"
+
+#. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_ir_sequence
 msgid "Sequence"
 msgstr "Secuencia"
@@ -808,3 +815,13 @@ msgstr "Asistente para cargar el certificado AEAT"
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr "No es posible cambiar el estado a borrador de una factura TicketBAI."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:0
+#, python-format
+msgid ""
+"You cannot stop sending invoices from this journal, an invoice has already "
+"been sent."
+msgstr ""
+"No puedes dejar de enviar facturas de este diario, al menos una factura ya "
+"ha sido enviada."
