@@ -77,10 +77,10 @@ class NutsImport(models.TransientModel):
 
     @api.model
     def state_mapping(self, data, node):
-        mapping = super(NutsImport, self).state_mapping(data, node)
+        mapping = super().state_mapping(data, node)
         level = data.get("level", 0)
         code = data.get("code", "")
-        if self._current_country.code == "ES" and level == 4:
+        if self.current_country_id.code == "ES" and level == 4:
             toponyms = self._es_state_map.get(code, False)
             if toponyms:
                 state = self.env.ref(toponyms)
