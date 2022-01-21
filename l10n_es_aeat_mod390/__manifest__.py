@@ -49,6 +49,21 @@
         'views/mod390_view.xml',
         'security/ir.model.access.csv',
         'security/l10n_es_aeat_mod390_security.xml',
+        # 2021
+        'data/aeat_export_mod390_2021_sub01_data.xml',
+        'data/aeat_export_mod390_2021_sub02_data.xml',
+        'data/aeat_export_mod390_2021_sub03_data.xml',
+        'data/aeat_export_mod390_2021_sub04_data.xml',
+        'data/aeat_export_mod390_2021_sub05_data.xml',
+        'data/aeat_export_mod390_2021_sub06_data.xml',
+        'data/aeat_export_mod390_2021_sub07_data.xml',
+        'data/aeat_export_mod390_2021_sub08_data.xml',
+        'data/aeat_export_mod390_2021_main_data.xml',
+        'data/tax_code_map_mod390_data.xml',
+        'views/mod390_view.xml',
+        'security/ir.model.access.csv',
+        'security/l10n_es_aeat_mod390_security.xml',
+
     ],
     'installable': True,
     'maintainers': [
