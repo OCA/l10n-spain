@@ -65,7 +65,7 @@ class L10nEsVatBook(models.Model):
         readonly="True",
     )
 
-    calculation_date = fields.Date(string="Calculation Date")
+    calculation_date = fields.Date()
 
     tax_summary_ids = fields.One2many(
         comodel_name="l10n.es.vat.book.tax.summary",
@@ -406,11 +406,15 @@ class L10nEsVatBook(models.Model):
             if not rec.company_id.partner_id.vat:
                 raise UserError(_("This company doesn't have VAT"))
             rec._clear_old_data()
-            map_lines = self.env["aeat.vat.book.map.line"].search([])
             # Searches for all possible usable lines to report
             moves = self._get_account_move_lines()
-            for map_line in map_lines:
-                taxes = map_line.get_taxes(rec)
+            for book_type in ["issued", "received"]:
+                map_lines = self.env["aeat.vat.book.map.line"].search(
+                    [("book_type", "=", book_type)]
+                )
+                taxes = self.env["account.tax"]
+                for map_line in map_lines:
+                    taxes |= map_line.get_taxes(rec)
                 account = rec.get_account_from_template(map_line.tax_account_id)
                 # Filters in all possible data using, sets for improving performance
                 if account:
