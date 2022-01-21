@@ -1,5 +1,8 @@
-* Antonio Espinosa <antonio.espinosa@tecnativa.com>
-* Rafael Blasco <rafael.blasco@tecnativa.com>
-* Jairo Llopis <jairo.llopis@tecnativa.com>
-* David Vidal <david.vidal@tecnativa.com>
-* Alexandre Díaz <alexandre.diaz@tecnativa.com>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Antonio Espinosa
+  * Rafael Blasco
+  * Jairo Llopis
+  * David Vidal
+  * Alexandre Díaz
+  * Ernesto Tejeda
