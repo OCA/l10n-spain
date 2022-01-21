@@ -370,10 +370,12 @@ class L10nEsVatBook(models.Model):
             # clean the old records
             rec._clear_old_data()
 
-            map_lines = self.env["aeat.vat.book.map.line"].search([])
-
-            for map_line in map_lines:
-                taxes = map_line.get_taxes(rec)
+            for book_type in ["issued", "received"]:
+                map_lines = self.env["aeat.vat.book.map.line"].search(
+                    [("book_type", "=", book_type)])
+                taxes = self.env["account.tax"]
+                for map_line in map_lines:
+                    taxes |= map_line.get_taxes(rec)
                 lines = rec._get_account_move_lines(taxes)
                 rec.create_vat_book_lines(lines, map_line.book_type, taxes)
 
