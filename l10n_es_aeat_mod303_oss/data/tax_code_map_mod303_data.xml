@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 PESOL - Angel Moya
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<openerp>
+    <data>
+    <record id="aeat_mod303_202107_map_line_123" model="aeat.mod.map.tax.code.line">
+        <field name="map_parent_id" ref="l10n_es_aeat_mod303.aeat_mod303_202107_map"/>
+        <field name="field_number">123</field>
+        <field name="name">Operaciones no sujetas por reglas de localización acogidas a la OSS</field>
+        <!-- <field name="tax_codes" eval="False"/> -->
+    </record>
+    <record id="aeat_mod303_202107_map_line_124" model="aeat.mod.map.tax.code.line">
+        <field name="map_parent_id" ref="l10n_es_aeat_mod303.aeat_mod303_202107_map"/>
+        <field name="field_number">124</field>
+        <field name="name">OSS. Operaciones sujetas y acogidas a la OSS</field>
+        <!-- <field name="tax_codes" eval="False"/> -->
+    </record>
+    <record id="aeat_mod303_202107_map_line_126" model="aeat.mod.map.tax.code.line">
+        <field name="map_parent_id" ref="l10n_es_aeat_mod303.aeat_mod303_202107_map"/>
+        <field name="field_number">126</field>
+        <field name="name">Operaciones no sujetas por reglas de localización acogidas a la OSS</field>
+        <!-- <field name="tax_codes" eval="False"/> -->
+    </record>
+    <record id="aeat_mod303_202107_map_line_127" model="aeat.mod.map.tax.code.line">
+        <field name="map_parent_id" ref="l10n_es_aeat_mod303.aeat_mod303_202107_map"/>
+        <field name="field_number">127</field>
+        <field name="name">OSS. Operaciones sujetas y acogidas a la OSS</field>
+        <!-- <field name="tax_codes" eval="False"/> -->
+    </record>
+    </data>
+</openerp>
