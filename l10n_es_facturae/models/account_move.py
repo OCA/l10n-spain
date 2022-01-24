@@ -339,7 +339,20 @@ class AccountMove(models.Model):
                 transfer_modifiers_to_node(modifiers, elem)
                 node.addnext(elem)
                 res["fields"].update(self.fields_get(["thirdparty_number"]))
-                elem = etree.Element("field", {"name": "thirdparty_invoice"})
+                attrs = {
+                    "invisible": [
+                        (
+                            "move_type",
+                            "not in",
+                            ("in_invoice", "out_invoice", "out_refund", "in_refund"),
+                        )
+                    ],
+                }
+                elem = etree.Element(
+                    "field", {"name": "thirdparty_invoice", "attrs": str(attrs)}
+                )
+                transfer_node_to_modifiers(elem, modifiers)
+                transfer_modifiers_to_node(modifiers, elem)
                 node.addnext(elem)
                 res["fields"].update(self.fields_get(["thirdparty_invoice"]))
             res["arch"] = etree.tostring(doc)
