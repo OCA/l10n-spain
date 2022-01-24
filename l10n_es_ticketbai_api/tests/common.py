@@ -746,9 +746,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         self.main_company = self.env.ref("base.main_company")
         self._prepare_company(self.main_company)
 
-        self.group_system = self.env.ref("base.group_system")  # Settings
-        self.group_user = self.env.ref("base.group_user")  # Employee
-
         # Contact creation
         self.partner = self.env["res.partner"].create(
             {
