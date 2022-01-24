@@ -539,14 +539,17 @@ class AccountMove(models.Model):
         irpf_taxes = self.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
-        taxes = self.invoice_line_ids.filtered(
-            lambda x: any([tax in irpf_taxes for tax in x.tax_ids])
-        ).mapped("tax_ids")
+        taxes = self.mapped("invoice_line_ids.tax_ids") & irpf_taxes
         inv_id = self
         if 0 < len(taxes):
-            res = "%.2f" % sum(
+            if RefundType.differences.value == self.tbai_refund_type:
+                sign = 1
+            else:
+                sign = -1
+            amount_total = sum(
                 [tax.tbai_get_amount_total_company(inv_id) for tax in taxes]
             )
+            res = "%.2f" % (sign * amount_total)
         else:
             res = None
         return res
@@ -604,11 +607,25 @@ class AccountMoveLine(models.Model):
         return res
 
     def tbai_get_value_importe_total(self):
+        tbai_maps = self.env["tbai.tax.map"].search([("code", "=", "IRPF")])
+        irpf_taxes = self.env["l10n.es.aeat.report"].get_taxes_from_templates(
+            tbai_maps.mapped("tax_template_ids")
+        )
+        currency = self.move_id and self.move_id.currency_id or None
+        price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        taxes = (self.tax_ids - irpf_taxes).compute_all(
+            price,
+            currency,
+            self.quantity,
+            product=self.product_id,
+            partner=self.move_id.partner_id,
+        )
+        price_total = taxes["total_included"] if taxes else self.price_subtotal
         if RefundType.differences.value == self.move_id.tbai_refund_type:
             sign = -1
         else:
             sign = 1
-        return "%.2f" % (sign * self.price_total)
+        return "%.2f" % (sign * price_total)
 
 
 class AccountMoveReversal(models.TransientModel):
