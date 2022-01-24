@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo8-addon-l10n_es_aeat_mod216',
         'odoo8-addon-l10n_es_aeat_mod296',
         'odoo8-addon-l10n_es_aeat_mod303',
+        'odoo8-addon-l10n_es_aeat_mod303_oss',
         'odoo8-addon-l10n_es_aeat_mod340',
         'odoo8-addon-l10n_es_aeat_mod340_cash_basis',
         'odoo8-addon-l10n_es_aeat_mod340_type0',
