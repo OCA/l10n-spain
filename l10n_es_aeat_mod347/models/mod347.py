@@ -679,17 +679,18 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     city = fields.Char(string='City', size=30)
     township = fields.Char(string='Township', size=30)
     township_code = fields.Char(string='Township Code', size=5)
-    state_code = fields.Char(string='State Code', size=2)
+    partner_state_code = fields.Char(
+        string='State Code', oldname='state_code', size=2)
     postal_code = fields.Char(string='Postal code', size=5)
     check_ok = fields.Boolean(
         compute="_compute_check_ok", string='Record is OK',
         store=True, help='Checked if this record is OK',
     )
 
-    @api.depends('state_code')
+    @api.depends('partner_state_code')
     def _compute_check_ok(self):
         for record in self:
-            record.check_ok = bool(record.state_code)
+            record.check_ok = bool(record.partner_state_code)
 
     @api.onchange('partner_id')
     def _onchange_partner_id(self):
