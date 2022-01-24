@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [l10n_es_aeat_mod130](l10n_es_aeat_mod130/) | 8.0.0.9.0 |  | AEAT modelo 130
 [l10n_es_aeat_mod216](l10n_es_aeat_mod216/) | 8.0.1.3.1 |  | AEAT modelo 216
 [l10n_es_aeat_mod296](l10n_es_aeat_mod296/) | 8.0.1.3.0 |  | AEAT modelo 296
-[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 8.0.2.0.0 |  | AEAT modelo 303
+[l10n_es_aeat_mod303](l10n_es_aeat_mod303/) | 8.0.2.1.0 |  | AEAT modelo 303
 [l10n_es_aeat_mod303_oss](l10n_es_aeat_mod303_oss/) | 8.0.1.0.0 |  | AEAT modelo 303 - OSS
 [l10n_es_aeat_mod340](l10n_es_aeat_mod340/) | 8.0.2.5.1 |  | Generación de fichero modelo 340 y libro de IVA
 [l10n_es_aeat_mod340_cash_basis](l10n_es_aeat_mod340_cash_basis/) | 8.0.1.0.0 |  | Extensión del modelo 340 para criterio de caja
