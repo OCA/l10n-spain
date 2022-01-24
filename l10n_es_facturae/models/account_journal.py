@@ -30,7 +30,12 @@ class AccountJournal(models.Model):
             if node:
                 return res
             for node in doc.xpath("//field[@name='type']"):
-                elem = etree.Element("field", {"name": "thirdparty_invoice"})
+                attrs = {
+                    "invisible": [("type", "not in", ("sale", "purchase"))],
+                }
+                elem = etree.Element(
+                    "field", {"name": "thirdparty_invoice", "attrs": str(attrs)}
+                )
                 node.addnext(elem)
             res["arch"] = etree.tostring(doc)
             xarch, xfields = self.env["ir.ui.view"].postprocess_and_fields(
