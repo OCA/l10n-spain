@@ -28,7 +28,7 @@ class L10nEsAeatMod190Report(models.Model):
 
     def _check_report_lines(self):
         """Checks if all the fields of all the report lines
-        (partner records) are filled """
+        (partner records) are filled"""
         for item in self:
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_record_ok:
@@ -292,7 +292,7 @@ class L10nEsAeatMod190ReportLine(models.Model):
     )
     def _compute_partner_record_ok(self):
         """Comprobamos que los campos estén introducidos dependiendo de las
-           claves y las subclaves."""
+        claves y las subclaves."""
 
         for record in self:
             record.partner_record_ok = bool(
