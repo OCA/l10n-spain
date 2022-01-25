@@ -40,18 +40,18 @@ class AccountMoveLine(models.Model):
 
     @api.depends("move_id.aeat_perception_key_id")
     def _compute_aeat_perception_keys(self):
-        for l in self:
+        for line in self:
             aeat_perception_key_id = False
             aeat_perception_subkey_id = False
             if (
-                l.move_id.is_invoice()
-                and not l.exclude_from_invoice_tab
-                and l.id in l.move_id.invoice_line_ids.ids
-                and l.move_id.aeat_perception_key_id
+                line.move_id.is_invoice()
+                and not line.exclude_from_invoice_tab
+                and line.id in line.move_id.invoice_line_ids.ids
+                and line.move_id.aeat_perception_key_id
             ):
-                aeat_perception_key_id = l.move_id.aeat_perception_key_id.id
-                aeat_perception_subkey_id = l.move_id.aeat_perception_subkey_id.id
-            l.write(
+                aeat_perception_key_id = line.move_id.aeat_perception_key_id.id
+                aeat_perception_subkey_id = line.move_id.aeat_perception_subkey_id.id
+            line.write(
                 {
                     "aeat_perception_key_id": aeat_perception_key_id,
                     "aeat_perception_subkey_id": aeat_perception_subkey_id,
