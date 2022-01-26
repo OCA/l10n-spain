@@ -121,17 +121,20 @@ class L10nEsAeatMod347Report(models.Model):
             for partner_record in item.partner_record_ids:
                 if not partner_record.check_ok:
                     partner_errors.append(
-                        _("- %s (%s)")
-                        % (partner_record.partner_id.name, partner_record.partner_id.id)
+                        _(
+                            "- %(name)s %(id)s",
+                            name=partner_record.partner_id.name,
+                            id=partner_record.partner_id.id,
+                        )
                     )
             real_state_errors = []
             for real_estate_record in item.real_estate_record_ids:
                 if not real_estate_record.check_ok:
                     real_state_errors.append(
-                        _("- %s (%s)")
-                        % (
-                            real_estate_record.partner_id.name,
-                            real_estate_record.partner_id.id,
+                        _(
+                            "- %(name)s %(id)s",
+                            name=real_estate_record.partner_id.name,
+                            id=real_estate_record.partner_id.id,
                         )
                     )
             error = _(
@@ -354,7 +357,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             ("exception", "Exception"),
         ],
         default="pending",
-        string="State",
     )
     operation_key = fields.Selection(
         selection=[
@@ -377,7 +379,6 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
             ("F", u"F - Ventas agencia viaje"),
             ("G", u"G - Compras agencia viaje"),
         ],
-        string="Operation Key",
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner", string="Partner", required=True
@@ -460,33 +461,27 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         digits="Account",
     )
     insurance_operation = fields.Boolean(
-        string="Insurance Operation",
         help="Only for insurance companies. Set to identify insurance "
         "operations aside from the rest.",
     )
     cash_basis_operation = fields.Boolean(
-        string="Cash Basis Operation",
         help="Only for cash basis operations. Set to identify cash basis "
         "operations aside from the rest.",
     )
     tax_person_operation = fields.Boolean(
-        string="Taxable Person Operation",
         help="Only for taxable person operations. Set to identify taxable "
         "person operations aside from the rest.",
     )
     related_goods_operation = fields.Boolean(
-        string="Related Goods Operation",
         help="Only for related goods operations. Set to identify related "
         "goods operations aside from the rest.",
     )
     bussiness_real_estate_rent = fields.Boolean(
-        string="Bussiness Real Estate Rent",
         help="Set to identify real estate rent operations aside from the rest."
         " You'll need to fill in the real estate info only when you are "
         "the one that receives the money.",
     )
     origin_year = fields.Integer(
-        string="Origin year",
         help="Origin cash operation year",
     )
     move_record_ids = fields.One2many(
@@ -689,7 +684,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         default=_default_representative_vat,
         help="Legal Representative VAT number",
     )
-    amount = fields.Float(string="Amount", digits="Account")
+    amount = fields.Float(digits="Account")
     situation = fields.Selection(
         selection=[
             ("1", "1 - Spain but Basque Country and Navarra"),
@@ -701,32 +696,29 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         required=True,
     )
     reference = fields.Char(string="Catastral Reference", size=25)
-    address_type = fields.Char(string="Address type", size=5)
-    address = fields.Char(string="Address", size=50)
+    address_type = fields.Char(size=5)
+    address = fields.Char(size=50)
     number_type = fields.Selection(
         selection=[("NUM", "Number"), ("KM.", "Kilometer"), ("S/N", "Without number")],
-        string="Number type",
     )
-    number = fields.Integer(string="Number")
+    number = fields.Integer()
     number_calification = fields.Selection(
         selection=[("BIS", "Bis"), ("MOD", "Mod"), ("DUP", "Dup"), ("ANT", "Ant")],
-        string="Number calification",
     )
-    block = fields.Char(string="Block", size=3)
-    portal = fields.Char(string="Portal", size=3)
-    stairway = fields.Char(string="Stairway", size=3)
-    floor = fields.Char(string="Floor", size=3)
-    door = fields.Char(string="Door", size=3)
+    block = fields.Char(size=3)
+    portal = fields.Char(size=3)
+    stairway = fields.Char(size=3)
+    floor = fields.Char(size=3)
+    door = fields.Char(size=3)
     complement = fields.Char(
-        string="Complement",
         size=40,
         help="Complement (urbanization, industrial park...)",
     )
-    city = fields.Char(string="City", size=30)
-    township = fields.Char(string="Township", size=30)
-    township_code = fields.Char(string="Township Code", size=5)
-    state_code = fields.Char(string="State Code", size=2)
-    postal_code = fields.Char(string="Postal code", size=5)
+    city = fields.Char(size=30)
+    township = fields.Char(size=30)
+    township_code = fields.Char(size=5)
+    state_code = fields.Char(size=2)
+    postal_code = fields.Char(size=5)
     check_ok = fields.Boolean(
         compute="_compute_check_ok",
         string="Record is OK",
@@ -785,11 +777,9 @@ class L10nEsAeatMod347MoveRecord(models.Model):
         readonly=True,
     )
     amount = fields.Float(
-        string="Amount",
         readonly=True,
     )
     amount_signed = fields.Float(
-        string="Amount signed",
         compute="_compute_amount_signed",
     )
 
