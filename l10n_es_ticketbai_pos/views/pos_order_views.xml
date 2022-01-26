@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <record id="view_pos_pos_form_inherit" model="ir.ui.view">
+            <field name="name">pos.order.form.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <button name="refund" position="attributes">
+                    <attribute name="attrs">{'invisible':['|', '|', ('state','=','draft'),
+                                                        ('returned_order_id', '!=', False),
+                                                        ('tbai_enabled', '=', True)]}
+                    </attribute>
+                </button>
+                <page name="extra" position="after">
+                    <page name="ticketbai" string="TicketBAI" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                        <group name="main_grp" col="4">
+                            <group name="ticketbai" colspan="2" col="2">
+                                <field name="tbai_enabled" invisible="1"/>
+                                <field name="tbai_invoice_id" readonly="1" options="{'no_create':True}"
+                                       attrs="{'invisible': [('tbai_invoice_id', '=', False)]}"/>
+                            </group>
+                        </group>
+                        <group name="tbai_vat_regimes" string="VAT Regimes">
+                            <field name="tbai_vat_regime_key" readonly="1" options="{'no_open':True,'no_create':True}"/>
+                        </group>
+                        <group name="tbai_send" string="Files Sent" attrs="{'invisible': [('tbai_invoice_ids', '=', [])]}">
+                            <group name="tbai_sent_orders" string="Orders" colspan="4" attrs="{'invisible': [('tbai_invoice_ids', '=', [])]}">
+                                <field name="tbai_invoice_ids" readonly="1" options="{'no_open':True,'no_create':True}" nolabel="1"/>
+                            </group>
+                        </group>
+                        <group name="tbai_responses" string="Responses" attrs="{'invisible': [('tbai_response_ids', '=', [])]}">
+                            <field name="tbai_response_ids" nolabel="1" options="{'no_create_edit': True}">
+                                <form>
+                                    <header>
+                                        <field name="state" widget="statusbar" readonly="1"/>
+                                    </header>
+                                    <sheet>
+                                        <group name="tbai_response_main_group">
+                                            <field name="xml" filename="xml_fname" readonly="1"/>
+                                            <field name="xml_fname" invisible="1" class="oe_inline oe_right"/>
+                                        </group>
+                                        <group name="tbai_response_messages_group" string="Messages">
+                                            <field name="tbai_response_message_ids" nolabel="1" readonly="1">
+                                                <form>
+                                                    <group>
+                                                        <field name="tbai_response_id" invisible="1"/>
+                                                        <field name="code" readonly="1"/>
+                                                        <field name="description" readonly="1"/>
+                                                    </group>
+                                                </form>
+                                                <tree create="false" delete="false">
+                                                    <field name="tbai_response_id" invisible="1"/>
+                                                    <field name="code" readonly="1"/>
+                                                    <field name="description" readonly="1"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </sheet>
+                                </form>
+                                <tree create="false" delete="false">
+                                    <field name="create_date"/>
+                                    <field name="tbai_response_message_ids" widget="many2many_tags"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+        <record id="view_pos_order_form_inherit" model="ir.ui.view">
+            <field name="name">pos.order.order.form.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="pos_order_return.view_pos_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='refund']/following-sibling::button[position()=1]"
+                       position="attributes">
+                    <attribute name="attrs">{'invisible':['|', '|', ('state','=','draft'),
+                                                       ('returned_order_id', '!=', False),
+                                                       ('tbai_enabled', '=', True)]}
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

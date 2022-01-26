@@ -1,0 +1,237 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_es_ticketbai_pos
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-08 11:34+0000\n"
+"PO-Revision-Date: 2021-11-08 11:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-specific\" groups=\"base.group_multi_company\"/>"
+msgstr "<span class=\"fa fa-lg fa-desktop\" title=\"Valores establecidos aquí son específicos de la compañía\" groups=\"base.group_multi_company\"/>"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:58
+#, python-format
+msgid "At least one product does not have a tax."
+msgstr "Al menos un producto no tiene establecido el impuesto."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "Certificate"
+msgstr "Certificado"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_device_serial_number
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "Device Serial Number"
+msgstr "Número de serie de dispositivo"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_enabled
+msgid "Enable TicketBAI"
+msgstr "Habilitar TicketBAI"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Files Sent"
+msgstr "Ficheros enviados"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_account_invoice
+msgid "Invoice"
+msgstr "Factura"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_last_invoice_id
+msgid "Last TicketBAI Invoice sent"
+msgstr "Última factura de TicketBAI enviada"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_invoice_tbai_substitution_pos_order_id
+msgid "Link between a validated Customer Invoice and its substitute."
+msgstr "Asociación entre una factura de cliente validada y su sustituta."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Messages"
+msgstr "Mensajes"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:46
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:92
+#, python-format
+msgid "Non spanish customers are not supported for Simplified Invoice."
+msgstr "Los clientes no nacionales no están soportados en factura simplificada."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Orders"
+msgstr "Pedidos"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:42
+#, python-format
+msgid "Please set Company VAT."
+msgstr "Por favor, establezca el NIF de la compañía."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:86
+#, python-format
+msgid "Please set Country for customer %s."
+msgstr "Por favor, establezca el país para el cliente %s."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:54
+#, python-format
+msgid "Please set VAT Regime Key for fiscal position %s."
+msgstr "Por favor, establezca la clave de regímenes de IVA para la posición fiscal %s."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:98
+#, python-format
+msgid "Please set VAT or TicketBAI Partner Identification Number for customer %s."
+msgstr "Por favor, establezca el NIF o el número de identificación TicketBAI para el cliente %s."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:50
+#, python-format
+msgid "Please set VAT or TicketBAI Partner Identification Number for customer."
+msgstr "Por favor, establezca el NIF o el número de identificación TicketBAI para el cliente."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:198
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:20
+#, python-format
+msgid "Please set a tax for product %s."
+msgstr "Por favor, establezca un impuesto para el producto %s."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "PoS Device Serial Number. As of TicketBAI v1.1, is not required."
+msgstr "TPV Número de serie de dispositivo. Desde TicketBAI v1.1, no es requerido."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos del TPV"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice_pos_order_id
+msgid "Pos Order"
+msgstr "Ticket"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_response_ids
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "Responses"
+msgstr "Respuestas"
+
+#. module: l10n_es_ticketbai_pos
+#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:43
+#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:52
+#: code:addons/l10n_es_ticketbai_pos/models/pos_config.py:61
+#, python-format
+msgid "Simplified Invoice IDs Sequence is required"
+msgstr "Secuencia de factura simplificada requerida."
+
+#. module: l10n_es_ticketbai_pos
+#: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:205
+#, python-format
+msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
+msgstr "El prefijo para facturas simplificadas %s no es parte del número %s."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_invoice_tbai_substitution_pos_order_id
+msgid "Tbai Substitution Pos Order"
+msgstr "Factura simplificada sustituida"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:197
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:19
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:66
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:85
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:91
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:97
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:105
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#, python-format
+msgid "TicketBAI"
+msgstr "TicketBAI"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_certificate_id
+msgid "TicketBAI Certificate"
+msgstr "Certificado TicketBAI"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+msgid "TicketBAI Certificate (optional). If not set, the certificate from the company is used instead."
+msgstr "Certificado TicketBAI (opcional). Si no está establecido, se utiliza el de la compañía."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.menu,name:l10n_es_ticketbai_pos.menu_pos_tbai_certificates
+msgid "TicketBAI Certificates"
+msgstr "TicketBAI Certificados"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:62
+#, python-format
+msgid "TicketBAI Invoice not built yet. Please try again."
+msgstr "Factura TicketBAI no construida aún. Por favor inténtelo de nuevo."
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_tbai_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_invoice_ids
+msgid "TicketBAI Invoices"
+msgstr "TicketBAI Facturas"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_invoice_id
+msgid "TicketBAI PoS Order"
+msgstr "TicketBAI Tickets"
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:38
+#, python-format
+msgid "TicketBAI certificate not loaded!"
+msgstr "¡Error: Certificado TicketBAI no cargado!"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_vat_regime_key
+msgid "VAT Regime Key"
+msgstr "Clave de regímenes de IVA"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+msgid "VAT Regimes"
+msgstr "Claves de regímenes de IVA"
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
+msgid "pos.config"
+msgstr "pos.config"
+
