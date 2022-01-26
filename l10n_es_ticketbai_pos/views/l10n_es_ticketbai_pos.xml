@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <template id="point_of_sale_assets" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" id="qrcode-library" src="/l10n_es_ticketbai_pos/static/lib/qrcode.js"></script>
+                <script type="text/javascript" id="tbai-library" src="/l10n_es_ticketbai_pos/static/lib/tbai.js"></script>
+                <script type="text/javascript" src="/l10n_es_ticketbai_pos/static/src/js/models.js"></script>
+                <script type="text/javascript" src="/l10n_es_ticketbai_pos/static/src/js/tbai_models.js"></script>
+                <script type="text/javascript" src="/l10n_es_ticketbai_pos/static/src/js/screens.js"></script>
+                <script type="text/javascript" src="/l10n_es_ticketbai_pos/static/src/js/widgets.js"></script>
+                <script type="text/javascript" src="/l10n_es_ticketbai_pos/static/src/js/db.js"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>
