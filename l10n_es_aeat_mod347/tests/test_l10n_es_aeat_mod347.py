@@ -135,10 +135,10 @@ class TestL10nEsAeatMod347(TestL10nEsAeatModBase):
         ]
         self.assertEqual(self.model347.total_partner_records, len(partner_record_vals))
         self.assertAlmostEqual(
-            self.model347.total_amount, sum([x[2] for x in partner_record_vals])
+            self.model347.total_amount, sum(x[2] for x in partner_record_vals)
         )
         self.assertAlmostEqual(
-            self.model347.total_cash_amount, sum([x[3] for x in partner_record_vals])
+            self.model347.total_cash_amount, sum(x[3] for x in partner_record_vals)
         )
         for vals in partner_record_vals:
             partner_record = self.model347.partner_record_ids.filtered(
