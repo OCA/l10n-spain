@@ -20,14 +20,14 @@ class L10nEsVatBookIssuedSummary(models.Model):
     vat_book_id = fields.Many2one(comodel_name="l10n.es.vat.book", string="Vat Book id")
 
     book_type = fields.Selection(
-        selection=[("issued", "Issued"), ("received", "Received")], string="Book type"
+        selection=[("issued", "Issued"), ("received", "Received")],
     )
 
-    base_amount = fields.Float(string="Base amount", readonly="True")
+    base_amount = fields.Float(readonly="True")
 
-    tax_amount = fields.Float(string="Tax amount", readonly="True")
+    tax_amount = fields.Float(readonly="True")
 
-    total_amount = fields.Float(string="Total amount", readonly="True")
+    total_amount = fields.Float(readonly="True")
     special_tax_group = fields.Selection(
         selection=_selection_special_tax_group,
         string="Special group",
