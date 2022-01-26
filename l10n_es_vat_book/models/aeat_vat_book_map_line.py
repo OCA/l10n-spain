@@ -13,12 +13,9 @@ class AeatVatBookMapLines(models.Model):
             allfields=["special_tax_group"]
         )["special_tax_group"]["selection"]
 
-    name = fields.Char(
-        string="Name",
-    )
+    name = fields.Char()
     book_type = fields.Selection(
         selection=[("issued", "Issued"), ("received", "Received")],
-        string="Book type",
     )
     special_tax_group = fields.Selection(
         selection=_selection_special_tax_group,
