@@ -8,7 +8,6 @@
         <field name="model">l10n.es.aeat.mod347.partner_record</field>
         <field name="arch" type="xml">
             <tree
-                string="Partner Records"
                 decoration-warning="state=='exception'"
                 decoration-muted="state=='confirmed'"
                 decoration-danger="check_ok==False"
@@ -163,10 +162,7 @@
                                 context="{'partner_record_id': active_id}"
                                 readonly="True"
                             >
-                                <tree
-                                    string="Move records"
-                                    decoration-info="'refund' in move_type"
-                                >
+                                <tree decoration-info="'refund' in move_type">
                                     <field name="move_id" />
                                     <field name="move_type" invisible="1" />
                                     <field name="date" />
@@ -184,7 +180,7 @@
                                 context="{'partner_record_id': active_id}"
                                 readonly="True"
                             >
-                                <tree string="Cash records">
+                                <tree>
                                     <field name="move_id" />
                                     <field name="date" />
                                     <field name="balance" />
@@ -256,7 +252,7 @@
     <record id="view_l10n_es_aeat_mod347_real_estate_record_tree" model="ir.ui.view">
         <field name="model">l10n.es.aeat.mod347.real_estate_record</field>
         <field name="arch" type="xml">
-            <tree string="Real Estate Records" decoration-danger="check_ok==False">
+            <tree decoration-danger="check_ok==False">
                 <field name="check_ok" invisible="1" />
                 <field name="partner_vat" select="1" />
                 <field name="partner_id" select="1" />
