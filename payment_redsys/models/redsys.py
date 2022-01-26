@@ -10,6 +10,8 @@ import json
 import logging
 import urllib
 
+from werkzeug import urls
+
 from odoo import _, api, exceptions, fields, http, models
 from odoo.tools import config
 from odoo.tools.float_utils import float_compare
@@ -122,12 +124,23 @@ class AcquirerRedsys(models.Model):
         """
         if config["test_enable"]:
             return self.env["ir.config_parameter"].sudo().get_param("web.base.url")
-
-        domain = http.request.website.domain
+        # For a JSON request, there's no `website` attribute. Fallback to context if any
+        website = (
+            hasattr(http.request, "website")
+            and http.request.website
+            or self.env.context.get("website_id")
+            and self.env["website"].browse(self.env.context["website_id"])
+        )
+        domain = website and website.domain or ""
         if domain and domain != "localhost":
-            base_url = "{}://{}".format(
-                http.request.httprequest.environ["wsgi.url_scheme"],
-                http.request.website.domain,
+            # Check domain scheme as Odoo does in `website._get_http_domain()`
+            parsed_url = urls.url_parse(domain)
+            base_url = (
+                "{}://{}".format(
+                    http.request.httprequest.environ["wsgi.url_scheme"], domain
+                )
+                if not parsed_url.scheme
+                else domain
             )
         else:
             base_url = self.env["ir.config_parameter"].sudo().get_param("web.base.url")
