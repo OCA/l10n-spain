@@ -18,7 +18,7 @@ class L10nEsVatBookLine(models.Model):
         )["special_tax_group"]["selection"]
 
     ref = fields.Char("Reference")
-    entry_number = fields.Integer("Entry number")
+    entry_number = fields.Integer()
     external_ref = fields.Char("External Reference")
 
     line_type = fields.Selection(
@@ -28,9 +28,8 @@ class L10nEsVatBookLine(models.Model):
             ("rectification_issued", "Refund Issued"),
             ("rectification_received", "Refund Received"),
         ],
-        string="Line type",
     )
-    invoice_date = fields.Date(string="Invoice Date")
+    invoice_date = fields.Date()
 
     partner_id = fields.Many2one(comodel_name="res.partner", string="Empresa")
 
@@ -48,7 +47,7 @@ class L10nEsVatBookLine(models.Model):
         copy=False,
     )
 
-    exception_text = fields.Char(string="Exception text")
+    exception_text = fields.Char()
 
     base_amount = fields.Float(
         string="Base",
