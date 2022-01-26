@@ -21,7 +21,7 @@
         <field name="name">view.l10n_es_vat_book_tax_summary.tree</field>
         <field name="model">l10n.es.vat.book.tax.summary</field>
         <field name="arch" type="xml">
-            <tree string="Tax Summary" decoration-muted="special_tax_group">
+            <tree decoration-muted="special_tax_group">
                 <field name="special_tax_group" />
                 <field name="base_amount" />
                 <field name="tax_id" />

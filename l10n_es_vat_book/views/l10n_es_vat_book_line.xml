@@ -78,7 +78,7 @@
         <field name="name">view.l10n_es_vat_book_line.tree</field>
         <field name="model">l10n.es.vat.book.line</field>
         <field name="arch" type="xml">
-            <tree string="Issued/Received invoices" decoration-danger="exception_text">
+            <tree decoration-danger="exception_text">
                 <field name="ref" />
                 <field name="external_ref" />
                 <field name="invoice_date" />

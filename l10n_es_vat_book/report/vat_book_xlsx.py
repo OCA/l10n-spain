@@ -21,7 +21,7 @@ class VatNumberXlsx(models.AbstractModel):
     def format_boe_date(self, date):
         return fields.Datetime.to_datetime(date)
 
-    @ormcache("self.id")
+    @ormcache("self.env")
     def _get_undeductible_taxes(self, book):
         line = self.env.ref("l10n_es_vat_book.aeat_vat_book_map_line_p_iva_nd")
         return book.get_taxes_from_templates(line.tax_tmpl_ids)

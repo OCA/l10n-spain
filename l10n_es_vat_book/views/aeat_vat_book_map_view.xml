@@ -15,7 +15,7 @@
         <field name="name">aeat.vat.book.map.lines.view.tree</field>
         <field name="model">aeat.vat.book.map.line</field>
         <field name="arch" type="xml">
-            <tree string="AEAT vat book map" editable="bottom">
+            <tree editable="bottom">
                 <field name="name" />
                 <field name="book_type" />
                 <field name="special_tax_group" />
