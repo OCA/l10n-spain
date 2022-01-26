@@ -3,7 +3,7 @@
 
 from odoo import http
 
-from odoo.addons.mail.controllers.main import MailController
+from odoo.addons.mail.controllers.mail import MailController
 
 
 class Mod347Controller(http.Controller):
