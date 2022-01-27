@@ -1181,7 +1181,7 @@
         <field
             name="name"
         >Operaciones realizadas por sujetos pasivos acogidos al régimen especial del recargo de equivalencia</field>
-        <field name="move_type">regular</field>
+        <field name="move_type">all</field>
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="True" />
@@ -1191,7 +1191,7 @@
         <field name="map_parent_id" ref="aeat_mod390_map" />
         <field name="field_number">230</field>
         <field name="name">Adquisiciones interiores exentas</field>
-        <field name="move_type">regular</field>
+        <field name="move_type">all</field>
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="True" />
@@ -1204,7 +1204,7 @@
         <field name="map_parent_id" ref="aeat_mod390_map" />
         <field name="field_number">109</field>
         <field name="name">Adquisiciones intracomunitarias exentas</field>
-        <field name="move_type">regular</field>
+        <field name="move_type">all</field>
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="True" />
@@ -1214,7 +1214,7 @@
         <field name="map_parent_id" ref="aeat_mod390_map" />
         <field name="field_number">231</field>
         <field name="name">Importaciones exentas</field>
-        <field name="move_type">regular</field>
+        <field name="move_type">all</field>
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="False" />
@@ -1224,7 +1224,7 @@
         <field name="map_parent_id" ref="aeat_mod390_map" />
         <field name="field_number">232</field>
         <field name="name">Bases imponibles del IVA soportado no deducible</field>
-        <field name="move_type">regular</field>
+        <field name="move_type">all</field>
         <field name="field_type">base</field>
         <field name="sum_type">both</field>
         <field name="inverse" eval="True" />
