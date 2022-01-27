@@ -145,11 +145,11 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
             # IVA deducible en adquisiciones intracomu. bienes corrientes -Cuota 4%
             ("215", 12.0),
             # Adquisiciones interiores exentas
-            ("230", 1200),
+            ("230", 800),
             # Importaciones exentas
             ("231", 0.0),
             # Bases imponibles del IVA soportado no deducible
-            ("232", 1260),
+            ("232", 840),
             # Adquisiciones intracomunitarias de servicios - Base 4%
             ("545", 1200.0),
             # Adquisiciones intracomunitarias de servicios - Cuota 4%
