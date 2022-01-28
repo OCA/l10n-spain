@@ -3,8 +3,9 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="aeat_mod390_2019_main_export_config" model="aeat.model.export.config">
-        <field name="name">Mod.390 2019-actualidad</field>
+        <field name="name">Mod.390 2019-2020</field>
         <field name="date_start">2019-01-01</field>
+        <field name="date_end">2020-12-31</field>
         <field name="model_number">390</field>
         <field name="model_id" ref="model_l10n_es_aeat_mod390_report" />
     </record>
