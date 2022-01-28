@@ -297,6 +297,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         )
         export_config_xml_ids = [
             "l10n_es_aeat_mod390.aeat_mod390_2019_main_export_config",
+            "l10n_es_aeat_mod390.aeat_mod390_2021_main_export_config",
         ]
         for xml_id in export_config_xml_ids:
             export_config = self.env.ref(xml_id)
