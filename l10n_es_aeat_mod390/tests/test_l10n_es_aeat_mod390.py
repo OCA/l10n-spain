@@ -116,15 +116,17 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         ('99', 14280.0),
         # Operaciones realizadas por sujetos pasivos acogidos al régimen
         # especial del recargo de equivalencia
-        ('102', -16200.0),
+        ('102', -10800.0),
         # Entregas intracomunitarias exentas
         ('103', 9800.0),
         # Exportaciones y otras operaciones exentas con derecho a deducción
-        ('104', 8200.0),
+        ('104', 4000.0),
         # Operaciones exentas sin derecho a deducción
         ('105', 5200),
         # Adquisiciones intracomunitarias exentas
         ('109', 0.0),
+        # Exportaciones y otras operaciones exentas con derecho a deducción
+        ('110', 4200.0),
         # IVA deducible en oper. corrientes de bienes y servicios - Base 4%
         ('190', 2100.0),
         # IVA deducible en oper. corrientes de bienes y servicios - Cuota 4%
@@ -140,11 +142,11 @@ class TestL10nEsAeatMod390Base(TestL10nEsAeatModBase):
         # IVA deducible en adquisiciones intracomu. bienes corrientes -Cuota 4%
         ('215', 12.0),
         # Adquisiciones interiores exentas
-        ('230', 1200),
+        ('230', 800),
         # Importaciones exentas
         ('231', 0.0),
         # Bases imponibles del IVA soportado no deducible
-        ('232', 1260),
+        ('232', 840),
         # Adquisiciones intracomunitarias de servicios - Base 4%
         ('545', 1200.0),
         # Adquisiciones intracomunitarias de servicios - Cuota 4%
@@ -273,7 +275,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
         self.assertAlmostEqual(self.model390.casilla_64, 2408.45, 2)
         self.assertAlmostEqual(self.model390.casilla_65, 108.55, 2)
         self.assertAlmostEqual(self.model390.casilla_86, 108.55, 2)
-        self.assertAlmostEqual(self.model390.casilla_108, 21280.0, 2)
+        self.assertAlmostEqual(self.model390.casilla_108, 26680.0, 2)
         # Export to BOE
         export_to_boe = self.env['l10n.es.aeat.report.export_to_boe'].create({
             'name': 'test_export_to_boe.txt',
