@@ -20,6 +20,9 @@
         "data/aeat_export_mod390_2019_sub07_data.xml",
         "data/aeat_export_mod390_2019_sub08_data.xml",
         "data/aeat_export_mod390_2019_main_data.xml",
+        # 2021
+        "data/2021/aeat.model.export.config.csv",
+        "data/2021/aeat.model.export.config.line.csv",
         "data/tax_code_map_mod390_data.xml",
         "views/mod390_view.xml",
         "security/ir.model.access.csv",
