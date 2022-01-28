@@ -733,7 +733,7 @@
     <field name="sequence">64</field>
     <field name="export_config_id" ref="aeat_mod303_sub01_export_config"/>
     <field name="name">Liquidación: Regimen General - IVA Deducible - Regularización por aplicación del porcentaje definitivo de prorrata - Cuota [44]</field>
-    <field name="fixed_value">0</field>
+    <field name="expression">${object.casilla_44}</field>
     <field name="export_type">float</field>
     <field name="apply_sign" eval="True"/>
     <field name="size">17</field>
