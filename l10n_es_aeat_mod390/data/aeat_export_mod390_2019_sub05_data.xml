@@ -3,7 +3,7 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="aeat_mod390_2019_sub05_export_config" model="aeat.model.export.config">
-        <field name="name">Mod.390 2019 - Página 5</field>
+        <field name="name">Mod.390 2019/2021 - Página 5</field>
         <field name="model_number">390</field>
         <field name="active" eval="False" />
     </record>
@@ -329,7 +329,7 @@
         <field name="export_config_id" ref="aeat_mod390_2019_sub05_export_config" />
         <field
             name="name"
-        >6. Operaciones Reg. Simplificado - Actividad 1 - Lorca 2016</field>
+        >6. Operaciones Reg. Simplificado - Actividad 1 - Lorca</field>
         <field name="fixed_value">0</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="False" />
@@ -711,7 +711,7 @@
         <field name="export_config_id" ref="aeat_mod390_2019_sub05_export_config" />
         <field
             name="name"
-        >6. Operaciones Reg. Simplificado - Actividad 2 - Lorca 2016</field>
+        >6. Operaciones Reg. Simplificado - Actividad 2 - Lorca</field>
         <field name="fixed_value">0</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="False" />
