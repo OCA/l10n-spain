@@ -8,7 +8,7 @@ from odoo.modules.module import get_module_resource
 from odoo.tests import common
 
 
-class L10nEsAccountStatementImportN43(common.SavepointCase):
+class L10nEsAccountStatementImportN43(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
