@@ -235,7 +235,7 @@ class AccountStatementImport(models.TransientModel):
                 data_decoded = data_file.decode(encodings.pop())
                 return self._parse(data_decoded)
             except (UnicodeDecodeError, exceptions.ValidationError):
-                pass
+                _logger.info("Something was wrong with encodings!")
         return False
 
     def _get_n43_ref(self, line):
