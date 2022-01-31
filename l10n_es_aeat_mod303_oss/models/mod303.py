@@ -8,20 +8,6 @@ from odoo import models
 class L10nEsAeatMod303Report(models.Model):
     _inherit = "l10n.es.aeat.mod303.report"
 
-    def get_taxes_from_map(self, map_line):
-        oss_map_lines = [
-            self.env.ref('l10n_es_aeat_mod303_oss.aeat_mod303_202107_map_line_123'),
-            self.env.ref('l10n_es_aeat_mod303_oss.aeat_mod303_202107_map_line_126'),
-        ]
-        if map_line in oss_map_lines:
-            return self.env['account.tax'].search([
-                ('oss_country_id', '!=', False),
-                ('company_id', '=', self.company_id.id),
-            ])
-        return super(L10nEsAeatMod303Report, self).get_taxes_from_map(
-            map_line,
-        )
-
     def _get_tax_lines(self, codes, date_start, date_end, map_line):
         """Don't populate results for fields 126-127 for reports different from
         last of the year one or when not exonerated of presenting model 390.
@@ -43,6 +29,12 @@ class L10nEsAeatMod303Report(models.Model):
         if 126 <= map_line.field_number <= 127:
             date_start = date_start[:4] + '-01-01'
             date_end = date_end[:4] + '-12-31'
+        if map_line.field_number in [123, 126]:
+            taxes = self.env['account.tax'].search([
+                ("oss_country_id", "!=", False),
+                ("company_id", "=", self.company_id.id),
+            ])
+            codes = taxes.mapped("description")
         return super(L10nEsAeatMod303Report, self)._get_move_line_domain(
             codes, date_start, date_end, map_line,
         )
