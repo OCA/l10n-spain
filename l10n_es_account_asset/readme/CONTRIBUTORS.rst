@@ -7,3 +7,8 @@
 * `Sygel <https://www.sygel.es>`__:
 
   * Valentin Vinagre
+
+
+* `Trey Kilobytes de Soluciones SL <https://www.trey.es>`__:
+
+  * Vicent Cubells
