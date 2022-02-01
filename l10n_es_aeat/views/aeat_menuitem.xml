@@ -15,4 +15,11 @@
         groups="group_account_aeat"
         name="AEAT"
     />
+    <!-- Compatibility with `account_accountant` module -->
+    <function
+        model="ir.ui.menu"
+        name="_action_move_menus_to_account_accountant_menu_accounting"
+    >
+        <value eval="[ref('menu_root_aeat')]" />
+    </function>
 </odoo>

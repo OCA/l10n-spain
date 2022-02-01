@@ -14,3 +14,4 @@ from . import l10n_es_aeat_export_config_line
 from . import aeat_certificate
 from . import aeat_soap
 from . import aeat_tax_agency
+from . import ir_ui_menu
