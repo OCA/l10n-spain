@@ -124,19 +124,20 @@ class TicketBaiResponse(models.Model):
             )
             tbai_response_message_ids = []
             if state == TicketBaiResponseState.RECEIVED.value:
-                tbai_response_message_ids = [
-                    (
-                        0,
-                        0,
-                        {
-                            "code": xml_dict["Salida"]["CSV"],
-                            "description": {
-                                "es_ES": xml_dict["Salida"]["Descripcion"],
-                                "eu_ES": xml_dict["Salida"]["Azalpena"],
+                if xml_dict.get("Salida").get("CSV"):
+                    tbai_response_message_ids = [
+                        (
+                            0,
+                            0,
+                            {
+                                "code": xml_dict["Salida"]["CSV"],
+                                "description": {
+                                    "es_ES": xml_dict["Salida"]["Descripcion"],
+                                    "eu_ES": xml_dict["Salida"]["Azalpena"],
+                                },
                             },
-                        },
-                    )
-                ]
+                        )
+                    ]
                 messages = xml_dict.get("Salida").get("ResultadosValidacion", False)
                 if messages:
                     if isinstance(messages, dict):
