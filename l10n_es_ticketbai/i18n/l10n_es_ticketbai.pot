@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-03 14:56+0000\n"
+"PO-Revision-Date: 2022-02-03 14:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +28,12 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_l10n_es_aeat_certificate_tbai_p12_friendlyname
 msgid "Alias"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_partner_tbai_anonymous_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_users_tbai_anonymous_simplified_invoice
+msgid "Anonymous simplified invoices in TBAI?"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -69,7 +77,7 @@ msgid "Cancel and recreate"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:298
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:304
 #, python-format
 msgid "Cancellation"
 msgstr ""
@@ -77,6 +85,18 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_invoice_cancelled_invoice_id
 msgid "Cancelled Invoice"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_partner_tbai_anonymous_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_users_tbai_anonymous_simplified_invoice
+msgid "Checking this mark, invoices done to this partner will be sent to TBAI as simplified invoices whitout customer."
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_partner_tbai_simplified_invoice
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_res_users_tbai_simplified_invoice
+msgid "Checking this mark, invoices done to this partner will be sent to TBAI as simplified invoices."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -95,6 +115,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_company_id
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_search
 msgid "Company"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_res_partner
+msgid "Contact"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -355,7 +380,7 @@ msgid "Origin Invoices Data"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:347
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:353
 #, python-format
 msgid "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
@@ -400,18 +425,24 @@ msgid "Responses"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_partner_tbai_simplified_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_users_tbai_simplified_invoice
+msgid "Simplified invoices in TBAI?"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_tbai_info_software
 msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:361
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:367
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:356
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:362
 #, python-format
 msgid "Some of the original invoices have related tbai invoices in inconsistent state please fix them beforehand."
 msgstr ""
@@ -703,14 +734,14 @@ msgid "Warning"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:328
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:334
 #, python-format
 msgid "You cannot cancel an invoice while being sent to the Tax Agency.\n"
 "Related invoices: %s"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:319
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:325
 #, python-format
 msgid "You cannot cancel an invoice with non cancelled credit notes.\n"
 "Related invoices: %s"
@@ -741,4 +772,3 @@ msgstr ""
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
 msgid "tbai.info"
 msgstr ""
-

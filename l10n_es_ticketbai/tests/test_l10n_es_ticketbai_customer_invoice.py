@@ -506,3 +506,38 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         for journal in journals:
             self.assertEqual(journal.sequence_id.suffix, '')
             self.assertEqual(journal.refund_sequence, True)
+
+    def test_invoice_simplified_qualified(self):
+        self.partner.tbai_simplified_invoice = True
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        self.assertEqual('S', invoice.tbai_invoice_ids[0].simplified_invoice)
+        root, signature_value = \
+            invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
+        self.assertTrue(res)
+        self.partner.tbai_simplified_invoice = False
+
+    def test_invoice_simplified_anonymous(self):
+        self.partner.tbai_simplified_invoice = True
+        self.partner.tbai_anonymous_simplified_invoice = True
+        invoice = self.create_draft_invoice(
+            self.account_billing.id, self.fiscal_position_national)
+        invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
+        invoice.compute_taxes()
+        invoice.action_invoice_open()
+        self.assertEqual(invoice.state, 'open')
+        self.assertEqual(1, len(invoice.tbai_invoice_ids))
+        self.assertEqual('S', invoice.tbai_invoice_ids[0].simplified_invoice)
+        self.assertEqual(0, len(invoice.tbai_invoice_ids[0].tbai_customer_ids))
+        root, signature_value = \
+            invoice.sudo().tbai_invoice_ids.get_tbai_xml_signed_and_signature_value()
+        res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
+        self.assertTrue(res)
+        self.partner.tbai_simplified_invoice = False
+        self.partner.tbai_anonymous_simplified_invoice = False

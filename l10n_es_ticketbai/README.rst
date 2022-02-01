@@ -65,6 +65,12 @@ Usage
 * Factura de cliente
 
   * Se genera el fichero y se firma al validar la factura.
+
+* Factura de cliente simplificada
+
+  * Si el cliente está configurado para que sus facturas sean simplificadas se generan cualificadas (simplificadas con cliente)
+  * Si el cliente además está configurado para generar simplificadas anónimas, el fichero generado irá sin destinatario
+
 * Factura de cliente rectificativa
 
   * Diferencias (total o parcial)

@@ -219,6 +219,12 @@ class AccountInvoice(models.Model):
             'vat_regime_key2': self.tbai_vat_regime_key2.code,
             'vat_regime_key3': self.tbai_vat_regime_key3.code
         }
+
+        if partner.tbai_simplified_invoice:
+            vals['simplified_invoice'] = SiNoType.S.value
+            if partner.tbai_anonymous_simplified_invoice:
+                vals.pop('tbai_customer_ids')
+
         retencion_soportada = self.tbai_get_value_retencion_soportada()
         if retencion_soportada:
             vals['tax_retention_amount_total'] = retencion_soportada
