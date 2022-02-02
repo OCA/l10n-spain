@@ -138,10 +138,11 @@ class L10nEsAeatMod115Report(models.Model):
         return super(L10nEsAeatMod115Report, self).button_confirm()
 
     def calculate(self):
-        super(L10nEsAeatMod115Report, self).calculate()
+        res = super(L10nEsAeatMod115Report, self).calculate()
         self.refresh()
         for rec in self:
             if rec.casilla_05 <= 0.0:
                 rec.tipo_declaracion = "N"
             else:
                 rec.tipo_declaracion = "I"
+        return res
