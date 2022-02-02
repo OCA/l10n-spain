@@ -415,12 +415,12 @@ class L10nEsVatBook(models.Model):
                 # Filters in all possible data using, sets for improving performance
                 if account:
                     lines = moves.filtered(
-                        lambda x: x.tax_ids & taxes
-                        or (x.tax_line_id in taxes and x.account_id == account)
+                        lambda line: line.tax_ids & taxes
+                        or (line.tax_line_id in taxes and line.account_id == account)
                     )
                 else:
                     lines = moves.filtered(
-                        lambda x: x.tax_ids & taxes or x.tax_line_id in taxes
+                        lambda line: (line.tax_ids | line.tax_line_id) & taxes
                     )
                 rec.create_vat_book_lines(lines, map_line.book_type, taxes)
             # Issued
