@@ -1,8 +1,9 @@
 # © 2016 Antonio Espinosa <antonio.espinosa@tecnativa.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0
 
-from openerp import exceptions
-from openerp.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
+from odoo import exceptions
+
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import (
     TestL10nEsAeatModBase,
 )
 
