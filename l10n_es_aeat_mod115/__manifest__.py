@@ -5,7 +5,7 @@
 
 {
     "name": "AEAT modelo 115",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "development_status": "Mature",
     "category": "Localisation/Accounting",
     "author": "AvanzOSC," "Tecnativa," "Odoo Community Association (OCA)",

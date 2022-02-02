@@ -23,7 +23,7 @@ AEAT modelo 115
     :target: https://runbot.odoo-community.org/runbot/189/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Modelo 115 de la AEAT. Retenciones e ingresos a cuenta. Rentas o rendimientos
 procedentes del arrendamiento o subarrendamiento de inmuebles urbanos.
@@ -92,6 +92,14 @@ Contributors
 
   * Aaron Henriquez <ahenriquez@forgeflow.com>
 
+* `QubiQ <https://www.qubiq.es>`__:
+
+  * Raúl Fernández <raul.fernandez@qubiq.es>
+
+* `Coninpe <https://www.coninpe.es>`__:
+
+  * Jorge Hernández <jhernandez@coninpe.com>
+
 Maintainers
 ~~~~~~~~~~~
 
@@ -111,7 +119,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-pedrobaeza| 
+|maintainer-pedrobaeza|
 
 This module is part of the `OCA/l10n-spain <https://github.com/OCA/l10n-spain/tree/14.0/l10n_es_aeat_mod115>`_ project on GitHub.
 
