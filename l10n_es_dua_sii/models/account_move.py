@@ -44,7 +44,7 @@ class AccountMove(models.Model):
     @api.depends("sii_dua_invoice", "fiscal_position_id")
     def _compute_sii_enabled(self):
         """Don't sent secondary DUA invoices to SII."""
-        super()._compute_sii_enabled()
+        res = super()._compute_sii_enabled()
         for invoice in self.filtered("sii_enabled"):
             dua_fiscal_position_id = self._get_dua_fiscal_position_id(
                 invoice.company_id
@@ -55,6 +55,7 @@ class AccountMove(models.Model):
                 and not invoice.sii_dua_invoice
             ):
                 invoice.sii_enabled = False
+        return res
 
     def _get_sii_invoice_dict_in(self, cancel=False):
         """Según la documentación de la AEAT, la operación de importación se

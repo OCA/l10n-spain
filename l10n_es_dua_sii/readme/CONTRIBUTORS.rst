@@ -10,3 +10,5 @@
   * Pedro M. Baeza
   * João Marques
 * Eric Antones - NuoBiT Solutions, S.L. <eantones@nuobit.com>
+* Fernando La Chica - GreenIce <fernadolachica@gmail.com>
+* Miquel Alzanillas - APSL <malzanillas@apsl.net>
