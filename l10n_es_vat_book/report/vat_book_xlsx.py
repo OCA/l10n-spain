@@ -297,7 +297,7 @@ class VatNumberXlsx(models.AbstractModel):
         self, sheet, row, line, tax_line, with_total, draft_export
     ):
         """ Fill received data """
-        date_invoice = line.move_id.date
+        date_invoice = line.move_id.invoice_date
         # We don't want to fail on empty records, like in the case of PoS
         # cash sales, which dont't have a partner. Just return empty values.
         # Country code will be "ES", as the operations will be made in Spain
