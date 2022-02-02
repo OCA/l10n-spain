@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2016-2017 Tecnativa - Sergio Teruel
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3). -->
-<odoo noupdate="0">
+<odoo>
     <record id="payment_acquirer_redsys" model="payment.acquirer">
         <field name="name">Redsys</field>
         <field name="display_as">Credit Card (Redsys)</field>
@@ -10,7 +10,7 @@
         <field name="provider">redsys</field>
         <!-- <field name="company_id" ref="base.main_company" /> -->
         <field name="redirect_form_view_id" ref="redsys_form" />
-        <field name="view_template_id" ref="redsys_form" />
+        <!-- <field name="view_template_id" ref="redsys_form" /> -->
         <field name="redsys_merchant_name">Bussines name</field>
         <field name="redsys_merchant_code">8888888</field>
         <field name="redsys_merchant_description">Bussines description</field>
@@ -33,7 +33,7 @@
                    ref('payment.payment_icon_cc_mastercard'),
                    ref('payment.payment_icon_cc_visa'),
                ])]"/>
-        <field name="inline_form_view_id" ref="inline_form"/>
+        <!-- <field name="inline_form_view_id" ref="payment_authorize.inline_form"/> -->
         <field name="support_authorization">False</field>
         <field name="support_fees_computation">False</field>
         <field name="support_refund">partial</field>

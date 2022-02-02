@@ -11,10 +11,9 @@ import logging
 import urllib
 
 from odoo import _, api, exceptions, fields, http, models
+from odoo.addons.payment.models.payment_acquirer import ValidationError
 from odoo.tools import config
 from odoo.tools.float_utils import float_compare
-
-from odoo.addons.payment.models.payment_acquirer import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -205,10 +204,10 @@ class AcquirerRedsys(models.Model):
         redsys_values.update(
             {
                 "Ds_SignatureVersion": str(self.redsys_signature_version),
-                "Ds_MerchantParameters": merchant_parameters,
+                "Ds_MerchantParameters": merchant_parameters.decode('utf8'),
                 "Ds_Signature": self.sign_parameters(
-                    self.redsys_secret_key, merchant_parameters
-                ),
+                    self.redsys_secret_key, merchant_parameters.decode('utf8')
+               ),
             }
         )
         return redsys_values
@@ -225,6 +224,12 @@ class AcquirerRedsys(models.Model):
             description = "|".join(x.name for x in sale_order.order_line)
             res = description[:125]
         return res
+        
+    def _get_default_payment_method_id(self):
+        self.ensure_one()
+        if self.provider == "redsys":
+            return self.env.ref('payment_redsys.payment_method_redsys').id
+        return super(AcquirerRedsys, self)._get_default_payment_method_id()
 
 
 class TxRedsys(models.Model):
@@ -370,9 +375,7 @@ class TxRedsys(models.Model):
 
     @api.model
     def form_feedback(self, data, acquirer_name):
-        res = super().form_feedback(data, acquirer_name)
-        if acquirer_name != "redsys":
-            return res
+        res = True
         try:
             tx_find_method_name = "_%s_form_get_tx_from_data" % acquirer_name
             if hasattr(self, tx_find_method_name):

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2017 Tecnativa - Sergio Teruel
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3). -->
-<odoo>
+<odoo noupdate="0">
     <record id="acquirer_form_redsys" model="ir.ui.view">
         <field name="name">acquirer.form.redsys</field>
         <field name="model">payment.acquirer</field>

@@ -1,3 +1,1 @@
-from . import redsys
-# from . import payment_transaction
-from . import account_payment_method
+from . import account_payment_method, payment_transaction, redsys

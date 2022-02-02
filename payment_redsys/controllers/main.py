@@ -6,7 +6,6 @@ import logging
 import pprint
 
 import werkzeug
-
 from odoo import http
 from odoo.http import request
 
@@ -44,10 +43,10 @@ class RedsysController(http.Controller):
 
     @http.route(
         ["/payment/redsys/result/<page>"],
-        type="http",
+        type="http",    
         auth="public",
         methods=["GET"],
         website=True,
     )
     def redsys_result(self, page, **vals):
-        return werkzeug.utils.redirect("/payment/process")
+        return werkzeug.utils.redirect("/payment/status")
