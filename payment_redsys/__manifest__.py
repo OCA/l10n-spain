@@ -4,7 +4,7 @@
     "name": "Pasarela de pago Redsys",
     "category": "Payment Acquirer",
     "summary": "Payment Acquirer: Redsys Implementation",
-    "version": "13.0.2.0.1",
+    "version": "13.0.2.0.2",
     "author": "Tecnativa," "Odoo Community Association (OCA)",
     "depends": ["payment", "website_sale"],
     "external_dependencies": {"python": ["Crypto.Cipher.DES3"]},
