@@ -132,7 +132,7 @@ class AcquirerRedsys(models.Model):
         domain = website and website.domain or ""
         if domain and domain != "localhost":
             # Check domain scheme as Odoo does in `website._get_http_domain()`
-            parsed_url = urls.url_parse(self.domain)
+            parsed_url = urls.url_parse(domain)
             base_url = (
                 "{}://{}".format(
                     http.request.httprequest.environ["wsgi.url_scheme"], domain
