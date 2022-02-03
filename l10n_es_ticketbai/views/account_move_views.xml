@@ -13,7 +13,7 @@
                     <page
                         name="ticketbai"
                         string="TicketBAI"
-                        attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('move_type', '!=', 'out_invoice'), '|', ('move_type', '!=', 'out_refund'), ('reversed_entry_id', '=', False)]}"
+                        attrs="{'invisible': ['|', ('tbai_enabled', '=', False), '&amp;', ('move_type', '!=', 'out_invoice'), ('move_type', '!=', 'out_refund')]}"
                     >
                         <group name="main_grp" col="4">
                             <group name="ticketbai" colspan="2" col="2">
@@ -47,14 +47,48 @@
                             attrs="{'invisible': [('move_type', '!=', 'out_refund')]}"
                         >
                             <field name="reversed_entry_id" invisible="1" />
-                            <field
-                                name="tbai_refund_key"
-                                attrs="{'required': [('tbai_enabled', '=', True), ('move_type', '=', 'out_refund'), ('reversed_entry_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
-                            />
-                            <field
-                                name="tbai_refund_type"
-                                attrs="{'required': [('tbai_enabled', '=', True), ('move_type', '=', 'out_refund'), ('reversed_entry_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
-                            />
+                            <group
+                                name="tbai_refund_key_type"
+                                string="Key/Type"
+                                colspan="4"
+                            >
+                                <field
+                                    name="tbai_refund_key"
+                                    attrs="{'required': [('tbai_enabled', '=', True), ('move_type', '=', 'out_refund'), ('reversed_entry_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                                />
+                                <field
+                                    name="tbai_refund_type"
+                                    attrs="{'required': [('tbai_enabled', '=', True), ('move_type', '=', 'out_refund'), ('reversed_entry_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                                />
+                            </group>
+                            <group
+                                name="tbai_refund_origin_invoices_data"
+                                string="Origin Invoices Data"
+                                colspan="4"
+                                attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('reversed_entry_id', '!=', False), ('move_type', '!=', 'out_refund')]}"
+                            >
+                                <field
+                                    name="tbai_refund_origin_ids"
+                                    nolabel="1"
+                                    attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                >
+                                    <tree editable="bottom">
+                                        <field
+                                            name="account_refund_invoice_id"
+                                            invisible="1"
+                                        />
+                                        <field
+                                            name="number_prefix"
+                                            string="Invoice Serial"
+                                        />
+                                        <field name="number" string="Invoice Number" />
+                                        <field
+                                            name="expedition_date"
+                                            string="Invoice Date"
+                                        />
+                                    </tree>
+                                </field>
+                            </group>
                         </group>
                         <group name="tbai_vat_regimes" string="VAT Regimes">
                             <field
