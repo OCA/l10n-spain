@@ -125,6 +125,7 @@ Contributors
   * Pedro M. Baeza
   * Carlos Dauden
   * Ernesto Tejeda
+* Omar Castiñeira <omar@comunitea.com>
 
 Maintainers
 ~~~~~~~~~~~
