@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <function
+        model="ir.ui.menu"
+        name="_action_move_menus_to_account_accountant_menu_accounting"
+    >
+        <value eval="[ref('l10n_es_aeat.menu_root_aeat')]" />
+    </function>
+</odoo>
