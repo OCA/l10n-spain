@@ -296,28 +296,35 @@ class L10nEsVatBook(models.Model):
         self.summary_ids.unlink()
         self.tax_summary_ids.unlink()
 
-    def _account_move_line_domain(self, taxes, account=None):
-        # search move lines that contain these tax codes
+    # Not filters by taxes in tax_ids by default for avoiding a poor
+    # performance in psql
+    def _account_move_line_domain(self, taxes=None, account=None):
         domain = [
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
             ("parent_state", "=", "posted"),
-            "|",
-            ("tax_ids", "in", taxes.ids),
         ]
-        if account:
-            domain += [
-                "&",
-                ("tax_line_id", "in", taxes.ids),
-                ("account_id", "=", account.id),
-            ]
+        if taxes:
+            domain.append(("tax_ids", "in", taxes.ids))
+            if account:
+                domain += [
+                    "&",
+                    ("tax_line_id", "in", taxes.ids),
+                    ("account_id", "=", account.id),
+                ]
+            else:
+                domain.append(("tax_line_id", "in", taxes.ids))
         else:
-            domain.append(("tax_line_id", "in", taxes.ids))
+            domain += [
+                "|",
+                ("tax_ids", "!=", []),
+                ("tax_line_id", "!=", False),
+            ]
         return domain
 
-    def _get_account_move_lines(self, taxes, account=None):
+    def _get_account_move_lines(self, taxes=None, account=None):
         return self.env["account.move.line"].search(
-            self._account_move_line_domain(taxes, account=account)
+            self._account_move_line_domain(taxes=taxes, account=account)
         )
 
     @ormcache("self.id")
@@ -400,10 +407,21 @@ class L10nEsVatBook(models.Model):
                 raise UserError(_("This company doesn't have VAT"))
             rec._clear_old_data()
             map_lines = self.env["aeat.vat.book.map.line"].search([])
+            # Searches for all possible usable lines to report
+            moves = self._get_account_move_lines()
             for map_line in map_lines:
                 taxes = map_line.get_taxes(rec)
                 account = rec.get_account_from_template(map_line.tax_account_id)
-                lines = rec._get_account_move_lines(taxes, account=account)
+                # Filters in all possible data using, sets for improving performance
+                if account:
+                    lines = moves.filtered(
+                        lambda line: line.tax_ids & taxes
+                        or (line.tax_line_id in taxes and line.account_id == account)
+                    )
+                else:
+                    lines = moves.filtered(
+                        lambda line: (line.tax_ids | line.tax_line_id) & taxes
+                    )
                 rec.create_vat_book_lines(lines, map_line.book_type, taxes)
             # Issued
             book_type = "issued"
