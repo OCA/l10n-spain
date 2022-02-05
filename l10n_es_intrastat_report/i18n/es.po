@@ -199,6 +199,12 @@ msgstr ""
 "La compañía actual no es española, por lo que no puede ser configurada."
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__partner_vat
+msgid "Customer VAT"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__declaration_line_id
 msgid "Declaration Line"
 msgstr "Línea de declaración"
@@ -517,7 +523,7 @@ msgid "Supplementary Units Quantity"
 msgstr "Cantidad de unidades suplementarias"
 
 #. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:57
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:60
 #, python-format
 msgid ""
 "The Spanish Intrastat Declaration requires the Company's Country to be equal "
@@ -585,6 +591,12 @@ msgid "Used to keep track of changes"
 msgstr "Usado para rastrear los cambios"
 
 #. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:19
+#, python-format
+msgid "VAT"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__valid
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__valid
 msgid "Valid"
@@ -635,6 +647,11 @@ msgstr "l10n.es.intrastat.product.computation.line"
 #: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_declaration_line
 msgid "l10n.es.intrastat.product.declaration.line"
 msgstr "l10n.es.intrastat.product.declaration.line"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_report_intrastat_product_product_declaration_xls
+msgid "report.intrastat_product.product_declaration_xls"
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:32
