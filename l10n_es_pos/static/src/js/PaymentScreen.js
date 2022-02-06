@@ -19,7 +19,7 @@ odoo.define("l10n_es_pos.PaymentScreen", function (require) {
                 if (this.env.pos.config.iface_l10n_es_simplified_invoice) {
                     var order = this.currentOrder;
                     if (below_limit && !order.to_invoice) {
-                        order.set_simple_inv_number();
+                        await order.set_simple_inv_number();
                     } else {
                         // Force invoice above limit. Online is needed.
                         order.to_invoice = true;
