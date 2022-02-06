@@ -13,22 +13,17 @@ odoo.define("l10n_es_pos.models", function (require) {
         initialize: function () {
             pos_super.initialize.apply(this, arguments);
             this.pushed_simple_invoices = [];
+
+            this.own_simplified_invoice_prefix = ""; // Unique UUID
             return this;
         },
         get_simple_inv_next_number: function () {
-            if (
-                this.pushed_simple_invoices.indexOf(
-                    this.config.l10n_es_simplified_invoice_number
-                ) > -1
-            ) {
-                ++this.config.l10n_es_simplified_invoice_number;
-            }
-            return (
-                this.config.l10n_es_simplified_invoice_prefix +
-                this.get_padding_simple_inv(
-                    this.config.l10n_es_simplified_invoice_number
-                )
-            );
+            return this.rpc({
+                method: "search_read",
+                domain: [["id", "=", this.config_id]],
+                fields: ["l10n_es_simplified_invoice_number"],
+                model: "pos.config",
+            });
         },
         get_padding_simple_inv: function (number) {
             var diff =
@@ -75,8 +70,25 @@ odoo.define("l10n_es_pos.models", function (require) {
             return total;
         },
         set_simple_inv_number: function () {
-            this.l10n_es_unique_id = this.pos.get_simple_inv_next_number();
-            this.is_simplified_invoice = true;
+            const self = this;
+            return this.pos
+                .get_simple_inv_next_number()
+                .then(function (configs) {
+                    const config = configs[0];
+                    self.pos.config.l10n_es_simplified_invoice_number =
+                        config.l10n_es_simplified_invoice_number;
+                    const simplified_invoice_number =
+                        self.pos.config.l10n_es_simplified_invoice_prefix +
+                        self.pos.get_padding_simple_inv(
+                            config.l10n_es_simplified_invoice_number
+                        );
+                    self.l10n_es_unique_id = simplified_invoice_number;
+                    self.is_simplified_invoice = true;
+                })
+                .catch(function () {
+                    self.l10n_es_unique_id = self.uid;
+                    self.is_simplified_invoice = true;
+                });
         },
         get_base_by_tax: function () {
             var base_by_tax = {};
