@@ -311,7 +311,7 @@ class L10nEsVatBook(models.Model):
         ])
         special_dic = {}
         for map_line in map_lines:
-            for tax in self.get_taxes_from_templates(map_line.tax_tmpl_ids):
+            for tax in map_line.get_taxes(self):
                 special_dic[tax.id] = {
                     'name': map_line.name,
                     'book_type': map_line.book_type,
@@ -377,22 +377,14 @@ class L10nEsVatBook(models.Model):
             # clean the old records
             rec._clear_old_data()
 
-            tax_templates = self.env['aeat.vat.book.map.line'].search(
-                []).mapped('tax_tmpl_ids')
-            taxes_issued = self.get_taxes_from_templates(
-                tax_templates.filtered(lambda t: t.type_tax_use == 'sale')
-            )
-            taxes_received = self.get_taxes_from_templates(
-                tax_templates.filtered(lambda t: t.type_tax_use == 'purchase')
-            )
-
-            # Get all the account move lines that contain VAT that is
-            #  applicable to this report.
-            lines_issued = rec._get_account_move_lines(taxes_issued)
-            self.create_vat_book_lines(lines_issued, 'issued', taxes_issued)
-            lines_received = rec._get_account_move_lines(taxes_received)
-            self.create_vat_book_lines(
-                lines_received, 'received', taxes_received)
+            for book_type in ["issued", "received"]:
+                map_lines = self.env["aeat.vat.book.map.line"].search(
+                    [("book_type", "=", book_type)])
+                taxes = self.env["account.tax"]
+                for map_line in map_lines:
+                    taxes |= map_line.get_taxes(rec)
+                lines = rec._get_account_move_lines(taxes)
+                rec.create_vat_book_lines(lines, map_line.book_type, taxes)
 
             # Issued
             book_type = 'issued'
