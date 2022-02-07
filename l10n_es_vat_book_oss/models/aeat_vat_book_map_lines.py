@@ -10,7 +10,7 @@ class AeatVatBookMapLines(models.Model):
     def get_taxes(self, report):
         self.ensure_one()
         s_iva_map_line = self.env.ref("l10n_es_vat_book.aeat_vat_book_map_line_s_iva")
-        taxes = super().get_taxes(report)
+        taxes = super(AeatVatBookMapLines, self).get_taxes(report)
         if s_iva_map_line == self:
             taxes += self.env["account.tax"].search(
                 [
