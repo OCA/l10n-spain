@@ -127,6 +127,9 @@ Contributors
 
   * Isaac Gallart
   * Pedro Ortega
+* `Sygel <https://www.sygel.es/>`_:
+
+  * Manuel Regidor
 
 Maintainers
 ~~~~~~~~~~~
