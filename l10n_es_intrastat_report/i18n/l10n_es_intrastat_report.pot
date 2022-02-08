@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-02-22 12:41+0000\n"
+"PO-Revision-Date: 2022-02-22 12:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -413,16 +415,14 @@ msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing origin country on product %s. "
+msgid "Missing origin country on product %s."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
-#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing partner vat on invoice %s. "
+msgid "Missing partner vat on invoice %s."
 msgstr ""
 
 #. module: l10n_es_intrastat_report
