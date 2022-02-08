@@ -347,22 +347,22 @@ class TxRedsys(models.Model):
         vals = {
             "state": state,
             "redsys_txnid": params.get("Ds_AuthorisationCode"),
-            "date": fields.Datetime.now(),
         }
         state_message = ""
+        _logger.info(params)
         if state == "done":
             vals["state_message"] = _("Ok: %s") % params.get("Ds_Response")
-            self._set_transaction_done()
-            self._post_process_after_done()
+            self._set_done()
+            self._finalize_post_processing()
         elif state == "pending":  # 'Payment error: code: %s.'
             state_message = _("Error: %s (%s)")
-            self._set_transaction_pending()
+            self._set_pending()
         elif state == "cancel":  # 'Payment error: bank unavailable.'
             state_message = _("Bank Error: %s (%s)")
-            self._set_transaction_cancel()
+            self._set_canceled()
         else:
             state_message = _("Redsys: feedback error %s (%s)")
-            self._set_transaction_error(state_message)
+           
         if state_message:
             vals["state_message"] = state_message % (
                 params.get("Ds_Response"),
@@ -370,12 +370,18 @@ class TxRedsys(models.Model):
             )
             if state == "error":
                 _logger.warning(vals["state_message"])
+                self._set_error(
+                   vals["state_message"]
+                )
+            else:
+                _logger.info(vals["state_message"])
         self.write(vals)
         return state != "error"
 
     @api.model
     def form_feedback(self, data, acquirer_name):
-        res = True
+        res = self._redsys_form_validate(data)
+
         try:
             tx_find_method_name = "_%s_form_get_tx_from_data" % acquirer_name
             if hasattr(self, tx_find_method_name):
@@ -434,3 +440,19 @@ class TxRedsys(models.Model):
                 tx and " for the transaction %s" % tx.reference or "",
             )
         return res
+
+
+    @api.model
+    def _get_tx_from_feedback_data(self, provider, data):
+        tx = super()._get_tx_from_feedback_data(provider, data)
+        if provider != 'redsys':
+            return tx
+
+        return self._redsys_form_get_tx_from_data(data)
+
+    def _process_feedback_data(self, data):
+        super()._process_feedback_data(data)
+        if self.provider != 'redsys':
+            return
+
+        self.form_feedback(data, "redsys")
