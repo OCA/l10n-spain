@@ -515,7 +515,6 @@ class AccountInvoice(models.Model):
     @api.multi
     def _get_sii_out_taxes(self):
         """Get the taxes for sales invoices.
-
         :param self: Single invoice record.
         """
         self.ensure_one()
@@ -528,28 +527,29 @@ class AccountInvoice(models.Model):
         taxes_sfess = self._get_sii_taxes_map(['SFESS'])
         taxes_sfesse = self._get_sii_taxes_map(['SFESSE'])
         taxes_sfesns = self._get_sii_taxes_map(['SFESNS'])
-        default_no_taxable_cause = self._get_no_taxable_cause()
         taxes_not_in_total = self._get_sii_taxes_map(['NotIncludedInTotal'])
-        base_not_in_total = self._get_sii_taxes_map(['BaseNotIncludedInTotal'])
         # Check if refund type is 'By differences'. Negative amounts!
         sign = self._get_sii_sign()
+        not_in_amount_total = 0
         exempt_cause = self._get_sii_exempt_cause(taxes_sfesbe + taxes_sfesse)
         for tax_line in self.tax_line_ids:
             tax = tax_line.tax_id
             breakdown_taxes = (
                 taxes_sfesb + taxes_sfesisp + taxes_sfens + taxes_sfesbe
             )
-
-            if tax in (taxes_not_in_total + base_not_in_total):
-                amount = (
-                    tax_line.base if tax in base_not_in_total else tax_line.amount_total
-                )
+            if tax in taxes_not_in_total:
                 if self.currency_id != self.company_id.currency_id:
-                    amount = self.currency_id._compute(
-                        self.currency_id,
-                        self.company_id.currency_id,
-                        amount,
-                    )
+                    currency = self.currency_id.with_context(
+                        date=self._get_currency_rate_date(),
+                        company_id=self.company_id.id
+                        )
+                    amount = currency.compute(
+                        tax_line.amount,
+                        self.company_id.currency_id
+                        )
+                else:
+                    amount = tax_line.amount
+                not_in_amount_total += amount
             if tax in breakdown_taxes:
                 tax_breakdown = taxes_dict.setdefault(
                     'DesgloseFactura', {},
@@ -588,6 +588,8 @@ class AccountInvoice(models.Model):
                     )
             # No sujetas
             if tax in taxes_sfens:
+                # ImporteTAIReglasLocalizacion or ImportePorArticulos7_14_Otros
+                default_no_taxable_cause = self._get_no_taxable_cause()
                 nsub_dict = tax_breakdown.setdefault(
                     'NoSujeta', {default_no_taxable_cause: 0},
                 )
@@ -644,14 +646,7 @@ class AccountInvoice(models.Model):
             taxes_dict['DesgloseTipoOperacion']['Entrega'] = \
                 taxes_dict['DesgloseFactura']
             del taxes_dict['DesgloseFactura']
-
-        # Con independencia del tipo de operación informado (no sujeta,
-        # sujeta y exenta o no exenta) deberá informarse en cualquier caso
-        # como factura sujeta y no exenta, en el caso de ser una factura del
-        # primer semestre.
-        if self.date < SII_START_DATE:
-            return self._sii_adjust_first_semester(taxes_dict)
-        return taxes_dict
+        return taxes_dict, not_in_amount_total
 
     @api.multi
     def _get_sii_in_taxes(self):
@@ -818,14 +813,18 @@ class AccountInvoice(models.Model):
                 tipo_factura = 'R5' if self.type == 'out_refund' else 'F2'
             else:
                 tipo_factura = 'R4' if self.type == 'out_refund' else 'F1'
+            tipo_desglose, not_in_amount_total = self._get_sii_out_taxes()
+            amount_total = (
+                abs(self.amount_total_company_signed) - not_in_amount_total
+            ) * sign
             inv_dict["FacturaExpedida"] = {
                 "TipoFactura": tipo_factura,
                 "ClaveRegimenEspecialOTrascendencia": (
                     self.sii_registration_key.code
                 ),
                 "DescripcionOperacion": self.sii_description,
-                "TipoDesglose": self._get_sii_out_taxes(),
-                "ImporteTotal": abs(self.amount_total_company_signed) * sign,
+                "TipoDesglose": tipo_desglose,
+                "ImporteTotal": amount_total,
             }
             if self.sii_macrodata:
                 inv_dict["FacturaExpedida"].update(Macrodato="S")
