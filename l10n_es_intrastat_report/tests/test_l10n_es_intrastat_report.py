@@ -38,7 +38,11 @@ class TestL10nIntraStatReport(SavepointCase):
         cls.env["l10n.es.intrastat.code.import"].create({}).execute()
         # Create product ans assign random HS Code
         cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "hs_code_id": cls.env["hs.code"].browse(1).id}
+            {
+                "name": "Test product",
+                "hs_code_id": cls.env["hs.code"].browse(1).id,
+                "origin_country_id": cls.env.ref("base.fr").id,
+            }
         )
         # Invoices to be used in dispatches
         cls.invoices = {
