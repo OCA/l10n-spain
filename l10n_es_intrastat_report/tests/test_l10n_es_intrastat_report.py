@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+from odoo import _
 from odoo.tests.common import Form
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -35,6 +36,17 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         return inv
 
     @classmethod
+    def _create_declaration(cls, declaration_type):
+        return cls.env["l10n.es.intrastat.product.declaration"].create(
+            {
+                "year": datetime.today().year,
+                "month": str(datetime.today().month).zfill(2),
+                "declaration_type": declaration_type,
+                "action": "replace",
+            }
+        )
+
+    @classmethod
     def setUpClass(cls, chart_template_ref=None):
         chart_template_ref = (
             "l10n_es.account_chart_template_common" or chart_template_ref
@@ -55,7 +67,11 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
         # Create product ans assign random HS Code
         cls.hs_code = cls.env["hs.code"].search([], limit=1)
         cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "hs_code_id": cls.hs_code.id}
+            {
+                "name": "Test product",
+                "hs_code_id": cls.hs_code.id,
+                "origin_country_id": cls.env.ref("base.fr").id,
+            }
         )
         # Invoices to be used in dispatches
         cls.invoices = {
@@ -113,14 +129,7 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
 
     def test_report_creation_dispatches(self):
         # Generate report
-        report_dispatches = self.env["l10n.es.intrastat.product.declaration"].create(
-            {
-                "year": datetime.today().year,
-                "month": str(datetime.today().month).zfill(2),
-                "declaration_type": "dispatches",
-                "action": "replace",
-            }
-        )
+        report_dispatches = self._create_declaration("dispatches")
         report_dispatches.action_gather()
         self._check_move_lines_present(
             self.invoices["dispatches"]["invoices"],
@@ -147,16 +156,36 @@ class TestL10nIntraStatReport(AccountTestInvoicingCommon):
             self.assertTrue(items[0] in ("PT", "FR"))
             self.assertEqual(items[6], self.hs_code.local_code)
 
+    def test_report_creation_dispatches_notes_and_lines(self):
+        # Generate report
+        self.product.origin_country_id = False
+        report_dispatches = self._create_declaration("dispatches")
+        expected_invoices = self.invoices["dispatches"]["invoices"]
+        expected_notes = [
+            _("Missing origin country on product %s. ") % (self.product.display_name),
+            _("Missing partner vat on invoice %s. ") % (expected_invoices[0].name),
+        ]
+        report_dispatches.action_gather()
+        for expected_note in expected_notes:
+            self.assertIn(expected_note, report_dispatches.note)
+        report_dispatches.generate_declaration()
+        self.assertEqual(len(report_dispatches.declaration_line_ids), 0)
+        # Change data to remove some notes and create lines
+        self.product.origin_country_id = self.env.ref("base.fr")
+        self.partner_1.vat = "FR23334175221"
+        self.partner_2.vat = "FR23334175221"
+        report_dispatches.action_gather()
+        report_dispatches.generate_declaration()
+        total_expected_invoices = len(expected_invoices) / 2
+        self.assertEqual(
+            len(report_dispatches.declaration_line_ids), total_expected_invoices
+        )
+        for expected_note in expected_notes:
+            self.assertNotIn(expected_note, report_dispatches.note)
+
     def test_report_creation_arrivals(self):
         # Generate report
-        report_arrivals = self.env["l10n.es.intrastat.product.declaration"].create(
-            {
-                "year": datetime.today().year,
-                "month": str(datetime.today().month).zfill(2),
-                "declaration_type": "arrivals",
-                "action": "replace",
-            }
-        )
+        report_arrivals = self._create_declaration("arrivals")
         report_arrivals.action_gather()
         self._check_move_lines_present(
             self.invoices["arrivals"]["invoices"], report_arrivals.computation_line_ids
