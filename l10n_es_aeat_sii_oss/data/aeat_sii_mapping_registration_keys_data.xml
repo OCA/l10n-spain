@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record
+        id="aeat_sii_oss_mapping_registration_keys_1"
+        model="aeat.sii.mapping.registration.keys"
+    >
+        <field name="code">17</field>
+        <field
+            name="name"
+        >Operación acogida a alguno de los regímenes previstos en el Capítulo XI del Título IX (OSS)</field>
+        <field name="type">sale</field>
+    </record>
+</odoo>
