@@ -74,7 +74,7 @@
                                     <tr t-foreach="o.move_record_ids" t-as="l">
                                         <td>
                                             <span
-                                                t-esc="l.move_id.ref or l.move_id.name"
+                                                t-esc="l.move_id.ref if l.move_id.type[:2] == 'in' else l.move_id.name"
                                             />
                                         </td>
                                         <td>
