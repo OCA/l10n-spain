@@ -1166,7 +1166,10 @@ class TicketBAIInvoice(models.Model):
                     "All Invoice recipients must be from the same country."
                 ) % self.name)
             elif 1 == len(country_codes) and country_codes[0] == spain_country_code:
-                spanish_or_no_customers = True
+                # Solo se admite desglose por operación cuando existe destinatario
+                # extranjero (tipo IDOtro o que sea un NIF que empiece por N)
+                spanish_or_no_customers = not (
+                    self.tbai_customer_ids[:1].nif or "").startswith('N')
         if spanish_or_no_customers:
             res = {"DesgloseFactura": OrderedDict()}
             sujeta = self.build_sujeta()
