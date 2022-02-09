@@ -1137,7 +1137,7 @@ msgid "TicketBAI Installations"
 msgstr "TicketBAI Instalaciones"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:795
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:799
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1147,7 +1147,7 @@ msgstr ""
 "La dirección de %s es requerida para la Hacienda %s."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1160
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1164
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1309,7 +1309,7 @@ msgstr ""
 "caracteres."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:927
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:931
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1319,7 +1319,7 @@ msgstr ""
 "Detalles factura es requerido para la Hacienda %s."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:770
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:774
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1329,7 +1329,7 @@ msgstr ""
 "Sólo se permite un máximo de 100 destinatarios por factura."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1045
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1049
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1339,7 +1339,7 @@ msgstr ""
 "Sólo se permite un máximo de 1000 líneas/detalles por factura."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:948
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:952
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1349,7 +1349,7 @@ msgstr ""
 "Firma de la factura anterior es requerida."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1225
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1229
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1359,7 +1359,7 @@ msgstr ""
 "Factura rectificada o sustituida %s fecha de expedición"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1215
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1219
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1371,7 +1371,7 @@ msgstr ""
 "esperado. Debería tener un máximo de 20 caracteres."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1204
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1208
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1464,7 +1464,7 @@ msgstr ""
 "Operación en recargo de equivalencia o régimen simplificado debería ser '%s'."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:788
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:792
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1534,14 +1534,14 @@ msgid "TicketBAI Invoice %s: Line %s Quantity"
 msgstr "TicketBAI Factura %s: Línea %s cantidad"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:820
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:824
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of exempted taxes is 7!"
 msgstr ""
 "TicketBAI Factura %s: El número máximo permitido de impuestos exentos es 7."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:906
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:910
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of not subject to taxes is 2!"
 msgstr ""
