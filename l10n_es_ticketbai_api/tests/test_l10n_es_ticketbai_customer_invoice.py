@@ -155,12 +155,12 @@ class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
 
         # Simulate 1st invoice sent successfully.
         # 2nd rejected by the Tax Agency. Mark as an error.
-        # 3rd mark as an error.
+        # 3rd still pending.
         invoice.mark_as_sent()
-        self.env['tbai.invoice'].mark_chain_as_error(invoice2)
+        self.env['tbai.invoice'].mark_as_error(invoice2)
         self.assertEqual(invoice2.state, 'error')
-        self.assertEqual(invoice3.state, 'error')
-        self.assertEqual(self.main_company.tbai_last_invoice_id, invoice)
+        self.assertEqual(invoice3.state, 'pending')
+        self.assertEqual(self.main_company.tbai_last_invoice_id, invoice3)
 
     def test_exempted_invoice(self):
         uid = self.tech_user.id

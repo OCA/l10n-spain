@@ -532,16 +532,8 @@ class TicketBAIInvoice(models.Model):
         return taxes
 
     @api.model
-    def mark_chain_as_error(self, invoice_to_error):
-        # Restore last invoice successfully sent
-        if TicketBaiSchema.TicketBai.value == invoice_to_error.schema:
-            invoice_to_error.company_id.tbai_last_invoice_id = \
-                invoice_to_error.previous_tbai_invoice_id
-        while invoice_to_error:
-            invoice_to_error.error()
-            invoice_to_error = self.search([
-                ('previous_tbai_invoice_id', '=', invoice_to_error.id)
-            ])
+    def mark_as_error(self, invoice_to_error):
+        invoice_to_error.error()
 
     @api.model
     def send_pending_invoices(self):
@@ -600,7 +592,7 @@ class TicketBAIInvoice(models.Model):
                         retry_later = True
                         error = False
                 if error:
-                    self.mark_chain_as_error(next_pending_invoice)
+                    self.mark_as_error(next_pending_invoice)
                     rejected_retries += 1
             elif TicketBaiResponseState.REQUEST_ERROR.value == tbai_response.state:
                 # In case of multi-company it would be delaying independently from the

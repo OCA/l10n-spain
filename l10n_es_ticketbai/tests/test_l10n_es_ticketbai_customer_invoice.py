@@ -66,22 +66,19 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         # 2nd rejected by the Tax Agency. Mark as an error.
         # 3rd mark as an error.
         invoice.tbai_invoice_id.sudo().mark_as_sent()
-        self.env['tbai.invoice'].mark_chain_as_error(invoice2.sudo().tbai_invoice_id)
+        self.env['tbai.invoice'].mark_as_error(invoice2.sudo().tbai_invoice_id)
         self.assertEqual(invoice2.tbai_invoice_id.state, 'error')
-        self.assertEqual(invoice3.tbai_invoice_id.state, 'error')
+        self.assertEqual(invoice3.tbai_invoice_id.state, 'pending')
         self.assertEqual(
-            self.main_company.tbai_last_invoice_id, invoice.tbai_invoice_id)
+            self.main_company.tbai_last_invoice_id, invoice3.tbai_invoice_id)
 
         # Cancel and recreate invoices with errors.
         with self.assertRaises(exceptions.ValidationError):
             invoice.tbai_invoice_id.cancel_and_recreate()
         invoices_with_errors = invoice2.tbai_invoice_id
-        invoices_with_errors |= invoice3.tbai_invoice_id
         invoices_with_errors.cancel_and_recreate()
         self.assertEqual(invoices_with_errors[0].state, 'cancel')
         self.assertEqual(invoice2.tbai_invoice_id.state, 'pending')
-        self.assertEqual(invoices_with_errors[1].state, 'cancel')
-        self.assertEqual(invoice3.tbai_invoice_id.state, 'pending')
 
     def test_invoice_ipsi_igic(self):
         invoice = self.create_draft_invoice(
