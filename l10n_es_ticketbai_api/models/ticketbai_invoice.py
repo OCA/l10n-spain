@@ -875,9 +875,13 @@ class TicketBAIInvoice(models.Model):
         detalles_factura = self.build_detalles_factura()
         if detalles_factura:
             res["DetallesFactura"] = detalles_factura
-        res["ImporteTotalFactura"] = self.amount_total
         if self.tax_retention_amount_total:
+            res["ImporteTotalFactura"] = "%.2f" % (
+                float(self.amount_total) + float(self.tax_retention_amount_total)
+            )
             res["RetencionSoportada"] = self.tax_retention_amount_total
+        else:
+            res["ImporteTotalFactura"] = self.amount_total
         res["Claves"] = self.build_claves()
         return res
 
