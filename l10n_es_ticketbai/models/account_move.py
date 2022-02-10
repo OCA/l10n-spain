@@ -17,6 +17,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     tbai_enabled = fields.Boolean(related="company_id.tbai_enabled", readonly=True)
+    tbai_send_invoice = fields.Boolean(related="journal_id.tbai_send_invoice")
     tbai_substitution_invoice_id = fields.Many2one(
         comodel_name="account.move",
         copy=False,
@@ -420,12 +421,15 @@ class AccountMove(models.Model):
         res = super()._post(soft)
         tbai_invoices = self.sudo().env["account.move"]
         tbai_invoices |= self.sudo().filtered(
-            lambda x: x.tbai_enabled and "out_invoice" == x.move_type
+            lambda x: x.tbai_enabled
+            and "out_invoice" == x.move_type
+            and x.tbai_send_invoice
         )
         refund_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
             and "out_refund" == x.move_type
             and x.tbai_refund_type == RefundType.differences.value
+            and x.tbai_send_invoice
         )
 
         validate_refund_invoices()

@@ -69,6 +69,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         only_service=False,
         company_id=None,
         invoice_type="out_invoice",
+        journal_id=None,
         context=None,
     ):
         if not context:
@@ -144,21 +145,24 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
             )
         )
 
+        invoice_vals = {
+            "partner_id": partner,
+            "currency_id": self.env.ref("base.EUR").id,
+            "invoice_date": str(date.today()),
+            "tbai_date_operation": str(date.today()),
+            "fiscal_position_id": fp.id,
+            "invoice_line_ids": invoice_line_ids,
+            "company_id": company_id or self.main_company.id,
+        }
+
+        if journal_id:
+            invoice_vals["journal_id"] = journal_id.id
+
         invoice = (
             self.env["account.move"]
             .with_user(uid)
             .with_context(default_move_type=invoice_type)
-            .create(
-                {
-                    "partner_id": partner,
-                    "currency_id": self.env.ref("base.EUR").id,
-                    "invoice_date": str(date.today()),
-                    "tbai_date_operation": str(date.today()),
-                    "fiscal_position_id": fp.id,
-                    "invoice_line_ids": invoice_line_ids,
-                    "company_id": company_id or self.main_company.id,
-                }
-            )
+            .create(invoice_vals)
         )
 
         return invoice
@@ -441,4 +445,12 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         )
         self.fiscal_position_ipsi_igic = self.main_company.get_fps_from_templates(
             self.env.ref("l10n_es.fp_not_subject_tai")
+        )
+        self.non_tbai_journal = self.env["account.journal"].create(
+            {
+                "name": "Non-Tbai journal",
+                "type": "sale",
+                "code": "NTBAI",
+                "tbai_send_invoice": False,
+            }
         )

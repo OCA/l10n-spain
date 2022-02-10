@@ -14,6 +14,10 @@ Diario
 
 * Permitir cancelación de asientos (habilita el envío del fichero de anulación al cancelar una factura)
 
+* Habilitar/deshabilitar envio de facturas TicketBAI por diarios de ventas
+
+  * En caso de que se tengan varias series de facturación, si una de ellas se envía a TicketBAI a través de otro software, en el diario de ventas en el cual se contabilizan estas facturas en Odoo deberá estar desactivado el envío de facturas TicketBAI para evitar duplicar la información en hacienda.
+
 Clientes
 
 * Tipo de identificación fiscal (e.g.: NIF-IVA)
