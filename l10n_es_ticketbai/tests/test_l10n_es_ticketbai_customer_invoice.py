@@ -30,8 +30,8 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         res = XMLSchema.xml_is_valid(self.test_xml_invoice_schema_doc, root)
         self.assertTrue(res)
 
-    def test_cancel_and_recreate(self):
-        # Build three invoices and check the chaining.
+    def test_mark_as_error(self):
+        # Build three invoices and check the errors.
         invoice = self.create_draft_invoice(
             self.account_billing.id, self.fiscal_position_national)
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
@@ -64,21 +64,13 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
 
         # Simulate 1st invoice sent successfully.
         # 2nd rejected by the Tax Agency. Mark as an error.
-        # 3rd mark as an error.
+        # 3rd still pending.
         invoice.tbai_invoice_id.sudo().mark_as_sent()
         self.env['tbai.invoice'].mark_as_error(invoice2.sudo().tbai_invoice_id)
         self.assertEqual(invoice2.tbai_invoice_id.state, 'error')
         self.assertEqual(invoice3.tbai_invoice_id.state, 'pending')
         self.assertEqual(
             self.main_company.tbai_last_invoice_id, invoice3.tbai_invoice_id)
-
-        # Cancel and recreate invoices with errors.
-        with self.assertRaises(exceptions.ValidationError):
-            invoice.tbai_invoice_id.cancel_and_recreate()
-        invoices_with_errors = invoice2.tbai_invoice_id
-        invoices_with_errors.cancel_and_recreate()
-        self.assertEqual(invoices_with_errors[0].state, 'cancel')
-        self.assertEqual(invoice2.tbai_invoice_id.state, 'pending')
 
     def test_invoice_ipsi_igic(self):
         invoice = self.create_draft_invoice(

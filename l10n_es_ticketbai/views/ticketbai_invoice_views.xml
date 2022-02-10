@@ -9,9 +9,6 @@
             <field name="arch" type="xml">
                 <form string="TicketBAI Invoice" create="false" delete="false" edit="false" import="false">
                     <header>
-                        <button name="cancel_and_recreate" string="Cancel and recreate"
-                                type="object" states="error" class="btn-primary"
-                                groups="account.group_account_manager"/>
                         <field name="state" widget="statusbar" readonly="1"/>
                     </header>
                     <group name="invoice" string="Invoice">

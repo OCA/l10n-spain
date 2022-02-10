@@ -64,11 +64,6 @@ msgid "By substitution"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
-msgid "Cancel and recreate"
-msgstr ""
-
-#. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:307
 #, python-format
 msgid "Cancellation"
@@ -646,12 +641,6 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:145
 #, python-format
 msgid "TicketBAI refund by substitution is not supported."
-msgstr ""
-
-#. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:39
-#, python-format
-msgid "TicketBAI: You cannot cancel and recreate an Invoice with a state different than 'Error'."
 msgstr ""
 
 #. module: l10n_es_ticketbai
