@@ -398,9 +398,11 @@ msgstr ""
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description_method
 msgid ""
 "Method for the TicketBAI invoices description, can be one of these:\n"
-"- Automatic: the description will be the join of the invoice   lines description\n"
+"- Automatic: the description will be the join of the invoice   lines "
+"description\n"
 "- Fixed: the description write on the below field 'TBAI   Description'\n"
-"- Manual (by default): It will be necessary to manually enter   the description on each invoice"
+"- Manual (by default): It will be necessary to manually enter   the "
+"description on each invoice"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -508,6 +510,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_response_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.view_move_form_inherit
 msgid "Responses"
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_line__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_move__tbai_send_invoice
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_payment__tbai_send_invoice
+msgid "Send TicketBAI invoices to tax agency"
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -620,8 +630,8 @@ msgstr ""
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,help:l10n_es_ticketbai.field_res_company__tbai_description
 msgid ""
-"The description for invoices. Only used when the field TicketBAI Description"
-" Method is 'Fixed'."
+"The description for invoices. Only used when the field TicketBAI Description "
+"Method is 'Fixed'."
 msgstr ""
 
 #. module: l10n_es_ticketbai
@@ -866,4 +876,12 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai/models/account_resequence.py:0
 #, python-format
 msgid "You cannot resequence a customer invoice when TicketBAI is enabled."
+msgstr ""
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:0
+#, python-format
+msgid ""
+"You cannot stop sending invoices from this journal, an invoice has already "
+"been sent."
 msgstr ""
