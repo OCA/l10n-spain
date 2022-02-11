@@ -282,9 +282,9 @@ class LROEOperation(models.Model):
                 return str(datetime.strptime(
                     self.tbai_invoice_ids[0].expedition_date,
                     '%d-%m-%Y').year)
-        elif self.invoice_ids and self.invoice_ids[0].date_invoice:
-            date_invoice = fields.Date.from_string(self.invoice_ids[0].date_invoice)
-            return str(date_invoice.year)
+        elif self.invoice_ids and self.invoice_ids[0].date:
+            date = fields.Date.from_string(self.invoice_ids[0].date)
+            return str(date.year)
         return str(datetime.now().year)
 
     def build_obligado_tributario(self):
