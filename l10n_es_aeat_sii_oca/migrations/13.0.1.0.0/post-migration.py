@@ -55,7 +55,6 @@ def migrate(env, version):
             model_name = 'account.move',
             name = concat('account.move.', method_name),
             channel_method_name = concat('<account.move>.', parts[2]),
-            record_ids = concat('[', am.id::text, ']'),
             records = concat(
                 sub.parts2[1], '"model": "account.move"', sub.parts2[2],
                 '"ids": [', am.id, ']', sub.parts2[4]
