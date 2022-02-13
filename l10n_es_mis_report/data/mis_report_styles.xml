@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 ForgeFlow, S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mis_report_style_l10n_es_base" model="mis.report.style">
+        <field name="name">l10n_es base</field>
+        <field name="dp_inherit" eval="0" />
+        <field name="dp">2</field>
+    </record>
+    <record id="mis_report_style_l10n_es_l1" model="mis.report.style">
+        <field name="name">l10n_es l1</field>
+        <field name="background_color_inherit" eval="0" />
+        <field name="background_color">#ffa500</field>
+        <field name="font_weight_inherit" eval="0" />
+        <field name="font_weight">bold</field>
+    </record>
+    <record id="mis_report_style_l10n_es_l1i" model="mis.report.style">
+        <field name="name">l10n_es l1i</field>
+        <field name="background_color_inherit" eval="0" />
+        <field name="background_color">#ffa500</field>
+        <field name="font_weight_inherit" eval="0" />
+        <field name="font_weight">bold</field>
+        <field name="font_style_inherit" eval="0" />
+        <field name="font_style">italic</field>
+    </record>
+    <record id="mis_report_style_l10n_es_l2" model="mis.report.style">
+        <field name="name">l10n_es l2</field>
+        <field name="font_weight_inherit" eval="0" />
+        <field name="font_weight">bold</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l2i" model="mis.report.style">
+        <field name="name">l10n_es l2i</field>
+        <field name="font_weight_inherit" eval="0" />
+        <field name="font_weight">bold</field>
+        <field name="font_style_inherit" eval="0" />
+        <field name="font_style">italic</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l3" model="mis.report.style">
+        <field name="name">l10n_es l3</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">1</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l3i" model="mis.report.style">
+        <field name="name">l10n_es l3i</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">1</field>
+        <field name="font_style_inherit" eval="0" />
+        <field name="font_style">italic</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l4" model="mis.report.style">
+        <field name="name">l10n_es l4</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">2</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l4i" model="mis.report.style">
+        <field name="name">l10n_es l4i</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">2</field>
+        <field name="font_style_inherit" eval="0" />
+        <field name="font_style">italic</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l5" model="mis.report.style">
+        <field name="name">l10n_es l5</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">3</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l5i" model="mis.report.style">
+        <field name="name">l10n_es l5i</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">3</field>
+        <field name="font_style_inherit" eval="0" />
+        <field name="font_style">italic</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l6" model="mis.report.style">
+        <field name="name">l10n_es l6</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">4</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+    <record id="mis_report_style_l10n_es_l6i" model="mis.report.style">
+        <field name="name">l10n_es l6i</field>
+        <field name="indent_level_inherit" eval="0" />
+        <field name="indent_level">4</field>
+        <field name="font_style_inherit" eval="0" />
+        <field name="font_style">italic</field>
+        <field name="hide_empty_inherit" eval="0" />
+        <field name="hide_empty" eval="0" />
+    </record>
+</odoo>
