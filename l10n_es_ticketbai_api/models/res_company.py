@@ -143,7 +143,9 @@ class ResCompany(models.Model):
                     _("Company %s TicketBAI Tax Agency is required.") % record.name
                 )
 
-            tbai_invoices = record.env["tbai.invoice"].search([])
+            tbai_invoices = record.env["tbai.invoice"].search(
+                [("company_id", "=", record.id)]
+            )
 
             if 0 < len(tbai_invoices):
                 raise exceptions.ValidationError(
