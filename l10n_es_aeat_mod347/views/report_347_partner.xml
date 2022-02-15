@@ -78,7 +78,7 @@
                                             <span t-field="l.move_id.date" />
                                         </td>
                                         <td class="text-right" id="subtotal">
-                                            <span t-field="l.amount_signed" />
+                                            <span t-field="l.amount" />
                                         </td>
                                     </tr>
                                     <tr
