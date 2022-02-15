@@ -28,7 +28,12 @@
                             </group>
                         </group>
                         <group name="tbai_refund" string="Refund" attrs="{'invisible': [('type', '!=', 'out_refund')]}">
-                            <field name="refund_invoice_id" invisible="1"/>
+                            <group name="tbai_refund_invoice_id"
+                                   attrs="{'invisible': ['|', '|', ('tbai_enabled', '!=', True), ('tbai_refund_origin_ids', '!=', []), ('type', '!=', 'out_refund')]}">
+                                <field name="refund_invoice_id"
+                                       domain="[('type', '=', 'out_invoice'), ('state', '=', 'open'), ('company_id', '=', company_id), ('partner_id', '=', partner_id)]"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
                             <group name="tbai_refund_key_type" string="Key/Type" colspan="4">
                                 <field name="tbai_refund_key" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="tbai_refund_type" attrs="{'required': [('tbai_enabled', '=', True), ('type', '=', 'out_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
