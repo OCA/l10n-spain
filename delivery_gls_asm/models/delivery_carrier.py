@@ -5,13 +5,13 @@ from xml.sax.saxutils import escape
 from odoo import _, fields, models
 from odoo.exceptions import UserError
 
-from .gls_asm_request import (
+from .gls_asm_master_data import (
     GLS_ASM_SERVICES,
     GLS_DELIVERY_STATES_STATIC,
     GLS_POSTAGE_TYPE,
     GLS_SHIPPING_TIMES,
-    GlsAsmRequest,
 )
+from .gls_asm_request import GlsAsmRequest
 
 
 class DeliveryCarrier(models.Model):
