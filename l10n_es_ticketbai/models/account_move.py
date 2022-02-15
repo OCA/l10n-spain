@@ -158,6 +158,14 @@ class AccountMove(models.Model):
             self.tbai_vat_regime_key2 = self.fiscal_position_id.tbai_vat_regime_key2.id
             self.tbai_vat_regime_key3 = self.fiscal_position_id.tbai_vat_regime_key3.id
 
+    @api.onchange("reversed_entry_id")
+    def onchange_tbai_reversed_entry_id(self):
+        if self.reversed_entry_id:
+            if not self.tbai_refund_type:
+                self.tbai_refund_type = RefundType.differences.value
+            if not self.tbai_refund_key:
+                self.tbai_refund_key = RefundCode.R1.value
+
     def tbai_prepare_invoice_values(self):
         def tbai_prepare_refund_values():
             refunded_inv = self.reversed_entry_id
@@ -428,7 +436,8 @@ class AccountMove(models.Model):
         refund_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
             and "out_refund" == x.move_type
-            and x.tbai_refund_type == RefundType.differences.value
+            and not x.tbai_refund_type
+            or x.tbai_refund_type == RefundType.differences.value
             and x.tbai_send_invoice
         )
 
