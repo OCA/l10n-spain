@@ -3,6 +3,7 @@
 import base64
 
 from odoo import _, fields, models
+from odoo.tools import float_compare
 
 from .dhl_parcel_request import (
     DHL_PARCEL_DELIVERY_STATES_STATIC,
@@ -89,13 +90,17 @@ class DeliveryCarrier(models.Model):
         :returns dict values for the connector
         """
         self.ensure_one()
+        # El peso del envío tiene que ser como mínimo 1 kilo o como máximo 99999 kilos
+        weight = picking.shipping_weight
+        if float_compare(weight, 1, precision_digits=3) == -1:
+            weight = 1
         return {
             "Customer": self.dhl_parcel_customer_code,
             "Receiver": self._get_dhl_parcel_receiver_info(picking),
             "Sender": self._get_dhl_parcel_sender_info(picking),  # [optional]
             "Reference": picking.name,  # [optional]
             "Quantity": picking.number_of_packages,  # 1-999
-            "Weight": picking.shipping_weight,  # in kg, 1-99999
+            "Weight": weight,  # in kg, 1-99999
             "WeightVolume": "",  # [optional] Volume, in kg
             "CODAmount": "",  # [optional]
             "CODExpenses": "",  # [optional], mandatory if CODAmount filled
