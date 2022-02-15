@@ -1,12 +1,17 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from xml.sax.saxutils import escape
+
 from odoo import _, fields, models
 from odoo.exceptions import UserError
-from xml.sax.saxutils import escape
+
+from .gls_asm_master_data import (
+    GLS_ASM_SERVICES,
+    GLS_DELIVERY_STATES_STATIC,
+    GLS_POSTAGE_TYPE,
+    GLS_SHIPPING_TIMES,
+)
 from .gls_asm_request import GlsAsmRequest
-from .gls_asm_request import (
-    GLS_ASM_SERVICES, GLS_SHIPPING_TIMES, GLS_POSTAGE_TYPE,
-    GLS_DELIVERY_STATES_STATIC)
 
 
 class DeliveryCarrier(models.Model):
