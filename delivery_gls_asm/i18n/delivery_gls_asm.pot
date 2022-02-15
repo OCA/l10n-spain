@@ -343,7 +343,7 @@ msgstr ""
 #, python-format
 msgid ""
 "GLS returned an error trying to record the shipping for {}.\n"
-"Error:\n"
+"Error code {}:\n"
 "{}"
 msgstr ""
 
@@ -695,6 +695,12 @@ msgstr ""
 #. module: delivery_gls_asm
 #: model:ir.model,name:delivery_gls_asm.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: delivery_gls_asm
+#: code:addons/delivery_gls_asm/models/gls_asm_request.py:0
+#, python-format
+msgid "Unknown"
 msgstr ""
 
 #. module: delivery_gls_asm
