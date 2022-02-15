@@ -173,7 +173,7 @@
         <field name="sequence">13</field>
         <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
         <field name="name">Importe de las operaciones</field>
-        <field name="expression">${object.amount}</field>
+        <field name="expression">${abs(object.amount)}</field>
         <field name="export_type">float</field>
         <field name="apply_sign" eval="True" />
         <field name="positive_sign"> </field>
