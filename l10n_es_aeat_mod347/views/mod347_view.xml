@@ -165,10 +165,9 @@
                             >
                                 <tree
                                     string="Move records"
-                                    decoration-info="'refund' in move_type"
+                                    decoration-info="(amount &gt; 0 and parent.operation_key == 'B') or (amount &lt; 0 and parent.operation_key == 'A')"
                                 >
                                     <field name="move_id" />
-                                    <field name="move_type" invisible="1" />
                                     <field name="date" />
                                     <field name="amount" />
                                 </tree>
