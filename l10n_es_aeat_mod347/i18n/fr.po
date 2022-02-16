@@ -298,12 +298,6 @@ msgid "Amount 4Q:"
 msgstr "Montant"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount_signed
-#, fuzzy
-msgid "Amount signed"
-msgstr "Montant"
-
-#. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
 msgid "Amount:"
@@ -1464,11 +1458,6 @@ msgid "Township Code"
 msgstr ""
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
-msgid "Type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
@@ -1526,6 +1515,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Amount signed"
+#~ msgstr "Montant"
 
 #, fuzzy
 #~ msgid "Journal Entries"

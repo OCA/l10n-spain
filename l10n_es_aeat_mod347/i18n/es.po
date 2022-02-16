@@ -294,11 +294,6 @@ msgid "Amount 4Q:"
 msgstr "Importe 4T:"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount_signed
-msgid "Amount signed"
-msgstr "Cantidad firmada"
-
-#. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 msgid "Amount:"
 msgstr "Importe:"
@@ -1516,11 +1511,6 @@ msgid "Township Code"
 msgstr "Código de municipio"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
-msgid "Type"
-msgstr ""
-
-#. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_decoration
 #: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_decoration
 msgid "Type of the exception activity on record."
@@ -1579,6 +1569,9 @@ msgstr "Ya puede cerrar esta página si así lo desea."
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr "Año"
+
+#~ msgid "Amount signed"
+#~ msgstr "Cantidad firmada"
 
 #~ msgid "Journal Entries"
 #~ msgstr "Entradas de diario"
