@@ -290,12 +290,6 @@ msgid "Amount 4Q:"
 msgstr "Importe"
 
 #. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount_signed
-#, fuzzy
-msgid "Amount signed"
-msgstr "Importe"
-
-#. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
 #, fuzzy
 msgid "Amount:"
@@ -445,7 +439,7 @@ msgid "Complementary"
 msgstr "Complementaria"
 
 #. module: l10n_es_aeat_mod347
-#: code:addons/l10n_es_aeat_mod347/models/mod347.py:566
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:556
 #, python-format
 msgid "Compose Email"
 msgstr ""
@@ -871,11 +865,6 @@ msgstr ""
 #, fuzzy
 msgid "Move Record"
 msgstr "Rexistro de factura"
-
-#. module: l10n_es_aeat_mod347
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
-msgid "Move Type"
-msgstr ""
 
 #. module: l10n_es_aeat_mod347
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
@@ -1598,6 +1587,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
 msgid "Year"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Amount signed"
+#~ msgstr "Importe"
 
 #~ msgid ""
 #~ "<p class=\"oe_view_nocontent_create\">\n"
