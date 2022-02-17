@@ -26,6 +26,8 @@
         "data/202107/aeat.model.export.config.line.csv",
         "data/202107/aeat.mod.map.tax.code.csv",
         "data/202107/aeat.mod.map.tax.code.line.csv",
+        "data/2022/aeat.model.export.config.csv",
+        "data/2022/aeat.model.export.config.line.csv",
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_data.xml",
         "data/aeat_export_mod303_2017_data.xml",
