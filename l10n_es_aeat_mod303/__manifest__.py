@@ -7,7 +7,7 @@
 
 {
     "name": "AEAT modelo 303",
-    "version": "15.0.1.1.0",
+    "version": "15.0.2.0.0",
     "category": "Accounting",
     "development_status": "Mature",
     "author": "Guadaltech,"
@@ -23,6 +23,8 @@
         "data/2021-07/aeat.model.export.config.line.csv",
         "data/2021-07/l10n.es.aeat.map.tax.csv",
         "data/2021-07/l10n.es.aeat.map.tax.line.csv",
+        "data/2022/aeat.model.export.config.csv",
+        "data/2022/aeat.model.export.config.line.csv",
         "data/tax_code_map_mod303_data.xml",
         "data/aeat_export_mod303_2018_data.xml",
         "data/aeat_export_mod303_2021_data.xml",
