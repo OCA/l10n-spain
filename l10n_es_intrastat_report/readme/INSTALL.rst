@@ -11,7 +11,7 @@ and launch there the wizard called "Import Spanish Product HS Codes"
 
 The included codes are for 2021. Please check possible updates for this codes in:
 
-https://www.cbs.nl/en-gb/participants-survey/overzicht/businesses/onderzoek/international-trade-in-goods/idep-code-lists
+https://www.cbs.nl/en-gb/participants-survey/overzicht/businesses/onderzoek/international-trade-in-goods/code-lists-itg
 
 This wizard also sets a sane default Intrastat transaction type for each kind
 of invoice at company level, but it can be changed later.
