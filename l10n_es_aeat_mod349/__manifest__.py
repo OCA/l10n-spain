@@ -8,7 +8,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Modelo 349 AEAT",
+    "name": "AEAT modelo 349",
     "version": "15.0.1.0.1",
     "author": "Tecnativa, Eficent, Odoo Community Association (OCA)",
     "license": "AGPL-3",
