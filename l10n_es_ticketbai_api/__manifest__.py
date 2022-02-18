@@ -4,7 +4,7 @@
 
 {
     "name": "TicketBAI - API",
-    "version": "13.0.1.4.3",
+    "version": "13.0.1.5.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "author": "Binovo," "Odoo Community Association (OCA)",
@@ -27,6 +27,7 @@
     },
     "data": [
         "security/ir.model.access.csv",
+        "security/l10n_es_ticketbai_security.xml",
         "data/tax_agency_data.xml",
         "data/ticketbai_invoice.xml",
         "views/l10n_es_ticketbai_api_views.xml",
