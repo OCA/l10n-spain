@@ -37,7 +37,7 @@ class ResPartner(models.Model):
     aeat_partner_check_result = fields.Selection(
         selection=RESULTS, string="Check Result", readonly=True
     )
-    aeat_partner_vat = fields.Char(string="VAT", readonly=True)
+    aeat_partner_vat = fields.Char(string="AEAT VAT", readonly=True)
     aeat_partner_name = fields.Char(string="AEAT Name", readonly=True)
     aeat_data_diff = fields.Boolean(
         string="Data different", compute="_compute_data_diff", store=True
