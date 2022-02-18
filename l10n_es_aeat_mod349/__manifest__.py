@@ -2,15 +2,15 @@
 # Copyright 2013 - Top Consultant (http://www.topconsultant.es/)
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
-# Copyright 2017 Eficent Business & IT Consult. Services <contact@eficent.com>
+# Copyright 2017 ForgeFlow <contact@forgeflow.com>
 # Copyright 2014-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2018 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "AEAT modelo 349",
-    "version": "15.0.1.0.1",
-    "author": "Tecnativa, Eficent, Odoo Community Association (OCA)",
+    "version": "15.0.1.0.2",
+    "author": "Tecnativa, ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Localisation/Accounting",
     "website": "https://github.com/OCA/l10n-spain",
