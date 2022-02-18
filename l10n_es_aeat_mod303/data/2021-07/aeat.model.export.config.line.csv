@@ -103,7 +103,7 @@ aeat_mod303_202107_sub03_export_line_28,aeat_mod303_202107_sub03_export_config,2
 aeat_mod303_202107_sub03_export_line_29,aeat_mod303_202107_sub03_export_config,29,Declaración complementaria,boolean,1,0,left,1,N,0, ,X,${object.statement_type == 'C'},,,,
 aeat_mod303_202107_sub03_export_line_30,aeat_mod303_202107_sub03_export_config,30,Numero justificante declaración anterior,string,13,0,left,1,N,0, ,X,${object.previous_number},,,,
 aeat_mod303_202107_sub03_export_line_31,aeat_mod303_202107_sub03_export_config,31,Declaración sin actividad,boolean,1,0,left,1,N,0, ,X,${object.result_type == 'N'},,,,
-aeat_mod303_202107_sub03_export_line_32,aeat_mod303_202107_sub03_export_config,32,Devolución. SWIFT-BIC,string,11,0,left,1,N,0, ,X,${object.result_type == 'D' and object.marca_sepa == "3" and object.partner_bank_id.bank_bic or ''},,,,
+aeat_mod303_202107_sub03_export_line_32,aeat_mod303_202107_sub03_export_config,32,Devolución. SWIFT-BIC,string,11,0,left,1,N,0, ,X,${object.result_type == 'D' and object.marca_sepa == '3' and object.partner_bank_id.bank_bic or ''},,,,
 aeat_mod303_202107_sub03_export_line_33,aeat_mod303_202107_sub03_export_config,33,Domiciliación/Devolución - IBAN,string,34,0,left,1,N,0, ,X,"${object.partner_bank_id and object.partner_bank_id.acc_number.replace(' ', '') or ''}",,,,
 aeat_mod303_202107_sub03_export_line_34,aeat_mod303_202107_sub03_export_config,34,Reservado para la AEAT,string,17,0,left,1,N,0, ,X,,,,,
 aeat_mod303_202107_sub03_export_line_35,aeat_mod303_202107_sub03_export_config,35,Devolución - Banco/Bank name,string,70,0,left,1,N,0, ,X,"${object.result_type == 'D' and object.partner_bank_id.bank_id.name or ''}",,,,
