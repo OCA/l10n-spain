@@ -141,13 +141,21 @@ class DeliveryCarrier(models.Model):
             label_content = base64.b64encode(label_content)
         else:
             label_content = res["PDF"]
+        filename = "seur_{}.{}".format(
+            picking.carrier_tracking_ref, self.seur_label_format
+        )
         self.env["ir.attachment"].create(
             {
-                "name": "SEUR %s" % picking.carrier_tracking_ref,
+                "name": filename,
                 "datas": label_content,
+                "store_fname": filename,
                 "res_model": "stock.picking",
                 "res_id": picking.id,
-                "mimetype": "application/%s" % self.seur_label_format,
+                "mimetype": (
+                    "application/pdf"
+                    if self.seur_label_format == "pdf"
+                    else "text/plain"
+                ),
             }
         )
         res["tracking_number"] = picking.carrier_tracking_ref
