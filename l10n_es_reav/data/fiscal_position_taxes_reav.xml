@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Bilbonet - Jesus Ramiro
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fptt_reav_4b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_reav0" />
+    </record>
+    <record id="fptt_reav_4s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva4_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_reav0" />
+    </record>
+    <record id="fptt_reav_10b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_reav0" />
+    </record>
+    <record id="fptt_reav_10s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva10_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_reav0" />
+    </record>
+    <record id="fptt_reav_21b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_reav0" />
+    </record>
+    <record id="fptt_reav_21s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva21_sc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_reav0" />
+    </record>
+    <record id="fptt_reav_0" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_p_iva0_bc" />
+        <field name="tax_dest_id" ref="account_tax_template_p_reav0" />
+    </record>
+    <record id="fptt_reav_ventas_4b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4b" />
+        <field name="tax_dest_id" ref="account_tax_template_s_reav0" />
+    </record>
+    <record id="fptt_reav_ventas_4s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva4s" />
+        <field name="tax_dest_id" ref="account_tax_template_s_reav0" />
+    </record>
+    <record id="fptt_reav_ventas_10b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10b" />
+        <field name="tax_dest_id" ref="account_tax_template_s_reav0" />
+    </record>
+    <record id="fptt_reav_ventas_10s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva10s" />
+        <field name="tax_dest_id" ref="account_tax_template_s_reav0" />
+    </record>
+    <record id="fptt_reav_ventas_21b" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21b" />
+        <field name="tax_dest_id" ref="account_tax_template_s_reav0" />
+    </record>
+    <record id="fptt_reav_ventas_21s" model="account.fiscal.position.tax.template">
+        <field name="position_id" ref="fp_reav" />
+        <field name="tax_src_id" ref="l10n_es.account_tax_template_s_iva21s" />
+        <field name="tax_dest_id" ref="account_tax_template_s_reav0" />
+    </record>
+</odoo>
