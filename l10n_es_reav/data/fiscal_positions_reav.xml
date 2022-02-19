@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Bilbonet - Jesus Ramiro
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="fp_reav" model="account.fiscal.position.template">
+        <field name="name">REAV - Agencias de viajes</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+    </record>
+</odoo>
