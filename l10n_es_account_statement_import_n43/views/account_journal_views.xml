@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_account_journal_form_n43" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='advanced_settings']/group" position="inside">
+                <group
+                    string="Norm 43 options"
+                    attrs="{'invisible': [('type','!=','bank')]}"
+                >
+                    <field name="n43_date_type" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
