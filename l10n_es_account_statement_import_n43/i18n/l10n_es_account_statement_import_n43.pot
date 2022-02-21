@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -38,23 +38,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__display_name
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_account_statement_import_n43
 #: code:addons/l10n_es_account_statement_import_n43/wizards/account_statement_import_n43.py:0
 #, python-format
 msgid ""
 "Final balance amount = (initial balance + credit - debit) doesn't match with"
 " the defined in the last record of account."
-msgstr ""
-
-#. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal__id
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import__id
-msgid "ID"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
@@ -65,12 +53,6 @@ msgstr ""
 #. module: l10n_es_account_statement_import_n43
 #: model:ir.model,name:l10n_es_account_statement_import_n43.model_account_journal
 msgid "Journal"
-msgstr ""
-
-#. module: l10n_es_account_statement_import_n43
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_journal____last_update
-#: model:ir.model.fields,field_description:l10n_es_account_statement_import_n43.field_account_statement_import____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_account_statement_import_n43
