@@ -55,6 +55,13 @@ class DeliveryCarrier(models.Model):
             "total amount as the value to be paid"
         ),
     )
+    gls_asm_with_return = fields.Boolean(
+        string="GLS/ASM With return",
+        help=(
+            "Check this field to mark the delivery as 'With return'. This means that "
+            "the customer receiving the delivery also has a package to return."
+        ),
+    )
 
     @api.depends("gls_asm_service")
     def _compute_gls_pickup_service(self):
@@ -124,7 +131,7 @@ class DeliveryCarrier(models.Model):
             "declarado": "",  # [optional]
             "dninomb": "0",  # [optional]
             "fechaentrega": "",  # [optional]
-            "retorno": "0",  # [optional]
+            "retorno": "1" if self.gls_asm_with_return else "0",  # [optional]
             "pod": "N",  # [optional]
             "podobligatorio": "N",  # [deprecated]
             "remite_plaza": "",  # [optional] Origin agency
@@ -439,10 +446,7 @@ class DeliveryCarrier(models.Model):
                 picking.message_post(body=msg)
                 continue
             picking.write(
-                {
-                    "gls_asm_public_tracking_ref": False,
-                    "gls_asm_picking_ref": False,
-                }
+                {"gls_asm_public_tracking_ref": False, "gls_asm_picking_ref": False}
             )
             self.gls_asm_tracking_state_update(picking=picking)
 
