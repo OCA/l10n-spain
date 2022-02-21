@@ -30,6 +30,7 @@
                                 attrs="{'required': [('delivery_type', '=', 'gls_asm'), ('prod_environment', '!=', False)]}"
                             />
                             <field name="gls_asm_cash_on_delivery" />
+                            <field name="gls_asm_with_return" />
                         </group>
                     </group>
                 </page>
