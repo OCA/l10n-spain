@@ -53,6 +53,17 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         if self.type == 'dispatches' and int(self.year) >= 2022:
             line_vals['partner_vat'] =\
                 inv_line.invoice_id.partner_shipping_id.vat or 'QV999999999999'
+            if not inv_line.invoice_id.partner_shipping_id.vat:
+                note = "\n" + _(
+                    "Missing partner vat on invoice %s."
+                ) % inv_line.invoice_id.number
+                self._note += note
+            if not line_vals["product_origin_country_id"]:
+                raise UserError(
+                    _(
+                        "Missing origin country on product %s."
+                    ) % inv_line.product_id.name_get()[0][1]
+                )
 
     def _gather_invoices_init(self):
         if self.company_id.country_id.code != 'ES':
