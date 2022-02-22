@@ -76,7 +76,7 @@ msgid "Cancel and recreate"
 msgstr "Cancelar y recrear"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:298
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:299
 #, python-format
 msgid "Cancellation"
 msgstr "Anulación factura"
@@ -240,7 +240,7 @@ msgid "Invoice"
 msgstr "Factura"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:70
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:71
 #, python-format
 msgid "Invoice %s. You cannot change to draft a numbered invoice!"
 msgstr ""
@@ -372,7 +372,7 @@ msgid "Origin Invoices Data"
 msgstr "Datos facturas origen"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:347
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:348
 #, python-format
 msgid ""
 "Please, specify data for the original invoices that are going to be refunded"
@@ -432,7 +432,7 @@ msgid "Software"
 msgstr "Software"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:361
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:362
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
@@ -440,7 +440,7 @@ msgstr ""
 "relacionadas"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:356
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:357
 #, python-format
 msgid ""
 "Some of the original invoices have related tbai invoices in inconsistent "
@@ -681,7 +681,7 @@ msgid "TicketBAI is disabled."
 msgstr "TicketBAI está deshabilitado."
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:154
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:155
 #, python-format
 msgid ""
 "TicketBAI refund by differences only available for Customer Credit Notes."
@@ -690,7 +690,7 @@ msgstr ""
 "rectificativas de cliente."
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:144
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:145
 #, python-format
 msgid "TicketBAI refund by substitution is not supported."
 msgstr "TicketBAI rectificativa por sustitución no está soportado."
@@ -747,14 +747,14 @@ msgid "VAT Regimes"
 msgstr "Claves de regímenes de IVA"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:143
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:153
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:144
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:154
 #, python-format
 msgid "Warning"
 msgstr "Aviso"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:328
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:329
 #, python-format
 msgid ""
 "You cannot cancel an invoice while being sent to the Tax Agency.\n"
@@ -765,7 +765,7 @@ msgstr ""
 "Facturas relacionadas: %s"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:319
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:320
 #, python-format
 msgid ""
 "You cannot cancel an invoice with non cancelled credit notes.\n"
@@ -776,7 +776,7 @@ msgstr ""
 "Facturas relacionadas: %s"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:78
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:79
 #, python-format
 msgid ""
 "You cannot delete an invoice which is not draft. You should create a credit "
