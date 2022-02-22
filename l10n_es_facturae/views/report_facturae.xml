@@ -258,9 +258,11 @@
                         <InvoiceSeriesCode t-length="20" t-esc="''" />
                         <InvoiceDocumentType t-esc="'FC'" />
                         <InvoiceClass
-                            t-esc="'OR' if move.reversed_entry_id else 'OO'"
+                            t-esc="'OR' if move.type == 'out_refund' and move.reversed_entry_id else 'OO'"
                         />
-                        <Corrective t-if="move.reversed_entry_id">
+                        <Corrective
+                            t-if="move.type == 'out_refund' and move.reversed_entry_id"
+                        >
                             <InvoiceNumber
                                 t-length="20"
                                 t-esc="move.reversed_entry_id.name"
