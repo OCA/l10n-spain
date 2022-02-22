@@ -58,7 +58,7 @@ msgid "Company"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:294
+#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:298
 #, python-format
 msgid "Company %s VAT number should not be empty!"
 msgstr ""
@@ -271,15 +271,21 @@ msgid "LROEOperationResponseLineState not VALID !"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:217
+#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:219
 #, python-format
 msgid "LROE_model_pf_140_cancel"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
-#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:215
+#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:217
 #, python-format
 msgid "LROE_model_pf_140_create"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api_batuz
+#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:221
+#, python-format
+msgid "LROE_model_pf_140_update"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
@@ -292,6 +298,12 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:210
 #, python-format
 msgid "LROE_model_pj_240_create"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api_batuz
+#: code:addons/l10n_es_ticketbai_api_batuz/models/lroe_operation.py:214
+#, python-format
+msgid "LROE_model_pj_240_update"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api_batuz
