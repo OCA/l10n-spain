@@ -34,7 +34,7 @@ msgid "Chapter"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:648
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:656
 #, python-format
 msgid "Chapter and type are required for search a pending LROE Operation"
 msgstr ""
@@ -107,13 +107,13 @@ msgid "LROE API URL"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:713
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:721
 #, python-format
 msgid "LROE Build: method for model %s chapter %s not implemented!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:694
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:702
 #, python-format
 msgid "LROE Build: operation type is necessary!"
 msgstr ""
@@ -323,14 +323,14 @@ msgid "VAT Regimes Purchase"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:699
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:707
 #, python-format
 msgid "You can not communicate this invoice at this moment because there is a job running!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:791
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:824
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:799
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:832
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
