@@ -23,16 +23,6 @@ msgid "Already sent to LROE. It includes cancelled invoices"
 msgstr "Ya enviadas al LROE. Incluye facturas canceladas"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "At fixed time"
-msgstr "A una hora fija"
-
-#. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "At the end of the quarter"
-msgstr "Al final del trimestre"
-
-#. module: l10n_es_ticketbai_batuz
 #: selection:account.invoice,lroe_state:0
 msgid "Cancel"
 msgstr "Cancelar"
@@ -48,21 +38,11 @@ msgid "Chapter"
 msgstr "Capítulo"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:625
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:660
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:656
 #, python-format
 msgid "Chapter and type are required for search a pending LROE Operation"
 msgstr ""
 "El capitulo y tipo son obligatorios para buscar operaciones LROE pendientes"
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company_use_connector
-msgid ""
-"Check it to use connector instead of sending the invoice directly when it's "
-"validated"
-msgstr ""
-"Márquelo para usar el conector en lugar de enviar la factura directamente "
-"cuando se valida"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_partner_lroe_simplified_invoice
@@ -100,20 +80,9 @@ msgid "Credit Note"
 msgstr "Rectificativa"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_delay_time
-msgid "Delay time"
-msgstr "Tiempo de retardo"
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_fiscal_position
 msgid "Fiscal Position"
 msgstr "Posición fiscal"
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company_delay_time
-#: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_res_company_sent_time
-msgid "In hours"
-msgstr "En horas"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,help:l10n_es_ticketbai_batuz.field_account_invoice_lroe_state
@@ -138,11 +107,6 @@ msgid "Is Supplier Invoice Number Required?"
 msgstr "¿Es requerido el nº de factura de proveedor?"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model,name:l10n_es_ticketbai_batuz.model_account_journal
-msgid "Journal"
-msgstr "Diario"
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
 msgid "LROE"
 msgstr "LROE"
@@ -153,15 +117,13 @@ msgid "LROE API URL"
 msgstr "LROE API URL"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:690
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:740
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:721
 #, python-format
 msgid "LROE Build: method for model %s chapter %s not implemented!"
 msgstr "¡LROE: método para modelo %s capítulo %s no implementado!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:671
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:708
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:702
 #, python-format
 msgid "LROE Build: operation type is necessary!"
 msgstr "¡LROE: el tipo de operación es necesario!"
@@ -224,11 +186,6 @@ msgstr "Nunca enviadas al LROE"
 #: selection:account.invoice,lroe_state:0
 msgid "Not recorded"
 msgstr "No registrada"
-
-#. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "On validate"
-msgstr "Al validar"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz
@@ -296,16 +253,6 @@ msgid "Sale"
 msgstr "Venta"
 
 #. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_send_mode
-msgid "Send mode"
-msgstr "Modo de envío"
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_sent_time
-msgid "Sent time"
-msgstr "Hora de envío"
-
-#. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_partner_lroe_simplified_invoice
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_users_lroe_simplified_invoice
 msgid "Simplified invoices in LROE?"
@@ -337,8 +284,7 @@ msgid "The last attemp to sent to LROE has failed"
 msgstr "El último intento de envío al LROE ha fallado"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:370
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:374
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:398
 #, python-format
 msgid "There's a mismatch in taxes for RE. Check them."
 msgstr "Hay un cruce erróneo para tasas en RE. Compruébelas."
@@ -357,11 +303,6 @@ msgstr "TicketBAI Mapeo claves de regímenes de IVA"
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_tbai_vat_regime_key_type
 msgid "Type"
 msgstr "Tipo"
-
-#. module: l10n_es_ticketbai_batuz
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_res_company_use_connector
-msgid "Use connector"
-msgstr "Usar conector"
 
 #. module: l10n_es_ticketbai_batuz
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_batuz.field_account_fiscal_position_tbai_vat_regime_purchase_key2
@@ -392,13 +333,7 @@ msgid "VAT Regimes Purchase"
 msgstr "Regímenes de IVA para compras"
 
 #. module: l10n_es_ticketbai_batuz
-#: selection:res.company,send_mode:0
-msgid "With delay"
-msgstr "Con retardo"
-
-#. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:676
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:713
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:707
 #, python-format
 msgid ""
 "You can not communicate this invoice at this moment because there is a job "
@@ -408,12 +343,47 @@ msgstr ""
 "ejecutándose!"
 
 #. module: l10n_es_ticketbai_batuz
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:768
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:801
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:818
-#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:851
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:799
+#: code:addons/l10n_es_ticketbai_batuz/models/account_invoice.py:832
 #, python-format
 msgid "You can not set to draft this invoice because there is a job running!"
 msgstr ""
 "¡En este momento no puede poner en borrador esta factura porque hay un "
 "trabajo ejecutándose!"
+
+#~ msgid "At fixed time"
+#~ msgstr "A una hora fija"
+
+#~ msgid "At the end of the quarter"
+#~ msgstr "Al final del trimestre"
+
+#~ msgid ""
+#~ "Check it to use connector instead of sending the invoice directly when "
+#~ "it's validated"
+#~ msgstr ""
+#~ "Márquelo para usar el conector en lugar de enviar la factura directamente "
+#~ "cuando se valida"
+
+#~ msgid "Delay time"
+#~ msgstr "Tiempo de retardo"
+
+#~ msgid "In hours"
+#~ msgstr "En horas"
+
+#~ msgid "Journal"
+#~ msgstr "Diario"
+
+#~ msgid "On validate"
+#~ msgstr "Al validar"
+
+#~ msgid "Send mode"
+#~ msgstr "Modo de envío"
+
+#~ msgid "Sent time"
+#~ msgstr "Hora de envío"
+
+#~ msgid "Use connector"
+#~ msgstr "Usar conector"
+
+#~ msgid "With delay"
+#~ msgstr "Con retardo"
