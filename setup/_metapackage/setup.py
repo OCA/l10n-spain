@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo10-addon-l10n_es_aeat_sii',
         'odoo10-addon-l10n_es_aeat_sii_cash_basis',
         'odoo10-addon-l10n_es_aeat_sii_invoice_summary',
+        'odoo10-addon-l10n_es_aeat_sii_oss',
         'odoo10-addon-l10n_es_aeat_vat_prorrate',
         'odoo10-addon-l10n_es_aeat_vat_prorrate_asset',
         'odoo10-addon-l10n_es_crm_lead_trade_name',
