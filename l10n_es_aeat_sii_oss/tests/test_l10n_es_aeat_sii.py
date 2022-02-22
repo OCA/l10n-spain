@@ -13,9 +13,17 @@ class TestL10nEsAeatSiiBaseOss(TestL10nEsAeatSiiBase):
     def setUpClass(cls):
         super(TestL10nEsAeatSiiBaseOss, cls).setUpClass()
         account_fiscal_position_env = cls.env["account.fiscal.position"]
+        cls.company = cls.env.ref("base.main_company")
         xml_id = '%s_account_tax_template_s_oss20' % cls.company.id
-        cls.tax_fr_20 = cls._get_or_create_tax(
-            xml_id, "Test tax 20%", "sale", 20, cls.account_tax)
+        cls.tax_fr_20 = cls.env['account.tax'].create({
+            'name': xml_id,
+            # Needed for discriminatory tax amount in supplier invoices
+            'description': "Test tax 20%",
+            'type_tax_use': 'sale',
+            'amount_type': 'percent',
+            'amount': 20,
+            'account_id': cls.account_tax.id,
+        })
         cls.tax_fr_20.write({
             "oss_country_id": cls.env.ref("base.fr").id
         })

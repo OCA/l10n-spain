@@ -3,7 +3,7 @@
 
 {
     "name": "Suministro Inmediato de Información en el IVA: OSS",
-    "version": "11.0.1.0.0",
+    "version": "10.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://odoospain.odoo.com",
     "author": "FactorLibre,"
