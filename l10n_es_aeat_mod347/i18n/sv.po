@@ -1,0 +1,1522 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * l10n_es_aeat_mod347
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: l10n-spain (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-13 10:45+0000\n"
+"PO-Revision-Date: 2016-11-12 17:09+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>\n"
+"Language-Team: Swedish (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
+"language/sv/)\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: l10n_es_aeat_mod347
+#: model:mail.template,body_html:l10n_es_aeat_mod347.email_template_347
+msgid ""
+"\n"
+"<p>Estimado/a ${object.partner_id.name}\n"
+"</p>\n"
+"<p>Le comunicamos que a efectos de comprobación del modelo 347:</p>\n"
+"<p>Nuestros datos en dicha declaración son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> ${object.report_id.company_id.name}<br/>\n"
+"  <strong>NIF:</strong> ${object.report_id.company_id.vat or ''}<br/>\n"
+"  <strong>Provincia:</strong> ${object.report_id.company_id.state_id.name or "
+"''}<br/>\n"
+"</p>\n"
+"<p>Los datos que vamos a declarar en relación a las operaciones habidas con "
+"su empresa son:</p>\n"
+"<p>\n"
+"  <strong>Nombre:</strong> ${object.partner_id.name}<br/>\n"
+"  <strong>NIF:</strong> ${object.partner_vat}<br/>\n"
+"  <strong>Código de país:</strong> ${object.partner_country_code}<br/>\n"
+"  <strong>Código de provincia:</strong> ${object.partner_state_code}<br/>\n"
+"</p>\n"
+"<p>\n"
+"  <strong>Tipo de operación:</strong> ${object.operation_key}\n"
+"</p>\n"
+"\n"
+"  % if object.amount:\n"
+"  <p>\n"
+"  <strong>Importe de las operaciones:</strong> ${object.amount}<br/>\n"
+"  <strong>Operaciones primer trimestre:</strong> ${object.first_quarter}<br/"
+">\n"
+"  <strong>Operaciones segundo trimestre:</strong> ${object.second_quarter}"
+"<br/>\n"
+"  <strong>Operaciones tercer trimestre:</strong> ${object.third_quarter}<br/"
+">\n"
+"  <strong>Operaciones cuarto trimestre:</strong> ${object.fourth_quarter}<br/"
+">\n"
+"  </p>\n"
+"  % endif\n"
+"  % if object.cash_amount:\n"
+"  <p>\n"
+"  <strong>Importe recibido en efectivo:</strong> ${object.cash_amount}<br/>\n"
+"  </p>\n"
+"  % endif\n"
+"  % if object.real_estate_transmissions_amount:\n"
+"  <p>\n"
+"  <strong>Importe de transmisión de inmueble:</strong> ${object."
+"real_estate_transmissions_amount}<br/>\n"
+"  <strong>Inmuebles primer trimestre:</strong> ${object."
+"first_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles segundo trimestre:</strong> ${object."
+"second_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles tercer trimestre:</strong> ${object."
+"third_quarter_real_estate_transmission}<br/>\n"
+"  <strong>Inmuebles cuarto trimestre:</strong> ${object."
+"fourth_quarter_real_estate_transmission}<br/>\n"
+"  </p>\n"
+"  % endif\n"
+"  <p>En el documento adjunto se incluyen las facturas en base a las cuales "
+"se obtienen los importes anteriores.</p>\n"
+"  <p>Si los datos son correctos puede indicar su conformidad en el siguiente "
+"botón:</p>\n"
+"  <br><br>\n"
+"  <center>\n"
+"      <a style=\"background-color: #1abc9c; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
+"              class=\"o_default_snippet_text\"\n"
+"              href=\"${object.get_confirm_url()}\">\n"
+"          Aceptar datos del 347\n"
+"      </a>\n"
+"  </center>\n"
+"  <br><br>\n"
+"  <p>Si los importes no son correctos, puede pulsar en este botón para que "
+"nos pongamos en contacto posteriormente, o responder a este correo indicando "
+"el problema:</p>\n"
+"  <br><br>\n"
+"  <center>\n"
+"      <a style=\"background-color: #d55937; padding: 20px; text-decoration: "
+"none; color: #fff; border-radius: 5px; font-size: 16px;\"\n"
+"              class=\"o_default_snippet_text\"\n"
+"              href=\"${object.get_reject_url()}\">\n"
+"          Rechazar datos del 347\n"
+"      </a>\n"
+"  </center>\n"
+"  <br><br>\n"
+"  <p>Para cualquier otra pregunta, no dude en contactar con nosotros "
+"respondiendo a este correo.</p>\n"
+"<p style=\"color:#888888\">\n"
+"% if user and user.signature:\n"
+"    ${user.signature | safe}\n"
+"% endif\n"
+"</p>\n"
+"\n"
+"        "
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "- %s (%s)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__1
+msgid "1 - Spain but Basque Country and Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__2
+msgid "2 - Basque Country and Navarra"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__3
+msgid "3 - Spain, without catastral reference"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.actions.report,name:l10n_es_aeat_mod347.347_partner
+msgid "347 Partner Detail"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:mail.template,report_name:l10n_es_aeat_mod347.email_template_347
+msgid "347_details"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__situation__4
+msgid "4 - Foreign"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "<strong class=\"text-right\">Amount 1Q:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "<strong class=\"text-right\">Amount 2Q:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "<strong class=\"text-right\">Amount 3Q:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "<strong class=\"text-right\">Amount 4Q:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "<strong class=\"text-right\">Amount:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid ""
+"<strong>Color codes: </strong> <span class=\"text-info\">Refund invoices</"
+"span> - Normal invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "<strong>Operation Key:</strong>"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__a
+msgid "A - Adquisiciones de bienes y servicios superiores al límite (1)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_report
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__report_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__report_id
+msgid "AEAT 347 Report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.ui.menu,name:l10n_es_aeat_mod347.menu_aeat_mod347_report
+msgid "AEAT 347 model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.actions.act_window,name:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
+msgid "AEAT Model 347"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__access_warning
+msgid "Access warning"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__move_id
+msgid "Account entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_needaction
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_decoration
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_state
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_type_icon
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__address
+msgid "Address"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__address_type
+msgid "Address type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__allow_posting
+msgid "Allow Posting"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__amount
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_amount
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Amount 1Q:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Amount 2Q:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Amount 3Q:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Amount 4Q:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__amount_signed
+msgid "Amount signed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Amount:"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__ant
+msgid "Ant"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_attachment_count
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__b
+msgid "B - Entregas de bienes y servicios superiores al límite (1)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
+msgid "Bank account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
+msgid ""
+"Basado en la Orden EHA/3012/2008, de 20 de Octubre, por el que se aprueban\n"
+"            los diseños físicos y lógicos del 347."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__bis
+msgid "Bis"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__block
+msgid "Block"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bussiness_real_estate_rent
+msgid "Bussiness Real Estate Rent"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__c
+msgid "C - Cobros por cuenta de terceros superiores al límite (3)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__calculation_date
+msgid "Calculation date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "Calculation parameters"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_cash_amount
+msgid "Cash Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__cash_basis_operation
+msgid "Cash Basis Operation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Cash Register"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__cash_record_ids
+msgid "Cash payments"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Cash records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__reference
+msgid "Catastral Reference"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__check_ok
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__check_ok
+msgid "Checked if this record is OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__city
+msgid "City"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.actions.act_window,help:l10n_es_aeat_mod347.action_l10n_es_aeat_mod347_report
+msgid "Click to create a AEAT Model 347 Reports."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__community_vat
+msgid "Community vat number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__company_id
+msgid "Company"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_bank_id
+msgid "Company bank account used for the presentation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__complement
+msgid "Complement"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__complement
+msgid "Complement (urbanization, industrial park...)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Compose Email"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:mail.template,subject:l10n_es_aeat_mod347.email_template_347
+msgid ""
+"Comprobación datos de modelo 347 año ${object.report_id.year} de ${user."
+"company_id.name}"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
+msgid "Confirm as valid"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__confirmed
+msgid "Confirmed"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__contact_email
+msgid "Contact email"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__counterpart_account_id
+msgid "Counterpart account"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_country_code
+msgid "Country Code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__create_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__create_uid
+msgid "Created by"
+msgstr "Skapad av"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__create_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__create_date
+msgid "Created on"
+msgstr "Skapad den"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__access_url
+msgid "Customer Portal URL"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__d
+msgid ""
+"D - Adquisiciones efectuadas por Entidades Públicas (...) superiores al "
+"límite (1)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__date
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Details"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__display_name
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_partner__display_name
+msgid "Display Name"
+msgstr "Visa namn"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__door
+msgid "Door"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__dup
+msgid "Dup"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__e
+msgid ""
+"E - Subvenciones, auxilios y ayudas satisfechas por Ad. Públicas superiores "
+"al límite (1)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__date_end
+msgid "Ending date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__exception
+msgid "Exception"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__export_config_id
+msgid "Export config"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__f
+msgid "F - Ventas agencia viaje"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__first_quarter
+msgid "First quarter operations"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__first_quarter_real_estate_transmission
+msgid "First quarter real estate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__floor
+msgid "Floor"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_follower_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_channel_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_partner_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_type_icon
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
+msgid "Force not included in 347 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__fourth_quarter
+msgid "Fourth quarter operations"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__fourth_quarter_real_estate_transmission
+msgid "Fourth quarter real estate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__contact_name
+msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__operation_key__g
+msgid "G - Compras agencia viaje"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "General"
+msgstr "Allmänt"
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Group by..."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_failed
+msgid "Ha habido un error registrando la comunicación."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_partner__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_icon
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_icon
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_bank_statement_line__not_in_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_move__not_in_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_account_payment__not_in_mod347
+msgid ""
+"If you mark this field, this invoice will not be included in any AEAT 347 "
+"model report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_res_partner__not_in_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_res_users__not_in_mod347
+msgid ""
+"If you mark this field, this partner will not be included in any AEAT 347 "
+"model report, independently from the total amount of its operations."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__insurance_operation
+msgid "Insurance Operation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Invalid records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Invoice"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_id
+msgid "Invoice / Journal entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__operations_limit
+msgid "Invoiced Limit (1)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Invoices"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_is_follower
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__journal_id
+msgid "Journal in which post the move."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__km_
+msgid "Kilometer"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__representative_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__representative_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__representative_vat
+msgid "L.R. VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
+msgid "La comunicación se ha registrado correctamente."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report____last_update
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr "Senast redigerad"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__write_uid
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__write_uid
+msgid "Last Updated by"
+msgstr "Senast uppdaterad av"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__write_date
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__write_date
+msgid "Last Updated on"
+msgstr "Senast uppdaterad"
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__representative_vat
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__representative_vat
+msgid "Legal Representative VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__representative_vat
+msgid "Legal Representative VAT number."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_main_attachment_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_calification__mod
+msgid "Mod"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__model_id
+msgid "Model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__number
+msgid "Model number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_failed
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
+msgid "Modelo 347"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_move_record
+msgid "Move Record"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Move record"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__move_record_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Move records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__contact_name
+msgid "Must have name and surname."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__my_activity_date_deadline
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_date_deadline
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_type_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "No Tax Mapping was found"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_partner__not_in_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_res_users__not_in_mod347
+msgid "Not included in 347 report"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__number
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__num
+msgid "Number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__number_calification
+msgid "Number calification"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_needaction_counter
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error_counter
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_needaction_counter
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_error_counter
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread_counter
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__number_type
+msgid "Number type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__cash_basis_operation
+msgid ""
+"Only for cash basis operations. Set to identify cash basis operations aside "
+"from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__insurance_operation
+msgid ""
+"Only for insurance companies. Set to identify insurance operations aside "
+"from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__related_goods_operation
+msgid ""
+"Only for related goods operations. Set to identify related goods operations "
+"aside from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__tax_person_operation
+msgid ""
+"Only for taxable person operations. Set to identify taxable person "
+"operations aside from the rest."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__operation_key
+msgid "Operation Key"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Operation key"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__amount
+msgid "Operations amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__origin_year
+msgid "Origin cash operation year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__origin_year
+msgid "Origin year"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__partner_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_id
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_partner_record
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Partner Record"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__partner_record_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
+msgid "Partner Records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_form
+msgid "Partner info"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__partner_record_id
+msgid "Partner record"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Partner record errors:\n"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+#, python-format
+msgid "Partner records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_partner_records
+msgid "Partners records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__pending
+msgid "Pending"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Pending records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__period_type
+msgid "Period type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__contact_phone
+msgid "Phone"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid ""
+"Please review partner and real estate records, some of them are in red "
+"color:\n"
+"\n"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__portal
+msgid "Portal"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__access_url
+msgid "Portal Access URL"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__postal_code
+msgid "Postal code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__previous_number
+msgid "Previous declaration number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
+msgid "Print"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_real_estate_amount
+msgid "Real Estate Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model,name:l10n_es_aeat_mod347.model_l10n_es_aeat_mod347_real_estate_record
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_form
+msgid "Real Estate Record"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__real_estate_record_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_tree
+msgid "Real Estate Records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__real_estate_transmissions_amount
+msgid "Real Estate Transmisions amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_real_estate_transmissions_amount
+msgid "Real Estate Transmissions Amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "Real Estate records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.report_347_partner_document
+msgid "Real State Transmissions"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__situation
+msgid "Real estate Situation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_form
+msgid "Real estate address"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_real_estate_record_form
+msgid "Real estate info"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: code:addons/l10n_es_aeat_mod347/models/mod347.py:0
+#, python-format
+msgid "Real estate record errors:\n"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__total_real_estate_records
+msgid "Real estate records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__received_cash_limit
+msgid "Received cash Limit (2)"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__cash_amount
+msgid "Received cash amount"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Recompute"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Record"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__check_ok
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__check_ok
+msgid "Record is OK"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "Records"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.partner_record_search_view
+msgid "Records in exception"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__related_goods_operation
+msgid "Related Goods Operation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__name
+msgid "Report identifier"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_user_id
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_failed
+msgid ""
+"Revíselo y vuelva a intentarlo, o pongase en contacto por correo con "
+"nosotros."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_has_sms_error
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__user_id
+msgid "Salesperson"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__second_quarter
+msgid "Second quarter operations"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__second_quarter_real_estate_transmission
+msgid "Second quarter real estate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__access_token
+msgid "Security Token"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Send"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
+msgid "Send email"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "Send emails"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_partner_record__state__sent
+msgid "Sent"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+msgid "Set to Pending"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__bussiness_real_estate_rent
+msgid ""
+"Set to identify real estate rent operations aside from the rest. You'll need "
+"to fill in the real estate info only when you are the one that receives the "
+"money."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_partner_record_tree
+msgid "Set to invalid"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__stairway
+msgid "Stairway"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__date_start
+msgid "Starting date"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__state
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__state
+msgid "State"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_state_code
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__state_code
+msgid "State Code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__statement_type
+msgid "Statement Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_state
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid "Summary"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__support_type
+msgid "Support Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__tax_person_operation
+msgid "Taxable Person Operation"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__operations_limit
+msgid ""
+"The declaration will include partners with the total of operations over this "
+"limit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__received_cash_limit
+msgid "The declaration will show the total of cash operations over this limit"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__third_quarter
+msgid "Third quarter operations"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__third_quarter_real_estate_transmission
+msgid "Third quarter real estate"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__counterpart_account_id
+msgid ""
+"This account will be the counterpart for all the journal items that are "
+"regularized when posting the report."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid ""
+"This should be only filled in case the real state rents are exempted of "
+"retentions and are not declared through model 115."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid ""
+"This will delete all records, and remove possible answers from partners. Are "
+"you sure you want to continue?"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.view_l10n_es_aeat_mod347_report_form
+msgid ""
+"This will enqueue all the pending confirmation emails for this report for "
+"sending to the invoicing contact. Are you sure you want to continue?"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__first_quarter
+msgid ""
+"Total amount of first quarter in, out and refund invoices for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__first_quarter_real_estate_transmission
+msgid ""
+"Total amount of first quarter real estate transmissions for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__fourth_quarter
+msgid ""
+"Total amount of fourth quarter in, out and refund invoices for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__fourth_quarter_real_estate_transmission
+msgid ""
+"Total amount of fourth quarter real estate transmissions for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__second_quarter
+msgid ""
+"Total amount of second quarter in, out and refund invoices for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__second_quarter_real_estate_transmission
+msgid ""
+"Total amount of second quarter real estate transmissions for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__third_quarter
+msgid ""
+"Total amount of third quarter in, out and refund invoices for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__third_quarter_real_estate_transmission
+msgid ""
+"Total amount of third quarter real estate transmissions for this partner"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__township
+msgid "Township"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__township_code
+msgid "Township Code"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_move_record__move_type
+msgid "Type"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__activity_exception_decoration
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__message_unread_counter
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__company_vat
+msgid "VAT number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__community_vat
+msgid ""
+"VAT number for professionals established in other state member without "
+"national VAT"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__website_message_ids
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_partner_record__website_message_ids
+#: model:ir.model.fields,help:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod347.selection__l10n_es_aeat_mod347_real_estate_record__number_type__s/n
+msgid "Without number"
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod347.communication_success
+msgid "Ya puede cerrar esta página si así lo desea."
+msgstr ""
+
+#. module: l10n_es_aeat_mod347
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report__year
+msgid "Year"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Move Type"
+#~ msgstr "Typ"

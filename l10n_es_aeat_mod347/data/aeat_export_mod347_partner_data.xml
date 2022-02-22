@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Tipo de Registro 2 – Registro de declarado: -->
+    <record id="aeat_mod347_partner_export_config" model="aeat.model.export.config">
+        <field
+            name="name"
+        >Exportación modelo 347 - Tipo de Registro 2 – Registro de declarado</field>
+        <field name="model_number">347</field>
+    </record>
+    <!--             1           Tipo de Registro -->
+    <record
+        id="aeat_mod347_partner_export_line_01"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">1</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Constante: 2</field>
+        <field name="fixed_value">2</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             2-4         Modelo Declaración -->
+    <record
+        id="aeat_mod347_partner_export_line_02"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">2</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Constante: 347</field>
+        <field name="fixed_value">347</field>
+        <field name="export_type">string</field>
+        <field name="size">3</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             5-8         Ejercicio -->
+    <record
+        id="aeat_mod347_partner_export_line_03"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">3</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Ejercicio</field>
+        <field name="expression">${object.report_id.year}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             9-17        NIF del declarante -->
+    <record
+        id="aeat_mod347_partner_export_line_04"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">4</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">NIF del declarante</field>
+        <field name="expression">${object.report_id.company_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             18-26       NIF del declarado -->
+    <record
+        id="aeat_mod347_partner_export_line_05"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">5</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">NIF declarado</field>
+        <field name="expression">${object.partner_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             27-35       NIF del representante legal -->
+    <record
+        id="aeat_mod347_partner_export_line_06"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">6</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">NIF representate legal declarado</field>
+        <field name="expression">${object.representative_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">9</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             36-75       Apellidos y nombre, razón social o denominación del -->
+    <!--                         declarado -->
+    <record
+        id="aeat_mod347_partner_export_line_07"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">7</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Apellidos y nombre o razón social del declarado</field>
+        <field name="expression">${object.partner_id.name}</field>
+        <field name="export_type">string</field>
+        <field name="size">40</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             76          Tipo de hoja -->
+    <record
+        id="aeat_mod347_partner_export_line_08"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">8</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Tipo de hoja</field>
+        <field name="fixed_value">D</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             77-80       Código provincia/país -->
+    <record
+        id="aeat_mod347_partner_export_line_09"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">9</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Código provincia</field>
+        <field name="expression">${object.partner_state_code}</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod347_partner_export_line_10"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">10</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Código país</field>
+        <field
+            name="expression"
+        >${object.partner_country_code if object.partner_state_code == '99' else ''}</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             81          Blancos -->
+    <record
+        id="aeat_mod347_partner_export_line_11"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">11</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Blancos</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             82          Clave de operación -->
+    <record
+        id="aeat_mod347_partner_export_line_12"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">12</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Clave de operación</field>
+        <field name="expression">${object.operation_key}</field>
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             83-98 	    Importe de las operaciones -->
+    <record
+        id="aeat_mod347_partner_export_line_13"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">13</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Importe de las operaciones</field>
+        <field name="expression">${abs(object.amount)}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             98          Operación de seguro -->
+    <record id="aeat_mod349_main_export_line_14" model="aeat.model.export.config.line">
+        <field name="sequence">14</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Operación de seguro</field>
+        <field name="expression">${object.insurance_operation}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             99          Arrendamiento local negocio -->
+    <record id="aeat_mod349_main_export_line_15" model="aeat.model.export.config.line">
+        <field name="sequence">15</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Arrendamiento local negocio</field>
+        <field name="expression">${object.bussiness_real_estate_rent}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             100-114     Importe percibido en metálico -->
+    <record
+        id="aeat_mod347_partner_export_line_16"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">16</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Importe percibido en metálico</field>
+        <field name="expression">${object.cash_amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">15</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             115-129     Importe percibido por transmisiones de inmuebles -->
+    <!--                         sujetas a IVA -->
+    <record
+        id="aeat_mod347_partner_export_line_17"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">17</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field
+            name="name"
+        >Importe percibido por transmisiones de inmuebles sujetas a IVA</field>
+        <field name="expression">${object.real_estate_transmissions_amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             130-134     Año de devengo de las operaciones en efectivo -->
+    <record
+        id="aeat_mod347_partner_export_line_18"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">18</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Año de devengo de las operaciones en efectivo</field>
+        <field
+            name="expression"
+        >${object.origin_year or object.report_id.year if object.cash_amount else '0000'}</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             136-151     Importe de las operaciones del primer trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_19"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">19</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Importe de las operaciones del primer trimestre</field>
+        <field name="expression">${object.first_quarter}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             152-167     Importe percibido por transmisiones de inmuebles -->
+    <!--                         sujetas a IVA del primer trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_20"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">20</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field
+            name="name"
+        >Importe percibido por transmisiones de inmuebles sujetas a Iva Primer Trimestre</field>
+        <field
+            name="expression"
+        >${object.first_quarter_real_estate_transmission}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             168-183     Importe de las operaciones del segundo trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_21"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">21</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Importe de las operaciones del segundo trimestre</field>
+        <field name="expression">${object.second_quarter}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             184-199     Importe percibido por transmisiones de inmuebles -->
+    <!--                         sujetas a IVA del segundo trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_22"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">22</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field
+            name="name"
+        >Importe percibido por transmisiones de inmuebles sujates a Iva Segundo Trimestre</field>
+        <field
+            name="expression"
+        >${object.second_quarter_real_estate_transmission}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             200-215     Importe de las operaciones del tercer trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_23"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">23</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Importe de las operaciones del tercer trimestre</field>
+        <field name="expression">${object.third_quarter}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             216-231     Importe percibido por transmisiones de inmuebles -->
+    <!--                         sujetas a IVA del tercer trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_24"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">24</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field
+            name="name"
+        >Importe percibido por transmisiones de inmuebles sujates a Iva Tercero Trimestre</field>
+        <field
+            name="expression"
+        >${object.third_quarter_real_estate_transmission}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             232-247     Importe de las operaciones del cuarto trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_25"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">25</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Importe de las operaciones del cuarto trimestre</field>
+        <field name="expression">${object.fourth_quarter}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             248-263     Importe percibido por transmisiones de inmuebles -->
+    <!--                         sujetas a IVA del cuarto trimestre -->
+    <record
+        id="aeat_mod347_partner_export_line_26"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">26</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field
+            name="name"
+        >Importe percibido por transmisiones de inmuebles sujates a Iva Cuarto Trimestre</field>
+        <field
+            name="expression"
+        >${object.fourth_quarter_real_estate_transmission}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             264-280     NIF del operador comunitario -->
+    <record
+        id="aeat_mod347_partner_export_line_27"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">27</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">NIF operador comunitario</field>
+        <field name="expression">${object.community_vat}</field>
+        <field name="export_type">string</field>
+        <field name="size">17</field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             281         'X' si aplica el régimen especial de criterio de caja -->
+    <record id="aeat_mod349_main_export_line_28" model="aeat.model.export.config.line">
+        <field name="sequence">28</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Régimen especial de criterio de caja</field>
+        <field name="expression">${object.cash_basis_operation}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             282         'X' si son operaciones con inversión de sujeto pasivo -->
+    <record id="aeat_mod349_main_export_line_29" model="aeat.model.export.config.line">
+        <field name="sequence">29</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Operaciones con inversión de sujeto pasivo</field>
+        <field name="expression">${object.tax_person_operation}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             283         'X' si son operaciones vinculadas al régimen de -->
+    <!--                         depósito distinto del aduanero -->
+    <record id="aeat_mod349_main_export_line_30" model="aeat.model.export.config.line">
+        <field name="sequence">30</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field
+            name="name"
+        >Operaciones vinculadas al régimen de depósito distinto del aduanero</field>
+        <field name="expression">${object.related_goods_operation}</field>
+        <field name="export_type">boolean</field>
+        <field name="size">1</field>
+        <field name="bool_yes">X</field>
+        <field name="bool_no"> </field>
+        <field name="alignment">left</field>
+    </record>
+    <!--             284-299     Importe de la operaciones anuales de criterio de caja -->
+    <record
+        id="aeat_mod347_partner_export_line_31"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">31</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Importe de la operaciones anuales de criterio de caja</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="positive_sign"> </field>
+        <field name="negative_sign">N</field>
+        <field name="size">16</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <!--             300-500     Blancos -->
+    <record
+        id="aeat_mod347_partner_export_line_32"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">32</field>
+        <field name="export_config_id" ref="aeat_mod347_partner_export_config" />
+        <field name="name">Blancos</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">201</field>
+        <field name="alignment">left</field>
+    </record>
+</odoo>
