@@ -134,6 +134,14 @@ class AccountInvoice(models.Model):
             self.tbai_vat_regime_key3 =\
                 self.fiscal_position_id.tbai_vat_regime_key3.id
 
+    @api.onchange('refund_invoice_id')
+    def onchange_tbai_refund_invoice_id(self):
+        if self.refund_invoice_id:
+            if not self.tbai_refund_type:
+                self.tbai_refund_type = RefundType.differences.value
+            if not self.tbai_refund_key:
+                self.tbai_refund_key = RefundCode.R1.value
+
     def tbai_prepare_invoice_values(self):
 
         def tbai_prepare_refund_values():
@@ -349,10 +357,14 @@ class AccountInvoice(models.Model):
         tbai_invoices |= self.sudo().filtered(
             lambda x: x.tbai_enabled and 'out_invoice' == x.type
             and x.tbai_send_invoice)
-        refund_invoices = self.sudo().filtered(
-            lambda x: x.tbai_enabled and 'out_refund' == x.type and
-            x.tbai_refund_type == RefundType.differences.value
-            and x.tbai_send_invoice)
+        refund_invoices = (
+            self.sudo().filtered(
+                lambda x:
+                x.tbai_enabled and 'out_refund' == x.type and
+                not x.tbai_refund_type or
+                x.tbai_refund_type == RefundType.differences.value
+                and x.tbai_send_invoice)
+        )
 
         validate_refund_invoices()
         tbai_invoices |= refund_invoices
