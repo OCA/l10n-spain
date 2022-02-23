@@ -9,4 +9,5 @@ from . import ecoembes_sector
 from . import ecoembes_submaterial
 from . import product_composition
 from . import product_product
+from . import product_template
 from . import res_company

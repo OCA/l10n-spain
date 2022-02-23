@@ -80,5 +80,11 @@ class TestEcoembesMisc(TestEcoembesBase):
                 "market_type_id": self.env.ref("ecoembes.ecoembes_market_type_c").id,
             }
         )
+        self.assertEquals(record.product_tmpl_id, self.product.product_tmpl_id)
         self.assertEquals(record.default_code, "1234")
         self.assertEquals(self.product.composition_ids.ids, [record.id])
+        product2 = self.env["product.product"].create(
+            {"name": "Test Product2", "default_code": "1234"}
+        )
+        record.write({"product_id": product2.id})
+        self.assertEquals(record.product_tmpl_id, product2.product_tmpl_id)
