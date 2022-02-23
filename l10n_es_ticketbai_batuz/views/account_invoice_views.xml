@@ -50,13 +50,15 @@
                         attrs="{'invisible': [('lroe_state', 'not in', ['error','recorded_warning'])]}" />
             </button>
             <xpath expr="//notebook" position="inside">
-                <page name='lroe_result' string="LROE">
+                <page name='lroe_result' string="LROE" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                    <field name="tbai_enabled" invisible="1" />
+                    <group name="lroe_refund" string="Refund" attrs="{'invisible': [('type', '!=', 'in_refund')]}">
+                        <field name="refund_invoice_id" attrs="{'required': [('type', '=', 'in_refund')]}" />
+                    </group>
                     <group>
                         <group name="tbai_vat_purchase_regimes" string="VAT Regimes">
-                            <field name="refund_invoice_id" invisible="1" />
-                            <field name="tbai_enabled" invisible="1" />
                             <field name="tbai_vat_regime_purchase_key"
-                                   attrs="{'required': [('tbai_enabled', '=', True), '|', ('type', '=', 'in_invoice'), '&amp;', ('type', '=', 'in_refund'), ('refund_invoice_id', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                                   attrs="{'required': [('tbai_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
                                    options="{'no_open': True,'no_create': True}" />
                             <field name="tbai_vat_regime_purchase_key2" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_open':True,'no_create':True}" />
                             <field name="tbai_vat_regime_purchase_key3" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_open':True,'no_create':True}" />
