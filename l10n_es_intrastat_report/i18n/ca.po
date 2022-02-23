@@ -390,6 +390,20 @@ msgid "Messages"
 msgstr "Missatges"
 
 #. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing origin country on product %s. "
+msgstr ""
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
+#, python-format
+msgid "Missing partner vat on invoice %s. "
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__month
 msgid "Month"
 msgstr "Mes"
