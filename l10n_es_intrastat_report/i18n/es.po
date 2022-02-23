@@ -392,15 +392,17 @@ msgstr "Mensajes"
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing origin country on product %s."
-msgstr "Falta el país de origen en el producto %s."
+msgid "Missing origin country on product %s. "
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing partner vat on invoice %s."
-msgstr "Falta el NIF del contacto en la factura %s."
+msgid "Missing partner vat on invoice %s. "
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__month
@@ -643,6 +645,12 @@ msgid "VAT"
 msgstr "NIF"
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__vat
+msgid "VAT Number"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__valid
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__valid
 msgid "Valid"
@@ -699,6 +707,12 @@ msgstr "Puede añadir algunos comentarios aquí si lo prefiere."
 #, python-format
 msgid "xlrd library not found."
 msgstr "Librería xlrd no encontrada."
+
+#~ msgid "Missing origin country on product %s."
+#~ msgstr "Falta el país de origen en el producto %s."
+
+#~ msgid "Missing partner vat on invoice %s."
+#~ msgstr "Falta el NIF del contacto en la factura %s."
 
 #~ msgid "Used in views and methods of localization modules."
 #~ msgstr "Usado en vistas y métodos de módulos de localización."
