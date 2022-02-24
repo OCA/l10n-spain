@@ -16,7 +16,11 @@
     "maintainers": [
         'ljsalvatierra-binovo'
     ],
-    "depends": ["base", "base_setup"],
+    "depends": [
+        "base",
+        "base_setup",
+        "base_vat",
+    ],
     "external_dependencies": {
         "python": [
             "OpenSSL",

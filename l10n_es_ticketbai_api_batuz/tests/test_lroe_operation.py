@@ -74,7 +74,6 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
             number=str_number,
             number_prefix='TBAITEST/',
             uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id, self.partner)
         invoice.build_tbai_invoice()
         return invoice
 
@@ -546,6 +545,7 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def test_alta_pj_240_send_to_tax_agency(self):
         if self.send_to_tax_agency:
             self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
+            self.main_company.main_activity_iae = "276300"
             self._prepare_bizkaia_company(self.main_company)
             invoice_number_str = self.get_next_number()
             tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)
@@ -554,6 +554,7 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def test_alta_model_pf_140_send_to_tax_agency(self):
         if self.send_to_tax_agency:
             self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+            self.main_company.main_activity_iae = "276300"
             self._prepare_bizkaia_company(self.main_company)
             invoice_number_str = self.get_next_number()
             tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)
@@ -562,6 +563,7 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def test_cancel_model_pj_240_send_to_tax_agency(self):
         if self.send_to_tax_agency:
             self.main_company.lroe_model = LROEModelEnum.model_pj_240.value
+            self.main_company.main_activity_iae = "276300"
             self._prepare_bizkaia_company(self.main_company)
             invoice_number_str = self.get_next_number()
             tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)
@@ -572,6 +574,7 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
     def test_cancel_model_pf_140_send_to_tax_agency(self):
         if self.send_to_tax_agency:
             self.main_company.lroe_model = LROEModelEnum.model_pf_140.value
+            self.main_company.main_activity_iae = "276300"
             self._prepare_bizkaia_company(self.main_company)
             invoice_number_str = self.get_next_number()
             tbai_invoice_id = self.create_tbai_invoice(invoice_number_str)

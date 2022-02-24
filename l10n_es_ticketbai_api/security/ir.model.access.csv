@@ -7,8 +7,6 @@ access_tbai_invoice_line_employee,tbai.invoice.line base.group_user,model_tbai_i
 access_tbai_invoice_line_settings,tbai.invoice.line base.group_system,model_tbai_invoice_line,base.group_system,1,1,1,0
 access_tbai_invoice_tax_employee,tbai.invoice.tax base.group_user,model_tbai_invoice_tax,base.group_user,1,0,0,0
 access_tbai_invoice_tax_settings,tbai.invoice.tax base.group_system,model_tbai_invoice_tax,base.group_system,1,1,1,0
-access_tbai_invoice_customer_employee,tbai.invoice.customer base.group_user,model_tbai_invoice_customer,base.group_user,1,0,0,0
-access_tbai_invoice_customer_settings,tbai.invoice.customer base.group_system,model_tbai_invoice_customer,base.group_system,1,1,1,0
 access_tbai_response_employee,tbai.response base.group_user,model_tbai_response,base.group_user,1,0,0,0
 access_tbai_certificate_settings,tbai.certificate base.group_system,model_tbai_certificate,base.group_system,1,1,1,1
 access_tbai_response_settings,tbai.response base.group_system,model_tbai_response,base.group_system,1,1,1,0

@@ -7,7 +7,7 @@ from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import (
     RefundCode,
     RefundType,
 )
-from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice_customer import (
+from odoo.addons.l10n_es_ticketbai_api.models.res_partner import (
     TicketBaiCustomerIdType,
 )
 from odoo.addons.l10n_es_ticketbai_api_batuz.models.lroe_operation import (

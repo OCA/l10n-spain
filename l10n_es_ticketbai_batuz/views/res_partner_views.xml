@@ -7,8 +7,11 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <group name="ticketbai" position="inside">
-                <field name="lroe_simplified_invoice" />
+            <group name="accounting_entries" position="after">
+                <group string="TicketBAI" name="ticketbai"
+                       attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                    <field name="lroe_simplified_invoice" />
+                </group>
             </group>
         </field>
     </record>

@@ -265,7 +265,7 @@ msgid "Invoice Tax"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:119
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:116
 #, python-format
 msgid "Invoice: number %s prefix %s invoice_date %s exists. Create a credit note from this invoice."
 msgstr ""
@@ -382,19 +382,19 @@ msgid "Refund"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:95
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:92
 #, python-format
 msgid "Refunded Invoice %s Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:86
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:83
 #, python-format
 msgid "Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:76
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:73
 #, python-format
 msgid "Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
 msgstr ""
@@ -666,7 +666,7 @@ msgid "TicketBAI refund by substitution is not supported."
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:39
+#: code:addons/l10n_es_ticketbai/models/ticketbai_invoice.py:36
 #, python-format
 msgid "TicketBAI: You cannot cancel and recreate an Invoice with a state different than 'Error'."
 msgstr ""

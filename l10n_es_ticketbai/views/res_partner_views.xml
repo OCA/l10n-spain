@@ -5,15 +5,13 @@
     <data>
         <record id="view_partner_property_form_inherit" model="ir.ui.view">
             <field name="model">res.partner</field>
-            <field name="inherit_id" ref="account.view_partner_property_form" />
+            <field name="inherit_id" ref="base.view_partner_form" />
             <field name="arch" type="xml">
-                <group name="accounting_entries" position="after">
-                    <group string="TicketBAI" name="ticketbai" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                <field name="vat" position="before">
                         <field name="tbai_enabled" invisible="1"/>
-                        <field name="tbai_partner_idtype"/>
-                        <field name="tbai_partner_identification_number" attrs="{'invisible': [('tbai_partner_idtype','=','02')]}"/>
-                    </group>
-                </group>
+                        <field name="tbai_partner_idtype"
+                               attrs="{'invisible': [('tbai_enabled', '=', False)]}" />
+                </field>
             </field>
         </record>
     </data>

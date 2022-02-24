@@ -11,9 +11,6 @@ from datetime import datetime
 class TicketBAIInvoice(models.Model):
     _inherit = 'tbai.invoice'
 
-    invoice_id = fields.Many2one(comodel_name='account.invoice')
-    cancelled_invoice_id = fields.Many2one(comodel_name='account.invoice')
-
     @api.multi
     def get_ticketbai_api(self, **kwargs):
         self.ensure_one()

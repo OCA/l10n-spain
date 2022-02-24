@@ -7,7 +7,7 @@ from random import randrange
 from lxml import etree
 from ..models.ticketbai_invoice import RefundCode, RefundType
 from ..models.ticketbai_invoice_tax import ExemptedCause, NotExemptedType, \
-    NotSubjectToCause, VATRegimeKey, SurchargeOrSimplifiedRegimeType
+    NotSubjectToCause, VATRegimeKey, SurchargeOrSimplifiedRegimeType, TicketBaiTaxType
 from ..ticketbai.xml_schema import XMLSchema, TicketBaiSchema
 from odoo import fields
 from odoo.tests import common
@@ -116,9 +116,17 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             'type': tax_type
         }
 
+    def _create_invoice(self, uid, partner_id):
+        return self.env['account.invoice'].sudo(uid).create({
+            'partner_id':  partner_id.id,
+            'currency_id': self.env.ref('base.EUR').id,
+            'name': 'TBAI Invoice Test',
+            'company_id': self.main_company.id})
+
     def create_tbai_national_invoice_exempted(
             self, name='TBAITEST/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner)
         vals = self._get_invoice_header_values(
             name=name, company_id=company_id, number=number,
             number_prefix=number_prefix)
@@ -139,6 +147,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             base=amount_total, is_subject_to=True, is_exempted=True,
             exempted_cause=ExemptedCause.E1.value)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
@@ -148,6 +157,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_national_invoice(
             self, name='TBAITEST/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner)
         vals = self._get_invoice_header_values(
             name=name, company_id=company_id, number=number,
             number_prefix=number_prefix)
@@ -172,6 +182,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             not_exempted_type=NotExemptedType.S1.value, amount=21.0,
             amount_total=amount_total - amount_total_untaxed)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
@@ -181,6 +192,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_national_invoice_not_subject_to(
             self, name='TBAITEST/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner)
         vals = self._get_invoice_header_values(
             name=name, company_id=company_id, number=number,
             number_prefix=number_prefix)
@@ -201,6 +213,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             base=amount_total, is_subject_to=False,
             not_subject_to_cause=NotSubjectToCause.RL.value)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
@@ -210,6 +223,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_extracommunity_invoice(
             self, name='TBAITEST/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner_extracommunity)
         vals = self._get_invoice_header_values(
             name=name, company_id=company_id, number=number,
             number_prefix=number_prefix, vat_regime_key=VATRegimeKey.K02.value)
@@ -228,8 +242,10 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         amount_total = l1_amount_total + l2_amount_total
         tax_vals = self._get_invoice_tax_values(
             base=amount_total, is_subject_to=True, is_exempted=True,
+            tax_type=TicketBaiTaxType.provision_of_goods.value,
             exempted_cause=ExemptedCause.E2.value)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
@@ -239,15 +255,15 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_intracommunity_invoice(
             self, name='TBAITEST/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner_intracommunity)
         vals = self._get_invoice_header_values(
             name=name, company_id=company_id, number=number,
             number_prefix=number_prefix)
         l1_qty = 1.0
-        l1_price_unit = 100.0
-        l1_discount_amount = 10.0
-        l1_amount_total = l1_qty * l1_price_unit - l1_discount_amount
+        l1_price_unit = 25.0
+        l1_amount_total = l1_qty * l1_price_unit
         l1_vals = self._get_invoice_line_values(
-            desc='L1', qty=l1_qty, price=l1_price_unit, disc=l1_discount_amount,
+            desc='L1', qty=l1_qty, price=l1_price_unit,
             total=l1_amount_total)
         l2_qty = 1.25
         l2_price_unit = 4.99
@@ -257,8 +273,10 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         amount_total = l1_amount_total + l2_amount_total
         tax_vals = self._get_invoice_tax_values(
             base=amount_total, is_subject_to=True, is_exempted=True,
+            tax_type=TicketBaiTaxType.provision_of_goods.value,
             exempted_cause=ExemptedCause.E5.value)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
@@ -268,6 +286,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_national_invoice_irpf(
             self, name='TBAITEST/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner)
         vals = self._get_invoice_header_values(
             name=name, company_id=company_id, number=number,
             number_prefix=number_prefix)
@@ -295,6 +314,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             not_exempted_type=NotExemptedType.S1.value, amount=21.0,
             amount_total=amount_total_untaxed * 0.21)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'tax_retention_amount_total': "%.2f" % total_retention,
@@ -305,6 +325,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_national_invoice_surcharge(
             self, name='TBAITEST/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner)
         vals = self._get_invoice_header_values(
             name=name, company_id=company_id, number=number,
             number_prefix=number_prefix)
@@ -334,6 +355,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             re_amount=5.2, re_amount_total=total_surcharge,
             surcharge_or_simplified_regime=SurchargeOrSimplifiedRegimeType.S.value)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
@@ -343,6 +365,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_national_invoice_refund_by_differences(
             self, name='TBAITEST/REF/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/REF/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner)
         # Simulate Original Invoice Discount Amount should be '0' instead of '10'.
         # In this particular case we are increasing the Original Invoice Amount Total
         vals = self._get_invoice_header_values(
@@ -363,6 +386,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             not_exempted_type=NotExemptedType.S1.value, amount=21.0,
             amount_total=amount_total - amount_total_untaxed)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
@@ -372,6 +396,7 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
     def create_tbai_national_invoice_refund_by_substitution(
             self, name='TBAITEST/REF/00001', company_id=1, number='00001',
             number_prefix='TBAITEST/REF/', uid=1):
+        invoice_id = self._create_invoice(uid, self.partner)
         # Simulate Original Invoice wrong quantities on its lines.
         # '10' instead of '1' and '4.25' instead of '1.25'.
         l1_original_base = 1.0 * 100.0 - 10.0
@@ -412,24 +437,12 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             not_exempted_type=NotExemptedType.S1.value, amount=21.0,
             amount_total=amount_total - amount_total_untaxed)
         vals.update({
+            'invoice_id': invoice_id.id,
             'tbai_invoice_line_ids': [(0, 0, l1_vals), (0, 0, l2_vals)],
             'tbai_tax_ids': [(0, 0, tax_vals)],
             'amount_total': "%.2f" % amount_total
         })
         return self.env['tbai.invoice'].sudo(uid).create(vals)
-
-    def add_customer_from_odoo_partner_to_invoice(self, tbai_invoice_id, partner):
-        return self.env['tbai.invoice.customer'].create({
-            'tbai_invoice_id': tbai_invoice_id,
-            'name': partner.tbai_get_value_apellidos_nombre_razon_social(),
-            'country_code': partner.country_id.code.upper(),
-            'nif': partner.tbai_get_value_nif(),
-            'identification_number':
-                partner.tbai_partner_identification_number or partner.vat,
-            'idtype': partner.tbai_partner_idtype,
-            'address': partner.tbai_get_value_direccion(),
-            'zip': partner.zip
-        })
 
     def create_certificate(self, company_id, cert_path, cert_password):
         with open(cert_path, 'rb') as f:
@@ -501,7 +514,6 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
             'tbai_test_enabled': True,
             'tbai_tax_agency_id': self.env.ref(
                 'l10n_es_ticketbai_api.tbai_tax_agency_gipuzkoa').id,
-            'currency_id': self.env.ref('base.EUR').id,
             'tbai_certificate_id': certificate.id,
             'tbai_installation_id': installation.id
         })

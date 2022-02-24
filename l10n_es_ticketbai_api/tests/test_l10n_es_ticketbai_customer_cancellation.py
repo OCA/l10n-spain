@@ -30,8 +30,6 @@ class TestL10nEsTicketBAICancellation(TestL10nEsTicketBAIAPI):
         invoice = self.create_tbai_national_invoice(
             name=name, company_id=self.main_company.id, number=number,
             number_prefix=self.number_prefix, uid=uid)
-        self.add_customer_from_odoo_partner_to_invoice(invoice.id,
-                                                       self.partner)
         invoice.build_tbai_invoice()
         pending_invoices = self.env['tbai.invoice'].get_next_pending_invoice(
             company_id=self.main_company.id, limit=0)
