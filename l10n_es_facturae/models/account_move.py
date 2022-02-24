@@ -325,7 +325,7 @@ class AccountMove(models.Model):
             node = doc.xpath("//field[@name='thirdparty_invoice']")
             if node:
                 return res
-            for node in doc.xpath("//field[@name='ref']"):
+            for node in doc.xpath("//field[@name='ref'][last()]"):
                 attrs = {
                     "required": [("thirdparty_invoice", "=", True)],
                     "invisible": [("thirdparty_invoice", "=", False)],
