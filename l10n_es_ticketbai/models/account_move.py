@@ -95,7 +95,8 @@ class AccountMove(models.Model):
     def _check_cancel_number_invoice(self):
         for record in self:
             if (
-                record.tbai_enabled
+                record.type in ("out_invoice", "out_refund")
+                and record.tbai_enabled
                 and "draft" == record.state
                 and record.tbai_invoice_id
             ):
