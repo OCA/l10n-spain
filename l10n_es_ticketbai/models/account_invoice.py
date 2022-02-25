@@ -70,7 +70,8 @@ class AccountInvoice(models.Model):
     @api.constrains('state')
     def _check_cancel_number_invoice(self):
         for record in self:
-            if record.tbai_enabled and 'draft' == record.state \
+            if record.type in ('out_invoice', 'out_refund') and \
+                    record.tbai_enabled and 'draft' == record.state \
                     and record.tbai_invoice_id:
                 raise exceptions.ValidationError(_(
                     "You cannot change to draft a TicketBAI invoice!"
