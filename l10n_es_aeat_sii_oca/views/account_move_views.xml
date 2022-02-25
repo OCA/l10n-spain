@@ -26,11 +26,6 @@
                     attrs="{'invisible': ['|','|',('sii_enabled', '=', False), ('state', 'not in', ['cancel']), ('sii_state', 'not in', ['sent','sent_w_errors','sent_modified'])]}"
                 />
             </button>
-            <field name="ref" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'required':[('state','=', 'draft'), ('move_type', 'in', ['in_invoice', 'in_refund'])]}</attribute>
-            </field>
             <notebook position="inside">
                 <page
                     string="SII"
