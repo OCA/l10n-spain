@@ -213,6 +213,11 @@ msgid "Recorded with warnings"
 msgstr ""
 
 #. module: l10n_es_ticketbai_batuz
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai_batuz.invoice_supplier_form_inherit_l10n_es_ticketbai_batuz
+msgid "Refund"
+msgstr ""
+
+#. module: l10n_es_ticketbai_batuz
 #: selection:account.invoice,lroe_state:0
 msgid "Registered in LROE but last modifications not recorded"
 msgstr ""
