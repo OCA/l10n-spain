@@ -4,8 +4,8 @@
 # Copyright 2014-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2016 - Tecnativa - Angel Moya <odoo@tecnativa.com>
 # Copyright 2017 - Tecnativa - Luis M. Ontalba <luis.martinez@tecnativa.com>
-# Copyright 2017 - Eficent Business and IT Consulting Services, S.L.
-#                  <contact@eficent.com>
+# Copyright 2017 - ForgeFlow, S.L.
+#                  <contact@forgeflow.com>
 # Copyright 2018 - Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import math
