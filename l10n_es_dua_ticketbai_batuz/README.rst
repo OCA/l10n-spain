@@ -1,5 +1,5 @@
 =========================
-TicketBAI - BATUZ con DUA
+TicketBAI - Batuz con DUA
 =========================
 
 .. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -23,7 +23,7 @@ TicketBAI - BATUZ con DUA
     :target: https://runbot.odoo-community.org/runbot/189/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 Envía las facturas DUA con los datos requeridos por BATUZ.
 
@@ -31,12 +31,6 @@ Envía las facturas DUA con los datos requeridos por BATUZ.
 
 .. contents::
    :local:
-
-Configuration
-=============
-
-Para configurar este módulo necesitas tener bien configurado el módulo
-l10n_es_dua tal y como se explica en dicho módulo.
 
 Usage
 =====
@@ -60,7 +54,7 @@ Credits
 Authors
 ~~~~~~~
 
-* Landoo Sistemas de Información SL
+* Landoo Sistemas de Información S.L
 
 Contributors
 ~~~~~~~~~~~~
