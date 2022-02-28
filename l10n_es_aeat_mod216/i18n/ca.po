@@ -9,45 +9,45 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-12-28 00:10+0000\n"
-"PO-Revision-Date: 2020-04-20 11:19+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2022-02-28 12:16+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod111_report
 msgid "AEAT 111 report"
-msgstr ""
+msgstr "Informe AEAT 111"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.menu,name:l10n_es_aeat_mod216.menu_aeat_mod216_report
 msgid "AEAT 216 model"
-msgstr ""
+msgstr "Model AEAT 216"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model,name:l10n_es_aeat_mod216.model_l10n_es_aeat_mod216_report
 msgid "AEAT 216 report"
-msgstr ""
+msgstr "Informe AEAT 216"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_tree
 msgid "AEAT 216 reports"
-msgstr ""
+msgstr "Informes AEAT 216"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,name:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
 msgid "AEAT model 216"
-msgstr ""
+msgstr "AEAT model 216"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.actions.act_window,help:l10n_es_aeat_mod216.action_l10n_es_aeat_mod216_report
 msgid "Create and query AEAT Model 216 reports."
-msgstr ""
+msgstr "Crear i consultar informes AEAT Model 216."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_create_uid
@@ -76,6 +76,9 @@ msgid ""
 "period (in which his statement was to return and compensation back option "
 "was chosen)."
 msgstr ""
+"Quota per compensar resultats anteriors amb el mateix tema, exercici fiscal "
+"i període (en què la seva declaració havia de retornar i es va optar per "
+"l'opció de compensació de retorn)."
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_id
@@ -85,32 +88,32 @@ msgstr "ID"
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Income not subject to retention"
-msgstr ""
+msgstr "Ingressos no subjectes a retenció"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_05
 msgid "Income not subject to retention - Base amount"
-msgstr ""
+msgstr "Ingressos no subjectes a retenció - Import base"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_04
 msgid "Income not subject to retention - Number of recipients"
-msgstr ""
+msgstr "Ingressos no subjectes a retenció - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Income subject to retention"
-msgstr ""
+msgstr "Ingressos subjectes a retenció"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_03
 msgid "Income subject to retention - Amount of retentions"
-msgstr ""
+msgstr "Ingressos subjectes a retenció - Import de les retencions"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_01
 msgid "Income subject to retention - Number of recipients"
-msgstr ""
+msgstr "Ingressos subjectes a retenció - Nombre de perceptors"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_res_partner_is_non_resident
@@ -151,7 +154,7 @@ msgstr "Tipus de resultat"
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,help:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
 msgid "Result: ([03] - [06])"
-msgstr ""
+msgstr "Resultat: ([03] - [06])"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
@@ -166,7 +169,7 @@ msgstr "A ingressar"
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
 msgid "To enter on CCT"
-msgstr ""
+msgstr "Per entrar a CCT"
 
 #. module: l10n_es_aeat_mod216
 #: selection:l10n.es.aeat.mod216.report,tipo_declaracion:0
@@ -176,34 +179,34 @@ msgstr "A retornar"
 #. module: l10n_es_aeat_mod216
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod216.view_l10n_es_aeat_mod216_report_form
 msgid "Totals"
-msgstr ""
+msgstr "Totals"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_01
 msgid "[01] # Recipients"
-msgstr ""
+msgstr "[01] # Destinataris"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_03
 msgid "[03] Amount of retentions"
-msgstr ""
+msgstr "[03] Import de les retencions"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_04
 msgid "[04] # Recipients"
-msgstr ""
+msgstr "[04] # Recipients"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_05
 msgid "[05] Base amount"
-msgstr ""
+msgstr "[05] Import base"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_06
 msgid "[06] Fees to compensate"
-msgstr ""
+msgstr "[06] Comissions per compensar"
 
 #. module: l10n_es_aeat_mod216
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod216.field_l10n_es_aeat_mod216_report_casilla_07
 msgid "[07] Result"
-msgstr ""
+msgstr "[07] Resultat"
