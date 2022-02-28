@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo11-addon-l10n_es_aeat_soap',
         'odoo11-addon-l10n_es_dua',
         'odoo11-addon-l10n_es_dua_sii',
+        'odoo11-addon-l10n_es_dua_ticketbai_batuz',
         'odoo11-addon-l10n_es_facturae',
         'odoo11-addon-l10n_es_facturae_efact',
         'odoo11-addon-l10n_es_facturae_face',
