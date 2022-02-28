@@ -515,8 +515,12 @@ class AccountInvoiceLine(models.Model):
 
     def tbai_get_value_descuento(self):
         if self.discount:
-            res = "%.2f" % (self.quantity * self.price_unit *
-                            self.discount / 100.0)
+            if RefundType.differences.value == self.invoice_id.tbai_refund_type:
+                sign = -1
+            else:
+                sign = 1
+            res = "%.2f" % \
+                (sign * self.quantity * self.price_unit * self.discount / 100.0)
         else:
             res = '0.00'
         return res
