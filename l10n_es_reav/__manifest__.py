@@ -17,5 +17,5 @@
         "data/taxes_reav.xml",
         "data/fiscal_positions_reav.xml",
         "data/fiscal_position_taxes_reav.xml",
-    ]
+    ],
 }
