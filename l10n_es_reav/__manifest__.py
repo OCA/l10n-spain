@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 # See README.rst file on addon root folder for more details
 {
-    "name": "REAV",
-    "summary": "Régimen especial de las agencias de viajes",
+    "name": "REAV - Régimen Especial Agencias de Viajes",
     "version": "14.0.1.0.0",
     "development_status": "Beta",
     "category": "Localization/Account Charts",
