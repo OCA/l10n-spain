@@ -14,3 +14,14 @@ class AccountMove(models.Model):
         "any AEAT 347 model report.",
         default=False,
     )
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    move_partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        related="move_id.partner_id",
+        string="Move Partner",
+        store=True,
+        index=True,
+    )

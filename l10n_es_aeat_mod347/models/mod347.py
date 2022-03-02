@@ -157,7 +157,7 @@ class L10nEsAeatMod347Report(models.Model):
         :param: taxes: Taxes to look for in move lines.
         """
         return [
-            ("partner_id.not_in_mod347", "=", False),
+            ("move_partner_id.not_in_mod347", "=", False),
             ("move_id.not_in_mod347", "=", False),
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
@@ -204,15 +204,15 @@ class L10nEsAeatMod347Report(models.Model):
         taxes = self._get_taxes(map_line)
         domain = self._account_move_line_domain(taxes)
         if partner_record:
-            domain += [("partner_id", "=", partner_record.partner_id.id)]
+            domain += [("move_partner_id", "=", partner_record.partner_id.id)]
         groups = self.env["account.move.line"].read_group(
-            domain, ["partner_id", "balance"], ["partner_id"],
+            domain, ["move_partner_id", "balance"], ["move_partner_id"],
         )
         filtered_groups = list(
             filter(lambda d: abs(d["balance"]) > self.operations_limit, groups)
         )
         for group in filtered_groups:
-            partner = partner_obj.browse(group["partner_id"][0])
+            partner = partner_obj.browse(group["move_partner_id"][0])
             vals = {
                 "report_id": self.id,
                 "partner_id": partner.id,
@@ -254,13 +254,13 @@ class L10nEsAeatMod347Report(models.Model):
             ("journal_id", "in", cash_journals.ids),
             ("date", ">=", self.date_start),
             ("date", "<=", self.date_end),
-            ("partner_id.not_in_mod347", "=", False),
+            ("move_partner_id.not_in_mod347", "=", False),
         ]
         cash_groups = move_line_obj.read_group(
-            domain, ["partner_id", "balance"], ["partner_id"]
+            domain, ["move_partner_id", "balance"], ["move_partner_id"]
         )
         for cash_group in cash_groups:
-            partner = partner_obj.browse(cash_group["partner_id"][0])
+            partner = partner_obj.browse(cash_group["move_partner_id"][0])
             partner_record_obj = self.env["l10n.es.aeat.mod347.partner_record"]
             amount = abs(cash_group["balance"])
             if amount > self.received_cash_limit:
