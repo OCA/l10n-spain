@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-24 10:34+0000\n"
-"PO-Revision-Date: 2020-03-08 22:13+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2022-03-02 14:17+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -348,8 +348,8 @@ msgid ""
 "(values generated from the selected template lines of detail formulas)"
 msgstr ""
 "Això emmagatzema la configuració/capçalera d'un informe de balanç de compte, "
-"i les línies de detall enllaçades amb els valors dels conceptes comptables "
-"(valors generats des del detall de les  línies de la plantilla de fórmules)"
+"i les línies de detall enllaçades amb els valors dels conceptes comptables ("
+"valors generats des del detall de les línies de la plantilla de fórmules)"
 
 #. module: account_balance_reporting
 #: code:addons/account_balance_reporting/models/account_balance_reporting_report.py:436
