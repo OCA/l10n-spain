@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-11-06 10:08+0000\n"
-"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
+"PO-Revision-Date: 2022-03-02 14:17+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod390.view_l10n_es_aeat_mod390_report_form
@@ -72,9 +72,7 @@ msgstr "3. Dades estadístiques"
 #: selection:l10n.es.aeat.mod390.report,other_second_activity_code:0
 #: selection:l10n.es.aeat.mod390.report,other_third_activity_code:0
 msgid "3: Arrendadores de Locales de Negocios y garajes"
-msgstr ""
-"3: Arrendadores de Locales de Negocios y garajes\n"
-"3: Arrendadors de Locals de Negocis i garatges"
+msgstr "3: Arrendadores de Locales de Negocis y garajes"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report_other_third_activity
