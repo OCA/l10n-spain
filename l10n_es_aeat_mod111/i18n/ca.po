@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-19 17:14+0000\n"
-"PO-Revision-Date: 2019-04-13 08:16+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2022-03-02 14:17+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.5\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.menu,name:l10n_es_aeat_mod111.menu_aeat_mod111_report
@@ -305,7 +305,7 @@ msgstr "DVD"
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,tipo_declaracion:0
 msgid "Direct debit"
-msgstr "Domiciliació "
+msgstr "Domiciliació"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_display_name
@@ -341,7 +341,7 @@ msgid ""
 msgstr ""
 "A deduir (exclusivament en cas d'auto-liquidació complementària): Resultats "
 "a ingressar d'anteriors auto-liquidacions per el mateix concepte, exercici i "
-"període "
+"període."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_contact_name
@@ -366,12 +366,12 @@ msgstr "Diari"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_journal_id
 msgid "Journal in which post the move."
-msgstr "Diari on publicar el moviment"
+msgstr "Diari on publicar el moviment."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_representative_vat
 msgid "L.R. VAT number"
-msgstr "NIF R.L."
+msgstr "L.R. Número d'IVA"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report___last_update
@@ -391,7 +391,7 @@ msgstr "Darrera Actualització el"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_representative_vat
 msgid "Legal Representative VAT number."
-msgstr "NIF del representant legal"
+msgstr "NIF del representant legal."
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_model_id
@@ -411,7 +411,7 @@ msgstr "En metàl·lic:"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,help:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_contact_name
 msgid "Must have name and surname."
-msgstr "Ha de tenir nom i cognoms"
+msgstr "Ha de tenir nom i cognoms."
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,type:0
@@ -456,7 +456,7 @@ msgstr "Identificador de l'informe"
 #. module: l10n_es_aeat_mod111
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Result"
-msgstr "Resultat "
+msgstr "Resultat"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_tipo_declaracion
@@ -497,7 +497,7 @@ msgstr "Tipus de suport"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_tax_line_ids
 #: model:ir.ui.view,arch_db:l10n_es_aeat_mod111.view_l10n_es_aeat_mod111_report_form
 msgid "Tax lines"
-msgstr "Línies d'imposts "
+msgstr "Línies d'imposts"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,support_type:0
@@ -521,7 +521,7 @@ msgstr "A ingressar"
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,tipo_declaracion:0
 msgid "To enter on CCT"
-msgstr "Ingrés a anotar al CCT "
+msgstr "Ingrés a anotar al CCT"
 
 #. module: l10n_es_aeat_mod111
 #: selection:l10n.es.aeat.mod111.report,tipo_declaracion:0
@@ -561,7 +561,7 @@ msgstr "Any"
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_casilla_01
 msgid "[01] # Recipients"
-msgstr "[01] No de destinataris "
+msgstr "[01] No de destinataris"
 
 #. module: l10n_es_aeat_mod111
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod111.field_l10n_es_aeat_mod111_report_casilla_04
