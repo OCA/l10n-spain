@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-20 20:56+0000\n"
-"PO-Revision-Date: 2018-06-29 21:18+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2022-03-02 14:17+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0.1\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
@@ -111,7 +111,7 @@ msgstr "ACTUAL"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Calculate"
-msgstr "Calcula"
+msgstr "Calcular"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_calc_date
@@ -167,7 +167,7 @@ msgstr "Configuració"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Confirm"
-msgstr "Confirma"
+msgstr "Confirmar"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_create_uid
@@ -253,7 +253,7 @@ msgstr "Disseny"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_display_name
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line_display_name
 msgid "Display Name"
-msgstr "Nombre a mostrar"
+msgstr "Nom a mostrar"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting,state:0
@@ -374,7 +374,7 @@ msgstr "Apunts comptables (anterior)"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template___last_update
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_line___last_update
 msgid "Last Modified on"
-msgstr "Last Modified on"
+msgstr "Última modificació el"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_write_uid
@@ -383,7 +383,7 @@ msgstr "Last Modified on"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_write_uid
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_write_uid
 msgid "Last Updated by"
-msgstr "Darrera Actualització per"
+msgstr "Última actualització per"
 
 #. module: account_balance_reporting
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_line_write_date
@@ -392,7 +392,7 @@ msgstr "Darrera Actualització per"
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_template_write_date
 #: model:ir.model.fields,field_description:account_balance_reporting.field_account_balance_reporting_write_date
 msgid "Last Updated on"
-msgstr "Darrera Actualització el"
+msgstr "Última actualització el"
 
 #. module: account_balance_reporting
 #: selection:account.balance.reporting.line,css_class:0
@@ -532,7 +532,7 @@ msgstr "Seqüència"
 #. module: account_balance_reporting
 #: model:ir.ui.view,arch_db:account_balance_reporting.view_account_balance_reporting_form
 msgid "Show journal items"
-msgstr "Mostrar apuntes contables"
+msgstr "Mostra articles del diari"
 
 #. module: account_balance_reporting
 #: model:ir.ui.menu,name:account_balance_reporting.menu_spanish_financial_reports
