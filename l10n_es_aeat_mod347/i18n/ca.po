@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: l10n-spain (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-01 08:00+0000\n"
-"PO-Revision-Date: 2019-02-16 09:50+0000\n"
-"Last-Translator: mtbochaca <mtbochaca@gmail.com>\n"
+"PO-Revision-Date: 2022-03-02 14:17+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/oca/OCA-l10n-spain-8-0/"
 "language/ca/)\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_mod347
 #: code:addons/l10n_es_aeat_mod347/models/mod347.py:112
@@ -550,7 +550,7 @@ msgstr "Quilòmetre"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_real_estate_record_representative_vat
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_report_representative_vat
 msgid "L.R. VAT number"
-msgstr "NIF R.L."
+msgstr "L.R. Número d'IVA"
 
 #. module: l10n_es_aeat_mod347
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod347.field_l10n_es_aeat_mod347_cash_record___last_update
