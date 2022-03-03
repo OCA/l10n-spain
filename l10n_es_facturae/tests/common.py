@@ -357,7 +357,6 @@ class CommonTest(common.TransactionCase):
         except Exception as e:
             verification_error = True
             error_message = str(e)
-            pass
         self.assertEqual(
             verification_error,
             False,

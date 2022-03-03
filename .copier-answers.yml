@@ -1,0 +1,17 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.5.1
+_src_path: https://github.com/OCA/oca-addons-repo-template.git
+ci: GitHub
+dependency_installation_mode: PIP
+generate_requirements_txt: true
+include_wkhtmltopdf: false
+odoo_version: 13.0
+rebel_module_groups: []
+repo_description: "Repositorio de c\xF3digo del proyecto de la localizaci\xF3n espa\xF1\
+  ola para el software de gesti\xF3n integral Odoo. La localizaci\xF3n espa\xF1ola\
+  \ de Odoo incluye: - M\xF3dulos para adaptar el sistema a los requisitos fiscales\
+  \ y contables espa\xF1oles. - Traducciones a las lenguas oficiales del pa\xEDs."
+repo_name: "Localizaci\xF3n espa\xF1ola de Odoo"
+repo_slug: l10n-spain
+travis_apt_packages: []
+travis_apt_sources: []

@@ -6,6 +6,7 @@
     "summary": "Payment Acquirer: Redsys Implementation",
     "version": "13.0.2.0.2",
     "author": "Tecnativa," "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-spain",
     "depends": ["payment", "website_sale"],
     "external_dependencies": {"python": ["Crypto.Cipher.DES3"]},
     "data": [

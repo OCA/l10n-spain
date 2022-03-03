@@ -15,6 +15,7 @@
     "author": "FactorLibre,Noviat,Tecnativa,Odoo Community Association (OCA)",
     "depends": ["intrastat_product", "l10n_es_aeat"],
     "conflicts": ["report_intrastat"],
+    "website": "https://github.com/OCA/l10n-spain",
     "data": [
         "security/l10n_es_intrastat_report_security.xml",
         "security/ir.model.access.csv",
