@@ -20,6 +20,7 @@
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Accounting & Finance",
     "depends": ["l10n_es", "account_tax_balance"],
+    "development_status": "Mature",
     "external_dependencies": {"python": ["unidecode", "pyOpenSSL"]},
     "data": [
         "security/aeat_security.xml",
