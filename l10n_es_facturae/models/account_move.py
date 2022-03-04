@@ -74,16 +74,6 @@ class AccountMove(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    l10n_es_facturae_status = fields.Selection(
-        [], tracking=True, readonly=True, string="Facturae status", copy=False
-    )
-    l10n_es_facturae_cancellation_status = fields.Selection(
-        [],
-        tracking=True,
-        readonly=True,
-        string="Facturae cancellation status",
-        copy=False,
-    )
     l10n_es_facturae_attachment_ids = fields.One2many(
         "l10n.es.facturae.attachment",
         inverse_name="move_id",
@@ -109,32 +99,6 @@ class AccountMove(models.Model):
     def _compute_thirdparty_invoice(self):
         for item in self:
             item.thirdparty_invoice = item.journal_id.thirdparty_invoice
-
-    def _get_edi_missing_records(self):
-        result = super()._get_edi_missing_records()
-        if result:
-            return result
-        if self.move_type not in ["out_invoice", "out_refund"]:
-            return False
-        partner = self.partner_id
-        if not partner.facturae or not partner.l10n_es_facturae_sending_code:
-            return False
-        exchange_type = self._get_exchange_type_map()[
-            partner.l10n_es_facturae_sending_code
-        ]
-        if not exchange_type:
-            return False
-        return not self._has_exchange_record(
-            exchange_type, self.env.ref("l10n_es_facturae.backend_facturae")
-        )
-
-    @api.model
-    def _edi_missing_records_fields(self):
-        result = super()._edi_missing_records_fields()
-        return result + [
-            "l10n_es_facturae_status",
-            "partner_id.l10n_es_facturae_sending_code",
-        ]
 
     @api.constrains("facturae_start_date", "facturae_end_date")
     def _check_facturae_date(self):
@@ -261,32 +225,6 @@ class AccountMove(models.Model):
             or self.company_id.facturae_version
             or "3_2"
         )
-
-    def _has_exchange_record_domain(
-        self, exchange_type, backend=False, extra_domain=False
-    ):
-        domain = super()._has_exchange_record_domain(
-            exchange_type, backend=backend, extra_domain=extra_domain
-        )
-        if exchange_type == "l10n_es_facturae":
-            domain += [
-                "|",
-                ("l10n_es_facturae_status", "=", False),
-                (
-                    "l10n_es_facturae_status",
-                    "not in",
-                    self._get_l10n_es_facturae_excluded_status(),
-                ),
-            ]
-        return domain
-
-    @api.model
-    def _get_l10n_es_facturae_excluded_status(self):
-        return []
-
-    def _get_l10n_es_facturae_backend(self):
-        """To be inherited by all facturae sending modules"""
-        return False
 
     def _get_facturae_tax_info(self):
         self.ensure_one()

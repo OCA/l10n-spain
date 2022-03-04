@@ -8,4 +8,3 @@ from . import account_tax
 from . import res_currency
 from . import account_journal
 from . import account_move
-from . import edi_exchange_record
