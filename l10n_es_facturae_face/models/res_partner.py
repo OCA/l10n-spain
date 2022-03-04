@@ -8,7 +8,11 @@ from odoo import _, api, exceptions, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    l10n_es_facturae_sending_code = fields.Selection(selection_add=[("face", "FACe")])
+    l10n_es_facturae_sending_code = fields.Selection(
+        [("face", "FACe")], string="Sending method"
+    )
+    # TODO: Replace this by a boolean on 15.0. We are keeping this on 13 and 14 because
+    #  migration might be problematic
 
     @api.constrains(
         "facturae", "vat", "country_id", "state_id", "l10n_es_facturae_sending_code",

@@ -54,13 +54,13 @@ Zz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KCg==</field>
     </record>
     <record id="face_backend" model="edi.backend">
         <field name="name">FACe</field>
-        <field name="backend_type_id" ref="l10n_es_facturae.facturae_backend_type" />
+        <field name="backend_type_id" ref="facturae_backend_type" />
         <field name="webservice_backend_id" ref="face_webservice" />
     </record>
     <record id="facturae_face_update_exchange_type" model="edi.exchange.type">
         <field name="name">Update Facturae FACe</field>
         <field name="code">l10n_es_facturae_face_update</field>
-        <field name="backend_type_id" ref="l10n_es_facturae.facturae_backend_type" />
+        <field name="backend_type_id" ref="facturae_backend_type" />
         <field name="backend_id" ref="face_backend" />
         <field name="direction">input</field>
         <field name="exchange_filename_pattern">{record_name}--{dt}</field>
@@ -77,7 +77,7 @@ Zz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KCg==</field>
     <record id="facturae_face_cancel_exchange_type" model="edi.exchange.type">
         <field name="name">Cancel Facturae FACe</field>
         <field name="code">l10n_es_facturae_face_cancel</field>
-        <field name="backend_type_id" ref="l10n_es_facturae.facturae_backend_type" />
+        <field name="backend_type_id" ref="facturae_backend_type" />
         <field name="backend_id" ref="face_backend" />
         <field name="direction">output</field>
         <field name="exchange_filename_pattern">{record_name}--{dt}</field>
