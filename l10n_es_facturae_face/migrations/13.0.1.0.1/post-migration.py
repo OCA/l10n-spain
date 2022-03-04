@@ -27,7 +27,7 @@ def migrate(env, version):
     if not data:
         return
     method_id = data[0][0]
-    exchange_type = env.ref("l10n_es_facturae.facturae_exchange_type")
+    exchange_type = env.ref("l10n_es_facturae_face.facturae_exchange_type")
     backend = env.ref("l10n_es_facturae_face.face_backend")
     openupgrade.logged_query(
         env.cr,
