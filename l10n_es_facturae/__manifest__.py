@@ -7,7 +7,7 @@
 
 {
     "name": "Creación de Factura-e",
-    "version": "14.0.1.0.3",
+    "version": "14.0.2.0.0",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "
@@ -26,15 +26,10 @@
         "base_vat",
         "report_xml",
         "report_qweb_parameter",
-        "edi_account_oca",
-        "edi_exchange_template_oca",
         "l10n_es_aeat",
     ],
     "data": [
         "security/ir.model.access.csv",
-        "data/account_tax_template.xml",
-        "security/ir.model.access.csv",
-        "data/edi.xml",
         "data/account_tax_template.xml",
         "views/res_partner_view.xml",
         "views/res_company.xml",
@@ -44,8 +39,6 @@
         "wizard/create_facturae_view.xml",
         "wizard/account_move_reversal_view.xml",
         "views/account_move_view.xml",
-        "views/edi_exchange_record.xml",
-        "data/edi_output.xml",
     ],
     "external_dependencies": {
         "python": ["cryptography", "pyOpenSSL", "pycountry", "xmlsig"]
