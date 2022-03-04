@@ -6,13 +6,32 @@ import logging
 
 from zeep import helpers
 
-from odoo import _, models
+from odoo import _, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class EdiExchangeRecord(models.Model):
     _inherit = "edi.exchange.record"
+
+    l10n_es_facturae_status = fields.Selection(
+        selection=lambda r: r.env["account.move"]
+        ._fields["l10n_es_facturae_status"]
+        .selection,
+        readonly=True,
+        string="Facturae State",
+    )
+    l10n_es_facturae_cancellation_status = fields.Selection(
+        selection=lambda r: r.env["account.move"]
+        ._fields["l10n_es_facturae_cancellation_status"]
+        .selection,
+        readonly=True,
+        string="Facturae Cancellation state",
+    )
+    l10n_es_facturae_motive = fields.Text(string="Facturae description", readonly=True,)
+    l10n_es_facturae_cancellation_motive = fields.Text(
+        readonly=True, string="Facturae Cancellation motive"
+    )
 
     def _cron_face_update_method(self, company_domain=False):
         if not company_domain:
