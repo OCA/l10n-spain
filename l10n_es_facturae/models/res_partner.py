@@ -17,7 +17,6 @@ class ResPartner(models.Model):
     oficina_contable = fields.Char("Oficina contable", size=10)
     organo_proponente = fields.Char("Órgano proponente", size=10)
     attach_invoice_as_annex = fields.Boolean()
-    l10n_es_facturae_sending_code = fields.Selection([], string="Sending method")
 
     def get_facturae_residence(self):
         if not self.country_id:
