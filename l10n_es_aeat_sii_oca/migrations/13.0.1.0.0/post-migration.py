@@ -40,13 +40,11 @@ def migrate(env, version):
     )
     # Change jobs reference
     pattern = r"account\.invoice\((.*),\)\.(confirm_one_invoice|cancel_one_invoice)\(\)"
-    pattern2 = r"(.*)\"model\": \"account.invoice\"(.*)\"ids\": \[(.*)\](.*)"
     openupgrade.logged_query(
         env.cr,
         r"""
         WITH sub AS (
-            SELECT id, regexp_matches(func_string, $$%(pattern)s$$) as parts,
-                regexp_matches(records, $$%(pattern2)s$$) as parts2
+            SELECT id, regexp_matches(func_string, $$%(pattern)s$$) as parts
             FROM queue_job
             WHERE func_string ~ $$%(pattern)s$$
         )
@@ -55,14 +53,23 @@ def migrate(env, version):
             model_name = 'account.move',
             name = concat('account.move.', method_name),
             channel_method_name = concat('<account.move>.', parts[2]),
-            records = concat(
-                sub.parts2[1], '"model": "account.move"', sub.parts2[2],
-                '"ids": [', am.id, ']', sub.parts2[4]
+            records = jsonb_set(
+                jsonb_set(
+                    records::jsonb, '{model}', '"account.move"', true
+                ), '{ids}', concat('[', am.id::text, ']')::jsonb, true
             )
         FROM sub
         JOIN account_move am ON am.old_invoice_id = sub.parts[1]::int
         WHERE sub.id = qj.id"""
-        % {"pattern": pattern, "pattern2": pattern2},
+        % {"pattern": pattern},
+    )
+    openupgrade.logged_query(
+        env.cr,
+        """UPDATE queue_job qj
+        SET job_function_id = qjb.id
+        FROM queue_job_function qjf
+        WHERE qjf.name = qj.channel_method_name
+        AND job_function_id IS NULL""",
     )
     openupgrade.load_data(
         env.cr, "l10n_es_aeat_sii_oca", "migrations/13.0.1.0.0/noupdate_changes.xml"
