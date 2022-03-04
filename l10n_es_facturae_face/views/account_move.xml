@@ -18,6 +18,10 @@
                         ('l10n_es_facturae_cancellation_status', 'not in', ['face-4100', 'face-4400'])]}"
                 />
             </button>
+            <field name="facturae_end_date" position="after">
+                <field name="l10n_es_facturae_status" />
+                <field name="l10n_es_facturae_cancellation_status" />
+            </field>
         </field>
     </record>
 </odoo>
