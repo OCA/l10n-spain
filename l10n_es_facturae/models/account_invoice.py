@@ -231,8 +231,8 @@ class AccountInvoice(models.Model):
             raise ValidationError(_('Payment mode is required'))
         if self.payment_mode_id.facturae_code:
             partner_bank = self.partner_banks_to_show()[:1]
-            if not partner_bank:
-                raise ValidationError(_('Partner bank is missing'))
+            # if not partner_bank:
+            #     raise ValidationError(_('Partner bank is missing'))
             if partner_bank.bank_id.bic and len(
                     partner_bank.bank_id.bic) != 11:
                 raise ValidationError(_('Selected account BIC must be 11'))
