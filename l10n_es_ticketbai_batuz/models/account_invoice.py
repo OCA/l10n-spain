@@ -326,7 +326,7 @@ class AccountInvoice(models.Model):
                     OrderedDict([
                         ("BaseRectificada", abs(origin.amount_untaxed_signed)),
                         ("CuotaRectificada", abs(
-                            origin.amount_total_company_signed -
+                            origin._get_amount_company_currency(origin.amount_total) -
                             origin.amount_untaxed_signed
                         )),
                         # (CuotaRecargoRectificada, False),
@@ -546,7 +546,8 @@ class AccountInvoice(models.Model):
         res = OrderedDict([
             ("DescripcionOperacion", self._get_batuz_description()[:250]),
             ("Claves", self._get_lroe_claves()),
-            ("ImporteTotalFactura", amount_total or self.amount_total_company_signed),
+            ("ImporteTotalFactura",
+             amount_total or self._get_amount_company_currency(self.amount_total)),
             # Base imponible a coste (para grupos de IVA – nivel avanzado (240))
             # ("BaseImponibleACoste", False),
         ])
@@ -581,7 +582,8 @@ class AccountInvoice(models.Model):
             sign = self._get_lroe_sign()
             taxes_dict, tax_amount, not_in_amount_total = self._get_lroe_in_taxes(sign)
             amount_total = (
-                abs(self.amount_total_company_signed) - not_in_amount_total
+                abs(self._get_amount_company_currency(self.amount_total))
+                - not_in_amount_total
             ) * sign
             inv_dict = OrderedDict([
                 ("Gasto", OrderedDict([
@@ -624,7 +626,8 @@ class AccountInvoice(models.Model):
             sign = self._get_lroe_sign()
             taxes_dict, tax_amount, not_in_amount_total = self._get_lroe_in_taxes(sign)
             amount_total = (
-                abs(self.amount_total_company_signed) - not_in_amount_total
+                abs(self._get_amount_company_currency(self.amount_total))
+                - not_in_amount_total
             ) * sign
             inv_dict = OrderedDict([
                 ("FacturaRecibida", OrderedDict([
