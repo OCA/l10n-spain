@@ -66,7 +66,7 @@ def migrate(env, version):
     openupgrade.logged_query(
         env.cr,
         """UPDATE queue_job qj
-        SET job_function_id = qjb.id
+        SET job_function_id = qjf.id
         FROM queue_job_function qjf
         WHERE qjf.name = qj.channel_method_name
         AND job_function_id IS NULL""",

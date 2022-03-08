@@ -15,3 +15,4 @@
 
   * Valentin Vinagre
 * Rafa Martínez - Punt Sistemes S.L.U. <rmartinez@puntsistemes.es>
+* Isaac Gallart - Punt Sistemes S.L.U. <igallart@puntsistemes.es>
