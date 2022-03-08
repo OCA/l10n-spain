@@ -2,14 +2,11 @@
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from datetime import datetime
-import re
 from odoo import models, fields, exceptions, _, api
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundCode, \
     RefundType, SiNoType, TicketBaiInvoiceState
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
-
-INVOICE_NUMBER_RE = re.compile(r'^(.*\D)?(\d*)$')
 
 
 class AccountInvoice(models.Model):
@@ -419,15 +416,32 @@ class AccountInvoice(models.Model):
             res = False
         return res
 
-    def split_invoice_number(self):
-        m = re.match(INVOICE_NUMBER_RE, self.number)
-        return m.group(1), m.group(2)
+    def _get_invoice_sequence(self):
+        journal_id = self.journal_id
+        if 'invoice_sequence_id' in journal_id:
+            sequence = journal_id.refund_inv_sequence_id \
+                if self.type == 'out_refund' and journal_id.refund_inv_sequence_id \
+                else journal_id.invoice_sequence_id
+        else:  # pragma: no cover
+            sequence = journal_id.refund_sequence_id \
+                if self.type == 'out_refund' else journal_id.sequence_id
+        return sequence
 
     def tbai_get_value_serie_factura(self):
-        return self.split_invoice_number()[0]
+        sequence = self._get_invoice_sequence()
+        prefix = sequence.with_context(
+            ir_sequence_date=self.date_invoice,
+            ir_sequence_date_range=self.date_invoice)._get_prefix_suffix()[0]
+        return prefix
 
     def tbai_get_value_num_factura(self):
-        return self.split_invoice_number()[1]
+        invoice_prefix = self.tbai_get_value_serie_factura()
+        if invoice_prefix and not self.number.startswith(
+                invoice_prefix):
+            raise exceptions.ValidationError(_(
+                "Invoice Number Prefix %s is not part of Invoice Number %s!"
+            ) % (invoice_prefix, self.number))
+        return self.number[len(invoice_prefix):]
 
     def tbai_get_value_fecha_expedicion_factura(self):
         invoice_date = self.date or self.date_invoice

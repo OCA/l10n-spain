@@ -263,6 +263,12 @@ msgid "Invoice Number"
 msgstr "Número de factura"
 
 #. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:425
+#, python-format
+msgid "Invoice Number Prefix %s is not part of Invoice Number %s!"
+msgstr "Número de serie de factura %s no es parte del número de factura %s."
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Invoice Serial"
 msgstr "Número de serie"
@@ -804,9 +810,6 @@ msgstr "Asistente obtención llaves de certificado AEAT"
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
 msgid "tbai.info"
 msgstr "TicketBAI Información general"
-
-#~ msgid "Invoice Number Prefix %s is not part of Invoice Number %s!"
-#~ msgstr "Número de serie de factura %s no es parte del número de factura %s."
 
 #~ msgid "Information protected by Article 9 Regulation 679/2016"
 #~ msgstr "Información protegida por el artículo 9 Reglamento 679/2016"

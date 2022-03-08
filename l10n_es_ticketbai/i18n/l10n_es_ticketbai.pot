@@ -254,6 +254,12 @@ msgid "Invoice Number"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:425
+#, python-format
+msgid "Invoice Number Prefix %s is not part of Invoice Number %s!"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
 msgid "Invoice Serial"
 msgstr ""
