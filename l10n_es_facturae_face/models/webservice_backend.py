@@ -8,4 +8,6 @@ class WebServiceBackend(models.Model):
 
     _inherit = "webservice.backend"
 
-    protocol = fields.Selection(selection_add=[("face", "FACe")])
+    protocol = fields.Selection(
+        selection_add=[("face", "FACe")], ondelete={"face": "cascade"}
+    )

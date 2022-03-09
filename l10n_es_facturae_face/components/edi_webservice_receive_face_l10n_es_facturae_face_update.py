@@ -22,10 +22,13 @@ class EdiWebServiceReceiveFaceL10nEsFacturaeFaceUpdate(Component):
 
     def receive(self):
         invoice = self.exchange_record.record
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            invoice.company_id
+        )
         response = self.backend.webservice_backend_id.call(
             "consult_invoice",
-            invoice.company_id.facturae_cert,
-            invoice.company_id.facturae_cert_password,
+            public_crt,
+            private_key,
             self.exchange_record.parent_id.external_identifier,
         )
         if response.resultado.codigo != "0":

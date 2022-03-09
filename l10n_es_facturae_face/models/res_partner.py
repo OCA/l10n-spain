@@ -15,7 +15,11 @@ class ResPartner(models.Model):
     #  migration might be problematic
 
     @api.constrains(
-        "facturae", "vat", "country_id", "state_id", "l10n_es_facturae_sending_code",
+        "facturae",
+        "vat",
+        "country_id",
+        "state_id",
+        "l10n_es_facturae_sending_code",
     )
     def _constrain_l10n_es_facturae_sending_code_face(self):
         for record in self:

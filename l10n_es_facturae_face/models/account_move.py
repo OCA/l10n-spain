@@ -39,7 +39,7 @@ class AccountMove(models.Model):
         result = super()._get_edi_missing_records()
         if result:
             return result
-        if self.type not in ["out_invoice", "out_refund"]:
+        if self.move_type not in ["out_invoice", "out_refund"]:
             return False
         partner = self.partner_id
         if not partner.facturae or not partner.l10n_es_facturae_sending_code:
