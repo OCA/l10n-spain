@@ -4,13 +4,9 @@
 import os
 from datetime import date
 
-from odoo.tests import common
-
 from odoo.addons.l10n_es_ticketbai_api.tests.common import TestL10nEsTicketBAIAPI
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
     def create_account_billing(self):
         return (

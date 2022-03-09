@@ -3,15 +3,12 @@
 from datetime import datetime, timedelta
 
 from odoo import exceptions
-from odoo.tests import common
 from odoo.tools.misc import DEFAULT_SERVER_DATE_FORMAT
 
 from ..ticketbai.xml_schema import XMLSchema
 from .common import TestL10nEsTicketBAIAPI
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestL10nEsTicketBAIInvoice(TestL10nEsTicketBAIAPI):
     def setUp(self):
         super().setUp()
