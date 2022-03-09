@@ -19,10 +19,13 @@ class EdiOutputSendL10nEsFacturaeFace(Component):
         move = self.exchange_record.record
         parent = self.exchange_record.parent_id
         data = json.loads(self.exchange_record._get_file_content())
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            move.company_id
+        )
         self.backend.webservice_backend_id.call(
             "cancel",
-            move.company_id.facturae_cert,
-            move.company_id.facturae_cert_password,
+            public_crt,
+            private_key,
             parent.external_identifier,
             data["motive"],
         )
