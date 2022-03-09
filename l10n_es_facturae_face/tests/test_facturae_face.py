@@ -1,19 +1,20 @@
 # © 2017 Creu Blanca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import base64
 import logging
 
 import mock
 
 from odoo import exceptions
-from odoo.tests import common
 
 from odoo.addons.component.tests.common import SavepointComponentRegistryCase
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
+    TestL10nEsAeatCertificateBase,
+)
 
 try:
-    from zeep import Client
     from OpenSSL import crypto
+    from zeep import Client
 except (ImportError, IOError) as err:
     logging.info(err)
 
@@ -21,7 +22,7 @@ except (ImportError, IOError) as err:
 _logger = logging.getLogger(__name__)
 
 
-class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
+class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegistryCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -84,10 +85,6 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         main_company = self.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
         main_company.partner_id.country_id = self.env.ref("base.uk")
-        main_company.facturae_cert = base64.b64encode(
-            pkcs12.export(passphrase="password")
-        )
-        main_company.facturae_cert_password = "password"
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
@@ -175,7 +172,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -202,7 +199,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -249,8 +246,11 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
             self.partner.state_id = False
 
     def test_facturae_face_error(self):
+        self._activate_certificate(self.certificate_password)
         self.assertFalse(self.move.exchange_record_ids)
-        self.move.with_context(force_edi_send=True, test_queue_job_no_delay=True).post()
+        self.move.with_context(
+            force_edi_send=True, test_queue_job_no_delay=True
+        ).action_post()
         self.move.refresh()
         self.assertTrue(self.move.exchange_record_ids)
         exchange_record = self.move.exchange_record_ids
@@ -275,6 +275,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
             def consultarListadoFacturas(self, *args):
                 return self.value
 
+        self._activate_certificate(self.certificate_password)
         client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
@@ -287,10 +288,12 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
 
             self.move.with_context(
                 force_edi_send=True, test_queue_job_no_delay=True
-            ).post()
-            self.move.number = "2999/99998"
+            ).action_post()
+            self.move.name = "2999/99998"
             mock_client.assert_not_called()
-            exchange_record = self.move.exchange_record_ids
+            exchange_record = self.move.exchange_record_ids.with_context(
+                _edi_send_break_on_error=True
+            )
             self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
             exchange_record.backend_id.exchange_send(exchange_record)
             self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
@@ -308,7 +311,8 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         )
         self.move.refresh()
         self.assertIn(
-            str(self.face_update_type.id), self.move.expected_edi_configuration,
+            str(self.face_update_type.id),
+            self.move.expected_edi_configuration,
         )
         with self.assertRaises(exceptions.UserError):
             self.move.edi_create_exchange_record(self.face_update_type.id)
