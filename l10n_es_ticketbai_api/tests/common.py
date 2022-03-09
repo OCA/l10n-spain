@@ -22,8 +22,6 @@ from ..models.ticketbai_invoice_tax import (
 from ..ticketbai.xml_schema import TicketBaiSchema, XMLSchema
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestL10nEsTicketBAIAPI(common.TransactionCase):
     catalogs = [
         "file:"

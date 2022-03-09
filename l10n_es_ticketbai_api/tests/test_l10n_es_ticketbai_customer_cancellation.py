@@ -1,14 +1,10 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import common
-
 from ..ticketbai.xml_schema import XMLSchema
 from .common import TestL10nEsTicketBAIAPI
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestL10nEsTicketBAICancellation(TestL10nEsTicketBAIAPI):
     def setUp(self):
         super().setUp()

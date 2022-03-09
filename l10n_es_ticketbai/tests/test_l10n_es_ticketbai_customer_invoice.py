@@ -4,15 +4,12 @@
 from datetime import date
 
 from odoo import exceptions
-from odoo.tests import common
 
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import XMLSchema
 
 from .common import TestL10nEsTicketBAI
 
 
-@common.at_install(False)
-@common.post_install(True)
 class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
     def setUp(self):
         super().setUp()
