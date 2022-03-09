@@ -5,7 +5,7 @@
     <record model="ir.ui.view" id="edi_exchange_record_view_form">
         <field name="name">edi.exchange.record.form (in l10n_es_facturae_face)</field>
         <field name="model">edi.exchange.record</field>
-        <field name="inherit_id" ref="edi.edi_exchange_record_view_form" />
+        <field name="inherit_id" ref="edi_oca.edi_exchange_record_view_form" />
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page
