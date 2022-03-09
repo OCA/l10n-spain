@@ -22,7 +22,7 @@ class AccountMoveL10nEsFacturaeListener(Component):
     def on_post_account_move(self, records):
         for record in records:
             partner = record.partner_id
-            if record.type not in ["out_invoice", "out_refund"]:
+            if record.move_type not in ["out_invoice", "out_refund"]:
                 continue
             if not partner.facturae or not partner.l10n_es_facturae_sending_code:
                 continue

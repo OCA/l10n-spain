@@ -18,10 +18,13 @@ class EdiOutputSendL10nEsFacturaeFace(Component):
 
     def send(self):
         invoice = self.exchange_record.record
+        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
+            invoice.company_id
+        )
         response = self.backend.webservice_backend_id.call(
             "send",
-            invoice.company_id.facturae_cert,
-            invoice.company_id.facturae_cert_password,
+            public_crt,
+            private_key,
             self.exchange_record._get_file_content(),
             self.exchange_record.exchange_filename,
             invoice.company_id.face_email,
