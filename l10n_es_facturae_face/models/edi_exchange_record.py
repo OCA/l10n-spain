@@ -28,7 +28,10 @@ class EdiExchangeRecord(models.Model):
         readonly=True,
         string="Facturae Cancellation state",
     )
-    l10n_es_facturae_motive = fields.Text(string="Facturae description", readonly=True,)
+    l10n_es_facturae_motive = fields.Text(
+        string="Facturae description",
+        readonly=True,
+    )
     l10n_es_facturae_cancellation_motive = fields.Text(
         readonly=True, string="Facturae Cancellation motive"
     )
@@ -68,10 +71,13 @@ class EdiExchangeRecord(models.Model):
             for integration in company_integrations:
                 exchanges.append(integration.external_identifier)
                 exchange_dict[integration.external_identifier] = integration
+            public_crt, private_key = self.env[
+                "l10n.es.aeat.certificate"
+            ].get_certificates(company)
             response = face.webservice_backend_id.call(
                 "consult_invoices",
-                company.facturae_cert,
-                company.facturae_cert_password,
+                public_crt,
+                private_key,
                 exchanges,
             )
             if response.resultado.codigo != "0":
