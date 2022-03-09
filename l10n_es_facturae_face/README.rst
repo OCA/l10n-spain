@@ -23,7 +23,7 @@ Envío de Factura-e a FACe
     :target: https://runbot.odoo-community.org/runbot/189/13.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Este módulo permite la gestión del envío de la facturación electrónica española
 a FACe.
@@ -39,7 +39,7 @@ Installation
 
 Este módulo depende del módulo *l10n_es_facturae* y sus dependencias
 
-Es necesario tener instalado el módulo xmlsec y zeep en la versión que envía en
+Es necesario tener instalado el módulo zeep en la versión que envía en
 formato c14n.
 
 Configuration

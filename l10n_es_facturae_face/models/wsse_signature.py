@@ -19,18 +19,15 @@ from lxml import etree
 from lxml.etree import QName
 
 try:
+    import xmlsig
+    from cryptography import x509
+    from cryptography.hazmat.primitives import serialization
     from zeep import ns
     from zeep.exceptions import SignatureVerificationFailed
     from zeep.utils import detect_soap_env
     from zeep.wsse.utils import ensure_id, get_security_header
-    from OpenSSL import crypto
 except (ImportError, IOError) as err:
     logging.info(err)
-
-try:
-    import xmlsec
-except ImportError:
-    xmlsec = None
 
 # SOAP envelope
 SOAP_NS = "http://schemas.xmlsoap.org/soap/envelope/"
@@ -41,33 +38,23 @@ def _read_file(f_name):
         return f.read()
 
 
-def _make_sign_key(key_data, cert_data, password):
-    key = xmlsec.Key.from_memory(key_data, xmlsec.KeyFormat.PKCS12_PEM, password)
-    return key
-
-
-def _make_verify_key(cert_data):
-    key = xmlsec.Key.from_memory(cert_data, xmlsec.KeyFormat.CERT_PEM, None)
-    return key
-
-
 class MemorySignature(object):
     """Sign given SOAP envelope with WSSE sig using given key and cert."""
 
-    def __init__(self, key_data, cert_data, password=None):
-        check_xmlsec_import()
-
-        self.key_data = key_data
+    def __init__(self, public_cert, private_key, cert_data, password=None):
+        self.public_cert = public_cert
+        self.private_key = private_key
         self.cert_data = cert_data
         self.password = password
 
     def apply(self, envelope, headers):
-        signed = sign_envelope(envelope, self.key_data, self.cert_data, self.password)
+        signed = sign_envelope(
+            envelope, self.public_cert, self.private_key, self.cert_data, self.password
+        )
         return signed, headers
 
     def verify(self, envelope):
-        key = _make_verify_key(self.cert_data)
-        _verify_envelope_with_key(envelope, key)
+        verify_envelope(envelope, self.cert_data)
         return envelope
 
 
@@ -81,17 +68,7 @@ class Signature(MemorySignature):
         )
 
 
-def check_xmlsec_import():
-    if xmlsec is None:
-        raise ImportError(
-            "The xmlsec module is required for wsse.Signature()\n"
-            + "You can install xmlsec with: pip install xmlsec\n"
-            + "or install zeep via: pip install zeep[xmlsec]\n"
-        )
-
-
-def sign_envelope(envelope, keyfile, certfile, password=None):
-    key = _make_sign_key(keyfile, certfile, password)
+def sign_envelope(envelope, public_cert, private_key, certfile, password):
     reference_id = "Reference"
     security = get_security_header(envelope)
     security.set(QName(ns.SOAP_ENV_11, "mustUnderstand"), "1")
@@ -113,18 +90,18 @@ def sign_envelope(envelope, keyfile, certfile, password=None):
         },
     )
     binary_token.text = base64.b64encode(
-        crypto.dump_certificate(
-            crypto.FILETYPE_ASN1,
-            crypto.load_pkcs12(keyfile, password).get_certificate(),
-        )
+        public_cert.public_bytes(encoding=serialization.Encoding.DER)
     )
-    signature = xmlsec.template.create(
-        envelope, xmlsec.Transform.EXCL_C14N, xmlsec.Transform.RSA_SHA1, ns="ds",
+    signature = xmlsig.template.create(
+        c14n_method=xmlsig.constants.TransformExclC14N,
+        sign_method=xmlsig.constants.TransformRsaSha1,
+        ns="ds",
     )
+    envelope.append(signature)
 
     # Add a KeyInfo node with X509Data child to the Signature. XMLSec will fill
     # in this template with the actual certificate details when it signs.
-    key_info = xmlsec.template.ensure_key_info(signature)
+    key_info = xmlsig.template.ensure_key_info(signature)
     sec_token_ref = etree.SubElement(key_info, QName(ns.WSSE, "SecurityTokenReference"))
     etree.SubElement(
         sec_token_ref,
@@ -136,8 +113,10 @@ def sign_envelope(envelope, keyfile, certfile, password=None):
     security.append(signature)
 
     # Perform the actual signing.
-    ctx = xmlsec.SignatureContext()
-    ctx.key = key
+    ctx = xmlsig.SignatureContext()
+    ctx.x509 = public_cert
+    ctx.public_key = public_cert.public_key()
+    ctx.private_key = private_key
 
     timestamp = etree.SubElement(security, QName(ns.WSU, "Timestamp"))
     now = datetime.now()
@@ -157,7 +136,7 @@ def sign_envelope(envelope, keyfile, certfile, password=None):
     return etree.fromstring(etree.tostring(envelope, method="c14n"))
 
 
-def verify_envelope(envelope, certfile):
+def verify_envelope(envelope, cert):
     """Verify WS-Security signature on given SOAP envelope with given cert.
 
     Expects a document like that found in the sample XML in the ``sign()``
@@ -166,11 +145,6 @@ def verify_envelope(envelope, certfile):
     Raise SignatureVerificationFailed on failure, silent on success.
 
     """
-    key = _make_verify_key(_read_file(certfile))
-    return _verify_envelope_with_key(envelope, key)
-
-
-def _verify_envelope_with_key(envelope, key):
     soap_env = detect_soap_env(envelope)
 
     header = envelope.find(QName(soap_env, "Header"))
@@ -180,24 +154,12 @@ def _verify_envelope_with_key(envelope, key):
     security = header.find(QName(ns.WSSE, "Security"))
     signature = security.find(QName(ns.DS, "Signature"))
     key_text = security.find(QName(ns.WSSE, "BinarySecurityToken")).text
-    key = xmlsec.Key.from_memory(
-        base64.b64decode(key_text), xmlsec.KeyFormat.CERT_DER, None
-    )
-    ctx = xmlsec.SignatureContext()
-    # Find each signed element and register its ID with the signing context.
-    refs = signature.xpath("ds:SignedInfo/ds:Reference", namespaces={"ds": ns.DS})
-    for ref in refs:
-        # Get the reference URI and cut off the initial '#'
-        referenced_id = ref.get("URI")[1:]
-        referenced = envelope.xpath(
-            "//*[@wsu:Id='%s']" % referenced_id, namespaces={"wsu": ns.WSU},
-        )[0]
-        ctx.register_id(referenced, "Id", ns.WSU)
-
-    ctx.key = key
+    key = x509.load_der_x509_certificate(base64.b64decode(key_text))
+    ctx = xmlsig.SignatureContext()
+    ctx.public_key = key.public_key()
     try:
         ctx.verify(signature)
-    except xmlsec.Error:
+    except Exception:
         # Sadly xmlsec gives us no details about the reason for the failure, so
         # we have nothing to pass on except that verification failed.
         raise SignatureVerificationFailed()
@@ -222,14 +184,14 @@ def _sign_node(ctx, signature, target):
     # use of the wsu:Id attribute for this purpose, but XMLSec doesn't
     # understand that natively. So for XMLSec to be able to find the referenced
     # node by id, we have to tell xmlsec about it using the register_id method.
-    ctx.register_id(target, "Id", ns.WSU)
+    # ctx.register_id(target, "Id", ns.WSU)
 
     # Add reference to signature with URI attribute pointing to that ID.
-    ref = xmlsec.template.add_reference(
-        signature, xmlsec.Transform.SHA1, uri="#" + node_id
+    ref = xmlsig.template.add_reference(
+        signature, xmlsig.constants.TransformSha1, uri="#" + node_id
     )
     # This is an XML normalization transform which will be performed on the
     # target node contents before signing. This ensures that changes to
     # irrelevant whitespace, attribute ordering, etc won't invalidate the
     # signature.
-    xmlsec.template.add_transform(ref, xmlsec.Transform.EXCL_C14N)
+    xmlsig.template.add_transform(ref, xmlsig.constants.TransformExclC14N)
