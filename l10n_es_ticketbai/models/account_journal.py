@@ -13,6 +13,11 @@ class AccountJournal(models.Model):
     tbai_send_invoice = fields.Boolean(
         string='Send TicketBAI invoices to tax agency', default=True)
 
+    tbai_active_date = fields.Date(
+        string="TicketBAI active date",
+        help="Start date for sending invoices to the tax authorities",
+        default=fields.Date.from_string("2022-01-01"))
+
     @api.onchange('refund_sequence')
     def onchange_refund_sequence(self):
         if not self.refund_sequence and self.type == 'sale':
