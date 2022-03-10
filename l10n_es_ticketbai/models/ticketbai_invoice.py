@@ -97,10 +97,10 @@ class TicketBAIInvoiceRefundOrigin(models.Model):
             if record.number_prefix and 20 < len(record.number_prefix):
                 raise exceptions.ValidationError(
                     _(
-                        "Refunded Invoice %s Number Prefix %s longer than expected. "
-                        "Should be 20 characters max.!"
+                        "Refunded Invoice %(name)s Number Prefix %(prefix)s "
+                        "longer than expected. Should be 20 characters max.!"
                     )
-                    % (record.number, record.number_prefix)
+                    % {"name": record.number, "prefix": record.number_prefix}
                 )
 
     @api.constrains("expedition_date")
@@ -131,8 +131,13 @@ class TicketBAIInvoiceRefundOrigin(models.Model):
                 if account_invoice:
                     raise exceptions.ValidationError(
                         _(
-                            "Invoice: number %s prefix %s invoice_date %s exists. "
+                            "Invoice: number %(name)s prefix %(prefix)s "
+                            "invoice_date %(date)s exists. "
                             "Create a credit note from this invoice."
                         )
-                        % (record.number, record.number_prefix, record.expedition_date)
+                        % {
+                            "name": record.number,
+                            "prefix": record.number_prefix,
+                            "date": record.expedition_date,
+                        }
                     )

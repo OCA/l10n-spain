@@ -4,7 +4,6 @@ from . import account_move
 from . import account_tax
 from . import aeat_certificate
 from . import chart_template
-from . import ir_sequence
 from . import res_company
 from . import ticketbai_invoice
 from . import ticketbai_tax_map

@@ -22,4 +22,4 @@ class ReSequenceWizard(models.TransientModel):
                     "invoice when TicketBAI is enabled."
                 )
             )
-        super(ReSequenceWizard, self).resequence()
+        return super(ReSequenceWizard, self).resequence()

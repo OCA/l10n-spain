@@ -24,10 +24,8 @@ class TicketBaiGeneralInfo(models.TransientModel):
         related="company_id.tbai_developer_id",
         readonly=True,
     )
-    software = fields.Char(string="Software", compute="_compute_software")
-    device_serial_number = fields.Char(
-        "Device Serial Number", compute="_compute_device_serial_number"
-    )
+    software = fields.Char(compute="_compute_software")
+    device_serial_number = fields.Char(compute="_compute_device_serial_number")
 
     @api.depends("developer_id", "developer_id.vat", "developer_id.name")
     def _compute_name(self):

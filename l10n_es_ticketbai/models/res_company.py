@@ -102,7 +102,7 @@ class ResCompany(models.Model):
         return self.env["account.fiscal.position"].browse(fp_ids)
 
     def write(self, vals):
-        super().write(vals)
+        ret = super().write(vals)
         if vals.get("tbai_enabled", False):
             for record in self:
                 if record.tbai_enabled:
@@ -110,3 +110,4 @@ class ResCompany(models.Model):
                     for journal in journals:
                         if "sale" == journal.type:
                             journal.refund_sequence = True
+        return ret

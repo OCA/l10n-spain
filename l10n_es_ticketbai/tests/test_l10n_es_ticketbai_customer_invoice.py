@@ -72,7 +72,10 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice = self.create_draft_invoice(
             self.account_billing.id, self.fiscal_position_national, self.partner
         )
-        invoice.currency_id = self.env.ref("base.USD")
+        usd_currency = self.env.ref("base.USD")
+        if not usd_currency.active:
+            usd_currency.active = True
+        invoice.currency_id = usd_currency
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
@@ -237,11 +240,18 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
         invoice.onchange_fiscal_position_id_tbai_vat_regime_key()
         # Artículo 25.- Exenciones en las entregas de bienes destinados a otro Estado
         # miembro
-        self.assertTrue(
-            all(
-                tax.tbai_vat_exemption_key == self.vat_exemption_E5
-                for tax in invoice.line_ids.filtered(lambda line: line.tax_line_id)
-            )
+        tax = invoice.invoice_line_ids.filtered(
+            lambda line: any([t.id == self.tax_iva0_sp_i.id for t in line.tax_ids])
+        ).mapped("tax_ids")
+
+        fp_tbai_tax = self.env["account.fp.tbai.tax"].search(
+            [("tax_id", "=", tax.id), ("position_id", "=", self.fiscal_position_ic.id)],
+            limit=1,
+        )
+
+        self.assertEqual(
+            fp_tbai_tax.tbai_vat_exemption_key,
+            self.vat_exemption_E5,
         )
         invoice.action_post()
         self.assertEqual(invoice.state, "posted")
@@ -306,6 +316,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     reason="Credit Note for Binovo",
                     date=date.today(),
                     refund_method="refund",
+                    journal_id=self.tbai_journal.id,
                 )
             )
         )
@@ -342,6 +353,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     reason="Credit Note for Binovo",
                     date=date.today(),
                     refund_method="refund",
+                    journal_id=self.tbai_journal.id,
                 )
             )
         )
@@ -368,6 +380,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     reason="Credit Note for Binovo",
                     date=date.today(),
                     refund_method="refund",
+                    journal_id=self.tbai_journal.id,
                 )
             )
         )
@@ -395,6 +408,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     reason="Credit Note for Binovo",
                     date=date.today(),
                     refund_method="refund",
+                    journal_id=self.tbai_journal.id,
                 )
             )
         )
@@ -431,6 +445,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     reason="Credit Note for Binovo",
                     date=date.today(),
                     refund_method="modify",
+                    journal_id=self.tbai_journal.id,
                 )
             )
         )
@@ -481,6 +496,7 @@ class TestL10nEsTicketBAICustomerInvoice(TestL10nEsTicketBAI):
                     reason="Credit Note for Binovo",
                     date=date.today(),
                     refund_method="cancel",
+                    journal_id=self.tbai_journal.id,
                 )
             )
         )

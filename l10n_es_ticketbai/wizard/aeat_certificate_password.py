@@ -18,7 +18,7 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
     _inherit = "l10n.es.aeat.certificate.password"
 
     def get_keys(self):
-        super().get_keys()
+        ret = super().get_keys()
         record = self.env["l10n.es.aeat.certificate"].browse(
             self.env.context.get("active_id")
         )
@@ -28,3 +28,4 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
             password = bytes(password, "utf-8")
         p12 = pkcs12.load_key_and_certificates(file, password)
         record.tbai_p12_friendlyname = bytes(str(p12[1].subject), "utf-8")
+        return ret

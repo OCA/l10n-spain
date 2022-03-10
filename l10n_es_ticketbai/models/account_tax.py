@@ -42,10 +42,8 @@ class AccountTax(models.Model):
     def tbai_get_amount_total_company(self, invoice_id):
         if invoice_id.currency_id.id != invoice_id.company_id.currency_id.id:
             currency = invoice_id.currency_id.with_context(
-                {
-                    "date": invoice_id.date or invoice_id.invoice_date,
-                    "company_id": invoice_id.company_id.id,
-                }
+                date=invoice_id.date or invoice_id.invoice_date,
+                company_id=invoice_id.company_id.id,
             )
             amount = self.tbai_get_invoice_amount_for_tax_group(invoice_id)
             amount_total = currency.compute(amount, invoice_id.company_id.currency_id)
@@ -64,10 +62,10 @@ class AccountTax(models.Model):
         if 1 < len(re_taxes):
             raise exceptions.ValidationError(
                 _(
-                    "TicketBAI Invoice %s Error: Tax %s contains "
+                    "TicketBAI Invoice %(name)s Error: Tax %(tax)s contains "
                     "multiple Equivalence Surcharge Taxes"
                 )
-                % (invoice_id.name, self.name)
+                % {"name": invoice_id.name, "tax": self.name}
             )
         elif 1 == len(re_taxes):
             re_invoice_taxes = (
@@ -82,10 +80,10 @@ class AccountTax(models.Model):
             else:
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s Error: the Invoice should have "
-                        "one tax line for Tax %s"
+                        "TicketBAI Invoice %(name)s Error: the Invoice should "
+                        "have one tax line for Tax %(tax)s"
                     )
-                    % (invoice_id.name, re_taxes.name)
+                    % {"name": invoice_id.name, "tax": re_taxes.name}
                 )
         return re_invoice_tax
 
@@ -152,10 +150,8 @@ class AccountTax(models.Model):
             sign = 1
         if invoice_id.currency_id.id != invoice_id.company_id.currency_id.id:
             currency = invoice_id.currency_id.with_context(
-                {
-                    "date": invoice_id.date or invoice_id.invoice_date,
-                    "company_id": invoice_id.company_id.id,
-                }
+                date=invoice_id.date or invoice_id.invoice_date,
+                company_id=invoice_id.company_id.id,
             )
             base_balance = self.tbai_get_invoice_base_balace_for_tax_group(invoice_id)
             base = currency.compute(base_balance, invoice_id.company_id.currency_id)
