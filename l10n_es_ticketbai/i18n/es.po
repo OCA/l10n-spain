@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-26 10:55+0000\n"
-"PO-Revision-Date: 2021-10-13 18:45+0200\n"
+"POT-Creation-Date: 2022-03-11 09:01+0000\n"
+"PO-Revision-Date: 2022-03-11 10:03+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -171,6 +171,7 @@ msgstr "Nombre mostrado"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal_tbai_enabled
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_ir_sequence_tbai_enabled
 msgid "Enable TicketBAI"
 msgstr "Habilitar TicketBAI"
@@ -286,6 +287,11 @@ msgstr ""
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_tbai_invoice
 msgid "Invoices"
 msgstr "Facturas"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model,name:l10n_es_ticketbai.model_account_journal
+msgid "Journal"
+msgstr "Diario"
 
 #. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
@@ -450,6 +456,12 @@ msgstr ""
 "estado incosistente, por favor corrija primero esos errores."
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_journal_tbai_active_date
+msgid "Start date for sending invoices to the tax authorities"
+msgstr ""
+"Fecha a partir de la cual se enviarán las facturas de este diario a hacienda"
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice_tbai_substitute_simplified_invoice
 msgid "Substitute Simplified Invoice"
 msgstr "Sustituye a una factura simplificada"
@@ -535,6 +547,7 @@ msgstr ""
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_finance_ticketbai
 #: model:ir.ui.menu,name:l10n_es_ticketbai.menu_l10n_es_tbai_config
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_journal_form_inherit_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_account_position_form_inherit
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_partner_property_form_inherit
 msgid "TicketBAI"
@@ -676,6 +689,11 @@ msgid "TicketBAI VAT Regime mapping keys"
 msgstr "TicketBAI Mapeo claves de regímenes de IVA"
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal_tbai_active_date
+msgid "TicketBAI active date"
+msgstr "Fecha activación TicketBAI"
+
+#. module: l10n_es_ticketbai
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai.view_ticketbai_info_form
 msgid "TicketBAI is disabled."
 msgstr "TicketBAI está deshabilitado."
@@ -774,6 +792,16 @@ msgstr ""
 "No es posible cancelar una factura con facturas rectificativas no "
 "canceladas.\n"
 "Facturas relacionadas: %s"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:25
+#, python-format
+msgid ""
+"You cannot change the active date from this journal, because at least one "
+"invoice has already been sent."
+msgstr ""
+"No puede modificar la fecha de activación TicketBAI en este diario ya que "
+"existen facturas enviadas."
 
 #. module: l10n_es_ticketbai
 #: code:addons/l10n_es_ticketbai/models/account_invoice.py:79

@@ -40,6 +40,7 @@
         "views/account_fiscal_position_template_views.xml",
         "views/account_fiscal_position_views.xml",
         "views/account_invoice_views.xml",
+        "views/account_journal_views.xml",
         "views/ir_sequence_views.xml",
         "views/report_invoice.xml",
         "views/res_company_views.xml",
