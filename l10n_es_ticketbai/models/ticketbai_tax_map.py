@@ -7,8 +7,8 @@ class TicketBAITaxMap(models.Model):
     _name = "tbai.tax.map"
     _description = "TicketBAI Tax Map"
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char(string="Name", required=True)
+    code = fields.Char(required=True)
+    name = fields.Char(required=True)
     tax_template_ids = fields.Many2many(
         comodel_name="account.tax.template", string="Taxes"
     )

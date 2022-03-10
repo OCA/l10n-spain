@@ -453,28 +453,6 @@ class AccountMove(models.Model):
         refund_common_fields.append("company_id")
         return refund_common_fields
 
-    @api.model
-    def _get_tax_grouping_key_from_tax_line(self, tax_line):
-        vals = super()._get_tax_grouping_key_from_tax_line(tax_line)
-        if self.fiscal_position_id:
-            exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                lambda e: e.tax_id.id == tax_line.tax_line_id.id
-            )
-            if 1 == len(exemption):
-                vals["tbai_vat_exemption_key"] = exemption.tbai_vat_exemption_key.id
-        return vals
-
-    @api.model
-    def _get_tax_grouping_key_from_base_line(self, base_line, tax_vals):
-        vals = super()._get_tax_grouping_key_from_base_line(base_line, tax_vals)
-        if self.fiscal_position_id:
-            exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                lambda e: e.tax_id.id == tax_vals["id"]
-            )
-            if 1 == len(exemption):
-                vals["tbai_vat_exemption_key"] = exemption.tbai_vat_exemption_key.id
-        return vals
-
     def tbai_is_invoice_refund(self):
         if "out_refund" == self.move_type or (
             "out_invoice" == self.move_type
@@ -623,7 +601,7 @@ class AccountMoveLine(models.Model):
 
     def tbai_get_value_importe_total(self):
         tbai_maps = self.env["tbai.tax.map"].search([("code", "=", "IRPF")])
-        irpf_taxes = self.env["l10n.es.aeat.report"].get_taxes_from_templates(
+        irpf_taxes = self.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
         currency = self.move_id and self.move_id.currency_id or None

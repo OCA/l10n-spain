@@ -45,8 +45,8 @@ class TicketBAIVATRegimeKey(models.Model):
     _name = "tbai.vat.regime.key"
     _description = "TicketBAI VAT Regime mapping keys"
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char("Name", required=True)
+    code = fields.Char(required=True)
+    name = fields.Char(required=True)
 
     def name_get(self):
         vals = []

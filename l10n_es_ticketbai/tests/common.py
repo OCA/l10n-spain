@@ -14,7 +14,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
     def create_account_billing(self):
         return (
             self.env["res.users"]
-            .with_context({"no_reset_password": True})
+            .with_context(no_reset_password=True)
             .create(
                 {
                     "name": "Accountant",
@@ -39,7 +39,7 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
     def create_account_manager(self):
         return (
             self.env["res.users"]
-            .with_context({"no_reset_password": True})
+            .with_context(no_reset_password=True)
             .create(
                 {
                     "name": "Adviser",
@@ -445,6 +445,13 @@ class TestL10nEsTicketBAI(TestL10nEsTicketBAIAPI):
         )
         self.fiscal_position_ipsi_igic = self.main_company.get_fps_from_templates(
             self.env.ref("l10n_es.fp_not_subject_tai")
+        )
+        self.tbai_journal = self.env["account.journal"].create(
+            {
+                "name": "Tbai journal",
+                "type": "sale",
+                "code": "TBAI",
+            }
         )
         self.non_tbai_journal = self.env["account.journal"].create(
             {

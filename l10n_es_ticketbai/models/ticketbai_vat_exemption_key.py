@@ -8,8 +8,8 @@ class TicketBAIVATExemptionKey(models.Model):
     _name = "tbai.vat.exemption.key"
     _description = "TicketBAI VAT Exemption mapping keys"
 
-    code = fields.Char(string="Code", required=True)
-    name = fields.Char("Name", required=True)
+    code = fields.Char(required=True)
+    name = fields.Char(required=True)
 
     def name_get(self):
         vals = []
