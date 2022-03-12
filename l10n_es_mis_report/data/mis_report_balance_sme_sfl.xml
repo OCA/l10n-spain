@@ -129,7 +129,7 @@
             <field name="description">VI. Inversiones financieras a largo plazo</field>
             <field
                 name="expression"
-            >+bale[2505%,2515%,2525%,2595%,260%,261%,262%,263%,264%,265%,268%,269%,27%,2935%,2945%,2955%,296%,297%,298%]</field>
+            >+bale[2505%,2515%,2525%,2595%,260%,261%,262%,263%,264%,265%,268%,269%,27%,2935%,2945%,2955%,296%,297%,298%,252%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
@@ -380,7 +380,7 @@ PATRIMONIO NETO Y PASIVO:
             <field name="sequence">210</field>
             <field name="name">es21110</field>
             <field name="description">1. Dotación fundacional/Fondo social</field>
-            <field name="expression">-bale[100%,101%]</field>
+            <field name="expression">-bale[100%,101%,102%]</field>
             <field name="auto_expand_accounts">True</field>
             <field
                 name="auto_expand_accounts_style_id"
