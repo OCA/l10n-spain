@@ -237,11 +237,6 @@ msgid "Domicilio Receptor"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_edi_exchange_record
-msgid "EDI exchange Record"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
 msgid "Este proceso creará la factura electrónica"
 msgstr ""
@@ -297,19 +292,8 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.edi_exchange_record_view_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Facturae"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_cancellation_motive
-msgid "Facturae Cancellation motive"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_cancellation_status
-msgid "Facturae Cancellation state"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -386,11 +370,6 @@ msgid "Facturae Start Date"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_status
-msgid "Facturae State"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_transaction_date
 msgid "Facturae Transaction Date"
 msgstr ""
@@ -403,25 +382,10 @@ msgid "Facturae Version"
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_cancellation_status
-msgid "Facturae cancellation status"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment_mode__facturae_code
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax__facturae_code
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax_template__facturae_code
 msgid "Facturae code"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_motive
-msgid "Facturae description"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_status
-msgid "Facturae status"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -751,12 +715,6 @@ msgstr ""
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Selected account is too small"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__l10n_es_facturae_sending_code
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__l10n_es_facturae_sending_code
-msgid "Sending method"
 msgstr ""
 
 #. module: l10n_es_facturae
