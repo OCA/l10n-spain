@@ -141,8 +141,33 @@ msgid "Face Email"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_exchange_record_view_form
+msgid "Facturae"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_cancellation_motive
+msgid "Facturae Cancellation motive"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_cancellation_status
+msgid "Facturae Cancellation state"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_status
+msgid "Facturae State"
+msgstr ""
+
+#. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__l10n_es_facturae_cancellation_status
 msgid "Facturae cancellation status"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_motive
+msgid "Facturae description"
 msgstr ""
 
 #. module: l10n_es_facturae_face
