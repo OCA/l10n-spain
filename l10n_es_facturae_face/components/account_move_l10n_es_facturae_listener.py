@@ -11,7 +11,7 @@ class AccountMoveL10nEsFacturaeListener(Component):
     _apply_on = ["account.move"]
 
     def _get_backend(self, record):
-        return record._get_l10n_es_facturae_backend()
+        return self.env.ref("l10n_es_facturae_face.face_backend")
 
     def _get_exchange_record_vals(self, record):
         return {
