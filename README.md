@@ -47,8 +47,8 @@ addon | version | maintainers | summary
 [l10n_es_aeat_vat_prorrate_asset](l10n_es_aeat_vat_prorrate_asset/) | 13.0.1.0.0 |  | AEAT - Prorrata de IVA - Extensión para los activos
 [l10n_es_dua](l10n_es_dua/) | 13.0.1.0.0 |  | Importaciones con DUA
 [l10n_es_dua_sii](l10n_es_dua_sii/) | 13.0.1.1.0 |  | Suministro Inmediato de Información de importaciones con DUA
-[l10n_es_facturae](l10n_es_facturae/) | 13.0.1.3.0 |  | Creación de Factura-e
-[l10n_es_facturae_face](l10n_es_facturae_face/) | 13.0.1.0.2 |  | Envío de Factura-e a FACe
+[l10n_es_facturae](l10n_es_facturae/) | 13.0.2.0.0 |  | Creación de Factura-e
+[l10n_es_facturae_face](l10n_es_facturae_face/) | 13.0.2.0.0 |  | Envío de Factura-e a FACe
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 13.0.2.1.0 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 13.0.1.0.2 |  | Retenciones IRNR (No residentes)
 [l10n_es_mis_report](l10n_es_mis_report/) | 13.0.1.2.0 |  | Plantillas MIS Builder para informes contables españoles
