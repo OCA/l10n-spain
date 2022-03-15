@@ -27,7 +27,7 @@ def migrate(env, version):
     if not data:
         return
     method_id = data[0][0]
-    exchange_type = env.ref("l10n_es_facturae.facturae_exchange_type")
+    exchange_type = env.ref("l10n_es_facturae_face.facturae_exchange_type")
     backend = env.ref("l10n_es_facturae_efact.efact_backend")
     openupgrade.logged_query(
         env.cr,
@@ -115,7 +115,7 @@ def migrate(env, version):
         env.cr,
         """
         UPDATE res_partner rp
-        SET l10n_es_facturae_sending_code = 'efact'
+        SET l10n_es_facturae_sending_code = 'face'
         FROM account_move_integration_method_res_partner_rel amimrpr
         WHERE rp.l10n_es_facturae_sending_code is NULL
             AND amimrpr.res_partner_id = rp.id
@@ -124,19 +124,3 @@ def migrate(env, version):
             method_id=method_id
         ),
     )
-    storage = env.ref("l10n_es_facturae_efact.efact_storage")
-    ICP = env["ir.config_parameter"].sudo()
-    storage_vals = {}
-    server = ICP.get_param("account.invoice.efact.server", default=None)
-    if server:
-        storage["sftp_server"] = server
-    port = ICP.get_param("account.invoice.efact.port", default=None)
-    if port:
-        storage["sftp_port"] = int(port)
-    user = ICP.get_param("account.invoice.efact.user", default=None)
-    if user:
-        storage["sftp_login"] = user
-    password = ICP.get_param("account.invoice.efact.password", default=None)
-    if password:
-        storage["sftp_password"] = password
-    storage.write(storage_vals)
