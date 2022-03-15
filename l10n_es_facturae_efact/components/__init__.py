@@ -1,3 +1,1 @@
-from . import account_move_l10n_es_facturae_listener
-from . import account_move_l10n_es_facturae_manual_listener
 from . import edi_input_process_l10n_es_facturae_l10n_es_facturae_efact_update

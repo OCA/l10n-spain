@@ -23,11 +23,6 @@ class AccountMove(models.Model):
         ]
     )
 
-    def _get_l10n_es_facturae_backend(self):
-        if self.partner_id.l10n_es_facturae_sending_code == "efact":
-            return self.env.ref("l10n_es_facturae_efact.efact_backend")
-        return super()._get_l10n_es_facturae_backend()
-
     @api.model
     def _get_l10n_es_facturae_excluded_status(self):
         return super()._get_l10n_es_facturae_excluded_status() + [

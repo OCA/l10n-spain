@@ -1,4 +1,8 @@
-Este módulo permite la gestión del envío de la facturación electrónica española
+Este módulo permitía la gestión del envío de la facturación electrónica española
 a el servicio de envío de facturas de Catalunya (e.Fact).
 
-La gestión del envío se realiza mediante un canal SSH.
+Actualmente solo permite la actualización de estado de las facturas antiguas.
+La actualización se produce en un tarea programada que se va ejecutando periodicamente.
+Descarga la actualización y la procesa.
+
+Las nuevas sólo deberían enviarse por FACe.

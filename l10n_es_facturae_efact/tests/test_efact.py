@@ -5,7 +5,10 @@
 
 import base64
 import logging
-import os
+from datetime import datetime
+from io import BytesIO
+
+import mock
 
 from odoo import exceptions, tools
 from odoo.tests import common
@@ -15,8 +18,87 @@ from odoo.addons.component.tests.common import SavepointComponentRegistryCase
 _logger = logging.getLogger(__name__)
 try:
     from OpenSSL import crypto
+    from zeep import Client
 except (ImportError, IOError) as err:
     _logger.info(err)
+
+
+class DemoService(object):
+    def __init__(self, value):
+        self.value = value
+
+    def enviarFactura(self, *args):
+        return self.value
+
+    def anularFactura(self, *args):
+        return self.value
+
+    def consultarFactura(self, *args):
+        return self.value
+
+    def consultarListadoFacturas(self, *args):
+        return self.value
+
+
+class TestConnection:
+    def __init__(self, data, filename=""):
+        self.data = data
+        self.filename = filename
+        self._host_keys = {}
+        self._system_host_keys = {}
+
+    def connect(self, hostname, port, username, password):
+        return
+
+    def open_sftp(self):
+        return SftpConnection(self.data, self.filename)
+
+    def close(self):
+        return
+
+    def load_system_host_keys(self):
+        return
+
+    def get_host_keys(self):
+        return Keys()
+
+
+class Keys:
+    def add(self, *args):
+        return
+
+
+class SftpConnection:
+    def __init__(self, data, filename):
+        self.data = data
+        self.filename = filename
+
+    def close(self):
+        return
+
+    def normalize(self, path):
+        return path
+
+    def chdir(self, path):
+        return
+
+    def open(self, path, type=""):
+        return BytesIO(self.data)
+
+    def listdir_attr(self, path):
+        return [TestAttribute(self.filename)]
+
+    def remove(self, filename):
+        return
+
+
+class TestAttribute:
+    def __init__(self, name):
+        self.filename = name
+        self.st_atime = datetime.now()
+
+
+patch_class = "odoo.addons.l10n_es_facturae_efact.models.edi_exchange_record.SSHClient"
 
 
 @common.tagged("-at_install", "post_install")
@@ -38,6 +120,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         self._load_module_components(self, "edi_storage")
         self._load_module_components(self, "edi_account")
         self._load_module_components(self, "l10n_es_facturae")
+        self._load_module_components(self, "l10n_es_facturae_face")
         self._load_module_components(self, "l10n_es_facturae_efact")
         pkcs12 = crypto.PKCS12()
         pkey = crypto.PKey()
@@ -83,8 +166,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
                 "organo_gestor": "U00000038",
                 "unidad_tramitadora": "U00000038",
                 "oficina_contable": "U00000038",
-                "l10n_es_facturae_sending_code": "efact",
-                "facturae_efact_code": "0123456789012345678901",
+                "l10n_es_facturae_sending_code": "face",
             }
         )
         main_company = self.env.ref("base.main_company")
@@ -94,7 +176,6 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
             pkcs12.export(passphrase="password")
         )
         main_company.facturae_cert_password = "password"
-        main_company.partner_id.facturae_efact_code = "0123456789012345678901"
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
@@ -207,15 +288,6 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
             "l10n_es_facturae_efact.facturae_efact_update_exchange_type"
         )
         self.backend = self.env.ref("l10n_es_facturae_efact.efact_backend")
-        self.backend.storage_id.backend_type = "filesystem"
-
-    def test_constrain_facturae_code_01(self):
-        with self.assertRaises(exceptions.ValidationError):
-            self.partner.facturae_efact_code = False
-
-    def test_constrain_facturae_code_02(self):
-        with self.assertRaises(exceptions.ValidationError):
-            self.partner.facturae_efact_code = "1"
 
     def test_constrain_facturae(self):
         with self.assertRaises(exceptions.ValidationError):
@@ -234,48 +306,91 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
             self.partner.state_id = False
 
     def test_efact_sending(self):
-        self.move.with_context(force_edi_send=True).post()
-        self.move.refresh()
-        self.assertTrue(self.move.exchange_record_ids)
-        exchange_record = self.move.exchange_record_ids
-        self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
-        exchange_record.backend_id.exchange_send(exchange_record)
-        self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
-        self.backend.storage_id.add(
-            os.path.join("statout", exchange_record.exchange_filename + "@001"),
-            bytes(
-                tools.file_open(
-                    "result.xml", subdir="addons/l10n_es_facturae_efact/tests"
-                )
-                .read()
-                .encode("utf-8")
-            ),
+
+        client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
+        integration_code = "1234567890"
+        response_ok = client.get_type("ns0:EnviarFacturaResponse")(
+            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
+            client.get_type("ns0:EnviarFactura")(numeroRegistro=integration_code),
         )
-        self.env["edi.exchange.record"].efact_check_history()
+        self.assertFalse(self.move.exchange_record_ids)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+            self.move.with_context(force_edi_send=True).post()
+            self.move.refresh()
+            self.assertTrue(self.move.exchange_record_ids)
+            exchange_record = self.move.exchange_record_ids
+            self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+            exchange_record.backend_id.exchange_send(exchange_record)
+            self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+        # We force it to be efact just for a test, that should never happen for new
+        #  invoices
+        exchange_record.write(
+            {
+                "backend_id": self.env.ref("l10n_es_facturae_efact.efact_backend").id,
+                "exchange_filename": "0123456789012345678901@"
+                "0123456789012345678901@R_0001",
+                "external_identifier": False,
+            }
+        )
+        exchange_record.flush()
+        with mock.patch(patch_class) as mock_backend:
+            mock_backend.return_value = TestConnection(
+                bytes(
+                    tools.file_open(
+                        "result.xml", subdir="addons/l10n_es_facturae_efact/tests"
+                    )
+                    .read()
+                    .encode("utf-8")
+                ),
+                exchange_record.exchange_filename + "@001",
+            )
+            self.env["edi.exchange.record"].efact_check_history()
         exchange_record.flush()
         self.assertEqual(exchange_record.external_identifier, "12")
         self.assertFalse(exchange_record.exchange_error)
         self.assertEqual(self.move.l10n_es_facturae_status, "efact-DELIVERED")
 
     def test_efact_sending_error(self):
-        self.move.with_context(force_edi_send=True).post()
-        self.move.refresh()
-        self.assertTrue(self.move.exchange_record_ids)
-        exchange_record = self.move.exchange_record_ids
-        self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
-        exchange_record.backend_id.exchange_send(exchange_record)
-        self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
-        self.backend.storage_id.add(
-            os.path.join("statout", exchange_record.exchange_filename + "@001"),
-            bytes(
-                tools.file_open(
-                    "result_02.xml", subdir="addons/l10n_es_facturae_efact/tests"
-                )
-                .read()
-                .encode("utf-8")
-            ),
+        client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
+        integration_code = "1234567890"
+        response_ok = client.get_type("ns0:EnviarFacturaResponse")(
+            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
+            client.get_type("ns0:EnviarFactura")(numeroRegistro=integration_code),
         )
-        self.env["edi.exchange.record"].efact_check_history()
+        self.assertFalse(self.move.exchange_record_ids)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+            self.move.with_context(force_edi_send=True).post()
+            self.move.refresh()
+            self.assertTrue(self.move.exchange_record_ids)
+            exchange_record = self.move.exchange_record_ids
+            self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+            exchange_record.backend_id.exchange_send(exchange_record)
+            self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+        # We force it to be efact just for a test, that should never happen for new
+        #  invoices
+        exchange_record.write(
+            {
+                "backend_id": self.env.ref("l10n_es_facturae_efact.efact_backend").id,
+                "exchange_filename": "0123456789012345678901@"
+                "0123456789012345678901@R_0001",
+                "external_identifier": False,
+            }
+        )
+        exchange_record.flush()
+        with mock.patch(patch_class) as mock_backend:
+            mock_backend.return_value = TestConnection(
+                bytes(
+                    tools.file_open(
+                        "result_02.xml", subdir="addons/l10n_es_facturae_efact/tests"
+                    )
+                    .read()
+                    .encode("utf-8")
+                ),
+                exchange_record.exchange_filename + "@001",
+            )
+            self.env["edi.exchange.record"].efact_check_history()
         exchange_record.flush()
         self.assertEqual(exchange_record.external_identifier, "12")
         self.assertTrue(exchange_record.exchange_error)
