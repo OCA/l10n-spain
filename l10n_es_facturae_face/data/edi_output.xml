@@ -7,6 +7,7 @@
         <field name="code">l10n_es_facturae.facturae_file</field>
         <field name="output_type">xsig</field>
         <field name="generator">report</field>
-        <field name="report_id" ref="report_facturae_signed" />
+        <field name="report_id" ref="l10n_es_facturae.report_facturae_signed" />
+        <field name="code_snippet">result = {"res_ids": record.ids}</field>
     </record>
 </odoo>
