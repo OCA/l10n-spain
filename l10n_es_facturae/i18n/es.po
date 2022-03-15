@@ -239,7 +239,6 @@ msgstr "Detalle Operación"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax_template__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__display_name
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_report_l10n_es_facturae_facturae_signed__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__display_name
@@ -259,11 +258,6 @@ msgstr "Domicilio Emisor/Obligado"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move_reversal__refund_reason__09
 msgid "Domicilio Receptor"
 msgstr "Domicilio Receptor"
-
-#. module: l10n_es_facturae
-#: model:ir.model,name:l10n_es_facturae.model_edi_exchange_record
-msgid "EDI exchange Record"
-msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
@@ -328,7 +322,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.edi_exchange_record_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Facturae"
 msgstr "facturae"
 
@@ -336,16 +330,6 @@ msgstr "facturae"
 #: model:ir.model,name:l10n_es_facturae.model_l10n_es_facturae_attachment
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Facturae Attachment"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_cancellation_motive
-msgid "Facturae Cancellation motive"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_cancellation_status
-msgid "Facturae Cancellation state"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -428,11 +412,6 @@ msgid "Facturae Start Date"
 msgstr "Fecha de inicio de la factura"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_status
-msgid "Facturae State"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move_line__facturae_transaction_date
 msgid "Facturae Transaction Date"
 msgstr "Fecha de transacción de Facturae"
@@ -445,30 +424,11 @@ msgid "Facturae Version"
 msgstr "Versión Facturae"
 
 #. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__l10n_es_facturae_cancellation_status
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_cancellation_status
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__l10n_es_facturae_cancellation_status
-msgid "Facturae cancellation status"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment_mode__facturae_code
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax__facturae_code
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax_template__facturae_code
 msgid "Facturae code"
 msgstr "Código de Facturae"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__l10n_es_facturae_motive
-msgid "Facturae description"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__l10n_es_facturae_status
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_status
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__l10n_es_facturae_status
-msgid "Facturae status"
-msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__03
@@ -517,7 +477,6 @@ msgstr "ICIO: Impuesto sobre las construcciones, instalaciones y obras"
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax_template__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__id
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_report_l10n_es_facturae_facturae_signed__id
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company__id
@@ -669,7 +628,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_tax_template____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_edi_exchange_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_report_l10n_es_facturae_facturae_signed____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_company____last_update
@@ -854,12 +812,6 @@ msgstr "El BIC del banco de la cuenta debe tener 11 carácteres"
 #, python-format
 msgid "Selected account is too small"
 msgstr "La cuenta seleccionada es demasiado corta"
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__l10n_es_facturae_sending_code
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__l10n_es_facturae_sending_code
-msgid "Sending method"
-msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__02
