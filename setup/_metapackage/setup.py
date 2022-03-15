@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo13-addon-l10n_es_dua',
         'odoo13-addon-l10n_es_dua_sii',
         'odoo13-addon-l10n_es_facturae',
+        'odoo13-addon-l10n_es_facturae_efact',
         'odoo13-addon-l10n_es_facturae_face',
         'odoo13-addon-l10n_es_intrastat_report',
         'odoo13-addon-l10n_es_irnr',
