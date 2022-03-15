@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -99,7 +99,13 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__display_name
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -141,8 +147,35 @@ msgid "Face Email"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_exchange_record_view_form
+msgid "Facturae"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_cancellation_motive
+msgid "Facturae Cancellation motive"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_cancellation_status
+msgid "Facturae Cancellation state"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_status
+msgid "Facturae State"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_bank_statement_line__l10n_es_facturae_cancellation_status
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__l10n_es_facturae_cancellation_status
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_payment__l10n_es_facturae_cancellation_status
 msgid "Facturae cancellation status"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__l10n_es_facturae_motive
+msgid "Facturae description"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -152,12 +185,20 @@ msgid "Facturae must be selected in order to send to FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_bank_statement_line__l10n_es_facturae_status
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__l10n_es_facturae_status
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_payment__l10n_es_facturae_status
 msgid "Facturae status"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__id
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__id
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__id
 msgid "ID"
 msgstr ""
 
@@ -169,11 +210,17 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_facturae_face
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner____last_update
+#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend____last_update
 msgid "Last Modified on"
 msgstr ""
 
