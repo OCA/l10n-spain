@@ -18,13 +18,13 @@ class LROEOperationResponseState(Enum):
     BUILD_ERROR = '-2'
     REQUEST_ERROR = '-1'
     CORRECT = 'Correcto'
-    PARTIALLY_CORRECT = 'Parcialmente correcto'
+    PARTIALLY_CORRECT = 'ParcialmenteCorrecto'
     INCORRECT = 'Incorrecto'
 
 
 class LROEOperationResponseLineState(Enum):
     CORRECT = 'Correcto'
-    CORRECT_WITH_ERRORS = 'Aceptado con errores'
+    CORRECT_WITH_ERRORS = 'AceptadoConErrores'
     INCORRECT = 'Incorrecto'
 
 

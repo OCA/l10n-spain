@@ -352,7 +352,7 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         lroe_op_alta_model_pj_240 = self.lroe_op_model.create(lroe_op_alta_pj_240_dict)
         response_headers = {
             'date': str(datetime.datetime.now()),
-            'eus-bizkaia-n3-tipo-respuesta': 'Parcialmente correcto',
+            'eus-bizkaia-n3-tipo-respuesta': 'ParcialmenteCorrecto',
             'eus-bizkaia-n3-identificativo': '1',
             'eus-bizkaia-n3-numero-registro': '1001'}
         with open(TEST_07_RESPONSE_GZ_FILENAME, 'rb') as response_data_file:
@@ -400,7 +400,7 @@ class TestL10nEsTicketBAIAPIBatuz(TestL10nEsTicketBAIAPI):
         lroe_op_alta_model_pf_140 = self.lroe_op_model.create(lroe_op_alta_pf_140_dict)
         response_headers = {
             'date': str(datetime.datetime.now()),
-            'eus-bizkaia-n3-tipo-respuesta': 'Parcialmente correcto',
+            'eus-bizkaia-n3-tipo-respuesta': 'ParcialmenteCorrecto',
             'eus-bizkaia-n3-identificativo': '1',
             'eus-bizkaia-n3-numero-registro': '1001'}
         with open(TEST_08_RESPONSE_GZ_FILENAME, 'rb') as response_data_file:
