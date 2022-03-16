@@ -1,4 +1,4 @@
-# Copyright 2019 Tecnativa - Pedro M. Baeza
+# Copyright 2019-2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_mod_base import \

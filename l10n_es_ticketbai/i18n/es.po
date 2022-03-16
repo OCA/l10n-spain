@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-28 12:58+0000\n"
-"PO-Revision-Date: 2021-12-28 14:06+0100\n"
+"POT-Creation-Date: 2022-01-03 15:25+0000\n"
+"PO-Revision-Date: 2022-01-03 16:26+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -81,7 +81,7 @@ msgid "Cancel and recreate"
 msgstr "Cancelar y recrear"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:272
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:285
 #, python-format
 msgid "Cancellation"
 msgstr "Anulación factura"
@@ -413,12 +413,17 @@ msgid "Origin Invoices Data"
 msgstr "Datos facturas origen"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:317
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:330
 #, python-format
 msgid ""
 "Please, specify data for the original invoices that are going to be refunded"
 msgstr ""
 "Por favor, introduzca la información de las facturas originales a rectificar"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_protected_data
+msgid "Protected Data"
+msgstr "Datos protegidos"
 
 #. module: l10n_es_ticketbai
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai.tbai_invoice_form
@@ -431,7 +436,7 @@ msgid "Refund"
 msgstr "Rectificativa"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:295
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:308
 #, python-format
 msgid ""
 "Refund invoices must be cancelled in order to cancel the original invoice."
@@ -489,7 +494,7 @@ msgid "Software"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:331
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:344
 #, python-format
 msgid "Some of the original invoices have related tbai cancelled invoices"
 msgstr ""
@@ -497,7 +502,7 @@ msgstr ""
 "relacionadas"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:326
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:339
 #, python-format
 msgid ""
 "Some of the original invoices have related tbai invoices in inconsistent "
@@ -510,6 +515,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_substitute_simplified_invoice
 msgid "Substitute Simplified Invoice"
 msgstr "Sustituye a una factura simplificada"
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company__tbai_protected_data_txt
+msgid "Substitution Text"
+msgstr "Texto de substitución"
 
 #. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_account_tax
@@ -813,7 +823,7 @@ msgid "Wizard to Load AEAT Certificate"
 msgstr "Asistente para cargar el certificado AEAT"
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_invoice.py:75
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:76
 #, python-format
 msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr "No es posible cambiar el estado a borrador de una factura TicketBAI."

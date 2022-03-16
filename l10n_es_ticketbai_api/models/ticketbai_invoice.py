@@ -756,9 +756,13 @@ class TicketBAIInvoice(models.Model):
         detalles_factura = self.build_detalles_factura()
         if detalles_factura:
             res["DetallesFactura"] = detalles_factura
-        res["ImporteTotalFactura"] = self.amount_total
         if self.tax_retention_amount_total:
+            res["ImporteTotalFactura"] = "%.2f" % (
+                float(self.amount_total) + float(self.tax_retention_amount_total)
+            )
             res["RetencionSoportada"] = self.tax_retention_amount_total
+        else:
+            res["ImporteTotalFactura"] = self.amount_total
         res["Claves"] = self.build_claves()
         return res
 
@@ -1166,7 +1170,10 @@ class TicketBAIInvoice(models.Model):
                     "All Invoice recipients must be from the same country."
                 ) % self.name)
             elif 1 == len(country_codes) and country_codes[0] == spain_country_code:
-                spanish_or_no_customers = True
+                # Solo se admite desglose por operación cuando existe destinatario
+                # extranjero (tipo IDOtro o que sea un NIF que empiece por N)
+                spanish_or_no_customers = not (
+                    self.tbai_customer_ids[:1].nif or "").startswith('N')
         if spanish_or_no_customers:
             res = {"DesgloseFactura": OrderedDict()}
             sujeta = self.build_sujeta()
