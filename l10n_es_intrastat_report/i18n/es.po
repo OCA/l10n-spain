@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-26 18:10+0000\n"
-"PO-Revision-Date: 2020-05-26 20:27+0200\n"
+"POT-Creation-Date: 2022-02-08 09:32+0000\n"
+"PO-Revision-Date: 2022-02-08 10:33+0100\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -197,6 +197,12 @@ msgstr "Moneda"
 msgid "Current company is not Spanish, so it can't be configured."
 msgstr ""
 "La compañía actual no es española, por lo que no puede ser configurada."
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__partner_vat
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__partner_vat
+msgid "Customer VAT"
+msgstr "NIF del cliente"
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__declaration_line_id
@@ -397,6 +403,18 @@ msgid "Messages"
 msgstr "Mensajes"
 
 #. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:63
+#, python-format
+msgid "Missing origin country on product %s."
+msgstr "Falta el país de origen en el producto %s."
+
+#. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:57
+#, python-format
+msgid "Missing partner vat on invoice %s."
+msgstr "Falta el NIF del contacto en la factura %s."
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__month
 msgid "Month"
 msgstr "Mes"
@@ -517,7 +535,7 @@ msgid "Supplementary Units Quantity"
 msgstr "Cantidad de unidades suplementarias"
 
 #. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:57
+#: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:71
 #, python-format
 msgid ""
 "The Spanish Intrastat Declaration requires the Company's Country to be equal "
@@ -585,6 +603,12 @@ msgid "Used to keep track of changes"
 msgstr "Usado para rastrear los cambios"
 
 #. module: l10n_es_intrastat_report
+#: code:addons/l10n_es_intrastat_report/report/intrastat_product_report_xls.py:19
+#, python-format
+msgid "VAT"
+msgstr "NIF"
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__valid
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__valid
 msgid "Valid"
@@ -635,6 +659,11 @@ msgstr "l10n.es.intrastat.product.computation.line"
 #: model:ir.model,name:l10n_es_intrastat_report.model_l10n_es_intrastat_product_declaration_line
 msgid "l10n.es.intrastat.product.declaration.line"
 msgstr "l10n.es.intrastat.product.declaration.line"
+
+#. module: l10n_es_intrastat_report
+#: model:ir.model,name:l10n_es_intrastat_report.model_report_intrastat_product_product_declaration_xls
+msgid "report.intrastat_product.product_declaration_xls"
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:32

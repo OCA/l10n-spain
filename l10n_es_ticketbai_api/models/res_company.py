@@ -93,6 +93,16 @@ class ResCompany(models.Model):
                     "Company %s TicketBAI Tax Agency is required."
                 ) % record.name)
 
+            tbai_invoices = record.env['tbai.invoice'].search([
+                ('company_id', '=', record.id)
+            ])
+
+            if 0 < len(tbai_invoices):
+                raise exceptions.ValidationError(_(
+                    "Tax agency cannot be modified after a TicketBAI "
+                    "invoice has been sent."
+                ))
+
     @api.onchange('tbai_tax_agency_id')
     def onchange_tbai_tax_agency(self):
         if not (self.tbai_tax_agency_id.test_qr_base_url and
@@ -121,17 +131,6 @@ class ResCompany(models.Model):
             self.tbai_tax_agency_id = False
             self.tbai_vat_regime_simplified = False
             self.tbai_certificate_id = False
-
-    @api.constrains('tbai_tax_agency_id')
-    def _check_tbai_tax_agency_id(self):
-        for record in self:
-            tbai_invoices = record.env['tbai.invoice'].search([])
-
-            if 0 < len(tbai_invoices):
-                raise exceptions.ValidationError(_(
-                    "Tax agency cannot be modified after a TicketBAI "
-                    "invoice has been sent."
-                ))
 
     def tbai_certificate_get_p12_buffer(self):
         if self.tbai_certificate_id:

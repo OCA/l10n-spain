@@ -121,10 +121,9 @@
                     <page string="Details">
                         <div><strong>Color codes: </strong> <span class="text-info">Refund invoices</span> - Normal invoices</div>
                         <field name="move_record_ids" context="{'partner_record_id': active_id}" readonly="True">
-                            <tree string="Move records" decoration-info="'refund' in move_type">
+                            <tree string="Move records" decoration-info="(amount &gt; 0 and parent.operation_key == 'B') or (amount &lt; 0 and parent.operation_key == 'A')">
                                 <field name="invoice_id"/>
                                 <field name="move_id"/>
-                                <field name="move_type" invisible="1"/>
                                 <field name="date"/>
                                 <field name="amount"/>
                             </tree>
