@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_account_journal_form_inherit_ticketbai" model="ir.ui.view">
+        <field name="name">view_account_journal_form_inherit_ticketbai</field>
+        <field name="model">account.journal</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="groups_id" eval="[(4, ref('base.group_erp_manager'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="ticketbai_config" string="TicketBAI" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                    <group>
+                        <group>
+                            <field name="tbai_enabled" invisible="1" />
+                            <field name="tbai_active_date"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
