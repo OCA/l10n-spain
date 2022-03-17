@@ -12,6 +12,6 @@ por el módulo *mis_builder*:
 Las plantillas están basadas en los modelos para el depósito de cuentas anuales
 del Registro Mercantil:
 
-* *Normal*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306020
-* *Abreviado*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306005
-* *PYMEs*: http://www.mjusticia.gob.es/cs/Satellite/Portal/1292427306035
+* *Normal*: https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
+* *Abreviado*: https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
+* *PYMEs*: https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
