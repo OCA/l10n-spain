@@ -51,7 +51,7 @@ class AccountMoveLine(models.Model):
             ):
                 aeat_perception_key_id = l.move_id.aeat_perception_key_id.id
                 aeat_perception_subkey_id = l.move_id.aeat_perception_subkey_id.id
-            l.write(
+            l.update(
                 {
                     "aeat_perception_key_id": aeat_perception_key_id,
                     "aeat_perception_subkey_id": aeat_perception_subkey_id,
