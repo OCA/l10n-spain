@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <odoo>
      <report
         id="action_report_promissory_footer_st"
@@ -7,5 +7,6 @@
         report_type="qweb-pdf"
         name="account_promissory_note_santander.promissory_footer_st"
         file="account_promissory_note_santander.promissory_footer_st"
-        paperformat="account_check_printing_report_base.paperformat_euro_no_margin"/>
+        paperformat="account_check_printing_report_base.paperformat_euro_no_margin"
+    />
 </odoo>

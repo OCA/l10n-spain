@@ -5,9 +5,7 @@
     "name": "Impresión de pagaré del Santander en A4",
     "version": "12.0.1.0.0",
     "license": "AGPL-3",
-    "author": "Tecnativa,"
-              "Obertix,"
-              "Odoo Community Association (OCA)",
+    "author": "Tecnativa," "Obertix," "Odoo Community Association (OCA)",
     "maintainers": ["cubells"],
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-spain",
