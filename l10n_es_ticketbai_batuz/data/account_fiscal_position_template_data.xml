@@ -10,8 +10,7 @@
         <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_09" />
     </record>
     <record id="l10n_es.fp_extra" model="account.fiscal.position.template">
-        <!-- TODO: revisar -->
-        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_13" />
+        <field name="tbai_vat_regime_purchase_key" ref="tbai_vat_regime_purchase_01" />
     </record>
     <record id="l10n_es.fp_not_subject_tai" model="account.fiscal.position.template">
         <!-- TODO: revisar -->
