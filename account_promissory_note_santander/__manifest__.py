@@ -3,7 +3,7 @@
 
 {
     "name": "Impresión de pagaré del Santander en A4",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
     "author": "Tecnativa," "Obertix," "Odoo Community Association (OCA)",
     "maintainers": ["cubells"],
