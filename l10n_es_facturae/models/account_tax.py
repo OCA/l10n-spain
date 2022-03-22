@@ -52,6 +52,5 @@ class AccountTax(models.Model):
             ("18", "REIGIC: Régimen especial de IGIC: para agencias de" "viajes"),
             ("19", "REIPSI: Régimen especial de IPSI para agencias de viajes"),
         ],
-        string="Facturae code",
         default="01",
     )

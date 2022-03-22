@@ -29,6 +29,5 @@ class PaymentMode(models.Model):
             ("18", "[18] Pago contra reembolso"),
             ("19", "[19] Pago mediante tarjeta"),
         ],
-        string="Facturae code",
         default="04",
     )

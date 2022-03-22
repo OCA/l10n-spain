@@ -51,8 +51,8 @@ class ReportFacturae(models.AbstractModel):
 
     def _get_facturae_schema_file(self, move):
         return tools.file_open(
-            "Facturaev%s.xsd" % move.get_facturae_version(),
-            subdir="addons/l10n_es_facturae/data",
+            "addons/l10n_es_facturae/data/Facturaev%s.xsd"
+            % move.get_facturae_version(),
         )
 
     def _validate_facturae(self, move, xml_string):
@@ -75,7 +75,7 @@ class ReportFacturae(models.AbstractModel):
                     "of the problem : %s"
                 )
                 % str(e)
-            )
+            ) from e
         return True
 
     def _sign_file(self, move, request, public_cert, private_key):

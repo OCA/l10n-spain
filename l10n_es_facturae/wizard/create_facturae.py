@@ -39,13 +39,12 @@ class CreateFacturae(models.TransientModel):
     note = fields.Text("Log")
     state = fields.Selection(
         [("first", "First"), ("second", "Second")],
-        "State",
         readonly=True,
         default="first",
     )
     firmar_facturae = fields.Boolean(
-        "¿Desea firmar digitalmente el fichero generado?",
-        help="Requiere certificado en la ficha de la compañía",
+        "Do you want to digitally sign the generated file?",
+        help="Requires certificate in the company file",
         default=True,
     )
 

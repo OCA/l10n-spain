@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-     <record id="report_facturae" model="ir.actions.report">
-         <field name="report_name">l10n_es_facturae.template_facturae</field>
-         <field name="name">Factura-E sin firmar</field>
-         <field name="report_type">qweb-xml</field>
-         <field name="model">account.move</field>
-     </record>
+    <record id="report_facturae" model="ir.actions.report">
+        <field name="report_name">l10n_es_facturae.template_facturae</field>
+        <field name="name">Factura-E sin firmar</field>
+        <field name="report_type">qweb-xml</field>
+        <field name="model">account.move</field>
+    </record>
 
-     <record id="report_facturae_signed" model="ir.actions.report">
-         <field name="report_name">l10n_es_facturae.facturae_signed</field>
-         <field name="name">Factura-E for,adp</field>
-         <field name="report_type">qweb-xml</field>
-         <field name="model">account.move</field>
-     </record>
+    <record id="report_facturae_signed" model="ir.actions.report">
+        <field name="report_name">l10n_es_facturae.facturae_signed</field>
+        <field name="name">Factura-E for,adp</field>
+        <field name="report_type">qweb-xml</field>
+        <field name="model">account.move</field>
+    </record>
     <template id="facturae_header">
         <t t-if="version == '3_2'">
-        &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
-        <t t-raw="0" />
-        &lt;/fe:Facturae&gt;
+            &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+            <t t-out="0" />
+            &lt;/fe:Facturae&gt;
         </t>
         <t t-elif="version == '3_2_1'">
-        &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
-        <t t-raw="0" />
-        &lt;/fe:Facturae&gt;
+            &lt;fe:Facturae xmlns:fe="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae"
+            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+            <t t-out="0" />
+            &lt;/fe:Facturae&gt;
         </t>
         <t t-elif="version == '3_2_2'">
-        &lt;fe:Facturae xmlns:fe="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml" xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
-        <t t-raw="0" />
-        &lt;/fe:Facturae&gt;
+            &lt;fe:Facturae xmlns:fe="http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml"
+            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"&gt;
+            <t t-out="0" />
+            &lt;/fe:Facturae&gt;
         </t>
     </template>
     <template id="administrative_center">
@@ -264,9 +267,11 @@
                         <InvoiceSeriesCode t-length="20" t-esc="''" />
                         <InvoiceDocumentType t-esc="'FC'" />
                         <InvoiceClass
-                            t-esc="'OR' if move.reversed_entry_id else 'OO'"
+                            t-esc="'OR' if move.move_type == 'out_refund' and move.reversed_entry_id else 'OO'"
                         />
-                        <Corrective t-if="move.reversed_entry_id">
+                        <Corrective
+                            t-if="move.move_type == 'out_refund' and move.reversed_entry_id"
+                        >
                             <InvoiceNumber
                                 t-length="20"
                                 t-esc="move.reversed_entry_id.name"
@@ -383,7 +388,7 @@
                                 </TaxableBase>
                                 <t
                                     t-set="sign"
-                                    t-value="1 if move.type != 'out_invoice' else -1"
+                                    t-value="1 if move.move_type != 'out_invoice' else -1"
                                 />
                                 <TaxAmount>
                                     <TotalAmount
@@ -689,8 +694,8 @@
                         </RelatedDocuments>
                         <InvoiceAdditionalInformation
                             t-length="2500"
-                            t-esc="move.narration"
-                            t-if="move.narration"
+                            t-esc="move.get_narration()"
+                            t-if="move.get_narration()"
                         />
                         <Extensions t-if="False" />
                     </AdditionalData>
