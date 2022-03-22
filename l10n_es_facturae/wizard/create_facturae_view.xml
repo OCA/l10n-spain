@@ -6,7 +6,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Create Factura-E">
-                <h4 colspan="4">Este proceso creará la factura electrónica</h4>
+                <h4 colspan="4">This process will create the electronic invoice</h4>
                 <field name="state" invisible="1" />
                 <group attrs="{'invisible': [('state', '=', 'second')]}" colspan="4">
                     <field name="firmar_facturae" />
@@ -18,14 +18,12 @@
                 </group>
                 <footer>
                     <button
-                        icon="fa fa-print"
                         name="create_facturae_file"
                         string="Export"
                         type="object"
                         states="first"
                         class="oe_highlight"
                     />
-                    or
                     <button string="Close" special="cancel" />
                 </footer>
             </form>

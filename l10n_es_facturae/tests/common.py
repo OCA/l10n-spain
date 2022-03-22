@@ -83,15 +83,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                     .id,
                 }
             )
-        self.payment_method = self.env["account.payment.method"].create(
-            {
-                "name": "inbound_mandate",
-                "code": "inbound_mandate",
-                "payment_type": "inbound",
-                "bank_account_required": False,
-                "active": True,
-            }
-        )
+        self.payment_method = self.env.ref("account.account_payment_method_manual_in")
         payment_methods = self.env["account.payment.method"].search(
             [("payment_type", "=", "inbound")]
         )
@@ -102,7 +94,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "type": "bank",
                 "company_id": main_company.id,
                 "bank_account_id": self.bank.id,
-                "inbound_payment_method_ids": [(6, 0, payment_methods.ids)],
+                "inbound_payment_method_line_ids": [(6, 0, payment_methods.ids)],
             }
         )
 
@@ -131,9 +123,7 @@ class CommonTest(TestL10nEsAeatCertificateBase):
                 "name": "Test payment mode",
                 "bank_account_link": "fixed",
                 "fixed_journal_id": self.journal.id,
-                "payment_method_id": self.env.ref(
-                    "payment.account_payment_method_electronic_in"
-                ).id,
+                "payment_method_id": self.payment_method.id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
                 "refund_payment_mode_id": self.refund_payment_mode.id,
@@ -163,7 +153,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -192,7 +181,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.move_02 = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode_02.id,
@@ -396,7 +384,13 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         refund = (
             self.env["account.move.reversal"]
             .with_context(active_ids=self.move.ids, active_model=self.move._name)
-            .create({"refund_reason": "01", "reason": motive})
+            .create(
+                {
+                    "refund_reason": "01",
+                    "reason": motive,
+                    "journal_id": self.move.journal_id.id,
+                }
+            )
         )
         refund_result = refund.reverse_moves()
         domain = refund_result.get("domain", False)
@@ -421,7 +415,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -445,7 +438,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -469,7 +461,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -500,7 +491,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -513,7 +503,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -526,7 +515,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -586,7 +574,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
@@ -622,7 +609,6 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         move = self.env["account.move"].create(
             {
                 "partner_id": self.partner.id,
-                # "account_id": self.partner.property_account_receivable_id.id,
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,

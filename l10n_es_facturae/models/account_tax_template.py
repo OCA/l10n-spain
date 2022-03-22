@@ -52,7 +52,6 @@ class AccountTaxTemplate(models.Model):
             ("18", "REIGIC: Régimen especial de IGIC: para agencias de" "viajes"),
             ("19", "REIPSI: Régimen especial de IPSI para agencias de viajes"),
         ],
-        string="Facturae code",
     )
 
     def _get_tax_vals(self, company, tax_template_to_tax):
