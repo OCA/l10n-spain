@@ -8,6 +8,7 @@ from lxml import etree
 
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import ValidationError
+from odoo.tools import html2plaintext
 
 from odoo.addons.base.models.ir_ui_view import (
     transfer_modifiers_to_node,
@@ -295,6 +296,10 @@ class AccountMove(models.Model):
                 res["fields"].update(self.fields_get(["thirdparty_invoice"]))
             res["arch"] = etree.tostring(doc)
         return res
+
+    def get_narration(self):
+        self.ensure_one()
+        return html2plaintext(self.narration)
 
 
 class AccountMoveLine(models.Model):
