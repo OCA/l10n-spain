@@ -12,6 +12,10 @@ por el módulo *mis_builder*:
 Las plantillas están basadas en los modelos para el depósito de cuentas anuales
 del Registro Mercantil:
 
-* *Normal*: https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
-* *Abreviado*: https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
-* *PYMEs*: https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
+* *Normal*: https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Normal%20Castellano%20Editable%202020.PDF
+* *Abreviado*: https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/Abreviado%20Castellano%20Editable%202020.PDF
+* *PYMEs*: https://www.mjusticia.gob.es/es/Ciudadano/Registros/Documents/PYMES%20Castellano%20Editable%202020.PDF
+
+La información general del Registro Mercantil se encuentra en el apartado 'Depósito de cuentas/Anexo I':
+
+* https://www.mjusticia.gob.es/es/ciudadania/registros/propiedad-mercantiles/registro-mercantil
