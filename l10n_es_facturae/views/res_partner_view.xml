@@ -14,7 +14,7 @@
             <group name="accounting_entries" position="after">
                 <group
                     name="group_facturae"
-                    string="FActure"
+                    string="Facturae"
                     attrs="{'invisible': [('facturae', '=', False)]}"
                 >
                     <field name="facturae_version" />

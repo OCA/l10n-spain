@@ -7,7 +7,7 @@
 
 {
     "name": "Creación de Factura-e",
-    "version": "14.0.2.0.0",
+    "version": "15.0.1.0.0",
     "author": "ASR-OSS, "
     "FactorLibre, "
     "Tecon, "

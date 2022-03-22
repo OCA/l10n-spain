@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2021-04-01 11:56+0000\n"
-"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
+"PO-Revision-Date: 2022-04-13 12:05+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -72,18 +72,18 @@ msgstr "3.2.2"
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_report_l10n_es_facturae_facturae_signed
 msgid "Account Move Facturae Signed"
-msgstr ""
+msgstr "Moviment de compte Facturae signat"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move_reversal
 msgid "Account Move Reversal"
-msgstr ""
+msgstr "Revocació de moviment de compte"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__attach_invoice_as_annex
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__attach_invoice_as_annex
 msgid "Attach Invoice As Annex"
-msgstr ""
+msgstr "Adjunteu la factura com a annex"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__correction_method__04
@@ -278,11 +278,15 @@ msgid ""
 "Summary:\n"
 "Move number: %s\n"
 msgstr ""
+"Exportació correcta\n"
+"\n"
+"Resum:\n"
+"Mou el número: %s\n"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
 msgid "FActure"
-msgstr ""
+msgstr "FActura"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae
@@ -303,7 +307,7 @@ msgstr "Fitxer factura-E"
 #. module: l10n_es_facturae
 #: model:ir.actions.report,name:l10n_es_facturae.report_facturae_signed
 msgid "Factura-E for,adp"
-msgstr ""
+msgstr "Factura-E per,adp"
 
 #. module: l10n_es_facturae
 #: model:ir.actions.report,name:l10n_es_facturae.report_facturae
@@ -328,7 +332,7 @@ msgstr "Facturae"
 #: model:ir.model,name:l10n_es_facturae.model_l10n_es_facturae_attachment
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 msgid "Facturae Attachment"
-msgstr ""
+msgstr "Facturae Adjunt"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
@@ -443,7 +447,7 @@ msgstr "Data/Període a aplicar"
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__file
 msgid "File"
-msgstr ""
+msgstr "Dossier"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae_fname
@@ -453,7 +457,7 @@ msgstr "Nom d'arxiu"
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__filename
 msgid "Filename"
-msgstr ""
+msgstr "Nom de l'arxiu"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__create_facturae__state__first
@@ -589,29 +593,29 @@ msgstr "Identificació fiscal Receptor"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Invoice %s"
-msgstr ""
+msgstr "Factura %s"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_journal
 msgid "Journal"
-msgstr ""
+msgstr "Diari"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Entrada de diari"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Element de diari"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__l10n_es_facturae_attachment_ids
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__l10n_es_facturae_attachment_ids
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__l10n_es_facturae_attachment_ids
 msgid "L10N Es Facturae Attachment"
-msgstr ""
+msgstr "L10N Es Facturae Adjunt"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_journal____last_update
@@ -656,7 +660,7 @@ msgstr "Log"
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_l10n_es_facturae_attachment__move_id
 msgid "Move"
-msgstr ""
+msgstr "Mou-te"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_move__facturae_refund_reason__04
@@ -681,7 +685,7 @@ msgstr "Número de la factura"
 #: model:ir.model.fields,help:l10n_es_facturae.field_account_move__thirdparty_number
 #: model:ir.model.fields,help:l10n_es_facturae.field_account_payment__thirdparty_number
 msgid "Número de la factura emitida por un tercero."
-msgstr ""
+msgstr "Número de la factura emès per un tercer."
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__oficina_contable
@@ -838,7 +842,7 @@ msgstr "Impost"
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Taxes not provided in move line %s"
-msgstr ""
+msgstr "Impostos no proporcionats a la línia de moviment %s"
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_account_tax_template
@@ -865,14 +869,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_invoice
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_invoice
 msgid "Third-party invoice"
-msgstr ""
+msgstr "Factura de tercers"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__thirdparty_number
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__thirdparty_number
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__thirdparty_number
 msgid "Third-party number"
-msgstr ""
+msgstr "Número de tercers"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__unidad_tramitadora
@@ -891,12 +895,13 @@ msgstr "S'ha de definir el NIF"
 #, python-format
 msgid "You can only create Factura-E files for moves that have been validated."
 msgstr ""
+"Només podeu crear fitxers Factura-E per a moviments que hagin estat validats."
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "You can only select one move to export"
-msgstr ""
+msgstr "Només podeu seleccionar un moviment per exportar"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_payment_mode__facturae_code__01
