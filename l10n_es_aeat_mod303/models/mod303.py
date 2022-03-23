@@ -72,7 +72,7 @@ class L10nEsAeatMod303Report(models.Model):
     def _compute_casilla_69(self):
         for report in self:
             report.casilla_69 = (
-                report.atribuible_estado + report.casilla_77 +
+                report.atribuible_estado + report.casilla_77 -
                 report.cuota_compensar + report.regularizacion_anual)
 
     @api.multi
