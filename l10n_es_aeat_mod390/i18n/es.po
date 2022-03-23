@@ -214,8 +214,8 @@ msgstr "Cuenta bancaria"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__calculation_date
-msgid "Calculation date"
-msgstr "Fecha de cálculo"
+msgid "Calculation Date"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__company_id
@@ -229,8 +229,8 @@ msgstr "Cuenta bancaria de la compañía usada para la presentación"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_email
-msgid "Contact email"
-msgstr "Email contacto"
+msgid "Contact Email"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__counterpart_account_id
@@ -341,6 +341,11 @@ msgid "Epígrafe I.A.E. actividad principal"
 msgstr "Epígrafe I.A.E. actividad principal"
 
 #. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__export_config_id
 msgid "Export config"
 msgstr "Configuración de exportación"
@@ -366,11 +371,6 @@ msgid "Followers"
 msgstr "Seguidores"
 
 #. module: l10n_es_aeat_mod390
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
-
-#. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Contactos)"
@@ -384,6 +384,11 @@ msgstr "Icono font awesome p.e. fa-tasks"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_name
 msgid "Full Name"
 msgstr "Nombre completo"
+
+#. module: l10n_es_aeat_mod390
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_message
+msgid "Has Message"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__id
@@ -624,8 +629,8 @@ msgstr "Empresa"
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__period_type
-msgid "Period type"
-msgstr "Tipo de periodo"
+msgid "Period Type"
+msgstr ""
 
 #. module: l10n_es_aeat_mod390
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__contact_phone
@@ -951,6 +956,18 @@ msgstr "[98] Result. 303 último periodo a devolver"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod390.field_l10n_es_aeat_mod390_report__has_347
 msgid "¿Obligación del 347?"
 msgstr "¿Obligación del 347?"
+
+#~ msgid "Calculation date"
+#~ msgstr "Fecha de cálculo"
+
+#~ msgid "Contact email"
+#~ msgstr "Email contacto"
+
+#~ msgid "Followers (Channels)"
+#~ msgstr "Seguidores (Canales)"
+
+#~ msgid "Period type"
+#~ msgstr "Tipo de periodo"
 
 #~ msgid "Cancelled"
 #~ msgstr "Cancelada"
