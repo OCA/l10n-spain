@@ -124,3 +124,10 @@ def migrate(env, version):
             method_id=method_id
         ),
     )
+    cron_job = env.ref(
+        "l10n_es_facturae_face.update_face_job", raise_if_not_found=False
+    )
+    if cron_job:
+        cron_job.write(
+            {"model_id": env.ref("l10n_es_facturae_face.model_edi_exchange_record")}
+        )
