@@ -75,6 +75,7 @@
                 }</attribute>
             </xpath>
             <xpath expr="//field[@name='tracking_state']" position="after">
+                <field name="gls_carrier_is_pickup_service" invisible="1" />
                 <field
                     name="gls_pickup_state"
                     attrs="{
