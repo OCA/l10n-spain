@@ -58,7 +58,7 @@
         'data/tax_code_map_mod390_data.xml',
         'views/mod390_view.xml',
         'security/ir.model.access.csv',
-        'security/l10n_es_aeat_mod390_security.xml',
+        'security/l10n_es_aeat_mod390_security.xml'
     ],
     'installable': True,
     'maintainers': [

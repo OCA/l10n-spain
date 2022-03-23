@@ -454,7 +454,6 @@
         <field name="decimal_size">2</field>
         <field name="alignment">right</field>
     </record>
-
     <record id="aeat_mod390_2021_sub06_export_line_39" model="aeat.model.export.config.line">
         <field name="sequence">39</field>
         <field name="export_config_id" ref="aeat_mod390_2021_sub06_export_config"/>
