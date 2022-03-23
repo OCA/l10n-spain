@@ -252,7 +252,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
 
     def test_model_390(self):
         # Test constraints
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception) as ex:
             self.model390.statement_type = "C"
         self.model390.button_calculate()
         # Check tax lines
@@ -264,7 +264,7 @@ class TestL10nEsAeatMod390(TestL10nEsAeatMod390Base):
                 sum(lines.mapped("amount")),
                 result,
                 2,
-                "Incorrect result in field %s" % field,
+                "Incorrect result in field %s %s" % (field, ex.exception),
             )
         # Check computed fields
         self.assertAlmostEqual(self.model390.casilla_33, 17700.0, 2)
