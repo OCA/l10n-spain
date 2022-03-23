@@ -19,6 +19,7 @@
         "data/edi.xml",
         "data/face_data.xml",
         "data/edi_output.xml",
+        "data/cron_data.xml",
         "wizards/edi_l10n_es_facturae_face_cancel.xml",
         "views/account_move.xml",
         "views/res_company_view.xml",
