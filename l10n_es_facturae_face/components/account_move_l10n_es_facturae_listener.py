@@ -38,7 +38,7 @@ class AccountMoveL10nEsFacturaeListener(Component):
             exchange_record = backend.create_record(
                 exchange_type, self._get_exchange_record_vals(record)
             )
-            backend._delay_action(exchange_record).exchange_generate(exchange_record)
+            exchange_record.with_delay().action_exchange_generate()
 
     def on_generate_account_edi(self, records):
         return self.on_post_account_move(records)
