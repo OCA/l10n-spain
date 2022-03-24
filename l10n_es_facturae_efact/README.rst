@@ -89,6 +89,8 @@ Contributors
 
   * Pedro M. Baeza
 
+* Lois Rilo <lois.rilo@forgeflow.com>
+
 Maintainers
 ~~~~~~~~~~~
 

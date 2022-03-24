@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-import base64
 import logging
 from datetime import datetime
 from io import BytesIO
@@ -14,10 +13,13 @@ from odoo import exceptions, tools
 from odoo.tests import common
 
 from odoo.addons.component.tests.common import SavepointComponentRegistryCase
+from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
+    TestL10nEsAeatCertificateBase,
+)
 
 _logger = logging.getLogger(__name__)
+
 try:
-    from OpenSSL import crypto
     from zeep import Client
 except (ImportError, IOError) as err:
     _logger.info(err)
@@ -102,7 +104,7 @@ patch_class = "odoo.addons.l10n_es_facturae_efact.models.edi_exchange_record.SSH
 
 
 @common.tagged("-at_install", "post_install")
-class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
+class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegistryCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -122,19 +124,6 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         self._load_module_components(self, "l10n_es_facturae")
         self._load_module_components(self, "l10n_es_facturae_face")
         self._load_module_components(self, "l10n_es_facturae_efact")
-        pkcs12 = crypto.PKCS12()
-        pkey = crypto.PKey()
-        pkey.generate_key(crypto.TYPE_RSA, 512)
-        x509 = crypto.X509()
-        x509.set_pubkey(pkey)
-        x509.set_serial_number(0)
-        x509.get_subject().CN = "me"
-        x509.set_issuer(x509.get_subject())
-        x509.gmtime_adj_notBefore(0)
-        x509.gmtime_adj_notAfter(10 * 365 * 24 * 60 * 60)
-        x509.sign(pkey, "md5")
-        pkcs12.set_privatekey(pkey)
-        pkcs12.set_certificate(x509)
         self.tax = self.env["account.tax"].create(
             {
                 "name": "Test tax",
@@ -172,10 +161,6 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         main_company = self.env.ref("base.main_company")
         main_company.vat = "ESA12345674"
         main_company.partner_id.country_id = self.env.ref("base.uk")
-        main_company.facturae_cert = base64.b64encode(
-            pkcs12.export(passphrase="password")
-        )
-        main_company.facturae_cert_password = "password"
         self.env["res.currency.rate"].search(
             [("currency_id", "=", main_company.currency_id.id)]
         ).write({"company_id": False})
@@ -263,7 +248,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
                 "journal_id": self.sale_journal.id,
                 "invoice_date": "2016-03-12",
                 "payment_mode_id": self.payment_mode.id,
-                "type": "out_invoice",
+                "move_type": "out_invoice",
                 "name": "R/0001",
                 "invoice_line_ids": [
                     (
@@ -306,7 +291,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
             self.partner.state_id = False
 
     def test_efact_sending(self):
-
+        self._activate_certificate()
         client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
@@ -352,6 +337,7 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         self.assertEqual(self.move.l10n_es_facturae_status, "efact-DELIVERED")
 
     def test_efact_sending_error(self):
+        self._activate_certificate()
         client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
