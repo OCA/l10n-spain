@@ -53,7 +53,8 @@ def migrate(env, version):
             l10n_es_facturae_cancellation_motive
         ) SELECT
             ami.id,
-            CASE WHEN ami.state in ('sent', 'cancelled') THEN 'output_sent'
+            CASE WHEN ami.state in ('sent', 'cancelled')
+                    THEN 'output_sent_and_processed'
                 WHEN ami.state = 'pending' THEN 'output_pending'
                 ELSE 'output_error_on_send'
             END,
