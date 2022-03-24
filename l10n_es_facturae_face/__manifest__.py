@@ -12,10 +12,10 @@
     "data": [
         "data/edi.xml",
         "data/face_data.xml",
+        "data/cron_data.xml",
         "wizards/edi_l10n_es_facturae_face_cancel.xml",
         "views/account_move.xml",
         "views/res_company_view.xml",
-        "views/res_config_views.xml",
         "views/edi_exchange_record.xml",
     ],
     "external_dependencies": {"python": ["OpenSSL", "zeep", "xmlsec"]},
