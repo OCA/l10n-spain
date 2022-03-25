@@ -7,13 +7,12 @@ import mock
 
 from odoo import exceptions
 
-from odoo.addons.component.tests.common import SavepointComponentRegistryCase
+from odoo.addons.edi_oca.tests.common import EDIBackendCommonComponentRegistryTestCase
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
 )
 
 try:
-    from OpenSSL import crypto
     from zeep import Client
 except (ImportError, IOError) as err:
     logging.info(err)
@@ -22,7 +21,9 @@ except (ImportError, IOError) as err:
 _logger = logging.getLogger(__name__)
 
 
-class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegistryCase):
+class EDIBackendTestCase(
+    TestL10nEsAeatCertificateBase, EDIBackendCommonComponentRegistryTestCase
+):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -31,23 +32,10 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         self = cls
 
         self._load_module_components(self, "component_event")
-        self._load_module_components(self, "edi")
-        self._load_module_components(self, "edi_account")
+        self._load_module_components(self, "edi_oca")
+        self._load_module_components(self, "edi_account_oca")
         self._load_module_components(self, "l10n_es_facturae")
         self._load_module_components(self, "l10n_es_facturae_face")
-        pkcs12 = crypto.PKCS12()
-        pkey = crypto.PKey()
-        pkey.generate_key(crypto.TYPE_RSA, 512)
-        x509 = crypto.X509()
-        x509.set_pubkey(pkey)
-        x509.set_serial_number(0)
-        x509.get_subject().CN = "me"
-        x509.set_issuer(x509.get_subject())
-        x509.gmtime_adj_notBefore(0)
-        x509.gmtime_adj_notAfter(10 * 365 * 24 * 60 * 60)
-        x509.sign(pkey, "md5")
-        pkcs12.set_privatekey(pkey)
-        pkcs12.set_certificate(x509)
         self.tax = self.env["account.tax"].create(
             {
                 "name": "Test tax",
@@ -102,15 +90,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
                     .id,
                 }
             )
-        self.payment_method = self.env["account.payment.method"].create(
-            {
-                "name": "inbound_mandate",
-                "code": "inbound_mandate",
-                "payment_type": "inbound",
-                "bank_account_required": False,
-                "active": True,
-            }
-        )
+        self.payment_method = self.env.ref("account.account_payment_method_manual_in")
         payment_methods = self.env["account.payment.method"].search(
             [("payment_type", "=", "inbound")]
         )
@@ -121,7 +101,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
                 "type": "bank",
                 "company_id": main_company.id,
                 "bank_account_id": self.bank.id,
-                "inbound_payment_method_ids": [(6, 0, payment_methods.ids)],
+                "inbound_payment_method_line_ids": [(6, 0, payment_methods.ids)],
             }
         )
 
@@ -138,9 +118,7 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
                 "name": "Test payment mode",
                 "bank_account_link": "fixed",
                 "fixed_journal_id": self.journal.id,
-                "payment_method_id": self.env.ref(
-                    "payment.account_payment_method_electronic_in"
-                ).id,
+                "payment_method_id": self.payment_method.id,
                 "show_bank_account_from_journal": True,
                 "facturae_code": "01",
             }

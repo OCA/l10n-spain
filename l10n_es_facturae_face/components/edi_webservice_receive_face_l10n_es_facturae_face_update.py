@@ -33,7 +33,10 @@ class EdiWebServiceReceiveFaceL10nEsFacturaeFaceUpdate(Component):
         )
         if response.resultado.codigo != "0":
             raise UserError(
-                _("Connection with FACe returned error %s - %s")
-                % (response.resultado.codigo, response.resultado.descripcion)
+                _("Connection with FACe returned error %(code)s - %(description)s")
+                % {
+                    "code": response.resultado.codigo,
+                    "description": response.resultado.descripcion,
+                }
             )
         return json.dumps(helpers.serialize_object(response.factura))
