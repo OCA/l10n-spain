@@ -4,8 +4,8 @@
 
 {
     "name": "Entregas en Factura-e",
-    "version": "11.0.1.0.0",
-    "author": "Creu Blanca, " "NuoBiT Solutions, " "Odoo Community Association (OCA)",
+    "version": "14.0.1.0.0",
+    "author": "Creu Blanca, NuoBiT Solutions, Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
