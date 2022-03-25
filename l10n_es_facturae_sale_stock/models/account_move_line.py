@@ -5,8 +5,8 @@
 from odoo import fields, models
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
 
     def get_datetime(self, dt):
-        return fields.Datetime.context_timestamp(self, fields.Datetime.from_string(dt))
+        return fields.Datetime.context_timestamp(self, dt)
