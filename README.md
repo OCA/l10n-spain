@@ -42,7 +42,7 @@ addon | version | maintainers | summary
 [l10n_es_dua](l10n_es_dua/) | 14.0.1.1.0 |  | Importaciones con DUA
 [l10n_es_dua_sii](l10n_es_dua_sii/) | 14.0.1.1.0 |  | Suministro Inmediato de Información de importaciones con DUA
 [l10n_es_facturae](l10n_es_facturae/) | 14.0.2.0.0 |  | Creación de Factura-e
-[l10n_es_facturae_face](l10n_es_facturae_face/) | 14.0.1.0.0 |  | Envío de Factura-e a FACe
+[l10n_es_facturae_face](l10n_es_facturae_face/) | 14.0.1.1.0 |  | Envío de Factura-e a FACe
 [l10n_es_intrastat_report](l10n_es_intrastat_report/) | 14.0.2.1.0 |  | Spanish Intrastat Product Declaration
 [l10n_es_irnr](l10n_es_irnr/) | 14.0.1.0.0 |  | Retenciones IRNR (No residentes)
 [l10n_es_location_nuts](l10n_es_location_nuts/) | 14.0.1.0.0 |  | NUTS specific options for Spain
