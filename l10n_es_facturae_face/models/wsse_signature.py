@@ -162,7 +162,7 @@ def verify_envelope(envelope, cert):
     except Exception:
         # Sadly xmlsec gives us no details about the reason for the failure, so
         # we have nothing to pass on except that verification failed.
-        raise SignatureVerificationFailed()
+        raise SignatureVerificationFailed() from None
 
 
 def _sign_node(ctx, signature, target):
