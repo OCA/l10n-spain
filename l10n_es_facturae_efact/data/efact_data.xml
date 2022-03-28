@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<odoo noupdate="1">
+
+    <record id="efact_backend" model="edi.backend">
+        <field name="name">e.Fact</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+    </record>
+    <record id="facturae_efact_update_exchange_type" model="edi.exchange.type">
+        <field name="name">Update Facturae e.Fact</field>
+        <field name="code">l10n_es_facturae_efact_update</field>
+        <field
+            name="backend_type_id"
+            ref="l10n_es_facturae_face.facturae_backend_type"
+        />
+        <field name="backend_id" ref="efact_backend" />
+        <field name="direction">input</field>
+        <field name="exchange_filename_pattern">{record_name}-{dt}</field>
+        <field name="exchange_file_ext">xml</field>
+    </record>
+    <record id="update_efact_job" model="ir.cron">
+        <field name="name">eFACT update Job</field>
+        <field name="active" eval="True" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="priority">8</field>
+        <field name="interval_type">hours</field>
+        <field name="state">code</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="edi_oca.model_edi_exchange_record" />
+        <field name="code">model.efact_check_history()</field>
+    </record>
+    <record id="account_invoice_efact_server" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.server</field>
+        <field name="value">efact.eacat.cat</field>
+    </record>
+    <record id="account_invoice_efact_port" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.port</field>
+        <field name="value">22</field>
+    </record>
+    <record id="account_invoice_efact_user" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.user</field>
+        <field name="value">usuario</field>
+    </record>
+    <record id="account_invoice_efact_password" model="ir.config_parameter">
+        <field name="key">account.invoice.efact.password</field>
+        <field name="value">password</field>
+    </record>
+</odoo>
