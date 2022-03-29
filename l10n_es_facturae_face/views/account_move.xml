@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 n
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="l10n_es_facturae.view_move_form" />
+        <field name="arch" type="xml">
+            <button name="action_post" position="after">
+                <button
+                    name="%(l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_act_window)s"
+                    type="action"
+                    string="Cancel FACe"
+                    context="{'default_move_id': id}"
+                    attrs="{'invisible': ['|',
+                        ('l10n_es_facturae_status', '=', False),
+                        ('l10n_es_facturae_cancellation_status', 'not in', ['face-4100', 'face-4400'])]}"
+                />
+            </button>
+            <field name="facturae_end_date" position="after">
+                <field name="l10n_es_facturae_status" />
+                <field name="l10n_es_facturae_cancellation_status" />
+            </field>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 n
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="edi_exchange_record_view_form">
+        <field name="name">edi.exchange.record.form (in l10n_es_facturae_face)</field>
+        <field name="model">edi.exchange.record</field>
+        <field name="inherit_id" ref="edi_oca.edi_exchange_record_view_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page
+                    name="facturae"
+                    string="Facturae"
+                    attrs="{'invisible': [('type_id', '!=', %(l10n_es_facturae_face.facturae_exchange_type)s)]}"
+                >
+                    <group>
+                        <group name="facturae_group">
+                            <field name="l10n_es_facturae_status" />
+                            <field name="l10n_es_facturae_motive" />
+                            <field name="l10n_es_facturae_cancellation_status" />
+                            <field name="l10n_es_facturae_cancellation_motive" />
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
