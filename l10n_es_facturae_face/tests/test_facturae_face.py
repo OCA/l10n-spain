@@ -274,7 +274,9 @@ class EDIBackendTestCase(
             )
             self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
             exchange_record.backend_id.exchange_send(exchange_record)
-            self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+            self.assertEqual(
+                exchange_record.edi_exchange_state, "output_sent_and_processed"
+            )
             mock_client.assert_called_once()
         self.move.refresh()
         self.assertTrue(self.move.exchange_record_ids)
