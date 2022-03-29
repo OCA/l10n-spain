@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -74,7 +74,7 @@ msgstr ""
 #: code:addons/l10n_es_facturae_face/components/edi_webservice_receive_face_l10n_es_facturae_face_update.py:0
 #: code:addons/l10n_es_facturae_face/components/webservice_face.py:0
 #, python-format
-msgid "Connection with FACe returned error %s - %s"
+msgid "Connection with FACe returned error %(code)s - %(description)s"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -99,13 +99,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__display_name
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__display_name
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__display_name
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -192,13 +186,7 @@ msgid "Facturae status"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record__id
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__id
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings__id
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner__id
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend__id
 msgid "ID"
 msgstr ""
 
@@ -214,13 +202,7 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_exchange_record____last_update
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_partner____last_update
-#: model:ir.model.fields,field_description:l10n_es_facturae_face.field_webservice_backend____last_update
 msgid "Last Modified on"
 msgstr ""
 
