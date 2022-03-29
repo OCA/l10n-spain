@@ -27,7 +27,7 @@ class AccountPaymentOrder(models.Model):
         self.ensure_one()
         if self.payment_method_id.code != 'conf_caixabank':
             return super(AccountPaymentOrder, self).generate_payment_file()
-        self.num_records = 0
+        self.num_lineas = 0
         txt_file = self._pop_cabecera_conf_caix()
         for line in self.bank_line_ids:
             txt_file += self._pop_beneficiarios_conf_caix(line)
@@ -41,9 +41,6 @@ class AccountPaymentOrder(models.Model):
         """
 
         if self.date_prefered != 'fixed':
-            raise UserError(
-                _("Error: El tipo de fecha de ejecución deber ser del\
-                  pago debe ser fijo"))
             fecha_planificada = self.date_scheduled
             fecha_planificada = fecha_planificada.replace('-', '')
             dia = fecha_planificada[6:]
@@ -456,7 +453,7 @@ class AccountPaymentOrder(models.Model):
             self.num_lineas += 1
         return all_text
 
-    def _pop_totales(self, line, num_lineas):
+    def _pop_totales_conf_caix(self, line, num_lineas):
             text = ''
             # 1 - 2: Código registro
             text += '08'
