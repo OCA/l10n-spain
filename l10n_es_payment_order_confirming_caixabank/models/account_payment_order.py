@@ -166,7 +166,7 @@ class AccountPaymentOrder(models.Model):
         all_text = ''
         bloque_registros = [
             '010', '043', '044', '046', '011', '012', '014',
-            '015', '016', '017', '018', '019'
+            '015', '016', '017', '018', '019', '055'
         ]
         fixed_text = ''
         # 1 - 2: Código registro
@@ -185,6 +185,15 @@ class AccountPaymentOrder(models.Model):
         nif = self.convert_vat(line.partner_id)
 
         fixed_text += self.convert(nif, 12)
+
+        # Logica para saber si es nacional o no el banco
+        country = line.partner_bank_id.acc_number and \
+            line.partner_bank_id.acc_number[:2].upper() or ''
+        is_national = country.upper() == 'ES' and True or False
+        country_int_code = False
+        if not is_national:
+            country_int_code = self.env['res.country'].search([
+                ('code', 'ilike', country)], limit=1).code
 
         for tipo_dato in bloque_registros:
             text = ''
@@ -206,7 +215,7 @@ class AccountPaymentOrder(models.Model):
 
                 # 42 - 59 Num banco, Num sucursal, Num cuenta
                 control = ''
-                if self.payment_mode_id.conf_caixabank_type == 'T':
+                if self.payment_mode_id.conf_caixabank_type == 'T' and is_national:
                     cuenta = line.partner_bank_id.acc_number
                     cuenta = cuenta.replace(' ', '')
                     tipo_cuenta = self.company_partner_bank_id.acc_type
@@ -228,12 +237,15 @@ class AccountPaymentOrder(models.Model):
                 text += 2 * ' '
 
                 # 64 - 65: Digito control
-                if self.payment_mode_id.conf_caixabank_type != 'C':
+                if self.payment_mode_id.conf_caixabank_type != 'C' and is_national:
                     text += control
                 else:
                     text += '  '
                 # 66: Proveedor no residente
-                text += 'N'
+                if not is_national and country_int_code:
+                    text += 'S'
+                else:
+                    text += 'N'
                 # 67: Indicador confirmación
                 text += 'C'
                 # 68 - 70: Moneda de factura
@@ -261,8 +273,10 @@ class AccountPaymentOrder(models.Model):
                 # 30: Clave de gastos
                 text += '1'
                 # 31 - 32: Código ISO pais destino
-                # TODO lo dejo siempre a ES?
-                text += 'ES'
+                if not is_national and country_int_code:
+                    text += country_int_code
+                else:
+                    text += 'ES'
                 # 63 - 38 Libre
                 text += 6 * ' '
                 # 39 - 50: Código SWIFT del banco destino (bic)
@@ -447,6 +461,28 @@ class AccountPaymentOrder(models.Model):
                 text += email_pro
                 # 66 - 72 Libre
                 text += 7 * ' '
+            ###################################################################
+
+            # LÍNEA 16
+            ###################################################################
+            if tipo_dato == '055' and not is_national:
+                # F1 30 - 31 Clase de Pago
+                text += '01'
+                # F2 32 - 37 Código estadístico CIN
+                text += 6 * ' '
+                # F3 38 - 39 Código ISO del Pais de destino del pago
+                if country_int_code:
+                    text += country_int_code
+                else:
+                    text += 2 * ' '
+                # F4 40 - 48 NIF del Beneficiario
+                text += 9 * ' '
+                # F5 49 - 56 Número Operación Financiera
+                text += 8 * ' '
+                # F6 57 - 68 Código ISIN
+                text += 12 * ' '
+                # F7 69 - 72 Libre
+                text += 4 * ' '
             ###################################################################
             text += '\r\n'
             all_text += text
