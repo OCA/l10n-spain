@@ -64,7 +64,7 @@ class L10nEsAeatReportExportToBoe(models.TransientModel):
         return ascii_string
 
     def _format_alphabetic_string(self, text, length, fill=" ", align="<"):
-        u"""Format the string into a fixed length ASCII (iso-8859-1) record
+        """Format the string into a fixed length ASCII (iso-8859-1) record
         without numbers.
         """
         if not text:
