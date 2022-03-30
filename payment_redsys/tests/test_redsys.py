@@ -191,7 +191,7 @@ class RedsysCase(HttpCase):
                 self.redsys.redsys_secret_key, DS_parameters
             ),
             "Ds_MerchantParameters": DS_parameters,
-            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+            "Ds_SignatureVersion": "HMAC_SHA256_V1",
         }
         self._form_feedback(redsys_post_data)
         self.assertEqual(self.tx.redsys_txnid, "999999", "Redsys: Get transaction")
@@ -220,7 +220,7 @@ class RedsysCase(HttpCase):
                 self.redsys.redsys_secret_key, DS_parameters
             ),
             "Ds_MerchantParameters": DS_parameters,
-            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+            "Ds_SignatureVersion": "HMAC_SHA256_V1",
         }
         self._form_feedback(redsys_post_data)
         self.assertEqual(
@@ -242,7 +242,7 @@ class RedsysCase(HttpCase):
                 self.redsys.redsys_secret_key, DS_parameters
             ),
             "Ds_MerchantParameters": DS_parameters,
-            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+            "Ds_SignatureVersion": "HMAC_SHA256_V1",
         }
         self._form_feedback(redsys_post_data)
         # Get transaction
@@ -265,7 +265,7 @@ class RedsysCase(HttpCase):
                 self.redsys.redsys_secret_key, DS_parameters
             ),
             "Ds_MerchantParameters": DS_parameters,
-            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+            "Ds_SignatureVersion": "HMAC_SHA256_V1",
         }
         self._form_feedback(redsys_post_data)
         # Get transaction
@@ -307,7 +307,7 @@ class RedsysCase(HttpCase):
                 self.redsys.redsys_secret_key, DS_parameters
             ),
             "Ds_MerchantParameters": DS_parameters,
-            "Ds_SignatureVersion": u"HMAC_SHA256_V1",
+            "Ds_SignatureVersion": "HMAC_SHA256_V1",
         }
         self.tx.sale_order_ids = [(6, 0, self.so.ids)]
         # Get transaction
