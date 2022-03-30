@@ -12,5 +12,5 @@ class AccountPaymentOrder(models.Model):
         res = super().generate_group_header_block(parent_node, gen_args)
         if self.payment_mode_id.charge_financed:
             reference = parent_node.xpath("//GrpHdr/MsgId")
-            reference[0].text = u"FSDD " + reference[0].text
+            reference[0].text = "FSDD " + reference[0].text
         return res
