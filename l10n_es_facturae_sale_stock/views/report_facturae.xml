@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Creu Blanca
+     Copyright 2020 NuoBiT Solutions - Eric Antones <eantones@nuobit.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+    <template id="template_facturae" inherit_id="l10n_es_facturae.template_facturae">
+        <xpath expr="//DeliveryNotesReferences" position="before">
+            <t
+                t-set="pickings"
+                t-value="line.move_line_ids.mapped('picking_id').filtered(lambda r: r.state == 'done').sorted(lambda x: (x.write_date, x.id))"
+            />
+        </xpath>
+        <xpath expr="//DeliveryNotesReferences" position="attributes">
+            <attribute name="t-if">pickings</attribute>
+        </xpath>
+        <xpath expr="//DeliveryNotesReferences" position="inside">
+            <t t-foreach="pickings" t-as="picking">
+                <DeliveryNote>
+                    <DeliveryNoteNumber t-length="30" t-esc="picking.name" />
+                    <DeliveryNoteDate
+                        t-esc="line.get_datetime(picking.write_date).strftime('%Y-%m-%d')"
+                    />
+                </DeliveryNote>
+            </t>
+        </xpath>
+    </template>
+</odoo>
