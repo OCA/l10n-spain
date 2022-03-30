@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo14-addon-l10n_es_facturae',
         'odoo14-addon-l10n_es_facturae_efact',
         'odoo14-addon-l10n_es_facturae_face',
+        'odoo14-addon-l10n_es_facturae_sale_stock',
         'odoo14-addon-l10n_es_intrastat_report',
         'odoo14-addon-l10n_es_irnr',
         'odoo14-addon-l10n_es_location_nuts',
