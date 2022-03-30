@@ -5,6 +5,7 @@
         <record model="ir.ui.view" id="l10n_es_partner_import_wizard">
             <field name="name">l10n.es.partner.import.form</field>
             <field name="model">l10n.es.partner.import.wizard</field>
+            <field name="priority" eval="999" />
             <field name="inherit_id" ref="base.res_config_installer" />
             <field name="arch" type="xml">
                 <data>
