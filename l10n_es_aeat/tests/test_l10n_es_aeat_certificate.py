@@ -33,7 +33,7 @@ class TestL10nEsAeatCertificateBase(common.TransactionCase):
             .issuer_name(
                 x509.Name(
                     [
-                        x509.NameAttribute(oid.NameOID.COMMON_NAME, u"cryptography.io"),
+                        x509.NameAttribute(oid.NameOID.COMMON_NAME, "cryptography.io"),
                     ]
                 )
             )

@@ -149,58 +149,58 @@ class L10nEsAeatMod303Report(models.Model):
     )
     allow_posting = fields.Boolean(default=True)
     exonerated_390 = fields.Selection(
-        selection=[("1", u"Exonerado"), ("2", u"No exonerado")],
+        selection=[("1", "Exonerado"), ("2", "No exonerado")],
         default="2",
         required=True,
         states=NON_EDITABLE_EXCEPT_DRAFT,
         compute="_compute_exonerated_390",
         store=True,
         readonly=False,
-        string=u"Exonerado mod. 390",
-        help=u"Exonerado de la Declaración-resumen anual del IVA, modelo 390: "
-        u"Volumen de operaciones (art. 121 LIVA)",
+        string="Exonerado mod. 390",
+        help="Exonerado de la Declaración-resumen anual del IVA, modelo 390: "
+        "Volumen de operaciones (art. 121 LIVA)",
     )
     has_operation_volume = fields.Boolean(
-        string=u"¿Volumen de operaciones?",
+        string="¿Volumen de operaciones?",
         default=True,
         readonly=True,
         states=EDITABLE_ON_DRAFT,
-        help=u"¿Existe volumen de operaciones (art. 121 LIVA)?",
+        help="¿Existe volumen de operaciones (art. 121 LIVA)?",
     )
     has_347 = fields.Boolean(
-        string=u"¿Obligación del 347?",
+        string="¿Obligación del 347?",
         default=True,
         states=NON_EDITABLE_ON_DONE,
-        help=u"Marque la casilla si el sujeto pasivo ha efectuado con alguna "
-        u"persona o entidad operaciones por las que tenga obligación de "
-        u"presentar la declaración anual de operaciones con terceras "
-        u"personas (modelo 347).",
+        help="Marque la casilla si el sujeto pasivo ha efectuado con alguna "
+        "persona o entidad operaciones por las que tenga obligación de "
+        "presentar la declaración anual de operaciones con terceras "
+        "personas (modelo 347).",
     )
     is_voluntary_sii = fields.Boolean(
-        string=u"¿SII voluntario?",
+        string="¿SII voluntario?",
         states=NON_EDITABLE_ON_DONE,
-        help=u"¿Ha llevado voluntariamente los Libros registro del IVA a "
-        u"través de la Sede electrónica de la AEAT durante el ejercicio?",
+        help="¿Ha llevado voluntariamente los Libros registro del IVA a "
+        "través de la Sede electrónica de la AEAT durante el ejercicio?",
     )
     main_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain="[('period_type', '=', period_type)]",
         states=NON_EDITABLE_ON_DONE,
-        string=u"Código actividad principal",
+        string="Código actividad principal",
     )
     main_activity_iae = fields.Char(
         states=NON_EDITABLE_ON_DONE,
-        string=u"Epígrafe I.A.E. actividad principal",
+        string="Epígrafe I.A.E. actividad principal",
         size=4,
     )
     other_first_activity_code = fields.Many2one(
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain="[('period_type', '=', period_type)]",
         states=NON_EDITABLE_ON_DONE,
-        string=u"Código 1ª actividad",
+        string="Código 1ª actividad",
     )
     other_first_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 1ª actividad",
+        string="Epígrafe I.A.E. 1ª actividad",
         states=NON_EDITABLE_ON_DONE,
         size=4,
     )
@@ -208,10 +208,10 @@ class L10nEsAeatMod303Report(models.Model):
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain="[('period_type', '=', period_type)]",
         states=NON_EDITABLE_ON_DONE,
-        string=u"Código 2ª actividad",
+        string="Código 2ª actividad",
     )
     other_second_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 2ª actividad",
+        string="Epígrafe I.A.E. 2ª actividad",
         states=NON_EDITABLE_ON_DONE,
         size=4,
     )
@@ -219,10 +219,10 @@ class L10nEsAeatMod303Report(models.Model):
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain="[('period_type', '=', period_type)]",
         states=NON_EDITABLE_ON_DONE,
-        string=u"Código 3ª actividad",
+        string="Código 3ª actividad",
     )
     other_third_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 3ª actividad",
+        string="Epígrafe I.A.E. 3ª actividad",
         states=NON_EDITABLE_ON_DONE,
         size=4,
     )
@@ -230,10 +230,10 @@ class L10nEsAeatMod303Report(models.Model):
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain="[('period_type', '=', period_type)]",
         states=NON_EDITABLE_ON_DONE,
-        string=u"Código 4ª actividad",
+        string="Código 4ª actividad",
     )
     other_fourth_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 4ª actividad",
+        string="Epígrafe I.A.E. 4ª actividad",
         states=NON_EDITABLE_ON_DONE,
         size=4,
     )
@@ -241,19 +241,19 @@ class L10nEsAeatMod303Report(models.Model):
         comodel_name="l10n.es.aeat.mod303.report.activity.code",
         domain="[('period_type', '=', period_type)]",
         states=NON_EDITABLE_ON_DONE,
-        string=u"Código 5ª actividad",
+        string="Código 5ª actividad",
     )
     other_fifth_activity_iae = fields.Char(
-        string=u"Epígrafe I.A.E. 5ª actividad",
+        string="Epígrafe I.A.E. 5ª actividad",
         states=NON_EDITABLE_ON_DONE,
         size=4,
     )
     casilla_88 = fields.Float(
-        string=u"[88] Total volumen operaciones",
+        string="[88] Total volumen operaciones",
         compute="_compute_casilla_88",
-        help=u"Información adicional - Operaciones realizadas en el ejercicio"
-        u" - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]"
-        u"+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
+        help="Información adicional - Operaciones realizadas en el ejercicio"
+        " - Total volumen de operaciones ([80]+[81]+[93]+[94]+[83]+[84]"
+        "+[125]+[126]+[127]+[128]+[86]+[95]+[96]+[97]+[98]-[79]-[99])",
         store=True,
     )
     marca_sepa = fields.Selection(
