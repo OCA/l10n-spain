@@ -1197,7 +1197,7 @@ class AccountMove(models.Model):
                     )
                 res_line = res["RespuestaLinea"][0]
                 if res_line["CodigoErrorRegistro"]:
-                    inv_vals["sii_send_error"] = u"{} | {}".format(
+                    inv_vals["sii_send_error"] = "{} | {}".format(
                         str(res_line["CodigoErrorRegistro"]),
                         str(res_line["DescripcionErrorRegistro"])[:60],
                     )
