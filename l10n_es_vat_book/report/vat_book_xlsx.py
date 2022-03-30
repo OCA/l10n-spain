@@ -141,7 +141,7 @@ class VatNumberXlsx(models.AbstractModel):
     def fill_issued_row_data(
         self, sheet, row, line, tax_line, with_total, draft_export
     ):
-        """ Fill issued data """
+        """Fill issued data"""
         # We don't want to fail on empty records, like in the case of PoS
         # cash sales, which dont't have a partner. Just return empty values.
         # Country code will be "ES", as the operations will be made in Spain
@@ -296,7 +296,7 @@ class VatNumberXlsx(models.AbstractModel):
     def fill_received_row_data(
         self, sheet, row, line, tax_line, with_total, draft_export
     ):
-        """ Fill received data """
+        """Fill received data"""
         date_invoice = line.move_id.date
         # We don't want to fail on empty records, like in the case of PoS
         # cash sales, which dont't have a partner. Just return empty values.
@@ -346,7 +346,7 @@ class VatNumberXlsx(models.AbstractModel):
             sheet.write(num_row, last_column, tax_line.tax_id.name)
 
     def generate_xlsx_report(self, workbook, data, objects):
-        """ Create vat book xlsx in BOE format """
+        """Create vat book xlsx in BOE format"""
 
         book = objects[0]
         draft_export = bool(book.state not in ["done", "posted"])

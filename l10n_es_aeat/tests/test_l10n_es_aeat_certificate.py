@@ -33,7 +33,7 @@ class TestL10nEsAeatCertificateBase(common.SavepointCase):
             .issuer_name(
                 x509.Name(
                     [
-                        x509.NameAttribute(oid.NameOID.COMMON_NAME, u"cryptography.io"),
+                        x509.NameAttribute(oid.NameOID.COMMON_NAME, "cryptography.io"),
                     ]
                 )
             )
@@ -58,7 +58,7 @@ class TestL10nEsAeatCertificateBase(common.SavepointCase):
         )
 
     def _activate_certificate(self, passwd=None):
-        """  Obtain Keys from .pfx and activate the cetificate """
+        """Obtain Keys from .pfx and activate the cetificate"""
         if not passwd:
             passwd = self.certificate_password
         wizard = self.env["l10n.es.aeat.certificate.password"].create(
