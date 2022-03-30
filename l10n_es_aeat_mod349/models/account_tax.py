@@ -21,7 +21,7 @@ class AccountTax(models.Model):
 
     def _compute_l10n_es_aeat_349_operation_key(self):
         # TODO: Improve performance
-        map_349 = self.env['aeat.349.map.line'].search([])
+        map_349 = self.env['aeat.349.map.line'].sudo().search([])
         for tax in self:
             for line in map_349:
                 if tax in tax.company_id.get_taxes_from_templates(
