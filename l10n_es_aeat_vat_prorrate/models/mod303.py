@@ -196,7 +196,7 @@ class L10nEsAeatMod303Report(models.Model):
         column = "credit" if prorrate < 0 else "debit"
         n = 0
         count = len(extra_lines)
-        step = 1.0 / (10 ** prec)
+        step = 1.0 / (10**prec)
         if diff < 0:
             step = -step
         while abs(diff) > 0:
