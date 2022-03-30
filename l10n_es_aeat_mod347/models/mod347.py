@@ -362,22 +362,22 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         selection=[
             (
                 "A",
-                u"A - Adquisiciones de bienes y servicios superiores al " u"límite (1)",
+                "A - Adquisiciones de bienes y servicios superiores al " "límite (1)",
             ),
-            ("B", u"B - Entregas de bienes y servicios superiores al límite (1)"),
-            ("C", u"C - Cobros por cuenta de terceros superiores al límite (3)"),
+            ("B", "B - Entregas de bienes y servicios superiores al límite (1)"),
+            ("C", "C - Cobros por cuenta de terceros superiores al límite (3)"),
             (
                 "D",
-                u"D - Adquisiciones efectuadas por Entidades Públicas "
-                u"(...) superiores al límite (1)",
+                "D - Adquisiciones efectuadas por Entidades Públicas "
+                "(...) superiores al límite (1)",
             ),
             (
                 "E",
-                u"E - Subvenciones, auxilios y ayudas satisfechas por Ad. "
-                u"Públicas superiores al límite (1)",
+                "E - Subvenciones, auxilios y ayudas satisfechas por Ad. "
+                "Públicas superiores al límite (1)",
             ),
-            ("F", u"F - Ventas agencia viaje"),
-            ("G", u"G - Compras agencia viaje"),
+            ("F", "F - Ventas agencia viaje"),
+            ("G", "G - Compras agencia viaje"),
         ],
     )
     partner_id = fields.Many2one(
