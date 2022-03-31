@@ -6,17 +6,10 @@
     "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
-    'author': 'Studio73,'
-              'Odoo Community Association (OCA)',
+    "author": "Studio73," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "external_dependencies": {
-        "python": [
-            "deepdiff",
-        ],
-    },
-    "depends": [
-        "l10n_es_aeat_sii",
-    ],
+    "external_dependencies": {"python": ["deepdiff",],},
+    "depends": ["l10n_es_aeat_sii",],
     "data": [
         "security/ir.model.access.csv",
         "security/aeat_sii.xml",
