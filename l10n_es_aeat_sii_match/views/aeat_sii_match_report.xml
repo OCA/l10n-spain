@@ -141,7 +141,7 @@
                                         name="sii_match_jobs_ids"
                                         nolabel="1"
                                         readonly="1"
-                                        context="{'tree_view_ref': 'l10n_es_aeat_sii.view_queue_job_sii'}"
+                                        context="{'tree_view_ref': 'l10n_es_aeat_sii_oca.view_queue_job_sii'}"
                                     />
                                 </group>
                             </page>
@@ -157,7 +157,9 @@
         <field name="model">l10n.es.aeat.sii.match.report</field>
         <field name="arch" type="xml">
             <tree
-                colors="grey:state=='done';grey:state=='cancelled';green:state=='calculated';red:state=='error';blue:state=='draft'"
+                decoration-info="state == 'draft'"
+                decoration-muted="state in ('cancelled', 'done')"
+                decoration-danger="state == 'error'"
             >
                 <field name="name" />
                 <field name="period_type" />
@@ -219,7 +221,6 @@
     <record id="action_l10n_es_aeat_sii_match_report" model="ir.actions.act_window">
         <field name="name">AEAT SII Match</field>
         <field name="res_model">l10n.es.aeat.sii.match.report</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
 
