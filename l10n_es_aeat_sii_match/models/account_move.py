@@ -1,40 +1,23 @@
 # Copyright 2018 Studio73 - Abraham Anes
 # Copyright 2019 Studio73 - Pablo Fuentes
+# Copyright 2022 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
-import logging
+
+from deepdiff import DeepDiff
+from zeep.helpers import serialize_object
 
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 
-_logger = logging.getLogger(__name__)
-try:
-    from odoo.addons.queue_job.job import job
-except ImportError:
-    _logger.debug("Can not `import queue_job`.")
-    import functools
-
-    def empty_decorator_factory(*argv, **kwargs):
-        return functools.partial
-
-    job = empty_decorator_factory
-
-try:
-    from deepdiff import DeepDiff
-except ImportError:
-    DeepDiff = object
-
-try:
-    from zeep.helpers import serialize_object
-except (ImportError, IOError) as err:
-    _logger.debug(err)
+from odoo.addons.queue_job.job import job
 
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
-    sii_match_sent = fields.Text(string="SII match sent", copy=False, readonly=True,)
+    sii_match_sent = fields.Text(string="SII match sent", copy=False, readonly=True)
     sii_match_return = fields.Text(
         string="SII match return", copy=False, readonly=True,
     )
@@ -80,7 +63,6 @@ class AccountInvoice(models.Model):
         inverse_name="invoice_id",
     )
 
-    @api.multi
     def _get_diffs(self, odoo_values, sii_values):
         sii_values = json.loads(json.dumps(serialize_object(sii_values)))
         dp = self.env["decimal.precision"].precision_get("Account")
@@ -119,7 +101,6 @@ class AccountInvoice(models.Model):
                     )
         return res
 
-    @api.multi
     def _get_diffs_values(self, sii_values):
         self.ensure_one()
         res = []
@@ -135,14 +116,12 @@ class AccountInvoice(models.Model):
                 )
         return list((0, 0, r) for r in res)
 
-    @api.multi
     def _invoice_started_jobs(self):
         for queue in self.mapped("invoice_jobs_ids"):
             if queue.state == "started":
                 return False
         return True
 
-    @api.multi
     def _process_invoice_for_contrast_aeat(self):
         """Process invoices for contrast to the AEAT. Adds general checks from
         configuration parameters and invoice availability for SII"""
@@ -158,12 +137,11 @@ class AccountInvoice(models.Model):
             jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
             invoice.sudo().invoice_jobs_ids |= jb
 
-    @api.multi
     def contrast_aeat(self):
         invoices = self.filtered(
             lambda i: (
                 i.sii_state == "sent"
-                and i.state in ["open", "paid"]
+                and i.state == "posted"
                 and i.sii_csv
                 and i.sii_enabled
             )
@@ -177,7 +155,6 @@ class AccountInvoice(models.Model):
             )
         invoices._process_invoice_for_contrast_aeat()
 
-    @api.multi
     def direct_contrast_aeat(self):
         self.ensure_one()
         if not self._invoice_started_jobs():
@@ -191,7 +168,7 @@ class AccountInvoice(models.Model):
             self.sii_csv
             and self.sii_enabled
             and self.sii_state == "sent"
-            and self.state in ["open", "paid"]
+            and self.state == "posted"
         ):
             self._contrast_invoice_to_aeat()
         else:
@@ -202,26 +179,26 @@ class AccountInvoice(models.Model):
                 )
             )
 
-    @api.multi
     def _get_contrast_invoice_dict_out(self):
         """Build dict with data to send to AEAT WS for invoice types:
         out_invoice and out_refund.
         :return: invoices (dict) : Dict XML with data for this invoice.
         """
         self.ensure_one()
-        invoice_date = self._change_date_format(self.date_invoice)
+        invoice_date = self._change_date_format(self.invoice_date)
         partner = self.partner_id.commercial_partner_id
         company = self.company_id
         ejercicio = fields.Date.from_string(self.date).year
         periodo = "%02d" % fields.Date.from_string(self.date).month
+        number = self.name
+        if self.thirdparty_invoice:
+            number = self.thirdparty_number
         inv_dict = {
             "FiltroConsulta": {},
-            "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo,},
+            "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
             "IDFactura": {
-                "IDEmisorFactura": {"NIF": company.vat[2:],},
-                "NumSerieFacturaEmisor": (self.number or self.internal_number or "")[
-                    0:60
-                ],
+                "IDEmisorFactura": {"NIF": company.vat[2:]},
+                "NumSerieFacturaEmisor": (number or "")[:60],
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
         }
@@ -232,14 +209,13 @@ class AccountInvoice(models.Model):
             inv_dict["Contraparte"].update(self._get_sii_identifier())
         return inv_dict
 
-    @api.multi
     def _get_contrast_invoice_dict_in(self):
         """Build dict with data to send to AEAT WS for invoice types:
         in_invoice and in_refund.
         :return: invoices (dict) : Dict XML with data for this invoice.
         """
         self.ensure_one()
-        invoice_date = self._change_date_format(self.date_invoice)
+        invoice_date = self._change_date_format(self.invoice_date)
         ejercicio = fields.Date.from_string(self.date).year
         periodo = "%02d" % fields.Date.from_string(self.date).month
         inv_dict = {
@@ -248,7 +224,7 @@ class AccountInvoice(models.Model):
                 "IDEmisorFactura": {
                     "NombreRazon": self.partner_id.commercial_partner_id.name[0:120],
                 },
-                "NumSerieFacturaEmisor": ((self.reference or "")[:60]),
+                "NumSerieFacturaEmisor": ((self.ref or "")[:60]),
                 "FechaExpedicionFacturaEmisor": invoice_date,
             },
             "PeriodoLiquidacion": {"Ejercicio": ejercicio, "Periodo": periodo},
@@ -258,7 +234,6 @@ class AccountInvoice(models.Model):
         inv_dict["IDFactura"]["IDEmisorFactura"].update(ident)
         return inv_dict
 
-    @api.multi
     def _get_contrast_invoice_dict(self):
         self.ensure_one()
         self._sii_check_exceptions()
@@ -268,9 +243,8 @@ class AccountInvoice(models.Model):
             return self._get_contrast_invoice_dict_in()
         return {}
 
-    @api.multi
     def _contrast_invoice_to_aeat(self):
-        for invoice in self.filtered(lambda i: i.state in ["open", "paid"]):
+        for invoice in self.filtered(lambda i: i.state == "posted"):
             serv = invoice._connect_sii(invoice.type)
             header = invoice._get_sii_header(False, True)
             inv_vals = {}
@@ -285,7 +259,7 @@ class AccountInvoice(models.Model):
                     res = serv.ConsultaLRFacturasRecibidas(header, inv_dict)
                     res_line = res["RegistroRespuestaConsultaLRFacturasRecibidas"][0]
                 inv_vals.update(
-                    {"sii_contrast_state": "no_exist", "sii_match_state": False,}
+                    {"sii_contrast_state": "no_exist", "sii_match_state": False}
                 )
                 if res_line:
                     if res_line["DatosPresentacion"]["CSV"] == self.sii_csv:
@@ -306,9 +280,7 @@ class AccountInvoice(models.Model):
                             diffs = invoice._get_diffs_values(res_line)
                             if diffs:
                                 inv_vals["sii_match_difference_ids"] = diffs
-                                inv_vals.update(
-                                    {"sii_contrast_state": "partially",}
-                                )
+                                inv_vals.update({"sii_contrast_state": "partially"})
                 invoice.sii_match_difference_ids.unlink()
                 inv_vals["sii_match_return"] = json.dumps(
                     serialize_object(res), indent=4
@@ -317,7 +289,7 @@ class AccountInvoice(models.Model):
             except Exception as fault:
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
-                invoice = env["account.invoice"].browse(self.id)
+                invoice = env["account.move"].browse(self.id)
                 inv_vals.update(
                     {
                         "sii_match_return": repr(fault),
@@ -331,6 +303,5 @@ class AccountInvoice(models.Model):
                 raise
 
     @job(default_channel="root.invoice_validate_sii")
-    @api.multi
     def contrast_one_invoice(self):
         self._contrast_invoice_to_aeat()
