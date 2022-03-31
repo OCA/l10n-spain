@@ -301,13 +301,15 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         self.assertFalse(self.move.exchange_record_ids)
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_ok)
-            self.move.with_context(force_edi_send=True).post()
+            self.move.with_context(force_edi_send=True).action_post()
             self.move.refresh()
             self.assertTrue(self.move.exchange_record_ids)
             exchange_record = self.move.exchange_record_ids
             self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
             exchange_record.backend_id.exchange_send(exchange_record)
-            self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+            self.assertEqual(
+                exchange_record.edi_exchange_state, "output_sent_and_processed"
+            )
         # We force it to be efact just for a test, that should never happen for new
         #  invoices
         exchange_record.write(
@@ -347,13 +349,15 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         self.assertFalse(self.move.exchange_record_ids)
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_ok)
-            self.move.with_context(force_edi_send=True).post()
+            self.move.with_context(force_edi_send=True).action_post()
             self.move.refresh()
             self.assertTrue(self.move.exchange_record_ids)
             exchange_record = self.move.exchange_record_ids
             self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
             exchange_record.backend_id.exchange_send(exchange_record)
-            self.assertEqual(exchange_record.edi_exchange_state, "output_sent")
+            self.assertEqual(
+                exchange_record.edi_exchange_state, "output_sent_and_processed"
+            )
         # We force it to be efact just for a test, that should never happen for new
         #  invoices
         exchange_record.write(
