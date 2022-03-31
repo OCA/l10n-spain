@@ -260,7 +260,8 @@
          <field name="sequence">230</field>
          <field name="name">es11460</field>
          <field name="description">6. Otras inversiones</field>
-         <field name="expression">+bale[11460%]</field>
+         <!-- For emptying previous value -->
+         <field name="expression" />
          <field name="auto_expand_accounts">True</field>
          <field name="auto_expand_accounts_style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"/>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"/>
@@ -934,7 +935,7 @@
          <field name="name">es21300</field>
          <field name="description">III. Reservas</field>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3"/>
-         <field name="expression"> +es21310 +es21320</field>
+         <field name="expression"> +es21310 +es21320 +es21330</field>
       </record>
       <record id="mis_report_kpi_es_balance_normal_21310" model="mis.report.kpi">
          <field name="report_id" ref="mis_report_es_balance_normal"/>
@@ -959,6 +960,24 @@
          <field name="auto_expand_accounts">True</field>
          <field name="auto_expand_accounts_style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"/>
          <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"/>
+      </record>
+      <record id="mis_report_kpi_es_balance_normal_21330" model="mis.report.kpi">
+          <field name="report_id" ref="mis_report_es_balance_normal" />
+          <field name="type">num</field>
+          <field name="compare_method">pct</field>
+          <field name="sequence">835</field>
+          <field name="name">es21330</field>
+          <field name="description">3. Reserva de capitalización</field>
+          <field name="expression">-bale[1146%]</field>
+          <field name="auto_expand_accounts">True</field>
+          <field
+              name="auto_expand_accounts_style_id"
+              ref="l10n_es_mis_report.mis_report_style_l10n_es_l4i"
+          />
+          <field
+              name="style_id"
+              ref="l10n_es_mis_report.mis_report_style_l10n_es_l4"
+          />
       </record>
       <record id="mis_report_kpi_es_balance_normal_21400" model="mis.report.kpi">
          <field name="report_id" ref="mis_report_es_balance_normal"/>
