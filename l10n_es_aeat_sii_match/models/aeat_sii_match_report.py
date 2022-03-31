@@ -4,29 +4,14 @@
 
 import copy
 import json
-import logging
 
 from dateutil.relativedelta import relativedelta
+from zeep.helpers import serialize_object
 
 from odoo import _, api, exceptions, fields, models
 from odoo.modules.registry import Registry
 
-_logger = logging.getLogger(__name__)
-try:
-    from odoo.addons.queue_job.job import job
-except ImportError:
-    _logger.debug("Can not `import queue_job`.")
-    import functools
-
-    def empty_decorator_factory(*argv, **kwargs):
-        return functools.partial
-
-    job = empty_decorator_factory
-
-try:
-    from zeep.helpers import serialize_object
-except (ImportError, IOError) as err:
-    _logger.debug(err)
+from odoo.addons.queue_job.job import job
 
 SII_VERSION = "1.1"
 
@@ -141,7 +126,6 @@ class SiiMatchReport(models.Model):
         copy=False,
     )
 
-    @api.multi
     def _process_invoices_from_sii(self):
         queue_obj = self.env["queue.job"].sudo()
         for match_report in self:
@@ -155,7 +139,6 @@ class SiiMatchReport(models.Model):
             jb = queue_obj.search([("uuid", "=", new_delay.uuid)], limit=1)
             match_report.sudo().sii_match_jobs_ids |= jb
 
-    @api.multi
     def _get_invoice_dict(self):
         self.ensure_one()
         inv_dict = {
@@ -167,7 +150,6 @@ class SiiMatchReport(models.Model):
         }
         return inv_dict
 
-    @api.multi
     def _get_aeat_odoo_invoices_by_csv(self, sii_response):
         matched_invoices = {}
         left_invoices = []
@@ -175,32 +157,30 @@ class SiiMatchReport(models.Model):
             invoice = json.loads(json.dumps(serialize_object(invoice)))
             csv = invoice["DatosPresentacion"]["CSV"]
             invoice_state = invoice["EstadoFactura"]["EstadoRegistro"]
-            odoo_invoice = self.env["account.invoice"].search([("sii_csv", "=", csv)])
+            odoo_invoice = self.env["account.move"].search([("sii_csv", "=", csv)])
             if odoo_invoice:
                 matched_invoices[odoo_invoice.id] = invoice
             elif invoice_state != "Anulada":
                 left_invoices.append(invoice)
         return matched_invoices, left_invoices
 
-    @api.multi
     def _get_aeat_odoo_invoices_by_num(self, left_invoices, matched_invoices):
         left_results = []
         for invoice in left_invoices:
             name = invoice["IDFactura"]["NumSerieFacturaEmisor"]
             if self.invoice_type == "out":
-                odoo_invoice = self.env["account.invoice"].search(
+                odoo_invoice = self.env["account.move"].search(
                     [
-                        ("number", "=", name),
+                        "|",
+                        ("name", "=", name),
+                        ("thirdparty_number", "=", name),
                         ("type", "in", ["out_invoice", "out_refund"]),
                     ],
                     limit=1,
                 )
             else:
-                odoo_invoice = self.env["account.invoice"].search(
-                    [
-                        ("reference", "=", name),
-                        ("type", "in", ["in_invoice", "in_refund"]),
-                    ],
+                odoo_invoice = self.env["account.move"].search(
+                    [("ref", "=", name), ("type", "in", ["in_invoice", "in_refund"])],
                     limit=1,
                 )
             if odoo_invoice and odoo_invoice.id not in list(matched_invoices.keys()):
@@ -209,7 +189,6 @@ class SiiMatchReport(models.Model):
                 left_results.append(invoice)
         return matched_invoices, left_results
 
-    @api.multi
     def _get_aeat_odoo_invoices(self, sii_response):
         matched_invoices, left_invoices = self._get_aeat_odoo_invoices_by_csv(
             sii_response
@@ -223,7 +202,7 @@ class SiiMatchReport(models.Model):
             name = invoice["IDFactura"]["NumSerieFacturaEmisor"]
             csv = invoice["DatosPresentacion"]["CSV"]
             match_state = invoice["EstadoFactura"]["EstadoCuadre"]
-            odoo_invoice = self.env["account.invoice"].browse([odoo_inv_id])
+            odoo_invoice = self.env["account.move"].browse([odoo_inv_id])
             inv_location = "both"
             contrast_state = "correct"
             diffs = odoo_invoice._get_diffs_values(invoice)
@@ -266,7 +245,6 @@ class SiiMatchReport(models.Model):
             )
         return res, invoices_list
 
-    @api.multi
     def _get_not_in_sii_invoices(self, invoices):
         self.ensure_one()
         start_date = fields.Date.from_string(
@@ -280,7 +258,7 @@ class SiiMatchReport(models.Model):
             if self.invoice_type == "out"
             else ["in_invoice", "in_refund"]
         )
-        invoice_ids = self.env["account.invoice"].search(
+        invoice_ids = self.env["account.move"].search(
             [
                 ("date", ">=", date_from),
                 ("date", "<", date_to),
@@ -291,9 +269,9 @@ class SiiMatchReport(models.Model):
         )
         for invoice in invoice_ids.filtered("sii_enabled"):
             if "out_invoice" in inv_type:
-                number = invoice.number or _("Draft")
+                number = invoice.name or invoice.thirdparty_number or _("Draft")
             else:
-                number = invoice.reference
+                number = invoice.ref
             res.append(
                 {
                     "invoice": number,
@@ -304,16 +282,14 @@ class SiiMatchReport(models.Model):
             )
         return res
 
-    @api.multi
     def _update_odoo_invoices(self, invoices):
         self.ensure_one()
         for invoice_id, values in list(invoices.items()):
-            invoice = self.env["account.invoice"].browse([invoice_id])
+            invoice = self.env["account.move"].browse([invoice_id])
             invoice.sii_match_difference_ids.unlink()
             invoice.write(values)
         return []
 
-    @api.multi
     def _get_match_result_values(self, sii_response):
         self.ensure_one()
         invoices, matched_invoices = self._get_aeat_odoo_invoices(sii_response)
@@ -376,7 +352,6 @@ class SiiMatchReport(models.Model):
         ]
         return vals, summary
 
-    @api.multi
     def _get_invoices_from_sii(self):
         for sii_match_report in self.filtered(
             lambda r: r.state in ["draft", "error", "calculated"]
@@ -386,9 +361,7 @@ class SiiMatchReport(models.Model):
             if sii_match_report.invoice_type == "in":
                 mapping_key = "in_invoice"
             serv = (
-                self.env["account.invoice"]
-                .search([], limit=1)
-                ._connect_sii(mapping_key)
+                self.env["account.move"].search([], limit=1)._connect_sii(mapping_key)
             )
             header = sii_match_report._get_sii_header()
             match_vals = {}
@@ -437,15 +410,12 @@ class SiiMatchReport(models.Model):
                 new_cr = Registry(self.env.cr.dbname).cursor()
                 env = api.Environment(new_cr, self.env.uid, self.env.context)
                 sii_match_report = env["l10n.es.aeat.sii.match.report"].browse(self.id)
-                match_vals.update(
-                    {"state": "error",}
-                )
+                match_vals.update({"state": "error"})
                 sii_match_report.write(match_vals)
                 new_cr.commit()
                 new_cr.close()
                 raise
 
-    @api.multi
     def _get_sii_header(self):
         """Builds SII send header
 
@@ -466,7 +436,6 @@ class SiiMatchReport(models.Model):
         }
         return header
 
-    @api.multi
     def button_calculate(self):
         for match in self:
             for queue in match.mapped("sii_match_jobs_ids"):
@@ -482,22 +451,18 @@ class SiiMatchReport(models.Model):
         self._process_invoices_from_sii()
         return []
 
-    @api.multi
     def button_cancel(self):
         self.write({"state": "cancelled"})
         return []
 
-    @api.multi
     def button_recover(self):
         self.write({"state": "draft"})
         return []
 
-    @api.multi
     def button_confirm(self):
         self.write({"state": "done"})
         return []
 
-    @api.multi
     def open_result(self):
         self.ensure_one()
         tree_view = self.env.ref(
@@ -505,7 +470,6 @@ class SiiMatchReport(models.Model):
         )
         return {
             "name": _("Results"),
-            "view_type": "form",
             "view_mode": "tree, form",
             "res_model": "l10n.es.aeat.sii.match.result",
             "views": [(tree_view and tree_view.id or False, "tree"), (False, "form")],
@@ -515,7 +479,6 @@ class SiiMatchReport(models.Model):
         }
 
     @job(default_channel="root.invoice_validate_sii")
-    @api.multi
     def get_invoice_aeat(self):
         self._get_invoices_from_sii()
 
@@ -527,7 +490,7 @@ class SiiMatchResult(models.Model):
 
     @api.model
     def _get_selection_sii_match_state(self):
-        return self.env["account.invoice"].fields_get(allfields=["sii_match_state"])[
+        return self.env["account.move"].fields_get(allfields=["sii_match_state"])[
             "sii_match_state"
         ]["selection"]
 
@@ -537,7 +500,7 @@ class SiiMatchResult(models.Model):
         ondelete="cascade",
     )
     invoice = fields.Char(string="Invoice")
-    invoice_id = fields.Many2one(string="Odoo invoice", comodel_name="account.invoice")
+    invoice_id = fields.Many2one(string="Odoo invoice", comodel_name="account.move")
     csv = fields.Char(string="CSV")
     sii_match_state = fields.Selection(
         string="Match state",
