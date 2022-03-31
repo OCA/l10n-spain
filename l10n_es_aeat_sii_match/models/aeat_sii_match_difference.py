@@ -6,21 +6,14 @@ from odoo import fields, models
 
 
 class SiiMatchDifferences(models.Model):
-    _name = 'l10n.es.aeat.sii.match.difference'
+    _name = "l10n.es.aeat.sii.match.difference"
 
     invoice_id = fields.Many2one(
-        string="Related invoice", comodel_name='account.invoice'
+        string="Related invoice", comodel_name="account.invoice"
     )
     report_id = fields.Many2one(
-        string="Related SII match report",
-        comodel_name='l10n.es.aeat.sii.match.result'
+        string="Related SII match report", comodel_name="l10n.es.aeat.sii.match.result"
     )
-    sii_field = fields.Char(
-        string="SII field name", copy=False,
-    )
-    sii_return_field_value = fields.Char(
-        string="SII return field value", copy=False,
-    )
-    sii_sent_field_value = fields.Char(
-        string="SII sent field value", copy=False,
-    )
+    sii_field = fields.Char(string="SII field name", copy=False,)
+    sii_return_field_value = fields.Char(string="SII return field value", copy=False,)
+    sii_sent_field_value = fields.Char(string="SII sent field value", copy=False,)
