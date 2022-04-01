@@ -353,6 +353,11 @@ msgid "Epígrafe I.A.E. actividad principal"
 msgstr ""
 
 #. module: l10n_es_aeat_mod303
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod303.field_l10n_es_aeat_mod303_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod303
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod303.selection__l10n_es_aeat_mod303_report__exonerated_390__1
 msgid "Exonerado"
 msgstr ""
