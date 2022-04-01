@@ -11,6 +11,9 @@ class StockPicking(models.Model):
     gls_asm_public_tracking_ref = fields.Char(
         string="GLS Barcode", readonly=True, copy=False
     )
+    gls_asm_picking_ref = fields.Char(
+        string="GLS Picking Reference", readonly=True, copy=False
+    )
     gls_carrier_is_pickup_service = fields.Boolean(
         related="carrier_id.gls_is_pickup_service"
     )
