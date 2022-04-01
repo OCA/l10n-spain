@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="aeat_mod390_2019_sub06_export_config" model="aeat.model.export.config">
+        <field name="name">Mod.390 2019 - Página 6</field>
+        <field name="model_number">390</field>
+        <field name="active" eval="False" />
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_01"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">1</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field name="name">Constante: &lt;T</field>
+        <field name="fixed_value">&lt;T</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_02"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">2</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field name="name">Constante: 390</field>
+        <field name="fixed_value">390</field>
+        <field name="export_type">string</field>
+        <field name="size">3</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_03"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">3</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field name="name">Página</field>
+        <field name="fixed_value">06</field>
+        <field name="export_type">string</field>
+        <field name="size">2</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_04"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">4</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field name="name">Constante: 000&gt;</field>
+        <field name="fixed_value">000&gt;</field>
+        <field name="export_type">string</field>
+        <field name="size">4</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_05"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">5</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field name="name">Indicador de página complementaria: En blanco</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">1</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_06"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">6</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >7. Resultado liquidación anual - Regularización cuotas art. 80.Cinco.5ª LIVA [658]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_07"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">7</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >7. Resultado liquidación anual - Suma de resultados [84]</field>
+        <field name="expression">${object.casilla_65}</field>
+        <!-- Es el mismo resultado ya que el resto está a 0 -->
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_08"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">8</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >7. Resultado liquidación anual - IVA a la importación liquidado por la Aduana (sólo sujetos pasivos con opción de diferimiento) [659]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_09"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">9</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >7. Resultado liquidación anual - Compensación de cuotas ejercicio anterior [85]</field>
+        <field name="expression">${object.casilla_85}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_10"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">10</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >7. Resultado liquidación anual - Resultado de la liquidación [86]</field>
+        <field name="expression">${object.casilla_86}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_11"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">11</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Territorio común [87]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">5</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_12"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">12</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Álava [88]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">5</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_13"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">13</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Guipúzcoa [89]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">5</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_14"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">14</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Vizcaya [90]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">5</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_15"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">15</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Navarra [91]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">5</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_16"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">16</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Regularización cuotas art. 80.Cinco.5ª LIVA [658]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_17"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">17</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Suma de resultados [84]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_18"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">18</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Resultado atribuible a territorio común [92]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_19"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">19</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - IVA a la importación liquidado por la Aduana(sólo sujetos pasivos con opción de diferimiento) [659]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_20"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">20</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Compens. cuotas ej. anterior atrib. territ. com. [93]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_21"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">21</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >8. Tributación razón de territorio - Administraciones - Resultado liq. anual atribuible territ. comun [94]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_22"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">22</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Total resultados a ingresar autoliquidaciones de IVA del ejercicio [95]</field>
+        <field name="expression">${object.casilla_95}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_23"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">23</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Total devoluc. mensuales IVA suj. pasivos Regtro. de devolución mensual [96]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_24"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">24</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Total devoluc. Por cuotas en la adquisicion de elementos de transporte [524]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_25"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">25</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Resultado declaración-liquidación último periodo - A compensar [97]</field>
+        <field name="expression">${object.casilla_97}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_26"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">26</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Resultado declaración-liquidación último periodo - A devolver [98]</field>
+        <field name="expression">${object.casilla_98}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_27"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">27</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Cuotas pendientes de compensación al término del ejercicio [662]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_28"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">28</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Total resultados positivos del ejercicio (modelo 322) [525]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_29"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">29</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >9. Resultado de las liquidaciones - Total resultados negativos del ejercicio (modelo 322) [526]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="False" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_30"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">30</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones en régimen general [99]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 99).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_31"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">31</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones régimen especial del criterio de caja [653]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_32"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">32</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Entregas intracomunitarias exentas [103]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 103).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_33"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">33</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Exportaciones y otras operaciones exentas con derecho a deducción [104]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 104).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_34"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">34</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones exentas sin derecho a deducción [105]</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 105).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_35"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">35</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones no sujetas o con inversion de suj. Pasivo [110]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_36"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">36</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Entregas de bienes objeto de instalación o montaje en otros Estados miembros [112]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_37"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">37</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones en régimen simplificado [100]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_38"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">38</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones en régimen especias de la agricultura, ganadería y pesca [101]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_39"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">39</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones en régimen especial del recargo de equivalencia [102].</field>
+        <field
+            name="expression"
+        >${object.tax_line_ids.filtered(lambda r: r.field_number == 102).amount}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_40"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">40</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones en régimen especias de bienes usados, objetos de arte, antigüedades y objetos de colección [227].</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_41"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">41</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Operaciones en régimen especial de agencias de viajes [228].</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_42"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">42</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Entrega de bienes inmuebles y operaciones financieras no habituales [106]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_43"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">43</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Entrega de bienes de inversion [107]</field>
+        <field name="fixed_value">0</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_44"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">44</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field
+            name="name"
+        >10. Volumen de operaciones - Total volumen de operaciones [108]</field>
+        <field name="expression">${object.casilla_108}</field>
+        <field name="export_type">float</field>
+        <field name="apply_sign" eval="True" />
+        <field name="size">17</field>
+        <field name="decimal_size">2</field>
+        <field name="alignment">right</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_45"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">45</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field name="name">Reservado para la A.E.A.T. (Dejar en blanco)</field>
+        <field name="fixed_value" />
+        <field name="export_type">string</field>
+        <field name="size">150</field>
+        <field name="alignment">left</field>
+    </record>
+    <record
+        id="aeat_mod390_2019_sub06_export_line_46"
+        model="aeat.model.export.config.line"
+    >
+        <field name="sequence">46</field>
+        <field name="export_config_id" ref="aeat_mod390_2019_sub06_export_config" />
+        <field name="name">Indicador de fin de registro: &lt;/T39006000&gt;</field>
+        <field name="fixed_value">&lt;/T39006000&gt;</field>
+        <field name="export_type">string</field>
+        <field name="size">12</field>
+        <field name="alignment">left</field>
+    </record>
+</odoo>
