@@ -150,6 +150,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
                 "use_connector": True,
                 "vat": "ESU2687761C",
                 "sii_description_method": "manual",
+                "sii_tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
             }
         )
 
@@ -169,7 +170,9 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
                 "email": "somebody@somewhere.com",
             }
         )
-        cls.tax_agencies = cls.env["aeat.sii.tax.agency"].search([])
+        cls.tax_agencies = cls.env["aeat.tax.agency"].search(
+            [("sii_wsdl_out", "!=", False)]
+        )
 
     def test_job_creation(self):
         self.assertTrue(self.invoice.invoice_jobs_ids)
