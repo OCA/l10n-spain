@@ -10,11 +10,12 @@
                 <header>
                 </header>
                 <sheet>
-                    <group>
-                        <group>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
                             <field name="name" />
-                        </group>
-                    </group>
+                        </h1>
+                    </div>
                     <notebook>
                     </notebook>
                 </sheet>
