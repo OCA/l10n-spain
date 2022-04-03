@@ -6,6 +6,7 @@
 # Copyright 2011-2021 Tecnativa - Pedro M. Baeza
 # Copyright 2020 Valentin Vinagre <valent.vinagre@sygel.es>
 # Copyright 2021 Tecnativa - João Marques
+# Copyright 2022 ForgeFlow - Lois Rilo
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -68,19 +69,6 @@ def round_by_keys(elem, search_keys, prec=2):
 
 class AccountMove(models.Model):
     _inherit = "account.move"
-
-    SII_WDSL_MAPPING = {
-        "out_invoice": "l10n_es_aeat_sii.wsdl_out",
-        "out_refund": "l10n_es_aeat_sii.wsdl_out",
-        "in_invoice": "l10n_es_aeat_sii.wsdl_in",
-        "in_refund": "l10n_es_aeat_sii.wsdl_in",
-    }
-    SII_PORT_NAME_MAPPING = {
-        "out_invoice": "SuministroFactEmitidas",
-        "out_refund": "SuministroFactEmitidas",
-        "in_invoice": "SuministroFactRecibidas",
-        "in_refund": "SuministroFactRecibidas",
-    }
 
     def _get_default_type(self):
         context = self.env.context
@@ -984,19 +972,14 @@ class AccountMove(models.Model):
 
     def _connect_params_sii(self, mapping_key):
         self.ensure_one()
-        params = {
-            "wsdl": self.env["ir.config_parameter"]
-            .sudo()
-            .get_param(self.SII_WDSL_MAPPING[mapping_key], False),
-            "port_name": self.SII_PORT_NAME_MAPPING[mapping_key],
-            "address": False,
-        }
         agency = self.company_id.sii_tax_agency_id
-        if agency:
-            params.update(agency._connect_params_sii(mapping_key, self.company_id))
-        if not params["address"] and self.company_id.sii_test:
-            params["port_name"] += "Pruebas"
-        return params
+        if not agency:
+            # We use spanish agency by default to keep old behavior with
+            # ir.config parameters. In the future it might be good to reinforce
+            # to explicitly set a tax agency in the company by raising an error
+            # here.
+            agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
+        return agency._connect_params_sii(mapping_key, self.company_id)
 
     def _connect_sii(self, mapping_key):
         self.ensure_one()
