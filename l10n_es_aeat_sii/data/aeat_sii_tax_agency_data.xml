@@ -4,13 +4,13 @@
 <odoo>
     <record id="aeat_sii_tax_agency_spain" model="aeat.sii.tax.agency">
         <field name="name">Agencia Tributaria española (1.1)</field>
-        <field name="wsdl_out">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroFactEmitidas.wsdl</field>
-        <field name="wsdl_in">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroFactRecibidas.wsdl</field>
-        <field name="wsdl_pi">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroBienesInversion.wsdl</field>
-        <field name="wsdl_ic">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroOpIntracomunitarias.wsdl</field>
-        <field name="wsdl_pr">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroCobrosEmitidas.wsdl</field>
-        <field name="wsdl_ott">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroOpTrascendTribu.wsdl</field>
-        <field name="wsdl_ps">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1/fact/ws/SuministroPagosRecibidas.wsdl</field>
+        <field name="wsdl_out">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroFactEmitidas.wsdl</field>
+        <field name="wsdl_in">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroFactRecibidas.wsdl</field>
+        <field name="wsdl_pi">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroBienesInversion.wsdl</field>
+        <field name="wsdl_ic">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroOpIntracomunitarias.wsdl</field>
+        <field name="wsdl_pr">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroCobrosEmitidas.wsdl</field>
+        <field name="wsdl_ott">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroOpTrascendTribu.wsdl</field>
+        <field name="wsdl_ps">https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii_1_1_bis/fact/ws/SuministroPagosRecibidas.wsdl</field>
     </record>
 
     <record id="aeat_sii_tax_agency_spain_1_0" model="aeat.sii.tax.agency">
