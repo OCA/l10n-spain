@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates id="template" xml:space="preserve">
     <t t-extend="OrderReceipt">
-        <t t-jquery="[t-if='receipt.company.contact_address']" t-operation="before">
+        <t
+            t-jquery="div.pos-receipt-contact:has([t-if='receipt.company.contact_address'])"
+            t-operation="before"
+        >
             <t
                 t-if="widget.pos.config.iface_l10n_es_simplified_invoice and !order.is_to_invoice()"
             >
-                <t t-esc='receipt.date.localestring' /><br />
-                Simplified invoice <t t-esc="order.simplified_invoice" />
-            <br /><br />
+                <div class="pos-receipt-center-align">
+                    <t t-esc='receipt.date.localestring' /><br />
+                    Simplified invoice <t
+                        t-esc="order.simplified_invoice or order.name"
+                    />
+                </div>
+                <br />
             </t>
         </t>
         <t t-jquery='t[t-if="receipt.company.vat"]' t-operation="after">
