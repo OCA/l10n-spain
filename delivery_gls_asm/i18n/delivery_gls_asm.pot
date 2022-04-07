@@ -197,6 +197,11 @@ msgid "Cash On Delivery"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_cash_on_delivery
+msgid "Cash on delivery"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__stock_picking__gls_pickup_state__closed
 msgid "Cerrado"
 msgstr ""
