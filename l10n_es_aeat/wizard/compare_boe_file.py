@@ -116,7 +116,7 @@ class L10nEsAeatReportExportToBoeLine(models.TransientModel):
             if line.export_line_id.decimal_size:
                 try:
                     line.content_float = sign * (
-                        float(content) / 10 ** line.export_line_id.decimal_size
+                        float(content) / 10**line.export_line_id.decimal_size
                     )
                 except Exception:
                     pass

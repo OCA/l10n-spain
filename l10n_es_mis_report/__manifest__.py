@@ -8,7 +8,7 @@
     "author": "ForgeFlow, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-spain",
     "category": "Reporting",
-    "version": "14.0.1.3.0",
+    "version": "14.0.1.3.1",
     "license": "AGPL-3",
     "depends": ["l10n_es", "mis_builder"],  # OCA/mis-builder
     "data": [

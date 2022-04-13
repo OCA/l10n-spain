@@ -528,7 +528,7 @@ class L10nEsAeatReport(models.AbstractModel):
 
     @api.model
     def get_html(self):
-        """ Render dynamic view from ir.action.client"""
+        """Render dynamic view from ir.action.client"""
         result = {}
         rcontext = {}
         rec = self.browse(self.env.context.get("active_id"))

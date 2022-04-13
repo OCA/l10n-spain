@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Partner Mercantil",
-    "summary": u"Añade los datos del registro mercantil a la empresa",
+    "summary": "Añade los datos del registro mercantil a la empresa",
     "version": "14.0.1.0.0",
     "author": "Spanish Localization Team, "
     "Tecnativa, "

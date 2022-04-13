@@ -757,8 +757,8 @@ class TestL10nEsTicketBAIAPI(common.TransactionCase):
         self.company_values_json_filepath = os.path.join(test_dir_path, "company.json")
         # Disabled by default for automatic tests
         self.send_to_tax_agency = False  # Enable for local testing
-        self.number_prefix = "%d/" % randrange(1, 10 ** 19)
-        self.refund_number_prefix = "%d/" % randrange(1, 10 ** 19)
+        self.number_prefix = "%d/" % randrange(1, 10**19)
+        self.refund_number_prefix = "%d/" % randrange(1, 10**19)
         schemas_version_dirname = XMLSchema.schemas_version_dirname
         script_dirpath = os.path.abspath(os.path.dirname(__file__))
         schemas_dirpath = os.path.join(script_dirpath, "schemas")

@@ -413,7 +413,8 @@ class AccountMove(models.Model):
         :return: Recordset with the corresponding codes
         """
         self.ensure_one()
-        sii_map = self.env["aeat.sii.map"].search(
+        map_obj = self.env["aeat.sii.map"].sudo()
+        sii_map = map_obj.search(
             [
                 "|",
                 ("date_from", "<=", self.date),
@@ -424,9 +425,7 @@ class AccountMove(models.Model):
             ],
             limit=1,
         )
-        tax_templates = (
-            sii_map.sudo().map_lines.filtered(lambda x: x.code in codes).taxes
-        )
+        tax_templates = sii_map.map_lines.filtered(lambda x: x.code in codes).taxes
         return self.company_id.get_taxes_from_templates(tax_templates)
 
     def _change_date_format(self, date):
@@ -1212,7 +1211,7 @@ class AccountMove(models.Model):
                     )
                 res_line = res["RespuestaLinea"][0]
                 if res_line["CodigoErrorRegistro"]:
-                    inv_vals["sii_send_error"] = u"{} | {}".format(
+                    inv_vals["sii_send_error"] = "{} | {}".format(
                         str(res_line["CodigoErrorRegistro"]),
                         str(res_line["DescripcionErrorRegistro"])[:60],
                     )
