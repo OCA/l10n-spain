@@ -415,7 +415,9 @@ class L10nEsVatBook(models.Model):
                 taxes = self.env["account.tax"]
                 for map_line in map_lines:
                     taxes |= map_line.get_taxes(rec)
-                account = rec.get_account_from_template(map_line.tax_account_id)
+                account = rec.get_account_from_template(
+                    map_lines.mapped("tax_account_id")
+                )
                 # Filters in all possible data using, sets for improving performance
                 if account:
                     lines = moves.filtered(
