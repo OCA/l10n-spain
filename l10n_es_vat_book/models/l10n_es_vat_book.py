@@ -415,12 +415,14 @@ class L10nEsVatBook(models.Model):
                     taxes |= map_line.get_taxes(rec)
                 # Searches for all possible usable lines to report
                 moves = self._get_account_move_lines()
-                account = rec.get_account_from_template(map_line.tax_account_id)
-                # Filters in all possible data using, sets for improving performance
-                if account:
+                accounts = self.env["account.account"]
+                for account in map_lines.mapped("tax_account_id"):
+                    accounts |= rec.get_account_from_template(account)
+                # Filter in all possible data using sets for improving performance
+                if accounts:
                     lines = moves.filtered(
                         lambda line: line.tax_ids & taxes
-                        or (line.tax_line_id in taxes and line.account_id == account)
+                        or (line.tax_line_id in taxes and line.account_id in accounts)
                     )
                 else:
                     lines = moves.filtered(
