@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-25 10:46+0000\n"
-"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
+"PO-Revision-Date: 2022-04-13 12:05+0000\n"
+"Last-Translator: Noel estudillo <noelestudilloviera@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -59,9 +59,8 @@ msgstr "Contacte"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
-#, fuzzy
 msgid "Data Diff"
-msgstr "Data Diff"
+msgstr "Diferència de dades"
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_data_diff
@@ -74,14 +73,14 @@ msgstr "Dades diferents"
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom de visualització"
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_company__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
@@ -95,14 +94,14 @@ msgstr "Identificat"
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-baja
 #, python-format
 msgid "Identificado, baja"
-msgstr ""
+msgstr "Identificat, baixa"
 
 #. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_check_result__identificado-revocado
 #, python-format
 msgid "Identificado, revocado"
-msgstr ""
+msgstr "Identificat, revocat"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
@@ -132,13 +131,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_last_checked
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_last_checked
 msgid "Latest AEAT check"
-msgstr ""
+msgstr "Últim control de l'AEAT"
 
 #. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
@@ -185,31 +184,31 @@ msgstr "Qualitat de les dades dels socis"
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_type
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_users__aeat_partner_type
 msgid "Partner type"
-msgstr ""
+msgstr "Tipus de soci"
 
 #. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__sales_equalization
 #, python-format
 msgid "Régimen de recargo de equivalencia"
-msgstr ""
+msgstr "Régimen de recàrrec d'equivalència"
 
 #. module: l10n_es_aeat_partner_check
 #: code:addons/l10n_es_aeat_partner_check/models/res_partner.py:0
 #: model:ir.model.fields.selection,name:l10n_es_aeat_partner_check.selection__res_partner__aeat_partner_type__standard
 #, python-format
 msgid "Régimen estándar"
-msgstr ""
+msgstr "Règim estàndard"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
 msgid "Sales Equiv. regimen"
-msgstr ""
+msgstr "Vendes Equiv. règim"
 
 #. module: l10n_es_aeat_partner_check
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_partner_check.view_res_partner_aeat_filter
 msgid "Standard regimen"
-msgstr ""
+msgstr "Règim estàndard"
 
 #. module: l10n_es_aeat_partner_check
 #: model:ir.model.fields,field_description:l10n_es_aeat_partner_check.field_res_partner__aeat_partner_vat
