@@ -138,7 +138,7 @@ class AccountAssetAsset(models.Model):
         if is_changed:
             self.with_context(asset_validate_from_write=True).method_time = "year"
             obj = self.with_context(use_percentage=True)
-        super(AccountAssetAsset, obj)._compute_depreciation_table_lines(
+        ret_val = super(AccountAssetAsset, obj)._compute_depreciation_table_lines(
             table,
             depreciation_start_date,
             depreciation_stop_date,
@@ -146,6 +146,7 @@ class AccountAssetAsset(models.Model):
         )
         if is_changed:
             self.with_context(asset_validate_from_write=True).method_time = "percentage"
+        return ret_val
 
     def _get_amount_linear(
         self, depreciation_start_date, depreciation_stop_date, entry
