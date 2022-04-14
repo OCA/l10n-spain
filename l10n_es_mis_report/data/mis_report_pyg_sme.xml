@@ -327,16 +327,69 @@
         />
         <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
     </record>
-    <record id="mis_report_kpi_es_pyg_pymes_49200" model="mis.report.kpi">
+    <record id="mis_report_kpi_es_pyg_pymes_42100" model="mis.report.kpi">
         <field name="report_id" ref="mis_report_es_pyg_pymes" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
         <field name="sequence">210</field>
+        <field name="name">es42100</field>
+        <field
+            name="description"
+        >18. Otros ingresos y gastos de carácter financiero</field>
+        <field name="expression">+es42110+es42120+es42130</field>
+        <field name="auto_expand_accounts">True</field>
+        <field
+            name="auto_expand_accounts_style_id"
+            ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"
+        />
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pymes_42110" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pymes" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">220</field>
+        <field name="name">es42110</field>
+        <field
+            name="description"
+        >a) Incorporación al activo de gastos financieros</field>
+        <field name="auto_expand_accounts">False</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l5" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pymes_42120" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pymes" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">230</field>
+        <field name="name">es42120</field>
+        <field
+            name="description"
+        >b) Ingresos financieros derivados de convenios de acreedores</field>
+        <field name="auto_expand_accounts">False</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l5" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pymes_42130" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pymes" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">240</field>
+        <field name="name">es42130</field>
+        <field name="description">c) Resto de ingresos y gastos</field>
+        <field name="auto_expand_accounts">False</field>
+        <field name="style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l5" />
+    </record>
+    <record id="mis_report_kpi_es_pyg_pymes_49200" model="mis.report.kpi">
+        <field name="report_id" ref="mis_report_es_pyg_pymes" />
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="sequence">250</field>
         <field name="name">es49200</field>
         <field
             name="description"
-        >B) RESULTADO FINANCIERO (13 + 14 + 15 + 16 + 17)</field>
-        <field name="expression">+es41400+es41500+es41600+es41700+es41800</field>
+        >B) RESULTADO FINANCIERO (13 + 14 + 15 + 16 + 17 + 18)</field>
+        <field
+            name="expression"
+        >+es41400+es41500+es41600+es41700+es41800+es42100</field>
         <field name="auto_expand_accounts">True</field>
         <field
             name="auto_expand_accounts_style_id"
@@ -348,7 +401,7 @@
         <field name="report_id" ref="mis_report_es_pyg_pymes" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">220</field>
+        <field name="sequence">260</field>
         <field name="name">es49300</field>
         <field name="description">C) RESULTADO ANTES DE IMPUESTOS (A + B)</field>
         <field name="expression">+es49100+es49200</field>
@@ -363,9 +416,9 @@
         <field name="report_id" ref="mis_report_es_pyg_pymes" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">230</field>
+        <field name="sequence">270</field>
         <field name="name">es41900</field>
-        <field name="description">18. Impuestos sobre beneficios</field>
+        <field name="description">19. Impuestos sobre beneficios</field>
         <field name="expression">-balp[6300%,6301%,633%,638%]</field>
         <field name="auto_expand_accounts">True</field>
         <field
@@ -378,9 +431,9 @@
         <field name="report_id" ref="mis_report_es_pyg_pymes" />
         <field name="type">num</field>
         <field name="compare_method">pct</field>
-        <field name="sequence">240</field>
+        <field name="sequence">280</field>
         <field name="name">es49500</field>
-        <field name="description">D) RESULTADO DEL EJERCICIO (C + 18)</field>
+        <field name="description">D) RESULTADO DEL EJERCICIO (C + 19)</field>
         <field name="expression">+es49300+es41900</field>
         <field name="auto_expand_accounts">True</field>
         <field
