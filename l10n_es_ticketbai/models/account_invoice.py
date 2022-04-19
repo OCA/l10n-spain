@@ -366,10 +366,10 @@ class AccountInvoice(models.Model):
         refund_invoices = \
             self.sudo().filtered(
                 lambda x:
-                x.tbai_enabled and 'out_refund' == x.type and
-                not x.tbai_refund_type or
-                x.tbai_refund_type == RefundType.differences.value
+                x.tbai_enabled and 'out_refund' == x.type
                 and x.tbai_send_invoice and
+                (not x.tbai_refund_type or
+                 x.tbai_refund_type == RefundType.differences.value) and
                 x.date and x.date >= x.journal_id.tbai_active_date)
 
         validate_refund_invoices()
