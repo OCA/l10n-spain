@@ -16,7 +16,6 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "data/edi.xml",
         "data/face_data.xml",
         "data/edi_output.xml",
         "data/cron_data.xml",
