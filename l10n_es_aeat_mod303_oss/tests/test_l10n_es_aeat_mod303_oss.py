@@ -24,6 +24,9 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             }
         )
         wizard.generate_eu_oss_taxes()
+        fr_fiscal_position = cls.env["account.fiscal.position"].search(
+            [("country_id", "=", cls.oss_country.id), ("oss_oca", "=", True)], limit=1
+        )
         cls.taxes_sale = {}
         cls.oss_tax = cls.env["account.tax"].search(
             [
@@ -38,7 +41,10 @@ class TestL10nEsAeatMod303(TestL10nEsAeatMod303Base):
             "quantity": 1,
             "tax_ids": [(4, cls.oss_tax.id)],
         }
-        extra_vals = {"invoice_line_ids": [(0, 0, line_data)]}
+        extra_vals = {
+            "invoice_line_ids": [(0, 0, line_data)],
+            "fiscal_position_id": fr_fiscal_position.id,
+        }
         cls._invoice_sale_create("2021-07-01", extra_vals)
         cls._invoice_sale_create("2021-11-01", extra_vals)
         # Create reports
