@@ -289,7 +289,7 @@ class Mod349(models.Model):
             key_vals = data.setdefault(
                 key, {"original_amount": 0, "refund_details": refund_detail_obj}
             )
-            key_vals["original_amount"] += origin_amount
+            key_vals["original_amount"] = origin_amount
             key_vals["refund_details"] += refund_details
         for key, key_vals in data.items():
             partner, op_key, period_type, year = key

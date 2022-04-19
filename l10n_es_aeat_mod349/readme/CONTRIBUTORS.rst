@@ -1,5 +1,5 @@
 * Luis Manuel Angueira Blanco (Pexego)
-* Omar Castiñeira Saavedra<omar@pexego.es>
+* Omar Castiñeira Saavedra <omar@comunitea.com>
 * Miguel López (Top Consultant)
 * Ignacio Martínez (Top Consultant)
 * `Tecnativa <https://www.tecnativa.com>`__:
