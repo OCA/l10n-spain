@@ -42,6 +42,7 @@ addon | version | maintainers | summary
 [l10n_es_partner_mercantil](l10n_es_partner_mercantil/) | 15.0.1.0.0 |  | Añade los datos del registro mercantil a la empresa
 [l10n_es_toponyms](l10n_es_toponyms/) | 15.0.1.0.0 |  | Topónimos españoles
 [l10n_es_vat_book](l10n_es_vat_book/) | 15.0.1.0.1 |  | Libro de IVA
+[l10n_es_vat_book_oss](l10n_es_vat_book_oss/) | 15.0.1.0.0 |  | Libro de IVA OSS
 
 [//]: # (end addons)
 
