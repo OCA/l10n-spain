@@ -406,6 +406,8 @@ class L10nEsVatBook(models.Model):
             if not rec.company_id.partner_id.vat:
                 raise UserError(_("This company doesn't have VAT"))
             rec._clear_old_data()
+            # Searches for all possible usable lines to report
+            moves = rec._get_account_move_lines()
             for book_type in ["issued", "received"]:
                 map_lines = self.env["aeat.vat.book.map.line"].search(
                     [("book_type", "=", book_type)]
@@ -418,8 +420,6 @@ class L10nEsVatBook(models.Model):
                     if map_line.tax_account_id:
                         account = rec.get_account_from_template(map_line.tax_account_id)
                         accounts.update({tax: account for tax in line_taxes})
-                # Searches for all possible usable lines to report
-                moves = self._get_account_move_lines()
                 # Filter in all possible data using sets for improving performance
                 if accounts:
                     lines = moves.filtered(
