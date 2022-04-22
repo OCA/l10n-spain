@@ -317,7 +317,7 @@ class L10nEsVatBook(models.Model):
         else:
             domain += [
                 "|",
-                ("tax_ids", "!=", []),
+                ("tax_ids", "!=", False),
                 ("tax_line_id", "!=", False),
             ]
         return domain
@@ -411,18 +411,24 @@ class L10nEsVatBook(models.Model):
                     [("book_type", "=", book_type)]
                 )
                 taxes = self.env["account.tax"]
+                accounts = {}
                 for map_line in map_lines:
-                    taxes |= map_line.get_taxes(rec)
+                    line_taxes = map_line.get_taxes(rec)
+                    taxes |= line_taxes
+                    if map_line.tax_account_id:
+                        account = rec.get_account_from_template(map_line.tax_account_id)
+                        accounts.update({tax: account for tax in line_taxes})
                 # Searches for all possible usable lines to report
                 moves = self._get_account_move_lines()
-                accounts = self.env["account.account"]
-                for account in map_lines.mapped("tax_account_id"):
-                    accounts |= rec.get_account_from_template(account)
                 # Filter in all possible data using sets for improving performance
                 if accounts:
                     lines = moves.filtered(
                         lambda line: line.tax_ids & taxes
-                        or (line.tax_line_id in taxes and line.account_id in accounts)
+                        or (
+                            line.tax_line_id in taxes
+                            and accounts.get(line.tax_line_id, line.account_id)
+                            == line.account_id
+                        )
                     )
                 else:
                     lines = moves.filtered(
