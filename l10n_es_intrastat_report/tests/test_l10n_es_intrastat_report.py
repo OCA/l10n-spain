@@ -3,6 +3,7 @@
 from datetime import datetime
 
 from odoo import _
+from odoo.tests import tagged
 from odoo.tests.common import Form
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -10,6 +11,7 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 from ..hooks import post_init_hook
 
 
+@tagged("post_install", "-at_install")
 class TestL10nIntraStatReport(AccountTestInvoicingCommon):
     @classmethod
     def _create_invoice(cls, inv_type, partner, product=None):
