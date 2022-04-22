@@ -23,6 +23,7 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
         # tax code: (base, tax_amount)
         "P_IVA21_SC": (230, 48.3),
         "P_IVA0_ND": (100, 21),
+        "P_IVA21_IC_BC": (200, 42),
     }
 
     def test_model_vat_book(self):
@@ -69,13 +70,17 @@ class TestL10nEsAeatVatBook(TestL10nEsAeatModBase):
             self.assertEqual(line.base_amount, 0.0)
             self.assertEqual(line.tax_amount, 0.0)
         # Check tax summary for received invoices
-        self.assertEqual(len(vat_book.received_tax_summary_ids), 2)
+        self.assertEqual(len(vat_book.received_tax_summary_ids), 3)
         # P_IVA21_SC - 21% IVA soportado (servicios corrientes)
         line = vat_book.received_tax_summary_ids[0]
         self.assertAlmostEqual(line.base_amount, 230)
         self.assertAlmostEqual(line.tax_amount, 48.3)
-        # P_IVA0_ND - 21% IVA Soportado no deducible
+        # P_IVA21_IC_BC - IVA 21% Adquisición Intracomunitaria. Bienes corrientes
         line = vat_book.received_tax_summary_ids[1]
+        self.assertAlmostEqual(line.base_amount, 200)
+        self.assertAlmostEqual(line.tax_amount, 42)
+        # P_IVA0_ND - 21% IVA Soportado no deducible
+        line = vat_book.received_tax_summary_ids[2]
         self.assertAlmostEqual(line.base_amount, 100)
         self.assertAlmostEqual(line.tax_amount, 21)
         # Print to PDF
