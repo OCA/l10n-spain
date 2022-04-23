@@ -1,7 +1,7 @@
 # Copyright 2021 Binovo IT Human Project SL
 # Copyright 2021 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, fields, models
+from odoo import _, api, exceptions, fields, models
 
 
 class TicketBaiInstallation(models.Model):
@@ -25,3 +25,15 @@ class TicketBaiInstallation(models.Model):
         ("developer_ref_uniq", "UNIQUE(developer_id)", _("Developer must be unique!")),
         ("license_ref_uniq", "UNIQUE(license_key)", _("License Key must be unique!")),
     ]
+
+    @api.constrains("license_key")
+    def _check_tbai_license_key(self):
+        for record in self:
+            if 20 < len(record.license_key):
+                raise exceptions.ValidationError(
+                    _(
+                        "Company %s TicketBAI License Key longer than expected. "
+                        "Should be 20 characters max.!"
+                    )
+                    % record.name
+                )

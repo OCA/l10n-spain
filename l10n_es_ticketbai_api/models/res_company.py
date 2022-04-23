@@ -54,38 +54,6 @@ class ResCompany(models.Model):
                     _("Company %s TicketBAI Certificate is required.") % record.name
                 )
 
-    @api.constrains("tbai_license_key")
-    def _check_tbai_license_key(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_license_key:
-                raise exceptions.ValidationError(
-                    _("Company %s TicketBAI License Key is required.") % record.name
-                )
-            elif record.tbai_enabled and 20 < len(record.tbai_license_key):
-                raise exceptions.ValidationError(
-                    _(
-                        "Company %s TicketBAI License Key longer than expected. "
-                        "Should be 20 characters max.!"
-                    )
-                    % record.name
-                )
-
-    @api.constrains("tbai_developer_id")
-    def _check_tbai_developer_id(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_developer_id:
-                raise exceptions.ValidationError(
-                    _("Company %s TicketBAI Developer is required.") % record.name
-                )
-
-    @api.constrains("tbai_software_name")
-    def _check_tbai_software_name(self):
-        for record in self:
-            if record.tbai_enabled and not record.tbai_software_name:
-                raise exceptions.ValidationError(
-                    _("Company %s TicketBAI Software Name is required.") % record.name
-                )
-
     @api.constrains("tbai_device_serial_number")
     def _check_tbai_device_serial_number(self):
         for record in self:
@@ -127,9 +95,6 @@ class ResCompany(models.Model):
     def onchange_tbai_enabled(self):
         if not self.tbai_enabled:
             self.tbai_test_enabled = False
-            self.tbai_license_key = ""
-            self.tbai_developer_id = False
-            self.tbai_software_name = ""
             self.tbai_device_serial_number = ""
             self.tbai_tax_agency_id = False
             self.tbai_vat_regime_simplified = False
