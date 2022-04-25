@@ -3,12 +3,13 @@
 # Copyright 2017 ForgeFlow, S.L. <contact@forgeflow.com>
 # Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2022 Moduon Team - Eduardo de Miguel <edu@moduon.team>
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import datetime
 import re
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 from odoo.tools import ormcache
 
 
@@ -116,6 +117,25 @@ class L10nEsVatBook(models.Model):
     auto_renumber = fields.Boolean(
         "Auto renumber invoices received", states={"draft": [("readonly", False)]}
     )
+
+    error_count = fields.Integer(
+        compute="_compute_error_count",
+    )
+
+    def _compute_error_count(self):
+        vat_book_exception_group = self.env["l10n.es.vat.book.line"].read_group(
+            domain=[("exception_text", "!=", False), ("vat_book_id", "in", self.ids)],
+            fields=["vat_book_id"],
+            groupby=["vat_book_id"],
+        )
+        vat_book_exception_dict = {
+            vbe["vat_book_id"][0]: vbe["vat_book_id_count"]
+            for vbe in vat_book_exception_group
+        }
+        for vat_book_report in self:
+            vat_book_report.error_count = vat_book_exception_dict.get(
+                vat_book_report.id, 0
+            )
 
     @api.model
     def _prepare_vat_book_tax_summary(self, tax_lines, book_type):
@@ -364,7 +384,9 @@ class L10nEsVatBook(models.Model):
             line_vals["line_type"] = "rectification_{}".format(line_type)
 
     def _check_exceptions(self, line_vals):
-        if (
+        if not line_vals["partner_id"]:
+            line_vals["exception_text"] = _("Without Partner")
+        elif (
             not line_vals["vat_number"]
             and line_vals["partner_id"] not in self.get_pos_partner_ids()
         ):
