@@ -7,3 +7,6 @@
 * `Landoo <https://www.landoo.es/>`__:
 
   * Aritz Olea
+* `Sygel <https://www.sygel.es/>`__:
+
+  * Ángel García de la Chica  Herrera
