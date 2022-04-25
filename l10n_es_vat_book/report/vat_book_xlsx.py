@@ -163,7 +163,7 @@ class VatNumberXlsx(models.AbstractModel):
         ):
             sheet.write("I" + str(row), "Venta anónima")
         else:
-            sheet.write("I" + str(row), line.partner_id.name[:40])
+            sheet.write("I" + str(row), (line.partner_id.name or "")[:40])
         # TODO: Substitute Invoice
         # sheet.write('J' + str(row),
         #             line.invoice_id.refund_invoice_id.number or '')
@@ -308,7 +308,7 @@ class VatNumberXlsx(models.AbstractModel):
         sheet.write("A" + str(row), self.format_boe_date(line.invoice_date))
         if date_invoice and date_invoice != line.invoice_date:
             sheet.write("B" + str(row), self.format_boe_date(date_invoice))
-        sheet.write("C" + str(row), line.external_ref and line.external_ref[:40] or "")
+        sheet.write("C" + str(row), (line.external_ref or "")[:40])
         sheet.write("D" + str(row), "")
         sheet.write("E" + str(row), line.ref[:20])
         sheet.write("F" + str(row), "")
@@ -316,7 +316,7 @@ class VatNumberXlsx(models.AbstractModel):
         if country_code != "ES":
             sheet.write("H" + str(row), country_code)
         sheet.write("I" + str(row), vat_number)
-        sheet.write("J" + str(row), line.partner_id.name[:40])
+        sheet.write("J" + str(row), (line.partner_id.name or "")[:40])
         # TODO: Substitute Invoice
         # sheet.write('K' + str(row),
         #             line.invoice_id.refund_invoice_id.number or '')
