@@ -317,7 +317,7 @@ class L10nEsVatBook(models.Model):
         else:
             domain += [
                 "|",
-                ("tax_ids", "!=", False),
+                ("tax_ids", "!=", []),  # Better performance that False
                 ("tax_line_id", "!=", False),
             ]
         return domain
