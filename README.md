@@ -60,7 +60,7 @@ addon | version | maintainers | summary
 [l10n_es_ticketbai](l10n_es_ticketbai/) | 13.0.1.8.2 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | Declaración de todas las operaciones de venta realizadas por las personas y entidades que desarrollan actividades económicas
 [l10n_es_ticketbai_api](l10n_es_ticketbai_api/) | 13.0.1.5.1 | [![ao-landoo](https://github.com/ao-landoo.png?size=30px)](https://github.com/ao-landoo) | TicketBAI - API
 [l10n_es_toponyms](l10n_es_toponyms/) | 13.0.1.0.0 |  | Topónimos españoles
-[l10n_es_vat_book](l10n_es_vat_book/) | 13.0.1.4.6 |  | Libro de IVA
+[l10n_es_vat_book](l10n_es_vat_book/) | 13.0.1.4.7 |  | Libro de IVA
 [l10n_es_vat_book_oss](l10n_es_vat_book_oss/) | 13.0.1.0.0 |  | Libro de IVA OSS
 [payment_redsys](payment_redsys/) | 13.0.2.0.2 |  | Payment Acquirer: Redsys Implementation
 
