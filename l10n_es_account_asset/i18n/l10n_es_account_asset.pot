@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -36,27 +36,9 @@ msgid "Depreciation percentage"
 msgstr ""
 
 #. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__display_name
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: l10n_es_account_asset
 #: code:addons/l10n_es_account_asset/models/account_asset_profile.py:0
 #, python-format
 msgid "Fixed percentage"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset__id
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile__id
-msgid "ID"
-msgstr ""
-
-#. module: l10n_es_account_asset
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset____last_update
-#: model:ir.model.fields,field_description:l10n_es_account_asset.field_account_asset_profile____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: l10n_es_account_asset
