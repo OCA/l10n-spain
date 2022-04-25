@@ -317,7 +317,11 @@ class L10nEsVatBook(models.Model):
         else:
             domain += [
                 "|",
-                ("tax_ids", "!=", False),
+                # Use [] instead of False as an ORM hack for having better performance,
+                # as this is translated with a simple "in (NULL)" query, instead of a
+                # subselect. Not needed in 14+ due to this improvement:
+                # https://github.com/odoo/odoo/commit/955caf48de84e613642e9091baee2ade47
+                ("tax_ids", "!=", []),
                 ("tax_line_id", "!=", False),
             ]
         return domain
