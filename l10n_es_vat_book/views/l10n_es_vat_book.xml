@@ -11,6 +11,20 @@
             >
                 <attribute name="invisible">True</attribute>
             </button>
+            <header position="after">
+                <div
+                    class="alert alert-warning text-center"
+                    attrs="{'invisible': [('error_count', '=', 0)]}"
+                >
+                    <span>
+                        You have <strong class="text-danger"><field
+                                name="error_count"
+                            /> errors</strong> in this report.
+                        You will not be able to <strong
+                        >confirm and submit</strong> it until they are resolved.
+                    </span>
+                </div>
+            </header>
             <header position="inside">
                 <button
                     name="view_issued_invoices"
@@ -48,40 +62,36 @@
             <xpath expr="//group[@name='group_declaration']" position="after">
                 <notebook>
                     <page string="Summary" name="summary">
-                        <group string="Issued Tax Summary" name="issued_tax_summary">
-                            <field name="issued_tax_summary_ids" nolabel="1" />
-                        </group>
-                        <group
-                            string="Received Tax Summary"
-                            name="received_tax_summary"
-                        >
-                            <field name="received_tax_summary_ids" nolabel="1" />
-                        </group>
-                        <group string="Total" name="total_summary">
-                            <field name="summary_ids" nolabel="1" />
-                        </group>
+                        <separator string="Issued Tax Summary" />
+                        <field name="issued_tax_summary_ids" nolabel="1" colspan="2" />
+                        <separator string="Received Tax Summary" />
+                        <field
+                            name="received_tax_summary_ids"
+                            nolabel="1"
+                            colspan="2"
+                        />
+                        <separator string="Total" />
+                        <field name="summary_ids" nolabel="1" colspan="2" />
                     </page>
                     <page string="Issued Invoices" name="invoices_issued">
-                        <group string="Issued Invoices" name="issued_invoices">
-                            <field name="issued_line_ids" nolabel="1" />
-                        </group>
-                        <group
-                            string="Issued Refund Invoices"
-                            name="issued_rectification_invoices"
-                        >
-                            <field name="rectification_issued_line_ids" nolabel="1" />
-                        </group>
+                        <separator string="Issued Invoices" />
+                        <field name="issued_line_ids" nolabel="1" colspan="2" />
+                        <separator string="Issued Refund Invoices" />
+                        <field
+                            name="rectification_issued_line_ids"
+                            nolabel="1"
+                            colspan="2"
+                        />
                     </page>
                     <page string="Received Invoices" name="received_invoices">
-                        <group string="Received Invoices" name="received_invoices">
-                            <field name="received_line_ids" nolabel="1" />
-                        </group>
-                        <group
-                            string="Received Refund Invoices"
-                            name="received_rectification_invoices"
-                        >
-                            <field name="rectification_received_line_ids" nolabel="1" />
-                        </group>
+                        <separator string="Received Invoices" />
+                        <field name="received_line_ids" nolabel="1" colspan="2" />
+                        <separator string="Received Refund Invoices" />
+                        <field
+                            name="rectification_received_line_ids"
+                            nolabel="1"
+                            colspan="2"
+                        />
                     </page>
                 </notebook>
             </xpath>
