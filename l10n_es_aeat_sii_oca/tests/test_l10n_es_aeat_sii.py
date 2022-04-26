@@ -174,6 +174,13 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
     def test_job_creation(self):
         self.assertTrue(self.invoice.invoice_jobs_ids)
 
+    def test_partner_sii_enabled(self):
+        company_02 = self.env["res.company"].create({"name": "Company 02"})
+        self.env.user.company_ids += company_02
+        self.assertTrue(self.partner.sii_enabled)
+        self.partner.company_id = company_02
+        self.assertFalse(self.partner.sii_enabled)
+
     def test_get_invoice_data(self):
         mapping = [
             ("out_invoice", [(100, ["s_iva10b"]), (200, ["s_iva21s"])], {}),
@@ -304,6 +311,12 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
             invoice_temp.sii_description,
             "Test customer header | Test line",
         )
+
+    def test_vat_number_check(self):
+        self.partner.write(
+            {"vat": "F35999705", "country_id": self.env.ref("base.es").id}
+        )
+        self.test_get_invoice_data()
 
     def _check_binding_address(self, invoice):
         company = invoice.company_id
