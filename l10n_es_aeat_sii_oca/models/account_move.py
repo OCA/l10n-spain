@@ -1318,7 +1318,7 @@ class AccountMove(models.Model):
             country_code,
             identifier_type,
             identifier,
-        ) = self.commercial_partner_id._parse_aeat_vat_info()
+        ) = self._sii_get_partner()._parse_aeat_vat_info()
         # Limpiar alfanum
         if identifier:
             identifier = "".join(e for e in identifier if e.isalnum()).upper()
@@ -1411,7 +1411,7 @@ class AccountMove(models.Model):
 
     def _get_sii_country_code(self):
         self.ensure_one()
-        return self.commercial_partner_id._parse_aeat_vat_info()[0]
+        return self._sii_get_partner()._parse_aeat_vat_info()[0]
 
     @api.depends(
         "invoice_line_ids",
