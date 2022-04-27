@@ -223,6 +223,11 @@ msgid "Entry number"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__exception_text
 msgid "Exception text"
 msgstr ""
@@ -913,12 +918,35 @@ msgstr ""
 #. module: l10n_es_vat_book
 #: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
 #, python-format
+msgid "Without Partner"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: code:addons/l10n_es_vat_book/models/l10n_es_vat_book.py:0
+#, python-format
 msgid "Without VAT"
 msgstr ""
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__year
 msgid "Year"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "You have"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid "errors"
+msgstr ""
+
+#. module: l10n_es_vat_book
+#: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
+msgid ""
+"in this report.\n"
+"                        You will not be able to <strong>confirm and submit</strong> it until they are resolved."
 msgstr ""
 
 #. module: l10n_es_vat_book
