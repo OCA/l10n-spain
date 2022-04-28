@@ -91,7 +91,7 @@ class TicketBAIInvoice(models.Model):
     name = fields.Char(required=True)
     company_id = fields.Many2one(comodel_name="res.company", required=True)
     previous_tbai_invoice_id = fields.Many2one(comodel_name="tbai.invoice", copy=False)
-    signature_value = fields.Char("Signature Value", default="", copy=False)
+    signature_value = fields.Char(default="", copy=False)
     tbai_identifier = fields.Char(
         "TBAI Identifier", compute="_compute_tbai_identifier", store=True, copy=False
     )
@@ -128,7 +128,7 @@ class TicketBAIInvoice(models.Model):
     )
     datas = fields.Binary(copy=False, attachment=True)
     datas_fname = fields.Char("File Name", copy=False)
-    file_size = fields.Integer("File Size", copy=False)
+    file_size = fields.Integer(copy=False)
     state = fields.Selection(
         string="Status",
         selection=[
@@ -336,7 +336,7 @@ class TicketBAIInvoice(models.Model):
                 )
             elif record.substituted_invoice_total_tax_amount:
                 tbai_utils.check_str_decimal(
-                    _("TicketBAI Invoice %s:\n" "Substituted Invoice Tax Amount Total")
+                    _("TicketBAI Invoice %s:\n Substituted Invoice Tax Amount Total")
                     % record.name,
                     record.substituted_invoice_total_tax_amount,
                 )
@@ -361,7 +361,7 @@ class TicketBAIInvoice(models.Model):
                 and not record.description
             ):
                 raise exceptions.ValidationError(
-                    _("TicketBAI Invoice %s:\n" "Invoice Description is required.")
+                    _("TicketBAI Invoice %s:\n Invoice Description is required.")
                     % record.name
                 )
             elif 250 < len(record.description):
@@ -440,7 +440,7 @@ class TicketBAIInvoice(models.Model):
         for record in self:
             if record.tax_retention_amount_total:
                 tbai_utils.check_str_decimal(
-                    _("TicketBAI Invoice %s:\n" "Invoice Tax Retention Total Amount")
+                    _("TicketBAI Invoice %s:\n Invoice Tax Retention Total Amount")
                     % record.name,
                     record.tax_retention_amount_total,
                 )
@@ -456,15 +456,15 @@ class TicketBAIInvoice(models.Model):
                 if tbai_identifier_len_without_crc != len(tbai_identifier_without_crc):
                     raise exceptions.ValidationError(
                         _(
-                            "TicketBAI Invoice %s:\n"
-                            "TBAI identifier without CRC-8 %s "
-                            "should be %d characters long!"
+                            "TicketBAI Invoice %(name)s:\n"
+                            "TBAI identifier without CRC-8 %(id)s "
+                            "should be %(len)d characters long!"
                         )
-                        % (
-                            record.name,
-                            tbai_identifier_without_crc,
-                            tbai_identifier_len_without_crc,
-                        )
+                        % {
+                            "name": record.name,
+                            "id": tbai_identifier_without_crc,
+                            "len": tbai_identifier_len_without_crc,
+                        }
                     )
                 crc = crc8(tbai_identifier_without_crc)
                 values.append(crc)
@@ -472,15 +472,15 @@ class TicketBAIInvoice(models.Model):
                 if tbai_identifier_len_with_crc != len(tbai_identifier_with_crc):
                     raise exceptions.ValidationError(
                         _(
-                            "TicketBAI Invoice %s:\n"
-                            "TBAI identifier %s should be %d "
+                            "TicketBAI Invoice %(name)s:\n"
+                            "TBAI identifier %(id)s should be %(len)d "
                             "characters long with CRC-8!"
                         )
-                        % (
-                            record.name,
-                            tbai_identifier_with_crc,
-                            tbai_identifier_len_with_crc,
-                        )
+                        % {
+                            "name": record.name,
+                            "id": tbai_identifier_with_crc,
+                            "len": tbai_identifier_len_with_crc,
+                        }
                     )
                 record.tbai_identifier = tbai_identifier_with_crc
 
@@ -919,20 +919,30 @@ class TicketBAIInvoice(models.Model):
             elif tax_agency in (gipuzkoa_tax_agency, araba_tax_agency):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "ZIP code for %s is required for the Tax Agency %s!"
+                        "TicketBAI Invoice %(name)s:\n"
+                        "ZIP code for %(customer)s is required for the "
+                        "Tax Agency %(agency)s!"
                     )
-                    % (self.name, customer.name, tax_agency.name)
+                    % {
+                        "name": self.name,
+                        "customer": customer.name,
+                        "agency": tax_agency.name,
+                    }
                 )
             if customer.address:
                 customer_res["Direccion"] = customer.address
             elif tax_agency in (gipuzkoa_tax_agency, araba_tax_agency):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Address for %s is required for the Tax Agency %s!"
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Address for %(customer)s is required for the "
+                        "Tax Agency %(agency)s!"
                     )
-                    % (self.name, customer.name, tax_agency.name)
+                    % {
+                        "name": self.name,
+                        "customer": customer.name,
+                        "agency": tax_agency.name,
+                    }
                 )
             if (
                 "NIF" in customer_res or "IDOtro" in customer_res
@@ -1069,10 +1079,11 @@ class TicketBAIInvoice(models.Model):
             else:
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Invoice lines are required for the Tax Agency %s!"
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Invoice lines are required for the "
+                        "Tax Agency %(agency)s!"
                     )
-                    % (self.name, tax_agency.name)
+                    % {"name": self.name, "agency": tax_agency.name}
                 )
         else:
             res = {}
@@ -1386,11 +1397,11 @@ class TicketBAIInvoiceRefund(models.Model):
             if 20 < len(record.number):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Refunded Invoice Number %s longer than expected. "
-                        "Should be 20 characters max.!"
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Refunded Invoice Number %(number)s longer than "
+                        "expected. Should be 20 characters max.!"
                     )
-                    % (record.tbai_invoice_id.name, record.number)
+                    % {"name": record.tbai_invoice_id.name, "number": record.number}
                 )
 
     @api.constrains("number_prefix")
@@ -1399,18 +1410,25 @@ class TicketBAIInvoiceRefund(models.Model):
             if record.number_prefix and 20 < len(record.number_prefix):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Refunded Invoice %s Number Prefix %s longer than expected. "
-                        "Should be 20 characters max.!"
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Refunded Invoice %(number)s Number Prefix %(prefix)s "
+                        "longer than expected. Should be 20 characters max.!"
                     )
-                    % (record.tbai_invoice_id.name, record.number, record.number_prefix)
+                    % {
+                        "name": record.tbai_invoice_id.name,
+                        "number": record.number,
+                        "prefix": record.number_prefix,
+                    }
                 )
 
     @api.constrains("expedition_date")
     def _check_expedition_date(self):
         for record in self:
             tbai_utils.check_date(
-                _("TicketBAI Invoice %s:\n" "Refunded Invoice %s Expedition Date")
-                % (record.tbai_invoice_id.name, record.number),
+                _(
+                    "TicketBAI Invoice %(name)s:\n Refunded Invoice %(number)s "
+                    "Expedition Date"
+                )
+                % {"name": record.tbai_invoice_id.name, "number": record.number},
                 record.expedition_date,
             )

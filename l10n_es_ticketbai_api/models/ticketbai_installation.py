@@ -18,7 +18,7 @@ class TicketBaiInstallation(models.Model):
         comodel_name="res.partner", string="Developer", required=True, copy=False
     )
     vat = fields.Char("TIN", related="developer_id.vat")
-    license_key = fields.Char("License Key", required=True, copy=False)
+    license_key = fields.Char(required=True, copy=False)
 
     @api.constrains("license_key")
     def _check_license_key(self):

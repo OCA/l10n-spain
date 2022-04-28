@@ -13,24 +13,20 @@ class TicketBaiInvoiceLine(models.Model):
     tbai_invoice_id = fields.Many2one(
         comodel_name="tbai.invoice", required=True, ondelete="cascade"
     )
-    description = fields.Char("Description", required=True)
+    description = fields.Char(required=True)
     quantity = fields.Char(
-        "Quantity",
         required=True,
         help="String of float with 12 digits and 2 decimal points.",
     )
     price_unit = fields.Char(
-        "Price Unit",
         required=True,
         help="String of float with 12 digits and 8 decimal points.",
     )
     discount_amount = fields.Char(
-        "Discount Amount",
         default="0.00",
         help="String of float with 12 digits and 2 decimal points.",
     )
     amount_total = fields.Char(
-        "Amount Total",
         required=True,
         help="String of float with 12 digits and 2 decimal points.",
     )
@@ -41,19 +37,19 @@ class TicketBaiInvoiceLine(models.Model):
             if 250 < len(record.description):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Description %s longer than expected. "
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Description %(desc)s longer than expected. "
                         "Should be 250 characters max.!"
                     )
-                    % (record.tbai_invoice_id.name, record.description)
+                    % {"name": record.tbai_invoice_id.name, "desc": record.description}
                 )
 
     @api.constrains("quantity")
     def _check_quantity(self):
         for record in self:
             tbai_utils.check_str_decimal(
-                _("TicketBAI Invoice %s: Line %s Quantity")
-                % (record.tbai_invoice_id.name, record.description),
+                _("TicketBAI Invoice %(name)s: Line %(desc)s Quantity")
+                % {"name": record.tbai_invoice_id.name, "desc": record.description},
                 record.quantity,
             )
 
@@ -61,8 +57,8 @@ class TicketBaiInvoiceLine(models.Model):
     def _check_price_unit(self):
         for record in self:
             tbai_utils.check_str_decimal(
-                _("TicketBAI Invoice %s: Line %s Price Unit")
-                % (record.tbai_invoice_id.name, record.description),
+                _("TicketBAI Invoice %(name)s: Line %(desc)s Price Unit")
+                % {"name": record.tbai_invoice_id.name, "desc": record.description},
                 record.price_unit,
                 no_decimal_digits=8,
             )
@@ -72,8 +68,8 @@ class TicketBaiInvoiceLine(models.Model):
         for record in self:
             if record.discount_amount:
                 tbai_utils.check_str_decimal(
-                    _("TicketBAI Invoice %s: Line %s Discount Amount")
-                    % (record.tbai_invoice_id.name, record.description),
+                    _("TicketBAI Invoice %(name)s: Line %(desc)s Discount Amount")
+                    % {"name": record.tbai_invoice_id.name, "desc": record.description},
                     record.discount_amount,
                 )
 
@@ -81,7 +77,7 @@ class TicketBaiInvoiceLine(models.Model):
     def _check_amount_total(self):
         for record in self:
             tbai_utils.check_str_decimal(
-                _("TicketBAI Invoice %s: Line %s Amount Total")
-                % (record.tbai_invoice_id.name, record.description),
+                _("TicketBAI Invoice %(name)s: Line %(desc)s Amount Total")
+                % {"name": record.tbai_invoice_id.name, "desc": record.description},
                 record.amount_total,
             )

@@ -23,10 +23,12 @@ def check_str_decimal(field, value, no_digits=12, no_decimal_digits=2):
     if not match_res or (match_res and match_res.group(0) != value):
         raise exceptions.ValidationError(
             _(
-                "%s value must be a string of a float with maximum %d digits and "
-                "%d decimal points. The decimal separator must be '.'"
+                "%(field)s value must be a string of a float with maximum %("
+                "digits)d digits and "
+                "%(dec_digits)d decimal points. The decimal separator must be "
+                "'.'"
             )
-            % (field, no_digits, no_decimal_digits)
+            % {"fields": field, "digits": no_digits, "dec_digits": no_decimal_digits}
         )
 
 
@@ -46,18 +48,27 @@ def check_spanish_vat_number(field, value):
     )
     match_res = re.match(pattern, value)
     if not match_res or (match_res and match_res.group(0) != value) or 9 != len(value):
-        raise exceptions.ValidationError(_("Invalid %s format '%s'.") % (field, value))
+        raise exceptions.ValidationError(
+            _("Invalid %(field)s format '%(" "value)s'.")
+            % {"field": field, "value": value}
+        )
 
 
 def check_date(field, value):
     pattern = r"(\d{2,2}-\d{2,2}-\d{4,4})"
     match_res = re.match(pattern, value)
     if not match_res or (match_res and match_res.group(0) != value) or 10 != len(value):
-        raise exceptions.ValidationError(_("Invalid %s format '%s'.") % (field, value))
+        raise exceptions.ValidationError(
+            _("Invalid %(field)s format '%(value)" "s'.")
+            % {"field": field, "value": value}
+        )
 
 
 def check_hour(field, value):
     pattern = r"(\d{2,2}:\d{2,2}:\d{2,2})"
     match_res = re.match(pattern, value)
     if not match_res or (match_res and match_res.group(0) != value):
-        raise exceptions.ValidationError(_("Invalid %s format '%s'.") % (field, value))
+        raise exceptions.ValidationError(
+            _("Invalid %(field)s format '%(value)s'.")
+            % {"field": field, "value": value}
+        )

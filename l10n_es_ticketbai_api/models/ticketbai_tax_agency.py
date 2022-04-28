@@ -88,10 +88,14 @@ class TicketBAITaxAgencyVersion(models.Model):
             if len(record.version) not in range(1, 6):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Tax Agency %s:\n"
-                        "TicketBAI version %s max size is 5 characters."
+                        "TicketBAI Tax Agency %(agency)s:\n"
+                        "TicketBAI version %(version)s max size is 5 "
+                        "characters."
                     )
-                    % (record.tbai_tax_agency_id.name, record.version)
+                    % {
+                        "agency": record.tbai_tax_agency_id.name,
+                        "version": record.version,
+                    }
                 )
 
     @api.constrains("date_from", "date_to")
@@ -128,19 +132,22 @@ class TicketBAITaxAgencyVersion(models.Model):
             if date_lst:
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Tax Agency %s:\n"
-                        "Version %s dates of the record "
+                        "TicketBAI Tax Agency %(agency)s:\n"
+                        "Version %(version)s dates of the record "
                         "overlap with an existing record."
                     )
-                    % (record.tbai_tax_agency_id.name, record.version)
+                    % {
+                        "agency": record.tbai_tax_agency_id.name,
+                        "version": record.version,
+                    }
                 )
 
     tbai_tax_agency_id = fields.Many2one(
         comodel_name="tbai.tax.agency", required=True, ondelete="restrict"
     )
     version = fields.Char(string="TicketBAI version", required=True)
-    date_from = fields.Date(string="Date from")
-    date_to = fields.Date(string="Date to")
+    date_from = fields.Date()
+    date_to = fields.Date()
     qr_base_url = fields.Char(string="QR Base URL", required=True)
     test_qr_base_url = fields.Char(string="Test - QR Base URL")
     rest_url_invoice = fields.Char(string="REST API URL for Invoices")

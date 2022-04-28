@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-03-10 09:29+0000\n"
+"PO-Revision-Date: 2022-03-10 09:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -80,6 +82,14 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
+#, python-format
+msgid ""
+"%(field)s value must be a string of a float with maximum %(digits)d digits "
+"and %(dec_digits)d decimal points. The decimal separator must be '.'"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/res_partner.py:0
 #, python-format
 msgid "%s VAT Number"
@@ -89,14 +99,6 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
 msgid "%s value must be a positive percentage."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
-#, python-format
-msgid ""
-"%s value must be a string of a float with maximum %d digits and %d decimal "
-"points. The decimal separator must be '.'"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -280,12 +282,12 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version__date_from
-msgid "Date from"
+msgid "Date From"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_tax_agency_version__date_to
-msgid "Date to"
+msgid "Date To"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -321,9 +323,6 @@ msgid "Discount Amount"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__display_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_certificate__display_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_installation__display_name
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__display_name
@@ -419,9 +418,6 @@ msgid "File Size"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_config_settings__id
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner__id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_certificate__id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_installation__id
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice__id
@@ -451,7 +447,7 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #: code:addons/l10n_es_ticketbai_api/utils/utils.py:0
 #, python-format
-msgid "Invalid %s format '%s'."
+msgid "Invalid %(field)s format '%(value)s'."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -480,9 +476,6 @@ msgid "Is Subject to"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_res_partner____last_update
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_certificate____last_update
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_installation____last_update
 #: model:ir.model.fields,field_description:l10n_es_ticketbai_api.field_tbai_invoice____last_update
@@ -1029,7 +1022,6 @@ msgstr ""
 #: model:ir.ui.menu,name:l10n_es_ticketbai_api.menu_tbai_certificate
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.tbai_certificate_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.tbai_certificate_search_view
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.tbai_certificate_tree_view
 msgid "TicketBAI Certificates"
 msgstr ""
 
@@ -1058,7 +1050,6 @@ msgstr ""
 #: model:ir.ui.menu,name:l10n_es_ticketbai_api.menu_tbai_installation
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.tbai_installation_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.tbai_installation_search_view
-#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_api.tbai_installation_tree_view
 msgid "TicketBAI Installations"
 msgstr ""
 
@@ -1066,8 +1057,190 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid ""
+"TicketBAI Invoice %(name)s:\n"
+" Refunded Invoice %(number)s Expedition Date"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Address for %(customer)s is required for the Tax Agency %(agency)s!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Customer %(customer)s Address %(address)s longer than expected. Should be 250 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Customer %(customer)s Identification Number %(id)s longer than expected. Should be 20 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Customer %(customer)s Identification Number for non spanish customers is required."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Customer %(customer)s Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Customer %(customer)s ZIP Code %(zip)s longer than expected. Should be 20 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Customer name %(customer)s longer than expected. Should be 120 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Description %(desc)s longer than expected. Should be 250 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Invoice lines are required for the Tax Agency %(agency)s!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Refunded Invoice %(number)s Number Prefix %(prefix)s longer than expected. Should be 20 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Refunded Invoice Number %(number)s longer than expected. Should be 20 characters max.!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"TBAI identifier %(id)s should be %(len)d characters long with CRC-8!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"TBAI identifier without CRC-8 %(id)s should be %(len)d characters long!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"Tax Surcharge or Simplified Regime value should be '%(val)s'."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s:\n"
+"ZIP code for %(customer)s is required for the Tax Agency %(agency)s!"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %(name)s: Customer %(customer)s Country Code %(country)s "
+"not valid."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
+#, python-format
+msgid "TicketBAI Invoice %(name)s: Customer %(customer)s NIF"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
+#, python-format
+msgid "TicketBAI Invoice %(name)s: Line %(desc)s Amount Total"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
+#, python-format
+msgid "TicketBAI Invoice %(name)s: Line %(desc)s Discount Amount"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
+#, python-format
+msgid "TicketBAI Invoice %(name)s: Line %(desc)s Price Unit"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
+#, python-format
+msgid "TicketBAI Invoice %(name)s: Line %(desc)s Quantity"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
 "TicketBAI Invoice %s:\n"
-"Address for %s is required for the Tax Agency %s!"
+" Invoice Description is required."
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %s:\n"
+" Invoice Tax Retention Total Amount"
+msgstr ""
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
+#, python-format
+msgid ""
+"TicketBAI Invoice %s:\n"
+" Substituted Invoice Tax Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1084,70 +1257,6 @@ msgstr ""
 msgid ""
 "TicketBAI Invoice %s:\n"
 "Already exists a TicketBAI Invoice with the  same link to itsprevious TicketBAI Invoice."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Customer %s Address %s longer than expected. Should be 250 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Customer %s Identification Number %s longer than expected. Should be 20 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Customer %s Identification Number for non spanish customers is required."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Customer %s Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Customer %s ZIP Code %s longer than expected. Should be 20 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Customer name %s longer than expected. Should be 120 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Description %s longer than expected. Should be 250 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Invoice Description is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1179,23 +1288,7 @@ msgstr ""
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
-"Invoice Tax Retention Total Amount"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
 "Invoice description longer than expected. Should be 250 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Invoice lines are required for the Tax Agency %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1223,43 +1316,11 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Refunded Invoice %s Expedition Date"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
 "Spanish Fiscal Identification Number or Identification Number for non spanish customers is required."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Substituted Invoice Tax Amount Total"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1289,51 +1350,7 @@ msgstr ""
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"TBAI identifier %s should be %d characters long with CRC-8!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"TBAI identifier without CRC-8 %s should be %d characters long!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_tax.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"Tax Surcharge or Simplified Regime value should be '%s'."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
-msgid ""
-"TicketBAI Invoice %s:\n"
-"ZIP code for %s is required for the Tax Agency %s!"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
-#, python-format
 msgid "TicketBAI Invoice %s: Amount Total"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid "TicketBAI Invoice %s: Customer %s Country Code %s not valid."
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_customer.py:0
-#, python-format
-msgid "TicketBAI Invoice %s: Customer %s NIF"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1352,30 +1369,6 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:0
 #, python-format
 msgid "TicketBAI Invoice %s: Expedition Hour"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
-#, python-format
-msgid "TicketBAI Invoice %s: Line %s Amount Total"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
-#, python-format
-msgid "TicketBAI Invoice %s: Line %s Discount Amount"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
-#, python-format
-msgid "TicketBAI Invoice %s: Line %s Price Unit"
-msgstr ""
-
-#. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice_line.py:0
-#, python-format
-msgid "TicketBAI Invoice %s: Line %s Quantity"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
@@ -1559,16 +1552,16 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:0
 #, python-format
 msgid ""
-"TicketBAI Tax Agency %s:\n"
-"TicketBAI version %s max size is 5 characters."
+"TicketBAI Tax Agency %(agency)s:\n"
+"TicketBAI version %(version)s max size is 5 characters."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
 #: code:addons/l10n_es_ticketbai_api/models/ticketbai_tax_agency.py:0
 #, python-format
 msgid ""
-"TicketBAI Tax Agency %s:\n"
-"Version %s dates of the record overlap with an existing record."
+"TicketBAI Tax Agency %(agency)s:\n"
+"Version %(version)s dates of the record overlap with an existing record."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
