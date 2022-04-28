@@ -64,7 +64,7 @@ class TicketBaiTax(models.Model):
         comodel_name="tbai.invoice", required=True, ondelete="cascade"
     )
     base = fields.Char(
-        "Base", default="", help="String of float with 12 digits and 3 decimal points."
+        default="", help="String of float with 12 digits and 3 decimal points."
     )
     is_subject_to = fields.Boolean("Is Subject to")
     not_subject_to_cause = fields.Selection(
@@ -81,7 +81,7 @@ class TicketBaiTax(models.Model):
       - No sujeto por reglas de localización.
     """,
     )
-    is_exempted = fields.Boolean("Is Exempted")
+    is_exempted = fields.Boolean()
     exempted_cause = fields.Selection(
         selection=[
             (ExemptedCause.E1.value, "E1"),
@@ -91,7 +91,6 @@ class TicketBaiTax(models.Model):
             (ExemptedCause.E5.value, "E5"),
             (ExemptedCause.E6.value, "E6"),
         ],
-        string="Exempted Cause",
         help="""
     E1: Exenta por el artículo 20 de la Norma Foral del IVA.
     E2: Exenta por el artículo 21 de la Norma Foral del IVA.
@@ -103,7 +102,6 @@ class TicketBaiTax(models.Model):
     )
     not_exempted_type = fields.Selection(
         selection=[(NotExemptedType.S1.value, "S1"), (NotExemptedType.S2.value, "S2")],
-        string="Not Exempted Type",
         help="""
     S1: Sin inversión del sujeto pasivo.
     S2: Con inversión del sujeto pasivo.
@@ -115,7 +113,6 @@ class TicketBaiTax(models.Model):
         help="String of float with 3 digits and 2 decimal points.",
     )
     amount_total = fields.Char(
-        "Amount Total",
         default="",
         help="String of float with 12 digits and 2 decimal points.",
     )
@@ -267,11 +264,12 @@ class TicketBaiTax(models.Model):
             ):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Tax Surcharge or Simplified Regime value should be '%s'."
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Tax Surcharge or Simplified Regime value should be "
+                        "'%(val)s'."
                     )
-                    % (
-                        record.tbai_invoice_id.name,
-                        SurchargeOrSimplifiedRegimeType.S.value,
-                    )
+                    % {
+                        "name": record.tbai_invoice_id.name,
+                        "val": SurchargeOrSimplifiedRegimeType.S.value,
+                    }
                 )

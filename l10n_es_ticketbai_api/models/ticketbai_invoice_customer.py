@@ -53,11 +53,11 @@ class TicketBaiInvoiceCustomer(models.Model):
             if 120 < len(record.name):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Customer name %s longer than expected. "
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Customer name %(customer)s longer than expected. "
                         "Should be 120 characters max.!"
                     )
-                    % (record.tbai_invoice_id.name, record.name)
+                    % {"name": record.tbai_invoice_id.name, "customer": record.name}
                 )
 
     @api.constrains("country_code")
@@ -65,8 +65,15 @@ class TicketBaiInvoiceCustomer(models.Model):
         for record in self:
             if record.country_code not in CountryCode.values():
                 raise exceptions.ValidationError(
-                    _("TicketBAI Invoice %s: Customer %s Country Code %s not valid.")
-                    % (record.tbai_invoice_id.name, record.name, record.country_code)
+                    _(
+                        "TicketBAI Invoice %(name)s: Customer %(customer)s "
+                        "Country Code %(country)s not valid."
+                    )
+                    % {
+                        "name": record.tbai_invoice_id.name,
+                        "customer": record.name,
+                        "country": record.country_code,
+                    }
                 )
 
     @api.constrains("nif")
@@ -74,8 +81,8 @@ class TicketBaiInvoiceCustomer(models.Model):
         for record in self:
             if record.nif:
                 tbai_utils.check_spanish_vat_number(
-                    _("TicketBAI Invoice %s: Customer %s NIF")
-                    % (record.tbai_invoice_id.name, record.name),
+                    _("TicketBAI Invoice %(name)s: Customer %(customer)s NIF")
+                    % {"name": record.tbai_invoice_id.name, "customer": record.name},
                     record.nif,
                 )
             elif not record.idtype and not record.identification_number:
@@ -94,24 +101,25 @@ class TicketBaiInvoiceCustomer(models.Model):
             if record.identification_number and 20 < len(record.identification_number):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Customer %s Identification Number %s longer than expected. "
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Customer %(customer)s Identification Number %(id)s "
+                        "longer than expected. "
                         "Should be 20 characters max.!"
                     )
-                    % (
-                        record.tbai_invoice_id.name,
-                        record.name,
-                        record.identification_number,
-                    )
+                    % {
+                        "name": record.tbai_invoice_id.name,
+                        "customer": record.name,
+                        "id": record.identification_number,
+                    }
                 )
             elif not record.nif and record.idtype and not record.identification_number:
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Customer %s Identification Number for "
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Customer %(customer)s Identification Number for "
                         "non spanish customers is required."
                     )
-                    % (record.tbai_invoice_id.name, record.name)
+                    % {"name": record.tbai_invoice_id.name, "customer": record.name}
                 )
 
     @api.constrains("idtype")
@@ -120,11 +128,12 @@ class TicketBaiInvoiceCustomer(models.Model):
             if not record.idtype and not record.nif:
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Customer %s Spanish Fiscal Identification Number or "
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Customer %(customer)s Spanish Fiscal Identification "
+                        "Number or "
                         "Identification Number for non spanish customers is required."
                     )
-                    % (record.tbai_invoice_id.name, record.name)
+                    % {"name": record.tbai_invoice_id.name, "customer": record.name}
                 )
 
     @api.constrains("address")
@@ -133,11 +142,16 @@ class TicketBaiInvoiceCustomer(models.Model):
             if record.address and 250 < len(record.address):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Customer %s Address %s longer than expected. "
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Customer %(customer)s Address %(address)s longer "
+                        "than expected. "
                         "Should be 250 characters max.!"
                     )
-                    % (record.tbai_invoice_id.name, record.name, record.address)
+                    % {
+                        "name": record.tbai_invoice_id.name,
+                        "customer": record.name,
+                        "address": record.address,
+                    }
                 )
 
     @api.constrains("zip")
@@ -146,9 +160,14 @@ class TicketBaiInvoiceCustomer(models.Model):
             if record.zip and 20 < len(record.zip):
                 raise exceptions.ValidationError(
                     _(
-                        "TicketBAI Invoice %s:\n"
-                        "Customer %s ZIP Code %s longer than expected. "
+                        "TicketBAI Invoice %(name)s:\n"
+                        "Customer %(customer)s ZIP Code %(zip)s longer than "
+                        "expected. "
                         "Should be 20 characters max.!"
                     )
-                    % (record.tbai_invoice_id.name, record.name, record.zip)
+                    % {
+                        "name": record.tbai_invoice_id.name,
+                        "customer": record.name,
+                        "zip": record.zip,
+                    }
                 )
