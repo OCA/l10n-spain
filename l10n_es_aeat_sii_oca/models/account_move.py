@@ -1330,7 +1330,7 @@ class AccountMove(models.Model):
                     },
                 }
         elif gen_type == 2:
-            return {"IDOtro": {"IDType": "02", "ID": identifier}}
+            return {"IDOtro": {"IDType": "02", "ID": country_code + identifier}}
         elif gen_type == 3 and identifier_type:
             return {
                 "IDOtro": {
