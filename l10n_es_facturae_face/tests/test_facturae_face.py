@@ -101,7 +101,9 @@ class EDIBackendTestCase(
                 "type": "bank",
                 "company_id": main_company.id,
                 "bank_account_id": self.bank.id,
-                "inbound_payment_method_line_ids": [(6, 0, payment_methods.ids)],
+                "inbound_payment_method_line_ids": [
+                    (0, 0, {"payment_method_id": x.id}) for x in payment_methods
+                ],
             }
         )
 
