@@ -554,7 +554,7 @@ class AccountMove(models.Model):
             else:
                 sign = -1
             amount_total = sum(
-                [tax.tbai_get_amount_total_company(inv_id) for tax in taxes]
+                tax.tbai_get_amount_total_company(inv_id) for tax in taxes
             )
             res = "%.2f" % (sign * amount_total)
         else:
