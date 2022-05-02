@@ -1,0 +1,22 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tbai_invoice_employee,tbai.invoice base.group_user,model_tbai_invoice,base.group_user,1,0,0,0
+access_tbai_invoice_settings,tbai.invoice base.group_system,model_tbai_invoice,base.group_system,1,1,1,0
+access_tbai_invoice_refund_employee,tbai.invoice.refund base.group_user,model_tbai_invoice_refund,base.group_user,1,0,0,0
+access_tbai_invoice_refund_settings,tbai.invoice.refund base.group_system,model_tbai_invoice_refund,base.group_system,1,1,1,0
+access_tbai_invoice_line_employee,tbai.invoice.line base.group_user,model_tbai_invoice_line,base.group_user,1,0,0,0
+access_tbai_invoice_line_settings,tbai.invoice.line base.group_system,model_tbai_invoice_line,base.group_system,1,1,1,0
+access_tbai_invoice_tax_employee,tbai.invoice.tax base.group_user,model_tbai_invoice_tax,base.group_user,1,0,0,0
+access_tbai_invoice_tax_settings,tbai.invoice.tax base.group_system,model_tbai_invoice_tax,base.group_system,1,1,1,0
+access_tbai_invoice_customer_employee,tbai.invoice.customer base.group_user,model_tbai_invoice_customer,base.group_user,1,0,0,0
+access_tbai_invoice_customer_settings,tbai.invoice.customer base.group_system,model_tbai_invoice_customer,base.group_system,1,1,1,0
+access_tbai_response_employee,tbai.response base.group_user,model_tbai_response,base.group_user,1,0,0,0
+access_tbai_certificate_settings,tbai.certificate base.group_system,model_tbai_certificate,base.group_system,1,1,1,1
+access_tbai_response_settings,tbai.response base.group_system,model_tbai_response,base.group_system,1,1,1,0
+access_tbai_response_message_employee,tbai.response.message base.group_user,model_tbai_response_message,base.group_user,1,0,0,0
+access_tbai_response_message_settings,tbai.response.message base.group_system,model_tbai_response_message,base.group_system,1,1,1,0
+access_tbai_tax_agency_employee,tbai.tax.agency base.group_user,model_tbai_tax_agency,base.group_user,1,0,0,0
+access_tbai_tax_agency_settings,tbai.tax.agency base.group_system,model_tbai_tax_agency,base.group_system,1,1,1,0
+access_tbai_tax_agency_version_employee,tbai.tax.agency.version base.group_user,model_tbai_tax_agency_version,base.group_user,1,0,0,0
+access_tbai_tax_agency_version_settings,tbai.tax.agency.version base.group_system,model_tbai_tax_agency_version,base.group_system,1,1,1,0
+access_tbai_installation_settings,tbai.installation base.group_system,model_tbai_installation,base.group_system,1,1,1,0
+access_tbai_installation_employee,tbai.installation base.group_user,model_tbai_installation,base.group_user,1,0,0,0

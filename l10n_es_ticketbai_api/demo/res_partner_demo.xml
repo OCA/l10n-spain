@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="partner_tech" model="res.partner">
+        <field name="name">Tech User</field>
+        <field name="company_id" ref="base.main_company" />
+        <field name="email">tech@yourcompany.example.com</field>
+        <field name="company_name">Binovo IT Human Project S.L.</field>
+        <field name="street">Astigarraga bidea 2, 2ª Izquierda, Oficina 10-11</field>
+        <field name="city">Oiartzun</field>
+        <field name="zip">20180</field>
+        <field name="country_id" ref="base.es" />
+    </record>
+    <record id="user_tech" model="res.users">
+        <field name="partner_id" ref="partner_tech" />
+        <field name="login">tech</field>
+        <field name="password">tech</field>
+        <field name="signature" type="xml">
+            <span>-- <br />+Mr Tech.</span>
+        </field>
+        <field name="company_id" ref="base.main_company" />
+        <field
+            name="groups_id"
+            eval="[(6,0,[ref('base.group_user'), ref('base.group_partner_manager'), ref('base.group_system')])]"
+        />
+    </record>
+    <record id="res_partner_oca" model="res.partner">
+        <field name="name">Odoo Community Association (OCA)</field>
+        <field name="is_company">1</field>
+        <field name="city">Lausanne</field>
+        <field name="zip">1015</field>
+        <field name="country_id" ref="base.ch" />
+        <field name="vat">CHE-123.456.788 TVA</field>
+        <field name="tbai_partner_idtype">02</field>
+        <field name="street">EPFL Innovation Park, Bat. A</field>
+        <field name="website">https://odoo-community.org/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="l10n_es_ticketbai_api/static/src/img/oca_logo.png"
+        />
+    </record>
+    <record id="res_partner_derbi" model="res.partner">
+        <field name="name">Nacional Motor sa</field>
+        <field name="is_company">1</field>
+        <field name="city">BARCELONA</field>
+        <field name="zip">08021</field>
+        <field name="country_id" ref="base.es" />
+        <field name="vat">A08049447</field>
+        <field name="tbai_partner_idtype">02</field>
+        <field name="street">C/ DIAGONAL NUM, 550 P.PL PTA.2.</field>
+        <field name="website">www.derbi.es</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="l10n_es_ticketbai_api/static/src/img/derbi.png"
+        />
+    </record>
+    <record id="res_partner_peugeot" model="res.partner">
+        <field name="name">SA PSA AUTOMOBILES SA</field>
+        <field name="is_company">1</field>
+        <field name="city">POISSY</field>
+        <field name="zip">78300</field>
+        <field name="country_id" ref="base.fr" />
+        <field name="vat">FR82542065479</field>
+        <field name="tbai_partner_idtype">02</field>
+        <field name="street">2 BD DE L EUROPE</field>
+        <field name="website">www.groupe-psa.com</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="l10n_es_ticketbai_api/static/src/img/peugeot.png"
+        />
+    </record>
+    <record id="res_partner_binovo" model="res.partner">
+        <field name="name">Binovo IT Human Project S.L.</field>
+        <field
+            eval="[(6, 0, [ref('base.res_partner_category_11'), ref('base.res_partner_category_8')])]"
+            name="category_id"
+        />
+        <field name="is_company">1</field>
+        <field name="city">Oiartzun</field>
+        <field name="zip">20180</field>
+        <field name="country_id" ref="base.es" />
+        <field name="vat">ESB20990602</field>
+        <field name="street">Astigarraga bidea 2, 2ª Izquierda, Oficina 10-11</field>
+        <field name="email">sales@binovo.es</field>
+        <field name="phone">+34 943569206</field>
+        <field name="website">https://www.binovo.es/</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="l10n_es_ticketbai_api/static/src/img/binovo_logo.jpg"
+        />
+    </record>
+    <record id="res_partner_yamaha_jp" model="res.partner">
+        <field name="name">Yamaha Motor Co., Ltd.</field>
+        <field
+            eval="[(6, 0, [ref('base.res_partner_category_14')])]"
+            name="category_id"
+        />
+        <field name="is_company">1</field>
+        <field name="city">Iwata</field>
+        <field name="zip">438-8501</field>
+        <field name="street">2500 Shingai, Iwata-shi</field>
+        <field name="country_id" ref="base.jp" />
+        <field name="tbai_partner_idtype">06</field>
+        <field name="tbai_partner_identification_number">JP3942800008</field>
+        <field name="phone">+81 03-5713-3820</field>
+        <field name="website">https://global.yamaha-motor.com</field>
+        <field
+            name="image_1920"
+            type="base64"
+            file="l10n_es_ticketbai_api/static/src/img/yamaha_logo.png"
+        />
+    </record>
+</odoo>

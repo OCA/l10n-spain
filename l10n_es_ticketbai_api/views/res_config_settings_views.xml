@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="res_config_settings_view_form_inherit_l10n_es_ticketbai_api"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.base.setup.inherit.ticketbai_api</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div
+                    class="app_settings_block"
+                    data-string="TicketBAI"
+                    string="TicketBAI"
+                    data-key="l10n_es_ticketbai_api"
+                >
+                    <field name="tbai_enabled" invisible="1" />
+                    <t
+                        groups="base.group_system"
+                        attrs="{'invisible': [('tbai_enabled','=',False)]}"
+                    >
+                        <h2>TicketBAI</h2>
+                        <div class="row mt16 o_settings_container" id="ticketbai">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label
+                                        string="Device Serial Number"
+                                        for="tbai_device_serial_number"
+                                    />
+                                    <span
+                                        class="fa fa-lg fa-desktop"
+                                        title="Values set here are company-specific"
+                                        groups="base.group_multi_company"
+                                    />
+                                    <div class="text-muted">
+                                        Customer Invoicing Device Serial Number. As of TicketBAI v1.1, is not required.
+                                    </div>
+                                    <field name="tbai_device_serial_number" />
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:T="urn:ticketbai:emision" targetNamespace="urn:ticketbai:emision">
+
+	<import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
+
+	<element  name="TicketBai">
+		<complexType>
+			<sequence>
+				<element name="Cabecera" type="T:Cabecera"/>
+				<element name="Sujetos" type="T:Sujetos"/>
+				<element name="Factura" type="T:Factura"/>
+				<element name="HuellaTBAI" type="T:HuellaTBAI"/>
+				<element ref="ds:Signature"/>
+			</sequence>
+		</complexType>
+	</element>
+	<complexType name="Cabecera">
+		<sequence>
+			<element name="IDVersionTBAI" type="T:IDVersionTicketBaiType"/>
+		</sequence>
+	</complexType>
+	<complexType name="Sujetos">
+		<sequence>
+			<element name="Emisor" type="T:Emisor"/>
+			<element name="Destinatarios" type="T:Destinatarios" minOccurs="0"/>
+			<element name="VariosDestinatarios" type="T:SiNoType" minOccurs="0"/>
+			<element name="EmitidaPorTercerosODestinatario" type="T:EmitidaPorTercerosType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="Emisor">
+		<sequence>
+			<element name="NIF" type="T:NIFType"/>
+			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>
+		</sequence>
+	</complexType>
+	<complexType name="Destinatarios">
+		<sequence>
+			<element name="IDDestinatario" type="T:IDDestinatario" maxOccurs="100"/>
+		</sequence>
+	</complexType>
+	<complexType name="IDDestinatario">
+		<sequence>
+			<choice>
+				<element name="NIF" type="T:NIFType"/>
+				<element name="IDOtro" type="T:IDOtro"/>
+			</choice>
+			<element name="ApellidosNombreRazonSocial" type="T:TextMax120Type"/>
+			<element name="CodigoPostal" type="T:TextMax20Type" minOccurs="0"/>
+			<element name="Direccion" type="T:TextMax250Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="IDOtro">
+		<sequence>
+			<element name="CodigoPais" type="T:CountryType2" minOccurs="0"/>
+			<element name="IDType" type="T:IDTypeType"/>
+			<element name="ID" type="T:TextMax20Type"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="Factura">
+		<sequence>
+			<element name="CabeceraFactura" type="T:CabeceraFacturaType"/>
+			<element name="DatosFactura" type="T:DatosFacturaType"/>
+			<element name="TipoDesglose" type="T:TipoDesgloseType"/>
+		</sequence>
+	</complexType>
+	<complexType name="CabeceraFacturaType">
+		<sequence>
+			<element name="SerieFactura" type="T:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="T:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="T:FechaType"/>
+			<element name="HoraExpedicionFactura" type="T:HoraType"/>
+			<element name="FacturaSimplificada" type="T:SiNoType" minOccurs="0"/>
+			<element name="FacturaEmitidaSustitucionSimplificada" type="T:SiNoType" minOccurs="0"/>
+			<element name="FacturaRectificativa" type="T:FacturaRectificativaType" minOccurs="0"/>
+			<element name="FacturasRectificadasSustituidas" type="T:FacturasRectificadasSustituidasType" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="FacturaRectificativaType">
+		<sequence>
+			<element name="Codigo" type="T:ClaveTipoFacturaType"/>
+			<element name="Tipo" type="T:ClaveTipoRectificativaType"/>
+			<element name="ImporteRectificacionSustitutiva" type="T:ImporteRectificacionSustitutivaType" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="ImporteRectificacionSustitutivaType">
+		<sequence>
+			<element name="BaseRectificada" type="T:ImporteSgn12.2Type"/>
+			<element name="CuotaRectificada" type="T:ImporteSgn12.2Type"/>
+			<element name="CuotaRecargoRectificada" type="T:ImporteSgn12.2Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="DatosFacturaType">
+		<sequence>
+			<element name="FechaOperacion" type="T:FechaType" minOccurs="0"/>
+			<element name="DescripcionFactura" type="T:TextMax250Type"/>
+			<element name="DetallesFactura" type="T:DetallesFacturaType" minOccurs="0"/>
+			<element name="ImporteTotalFactura" type="T:ImporteSgn12.2Type"/>
+			<element name="RetencionSoportada" type="T:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="BaseImponibleACoste" type="T:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="Claves" type="T:ClavesType"/>
+		</sequence>
+	</complexType>
+	<complexType name="DetallesFacturaType">
+			<sequence>
+				<element name="IDDetalleFactura" type="T:IDDetalleFacturaType" maxOccurs="1000"/>
+			</sequence>
+	</complexType>
+	<complexType name="IDDetalleFacturaType">
+		<sequence>
+			<element  name="DescripcionDetalle" type="T:TextMax250Type"/>
+			<element  name="Cantidad" type="T:ImporteSgn12.2Type"/>
+			<element  name="ImporteUnitario" type="T:ImporteSgn12.8Type"/>
+			<element  name="Descuento" type="T:ImporteSgn12.2Type" minOccurs="0"/>
+			<element  name="ImporteTotal" type="T:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+	<complexType name="ClavesType">
+		<sequence>
+			<element name="IDClave" type="T:IDClaveType" maxOccurs="3"/>
+		</sequence>
+	</complexType>
+	<complexType name="IDClaveType">
+		<sequence>
+			<element  name="ClaveRegimenIvaOpTrascendencia" type="T:IdOperacionesTrascendenciaTributariaType"/>
+		</sequence>
+	</complexType>
+	<complexType name="FacturasRectificadasSustituidasType">
+		<sequence>
+			<element name="IDFacturaRectificadaSustituida" type="T:IDFacturaRectificadaSustituidaType" maxOccurs="100" />
+		</sequence>
+	</complexType>
+	<complexType name="IDFacturaRectificadaSustituidaType">
+		<sequence>
+			<element name="SerieFactura" type="T:TextMax20Type" minOccurs="0"/>
+			<element name="NumFactura" type="T:TextMax20Type"/>
+			<element name="FechaExpedicionFactura" type="T:FechaType"/>
+		</sequence>
+	</complexType>
+	<complexType name="TipoDesgloseType">
+	   <sequence>
+			<choice>
+				<element name="DesgloseFactura" type="T:DesgloseFacturaType"/>
+				<element name="DesgloseTipoOperacion" type="T:DesgloseTipoOperacionType"/>
+			</choice>
+       </sequence>
+	</complexType>
+    <complexType name="DesgloseTipoOperacionType">
+         <sequence>
+        <element name="PrestacionServicios" type="T:PrestacionServicios" minOccurs="0"/>
+        <element name="Entrega" type="T:Entrega" minOccurs="0"/>
+       </sequence>
+    </complexType>
+     <complexType name="PrestacionServicios">
+        <sequence>
+            <element name="Sujeta" type="T:SujetaType" minOccurs="0" />
+			<element name="NoSujeta" type="T:NoSujetaType" minOccurs="0" />
+		</sequence>
+    </complexType>
+     <complexType name="Entrega">
+        <sequence>
+            <element name="Sujeta" type="T:SujetaType" minOccurs="0" />
+			<element name="NoSujeta" type="T:NoSujetaType" minOccurs="0" />
+		</sequence>
+    </complexType>
+    <complexType name="DesgloseFacturaType">
+        <sequence>
+            <element name="Sujeta" type="T:SujetaType" minOccurs="0" />
+			<element name="NoSujeta" type="T:NoSujetaType" minOccurs="0" />
+		</sequence>
+    </complexType>
+	<complexType name="SujetaType">
+		<sequence>
+			<element name="Exenta" type="T:ExentaType" minOccurs="0" />
+			<element name="NoExenta" type="T:NoExentaType" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="NoSujetaType">
+		<sequence>
+			<element name="DetalleNoSujeta" type="T:DetalleNoSujeta"
+				minOccurs="1" maxOccurs="2" />
+		</sequence>
+	</complexType>
+	<complexType name="DetalleNoSujeta">
+		<sequence>
+			<element name="Causa" type="T:CausaNoSujetaType"/>
+			<element name="Importe" type="T:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+	<complexType name="ExentaType">
+		<sequence>
+			<element name="DetalleExenta" type="T:DetalleExentaType" minOccurs="1" maxOccurs="7" />
+		</sequence>
+	</complexType>
+	<complexType name="DetalleExentaType">
+		<sequence>
+			<element name="CausaExencion" type="T:CausaExencionType" />
+			<element name="BaseImponible" type="T:ImporteSgn12.2Type"/>
+		</sequence>
+	</complexType>
+	<complexType name="NoExentaType">
+		<sequence>
+			<element name="DetalleNoExenta" type="T:DetalleNoExentaType" minOccurs="1" maxOccurs="2" />
+		</sequence>
+	</complexType>
+	<complexType name="DetalleNoExentaType">
+		<sequence>
+			<element name="TipoNoExenta" type="T:TipoOperacionSujetaNoExentaType"/>
+			<element name="DesgloseIVA" type="T:DesgloseIVAType"/>
+		</sequence>
+	</complexType>
+	<complexType name="DesgloseIVAType">
+		<sequence>
+			<element name="DetalleIVA" type="T:DetalleIVAType" maxOccurs="6" />
+		</sequence>
+	</complexType>
+	<complexType name="DetalleIVAType">
+		<sequence>
+			<element name="BaseImponible" type="T:ImporteSgn12.2Type"/>
+			<element name="TipoImpositivo" type="T:Tipo3.2Type" minOccurs="0"/>
+			<element name="CuotaImpuesto" type="T:ImporteSgn12.2Type" minOccurs="0" />
+			<element name="TipoRecargoEquivalencia" type="T:Tipo3.2Type" minOccurs="0"/>
+			<element name="CuotaRecargoEquivalencia" type="T:ImporteSgn12.2Type" minOccurs="0"/>
+			<element name="OperacionEnRecargoDeEquivalenciaORegimenSimplificado" type="T:SiNoType" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="EncadenamientoFacturaAnteriorType">
+		<sequence>
+			<element name="SerieFacturaAnterior" type="T:TextMax20Type" minOccurs="0"/>
+			<element name="NumFacturaAnterior" type="T:TextMax20Type"/>
+			<element name="FechaExpedicionFacturaAnterior" type="T:FechaType"/>
+			<element name="SignatureValueFirmaFacturaAnterior" type="T:TextMax100Type"/>
+		</sequence>
+	</complexType>
+    <complexType name="HuellaTBAI">
+		<sequence>
+			<element name="EncadenamientoFacturaAnterior" type="T:EncadenamientoFacturaAnteriorType" minOccurs="0"/>
+			<element name="Software" type="T:SoftwareFacturacionType"/>
+			<element name="NumSerieDispositivo" type="T:TextMax30Type" minOccurs="0"/>
+		</sequence>
+	</complexType>
+     <complexType name="SoftwareFacturacionType">
+		<sequence>
+			<element name="LicenciaTBAI" type="T:TextMax20Type"/>
+            <element name="EntidadDesarrolladora" type="T:EntidadDesarrolladoraType"/>
+			<element name="Nombre" type="T:TextMax120Type"/>
+			<element name="Version" type="T:TextMax20Type"/>
+		</sequence>
+	</complexType>
+     <complexType name="EntidadDesarrolladoraType">
+		<sequence>
+			<choice>
+				<element name="NIF" type="T:NIFType"/>
+				<element name="IDOtro" type="T:IDOtro"/>
+			</choice>
+		</sequence>
+	</complexType>
+	<simpleType name="NIFType">
+		<annotation>
+			<documentation >NIF: Secuencia de 9 dígitos o letras mayúsculas</documentation>
+		</annotation>
+		<restriction base="string">
+			<length value="9" />
+			<pattern
+				value="(([a-z|A-Z]{1}\d{7}[a-z|A-Z]{1})|(\d{8}[a-z|A-Z]{1})|([a-z|A-Z]{1}\d{8}))" />
+		</restriction>
+		<!-- ([A-Z]|\d){9} -->
+	</simpleType>
+	<simpleType name="FechaType">
+		<restriction base="string">
+			<length value="10" />
+			<pattern value="\d{2,2}-\d{2,2}-\d{4,4}"/>
+		</restriction>
+	</simpleType>
+    <simpleType name="HoraType">
+        <restriction base="string">
+            <pattern value="\d{2,2}:\d{2,2}:\d{2,2}"/>
+        </restriction>
+    </simpleType>
+	<!-- Tipo de 6 dígitos (3+2) "." como separador decimal -->
+	<simpleType name="Tipo3.2Type">
+		<restriction base="string">
+			<pattern value="\d{1,3}(\.\d{0,2})?"/>
+		</restriction>
+	</simpleType>
+	<!-- Importe de 15 dígitos (12+2) "." como separador decimal -->
+	<simpleType name="ImporteSgn12.2Type">
+		<restriction base="string">
+			<pattern value="(\+|-)?\d{1,12}(\.\d{0,2})?"/>
+		</restriction>
+	</simpleType>
+	<!-- Importe de 20 dígitos (12+8) "." como separador decimal -->
+	<simpleType name="ImporteSgn12.8Type">
+		<restriction base="string">
+			<pattern value="(\+|-)?\d{1,12}(\.\d{0,8})?"/>
+		</restriction>
+	</simpleType>
+    <!-- Cadena de 5 caracteres -->
+	<simpleType name="TextMax5Type">
+		<restriction base="string">
+			<maxLength value="5"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 10 caracteres -->
+	<simpleType name="TextMax10Type">
+		<restriction base="string">
+			<maxLength value="10"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 20 caracteres -->
+	<simpleType name="TextMax20Type">
+		<restriction base="string">
+			<maxLength value="20"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 30 caracteres -->
+	<simpleType name="TextMax30Type">
+		<restriction base="string">
+			<maxLength value="30"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 100 caracteres -->
+	<simpleType name="TextMax100Type">
+		<restriction base="string">
+			<maxLength value="100"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 120 caracteres -->
+	<simpleType name="TextMax120Type">
+		<restriction base="string">
+			<maxLength value="120"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 250 caracteres -->
+	<simpleType name="TextMax250Type">
+		<restriction base="string">
+			<maxLength value="250"/>
+		</restriction>
+	</simpleType>
+	<!-- Cadena de 500 caracteres -->
+	<simpleType name="TextMax500Type">
+		<restriction base="string">
+			<maxLength value="500"/>
+		</restriction>
+	</simpleType>
+	<!--  IDTicketBaiBertsioa - IDVersionTicketBai -->
+	<simpleType name="IDVersionTicketBaiType">
+		<restriction base="string">
+			<enumeration value="1.2"/>
+		</restriction>
+	</simpleType>
+	<!--  Egoitza herrialdeko identifikazio motak - Tipos de identificación en el país de residencia -->
+	<simpleType name="IDTypeType">
+		<restriction base="string">
+			<enumeration value="02">
+				<annotation>
+					<documentation >IFZ BEZ - NIF IVA</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="03">
+				<annotation>
+					<documentation >Pasaportea - Pasaporte</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="04">
+				<annotation>
+					<documentation >Egoitza dagoen herrialdeak edo lurraldeak emandako nortasun agiri ofiziala - Documento oficial de identificación expedido por el país o territorio de residencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="05">
+				<annotation>
+					<documentation >Egoitza ziurtagiria - Certificado de residencia</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="06">
+				<annotation>
+					<documentation >Beste frogagiri bat - Otro documento probatorio</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<!-- Zuzentzeko fakturaren kodea - Código de factura rectificativa -->
+	<simpleType name="ClaveTipoFacturaType">
+		<restriction base="string">
+			<enumeration value="R1">
+				<annotation>
+					<documentation >Faktura zuzentzailea: zuzenbidean oinarritutako akatsa eta BEZaren Foru Arauaren 80.artikuluko Bat, Bi eta Sei - Factura rectificativa: error fundado en derecho y Art. 80 Uno, Dos y Seis de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R2">
+				<annotation>
+					<documentation >Faktura zuzentzailea: BEZari buruzko Foru Arauko 80. artikuluko Hiru - Factura rectificativa: artículo 80 Tres de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R3">
+				<annotation>
+					<documentation >Faktura zuzentzailea: BEZari buruzko Foru Arauko 80. artikuluko Lau - Factura rectificativa: artículo 80 Cuatro de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R4">
+				<annotation>
+					<documentation >Faktura zuzentzailea: Gainerakoak - Factura rectificativa: Resto </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="R5">
+				<annotation>
+					<documentation >Faktura zuzentzailea faktura erraztuetan - Factura rectificativa en facturas simplificadas </documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<!-- Faktura zuzentzaile mota - Tipo de factura rectificativa -->
+	<simpleType name="ClaveTipoRectificativaType">
+		<restriction base="string">
+			<enumeration value="S">
+				<annotation>
+					<documentation >Ordezkatzeagatiko faktura zuzentzailea - Factura rectificativa por sustitución</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="I">
+				<annotation>
+					<documentation >Ezberdintasunengatiko faktura zuzentzailea - Factura rectificativa por diferencias</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<!-- BEZaren araudi bereziaren gakoa eta zerga garrantziadun eragiketak - Clave de régimen especial de IVA y operaciones con trascendencia tributaria -->
+	<simpleType name="IdOperacionesTrascendenciaTributariaType">
+		<restriction base="string">
+			<enumeration value="01" >
+                <annotation>
+                    <documentation>Erregimen orokorreko eragiketa eta hurrengo balioetan jaso gabe dagoen beste edozein kasu - Operación de régimen general y cualquier otro supuesto que no esté recogido en los siguientes valores</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="02" >
+                <annotation>
+                    <documentation>Esportazioa - Exportación</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="03" >
+                <annotation>
+                    <documentation>Erabilitako ondasunen, arte objektuen, zaharkinen eta bilduma objektuen araudi berezia aplikatzen zaien eragiketak - Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="04" >
+                <annotation>
+                    <documentation>Inbertsio urrearen araubide berezia - Régimen especial del oro de inversión</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="05" >
+                <annotation>
+                    <documentation >Bidaia-agentzien araubide berezia - Régimen especial de las agencias de viajes</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="06" >
+                <annotation>
+                    <documentation>BEZeko erakundeen multzoaren araudi berezia (maila aurreratua) - Régimen especial grupo de entidades en IVA (Nivel Avanzado)</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="07" >
+                <annotation>
+                    <documentation>Kutxa-irizpidearen araubide berezia - Régimen especial del criterio de caja</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="08" >
+                <annotation>
+                    <documentation>Ekoizpen, Zerbitzu eta Inportazioaren gaineko Zergari / Kanarietako Zeharkako Zerga Orokorrari lotutako eragiketak - Operaciones sujetas al IPSI/IGIC (Impuesto sobre la Producción, los Servicios y la Importación / Impuesto General Indirecto Canario)</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="09" >
+                <annotation>
+                    <documentation>Besteren izenean eta kontura ari diren bidai agentziek egindako zerbitzuen fakturazioa(Fakturazio Araudiko 3. xedapen gehigarria) - Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (disposición adicional 3ª del Reglamento de Facturación)</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="10" >
+                <annotation>
+                    <documentation>Hirugarrenen kontura kobratzea ordainsari profesionalak edo jabetza industrialetik eratorritako eskubideak, egilearenak edo bazkideen, bazkideen edo elkargokideen kontura kobratzeko eginkizun horiek betetzen dituzten sozietate, elkarte, elkargo profesional edo bestelako erakundeek egindakoak - Cobros por cuenta de terceros o terceras de honorarios profesionales o de derechos derivados de la propiedad industrial, de autor u otros por cuenta de sus socios, socias, asociados, asociadas, colegiados o colegiadas efectuados por sociedades, asociaciones, colegios profesionales u otras entidades que realicen estas funciones de cobro</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="11" >
+                <annotation>
+                    <documentation>Negozio lokala errentatzeko eragiketak, atxikipenari lotuak - Operaciones de arrendamiento de local de negocio sujetos a retención</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="12" >
+                <annotation>
+                    <documentation>Negozio lokala errentatzeko eragiketak, atxikipenari lotu gabeak - Operaciones de arrendamiento de local de negocio no sujetos a retención</documentation>
+                </annotation>
+            </enumeration>
+		    <enumeration value="13" >
+                <annotation>
+                    <documentation>Negozio lokala errentatzeko eragiketak, atxikipenari lotuak eta lotu gabeak - Operaciones de arrendamiento de local de negocio sujetas y no sujetas a retención</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="14" >
+                <annotation>
+                    <documentation>Hartzailea administrazio publiko bat denean ordaintzeke dauden BEZdun fakturak, obra ziurtagirietakoak - Factura con IVA pendiente de devengo en certificaciones de obra cuyo destinatario sea una Administración Pública</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="15" >
+                <annotation>
+                    <documentation>Segidako traktuko eragiketetan ordaintzeke dagoen BEZdun faktura - Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="51" >
+                <annotation>
+                    <documentation>Baliokidetasun errekarguko eragiketak - Operaciones en recargo de equivalencia</documentation>
+                </annotation>
+            </enumeration>
+			 <enumeration value="52" >
+                <annotation>
+                    <documentation>Erregimen erraztuko eragiketak - Operaciones en régimen simplificado</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="53" >
+                <annotation>
+                    <documentation>BEZaren ondorioetarako enpresari edo profesionaltzat jotzen ez diren pertsona edo erakundeek egindako eragiketak - Operaciones realizadas por personas o entidades que no tengan la consideración de empresarios, empresarias o profesionales a efectos del IVA</documentation>
+                </annotation>
+            </enumeration>
+		</restriction>
+	</simpleType>
+	<!--  Lotutako eta salbuetsitako eragiketen salbuesteko kausa - Causa de exención de operaciones sujetas y exentas  -->
+	<simpleType name="CausaExencionType">
+		<restriction base="string">
+			<enumeration value="E1">
+				<annotation>
+					<documentation >BEZaren Foru Arauaren 20. artikuluak salbuetsia - Exenta por el artículo 20 de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E2">
+				<annotation>
+					<documentation >BEZaren Foru Arauaren 21. artikuluak salbuetsia - Exenta por el artículo 21 de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E3">
+				<annotation>
+					<documentation >BEZaren Foru Arauaren 22. artikuluak salbuetsia - Exenta por el artículo 22 de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E4">
+				<annotation>
+					<documentation >BEZaren Foru Arauaren 23. eta 24. artikuluek salbuetsia - Exenta por el artículo 23 y 24 de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E5">
+				<annotation>
+					<documentation >BEZaren Foru Arauaren 25. artikuluak salbuetsia - Exenta por el artículo 25 de la Norma Foral del IVA </documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="E6">
+				<annotation>
+					<documentation >Beste arrazoi bategatik salbuetsia - Exenta por otra causa</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<!-- Salbuetsi gabeko mota - Tipo no exenta -->
+	<simpleType name="TipoOperacionSujetaNoExentaType">
+		<restriction base="string">
+			<enumeration value="S1">
+				<annotation>
+					<documentation >Subjektu pasiboaren inbertsiorik gabe - Sin inversión del sujeto pasivo</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="S2">
+				<annotation>
+					<documentation >Subjektu pasiboaren inbertsioarekin - Con inversión del sujeto pasivo</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<!-- Hirugarren batek edo hartzaileak emandako faktura - Factura emitida por tercero o tercera o por destinatario o destinataria  -->
+	<simpleType name="EmitidaPorTercerosType">
+		<restriction base="string">
+			<enumeration value="N">
+                <annotation>
+                  <documentation>Hartzaileak berak emandako faktura - Factura emitida por el propio emisor o emisora</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="T">
+                <annotation>
+                  <documentation>Hirugarren batek egindako faktura - Factura emitida por tercero o tercera</documentation>
+                </annotation>
+            </enumeration>
+            <enumeration value="D">
+                <annotation>
+                  <documentation>Eragiketaren hartzaileak emandako faktura - Factura emitida por el destinatario o la destinataria de la operación</documentation>
+                </annotation>
+            </enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SiNoType">
+		<restriction base="string">
+			<enumeration value="S"/>
+			<enumeration value="N"/>
+		</restriction>
+	</simpleType>
+	<!--  Ez lotzearen arrazoia - Causa de no sujeción -->
+    <simpleType name="CausaNoSujetaType">
+		<restriction base="string">
+			<enumeration value="OT">
+                <annotation>
+                  <documentation>BEZaren Foru Arauaren 7. artikuluak lotu gabea Lotu gabeko beste kasu batzuk - No sujeto por el artículo 7 de la Norma Foral de IVA Otros supuestos de no sujeción</documentation>
+                </annotation>
+            </enumeration>
+			<enumeration value="RL">
+                <annotation>
+                  <documentation>Lokalizazio arauengatik lotu gabe - No sujeto por reglas de localización</documentation>
+                </annotation>
+            </enumeration>
+		</restriction>
+	</simpleType>
+	<!-- Herrialdearen kodea - Código de país -->
+	<simpleType name="CountryType2">
+		<restriction base="string">
+			<enumeration value="AF"/>
+			<enumeration value="AL"/>
+			<enumeration value="DE"/>
+			<enumeration value="AD"/>
+			<enumeration value="AO"/>
+			<enumeration value="AI"/>
+			<enumeration value="AQ"/>
+			<enumeration value="AG"/>
+			<enumeration value="SA"/>
+			<enumeration value="DZ"/>
+			<enumeration value="AR"/>
+			<enumeration value="AM"/>
+			<enumeration value="AW"/>
+			<enumeration value="AU"/>
+			<enumeration value="AT"/>
+			<enumeration value="AZ"/>
+			<enumeration value="BS"/>
+			<enumeration value="BH"/>
+			<enumeration value="BD"/>
+			<enumeration value="BB"/>
+			<enumeration value="BE"/>
+			<enumeration value="BZ"/>
+			<enumeration value="BJ"/>
+			<enumeration value="BM"/>
+			<enumeration value="BY"/>
+			<enumeration value="BO"/>
+			<enumeration value="BA"/>
+			<enumeration value="BW"/>
+			<enumeration value="BV"/>
+			<enumeration value="BR"/>
+			<enumeration value="BN"/>
+			<enumeration value="BG"/>
+			<enumeration value="BF"/>
+			<enumeration value="BI"/>
+			<enumeration value="BT"/>
+			<enumeration value="CV"/>
+			<enumeration value="KY"/>
+			<enumeration value="KH"/>
+			<enumeration value="CM"/>
+			<enumeration value="CA"/>
+			<enumeration value="CF"/>
+			<enumeration value="CC"/>
+			<enumeration value="CO"/>
+			<enumeration value="KM"/>
+			<enumeration value="CG"/>
+			<enumeration value="CD"/>
+			<enumeration value="CK"/>
+			<enumeration value="KP"/>
+			<enumeration value="KR"/>
+			<enumeration value="CI"/>
+			<enumeration value="CR"/>
+			<enumeration value="HR"/>
+			<enumeration value="CU"/>
+			<enumeration value="TD"/>
+			<enumeration value="CZ"/>
+			<enumeration value="CL"/>
+			<enumeration value="CN"/>
+			<enumeration value="CY"/>
+			<enumeration value="CW"/>
+			<enumeration value="DK"/>
+			<enumeration value="DM"/>
+			<enumeration value="DO"/>
+			<enumeration value="EC"/>
+			<enumeration value="EG"/>
+			<enumeration value="AE"/>
+			<enumeration value="ER"/>
+			<enumeration value="SK"/>
+			<enumeration value="SI"/>
+			<enumeration value="ES"/>
+			<enumeration value="US"/>
+			<enumeration value="EE"/>
+			<enumeration value="ET"/>
+			<enumeration value="FO"/>
+			<enumeration value="PH"/>
+			<enumeration value="FI"/>
+			<enumeration value="FJ"/>
+			<enumeration value="FR"/>
+			<enumeration value="GA"/>
+			<enumeration value="GM"/>
+			<enumeration value="GE"/>
+			<enumeration value="GS"/>
+			<enumeration value="GH"/>
+			<enumeration value="GI"/>
+			<enumeration value="GD"/>
+			<enumeration value="GR"/>
+			<enumeration value="GL"/>
+			<enumeration value="GU"/>
+			<enumeration value="GT"/>
+			<enumeration value="GG"/>
+			<enumeration value="GN"/>
+			<enumeration value="GQ"/>
+			<enumeration value="GW"/>
+			<enumeration value="GY"/>
+			<enumeration value="HT"/>
+			<enumeration value="HM"/>
+			<enumeration value="HN"/>
+			<enumeration value="HK"/>
+			<enumeration value="HU"/>
+			<enumeration value="IN"/>
+			<enumeration value="ID"/>
+			<enumeration value="IR"/>
+			<enumeration value="IQ"/>
+			<enumeration value="IE"/>
+			<enumeration value="IM"/>
+			<enumeration value="IS"/>
+			<enumeration value="IL"/>
+			<enumeration value="IT"/>
+			<enumeration value="JM"/>
+			<enumeration value="JP"/>
+			<enumeration value="JE"/>
+			<enumeration value="JO"/>
+			<enumeration value="KZ"/>
+			<enumeration value="KE"/>
+			<enumeration value="KG"/>
+			<enumeration value="KI"/>
+			<enumeration value="KW"/>
+			<enumeration value="LA"/>
+			<enumeration value="LS"/>
+			<enumeration value="LV"/>
+			<enumeration value="LB"/>
+			<enumeration value="LR"/>
+			<enumeration value="LY"/>
+			<enumeration value="LI"/>
+			<enumeration value="LT"/>
+			<enumeration value="LU"/>
+			<enumeration value="XG"/>
+			<enumeration value="MO"/>
+			<enumeration value="MK"/>
+			<enumeration value="MG"/>
+			<enumeration value="MY"/>
+			<enumeration value="MW"/>
+			<enumeration value="MV"/>
+			<enumeration value="ML"/>
+			<enumeration value="MT"/>
+			<enumeration value="FK"/>
+			<enumeration value="MP"/>
+			<enumeration value="MA"/>
+			<enumeration value="MH"/>
+			<enumeration value="MU"/>
+			<enumeration value="MR"/>
+			<enumeration value="YT"/>
+			<enumeration value="UM"/>
+			<enumeration value="MX"/>
+			<enumeration value="FM"/>
+			<enumeration value="MD"/>
+			<enumeration value="MC"/>
+			<enumeration value="MN"/>
+			<enumeration value="ME"/>
+			<enumeration value="MS"/>
+			<enumeration value="MZ"/>
+			<enumeration value="MM"/>
+			<enumeration value="NA"/>
+			<enumeration value="NR"/>
+			<enumeration value="CX"/>
+			<enumeration value="NP"/>
+			<enumeration value="NI"/>
+			<enumeration value="NE"/>
+			<enumeration value="NG"/>
+			<enumeration value="NU"/>
+			<enumeration value="NF"/>
+			<enumeration value="NO"/>
+			<enumeration value="NC"/>
+			<enumeration value="NZ"/>
+			<enumeration value="IO"/>
+			<enumeration value="OM"/>
+			<enumeration value="NL"/>
+			<enumeration value="BQ"/>
+			<enumeration value="PK"/>
+			<enumeration value="PW"/>
+			<enumeration value="PA"/>
+			<enumeration value="PG"/>
+			<enumeration value="PY"/>
+			<enumeration value="PE"/>
+			<enumeration value="PN"/>
+			<enumeration value="PF"/>
+			<enumeration value="PL"/>
+			<enumeration value="PT"/>
+			<enumeration value="PR"/>
+			<enumeration value="QA"/>
+			<enumeration value="GB"/>
+			<enumeration value="RW"/>
+			<enumeration value="RO"/>
+			<enumeration value="RU"/>
+			<enumeration value="SB"/>
+			<enumeration value="SV"/>
+			<enumeration value="WS"/>
+			<enumeration value="AS"/>
+			<enumeration value="KN"/>
+			<enumeration value="SM"/>
+			<enumeration value="SX"/>
+			<enumeration value="PM"/>
+			<enumeration value="VC"/>
+			<enumeration value="SH"/>
+			<enumeration value="LC"/>
+			<enumeration value="ST"/>
+			<enumeration value="SN"/>
+			<enumeration value="RS"/>
+			<enumeration value="SC"/>
+			<enumeration value="SL"/>
+			<enumeration value="SG"/>
+			<enumeration value="SY"/>
+			<enumeration value="SO"/>
+			<enumeration value="LK"/>
+			<enumeration value="SZ"/>
+			<enumeration value="ZA"/>
+			<enumeration value="SD"/>
+			<enumeration value="SS"/>
+			<enumeration value="SE"/>
+			<enumeration value="CH"/>
+			<enumeration value="SR"/>
+			<enumeration value="TH"/>
+			<enumeration value="TW"/>
+			<enumeration value="TZ"/>
+			<enumeration value="TJ"/>
+			<enumeration value="PS"/>
+			<enumeration value="TF"/>
+			<enumeration value="TL"/>
+			<enumeration value="TG"/>
+			<enumeration value="TK"/>
+			<enumeration value="TO"/>
+			<enumeration value="TT"/>
+			<enumeration value="TN"/>
+			<enumeration value="TC"/>
+			<enumeration value="TM"/>
+			<enumeration value="TR"/>
+			<enumeration value="TV"/>
+			<enumeration value="UA"/>
+			<enumeration value="UG"/>
+			<enumeration value="UY"/>
+			<enumeration value="UZ"/>
+			<enumeration value="VU"/>
+			<enumeration value="VA"/>
+			<enumeration value="VE"/>
+			<enumeration value="VN"/>
+			<enumeration value="VG"/>
+			<enumeration value="VI"/>
+			<enumeration value="WF"/>
+			<enumeration value="YE"/>
+			<enumeration value="DJ"/>
+			<enumeration value="ZM"/>
+			<enumeration value="ZW"/>
+			<enumeration value="QU"/>
+			<enumeration value="XB"/>
+			<enumeration value="XU"/>
+			<enumeration value="XN"/>
+		</restriction>
+	</simpleType>
+</schema>

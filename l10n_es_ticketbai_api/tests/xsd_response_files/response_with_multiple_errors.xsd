@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:TicketBaiResponse xmlns:ns2="urn:ticketbai:emision">
+    <Salida>
+        <IdentificadorTBAI>TBAI-99999990S-091120-Wu+nw9bvO4Yqt-142</IdentificadorTBAI>
+        <FechaRecepcion>09-11-2020 11:48:02</FechaRecepcion>
+        <Estado>00</Estado>
+        <Descripcion>Recibido</Descripcion>
+        <Azalpena>Jasota</Azalpena>
+        <ResultadosValidacion>
+            <Codigo>008</Codigo>
+            <Descripcion>Aviso: Error en verificación de firma</Descripcion>
+            <Azalpena>Abisua: Errorea sinadura egiaztatzean</Azalpena>
+        </ResultadosValidacion>
+        <ResultadosValidacion>
+            <Codigo>010</Codigo>
+            <Descripcion>Aviso: Posible error de encadenamiento</Descripcion>
+            <Azalpena>Abisua: Posiblea da Kateamendu errorea gertatu izatea</Azalpena>
+        </ResultadosValidacion>
+        <ResultadosValidacion>
+            <Codigo>012</Codigo>
+            <Descripcion>Aviso: Error en verificación alta-inscripción software TicketBAI: Los datos de la empresa no coinciden.</Descripcion>
+            <Azalpena>Abisua: Errorea gertatu da TicketBAI softwaren alta-inskripzioan: Enpresako datuak ez datoz bat</Azalpena>
+        </ResultadosValidacion>
+        <CSV>TBAI56b27c33-9bcc-423f-ad1e-c869bc1e050a</CSV>
+    </Salida>
+</ns2:TicketBaiResponse>

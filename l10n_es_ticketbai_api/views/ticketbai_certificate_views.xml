@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_certificate_form_view" model="ir.ui.view">
+        <field name="name">tbai.certificate.view.form</field>
+        <field name="model">tbai.certificate</field>
+        <field name="arch" type="xml">
+            <form string="TicketBAI Certificates">
+                <group>
+                    <field name="name" />
+                    <field
+                        name="company_id"
+                        options="{'no_open':True,'no_create':True}"
+                    />
+                </group>
+                <group>
+                    <field name="datas" />
+                    <field name="password" password="True" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="tbai_certificate_tree_view" model="ir.ui.view">
+        <field name="name">tbai.certificate.view.tree</field>
+        <field name="model">tbai.certificate</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="tbai_certificate_search_view" model="ir.ui.view">
+        <field name="name">tbai.certificate.view.search</field>
+        <field name="model">tbai.certificate</field>
+        <field name="arch" type="xml">
+            <search string="TicketBAI Certificates">
+                <field name="name" />
+                <field name="company_id" />
+            </search>
+        </field>
+    </record>
+    <record id="action_tbai_certificates" model="ir.actions.act_window">
+        <field name="name">TicketBAI Certificates</field>
+        <field name="res_model">tbai.certificate</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_tbai_certificate"
+        parent="l10n_es_ticketbai_api.menu_l10n_es_tbai_config"
+        action="action_tbai_certificates"
+        name="TicketBAI Certificates"
+    />
+</odoo>
