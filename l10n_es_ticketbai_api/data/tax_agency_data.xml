@@ -11,8 +11,8 @@
         </record>
         <record id="tbai_tax_agency_gipuzkoa" model="tbai.tax.agency">
             <field name="name">Hacienda Foral de Gipuzkoa</field>
-            <field name="sign_file_url">https://www.gipuzkoa.eus/documents/2456431/12093238/TicketBAI_Pol%C3%ADtica_firma_v_1_0.pdf/3c6e5431-bb1d-34ed-5b26-206aaf085452</field>
-            <field name="sign_file_hash">6NrKAm60o7u62FUQwzZew24ra2ve9PRQYwC21AM6In0=</field>
+            <field name="sign_file_url">https://www.gipuzkoa.eus/ticketbai/sinadura</field>
+            <field name="sign_file_hash">vSe1CH7eAFVkGN0X2Y7Nl9XGUoBnziDA5BGUSsyt8mg=</field>
         </record>
         <record id="tbai_tax_agency_araba_1_2" model="tbai.tax.agency.version">
             <field name="tbai_tax_agency_id" ref="tbai_tax_agency_araba"/>
