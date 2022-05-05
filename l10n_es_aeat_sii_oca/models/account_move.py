@@ -1340,7 +1340,7 @@ class AccountMove(models.Model):
                 },
             }
         elif gen_type == 3:
-            return {"NIF": identifier[2:]}
+            return {"NIF": identifier}
 
     def _get_sii_exempt_cause(self, applied_taxes):
         """Código de la causa de exención según 3.6 y 3.7 de la FAQ del SII.
