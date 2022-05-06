@@ -15,6 +15,10 @@ except(ImportError, IOError) as err:
 class L10nEsAeatCertificatePassword(models.TransientModel):
     _inherit = 'l10n.es.aeat.certificate.password'
 
+    @staticmethod
+    def _sanitize_p12_friendly_name(p12_friendly_name):
+        return p12_friendly_name.decode('utf-8').strip('\x00')
+
     @api.multi
     def get_keys(self):
         super().get_keys()
@@ -22,4 +26,5 @@ class L10nEsAeatCertificatePassword(models.TransientModel):
             self.env.context.get('active_id'))
         file = base64.decodebytes(record.file)
         p12 = crypto.load_pkcs12(file, self.password)
-        record.tbai_p12_friendlyname = p12.get_friendlyname()
+        record.tbai_p12_friendlyname = \
+            self._sanitize_p12_friendly_name(p12.get_friendlyname())
