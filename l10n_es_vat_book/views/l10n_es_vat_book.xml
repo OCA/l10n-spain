@@ -15,6 +15,7 @@
                 <div
                     class="alert alert-warning text-center"
                     attrs="{'invisible': [('error_count', '=', 0)]}"
+                    role="alert"
                 >
                     <span>
                         You have <strong class="text-danger"><field
