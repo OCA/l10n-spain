@@ -143,6 +143,23 @@ class AccountInvoice(models.Model):
             if not self.tbai_refund_key:
                 self.tbai_refund_key = RefundCode.R1.value
 
+    def tbai_prepare_invoice_line_values(self):
+        self.ensure_one()
+        lines = []
+        for line in self.invoice_line_ids:
+            description_line = line.name[:250]
+            if self.company_id.tbai_protected_data \
+                    and self.company_id.tbai_protected_data_txt:
+                description_line = self.company_id.tbai_protected_data_txt[:250]
+            lines.append((0, 0, {
+                'description': description_line,
+                'quantity': line.tbai_get_value_cantidad(),
+                'price_unit': "%.8f" % line.price_unit,
+                'discount_amount': line.tbai_get_value_descuento(),
+                'amount_total': line.tbai_get_value_importe_total()
+            }))
+        return lines
+
     def tbai_prepare_invoice_values(self):
 
         def tbai_prepare_refund_values():
@@ -220,20 +237,7 @@ class AccountInvoice(models.Model):
             "l10n_es_ticketbai_api.tbai_tax_agency_araba")
         tax_agency = self.company_id.tbai_tax_agency_id
         if tax_agency in (gipuzkoa_tax_agency, araba_tax_agency):
-            lines = []
-            for line in self.invoice_line_ids:
-                description_line = line.name[:250]
-                if self.company_id.tbai_protected_data \
-                   and self.company_id.tbai_protected_data_txt:
-                    description_line = self.company_id.tbai_protected_data_txt[:250]
-                lines.append((0, 0, {
-                    'description': description_line,
-                    'quantity': line.tbai_get_value_cantidad(),
-                    'price_unit': "%.8f" % line.price_unit,
-                    'discount_amount': line.tbai_get_value_descuento(),
-                    'amount_total': line.tbai_get_value_importe_total()
-                }))
-            vals['tbai_invoice_line_ids'] = lines
+            vals['tbai_invoice_line_ids'] = self.tbai_prepare_invoice_line_values()
         taxes = []
         # Discard RecargoEquivalencia and IRPF Taxes
         tbai_maps = self.env["tbai.tax.map"].search(
