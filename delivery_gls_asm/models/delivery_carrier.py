@@ -98,6 +98,8 @@ class DeliveryCarrier(models.Model):
             picking.picking_type_id.warehouse_id.partner_id
             or picking.company_id.partner_id
         )
+        consignee = picking.partner_id
+        consignee_entity = picking.partner_id.commercial_partner_id
         if not sender_partner.street:
             raise UserError(_("Couldn't find the sender street"))
         return {
@@ -132,20 +134,20 @@ class DeliveryCarrier(models.Model):
             "destinatario_codigo": "",
             "destinatario_plaza": "",
             "destinatario_nombre": (
-                escape(picking.partner_id.name or picking.partner_id.parent_id.name)
-                or escape(
-                    picking.partner_id.commercial_partner_id.name
-                    or picking.partner_id.commercial_partner_id.parent_id.name
-                )
+                escape(consignee.name) or escape(consignee.commercial_partner_id.name)
             ),
-            "destinatario_direccion": escape(picking.partner_id.street or ""),
-            "destinatario_poblacion": escape(picking.partner_id.city or ""),
-            "destinatario_provincia": escape(picking.partner_id.state_id.name or ""),
-            "destinatario_pais": picking.partner_id.country_id.phone_code or "",
-            "destinatario_cp": picking.partner_id.zip,
-            "destinatario_telefono": picking.partner_id.phone or "",
-            "destinatario_movil": picking.partner_id.mobile or "",
-            "destinatario_email": escape(picking.partner_id.email or ""),
+            "destinatario_direccion": escape(consignee.street or ""),
+            "destinatario_poblacion": escape(consignee.city or ""),
+            "destinatario_provincia": escape(consignee.state_id.name or ""),
+            "destinatario_pais": consignee.country_id.phone_code or "",
+            "destinatario_cp": consignee.zip,
+            # For certain destinations the consignee mobile and email are required to
+            # make the expedition. Try to fallback to the commercial entity one
+            "destinatario_telefono": consignee.phone or consignee_entity.phone or "",
+            "destinatario_movil": consignee.mobile or consignee_entity.mobile or "",
+            "destinatario_email": escape(
+                consignee.email or consignee_entity.email or ""
+            ),
             "destinatario_observaciones": "",
             "destinatario_att": "",
             "destinatario_departamento": "",
