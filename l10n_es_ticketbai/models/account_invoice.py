@@ -531,7 +531,7 @@ class AccountInvoiceLine(models.Model):
 
     def tbai_get_value_importe_total(self):
         tbai_maps = self.env["tbai.tax.map"].search([('code', '=', "IRPF")])
-        irpf_taxes = self.env['l10n.es.aeat.report'].get_taxes_from_templates(
+        irpf_taxes = self.invoice_id.company_id.get_taxes_from_templates(
             tbai_maps.mapped("tax_template_ids")
         )
         currency = self.invoice_id and self.invoice_id.currency_id or None
