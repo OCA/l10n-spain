@@ -618,10 +618,11 @@ class StockMove(models.Model):
         data = self._get_data_dict()
         grado_plato = ""
         absolute_alcohol = data["absolute_alcohol"]
-        if "grado_plato" in data:
-            grado_plato = data.get("grado_plato", "")
+        if "grado_plato" in data and data["grado_plato"] > 0.0:
+            grado_plato = data["grado_plato"]
         if self.product_id.silicie_product_type in ["beer"]:
             absolute_alcohol = ''
+
         return {
             "Número Referencia Interno": self.id,
             "Número Asiento Previo": "",

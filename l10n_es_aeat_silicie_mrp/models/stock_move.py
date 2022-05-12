@@ -133,7 +133,7 @@ class StockMove(models.Model):
                 if density:
                     data["grado_plato"] = (density - 1000) / 4
                 else:
-                    data["grado_plato"] = 0
+                    data["grado_plato"] = ""
             if not extract:
                 extract = ""
             if not kg_extract:
@@ -167,7 +167,6 @@ class StockMove(models.Model):
         values.update({
             "Porcentaje de Extracto": data.get("extract", ""),
             "Kg. - Extracto": data.get("kg_extract", ""),
-            "Grado Alcohólico": data.get("alcoholic_grade", ""),
             "Densidad": data.get("density", ""),
             "Grado Plato Medio": data.get("grado_plato", ""),
         })

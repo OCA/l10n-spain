@@ -20,6 +20,7 @@ class AeatSiliceCsv(models.AbstractModel):
 
     def generate_csv_report(self, writer, data, moves):
         writer.writeheader()
+        moves.generate_silicie_fields()
         for move in moves:
             if move.send_silicie or move.not_declare:
                 continue
