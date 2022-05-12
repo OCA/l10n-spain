@@ -130,7 +130,10 @@ class StockMove(models.Model):
                     kg_extract = extract * qty_done / 100
             if density:
                 density = sum_density / qty_done
-                data["grado_plato"] = (density - 1000) / 4
+                if density:
+                    data["grado_plato"] = int((density - 1000) / 4)
+                else:
+                    data["grado_plato"] = 0
             if not extract:
                 extract = ""
             if not kg_extract:

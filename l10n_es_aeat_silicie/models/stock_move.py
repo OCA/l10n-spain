@@ -619,7 +619,7 @@ class StockMove(models.Model):
         grado_plato = ""
         absolute_alcohol = data["absolute_alcohol"]
         if "grado_plato" in data:
-            grado_plato = data["grado_plato"]
+            grado_plato = data.get("grado_plato", "")
         if self.product_id.silicie_product_type in ["beer"]:
             absolute_alcohol = ''
         return {
