@@ -56,14 +56,17 @@ class ResPartner(models.Model):
         """
         self.ensure_one()
         vat_number = self.vat or ""
-        prefix = self._map_aeat_country_code(vat_number[:2].upper())
-        if prefix in self._get_aeat_europe_codes():
+        prefix = vat_number[:2].upper()
+        if self._map_aeat_country_code(prefix) in self._get_aeat_europe_codes():
             country_code = prefix
             vat_number = vat_number[2:]
             identifier_type = "02"
         else:
-            country_code = self._map_aeat_country_code(self.country_id.code) or ""
-            if country_code in self._get_aeat_europe_codes():
+            country_code = self.country_id.code or ""
+            if (
+                self._map_aeat_country_code(country_code)
+                in self._get_aeat_europe_codes()
+            ):
                 identifier_type = "02"
             else:
                 identifier_type = "04"
