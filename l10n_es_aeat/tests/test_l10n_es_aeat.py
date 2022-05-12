@@ -74,13 +74,13 @@ class TestL10nEsAeat(SavepointCase):
             {"vat": "61954506077", "country_id": self.env.ref("base.gf").id}
         )
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "FR")
+        self.assertEqual(country_code, "GF")
         self.assertEqual(vat_number, "61954506077")
 
     def test_parse_vat_info_gf_w_prefix(self):
         self.partner.vat = "GF61954506077"
         country_code, identifier_type, vat_number = self.partner._parse_aeat_vat_info()
-        self.assertEqual(country_code, "FR")
+        self.assertEqual(country_code, "GF")
         self.assertEqual(identifier_type, "02")
         self.assertEqual(vat_number, "61954506077")
 
