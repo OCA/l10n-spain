@@ -1041,14 +1041,14 @@ msgid "TicketBAI Installations"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:799
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:798
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Address for %s is required for the Tax Agency %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1164
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1163
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "All Invoice recipients must be from the same country."
@@ -1153,49 +1153,49 @@ msgid "TicketBAI Invoice %s:\n"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:931
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:930
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Invoice lines are required for the Tax Agency %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:774
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:773
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Maximum 100 recipients allowed for each Invoice!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1049
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1048
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Maximum number of Invoice Lines allowed is 1000."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:952
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:951
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Previous Invoice signature value is required."
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1232
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1231
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Refunded Invoice %s Expedition Date"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1222
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1221
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Refunded Invoice %s Number Prefix %s longer than expected. Should be 20 characters max.!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1211
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1210
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "Refunded Invoice Number %s longer than expected. Should be 20 characters max.!"
@@ -1258,7 +1258,7 @@ msgid "TicketBAI Invoice %s:\n"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:792
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:791
 #, python-format
 msgid "TicketBAI Invoice %s:\n"
 "ZIP code for %s is required for the Tax Agency %s!"
@@ -1325,13 +1325,13 @@ msgid "TicketBAI Invoice %s: Line %s Quantity"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:824
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:823
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of exempted taxes is 7!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:910
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:909
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of not subject to taxes is 2!"
 msgstr ""
@@ -1421,7 +1421,7 @@ msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:665
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:664
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
 msgstr ""
