@@ -639,8 +639,7 @@ class TicketBAIInvoice(models.Model):
         res = OrderedDict([
             (TicketBaiQRParams.tbai_identifier.value, self.tbai_identifier),
         ])
-        if self.number_prefix:
-            res[TicketBaiQRParams.invoice_number_prefix.value] = self.number_prefix
+        res[TicketBaiQRParams.invoice_number_prefix.value] = self.number_prefix or ""
         res[TicketBaiQRParams.invoice_number.value] = self.number
         res[TicketBaiQRParams.invoice_total_amount.value] = self.amount_total
         return res
