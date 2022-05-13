@@ -1116,7 +1116,7 @@ msgid "TicketBAI Installations"
 msgstr "TicketBAI Instalaciones"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:803
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:802
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1126,7 +1126,7 @@ msgstr ""
 "La dirección de %s es requerida para la Hacienda %s."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1168
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1167
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1288,7 +1288,7 @@ msgstr ""
 "caracteres."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:935
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:934
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1298,7 +1298,7 @@ msgstr ""
 "Detalles factura es requerido para la Hacienda %s."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:778
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:777
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1308,7 +1308,7 @@ msgstr ""
 "Sólo se permite un máximo de 100 destinatarios por factura."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1053
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1052
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1318,7 +1318,7 @@ msgstr ""
 "Sólo se permite un máximo de 1000 líneas/detalles por factura."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:956
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:955
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1328,7 +1328,7 @@ msgstr ""
 "Firma de la factura anterior es requerida."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1236
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1235
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1338,7 +1338,7 @@ msgstr ""
 "Factura rectificada o sustituida %s fecha de expedición"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1226
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1225
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1350,7 +1350,7 @@ msgstr ""
 "esperado. Debería tener un máximo de 20 caracteres."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1215
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:1214
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1443,7 +1443,7 @@ msgstr ""
 "Operación en recargo de equivalencia o régimen simplificado debería ser '%s'."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:796
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:795
 #, python-format
 msgid ""
 "TicketBAI Invoice %s:\n"
@@ -1513,14 +1513,14 @@ msgid "TicketBAI Invoice %s: Line %s Quantity"
 msgstr "TicketBAI Factura %s: Línea %s cantidad"
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:828
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:827
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of exempted taxes is 7!"
 msgstr ""
 "TicketBAI Factura %s: El número máximo permitido de impuestos exentos es 7."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:914
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:913
 #, python-format
 msgid "TicketBAI Invoice %s: Max. number of not subject to taxes is 2!"
 msgstr ""
@@ -1613,7 +1613,7 @@ msgid "TicketBAI Invoice %s: XML Invoice schema not supported!"
 msgstr "TicketBAI Factura %s: Esquema XML de factura no soportado."
 
 #. module: l10n_es_ticketbai_api
-#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:669
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:668
 #, python-format
 msgid "TicketBAI Invoice %s: XML schema not supported!"
 msgstr "TicketBAI Factura %s: Esquema XML de factura no soportado."
