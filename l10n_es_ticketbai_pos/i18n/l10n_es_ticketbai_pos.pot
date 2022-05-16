@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-08 11:35+0000\n"
-"PO-Revision-Date: 2021-11-08 11:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -72,7 +70,7 @@ msgstr ""
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:46
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:92
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:109
 #, python-format
 msgid "Non spanish customers are not supported for Simplified Invoice."
 msgstr ""
@@ -91,7 +89,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:86
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:103
 #, python-format
 msgid "Please set Country for customer %s."
 msgstr ""
@@ -105,7 +103,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:98
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:115
 #, python-format
 msgid "Please set VAT or TicketBAI Partner Identification Number for customer %s."
 msgstr ""
@@ -119,7 +117,7 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:198
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:205
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:20
 #, python-format
 msgid "Please set a tax for product %s."
@@ -155,7 +153,7 @@ msgid "Simplified Invoice IDs Sequence is required"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:205
+#: code:addons/l10n_es_ticketbai_pos/models/pos_order.py:203
 #, python-format
 msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
 msgstr ""
@@ -167,12 +165,12 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #. openerp-web
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:197
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/models.js:204
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:19
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:66
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:85
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:91
-#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:97
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:102
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:108
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:114
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:105
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 #: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
@@ -234,3 +232,4 @@ msgstr ""
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
 msgid "pos.config"
 msgstr ""
+
