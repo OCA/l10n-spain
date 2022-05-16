@@ -44,4 +44,5 @@
         "python": ["cryptography", "pyOpenSSL", "pycountry", "xmlsig"]
     },
     "installable": True,
+    "maintainers": ["etobella"],
 }
