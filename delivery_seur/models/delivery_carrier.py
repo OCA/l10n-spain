@@ -15,25 +15,37 @@ _logger = logging.getLogger(__name__)
 class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
-    delivery_type = fields.Selection(selection_add=[("seur", "Seur")],)
-    seur_vat = fields.Char(
-        string="VAT", default=lambda self: self.env.user.company_id.vat,
+    delivery_type = fields.Selection(
+        selection_add=[("seur", "Seur")],
     )
-    seur_franchise_code = fields.Char(string="Franchise Code",)
-    seur_accounting_code = fields.Char(string="Accounting Code (CCC)",)
-    seur_integration_code = fields.Char(string="Integration Code (CI)",)
+    seur_vat = fields.Char(
+        string="VAT",
+        default=lambda self: self.env.user.company_id.vat,
+    )
+    seur_franchise_code = fields.Char(
+        string="Franchise Code",
+    )
+    seur_accounting_code = fields.Char(
+        string="Accounting Code (CCC)",
+    )
+    seur_integration_code = fields.Char(
+        string="Integration Code (CI)",
+    )
     seur_cit_username = fields.Char(
         string="Username CIT",
         help="Used for cit.seur.com webservice (generate labels)",
     )
     seur_cit_password = fields.Char(
-        sting="Password CIT", help="Used for cit.seur.com webservice (generate labels)",
+        sting="Password CIT",
+        help="Used for cit.seur.com webservice (generate labels)",
     )
     seur_ws_username = fields.Char(
-        string="Username WS", help="Used for ws.seur.com webservice (pickup services)",
+        string="Username WS",
+        help="Used for ws.seur.com webservice (pickup services)",
     )
     seur_ws_password = fields.Char(
-        string="Password WS", help="Used for ws.seur.com webservice (pickup services)",
+        string="Password WS",
+        help="Used for ws.seur.com webservice (pickup services)",
     )
     seur_service_code = fields.Selection(
         selection=[
@@ -78,7 +90,8 @@ class DeliveryCarrier(models.Model):
         string="Product code",
     )
     seur_send_sms = fields.Boolean(
-        string="Send SMS to customer", help="This feature has delivery cost",
+        string="Send SMS to customer",
+        help="This feature has delivery cost",
     )
     seur_label_format = fields.Selection(
         selection=[("pdf", "PDF"), ("txt", "TXT")],
