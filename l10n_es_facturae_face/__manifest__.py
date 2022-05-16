@@ -28,4 +28,5 @@
     ],
     "external_dependencies": {"python": ["OpenSSL", "zeep"]},
     "installable": True,
+    "maintainers": ["etobella"],
 }
