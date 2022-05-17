@@ -16,7 +16,7 @@ class DeliveryCarrier(models.Model):
     _inherit = "delivery.carrier"
 
     delivery_type = fields.Selection(
-        selection_add=[("seur", "Seur")],
+        selection_add=[("seur", "Seur")], ondelete={"seur": "set default"}
     )
     seur_vat = fields.Char(
         string="VAT",
@@ -36,7 +36,7 @@ class DeliveryCarrier(models.Model):
         help="Used for cit.seur.com webservice (generate labels)",
     )
     seur_cit_password = fields.Char(
-        sting="Password CIT",
+        string="Password CIT",
         help="Used for cit.seur.com webservice (generate labels)",
     )
     seur_ws_username = fields.Char(
@@ -138,7 +138,7 @@ class DeliveryCarrier(models.Model):
         self.ensure_one()
         seur_request = SeurRequest(self, picking)
         res = seur_request.create_shipping()
-        # The error message could be more complex than a simple 'ERROR' sting.
+        # The error message could be more complex than a simple 'ERROR' string.
         # For example, if there's wrong address info, it will return an
         # xml with the API error.
         error = res["mensaje"] == "ERROR" or not res.get("ECB", {}).get("string", [])
