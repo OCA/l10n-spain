@@ -21,33 +21,31 @@ SII_PORT_NAME_MAPPING = {
 class AeatTaxAgency(models.Model):
     _inherit = "aeat.tax.agency"
 
-    sii_wsdl_out = fields.Char(string="SuministroFactEmitidas WSDL", required=True)
+    sii_wsdl_out = fields.Char(string="SuministroFactEmitidas WSDL")
     sii_wsdl_out_test_address = fields.Char(
         string="SuministroFactEmitidas Test Address"
     )
-    sii_wsdl_in = fields.Char(string="SuministroFactRecibidas WSDL", required=True)
+    sii_wsdl_in = fields.Char(string="SuministroFactRecibidas WSDL")
     sii_wsdl_in_test_address = fields.Char(
         string="SuministroFactRecibidas Test Address"
     )
-    sii_wsdl_pi = fields.Char(string="SuministroBienesInversion WSDL", required=True)
+    sii_wsdl_pi = fields.Char(string="SuministroBienesInversion WSDL")
     sii_wsdl_pi_test_address = fields.Char(
         string="SuministroBienesInversion Test Address"
     )
-    sii_wsdl_ic = fields.Char(
-        string="SuministroOpIntracomunitarias WSDL", required=True
-    )
+    sii_wsdl_ic = fields.Char(string="SuministroOpIntracomunitarias WSDL")
     sii_wsdl_ic_test_address = fields.Char(
         string="SuministroOpIntracomunitarias Test Address"
     )
-    sii_wsdl_pr = fields.Char(string="SuministroCobrosEmitidas WSDL", required=True)
+    sii_wsdl_pr = fields.Char(string="SuministroCobrosEmitidas WSDL")
     sii_wsdl_pr_test_address = fields.Char(
         string="SuministroCobrosEmitidas Test Address"
     )
-    sii_wsdl_ott = fields.Char(string="SuministroOpTrascendTribu WSDL", required=True)
+    sii_wsdl_ott = fields.Char(string="SuministroOpTrascendTribu WSDL")
     sii_wsdl_ott_test_address = fields.Char(
         string="SuministroOpTrascendTribu Test Address"
     )
-    sii_wsdl_ps = fields.Char(string="SuministroPagosRecibidas WSDL", required=True)
+    sii_wsdl_ps = fields.Char(string="SuministroPagosRecibidas WSDL")
     sii_wsdl_ps_test_address = fields.Char(
         string="SuministroPagosRecibidas Test Address"
     )
