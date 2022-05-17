@@ -149,6 +149,7 @@ Contributors
 * Iván Antón <ozono@ozonomultimedia.com>
 * Digital5 S.L.
 * Valentin Vinagre <valentin.vinagre@sygel.es>
+* Manuel Regidor <manuel.regidor@sygel.es>
 
 Maintainers
 ~~~~~~~~~~~
