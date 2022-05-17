@@ -3,7 +3,7 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-  <record id="" model="tbai.tax.map">
+  <record id="tbai_tax_map_dua" model="tbai.tax.map">
       <field name="code">DUA</field>
       <field name="tax_template_ids" eval="[(6, 0, [
         ref('l10n_es.account_tax_template_p_iva21_ibc'),
