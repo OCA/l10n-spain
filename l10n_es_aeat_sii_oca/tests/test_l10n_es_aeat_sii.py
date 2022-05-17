@@ -150,7 +150,7 @@ class TestL10nEsAeatSiiBase(TestL10nEsAeatModBase, TestL10nEsAeatCertificateBase
                 "use_connector": True,
                 "vat": "ESU2687761C",
                 "sii_description_method": "manual",
-                "sii_tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
+                "tax_agency_id": cls.env.ref("l10n_es_aeat.aeat_tax_agency_spain"),
             }
         )
 
@@ -323,8 +323,8 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def _check_binding_address(self, invoice):
         company = invoice.company_id
-        tax_agency = company.sii_tax_agency_id
-        self.sii_cert.company_id.sii_tax_agency_id = tax_agency
+        tax_agency = company.tax_agency_id
+        self.sii_cert.company_id.tax_agency_id = tax_agency
         proxy = invoice._connect_sii(invoice.move_type)
         address = proxy._binding_options["address"]
         self.assertTrue(address)
@@ -335,10 +335,10 @@ class TestL10nEsAeatSii(TestL10nEsAeatSiiBase):
 
     def _check_tax_agencies(self, invoice):
         for tax_agency in self.tax_agencies:
-            invoice.company_id.sii_tax_agency_id = tax_agency
+            invoice.company_id.tax_agency_id = tax_agency
             self._check_binding_address(invoice)
         else:
-            invoice.company_id.sii_tax_agency_id = False
+            invoice.company_id.tax_agency_id = False
             self._check_binding_address(invoice)
 
     def test_tax_agencies_sandbox(self):

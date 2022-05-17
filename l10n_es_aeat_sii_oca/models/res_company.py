@@ -69,10 +69,6 @@ class ResCompany(models.Model):
     )
     sent_time = fields.Float()
     delay_time = fields.Float()
-    # TODO: discuss, do this rename or not?
-    sii_tax_agency_id = fields.Many2one(
-        comodel_name="aeat.tax.agency", string="SII Tax Agency"
-    )
 
     def _get_sii_eta(self):
         if self.send_mode == "fixed":
