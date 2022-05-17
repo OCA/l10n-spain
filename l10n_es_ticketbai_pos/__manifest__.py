@@ -1,11 +1,12 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
     "name": "TicketBAI - Point of Sale - "
             "declaración de todas las operaciones de venta realizadas por las personas "
             "y entidades que desarrollan actividades económicas",
-    "version": "11.0.0.6.0",
+    "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
     "website": "http://www.binovo.es",
     "author": "Binovo,"
@@ -18,7 +19,8 @@
     "depends": [
         "l10n_es_pos",
         "l10n_es_ticketbai",
-        "pos_order_mgmt"
+        "pos_order_mgmt",
+        "pos_order_return"
     ],
     "data": [
         "security/ir.model.access.csv",
