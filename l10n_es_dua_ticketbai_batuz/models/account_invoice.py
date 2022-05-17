@@ -26,7 +26,7 @@ class AccountInvoice(models.Model):
             tbai_dua_map = self.env['tbai.tax.map'].search(
                 [('code', '=', 'DUA')]
             )
-            dua_taxes = self.env['l10n.es.aeat.report'].get_taxes_from_templates(
+            dua_taxes = invoice.company_id.get_taxes_from_templates(
                 tbai_dua_map.mapped("tax_template_ids")
             )
             invoice.tbai_dua_invoice = (
