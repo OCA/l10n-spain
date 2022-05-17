@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2022 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
         <record id="view_pos_config_form_inherit" model="ir.ui.view">
             <field name="name">pos.config.form.inherit</field>
             <field name="model">pos.config</field>
-            <field name="inherit_id" ref="l10n_es_pos.view_pos_config_form"/>
+            <field name="inherit_id" ref="l10n_es_pos.pos_config_view_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[@id='receipt']" position="after">
                     <field name="tbai_enabled" invisible="1"/>
