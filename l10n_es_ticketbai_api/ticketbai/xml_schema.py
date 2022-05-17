@@ -240,7 +240,7 @@ class XMLSchema:
                     self.create_node_from_dict(xml_element, subkey, subvalue)
         else:
             xml_element = etree.SubElement(xml_root, key)
-            xml_element.text = value
+            xml_element.text = value or ""
 
     def dict2xml(self, invoice_ordered_dict):
         tag = next(iter(invoice_ordered_dict))
