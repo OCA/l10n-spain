@@ -13,4 +13,5 @@
     "data": ["data/efact_data.xml"],
     "external_dependencies": {"python": ["paramiko", "OpenSSL", "xmlsec"]},
     "installable": True,
+    "maintainers": ["etobella"],
 }
