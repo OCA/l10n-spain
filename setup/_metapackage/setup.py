@@ -52,6 +52,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_subcontractor_certificate',
         'odoo12-addon-l10n_es_ticketbai',
         'odoo12-addon-l10n_es_ticketbai_api',
+        'odoo12-addon-l10n_es_ticketbai_api_batuz',
         'odoo12-addon-l10n_es_toponyms',
         'odoo12-addon-l10n_es_vat_book',
         'odoo12-addon-payment_redsys',
