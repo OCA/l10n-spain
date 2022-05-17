@@ -1,7 +1,7 @@
 # Copyright 2016-2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.exceptions import ValidationError
+from odoo import exceptions
 from odoo.tests.common import TransactionCase
 
 
@@ -36,7 +36,7 @@ class TestL10nEsAeat(TransactionCase):
         self.assertEqual(vat_number, "12345678Z")
 
     def test_parse_vat_info_es_passport_exception(self):
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(exceptions.ValidationError):
             self.partner.write(
                 {"vat": "ZZ_MY_PASSPORT", "country_id": self.env.ref("base.es").id}
             )
@@ -99,3 +99,12 @@ class TestL10nEsAeat(TransactionCase):
         self.assertEqual(country_code, "")
         self.assertEqual(identifier_type, "04")
         self.assertEqual(vat_number, "CU12345678Z")
+
+    def test_unique_date_range(self):
+        self.env["l10n.es.aeat.map.tax"].create(
+            {"date_from": "2020-01-01", "model": 303}
+        )
+        with self.assertRaises(exceptions.Warning):
+            self.env["l10n.es.aeat.map.tax"].create(
+                {"date_to": "2021-01-01", "model": 303}
+            )
