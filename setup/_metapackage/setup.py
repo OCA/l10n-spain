@@ -30,6 +30,7 @@ setuptools.setup(
         'odoo-addon-l10n_es_mis_report>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_partner>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_partner_mercantil>=15.0dev,<15.1dev',
+        'odoo-addon-l10n_es_ticketbai>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_ticketbai_api>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_toponyms>=15.0dev,<15.1dev',
         'odoo-addon-l10n_es_vat_book>=15.0dev,<15.1dev',
