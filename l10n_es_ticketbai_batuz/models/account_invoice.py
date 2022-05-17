@@ -370,7 +370,9 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         tbai_maps = self.env["tbai.tax.map"].search([("code", "in", codes)])
         tax_templates = tbai_maps.mapped("tax_template_ids")
-        return self.env["l10n.es.aeat.report"].get_taxes_from_templates(tax_templates)
+        return self.env["l10n.es.aeat.report"].new(
+            {'company_id': self.company_id.id}
+        ).get_taxes_from_templates(tax_templates)
 
     @api.multi
     def _get_lroe_sign(self):
