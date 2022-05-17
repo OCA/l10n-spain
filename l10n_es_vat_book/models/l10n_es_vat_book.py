@@ -3,12 +3,13 @@
 # Copyright 2017 ForgeFlow, S.L. <contact@forgeflow.com>
 # Copyright 2018 Luis M. Ontalba <luismaront@gmail.com>
 # Copyright 2019 Tecnativa - Carlos Dauden
+# Copyright 2022 Moduon Team - Eduardo de Miguel <edu@moduon.team>
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0
 import datetime
 import re
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 from odoo.tools import ormcache
 
 
@@ -116,6 +117,25 @@ class L10nEsVatBook(models.Model):
     auto_renumber = fields.Boolean(
         "Auto renumber invoices received", states={"draft": [("readonly", False)]}
     )
+
+    error_count = fields.Integer(
+        compute="_compute_error_count",
+    )
+
+    def _compute_error_count(self):
+        vat_book_exception_group = self.env["l10n.es.vat.book.line"].read_group(
+            domain=[("exception_text", "!=", False), ("vat_book_id", "in", self.ids)],
+            fields=["vat_book_id"],
+            groupby=["vat_book_id"],
+        )
+        vat_book_exception_dict = {
+            vbe["vat_book_id"][0]: vbe["vat_book_id_count"]
+            for vbe in vat_book_exception_group
+        }
+        for vat_book_report in self:
+            vat_book_report.error_count = vat_book_exception_dict.get(
+                vat_book_report.id, 0
+            )
 
     @api.model
     def _prepare_vat_book_tax_summary(self, tax_lines, book_type):
@@ -317,7 +337,7 @@ class L10nEsVatBook(models.Model):
         else:
             domain += [
                 "|",
-                ("tax_ids", "!=", []),
+                ("tax_ids", "!=", False),
                 ("tax_line_id", "!=", False),
             ]
         return domain
@@ -364,7 +384,9 @@ class L10nEsVatBook(models.Model):
             line_vals["line_type"] = "rectification_{}".format(line_type)
 
     def _check_exceptions(self, line_vals):
-        if (
+        if not line_vals["partner_id"]:
+            line_vals["exception_text"] = _("Without Partner")
+        elif (
             not line_vals["vat_number"]
             and line_vals["partner_id"] not in self.get_pos_partner_ids()
         ):
@@ -407,22 +429,28 @@ class L10nEsVatBook(models.Model):
                 raise UserError(_("This company doesn't have VAT"))
             rec._clear_old_data()
             # Searches for all possible usable lines to report
-            moves = self._get_account_move_lines()
+            moves = rec._get_account_move_lines()
             for book_type in ["issued", "received"]:
                 map_lines = self.env["aeat.vat.book.map.line"].search(
                     [("book_type", "=", book_type)]
                 )
                 taxes = self.env["account.tax"]
+                accounts = {}
                 for map_line in map_lines:
-                    taxes |= map_line.get_taxes(rec)
-                accounts = self.env["account.account"]
-                for account in map_lines.mapped("tax_account_id"):
-                    accounts |= rec.get_account_from_template(account)
+                    line_taxes = map_line.get_taxes(rec)
+                    taxes |= line_taxes
+                    if map_line.tax_account_id:
+                        account = rec.get_account_from_template(map_line.tax_account_id)
+                        accounts.update({tax: account for tax in line_taxes})
                 # Filter in all possible data using sets for improving performance
                 if accounts:
                     lines = moves.filtered(
                         lambda line: line.tax_ids & taxes
-                        or (line.tax_line_id in taxes and line.account_id in accounts)
+                        or (
+                            line.tax_line_id in taxes
+                            and accounts.get(line.tax_line_id, line.account_id)
+                            == line.account_id
+                        )
                     )
                 else:
                     lines = moves.filtered(
