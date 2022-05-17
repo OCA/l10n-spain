@@ -12,3 +12,4 @@
 * Consultoría Informática Studio 73 S.L.
 * Miquel Raïch <miquel.raich@forgeflow.com>
 * Digital5 S.L.
+* Manuel Regidor <manuel.regidor@sygel.es>
