@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_tax_map_view_tree" model="ir.ui.view">
+        <field name="name">tbai.tax.map.view.tree</field>
+        <field name="model">tbai.tax.map</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="tbai_tax_map_view_form" model="ir.ui.view">
+        <field name="name">tbai.tax.map.view.form</field>
+        <field name="model">tbai.tax.map</field>
+        <field name="arch" type="xml">
+            <form string="TicketBAI Tax Map">
+                <group colspan="4">
+                    <field name="code" />
+                    <field name="name" />
+                </group>
+                <group string="Taxes" colspan="4">
+                    <field name="tax_template_ids" nolabel="1" />
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="action_tbai_tax_map" model="ir.actions.act_window">
+        <field name="name">TicketBAI Tax Map</field>
+        <field name="res_model">tbai.tax.map</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_tbai_tax_map"
+        parent="l10n_es_ticketbai.menu_l10n_es_tbai_config"
+        action="action_tbai_tax_map"
+        name="TicketBAI Tax Map"
+    />
+</odoo>

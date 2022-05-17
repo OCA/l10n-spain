@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="tbai_vat_regime_01" model="tbai.vat.regime.key">
+        <field name="code">01</field>
+        <field name="name">Operación de régimen general</field>
+    </record>
+    <record id="tbai_vat_regime_02" model="tbai.vat.regime.key">
+        <field name="code">02</field>
+        <field name="name">Exportación</field>
+    </record>
+    <record id="tbai_vat_regime_03" model="tbai.vat.regime.key">
+        <field name="code">03</field>
+        <field
+            name="name"
+        >Operaciones a las que se aplique el régimen especial de bienes usados, objetos de arte, antigüedades y objetos de colección</field>
+    </record>
+    <record id="tbai_vat_regime_04" model="tbai.vat.regime.key">
+        <field name="code">04</field>
+        <field name="name">Régimen especial del oro de inversión</field>
+    </record>
+    <record id="tbai_vat_regime_05" model="tbai.vat.regime.key">
+        <field name="code">05</field>
+        <field name="name">Régimen especial de las agencias de viajes</field>
+    </record>
+    <record id="tbai_vat_regime_06" model="tbai.vat.regime.key">
+        <field name="code">06</field>
+        <field
+            name="name"
+        >Régimen especial grupo de entidades en IVA (Nivel Avanzado)</field>
+    </record>
+    <record id="tbai_vat_regime_07" model="tbai.vat.regime.key">
+        <field name="code">07</field>
+        <field name="name">Régimen especial del criterio de caja</field>
+    </record>
+    <record id="tbai_vat_regime_08" model="tbai.vat.regime.key">
+        <field name="code">08</field>
+        <field
+            name="name"
+        >Operaciones sujetas al IPSI / IGIC (Impuesto sobre la Producción, los Servicios y la Importación / Impuesto General Indirecto Canario)</field>
+    </record>
+    <record id="tbai_vat_regime_09" model="tbai.vat.regime.key">
+        <field name="code">09</field>
+        <field
+            name="name"
+        >Facturación de las prestaciones de servicios de agencias de viaje que actúan como mediadoras en nombre y por cuenta ajena (D.A.3ª del Reglamento de Facturación)</field>
+    </record>
+    <record id="tbai_vat_regime_10" model="tbai.vat.regime.key">
+        <field name="code">10</field>
+        <field
+            name="name"
+        >Cobros por cuenta de terceros de honorarios profesionales o de derechos derivados de la propiedad industrial, de autor u otros por cuenta de sus socios, asociados o colegiados efectuados por sociedades, asociaciones, colegios profesionales u otras entidades que realicen estas funciones de cobro</field>
+    </record>
+    <record id="tbai_vat_regime_11" model="tbai.vat.regime.key">
+        <field name="code">11</field>
+        <field
+            name="name"
+        >Operaciones de arrendamiento de local de negocio sujetos a retención</field>
+    </record>
+    <record id="tbai_vat_regime_12" model="tbai.vat.regime.key">
+        <field name="code">12</field>
+        <field
+            name="name"
+        >Operaciones de arrendamiento de local de negocio no sujetos a retención</field>
+    </record>
+    <record id="tbai_vat_regime_13" model="tbai.vat.regime.key">
+        <field name="code">13</field>
+        <field
+            name="name"
+        >Operaciones de arrendamiento de local de negocio sujetas y no sujetas a retención</field>
+    </record>
+    <record id="tbai_vat_regime_14" model="tbai.vat.regime.key">
+        <field name="code">14</field>
+        <field
+            name="name"
+        >Factura con IVA pendiente de devengo en certificaciones de obra cuyo destinatario sea una Administración Pública</field>
+    </record>
+    <record id="tbai_vat_regime_15" model="tbai.vat.regime.key">
+        <field name="code">15</field>
+        <field
+            name="name"
+        >Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</field>
+    </record>
+    <record id="tbai_vat_regime_51" model="tbai.vat.regime.key">
+        <field name="code">51</field>
+        <field name="name">Operaciones en recargo de equivalencia</field>
+    </record>
+    <record id="tbai_vat_regime_52" model="tbai.vat.regime.key">
+        <field name="code">52</field>
+        <field name="name">Operaciones en régimen simplificado</field>
+    </record>
+</odoo>

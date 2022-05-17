@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_account_position_form_inherit" model="ir.ui.view">
+        <field name="name">account.fiscal.position.form</field>
+        <field name="model">account.fiscal.position</field>
+        <field name="inherit_id" ref="account.view_account_position_form" />
+        <field name="arch" type="xml">
+            <page name="account_mapping" position="after">
+                <page name="tbai_vat_regime" string="TicketBAI">
+                    <group name="tbai_vat_regimes" string="VAT Regimes">
+                        <field
+                            name="tbai_vat_regime_key"
+                            options="{'no_open':True,'no_create':True}"
+                        />
+                        <field
+                            name="tbai_vat_regime_key2"
+                            options="{'no_open':True,'no_create':True}"
+                        />
+                        <field
+                            name="tbai_vat_regime_key3"
+                            options="{'no_open':True,'no_create':True}"
+                        />
+                    </group>
+                    <group name="tbai_vat_exemptions" string="VAT Exemptions">
+                        <field name="tbai_vat_exemption_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="tax_id" />
+                                <field
+                                    name="tbai_vat_exemption_key"
+                                    options="{'no_open':True,'no_create':True}"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+    <record id="view_account_position_template_form_inherit" model="ir.ui.view">
+        <field name="name">account.fiscal.position.template.form</field>
+        <field name="model">account.fiscal.position.template</field>
+        <field name="inherit_id" ref="account.view_account_position_template_form" />
+        <field name="arch" type="xml">
+            <field name="account_ids" position="after">
+                <field
+                    name="tbai_vat_regime_key"
+                    options="{'no_open':True,'no_create':True}"
+                />
+                <field
+                    name="tbai_vat_regime_key2"
+                    options="{'no_open':True,'no_create':True}"
+                />
+                <field
+                    name="tbai_vat_regime_key3"
+                    options="{'no_open':True,'no_create':True}"
+                />
+                <group name="tbai_vat_exemptions" string="VAT Exemptions">
+                    <field name="tbai_vat_exemption_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="tax_id" />
+                            <field
+                                name="tbai_vat_exemption_key"
+                                options="{'no_open':True,'no_create':True}"
+                            />
+                        </tree>
+                    </field>
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>

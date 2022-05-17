@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_account_journal_form_inherit" model="ir.ui.view">
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='refund_sequence']" position="before">
+                <field name="tbai_enabled" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='type']" position="after">
+                <field
+                    name="tbai_send_invoice"
+                    attrs="{'invisible': ['|', ('type', '!=', 'sale'), ('tbai_enabled', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
