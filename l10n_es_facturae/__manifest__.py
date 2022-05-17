@@ -40,4 +40,5 @@
     ],
     "external_dependencies": {"python": ["OpenSSL", "xmlsig"]},
     "installable": True,
+    "maintainers": ["etobella"],
 }
