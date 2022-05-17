@@ -59,8 +59,6 @@ msgstr "Claus de registre de factures Aeat SII"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__sii_map_id
 #: model:ir.ui.menu,name:l10n_es_aeat_sii_oca.menu_aeat_sii_map
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_map_view_form
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_map_view_tree
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.l10n_es_aeat_sii_map_lines_view_tree
 msgid "Aeat SII Map"
 msgstr "Mapa Aeat SII"
 
@@ -73,14 +71,13 @@ msgstr "Línies de mapes Aeat SII"
 #: model:ir.actions.act_window,name:l10n_es_aeat_sii_oca.action_aeat_sii_mapping_registration_keys
 #: model:ir.ui.menu,name:l10n_es_aeat_sii_oca.menu_aeat_sii_mapping_registration_keys
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_view_search
-#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_mapping_registration_keys_view_tree
 msgid "Aeat SII Registration Keys"
 msgstr "Claus de registre Aeat SII"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model,name:l10n_es_aeat_sii_oca.model_aeat_sii_tax_agency
-msgid "Aeat SII Tax Agency"
-msgstr "Aeat SII Agència Tributària"
+#: model:ir.model,name:l10n_es_aeat_sii_oca.model_aeat_tax_agency
+msgid "Aeat Tax Agency"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
@@ -241,7 +238,6 @@ msgstr "Contacte"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__create_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__create_uid
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__create_uid
 msgid "Created by"
 msgstr "Creat per"
 
@@ -249,7 +245,6 @@ msgstr "Creat per"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__create_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__create_date
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__create_date
 msgid "Created on"
 msgstr "Creat el"
 
@@ -268,13 +263,13 @@ msgstr "Duanes - Liquidació complementària"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__date_from
-msgid "Date from"
-msgstr "Data Des de"
+msgid "Date From"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__date_to
-msgid "Date to"
-msgstr "Data a"
+msgid "Date To"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__sii_registration_key_purchase
@@ -288,8 +283,8 @@ msgstr "Clau de registre SII per defecte per a vendes"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__delay_time
-msgid "Delay time"
-msgstr "Temps de retard"
+msgid "Delay Time"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -297,17 +292,9 @@ msgid "Description config"
 msgstr "Descripció config"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__display_name
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_queue_job__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__display_name
 msgid "Display Name"
 msgstr "Nom a mostrar"
 
@@ -374,17 +361,9 @@ msgid "Group By..."
 msgstr "Agrupar per..."
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__id
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_queue_job__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__id
 msgid "ID"
 msgstr "ID"
 
@@ -447,17 +426,9 @@ msgid "Journal Entry"
 msgstr "Assentament"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_fiscal_position____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines____last_update
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_product_template____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_queue_job____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr "Darrera modificació el"
 
@@ -465,7 +436,6 @@ msgstr "Darrera modificació el"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__write_uid
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__write_uid
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__write_uid
 msgid "Last Updated by"
 msgstr "Darrera Actualització per"
 
@@ -473,7 +443,6 @@ msgstr "Darrera Actualització per"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__write_date
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_mapping_registration_keys__write_date
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__write_date
 msgid "Last Updated on"
 msgstr "Darrera Actualització el"
 
@@ -625,6 +594,7 @@ msgid "Rest of causes (R4)"
 msgstr "Resta de causes (R4)"
 
 #. module: l10n_es_aeat_sii_oca
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.product_template_form_sii_view
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_position_form
@@ -714,17 +684,6 @@ msgstr "Error d’enviament SII"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_header_supplier
 msgid "SII Supplier header"
 msgstr "Capçalera del proveïdor SII"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.actions.act_window,name:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_action
-#: model:ir.ui.menu,name:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_menu
-msgid "SII Tax Agencies"
-msgstr "Agències Tributàries SII"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_tax_agency_id
-msgid "SII Tax Agency"
-msgstr "Agència Tributària SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_bank_statement_line__sii_account_registration_date
@@ -842,14 +801,14 @@ msgid "Send Invoices to SII"
 msgstr "Enviar factures a SII"
 
 #. module: l10n_es_aeat_sii_oca
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__send_mode
+msgid "Send Mode"
+msgstr ""
+
+#. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.invoice_sii_form
 msgid "Send cancellation to SII"
 msgstr "Enviar la cancel·lació a SII"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__send_mode
-msgid "Send mode"
-msgstr "Mode d’enviament"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_queue_job_sii
@@ -868,8 +827,8 @@ msgstr "Enviat"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sent_time
-msgid "Sent time"
-msgstr "Temps enviat"
+msgid "Sent Time"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_partner__sii_enabled
@@ -926,72 +885,72 @@ msgid "Suministro Pagos Recibidas"
 msgstr "Subministre de pagaments de Rebudes"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_pi_test_address
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_pi_test_address
 msgid "SuministroBienesInversion Test Address"
 msgstr "SuministroBienesInversion Test Address"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_pi
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_pi
 msgid "SuministroBienesInversion WSDL"
 msgstr "SuministroBienesInversion WSDL"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_pr_test_address
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_pr_test_address
 msgid "SuministroCobrosEmitidas Test Address"
 msgstr "SuministroCobrosEmitidas Test Address"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_pr
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_pr
 msgid "SuministroCobrosEmitidas WSDL"
 msgstr "SuministroCobrosEmitidas WSDL"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_out_test_address
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_out_test_address
 msgid "SuministroFactEmitidas Test Address"
 msgstr "SuministroFactEmitidas Test Address"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_out
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_out
 msgid "SuministroFactEmitidas WSDL"
 msgstr "SuministroFactEmitidas WSDL"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_in_test_address
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_in_test_address
 msgid "SuministroFactRecibidas Test Address"
 msgstr "SuministroFactRecibidas Test Address"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_in
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_in
 msgid "SuministroFactRecibidas WSDL"
 msgstr "SuministroFactRecibidas WSDL"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_ic_test_address
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_ic_test_address
 msgid "SuministroOpIntracomunitarias Test Address"
 msgstr "Adreça de prova SuministroOpIntracomunitarias"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_ic
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_ic
 msgid "SuministroOpIntracomunitarias WSDL"
 msgstr "SuministroOpIntracomunitarias WSDL"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_ott_test_address
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_ott_test_address
 msgid "SuministroOpTrascendTribu Test Address"
 msgstr "SuministroOpTrascendTribu Test Address"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_ott
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_ott
 msgid "SuministroOpTrascendTribu WSDL"
 msgstr "SuministroOpTrascendTribu WSDL"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_ps_test_address
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_ps_test_address
 msgid "SuministroPagosRecibidas Test Address"
 msgstr "Adreça de prova SuministroPagosRecibidas"
 
 #. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__wsdl_ps
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_tax_agency__sii_wsdl_ps
 msgid "SuministroPagosRecibidas WSDL"
 msgstr "SuministroPagosRecibidas WSDL"
 
@@ -999,11 +958,6 @@ msgstr "SuministroPagosRecibidas WSDL"
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move_reversal__supplier_invoice_number_refund
 msgid "Supplier Invoice Number"
 msgstr "Número de factura de proveïdor"
-
-#. module: l10n_es_aeat_sii_oca
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_tax_agency__name
-msgid "Tax Agency"
-msgstr "Agència Tributària"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_aeat_sii_map_lines__taxes
@@ -1072,8 +1026,8 @@ msgstr "Tipus"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__use_connector
-msgid "Use connector"
-msgstr "Fer servir connector"
+msgid "Use Connector"
+msgstr ""
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
@@ -1263,6 +1217,36 @@ msgstr ""
 "destinatari o per un tercer.\n"
 "Es permet notificar de Factura emesa per Tercers mitjançant el camp 'Factura "
 "de tercers SII' i 'Número de tercers SII'."
+
+#~ msgid "Aeat SII Tax Agency"
+#~ msgstr "Aeat SII Agència Tributària"
+
+#~ msgid "Date from"
+#~ msgstr "Data Des de"
+
+#~ msgid "Date to"
+#~ msgstr "Data a"
+
+#~ msgid "Delay time"
+#~ msgstr "Temps de retard"
+
+#~ msgid "SII Tax Agencies"
+#~ msgstr "Agències Tributàries SII"
+
+#~ msgid "SII Tax Agency"
+#~ msgstr "Agència Tributària SII"
+
+#~ msgid "Send mode"
+#~ msgstr "Mode d’enviament"
+
+#~ msgid "Sent time"
+#~ msgstr "Temps enviat"
+
+#~ msgid "Tax Agency"
+#~ msgstr "Agència Tributària"
+
+#~ msgid "Use connector"
+#~ msgstr "Fer servir connector"
 
 #~ msgid "Activate"
 #~ msgstr "Activa"
