@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <data>
+        <!-- LROE OPERATION -->
+        <record id="lroe_operation_form_view" model="ir.ui.view">
+            <field name="name">lroe.operation.form.view</field>
+            <field name="model">lroe.operation</field>
+            <field name="arch" type="xml">
+                <form string="LROE Operation" create="false" delete="false" edit="false" import="false">
+                    <header>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group name="operation_data">
+                            <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                            <field name="type" readonly="1"/>
+                            <field name="model" readonly="1"/>
+                        </group>
+                        <group name="operation_file_data">
+                            <field name="xml_datas" string="XML File" filename="xml_datas_fname" readonly="1"/>
+                            <field name="xml_datas_fname" invisible="1" class="oe_inline oe_right"/>
+                            <field name="xml_file_size" invisible="1"/>
+                        </group>
+                        <group name="operation_file_gzip_data">
+                            <field name="trx_gzip_file" string="GZIP File" filename="trx_gzip_fname" readonly="1"/>
+                            <field name="trx_gzip_fname" invisible="1" class="oe_inline oe_right"/>
+                            <field name="trx_gzip_fsize" invisible="1"/>
+                        </group>
+                        <group name="customer_invoices" string="TBAI Customer Invoices">
+                            <field name="tbai_invoice_ids" nolabel="1" readonly="1">
+                                <form string="Customer Invoice" create="false" delete="false" edit="false" import="false">
+                                    <group name="invoice" string="Invoice">
+                                        <field name="name" invisible="1"/>
+                                        <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                                        <field name="tbai_identifier" readonly="1"/>
+                                        <field name="signature_value" readonly="1"/>
+                                    </group>
+                                    <group name="file" string="File">
+                                        <field name="datas" string="File" filename="datas_fname" readonly="1"/>
+                                        <field name="datas_fname" invisible="1" class="oe_inline oe_right"/>
+                                        <field name="file_size" invisible="1"/>
+                                    </group>
+                                    <group name="qr" string="QR Code" attrs="{'invisible': [('parent.type', '!=', 'A00')]}">
+                                        <field name="qr_url" readonly="1"/>
+                                        <field name="qr" widget="image" readonly="1" style="max-width: 40mm"/>
+                                    </group>
+                                </form>
+                                <tree create="false" delete="false" edit="false">
+                                    <field name="name" invisible="1"/>
+                                    <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                                    <field name="tbai_identifier" readonly="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group name="operation_responses" string="LROE Responses">
+                            <field name="response_ids" nolabel="1" readonly="1">
+                                <form string="LROE Operation Global Response" create="false" delete="false" edit="false" import="false">
+                                    <group name="source_operation" string="LROE source Operation">
+                                        <field name="create_date" readonly="1"/>
+                                    </group>
+                                    <group name="response_data" string="Responde data">
+                                        <field name="xml" string="File" filename="xml_fname" readonly="1"/>
+                                        <field name="xml_fname" invisible="1" class="oe_inline oe_right"/>
+                                        <field name="code" readonly="1"/>
+                                        <field name="description" readonly="1"/>
+                                        <field name="state" readonly="1"/>
+                                        <field name="lroe_record_id" readonly="1"/>
+                                        <field name="lroe_record_date" readonly="1"/>
+                                    </group>
+                                    <group name="response_lines" string="Response Lines">
+                                        <field name="response_line_ids"
+                                               nolabel="1" options="{'no_create_edit': True, 'no_open': True}">
+                                            <form create="false" delete="false" edit="false" import="false">
+                                                <header>
+                                                    <field name="state" widget="statusbar" readonly="1"/>
+                                                </header>
+                                                <sheet>
+                                                    <group name="lroe_response_main_group">
+                                                        <field name="lroe_operation_id"/>
+                                                        <field name="code"/>
+                                                        <field name="description"/>
+                                                    </group>
+                                                </sheet>
+                                            </form>
+                                            <tree create="false" delete="false" decoration-danger="state=='Incorrecto'">
+                                                <field name="create_date"/>
+                                                <field name="response_message"/>
+                                                <field name="state"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </form>
+                                <tree create="false" delete="false" edit="false"
+                                      decoration-danger="state not in ['Correcto', 'Parcialmente correcto']">
+                                    <field name="create_date" readonly="1"/>
+                                    <field name="code" readonly="1"/>
+                                    <field name="description" readonly="1"/>
+                                    <field name="state" readonly="1"/>
+                                    <field name="lroe_record_id" readonly="1"/>
+                                    <field name="lroe_record_date" readonly="1"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lroe_operation_tree_view" model="ir.ui.view">
+            <field name="name">lroe.operation.tree.view</field>
+            <field name="model">lroe.operation</field>
+            <field name="arch" type="xml">
+                <tree string="LROE Operation"
+                      decoration-danger="state=='error'"
+                      decoration-warning="state=='recorded_warning'"
+                      create="false" delete="false" edit="false">
+                    <field name="create_date" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                    <field name="type" readonly="1"/>
+                    <field name="model" readonly="1"/>
+                    <field name="state" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="lroe_operation_search_view" model="ir.ui.view">
+            <field name="name">lroe.operation.search.view</field>
+            <field name="model">lroe.operation</field>
+            <field name="arch" type="xml">
+                <search string="LROE Operation">
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="model"/>
+                    <field name="state"/>
+                    <filter name="operation_done" string="Done"
+                            domain="[('state', 'in', ['recorded', 'recorded_warning', 'error'])]"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Company" name="company_id" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                        <filter string="State" name="state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- LROE CHAPTER -->
+        <record id="lroe_chapter_form_view" model="ir.ui.view">
+            <field name="name">lroe.chapter.form.view</field>
+            <field name="model">lroe.chapter</field>
+            <field name="arch" type="xml">
+                <form string="LROE Chapter" create="false" delete="false" edit="false" >
+                    <sheet>
+                        <group name="chapter_data">
+                            <group>
+                                <field name="name" readonly="1" />
+                                <field name="code" readonly="1"/>
+                                <field name="model" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="lroe_chapter_id" readonly="1" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="lroe_chapter_tree_view" model="ir.ui.view">
+            <field name="name">lroe.chapter.tree.view</field>
+            <field name="model">lroe.chapter</field>
+            <field name="arch" type="xml">
+                <tree string="LROE OpeChapterration" create="false" delete="false" edit="false" import="false">
+                    <field name="model" />
+                    <field name="code" />
+                    <field name="name" />
+                    <field name="lroe_chapter_id"  />
+                </tree>
+            </field>
+        </record>
+
+        <record id="lroe_chapter_search_view" model="ir.ui.view">
+            <field name="name">lroe.chapter.search.view</field>
+            <field name="model">lroe.chapter</field>
+            <field name="arch" type="xml">
+                <search string="LROE Chapter">
+                    <field name="name"/>
+                    <field name="model"/>
+                    <field name="code"/>
+                    <group expand="1" string="Group By">
+                        <filter string="Model" name="group_model" context="{'group_by':'model'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- LROE OPERATION RESPONSE -->
+        <record id="lroe_operation_response_form_view" model="ir.ui.view">
+            <field name="name">lroe.operation.response.form.view</field>
+            <field name="model">lroe.operation.response</field>
+            <field name="arch" type="xml">
+                <form string="LROE Operation Global Response" create="false" delete="false" edit="false" import="false">
+                    <group name="source_operation" string="LROE source Operation">
+                        <field name="create_date" readonly="1"/>
+                        <field name="lroe_operation_id" readonly="1"/>
+                    </group>
+                    <group name="response_data" string="Responde data">
+                        <field name="xml" widget="binary" readonly="1"/>
+                        <field name="code" readonly="1"/>
+                        <field name="description" readonly="1"/>
+                        <field name="state" readonly="1"/>
+                        <field name="lroe_record_id" readonly="1"/>
+                        <field name="lroe_record_date" readonly="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="lroe_operation_response_tree_view" model="ir.ui.view">
+            <field name="name">lroe.operation.response.tree.view</field>
+            <field name="model">lroe.operation.response</field>
+            <field name="arch" type="xml">
+                <tree string="LROE Operation Global Response" create="false" delete="false" edit="false">
+                    <field name="create_date" readonly="1"/>
+                    <field name="lroe_operation_id" readonly="1"/>
+                    <field name="code" readonly="1"/>
+                    <field name="description" readonly="1"/>
+                    <field name="state" readonly="1"/>
+                    <field name="lroe_record_id" readonly="1"/>
+                    <field name="lroe_record_date" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- MENU -->
+        <menuitem id="menu_lroe_root"
+                  parent="l10n_es_ticketbai_api.menu_l10n_es_tbai_config"
+                  name="LROE"/>
+
+        <record id="action_lroe_operation" model="ir.actions.act_window">
+            <field name="name">TicketBAI LROE - Operations</field>
+            <field name="res_model">lroe.operation</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_operation_done":1}</field>
+        </record>
+
+        <record id="action_lroe_chapter" model="ir.actions.act_window">
+            <field name="name">Batuz/LROE - Chapters</field>
+            <field name="res_model">lroe.chapter</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_group_model":1}</field>
+        </record>
+
+        <menuitem id="menu_lroe_operations"
+                  parent="menu_lroe_root"
+                  action="action_lroe_operation"
+                  name="Operations"/>        
+        
+        <menuitem id="menu_lroe_chapters"
+                  parent="menu_lroe_root"
+                  action="action_lroe_chapter"
+                  name="Chapters"/>
+    </data>
+</odoo>
