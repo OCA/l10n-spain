@@ -972,7 +972,7 @@ class AccountMove(models.Model):
 
     def _connect_params_sii(self, mapping_key):
         self.ensure_one()
-        agency = self.company_id.sii_tax_agency_id
+        agency = self.company_id.tax_agency_id
         if not agency:
             # We use spanish agency by default to keep old behavior with
             # ir.config parameters. In the future it might be good to reinforce
