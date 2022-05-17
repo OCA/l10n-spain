@@ -10,7 +10,8 @@ from odoo import fields
 class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
 
     def create_pos_order_from_ui(
-            self, user, partner_id=False, fp=False, to_invoice=False):
+        self, user, partner_id=False, fp=False, to_invoice=False
+    ):
         untax, atax = 100.0, 21.0
         tax_ids = [self.tax_21b.id]
         if fp:
@@ -34,10 +35,12 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                     'price_unit': 100.0,
                     'product_id': self.product_delivery.id,
                     'qty': 1.0,
-                    'tax_ids': [(6, 0, tax_ids)]
+                    'tax_ids': [(6, 0, tax_ids)],
+                    'price_subtotal': 100.0,
+                    'price_subtotal_incl': 100.0
                 }]],
                 'name': 'TBAI Simplified Invoice Test - 00001-065-0016',
-                'simplified_invoice': 'Main0001',
+                'simplified_invoice': 'Shop0001',
                 'partner_id': partner_id,
                 'pos_session_id': self.pos_config.current_session_id.id,
                 'sequence_number': 1,
@@ -51,7 +54,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                 }]],
                 'uid': '00001-065-0016',
                 'user_id': user.id,
-                'to_invoice': to_invoice
+                'to_invoice': to_invoice,
             },
             'to_invoice': to_invoice
         }]
@@ -59,7 +62,8 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
         return self.env['pos.order'].browse(order_id)
 
     def create_pos_order_from_ui2(
-            self, user, partner_id=False, fp=False, to_invoice=False):
+        self, user, partner_id=False, fp=False, to_invoice=False
+    ):
         untax, atax = 100.0, 21.0
         tax_ids = [self.tax_21b.id]
         if fp:
@@ -83,11 +87,13 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                     'price_unit': 100.0,
                     'product_id': self.product_delivery.id,
                     'qty': 1.0,
-                    'tax_ids': [(6, 0, tax_ids)]
+                    'tax_ids': [(6, 0, tax_ids)],
+                    'price_subtotal': 100,
+                    'price_subtotal_incl': 100,
                 }]],
                 'name': 'TBAI Simplified Invoice Test - 00001-065-0017',
                 'tbai_previous_order_pos_reference': 'Main0001',
-                'simplified_invoice': 'Main0002',
+                'simplified_invoice': 'Shop0002',
                 'partner_id': partner_id,
                 'pos_session_id': self.pos_config.current_session_id.id,
                 'sequence_number': 1,
@@ -101,7 +107,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                 }]],
                 'uid': '00001-065-0017',
                 'user_id': user.id,
-                'to_invoice': to_invoice
+                'to_invoice': to_invoice,
             },
             'to_invoice': to_invoice
         }]
@@ -115,7 +121,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
         else:
             vat_regime_key = self.env.ref('l10n_es_ticketbai.tbai_vat_regime_01').id
         vals = {
-            'pos_reference': 'Main0001',
+            'pos_reference': 'Shop0001',
             'company_id': self.main_company.id,
             'session_id': self.pos_config.current_session_id.id,
             'partner_id': self.partner.id,
@@ -129,7 +135,13 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                 'discount': 0.0,
                 'qty': 1.0,
                 'tax_ids': [(6, 0, tax_ids)],
-            })]
+                'price_subtotal': 100,
+                'price_subtotal_incl': 100,
+            })],
+            'amount_tax': 0,
+            'amount_total': 100,
+            'amount_paid': 121,
+            'amount_return': 0
         }
         pos_order = self.env['pos.order'].sudo(uid).create(vals)
         payment = self.env['pos.make.payment'].with_context({

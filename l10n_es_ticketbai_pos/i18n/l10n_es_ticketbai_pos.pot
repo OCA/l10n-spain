@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-17 08:35+0000\n"
+"PO-Revision-Date: 2022-05-17 08:35+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 msgid "<span class=\"fa fa-lg fa-desktop\" title=\"Values set here are company-specific\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
@@ -26,24 +28,24 @@ msgid "At least one product does not have a tax."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 msgid "Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_device_serial_number
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_device_serial_number
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 msgid "Device Serial Number"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_enabled
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_enabled
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_enabled
 msgid "Enable TicketBAI"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "Files Sent"
 msgstr ""
 
@@ -53,17 +55,17 @@ msgid "Invoice"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_last_invoice_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_last_invoice_id
 msgid "Last TicketBAI Invoice sent"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_invoice_tbai_substitution_pos_order_id
+#: model:ir.model.fields,help:l10n_es_ticketbai_pos.field_account_invoice__tbai_substitution_pos_order_id
 msgid "Link between a validated Customer Invoice and its substitute."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "Messages"
 msgstr ""
 
@@ -76,7 +78,7 @@ msgid "Non spanish customers are not supported for Simplified Invoice."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "Orders"
 msgstr ""
 
@@ -124,8 +126,13 @@ msgid "Please set a tax for product %s."
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 msgid "PoS Device Serial Number. As of TicketBAI v1.1, is not required."
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
+msgid "Point of Sale Configuration"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
@@ -134,13 +141,13 @@ msgid "Point of Sale Orders"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice_pos_order_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_tbai_invoice__pos_order_id
 msgid "Pos Order"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_response_ids
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_response_ids
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "Responses"
 msgstr ""
 
@@ -159,7 +166,7 @@ msgid "Simplified Invoice Number Prefix %s is not part of Number %s!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_invoice_tbai_substitution_pos_order_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_account_invoice__tbai_substitution_pos_order_id
 msgid "Tbai Substitution Pos Order"
 msgstr ""
 
@@ -172,19 +179,19 @@ msgstr ""
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:108
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:114
 #: code:addons/l10n_es_ticketbai_pos/static/src/js/tbai_models.js:105
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 #, python-format
 msgid "TicketBAI"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config_tbai_certificate_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__tbai_certificate_id
 msgid "TicketBAI Certificate"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_config_form_inherit
 msgid "TicketBAI Certificate (optional). If not set, the certificate from the company is used instead."
 msgstr ""
 
@@ -202,12 +209,12 @@ msgstr ""
 
 #. module: l10n_es_ticketbai_pos
 #: model:ir.model,name:l10n_es_ticketbai_pos.model_tbai_invoice
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_invoice_ids
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_invoice_ids
 msgid "TicketBAI Invoices"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_invoice_id
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_invoice_id
 msgid "TicketBAI PoS Order"
 msgstr ""
 
@@ -219,17 +226,17 @@ msgid "TicketBAI certificate not loaded!"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order_tbai_vat_regime_key
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_config__iface_l10n_es_simplified_invoice
+msgid "Use simplified invoices for this POS"
+msgstr ""
+
+#. module: l10n_es_ticketbai_pos
+#: model:ir.model.fields,field_description:l10n_es_ticketbai_pos.field_pos_order__tbai_vat_regime_key
 msgid "VAT Regime Key"
 msgstr ""
 
 #. module: l10n_es_ticketbai_pos
-#: model:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
+#: model_terms:ir.ui.view,arch_db:l10n_es_ticketbai_pos.view_pos_pos_form_inherit
 msgid "VAT Regimes"
-msgstr ""
-
-#. module: l10n_es_ticketbai_pos
-#: model:ir.model,name:l10n_es_ticketbai_pos.model_pos_config
-msgid "pos.config"
 msgstr ""
 
