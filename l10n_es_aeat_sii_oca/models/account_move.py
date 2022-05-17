@@ -8,6 +8,7 @@
 # Copyright 2021 Tecnativa - João Marques
 # Copyright 2022 ForgeFlow - Lois Rilo
 # Copyright 2022 Tecnativa - Víctor Martínez
+# Copyright 2022 NuoBiT Solutions - Eric Antones <eantones@nuobit.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import json
@@ -72,6 +73,17 @@ def round_by_keys(elem, search_keys, prec=2):
     elif isinstance(elem, list):
         for value in elem:
             round_by_keys(value, search_keys)
+
+
+def sum_key(elem, key):
+    value = 0
+    if isinstance(elem, (list, tuple)):
+        for v in elem:
+            value += sum_key(v, key)
+    elif isinstance(elem, dict):
+        for k, v in elem.items():
+            value += v if k == key else sum_key(v, key)
+    return value
 
 
 class AccountMove(models.Model):
@@ -841,6 +853,14 @@ class AccountMove(models.Model):
                         )
                     }
                 )
+            if "06" in [
+                self.sii_registration_key.code,
+                self.sii_registration_key_additional1.code,
+                self.sii_registration_key_additional2.code,
+            ]:
+                inv_dict["FacturaExpedida"].update(
+                    {"BaseImponibleACoste": sum_key(tipo_desglose, "BaseImponible")}
+                )
             if self.sii_registration_key.code in ["12", "13"]:
                 inv_dict["FacturaExpedida"]["DatosInmueble"] = {
                     "DetalleInmueble": {
@@ -931,6 +951,14 @@ class AccountMove(models.Model):
                         )
                     }
                 )
+            if "06" in [
+                self.sii_registration_key.code,
+                self.sii_registration_key_additional1.code,
+                self.sii_registration_key_additional2.code,
+            ]:
+                inv_dict["FacturaRecibida"].update(
+                    {"BaseImponibleACoste": sum_key(desglose_factura, "BaseImponible")}
+                )
             # Uso condicional de IDOtro/NIF
             inv_dict["FacturaRecibida"]["Contraparte"].update(ident)
             if self.move_type == "in_refund":
@@ -969,6 +997,7 @@ class AccountMove(models.Model):
                 "CuotaRectificada",
                 "CuotaDeducible",
                 "ImporteCompensacionREAGYP",
+                "BaseImponibleACoste",
             ],
         )
         return inv_dict
