@@ -148,6 +148,7 @@ Contributors
 * Miquel Raïch <miquel.raich@forgeflow.com>
 * Iván Antón <ozono@ozonomultimedia.com>
 * Digital5 S.L.
+* Manuel Regidor <manuel.regidor@sygel.es>
 
 Maintainers
 ~~~~~~~~~~~
