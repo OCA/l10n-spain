@@ -159,8 +159,8 @@ class AccountInvoiceTax(models.Model):
         return res
 
     def tbai_get_value_op_recargo_equivalencia_o_reg_simplificado(self):
-        re_invoice_tax = self.tbai_get_associated_re_tax()
-        if re_invoice_tax or self.invoice_id.company_id.tbai_vat_regime_simplified:
+        if (self.invoice_id.is_surcharge_or_simplified_regime_key()
+                and self.invoice_id.has_surcharge_lines):
             res = 'S'
         else:
             res = 'N'

@@ -16,13 +16,15 @@ odoo.define('l10n_es_ticketbai_pos.models', function (require) {
     var rpc = require('web.rpc');
 
     models.load_fields('res.company', [
-        'tbai_enabled', 'tbai_test_enabled', 'tbai_license_key', 'tbai_developer_id',
-        'tbai_software_name', 'tbai_tax_agency_id', 'tbai_protected_data', 'tbai_protected_data_txt'
+        'tbai_enabled', 'tbai_test_enabled', 'tbai_license_key',
+        'tbai_developer_id', 'tbai_software_name', 'tbai_tax_agency_id',
+         'tbai_protected_data', 'tbai_protected_data_txt', 'tbai_vat_regime'
     ]);
 
     models.load_fields('res.country', ['code']);
     models.load_fields('res.partner', [
         'tbai_partner_idtype', 'tbai_partner_identification_number']);
+    models.load_fields('product.product', ['has_equivalence_surcharge']);
 
     models.load_models([
         {

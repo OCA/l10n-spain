@@ -235,3 +235,16 @@ msgstr "Claves de regímenes de IVA"
 msgid "pos.config"
 msgstr "pos.config"
 
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:38
+#, python-format
+msgid "There cannot be lines with and without an equivalence or simplified regime surcharge on the same receipt."
+msgstr "No puede haber líneas con y sin recargo de equivalencia o régimen simplificado en el mismo recibo."
+
+#. module: l10n_es_ticketbai_pos
+#. openerp-web
+#: code:addons/l10n_es_ticketbai_pos/static/src/js/screens.js:107
+#, python-format
+msgid "Regime not supported for simplified receipt."
+msgstr "Régimen no soportado para factura simplificada, genere una factura normal."

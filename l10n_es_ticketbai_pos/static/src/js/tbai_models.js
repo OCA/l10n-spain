@@ -41,6 +41,35 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
             width: 255,
         },
 
+        implement_vat_regime: function() {
+            var company_regime = this.pos.get_tbai_vat_regime_key_code_by_id(
+                this.pos.company.tbai_vat_regime[0]);
+            this.vat_regime_key = this.pos.company.tbai_vat_regime[0];
+            if (['51', '52'].includes(company_regime)) {
+                var lines_with_surcharge = _.filter(this.order.get_orderlines(), function (line) {
+                    return line.product.has_equivalence_surcharge;
+                });
+                if (lines_with_surcharge.length == 0) {
+                    var general_regime = this.pos.tbai_vat_regime_keys.find( v => v.code === '01' );
+                    this.vat_regime_key = general_regime.id;
+                }
+            }
+            if (this.order.fiscal_position && company_regime == '01') {
+                var tbai_vat_regime_key = this.order.fiscal_position.tbai_vat_regime_key;
+                if (tbai_vat_regime_key) {
+                    this.vat_regime_key = tbai_vat_regime_key[0];
+                }
+                var tbai_vat_regime_key2 = this.order.fiscal_position.tbai_vat_regime_key2;
+                if (tbai_vat_regime_key2) {
+                    this.vat_regime_key2 = tbai_vat_regime_key2[0];
+                }
+                var tbai_vat_regime_key3 = this.order.fiscal_position.tbai_vat_regime_key3;
+                if (tbai_vat_regime_key3) {
+                    this.vat_regime_key3 = tbai_vat_regime_key3[0];
+                }
+            }
+        },
+
         build_invoice: function () {
             var self = this;
             var built = new $.Deferred();
@@ -56,24 +85,7 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
                 this.order.simplified_invoice || this.pos.get_simple_inv_next_number();
             this.number_prefix = this.pos.config.l10n_es_simplified_invoice_prefix;
             this.number = simplified_invoice.slice(this.number_prefix.length);
-
-            if (this.order.fiscal_position) {
-                var tbai_vat_regime_key = this.order.fiscal_position.tbai_vat_regime_key;
-                if (tbai_vat_regime_key) {
-                    this.vat_regime_key = this.pos.get_tbai_vat_regime_key_code_by_id(
-                        tbai_vat_regime_key[0]);
-                }
-                var tbai_vat_regime_key2 = this.order.fiscal_position.tbai_vat_regime_key2;
-                if (tbai_vat_regime_key2) {
-                    this.vat_regime_key2 = this.pos.get_tbai_vat_regime_key_code_by_id(
-                        tbai_vat_regime_key2[0]);
-                }
-                var tbai_vat_regime_key3 = this.order.fiscal_position.tbai_vat_regime_key3;
-                if (tbai_vat_regime_key3) {
-                    this.vat_regime_key3 = this.pos.get_tbai_vat_regime_key_code_by_id(
-                        tbai_vat_regime_key3[0]);
-                }
-            }
+            this.implement_vat_regime();
 
             tbai_json = this.export_as_JSON();
             if (!_.isEmpty(tbai_json) && this.pos.tbai_signer !== null) {
@@ -136,20 +148,28 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
                 return partner.tbai_partner_identification_number;
             }
         },
+        get_vat_keys: function(order_json) {
+            var vat_keys = [this.pos.get_tbai_vat_regime_key_code_by_id(this.vat_regime_key)];
+            if (this.vat_regime_key2 !== null) {
+                vat_keys.push(
+                    this.pos.get_tbai_vat_regime_key_code_by_id(this.vat_regime_key2)
+                );
+            }
+            if (this.vat_regime_key3 !== null) {
+                vat_keys.push(
+                    this.pos.get_tbai_vat_regime_key_code_by_id(this.vat_regime_key3)
+                );
+            }
+            return vat_keys;
+        },
         export_as_JSON: function () {
             var order_json = this.order !== null && this.order.export_as_JSON() || null;
             var tbai = {};
             var company = this.pos.company;
-            var vat_keys = [this.vat_regime_key];
+            var vat_keys = this.get_vat_keys(order_json);
             var self = this;
 
             if (order_json !== null && this.number !== null && this.expedition_date !== null) {
-                if (this.vat_regime_key2 !== null) {
-                    vat_keys.push(this.vat_regime_key2);
-                }
-                if (this.vat_regime_key3 !== null) {
-                    vat_keys.push(this.vat_regime_key3);
-                }
                 tbai.Invoice = {
                     simple: true,
                     issuer: {
@@ -169,7 +189,7 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
                     total: field_utils.parse.float(self.pos.chrome.format_currency_no_symbol(order_json.amount_total)),
                     vatKeys: vat_keys,
                 };
-                tbai.Invoice.vatLines = this.get_tbai_vat_lines_from_json(order_json);
+                tbai.Invoice.vatLines = this.get_tbai_vat_lines_from_json(order_json, vat_keys);
                 if (order_json.partner_id) {
                     var partner = this.pos.db.get_partner_by_id(order_json.partner_id);
                     var zip = partner.zip;
@@ -231,18 +251,22 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
             });
             return lines;
         },
-        get_tbai_vat_lines_from_json: function(order_json) {
+        get_tbai_vat_lines_from_json: function(order_json, vat_keys) {
             var vatLines = [];
             var vatLinesJson = order_json.taxLines
             var self = this;
             if (vatLinesJson && vatLinesJson.length > 0) {
                 vatLinesJson.forEach(function(vatLineJson) {
-                    var vatLine = vatLineJson[2];
-                    vatLines.push({
-                        base: field_utils.parse.float(self.pos.chrome.format_currency_no_symbol(vatLine.baseAmount)),
-                        rate: vatLine.tax.amount,
-                        amount: field_utils.parse.float(self.pos.chrome.format_currency_no_symbol(vatLine.amount)),
-                    });
+                    var vLine = vatLineJson[2];
+                    var vatLine = {
+                        base: field_utils.parse.float(self.pos.chrome.format_currency_no_symbol(vLine.baseAmount)),
+                        rate: vLine.tax.amount,
+                        amount: field_utils.parse.float(self.pos.chrome.format_currency_no_symbol(vLine.amount)),
+                    };
+                    if (vat_keys.find(element => element != '01')) {
+                        vatLine['isUsingSimplifiedRegime'] = true;
+                    }
+                    vatLines.push(vatLine);
                 });
             } else {
                 var fline = order_json.lines[0][2];

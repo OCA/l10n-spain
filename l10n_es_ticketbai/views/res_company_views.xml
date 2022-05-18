@@ -13,6 +13,10 @@
                     <attribute name="invisible">1</attribute>
                 </field>
                 <field name="tbai_certificate_id" position="after">
+                    <field name="tbai_vat_regime"
+                           domain="[('code','in', ('01', '51', '52'))]"
+                           attrs="{'required': [('tbai_enabled', '=', True)]}"
+                           options="{'no_open':True, 'no_create':True}"/>
                     <field name="tbai_aeat_certificate_id" attrs="{'required': [('tbai_enabled', '=', True)]}"
                            options="{'no_open':True,'no_create':True}"/>
                 </field>

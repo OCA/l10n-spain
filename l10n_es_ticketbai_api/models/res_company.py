@@ -31,7 +31,6 @@ class ResCompany(models.Model):
         'Device Serial Number', default='', copy=False)
     tbai_tax_agency_id = fields.Many2one(
         comodel_name='tbai.tax.agency', string='Tax Agency', copy=False)
-    tbai_vat_regime_simplified = fields.Boolean('Regime Simplified', copy=False)
     tbai_last_invoice_id = fields.Many2one(
         string='Last TicketBAI Invoice sent', comodel_name='tbai.invoice', copy=False)
 
@@ -123,7 +122,6 @@ class ResCompany(models.Model):
             self.tbai_test_enabled = False
             self.tbai_device_serial_number = ''
             self.tbai_tax_agency_id = False
-            self.tbai_vat_regime_simplified = False
             self.tbai_certificate_id = False
 
     def tbai_certificate_get_p12_buffer(self):

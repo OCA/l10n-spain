@@ -1804,3 +1804,15 @@ msgstr "TicketBAI Instalación"
 #~ msgid "Name %s too long. Should be 120 characters max.!"
 #~ msgstr ""
 #~ "Nombre %s demasiado largo. Debería tener un máximo de 120 caracteres."
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:752
+#, python-format
+msgid "Only one VAT key is allowed for codes 02, 04, 09, 10, 14, 15, 16, 17"
+msgstr "Sólo se permite una clave IVA para los códigos 02, 04, 09, 10, 14, 15, 16, 17"
+
+#. module: l10n_es_ticketbai_api
+#: code:addons/l10n_es_ticketbai_api/models/ticketbai_invoice.py:757
+#, python-format
+msgid "Incompatible VAT keys found when first key is %s"
+msgstr "Se han encontrado claves de IVA incompatibles cuando la primera clave es %s"

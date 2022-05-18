@@ -13,12 +13,33 @@ odoo.define('l10n_es_ticketbai_pos.screens', function (require) {
         click_product: function (product) {
             var res = true;
             if (this.pos.company.tbai_enabled) {
+                var order = this.pos.get_order();
                 if (1 !== product.taxes_id.length) {
                     res = false;
                     this.gui.show_popup('error', {
                         title: _t('TicketBAI'),
                         body: _.str.sprintf(_t('Please set a tax for product %s.'), product.display_name),
                     });
+                }
+                var company_regime = this.pos.get_tbai_vat_regime_key_code_by_id(
+                    this.pos.company.tbai_vat_regime[0]);
+                if (company_regime != '01' && res && order.get_orderlines().length > 0) {
+                    var lines_with_surcharge = _.filter(order.get_orderlines(), function (line) {
+                        return line.product.has_equivalence_surcharge;
+                    });
+                    if (
+                        (lines_with_surcharge.length > 0 && !product.has_equivalence_surcharge) ||
+                        (lines_with_surcharge.length == 0 && product.has_equivalence_surcharge)
+                    ) {
+                        res = false;
+                        this.gui.show_popup('error', {
+                            title: _t('TicketBAI'),
+                            body: _.str.sprintf(
+                                _t('There cannot be lines with and without an equivalence or simplified regime surcharge on the same receipt.'),
+                                product.display_name
+                            )
+                        });
+                    }
                 }
             }
             if (res) {
@@ -78,6 +99,15 @@ odoo.define('l10n_es_ticketbai_pos.screens', function (require) {
                     this._super();
                 } else {
                     var order = this.pos.get_order();
+                    if (order.fiscal_position
+                        && this.pos.get_tbai_vat_regime_key_code_by_id(order.fiscal_position.id) != '01'
+                    ) {
+                        this.gui.show_popup('error', {
+                            title: _t('TicketBAI'),
+                            body: _t('Regime not supported for simplified receipt.')
+                        });
+                        return;
+                    }
                     order.tbai_build_invoice();
                     order.tbai_current_invoice.then( function(tbai_inv) {
                         order.tbai_simplified_invoice = tbai_inv;

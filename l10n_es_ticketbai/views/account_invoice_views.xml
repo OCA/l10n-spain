@@ -12,6 +12,19 @@
                     <field name="tbai_vat_exemption_key" attrs="{'column_invisible': [('parent.tbai_enabled', '=', False)]}"
                            options="{'no_open':True,'no_create':True}"/>
                 </xpath>
+                <notebook position="before">
+                    <field name="error_surcharge_lines" invisible="1"/>
+                    <div class="alert alert-danger"
+                         role="alert"
+                         attrs="{'invisible': [('error_surcharge_lines', '=', False)]}"
+                         style="margin-bottom:0px;">
+                        <p>
+                            <i class="fa fa-warning"/>
+                            There cannot be lines with and without an equivalence or
+                            simplified regime surcharge on the same invoice.
+                        </p>
+                    </div>
+                </notebook>
                 <page name="other_info" position="after">
                     <page name="ticketbai" string="TicketBAI" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
                         <group name="main_grp" col="4">

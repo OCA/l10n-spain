@@ -8,6 +8,9 @@ from odoo.tools import ormcache
 class ResCompany(models.Model):
     _inherit = 'res.company'
 
+    def _get_default_tbai_vat_regime(self):
+        return self.env.ref('l10n_es_ticketbai.tbai_vat_regime_01', False)
+
     tbai_aeat_certificate_id = fields.Many2one(
         comodel_name='l10n.es.aeat.certificate', string='AEAT Certificate',
         domain="[('state', '=', 'active'), ('company_id', '=', id)]", copy=False)
@@ -16,11 +19,16 @@ class ResCompany(models.Model):
         "Substitution Text",
         translate=True,
         default='Information protected by Article 9 Regulation 679/2016')
+    tbai_vat_regime = fields.Many2one(
+        comodel_name='tbai.vat.regime.key',
+        default=_get_default_tbai_vat_regime,
+        string='Regime', copy=False)
 
     @api.onchange('tbai_enabled')
-    def onchange_tbai_enabled_unset_tbai_aeat_certificate_id(self):
+    def onchange_tbai_enabled_unset_tbai_data(self):
         if not self.tbai_enabled:
             self.tbai_aeat_certificate_id = False
+            self.tbai_vat_regime = False
 
     def tbai_certificate_get_p12(self):
         if self.tbai_aeat_certificate_id:

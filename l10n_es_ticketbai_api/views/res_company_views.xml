@@ -27,7 +27,6 @@
                             <field name="tbai_developer_id"/>
                             <field name="tbai_tax_agency_id" attrs="{'required': [('tbai_enabled', '=', True)]}"
                                    options="{'no_open':True,'no_create':True}"/>
-                            <field name="tbai_vat_regime_simplified"/>
                             <field name="tbai_certificate_id" attrs="{'required': [('tbai_enabled', '=', True)]}"/>
                         </group>
                     </page>
