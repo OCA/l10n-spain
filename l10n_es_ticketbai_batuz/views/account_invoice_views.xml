@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2021 Digital5, S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="view_invoice_form_tbai_batuz" model="ir.ui.view">
+        <field name="name">view.invoice.form.tbai.batuz</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="l10n_es_ticketbai.invoice_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='ticketbai']/group[@name='tbai_responses']" position="after">
+                <group name="lroe_responses_lines"
+                        string="LROE Responses"
+                        attrs="{'invisible': [('lroe_response_line_ids', '=', [])]}">
+                    <field name="lroe_response_line_ids" nolabel="1" options="{'no_create_edit': True}">
+                        <form>
+                            <header>
+                                <field name="state" widget="statusbar" readonly="1"/>
+                            </header>
+                            <sheet>
+                                <group name="lroe_response_main_group">
+                                    <field name="lroe_operation_id"/>
+                                    <field name="code"/>
+                                    <field name="description"/>
+                                </group>
+                            </sheet>
+                        </form>
+                        <tree create="false" delete="false" decoration-danger="state=='Incorrecto'">
+                            <field name="create_date"/>
+                            <field name="response_message"/>
+                            <field name="state"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form_inherit_l10n_es_ticketbai_batuz" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <button name="action_invoice_draft" position="after">
+                <field name="lroe_state" invisible="1" />
+                <button type="object" string="Resend to LROE"
+                        name="action_send_lroe_manually"
+                        groups="l10n_es_aeat.group_account_aeat"
+                        attrs="{'invisible': [('lroe_state', 'not in', ['error','recorded_warning'])]}" />
+            </button>
+            <xpath expr="//notebook" position="inside">
+                <page name='lroe_result' string="LROE" attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                    <field name="tbai_enabled" invisible="1" />
+                    <group name="lroe_refund" string="Refund" attrs="{'invisible': [('type', '!=', 'in_refund')]}">
+                        <field name="refund_invoice_id" attrs="{'required': [('type', '=', 'in_refund')]}" />
+                    </group>
+                    <group>
+                        <group name="tbai_vat_purchase_regimes" string="VAT Regimes">
+                            <field name="tbai_vat_regime_purchase_key"
+                                   attrs="{'required': [('tbai_enabled', '=', True)], 'readonly': [('state', '!=', 'draft')]}"
+                                   options="{'no_open': True,'no_create': True}" />
+                            <field name="tbai_vat_regime_purchase_key2" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_open':True,'no_create':True}" />
+                            <field name="tbai_vat_regime_purchase_key3" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_open':True,'no_create':True}" />
+                        </group>
+                    </group>
+                    <group name="lroe_operations" string="LROE Operations"
+                           attrs="{'invisible': [('lroe_operation_ids', '=', [])]}" >
+                        <field name="lroe_operation_ids" readonly="1" nolabel="1"
+                               options="{'no_create':True}" />
+                    </group>
+                    <group name="lroe_responses_lines"
+                           string="LROE Responses"
+                           attrs="{'invisible': [('lroe_response_line_ids', '=', [])]}">
+                        <field name="lroe_response_line_ids" nolabel="1" options="{'no_create_edit': True}">
+                            <form>
+                                <header>
+                                    <field name="state" widget="statusbar" readonly="1"/>
+                                </header>
+                                <sheet>
+                                    <group name="lroe_response_main_group">
+                                        <field name="lroe_operation_id"/>
+                                        <field name="code"/>
+                                        <field name="description"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                            <tree create="false" delete="false" decoration-danger="state=='Incorrecto'">
+                                <field name="create_date"/>
+                                <field name="lroe_operation_id"/>
+                                <field name="response_message"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group name="lroe_result_technical" string="Technical" groups="base.group_no_one">
+                        <field name="lroe_invoice_dict" />
+                    </group>
+                </page>
+            </xpath>
+
+            <field name="reference" position="attributes">
+                <attribute name="attrs">{'required':[('state','not in',['open','paid','cancel'])]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter_inherit_l10n_es_ticketbai_batuz" model="ir.ui.view">
+        <field name="name">account.invoice.select.batuz</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <filter name="late" position="after">
+                <separator />
+                <filter name="lroe_not_sent" string="LROE not sent"
+                    domain="[('lroe_state', '=', 'not_sent'), ('date', '>=', '2022-01-01')]"
+                    help="Never sent to LROE" />
+                <filter name="lroe_draft" string="Pending to sent to LROE"
+                    domain="['|', '&amp;', ('lroe_state', '=', 'not_sent'), ('date', '>=', '2022-01-01'), ('lroe_state', '=', 'draft')]"/>
+                <filter name="lroe_sent" string="LROE sent"
+                    domain="[('lroe_state', 'not in', ['not_sent', 'draft'])]"
+                    help="Already sent to LROE. It includes cancelled invoices"/>
+                <filter name="lroe_failed" string="LROE failed"
+                    domain="[('lroe_state', '=', 'error')]"
+                    help="The last attemp to sent to LROE has failed"/>
+            </filter>
+            <xpath expr="//group" position="inside">
+                <separator/>
+                <filter string="LROE state" name="lroe_state"
+                        context="{'group_by':'lroe_state'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
