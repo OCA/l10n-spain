@@ -8,11 +8,12 @@
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "category": "Delivery",
-    "version": "14.0.0.0.0",
+    "version": "14.0.1.1.2",
     "depends": [
         "delivery",
         "delivery_package_number",
         "delivery_state",
+        "delivery_price_method",
     ],
     "external_dependencies": {"python": ["zeep"]},
     "data": ["views/delivery_carrier_views.xml"],
