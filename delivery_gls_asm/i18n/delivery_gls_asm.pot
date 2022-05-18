@@ -590,6 +590,14 @@ msgid "INTERNACIONAL EXPRESS"
 msgstr ""
 
 #. module: delivery_gls_asm
+#: model:ir.model.fields,help:delivery_gls_asm.field_delivery_carrier__gls_asm_cash_on_delivery
+msgid ""
+"If checked, it means that the carrier is paid with cash. It assumes there is"
+" a sale order linked and it will use that total amount as the value to be "
+"paid"
+msgstr ""
+
+#. module: delivery_gls_asm
 #: model:ir.model.fields.selection,name:delivery_gls_asm.selection__delivery_carrier__gls_asm_service__36
 msgid "Int. WEB"
 msgstr ""
