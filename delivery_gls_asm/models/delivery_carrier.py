@@ -47,6 +47,14 @@ class DeliveryCarrier(models.Model):
         help="Checked if this service is used for pickups",
         compute="_compute_gls_pickup_service",
     )
+    gls_asm_cash_on_delivery = fields.Boolean(
+        string="Cash on delivery",
+        help=(
+            "If checked, it means that the carrier is paid with cash. It assumes "
+            "there is a sale order linked and it will use that "
+            "total amount as the value to be paid"
+        ),
+    )
 
     @api.depends("gls_asm_service")
     def _compute_gls_pickup_service(self):
@@ -102,6 +110,9 @@ class DeliveryCarrier(models.Model):
         consignee_entity = picking.partner_id.commercial_partner_id
         if not sender_partner.street:
             raise UserError(_("Couldn't find the sender street"))
+        cash_amount = 0
+        if self.gls_asm_cash_on_delivery:
+            cash_amount = picking.sale_id.amount_total
         return {
             "fecha": fields.Date.today().strftime("%d/%m/%Y"),
             "portes": self.gls_asm_postage_type,
@@ -157,7 +168,7 @@ class DeliveryCarrier(models.Model):
             ),  # Our unique reference
             "referencia_0": "",  # Not used if the above is set
             "importes_debido": "0",  # The customer pays the shipping
-            "importes_reembolso": "",  # TODO: Support Cash On Delivery
+            "importes_reembolso": cash_amount or "",
             "seguro": "0",  # [optional]
             "seguro_descripcion": "",  # [optional]
             "seguro_importe": "",  # [optional]
