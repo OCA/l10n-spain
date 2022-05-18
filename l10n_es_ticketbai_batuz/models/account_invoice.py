@@ -370,7 +370,9 @@ class AccountInvoice(models.Model):
         self.ensure_one()
         tbai_maps = self.env["tbai.tax.map"].search([("code", "in", codes)])
         tax_templates = tbai_maps.mapped("tax_template_ids")
-        return self.env["l10n.es.aeat.report"].get_taxes_from_templates(tax_templates)
+        return self.env['l10n.es.aeat.report'].new(
+            {'company_id': self.company_id.id}).get_taxes_from_templates(
+                tax_templates)
 
     @api.multi
     def _get_lroe_sign(self):
@@ -807,7 +809,6 @@ class AccountInvoice(models.Model):
         res = super().action_cancel()
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
-            and x.date and x.date >= x.journal_id.tbai_active_date
             and x.lroe_state not in ("error")
             and (
                 x.type == "in_invoice"
@@ -845,7 +846,6 @@ class AccountInvoice(models.Model):
         res = super(AccountInvoice, self).invoice_validate()
         lroe_invoices = self.sudo().filtered(
             lambda x: x.tbai_enabled
-            and x.date and x.date >= x.journal_id.tbai_active_date
             and (
                 x.type == "in_invoice"
                 or (
