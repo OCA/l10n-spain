@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_form_l10n_es_180_arrendatario" model="ir.ui.view">
+        <field name="name">res.partner.form.l10n.es.180.arrendatario</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='purchase']" position="inside">
+                <field name="es_arrendatario"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="res_partner_form_l10n_es_180_informacion_catastral" model="ir.ui.view">
+        <field name="name">res.partner.form.l10n.es.180.informacion.catastral</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <page name="accounting" position="after">
+                <page name="info_catastral" string="Información catastral" attrs="{'invisible': [('es_arrendatario', '=', False)]}">
+                    <field name="informacion_catastral_ids"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>
