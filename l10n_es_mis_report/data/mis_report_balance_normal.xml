@@ -1094,7 +1094,7 @@
          <field name="compare_method">pct</field>
          <field name="sequence">930</field>
          <field name="name">es22100</field>
-         <field name="description">I. Activos financieros disponibles para la venta</field>
+         <field name="description">I. Activos financieros a valor razonable con cambios en el patrimonio neto.</field>
          <field name="expression">-bale[133%]</field>
          <field name="auto_expand_accounts">True</field>
          <field name="auto_expand_accounts_style_id" ref="l10n_es_mis_report.mis_report_style_l10n_es_l3i"/>
