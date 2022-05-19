@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Landoo Sistemas de Informacion SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="tbai_tax_map_dua" model="tbai.tax.map">
+      <field name="code">DUA</field>
+      <field name="tax_template_ids" eval="[(6, 0, [
+        ref('l10n_es.account_tax_template_p_iva21_ibc'),
+        ref('l10n_es.account_tax_template_p_iva10_ibc'),
+        ref('l10n_es.account_tax_template_p_iva4_ibc'),
+        ref('l10n_es.account_tax_template_p_iva21_ibi'),
+        ref('l10n_es.account_tax_template_p_iva10_ibi'),
+        ref('l10n_es.account_tax_template_p_iva4_ibi'),
+        ref('l10n_es.account_tax_template_p_iva21_sp_ex'),
+        ref('l10n_es.account_tax_template_p_iva10_sp_ex'),
+        ref('l10n_es.account_tax_template_p_iva4_sp_ex'),
+      ])]"/>
+      <field name="name">Importaciones con DUA</field>
+  </record>
+
+</odoo>
