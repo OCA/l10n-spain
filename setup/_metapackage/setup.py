@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo12-addon-l10n_es_aeat_vat_prorrate_asset',
         'odoo12-addon-l10n_es_dua',
         'odoo12-addon-l10n_es_dua_sii',
+        'odoo12-addon-l10n_es_dua_ticketbai_batuz',
         'odoo12-addon-l10n_es_facturae',
         'odoo12-addon-l10n_es_facturae_efact',
         'odoo12-addon-l10n_es_facturae_face',
