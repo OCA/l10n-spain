@@ -9,7 +9,7 @@ odoo.define("l10n_es_pos.OrderManagementControlPanel", function (require) {
             get validSearchTags() {
                 const tags = super.validSearchTags;
 
-                tags.push("simplified_invoice");
+                tags.add("simplified_invoice");
                 return tags;
             }
             get fieldMap() {
