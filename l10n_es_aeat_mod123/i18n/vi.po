@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: l10n_es_aeat_mod123
+#: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
+msgid "AEAT 123 Model"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model,name:l10n_es_aeat_mod123.model_l10n_es_aeat_mod123_report
 msgid "AEAT 123 report"
 msgstr ""
@@ -70,7 +75,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__calculation_date
-msgid "Calculation date"
+msgid "Calculation Date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
@@ -125,7 +130,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_email
-msgid "Contact email"
+msgid "Contact Email"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
@@ -176,6 +181,11 @@ msgid "Ending date"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__export_config_id
 msgid "Export config"
 msgstr ""
@@ -183,11 +193,6 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: l10n_es_aeat_mod123
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
@@ -203,6 +208,11 @@ msgstr ""
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__contact_name
 msgid "Full Name"
+msgstr ""
+
+#. module: l10n_es_aeat_mod123
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
@@ -308,11 +318,6 @@ msgid "Model number"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
-#: model:ir.ui.menu,name:l10n_es_aeat_mod123.menu_aeat_mod123_report
-msgid "AEAT 123 Model"
-msgstr ""
-
-#. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__currency_id
 msgid "Moneda"
 msgstr ""
@@ -379,7 +384,7 @@ msgstr ""
 
 #. module: l10n_es_aeat_mod123
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod123.field_l10n_es_aeat_mod123_report__period_type
-msgid "Period type"
+msgid "Period Type"
 msgstr ""
 
 #. module: l10n_es_aeat_mod123
