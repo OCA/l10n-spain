@@ -205,18 +205,3 @@ class TicketBaiTax(models.Model):
                 tbai_utils.check_str_decimal(_(
                     "TicketBAI Invoice %s: Tax Surcharge Amount Total"
                 ) % record.tbai_invoice_id.name, record.re_amount_total)
-
-    @api.multi
-    @api.constrains('surcharge_or_simplified_regime')
-    def _check_surcharge_or_simplified_regime(self):
-        for record in self:
-            if record.is_subject_to and not record.is_exempted and \
-                    record.re_amount and record.re_amount_total and (
-                    not record.surcharge_or_simplified_regime or
-                    record.surcharge_or_simplified_regime !=
-                    SurchargeOrSimplifiedRegimeType.S.value):
-                raise exceptions.ValidationError(_(
-                    "TicketBAI Invoice %s:\n"
-                    "Tax Surcharge or Simplified Regime value should be '%s'."
-                ) % (record.tbai_invoice_id.name,
-                     SurchargeOrSimplifiedRegimeType.S.value))

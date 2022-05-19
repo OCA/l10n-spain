@@ -61,6 +61,8 @@ class AccountInvoice(models.Model):
         comodel_name='tbai.invoice.refund.origin',
         inverse_name='account_refund_invoice_id',
         string='TicketBAI Refund Origin References')
+    has_surcharge_lines = fields.Boolean(compute='_compute_surcharge_lines')
+    error_surcharge_lines = fields.Boolean(compute='_compute_surcharge_lines')
 
     @api.multi
     @api.constrains('state')
@@ -98,16 +100,40 @@ class AccountInvoice(models.Model):
                         vals['tbai_refund_type'] = RefundType.differences.value
                     if not vals.get('tbai_refund_key', False):
                         vals['tbai_refund_key'] = RefundCode.R1.value
-            if vals.get('fiscal_position_id', False):
-                fiscal_position = self.env['account.fiscal.position'].browse(
-                    vals['fiscal_position_id'])
-                vals['tbai_vat_regime_key'] = \
+            if vals.get('fiscal_position_id', False) and\
+               not vals.get('tbai_vat_regime_key', False):
+                fiscal_position =\
+                    self.env['account.fiscal.position'].browse(
+                        vals['fiscal_position_id'])
+                vals['tbai_vat_regime_key'] =\
                     fiscal_position.tbai_vat_regime_key.id
-                vals['tbai_vat_regime_key2'] = \
+                vals['tbai_vat_regime_key2'] =\
                     fiscal_position.tbai_vat_regime_key2.id
-                vals['tbai_vat_regime_key3'] = \
+                vals['tbai_vat_regime_key3'] =\
                     fiscal_position.tbai_vat_regime_key3.id
         return super().create(vals)
+
+    def is_surcharge_or_simplified_regime_key(self):
+        self.ensure_one()
+        return True if self.tbai_vat_regime_key.id in [
+            self.env.ref("l10n_es_ticketbai.tbai_vat_regime_51").id,
+            self.env.ref("l10n_es_ticketbai.tbai_vat_regime_52").id
+        ] else False
+
+    @api.depends('invoice_line_ids')
+    def _compute_surcharge_lines(self):
+        for record in self:
+            surcharge_line_ids = record.invoice_line_ids.filtered(
+                lambda l: l.product_id.has_equivalence_surcharge is True)
+            no_surcharge_line_ids = record.invoice_line_ids.filtered(
+                lambda l: l.product_id.has_equivalence_surcharge is False)
+            record.has_surcharge_lines = True if surcharge_line_ids else False
+            if (record.is_surcharge_or_simplified_regime_key()
+                    and surcharge_line_ids
+                    and no_surcharge_line_ids):
+                record.error_surcharge_lines = True
+            else:
+                record.error_surcharge_lines = False
 
     @api.depends(
         'tbai_invoice_ids', 'tbai_invoice_ids.state',
@@ -126,10 +152,29 @@ class AccountInvoice(models.Model):
 
     @api.onchange('fiscal_position_id')
     def onchange_fiscal_position_id_tbai_vat_regime_key(self):
-        if self.fiscal_position_id:
-            self.tbai_vat_regime_key = self.fiscal_position_id.tbai_vat_regime_key.id
-            self.tbai_vat_regime_key2 = self.fiscal_position_id.tbai_vat_regime_key2.id
-            self.tbai_vat_regime_key3 = self.fiscal_position_id.tbai_vat_regime_key3.id
+        if self.company_id.tbai_vat_regime.id in [
+            self.env.ref("l10n_es_ticketbai.tbai_vat_regime_51").id,
+            self.env.ref("l10n_es_ticketbai.tbai_vat_regime_52").id
+        ]:
+            self.tbai_vat_regime_key = self.company_id.tbai_vat_regime.id
+        elif self.fiscal_position_id:
+            self.tbai_vat_regime_key =\
+                self.fiscal_position_id.tbai_vat_regime_key.id
+            self.tbai_vat_regime_key2 =\
+                self.fiscal_position_id.tbai_vat_regime_key2.id
+            self.tbai_vat_regime_key3 =\
+                self.fiscal_position_id.tbai_vat_regime_key3.id
+
+    @api.onchange('invoice_line_ids')
+    def onchange_invoice_line_ids_tbai_vat_regime_key(self):
+        if self.company_id.tbai_vat_regime.id in [
+            self.env.ref("l10n_es_ticketbai.tbai_vat_regime_51").id,
+            self.env.ref("l10n_es_ticketbai.tbai_vat_regime_52").id
+        ]:
+            self.tbai_vat_regime_key =\
+                self.company_id.tbai_vat_regime.id if self.has_surcharge_lines or\
+                len(self.invoice_line_ids) == 0 else \
+                self.env.ref("l10n_es_ticketbai.tbai_vat_regime_01").id
 
     @api.onchange('tbai_refund_type')
     def onchange_tbai_refund_type(self):
@@ -344,6 +389,28 @@ class AccountInvoice(models.Model):
         tbai_invoices._tbai_invoice_cancel()
         return super().action_cancel()
 
+    def _check_surcharge_invoice_lines(self):
+        for record in self:
+            if record.is_surcharge_or_simplified_regime_key():
+                if record.error_surcharge_lines:
+                    raise exceptions.ValidationError(_(
+                        "There cannot be lines with and "
+                        "without an equivalence "
+                        "or simplified regime surcharge"
+                        " on the same invoice."
+                    ))
+                no_surcharge_line_ids = record.invoice_line_ids.filtered(
+                    lambda l:
+                    l.product_id.has_equivalence_surcharge is False)
+                if len(no_surcharge_line_ids) ==\
+                   len(record.invoice_line_ids):
+                    raise exceptions.ValidationError(_(
+                        "If the key of the VAT regimes is equal "
+                        "to 51 or 52, it "
+                        "must be indicated that the operations are under the "
+                        "equivalence surcharge or the simplified regime."
+                    ))
+
     @api.multi
     def invoice_validate(self):
 
@@ -373,6 +440,7 @@ class AccountInvoice(models.Model):
                     raise exceptions.ValidationError(error_refund_msg)
 
         res = super().invoice_validate()
+        self._check_surcharge_invoice_lines()
         # Credit Notes:
         # A. refund: creates a draft credit note, not validated from wizard.
         # B. cancel: creates a validated credit note from wizard

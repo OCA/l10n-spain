@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2022 Binovo IT Human Project SL
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+	<record id="product_template_form_view" model="ir.ui.view">
+		<field name="name">product.template.equivalence.surcharge.form</field>
+		<field name="model">product.template</field>
+		<field name="inherit_id" ref="product.product_template_form_view"/>
+		<field name="arch" type="xml">
+			<xpath expr="//page[@name='invoicing']" position="inside">
+				<group string="Equivalence Surcharge"
+					   attrs="{'invisible':[('is_equivalence_surcharge', '=', False)]}">
+					<field name="is_equivalence_surcharge" invisible="1"/>
+					<field name="has_equivalence_surcharge"
+						   attrs="{'invisible':[('is_equivalence_surcharge', '=', False)]}"/>
+				</group>
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

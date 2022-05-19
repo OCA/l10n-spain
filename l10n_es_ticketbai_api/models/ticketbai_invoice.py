@@ -723,9 +723,55 @@ class TicketBAIInvoice(models.Model):
             res["FacturasRectificadasSustituidas"] = facturas_rectificadas_sustituidas
         return res
 
+    def _check_compatible_codes(self, compatible_codes):
+        if (
+            (self.vat_regime_key2 and self.vat_regime_key2
+             not in compatible_codes) or
+            (self.vat_regime_key3 and self.vat_regime_key3
+             not in compatible_codes)
+        ):
+            return False
+        return True
+
+    def _ensure_codes(self, vat_key):
+        switcher = {
+            "07": self._check_compatible_codes(["01", "03", "05", "09",
+                                                "11", "12", "13", "14",
+                                                "15"]),
+            "05": self._check_compatible_codes(["01", "11", "12", "13",
+                                                "06", "08"]),
+            "06": self._check_compatible_codes(["11", "12", "13", "14",
+                                                "15"]),
+            "11": self._check_compatible_codes(["08", "15"]),
+            "12": self._check_compatible_codes(["08", "15"]),
+            "13": self._check_compatible_codes(["08", "15"]),
+            "03": self._check_compatible_codes(["01"]),
+            "08": self._check_compatible_codes(["01"]),
+            "01": self._check_compatible_codes(["02"]),
+            "51": self._check_compatible_codes(["01"]),
+            "52": self._check_compatible_codes(["01"]),
+            "53": self._check_compatible_codes([]),
+        }
+        return switcher.get(vat_key, True)
+
+    def _check_vat_keys(self):
+        codes = ["02", "04", "09", "10", "14", "15", "16", "17"]
+        if ((self.vat_regime_key2 or self.vat_regime_key3)
+                and self.vat_regime_key in codes):
+            raise exceptions.ValidationError(_(
+                "Only one VAT key is allowed for codes"
+                " 02, 04, 09, 10, 14, 15, 16, 17"
+            ))
+        if not self._ensure_codes(self.vat_regime_key):
+            raise exceptions.ValidationError(_(
+                "Incompatible VAT keys found when"
+                " first key is %s"
+            ) % self.vat_regime_key)
+
     def build_claves(self):
         """ V 1.2
-        The specification document indicates that at least 1 regime key is required.
+        The specification document indicates that at least 1 regime key
+         is required.
         <element name="IDClave" type="T:IDClaveType" maxOccurs="3"/>
         <sequence>
             <element  name="ClaveRegimenIvaOpTrascendencia"
@@ -733,8 +779,10 @@ class TicketBAIInvoice(models.Model):
         </sequence>
         :return: dict
         """
+        self._check_vat_keys()
         res = {"IDClave": []}
-        res["IDClave"].append({"ClaveRegimenIvaOpTrascendencia": self.vat_regime_key})
+        res["IDClave"].append(
+            {"ClaveRegimenIvaOpTrascendencia": self.vat_regime_key})
         if self.vat_regime_key2:
             res["IDClave"].append(
                 {"ClaveRegimenIvaOpTrascendencia": self.vat_regime_key2})

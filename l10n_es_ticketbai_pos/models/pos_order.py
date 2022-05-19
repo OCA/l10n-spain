@@ -167,16 +167,22 @@ class PosOrder(models.Model):
             vat_regime_key_id = False
             if self.tbai_vat_regime_key:
                 vat_regime_key_id = self.tbai_vat_regime_key.id
-            elif self.fiscal_position_id:
-                vat_regime_key_id = self.fiscal_position_id.tbai_vat_regime_key.id
-            elif self.partner_id:
-                fp_id = self.env['account.fiscal.position'].get_fiscal_position(
-                    self.partner_id.id)
-                fp = self.env['account.fiscal.position'].browse(fp_id)
-                vat_regime_key_id = fp.tbai_vat_regime_key.id
+            elif self.company_id.tbai_vat_regime.id in [
+                self.env.ref('l10n_es_ticketbai.tbai_vat_regime_51').id,
+                self.env.ref('l10n_es_ticketbai.tbai_vat_regime_52').id
+            ]:
+                vat_regime_key_id = self.company_id.tbai_vat_regime.id
             if not vat_regime_key_id:
-                vat_regime_key_id = \
-                    self.env.ref('l10n_es_ticketbai.tbai_vat_regime_01').id
+                if self.fiscal_position_id:
+                    vat_regime_key_id = self.fiscal_position_id.tbai_vat_regime_key.id
+                elif self.partner_id:
+                    fp_id = self.env['account.fiscal.position'].get_fiscal_position(
+                        self.partner_id.id)
+                    fp = self.env['account.fiscal.position'].browse(fp_id)
+                    vat_regime_key_id = fp.tbai_vat_regime_key.id
+                if not vat_regime_key_id:
+                    vat_regime_key_id = \
+                        self.env.ref('l10n_es_ticketbai.tbai_vat_regime_01').id
             res.update({
                 'tbai_vat_regime_key': vat_regime_key_id
             })

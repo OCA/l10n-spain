@@ -10,3 +10,4 @@ from . import ticketbai_invoice_line
 from . import ticketbai_invoice_tax
 from . import ticketbai_response
 from . import ticketbai_tax_agency
+from . import product_template

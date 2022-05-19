@@ -838,3 +838,34 @@ msgstr "TicketBAI Información general"
 
 #~ msgid "Information protected by Article 9 Regulation 679/2016"
 #~ msgstr "Información protegida por el artículo 9 Reglamento 679/2016"
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.invoice_form_inherit
+msgid "<i class=\"fa fa-warning\"/>\n"
+"                            There cannot be lines with and without an equivalence or\n"
+"                            simplified regime surcharge on the same invoice."
+msgstr "<i class=\"fa fa-warning\"/>\n"
+"                            No puede haber líneas con y sin recargo de equivalencia o\n"
+"                            régimen simplificado en la misma factura."
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:394
+#, python-format
+msgid "If the key of the VAT regimes is equal to 51 or 52, it must be indicated that the operations are under the equivalence surcharge or the simplified regime."
+msgstr "Si la clave de los regímenes de IVA es igual a 51 o 52, debe indicarse que las operaciones se acogen al recargo de equivalencia o al régimen simplificado."
+
+#. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_res_company_tbai_vat_regime
+msgid "Regime"
+msgstr "Régimen"
+
+#. module: l10n_es_ticketbai
+#: code:addons/l10n_es_ticketbai/models/account_invoice.py:383
+#, python-format
+msgid "There cannot be lines with and without an equivalence or simplified regime surcharge on the same invoice."
+msgstr "No puede haber líneas con y sin recargo de equivalencia o de régimen simplificado en la misma factura."
+
+#. module: l10n_es_ticketbai
+#: model:ir.ui.view,arch_db:l10n_es_ticketbai.product_template_form_view
+msgid "Equivalence Surcharge"
+msgstr "Recargo de equivalencia"
