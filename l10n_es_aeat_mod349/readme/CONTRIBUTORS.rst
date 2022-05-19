@@ -18,3 +18,5 @@
 * Acysos:
 
   * Ignacio Ibeas
+
+* Manuel Regidor <manuel.regidor@sygel.es>
