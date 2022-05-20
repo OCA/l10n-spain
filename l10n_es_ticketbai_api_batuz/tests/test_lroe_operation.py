@@ -20,17 +20,13 @@ from ..models.lroe_operation_response import (
     LROEOperationResponseState,
 )
 
-TEST_01_XSD_SCHEMA = (
-    "Test-LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AltaPeticion_V1_0_2.xsd"
-)
-TEST_02_XSD_SCHEMA = (
-    "Test-LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AltaPeticion_V1_0_2.xsd"
-)
+TEST_01_XSD_SCHEMA = "LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AltaPeticion_V1_0_2.xsd"
+TEST_02_XSD_SCHEMA = "LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AltaPeticion_V1_0_2.xsd"
 TEST_03_XSD_SCHEMA = (
-    "Test-LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AnulacionPeticion_V1_0_0.xsd"
+    "LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AnulacionPeticion_V1_0_0.xsd"
 )
 TEST_04_XSD_SCHEMA = (
-    "Test-LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AnulacionPeticion_V1_0_0.xsd"
+    "LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AnulacionPeticion_V1_0_0.xsd"
 )
 TEST_EXEC_PATH = os.path.dirname(os.path.abspath(__file__))
 TEST_RESPONSE_DIR = os.path.join(TEST_EXEC_PATH, "lroe_response_files")
