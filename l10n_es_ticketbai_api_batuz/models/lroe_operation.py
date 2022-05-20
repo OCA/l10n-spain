@@ -1,4 +1,5 @@
 # Copyright (2021) Binovo IT Human Project SL
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import gzip
@@ -232,7 +233,6 @@ class LROEOperation(models.Model):
                 report_name = _("LROE_model_pf_140_update") + "_" + str(self.id)
         return report_name
 
-    @api.multi
     def set_trx_gzip_file(self):
         self.ensure_one()
         data_content = gzip.compress(base64.b64decode(self.xml_datas))
