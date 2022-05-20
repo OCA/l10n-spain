@@ -35,7 +35,9 @@
     </record>
     <record id="lroe_subchapter_pj_240_4_1" model="lroe.chapter">
         <field name="code">4.1</field>
-        <field name="name">Transferencias intracomunitarias, informes periciales y otros trabajos</field>
+        <field
+            name="name"
+        >Transferencias intracomunitarias, informes periciales y otros trabajos</field>
         <field name="model">240</field>
         <field name="lroe_chapter_id" ref="lroe_chapter_pj_240_4" />
     </record>
@@ -71,7 +73,9 @@
     </record>
     <record id="lroe_subchapter_pj_240_6_1" model="lroe.chapter">
         <field name="code">6.1</field>
-        <field name="name">Importes superiores a 6.000 euros percibidos en metálico</field>
+        <field
+            name="name"
+        >Importes superiores a 6.000 euros percibidos en metálico</field>
         <field name="model">240</field>
         <field name="lroe_chapter_id" ref="lroe_chapter_pj_240_6" />
     </record>
@@ -104,7 +108,7 @@
         <field name="code">1.3</field>
         <field name="name">Ingresos sin factura</field>
         <field name="model">140</field>
-        <field name="lroe_chapter_id" ref="lroe_chapter_pf_140_1"/>
+        <field name="lroe_chapter_id" ref="lroe_chapter_pf_140_1" />
     </record>
 
     <record id="lroe_chapter_pf_140_2" model="lroe.chapter">
@@ -162,7 +166,9 @@
     </record>
     <record id="lroe_subchapter_pf_140_4_1" model="lroe.chapter">
         <field name="code">4.1</field>
-        <field name="name">Transferencias intracomunitarias, informes periciales y otros trabajos</field>
+        <field
+            name="name"
+        >Transferencias intracomunitarias, informes periciales y otros trabajos</field>
         <field name="model">140</field>
         <field name="lroe_chapter_id" ref="lroe_chapter_pf_140_4" />
     </record>
@@ -222,7 +228,9 @@
     </record>
     <record id="lroe_subchapter_pf_140_7_4" model="lroe.chapter">
         <field name="code">7.4</field>
-        <field name="name">Importes superiores a 6.000 euros percibidos en metálico</field>
+        <field
+            name="name"
+        >Importes superiores a 6.000 euros percibidos en metálico</field>
         <field name="model">140</field>
         <field name="lroe_chapter_id" ref="lroe_chapter_pf_140_7" />
     </record>

@@ -10,5 +10,5 @@ def migrate(cr, version):
 
     with odoo.api.Environment.manage():
         env = odoo.api.Environment(cr, odoo.SUPERUSER_ID, {})
-        for company in env['res.company'].search([]):
+        for company in env["res.company"].search([]):
             company.onchange_tbai_tax_agency()
