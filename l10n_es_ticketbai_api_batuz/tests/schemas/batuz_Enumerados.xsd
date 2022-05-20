@@ -232,7 +232,7 @@
 				<annotation>
 					<documentation>Otra información con trascendencia tributaria</documentation>
 				</annotation>
-			</enumeration>			
+			</enumeration>
 		</restriction>
 	</simpleType>
 	<simpleType name="SubcapituloModelo140Enum">
@@ -659,7 +659,7 @@
 			<enumeration value="SK"/>
 			<enumeration value="SI"/>
 			<enumeration value="ES"/>
-			<enumeration value="EE"/>			
+			<enumeration value="EE"/>
 			<enumeration value="FI"/>
 			<enumeration value="FR"/>
 			<enumeration value="GR"/>
@@ -836,7 +836,7 @@
                 <annotation>
                     <documentation>Factura con IVA pendiente de devengo en operaciones de tracto sucesivo</documentation>
                 </annotation>
-            </enumeration>			
+            </enumeration>
 			 <enumeration value="51">
                 <annotation>
                     <documentation>Operaciones en recargo de equivalencia</documentation>
@@ -1332,7 +1332,7 @@
 				</annotation>
 			</enumeration>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="TituloEnum">
 		<restriction base="string">
 			<enumeration value="P">
@@ -2144,7 +2144,7 @@
 				</annotation>
 			</enumeration>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="MedioDeCobroPagoEnum">
 		<restriction base="string">
 			<enumeration value="01">
@@ -2187,7 +2187,7 @@
 				</annotation>
 			</enumeration>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="EstadoEnvioEnum">
 		<restriction base="string">
 			<enumeration value="Correcto">
@@ -2242,14 +2242,14 @@
 				<annotation>
 					<documentation>Aceptado con errores</documentation>
 				</annotation>
-			</enumeration>			
+			</enumeration>
 			<enumeration value="Anulado">
 				<annotation>
 					<documentation>Anulado</documentation>
 				</annotation>
 			</enumeration>
 		</restriction>
-	</simpleType>	
+	</simpleType>
 	<simpleType name="NIF_IVA">
 		<restriction base="string">
 			<enumeration value="02">
