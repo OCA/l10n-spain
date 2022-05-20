@@ -12,8 +12,8 @@
 			<sequence>
 				<element name="Cabecera" type="tiposcomplejos:Cabecera240Type" minOccurs="0"/>
 				<element name="DatosPresentacion" type="tiposcomplejos:DatosPresentacionType" minOccurs="0"/>
-				<element name="Registros" type="tiposanulacion:RegistrosAnulacionFacturaConSGType" minOccurs="0"/>			
+				<element name="Registros" type="tiposanulacion:RegistrosAnulacionFacturaConSGType" minOccurs="0"/>
 			</sequence>
 		</complexType>
-	</element>	
+	</element>
 </schema>
