@@ -1,8 +1,9 @@
 # Copyright (2021) Binovo IT Human Project SL
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import logging
 
-from odoo import api, exceptions, fields, models
+from odoo import exceptions, fields, models
 
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
 
@@ -20,7 +21,6 @@ class TicketBAIInvoice(models.Model):
         comodel_name="lroe.operation", string="TicketBAI-Batuz LROE Operation"
     )
 
-    @api.multi
     def get_lroe_ticketbai_api(self, **kwargs):
         self.ensure_one()
         p12_buffer = self.company_id.tbai_certificate_get_p12_buffer()
@@ -29,7 +29,6 @@ class TicketBAIInvoice(models.Model):
             self.api_url, p12_buffer=p12_buffer, password=password, **kwargs
         )
 
-    @api.multi
     def create_tbai_lroe_operation(self):
         def lroe_operation_company():
             return self.company_id
@@ -72,7 +71,6 @@ class TicketBAIInvoice(models.Model):
             lroe_operation.build_xml_file()
         return lroe_operation
 
-    @api.multi
     def send(self, **kwargs):
         tbai_tax_agency_id = self.company_id.tbai_tax_agency_id
         if (
@@ -84,7 +82,6 @@ class TicketBAIInvoice(models.Model):
         else:
             return super().send(**kwargs)
 
-    @api.multi
     def send_lroe_ticketbai(self, **kwargs):
         self.ensure_one()
         error_msg = ""
