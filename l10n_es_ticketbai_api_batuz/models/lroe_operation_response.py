@@ -1,4 +1,5 @@
 # Copyright (2021) Binovo IT Human Project SL
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 from enum import Enum
@@ -123,75 +124,67 @@ class LROEOperationResponse(models.Model):
         return values
 
     @api.model
-    def prepare_lroe_response_values(self, lroe_srv_response, lroe_operation, **kwargs):
-        def validate_response_line_state(response_line_record_state):
-            if response_line_record_state not in [
-                LROEOperationResponseLineState.CORRECT.value,
-                LROEOperationResponseLineState.CORRECT_WITH_ERRORS.value,
-                LROEOperationResponseLineState.INCORRECT.value,
-            ]:
-                raise ValidationError(_("LROEOperationResponseLineState not VALID !"))
+    def validate_response_line_state(self, response_line_record_state):
+        if response_line_record_state not in [
+            LROEOperationResponseLineState.CORRECT.value,
+            LROEOperationResponseLineState.CORRECT_WITH_ERRORS.value,
+            LROEOperationResponseLineState.INCORRECT.value,
+        ]:
+            raise ValidationError(_("LROEOperationResponseLineState not VALID !"))
 
-        def get_lroe_response_xml_header():
-            return xml_root.get("Cabecera")
-
-        def get_lroe_response_xml_presenter():
-            return xml_root.get("DatosPresentacion")
-
-        def get_lroe_response_xml_records():
-            xml_lroe_records = xml_root.get("Registros").get("Registro")
-            len_lroe_records = 0
-            if isinstance(xml_lroe_records, dict):
-                len_lroe_records = 1
-            elif isinstance(xml_lroe_records, list):
-                len_lroe_records = len(xml_lroe_records)
-            return len_lroe_records, xml_lroe_records
-
-        def get_lroe_xml_schema():
-            if not lroe_operation:
-                raise ValidationError(_("LROE Operation required!"))
-            operation_type = None
-            lroe_operation_model = (
-                "pj_240"
-                if LROEModelEnum.model_pj_240.value == lroe_operation.model
-                else "pf_140"
-            )
-            if lroe_operation.type in (
-                LROEOperationEnum.create.value,
-                LROEOperationEnum.update.value,
-            ):
-                lroe_operation_type = "resp_alta"
-            elif lroe_operation.type == LROEOperationEnum.cancel.value:
-                lroe_operation_type = "resp_cancel"
-            if lroe_operation.lroe_chapter_id.code == "1":
-                lroe_operation_chapter = "sg_invoice"
-            elif lroe_operation.lroe_chapter_id.code == "2":
-                lroe_operation_chapter = "invoice_in"
-            if hasattr(
+    @api.model
+    def get_lroe_xml_schema(self, lroe_operation):
+        if not lroe_operation:
+            raise ValidationError(_("LROE Operation required!"))
+        lroe_operation_model = (
+            "pj_240"
+            if LROEModelEnum.model_pj_240.value == lroe_operation.model
+            else "pf_140"
+        )
+        operation_type_map = {
+            LROEOperationEnum.create.value: "resp_alta",
+            LROEOperationEnum.update.value: "resp_alta",
+            LROEOperationEnum.cancel.value: "resp_cancel",
+        }
+        operation_chaper_map = {
+            "1": "sg_invoice",
+            "2": "invoice_in",
+        }
+        lroe_operation_type = operation_type_map[lroe_operation.type]
+        lroe_operation_chapter = operation_chaper_map[
+            lroe_operation.lroe_chapter_id.code
+        ]
+        if hasattr(
+            LROEOperationTypeEnum,
+            "%s_%s_%s"
+            % (lroe_operation_type, lroe_operation_chapter, lroe_operation_model,),
+        ):
+            operation_type = getattr(
                 LROEOperationTypeEnum,
                 "%s_%s_%s"
                 % (lroe_operation_type, lroe_operation_chapter, lroe_operation_model,),
-            ):
-                operation_type = getattr(
-                    LROEOperationTypeEnum,
-                    "%s_%s_%s"
-                    % (
-                        lroe_operation_type,
-                        lroe_operation_chapter,
-                        lroe_operation_model,
-                    ),
-                ).value
-                xml_schema = LROEXMLSchema(operation_type)
-            else:
-                raise LROEXMLSchemaModeNotSupported(
-                    "Batuz LROE XML model not supported!"
-                )
-            return operation_type, xml_schema
+            ).value
+            xml_schema = LROEXMLSchema(operation_type)
+        else:
+            raise LROEXMLSchemaModeNotSupported("Batuz LROE XML model not supported!")
+        return operation_type, xml_schema
 
+    @api.model
+    def get_lroe_response_xml_records(self, xml_root):
+        xml_lroe_records = xml_root.get("Registros").get("Registro")
+        len_lroe_records = 0
+        if isinstance(xml_lroe_records, dict):
+            len_lroe_records = 1
+        elif isinstance(xml_lroe_records, list):
+            len_lroe_records = len(xml_lroe_records)
+        return len_lroe_records, xml_lroe_records
+
+    @api.model
+    def prepare_lroe_response_values(self, lroe_srv_response, lroe_operation, **kwargs):
         def set_tbai_response_lroe_line():
-            response_line_record_data = response_line_record.get("SituacionRegistro")
+            response_line_record_data = _response_line_record.get("SituacionRegistro")
             response_line_record_state = response_line_record_data.get("EstadoRegistro")
-            validate_response_line_state(response_line_record_state)
+            self.validate_response_line_state(response_line_record_state)
             response_line_record_code = ""
             response_line_record_message = ""
             if (
@@ -256,7 +249,7 @@ class LROEOperationResponse(models.Model):
             if response_line_ids:
                 values.update({"response_line_ids": response_line_ids})
 
-        lroe_operation_type, lroe_xml_schema = get_lroe_xml_schema()
+        lroe_operation_type, lroe_xml_schema = self.get_lroe_xml_schema(lroe_operation)
         values = {}
         lroe_srv_response_type = lroe_srv_response.get_lroe_srv_response_type()
         lroe_srv_response_code = lroe_srv_response.get_lroe_srv_response_code()
@@ -349,13 +342,13 @@ class LROEOperationResponse(models.Model):
                 (
                     len_response_line_records,
                     response_line_records,
-                ) = get_lroe_response_xml_records()
+                ) = self.get_lroe_response_xml_records(xml_root)
                 response_line_ids = []
                 if len_response_line_records == 1:
-                    response_line_record = response_line_records
+                    _response_line_record = response_line_records
                     set_tbai_response_lroe_line()
                 elif len_response_line_records > 1:
-                    for response_line_record in response_line_records:
+                    for _response_line_record in response_line_records:
                         set_tbai_response_lroe_line()
             else:
                 tbai_response_model = tbai_response_obj = self.env["tbai.response"]
@@ -427,7 +420,6 @@ class LROEOperationResponseLine(models.Model):
         compute="_compute_line_message", string="LROE Response Message"
     )
 
-    @api.multi
     @api.depends("code", "description")
     def _compute_line_message(self):
         for response_line in self:
