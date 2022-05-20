@@ -389,7 +389,6 @@
         <record id="action_lroe_operation" model="ir.actions.act_window">
             <field name="name">TicketBAI LROE - Operations</field>
             <field name="res_model">lroe.operation</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{"search_default_operation_done":1}</field>
         </record>
@@ -397,7 +396,6 @@
         <record id="action_lroe_chapter" model="ir.actions.act_window">
             <field name="name">Batuz/LROE - Chapters</field>
             <field name="res_model">lroe.chapter</field>
-            <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{"search_default_group_model":1}</field>
         </record>

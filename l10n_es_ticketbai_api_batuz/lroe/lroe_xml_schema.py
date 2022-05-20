@@ -59,124 +59,145 @@ class LROEXMLSchema:
     tags_to_ignore = ["{%s}complexType" % ns, "{%s}sequence" % ns]
     choice_tag = "{%s}choice" % ns
 
-    def __init__(self, mode):
-        if mode == LROEOperationTypeEnum.alta_sg_invoice_pj_240.value:
-            lroe_operation_ns = (
+    lroe_operation_data = {
+        LROEOperationTypeEnum.alta_sg_invoice_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AltaPeticion_V1_0_2.xsd"
-            )
-            root_element = "LROEPJ240FacturasEmitidasConSGAltaPeticion"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.alta_sg_invoice_pf_140.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasEmitidasConSGAltaPeticion",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.alta_sg_invoice_pf_140.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AltaPeticion_V1_0_2.xsd"
-            )
-            root_element = "LROEPF140IngresosConFacturaConSGAltaPeticion"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.cancel_sg_invoice_pj_240.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPF140IngresosConFacturaConSGAltaPeticion",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.cancel_sg_invoice_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AnulacionPeticion_V1_0_0.xsd"
-            )
-            root_element = "LROEPJ240FacturasEmitidasConSGAnulacionPeticion"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.cancel_sg_invoice_pf_140.value:
-            lroe_operation_ns = (
-                "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas"
-                "/LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AnulacionPeticion_V1_0_0.xsd"
-            )
-            root_element = "LROEPF140IngresosConFacturaConSGAnulacionPeticion"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.resp_alta_sg_invoice_pj_240.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasEmitidasConSGAnulacionPeticion",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.cancel_sg_invoice_pf_140.value: {
+            "operation_ns": (
+                "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
+                "LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AnulacionPeticion_V1_0_0.xsd"
+            ),
+            "root_element": "LROEPF140IngresosConFacturaConSGAnulacionPeticion",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.resp_alta_sg_invoice_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AltaRespuesta_V1_0_1.xsd"
-            )
-            root_element = "LROEPJ240FacturasEmitidasConSGAltaRespuesta"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.resp_alta_sg_invoice_pf_140.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasEmitidasConSGAltaRespuesta",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.resp_alta_sg_invoice_pf_140.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AltaRespuesta_V1_0_2.xsd"
-            )
-            root_element = "LROEPF140IngresosConFacturaConSGAltaRespuesta"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.resp_cancel_sg_invoice_pj_240.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPF140IngresosConFacturaConSGAltaRespuesta",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.resp_cancel_sg_invoice_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_1_1_FacturasEmitidas_ConSG_AnulacionRespuesta_V1_0_0.xsd"
-            )
-            root_element = "LROEPJ240FacturasEmitidasConSGAnulacionRespuesta"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.resp_cancel_sg_invoice_pf_140.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasEmitidasConSGAnulacionRespuesta",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.resp_cancel_sg_invoice_pf_140.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PF_140_1_1_Ingresos_ConfacturaConSG_AnulacionRespuesta_V1_0_0.xsd"
-            )
-            root_element = "LROEPF140IngresosConFacturaConSGAnulacionRespuesta"
-            lroe_operation_nsmap = "lrpjfecsgap"
-        elif mode == LROEOperationTypeEnum.alta_invoice_in_pj_240.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPF140IngresosConFacturaConSGAnulacionRespuesta",
+            "operation_nsmap": "lrpjfecsgap",
+        },
+        LROEOperationTypeEnum.alta_invoice_in_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_2_FacturasRecibidas_AltaModifPeticion_V1_0_1.xsd"
-            )
-            root_element = "LROEPJ240FacturasRecibidasAltaModifPeticion"
-            lroe_operation_nsmap = "lrpjframp"
-        elif mode == LROEOperationTypeEnum.alta_invoice_in_pf_140.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasRecibidasAltaModifPeticion",
+            "operation_nsmap": "lrpjframp",
+        },
+        LROEOperationTypeEnum.alta_invoice_in_pf_140.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PF_140_2_1_Gastos_Confactura_AltaModifPeticion_V1_0_2.xsd"
-            )
-            root_element = "LROEPF140GastosConFacturaAltaModifPeticion"
-            lroe_operation_nsmap = "lrpfgcfamp"
-        elif mode == LROEOperationTypeEnum.cancel_invoice_in_pj_240.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPF140GastosConFacturaAltaModifPeticion",
+            "operation_nsmap": "lrpfgcfamp",
+        },
+        LROEOperationTypeEnum.cancel_invoice_in_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_2_FacturasRecibidas_AnulacionPeticion_V1_0_0.xsd"
-            )
-            root_element = "LROEPJ240FacturasRecibidasAnulacionPeticion"
-            lroe_operation_nsmap = "lrpjfrap"
-        elif mode == LROEOperationTypeEnum.cancel_invoice_in_pf_140.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasRecibidasAnulacionPeticion",
+            "operation_nsmap": "lrpjfrap",
+        },
+        LROEOperationTypeEnum.cancel_invoice_in_pf_140.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PF_140_2_1_Gastos_Confactura_AnulacionPeticion_V1_0_0.xsd"
-            )
-            root_element = "LROEPF140GastosConFacturaAnulacionPeticion"
-            lroe_operation_nsmap = "lrpfgcfap"
-        elif mode == LROEOperationTypeEnum.resp_alta_invoice_in_pj_240.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPF140GastosConFacturaAnulacionPeticion",
+            "operation_nsmap": "lrpfgcfap",
+        },
+        LROEOperationTypeEnum.resp_alta_invoice_in_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_2_FacturasRecibidas_AltaModifRespuesta_V1_0_1.xsd"
-            )
-            root_element = "LROEPJ240FacturasRecibidasAltaModifRespuesta"
-            lroe_operation_nsmap = "lrpjframr"
-        elif mode == LROEOperationTypeEnum.resp_alta_invoice_in_pf_140.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasRecibidasAltaModifRespuesta",
+            "operation_nsmap": "lrpjframr",
+        },
+        LROEOperationTypeEnum.resp_alta_invoice_in_pf_140.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PF_140_2_1_Gastos_Confactura_AltaModifRespuesta_V1_0_1.xsd"
-            )
-            root_element = "LROEPF140GastosConFacturaAltaModifRespuesta"
-            lroe_operation_nsmap = "lrpfgcfamr"
-        elif mode == LROEOperationTypeEnum.resp_cancel_invoice_in_pj_240.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPF140GastosConFacturaAltaModifRespuesta",
+            "operation_nsmap": "lrpfgcfamr",
+        },
+        LROEOperationTypeEnum.resp_cancel_invoice_in_pj_240.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PJ_240_2_FacturasRecibidas_AnulacionRespuesta_V1_0_0.xsd"
-            )
-            root_element = "LROEPJ240FacturasRecibidasAnulacionRespuesta"
-            lroe_operation_nsmap = "lrpjfrar"
-        elif mode == LROEOperationTypeEnum.resp_cancel_invoice_in_pf_140.value:
-            lroe_operation_ns = (
+            ),
+            "root_element": "LROEPJ240FacturasRecibidasAnulacionRespuesta",
+            "operation_nsmap": "lrpjfrar",
+        },
+        LROEOperationTypeEnum.resp_cancel_invoice_in_pf_140.value: {
+            "operation_ns": (
                 "https://www.batuz.eus/fitxategiak/batuz/LROE/esquemas/"
                 "LROE_PF_140_2_1_Gastos_Confactura_AnulacionRespuesta_V1_0_0.xsd"
-            )
-            root_element = "LROEPF140GastosConFacturaAnulacionRespuesta"
-            lroe_operation_nsmap = "lrpfgcfar"
+            ),
+            "root_element": "LROEPF140GastosConFacturaAnulacionRespuesta",
+            "operation_nsmap": "lrpfgcfar",
+        },
+    }
+
+    def __init__(self, mode):
+        if mode in self.lroe_operation_data.keys():
+            self.lroe_operation_ns = self.lroe_operation_data[mode]["operation_ns"]
+            self.root_element = self.lroe_operation_data[mode]["root_element"]
+            lroe_operation_nsmap = self.lroe_operation_data[mode]["operation_nsmap"]
         else:
             raise LROEXMLSchemaModeNotSupported("LROE - XML mode not supported!")
         self.mode = mode
-        self.lroe_operation_ns = lroe_operation_ns
-        self.root_element = root_element
         self.lroe_operation_nsmap = {lroe_operation_nsmap: self.lroe_operation_ns}
 
     @staticmethod
