@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-01 18:05+0000\n"
-"Last-Translator: juliap98 <julia.paga@qubiq.es>\n"
+"PO-Revision-Date: 2022-05-20 18:05+0000\n"
+"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "1. Romanent"
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_21350
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_21350
 msgid "1. Reserva de Capitalización"
-msgstr ""
+msgstr "1. Reserva de Capitalització"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45100
@@ -156,7 +156,6 @@ msgstr "10. Excessos de provisions "
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_41100
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41100
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_41100
-#, fuzzy
 msgid "11. Deterioro y resultado por enajenaciones del inmovilizado"
 msgstr "11. Deteriorament i resultat per alienacions de l'immobilitzat"
 
@@ -187,7 +186,6 @@ msgstr "12. Altres resultats"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40D00
-#, fuzzy
 msgid "13. Deterioro y resultado por enajenación de inmovilizado"
 msgstr "13. Deteriorament i resultat per alienació d'immobilitzat"
 
@@ -255,51 +253,51 @@ msgstr "17. Diferències de canvi"
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41800
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_41500
 msgid "18. Deterioro y resultado por enajenaciones de instrumentos financieros"
-msgstr ""
+msgstr "18. Deteriorament i resultat per alienacions d'instruments financers"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_42100
 msgid "18. Otros ingresos y gastos de carácter financiero"
-msgstr ""
+msgstr "18. Altres ingressos i despeses de caràcter financer"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_41900
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_43100
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_41900
 msgid "19. Impuestos sobre beneficios"
-msgstr ""
+msgstr "19. Impostos sobre beneficis"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_42100
 msgid "19. Otros ingresos y gastos de carácter financiero"
-msgstr ""
+msgstr "19. Altres ingressos i despeses de caràcter financer"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_21120
 msgid "2. (Capital no exigido)"
-msgstr ""
+msgstr "2. (Capital no exigit)"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_21120
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_21120
 msgid "2. (Capital no exigido) "
-msgstr ""
+msgstr "2. (Capital no exigit) "
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_21120
 msgid "2. (Dotación fundacional no exigida/Fondo social no exigido)"
-msgstr ""
+msgstr "2. (Dotació fundacional no exigida/Fons social no exigit)"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_21520
 msgid "2. (Resultados negativos de ejercicios anteriores)"
-msgstr ""
+msgstr "2. (Resultats negatius d'exercicis anteriors)"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_12370
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_12370
 msgid "2. Accionistas (socios) por desembolsos exigidos"
-msgstr ""
+msgstr "2. Accionistes (socis) per desemborsaments exigits"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_31230
@@ -309,90 +307,90 @@ msgstr ""
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_31230
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_32330
 msgid "2. Acreedores por arrendamiento financiero"
-msgstr ""
+msgstr "2. Creditors per arrendament financer"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_31120
 msgid "2. Actuaciones medioambientales"
-msgstr ""
+msgstr "2. Actuacions mediambientals"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12320
 msgid "2. Clientes empresas del grupo y asociadas"
-msgstr ""
+msgstr "2. Clientes empreses del grup i associades"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11120
 msgid "2. Concesiones"
-msgstr ""
+msgstr "2. Concessions"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11320
 msgid "2. Construcciones"
-msgstr ""
+msgstr "2. Construccions"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11420
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12420
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12520
 msgid "2. Créditos a empresas"
-msgstr ""
+msgstr "2. Crèdits a empreses"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11520
 msgid "2. Créditos a terceros"
-msgstr ""
+msgstr "2. Crèdits a tercers"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_31220
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_32320
 msgid "2. Deudas con entidades de crédito"
-msgstr ""
+msgstr "2. Deutes amb entitats de crèdit"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45200
 msgid "2. Donaciones y legados recibidos."
-msgstr ""
+msgstr "2. Donacions i deixes rebudes."
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11220
 msgid "2. Instalaciones técnicas y otro inmovilizado material"
-msgstr ""
+msgstr "2. Instal·lacions tècniques i altre immobilitzat material"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12220
 msgid "2. Materias primas y otros aprovisionamientos"
-msgstr ""
+msgstr "2. Matèries primeres i altres aprovisionaments"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_21360
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_21320
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_21360
 msgid "2. Otras reservas"
-msgstr ""
+msgstr "2. Altres reserves"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_32590
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_32590
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_32690
 msgid "2. Otros acreedores"
-msgstr ""
+msgstr "2. Altres creditors"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12720
 msgid "2. Otros activos líquidos equivalentes"
-msgstr ""
+msgstr "2. Altres actius líquids equivalents"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_eiyg_normal_50012
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_eiyg_normal_50082
 msgid "2. Otros ingresos/gastos"
-msgstr ""
+msgstr "2. Altres ingressos/despeses"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_32520
 msgid "2. Proveedores, empresas del grupo y asociadas"
-msgstr ""
+msgstr "2. Proveïdors, empreses del grup i associades"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_40200
@@ -400,17 +398,17 @@ msgstr ""
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_40200
 msgid ""
 "2. Variación de existencias de productos terminados y en curso de fabricación"
-msgstr ""
+msgstr "2. Variació d'existències de productes acabats i en curs de fabricació"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40200
 msgid "2. Ventas y otros ingresos de la actividad mercantil"
-msgstr ""
+msgstr "2. Vendes i altres ingressos de l'activitat mercantil"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_41900
 msgid "20. Impuestos sobre beneficios"
-msgstr ""
+msgstr "20. Impostos sobre beneficis"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_42000
@@ -418,90 +416,92 @@ msgid ""
 "20. Resultado del ejercicio procedente de operaciones interrumpidas neto de "
 "impuestos"
 msgstr ""
+"20. Resultat de l'exercici procedent d'operacions interrompudes net "
+"d'impostos"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_31230
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_32330
 msgid "3. Acreedores por arrendamiento financiero"
-msgstr ""
+msgstr "3. Creditors per arrendament financer"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_32530
 msgid "3. Acreedores varios "
-msgstr ""
+msgstr "3. Creditors diversos "
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12330
 msgid "3. Deudores varios"
-msgstr ""
+msgstr "3. Deutors diversos"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40300
 msgid "3. Gastos por ayudas y otros "
-msgstr ""
+msgstr "3. Despeses per ajudes i altres "
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11230
 msgid "3. Inmovilizado en curso y anticipos"
-msgstr ""
+msgstr "3. Immobilitzat en curs i bestretes"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_32390
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_32390
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_32390
 msgid "3. Otras deudas a corto plazo"
-msgstr ""
+msgstr "3. Altres deutes a curt termini"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_31290
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_31290
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_sfl_31290
 msgid "3. Otras deudas a largo plazo"
-msgstr ""
+msgstr "3. Altres deutes a llarg termini"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_abreviado_12390
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_pymes_12390
 msgid "3. Otros deudores"
-msgstr ""
+msgstr "3. Altres deutors"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45300
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47300
 msgid "3. Otros ingresos y gastos."
-msgstr ""
+msgstr "3. Altres ingressos i despeses."
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11130
 msgid "3. Patentes, licencias, marcas y similares"
-msgstr ""
+msgstr "3. Patents, llicències, marques i similars"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12230
 msgid "3. Productos en curso"
-msgstr ""
+msgstr "3. Productes en curs"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_31130
 msgid "3. Provisiones por reestructuración"
-msgstr ""
+msgstr "3. Provisions per reestructuració"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_21330
 msgid "3. Reserva de capitalización"
-msgstr ""
+msgstr "3. Reserva de capitalització"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47100
 msgid "3. Subvenciones recibidas."
-msgstr ""
+msgstr "3. Subvencions rebudes."
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_40300
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40300
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_40300
 msgid "3. Trabajos realizados por la empresa para su activo"
-msgstr ""
+msgstr "3. Treballs realitzats per l'empresa pel seu actiu"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11430
@@ -509,14 +509,14 @@ msgstr ""
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12430
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12530
 msgid "3. Valores representativos de deuda"
-msgstr ""
+msgstr "3. Valors representatius de deute"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_abreviado_40400
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_normal_40400
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pymes_40400
 msgid "4. Aprovisionamientos"
-msgstr ""
+msgstr "4. Aprovisionaments"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11440
@@ -526,58 +526,58 @@ msgstr ""
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_31240
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_32340
 msgid "4. Derivados"
-msgstr ""
+msgstr "4. Derivats"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47200
 msgid "4. Donaciones y legados recibidos."
-msgstr ""
+msgstr "4. Donacions y deixes rebudes."
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_45400
 msgid "4. Efecto impositivo."
-msgstr ""
+msgstr "4. Efecte impositiu."
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11140
 msgid "4. Fondo de comercio"
-msgstr ""
+msgstr "4. Fons de comerç"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_31140
 msgid "4. Otras provisiones"
-msgstr ""
+msgstr "4. Altres provisions"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12340
 msgid "4. Personal"
-msgstr ""
+msgstr "4. Personal"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_32540
 msgid "4. Personal (remuneraciones pendientes de pago)"
-msgstr ""
+msgstr "4. Personal (remuneracions pendents de pagament)"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12240
 msgid "4. Productos terminados"
-msgstr ""
+msgstr "4. Productes acabats"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40400
 msgid ""
 "4. Variación de existencias productos terminados y en curso de fabricación"
-msgstr ""
+msgstr "4. Variació d'existències productes acabats i en curs de fabricació"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_12350
 msgid "5. Activos por impuesto corriente"
-msgstr ""
+msgstr "5. Actius per impost corrent"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_balance_normal_11150
 msgid "5. Aplicaciones informáticas"
-msgstr ""
+msgstr "5. Aplicacions informàtiques"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_47400
@@ -1802,8 +1802,7 @@ msgstr ""
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40140
 msgid ""
 "d) Subvenciones,donaciones y legados imputados al excedente del ejercicio"
-msgstr ""
-"d) Subvenciones,donaciones y legados imputados al excedente del ejercicio"
+msgstr "d) Subvencions, donacions i deixes imputades a l'excedent de l'exercici"
 
 #. module: l10n_es_mis_report
 #: model:mis.report.kpi,description:l10n_es_mis_report.mis_report_kpi_es_pyg_pyme_sfl_40150
