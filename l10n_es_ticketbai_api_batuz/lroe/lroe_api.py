@@ -1,23 +1,25 @@
 # Copyright (2021) Binovo IT Human Project SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from requests import exceptions
 import json
-from datetime import datetime
-from odoo.addons.l10n_es_ticketbai_api.ticketbai.api import TicketBaiApi
-from odoo.tools.safe_eval import safe_eval
 import logging
+from datetime import datetime
+
+from requests import exceptions
+
+from odoo.tools.safe_eval import safe_eval
+
+from odoo.addons.l10n_es_ticketbai_api.ticketbai.api import TicketBaiApi
 
 _logger = logging.Logger(__name__)
 
 try:
     from requests_pkcs12 import post as pkcs12_post
-except(ImportError, IOError) as err:
+except (ImportError, IOError) as err:
     _logger.info(err)
 
 
 class LROEOperationResponse:
-
-    def __init__(self, data=None, headers=None, error=False, strerror='', errno=0):
+    def __init__(self, data=None, headers=None, error=False, strerror="", errno=0):
         self.data = data
         self.headers = headers
         self.error = error
@@ -26,49 +28,50 @@ class LROEOperationResponse:
 
     def get_lroe_srv_response_type(self):
         headers = self.headers
-        return headers and headers.get('eus-bizkaia-n3-tipo-respuesta') or None
+        return headers and headers.get("eus-bizkaia-n3-tipo-respuesta") or None
 
     def get_lroe_srv_response_code(self):
         headers = self.headers
-        return headers and headers.get('eus-bizkaia-n3-codigo-respuesta') or None
+        return headers and headers.get("eus-bizkaia-n3-codigo-respuesta") or None
 
     def get_lroe_srv_response_message(self):
         headers = self.headers
-        return headers and headers.get('eus-bizkaia-n3-mensaje-respuesta') or None
+        return headers and headers.get("eus-bizkaia-n3-mensaje-respuesta") or None
 
     def get_lroe_srv_response_record_id(self):
         headers = self.headers
-        return headers and headers.get('eus-bizkaia-n3-identificativo') or None
+        return headers and headers.get("eus-bizkaia-n3-identificativo") or None
 
     def get_lroe_srv_response_record_number(self):
         headers = self.headers
-        return headers and headers.get('eus-bizkaia-n3-numero-registro') or None
+        return headers and headers.get("eus-bizkaia-n3-numero-registro") or None
 
     def get_lroe_srv_response_record_date(self):
         headers = self.headers
-        return headers and headers.get('date') or None
+        return headers and headers.get("date") or None
 
 
 class LROETicketBaiApi(TicketBaiApi):
-
     @staticmethod
     def get_request_headers(lroe_operation):
-
         def set_default_headers(headers):
-            headers['Accept-Encoding'] = 'gzip'
-            headers['Content-Encoding'] = 'gzip'
-            headers['Content-Length'] = 0
-            headers['Content-Type'] = 'application/octet-stream'
+            headers["Accept-Encoding"] = "gzip"
+            headers["Content-Encoding"] = "gzip"
+            headers["Content-Length"] = 0
+            headers["Content-Type"] = "application/octet-stream"
 
         def set_eus_bizkaia_n3_headers(headers):
-
             def set_eus_bizkaia_n3_data():
-
                 def get_fiscal_year():
                     if lroe_operation.tbai_invoice_ids:
-                        return str(datetime.strptime(
-                            lroe_operation.tbai_invoice_ids[0]
-                            .expedition_date, '%d-%m-%Y').date().year)
+                        return str(
+                            datetime.strptime(
+                                lroe_operation.tbai_invoice_ids[0].expedition_date,
+                                "%d-%m-%Y",
+                            )
+                            .date()
+                            .year
+                        )
                     else:
                         return str(datetime.now().year)
 
@@ -82,21 +85,16 @@ class LROETicketBaiApi(TicketBaiApi):
                 partner = lroe_operation.company_id.partner_id
                 nif = partner.tbai_get_value_nif()
                 n3_dat_dict = {
-                    'con': 'LROE',
-                    'apa': apa,
-                    'inte': {
-                        'nif': nif,
-                        'nrs':  lroe_operation.company_id.name
-                    },
-                    'drs': {
-                        'mode': lroe_operation.model,
-                        'ejer': get_fiscal_year()}
+                    "con": "LROE",
+                    "apa": apa,
+                    "inte": {"nif": nif, "nrs": lroe_operation.company_id.name},
+                    "drs": {"mode": lroe_operation.model, "ejer": get_fiscal_year()},
                 }
                 return json.dumps(n3_dat_dict)
 
-            headers['eus-bizkaia-n3-version'] = '1.0'
-            headers['eus-bizkaia-n3-content-type'] = 'application/xml'
-            headers['eus-bizkaia-n3-data'] = set_eus_bizkaia_n3_data()
+            headers["eus-bizkaia-n3-version"] = "1.0"
+            headers["eus-bizkaia-n3-content-type"] = "application/xml"
+            headers["eus-bizkaia-n3-data"] = set_eus_bizkaia_n3_data()
 
         headers = {}
         set_default_headers(headers)
@@ -106,20 +104,20 @@ class LROETicketBaiApi(TicketBaiApi):
     def post(self, request_headers, data):
         if self.cert is None and self.key is None:
             response = pkcs12_post(
-                self.url, data=data,
-                headers=request_headers,
-                pkcs12_data=self.p12_buffer,
-                pkcs12_password=self.password)
-        elif self.p12_buffer is None and self.password is None:
-            response = pkcs12_post(
                 self.url,
                 data=data,
                 headers=request_headers,
-                cert=(self.cert, self.key))
+                pkcs12_data=self.p12_buffer,
+                pkcs12_password=self.password,
+            )
+        elif self.p12_buffer is None and self.password is None:
+            response = pkcs12_post(
+                self.url, data=data, headers=request_headers, cert=(self.cert, self.key)
+            )
         else:
             raise exceptions.RequestException(
-                1,
-                'Please provide cert and key, or p12 buffer and its password.')
+                1, "Please provide cert and key, or p12 buffer and its password."
+            )
         return response
 
     def requests_post(self, request_headers, data):
@@ -131,25 +129,24 @@ class LROETicketBaiApi(TicketBaiApi):
             response_data = response.content
             if 200 == response.status_code:
                 lroe_response = LROEOperationResponse(
-                    data=response_data,
-                    headers=response_headers)
+                    data=response_data, headers=response_headers
+                )
             else:
                 lroe_response = LROEOperationResponse(
                     error=True,
                     headers=response_headers,
                     strerror=response.reason,
-                    errno=response.status_code)
+                    errno=response.status_code,
+                )
         except exceptions.RequestException as re:
-            if hasattr(re, 'response') and re.response:
+            if hasattr(re, "response") and re.response:
                 errno = re.response.status_code
                 content = safe_eval(re.response.text)
-                strerror = content['message']
+                strerror = content["message"]
             else:
                 errno = re.errno
                 strerror = re.strerror
             lroe_response = LROEOperationResponse(
-                error=True,
-                headers=response_headers,
-                strerror=strerror,
-                errno=errno)
+                error=True, headers=response_headers, strerror=strerror, errno=errno
+            )
         return lroe_response
