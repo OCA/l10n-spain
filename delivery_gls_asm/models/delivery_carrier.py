@@ -281,7 +281,21 @@ class DeliveryCarrier(models.Model):
             # For compatibility we provide this number although we get
             # two more codes: codbarras and uid
             vals["tracking_number"] = response.get("_codexp")
-            picking.gls_asm_public_tracking_ref = response.get("_codbarras")
+            gls_asm_picking_ref = ""
+            try:
+                references = response.get("Referencias", {}).get("Referencia", [])
+                for ref in references:
+                    if ref.get("_tipo", "") == "N":
+                        gls_asm_picking_ref = ref.get("value", "")
+                        break
+            except Exception:
+                pass
+            picking.write(
+                {
+                    "gls_asm_public_tracking_ref": response.get("_codbarras"),
+                    "gls_asm_picking_ref": gls_asm_picking_ref,
+                }
+            )
             # We post an extra message in the chatter with the barcode and the
             # label because there's clean way to override the one sent by core.
             body = _("GLS Shipping extra info:\n" "barcode: %s") % response.get(
@@ -424,7 +438,12 @@ class DeliveryCarrier(models.Model):
                 )
                 picking.message_post(body=msg)
                 continue
-            picking.gls_asm_public_tracking_ref = False
+            picking.write(
+                {
+                    "gls_asm_public_tracking_ref": False,
+                    "gls_asm_picking_ref": False,
+                }
+            )
             self.gls_asm_tracking_state_update(picking=picking)
 
     def gls_asm_rate_shipment(self, order):
