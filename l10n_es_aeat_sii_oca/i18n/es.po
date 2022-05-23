@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-10-23 18:31+0000\n"
-"PO-Revision-Date: 2020-10-23 20:32+0200\n"
-"Last-Translator: Josep M <jmyepes@mac.com>\n"
+"PO-Revision-Date: 2022-05-23 12:05+0000\n"
+"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_company_sii_form
@@ -94,12 +94,12 @@ msgstr "Agencia tributaria AEAT SII"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model,name:l10n_es_aeat_sii_oca.model_l10n_es_aeat_sii_password
 msgid "Aeat SII password"
-msgstr "AEAT SII Password"
+msgstr "AEAT SII contraseña"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
 msgid "Already sent but with local changes not sent yet"
-msgstr "Enviada previamente al SII pero con cambios locales no enviados"
+msgstr "Enviada previamente al SII pero con cambios locales por enviar"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.view_account_invoice_sii_filter
@@ -199,8 +199,8 @@ msgid ""
 "Check to confirm that the invoice has an absolute amount greater o equal to "
 "100 000 000,00 euros."
 msgstr ""
-"Check to confirm that the invoice has an absolute amount greater o equal to "
-"100 000 000,00 euros."
+"Revise para confirmar que el importe total de la factura es mayor o igual "
+"que 100 000 000,00 euros."
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,help:l10n_es_aeat_sii_oca.field_res_partner__sii_simplified_invoice
@@ -501,6 +501,7 @@ msgstr "Cargar certificado"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_macrodata
+#, fuzzy
 msgid "MacroData"
 msgstr "MacroData"
 
@@ -756,7 +757,7 @@ msgstr "Agencias tributarias SII"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_res_company__sii_tax_agency_id
 msgid "SII Tax Agency"
-msgstr ""
+msgstr "Agencia Tributaria SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_account_registration_date
@@ -816,7 +817,7 @@ msgstr "Clave de registro SII"
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_registration_key_domain
 msgid "SII registration key domain"
-msgstr ""
+msgstr "Clave de registro de dominio SII"
 
 #. module: l10n_es_aeat_sii_oca
 #: model:ir.model.fields,field_description:l10n_es_aeat_sii_oca.field_account_move__sii_send_failed
@@ -903,7 +904,7 @@ msgstr "Estado"
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
 msgid "Suministro Bienes de Inversión"
-msgstr "Suministro Bienes de Inversión"
+msgstr "Suministro bienes de inversión"
 
 #. module: l10n_es_aeat_sii_oca
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_sii_oca.aeat_sii_tax_agency_form_view
