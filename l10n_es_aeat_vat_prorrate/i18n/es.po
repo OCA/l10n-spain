@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-12 02:02+0000\n"
-"PO-Revision-Date: 2018-01-12 02:02+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2022-05-23 19:05+0000\n"
+"Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_vat_prorrate.l10n_es_aeat_mod303_prorrata_form
@@ -155,13 +156,13 @@ msgid ""
 "                        definitive prorrate percentage has to be calculated\n"
 "                        for that year and the difference must be compensated."
 msgstr ""
-"Este asistente calculará la prorrata de IVA para un año.\n"
+"Este asistente calculará el IVA prorrateado para un año.\n"
 "                        Debe usar la prorrata del año anterior como\n"
 "                        valor provisional para todas las declaraciones del\n"
-"                        siguiente año hasta el último periodo, el el que \n"
+"                        siguiente año hasta el último periodo, en el que \n"
 "                        se debe calcular el porcentaje de prorrata "
 "definitivo\n"
-"                        para ese año y la diferencia se compensará."
+"                        para ese año, y la diferencia se compensará."
 
 #. module: l10n_es_aeat_vat_prorrate
 #: code:addons/l10n_es_aeat_vat_prorrate/models/mod303.py:58
@@ -181,9 +182,8 @@ msgstr "Tipo de prorrata de IVA"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model,name:l10n_es_aeat_vat_prorrate.model_l10n_es_aeat_compute_vat_prorrate
-#, fuzzy
 msgid "Wizard for computing VAT prorrate"
-msgstr "Calcular prorrata IVA"
+msgstr "Asistente para calcular IVA prorrateado"
 
 #. module: l10n_es_aeat_vat_prorrate
 #: model:ir.model.fields,field_description:l10n_es_aeat_vat_prorrate.field_l10n_es_aeat_compute_vat_prorrate__year
