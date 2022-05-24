@@ -74,8 +74,11 @@ class EdiExchangeRecord(models.Model):
             public_crt, private_key = self.env[
                 "l10n.es.aeat.certificate"
             ].get_certificates(company)
-            response = face.webservice_backend_id.call(
-                "consult_invoices",
+            response = face._find_component(
+                face._name,
+                ["face.protocol"],
+                work_ctx={"exchange_record": self.env["edi.exchange.record"]},
+            ).consult_invoices(
                 public_crt,
                 private_key,
                 exchanges,
