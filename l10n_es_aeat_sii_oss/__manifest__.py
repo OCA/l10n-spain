@@ -19,4 +19,5 @@
         "l10n_eu_oss",
     ],
     "data": ["data/aeat_sii_mapping_registration_keys_data.xml"],
+    "post_init_hook": "add_sii_partner_identification_type",
 }
