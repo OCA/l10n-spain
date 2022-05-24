@@ -218,6 +218,11 @@ msgid "Entry number"
 msgstr ""
 
 #. module: l10n_es_vat_book
+#: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book_line__exception_text
 msgid "Exception text"
 msgstr ""
