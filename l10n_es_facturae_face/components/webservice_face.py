@@ -22,15 +22,15 @@ except (ImportError, IOError) as err:
 
 class WebServiceFace(Component):
     _name = "base.webservice.face"
-    _usage = "webservice.request"
-    _webservice_protocol = "face"
-    _inherit = "base.webservice.adapter"
+    _usage = "face.protocol"
+    _backend_type = "l10n_es_facturae"
+    _inherit = "edi.component.mixin"
 
     def _get_client(self, certificate, password):
         cert = crypto.load_pkcs12(base64.b64decode(certificate), password,)
         cert.set_ca_certificates(None)
         return Client(
-            wsdl=self.collection.url,
+            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws"),
             wsse=MemorySignature(
                 cert.export(),
                 base64.b64decode(
@@ -39,7 +39,7 @@ class WebServiceFace(Component):
             ),
         )
 
-    def send(
+    def send_webservice(
         self, certificate, password, file_data, file_name, email, anexos_list=False
     ):
         client = self._get_client(certificate, password)

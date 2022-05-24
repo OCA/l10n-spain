@@ -14,16 +14,14 @@ from odoo.addons.component.core import Component
 
 class EdiWebServiceReceiveFaceL10nEsFacturaeFaceUpdate(Component):
     _name = "edi.webservice.receive.face.l10n_es_facturae_face_update"
-    _usage = "webservice.receive"
+    _usage = "input.receive"
     _backend_type = "l10n_es_facturae"
     _exchange_type = "l10n_es_facturae_face_update"
-    _webservice_protocol = "face"
-    _inherit = "edi.component.receive.mixin"
+    _inherit = ["edi.component.receive.mixin", "base.webservice.face"]
 
     def receive(self):
         invoice = self.exchange_record.record
-        response = self.backend.webservice_backend_id.call(
-            "consult_invoice",
+        response = self.consult_invoice(
             invoice.company_id.facturae_cert,
             invoice.company_id.facturae_cert_password,
             self.exchange_record.parent_id.external_identifier,

@@ -68,11 +68,10 @@ class EdiExchangeRecord(models.Model):
             for integration in company_integrations:
                 exchanges.append(integration.external_identifier)
                 exchange_dict[integration.external_identifier] = integration
-            response = face.webservice_backend_id.call(
-                "consult_invoices",
-                company.facturae_cert,
-                company.facturae_cert_password,
-                exchanges,
+            response = face._find_component(
+                face._name, ["face.protocol"]
+            ).consult_invoices(
+                company.facturae_cert, company.facturae_cert_password, exchanges,
             )
             if response.resultado.codigo != "0":
                 _logger.info(_("Company %s cannot be processed") % company.display_name)
