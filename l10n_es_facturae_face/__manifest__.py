@@ -3,14 +3,13 @@
 
 {
     "name": "Envío de Facturae a FACe",
-    "version": "15.0.1.2.3",
+    "version": "15.0.2.0.0",
     "author": "Creu Blanca, " "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
     "license": "AGPL-3",
     "depends": [
         "l10n_es_facturae",
-        "edi_webservice_oca",
         "edi_account_oca",
         "edi_exchange_template_oca",
     ],

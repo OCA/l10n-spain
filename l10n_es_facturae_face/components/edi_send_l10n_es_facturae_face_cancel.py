@@ -9,11 +9,10 @@ from odoo.addons.component.core import Component
 
 class EdiOutputSendL10nEsFacturaeFace(Component):
     _name = "edi.output.send.l10n_es_facturae.l10n_es_facturae_face_cancel_output"
-    _usage = "webservice.send"
+    _usage = "output.send"
     _backend_type = "l10n_es_facturae"
     _exchange_type = "l10n_es_facturae_face_cancel"
-    _webservice_protocol = "face"
-    _inherit = "edi.component.send.mixin"
+    _inherit = ["edi.component.send.mixin", "base.webservice.face"]
 
     def send(self):
         move = self.exchange_record.record
@@ -22,8 +21,7 @@ class EdiOutputSendL10nEsFacturaeFace(Component):
         public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
             move.company_id
         )
-        self.backend.webservice_backend_id.call(
-            "cancel",
+        self.cancel(
             public_crt,
             private_key,
             parent.external_identifier,
