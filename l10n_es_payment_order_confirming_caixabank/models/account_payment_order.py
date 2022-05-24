@@ -33,7 +33,7 @@ class AccountPaymentOrder(models.Model):
             txt_file += self._pop_beneficiarios_conf_caix(line)
         txt_file += self._pop_totales_conf_caix(line, self.num_lineas)
         # return str.encode(txt_file, 'ascii'), self.name + '.CAX'
-        return self.to_ascii(txt_file).encode('ascii','ignore'), self.name + '.CAX'
+        return self.to_ascii(txt_file).encode('ascii', 'ignore'), self.name + '.CAX'
 
     def _pop_cabecera_conf_caix(self):
         """
@@ -164,8 +164,9 @@ class AccountPaymentOrder(models.Model):
 
     def _pop_beneficiarios_conf_caix(self, line):
         all_text = ''
+        # 046 se quita la opcion 46 por ser opcional y estar probocando problemas
         bloque_registros = [
-            '010', '043', '044', '046', '011', '012', '014',
+            '010', '043', '044', '011', '012', '014',
             '015', '016', '017', '018', '019', '055'
         ]
         fixed_text = ''
@@ -260,7 +261,7 @@ class AccountPaymentOrder(models.Model):
                 # 30 - 63: Cuenta de pago para proveedores
                 cuenta = line.partner_bank_id.acc_number
                 cuenta = cuenta.replace(' ', '')
-                text +=  self.strim_txt(cuenta, 34)
+                text += self.strim_txt(cuenta, 34)
                 # 64: Concepto de la ordern
                 text += '7'
                 # 65 - 72 Libre
@@ -301,11 +302,12 @@ class AccountPaymentOrder(models.Model):
                 # Fecha de postfinanciación de la remesa.
                 if not self.post_financing_date:
                     raise UserError(_('post-financing date mandatory'))
-                # Asigno como fecha de vencimiento de la factura la fecha del ejecución del pago.
-                text += fields.Date.from_string(self.post_financing_date).strftime('%d%m%y').ljust(30)
+                # Asigno como fecha de vencimiento de la factura la fecha del
+                # ejecución del pago.
+                text += fields.Date.from_string(
+                    self.post_financing_date).strftime('%d%m%y').ljust(30)
 
             ###################################################################
-
 
             # LÍNEA 4
             ###################################################################
@@ -396,7 +398,8 @@ class AccountPaymentOrder(models.Model):
                     ano = fecha_factura[2:4]
                     fecha_factura = dia + mes + ano
                 else:
-                    fecha_factura = fields.Date.from_string(line.payment_line_ids[0].move_line_id.date).strftime('%d%m%y')
+                    fecha_factura = fields.Date.from_string(
+                        line.payment_line_ids[0].move_line_id.date).strftime('%d%m%y')
                 text += fecha_factura
 
                 # 37 - 51: Número factura
