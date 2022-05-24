@@ -25,9 +25,9 @@ except (ImportError, IOError) as err:
 
 class WebServiceFace(Component):
     _name = "base.webservice.face"
-    _usage = "webservice.request"
-    _webservice_protocol = "face"
-    _inherit = "base.webservice.adapter"
+    _usage = "face.protocol"
+    _backend_type = "l10n_es_facturae"
+    _inherit = "edi.component.mixin"
 
     def _get_client(self, public_crt, private_key):
         with open(public_crt, "rb") as f:
@@ -37,7 +37,7 @@ class WebServiceFace(Component):
                 f.read(), None, backend=default_backend()
             )
         return Client(
-            wsdl=self.collection.url,
+            wsdl=self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws"),
             wsse=MemorySignature(
                 cert,
                 key,
@@ -50,7 +50,7 @@ class WebServiceFace(Component):
             ),
         )
 
-    def send(
+    def send_webservice(
         self, public_crt, private_key, file_data, file_name, email, anexos_list=False
     ):
         client = self._get_client(public_crt, private_key)
