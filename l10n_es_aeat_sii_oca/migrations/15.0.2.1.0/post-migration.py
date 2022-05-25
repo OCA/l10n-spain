@@ -6,7 +6,7 @@ from openupgradelib import openupgrade
 
 def _get_tax_agency_map(env):
     """Map to move records from aeat.sii.tax.agency to aeat.tax.agency."""
-    get_id = env["ir.model.data"].xmlid_to_res_id
+    get_id = env["ir.model.data"]._xmlid_to_res_id
     mig_map = {
         get_id("l10n_es_aeat_sii_oca.aeat_sii_tax_agency_spain"): get_id(
             "l10n_es_aeat.aeat_tax_agency_spain"
