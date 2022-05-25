@@ -16,6 +16,13 @@ from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSche
 class AccountMove(models.Model):
     _inherit = "account.move"
 
+    def _default_tbai_vat_regime_key(self):
+        context = self.env.context
+        invoice_type = context.get("move_type", context.get("default_move_type"))
+        if invoice_type in ["out_invoice", "out_refund"]:
+            key = self.env["tbai.vat.regime.key"].search([("code", "=", "01")], limit=1)
+            return key
+
     tbai_enabled = fields.Boolean(related="company_id.tbai_enabled", readonly=True)
     tbai_send_invoice = fields.Boolean(related="journal_id.tbai_send_invoice")
     tbai_substitution_invoice_id = fields.Many2one(
@@ -77,7 +84,10 @@ class AccountMove(models.Model):
         copy=False,
     )
     tbai_vat_regime_key = fields.Many2one(
-        comodel_name="tbai.vat.regime.key", string="VAT Regime Key", copy=True
+        comodel_name="tbai.vat.regime.key",
+        string="VAT Regime Key",
+        copy=True,
+        default=_default_tbai_vat_regime_key,
     )
     tbai_vat_regime_key2 = fields.Many2one(
         comodel_name="tbai.vat.regime.key", string="VAT Regime 2nd Key", copy=True
@@ -316,9 +326,21 @@ class AccountMove(models.Model):
                     and tax.tbai_get_value_tipo_no_exenta()
                     or ""
                 )
-                exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                    lambda e: e.tax_id.id == tax["id"]
-                )
+                exemption = ""
+                if tax.tbai_is_tax_exempted():
+                    if self.fiscal_position_id:
+                        exemption = (
+                            self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
+                                lambda e: e.tax_id.id == tax["id"]
+                            )
+                        )
+                        if len(exemption) == 1:
+                            exemption = exemption.tbai_vat_exemption_key.code
+                    else:
+                        exemption = self.env["tbai.vat.exemption.key"].search(
+                            [("code", "=", "E1")], limit=1
+                        )
+                        exemption = exemption.code
                 taxes.append(
                     (
                         0,
@@ -328,9 +350,7 @@ class AccountMove(models.Model):
                             "is_subject_to": tax_subject_to,
                             "not_subject_to_cause": not_subject_to_cause,
                             "is_exempted": is_exempted,
-                            "exempted_cause": is_exempted
-                            and exemption.tbai_vat_exemption_key.code
-                            or "",
+                            "exempted_cause": is_exempted and exemption or "",
                             "not_exempted_type": not_exempted_type,
                             "amount": "%.2f" % abs(tax.amount),
                             "amount_total": tax.tbai_get_value_cuota_impuesto(self),
