@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-28 23:52+0100\n"
-"PO-Revision-Date: 2022-05-16 17:05+0000\n"
+"PO-Revision-Date: 2022-05-25 16:05+0000\n"
 "Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -354,13 +354,13 @@ msgstr "Facturas rectificativas emitidas"
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__issued_summary_ids
 msgid "Issued Summary"
-msgstr "Resumen Emitidas"
+msgstr "Resumen emitidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__issued_tax_summary_ids
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_l10n_es_vat_book_form
 msgid "Issued Tax Summary"
-msgstr "Resumen Impuestos Emitidas"
+msgstr "Resumen impuestos emitidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__issued_line_ids
@@ -372,7 +372,7 @@ msgstr "Facturas emitidas"
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_vat_book.view_vat_book_line_tree
 msgid "Issued/Received invoices"
-msgstr "Facturas Emitidas/Recibidas"
+msgstr "Facturas emitidas/recibidas"
 
 #. module: l10n_es_vat_book
 #: model:ir.model.fields,field_description:l10n_es_vat_book.field_l10n_es_vat_book__journal_id
