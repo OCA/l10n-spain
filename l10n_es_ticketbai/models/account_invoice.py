@@ -12,6 +12,14 @@ from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema \
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
+    def _default_tbai_vat_regime_key(self):
+        context = self.env.context
+        invoice_type = context.get('type', context.get("default_type"))
+        if invoice_type in ['out_invoice', 'out_refund']:
+            key = self.env['tbai.vat.regime.key'].search(
+                [('code', '=', '01')], limit=1)
+            return key
+
     tbai_enabled = fields.Boolean(
         related='company_id.tbai_enabled', readonly=True)
     tbai_send_invoice = fields.Boolean(related='journal_id.tbai_send_invoice')
@@ -56,7 +64,8 @@ class AccountInvoice(models.Model):
         (RefundType.differences.value, 'By differences')
     ], copy=False)
     tbai_vat_regime_key = fields.Many2one(
-        comodel_name='tbai.vat.regime.key', string='VAT Regime Key', copy=True)
+        comodel_name='tbai.vat.regime.key', string='VAT Regime Key', copy=True,
+        default=_default_tbai_vat_regime_key)
     tbai_vat_regime_key2 = fields.Many2one(
         comodel_name='tbai.vat.regime.key', string='VAT Regime 2nd Key', copy=True)
     tbai_vat_regime_key3 = fields.Many2one(
@@ -385,11 +394,18 @@ class AccountInvoice(models.Model):
 
     def _prepare_tax_line_vals(self, line, tax):
         vals = super()._prepare_tax_line_vals(line, tax)
-        if self.fiscal_position_id:
-            exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
-                lambda e: e.tax_id.id == tax['id'])
-            if 1 == len(exemption):
-                vals['tbai_vat_exemption_key'] = exemption.tbai_vat_exemption_key.id
+        tax_record = self.env['account.tax'].browse(tax['id'])
+        if tax_record.tbai_is_tax_exempted():
+            if self.fiscal_position_id:
+                exemption = self.fiscal_position_id.tbai_vat_exemption_ids.filtered(
+                    lambda e: e.tax_id.id == tax['id'])
+                if len(exemption) == 1:
+                    vals['tbai_vat_exemption_key'] = exemption.tbai_vat_exemption_key.id
+            else:
+                exemption = self.env['tbai.vat.exemption.key'].search(
+                    [('code', '=', 'E1')], limit=1)
+                vals['tbai_vat_exemption_key'] = exemption.id
+
         return vals
 
     def tbai_is_invoice_refund(self):
