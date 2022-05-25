@@ -4,16 +4,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-22 12:41+0000\n"
-"PO-Revision-Date: 2022-02-22 12:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: l10n_es_intrastat_report
+#: model_terms:ir.ui.view,arch_db:l10n_es_intrastat_report.l10n_es_intrastat_product_computation_line_view_tree
+msgid "/&gt;"
+msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__product_origin_country_code
@@ -197,8 +200,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__display_name
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__display_name
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls__display_name
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -210,11 +211,6 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -233,12 +229,15 @@ msgid "Generate CSV Declaration File"
 msgstr ""
 
 #. module: l10n_es_intrastat_report
+#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_es_intrastat_report
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_code_import__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__id
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line__id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls__id
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location__id
 msgid "ID"
 msgstr ""
 
@@ -377,8 +376,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_computation_line____last_update
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration____last_update
 #: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration_line____last_update
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_report_intrastat_product_product_declaration_xls____last_update
-#: model:ir.model.fields,field_description:l10n_es_intrastat_report.field_stock_location____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -415,14 +412,16 @@ msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing origin country on product %s."
+msgid "Missing origin country on product %s. "
 msgstr ""
 
 #. module: l10n_es_intrastat_report
 #: code:addons/l10n_es_intrastat_report/models/l10n_es_intrastat_product_declaration.py:0
+#: code:addons/l10n_es_intrastat_report/tests/test_l10n_es_intrastat_report.py:0
 #, python-format
-msgid "Missing partner vat on invoice %s."
+msgid "Missing partner vat on invoice %s. "
 msgstr ""
 
 #. module: l10n_es_intrastat_report
@@ -711,10 +710,4 @@ msgstr ""
 #. module: l10n_es_intrastat_report
 #: model:ir.model.fields,help:l10n_es_intrastat_report.field_l10n_es_intrastat_product_declaration__note
 msgid "You can add some comments here if you want."
-msgstr ""
-
-#. module: l10n_es_intrastat_report
-#: code:addons/l10n_es_intrastat_report/wizards/l10n_es_intrastat_code_import.py:0
-#, python-format
-msgid "xlrd library not found."
 msgstr ""
