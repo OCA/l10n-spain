@@ -118,12 +118,13 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
 
         self._load_module_components(self, "component_event")
         self._load_module_components(self, "edi")
-        self._load_module_components(self, "storage_backend")
-        self._load_module_components(self, "edi_storage")
         self._load_module_components(self, "edi_account")
         self._load_module_components(self, "l10n_es_facturae")
         self._load_module_components(self, "l10n_es_facturae_face")
         self._load_module_components(self, "l10n_es_facturae_efact")
+        self.face_url = (
+            self.env["ir.config_parameter"].sudo().get_param("facturae.face.ws")
+        )
         self.tax = self.env["account.tax"].create(
             {
                 "name": "Test tax",
@@ -291,8 +292,8 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
             self.partner.state_id = False
 
     def test_efact_sending(self):
-        self._activate_certificate()
-        client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
+        self._activate_certificate(self.certificate_password)
+        client = Client(wsdl=self.face_url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
             client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
@@ -339,8 +340,8 @@ class EDIBackendTestCase(TestL10nEsAeatCertificateBase, SavepointComponentRegist
         self.assertEqual(self.move.l10n_es_facturae_status, "efact-DELIVERED")
 
     def test_efact_sending_error(self):
-        self._activate_certificate()
-        client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
+        self._activate_certificate(self.certificate_password)
+        client = Client(wsdl=self.face_url)
         integration_code = "1234567890"
         response_ok = client.get_type("ns0:EnviarFacturaResponse")(
             client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
