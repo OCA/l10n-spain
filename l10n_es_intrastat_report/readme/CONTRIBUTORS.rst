@@ -12,3 +12,7 @@
 
   * Harald Panten
   * Valentin Vinagre
+
+* `GreenIce <https://www.greenice.com>`__:
+
+  * Fernando La Chica

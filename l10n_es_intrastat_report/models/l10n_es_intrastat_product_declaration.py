@@ -7,7 +7,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import Warning as UserError
+from odoo.exceptions import UserError
 
 from odoo.addons.l10n_es_aeat.models.spanish_states_mapping import SPANISH_STATES
 
@@ -63,7 +63,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
         return lines
 
     def _update_computation_line_vals(self, inv_line, line_vals, notedict):
-        super()._update_computation_line_vals(inv_line, line_vals, notedict)
+        result = super()._update_computation_line_vals(inv_line, line_vals, notedict)
         intrastat_state = self._get_intrastat_state(inv_line)
         if intrastat_state:
             line_vals["intrastat_state_id"] = intrastat_state.id
@@ -79,6 +79,7 @@ class L10nEsIntrastatProductDeclaration(models.Model):
                     _("Missing partner vat on invoice %s. ") % (inv_line.move_id.name)
                 ]
                 self._format_line_note(inv_line, notedict, line_notes)
+        return result
 
     def _gather_invoices_init(self, notedict):
         if self.company_id.country_id.code != "ES":
