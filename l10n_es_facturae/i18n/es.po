@@ -25,17 +25,19 @@ msgstr "&lt;/fe:Facturae&gt;"
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae\"\n"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/"
-"Facturae\"\n"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2009/v3.2/Facturae"
+"\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/Facturae\"\n"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
+"Facturae\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.es/Facturae/2014/v3.2.1/"
@@ -45,7 +47,8 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.facturae_header
 msgid ""
-"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/Facturaev3_2_2.xml\"\n"
+"&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
+"Facturaev3_2_2.xml\"\n"
 "            xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"&gt;"
 msgstr ""
 "&lt;fe:Facturae xmlns:fe=\"http://www.facturae.gob.es/formato/Versiones/"
@@ -306,10 +309,8 @@ msgstr "Factura-E sin firmar"
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid ""
-"FacturaE start and end dates are both required if one of them is filled"
+msgid "FacturaE start and end dates are both required if one of them is filled"
 msgstr ""
 "Las fechas de inicio y finalización de FacturaE son obligatorias si se "
 "completa una de ellas"
@@ -487,8 +488,8 @@ msgstr "IE: Impuestos especiales"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__10
 #, fuzzy
 msgid ""
-"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en"
-" la Comunidad Autonoma Canaria"
+"IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
+"la Comunidad Autonoma Canaria"
 msgstr ""
 "IECDPCAC: Impuesto especial sobre los combustibles derivados del petróleo en "
 "la Comunidad Autonoma Canaria"
@@ -505,8 +506,8 @@ msgstr "IGIC: Impuesto general indirecto de Canarias"
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__09
 #, fuzzy
 msgid ""
-"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta"
-" y Melilla"
+"IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
+"y Melilla"
 msgstr ""
 "IGTECM: Impuesto general sobre el tráfico de empresas que se aplica en Ceuta "
 "y Melilla"
@@ -516,8 +517,8 @@ msgstr ""
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_tax_template__facturae_code__11
 #, fuzzy
 msgid ""
-"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente"
-" en la Baleares"
+"IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
+"en la Baleares"
 msgstr ""
 "IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
 "en la Baleares"
@@ -709,12 +710,6 @@ msgstr "Otro"
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid "Partner bank is missing"
-msgstr "El banco es obligatorio"
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
 msgid "Partner state not provided"
 msgstr "El estado es obligatorio"
 
@@ -832,7 +827,6 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
-#: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
 msgid "Start date cannot be later than end date"
 msgstr "La fecha de inicio no puede ser posterior a la fecha de finalización"
@@ -912,8 +906,7 @@ msgstr "El número de IVA debe estar definido"
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid ""
-"You can only create Factura-E files for moves that have been validated."
+msgid "You can only create Factura-E files for moves that have been validated."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -1019,7 +1012,6 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
-#: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
 #, python-format
 msgid "facturae"
 msgstr ""
@@ -1029,3 +1021,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__organo_proponente
 msgid "Órgano proponente"
 msgstr ""
+
+#~ msgid "Partner bank is missing"
+#~ msgstr "El banco es obligatorio"
