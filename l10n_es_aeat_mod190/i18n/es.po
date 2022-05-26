@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-26 11:05+0000\n"
+"PO-Revision-Date: 2022-05-26 16:05+0000\n"
 "Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -43,7 +43,7 @@ msgstr ""
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__discapacidad__0
 msgid "0 - No disability or degree of disability less than 33 percent."
-msgstr "0 - Sin discapacidad o con grado de minusvalía inferior al 33 por 100."
+msgstr "0 - Sin discapacidad o con grado de minusvalía inferior al 33 %."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__prestamos_vh__0
@@ -181,7 +181,7 @@ msgstr "3 - Distinta de las anteriores."
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__res_partner__discapacidad__3
 msgid "3 - Grado de minusvalía igual o superior al 65 por 100."
-msgstr "3 - Grado de minusvalía igual o superior al 65 por 100."
+msgstr "3 - Grado de minusvalía igual o superior al 65 %."
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields.selection,name:l10n_es_aeat_mod190.selection__l10n_es_aeat_mod190_report_line__situacion_familiar__3
@@ -688,7 +688,7 @@ msgstr "Situación familiar"
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_l10n_es_aeat_mod190_report_line_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod190.view_partner_mod190_form
 msgid "First 3 compute"
-msgstr ""
+msgstr "Cómputo de los 3 primeros"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model,name:l10n_es_aeat_mod190.model_account_fiscal_position
@@ -869,7 +869,7 @@ msgstr "Diario en el que publicar el asiento."
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report_line__representante_legal_vat
 msgid "L. R. VAT"
-msgstr ""
+msgstr "NIF repr. legal"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__representative_vat
@@ -1474,7 +1474,7 @@ msgstr ""
 #: code:addons/l10n_es_aeat_mod190/models/l10n_es_aeat_mod190_report.py:0
 #, python-format
 msgid "The state is not defined in the partner, %s"
-msgstr ""
+msgstr "La provincia no está definida en la empresa, %s"
 
 #. module: l10n_es_aeat_mod190
 #: model:ir.model.fields,help:l10n_es_aeat_mod190.field_l10n_es_aeat_mod190_report__counterpart_account_id
