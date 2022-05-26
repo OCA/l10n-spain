@@ -3,6 +3,8 @@
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, SUPERUSER_ID
+from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundCode, \
+    RefundType
 
 
 def post_init_hook(cr, registry):
@@ -59,3 +61,22 @@ def post_init_hook(cr, registry):
                     else:
                         journal.sequence_id.suffix = ''
                         journal.refund_sequence = True
+
+    invoices = env['account.invoice'].search(
+        [('type', 'in', ('out_invoice', 'out_refund'))]
+    )
+    tbai_vat_regime_key_01 = env['tbai.vat.regime.key'].search(
+        [('code', '=', '01')], limit=1
+    )
+
+    for invoice in invoices:
+        if invoice.fiscal_position_id:
+            invoice.tbai_vat_regime_key = (
+                invoice.fiscal_position_id.tbai_vat_regime_key.id
+            )
+        else:
+            invoice.tbai_vat_regime_key = tbai_vat_regime_key_01.id
+
+        if invoice.type == 'out_refund':
+            invoice.tbai_refund_key = RefundCode.R1.value
+            invoice.tbai_refund_type = RefundType.differences.value
