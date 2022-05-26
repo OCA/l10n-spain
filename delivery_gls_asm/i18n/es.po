@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-05 07:09+0000\n"
-"PO-Revision-Date: 2022-05-23 12:05+0000\n"
+"PO-Revision-Date: 2022-05-26 16:05+0000\n"
 "Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -30,13 +30,10 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"            La API de GLS ASM no proporciona métodos para calcular las tasas "
-"de \n"
-"               entrega, por lo que  debe confiar en otro método de precio en "
-"su \n"
-"               lugar \n"
-"               o anular este\n"
-"               uno en su código personalizado.\n"
+"            La API de GLS ASM no proporciona métodos para calcular los "
+"precios de\n"
+"            entrega, por lo que debe traer otro método de cálculo en su\n"
+"            lugar o anular este en su código personalizado.\n"
 "        "
 
 #. module: delivery_gls_asm
@@ -290,12 +287,12 @@ msgstr "Ent. Pto. ASM"
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,delivery_type:0
 msgid "Fixed Price"
-msgstr "Fixed Price"
+msgstr "Precio fijo"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
 msgid "Franja Horaria"
-msgstr "Franja Horaria"
+msgstr "Franja horaria"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
@@ -373,7 +370,7 @@ msgstr "UID GLS"
 #: code:addons/delivery_gls_asm/models/stock_picking.py:27
 #, python-format
 msgid "GLS label for %s"
-msgstr "Etiqueta GLS para% s"
+msgstr "Etiqueta GLS para %s"
 
 #. module: delivery_gls_asm
 #: code:addons/delivery_gls_asm/models/gls_asm_request.py:297
@@ -574,9 +571,8 @@ msgstr "Bultos"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_shiptime:0
-#, fuzzy
 msgid "ParcelShop"
-msgstr "ParcelShop"
+msgstr "Parcel Shop"
 
 #. module: delivery_gls_asm
 #: model:ir.model.fields,field_description:delivery_gls_asm.field_delivery_carrier__gls_asm_postage_type
@@ -600,7 +596,6 @@ msgstr "Proveedor"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
-#, fuzzy
 msgid "RC. PARCEL SHOP"
 msgstr "RC. PARCEL SHOP"
 
@@ -778,7 +773,7 @@ msgstr "Peso"
 #. module: delivery_gls_asm
 #: model_terms:ir.ui.view,arch_db:delivery_gls_asm.gls_asm_manifest_report_view
 msgid "ZIP Code"
-msgstr "C.P."
+msgstr "Código postal"
 
 #. module: delivery_gls_asm
 #: selection:delivery.carrier,gls_asm_service:0
