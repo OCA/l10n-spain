@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-26 12:00+0000\n"
-"PO-Revision-Date: 2022-05-26 11:05+0000\n"
+"PO-Revision-Date: 2022-05-26 16:05+0000\n"
 "Last-Translator: Luis D. Lafaurie <luislafaurie@hotmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -34,6 +34,18 @@ msgid ""
 "related journal entries may or may not be reconciled.\n"
 " * The 'Cancelled' status is used when user cancel invoice."
 msgstr ""
+" * El estado 'Borrador' se usa cuando el usuario crea una factura y no la "
+"confirma.\n"
+" * El estado 'Abierto' se usa cuando el usuario crea una factura y se ha "
+"generado un número de factura. Permanecerá en estado abierto hasta que el "
+"usuario la pague.\n"
+" * El estado 'En proceso de pago' se usa cuando la totalidad de los pagos de "
+"la factura se han registrado en el diario configurado para publicar sus "
+"asientos contables, aunque aún no hayan sido reconciliados con el extracto "
+"bancario.\n"
+" * El estado 'Pagado' se usa cuando la factura está pagada. Sus asientos "
+"contables pueden estar reconciliados o no.\n"
+" * El estado 'Cancelado' se usa cuando el usuario cancela la factura."
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_invoice__integration_count
@@ -623,7 +635,7 @@ msgid ""
 "en la Baleares"
 msgstr ""
 "IIIMAB: Impuesto sobre las instalaciones que inciden sobre el medio ambiente "
-"en la Baleares"
+"en las Baleares"
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
@@ -659,7 +671,7 @@ msgstr "IPSI: Impuesto sobre la producción, los servicios y la importación"
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
 msgid "IRPF: Impuesto sobre la Renta de las personas físicas"
-msgstr "IRPF: Impuesto sobre la Renta de las personas físicas"
+msgstr "IRPF: Impuesto sobre la renta de las personas físicas"
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
@@ -681,13 +693,13 @@ msgstr "IVA: Impuesto sobre el valor añadido"
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Identificación fiscal Emisor/Obligado"
-msgstr "Identificación fiscal Emisor/Obligado"
+msgstr "Identificación fiscal emisor / obligado"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Identificación fiscal Receptor"
-msgstr "Identificación fiscal Receptor"
+msgstr "Identificación fiscal receptor"
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.invoice_form
@@ -857,13 +869,13 @@ msgstr "No se ha creado el método de actualización"
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Nombre y apellidos/Razón social - Emisor"
-msgstr "Nombre y apellidos/Razón social - Emisor"
+msgstr "Nombre y apellidos / razón social - emisor"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice,facturae_refund_reason:0
 #: selection:account.invoice.refund,refund_reason:0
 msgid "Nombre y apellidos/Razón social - Receptor"
-msgstr "Nombre y apellidos/Razón social - Receptor"
+msgstr "Nombre y apellidos / razón social - receptor"
 
 #. module: l10n_es_facturae
 #: selection:account.invoice.integration,cancellation_status:0
@@ -954,7 +966,7 @@ msgstr "Porcentaje impositivo a aplicar"
 #: selection:account.tax,facturae_code:0
 #: selection:account.tax.template,facturae_code:0
 msgid "REIGIC: Régimen especial de IGIC: para agencias deviajes"
-msgstr "REIGIC: Régimen especial de IGIC: para agencias deviajes"
+msgstr "REIGIC: Régimen especial de IGIC para agencias de viajes"
 
 #. module: l10n_es_facturae
 #: selection:account.tax,facturae_code:0
@@ -1199,7 +1211,7 @@ msgstr "[01] Al contado"
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
 msgid "[02] Recibo Domiciliado"
-msgstr "[02] Recibo Domiciliado"
+msgstr "[02] Recibo domiciliado"
 
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
@@ -1214,17 +1226,17 @@ msgstr "[04] Transferencia"
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
 msgid "[05] Letra Aceptada"
-msgstr "[05] Letra Aceptada"
+msgstr "[05] Letra aceptada"
 
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
 msgid "[06] Crédito Documentario"
-msgstr "[06] Crédito Documentario"
+msgstr "[06] Crédito documentario"
 
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
 msgid "[07] Contrato Adjudicación"
-msgstr "[07] Contrato Adjudicación"
+msgstr "[07] Contrato adjudicación"
 
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
@@ -1234,12 +1246,12 @@ msgstr "[08] Letra de cambio"
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
 msgid "[09] Pagaré a la Orden"
-msgstr "[09] Pagaré a la Orden"
+msgstr "[09] Pagaré a la orden"
 
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
 msgid "[10] Pagaré No a la Orden"
-msgstr "[10] Pagaré No a la Orden"
+msgstr "[10] Pagaré no a la orden"
 
 #. module: l10n_es_facturae
 #: selection:account.payment.mode,facturae_code:0
