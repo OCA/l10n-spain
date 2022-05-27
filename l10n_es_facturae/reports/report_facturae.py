@@ -43,8 +43,10 @@ class ReportFacturae(models.AbstractModel):
         tree = etree.fromstring(xml_facturae, etree.XMLParser(remove_blank_text=True))
         xml_facturae = etree.tostring(tree, xml_declaration=True, encoding="UTF-8")
         self._validate_facturae(move, xml_facturae)
-        public_crt, private_key = self.env["l10n.es.aeat.certificate"].get_certificates(
-            move.company_id
+        public_crt, private_key = (
+            self.env["l10n.es.aeat.certificate"]
+            .sudo()
+            .get_certificates(move.company_id)
         )
         move_file = self._sign_file(move, xml_facturae, public_crt, private_key)
         return move_file, content_type
