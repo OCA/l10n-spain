@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-20 12:10+0000\n"
-"PO-Revision-Date: 2018-03-20 13:13+0100\n"
+"POT-Creation-Date: 2022-05-26 19:46+0000\n"
+"PO-Revision-Date: 2022-05-26 21:48+0200\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,24 +15,81 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: l10n_es_aeat_sii_invoice_summary
-#: model:ir.model,name:l10n_es_aeat_sii_invoice_summary.model_account_invoice
-msgid "Invoice"
-msgstr "Factura"
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
 
 #. module: l10n_es_aeat_sii_invoice_summary
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_invoice_is_invoice_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__is_invoice_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__is_invoice_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_payment__is_invoice_summary
 msgid "Is SII simplified invoice Summary?"
 msgstr "Resumen facturas simplificadas SII"
 
 #. module: l10n_es_aeat_sii_invoice_summary
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_invoice_sii_invoice_summary_start
+#: model:ir.model,name:l10n_es_aeat_sii_invoice_summary.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move____last_update
+msgid "Last Modified on"
+msgstr "Modificado por última vez el"
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__sii_invoice_summary_start
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__sii_invoice_summary_start
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_payment__sii_invoice_summary_start
 msgid "SII Invoice Summary: First Invoice"
 msgstr "Resumen facturas simplificadas SII: Primera factura"
 
 #. module: l10n_es_aeat_sii_invoice_summary
-#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_invoice_sii_invoice_summary_end
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_bank_statement_line__sii_invoice_summary_end
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_move__sii_invoice_summary_end
+#: model:ir.model.fields,field_description:l10n_es_aeat_sii_invoice_summary.field_account_payment__sii_invoice_summary_end
 msgid "SII Invoice Summary: Last Invoice"
 msgstr "Resumen facturas simplificadas SII: Última factura"
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
+#, python-format
+msgid "The partner has not a VAT configured."
+msgstr "El cliente no tiene un CIF/NIF configurado."
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
+#, python-format
+msgid "The supplier number invoice is required"
+msgstr "El nº de factura del proveedor es obligatorio"
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
+#, python-format
+msgid "This company doesn't have SII enabled."
+msgstr "Esta compañía no tiene el SII habilitado."
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
+#, python-format
+msgid "This invoice is not SII enabled."
+msgstr "Esta compañía no tiene el SII habilitado."
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
+#, python-format
+msgid "You can't make a supplier simplified invoice."
+msgstr "No puede realizar una factura simplificada a un proveedor."
+
+#. module: l10n_es_aeat_sii_invoice_summary
+#: code:addons/l10n_es_aeat_sii_invoice_summary/models/account_move.py:0
+#, python-format
+msgid "You have to select what account chart template use this company."
+msgstr "Debe seleccionar el plan de cuentas que está utilizando esta compañía."
