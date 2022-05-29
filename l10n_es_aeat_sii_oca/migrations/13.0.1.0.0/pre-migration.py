@@ -11,11 +11,15 @@ def migrate(env, version):
     )
     openupgrade.add_fields(
         env,
-        "thirdparty_invoice",
-        "account.move",
-        "account_move",
-        "boolean",
-        False,
-        "l10n_es_aeat_sii_oca",
-        False,
+        [
+            (
+                "thirdparty_invoice",
+                "account.move",
+                "account_move",
+                "boolean",
+                False,
+                "l10n_es_aeat_sii_oca",
+                False,
+            ),
+        ],
     )
