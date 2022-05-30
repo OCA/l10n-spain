@@ -705,6 +705,11 @@ msgid "File name"
 msgstr ""
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__fiscal_position_ids
+msgid "Fiscal Position Templates"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_search
 msgid "Fiscal year"
 msgstr ""
@@ -1447,6 +1452,12 @@ msgstr ""
 #. module: l10n_es_aeat
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_move_line_tree
 msgid "Taxes (fee)"
+msgstr ""
+
+#. module: l10n_es_aeat
+#: model:ir.model.fields,help:l10n_es_aeat.field_l10n_es_aeat_map_tax_line__fiscal_position_ids
+msgid ""
+"Taxes mapped with different source tax on this Fiscal Position Templates"
 msgstr ""
 
 #. module: l10n_es_aeat
