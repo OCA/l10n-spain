@@ -238,6 +238,57 @@ class EDIBackendTestCase(
         exchange_record.backend_id.exchange_send(exchange_record)
         self.assertEqual(exchange_record.edi_exchange_state, "output_error_on_send")
 
+    def test_facturae_face_0(self):
+        class DemoService(object):
+            def __init__(self, value):
+                self.value = value
+
+            def enviarFactura(self, *args):
+                return self.value
+
+            def anularFactura(self, *args):
+                return self.value
+
+            def consultarFactura(self, *args):
+                return self.value
+
+            def consultarListadoFacturas(self, *args):
+                return self.value
+
+        self._activate_certificate(self.certificate_password)
+        client = Client(wsdl=self.env.ref("l10n_es_facturae_face.face_webservice").url)
+        integration_code = "1234567890"
+        response_ok = client.get_type("ns0:EnviarFacturaResponse")(
+            client.get_type("ns0:Resultado")(codigo="0", descripcion="OK"),
+            client.get_type("ns0:EnviarFactura")(numeroRegistro=integration_code),
+        )
+        self.assertFalse(self.move.exchange_record_ids)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(response_ok)
+
+            self.move.with_context(
+                force_edi_send=True, test_queue_job_no_delay=True
+            ).action_post()
+            self.move.name = "2999/99998"
+            mock_client.assert_not_called()
+            exchange_record = self.move.exchange_record_ids.with_context(
+                _edi_send_break_on_error=True
+            )
+            self.assertEqual(exchange_record.edi_exchange_state, "output_pending")
+            exchange_record.backend_id.exchange_send(exchange_record)
+            self.assertEqual(
+                exchange_record.edi_exchange_state, "output_sent_and_processed"
+            )
+            mock_client.assert_called_once()
+        self.move.refresh()
+        self.assertTrue(self.move.exchange_record_ids)
+        self.assertIn(
+            str(self.face_update_type.id),
+            self.move.expected_edi_configuration,
+        )
+        with self.assertRaises(exceptions.UserError):
+            self.move.edi_create_exchange_record(self.face_update_type.id)
+
     def test_facturae_face(self):
         class DemoService(object):
             def __init__(self, value):
@@ -296,8 +347,12 @@ class EDIBackendTestCase(
             str(self.face_update_type.id),
             self.move.expected_edi_configuration,
         )
-        with self.assertRaises(exceptions.UserError):
+        try:
             self.move.edi_create_exchange_record(self.face_update_type.id)
+        except exceptions.UserError:  # pylint: disable=W7938
+            pass
+        except Exception:
+            raise
 
         with mock.patch("zeep.client.ServiceProxy") as mock_client:
             mock_client.return_value = DemoService(response_update)
@@ -333,6 +388,15 @@ class EDIBackendTestCase(
         exchange_record.flush()
         exchange_record.refresh()
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1300")
+
+        self.assertEqual(len(exchange_record.related_exchange_ids), 3)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(multi_response)
+            self.env["edi.exchange.record"].with_context()._cron_face_update_method()
+        exchange_record.flush()
+        exchange_record.refresh()
+        self.assertEqual(len(exchange_record.related_exchange_ids), 3)
+        # New record should not have been created
         cancel = self.env["edi.l10n.es.facturae.face.cancel"].create(
             {"move_id": self.move.id, "motive": "Anulacion"}
         )
