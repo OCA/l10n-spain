@@ -35,7 +35,7 @@ class L10nEsAeatSoap(models.TransientModel):
         transport = Transport(session=session)
 
         history = HistoryPlugin()
-        settings = Settings(**settings)
+        settings = Settings(**settings or {})
         client = Client(
             wsdl=wsdl, transport=transport, settings=settings, plugins=[history]
         )
