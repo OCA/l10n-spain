@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_tax_template_p_iva21_ibcd" model="account.tax.template">
+        <field name="amount" eval="21" />
+        <field name="amount_type">percent</field>
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="type_tax_use">purchase</field>
+        <field name="name">21% IVA diferido importaciones</field>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_21" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_472'),
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_477'),
+            }),
+
+        ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_472'),
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_477'),
+            }),
+        ]"
+        />
+    </record>
+
+    <record id="account_tax_template_p_iva10_ibcd" model="account.tax.template">
+        <field name="amount" eval="10" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="name">10% IVA diferido importaciones</field>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_10" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_472'),
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_477'),
+            }),
+        ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_472'),
+            }),
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_477'),
+            }),
+        ]"
+        />
+    </record>
+
+    <record id="account_tax_template_p_iva4_ibcd" model="account.tax.template">
+        <field name="amount" eval="4" />
+        <field name="chart_template_id" ref="l10n_es.account_chart_template_common" />
+        <field name="amount_type">percent</field>
+        <field name="type_tax_use">purchase</field>
+        <field name="name">4% IVA diferido importaciones</field>
+        <field name="tax_group_id" ref="l10n_es.tax_group_iva_4" />
+        <field
+            name="invoice_repartition_line_ids"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_472'),
+            }),
+
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_477'),
+            }),
+
+        ]"
+        />
+        <field
+            name="refund_repartition_line_ids"
+            eval="[(5, 0, 0),
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'base',
+            }),
+
+            (0,0, {
+                'factor_percent': 100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_472'),
+            }),
+
+            (0,0, {
+                'factor_percent': -100,
+                'repartition_type': 'tax',
+                'account_id': ref('l10n_es.account_common_477'),
+            }),
+        ]"
+        />
+    </record>
+</odoo>
