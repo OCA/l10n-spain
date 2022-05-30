@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Sygel - Valentin Vinagre
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="l10n_es_aeat_mod303.aeat_mod303_map_line_32"
+        model="l10n.es.aeat.map.tax.line"
+    >
+        <field
+            name="tax_ids"
+            eval="[(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva21_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva10_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva4_ibcd'))]"
+        />
+    </record>
+    <record
+        id="l10n_es_aeat_mod303.aeat_mod303_map_line_33"
+        model="l10n.es.aeat.map.tax.line"
+    >
+        <field
+            name="tax_ids"
+            eval="[(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva21_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva10_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva4_ibcd'))]"
+        />
+    </record>
+
+    <record
+        id="l10n_es_aeat_mod303.aeat_mod303_202107_map_line_32"
+        model="l10n.es.aeat.map.tax.line"
+    >
+        <field
+            name="tax_ids"
+            eval="[(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva21_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva10_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva4_ibcd'))]"
+        />
+    </record>
+    <record
+        id="l10n_es_aeat_mod303.aeat_mod303_202107_map_line_33"
+        model="l10n.es.aeat.map.tax.line"
+    >
+        <field
+            name="tax_ids"
+            eval="[(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva21_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva10_ibcd')),(4, ref('l10n_es_deferred_vat.account_tax_template_p_iva4_ibcd'))]"
+        />
+    </record>
+</odoo>
