@@ -88,6 +88,14 @@ class EdiExchangeRecord(models.Model):
                 if invoice.codigo != "0":
                     # Probably processed from another system
                     continue
+                process_code = "face-" + invoice.factura.tramitacion.codigo
+                revocation_code = "face-" + invoice.factura.anulacion.codigo
+                if (
+                    exchange_record.l10n_es_facturae_status == process_code
+                    and exchange_record.l10n_es_facturae_cancellation_status
+                    == revocation_code
+                ):
+                    continue
                 update_record = face.create_record(
                     "l10n_es_facturae_face_update",
                     {
