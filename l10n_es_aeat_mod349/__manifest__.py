@@ -9,7 +9,7 @@
 
 {
     "name": "Modelo 349 AEAT",
-    "version": "13.0.1.1.1",
+    "version": "13.0.1.2.0",
     "author": "Tecnativa, Eficent, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Localisation/Accounting",
