@@ -10,17 +10,15 @@ class StockPicking(models.Model):
 
     dhl_parcel_shipment_held = fields.Boolean(string="DHL Parcel shipment on hold")
 
+    # TODO: The label_format parameter is not used and can be removed.
     def dhl_parcel_get_label(self, label_format="pdf"):
         """Get DHL Parcel Label for this picking expedition"""
         self.ensure_one()
         tracking_ref = self.carrier_tracking_ref
         if self.delivery_type != "dhl_parcel" or not tracking_ref:
             return
-        label = base64.b64decode(
-            self.carrier_id.dhl_parcel_get_label(
-                tracking_ref, label_format=label_format
-            )
-        )
+        label = base64.b64decode(self.carrier_id.dhl_parcel_get_label(tracking_ref))
+        label_format = self.carrier_id.dhl_parcel_label_format.lower()
         label_name = "dhl_parcel_{}.{}".format(
             tracking_ref, "txt" if label_format == "zpl" else "pdf"
         )
