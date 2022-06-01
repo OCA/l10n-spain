@@ -347,6 +347,15 @@ class EDIBackendTestCase(SavepointComponentRegistryCase, common.SavepointCase):
         exchange_record.flush()
         exchange_record.refresh()
         self.assertEqual(exchange_record.l10n_es_facturae_status, "face-1300")
+
+        self.assertEqual(len(exchange_record.related_exchange_ids), 3)
+        with mock.patch("zeep.client.ServiceProxy") as mock_client:
+            mock_client.return_value = DemoService(multi_response)
+            self.env["edi.exchange.record"].with_context()._cron_face_update_method()
+        exchange_record.flush()
+        exchange_record.refresh()
+        self.assertEqual(len(exchange_record.related_exchange_ids), 3)
+        # New record should not have been created
         cancel = self.env["edi.l10n.es.facturae.face.cancel"].create(
             {"move_id": self.move.id, "motive": "Anulacion"}
         )
