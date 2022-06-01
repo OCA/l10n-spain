@@ -32,6 +32,7 @@ class DhlParcelRequest(object):
             password=carrier.dhl_parcel_password or "",
         )
         self.year = str(fields.Date.today().year)[-1]  # last digit of the year
+        self.label_format = self.carrier_id.dhl_parcel_label_format
 
     def _send_api_request(self, request_type, url, data=None, skip_auth=False):
         if data is None:
@@ -132,6 +133,7 @@ class DhlParcelRequest(object):
         )
         return res.json()
 
+    # TODO: The label_format parameter is not used and can be removed.
     def print_shipment(self, reference=False, label_format="PDF"):
         """Get shipping label for the given ref
         :param str reference -- public shipping reference
@@ -143,7 +145,7 @@ class DhlParcelRequest(object):
                 DHL_PATH + "shipment?"
                 "Year={}&Tracking={}&Action=PRINT"
                 "&LabelFrom={}&LabelTo={}&Format={}".format(
-                    self.year, reference, 1, 1, label_format
+                    self.year, reference, 1, 1, self.label_format
                 )
             ),
         )
