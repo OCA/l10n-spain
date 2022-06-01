@@ -155,6 +155,8 @@ Contributors
 
   * Ignacio Ibeas
 
+* Manuel Regidor <manuel.regidor@sygel.es>
+
 Maintainers
 ~~~~~~~~~~~
 
