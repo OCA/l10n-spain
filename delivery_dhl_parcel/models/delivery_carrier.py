@@ -40,6 +40,11 @@ class DeliveryCarrier(models.Model):
         string="DHL Parcel last manual end day report"
     )
     dhl_parcel_last_end_day_report_name = fields.Char(string="Filename")
+    dhl_parcel_label_format = fields.Selection(
+        selection=[("PDF", "PDF"), ("ZPL", "ZPL"), ("EPL", "EPL")],
+        default="PDF",
+        string="Label format",
+    )
 
     def dhl_parcel_get_tracking_link(self, picking):
         """Provide tracking link for the customer"""
@@ -209,6 +214,7 @@ class DeliveryCarrier(models.Model):
                 % picking.carrier_tracking_ref
             )
 
+    # TODO: The label_format parameter is not used and can be removed.
     def dhl_parcel_get_label(self, carrier_tracking_ref, label_format="pdf"):
         """Generate label for picking
         :param str carrier_tracking_ref - tracking reference
@@ -218,9 +224,7 @@ class DeliveryCarrier(models.Model):
         if not carrier_tracking_ref:
             return False
         dhl_parcel_request = DhlParcelRequest(self)
-        label = dhl_parcel_request.print_shipment(
-            carrier_tracking_ref, label_format=label_format
-        )
+        label = dhl_parcel_request.print_shipment(carrier_tracking_ref)
         return label or False
 
     def dhl_parcel_hold_shipment(self, carrier_tracking_ref):
