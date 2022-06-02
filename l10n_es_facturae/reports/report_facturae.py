@@ -189,7 +189,7 @@ class ReportFacturae(models.AbstractModel):
         ).text = sig_policy_identifier
         etree.SubElement(
             sig_policy_id, etree.QName(etsi, "Description")
-        ).text = "Política de Firma FacturaE v3.1"
+        ).text = "Política de Firma Facturae v3.1"
         sig_policy_hash = etree.SubElement(
             signature_policy_id, etree.QName(etsi, "SigPolicyHash")
         )
