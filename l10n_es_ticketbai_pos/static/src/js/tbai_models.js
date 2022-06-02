@@ -49,6 +49,7 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
             // Addon l10n_es_pos -> Order.export_as_JSON()
             var simplified_invoice = null;
             var tbai_json = null;
+            var company = this.pos.company;
 
             this.previous_tbai_invoice = this.pos.get_tbai_last_invoice_data();
             this.expedition_date = new Date();
@@ -79,6 +80,9 @@ odoo.define('l10n_es_ticketbai_pos.tbai_models', function (require) {
             if (!_.isEmpty(tbai_json) && this.pos.tbai_signer !== null) {
                 if (typeof deviceId === 'string' || deviceId instanceof String) {
                     options.deviceId = deviceId;
+                }
+                if (company.g5016) {
+                    options.g5016 = true;
                 }
                 try {
                     this.unsigned_datas = tbai.toXml(

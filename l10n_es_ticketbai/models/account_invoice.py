@@ -529,7 +529,7 @@ class AccountInvoiceLine(models.Model):
             amount_with_vat = float(self.tbai_get_value_importe_total())
             quantity = float(self.tbai_get_value_cantidad())
             fixed_unit_price = amount_with_vat / (
-                        quantity * (1 - self.discount / 100) * (1 + line_tax / 100))
+                quantity * (1 - self.discount / 100) * (1 + line_tax / 100))
             return "%.8f" % fixed_unit_price
         return "%.8f" % self.price_unit
 
