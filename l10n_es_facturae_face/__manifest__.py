@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Envío de Factura-e a FACe",
+    "name": "Envío de Facturae a FACe",
     "version": "15.0.1.1.2",
     "author": "Creu Blanca, " "Odoo Community Association (OCA)",
     "category": "Accounting & Finance",

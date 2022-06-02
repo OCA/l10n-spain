@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-07 08:55+0000\n"
+"PO-Revision-Date: 2022-06-07 08:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,7 +107,7 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
-msgid "Edi L10n Es Facturae Face Cancel"
+msgid "Edi L10n Es Facturae FACe Cancel"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -115,16 +117,16 @@ msgid "Exchange record cannot be found for FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
-#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
-#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
-msgid "FACE update Job"
-msgstr ""
-
-#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__res_partner__l10n_es_facturae_sending_code__face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__webservice_backend__protocol__face
 msgid "FACe"
+msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
+#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
+msgid "FACe update Job"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -230,7 +232,7 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
-msgid "Payed"
+msgid "Paid"
 msgstr ""
 
 #. module: l10n_es_facturae_face
