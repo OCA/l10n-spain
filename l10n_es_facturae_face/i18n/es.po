@@ -4,17 +4,16 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-04-25 18:05+0000\n"
-"Last-Translator: jabelchi <jabelchi@gmail.com>\n"
-"Language-Team: none\n"
-"Language: es\n"
+"POT-Creation-Date: 2022-07-06 09:06+0000\n"
+"PO-Revision-Date: 2022-07-06 09:06+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Plural-Forms: \n"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2400
@@ -99,7 +98,7 @@ msgstr ""
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_edi_exchange_record
@@ -108,7 +107,7 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae_face.edi_l10n_es_facturae_face_cancel_form_view
-msgid "Edi L10n Es Facturae Face Cancel"
+msgid "Edi L10n Es Facturae FACe Cancel"
 msgstr ""
 
 #. module: l10n_es_facturae_face
@@ -118,17 +117,17 @@ msgid "Exchange record cannot be found for FACe"
 msgstr ""
 
 #. module: l10n_es_facturae_face
-#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
-#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
-#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
-msgid "FACE update Job"
-msgstr "Trabajo actualización FACe"
-
-#. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__res_partner__l10n_es_facturae_sending_code__face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__webservice_backend__protocol__face
 msgid "FACe"
 msgstr ""
+
+#. module: l10n_es_facturae_face
+#: model:ir.actions.server,name:l10n_es_facturae_face.update_face_job_ir_actions_server
+#: model:ir.cron,cron_name:l10n_es_facturae_face.update_face_job
+#: model:ir.cron,name:l10n_es_facturae_face.update_face_job
+msgid "FACe update Job"
+msgstr "Actualizar estados FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_res_company__face_email
@@ -194,12 +193,12 @@ msgstr "Email de Facturae inválido"
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Asiento contable"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields,field_description:l10n_es_facturae_face.field_edi_l10n_es_facturae_face_cancel__write_uid
@@ -233,7 +232,7 @@ msgstr ""
 
 #. module: l10n_es_facturae_face
 #: model:ir.model.fields.selection,name:l10n_es_facturae_face.selection__account_move__l10n_es_facturae_status__face-2500
-msgid "Payed"
+msgid "Paid"
 msgstr "Pagado"
 
 #. module: l10n_es_facturae_face
@@ -274,75 +273,10 @@ msgstr ""
 #: code:addons/l10n_es_facturae_face/models/res_partner.py:0
 #, python-format
 msgid "Vat must be defined in order to send to FACe"
-msgstr "El identificador fiscal debe estar definido para poder enviar por FACe"
+msgstr ""
+"El identificador fiscal debe estar definido para poder enviar por FACe"
 
 #. module: l10n_es_facturae_face
 #: model:ir.model,name:l10n_es_facturae_face.model_webservice_backend
 msgid "WebService Backend"
 msgstr ""
-
-#~ msgid "Accounted obligation"
-#~ msgstr "Obligación contable"
-
-#~ msgid "Cancellation Status"
-#~ msgstr "Estado de cancelación"
-
-#~ msgid "Cancels a created integration"
-#~ msgstr "Cancela una integración creada"
-
-#~ msgid "Certificate must be added for company"
-#~ msgstr "Se debe añadir un certificado a la compañía"
-
-#~ msgid "Certificate password must be added for company"
-#~ msgstr "Se debe añadir un password para el certificado en la compañía"
-
-#~ msgid "Code"
-#~ msgstr "Código"
-
-#~ msgid "Company"
-#~ msgstr "Compañía"
-
-#~ msgid "Config Settings"
-#~ msgstr "Ajustes de configuración"
-
-#~ msgid "Delivered"
-#~ msgstr "Entregado"
-
-#~ msgid "FACe Configuration"
-#~ msgstr "Configuración FACe"
-
-#~ msgid "FACe server location"
-#~ msgstr "Servidor FACe"
-
-#~ msgid "Integration Status"
-#~ msgstr "Estado integración"
-
-#~ msgid "Integration for an invoice"
-#~ msgstr "Integración de una factura"
-
-#~ msgid "Integration method for invoices"
-#~ msgstr "Método de integración para facturas"
-
-#~ msgid "Paid"
-#~ msgstr "Pagado"
-
-#~ msgid "Registered"
-#~ msgstr "Registrado"
-
-#~ msgid "Registered on RFC"
-#~ msgstr "Registrado en RFC"
-
-#~ msgid "Result logs for integrations of invoices"
-#~ msgstr "Log de resultados para integración de facturas"
-
-#~ msgid "Sended"
-#~ msgstr "Enviado"
-
-#~ msgid "account.invoice.integration"
-#~ msgstr "account.invoice.integration"
-
-#~ msgid "account.invoice.integration.log"
-#~ msgstr "account.invoice.integration.log"
-
-#~ msgid "account.invoice.integration.method"
-#~ msgstr "account.invoice.integration.method"
