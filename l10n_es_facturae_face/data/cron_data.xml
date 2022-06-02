@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <odoo noupdate="1">
     <record id="update_face_job" model="ir.cron" forcecreate="1">
-        <field name="name">FACE update Job</field>
+        <field name="name">FACe update Job</field>
         <field name="active">True</field>
         <field name="user_id" ref="base.user_root" />
         <field name="priority">8</field>
