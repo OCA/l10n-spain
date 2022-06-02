@@ -2,7 +2,7 @@
 <odoo noupdate="1">
 
     <record id="efact_backend" model="edi.backend">
-        <field name="name">e.Fact</field>
+        <field name="name">e.FACT</field>
         <field
             name="backend_type_id"
             ref="l10n_es_facturae_face.facturae_backend_type"
@@ -21,7 +21,7 @@
         <field name="exchange_file_ext">xml</field>
     </record>
     <record id="update_efact_job" model="ir.cron">
-        <field name="name">eFACT update Job</field>
+        <field name="name">e.FACT update Job</field>
         <field name="active" eval="True" />
         <field name="user_id" ref="base.user_root" />
         <field name="priority">8</field>

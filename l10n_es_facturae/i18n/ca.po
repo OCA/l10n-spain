@@ -280,11 +280,6 @@ msgid ""
 msgstr ""
 
 #. module: l10n_es_facturae
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
-msgid "FActure"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae
 msgid "Factura electrónica"
@@ -313,14 +308,15 @@ msgstr "Factura-E sense signar"
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid "FacturaE start and end dates are both required if one of them is filled"
-msgstr "Si s'omple data inicial o final de FacturaE, cal omplir ambdues"
+msgid "Facturae start and end dates are both required if one of them is filled"
+msgstr "Si s'omple data inicial o final de Facturae, cal omplir ambdues"
 
 #. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
 msgid "Facturae"
 msgstr "Facturae"
 
