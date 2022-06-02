@@ -91,6 +91,19 @@
                         statusbar_colors="{'cancelled': 'red', 'done': 'blue', 'posted': 'blue'}"
                     />
                 </header>
+                <div
+                    class="alert alert-warning text-center"
+                    attrs="{'invisible': ['|', ('error_count', '=', 0), ('state', '!=', 'calculated')]}"
+                    role="alert"
+                >
+                    <span>
+                        You have <strong class="text-danger"><field
+                                name="error_count"
+                            /> errors</strong> in this report.
+                        You will not be able to <strong
+                        >confirm and submit it</strong> until they are resolved.
+                    </span>
+                </div>
                 <sheet>
                     <field name="allow_posting" invisible="1" />
                     <field name="number" invisible="1" />
