@@ -34,6 +34,10 @@ class ResCompany(models.Model):
     tbai_vat_regime_simplified = fields.Boolean('Regime Simplified', copy=False)
     tbai_last_invoice_id = fields.Many2one(
         string='Last TicketBAI Invoice sent', comodel_name='tbai.invoice', copy=False)
+    g5016 = fields.Boolean(
+        string='Adjust unit prices',
+        default=True,
+        help='Adjust unit prices to avoid rounding problems.')
 
     @api.multi
     @api.constrains('tbai_certificate_id')

@@ -8,6 +8,7 @@ from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMA
 from odoo.addons.l10n_es_ticketbai_api.models.ticketbai_invoice import RefundCode, \
     RefundType, SiNoType, TicketBaiInvoiceState
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
+from odoo.tools.float_utils import float_round
 
 INVOICE_NUMBER_RE = re.compile(r'^(.*\D)?(\d*)$')
 
@@ -252,7 +253,7 @@ class AccountInvoice(models.Model):
                 lines.append((0, 0, {
                     'description': description_line,
                     'quantity': line.tbai_get_value_cantidad(),
-                    'price_unit': "%.8f" % line.price_unit,
+                    'price_unit': line.tbai_get_value_price_unit(),
                     'discount_amount': line.tbai_get_value_descuento(),
                     'amount_total': line.tbai_get_value_importe_total()
                 }))
@@ -502,7 +503,7 @@ class AccountInvoiceLine(models.Model):
             sign = -1
         else:
             sign = 1
-        return "%.2f" % (sign * self.quantity)
+        return "%.2f" % float_round(sign * self.quantity, 2)
 
     def tbai_get_value_descuento(self):
         if self.discount:
@@ -518,6 +519,19 @@ class AccountInvoiceLine(models.Model):
         else:
             res = '0.00'
         return res
+
+    def tbai_get_value_price_unit(self):
+        if self.company_id.g5016:
+            tbai_maps = self.env["tbai.tax.map"].search([('code', '=', "IRPF")])
+            irpf_taxes = self.env['l10n.es.aeat.report'].get_taxes_from_templates(
+                tbai_maps.mapped("tax_template_ids"))
+            line_tax = sum((self.invoice_line_tax_ids - irpf_taxes).mapped('amount'))
+            amount_with_vat = float(self.tbai_get_value_importe_total())
+            quantity = float(self.tbai_get_value_cantidad())
+            fixed_unit_price = amount_with_vat / (
+                        quantity * (1 - self.discount / 100) * (1 + line_tax / 100))
+            return "%.8f" % fixed_unit_price
+        return "%.8f" % self.price_unit
 
     def tbai_get_value_importe_total(self):
         tbai_maps = self.env["tbai.tax.map"].search([('code', '=', "IRPF")])

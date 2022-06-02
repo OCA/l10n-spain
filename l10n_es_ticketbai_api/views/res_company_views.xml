@@ -30,6 +30,23 @@
                             <field name="tbai_vat_regime_simplified"/>
                             <field name="tbai_certificate_id" attrs="{'required': [('tbai_enabled', '=', True)]}"/>
                         </group>
+                        <group name="ticketbai_validatios_config"
+                               string="Validations Config"
+                               attrs="{'invisible': [('tbai_enabled', '=', False)]}">
+                            <div class="row o_settings_container" id="validation-g5016">
+                                <div class="col-xs-12 col-md-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="g5016"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label for="g5016"/>
+                                        <div class="text-muted" id="g5016-info">
+                                            If you activate this option, the unit prices of the lines of the invoice that is sent to the Treasury will be readjusted.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </group>
                     </page>
                 </xpath>
             </field>
