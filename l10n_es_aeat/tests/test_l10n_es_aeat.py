@@ -105,7 +105,7 @@ class TestL10nEsAeat(SavepointCase):
         self.env["l10n.es.aeat.map.tax"].create(
             {"date_from": "2020-01-01", "model": 303}
         )
-        with self.assertRaises(exceptions.Warning):
+        with self.assertRaises(exceptions.UserError):
             self.env["l10n.es.aeat.map.tax"].create(
                 {"date_to": "2021-01-01", "model": 303}
             )
