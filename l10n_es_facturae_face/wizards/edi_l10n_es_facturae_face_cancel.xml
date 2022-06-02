@@ -8,7 +8,7 @@
         >edi.l10n.es.facturae.face.cancel.form (in l10n_es_facturae_face)</field>
         <field name="model">edi.l10n.es.facturae.face.cancel</field>
         <field name="arch" type="xml">
-            <form string="Edi L10n Es Facturae Face Cancel">
+            <form string="Edi L10n Es Facturae FACe Cancel">
                 <group>
                     <field name="motive" />
                     <field name="move_id" invisible="1" />
