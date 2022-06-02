@@ -34,7 +34,7 @@ class CreateFacturae(models.TransientModel):
     _name = "create.facturae"
     _description = "Create Facturae Wizard"
 
-    facturae = fields.Binary("Factura-E file", readonly=True)
+    facturae = fields.Binary("Facturae file", readonly=True)
     facturae_fname = fields.Char("File name", size=64)
     note = fields.Text("Log")
     state = fields.Selection(
@@ -60,12 +60,12 @@ class CreateFacturae(models.TransientModel):
             move_file = self.env.ref("l10n_es_facturae.report_facturae_signed")._render(
                 move.ids
             )[0]
-            file_name = (_("facturae") + "_" + move.name + ".xsig").replace("/", "-")
+            file_name = ("facturae_" + move.name + ".xsig").replace("/", "-")
         else:
             move_file = self.env.ref("l10n_es_facturae.report_facturae")._render(
                 move.ids
             )[0]
-            file_name = (_("facturae") + "_" + move.name + ".xml").replace("/", "-")
+            file_name = ("facturae_" + move.name + ".xml").replace("/", "-")
         file = base64.b64encode(move_file)
         self.env["ir.attachment"].create(
             {

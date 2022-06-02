@@ -5,7 +5,7 @@
         <field name="model">create.facturae</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <form string="Create Factura-E">
+            <form string="Create Facturae">
                 <h4 colspan="4">This process will create the electronic invoice</h4>
                 <field name="state" invisible="1" />
                 <group attrs="{'invisible': [('state', '=', 'second')]}" colspan="4">
@@ -30,7 +30,7 @@
         </field>
     </record>
     <record id="wizard_create_facturae_act_window" model="ir.actions.act_window">
-        <field name="name">Create Factura-E file</field>
+        <field name="name">Create Facturae file</field>
         <field name="res_model">create.facturae</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
