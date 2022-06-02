@@ -12,6 +12,7 @@ from OpenSSL import crypto
 
 from odoo import exceptions, fields
 from odoo.tests import common
+from odoo.tools.misc import mute_logger
 
 try:
     import xmlsig
@@ -309,7 +310,9 @@ class CommonTest(common.TransactionCase):
         self.main_company.partner_id.country_id = False
         self.move.action_post()
         self.move.name = "2999/99999"
-        with self.assertRaises(exceptions.UserError):
+        with self.assertRaises(exceptions.UserError), mute_logger(
+            "odoo.addons.l10n_es_facturae.reports.report_facturae"
+        ):
             self.env["create.facturae"].with_context(
                 active_ids=self.move.ids, active_model="account.move"
             ).create_facturae_file()
