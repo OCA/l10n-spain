@@ -109,7 +109,7 @@ class L10nEsAeatMod347Report(models.Model):
         return {l["report_id"][0]: l["report_id_count"] for l in records_error_group}
 
     def _compute_error_count(self):
-        super._compute_error_count()
+        super()._compute_error_count()
         partner_records_error_dict = self._error_count("partner_record")
         real_estate_record_error_dict = self._error_count("real_estate_record")
 
