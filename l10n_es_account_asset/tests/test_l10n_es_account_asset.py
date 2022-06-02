@@ -7,7 +7,7 @@ import odoo.tests.common as common
 from odoo import fields
 
 
-class TestL10nEsAccountAsset(common.SavepointCase):
+class TestL10nEsAccountAsset(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestL10nEsAccountAsset, cls).setUpClass()
