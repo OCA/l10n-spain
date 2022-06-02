@@ -22,3 +22,9 @@ dependencia en la definición del cálculo de un campo (entrada con
 mismo ID que el del registro en curso, lo que puede ser un problema en entornos
 multi-compañía. Una solución a ello (aunque no evita el recálculo), es poner en
 esos campos calculados `compute_sudo=True`.
+
+Se ha creado el campo base computado error_count en el modelo l10n.es.aeat.report,
+cuyo valor dependerá de sus herencias, que heredarán la función _compute_error_count
+para indicar cuantas líneas con errores hay en el informe. Si el valor es 0, no
+se mostrará ningún aviso; si el valor es mayor a 0, se mostrará un aviso en la
+parte superior de la vista formulario del informe.
