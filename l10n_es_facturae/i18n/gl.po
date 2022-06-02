@@ -170,17 +170,17 @@ msgstr ""
 
 #. module: l10n_es_facturae
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.wizard_create_facturae
-msgid "Create Factura-E"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
-msgid "Create Factura-E file"
+msgid "Create Facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
 #: model:ir.model,name:l10n_es_facturae.model_create_facturae
 msgid "Create Facturae Wizard"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.act_window,name:l10n_es_facturae.wizard_create_facturae_act_window
+msgid "Create Facturae file"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -269,35 +269,10 @@ msgid "Factura electrónica"
 msgstr "Factura electrónica"
 
 #. module: l10n_es_facturae
-#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
-msgid "Factura-E"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae
-msgid "Factura-E file"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.actions.report,name:l10n_es_facturae.report_facturae_signed
-msgid "Factura-E for,adp"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: model:ir.actions.report,name:l10n_es_facturae.report_facturae
-msgid "Factura-E sin firmar"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/models/account_move.py:0
-#, python-format
-msgid "FacturaE start and end dates are both required if one of them is filled"
-msgstr ""
-
-#. module: l10n_es_facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_bank_statement_line__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_move__facturae
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_account_payment__facturae
+#: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_company_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_move_form
 #: model_terms:ir.ui.view,arch_db:l10n_es_facturae.view_partner_form
 msgid "Facturae"
@@ -406,6 +381,27 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_partner__facturae_version
 #: model:ir.model.fields,field_description:l10n_es_facturae.field_res_users__facturae_version
 msgid "Facturae Version"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.model.fields,field_description:l10n_es_facturae.field_create_facturae__facturae
+msgid "Facturae file"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report,name:l10n_es_facturae.report_facturae_signed
+msgid "Facturae for,adp"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: model:ir.actions.report,name:l10n_es_facturae.report_facturae
+msgid "Facturae sin firmar"
+msgstr ""
+
+#. module: l10n_es_facturae
+#: code:addons/l10n_es_facturae/models/account_move.py:0
+#, python-format
+msgid "Facturae start and end dates are both required if one of them is filled"
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -844,7 +840,7 @@ msgstr ""
 #. module: l10n_es_facturae
 #: code:addons/l10n_es_facturae/models/account_move.py:0
 #, python-format
-msgid "You can only create Factura-E files for moves that have been validated."
+msgid "You can only create Facturae files for moves that have been validated."
 msgstr ""
 
 #. module: l10n_es_facturae
@@ -946,12 +942,6 @@ msgstr ""
 #. module: l10n_es_facturae
 #: model:ir.model.fields.selection,name:l10n_es_facturae.selection__account_payment_mode__facturae_code__19
 msgid "[19] Pago mediante tarjeta"
-msgstr ""
-
-#. module: l10n_es_facturae
-#: code:addons/l10n_es_facturae/wizard/create_facturae.py:0
-#, python-format
-msgid "facturae"
 msgstr ""
 
 #. module: l10n_es_facturae
