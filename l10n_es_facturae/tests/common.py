@@ -10,6 +10,7 @@ from lxml import etree
 from mock import patch
 
 from odoo import exceptions, fields
+from odoo.tools.misc import mute_logger
 
 from odoo.addons.l10n_es_aeat.tests.test_l10n_es_aeat_certificate import (
     TestL10nEsAeatCertificateBase,
@@ -343,7 +344,9 @@ class CommonTest(TestL10nEsAeatCertificateBase):
         self.main_company.partner_id.country_id = False
         self.move.action_post()
         self.move.name = "2999/99999"
-        with self.assertRaises(exceptions.UserError):
+        with self.assertRaises(exceptions.UserError), mute_logger(
+            "odoo.addons.l10n_es_facturae.reports.report_facturae"
+        ):
             self.wizard.with_context(
                 active_ids=self.move.ids, active_model="account.move"
             ).create_facturae_file()
