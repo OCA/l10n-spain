@@ -235,12 +235,12 @@
                 <xpath expr="//button[@name='button_draft']" position="attributes">
                     <attribute
                         name="attrs"
-                    >{'invisible' : ['|', ('restrict_mode_hash_table', '=', True), '|', ('tbai_enabled', '=', True), '&amp;', ('tbai_enabled', '=', False), ('state', 'not in', ('posted', 'cancel'))]}</attribute>
+                    >{'invisible' : ['|', ('restrict_mode_hash_table', '=', True), '|', '&amp;', ('tbai_enabled', '=', True), ('move_type', 'in', ('out_invoice', 'out_refund')), ('state', 'not in', ('posted', 'cancel'))]}</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_cancel']" position="attributes">
                     <attribute
                         name="attrs"
-                    >{'invisible' : ['|', ('id', '=', False), '&amp;', '|', ('tbai_enabled', '=', False), ('state', '!=', 'posted'), '|', ('tbai_enabled', '=', True), ('state', '!=', 'draft')]}</attribute>
+                    >{'invisible' : ['|', ('id', '=', False), '|', '&amp;', ('move_type', 'in', ('out_invoice', 'out_refund')), '&amp;', '|', ('tbai_enabled', '=', False), ('state', '!=', 'posted'), '|', ('tbai_enabled', '=', True), ('state', '!=', 'draft'), '&amp;', ('move_type', 'not in', ('out_invoice', 'out_refund')), ('state', '!=', 'draft')]}</attribute>
                 </xpath>
             </field>
         </record>
