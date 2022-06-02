@@ -2,14 +2,14 @@
 <odoo>
     <record id="report_facturae" model="ir.actions.report">
         <field name="report_name">l10n_es_facturae.template_facturae</field>
-        <field name="name">Factura-E sin firmar</field>
+        <field name="name">Facturae sin firmar</field>
         <field name="report_type">qweb-xml</field>
         <field name="model">account.move</field>
     </record>
 
     <record id="report_facturae_signed" model="ir.actions.report">
         <field name="report_name">l10n_es_facturae.facturae_signed</field>
-        <field name="name">Factura-E for,adp</field>
+        <field name="name">Facturae for,adp</field>
         <field name="report_type">qweb-xml</field>
         <field name="model">account.move</field>
     </record>
