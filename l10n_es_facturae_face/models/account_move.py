@@ -13,7 +13,7 @@ class AccountMove(models.Model):
             ("face-1200", "Registered on REC"),
             ("face-1300", "Registered on RCF"),
             ("face-2400", "Accepted"),
-            ("face-2500", "Payed"),
+            ("face-2500", "Paid"),
             ("face-2600", "Rejected"),
             ("face-3100", "Cancellation approved"),
         ],
