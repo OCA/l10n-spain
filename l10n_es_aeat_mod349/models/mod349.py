@@ -71,6 +71,23 @@ class Mod349(models.Model):
     )
     number = fields.Char(default="349")
 
+    def _compute_error_count(self):
+        ret_val = super()._compute_error_count()
+        partner_records_error_dict = self.env[
+            "l10n.es.aeat.mod349.partner_record"
+        ].read_group(
+            domain=[("partner_record_ok", "=", False), ("report_id", "in", self.ids)],
+            fields=["report_id"],
+            groupby=["report_id"],
+        )
+        partner_records_error_dict = {
+            rec["report_id"][0]: rec["report_id_count"]
+            for rec in partner_records_error_dict
+        }
+        for report in self:
+            report.error_count += partner_records_error_dict.get(report.id, 0)
+        return ret_val
+
     @api.depends("partner_record_ids", "partner_record_ids.total_operation_amount")
     def _compute_report_regular_totals(self):
         for report in self:
@@ -420,7 +437,7 @@ class Mod349PartnerRecord(models.Model):
 
     _name = "l10n.es.aeat.mod349.partner_record"
     _description = "AEAT 349 Model - Partner record"
-    _order = "operation_key asc"
+    _order = "partner_record_ok asc, operation_key asc, id"
     _rec_name = "partner_vat"
 
     def _selection_operation_key(self):
@@ -432,11 +449,15 @@ class Mod349PartnerRecord(models.Model):
     def _compute_partner_record_ok(self):
         """Checks if all line fields are filled."""
         for record in self:
-            record.partner_record_ok = bool(
-                record.partner_vat
-                and record.country_id
-                and record.total_operation_amount
-            )
+            errors = []
+            if not record.partner_vat:
+                errors.append(_("Without VAT"))
+            if not record.country_id:
+                errors.append(_("Without Country"))
+            if not record.total_operation_amount:
+                errors.append(_("Without Total Operation Amount"))
+            record.partner_record_ok = bool(not errors)
+            record.error_text = ", ".join(errors)
 
     report_id = fields.Many2one(
         comodel_name="l10n.es.aeat.mod349.report",
@@ -461,6 +482,11 @@ class Mod349PartnerRecord(models.Model):
         compute="_compute_partner_record_ok",
         string="Partner Record OK",
         help="Checked if partner record is OK",
+        store=True,
+    )
+    error_text = fields.Char(
+        compute="_compute_partner_record_ok",
+        store=True,
     )
     record_detail_ids = fields.One2many(
         comodel_name="l10n.es.aeat.mod349.partner_record_detail",
