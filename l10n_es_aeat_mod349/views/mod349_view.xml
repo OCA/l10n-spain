@@ -49,6 +49,11 @@
                 <field name="partner_id" />
                 <field name="operation_key" />
                 <field name="total_operation_amount" />
+                <field
+                    name="error_text"
+                    attrs="{'invisible': [('partner_record_ok', '=', True)]}"
+                    optional="show"
+                />
             </tree>
         </field>
     </record>
@@ -61,6 +66,12 @@
                 <notebook colspan="4">
                     <page string="Info">
                         <group>
+                            <field
+                                name="error_text"
+                                attrs="{'invisible': [('partner_record_ok', '=', True)]}"
+                                class="text-danger"
+                            />
+                            <field name="partner_record_ok" invisible="1" />
                             <field name="operation_key" />
                             <field name="partner_id" />
                             <field name="country_id" />
