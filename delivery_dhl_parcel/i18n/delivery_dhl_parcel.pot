@@ -153,6 +153,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__epl
+msgid "EPL"
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_delivery_carrier_form
 msgid "End day"
@@ -195,6 +200,11 @@ msgid "If the product is not specified, it is considered B2B"
 msgstr ""
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
+msgid "Label format"
+msgstr ""
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
@@ -219,6 +229,11 @@ msgstr ""
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__exw
 msgid "Owed transport"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__pdf
+msgid "PDF"
 msgstr ""
 
 #. module: delivery_dhl_parcel
@@ -268,4 +283,9 @@ msgstr ""
 #: code:addons/delivery_dhl_parcel/models/dhl_parcel_request.py:0
 #, python-format
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
+msgstr ""
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__zpl
+msgid "ZPL"
 msgstr ""
