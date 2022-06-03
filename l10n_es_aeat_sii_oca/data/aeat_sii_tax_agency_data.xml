@@ -232,4 +232,49 @@
             name="sii_wsdl_ps_test_address"
         >https://pruapps.bizkaia.eus/SSII-FACT/ws/fr/SiiFactPAGV1SOAP</field>
     </record>
+    <record id="l10n_es_aeat.aeat_tax_agency_navarra" model="aeat.tax.agency">
+        <field name="name">Hacienda Foral de Navarra (1.1)</field>
+        <field
+            name="sii_wsdl_out"
+        >https://siihacienda.navarra.es/SII_PRODUCCION.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_out_test_address"
+        >https://siihacienda.navarra.es/SII_PRUEBAS.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_in"
+        >https://siihacienda.navarra.es/SII_PRODUCCION.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_in_test_address"
+        >https://siihacienda.navarra.es/SII_PRUEBAS.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_pi"
+        >https://siihacienda.navarra.es/SII_PRODUCCION.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_pi_test_address"
+        >https://siihacienda.navarra.es/SII_PRUEBAS.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_ic"
+        >https://siihacienda.navarra.es/SII_PRODUCCION.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_ic_test_address"
+        >https://siihacienda.navarra.es/SII_PRUEBAS.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_pr"
+        >https://siihacienda.navarra.es/SII_PRODUCCION.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_pr_test_address"
+        >https://siihacienda.navarra.es/SII_PRUEBAS.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_ott"
+        >https://siihacienda.navarra.es/SII_PRODUCCION.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_ott_test_address"
+        >https://siihacienda.navarra.es/SII_PRUEBAS.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_ps"
+        >https://siihacienda.navarra.es/SII_PRODUCCION.proxy/SiiMensajesXsdHandlet.ashx</field>
+        <field
+            name="sii_wsdl_ps_test_address"
+        >https://siihacienda.navarra.es/SII_PRUEBAS.proxy/SiiMensajesXsdHandlet.ashx</field>
+    </record>
 </odoo>

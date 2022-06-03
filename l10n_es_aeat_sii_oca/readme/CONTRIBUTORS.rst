@@ -19,3 +19,4 @@
   * João Marques
 * Rafa Martínez - Punt Sistemes S.L.U. <rmartinez@puntsistemes.es>
 * Lois Rilo Antelo <lois.rilo@forgeflow.com>
+* Aritz Olea - Landoo Sistemas de Información S.L. <ao@landoo.es>

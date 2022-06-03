@@ -59,8 +59,21 @@ class AeatTaxAgency(models.Model):
         if not address and company.sii_test:
             # If not test address is provides we try to get it using the port name.
             port_name += "Pruebas"
-        return {
-            "wsdl": getattr(self, wsdl_field),
+        navarra_tax_agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_navarra")
+        spain_tax_agency = self.env.ref("l10n_es_aeat.aeat_tax_agency_spain")
+        if navarra_tax_agency:
+            address = (
+                getattr(self, wsdl_test_field)
+                if company.sii_test
+                else getattr(self, wsdl_field)
+            )
+        connect_params = {
             "address": address,
             "port_name": port_name,
+            "wsdl": (
+                getattr(spain_tax_agency, wsdl_field)
+                if self == navarra_tax_agency
+                else getattr(self, wsdl_field)
+            ),
         }
+        return connect_params
