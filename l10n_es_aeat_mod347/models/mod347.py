@@ -497,7 +497,9 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         store=True,
         help="Checked if this record is OK",
     )
-    error_text = fields.Char(string="Error text", compute="_compute_check_ok",)
+    error_text = fields.Char(
+        string="Error text", compute="_compute_check_ok", store=True
+    )
 
     @api.depends(
         "partner_country_code", "partner_state_code", "partner_vat", "community_vat"
