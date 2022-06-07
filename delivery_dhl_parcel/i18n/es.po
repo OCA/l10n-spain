@@ -17,6 +17,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard__all_customer_accounts
+msgid "All customer accounts"
+msgstr "Todas las cuentas de clientes"
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_product__b2b
 msgid "B2B Product"
 msgstr "Producto B2B"
@@ -162,6 +167,11 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__epl
+msgid "EPL"
+msgstr "EPL"
+
+#. module: delivery_dhl_parcel
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.delivery_endday_wizard_form
 #: model_terms:ir.ui.view,arch_db:delivery_dhl_parcel.view_delivery_carrier_form
 msgid "End day"
@@ -207,7 +217,11 @@ msgid "If the product is not specified, it is considered B2B"
 msgstr "Si no se especifica el producto, se considera producto B2B"
 
 #. module: delivery_dhl_parcel
-#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier____last_update
+#: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__dhl_parcel_label_format
+msgid "Label format"
+msgstr "Formato de etiqueta"
+
+#. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_dhl_parcel_endday_wizard____last_update
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_stock_picking____last_update
 msgid "Last Modified on"
@@ -231,12 +245,17 @@ msgstr "Cerrar el día manualmente"
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__exw
 msgid "Owed transport"
-msgstr ""
+msgstr "Transporte adeudado"
+
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__pdf
+msgid "PDF"
+msgstr "PDF"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_incoterm__cpt
 msgid "Paid transport"
-msgstr ""
+msgstr "Transporte pagado"
 
 #. module: delivery_dhl_parcel
 #: model:ir.model.fields,field_description:delivery_dhl_parcel.field_delivery_carrier__delivery_type
@@ -282,14 +301,7 @@ msgstr "Albarán"
 msgid "Unsupported request type, please only use 'GET' or 'POST'"
 msgstr "Tipo de respuesta no soportado, por favor solo usa 'GET' o 'POST'"
 
-#~ msgid "Last DHL Parcel API request"
-#~ msgstr "Último pedido a la API DHL Parcel"
-
-#~ msgid "Last DHL Parcel API response"
-#~ msgstr "Última respuesta a la API DHL Parcel"
-
-#~ msgid "Technical"
-#~ msgstr "Técnico"
-
-#~ msgid "Used for debugging"
-#~ msgstr "Usado para debug"
+#. module: delivery_dhl_parcel
+#: model:ir.model.fields.selection,name:delivery_dhl_parcel.selection__delivery_carrier__dhl_parcel_label_format__zpl
+msgid "ZPL"
+msgstr "ZPL"
