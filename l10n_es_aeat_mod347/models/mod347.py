@@ -188,7 +188,7 @@ class L10nEsAeatMod347Report(models.Model):
         self.ensure_one()
         tax_templates = map_rec.mapped("tax_ids")
         if not tax_templates:
-            raise exceptions.Warning(_("No Tax Mapping was found"))
+            raise exceptions.UserError(_("No Tax Mapping was found"))
         return self.get_taxes_from_templates(tax_templates)
 
     @api.model
