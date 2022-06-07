@@ -596,6 +596,12 @@ msgid "Ending date"
 msgstr "Fecha final"
 
 #. module: l10n_es_aeat
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report__error_count
+#: model:ir.model.fields,field_description:l10n_es_aeat.field_l10n_es_aeat_report_tax_mapping__error_count
+msgid "Error Count"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_map_tax.py:0
 #, python-format
 msgid "Error! The dates of the record overlap with an existing record."
@@ -1625,6 +1631,11 @@ msgid "Year"
 msgstr "Año"
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "You have"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: code:addons/l10n_es_aeat/models/l10n_es_aeat_report_tax_mapping.py:0
 #, python-format
 msgid "You must fill both journal and counterpart account."
@@ -1636,9 +1647,22 @@ msgid "compare"
 msgstr "Comparar"
 
 #. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid "errors"
+msgstr ""
+
+#. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_export_to_boe__state__get
 msgid "get"
 msgstr "obter"
+
+#. module: l10n_es_aeat
+#: model_terms:ir.ui.view,arch_db:l10n_es_aeat.view_l10n_es_aeat_report_form
+msgid ""
+"in this report.\n"
+"                        You will not be able to <strong>confirm and submit "
+"it</strong> until they are resolved."
+msgstr ""
 
 #. module: l10n_es_aeat
 #: model:ir.model.fields.selection,name:l10n_es_aeat.selection__l10n_es_aeat_report_compare_boe_file__state__open
