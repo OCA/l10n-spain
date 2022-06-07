@@ -214,7 +214,7 @@ class L10nEsAeatReportTaxMapping(models.AbstractModel):
     def create_regularization_move(self):
         self.ensure_one()
         if not self.counterpart_account_id or not self.journal_id:
-            raise exceptions.Warning(
+            raise exceptions.UserError(
                 _("You must fill both journal and counterpart account.")
             )
         move_vals = self._prepare_move_vals()
