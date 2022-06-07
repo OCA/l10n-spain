@@ -469,6 +469,12 @@ msgid "Some of the original invoices have related tbai invoices in inconsistent 
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_bank_statement_import_journal_creation__tbai_active_date
+#: model:ir.model.fields,help:l10n_es_ticketbai.field_account_journal__tbai_active_date
+msgid "Start date for sending invoices to the tax authorities"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_invoice__tbai_substitute_simplified_invoice
 msgid "Substitute Simplified Invoice"
 msgstr ""
@@ -699,6 +705,12 @@ msgid "TicketBAI VAT Regime mapping keys"
 msgstr ""
 
 #. module: l10n_es_ticketbai
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_bank_statement_import_journal_creation__tbai_active_date
+#: model:ir.model.fields,field_description:l10n_es_ticketbai.field_account_journal__tbai_active_date
+msgid "TicketBAI active date"
+msgstr ""
+
+#. module: l10n_es_ticketbai
 #: model:ir.model,name:l10n_es_ticketbai.model_tbai_info
 msgid "TicketBAI general information"
 msgstr ""
@@ -767,7 +779,7 @@ msgid "You cannot change to draft a TicketBAI invoice!"
 msgstr ""
 
 #. module: l10n_es_ticketbai
-#: code:addons/l10n_es_ticketbai/models/account_journal.py:34
+#: code:addons/l10n_es_ticketbai/models/account_journal.py:39
 #, python-format
 msgid "You cannot stop sending invoices from this journal, an invoice has already been sent."
 msgstr ""
