@@ -340,7 +340,7 @@ class Mod349(models.Model):
         map_lines = self.env["aeat.349.map.line"].search([])
         tax_templates = map_lines.mapped("tax_tmpl_ids")
         if not tax_templates:
-            raise exceptions.Warning(_("No Tax Mapping was found"))
+            raise exceptions.UserError(_("No Tax Mapping was found"))
         return self.get_taxes_from_templates(tax_templates)
 
     def _cleanup_report(self):
@@ -399,7 +399,7 @@ class Mod349(models.Model):
         for item in self:
             for partner_record in item.partner_record_ids:
                 if not partner_record.partner_record_ok:
-                    raise exceptions.Warning(
+                    raise exceptions.UserError(
                         _(
                             "All partner records fields (country, VAT number) "
                             "must be filled."
@@ -407,7 +407,7 @@ class Mod349(models.Model):
                     )
             for partner_record in item.partner_refund_ids:
                 if not partner_record.partner_refund_ok:
-                    raise exceptions.Warning(
+                    raise exceptions.UserError(
                         _(
                             "All partner refunds fields (country, VAT number) "
                             "must be filled."
@@ -419,7 +419,7 @@ class Mod349(models.Model):
         for item in self:
             # Check Full name (contact_name)
             if not item.contact_name or len(item.contact_name.split(" ")) < 2:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _("Contact name (Full name) must have name and surname")
                 )
 
