@@ -32,6 +32,8 @@ class DeliverySeurManifiestoWizard(models.TransientModel):
                     "deliveries for the selected date."
                 )
             )
+        if isinstance(manifest_data, dict):
+            manifest_data = [manifest_data]
         datas = {
             "ids": self.env.context.get("active_ids", []),
             "model": "gls.asm.minifest.wizard",
