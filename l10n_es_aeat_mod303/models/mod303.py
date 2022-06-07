@@ -478,7 +478,7 @@ class L10nEsAeatMod303Report(models.Model):
             if mod303.result_type == "D" and not mod303.partner_bank_id:
                 msg = _("Select an account for receiving the money")
         if msg:
-            raise exceptions.Warning(msg)
+            raise exceptions.UserError(msg)
         return super(L10nEsAeatMod303Report, self).button_confirm()
 
     @api.constrains("potential_cuota_compensar", "cuota_compensar")
