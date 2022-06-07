@@ -269,7 +269,9 @@ class DeliveryCarrier(models.Model):
     def action_open_end_day(self):
         """Action to launch the end day wizard"""
         self.ensure_one()
-        wizard = self.env["dhl.parcel.endday.wizard"].create({"carrier_id": self.id})
+        wizard = self.env["dhl.parcel.endday.wizard"].create(
+            {"carrier_id": self.id, "customer_accounts": self.dhl_parcel_customer_code}
+        )
         view_id = self.env.ref("delivery_dhl_parcel.delivery_endday_wizard_form").id
         return {
             "name": _("DHL Parcel End Day"),
