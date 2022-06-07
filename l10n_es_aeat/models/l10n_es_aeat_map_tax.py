@@ -48,7 +48,7 @@ class L10nEsAeatMapTax(models.Model):
                 domain += [("date_from", "<=", map_tax.date_to)]
             date_lst = map_tax.search(domain)
             if date_lst:
-                raise exceptions.Warning(
+                raise exceptions.UserError(
                     _(
                         "Error! The dates of the record overlap with an "
                         "existing record."
