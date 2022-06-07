@@ -79,5 +79,5 @@ class L10nEsAeatCertificate(models.Model):
                 "l10n_es_aeat_certificate.privateKey", False
             )
         if not public_crt or not private_key:
-            raise exceptions.Warning(_("Error! There aren't certificates."))
+            raise exceptions.UserError(_("Error! There aren't certificates."))
         return public_crt, private_key
