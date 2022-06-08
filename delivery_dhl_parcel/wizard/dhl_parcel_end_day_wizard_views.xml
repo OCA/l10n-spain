@@ -5,7 +5,11 @@
         <field name="arch" type="xml">
             <form string="DHL Parcel End day">
                 <group>
-                    <field name="customer_accounts" />
+                    <field name="all_customer_accounts" />
+                    <field
+                        name="customer_accounts"
+                        attrs="{'invisible': [('all_customer_accounts', '=', True)]}"
+                    />
                 </group>
                 <footer>
                     <button
