@@ -20,7 +20,8 @@ class StockPicking(models.Model):
         label = base64.b64decode(self.carrier_id.dhl_parcel_get_label(tracking_ref))
         label_format = self.carrier_id.dhl_parcel_label_format.lower()
         label_name = "dhl_parcel_{}.{}".format(
-            tracking_ref, "txt" if label_format == "zpl" else "pdf"
+            tracking_ref,
+            "pdf" if label_format == "pdf" else "txt",
         )
         self.message_post(
             body=(_("DHL Parcel label for %s") % tracking_ref),
