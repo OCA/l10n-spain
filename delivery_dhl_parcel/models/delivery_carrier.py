@@ -158,9 +158,13 @@ class DeliveryCarrier(models.Model):
             )
             attachment = []
             if response.get("Label"):
+                label_format = picking.carrier_id.dhl_parcel_label_format.lower()
                 attachment = [
                     (
-                        "dhl_parcel_{}.pdf".format(response.get("Tracking", "")),
+                        "dhl_parcel_{}.{}".format(
+                            response.get("Tracking", ""),
+                            "pdf" if label_format == "pdf" else "txt",
+                        ),
                         base64.b64decode(response.get("Label")),
                     )
                 ]
