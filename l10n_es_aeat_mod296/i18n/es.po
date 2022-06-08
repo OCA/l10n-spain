@@ -23,7 +23,7 @@ msgid "% retention"
 msgstr "% retención"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__1
 msgid ""
 "1 - Dividends and other income derived from the participation in own funds "
 "of entities."
@@ -32,7 +32,7 @@ msgstr ""
 "propios de entidades."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__1
 msgid ""
 "1 - Retention practiced at the general rates or scales of taxation of "
 "article 25 of the rewritten text of the Non-Resident Income Tax Law."
@@ -42,24 +42,24 @@ msgstr ""
 "Residentes."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,codigo:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__codigo__1
 msgid "1. Emisor code corresponds to an N.I.F."
 msgstr "1. El código emisor corresponde a un N.I.F."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__10
 msgid ""
 "10 - Canons derived from industrial, commercial or scientific equipment."
 msgstr ""
 "10 - Cánones derivados de equipos industriales, comerciales o científicos."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__11
 msgid "11 - Other canons not previously mentioned."
 msgstr "11 - Otros cánones no relacionados anteriormente."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__12
 msgid ""
 "12 - Capital income from capitalization operations and life or disability "
 "insurance contracts."
@@ -68,43 +68,43 @@ msgstr ""
 "de contratos de seguros de vida o invalidez."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__13
 msgid "13 - Other income from movable capital not mentioned above."
 msgstr ""
 "13 - Otros rendimientos de capital mobiliario no citados anteriormente."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__14
 msgid "14 - Real estate performance."
 msgstr "14 - Rendimientos de bienes inmuebles."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__15
 msgid "15 - Performance of business activities."
 msgstr "15 - Rendimientos de actividades empresariales."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__16
 msgid "16 - Rents derived from technical assistance benefits."
 msgstr "16 - Rentas derivadas de prestaciones de asistencia técnica."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__17
 msgid "17 - Rents of artistic activities."
 msgstr "17 - Rentas de actividades artísticas."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__18
 msgid "18 - Rents of sports activities."
 msgstr "18 - Rentas de actividades deportivas."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__19
 msgid "19 - Rents of professional activities."
 msgstr "19 - Rentas de actividades profesionales."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__2
 msgid ""
 "2 - Interest and other income derived from the transfer to parties of own "
 "capital."
@@ -113,49 +113,49 @@ msgstr ""
 "propios."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__2
 msgid "2 - Retention practiced applying limits of imposition of Agreements."
 msgstr "2 - Retención practicada aplicando límites de imposición de Convenios."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,codigo:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__codigo__2
 msgid "2. Emisor code corresponds to an code I.S.I.N."
 msgstr "2. El código emisor corresponde a un código I.S.I.N."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__20
 msgid "20 - Rents of work."
 msgstr "20 - Rentas del trabajo."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__21
 msgid "21 - Pensions and passive assets."
 msgstr "21 - Pensiones y haberes pasivos."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__22
 msgid "22 - Remuneration of administrators and members of boards of directors."
 msgstr ""
 "22 - Retribuciones de administradores y miembros de consejos de "
 "Administración."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__23
 msgid "23 - Performance derived from reinsurance operations."
 msgstr "23 - Rendimientos derivados de operaciones de reaseguros."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__24
 msgid "24 - Maritime or air navigation entities."
 msgstr "24 - Entidades de navegación marítima o aérea."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__25
 msgid "25 - Other rents"
 msgstr "25 - Otras rentas"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__3
 msgid ""
 "3 - Canons derived from patents, trademarks, drawings or models, plans, "
 "formulas or secret procedures."
@@ -164,7 +164,7 @@ msgstr ""
 "o meodelos, planos, fórmulas o procedimientos secretos."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__3
 msgid ""
 "3 - Internal exemption (mainly: article 14 of the revised text of the Law on "
 "Non-Resident Income Tax)"
@@ -173,7 +173,7 @@ msgstr ""
 "Ley del Impuesto sobre la Renta de no Residentes)"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,codigo:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__codigo__3
 msgid ""
 "3. Emisor code corresponds to values foreign that have not been assigned I.S."
 "I.N., whose emisor does not have a NIF"
@@ -182,22 +182,22 @@ msgstr ""
 "asignado I.S.I.N., cuyo emisor no tiene un NIF"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__4
 msgid "4 - Exemption by application of a Convention."
 msgstr "4 - Exención por aplicación de un Convenio."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__4
 msgid "4 - Fees derived from rights on literary and artistic works."
 msgstr "4 - Cánones derivados de derechos sobre obras literarias y artísticas."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__5
 msgid "5 - Canons derived from rights on scientific works."
 msgstr "5 - Cánones derivados de derechos sobre obras científicas."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__5
 msgid ""
 "5 - No Retention for previous payment of the Tax by the taxpayer or his "
 "representative.."
@@ -206,7 +206,7 @@ msgstr ""
 "representante."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__6
 msgid ""
 "6 - Fees derived from rights on cinematographic films and recorded sound or "
 "visual works."
@@ -215,7 +215,7 @@ msgstr ""
 "sonoras o visuales grabadas."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__6
 msgid ""
 "6 - The declared recipient is a foreign entity for the collective management "
 "of intellectual property rights, with a retention having applied the limit "
@@ -226,7 +226,7 @@ msgstr ""
 "aplicando el límite de imposición, o la exención, de un Convenio."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__7
 msgid ""
 "7 - Canons derived from information related to industrial, commercial or "
 "scientific experiences (know-how)."
@@ -235,7 +235,7 @@ msgstr ""
 "industriales, comerciales o científicas (know-how)."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__7
 msgid ""
 "7 - The recipient is a taxpayer of the Personal Income Tax of the special "
 "regime applicable to workers displaced to Spanish territory."
@@ -245,12 +245,12 @@ msgstr ""
 "desplazados a territorio español."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__8
 msgid "8 - Fees derived from rights on computer programs."
 msgstr "8 - Cánones derivados de derechos sobre programas informáticos."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__8
 msgid ""
 "8 - The declared recipient is an entity resident abroad that sells shares or "
 "units of Spanish collective investment institutions, with a withholding tax "
@@ -262,7 +262,7 @@ msgstr ""
 "imposición fijado en el Convenio inferior."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,clave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__clave__9
 msgid ""
 "9 - Fees derived from personal rights susceptible to transfer, such as image "
 "rights."
@@ -271,7 +271,7 @@ msgstr ""
 "como los derechos de imagen."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,subclave:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__subclave__9
 msgid ""
 "9 - The declared recipient is an entity residing abroad selling shares or "
 "participations of Spanish collective investment institutions, with a "
@@ -318,6 +318,11 @@ msgid "Activities"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__activity_state
 msgid "Activity State"
 msgstr ""
@@ -333,12 +338,12 @@ msgid "Allow Posting"
 msgstr "Permitir publicación"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,pago:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__pago__2
 msgid "As mediator"
 msgstr "Como mediador"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,pago:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__pago__1
 msgid "As transmitter"
 msgstr "Como emisor"
 
@@ -366,11 +371,6 @@ msgstr "Ciudad natal"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__calculation_date
 msgid "Calculation date"
 msgstr "Fecha de cálculo"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,state:0
-msgid "Cancelled"
-msgstr "Cancelado"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__codigo
@@ -401,11 +401,6 @@ msgstr "Compañía"
 #: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__partner_bank_id
 msgid "Company bank account used for the presentation"
 msgstr "Cuenta bancaria de la empresa utilizada para la presentación"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,type:0
-msgid "Complementary"
-msgstr "Complementarios"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__contact_email
@@ -453,11 +448,6 @@ msgstr "Creado en"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__currency_id
 msgid "Currency"
 msgstr "Moneda"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,support_type:0
-msgid "DVD"
-msgstr "DVD"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__fecha_nacimiento
@@ -512,16 +502,6 @@ msgid "Domicile Complement"
 msgstr "Complemento de domicilio"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,state:0
-msgid "Done"
-msgstr "Done"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,state:0
-msgid "Draft"
-msgstr "Draft"
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__codigo_emisor
 msgid "Emisor code"
 msgstr "Código de emisor"
@@ -530,6 +510,11 @@ msgstr "Código de emisor"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__date_end
 msgid "Ending date"
 msgstr "Fecha final"
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__error_count
+msgid "Error Count"
+msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__export_config_id
@@ -568,32 +553,39 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
 msgid "Identification data and address of the recipients"
 msgstr "Datos de identificación y dirección de los destinatarios"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,tipo_codigo:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__tipo_codigo__c
 msgid "Identification with the Account Code Values (C.C.V.)"
 msgstr "Identificación con el Código Cuenta Valores (C.C.V.)"
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_unread
-msgid "If checked new messages require your attention."
-msgstr ""
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_needaction
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_has_error
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,naturaleza:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__naturaleza__e
 msgid "Income in kind"
 msgstr "Renta en especie"
 
@@ -646,7 +638,7 @@ msgid "Legal Representative VAT number."
 msgstr "NIF del representante legal."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,fisica_juridica:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__fisica_juridica__j
 msgid "Legal person or entity"
 msgstr "Persona jurídica o entidad"
 
@@ -691,7 +683,7 @@ msgid "Model number"
 msgstr "Número de modelo"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,naturaleza:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__naturaleza__d
 msgid "Money income"
 msgstr "Renta dineraria"
 
@@ -731,18 +723,13 @@ msgid "Nif in the country of residence"
 msgstr "NIF en el país de residencia"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,type:0
-msgid "Normal"
-msgstr "Normal"
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_needaction_counter
 msgid "Number of Actions"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_has_error_counter
-msgid "Number of error"
+msgid "Number of errors"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -761,14 +748,9 @@ msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,tipo_codigo:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__tipo_codigo__o
 msgid "Other identification"
 msgstr "Otra identificación"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,activity_state:0
-msgid "Overdue"
-msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__partner_id
@@ -797,14 +779,9 @@ msgid "Phone"
 msgstr "Teléfono"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report.line,fisica_juridica:0
+#: model:ir.model.fields.selection,name:l10n_es_aeat_mod296.selection__l10n_es_aeat_mod296_report_line__fisica_juridica__f
 msgid "Physical person"
 msgstr "Persona física"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,activity_state:0
-msgid "Planned"
-msgstr ""
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__poblacion
@@ -817,19 +794,9 @@ msgid "Postal Code"
 msgstr "Código postal"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,state:0
-msgid "Posted"
-msgstr "Posted"
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__previous_number
 msgid "Previous declaration number"
 msgstr "Número de declaración anterior"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,state:0
-msgid "Processed"
-msgstr "Processed"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report_line__provincia
@@ -857,6 +824,11 @@ msgid "Retention and income on account"
 msgstr "Base retención e ingresos a cuenta"
 
 #. module: l10n_es_aeat_mod296
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_es_aeat_mod296
 #: model_terms:ir.ui.view,arch_db:l10n_es_aeat_mod296.view_l10n_es_aeat_mod296_report_line_form
 msgid "Specific data according to the letter consigned in the 'key' field"
 msgstr "Datos específicos según la letra asignada en el campo 'key'"
@@ -872,7 +844,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: l10n_es_aeat_mod296
-#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__type
+#: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__statement_type
 msgid "Statement Type"
 msgstr "Tipo de declaración"
 
@@ -891,11 +863,6 @@ msgid "Subkey"
 msgstr "Subclave"
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,type:0
-msgid "Substitutive"
-msgstr "Substitutive"
-
-#. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__support_type
 msgid "Support Type"
 msgstr "Tipo de soporte"
@@ -904,11 +871,6 @@ msgstr "Tipo de soporte"
 #: model:ir.model.fields,field_description:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__tax_line_ids
 msgid "Tax lines"
 msgstr "Líneas de impuestos"
-
-#. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,support_type:0
-msgid "Telematics"
-msgstr "Telematics"
 
 #. module: l10n_es_aeat_mod296
 #: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__counterpart_account_id
@@ -920,8 +882,8 @@ msgstr ""
 "están regularizados al contabilizar el informe."
 
 #. module: l10n_es_aeat_mod296
-#: selection:l10n.es.aeat.mod296.report,activity_state:0
-msgid "Today"
+#: model:ir.model.fields,help:l10n_es_aeat_mod296.field_l10n_es_aeat_mod296_report__activity_exception_decoration
+msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: l10n_es_aeat_mod296
@@ -1009,3 +971,33 @@ msgid ""
 msgstr ""
 "[04] Resumen de los datos incluidos en la declaración - Retenciones e "
 "ingresos a cuenta ingresados"
+
+#~ msgid "Cancelled"
+#~ msgstr "Cancelado"
+
+#~ msgid "Complementary"
+#~ msgstr "Complementarios"
+
+#~ msgid "DVD"
+#~ msgstr "DVD"
+
+#~ msgid "Done"
+#~ msgstr "Done"
+
+#~ msgid "Draft"
+#~ msgstr "Draft"
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
+
+#~ msgid "Posted"
+#~ msgstr "Posted"
+
+#~ msgid "Processed"
+#~ msgstr "Processed"
+
+#~ msgid "Substitutive"
+#~ msgstr "Substitutive"
+
+#~ msgid "Telematics"
+#~ msgstr "Telematics"
