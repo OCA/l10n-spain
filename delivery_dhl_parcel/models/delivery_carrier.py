@@ -124,7 +124,7 @@ class DeliveryCarrier(models.Model):
             "GoodsDescription": "",  # [optional]
             "CustomsValue": "",  # [optional]
             "CustomsCurrency": "",  # [optional]
-            "Format": "PDF",  # [optional]
+            "Format": self.dhl_parcel_label_format,  # [optional]
             "tracking_number": False,
             "exact_price": 0,
         }
