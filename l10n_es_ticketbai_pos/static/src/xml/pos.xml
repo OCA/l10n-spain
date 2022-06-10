@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2021 Binovo IT Human Project SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <templates id="template" xml:space="preserve">
@@ -6,11 +6,15 @@
     <t t-extend="PosTicket">
         <t t-jquery="[t-if='receipt.footer']" t-operation='before'>
             <t t-if='receipt.tbai_identifier and receipt.tbai_qr_src'>
-                <br/>
+                <br />
                 <div style='text-align:center'>
-                    <b><t t-esc='receipt.tbai_identifier'/></b>
-                    <br/><br/>
-                    <img id='tbaiqrcode' t-att-src='receipt.tbai_qr_src' style="min-width: 35mm; max-width: 40mm"/>
+                    <b><t t-esc='receipt.tbai_identifier' /></b>
+                    <br /><br />
+                    <img
+                        id='tbaiqrcode'
+                        t-att-src='receipt.tbai_qr_src'
+                        style="min-width: 35mm; max-width: 40mm"
+                    />
                 </div>
             </t>
         </t>
@@ -23,11 +27,11 @@
     <t t-extend="XmlReceipt">
         <t t-jquery='.before-footer' t-operation='append'>
             <t t-if='receipt.tbai_identifier and receipt.tbai_qr_src'>
-                <br/>
-                <b><t t-esc='receipt.tbai_identifier'/></b>
-                <br/><br/>
-                <img id='tbaiqrcode' t-att-src='receipt.tbai_qr_src'/>
-                <br/>
+                <br />
+                <b><t t-esc='receipt.tbai_identifier' /></b>
+                <br /><br />
+                <img id='tbaiqrcode' t-att-src='receipt.tbai_qr_src' />
+                <br />
             </t>
         </t>
     </t>
