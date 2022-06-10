@@ -4,13 +4,12 @@
 
 {
     "name": "TicketBAI - Point of Sale - "
-            "declaración de todas las operaciones de venta realizadas por las personas "
-            "y entidades que desarrollan actividades económicas",
+    "declaración de todas las operaciones de venta realizadas por las personas "
+    "y entidades que desarrollan actividades económicas",
     "version": "12.0.1.0.0",
     "category": "Accounting & Finance",
-    "website": "http://www.binovo.es",
-    "author": "Binovo,"
-              "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-spain",
+    "author": "Binovo," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
@@ -20,16 +19,14 @@
         "l10n_es_pos",
         "l10n_es_ticketbai",
         "pos_order_mgmt",
-        "pos_order_return"
+        "pos_order_return",
     ],
     "data": [
         "security/ir.model.access.csv",
         "views/l10n_es_ticketbai_pos.xml",
         "views/l10n_es_ticketbai_pos_views.xml",
         "views/pos_order_views.xml",
-        "views/ticketbai_certificate_views.xml"
+        "views/ticketbai_certificate_views.xml",
     ],
-    "qweb": [
-        "static/src/xml/pos.xml",
-    ],
+    "qweb": ["static/src/xml/pos.xml",],
 }
