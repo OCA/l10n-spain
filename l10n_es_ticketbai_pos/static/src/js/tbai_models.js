@@ -1,4 +1,5 @@
 /* Copyright 2021 Binovo IT Human Project SL
+   Copyright 2022 Landoo Sistemas de Informacion SL
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
@@ -9,22 +10,26 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
     var _t = core._t;
     var field_utils = require("web.field_utils");
 
+    var Backbone = window.Backbone;
+    var tbai = window.tbai;
+    var QRCode = window.QRCode;
+
     /* A TicketBAI Simplified Invoice represents a customer's order
     to be exported to the Tax Agency.
     */
     var TicketBAISimplifiedInvoice = Backbone.Model.extend({
         initialize: function(attributes, options) {
             Backbone.Model.prototype.initialize.apply(this, arguments);
-            options = options || {};
-            this.pos = options.pos;
+            var opts = options || {};
+            this.pos = opts.pos;
             this.previous_tbai_invoice = null;
-            this.order = options.order || null;
-            this.number = options.number || null;
-            this.number_prefix = options.number_prefix || null;
-            this.expedition_date = options.expedition_date || null;
-            this.signature_value = options.signature_value || null;
-            this.tbai_identifier = options.tbai_identifier || null;
-            this.tbai_qr_src = options.tbai_qr_src || null;
+            this.order = opts.order || null;
+            this.number = opts.number || null;
+            this.number_prefix = opts.number_prefix || null;
+            this.expedition_date = opts.expedition_date || null;
+            this.signature_value = opts.signature_value || null;
+            this.tbai_identifier = opts.tbai_identifier || null;
+            this.tbai_qr_src = opts.tbai_qr_src || null;
             this.tbai_qr_url = null;
             this.vat_regime_key = "01";
             this.vat_regime_key2 = null;
@@ -61,23 +66,17 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
                 var tbai_vat_regime_key = this.order.fiscal_position
                     .tbai_vat_regime_key;
                 if (tbai_vat_regime_key) {
-                    this.vat_regime_key = this.pos.get_tbai_vat_regime_key_code_by_id(
-                        tbai_vat_regime_key[0]
-                    );
+                    this.vat_regime_key = tbai_vat_regime_key[0];
                 }
                 var tbai_vat_regime_key2 = this.order.fiscal_position
                     .tbai_vat_regime_key2;
                 if (tbai_vat_regime_key2) {
-                    this.vat_regime_key2 = this.pos.get_tbai_vat_regime_key_code_by_id(
-                        tbai_vat_regime_key2[0]
-                    );
+                    this.vat_regime_key2 = tbai_vat_regime_key2[0];
                 }
                 var tbai_vat_regime_key3 = this.order.fiscal_position
                     .tbai_vat_regime_key3;
                 if (tbai_vat_regime_key3) {
-                    this.vat_regime_key3 = this.pos.get_tbai_vat_regime_key_code_by_id(
-                        tbai_vat_regime_key3[0]
-                    );
+                    this.vat_regime_key3 = tbai_vat_regime_key3[0];
                 }
             }
 
@@ -131,12 +130,15 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
         },
         get_vat_without_country_code: function(vat, country_code) {
             var vat_without_country_code = null;
-            vat = vat.toUpperCase();
-            country_code = country_code ? country_code.toUpperCase() : null;
-            if (country_code && vat.slice(0, country_code.length) === country_code) {
-                vat_without_country_code = vat.slice(country_code.length);
+            var vat_upper = vat.toUpperCase();
+            var country_code_upper = country_code ? country_code.toUpperCase() : null;
+            if (
+                country_code_upper &&
+                vat_upper.slice(0, country_code_upper.length) === country_code_upper
+            ) {
+                vat_without_country_code = vat_upper.slice(country_code_upper.length);
             } else {
-                vat_without_country_code = vat;
+                vat_without_country_code = vat_upper;
             }
             return vat_without_country_code;
         },
@@ -150,13 +152,12 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
             if (country_code === "ES" || partner.tbai_partner_idtype === "02") {
                 return this.get_vat_without_country_code(partner.vat, country_code);
             }
-                return partner.tbai_partner_identification_number;
-
+            return partner.tbai_partner_identification_number;
         },
         export_as_JSON: function() {
             var order_json =
                 (this.order !== null && this.order.export_as_JSON()) || null;
-            var tbai = {};
+            var tbai_json = {};
             var company = this.pos.company;
             var vat_keys = [this.vat_regime_key];
             var self = this;
@@ -172,7 +173,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
                 if (this.vat_regime_key3 !== null) {
                     vat_keys.push(this.vat_regime_key3);
                 }
-                tbai.Invoice = {
+                tbai_json.Invoice = {
                     simple: true,
                     issuer: {
                         irsId: this.get_tbai_company_vat(),
@@ -195,7 +196,9 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
                     ),
                     vatKeys: vat_keys,
                 };
-                tbai.Invoice.vatLines = this.get_tbai_vat_lines_from_json(order_json);
+                tbai_json.Invoice.vatLines = this.get_tbai_vat_lines_from_json(
+                    order_json
+                );
                 if (order_json.partner_id) {
                     var partner = this.pos.db.get_partner_by_id(order_json.partner_id);
                     var zip = partner.zip;
@@ -207,7 +210,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
                         (partner.city || "") +
                         ", " +
                         (partner.country_id[1] || "");
-                    tbai.Invoice.recipient = {
+                    tbai_json.Invoice.recipient = {
                         irsId: this.get_tbai_partner_vat(order_json.partner_id),
                         name: partner.name,
                         postal: zip,
@@ -215,7 +218,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
                     };
                 }
                 if (this.previous_tbai_invoice !== null) {
-                    tbai.PreviousInvoiceId = {
+                    tbai_json.PreviousInvoiceId = {
                         number: this.previous_tbai_invoice.number,
                         serie: this.previous_tbai_invoice.number_prefix,
                         issuedTime: new Date(
@@ -231,7 +234,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
                         ),
                     };
                 }
-                tbai.Software = {
+                tbai_json.Software = {
                     license: company.tbai_license_key,
                     developerIrsId: this.get_tbai_partner_vat(
                         company.tbai_developer_id[0]
@@ -240,7 +243,7 @@ odoo.define("l10n_es_ticketbai_pos.tbai_models", function(require) {
                     version: this.pos.tbai_version,
                 };
             }
-            return tbai;
+            return tbai_json;
         },
         get_tbai_lines_from_json: function(lines_json) {
             var lines = [];

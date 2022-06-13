@@ -4,7 +4,7 @@ import base64
 
 from lxml import etree
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 from odoo.addons.l10n_es_ticketbai_api.ticketbai.xml_schema import TicketBaiSchema
 
@@ -14,7 +14,6 @@ class TicketBAIInvoice(models.Model):
 
     pos_order_id = fields.Many2one(comodel_name="pos.order")
 
-    @api.multi
     def send(self, **kwargs):
         self.ensure_one()
         if TicketBaiSchema.TicketBai.value == self.schema and self.pos_order_id:

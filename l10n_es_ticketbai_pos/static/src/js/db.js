@@ -1,4 +1,5 @@
 /* Copyright 2021 Binovo IT Human Project SL
+   Copyright 2022 Landoo Sistemas de Informacion SL
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
@@ -9,7 +10,7 @@ odoo.define("l10n_es_ticketbai_pos.db", function(require) {
 
     PosDB.include({
         init: function(options) {
-            this._super.apply(this, arguments);
+            this._super(options);
             this.tbai_last_invoice_data = null;
         },
 

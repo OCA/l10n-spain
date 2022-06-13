@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 
@@ -39,7 +40,6 @@ class PosConfig(models.Model):
             tbai_p12_friendlyname = None
         return tbai_p12, tbai_p12_friendlyname
 
-    @api.multi
     def open_ui(self):
         self.ensure_one()
         if self.tbai_enabled and not self.iface_l10n_es_simplified_invoice:
@@ -48,7 +48,6 @@ class PosConfig(models.Model):
             )
         return super().open_ui()
 
-    @api.multi
     def open_session_cb(self):
         self.ensure_one()
         if self.tbai_enabled and not self.iface_l10n_es_simplified_invoice:
@@ -57,7 +56,6 @@ class PosConfig(models.Model):
             )
         return super().open_session_cb()
 
-    @api.multi
     def open_existing_session_cb(self):
         self.ensure_one()
         if self.tbai_enabled and not self.iface_l10n_es_simplified_invoice:
@@ -65,3 +63,9 @@ class PosConfig(models.Model):
                 _("Simplified Invoice IDs Sequence is required")
             )
         return super().open_existing_session_cb()
+
+    @api.model
+    def _get_allowed_change_fields(self):
+        allowed_fields = super(PosConfig, self)._get_allowed_change_fields()
+        allowed_fields.append("tbai_last_invoice_id")
+        return allowed_fields
