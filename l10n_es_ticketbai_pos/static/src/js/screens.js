@@ -1,4 +1,5 @@
 /* Copyright 2021 Binovo IT Human Project SL
+   Copyright 2022 Landoo Sistemas de Informacion SL
    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 */
 
@@ -92,10 +93,10 @@ odoo.define("l10n_es_ticketbai_pos.screens", function(require) {
             var self = this;
             var order = this.pos.get_order();
             if (this.pos.company.tbai_enabled && !order.is_to_invoice()) {
-                if (force_validation == "tbai_inv_up_to_date") {
+                if (force_validation === "tbai_inv_up_to_date") {
                     this._super();
                 } else {
-                    var order = this.pos.get_order();
+                    order = this.pos.get_order();
                     order.tbai_build_invoice();
                     order.tbai_current_invoice.then(function(tbai_inv) {
                         order.tbai_simplified_invoice = tbai_inv;
