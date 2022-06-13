@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2022 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <templates id="template" xml:space="preserve">
 
-    <t t-extend="PosTicket">
-        <t t-jquery="[t-if='receipt.footer']" t-operation='before'>
+    <t t-extend="OrderReceipt">
+        <t t-jquery='.before-footer' t-operation='append'>
             <t t-if='receipt.tbai_identifier and receipt.tbai_qr_src'>
                 <br />
                 <div style='text-align:center'>

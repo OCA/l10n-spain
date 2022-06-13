@@ -27,7 +27,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                     "amount_paid": untax + atax,
                     "amount_tax": atax,
                     "amount_total": untax + atax,
-                    "creation_date": fields.Datetime.now(),
+                    "creation_date": str(fields.Datetime.now()),
                     "fiscal_position_id": fp and fp.id or False,
                     "pricelist_id": self.pos_config.available_pricelist_ids[0].id,
                     "tbai_vat_regime_key": vat_regime_key,
@@ -58,11 +58,15 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                             {
                                 "account_id": user.partner_id.property_account_receivable_id.id,
                                 "amount": untax + atax,
-                                "journal_id": self.pos_config.journal_ids[0].id,
                                 "name": fields.Datetime.now(),
-                                "statement_id": self.pos_config.current_session_id.statement_ids[
-                                    0
-                                ].id,
+                                "payment_method_id": self.env.ref(
+                                    "account.account_payment_method_manual_out"
+                                ).id,
+                                "statement_id": (
+                                    self.pos_config.current_session_id.statement_ids[
+                                        0
+                                    ].id
+                                ),
                             },
                         ]
                     ],
@@ -73,8 +77,8 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                 "to_invoice": to_invoice,
             }
         ]
-        order_id = self.env["pos.order"].sudo(user.id).create_from_ui(orders)
-        return self.env["pos.order"].browse(order_id)
+        order = self.env["pos.order"].with_user(user.id).create_from_ui(orders)
+        return self.env["pos.order"].browse(order[0]["id"])
 
     def create_pos_order_from_ui2(
         self, user, partner_id=False, fp=False, to_invoice=False
@@ -94,7 +98,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                     "amount_paid": untax + atax,
                     "amount_tax": atax,
                     "amount_total": untax + atax,
-                    "creation_date": fields.Datetime.now(),
+                    "creation_date": str(fields.Datetime.now()),
                     "fiscal_position_id": fp and fp.id or False,
                     "pricelist_id": self.pos_config.available_pricelist_ids[0].id,
                     "tbai_vat_regime_key": vat_regime_key,
@@ -126,11 +130,15 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                             {
                                 "account_id": user.partner_id.property_account_receivable_id.id,
                                 "amount": untax + atax,
-                                "journal_id": self.pos_config.journal_ids[0].id,
                                 "name": fields.Datetime.now(),
-                                "statement_id": self.pos_config.current_session_id.statement_ids[
-                                    0
-                                ].id,
+                                "payment_method_id": self.env.ref(
+                                    "account.account_payment_method_manual_out"
+                                ).id,
+                                "statement_id": (
+                                    self.pos_config.current_session_id.statement_ids[
+                                        0
+                                    ].id
+                                ),
                             },
                         ]
                     ],
@@ -141,8 +149,8 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
                 "to_invoice": to_invoice,
             }
         ]
-        order_id = self.env["pos.order"].sudo(user.id).create_from_ui(orders)
-        return self.env["pos.order"].browse(order_id)
+        order = self.env["pos.order"].with_user(user.id).create_from_ui(orders)
+        return self.env["pos.order"].browse(order[0]["id"])
 
     def create_pos_order(self, uid, fp=False):
         tax_ids = [self.tax_21b.id]
@@ -179,7 +187,7 @@ class TestL10nEsTicketBAIPoSCommon(TestL10nEsTicketBAI):
             "amount_paid": 121,
             "amount_return": 0,
         }
-        pos_order = self.env["pos.order"].sudo(uid).create(vals)
+        pos_order = self.env["pos.order"].with_user(uid).create(vals)
         payment = (
             self.env["pos.make.payment"]
             .with_context({"active_ids": [pos_order.id], "active_id": pos_order.id})
