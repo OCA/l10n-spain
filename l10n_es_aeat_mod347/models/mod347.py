@@ -112,6 +112,26 @@ class L10nEsAeatMod347Report(models.Model):
         string="Real Estate Records",
     )
 
+    def _error_count(self, model):
+        records_error_group = self.env["l10n.es.aeat.mod347.%s" % model].read_group(
+            domain=[("check_ok", "=", False), ("report_id", "in", self.ids)],
+            fields=["report_id"],
+            groupby=["report_id"],
+        )
+        return {
+            rec["report_id"][0]: rec["report_id_count"] for rec in records_error_group
+        }
+
+    def _compute_error_count(self):
+        super()._compute_error_count()
+        partner_records_error_dict = self._error_count("partner_record")
+        real_estate_record_error_dict = self._error_count("real_estate_record")
+
+        for report in self:
+            report.error_count += partner_records_error_dict.get(
+                report.id, 0
+            ) + real_estate_record_error_dict.get(report.id, 0)
+
     def button_confirm(self):
         """Different check out in report"""
         for item in self:
@@ -328,6 +348,7 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
     _inherit = ["mail.thread", "mail.activity.mixin", "portal.mixin"]
     _description = "Partner Record"
     _rec_name = "partner_vat"
+    _order = "check_ok asc,id"
 
     @api.model
     def _default_record_id(self):
@@ -505,18 +526,28 @@ class L10nEsAeatMod347PartnerRecord(models.Model):
         store=True,
         help="Checked if this record is OK",
     )
+    error_text = fields.Char(
+        string="Error text",
+        compute="_compute_check_ok",
+        store=True,
+    )
 
     @api.depends(
         "partner_country_code", "partner_state_code", "partner_vat", "community_vat"
     )
     def _compute_check_ok(self):
         for record in self:
-            record.check_ok = (
-                record.partner_country_code
-                and record.partner_state_code
-                and record.partner_state_code.isdigit()
-                and (record.partner_vat or record.partner_country_code != "ES")
-            )
+            errors = []
+            if not record.partner_country_code:
+                errors.append(_("Without country code"))
+            if not record.partner_state_code:
+                errors.append(_("Without state code"))
+            if record.partner_state_code and not record.partner_state_code.isdigit():
+                errors.append(_("State code can only contain digits"))
+            if not (record.partner_vat or record.partner_country_code != "ES"):
+                errors.append(_("VAT must be defined for Spanish Contacts"))
+            record.check_ok = not bool(errors)
+            record.error_text = ", ".join(errors)
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):
@@ -632,6 +663,7 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
     _name = "l10n.es.aeat.mod347.real_estate_record"
     _description = "Real Estate Record"
     _rec_name = "reference"
+    _order = "check_ok asc,id"
 
     @api.model
     def _default_record_id(self):
@@ -707,11 +739,16 @@ class L10nEsAeatMod347RealStateRecord(models.Model):
         store=True,
         help="Checked if this record is OK",
     )
+    error_text = fields.Char(string="Errors", compute="_compute_check_ok", store=True)
 
     @api.depends("state_code")
     def _compute_check_ok(self):
         for record in self:
-            record.check_ok = bool(record.state_code)
+            errors = []
+            if not record.state_code:
+                errors.append(_("Without state code"))
+            record.check_ok = not bool(errors)
+            record.error_text = ", ".join(errors)
 
     @api.onchange("partner_id")
     def _onchange_partner_id(self):

@@ -48,6 +48,11 @@
                     string="Set to invalid"
                 />
                 <field name="check_ok" />
+                <field
+                    name="error_text"
+                    optional="show"
+                    attrs="{'invisible': [('check_ok', '=', True)]}"
+                />
             </tree>
         </field>
     </record>
@@ -99,6 +104,12 @@
                             <group>
                                 <group>
                                     <field name="partner_id" />
+                                    <field name="check_ok" invisible="1" />
+                                    <field
+                                        name="error_text"
+                                        attrs="{'invisible': [('check_ok', '=', True)]}"
+                                        class="text-danger"
+                                    />
                                     <field name="partner_vat" select="1" />
                                     <field name="representative_vat" select="2" />
                                     <field name="community_vat" />
@@ -265,6 +276,11 @@
                 <field name="number" />
                 <field name="city" />
                 <field name="township" />
+                <field
+                    name="error_text"
+                    optional="show"
+                    attrs="{'invisible': ['|', ('check_ok', '=', True), ('partner_id', '=', False)]}"
+                />
             </tree>
         </field>
     </record>
@@ -276,6 +292,12 @@
                 <group string="Partner info">
                     <group>
                         <field name="partner_id" />
+                        <field name="check_ok" invisible="1" />
+                        <field
+                            name="error_text"
+                            attrs="{'invisible': [('check_ok', '=', True)]}"
+                            class="text-danger"
+                        />
                     </group>
                     <group>
                         <field name="partner_vat" />
