@@ -1,4 +1,5 @@
 # Copyright 2021 Binovo IT Human Project SL
+# Copyright 2022 Landoo Sistemas de Informacion SL
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 
@@ -103,13 +104,13 @@ class PosOrder(models.Model):
                 vals[
                     "previous_tbai_invoice_id"
                 ] = tbai_previous_order.tbai_invoice_id.id
-            datas = base64.b64encode(pos_order["tbai_datas"].encode("utf-8"))
+            datas = base64.b64encode(pos_order["data"]["tbai_datas"].encode("utf-8"))
             vals.update(
                 {
                     "datas": datas,
                     "datas_fname": "%s.xsig" % self.pos_reference.replace("/", "-"),
                     "file_size": len(datas),
-                    "signature_value": pos_order["tbai_signature_value"],
+                    "signature_value": pos_order["data"]["tbai_signature_value"],
                 }
             )
         gipuzkoa_tax_agency = self.env.ref(
@@ -163,7 +164,7 @@ class PosOrder(models.Model):
                     )
                 )
         vals["tbai_tax_ids"] = []
-        for tax_id, tax_values in taxes.items():
+        for _tax_id, tax_values in taxes.items():
             tax_values["base"] = "%.2f" % tax_values["base"]
             tax_values["amount"] = "%.2f" % tax_values["amount"]
             tax_values["amount_total"] = "%.2f" % tax_values["amount_total"]
@@ -172,7 +173,6 @@ class PosOrder(models.Model):
             vals["tbai_invoice_line_ids"] = lines
         return vals
 
-    @api.multi
     def _tbai_build_invoice(self):
         for record in self:
             vals = record.tbai_prepare_invoice_values()
@@ -181,18 +181,27 @@ class PosOrder(models.Model):
             record.tbai_invoice_id = tbai_invoice.id
 
     @api.model
-    def _process_order(self, pos_order):
-        order = super()._process_order(pos_order)
+    def _process_order(self, pos_order, draft, existing_order):
+        if pos_order["data"].get("tbai_vat_regime_key", False) and isinstance(
+            pos_order["data"]["tbai_vat_regime_key"], str
+        ):
+            regime_key = pos_order["data"]["tbai_vat_regime_key"]
+            pos_order["data"]["tbai_vat_regime_key"] = (
+                self.env["tbai.vat.regime.key"]
+                .search([("code", "=", regime_key)], limit=1)
+                .id
+            )
+        order_id = super()._process_order(pos_order, draft, existing_order)
+        order = self.env["pos.order"].browse(order_id)
         if order.config_id.tbai_enabled and not pos_order.get("to_invoice", False):
             vals = order.tbai_prepare_invoice_values(pos_order)
             order.tbai_invoice_id = self.env["tbai.invoice"].sudo().create(vals)
             order.config_id.tbai_last_invoice_id = order.tbai_invoice_id
-        return order
+        return order.id
 
-    @api.multi
     def _prepare_done_order_for_pos(self):
         res = super()._prepare_done_order_for_pos()
-        if self.tbai_enabled:
+        if self.tbai_enabled and self.tbai_invoice_id:
             res.update(
                 {
                     "tbai_identifier": self.tbai_invoice_id.tbai_identifier,

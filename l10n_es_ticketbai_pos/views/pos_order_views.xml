@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2021 Binovo IT Human Project SL
+     Copyright 2022 Landoo Sistemas de Informacion SL
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <data>
@@ -142,24 +143,6 @@
                         </group>
                     </page>
                 </page>
-            </field>
-        </record>
-        <record id="view_pos_order_form_inherit" model="ir.ui.view">
-            <field name="name">pos.order.order.form.inherit</field>
-            <field name="model">pos.order</field>
-            <field name="inherit_id" ref="pos_order_return.view_pos_order_form" />
-            <field name="arch" type="xml">
-                <xpath
-                    expr="//button[@name='refund']/following-sibling::button[position()=1]"
-                    position="attributes"
-                >
-                    <attribute
-                        name="attrs"
-                    >{'invisible':['|', '|', ('state','=','draft'),
-                                                       ('returned_order_id', '!=', False),
-                                                       ('tbai_enabled', '=', True)]}
-                    </attribute>
-                </xpath>
             </field>
         </record>
     </data>
