@@ -62,10 +62,15 @@ class AccountMove(models.Model):
         propia compañia en IDEmisorFactura y Contraparte
         Más información en: 8.1.2.2. Ejemplo mensaje XML de alta de importación
         en el documento de descripción de los servicios web.
+
+        En el caso de una factura (con la casilla LC activa) que complemente a una
+        factura DUA se debe mantener el TipoFactura = LC. Puntos 4.24 y 4.25 de este pdf:
+        https://www.agenciatributaria.es/static_files/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Modelos_y_formularios/Suministro_inmediato_informacion/V_1_1/Faqs_General/FAQs11_11_2020.pdf  # noqa
         """
         res = super()._get_sii_invoice_dict_in(cancel=cancel)
         if res.get("FacturaRecibida") and self.sii_dua_invoice:
-            res["FacturaRecibida"]["TipoFactura"] = "F5"
+            if not self.sii_lc_operation:
+                res["FacturaRecibida"]["TipoFactura"] = "F5"
             res["FacturaRecibida"].pop("FechaOperacion", None)
             nif = self.company_id.partner_id._parse_aeat_vat_info()[2]
             res["FacturaRecibida"]["IDEmisorFactura"] = {"NIF": nif}
