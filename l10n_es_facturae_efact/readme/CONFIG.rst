@@ -1,4 +1,4 @@
-#. Configurar los parámetros de envío de e.Fact a cada empresa y partners
+#. Configurar los parámetros de envío de e.FACT a cada empresa y partners
    necesarios.
 #. Se debe configurar el servidor, puerto, usuario y password de envío.
 #. Por defecto se añaden los campos de configuración de producción.
