@@ -10,3 +10,8 @@ class AccountTax(models.Model):
     tax_reduction_type = fields.Selection(
         string="Tax type", selection=[("S", "Standard"), ("R", "Reduced")]
     )
+    service_type = fields.Selection(
+        string="Service type",
+        selection=[("goods", "Goods"), ("services", "Services")],
+        default="goods",
+    )

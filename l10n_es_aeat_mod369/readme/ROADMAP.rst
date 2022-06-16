@@ -4,4 +4,3 @@
 * Realizar la pestaña 7 Unión de Correcciones de autoliquidaciones de periodos anteriores
 * Crear páginas complementarias si se exceden los 28 impuestos diferentes
 * Realizar las declaraciones de Importación y Exterior a la UE
-* Realizar tests unitarios
