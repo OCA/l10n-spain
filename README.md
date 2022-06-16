@@ -25,7 +25,7 @@ addon | version | maintainers | summary
 [account_promissory_note_caixabank](account_promissory_note_caixabank/) | 13.0.1.0.1 |  | Impresión de pagaré CaixaBank A4
 [delivery_dhl_parcel](delivery_dhl_parcel/) | 13.0.1.3.3 |  | Delivery Carrier implementation for DHL Parcel using their API
 [delivery_gls_asm](delivery_gls_asm/) | 13.0.1.1.0 |  | Delivery Carrier implementation for GLS with ASMRed API
-[delivery_seur](delivery_seur/) | 13.0.1.1.2 |  | Integrate SEUR webservice
+[delivery_seur](delivery_seur/) | 13.0.1.1.3 |  | Integrate SEUR webservice
 [ecoembes](ecoembes/) | 13.0.1.2.0 |  | Add some data related to ecoembes.com
 [l10n_es_account_asset](l10n_es_account_asset/) | 13.0.1.0.2 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Gestión de activos fijos para España
 [l10n_es_account_bank_statement_import_n43](l10n_es_account_bank_statement_import_n43/) | 13.0.1.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Importación de extractos bancarios españoles (Norma 43)
