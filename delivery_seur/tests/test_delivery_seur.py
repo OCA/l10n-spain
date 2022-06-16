@@ -1,11 +1,11 @@
 # Copyright 2020 Trey, Kilobytes de Soluciones
 # Copyright 2020 FactorLibre
-# Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2021-2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests import Form, common
 
 
-class TestDeliverySeur(common.SavepointCase):
+class TestDeliverySeurBase(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -48,6 +48,8 @@ class TestDeliverySeur(common.SavepointCase):
         sale.action_confirm()
         return sale
 
+
+class TestDeliverySeur(TestDeliverySeurBase):
     def test_soap_connection(self):
         if not self.carrier or self.carrier.prod_environment:
             self.skipTest("Without SEUR credentials")
