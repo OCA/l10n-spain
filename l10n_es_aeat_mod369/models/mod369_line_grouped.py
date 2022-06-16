@@ -1,4 +1,5 @@
 # Copyright 2022 Studio73 - Ethan Hildick <ethan@studio73.es>
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import api, fields, models
@@ -11,45 +12,40 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     @api.depends("mod369_line_ids")
     def _compute_totals(self):
         for group in self:
-            base = 0
-            amount = 0
-            page_3_total = 0
-            page_4_total = 0
-            page_3_4_total = 0
-            page_5_total = 0
-            page_6_total = 0
-            page_5_6_total = 0
+            group_keys = {
+                "base": 0,
+                "amount": 0,
+                "page_3_total": 0,
+                "page_4_total": 0,
+                "page_3_4_total": 0,
+                "page_5_total": 0,
+                "page_6_total": 0,
+                "page_5_6_total": 0,
+            }
             for line in group.mod369_line_ids:
                 if line.map_line_id.field_type == "base":
-                    base += line.amount
+                    group_keys["base"] += line.amount
                 elif line.map_line_id.field_type == "amount":
-                    amount += line.amount
+                    group_keys["amount"] += line.amount
                 if not group.is_page_8_line or line.map_line_id.field_type != "amount":
                     continue
-                if not line.outside_spain:
+                if line.oss_country_id.code == "ES":
                     if line.service_type == "services":
-                        page_3_total += line.amount
+                        group_keys["page_3_total"] += line.amount
                     elif line.service_type == "goods":
-                        page_4_total += line.amount
+                        group_keys["page_4_total"] += line.amount
                 else:
                     if line.service_type == "services":
-                        page_5_total += line.amount
+                        group_keys["page_5_total"] += line.amount
                     elif line.service_type == "goods":
-                        page_6_total += line.amount
-                page_3_4_total = page_3_total + page_4_total
-                page_5_6_total = page_5_total + page_6_total
-            group.update(
-                {
-                    "base": base,
-                    "amount": amount,
-                    "page_3_total": page_3_total,
-                    "page_4_total": page_4_total,
-                    "page_3_4_total": page_3_4_total,
-                    "page_5_total": page_5_total,
-                    "page_6_total": page_6_total,
-                    "page_5_6_total": page_5_6_total,
-                }
-            )
+                        group_keys["page_6_total"] += line.amount
+                group_keys["page_3_4_total"] = (
+                    group_keys["page_3_total"] + group_keys["page_4_total"]
+                )
+                group_keys["page_5_6_total"] = (
+                    group_keys["page_5_total"] + group_keys["page_6_total"]
+                )
+            group.update(group_keys)
 
     mod369_line_ids = fields.Many2many(
         string="Mod369 lines",
@@ -63,9 +59,9 @@ class L10nEsAeatMod369LineGrouped(models.Model):
     country_code = fields.Char(string="Country code", related="country_id.code")
     tax_id = fields.Many2one(string="Tax", comodel_name="account.tax")
     vat_type = fields.Float(string="VAT Type", related="tax_id.amount")
-    outside_spain = fields.Boolean(string="Outside of Spain")
     service_type = fields.Selection(
-        string="Service type", selection=[("goods", "Goods"), ("services", "Services")]
+        related="tax_id.service_type",
+        string="Service type",
     )
     base = fields.Float(string="Base", compute="_compute_totals")
     amount = fields.Float(string="Amount", compute="_compute_totals")
