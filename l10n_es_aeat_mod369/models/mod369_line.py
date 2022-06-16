@@ -1,4 +1,5 @@
 # Copyright 2022 Studio73 - Ethan Hildick <ethan@studio73.es>
+# Copyright 2022 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 from odoo import fields, models
@@ -17,13 +18,9 @@ class L10nEsAeatMod369Line(models.Model):
     oss_tax_id = fields.Many2one(string="OSS Tax", comodel_name="account.tax")
     oss_country_id = fields.Many2one(string="OSS Country", comodel_name="res.country")
     oss_sequence = fields.Integer(string="OSS Sequence")
-    outside_spain = fields.Boolean(string="Outside of Spain")
     service_type = fields.Selection(
-        string="Service type", selection=[("goods", "Goods"), ("services", "Services")]
-    )
-    oss_regimen = fields.Selection(
-        string="OSS Regimen",
-        selection=[("union", "Union"), ("exterior", "Exterior"), ("import", "Import")],
+        related="oss_tax_id.service_type",
+        string="Service type",
     )
     field_number = fields.Integer(
         string="Field number", related="tax_line_id.field_number"
