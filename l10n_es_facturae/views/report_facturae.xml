@@ -327,8 +327,8 @@
                         <t t-if="version not in ('3_2', '3_2_1')">
                             <InvoiceDescription
                                 t-length="2500"
-                                t-if="move.narration"
-                                t-esc="move.narration"
+                                t-if="move.get_narration()"
+                                t-esc="move.get_narration()"
                             />
                             <ReceiverTransactionReference t-length="20" t-if="False" />
                             <FileReference t-length="20" t-if="False" />
@@ -672,7 +672,7 @@
                         t-set="attachments"
                         t-value="move._get_facturae_move_attachments()"
                     />
-                    <AdditionalData t-if="move.narration or attachments">
+                    <AdditionalData t-if="move.get_narration() or attachments">
                         <RelatedInvoice t-if="False" />
                         <RelatedDocuments t-if="attachments">
                             <Attachment t-foreach="attachments" t-as="attachment">
