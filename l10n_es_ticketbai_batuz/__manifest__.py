@@ -3,28 +3,19 @@
 
 {
     "name": "TicketBAI - Batuz - "
-            "declaración de todas las operaciones de venta realizadas por las personas "
-            "y entidades que desarrollan actividades económicas en Bizkaia",
+    "declaración de todas las operaciones de venta realizadas por las personas "
+    "y entidades que desarrollan actividades económicas en Bizkaia",
     "version": "12.0.1.1.0",
     "category": "Accounting & Finance",
     "website": "https://github.com/OCA/l10n-spain",
-    "author": "Binovo,"
-              "Digital5,"
-              "Odoo Community Association (OCA)",
+    "author": "Binovo," "Digital5," "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "auto_install": False,
     "development_status": "Alpha",
-    "maintainers": [
-        "Binovo",
-        "enriquemartin"
-    ],
-    "depends": [
-        "l10n_es_ticketbai_api_batuz",
-        "l10n_es_ticketbai",
-        "queue_job",
-    ],
+    "maintainers": ["Binovo", "enriquemartin"],
+    "depends": ["l10n_es_ticketbai_api_batuz", "l10n_es_ticketbai", "queue_job",],
     "data": [
         "security/ir_rule.xml",
         "data/tbai_vat_regime_key_data.xml",

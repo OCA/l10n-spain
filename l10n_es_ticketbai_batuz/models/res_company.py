@@ -1,8 +1,10 @@
 # Copyright 2021 Digital5, S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import models, fields
 from datetime import datetime, timedelta
+
 import pytz
+
+from odoo import fields, models
 
 
 class ResCompany(models.Model):
