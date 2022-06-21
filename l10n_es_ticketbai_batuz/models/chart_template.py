@@ -35,9 +35,11 @@ class AccountChartTemplate(models.Model):
     @api.multi
     def _get_fp_vals(self, company, position):
         res = super()._get_fp_vals(company, position)
-        res.update({
-            "tbai_vat_regime_purchase_key": position.tbai_vat_regime_purchase_key.id,
-            "tbai_vat_regime_purchase_key2": position.tbai_vat_regime_purchase_key2.id,
-            "tbai_vat_regime_purchase_key3": position.tbai_vat_regime_purchase_key3.id,
-        })
+        res.update(
+            {
+                "tbai_vat_regime_purchase_key": position.tbai_vat_regime_purchase_key.id,
+                "tbai_vat_regime_purchase_key2": position.tbai_vat_regime_purchase_key2.id,
+                "tbai_vat_regime_purchase_key3": position.tbai_vat_regime_purchase_key3.id,
+            }
+        )
         return res
