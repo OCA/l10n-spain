@@ -1,14 +1,15 @@
 # Copyright 2021 Digital5, S.L.
+# Copyright 2022 Landoo Sistemas de Informacion SL
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
-class AccountInvoiceRefund(models.TransientModel):
-    _inherit = "account.invoice.refund"
+class AccountMoveReversal(models.TransientModel):
+    _inherit = "account.move.reversal"
 
     def _default_batuz_supplier_invoice_number_required(self):
         invoices = (
-            self.env["account.invoice"]
+            self.env["account.move"]
             .browse(self.env.context.get("active_ids"),)
             .filtered(lambda x: x.type == "in_invoice")
         )
@@ -20,9 +21,8 @@ class AccountInvoiceRefund(models.TransientModel):
     )
     batuz_supplier_invoice_number = fields.Char(string="Supplier Invoice Number",)
 
-    @api.multi
-    def compute_refund(self, mode="refund"):
+    def reverse_moves(self):
         wizard = self.with_context(
             batuz_supplier_invoice_number=self.batuz_supplier_invoice_number
         )
-        return super(AccountInvoiceRefund, wizard).compute_refund(mode)
+        return super(AccountMoveReversal, wizard).reverse_moves()
